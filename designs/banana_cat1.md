@@ -154,7 +154,7 @@
 > **AI follow-up**:
 > 1. "*(beaming tone)* The best Travel Reporter I know! That banana is lucky to have you."
 > 2. "*(playful tone)* Yes! And now you know the amazing story of what you're eating. Every banana has a journey! You're an awesome Travel Reporter."
-> 3. "*(warm tone)* Look at that badge — Travel Reporter! The banana says thank you for telling its story."
+> 3. *(Wait 3 seconds)* "*(warm tone)* Look at that badge — Travel Reporter! The banana says thank you for telling its story."
 
 > **Screen**: A large animated badge/medal fills the center of the screen reading "Travel Reporter" with a small banana and passport icon. Gold confetti animation bursts across the screen. A cheerful chime sound plays. The child's original banana photo appears as a small inset in the badge.
 
@@ -172,7 +172,7 @@
 > **AI follow-up**:
 > 1. "*(warm closing tone)* It really is! Next time you see a piece of fruit, you can be its Travel Reporter too. Bye for now, Reporter!"
 > 2. "*(encouraging tone)* Great idea! Every piece of food has its own adventure. You can be a Travel Reporter for anything. See you next time!"
-> 3. "*(gentle closing tone)* Every banana — every piece of fruit — has a story like this. You helped this one share it. See you next time, Travel Reporter!"
+> 3. *(Wait 3 seconds)* "*(gentle closing tone)* Every banana — every piece of fruit — has a story like this. You helped this one share it. See you next time, Travel Reporter!"
 
 > **Screen**: The words "Change" and "Connection" appear in large, colorful, hand-drawn-style lettering. "Change" is accompanied by a small animation of a banana shifting from green to yellow. "Connection" is accompanied by a dotted line connecting icons: sun → plant → boat → store → table. The travel passport sits below with all its stamps. After 3 seconds, a soft wave animation and "See you next time, Travel Reporter!" text fades in.
 

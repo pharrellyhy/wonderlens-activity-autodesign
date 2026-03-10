@@ -74,7 +74,7 @@
 > **AI follow-up**:
 > 1. "*(delighted)* Orange — like a warm sunset! Great find, Flame Finder! That's 2 in your collection. 2 more to go!"
 > 2. "*(validating, then guiding)* A flower — nice! And look at that warm color on it. I think it's a bit orange. Another flame for your collection! 2 more to go!"
-> 3. "*(warm)* Let me look... I see warm color in there! Looks like it could be a golden-yellow. Beautiful! 2 more to go!"
+> 3. *(waits 2 seconds)* "*(warm)* Let me look... I see warm color in there! Looks like it could be a golden-yellow. Beautiful! 2 more to go!"
 >
 > **Screen**: The new photo slides into the second slot with a gentle flame burst animation. A small "2/4" counter updates. The filled slots glow softly.
 
@@ -169,10 +169,12 @@
 > **Possible child responses**:
 > 1. (Engaged) "I will!" / "That was fun!" / "I want to find more!"
 > 2. (Quiet) Smiles or nods.
+> 3. (No response) Child watches the badge animation quietly.
 >
 > **AI follow-up**:
 > 1. "*(warm goodbye)* It WAS fun! Keep looking for warm colors — they're hiding everywhere. Bye, Flame Finder!"
 > 2. "*(gentle)* You did something really special today. Bye bye, Flame Finder!"
+> 3. *(waits 2 seconds)* "*(soft)* Your autumn rainbow looks beautiful. Bye bye, Flame Finder!"
 >
 > **Screen**: A golden badge animation appears — a shield shape with a stylized flame icon in gradient colors (yellow-orange-red). The text "Flame Finder" is displayed below in bold, warm lettering. The four collection photos appear as small insets around the badge. The words **"Form"** and **"Connection"** float upward in artistic lettering — "Form" styled with a gradient fill from yellow to red, "Connection" with tiny dotted lines linking the letters together. Warm confetti drifts down. A triumphant chime plays.
 

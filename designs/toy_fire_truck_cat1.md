@@ -131,10 +131,12 @@
 > **Possible child responses**:
 > 1. (Engaged) "WEE-OO!" / "I'm a captain!" / waves at screen.
 > 2. (Quiet) Smiles or says nothing.
+> 3. (No response) Child watches the badge and truck quietly.
 >
 > **AI follow-up**:
 > 1. "*(joyful)* WEE-OO WEE-OO! Captain signing off! See you next rescue!"
 > 2. "*(gentle)* Bye bye, Captain! Your badge is saved! See you next time!"
+> 3. *(waits 2 seconds)* "*(soft)* Bye bye, Captain. Your rescue team is ready for next time!"
 >
 > **Screen**: The words **"Function"** and **"Connection"** appear artistically — "Function" is styled with tiny gear and wheel icons inside the letters, colored fire-engine red; "Connection" is styled with little dotted lines linking the letters together, with small heart icons at each link point. The fire truck photo sits centered below with the three rescue scene thumbnails fanning out from it, connected by gentle animated lines. Soft warm glow background. The Rescue Captain badge sits in the top corner.
 

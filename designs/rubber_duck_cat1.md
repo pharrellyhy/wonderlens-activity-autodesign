@@ -126,7 +126,7 @@
 > **AI follow-up**:
 > 1. "*(celebrating)* QUACK QUACK HOORAY! Best ducky voice ever! You get a special badge!"
 > 2. "*(warmly)* You were SO good! Ducky is lucky to have YOUR voice! Here's your badge!"
-> 3. "*(delighted)* You love being ducky's voice! Next time, ducky can go to even MORE places! But first — your badge!"
+> 3. *(waits 2 seconds)* "*(delighted)* You love being ducky's voice! Next time, ducky can go to even MORE places! But first — your badge!"
 >
 > **Screen**: A golden badge animation assembles on screen: a rubber duck wearing a tiny crown, with the text "Ducky's Best Voice" curving beneath it. Confetti bursts from both sides. A cheerful celebration sound plays.
 
@@ -137,10 +137,12 @@
 > **Possible child responses**:
 > 1. (Engaged) "Bye ducky!" / "Quack quack!" / Waves.
 > 2. (Quiet) Smiles or looks at the badge.
+> 3. (No response) Child watches the ripple animation quietly.
 >
 > **AI follow-up**:
 > 1. "*(happy)* Bye bye, Ducky's Best Voice! See you next splash time!"
 > 2. "*(softly)* Your badge is saved! Bye bye, little duck friend!"
+> 3. *(waits 2 seconds)* "*(gentle)* Bye bye, little duck friend. See you next splash time!"
 >
 > **Screen**: The badge shrinks to the top corner. The words **"Perspective"** and **"Connection"** appear in the center — "Perspective" is styled with the letters each tinted a different pastel color (representing different feelings), and "Connection" is styled with tiny animated water droplets linking the letters together. The rubber duck photo fades gently with a final ripple animation. Soft closing chime plays.
 

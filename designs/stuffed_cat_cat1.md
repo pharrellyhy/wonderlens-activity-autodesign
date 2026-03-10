@@ -136,7 +136,7 @@
 > **AI follow-up**:
 > 1. "*(cheering)* Kitty's Voice! Purr, meow, hiss — you know them all!"
 > 2. "*(warm)* You love being kitty's voice! You made so many great sounds!"
-> 3. "*(gentle celebration)* You made kitty talk! Happy purrs, big meows — amazing!"
+> 3. *(waits 2 seconds)* "*(gentle celebration)* You made kitty talk! Happy purrs, big meows — amazing!"
 >
 > **Screen**: A golden badge animation appears showing a cat silhouette with sound waves around it. Text reads "Kitty's Voice" in playful, rounded letters. Sparkles and gentle confetti fall. A cheerful chime plays.
 
@@ -147,10 +147,12 @@
 > **Possible child responses**:
 > 1. (Engaged) "Purrrr!" / "Bye kitty!" / Hugs the stuffed cat.
 > 2. (Quiet) Smiles or says nothing.
+> 3. (No response) Child cuddles the stuffed cat or watches quietly.
 >
 > **AI follow-up**:
 > 1. "*(warm goodbye)* PURRRR! Kitty says thank you! Bye bye, Kitty's Voice!"
 > 2. "*(soft)* Give kitty a big hug! Bye bye, Kitty's Voice!"
+> 3. *(waits 2 seconds)* "*(soft)* Kitty looks extra cozy with you. Bye bye, Kitty's Voice!"
 >
 > **Screen**: The cat photo returns to center with all four scenario icons arranged around it (blanket, question mark, food bowl, lightning bolt) connected by gentle dotted lines. The words **"Perspective"** and **"Connection"** float upward in soft, artistic lettering — "Perspective" styled with little cat ears on the P, "Connection" with a dotted line linking the letters. A gentle lullaby note plays as the screen fades warmly.
 

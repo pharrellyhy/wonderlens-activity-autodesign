@@ -74,7 +74,7 @@
 > **AI follow-up**:
 > 1. "*(thrilled)* A clover flower — round AND a little fluffy! Look at all those tiny petals bunched together into a ball. Safari Log: 'Clover Pom-Pom — round and soft!' Amazing first find, Scout. Two more to go!"
 > 2. "*(looking closely)* A plant! And look at the top part — see how it makes a little ball shape? All those tiny pieces poking out make it look puffy too! Safari Log: 'Mystery Puff Plant!' Great eye, Scout. Two more to find!"
-> 3. "*(enthusiastic)* Oooh, let me look! I see something with a round shape at the top — it looks soft and bunched up. What does it feel like? Is it smooth or fuzzy? Tell me what YOU notice!"
+> 3. *(waits 2 seconds)* "*(enthusiastic)* Oooh, let me look! I see something with a round shape at the top — it looks soft and bunched up. What does it feel like? Is it smooth or fuzzy? Tell me what YOU notice!"
 >
 > **Screen**: The new photo slides into the first empty slot on the mission card. A brief burst of golden sparkles. The slot gets a check. Counter updates to "2 of 4." A tiny label appears under the photo: awaiting the child's name or the AI's Safari Log name.
 
@@ -101,6 +101,16 @@
 > **STUCK BRANCH** *(if child has been searching for more than a minute without finding something)*:
 >
 > **AI says**: "*(helpful whisper)* Scout tip! Try looking RIGHT at your feet in the grass — clover heads, tiny mushrooms, and seed puffs love hiding in short grass. Or peek at a bush — sometimes the berries or buds are perfectly round! Even a round pebble counts!"
+>
+> **Possible child responses**:
+> 1. (Ideal) "I see one!" / Child spots something near the grass or bush.
+> 2. (Unexpected) "I still can't find anything." / "There's nothing here."
+> 3. (No response) Child keeps wandering without choosing a spot.
+>
+> **AI follow-up**:
+> 1. "*(encouraging)* Great spotting! Go take a photo of it, Scout — let's see your final safari find!"
+> 2. "*(reassuring)* That's okay! Try the edge of the path or right under a bush. Tiny round pebbles and fluffy grass tips count too!"
+> 3. *(waits 2 seconds)* "*(gentle prompt)* Let's slow down and look low. Do you see anything round near your shoes, or anything soft near the grass?"
 >
 > *(Child photographs final find — e.g., a round seed pod or a fluffy grass plume)*
 >
@@ -157,10 +167,12 @@
 > **Possible child responses**:
 > 1. (Engaged) Cheers, talks about wanting to find more, or asks about the badge.
 > 2. (Quiet) Smiles or says nothing.
+> 3. (No response) Child watches the drifting seeds quietly.
 >
 > **AI follow-up**:
 > 1. "*(encouraging)* Next time you're outside, keep your scout eyes ON — round and fluffy things are hiding everywhere! Under bushes, in flower beds, even on top of fences. See you on the next safari, Scout!"
 > 2. "*(warm)* Your badge is saved! And remember — whenever you spot a new round or fluffy thing, you can always tell me about it. Bye for now, Scout!"
+> 3. *(waits 2 seconds)* "*(soft)* Your scout badge is shining. Bye for now, Scout!"
 >
 > **Screen**: A golden "Wish Puff Safari Badge" appears — circular, with a dandelion puff silhouette at the center and the 4 collection photos as small insets around the edges. The words **"Form"** and **"Connection"** float up artistically — "Form" styled with round, bubbly letters filled with a fluffy texture, "Connection" with gentle dotted lines linking the letters. A soft chime plays. Tiny animated seeds drift across the screen and settle.
 

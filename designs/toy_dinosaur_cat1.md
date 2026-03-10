@@ -27,17 +27,17 @@
 
 **Step 1: Transition Bridge**
 
-> **AI says**: "(delighted gasp) Whoa! A dinosaur! ROAR! Is your dino big or little?"
+> **AI says**: "*(delighted gasp)* Whoa! A dinosaur! ROAR! Your dino looks ready to stomp!"
 >
 > **Possible child responses**:
-> 1. (Ideal) "Big!" / "Little!" / "He's big!"
-> 2. (Unexpected) "It's a T-Rex!" / "His name is Rex!" / random word
+> 1. (Ideal) "ROAR!" / "Stomp stomp!" / "Yeah!"
+> 2. (Unexpected) "It's a T-Rex!" / "His name is Rex!" / "It's green!"
 > 3. (No response) Child is silent or just looks at screen.
 >
 > **AI follow-up**:
-> 1. "(excited) A [big/little] dino! I love it! ROAR!"
-> 2. "(warm) Oh wow, cool dino! ROAR! I like your dino so much!"
-> 3. *(wait 2 seconds)* "(gentle, playful) Hey little friend! Your dino says… ROAR!"
+> 1. "*(excited)* ROAR! Yes! Stompy dino! I love it!"
+> 2. "*(warm)* Oh wow, cool dino! ROAR! Your dino looks ready for a big day!"
+> 3. *(wait 2 seconds)* "*(gentle, playful)* Hey little friend! Your dino says… ROAR!"
 >
 > **Screen**: Child's photo of the T-Rex centered on screen. Subtle leaf/jungle vines frame the edges with a slow sway animation. Small sparkle particles float around the dinosaur.
 
@@ -45,7 +45,7 @@
 
 **Step 2: Rule Introduction + Demo**
 
-> **AI says**: "(playful) Let's play! Your dino is waking up. Listen… (yawning voice) Ahhhhh! Dino says ahhhh! Can you say ahhhh?"
+> **AI says**: "*(playful)* Let's play! Your dino is waking up. Listen… (yawning voice) Ahhhhh! Dino says ahhhh! Can you say ahhhh?"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child says "Ahhhh!" or makes a yawn sound.
@@ -53,9 +53,9 @@
 > 3. (No response) Child is silent.
 >
 > **AI follow-up**:
-> 1. "(cheerful) Yes! Ahhhh! Dino is awake! Good morning, Dino!"
-> 2. "(laughing) Ooh, fun sound! Dino heard you! Good morning, Dino!"
-> 3. *(wait 2 seconds)* "(soft, coaxing) Ahhhh! Like a big yawn! Try it — ahhhh!"
+> 1. "*(cheerful)* Yes! Ahhhh! Dino is awake! Good morning, Dino!"
+> 2. "*(laughing)* Ooh, fun sound! Dino heard you! Good morning, Dino!"
+> 3. *(wait 2 seconds)* "*(soft, coaxing)* Ahhhh! Like a big yawn! Try it — ahhhh!"
 >
 > **Screen**: The T-Rex photo is now inside a simple illustrated bed/nest. Small cartoon "Z Z Z" letters float away as the dino "wakes up." When child responds, the Z's pop into tiny stars.
 
@@ -65,7 +65,7 @@
 
 **Round 1 — Dino is hungry (simple, high-success)**
 
-> **AI says**: "(excited) Dino's tummy says… GRRRR! Dino is hungry! What does dino eat? NOM NOM NOM!"
+> **AI says**: "*(excited)* Dino's tummy says… GRRRR! Dino is hungry! What does dino eat? NOM NOM NOM!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Nom nom!" / "Leaves!" / "Food!" / child makes eating sounds
@@ -73,15 +73,15 @@
 > 3. (No response) Child is silent.
 >
 > **AI follow-up**:
-> 1. "(happy) NOM NOM NOM! Yummy! Dino's tummy is happy now!"
-> 2. "(laughing) Ooh, yummy! NOM NOM! Dino loves that! Tummy is happy!"
-> 3. *(wait 2 seconds)* "(playful) NOM NOM NOM! Dino eats so much! Nom nom!"
+> 1. "*(happy)* NOM NOM NOM! Yummy! Dino's tummy is happy now!"
+> 2. "*(laughing)* Ooh, yummy! NOM NOM! Dino loves that! Tummy is happy!"
+> 3. *(wait 2 seconds)* "*(playful)* NOM NOM NOM! Dino eats so much! Nom nom!"
 >
 > **Screen**: T-Rex photo now surrounded by simple illustrated leaves and fruit. When child responds, a cartoon "nom nom" speech bubble pops up near the dino. Leaves wiggle.
 
 **Round 2 — Dino goes stomping (contrasting, movement-focused)**
 
-> **AI says**: "(energetic) Dino is full! Now dino walks! STOMP STOMP STOMP! Can you stomp? STOMP STOMP!"
+> **AI says**: "*(energetic)* Dino is full! Now dino walks! STOMP STOMP STOMP! Can you stomp? STOMP STOMP!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child says "Stomp stomp!" or stomps feet audibly.
@@ -89,15 +89,15 @@
 > 3. (No response) Child is silent.
 >
 > **AI follow-up**:
-> 1. "(thrilled) STOMP STOMP STOMP! Wow, big stomps! Dino is walking fast!"
-> 2. "(impressed) Ooh yes! Dino moves! STOMP STOMP! So strong!"
-> 3. *(wait 2 seconds)* "(rhythmic) STOMP… STOMP… STOMP! Big dino feet! Stomp stomp!"
+> 1. "*(thrilled)* STOMP STOMP STOMP! Wow, big stomps! Dino is walking fast!"
+> 2. "*(impressed)* Ooh yes! Dino moves! STOMP STOMP! So strong!"
+> 3. *(wait 2 seconds)* "*(rhythmic)* STOMP… STOMP… STOMP! Big dino feet! Stomp stomp!"
 >
 > **Screen**: T-Rex photo now on a simple illustrated path/trail. Small cartoon footprint stamps appear one by one in rhythm. Tiny dust puffs animate at each "stomp."
 
 **Round 3 — Dino is sleepy (surprising/funny, wind-down)**
 
-> **AI says**: "(slowing down, whispering) Oh… dino is sooo sleepy. Shhhh. Dino goes… (tiny snore) hrrrrr. Can you snore for dino? Hrrrrr!"
+> **AI says**: "*(slowing down, whispering)* Oh… dino is sooo sleepy. Shhhh. Dino goes… (tiny snore) hrrrrr. Can you snore for dino? Hrrrrr!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child makes a snoring sound or says "hrrrrr" / "shhh."
@@ -105,9 +105,9 @@
 > 3. (No response) Child is silent.
 >
 > **AI follow-up**:
-> 1. "(whispering, warm) Hrrrrr… shhh… dino is sleeping. So cozy. Good night, dino!"
-> 2. "(soft giggle) Hehe, silly dino! But shhhh… dino is sleepy now. Hrrrrr… night night!"
-> 3. *(wait 2 seconds)* "(very soft) Shhhh… hrrrrr… dino is sleeping now. Night night, dino."
+> 1. "*(whispering, warm)* Hrrrrr… shhh… dino is sleeping. So cozy. Good night, dino!"
+> 2. "*(soft giggle)* Hehe, silly dino! But shhhh… dino is sleepy now. Hrrrrr… night night!"
+> 3. *(wait 2 seconds)* "*(very soft)* Shhhh… hrrrrr… dino is sleeping now. Night night, dino."
 >
 > **Screen**: T-Rex photo dims slightly with a soft blue-purple overlay (nighttime). Illustrated stars and a moon appear around the dino. A small blanket illustration drapes over the bottom of the photo. Gentle slow-pulse glow on the stars.
 
@@ -115,7 +115,7 @@
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "(warm, proud) You did it! You told dino's whole day! You are… Dino's Best Friend!"
+> **AI says**: "*(warm, proud)* You did it! You told dino's whole day! You are… Dino's Best Friend!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child laughs, cheers, or says "Yay!"
@@ -123,9 +123,9 @@
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. "(celebrating) Yay! Dino's Best Friend! ROAR!"
-> 2. "(delighted) ROAR! Yes! You and dino are best friends!"
-> 3. "(cheerful) You are Dino's Best Friend! Dino says… ROAR! Thank you!"
+> 1. "*(celebrating)* Yay! Dino's Best Friend! ROAR!"
+> 2. "*(delighted)* ROAR! Yes! You and dino are best friends!"
+> 3. *(wait 2 seconds)* "*(cheerful)* You are Dino's Best Friend! Dino says… ROAR! Thank you!"
 >
 > **Screen**: Bright celebratory screen. A cartoon trophy/badge appears with the text "Dino's Best Friend" in large, friendly letters. The T-Rex photo is centered inside a golden star frame. Confetti particles and small cartoon dinosaur footprints rain down.
 
@@ -133,7 +133,7 @@
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "(gentle, reflective) You saw dino's shape — that's form! You felt what dino feels — that's perspective! Great job today!"
+> **AI says**: "*(gentle, reflective)* You saw dino's shape — that's form! You felt what dino feels — that's perspective! Great job today!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child says "Bye dino!" or "Again!" or smiles.
@@ -141,9 +141,9 @@
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. "(warm) Bye bye, dino! See you next time! ROAR!"
-> 2. "(kind) So fun, right? Bye bye, dino friend! ROAR!"
-> 3. "(soft) Bye bye, dino. You were so great today. ROAR!"
+> 1. "*(warm)* Bye bye, dino! See you next time! ROAR!"
+> 2. "*(kind)* So fun, right? Bye bye, dino friend! ROAR!"
+> 3. *(wait 2 seconds)* "*(soft)* Bye bye, dino. You were so great today. ROAR!"
 >
 > **Screen**: Two illustrated concept icons appear beside the T-Rex photo: a magnifying glass with the word "Form" and a pair of cartoon eyes with the word "Perspective." Both glow softly. After 3 seconds, the screen transitions to a gentle closing illustration of the dino sleeping under stars with the text "Great job today!" below.
 
@@ -161,3 +161,5 @@
 | 6 | Tier Appropriateness | PASS | All AI sentences are 3–5 words or short phrases. Heavy use of onomatopoeia (ROAR, NOM NOM, STOMP STOMP, HRRRRR, SHHHH). Single-step call-and-response. 3 rounds in the multi-round step, each very simple. |
 | 7 | Dialogue Specificity | PASS | All AI lines are concrete dialogue with tone markers in parentheses. No abstract placeholders like "AI guides child." |
 | 8 | Screen & UI Completeness | PASS | Every step has a specific screen description including visual elements, animations, and transitions. |
+
+**Overall**: ALL PASS — Ready for 教研 review.
