@@ -10,3 +10,7 @@ puddle + category 5 (collection/tracking), tier=T1	puddle	5	T1	PASS	P	P	P	P	P	P	
 feather + category 5 (collection/tracking), tier=T1	feather	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/feather_cat5.md	2026-03-11T00:09:00Z
 autumn leaf + category 5 (collection/tracking), tier=T1	autumn leaf	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/autumn_leaf_cat5.md	2026-03-11T00:10:00Z
 crayons + category 1 (sustained verbal), tier=T0, mapping=arts_music_crayons, start=warm+cold	crayons	1	T0	PASS	P	P	P	P	P	P	P	P	P	designs/crayons_cat1.md	2026-03-18T00:01:00Z
+lion + category 1 (sustained verbal), tier=T0, mapping=animals_lion, start=warm+cold	lion	1	T0	PASS	P	P	P	P	P	P	P	P	P	designs/lion_cat1.md	2026-03-18T00:02:00Z
+piano + category 1 (sustained verbal), tier=T1, mapping=arts_music_piano, start=warm+cold	piano	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/piano_cat1.md	2026-03-18T00:03:00Z
+teddy bear + category 1 (sustained verbal), tier=T0, mapping=daily_objects_teddy_bear, start=warm+cold	teddy bear	1	T0	PASS	P	P	P	P	P	P	P	P	P	designs/teddy_bear_cat1.md	2026-03-18T00:04:00Z
+raincoat + category 1 (sustained verbal), tier=T0, mapping=clothing_accessories_raincoat, start=warm+cold	raincoat	1	T0	PASS	P	P	P	P	P	P	P	P	P	designs/raincoat_cat1.md	2026-03-18T00:05:00Z
