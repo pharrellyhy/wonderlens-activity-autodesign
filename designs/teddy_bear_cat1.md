@@ -35,7 +35,7 @@
 > **Context**: Child has just finished a tier_guidance conversation about teddy bear.
 > **Conversation anchor**: emotions — "Does your teddy bear make you feel safe?"; senses — "soft and fluffy"
 >
-> **AI says**: "*(warm, building on earlier)* You said teddy is so soft! Soft teddy needs sleep now. Can you help?"
+> **AI says**: "*(warm, building on earlier)* Teddy feels soft. Teddy needs sleep. Can you help?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yes!" / "I help teddy!"
@@ -44,7 +44,7 @@
 >
 > **AI follow-up**:
 > 1. "*(cheerful whisper)* Yay! You are teddy's helper!"
-> 2. "*(playful gasp)* Oh! Maybe teddy wants a hug first. You show teddy?"
+> 2. "*(playful gasp)* Maybe hug first. Can you show?"
 > 3. *(wait 2 seconds)* "*(gentle nudge)* Teddy is waiting! Can you help?"
 >
 > **Screen**: Teddy bear photo centered on screen with a soft golden glow around it. Tiny stars slowly drift down like a sleepy night scene. A faint speech bubble near teddy shows a yawning face.
@@ -53,7 +53,7 @@
 
 > **Context**: Child photographs teddy bear with no prior conversation.
 >
-> **AI says**: "*(delighted gasp)* Oh! A teddy bear! So soft and cozy. Is teddy sleepy today?"
+> **AI says**: "*(delighted gasp)* Oh! Teddy bear! Soft and cozy. Sleepy today?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yes, teddy sleepy!" / "Teddy wants bed!"
@@ -61,15 +61,15 @@
 > 3. (No response) Child is silent or looking at teddy.
 >
 > **AI follow-up**:
-> 1. "*(cozy whisper)* Aww! Sleepy teddy! You help teddy sleep?"
-> 2. "*(giggly tone)* Happy teddy! But soon it's bedtime. You help teddy get cozy?"
+> 1. "*(cozy whisper)* Aww! Sleepy teddy! Help teddy sleep?"
+> 2. "*(giggly tone)* Happy teddy! Bedtime soon. Get cozy?"
 > 3. *(wait 2 seconds)* "*(soft, inviting)* Look at teddy! So fluffy. Can you say hi?"
 >
 > **Screen**: Teddy bear photo centered with soft blue-purple night sky background. Gentle twinkling stars animate around the edges. A small moon peeks from the corner.
 
 **Step 2: Rule Introduction + Demo**
 
-> **AI says**: "*(excited whisper)* Here's a game! I say what teddy needs. You help! Like this — teddy is cold. Brrr! I say... 'Hug teddy!' Squeeeeze! Now you try!"
+> **AI says**: "*(excited whisper)* Here's the game! I say need. You help. Teddy cold. Brrr! Say, 'Hug teddy!'"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Hug teddy!" / child makes hugging sounds / "Squeeeze!"
@@ -77,7 +77,7 @@
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. "*(warm celebration)* Yes! Big hug! Teddy feels warm now. You're a good helper!"
+> 1. "*(warm celebration)* Yes! Big hug! Teddy feels warm."
 > 2. "*(encouraging)* Teddy! Yes! Give teddy a hug! Squeeeeze!"
 > 3. *(wait 2 seconds)* "*(playful prompt)* Teddy says brrr! What do we do? Hug!"
 >
@@ -87,7 +87,7 @@
 
 > **Round 1: Teddy needs a pat** (simple, high-success — build confidence)
 >
-> **AI says**: "*(gentle storytelling tone)* Oh no! Teddy bumped his nose. Bonk! Teddy is sad. What do you say?"
+> **AI says**: "*(gentle storytelling tone)* Oh no! Bonk! Teddy sad. What say?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It's okay, teddy!" / "Pat pat!" / "Don't cry!"
@@ -95,15 +95,15 @@
 > 3. (No response) Child is quiet or looking at screen.
 >
 > **AI follow-up**:
-> 1. "*(proud whisper)* So gentle! Pat pat. Teddy feels better! You're so kind."
-> 2. "*(validating)* Bonk! Yes! Poor teddy. Can you say 'it's okay'? Pat pat!"
+> 1. "*(proud whisper)* Pat pat. Teddy better. So kind."
+> 2. "*(validating)* Bonk! Poor teddy. Say, 'It's okay.'"
 > 3. *(wait 2 seconds)* "*(soft prompt)* Teddy is sad. Can you say 'pat pat'?"
 >
 > **Screen**: Teddy photo with a tiny red bump on nose (illustrated overlay). A small tear drop appears. When child responds, a bandage sticker appears on nose and teddy's expression shifts to a smile. Small sparkles.
 
 > **Round 2: Teddy needs to sleep** (slightly more complex — introduce soothing action)
 >
-> **AI says**: "*(sleepy whisper)* Shhhh. Teddy is yawning. Ahhhhh. Teddy wants to sleep now. What do you say to teddy?"
+> **AI says**: "*(sleepy whisper)* Shhhh. Teddy yawns. Wants sleep. What say?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Night night, teddy!" / "Shhhh!" / "Go sleep!"
@@ -111,15 +111,15 @@
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. "*(warm, sleepy whisper)* Night night, teddy. Shhhh. So cozy. You take good care of teddy!"
-> 2. "*(giggly whisper)* Hehe! Teddy wants to play too! But first... shhhh... night night. Can you whisper it?"
+> 1. "*(warm, sleepy whisper)* Night night, teddy. So cozy."
+> 2. "*(giggly whisper)* Teddy plays too. First, night night."
 > 3. *(wait 2 seconds)* "*(inviting whisper)* Can you say 'shhhh'? Teddy is sleepy. Shhhh."
 >
 > **Screen**: Teddy photo with a yawning mouth overlay. Background dims gradually to a deep blue. When child responds, a tiny blanket animation slides over teddy. Soft lullaby notes (visual music notes) float upward. A small "zzz" appears.
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "*(warm, proud celebration)* Wow! You helped teddy so much! You are Teddy's Best Helper! You gave hugs! You said 'it's okay.' You said 'night night!' Teddy is so lucky!"
+> **AI says**: "*(warm, proud celebration)* Wow! You helped teddy! Best Helper!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child giggles, smiles, says "Yay!" or "I'm the helper!"
@@ -128,14 +128,14 @@
 >
 > **AI follow-up**:
 > 1. "*(beaming)* The best helper ever! Teddy loves you."
-> 2. "*(playful)* Teddy says thank you! You can help teddy again tomorrow!"
+> 2. "*(playful)* Teddy says thanks! Help again tomorrow!"
 > 3. "*(gentle, warm)* Teddy is smiling at you. You did it!"
 >
 > **Screen**: A golden badge appears in the center with the text "Teddy's Best Helper" and a small teddy icon with a heart. Confetti animation bursts gently. The teddy bear photo sits below the badge looking cozy and happy (illustrated smile overlay). Soft celebration sparkles.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective tone)* You know what? Teddy's job is to be soft and cozy. That's what teddy does — hugs and comfort! And YOU took care of teddy. Being gentle and kind — that's being responsible! Teddy's helper, that's you!"
+> **AI says**: "*(warm, reflective tone)* Teddy gives hugs. That's Function! You cared for teddy. That's Responsibility!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child smiles, says "Bye teddy!" or hugs their actual teddy.
@@ -144,7 +144,7 @@
 >
 > **AI follow-up**:
 > 1. "*(soft, closing)* Bye bye, teddy! Sweet dreams. See you next time!"
-> 2. "*(warm)* Yes! Teddy is your friend. Friends take care of each other! Bye bye, teddy!"
+> 2. "*(warm)* Yes! Teddy is friend. Friends help."
 > 3. "*(gentle close)* Night night, teddy. Night night, helper!"
 >
 > **Screen**: Two concept words appear artistically on screen: "Function" with a hugging-teddy icon, and "Responsibility" with a gentle-hands icon. The teddy bear photo is centered below, wrapped in a cozy blanket illustration. Soft golden glow. The words fade in one at a time with a gentle chime visual (musical note icons).

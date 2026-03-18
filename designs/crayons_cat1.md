@@ -35,7 +35,7 @@
 > **Context**: Child has just finished a tier_guidance conversation about crayons.
 > **Conversation anchor**: emotions — "Which crayon color makes you happy?"
 >
-> **AI says**: "*(warm, building on earlier)* You said you like colors! Which one feels happy?"
+> **AI says**: "*(warm, building on earlier)* You like colors! Which feels happy?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Red!" or "The blue one!"
@@ -43,8 +43,8 @@
 > 3. (No response) Child is quiet or looking at crayons
 >
 > **AI follow-up**:
-> 1. "*(delighted)* Ooh, red! Red feels happy! You pick colors like a wizard!"
-> 2. "*(warm, validating)* Drawing is so fun! Ooh — which color feels happy?"
+> 1. "*(delighted)* Ooh, red! Happy red! Wizard pick!"
+> 2. "*(warm, validating)* Drawing is fun! Which feels happy?"
 > 3. *(wait 2 seconds)* "*(gentle, playful)* Hmm, look at all those colors! Which one smiles?"
 >
 > **Screen**: Child's crayon photo centered with a soft golden glow around the crayon pile. A small sparkle animation pulses gently near the brightest colors, recalling the earlier conversation.
@@ -61,15 +61,15 @@
 > 3. (No response) Child stares at screen or looks at crayons
 >
 > **AI follow-up**:
-> 1. "*(delighted)* Ooh, green! I like green too! Green is so cool!"
-> 2. "*(warm, validating)* All of them — wow! You love them all! Which one is the silliest?"
+> 1. "*(delighted)* Ooh, green! Cool green friend!"
+> 2. "*(warm, validating)* All of them? Wow! Which is silliest?"
 > 3. *(wait 2 seconds)* "*(playful whisper)* Psst! I think that red one is waving at you!"
 >
 > **Screen**: Child's crayon photo centered with rainbow sparkle animation around the edges. Soft, colorful particles float up gently from the crayons.
 
 **Step 2: Rule Introduction + Demo**
 
-> **AI says**: "*(playful, magical tone)* You are a Color Wizard! Wizards give colors feelings. Watch — *(silly voice)* Yellow says 'Hee hee! I feel silly!' *(normal voice)* Now you try!"
+> **AI says**: "*(playful, magical tone)* You are Color Wizard! Colors get feelings! Yellow says, 'Hee hee!' Your turn!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child laughs, repeats, or says a feeling word
@@ -77,8 +77,8 @@
 > 3. (No response) Child watches quietly
 >
 > **AI follow-up**:
-> 1. "*(celebrating)* Yes! You are a wizard! Let's give more colors feelings!"
-> 2. "*(warm, reassuring)* You ARE a wizard! Just say how a color feels. Silly? Happy? Sleepy?"
+> 1. "*(celebrating)* Yes! Color wizard! More feelings!"
+> 2. "*(warm, reassuring)* You ARE wizard! Happy? Sleepy? Silly?"
 > 3. *(wait 2 seconds)* "*(encouraging whisper)* Try it! Say 'hee hee' like yellow!"
 >
 > **Screen**: A small wizard hat icon appears above the crayon photo. A yellow crayon wiggles with a speech bubble saying "Hee hee!" Sparkle effects surround it.
@@ -87,7 +87,7 @@
 
 > **Round 1: Red Crayon**
 >
-> **AI says**: "*(curious, pointing)* Ooh! Look — red! Pshhh! *(whoosh sound)* Red is here! How does red feel?"
+> **AI says**: "*(curious, pointing)* Look! Red! Pshhh! How feels red?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Happy!" or "Mad!" or any feeling word
@@ -95,15 +95,15 @@
 > 3. (No response) Child is quiet
 >
 > **AI follow-up**:
-> 1. "*(amazed)* Red feels happy! Wow! Happy red goes whooo! *(cheerful sound)* You are a great wizard!"
-> 2. "*(impressed)* Fire — yes! Fire is hot! Does red feel hot and excited? Oooh!"
+> 1. "*(amazed)* Happy red! Whooo! Great wizard!"
+> 2. "*(impressed)* Fire! Yes! Hot red! Excited red?"
 > 3. *(wait 2 seconds)* "*(gentle prompt)* Hmm, is red happy? Or sleepy? Or silly? You pick!"
 >
 > **Screen**: The red crayon from the photo glows and gently bounces. When the child answers, a matching emoji face (happy, excited, etc.) appears next to the red crayon with a sparkle burst. A small "Round 1" star appears in the corner.
 
 > **Round 2: Blue Crayon**
 >
-> **AI says**: "*(mysterious whisper)* Now — blue! Shhhhh. Blue is quiet. How does blue feel?"
+> **AI says**: "*(mysterious whisper)* Now blue. Shhhhh. How feels blue?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Sad!" or "Sleepy!" or "Calm!"
@@ -111,15 +111,15 @@
 > 3. (No response) Child looks at crayons or stays quiet
 >
 > **AI follow-up**:
-> 1. "*(soft, warm)* Sleepy blue! Shhhhh. *(yawn sound)* Blue is resting. You are so good at this!"
-> 2. "*(delighted)* The sky! Yes! Does the sky feel calm? Or happy? Blue is like the sky!"
+> 1. "*(soft, warm)* Sleepy blue. Shhhhh. Blue is resting."
+> 2. "*(delighted)* Sky blue! Calm blue? Happy blue?"
 > 3. *(wait 2 seconds)* "*(gentle)* I think blue feels sleepy. Zzzz. *(snoring sound)* Do you think so?"
 >
 > **Screen**: The blue crayon from the photo glows softly with a gentle pulsing light. When the child answers, a matching emoji face appears beside it. Tiny animated "Zzz" or stars float if the child says sleepy/calm. Both Round 1 and Round 2 stars now visible.
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "*(big celebration tone)* Yaaay! You did it! You are a COLOR WIZARD! You gave colors feelings! Woooo!"
+> **AI says**: "*(big celebration tone)* Yaaay! You did it! COLOR WIZARD!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child laughs, claps, or says "Yay!"
@@ -128,14 +128,14 @@
 >
 > **AI follow-up**:
 > 1. "*(warm, proud)* The best wizard! Colors love you!"
-> 2. "*(delighted)* You want more! Wow! You really are a Color Wizard! Colors are lucky to have you!"
-> 3. "*(warm, gentle)* You did so great. The colors are all smiling at you!"
+> 2. "*(delighted)* More? Wow! Lucky colors!"
+> 3. "*(warm, gentle)* So great. Colors smile now."
 >
 > **Screen**: A big sparkling wizard badge animates onto screen with the text "Color Wizard ✨" in child-friendly lettering. The crayon photo is in the background with all the crayons gently glowing their colors. Confetti particles rain down.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective)* You showed that colors have feelings — your feelings! Red felt one way. Blue felt another. That is so special. You see things YOUR way — that is Perspective! And you looked at each crayon's shape and color — that is Form! You are amazing!"
+> **AI says**: "*(warm, reflective)* Red felt one way. Blue felt another. That's Perspective! Shape and color matter. That's Form!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child listens, smiles, or says "Yay!"
@@ -144,7 +144,7 @@
 >
 > **AI follow-up**:
 > 1. "*(proud)* Great job, Color Wizard! Bye-bye crayons!"
-> 2. "*(warm, simple)* It means YOUR way of seeing! And that is so cool. Bye-bye, Color Wizard!"
+> 2. "*(warm, simple)* It means your way. So cool!"
 > 3. "*(gentle, warm)* You did wonderful today. Bye-bye, Color Wizard!"
 >
 > **Screen**: The words "Perspective" and "Form" appear artistically in crayon-style lettering, each in a different bright color. Small crayon icons frame the words. The wizard badge sits in the corner. Gentle rainbow shimmer in the background.

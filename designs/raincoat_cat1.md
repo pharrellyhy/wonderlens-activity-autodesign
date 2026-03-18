@@ -35,7 +35,7 @@
 > **Context**: Child has just finished a tier_guidance conversation about the raincoat.
 > **Conversation anchor**: emotions — "Does wearing it make you feel cozy?"; senses — "swishy when you move"
 >
-> **AI says**: "*(warm, building on earlier)* You said your coat feels cozy! Swish-swish! Want to play a game?"
+> **AI says**: "*(warm, building on earlier)* Cozy coat! Swish-swish! Play with coat?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah!" / "Yes!"
@@ -44,7 +44,7 @@
 >
 > **AI follow-up**:
 > 1. "*(excited)* Yay! Let's be the coat's friend!"
-> 2. "*(delighted)* Yellow! So bright! Let's play with your coat!"
+> 2. "*(delighted)* Yellow! So bright! Play time!"
 > 3. *(wait 2 seconds)* "*(gentle, playful whisper)* Swish-swish! The coat wants to play!"
 >
 > **Screen**: Raincoat photo centered with a soft golden glow pulsing around it. Tiny sparkles drift near the hood area, suggesting the "conversation recap" warmth.
@@ -61,15 +61,15 @@
 > 3. (No response) Child is silent
 >
 > **AI follow-up**:
-> 1. "*(warm)* Me too! It looks so cozy! Let's play!"
-> 2. "*(impressed)* For rain! So smart! Let's play with it!"
+> 1. "*(warm)* Me too! Cozy coat! Let's play!"
+> 2. "*(impressed)* For rain! So smart! Let's play!"
 > 3. *(wait 2 seconds)* "*(playful whisper)* That coat looks so cozy! Swish-swish!"
 >
 > **Screen**: Raincoat photo centered with gentle rain-drop animation falling softly around the edges. A small sunshine icon peeks from the corner.
 
 **Step 2: Rule Introduction + Demo**
 
-> **AI says**: "*(excited, conspiratorial whisper)* Guess what? Your coat has feelings! When rain goes pitter-patter... the coat feels happy! Now you try!"
+> **AI says**: "*(excited, conspiratorial whisper)* Guess what? Coat has feelings! Pitter-patter rain. Happy coat! Your turn!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Happy!" / "Yay!" / repeats "pitter-patter"
@@ -78,7 +78,7 @@
 >
 > **AI follow-up**:
 > 1. "*(celebrating)* Yes! Happy coat! You heard it! Let's do more!"
-> 2. "*(playful gasp)* But what if it could? Let's pretend! It's fun!"
+> 2. "*(playful gasp)* What if it could? Let's pretend!"
 > 3. *(wait 2 seconds)* "*(gentle)* Pitter-patter! The coat smiles! What does it feel?"
 >
 > **Screen**: Raincoat photo with a small animated smiley face appearing on the coat. Tiny blue raindrops fall with "pitter-patter" text bouncing softly below.
@@ -87,7 +87,7 @@
 
 > **Round 1 — Splashy Puddle**
 >
-> **AI says**: "*(playful, bouncy tone)* Oh no! Splash-splash! A big puddle! How does the coat feel?"
+> **AI says**: "*(playful, bouncy tone)* Splash-splash! Big puddle! How feels coat?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Happy!" / "Excited!" / "Wet!" / "Fun!"
@@ -95,15 +95,15 @@
 > 3. (No response) Child is quiet
 >
 > **AI follow-up**:
-> 1. "*(cheering)* Splash-splash! The coat loves it! So fun and wet!"
-> 2. "*(warm, validating)* Ooh, yucky puddle! The coat says brr! That's a feeling too!"
+> 1. "*(cheering)* Splash-splash! Coat loves it!"
+> 2. "*(warm, validating)* Yucky puddle! Coat says brrr!"
 > 3. *(wait 2 seconds)* "*(encouraging)* Splash-splash! Wet or dry? How does the coat feel?"
 >
 > **Screen**: Raincoat photo with animated blue puddle splashing at the bottom. Water droplets bounce upward. A large question-mark emoji floats beside the coat.
 
 > **Round 2 — Windy Whoosh**
 >
-> **AI says**: "*(dramatic whisper)* Whoooosh! Big wind! The coat goes flap-flap! How does it feel now?"
+> **AI says**: "*(dramatic whisper)* Whoooosh! Big wind! Flap-flap coat! How now?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Cold!" / "Scared!" / "Silly!" / "Flappy!"
@@ -111,15 +111,15 @@
 > 3. (No response) Child is quiet
 >
 > **AI follow-up**:
-> 1. "*(amazed)* Yes! Flap-flap in the wind! The coat feels that! You are so good at this!"
-> 2. "*(delighted)* Whoosh! You sound like the wind! The coat hears you! It feels brave!"
+> 1. "*(amazed)* Yes! Flap-flap! Coat feels that!"
+> 2. "*(delighted)* Whoosh! Wind sound! Coat feels brave!"
 > 3. *(wait 2 seconds)* "*(gentle, swaying tone)* Flap-flap! Warm or cold? The coat wonders!"
 >
 > **Screen**: Raincoat photo with animated wind lines sweeping across. The coat image gently sways side to side. Leaves blow across the screen.
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "*(big warm celebration)* Wow! You are a Feelings Friend! You heard the coat's feelings!"
+> **AI says**: "*(big warm celebration)* Wow! Feelings Friend! You heard coat feelings!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Laughs, claps, says "Yay!" or "I did it!"
@@ -127,15 +127,15 @@
 > 3. (No response) Child is quiet but smiling
 >
 > **AI follow-up**:
-> 1. "*(proud)* Best Feelings Friend ever! The coat is so happy!"
-> 2. "*(warm)* You want more! The coat loves you! One more thing..."
-> 3. "*(gentle cheer)* The coat says thank you! You are its best friend!"
+> 1. "*(proud)* Best Feelings Friend ever!"
+> 2. "*(warm)* More? Coat loves you!"
+> 3. "*(gentle cheer)* Coat says thanks!"
 >
 > **Screen**: A golden badge appears with "Feelings Friend" text and a tiny raincoat icon. Confetti animation bursts gently. Celebration sparkle sound.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, proud tone)* You did it! Splash and whoosh — the coat felt different each time! That is so cool — different moments, different feelings. And you knew rain means coat time! You and your coat are connected!"
+> **AI says**: "*(warm, proud tone)* Same coat, new feelings. That's Perspective! You and coat belong together. That's Connection!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Smiles, says "bye coat!" or waves
@@ -144,7 +144,7 @@
 >
 > **AI follow-up**:
 > 1. "*(warm)* Bye-bye, Feelings Friend! See you next rainy day!"
-> 2. "*(delighted)* Go wear it! Swish-swish! Bye, Feelings Friend!"
+> 2. "*(delighted)* Go wear it! Swish-swish!"
 > 3. "*(soft, closing)* Bye-bye, coat! Bye-bye, Feelings Friend!"
 >
 > **Screen**: The raincoat photo appears centered with the two Key Concept words — "Perspective" in a cloud shape and "Connection" in a raindrop shape — floating artistically around it. The "Feelings Friend" badge sits in the corner. Soft rainbow arc connects the two concept words.

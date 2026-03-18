@@ -9,7 +9,7 @@
 - **Related Concepts**: Community (mapping), Rules (mapping), Discovery (designed), Roles (mapping)
 - **ATL Skills Focus**: Research Skills (observation, data collection), Thinking Skills (critical thinking, transfer), Self-Management Skills (organization)
 - **Trigger Entity**: City Library
-- **Trigger Scene**: Child photographs the front of the city library building from across the street
+- **Trigger Scene**: Child photographs the front of the city library building from a safe sidewalk spot
 - **Mapping Source**: buildings_places_city_library
 - **IB Theme**: How We Organize Ourselves (mapping: primary, weight=0.41)
 - **Dimension Anchors**: appearance (physical — building exterior features define collection criterion), structure (physical — rooms and sections add depth to observations), reasoning (engagement — drives synthesis and reflection)
@@ -26,7 +26,7 @@
 
 - **③ Design Highlight**: The "Building Detective" metaphor transforms architectural observation into a mystery-solving mission. Instead of passively looking at buildings, the child actively investigates clues — wide windows mean reading light, big doors mean welcoming visitors, counters mean helping people. Each structure's design tells a story about what it was built to do, turning the neighborhood into a puzzle of purposeful design.
 
-- **④ Typical Scenario**: A six-year-old photographs the city library from across the street, notices the big windows and welcoming entrance, then hunts for 3 more nearby structures to compare how each building's design reveals its purpose.
+- **④ Typical Scenario**: A six-year-old photographs the city library from a safe sidewalk spot, notices the big windows and welcoming entrance, then hunts for 3 more nearby structures visible from the same block or another grown-up-approved safe place to compare how each building's design reveals its purpose.
 
 ### C. Interaction Flow — Detailed Design [Target Tier: T2]
 
@@ -85,7 +85,7 @@
 > **AI follow-up**:
 > 1. "*(eager)* Go for it — show me what you found and I will help you crack the case!"
 > 2. "*(helpful, specific)* Great question, Detective! Look for anything that was built or placed here for people to use — a shop front, a bench area, a mailbox, a bus stop sign. Anything that has a job to do in the neighborhood counts!"
-> 3. *(wait 2 seconds)* "*(warm, guiding)* Here is a detective tip — look down the street for anything people walk toward or stop at. A shop? A bench? A sign? Those are all structures with a job. Take a photo of whatever catches your eye first!"
+> 3. *(wait 2 seconds)* "*(warm, guiding)* Here is a detective tip — look around from where you are standing for anything people walk toward or stop at. A shop? A bench? A sign? Those are all structures with a job. Take a photo of what you can see safely."
 >
 > **Screen**: Mission card with "Building Detective" badge at top. Four slots displayed — first slot filled with the library photo labeled "Books & Reading." Three empty slots with magnifying glass icons and question marks. Three numbered mission steps listed below with small icons (camera, speech bubble, sorting arrows).
 
@@ -147,7 +147,7 @@
 
 > **STUCK BRANCH** (if child cannot find a structure):
 >
-> **AI says**: "*(helpful, specific)* Detective tip — look along the sidewalk or across the street. Almost every block has something designed for people: a bench for resting, a trash can for keeping things clean, a street light for seeing at night, or a mailbox for sending letters. Try walking a few steps and look for anything people stop at or use every day!"
+> **AI says**: "*(helpful, specific)* Detective tip — stay on the same sidewalk or another grown-up-approved safe spot. Almost every block has something designed for people: a bench for resting, a trash can for keeping things clean, a street light for seeing at night, or a mailbox for sending letters. Look for anything people stop at or use every day!"
 >
 > **Possible child responses**:
 > 1. (Finds something) "Oh wait, I see a trash can over there!"
@@ -156,7 +156,7 @@
 >
 > **AI follow-up**:
 > 1. "*(encouraging)* Go photograph it! A trash can has an important neighborhood job too."
-> 2. "*(warm, flexible)* That is completely okay! Try pointing your camera at anything near the sidewalk — even a street lamp or a fire hydrant counts. Those are all structures with a job to do."
+> 2. "*(warm, flexible)* That is completely okay! Try pointing your camera at anything near you on the sidewalk or plaza — even a street lamp or a fire hydrant counts. Those are all structures with a job to do."
 > 3. *(wait 2 seconds)* "*(gentle)* How about this — look straight ahead and tell me one thing you can see that is not a person, an animal, or a plant. Whatever it is, I bet it has a job. Let's photograph it and find out!"
 >
 > **Screen**: A subtle "Detective Hint" banner appears at the bottom with small icons of common neighborhood structures (bench, mailbox, trash can, lamp post) with question marks above each.

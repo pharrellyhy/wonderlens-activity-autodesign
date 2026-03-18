@@ -32,7 +32,7 @@
 > **Context**: Child has just finished a tier_guidance conversation about the lion.
 > **Conversation anchor**: senses — sound: "loud roaring sound"; emotions — "Does the lion seem scary or friendly?"
 >
-> **AI says**: "*(warm, building on earlier)* You tried a roar! RRRR! That was so big! What if you told everyone what lion says?"
+> **AI says**: "*(warm, building on earlier)* You roared! Big roar! Can lion talk?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah!" or "I can do it!"
@@ -41,7 +41,7 @@
 >
 > **AI follow-up**:
 > 1. "*(excited)* Yay! You are the Roar Reporter!"
-> 2. "*(validating, gentle)* Big roars can be loud! But YOUR roar is friendly. Let's try!"
+> 2. "*(validating, gentle)* Big roars feel loud. Your roar is friendly."
 > 3. *(Wait 2 seconds)* "*(soft, inviting)* Hey, lion wants to talk! Can you help?"
 >
 > **Screen**: Lion photo centered with soft golden glow pulsing around it. A small speech-bubble icon appears near the lion's mouth, recalling the roar topic from conversation.
@@ -50,7 +50,7 @@
 
 > **Context**: Child photographs the toy lion with no prior conversation.
 >
-> **AI says**: "*(delighted gasp)* Wow, a lion! So big! So fuzzy! I think it wants to ROAR! Can you roar too?"
+> **AI says**: "*(delighted gasp)* Wow, lion! So big! So fuzzy! Roar too?"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child roars "RRRR!" or "Rawr!"
@@ -58,17 +58,17 @@
 > 3. (No response) Child stares at screen or looks at the lion toy
 >
 > **AI follow-up**:
-> 1. "*(amazed)* WOW! So loud! You sound like a REAL lion!"
-> 2. "*(warm, delighted)* Oh, your lion! I bet it has a BIG roar inside!"
+> 1. "*(amazed)* WOW! So loud! Real lion roar!"
+> 2. "*(warm, delighted)* Your lion! Big roar inside!"
 > 3. *(Wait 2 seconds)* "*(playful whisper)* Psst... can you say RRRR?"
 >
 > **Screen**: Lion photo centered on screen. Warm golden sparkles float around the image. Soft savanna-grass illustration frames the edges.
 
 **Step 2: Rule Introduction + Demo**
 
-> **AI says**: "*(playful, conspiratorial)* Guess what? You can hear what lion says! You are the Roar Reporter! I tell a story. You roar for lion. Like this..."
+> **AI says**: "*(playful, conspiratorial)* You hear lion talk! Roar Reporter time! I tell story. You roar back."
 >
-> **AI demos**: "*(modeling)* Lion sees food! RRRR! That means 'Yummy!' See? Your turn next!"
+> **AI demos**: "*(modeling)* Lion sees food! RRRR! 'Yummy!' Your turn!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "OK!" or child giggles and nods
@@ -77,7 +77,7 @@
 >
 > **AI follow-up**:
 > 1. "*(cheering)* Let's go! First story!"
-> 2. "*(laughing)* Ha! You started already! Great roar! Here comes the first story!"
+> 2. "*(laughing)* Ha! Great roar! First story now!"
 > 3. *(Wait 2 seconds)* "*(encouraging)* Ready? Here comes a story for lion!"
 >
 > **Screen**: A small microphone icon and the text "Roar Reporter" appear as a badge above the lion photo. A simple speech-bubble animation pops near the lion's mouth.
@@ -86,7 +86,7 @@
 
 > **Round 1: Lion is happy** (simple, high-success — build confidence)
 >
-> **AI says**: "*(bright storytelling tone)* The sun is warm! Lion feels so happy! What does lion say?"
+> **AI says**: "*(bright storytelling tone)* Warm sun! Happy lion! What says lion?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "RRRR!" or "Rawr!" or "He says yay!"
@@ -94,8 +94,8 @@
 > 3. (No response) Child is quiet
 >
 > **AI follow-up**:
-> 1. "*(celebrating)* Yes! A happy RRRR! The warm sun makes lion purr! That's WHY lion roars soft — it feels good!"
-> 2. "*(validating)* Ooh, a sleepy lion! Maybe a tiny purr... rrrr. The warm sun makes lion cozy!"
+> 1. "*(celebrating)* Yes! Happy RRRR! Warm sun makes soft roar!"
+> 2. "*(validating)* Sleepy lion! Tiny purr. Warm sun feels cozy."
 > 3. *(Wait 2 seconds)* "*(gentle prompt)* Maybe a little roar? Rrrr? The sun feels warm and fuzzy!"
 >
 > **Screen**: Lion photo with a bright yellow sun animation above. Warm rays gently pulse. When child responds, small golden musical notes float up from the lion.
@@ -104,7 +104,7 @@
 >
 > **Round 2: Lion sees a friend** (slightly more complex — introduce a different cause/response)
 >
-> **AI says**: "*(excited storytelling)* Oh! Lion sees a friend! A big hello! What does lion say now?"
+> **AI says**: "*(excited storytelling)* Lion sees friend! Big hello! What says lion?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "ROOAAR!" or "Hi friend!" or "He says come here!"
@@ -112,15 +112,15 @@
 > 3. (No response) Child is quiet
 >
 > **AI follow-up**:
-> 1. "*(thrilled)* A big ROAR for hello! That's what a roar DOES — it tells the friend 'I'm here!' So loud and brave!"
-> 2. "*(validating, playful)* Oh, a shy lion! Maybe a little roar first... rrrr, 'wait for me!' Even shy roars say something!"
+> 1. "*(thrilled)* Big hello ROAR! Roar says, 'I'm here!'"
+> 2. "*(validating, playful)* Shy lion! Tiny roar first. Still says hello."
 > 3. *(Wait 2 seconds)* "*(encouraging)* Lion's friend is far away! A big RRRR means 'Come play!' Can you try?"
 >
 > **Screen**: A second small lion silhouette appears at the edge of the screen, walking toward the main lion. When child responds, the two lions move closer together and a heart icon pops between them.
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "*(proud, warm celebration)* You did it! You are the BEST Roar Reporter! You told us what lion says!"
+> **AI says**: "*(proud, warm celebration)* You did it! Best Roar Reporter! You told lion story!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child giggles, roars again, or says "I did it!"
@@ -128,15 +128,15 @@
 > 3. (No response) Child smiles or watches
 >
 > **AI follow-up**:
-> 1. "*(beaming)* The best reporter! Every roar told a story!"
-> 2. "*(warm)* You love roaring! You can roar for lion anytime! Such a great reporter!"
+> 1. "*(beaming)* Best reporter! Every roar talked!"
+> 2. "*(warm)* Love roaring? Roar again later!"
 > 3. "*(gentle celebration)* Look at your badge! Roar Reporter — that's you!"
 >
 > **Screen**: A golden badge animation bursts onto screen with the text "Roar Reporter" and a small lion-head icon. Confetti sparkles fall gently around the badge. Celebration chime sound plays.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective)* You showed us what each roar DOES — happy roar, hello roar! And you told us WHY lion roars — because something happens! That's so smart!"
+> **AI says**: "*(warm, reflective)* Roars do jobs. That's Function! Things happen first. That's Causation!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child smiles, roars, or says "Bye lion!"
@@ -145,7 +145,7 @@
 >
 > **AI follow-up**:
 > 1. "*(warm closing)* Bye bye, lion! RRRR means 'see you later!'"
-> 2. "*(encouraging)* Great question! Lions are so cool. You can always take another photo to learn more!"
+> 2. "*(encouraging)* Great question! Take more lion photos!"
 > 3. "*(soft, closing)* RRRR! That's lion saying thank you. Bye bye, Roar Reporter!"
 >
 > **Screen**: The lion photo reappears at center. The words "Function" and "Causation" appear artistically — "Function" styled with a speech-bubble icon, "Causation" styled with a sun-and-arrow icon. The Roar Reporter badge sits in the corner. Soft golden glow fades to a warm closing screen.

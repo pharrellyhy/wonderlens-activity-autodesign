@@ -30,7 +30,7 @@
 
 - **3. Design Highlight**: The "Sign Spotter Safari" metaphor turns a neighborhood walk into a detective mission. The child is not just collecting random objects — they are discovering that their neighborhood is full of silent helpers that keep everyone safe. The synthesis step (sorting by "stop, go, or stay safe") makes the collection meaningful and earns the Function and Responsibility concepts organically.
 
-- **4. Typical Scenario**: Child spots a stop sign on a walk, photographs it, then goes on a safari to find 3 more signs or symbols nearby (crosswalk markings, speed limit signs, yield signs, pedestrian signals, no-parking signs, etc.), photographs each, and sorts them by what they tell people to do.
+- **4. Typical Scenario**: Child spots a stop sign on a walk, photographs it from a safe sidewalk spot, then goes on a safari to find 3 more signs or symbols they can see from the sidewalk or another grown-up-approved safe place, photographs each, and sorts them by what they tell people to do.
 
 ---
 
@@ -41,7 +41,7 @@
 > **Context**: Child has just finished a tier_guidance conversation about the stop sign.
 > **Conversation anchor**: appearance — white_border ("a bright white edge that frames the red"); structure — post_pole ("a tall pole holding the sign up high")
 >
-> **AI says**: "*(warm, building on earlier)* You noticed the stop sign has a bright white border, like a picture frame! And it stands way up high on a tall pole. I bet there are MORE signs hiding on this street. Want to go find them?"
+> **AI says**: "*(warm, building on earlier)* You noticed the stop sign has a bright white border, like a picture frame! And it stands way up high on a tall pole. I bet there are MORE signs nearby. Want to go find them from a safe spot?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah! I want to find more signs!"
@@ -49,7 +49,7 @@
 > 3. (No response) Child looks around quietly or is distracted.
 >
 > **AI follow-up**:
-> 1. "*(excited)* Great! Let's go on a sign safari! I think this street has lots of signs hiding."
+> 1. "*(excited)* Great! Let's go on a sign safari! I think there are lots of signs nearby."
 > 2. "*(warm, validating)* This stop sign is pretty cool, right? After we look at it, let's see what other signs live near here too!"
 > 3. *(wait 2 seconds)* "*(gentle, inviting)* Look around — do you see any other signs nearby? Even a small one counts!"
 >
@@ -85,9 +85,9 @@
 > 3. (No response) Child looks uncertain or doesn't reply.
 >
 > **AI follow-up**:
-> 1. "*(pumped up)* Let's go! Walk along the street and look for any sign or symbol. When you find one, take a photo!"
-> 2. "*(friendly, explaining)* A Sign Spotter finds signs that help people! Signs can be on poles, on walls, or even painted on the ground. Look all around — I bet you will spot one soon!"
-> 3. *(wait 2 seconds)* "*(encouraging)* Try walking a little bit and looking up, down, and to the sides. Signs can be anywhere!"
+> 1. "*(pumped up)* Let's go! Stay on the sidewalk or another safe spot and look for any sign or symbol you can see. When you find one, take a photo!"
+> 2. "*(friendly, explaining)* A Sign Spotter finds signs that help people! Signs can be on poles, on walls, or at the edge of a parking area. Look from your safe spot — I bet you will spot one soon!"
+> 3. *(wait 2 seconds)* "*(encouraging)* Try looking up, down, and to the sides from where you are standing. Signs can be anywhere!"
 >
 > **Screen**: Mission card appears with "Sign Spotter" badge (binoculars icon over a shield). Four collection slots displayed — the first slot filled with the stop sign photo, three empty slots with question marks. A numbered task list shows: 1) Find 3 signs, 2) Photo each one, 3) Sort them.
 
@@ -97,7 +97,7 @@
 
 **Round 1** (full detail):
 
-> *(Child takes a photo of a sign or symbol — e.g., a speed limit sign, crosswalk paint, yield sign, one-way arrow, no-parking sign, pedestrian signal, etc.)*
+> *(Child takes a photo of a sign or symbol they can see safely from the sidewalk or another grown-up-approved safe place — e.g., a speed limit sign, yield sign, one-way arrow, no-parking sign, or pedestrian signal.)*
 >
 > **AI says**: "*(excited discovery)* You found one! I can see a sign. What does this sign tell people to do?"
 >
@@ -151,7 +151,7 @@
 
 **STUCK BRANCH** (if child cannot find a sign):
 
-> **AI says**: "*(helpful, specific)* Signs like to hide in plain sight! Try looking up at poles along the street. Check near crosswalks painted on the ground. Even parking lots have little signs. Walk a bit further and look up!"
+> **AI says**: "*(helpful, specific)* Signs like to hide in plain sight! Stay on the sidewalk and look up at poles, fences, and parking-lot entrances. Ask a grown-up to point if you need help. I bet you can spot one without going near the road!"
 >
 > **Possible child responses**:
 > 1. (Finds something) Child takes a photo.
@@ -160,8 +160,8 @@
 >
 > **AI follow-up**:
 > 1. "*(thrilled)* You found one! Great spotting!"
-> 2. "*(reassuring)* That is okay! Look for anything with a shape or symbol on it — even arrows on the ground or a painted line on the curb. Those are signs too!"
-> 3. *(wait 3 seconds)* "*(gentle)* Try looking at the ground near the street. Sometimes signs are painted right on the road!"
+> 2. "*(reassuring)* That is okay! Look for anything with a shape or symbol on it — even a sign on a fence, post, wall, or parking entrance. Those all count!"
+> 3. *(wait 3 seconds)* "*(gentle)* Try looking from where you are standing. Do you see any sign on a pole, wall, or fence?"
 >
 > **Screen**: A soft pulsing "hint" overlay appears — small arrow icons pointing up (to poles) and down (to ground markings). A magnifying glass icon gently bounces.
 
@@ -228,7 +228,7 @@
 | 1 | V1 Technical Compliance | PASS | No OCR, face detection, IMU, or state-change comparison. AI reacts to each photo independently. No text-reading required — AI describes what it sees, child self-reports sign meaning. |
 | 2 | Hook Rule Compliance | PASS | Both warm and cold starts open with emotional resonance ("like a shield," "like a picture frame"), not knowledge testing. |
 | 3 | Transition Naturalness | PASS | Warm start builds on conversation about white border and tall pole. Cold start uses imaginative "shield" metaphor. Both flow into the safari mission organically. |
-| 4 | Edge Case Coverage | PASS | All steps include ideal/unexpected/silence branches. Unexpected always validates first. Silence includes wait time + gentle prompt. STUCK BRANCH included with concrete location hints (poles, crosswalks, parking lots, ground markings). |
+| 4 | Edge Case Coverage | PASS | All steps include ideal/unexpected/silence branches. Unexpected always validates first. Silence includes wait time + gentle prompt. STUCK BRANCH included with concrete safe-location hints (poles, fences, parking-lot entrances) and keeps the child out of the road. |
 | 5 | IB Completeness | PASS | Key Concepts: Function + Responsibility (both primary, relevance 0.9). KUD fully defined. ATL skills: Research + Thinking. Closing names both concepts naturally as praise. Concepts are earned — child discovers what signs DO (Function) and WHY following them matters (Responsibility). |
 | 6 | Tier Appropriateness | PASS | T1: Sentences 5–8 words throughout. Concrete vocabulary (shape, color, pole, corner). 3-step mission structure. Open-ended questions ("What does this sign tell people?"). No abstract reasoning required. |
 | 7 | Dialogue Specificity | PASS | Every AI line is concrete dialogue with tone markers. No "AI guides" or "AI encourages" abstractions. All responses are warm and playful. |
