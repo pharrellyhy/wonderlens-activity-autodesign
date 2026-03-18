@@ -14,3 +14,6 @@ lion + category 1 (sustained verbal), tier=T0, mapping=animals_lion, start=warm+
 piano + category 1 (sustained verbal), tier=T1, mapping=arts_music_piano, start=warm+cold	piano	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/piano_cat1.md	2026-03-18T00:03:00Z
 teddy bear + category 1 (sustained verbal), tier=T0, mapping=daily_objects_teddy_bear, start=warm+cold	teddy bear	1	T0	PASS	P	P	P	P	P	P	P	P	P	designs/teddy_bear_cat1.md	2026-03-18T00:04:00Z
 raincoat + category 1 (sustained verbal), tier=T0, mapping=clothing_accessories_raincoat, start=warm+cold	raincoat	1	T0	PASS	P	P	P	P	P	P	P	P	P	designs/raincoat_cat1.md	2026-03-18T00:05:00Z
+goldfish + category 1 (sustained verbal), tier=T1, mapping=animals_goldfish, start=warm+cold	goldfish	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/goldfish_cat1.md	2026-03-18T00:06:00Z
+toothbrush holder + category 1 (sustained verbal), tier=T1, mapping=daily_objects_toothbrush_holder, start=warm+cold	toothbrush holder	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/toothbrush_holder_cat1.md	2026-03-18T00:07:00Z
+firefighter + category 1 (sustained verbal), tier=T1, mapping=people_roles_firefighter, start=warm+cold	firefighter	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/firefighter_cat1.md	2026-03-18T00:08:00Z
