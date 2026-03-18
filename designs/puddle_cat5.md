@@ -5,8 +5,8 @@
 - **Activity Name**: The Puddle Portal
 - **Activity Category**: Category 5 — Collection/Tracking Exploration (Out-of-Device, Solo, Outdoor)
 - **Recommended Tier**: T1 (ages 4–6)
-- **Core IB Key Concepts**: Form, Connection
-- **Related Concepts (Discipline)**: Discovery, Pattern, Perspective, Nature
+- **Core IB Key Concepts**: Perspective, Connection
+- **Related Concepts (Discipline)**: Discovery, Pattern, Form, Nature
 - **ATL Skills Focus**: Research (Observation, Data collection), Thinking (Creative thinking, Transfer), Self-Management (Focus)
 - **Trigger Entity**: Rain puddle
 - **Trigger Scene**: Child photographs a rain puddle on the sidewalk after rain
@@ -16,7 +16,7 @@
 - **1. Brief Description**: After the child photographs a puddle, the AI notices the shiny, mirror-like surface and wonders what other things nearby can show reflections too. The child becomes a "Portal Finder" on a mission to discover hidden mirrors in the world around them — photographing shiny leaves, wet benches, windows, or anything that reflects. At the end, the child invents a story about what the reflections are whispering to each other.
 - **2. Educational Purpose (KUD)**:
   - **K (Know)**: Reflection, surface, shiny, smooth, mirror — 5 vocabulary words related to reflective properties
-  - **U (Understand)**: Many different things can reflect light when their surface is smooth or wet (Form); things that seem different can share a hidden property like shininess (Connection)
+  - **U (Understand)**: A reflection shows the world from a different point of view — flipped upside-down (**Perspective**); things that seem different can share a hidden property like shininess (**Connection**)
   - **D (Do)**: Observe and identify reflective surfaces in different objects; compare visual properties across a collection; construct a simple narrative linking collected items
 - **3. Design Highlight**: The puddle is reframed as a "portal" — a doorway to an upside-down world. The child's mission is to find more portals hiding in the environment. Each reflective find becomes a new portal with its own tiny world inside. The synthesis asks the child to imagine what all these upside-down worlds would say to each other, turning observation into storytelling.
 - **4. Typical Scenario**: A 5-year-old crouches by a sidewalk puddle after rain, photographs it, then hunts for 3 more shiny, reflective things nearby — a wet leaf, a parked car's hubcap, a shop window — and invents a story about the secret worlds inside each one.
@@ -173,7 +173,7 @@
 
 **Step 6: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective)* You discovered something beautiful today. You looked at the FORM of each thing — smooth, shiny, wet — and found what makes them all mirrors. And you found a CONNECTION between things that seem so different — a puddle and a [child's find] both hold tiny worlds inside! You are a true Portal Finder!"
+> **AI says**: "*(warm, reflective)* You discovered something beautiful today. Every portal showed you the world flipped upside-down — a different point of view! That's called **Perspective**! And you found a **Connection** between things that seem so different — a puddle and a [child's find] both hold tiny worlds inside! You are a true Portal Finder!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child smiles, says "Yay!" / "That was fun!" / "I want to find more!"
@@ -185,7 +185,7 @@
 > 2. "*(delighted)* What a great question! You can keep exploring next time! Bye for now, Portal Finder!"
 > 3. *(wait 2 seconds)* "*(soft, kind)* You did such a great job today. The portals will be waiting for you next time. Bye, Portal Finder!"
 >
-> **Screen**: Two concept words appear artistically: "Form" with a magnifying glass icon over a smooth surface, and "Connection" with a glowing line linking two different objects. Both words shimmer gently. Below, the child's four portal photos are displayed as small insets inside a golden badge that reads "Portal Finder." After 3 seconds, a closing illustration fades in — an illustrated puddle reflecting a starry sky with the text "Keep finding hidden mirrors!" beneath it.
+> **Screen**: Two concept words appear artistically: "Perspective" with an upside-down reflection icon, and "Connection" with a glowing line linking two different objects. Both words shimmer gently. Below, the child's four portal photos are displayed as small insets inside a golden badge that reads "Portal Finder." After 3 seconds, a closing illustration fades in — an illustrated puddle reflecting a starry sky with the text "Keep finding hidden mirrors!" beneath it.
 
 ---
 
@@ -197,7 +197,7 @@
 | 2 | Hook Rule Compliance | PASS | Step 1 opens with wonder ("Wow, look at that puddle! It's like a secret mirror") and asks an imaginative question ("What do YOU see inside?"), not a knowledge test. |
 | 3 | Transition Naturalness | PASS | The activity grows from noticing the puddle's reflection to wondering about other reflections nearby — a natural curiosity arc, not a sudden task assignment. |
 | 4 | Edge Case Coverage | PASS | Every step has 3 response branches (ideal, unexpected, no response). Unexpected responses are validated before redirecting. A STUCK branch with specific location hints is included in Step 3. |
-| 5 | IB Completeness | PASS | Key Concepts (Form, Connection) named naturally in Step 6 closing as praise. KUD fully defined with specific vocabulary, conceptual understandings, and skills. ATL skills (Research, Thinking, Self-Management) identified with sub-skills. Related Concepts (Discovery, Pattern, Perspective, Nature) listed. |
+| 5 | IB Completeness | PASS | Key Concepts (Perspective, Connection) named naturally in Step 6 closing as praise. KUD fully defined with specific vocabulary, conceptual understandings, and skills. ATL skills (Research, Thinking, Self-Management) identified with sub-skills. Related Concepts (Discovery, Pattern, Form, Nature) listed. |
 | 6 | Tier Appropriateness | PASS | All AI sentences are 5–8 words or short phrases. Tasks are 2–3 steps (find, photograph, tell story). Open-ended questions used throughout. Vocabulary is concrete and age-appropriate for ages 4–6. |
 | 7 | Dialogue Specificity | PASS | All AI lines are concrete dialogue with tone/emotion markers in parentheses. No abstract placeholders like "AI guides the child." |
 | 8 | Screen & UI Completeness | PASS | Every step has a specific screen description with layout, animations, visual elements, and transitions described concretely. |

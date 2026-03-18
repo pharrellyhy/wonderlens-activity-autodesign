@@ -58,7 +58,7 @@
 >
 > **Screen**: The stuffed cat photo is centered. A small animated speech bubble appears near the cat showing "PURRRR" in wiggly letters. The bubble bounces playfully, then fades.
 
-**Step 3: Multi-Round Interaction (3-5 rounds)**
+**Step 3: Multi-Round Interaction (2 rounds)**
 
 > **Round 1 — Cozy Kitty (happy/relaxed):**
 >
@@ -92,7 +92,7 @@
 >
 > **Screen**: The cat photo has two animated ears that perk up. A small question mark floats above. The background shifts to a soft blue-green "alert" tone.
 
-> **Round 3 — Hungry Kitty (wanting/excited):**
+> **Round 3 (optional, if child is engaged) — Hungry Kitty (wanting/excited):**
 >
 > **AI says**: "*(playful gasp)* It's dinner time! Kitty smells yummy food! What does kitty say?"
 >
@@ -142,7 +142,7 @@
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective)* You showed how kitty feels! Happy, curious, hungry, scared — kitty has so many feelings. That's **Perspective** — same kitty, different feelings! And every feeling has a sound — that's a **Connection**! You're amazing, Kitty's Voice!"
+> **AI says**: "*(warm, reflective)* You showed how kitty feels! Happy, curious, hungry! Same kitty, many feelings. That's **Perspective**! Every feeling has a sound. That's **Connection**! Yay, Kitty's Voice!"
 >
 > **Possible child responses**:
 > 1. (Engaged) "Purrrr!" / "Bye kitty!" / Hugs the stuffed cat.
@@ -167,8 +167,8 @@
 | 3 | Transition Naturalness | PASS | Snuggly cat → "kitty has secret sounds" → "I tell a story, you make the sound" — flows naturally from observation to play. |
 | 4 | Edge Case Coverage | PASS | All 5 steps have 3 response branches (ideal, unexpected, no response). All "unexpected" branches validate first. All "no response" branches wait then gently prompt. |
 | 5 | IB Completeness | PASS | KUD fully specified. Perspective + Connection named as Key Concepts. 4 Related Concepts. 3 ATL skills with sub-skills. Closing naturally names both concepts as celebration. |
-| 6 | Tier Appropriateness | PASS | All AI sentences are 3-5 words or short fragments. Heavy onomatopoeia (PURRRR, MEOW, HISSS, MRRROW). Call-and-response mechanic. Single-step instructions throughout. |
+| 6 | Tier Appropriateness | PASS | All AI sentences are 3-5 words or short fragments. Heavy onomatopoeia (PURRRR, MEOW, HISSS, MRRROW). Call-and-response mechanic. 2 core rounds + 2 optional, within T0 range. |
 | 7 | Dialogue Specificity | PASS | Every AI line is exact dialogue with tone markers in parentheses. Zero abstract instructions like "AI guides" or "AI encourages." |
 | 8 | Screen & UI Completeness | PASS | Every step has specific screen description: warm glow, animated ears, food bowl, lightning bolt, badge with cat silhouette, concept word styling. |
 
-**Overall**: ALL PASS — Ready for 教研 review. 1 issue identified and fixed during self-evaluation: initial draft had some AI sentences exceeding 5 words in Steps 4-5 closing speech; revised to use shorter fragments with natural pauses.
+**Overall**: ALL PASS — Ready for 教研 review. Revised during audit: reduced core rounds to 2 (T0 max) with 2 optional rounds. Closing speech tightened to shorter fragments.

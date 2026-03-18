@@ -58,7 +58,7 @@
 >
 > **Screen**: A small cartoon radio icon appears next to the fire truck photo, with animated crackle lines. Simple text-free icons show the pattern: radio icon → arrow → fire truck icon. The screen glows warmly.
 
-**Step 3: Multi-Round Interaction (3 rounds)**
+**Step 3: Multi-Round Interaction (2 rounds)**
 
 > **Round 1 — Kitty Rescue (simple, high-success):**
 >
@@ -92,7 +92,7 @@
 >
 > **Screen**: A cartoon road with a big blue puddle appears. The fire truck rolls in from the left. When the child responds, a hose animation sprays water with a WHOOOOSH motion graphic. The puddle shrinks and disappears. Little cartoon people wave and cheer.
 
-> **Round 3 — Teddy Bear Rescue (funny/surprising, peak engagement):**
+> **Round 3 (optional, if child is engaged) — Teddy Bear Rescue (funny/surprising):**
 >
 > **AI says**: "*(giggling)* BEEP BEEP! Oh this is a funny one! A teddy bear is cold! It's shivering — BRRR BRRR! What should the fire truck bring? A warm blanket! Can you say BRRR for the teddy?"
 >
@@ -110,7 +110,7 @@
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "*(proud, warm celebration)* WOW! Three rescues! You saved a kitty, cleared a puddle, and warmed a teddy! You are a RESCUE CAPTAIN! The best one ever!"
+> **AI says**: "*(proud, warm celebration)* WOW! You saved a kitty! Cleared a puddle! You are a RESCUE CAPTAIN! The best one!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Cheers, laughs, repeats "Rescue Captain!"
@@ -126,7 +126,7 @@
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective tone)* You know what you discovered? Your fire truck has a special job — it helps and rescues! That's called **Function** — what things DO! And every rescue connected you to a kitty, to people, to a teddy. That's called **Connection** — helpers are connected to everyone they help! You're an amazing Rescue Captain!"
+> **AI says**: "*(warm, reflective tone)* You know what? Your fire truck HELPS! That's its job. That's **Function** — what things do! And you helped a kitty, people, a teddy. You're connected to them all! That's **Connection**! Amazing, Rescue Captain!"
 >
 > **Possible child responses**:
 > 1. (Engaged) "WEE-OO!" / "I'm a captain!" / waves at screen.
@@ -151,8 +151,8 @@
 | 3 | Transition Naturalness | PASS | Flow: excitement about truck → "it has a rescue radio!" → "someone needs help!" → rescue missions begin. No abrupt "let's play a game" break. The activity grows from the emotional hook. |
 | 4 | Edge Case Coverage | PASS | All 5 steps have 3 response branches (ideal, unexpected, no response). All "unexpected" branches validate first ("Yes! The kitty says HELP ME!") before redirecting. All "no response" branches include wait time and gentle prompt. |
 | 5 | IB Completeness | PASS | KUD fully defined with specific vocabulary and skills. Function + Connection named as Key Concepts. 4 Related Concepts listed. 3 ATL skills with sub-skills. Closing speech names both concepts naturally as praise ("That's called Function — what things DO!"). Concepts match what the child actually did (dispatching = function, helping others = connection). |
-| 6 | Tier Appropriateness | PASS | T0 compliance: sentences are 3–5 words max in AI core prompts ("GO HELP THE KITTY!"), onomatopoeia throughout (WEE-OO, WHOOOOSH, BRRR, CRACKLE), single-step instructions per round, call-and-response pattern ("Can you say WHOOOOSH?"). 3 rounds (within T0 range). Closing speech is slightly longer but celebratory/reflective — acceptable for wrap-up. |
+| 6 | Tier Appropriateness | PASS | T0 compliance: sentences are 3–5 words max in AI core prompts ("GO HELP THE KITTY!"), onomatopoeia throughout (WEE-OO, WHOOOOSH, BRRR, CRACKLE), single-step instructions per round, call-and-response pattern ("Can you say WHOOOOSH?"). 2 core rounds + 1 optional, within T0 range. Closing speech tightened to shorter fragments. |
 | 7 | Dialogue Specificity | PASS | Every AI line is concrete dialogue with tone/emotion markers in parentheses. Zero instances of "AI guides" or "AI encourages." All responses are exact words. |
 | 8 | Screen & UI Completeness | PASS | Every step has specific screen descriptions: sparkle animations on truck photo, radio icon with crackle lines, cartoon rescue scenes with specific animations (ladder extending, hose spraying, blanket wrapping), badge with thumbnails, concept words with described styling. |
 
-**Overall**: ALL PASS — Ready for 教研 review. 1 issue noted and addressed during self-evaluation: initial draft of closing speech (Step 5) exceeded T0 sentence length. Revised to keep core play prompts at 3–5 words while allowing the reflective closing to use slightly longer phrasing for concept naming, which is standard for T0 closing steps.
+**Overall**: ALL PASS — Ready for 教研 review. Revised during audit: reduced core rounds to 2 (T0 max) with 1 optional. Closing speech tightened to shorter fragments.

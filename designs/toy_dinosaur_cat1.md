@@ -61,7 +61,7 @@
 
 ---
 
-**Step 3: Multi-Round Interaction (3 rounds)**
+**Step 3: Multi-Round Interaction (2 rounds)**
 
 **Round 1 — Dino is hungry (simple, high-success)**
 
@@ -95,7 +95,7 @@
 >
 > **Screen**: T-Rex photo now on a simple illustrated path/trail. Small cartoon footprint stamps appear one by one in rhythm. Tiny dust puffs animate at each "stomp."
 
-**Round 3 — Dino is sleepy (surprising/funny, wind-down)**
+**Round 3 (optional, if child is engaged) — Dino is sleepy (wind-down)**
 
 > **AI says**: "*(slowing down, whispering)* Oh… dino is sooo sleepy. Shhhh. Dino goes… (tiny snore) hrrrrr. Can you snore for dino? Hrrrrr!"
 >
@@ -115,7 +115,7 @@
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "*(warm, proud)* You did it! You told dino's whole day! You are… Dino's Best Friend!"
+> **AI says**: "*(warm, proud)* You did it! You told dino's whole day! You are… Dino Day Narrator!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child laughs, cheers, or says "Yay!"
@@ -123,17 +123,17 @@
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. "*(celebrating)* Yay! Dino's Best Friend! ROAR!"
+> 1. "*(celebrating)* Yay! Dino Day Narrator! ROAR!"
 > 2. "*(delighted)* ROAR! Yes! You and dino are best friends!"
-> 3. *(wait 2 seconds)* "*(cheerful)* You are Dino's Best Friend! Dino says… ROAR! Thank you!"
+> 3. *(wait 2 seconds)* "*(cheerful)* You are Dino Day Narrator! Dino says… ROAR! Thank you!"
 >
-> **Screen**: Bright celebratory screen. A cartoon trophy/badge appears with the text "Dino's Best Friend" in large, friendly letters. The T-Rex photo is centered inside a golden star frame. Confetti particles and small cartoon dinosaur footprints rain down.
+> **Screen**: Bright celebratory screen. A cartoon trophy/badge appears with the text "Dino Day Narrator" in large, friendly letters. The T-Rex photo is centered inside a golden star frame. Confetti particles and small cartoon dinosaur footprints rain down.
 
 ---
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(gentle, reflective)* You saw dino's shape — that's form! You felt what dino feels — that's perspective! Great job today!"
+> **AI says**: "*(gentle, warm)* Wow! You felt what dino feels. Happy, hungry, sleepy! That's perspective! You noticed dino's shape too. That's form! So good!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child says "Bye dino!" or "Again!" or smiles.
@@ -158,7 +158,7 @@
 | 3 | Transition Naturalness | PASS | The activity grows from admiring the dino into imagining its day — wake up, eat, stomp, sleep — a natural narrative arc, not a sudden task. |
 | 4 | Edge Case Coverage | PASS | Every step and every round has 3 response branches (ideal, unexpected, no response). Unexpected responses are always validated before redirecting. |
 | 5 | IB Completeness | PASS | KUD defined in Section B. Key Concepts (Form, Perspective) explicitly named in Step 5 closing. ATL skills (Communication, Thinking, Social) identified in Section A. |
-| 6 | Tier Appropriateness | PASS | All AI sentences are 3–5 words or short phrases. Heavy use of onomatopoeia (ROAR, NOM NOM, STOMP STOMP, HRRRRR, SHHHH). Single-step call-and-response. 3 rounds in the multi-round step, each very simple. |
+| 6 | Tier Appropriateness | PASS | All AI sentences are 3–5 words or short phrases. Heavy use of onomatopoeia (ROAR, NOM NOM, STOMP STOMP, HRRRRR, SHHHH). Single-step call-and-response. 2 core rounds + 1 optional, within T0 range. |
 | 7 | Dialogue Specificity | PASS | All AI lines are concrete dialogue with tone markers in parentheses. No abstract placeholders like "AI guides child." |
 | 8 | Screen & UI Completeness | PASS | Every step has a specific screen description including visual elements, animations, and transitions. |
 

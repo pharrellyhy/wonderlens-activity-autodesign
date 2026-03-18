@@ -5,8 +5,8 @@
 - **Activity Name**: The Warm Color Treasure Hunt
 - **Activity Category**: 5 — Collection/Tracking Exploration (Out-of-Device, Solo, Outdoor)
 - **Recommended Tier**: T1 (ages 4-6)
-- **Core IB Key Concepts**: **Form** (What is it like? — observing and comparing colors) & **Connection** (How is it connected to other things? — linking warm colors across different objects in nature)
-- **Related Concepts (Discipline)**: Pattern, Discovery, Classification, Expression
+- **Core IB Key Concepts**: **Change** (How is it changing? — leaves transforming color as seasons shift) & **Connection** (How is it connected to other things? — linking warm colors across different objects in nature)
+- **Related Concepts (Discipline)**: Form, Pattern, Discovery, Classification
 - **ATL Skills Focus**: Research Skills (observation, data collection), Thinking Skills (critical thinking — sorting and classifying), Self-Management Skills (organization — completing a multi-step mission)
 - **Trigger Entity**: Autumn leaf (bright red)
 - **Trigger Scene**: Child photographs a bright red leaf on the ground in the park
@@ -17,7 +17,7 @@
 
 - **② Educational Purpose (KUD)**:
   - **K (Know)**: Learn the names of warm colors (red, orange, yellow). Learn that autumn leaves change color. Learn the word "gradient" (lightest to darkest). Learn that many different things in nature can share the same color family.
-  - **U (Understand)**: Understand that warm colors share a visual quality that connects very different objects — a leaf, a berry, a flower can all belong to the same color family (**Connection**). Understand that colors have a range — not just "red" but light red, deep red, orange-red — and this range is a kind of **Form**.
+  - **U (Understand)**: Understand that warm colors share a visual quality that connects very different objects — a leaf, a berry, a flower can all belong to the same color family (**Connection**). Understand that autumn brings a transformation — leaves **Change** from green to brilliant warm colors as the season shifts.
   - **D (Do)**: Practice careful observation by identifying warm colors in the environment (Research Skills — observation). Practice collecting and photographing items systematically (Research Skills — data collection). Practice sorting items by a visual property — color gradient (Thinking Skills — critical thinking).
 
 - **③ Design Highlight**: The "Flame Finder" metaphor transforms color-hunting into a heroic quest — the child is rescuing tiny flames of color before winter arrives. The synthesis task (sorting by gradient) gives children a tangible, visual accomplishment: their very own autumn rainbow arranged from palest gold to deepest crimson.
@@ -164,7 +164,7 @@
 
 **Step 6: Closing + IB Concepts**
 
-> **AI says**: "*(warm, proud)* Flame Finder, you were amazing today! You noticed the **Form** of each color — every warm shade was a little different, from pale yellow to deep red. And you found a **Connection** — leaves, flowers, berries, all sharing the same warm color family! You earned your Flame Finder badge. Go show your autumn rainbow to someone you love!"
+> **AI says**: "*(warm, proud)* Flame Finder, you were amazing today! You saw autumn's magic — leaves **Change** from green to red, orange, yellow! Nature transforms before your eyes. And you found a **Connection** — leaves, flowers, berries, all sharing the same warm color family! You earned your Flame Finder badge. Go show your autumn rainbow to someone you love!"
 >
 > **Possible child responses**:
 > 1. (Engaged) "I will!" / "That was fun!" / "I want to find more!"
@@ -176,7 +176,7 @@
 > 2. "*(gentle)* You did something really special today. Bye bye, Flame Finder!"
 > 3. *(waits 2 seconds)* "*(soft)* Your autumn rainbow looks beautiful. Bye bye, Flame Finder!"
 >
-> **Screen**: A golden badge animation appears — a shield shape with a stylized flame icon in gradient colors (yellow-orange-red). The text "Flame Finder" is displayed below in bold, warm lettering. The four collection photos appear as small insets around the badge. The words **"Form"** and **"Connection"** float upward in artistic lettering — "Form" styled with a gradient fill from yellow to red, "Connection" with tiny dotted lines linking the letters together. Warm confetti drifts down. A triumphant chime plays.
+> **Screen**: A golden badge animation appears — a shield shape with a stylized flame icon in gradient colors (yellow-orange-red). The text "Flame Finder" is displayed below in bold, warm lettering. The four collection photos appear as small insets around the badge. The words **"Change"** and **"Connection"** float upward in artistic lettering — "Change" styled with a gradient fill from green to yellow to red, "Connection" with tiny dotted lines linking the letters together. Warm confetti drifts down. A triumphant chime plays.
 
 ---
 
@@ -188,7 +188,7 @@
 | 2 | Hook Rule Compliance | PASS | Step 1 opens with emotional wonder ("Whoa! Look at that red! This leaf is glowing like a tiny flame!") — pure affective resonance, no knowledge testing. |
 | 3 | Transition Naturalness | PASS | Red leaf → "autumn is hiding warm colors" → "you could be a Flame Finder" — grows organically from marveling at the leaf's color to a collection mission. |
 | 4 | Edge Case Coverage | PASS | All 6 steps have 3 response branches. All "unexpected" branches validate first. All "no response" branches include wait time + gentle prompt. STUCK branch provides 2 rounds of increasingly specific location hints. |
-| 5 | IB Completeness | PASS | Form + Connection as Key Concepts, both earned by the activity (observing color variations = Form, linking color across objects = Connection). KUD fully specified. 4 Related Concepts. 3 ATL skills with sub-skills. Closing naturally names both concepts as praise. |
+| 5 | IB Completeness | PASS | Change + Connection as Key Concepts, both earned by the activity (seasonal color transformation = Change, linking color across objects = Connection). KUD fully specified. 4 Related Concepts. 3 ATL skills with sub-skills. Closing naturally names both concepts as praise. |
 | 6 | Tier Appropriateness | PASS | AI sentences are 5-8 words per clause. 3-step mission structure. Open-ended questions throughout ("What does it remind you of?", "Why do you think...?"). Concrete vocabulary (red, orange, yellow, flame, rainbow). Tasks are achievable for ages 4-6. |
 | 7 | Dialogue Specificity | PASS | Every AI line is exact dialogue with tone/emotion markers. Zero abstract instructions — no "AI guides" or "AI encourages" anywhere. |
 | 8 | Screen & UI Completeness | PASS | Every step has specific screen descriptions: golden glow, ember sparkles, mission card with flame-shaped slots, gradient bar, sliding photo rearrangement, badge with flame icon and gradient fill, concept word styling. |

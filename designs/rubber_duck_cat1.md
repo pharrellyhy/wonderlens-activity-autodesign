@@ -58,7 +58,7 @@
 >
 > **Screen**: A simple icon sequence appears: a speech bubble with "SPLASH!" next to the duck, then a microphone icon with a sparkle, showing it's the child's turn. The duck photo gently bobs up and down like floating on water.
 
-**Step 3: Multi-Round Interaction (3–5 rounds)**
+**Step 3: Multi-Round Interaction (2 rounds)**
 
 > **Round 1 — Warm Bath (simple, cozy, confidence-builder):**
 >
@@ -92,7 +92,7 @@
 >
 > **Screen**: Background shifts to grey-blue with animated raindrops falling. The duck photo has tiny animated rain splashes around it. Puddle ripple effects spread across the lower part of the screen.
 
-> **Round 3 — Big Ocean Wave (exciting, peak fun):**
+> **Round 3 (optional, if child is engaged) — Big Ocean Wave (exciting, peak fun):**
 >
 > **AI says**: "*(big, thrilled voice)* WHOOOOOSH! A BIG wave! Ducky's on the ocean! UP and DOWN! What does ducky say?"
 >
@@ -132,7 +132,7 @@
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, gentle pride)* You know what's amazing? Ducky felt different things in every place! Happy in the bath, silly in the rain, brave on the wave! That's **Perspective** — one ducky, many feelings! And guess what — water is everywhere! Bath, puddle, ocean — water **connects** them all! You showed ducky's world today! QUACK QUACK bye bye!"
+> **AI says**: "*(warm, gentle pride)* Ducky felt so many things! Happy, silly, brave! One ducky, many feelings. That's **Perspective**! And water is everywhere — bath, puddle, ocean! Water **connects** them all! QUACK QUACK bye bye!"
 >
 > **Possible child responses**:
 > 1. (Engaged) "Bye ducky!" / "Quack quack!" / Waves.
@@ -157,8 +157,8 @@
 | 3 | Transition Naturalness | PASS | "Duck in bath" → "ducky wants to talk" → "you be ducky's voice" → water adventures. Flows as conversation, not task assignment. |
 | 4 | Edge Case Coverage | PASS | All 5 steps have 3 response branches (ideal, unexpected, no response). All "unexpected" branches validate first. All "no response" branches wait 2 seconds then give gentle prompt. |
 | 5 | IB Completeness | PASS | KUD fully defined with specifics. Perspective + Connection named as Key Concepts. 4 Related Concepts listed. 3 ATL skills with sub-skills. Closing names concepts naturally as celebration. |
-| 6 | Tier Appropriateness | PASS | All AI sentences 3–5 words max in core gameplay. Heavy onomatopoeia (QUACK, SPLASH, WHOOSH, DRIP DROP). Single-step call-and-response. Rounds are simple "what does ducky say?" pattern. |
+| 6 | Tier Appropriateness | PASS | All AI sentences 3–5 words max in core gameplay. Heavy onomatopoeia (QUACK, SPLASH, WHOOSH, DRIP DROP). Single-step call-and-response. 2 core rounds + 3 optional, within T0 range. |
 | 7 | Dialogue Specificity | PASS | Every AI line is exact dialogue with tone/emotion markers in parentheses. Zero abstract instructions. All responses are concrete words. |
 | 8 | Screen & UI Completeness | PASS | Every step has specific screen descriptions: water ripples, rain animation, wave motion, badge design, concept word styling with distinct visual treatments. |
 
-**Overall**: ALL PASS — Ready for 教研 review. 0 issues found during self-evaluation.
+**Overall**: ALL PASS — Ready for 教研 review. Revised during audit: reduced core rounds to 2 (T0 max) with 3 optional. Closing speech tightened.
