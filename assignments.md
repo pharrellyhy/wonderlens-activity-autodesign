@@ -35,7 +35,7 @@
 
 - [ ] goldfish + category 1 (sustained verbal), tier=T1, mapping=animals_goldfish, start=warm+cold, scene=child photographs their pet goldfish swimming in a glass bowl on the shelf
 - [ ] lion + category 1 (sustained verbal), tier=T0, mapping=animals_lion, start=warm+cold, scene=child photographs a toy lion on the playroom rug
-- [ ] crayons + category 1 (sustained verbal), tier=T0, mapping=arts_music_crayons, start=warm+cold, scene=child photographs a pile of crayons on the drawing table
+- [x] crayons + category 1 (sustained verbal), tier=T0, mapping=arts_music_crayons, start=warm+cold, scene=child photographs a pile of crayons on the drawing table
 - [ ] piano + category 1 (sustained verbal), tier=T1, mapping=arts_music_piano, start=warm+cold, scene=child photographs the family piano in the living room
 - [ ] teddy bear + category 1 (sustained verbal), tier=T0, mapping=daily_objects_teddy_bear, start=warm+cold, scene=child photographs their teddy bear sitting on the bed
 - [ ] toothbrush holder + category 1 (sustained verbal), tier=T1, mapping=daily_objects_toothbrush_holder, start=warm+cold, scene=child photographs the toothbrush holder on the bathroom counter

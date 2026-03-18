@@ -9,3 +9,4 @@ pinecone + category 5 (collection/tracking), tier=T1	pinecone	5	T1	PASS	P	P	P	P	
 puddle + category 5 (collection/tracking), tier=T1	puddle	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/puddle_cat5.md	2026-03-11T00:08:00Z
 feather + category 5 (collection/tracking), tier=T1	feather	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/feather_cat5.md	2026-03-11T00:09:00Z
 autumn leaf + category 5 (collection/tracking), tier=T1	autumn leaf	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/autumn_leaf_cat5.md	2026-03-11T00:10:00Z
+crayons + category 1 (sustained verbal), tier=T0, mapping=arts_music_crayons, start=warm+cold	crayons	1	T0	PASS	P	P	P	P	P	P	P	P	P	designs/crayons_cat1.md	2026-03-18T00:01:00Z
