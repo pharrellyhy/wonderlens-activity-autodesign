@@ -8,8 +8,11 @@
 ```
 program.md          — Agent instructions, constraints, rubric, seed exemplars (human edits this)
 templates.md        — Category templates: structural skeletons with variable slots (human edits this)
+entity_guidance.md  — Mapping schema and selection rules for mapping-informed designs
+conversation_bridge.md — Warm/cold bridge patterns for conversation-aware activities
 assignments.md      — List of entity+category assignments to design (human edits this)
 run.md              — Kick-off prompt for the agent (human edits this once)
+data/mappings_dev20_0318/ — Source entity mappings used by Batch 2 assignments
 designs/            — Output folder. Each completed design is saved as a separate .md file
 results.tsv         — Tracking log: assignment, status, rubric scores, timestamp
 ```
@@ -44,7 +47,7 @@ claude --dangerously-skip-permissions
 Then paste:
 
 ```
-Read program.md, templates.md, run.md, and assignments.md. Then begin the autonomous design loop. Start with setup, then work through every assignment.
+Read program.md, templates.md, entity_guidance.md, conversation_bridge.md, run.md, and assignments.md. Then begin the autonomous design loop. Start with setup, then work through every assignment.
 ```
 
 ### 5. Walk away
@@ -58,8 +61,11 @@ The agent will work through each assignment, generating full activity designs an
 ├── README.md                 ← You are here
 ├── program.md                ← Agent instructions (the "skill file")
 ├── templates.md              ← Category templates (structural skeletons per activity type)
+├── entity_guidance.md        ← How to read mapping YAML files and ground designs in them
+├── conversation_bridge.md    ← Warm/cold bridge rules for mapping-informed designs
 ├── assignments.md            ← Input: entity+category pairs to design
 ├── run.md                    ← Kick-off instructions for the agent loop
+├── data/mappings_dev20_0318/ ← Entity mapping dataset used by mapping-informed assignments
 ├── designs/                  ← Output: one .md file per completed design
 │   └── .gitkeep
 └── results.tsv               ← Experiment log
@@ -70,7 +76,7 @@ The agent will work through each assignment, generating full activity designs an
 Following the autoresearch philosophy:
 
 - **Single agent, sequential processing.** One assignment at a time, fully completed before moving on.
-- **Self-evaluation built in.** The agent evaluates against an 8-dimension rubric before saving. Failed dimensions are auto-fixed.
+- **Self-evaluation built in.** The agent evaluates against a 9-dimension rubric before saving. Dimension 9 applies only to mapping-informed designs; failed dimensions are auto-fixed.
 - **Git as the ratchet.** Each completed design is committed. If the agent crashes mid-design, no work is lost.
 - **Human edits .md files, agent edits designs/.** Clean separation of concerns.
 

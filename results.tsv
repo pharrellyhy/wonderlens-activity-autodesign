@@ -1,11 +1,11 @@
-assignment	entity	category	tier	status	d1_tech	d2_hook	d3_transition	d4_edge	d5_ib	d6_tier	d7_dialogue	d8_screen	filename	timestamp
-toy dinosaur + category 1 (sustained verbal), tier=T0	toy dinosaur	1	T0	PASS	P	P	P	P	P	P	P	P	designs/toy_dinosaur_cat1.md	2026-03-11T00:01:00Z
-stuffed cat + category 1 (sustained verbal), tier=T0	stuffed cat	1	T0	PASS	P	P	P	P	P	P	P	P	designs/stuffed_cat_cat1.md	2026-03-11T00:02:00Z
-banana + category 1 (sustained verbal), tier=T1	banana	1	T1	PASS	P	P	P	P	P	P	P	P	designs/banana_cat1.md	2026-03-11T00:03:00Z
-toy fire truck + category 1 (sustained verbal), tier=T0	toy fire truck	1	T0	PASS	P	P	P	P	P	P	P	P	designs/toy_fire_truck_cat1.md	2026-03-11T00:04:00Z
-rubber duck + category 1 (sustained verbal), tier=T0	rubber duck	1	T0	PASS	P	P	P	P	P	P	P	P	designs/rubber_duck_cat1.md	2026-03-11T00:05:00Z
-dandelion + category 5 (collection/tracking), tier=T1	dandelion	5	T1	PASS	P	P	P	P	P	P	P	P	designs/dandelion_cat5.md	2026-03-11T00:06:00Z
-pinecone + category 5 (collection/tracking), tier=T1	pinecone	5	T1	PASS	P	P	P	P	P	P	P	P	designs/pinecone_cat5.md	2026-03-11T00:07:00Z
-puddle + category 5 (collection/tracking), tier=T1	puddle	5	T1	PASS	P	P	P	P	P	P	P	P	designs/puddle_cat5.md	2026-03-11T00:08:00Z
-feather + category 5 (collection/tracking), tier=T1	feather	5	T1	PASS	P	P	P	P	P	P	P	P	designs/feather_cat5.md	2026-03-11T00:09:00Z
-autumn leaf + category 5 (collection/tracking), tier=T1	autumn leaf	5	T1	PASS	P	P	P	P	P	P	P	P	designs/autumn_leaf_cat5.md	2026-03-11T00:10:00Z
+assignment	entity	category	tier	status	d1_tech	d2_hook	d3_transition	d4_edge	d5_ib	d6_tier	d7_dialogue	d8_screen	d9_mapping	filename	timestamp
+toy dinosaur + category 1 (sustained verbal), tier=T0	toy dinosaur	1	T0	PASS	P	P	P	P	P	P	P	P	N	designs/toy_dinosaur_cat1.md	2026-03-11T00:01:00Z
+stuffed cat + category 1 (sustained verbal), tier=T0	stuffed cat	1	T0	PASS	P	P	P	P	P	P	P	P	N	designs/stuffed_cat_cat1.md	2026-03-11T00:02:00Z
+banana + category 1 (sustained verbal), tier=T1	banana	1	T1	PASS	P	P	P	P	P	P	P	P	N	designs/banana_cat1.md	2026-03-11T00:03:00Z
+toy fire truck + category 1 (sustained verbal), tier=T0	toy fire truck	1	T0	PASS	P	P	P	P	P	P	P	P	N	designs/toy_fire_truck_cat1.md	2026-03-11T00:04:00Z
+rubber duck + category 1 (sustained verbal), tier=T0	rubber duck	1	T0	PASS	P	P	P	P	P	P	P	P	N	designs/rubber_duck_cat1.md	2026-03-11T00:05:00Z
+dandelion + category 5 (collection/tracking), tier=T1	dandelion	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/dandelion_cat5.md	2026-03-11T00:06:00Z
+pinecone + category 5 (collection/tracking), tier=T1	pinecone	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/pinecone_cat5.md	2026-03-11T00:07:00Z
+puddle + category 5 (collection/tracking), tier=T1	puddle	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/puddle_cat5.md	2026-03-11T00:08:00Z
+feather + category 5 (collection/tracking), tier=T1	feather	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/feather_cat5.md	2026-03-11T00:09:00Z
+autumn leaf + category 5 (collection/tracking), tier=T1	autumn leaf	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/autumn_leaf_cat5.md	2026-03-11T00:10:00Z

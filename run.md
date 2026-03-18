@@ -6,15 +6,17 @@
 
 1. Read `program.md` fully — this is your skill file containing all constraints, format, rubric, and seed exemplars.
 2. Read `templates.md` fully — this contains the structural skeletons for each activity category.
-3. Read `assignments.md` — this is your work queue.
-3. Verify `designs/` directory exists. Create it if not.
-4. Verify `results.tsv` exists. If not, create it with this header:
+3. Read `entity_guidance.md` fully — this teaches you how to read and use entity mapping YAML files.
+4. Read `conversation_bridge.md` fully — this defines warm/cold start bridge patterns.
+5. Read `assignments.md` — this is your work queue.
+6. Verify `designs/` directory exists. Create it if not.
+7. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
 
 ```
-assignment	entity	category	tier	status	d1_tech	d2_hook	d3_transition	d4_edge	d5_ib	d6_tier	d7_dialogue	d8_screen	filename	timestamp
+assignment	entity	category	tier	status	d1_tech	d2_hook	d3_transition	d4_edge	d5_ib	d6_tier	d7_dialogue	d8_screen	d9_mapping	filename	timestamp
 ```
 
-5. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting design loop."
+8. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting design loop."
 
 ## The Loop (repeat for every uncompleted assignment)
 
@@ -22,23 +24,51 @@ For each assignment in `assignments.md` that is marked `- [ ]` (not yet complete
 
 ### Step 1: Parse the assignment
 
-Extract: entity, category, tier, scene (if provided). If tier is not specified, infer it per program.md rules. If scene is not specified, invent one.
+Extract: entity, category, tier, scene (if provided), mapping (if provided), start type (if provided). If tier is not specified, infer it per program.md rules. If scene is not specified, invent one.
 
-### Step 2: Load the category template
+### Step 1.5: Load entity mapping (if `mapping=` is specified)
 
-Read the matching template from `templates.md` (Template A for Category 1, Template B for Category 5). Use the step skeleton as scaffolding, brainstorm fresh creative variables for this entity using the Quick Entity Brainstorm Guide as inspiration.
+1. Read `data/mappings_dev20_0318/_index.yaml` → find the entity_id → get the YAML file path
+2. Read the YAML file → locate the entity block matching the entity_id
+3. Extract for the target tier:
+   - `primary_theme` and `secondary_themes` (with weights)
+   - `primary_key_concepts` and `secondary_key_concepts` (with relevance scores)
+   - `candidate_related_concepts`
+   - `tier_guidance.[target_tier].dimensions` — all available dimensions
+4. Select 2–3 **anchor dimensions** per entity_guidance.md §6:
+   - Cat 1: engagement-first (emotions/imagination/narrative/reasoning + 1 physical)
+   - Cat 5: physical-first (appearance/structure/senses + 1 engagement)
+5. Select Key Concepts per entity_guidance.md §2 (primary first, anti-repetition guard)
+6. Select IB theme per entity_guidance.md §3 (from mapping themes)
+7. Select Related Concepts per entity_guidance.md §4 (at least 2 from mapping)
+
+If no `mapping=` parameter, skip this step entirely and proceed as before.
+
+### Step 2: Load the category template + dimension anchoring
+
+Read the matching template from `templates.md` (Template A for Category 1, Template B for Category 5). Use the step skeleton as scaffolding.
+
+**If mapping-informed**: Use the Dimension Anchoring section in the template to connect your anchor dimensions to creative variables. Brainstorm creative variables that are grounded in the mapping data — metaphor and role are still your invention, but vocabulary, facts, and sensory details must trace to mapping attributes.
+
+**If not mapping-informed**: Brainstorm fresh creative variables using the Quick Entity Brainstorm Guide as inspiration (original behavior).
 
 ### Step 3: Generate the activity design
 
 Follow the EXACT output format from program.md Phase 2. Be thorough. Do not abbreviate. Every step needs full dialogue, 3 response branches, and screen descriptions.
 
+**If mapping-informed and `start=warm+cold`**: Generate BOTH Step 1a (warm start) and Step 1b (cold start) per conversation_bridge.md §4. Steps 2+ are shared and must work for both entry paths. Verify convergence: both bridges lead naturally into Step 2.
+
+**If not mapping-informed**: Generate Step 1 as before (cold start only).
+
 ### Step 4: Self-evaluate
 
-Run through all 8 rubric dimensions from program.md Phase 3. If any dimension FAILS:
+Run through all 9 rubric dimensions from program.md Phase 3. If any dimension FAILS:
 - Identify the specific issue
 - Fix it in the design
 - Re-evaluate
-- Repeat until all 8 PASS
+- Repeat until all dimensions PASS
+
+**Note**: Dimension 9 (Entity Mapping Alignment) only applies to mapping-informed designs. Score as N/A if no mapping.
 
 ### Step 5: Save the design
 
@@ -51,8 +81,14 @@ Example filenames: `designs/toy_dinosaur_cat1.md`, `designs/dandelion_cat5.md`
 Append a row to `results.tsv`:
 
 ```
-[full assignment text]\t[entity]\t[category]\t[tier]\t[PASS/FAIL]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[filename]\t[ISO timestamp]
+[full assignment text]\t[entity]\t[category]\t[tier]\t[PASS/FAIL]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F/N]\t[filename]\t[ISO timestamp]
 ```
+
+Column order: assignment, entity, category, tier, status, d1_tech, d2_hook, d3_transition, d4_edge, d5_ib, d6_tier, d7_dialogue, d8_screen, d9_mapping, filename, timestamp.
+
+For d9_mapping: use P (pass), F (fail), or N (N/A — no mapping).
+
+If you upgraded an older `results.tsv` that lacks `d9_mapping`, first add the column to the header and backfill `N` for earlier non-mapping rows before appending new results.
 
 ### Step 7: Mark assignment complete
 
@@ -75,4 +111,4 @@ Move to the next `- [ ]` assignment. If none remain, say: "All assignments compl
 - **Never abbreviate later designs** because "they follow the same pattern." Each design is fully independent.
 - **If you encounter an error** (e.g., can't write a file), report it and continue with the next assignment.
 - **Commit after EVERY completed design**, not in batches. This is the ratchet — work is never lost.
-- **Quality over speed.** Take as many self-evaluation rounds as needed. A design that passes all 8 dimensions on the second try is better than a design that was rushed and would fail review.
+- **Quality over speed.** Take as many self-evaluation rounds as needed. A design that passes all 9 dimensions on the second try is better than a design that was rushed and would fail review.

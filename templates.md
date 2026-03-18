@@ -39,11 +39,25 @@ The agent should:
 ### Step Skeleton
 
 ```
-STEP 1: Transition Bridge
+STEP 1a: Transition Bridge — Warm Start (mapping-informed only)
+  Purpose: Continue the emotional thread from the preceding conversation.
+           Reference a SPECIFIC dimension topic the child explored.
+  Pattern: Use 1–2 opener flavors from conversation_bridge.md §2:
+    - Recall:    "Remember when we looked at {entity}'s {attribute}? {mapping_value}..."
+    - Discovery: "You figured out that {entity} has {attribute}! {build_on_it}..."
+    - Curiosity: "You were so curious about {dimension_topic}... let's go deeper!"
+    - Challenge: "You noticed {attribute} — I bet we can play a game with that..."
+  Source:  {attribute} and {dimension_topic} MUST come from tier_guidance dimensions.
+           Prefer engagement dimensions: emotions, imagination, narrative, relationship.
+  Screen:  {entity} photo centered, with soft "conversation recap" glow around referenced feature.
+
+STEP 1b: Transition Bridge — Cold Start
   Purpose: Emotional hook. React to the photographed {entity} with delight.
            Ask an EMOTIONAL or IMAGINATIVE question (never knowledge-testing).
   Pattern: "Wow, {entity}! {emotional observation}. {imaginative question}?"
   Screen:  {entity} photo centered, with {ambient animation} creating atmosphere.
+
+  Note: Steps 2+ are shared — both warm and cold paths converge at Step 2.
 
 STEP 2: Rule Introduction + Demo
   Purpose: Establish the game mechanic through a quick DEMONSTRATION, not dry rules.
@@ -91,6 +105,24 @@ STEP 5: Closing + IB Concepts
 | `{target_response_type}` | What cognitive/emotional skill each round targets | Emotions: happy → surprised → scared → excited | Sensory descriptions: sight → sound → feeling → action |
 | `{escalation_axis}` | How rounds get progressively richer | Emotional complexity: obvious → subtle → mixed feelings | Temporal complexity: concrete → abstract → cause-and-effect |
 
+### Dimension Anchoring (mapping-informed designs)
+
+Before brainstorming creative variables, select 2–3 **anchor dimensions** from the entity mapping that will supply the activity's core content (see entity_guidance.md §6).
+
+**For Category 1 — Engagement-First anchoring:**
+
+| Anchor Priority | Dimension Type | Purpose in Activity |
+|----------------|----------------|---------------------|
+| Primary anchor | emotions, imagination, narrative, or reasoning | Drives the game mechanic — what the child explores each round |
+| Secondary anchor | relationship or another engagement dimension | Provides variety across rounds — comparison, storytelling, cause-effect |
+| Physical ground | appearance, senses, or function | Gives the verbal game concrete, observable hooks from the real entity |
+
+**How anchors shape creative variables:**
+- `{game_mechanic}` should exercise the primary anchor dimension
+- `{scenario_type}` should draw round content from primary + secondary anchors
+- `{target_response_type}` maps to the engagement skill in the anchor dimensions
+- AI dialogue vocabulary comes from the physical ground dimension's `value` fields
+
 ### Entity Adaptation Checklist
 
 When adapting to a new entity, verify:
@@ -100,6 +132,8 @@ When adapting to a new entity, verify:
 - [ ] Round escalation uses a dimension natural to THIS entity
 - [ ] Screen visuals reference THIS entity's actual appearance/features
 - [ ] Closing IB concepts are EARNED by what the child did, not pre-assigned
+- [ ] (Mapping-informed) Anchor dimensions are identified and drive the creative variables
+- [ ] (Mapping-informed) Vocabulary/facts in AI dialogue are traceable to mapping attributes
 
 ### Quick Entity Brainstorm Guide
 
@@ -131,12 +165,26 @@ When adapting to a new entity, verify:
 ### Step Skeleton
 
 ```
-STEP 1: Transition Bridge
+STEP 1a: Transition Bridge — Warm Start (mapping-informed only)
+  Purpose: Continue from the conversation by connecting a PHYSICAL dimension the child explored
+           to the collection mission. Reference a specific attribute from the mapping.
+  Pattern: Use 1–2 opener flavors from conversation_bridge.md §2:
+    - Recall:    "Remember when we noticed {entity}'s {attribute}? {mapping_value}..."
+    - Discovery: "You discovered that {entity} has {attribute}! Let's find more like that..."
+    - Curiosity: "You were so curious about {dimension_topic}... what if we went looking?"
+    - Challenge: "You noticed {attribute} — I bet there are more hiding nearby..."
+  Source:  {attribute} MUST come from tier_guidance physical dimensions: appearance, senses, structure.
+           {visual_feature} for collection criterion should trace to a mapping attribute.
+  Screen:  {entity} photo with {visual_feature} highlighted + "conversation recap" glow.
+
+STEP 1b: Transition Bridge — Cold Start
   Purpose: Emotional hook. React to the {entity}'s most STRIKING VISUAL FEATURE.
            Frame that feature with wonder, then ask what it reminds the child of.
   Pattern: "Look at {specific_visual_feature} on this {entity}! It's like {imaginative_comparison}.
             What does it remind YOU of?"
   Screen:  {entity} photo with {visual_feature} area subtly highlighted (soft glow/circle).
+
+  Note: Steps 2+ are shared — both warm and cold paths converge at Step 2.
 
 STEP 2: Mission Briefing
   Purpose: Transform the visual feature into a COLLECTION MISSION with a clear ROLE for the child.
@@ -210,6 +258,25 @@ STEP 6: Closing + IB Concepts
 | `{reflective_question}` | The "why" question at the end | "Why do you think stones get different patterns?" | "Why do so many different things have spots?" |
 | `{stuck_hint}` | Where to look if the child can't find items | "Try looking near the flower bed edges" | "Look really close at tree bark or flower centers" |
 
+### Dimension Anchoring (mapping-informed designs)
+
+Before brainstorming creative variables, select 2–3 **anchor dimensions** from the entity mapping that will supply the activity's core content (see entity_guidance.md §6).
+
+**For Category 5 — Physical-First anchoring:**
+
+| Anchor Priority | Dimension Type | Purpose in Activity |
+|----------------|----------------|---------------------|
+| Primary anchor | appearance | Defines the collection criterion — the visual feature children look for |
+| Secondary anchor | structure or senses | Adds depth to what children notice about each find |
+| Engagement ground | relationship or reasoning | Drives the synthesis step — comparison, pattern-finding, "why" questions |
+
+**How anchors shape creative variables:**
+- `{visual_feature}` comes from the primary anchor's `attribute` + `value` fields
+- `{collection_criterion}` generalizes the visual feature into a findable pattern
+- `{synthesis_type}` maps to the engagement ground dimension
+- `{reflective_question}` draws from reasoning or relationship dimension prompts
+- `{stuck_hint}` should reference WHERE the attribute naturally occurs (from context dimension if available)
+
 ### Entity Adaptation Checklist
 
 When adapting to a new entity, verify:
@@ -219,6 +286,8 @@ When adapting to a new entity, verify:
 - [ ] The synthesis task matches the collection type (narrative for varied items, pattern for similar items)
 - [ ] The stuck hint names REAL, SPECIFIC places to look (not "look around you")
 - [ ] The reflective question has no single "correct" answer — it invites genuine wondering
+- [ ] (Mapping-informed) Anchor dimensions are identified and drive the creative variables
+- [ ] (Mapping-informed) Visual feature and collection criterion trace to mapping attributes
 
 ### Quick Entity Brainstorm Guide
 
@@ -243,6 +312,6 @@ When adapting to a new entity, verify:
 2. **Brainstorm creative variables** — use the Quick Entity Brainstorm Guide for inspiration, but always invent something FRESH. Never copy the example column directly.
 3. **Fill the step skeleton** with entity-specific content, expanding each step to full program.md format (complete dialogue, 3 response branches, screen descriptions)
 4. **Verify with the Entity Adaptation Checklist** before moving to self-evaluation
-5. **Run the 8-dimension rubric** as normal
+5. **Run the 9-dimension rubric** as normal (D9 only for mapping-informed designs)
 
 The template ensures structural consistency. The creative variables ensure every activity feels unique.
