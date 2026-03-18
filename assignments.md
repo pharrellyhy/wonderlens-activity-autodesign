@@ -39,17 +39,17 @@
 - [x] piano + category 1 (sustained verbal), tier=T1, mapping=arts_music_piano, start=warm+cold, scene=child photographs the family piano in the living room
 - [x] teddy bear + category 1 (sustained verbal), tier=T0, mapping=daily_objects_teddy_bear, start=warm+cold, scene=child photographs their teddy bear sitting on the bed
 - [x] toothbrush holder + category 1 (sustained verbal), tier=T1, mapping=daily_objects_toothbrush_holder, start=warm+cold, scene=child photographs the toothbrush holder on the bathroom counter
-- [ ] eye + category 1 (sustained verbal), tier=T2, mapping=human_body_eye, start=warm+cold, scene=child photographs their own eye in a mirror
+- [x] eye + category 1 (sustained verbal), tier=T2, mapping=human_body_eye, start=warm+cold, scene=child photographs their own eye in a mirror
 - [x] firefighter + category 1 (sustained verbal), tier=T1, mapping=people_roles_firefighter, start=warm+cold, scene=child photographs a firefighter figure or picture on the fridge
 - [x] raincoat + category 1 (sustained verbal), tier=T0, mapping=clothing_accessories_raincoat, start=warm+cold, scene=child photographs their yellow raincoat hanging by the door
 
 ### Category 5 — Collection/Tracking Exploration (Out-of-Device)
 
-- [ ] city library + category 5 (collection/tracking), tier=T2, mapping=buildings_places_city_library, start=warm+cold, scene=child photographs the front of the city library building from across the street
-- [ ] playground + category 5 (collection/tracking), tier=T1, mapping=buildings_places_playground, start=warm+cold, scene=child photographs the slide at the neighborhood playground
-- [ ] green apple + category 5 (collection/tracking), tier=T1, mapping=food_green_apple, start=warm+cold, scene=child photographs a green apple found under a tree in the garden
-- [ ] double rainbow + category 5 (collection/tracking), tier=T1, mapping=natural_phenomena_double_rainbow, start=warm+cold, scene=child photographs a rainbow in the sky after a rain shower
-- [ ] sandy beach + category 5 (collection/tracking), tier=T1, mapping=nature_landscapes_sandy_beach, start=warm+cold, scene=child photographs the sandy shore at the beach
-- [ ] sunflower + category 5 (collection/tracking), tier=T1, mapping=plants_sunflower, start=warm+cold, scene=child photographs a tall sunflower in the garden
-- [ ] stop sign + category 5 (collection/tracking), tier=T1, mapping=signs_symbols_stop_sign, start=warm+cold, scene=child photographs a stop sign at the street corner during a walk
-- [ ] bicycle + category 5 (collection/tracking), tier=T1, mapping=vehicles_bicycle, start=warm+cold, scene=child photographs their bicycle parked in the driveway
+- [x] city library + category 5 (collection/tracking), tier=T2, mapping=buildings_places_city_library, start=warm+cold, scene=child photographs the front of the city library building from across the street
+- [x] playground + category 5 (collection/tracking), tier=T1, mapping=buildings_places_playground, start=warm+cold, scene=child photographs the slide at the neighborhood playground
+- [x] green apple + category 5 (collection/tracking), tier=T1, mapping=food_green_apple, start=warm+cold, scene=child photographs a green apple found under a tree in the garden
+- [x] double rainbow + category 5 (collection/tracking), tier=T1, mapping=natural_phenomena_double_rainbow, start=warm+cold, scene=child photographs a rainbow in the sky after a rain shower
+- [x] sandy beach + category 5 (collection/tracking), tier=T1, mapping=nature_landscapes_sandy_beach, start=warm+cold, scene=child photographs the sandy shore at the beach
+- [x] sunflower + category 5 (collection/tracking), tier=T1, mapping=plants_sunflower, start=warm+cold, scene=child photographs a tall sunflower in the garden
+- [x] stop sign + category 5 (collection/tracking), tier=T1, mapping=signs_symbols_stop_sign, start=warm+cold, scene=child photographs a stop sign at the street corner during a walk
+- [x] bicycle + category 5 (collection/tracking), tier=T1, mapping=vehicles_bicycle, start=warm+cold, scene=child photographs their bicycle parked in the driveway

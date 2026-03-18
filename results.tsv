@@ -17,3 +17,12 @@ raincoat + category 1 (sustained verbal), tier=T0, mapping=clothing_accessories_
 goldfish + category 1 (sustained verbal), tier=T1, mapping=animals_goldfish, start=warm+cold	goldfish	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/goldfish_cat1.md	2026-03-18T00:06:00Z
 toothbrush holder + category 1 (sustained verbal), tier=T1, mapping=daily_objects_toothbrush_holder, start=warm+cold	toothbrush holder	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/toothbrush_holder_cat1.md	2026-03-18T00:07:00Z
 firefighter + category 1 (sustained verbal), tier=T1, mapping=people_roles_firefighter, start=warm+cold	firefighter	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/firefighter_cat1.md	2026-03-18T00:08:00Z
+eye + category 1 (sustained verbal), tier=T2, mapping=human_body_eye, start=warm+cold	eye	1	T2	PASS	P	P	P	P	P	P	P	P	P	designs/eye_cat1.md	2026-03-18T00:09:00Z
+city library + category 5 (collection/tracking), tier=T2, mapping=buildings_places_city_library, start=warm+cold	city library	5	T2	PASS	P	P	P	P	P	P	P	P	P	designs/city_library_cat5.md	2026-03-18T00:10:00Z
+playground + category 5 (collection/tracking), tier=T1, mapping=buildings_places_playground, start=warm+cold	playground	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/playground_cat5.md	2026-03-18T00:11:00Z
+green apple + category 5 (collection/tracking), tier=T1, mapping=food_green_apple, start=warm+cold	green apple	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/green_apple_cat5.md	2026-03-18T00:12:00Z
+double rainbow + category 5 (collection/tracking), tier=T1, mapping=natural_phenomena_double_rainbow, start=warm+cold	double rainbow	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/double_rainbow_cat5.md	2026-03-18T00:13:00Z
+sandy beach + category 5 (collection/tracking), tier=T1, mapping=nature_landscapes_sandy_beach, start=warm+cold	sandy beach	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/sandy_beach_cat5.md	2026-03-18T00:14:00Z
+sunflower + category 5 (collection/tracking), tier=T1, mapping=plants_sunflower, start=warm+cold	sunflower	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/sunflower_cat5.md	2026-03-18T00:15:00Z
+stop sign + category 5 (collection/tracking), tier=T1, mapping=signs_symbols_stop_sign, start=warm+cold	stop sign	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/stop_sign_cat5.md	2026-03-18T00:16:00Z
+bicycle + category 5 (collection/tracking), tier=T1, mapping=vehicles_bicycle, start=warm+cold	bicycle	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/bicycle_cat5.md	2026-03-18T00:17:00Z
