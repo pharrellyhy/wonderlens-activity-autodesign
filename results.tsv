@@ -26,15 +26,15 @@ sandy beach + category 5 (collection/tracking), tier=T1, mapping=nature_landscap
 sunflower + category 5 (collection/tracking), tier=T1, mapping=plants_sunflower, start=warm+cold	sunflower	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/sunflower_cat5.md	2026-03-18T00:15:00Z
 stop sign + category 5 (collection/tracking), tier=T1, mapping=signs_symbols_stop_sign, start=warm+cold	stop sign	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/stop_sign_cat5.md	2026-03-18T00:16:00Z
 bicycle + category 5 (collection/tracking), tier=T1, mapping=vehicles_bicycle, start=warm+cold	bicycle	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/bicycle_cat5.md	2026-03-18T00:17:00Z
-lion + category 5 (collection/tracking), tier=T0, style=comparison_chart, mapping=animals_lion	lion	5	T0	PASS	P	P	P	P	P	P	P	P	P	designs/lion_cat5.md	2026-03-19T00:01:00Z
-crayons + category 5 (collection/tracking), tier=T0, style=naming_story, mapping=arts_music_crayons	crayons	5	T0	PASS	P	P	P	P	P	P	P	P	P	designs/crayons_cat5.md	2026-03-19T00:02:00Z
-raincoat + category 5 (collection/tracking), tier=T0, style=naming_story, mapping=clothing_accessories_raincoat	raincoat	5	T0	PASS	P	P	P	P	P	P	P	P	P	designs/raincoat_cat5.md	2026-03-19T00:03:00Z
-piano + category 5 (collection/tracking), tier=T1, style=comparison_chart, mapping=arts_music_piano	piano	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/piano_cat5.md	2026-03-19T00:04:00Z
-eye + category 5 (collection/tracking), tier=T2, style=comparison_chart, mapping=human_body_eye	eye	5	T2	PASS	P	P	P	P	P	P	P	P	P	designs/eye_cat5.md	2026-03-19T00:05:00Z
-firefighter + category 5 (collection/tracking), tier=T1, style=comparison_chart, mapping=people_roles_firefighter	firefighter	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/firefighter_cat5.md	2026-03-19T00:06:00Z
-city library + category 1 (sustained verbal), tier=T2, style=storytelling_chain, mapping=buildings_places_city_library	city library	1	T2	PASS	P	P	P	P	P	P	P	P	P	designs/city_library_cat1.md	2026-03-19T00:07:00Z
-playground + category 1 (sustained verbal), tier=T1, style=voice_acting, mapping=buildings_places_playground	playground	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/playground_cat1.md	2026-03-19T00:08:00Z
-green apple + category 1 (sustained verbal), tier=T1, style=prediction_game, mapping=food_green_apple	green apple	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/green_apple_cat1.md	2026-03-19T00:09:00Z
-sunflower + category 1 (sustained verbal), tier=T1, style=prediction_game, mapping=plants_sunflower	sunflower	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/sunflower_cat1.md	2026-03-19T00:10:00Z
-stop sign + category 1 (sustained verbal), tier=T1, style=helper_hotline, mapping=signs_symbols_stop_sign	stop sign	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/stop_sign_cat1.md	2026-03-19T00:11:00Z
-bicycle + category 1 (sustained verbal), tier=T1, style=voice_acting, mapping=vehicles_bicycle	bicycle	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/bicycle_cat1.md	2026-03-19T00:12:00Z
+lion + category 5 (collection/tracking), tier=T0, style=comparison_chart, mapping=animals_lion	lion	5	T0	PASS	P	P	P	P	P	P	P	P	P	designs/lion_cat5_v3.md	2026-03-19T00:01:00Z
+crayons + category 5 (collection/tracking), tier=T0, style=naming_story, mapping=arts_music_crayons	crayons	5	T0	PASS	P	P	P	P	P	P	P	P	P	designs/crayons_cat5_v3.md	2026-03-19T00:02:00Z
+raincoat + category 5 (collection/tracking), tier=T0, style=naming_story, mapping=clothing_accessories_raincoat	raincoat	5	T0	PASS	P	P	P	P	P	P	P	P	P	designs/raincoat_cat5_v3.md	2026-03-19T00:03:00Z
+piano + category 5 (collection/tracking), tier=T1, style=comparison_chart, mapping=arts_music_piano	piano	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/piano_cat5_v3.md	2026-03-19T00:04:00Z
+eye + category 5 (collection/tracking), tier=T2, style=comparison_chart, mapping=human_body_eye	eye	5	T2	PASS	P	P	P	P	P	P	P	P	P	designs/eye_cat5_v3.md	2026-03-19T00:05:00Z
+firefighter + category 5 (collection/tracking), tier=T1, style=comparison_chart, mapping=people_roles_firefighter	firefighter	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/firefighter_cat5_v3.md	2026-03-19T00:06:00Z
+city library + category 1 (sustained verbal), tier=T2, style=storytelling_chain, mapping=buildings_places_city_library	city library	1	T2	PASS	P	P	P	P	P	P	P	P	P	designs/city_library_cat1_v3.md	2026-03-19T00:07:00Z
+playground + category 1 (sustained verbal), tier=T1, style=voice_acting, mapping=buildings_places_playground	playground	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/playground_cat1_v3.md	2026-03-19T00:08:00Z
+green apple + category 1 (sustained verbal), tier=T1, style=prediction_game, mapping=food_green_apple	green apple	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/green_apple_cat1_v3.md	2026-03-19T00:09:00Z
+sunflower + category 1 (sustained verbal), tier=T1, style=prediction_game, mapping=plants_sunflower	sunflower	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/sunflower_cat1_v3.md	2026-03-19T00:10:00Z
+stop sign + category 1 (sustained verbal), tier=T1, style=helper_hotline, mapping=signs_symbols_stop_sign	stop sign	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/stop_sign_cat1_v3.md	2026-03-19T00:11:00Z
+bicycle + category 1 (sustained verbal), tier=T1, style=voice_acting, mapping=vehicles_bicycle	bicycle	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/bicycle_cat1_v3.md	2026-03-19T00:12:00Z
