@@ -9,15 +9,16 @@
 3. Read `docs/game_styles.md` — this is the game style taxonomy reference (6 styles with examples).
 4. Read `entity_guidance.md` fully — this teaches you how to read and use entity mapping YAML files.
 5. Read `conversation_bridge.md` fully — this defines warm/cold start bridge patterns.
-6. Read `assignments.md` — this is your work queue.
-7. Verify `designs/` directory exists. Create it if not.
-8. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
+6. Read `transform.md` — these are the rules for converting engineering specs to production format.
+7. Read `assignments.md` — this is your work queue.
+8. Verify `designs/` directory exists. Create it if not.
+9. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
 
 ```
 assignment	entity	category	tier	status	d1_tech	d2_hook	d3_transition	d4_edge	d5_ib	d6_tier	d7_dialogue	d8_screen	d9_mapping	filename	timestamp
 ```
 
-9. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting design loop."
+10. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting design loop."
 
 ## The Loop (repeat for every uncompleted assignment)
 
@@ -71,11 +72,23 @@ Run through all 9 rubric dimensions from program.md Phase 3. If any dimension FA
 
 **Note**: Dimension 9 (Entity Mapping Alignment) only applies to mapping-informed designs. Score as N/A if no mapping.
 
-### Step 5: Save the design
+### Step 5: Save the engineering spec
 
-Save the completed design to `designs/[entity]_[category_number].md`
+Save the completed design (full engineering spec) to `designs/[entity]_cat[N]_spec.md`
 
-Example filenames: `designs/toy_dinosaur_cat1.md`, `designs/dandelion_cat5.md`
+Example filenames: `designs/toy_dinosaur_cat1_spec.md`, `designs/dandelion_cat5_spec.md`
+
+### Step 5.5: Transform to production format
+
+Apply the rules from `transform.md` to produce a condensed production-format version:
+1. Read the spec you just saved
+2. Apply all transform rules (A–G): 7-row Basic Info table, drop warm start, condense rounds, compress screens, strip scorecard
+3. Run the self-check from `transform_run.md` §3
+4. Save to `designs/[entity]_cat[N]_prod.md`
+
+This ensures every design ships with both formats:
+- `*_spec.md` — full engineering spec (warm+cold starts, all rounds, scorecard, mapping metadata)
+- `*_prod.md` — production format (condensed, demo-ready, single entry point)
 
 ### Step 6: Log the result
 
@@ -98,8 +111,8 @@ In `assignments.md`, change `- [ ]` to `- [x]` for this assignment.
 ### Step 8: Commit
 
 ```bash
-git add designs/ results.tsv assignments.md
-git commit -m "Design: [entity] + cat[N] — ALL PASS"
+git add designs/[entity]_cat[N]_spec.md designs/[entity]_cat[N]_prod.md results.tsv assignments.md
+git commit -m "Design: [entity] + cat[N] — ALL PASS (spec + prod)"
 ```
 
 ### Step 9: Next assignment
