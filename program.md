@@ -113,7 +113,34 @@ Assign 2–4 related concepts per activity.
 
 **Critical Design Principle**: If the activity requires verification that V1 hardware cannot provide, **replace the verification with dialogue**. The child self-reports, and AI always responds positively. Never design a step where the system MUST detect something it cannot detect.
 
-### 1.6 Core Design Principles (NON-NEGOTIABLE)
+### 1.6 Game Styles (6 Interaction Patterns)
+
+Every activity must be assigned one of 6 game styles. The style determines the child's role each round and the interaction structure. Read `docs/game_styles.md` for the full reference.
+
+**Cat 1 — In-Device Verbal (4 styles)**:
+
+| Style | Child's role each round | When to use |
+|-------|------------------------|-------------|
+| `voice_acting` | Speaks/performs AS the object in a scenario | Entity has personality, emotions, or can be "voiced" |
+| `storytelling_chain` | Adds what happens next in a narrative | Entity has a journey, lifecycle, or sequential story |
+| `prediction_game` | Predicts what will happen given a cause | Entity involves cause-and-effect or hidden mechanisms |
+| `helper_hotline` | Decides what to do about a problem | Entity relates to roles, safety, or caregiving |
+
+**Cat 5 — Out-of-Device Collection (2 styles)**:
+
+| Style | Synthesis step | When to use |
+|-------|---------------|-------------|
+| `comparison_chart` | Collect → compare properties → chart/categorize | Finds have distinct properties to sort or compare |
+| `naming_story` | Collect → name as characters → weave narrative | Finds are varied and can become story characters |
+
+**How styles constrain design:**
+- The style narrows the creative variables (`{game_mechanic}`, `{scenario_type}`, `{target_response_type}`, `{synthesis_type}`) to a proven pattern
+- The style is specified in the assignment (`style=voice_acting`) or inferred from entity + category
+- Record the style in Basic Info as `Game Style`
+
+**If style is not specified in the assignment**, infer it using the "When to use" column above. When ambiguous, prefer the style with the most existing exemplars for that category.
+
+### 1.7 Core Design Principles (NON-NEGOTIABLE)
 
 1. **Hook Rule**: The FIRST turn of any activity MUST use emotional resonance, NOT knowledge testing.
    - ✅ "Wow, your teddy bear looks so cozy! How is it feeling today?"
@@ -138,7 +165,7 @@ Assign 2–4 related concepts per activity.
 
 7. **Screen Descriptions**: Every step must specify what the screen displays. Be specific about layout, animation, and visual elements.
 
-### 1.7 Entity Mapping Data
+### 1.8 Entity Mapping Data
 
 When an assignment includes `mapping=entity_id`, you MUST read the entity's mapping YAML before designing:
 
@@ -176,6 +203,7 @@ Generate the activity design in this EXACT structure. Do not skip sections, do n
 - **Core IB Key Concepts**: [1–2 from the 7]
 - **Related Concepts (Discipline)**: [2–4 specific concept tags]
 - **ATL Skills Focus**: [2–3 with sub-skills in parentheses]
+- **Game Style**: [one of: voice_acting, storytelling_chain, prediction_game, helper_hotline, comparison_chart, naming_story]
 - **Trigger Entity**: [the object the child photographed]
 - **Trigger Scene**: [brief scenario, e.g., "Child photographs a butterfly resting on a flower in the park"]
 - **Mapping Source**: [entity_id from mapping, or "none" if no mapping] (if mapping-informed)
@@ -424,13 +452,15 @@ When the human gives you an assignment, it will look like:
 
 ```
 Design an activity for: [entity] + [category number or name]
-Optional: tier=[T0/T1/T2], scene=[brief scenario]
+Optional: tier=[T0/T1/T2], style=[game_style], scene=[brief scenario]
 ```
 
 Examples:
-- `Design an activity for: butterfly + category 5 (collection/tracking)`
-- `Design an activity for: toy car + category 1 (sustained verbal), tier=T0`
+- `Design an activity for: butterfly + category 5 (collection/tracking), style=comparison_chart`
+- `Design an activity for: toy car + category 1 (sustained verbal), tier=T0, style=voice_acting`
 - `Design an activity for: kitchen vegetables + category 3 (material exploration), tier=T1, scene=child photographs broccoli on kitchen counter`
+
+If `style=` is omitted, infer it per §1.6 rules.
 
 ### If tier is not specified
 

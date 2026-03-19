@@ -98,7 +98,7 @@ A **cold start** bridge is the current default behavior: the child photographs t
 
 - Uses the standard emotional hook pattern: react to entity with delight → imaginative question
 - Does NOT reference any prior conversation (there was none)
-- Follows the existing Hook Rule from program.md §1.6
+- Follows the existing Hook Rule from program.md §1.7
 - No changes from current behavior
 
 ### Cold Start Template (unchanged)

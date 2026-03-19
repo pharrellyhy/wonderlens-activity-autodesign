@@ -123,6 +123,42 @@ Before brainstorming creative variables, select 2–3 **anchor dimensions** from
 - `{target_response_type}` maps to the engagement skill in the anchor dimensions
 - AI dialogue vocabulary comes from the physical ground dimension's `value` fields
 
+### Game Style Sub-Patterns (Cat 1)
+
+The `game_style` parameter (see program.md §1.6) constrains how the creative variables should be shaped. Use the matching sub-pattern below.
+
+#### `voice_acting`
+- **Game mechanic**: AI presents a scenario with an emotion/situation → child speaks AS the entity (roars, sings, narrates feelings)
+- **Scenario type**: Different situations triggering different emotions or reactions
+- **Target response type**: Emotional expression — happy → surprised → scared → mixed
+- **Escalation axis**: Emotional complexity (obvious → subtle → mixed feelings)
+- **Role title direction**: "Reporter," "Translator," "Spokesperson" — child interprets for the entity
+- **Examples**: Roar Reporter (lion), Color Feelings (crayons), Rainy Day Feelings (raincoat), Secret Song Storyteller (piano)
+
+#### `storytelling_chain`
+- **Game mechanic**: AI narrates the start of a chapter/scene → child adds what happens next
+- **Scenario type**: Sequential chapters in the entity's life story or journey
+- **Target response type**: Narrative continuation — what happens, who appears, how it ends
+- **Escalation axis**: Narrative complexity (concrete events → abstract themes → cause-and-effect)
+- **Role title direction**: "Reporter," "Storyteller," "Narrator" — child builds the story
+- **Examples**: The Banana's Big Adventure (banana)
+
+#### `prediction_game`
+- **Game mechanic**: AI describes a cause/situation → child predicts the effect/outcome
+- **Scenario type**: Different cause-effect scenarios related to the entity
+- **Target response type**: Predictions — what will happen, why, what changes
+- **Escalation axis**: Causal complexity (obvious → hidden → chain reactions)
+- **Role title direction**: "Detective," "Scientist," "Guesser" — child investigates causes
+- **Examples**: Goldfish Guess-What (goldfish), The Secret Eye Detective (eye)
+
+#### `helper_hotline`
+- **Game mechanic**: AI presents a problem scenario → child proposes a solution/action
+- **Scenario type**: Different problems or needs related to the entity's domain
+- **Target response type**: Problem-solving — what to do, what tool to use, who to call
+- **Escalation axis**: Problem complexity (simple need → tricky situation → ethical dilemma)
+- **Role title direction**: "Helper," "Fixer," "Doctor" — child is the problem-solver
+- **Examples**: Teddy's Bedtime Helper (teddy bear), Helper Hotline (firefighter), The Bathroom Helper Game (toothbrush holder)
+
 ### Entity Adaptation Checklist
 
 When adapting to a new entity, verify:
@@ -132,6 +168,7 @@ When adapting to a new entity, verify:
 - [ ] Round escalation uses a dimension natural to THIS entity
 - [ ] Screen visuals reference THIS entity's actual appearance/features
 - [ ] Closing IB concepts are EARNED by what the child did, not pre-assigned
+- [ ] The game style sub-pattern is followed (see above) — mechanic, scenario type, and escalation match the assigned style
 - [ ] (Mapping-informed) Anchor dimensions are identified and drive the creative variables
 - [ ] (Mapping-informed) Vocabulary/facts in AI dialogue are traceable to mapping attributes
 
@@ -277,6 +314,26 @@ Before brainstorming creative variables, select 2–3 **anchor dimensions** from
 - `{reflective_question}` draws from reasoning or relationship dimension prompts
 - `{stuck_hint}` should reference WHERE the attribute naturally occurs (from context dimension if available)
 
+### Game Style Sub-Patterns (Cat 5)
+
+The `game_style` parameter (see program.md §1.6) constrains the synthesis step and overall collection arc. Use the matching sub-pattern below.
+
+#### `comparison_chart`
+- **Synthesis type**: CLASSIFICATION or PATTERN — child sorts, compares, or categorizes finds
+- **Collection focus**: Finds that have distinct, comparable properties (shape, color, size, function)
+- **Synthesis prompt direction**: "Sort these by…" / "Which ones are similar?" / "What's each one's job?"
+- **Reflective question direction**: "Why are they different?" / "Why does each one have its own [property]?"
+- **Role title direction**: "Inspector," "Detective," "Reporter" — child investigates and categorizes
+- **Examples**: The Playground Job Fair (playground), Building Detectives (city library), The Sunshine Parts Patrol (sunflower), Sign Spotter Safari (stop sign), Green Treasure Hunt (green apple)
+
+#### `naming_story`
+- **Synthesis type**: NAMING + NARRATIVE — child names finds as characters, then weaves a story
+- **Collection focus**: Varied, characterful finds that can become story protagonists
+- **Synthesis prompt direction**: "Give each one a name!" / "What's their story together?"
+- **Reflective question direction**: "Why do you think [items] ended up here together?"
+- **Role title direction**: "Scout," "Detective," "Explorer" — child discovers and narrates
+- **Examples**: The Rainbow Color Scout (double rainbow), The Shore Detective Agency (sandy beach)
+
 ### Entity Adaptation Checklist
 
 When adapting to a new entity, verify:
@@ -286,6 +343,7 @@ When adapting to a new entity, verify:
 - [ ] The synthesis task matches the collection type (narrative for varied items, pattern for similar items)
 - [ ] The stuck hint names REAL, SPECIFIC places to look (not "look around you")
 - [ ] The reflective question has no single "correct" answer — it invites genuine wondering
+- [ ] The game style sub-pattern is followed (see above) — synthesis type and collection focus match the assigned style
 - [ ] (Mapping-informed) Anchor dimensions are identified and drive the creative variables
 - [ ] (Mapping-informed) Visual feature and collection criterion trace to mapping attributes
 

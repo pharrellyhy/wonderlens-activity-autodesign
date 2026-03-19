@@ -5,18 +5,19 @@
 ## Setup (one-time, do this first)
 
 1. Read `program.md` fully — this is your skill file containing all constraints, format, rubric, and seed exemplars.
-2. Read `templates.md` fully — this contains the structural skeletons for each activity category.
-3. Read `entity_guidance.md` fully — this teaches you how to read and use entity mapping YAML files.
-4. Read `conversation_bridge.md` fully — this defines warm/cold start bridge patterns.
-5. Read `assignments.md` — this is your work queue.
-6. Verify `designs/` directory exists. Create it if not.
-7. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
+2. Read `templates.md` fully — this contains the structural skeletons for each activity category, including game style sub-patterns.
+3. Read `docs/game_styles.md` — this is the game style taxonomy reference (6 styles with examples).
+4. Read `entity_guidance.md` fully — this teaches you how to read and use entity mapping YAML files.
+5. Read `conversation_bridge.md` fully — this defines warm/cold start bridge patterns.
+6. Read `assignments.md` — this is your work queue.
+7. Verify `designs/` directory exists. Create it if not.
+8. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
 
 ```
 assignment	entity	category	tier	status	d1_tech	d2_hook	d3_transition	d4_edge	d5_ib	d6_tier	d7_dialogue	d8_screen	d9_mapping	filename	timestamp
 ```
 
-8. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting design loop."
+9. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting design loop."
 
 ## The Loop (repeat for every uncompleted assignment)
 
@@ -24,7 +25,7 @@ For each assignment in `assignments.md` that is marked `- [ ]` (not yet complete
 
 ### Step 1: Parse the assignment
 
-Extract: entity, category, tier, scene (if provided), mapping (if provided), start type (if provided). If tier is not specified, infer it per program.md rules. If scene is not specified, invent one.
+Extract: entity, category, tier, style (if provided), scene (if provided), mapping (if provided), start type (if provided). If tier is not specified, infer it per program.md rules. If style is not specified, infer it per program.md §1.6 rules. If scene is not specified, invent one.
 
 ### Step 1.5: Load entity mapping (if `mapping=` is specified)
 
@@ -44,13 +45,13 @@ Extract: entity, category, tier, scene (if provided), mapping (if provided), sta
 
 If no `mapping=` parameter, skip this step entirely and proceed as before.
 
-### Step 2: Load the category template + dimension anchoring
+### Step 2: Load the category template + game style + dimension anchoring
 
-Read the matching template from `templates.md` (Template A for Category 1, Template B for Category 5). Use the step skeleton as scaffolding.
+Read the matching template from `templates.md` (Template A for Category 1, Template B for Category 5). Use the step skeleton as scaffolding. Also read the **Game Style Sub-Patterns** section for the assigned style — this constrains the game mechanic, scenario type, escalation axis, and synthesis type.
 
-**If mapping-informed**: Use the Dimension Anchoring section in the template to connect your anchor dimensions to creative variables. Brainstorm creative variables that are grounded in the mapping data — metaphor and role are still your invention, but vocabulary, facts, and sensory details must trace to mapping attributes.
+**If mapping-informed**: Use the Dimension Anchoring section in the template to connect your anchor dimensions to creative variables. Brainstorm creative variables that are grounded in the mapping data — metaphor and role are still your invention, but vocabulary, facts, and sensory details must trace to mapping attributes. The game style sub-pattern further constrains which creative variables are appropriate.
 
-**If not mapping-informed**: Brainstorm fresh creative variables using the Quick Entity Brainstorm Guide as inspiration (original behavior).
+**If not mapping-informed**: Brainstorm fresh creative variables using the Quick Entity Brainstorm Guide as inspiration, constrained by the game style sub-pattern.
 
 ### Step 3: Generate the activity design
 

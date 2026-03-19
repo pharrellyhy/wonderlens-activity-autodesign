@@ -3,7 +3,9 @@
 > Each line is one assignment. The agent works through them top to bottom.
 > Mark completed assignments with [x]. The agent skips completed ones.
 >
-> Format: `- [ ] entity + category (number/name), tier=TX, scene=optional`
+> Format: `- [ ] entity + category (number/name), tier=TX, style=game_style, scene=optional`
+> Game styles: `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline` (Cat 1) | `comparison_chart`, `naming_story` (Cat 5)
+> If `style=` is omitted, the agent infers it per program.md §1.6.
 
 ## Batch 1: Proof of Concept (10 activities)
 
