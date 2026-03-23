@@ -58,14 +58,15 @@
 
 ---
 
-## Batch 3: Category Swap — Same Entities, Opposite Mode (12 activities)
+## Batch 3: Category Swap — Same Entities, Opposite Mode (13 activities)
 
 > **Goal**: Give Batch 2 entities a second activity in the opposite category.
-> Dropped 5 entities with poor cross-category fit: goldfish, teddy bear, toothbrush holder (Cat 1→5), double rainbow, sandy beach (Cat 5→1).
+> Dropped 4 entities with poor cross-category fit: teddy bear, toothbrush holder (Cat 1→5), double rainbow, sandy beach (Cat 5→1).
 > All designs use entity mapping data, game styles, and dual warm/cold bridges.
 
 ### Cat 1 entities → Category 5 (Out-of-Device Collection)
 
+- [x] goldfish + category 5 (collection/tracking), tier=T1, style=comparison_chart, mapping=animals_goldfish, start=warm+cold, scene=child photographs a goldfish in a park pond or aquarium tank and goes on a hunt for other water creatures and shimmery things nearby
 - [x] lion + category 5 (collection/tracking), tier=T0, style=comparison_chart, mapping=animals_lion, start=warm+cold, scene=child spots a toy lion in the yard and goes on a hunt for strong or brave-looking things nearby
 - [x] crayons + category 5 (collection/tracking), tier=T0, style=naming_story, mapping=arts_music_crayons, start=warm+cold, scene=child brings crayons outside and searches for things that match each crayon color
 - [x] piano + category 5 (collection/tracking), tier=T1, style=comparison_chart, mapping=arts_music_piano, start=warm+cold, scene=child hears the piano and goes outside to find things that make interesting sounds
