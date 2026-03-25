@@ -13,7 +13,9 @@ conversation_bridge.md — Warm/cold bridge patterns for conversation-aware acti
 assignments.md      — List of entity+category assignments to design (human edits this)
 run.md              — Kick-off prompt for the agent (human edits this once)
 data/mappings_dev20_0318/ — Source entity mappings used by Batch 2 assignments
-designs/            — Output folder. Each completed design is saved as a separate .md file
+designs/cat1/       — Cat 1 prod + spec files (in-device verbal interactions)
+designs/cat5/       — Cat 5 prod + spec files (out-of-device collection activities)
+docs/game_styles.md — Game style taxonomy (6 styles across 2 categories)
 results.tsv         — Tracking log: assignment, status, rubric scores, timestamp
 ```
 
@@ -66,10 +68,46 @@ The agent will work through each assignment, generating full activity designs an
 ├── assignments.md            ← Input: entity+category pairs to design
 ├── run.md                    ← Kick-off instructions for the agent loop
 ├── data/mappings_dev20_0318/ ← Entity mapping dataset used by mapping-informed assignments
-├── designs/                  ← Output: one .md file per completed design
-│   └── .gitkeep
+├── designs/                  ← Output folder
+│   ├── cat1/                 ← Cat 1 (In-Device Verbal) prod + spec files
+│   ├── cat5/                 ← Cat 5 (Out-of-Device Collection) prod + spec files
+│   └── *_cat{1,5}.md        ← Legacy base designs (pre-prod/spec split)
+├── docs/
+│   ├── game_styles.md        ← Game style taxonomy and distribution
+│   └── plans/                ← Implementation plans
 └── results.tsv               ← Experiment log
 ```
+
+## Design File Conventions
+
+Each entity has up to two files per category:
+
+- **`_prod.md`** — Production format. Cold-start transition bridge, full interaction flow, self-evaluation scorecard.
+- **`_spec.md`** — Full specification. Adds mapping metadata (Trigger Entity, Mapping Source, IB Theme, Dimension Anchors), warm-start + cold-start bridges, and detailed scorecard.
+
+All prod and spec files carry version metadata:
+
+| Field | Example |
+|-------|---------|
+| Design Version | `1.0` (original) or `2.0 — naming_story redesign` |
+| Last Updated | `2026-03-19` |
+
+## Game Styles
+
+Six reusable interaction patterns across two categories:
+
+**Cat 1 — In-Device Verbal (4 styles):** `voice_acting` (4), `storytelling_chain` (1), `prediction_game` (2), `helper_hotline` (3)
+
+**Cat 5 — Out-of-Device Collection (2 styles):** `comparison_chart` (5), `naming_story` (9)
+
+See [`docs/game_styles.md`](docs/game_styles.md) for full definitions and design lists.
+
+## Current Coverage
+
+| Category | Entities | Prod | Spec | Total |
+|----------|----------|------|------|-------|
+| Cat 1 | 16 | 16 | 6 | 22 |
+| Cat 5 | 19 | 19 | 19 | 38 |
 
 ## Design Choices
 
