@@ -3,27 +3,29 @@
 > These templates define the **structural skeleton** for each activity category.
 > The agent uses these as scaffolding — filling entity-specific content into the slots.
 > This ensures consistency across activities within the same category while allowing creative variation in the entity-specific parts.
+>
+> **Structure**: 2 base templates (Cat1 + Cat5) × 6 Experience Pillar overlays = coverage for all 12 game styles. Each base template provides the step skeleton; each pillar overlay specifies the game mechanic, payoff, and creative variables that make the pillar distinctive.
 
 ---
 
 ## How Templates Work
 
 Each template defines:
-- **Fixed structure**: Step sequence, step purposes, UI patterns — these are CONSTANT across all entities
+- **Fixed structure**: Step sequence, step purposes, UI patterns — these are CONSTANT across all entities within a category
 - **Variable slots**: Marked with `{curly braces}` — these are entity-specific and must be invented fresh each time
-- **Creative variables**: The METAPHOR, ROLE, and COLLECTION LOGIC change per entity — these are where originality lives
+- **Creative variables**: Universal variables (metaphor, role) + pillar-specific variables — these are where originality lives
+- **Pillar overlays**: Each of the 6 Experience Pillars (Mystery, Creation, Performance, Discovery, Adventure, Nurture) provides specific guidance for Steps 2–4, which is where the pillar's identity is expressed
 
 The agent should:
-1. Read the template for the assigned category
-2. Fill ALL `{variable}` slots with entity-specific content
-3. Expand each step to full detail (dialogue, 3 response branches, screen descriptions) per program.md format
-4. Ensure the creative variables (metaphor, role) are genuinely fresh — not recycled from exemplars
+1. Read the **base template** for the assigned category (Template A for Cat1, Template B for Cat5)
+2. Read the **pillar overlay** for the assigned experience pillar (within the base template)
+3. Fill ALL `{variable}` slots with entity-specific content
+4. Expand each step to full detail (dialogue, 3 response branches, screen descriptions) per program.md format
+5. Ensure creative variables (universal + pillar-specific) are genuinely fresh — not recycled from exemplars
 
 ---
 
 ## Template A: Category 1 — Sustained Verbal Interaction (In-Device)
-
-**Reference exemplar**: Stuffed dog → "Mood Changer" (心情变变变)
 
 ### Structural Constants
 
@@ -32,78 +34,100 @@ The agent should:
 | Device relation | In-Device (no physical movement after initial photo) |
 | Setting | Indoor, quiet environment |
 | Step count | 5 |
-| Round count | 3–5 in the multi-round step |
+| Round count | 3–5 in the core loop step |
 | Camera use | Initial photo only — no additional photos required |
-| Core mechanic | AI presents scenarios → child responds verbally → AI validates and extends |
+| Core mechanic | AI presents pillar-specific scenarios → child responds verbally → AI validates with pillar-specific game elements (reveals, scores, transformations, etc.) |
 
 ### Step Skeleton
 
 ```
-STEP 1a: Transition Bridge — Warm Start (mapping-informed only)
-  Purpose: Continue the emotional thread from the preceding conversation.
-           Reference a SPECIFIC dimension topic the child explored.
-  Pattern: Use 1–2 opener flavors from conversation_bridge.md §2:
-    - Recall:    "Remember when we looked at {entity}'s {attribute}? {mapping_value}..."
-    - Discovery: "You figured out that {entity} has {attribute}! {build_on_it}..."
-    - Curiosity: "You were so curious about {dimension_topic}... let's go deeper!"
-    - Challenge: "You noticed {attribute} — I bet we can play a game with that..."
-  Source:  {attribute} and {dimension_topic} MUST come from tier_guidance dimensions.
-           Prefer engagement dimensions: emotions, imagination, narrative, relationship.
-  Screen:  {entity} photo centered, with soft "conversation recap" glow around referenced feature.
-
-STEP 1b: Transition Bridge — Cold Start
+STEP 1: Transition Bridge
   Purpose: Emotional hook. React to the photographed {entity} with delight.
            Ask an EMOTIONAL or IMAGINATIVE question (never knowledge-testing).
   Pattern: "Wow, {entity}! {emotional observation}. {imaginative question}?"
-  Screen:  {entity} photo centered, with {ambient animation} creating atmosphere.
+  Screen:  {entity} photo centered, with {ambient animation}.
 
-  Note: Steps 2+ are shared — both warm and cold paths converge at Step 2.
+  Note: Mapping-informed designs also include a warm start variant (Step 1a)
+  per conversation_bridge.md.
 
-STEP 2: Rule Introduction + Demo
-  Purpose: Establish the game mechanic through a quick DEMONSTRATION, not dry rules.
+STEP 2: Game Setup + Demo
+  Purpose: Establish the PILLAR-SPECIFIC game mechanic through a quick DEMONSTRATION.
            AI models the expected behavior first, then invites child.
-  Pattern: "Here's how it works: I'll {describe mechanic}. For example... {AI demos}.
+  Pattern: "Here's how it works: I'll {pillar_mechanic}. For example... {AI demos}.
             Got it? Let's go!"
-  Screen:  Simple icons representing the game mechanic appear alongside {entity} photo.
+  Screen:  Icons representing the game mechanic appear alongside {entity} photo.
 
-STEP 3: Multi-Round Interaction (3–5 rounds)
-  Purpose: Core gameplay. Each round presents a NEW {scenario/prompt} that targets a
-           DIFFERENT {target_response_type}. Rounds should ESCALATE in complexity.
+  PILLAR-SPECIFIC SETUP:
+    Mystery:     "I'm going to think of something hidden in your photo. I'll give you clues..."
+    Creation:    "We're going to imagine wild changes to your {entity}. What if it had..."
+    Performance: "Your {entity} is going on stage! I'll be the audience..."
+    Discovery:   "I'll describe something that might happen. You guess what {entity} does..."
+    Adventure:   "We're going to travel through time with your {entity}..."
+    Nurture:     "Your {entity} needs help! I'll tell you what's wrong, you fix it..."
+
+STEP 3: Core Loop (3–5 rounds)
+  Purpose: Core gameplay. Each round uses the PILLAR-SPECIFIC mechanic.
+           Rounds ESCALATE in complexity.
   Pattern per round:
-    AI: "{scenario_description}. What does {entity} {do/say/feel}?"
+    AI: "{pillar_prompt}. {specific question}?"
     Child responses: ideal / unexpected / silence — each with specific AI follow-up
-    AI follow-up always: validates → extends with bonus knowledge → transitions to next
-  Screen:  Visual changes to match the current scenario (animations, scene shifts).
-  
+    AI follow-up always: validates → extends → transitions to next
+  Screen: Visual changes per round.
+
+  PILLAR-SPECIFIC CORE LOOP:
+    Mystery:     AI gives clue → child guesses → AI confirms/redirects with "warmer/colder"
+    Creation:    AI asks "what if {modification}?" → child invents → AI elaborates and adds to creation
+    Performance: AI sets challenge → child performs → AI reacts AS audience (cheers, gasps, laughter)
+    Discovery:   AI describes scenario → child COMMITS prediction → AI reveals with drama + scores
+    Adventure:   AI describes time period → child imagines → AI offers CHOICE POINT → child decides path
+    Nurture:     AI describes need → child proposes solution → AI narrates VISIBLE TRANSFORMATION
+
   ESCALATION GUIDE:
     Round 1: Simple, obvious, high-success — build confidence
-    Round 2: Slightly more complex — introduce a contrasting {target}
+    Round 2: More complex — introduce a contrasting element
     Round 3: Surprising or funny — peak engagement
-    Round 4-5 (if child is engaged): Open-ended — child leads, AI follows
+    Round 4–5 (if engaged): Open-ended — child leads
 
-STEP 4: Celebration + Role Title
-  Purpose: Celebrate the child's performance with a specific ROLE TITLE that
-           summarizes what they did.
-  Pattern: "You just became a {role_title}! You {summary of what child demonstrated}!"
-  Screen:  Trophy/badge/medal animation with {role_title} text. Celebration sound.
+STEP 4: Payoff — The Magic Moment
+  Purpose: The emotional climax specific to this pillar. This is what makes the
+           game FEEL like this pillar and not another.
 
-STEP 5: Closing + IB Concepts
-  Purpose: Naturally name Key Concepts as praise, not vocabulary lesson.
-  Pattern: "Look — {concept_connection_to_activity}. That's the magic of
-            {Key_Concept_1}! {optional: And {Key_Concept_2}!}"
-  Screen:  Key Concept words appear artistically with icons related to {entity}.
+  PILLAR-SPECIFIC PAYOFF:
+    Mystery:     Final reveal + "You figured it out!" celebration
+    Creation:    "Super {entity}" unveiled with ALL modifications combined — the "ta-da!"
+    Performance: Standing ovation — audience goes wild, encore request
+    Discovery:   Final score tallied — "You got N out of M!" + surprise bonus
+    Adventure:   Timeline/journey map assembled showing all stops — "Look how far we traveled!"
+    Nurture:     Entity fully recovered, calls child by name, expresses deep gratitude
+
+  Screen: Pillar-specific celebration animation.
+
+STEP 5: Celebration + IB Concepts
+  Purpose: Award role title + naturally name Key Concepts as praise.
+  Pattern: "You just became a {role_title}! {concept_connection}. That's the magic of {Key_Concept}!"
+  Screen: Badge/trophy animation with Key Concept words styled artistically.
 ```
 
 ### Creative Variables (MUST be unique per entity)
 
-| Variable | Description | Example (stuffed dog) | Example (toy dinosaur) |
-|---|---|---|---|
-| `{metaphor}` | The imaginative frame that transforms education into play | "Magic spell lets you hear the dog's inner voice" | "Time machine lets you visit the dinosaur's ancient world" |
-| `{role_title}` | Badge/title the child earns | "Emotion Translator" | "Dino Time Traveler" |
-| `{game_mechanic}` | What the child DOES each round | Voices the dog's emotions in different scenarios | Describes what the dinosaur sees/does in different time periods |
-| `{scenario_type}` | What varies across rounds | Different events triggering different emotions | Different prehistoric scenes or situations |
-| `{target_response_type}` | What cognitive/emotional skill each round targets | Emotions: happy → surprised → scared → excited | Sensory descriptions: sight → sound → feeling → action |
-| `{escalation_axis}` | How rounds get progressively richer | Emotional complexity: obvious → subtle → mixed feelings | Temporal complexity: concrete → abstract → cause-and-effect |
+#### Universal Variables (all pillars)
+
+| Variable | Description |
+|---|---|
+| `{metaphor}` | The imaginative frame that transforms education into play |
+| `{role_title}` | Badge/title the child earns |
+| `{escalation_axis}` | How rounds get progressively richer |
+
+#### Pillar-Specific Variables
+
+| Pillar | Variables | Description |
+|---|---|---|
+| Mystery | `{hidden_details}`, `{clue_types}`, `{reveal_drama}` | What's hidden in the photo, how clues are given (visual, textural, functional), how reveals happen (dramatic pause, zoom-in, sparkle) |
+| Creation | `{modifications}`, `{combination_name}`, `{absurdity_escalation}` | What-if changes proposed each round, name of the final combined creation, how wild the modifications get |
+| Performance | `{challenges}`, `{audience_character}`, `{twist_challenge}` | What the child performs each round, who reacts and how (judges, fans, animals), the surprise twist that changes the rules |
+| Discovery | `{scenarios}`, `{scoring_system}`, `{reveal_drama}` | Cause-effect scenarios per round, how points are tracked and awarded, how each reveal is dramatized |
+| Adventure | `{time_periods}`, `{choice_points}`, `{timeline_visualization}` | Journey stops (past, present, future), where the story branches based on child's choice, how the timeline is displayed at the end |
+| Nurture | `{needs_escalation}`, `{transformation_arc}`, `{relationship_deepening}` | Need progression (physical → emotional → complex), how entity visibly improves per solution, how gratitude grows (by round 3, entity calls child by name) |
 
 ### Dimension Anchoring (mapping-informed designs)
 
@@ -118,75 +142,30 @@ Before brainstorming creative variables, select 2–3 **anchor dimensions** from
 | Physical ground | appearance, senses, or function | Gives the verbal game concrete, observable hooks from the real entity |
 
 **How anchors shape creative variables:**
-- `{game_mechanic}` should exercise the primary anchor dimension
-- `{scenario_type}` should draw round content from primary + secondary anchors
-- `{target_response_type}` maps to the engagement skill in the anchor dimensions
+- `{metaphor}` should exercise the primary anchor dimension
+- Pillar-specific round content should draw from primary + secondary anchors
+- `{escalation_axis}` maps to the engagement skill in the anchor dimensions
 - AI dialogue vocabulary comes from the physical ground dimension's `value` fields
-
-### Game Style Sub-Patterns (Cat 1)
-
-The `game_style` parameter (see program.md §1.6) constrains how the creative variables should be shaped. Use the matching sub-pattern below.
-
-#### `voice_acting`
-- **Game mechanic**: AI presents a scenario with an emotion/situation → child speaks AS the entity (roars, sings, narrates feelings)
-- **Scenario type**: Different situations triggering different emotions or reactions
-- **Target response type**: Emotional expression — happy → surprised → scared → mixed
-- **Escalation axis**: Emotional complexity (obvious → subtle → mixed feelings)
-- **Role title direction**: "Reporter," "Translator," "Spokesperson" — child interprets for the entity
-- **Examples**: Roar Reporter (lion), Color Feelings (crayons), Rainy Day Feelings (raincoat), Secret Song Storyteller (piano)
-
-#### `storytelling_chain`
-- **Game mechanic**: AI narrates the start of a chapter/scene → child adds what happens next
-- **Scenario type**: Sequential chapters in the entity's life story or journey
-- **Target response type**: Narrative continuation — what happens, who appears, how it ends
-- **Escalation axis**: Narrative complexity (concrete events → abstract themes → cause-and-effect)
-- **Role title direction**: "Reporter," "Storyteller," "Narrator" — child builds the story
-- **Examples**: The Banana's Big Adventure (banana)
-
-#### `prediction_game`
-- **Game mechanic**: AI describes a cause/situation → child predicts the effect/outcome
-- **Scenario type**: Different cause-effect scenarios related to the entity
-- **Target response type**: Predictions — what will happen, why, what changes
-- **Escalation axis**: Causal complexity (obvious → hidden → chain reactions)
-- **Role title direction**: "Detective," "Scientist," "Guesser" — child investigates causes
-- **Examples**: Goldfish Guess-What (goldfish), The Secret Eye Detective (eye)
-
-#### `helper_hotline`
-- **Game mechanic**: AI presents a problem scenario → child proposes a solution/action
-- **Scenario type**: Different problems or needs related to the entity's domain
-- **Target response type**: Problem-solving — what to do, what tool to use, who to call
-- **Escalation axis**: Problem complexity (simple need → tricky situation → ethical dilemma)
-- **Role title direction**: "Helper," "Fixer," "Doctor" — child is the problem-solver
-- **Examples**: Teddy's Bedtime Helper (teddy bear), Helper Hotline (firefighter), The Bathroom Helper Game (toothbrush holder)
 
 ### Entity Adaptation Checklist
 
 When adapting to a new entity, verify:
+- [ ] The pillar's magic moment is clearly present in Step 4
+- [ ] The game element creates genuine stakes (uncertainty, surprise, or challenge)
+- [ ] A blind reader could identify which pillar this design belongs to
+- [ ] The pillar's specific game mechanic drives Step 3 (not generic Q&A)
 - [ ] The metaphor makes sense for THIS entity (not forced/generic)
 - [ ] The scenario types are plausible for THIS entity's real-world context
 - [ ] The role title is specific to what the child actually DOES (not generic "explorer")
 - [ ] Round escalation uses a dimension natural to THIS entity
 - [ ] Screen visuals reference THIS entity's actual appearance/features
 - [ ] Closing IB concepts are EARNED by what the child did, not pre-assigned
-- [ ] The game style sub-pattern is followed (see above) — mechanic, scenario type, and escalation match the assigned style
 - [ ] (Mapping-informed) Anchor dimensions are identified and drive the creative variables
 - [ ] (Mapping-informed) Vocabulary/facts in AI dialogue are traceable to mapping attributes
-
-### Quick Entity Brainstorm Guide
-
-| Entity Type | Natural Metaphor Direction | Natural Game Mechanic |
-|---|---|---|
-| Stuffed animals / toys | "What if it came alive?" — personality, emotions, adventures | Child voices the toy's feelings/thoughts in scenarios |
-| Food items | "What if it told its life story?" — journey from farm to table | Child narrates the food's journey through different stages |
-| Vehicles (toy) | "What if you were the driver?" — destinations, passengers, missions | Child decides where to go, who rides, what happens |
-| Household objects | "What if it had a secret life?" — nighttime adventures, hidden talents | Child imagines what the object does when no one's watching |
-| Animals (real or toy) | "What if you could understand its language?" — communication, needs | Child translates the animal's sounds/body language |
 
 ---
 
 ## Template B: Category 5 — Collection/Tracking Exploration (Out-of-Device)
-
-**Reference exemplar**: Patterned stone → "Story Creator" (故事创想家)
 
 ### Structural Constants
 
@@ -197,55 +176,57 @@ When adapting to a new entity, verify:
 | Step count | 5–6 |
 | Round count | 3–4 photo-taking rounds in the exploration step |
 | Camera use | Initial photo + 2–3 additional photos during collection |
-| Core mechanic | AI identifies a VISUAL FEATURE → frames a COLLECTION MISSION around it → child explores and photographs finds → AI reacts to each → child SYNTHESIZES the collection |
+| Core mechanic | AI identifies a VISUAL FEATURE → frames a pillar-specific COLLECTION MISSION around it → child explores and photographs finds → AI reacts with pillar-specific per-find interaction → child SYNTHESIZES the collection using pillar-specific mechanic |
 
 ### Step Skeleton
 
 ```
-STEP 1a: Transition Bridge — Warm Start (mapping-informed only)
-  Purpose: Continue from the conversation by connecting a PHYSICAL dimension the child explored
-           to the collection mission. Reference a specific attribute from the mapping.
-  Pattern: Use 1–2 opener flavors from conversation_bridge.md §2:
-    - Recall:    "Remember when we noticed {entity}'s {attribute}? {mapping_value}..."
-    - Discovery: "You discovered that {entity} has {attribute}! Let's find more like that..."
-    - Curiosity: "You were so curious about {dimension_topic}... what if we went looking?"
-    - Challenge: "You noticed {attribute} — I bet there are more hiding nearby..."
-  Source:  {attribute} MUST come from tier_guidance physical dimensions: appearance, senses, structure.
-           {visual_feature} for collection criterion should trace to a mapping attribute.
-  Screen:  {entity} photo with {visual_feature} highlighted + "conversation recap" glow.
-
-STEP 1b: Transition Bridge — Cold Start
+STEP 1: Transition Bridge
   Purpose: Emotional hook. React to the {entity}'s most STRIKING VISUAL FEATURE.
            Frame that feature with wonder, then ask what it reminds the child of.
   Pattern: "Look at {specific_visual_feature} on this {entity}! It's like {imaginative_comparison}.
             What does it remind YOU of?"
   Screen:  {entity} photo with {visual_feature} area subtly highlighted (soft glow/circle).
 
-  Note: Steps 2+ are shared — both warm and cold paths converge at Step 2.
+  Note: Mapping-informed designs also include a warm start variant (Step 1a)
+  per conversation_bridge.md.
 
 STEP 2: Mission Briefing
-  Purpose: Transform the visual feature into a COLLECTION MISSION with a clear ROLE for the child.
+  Purpose: Transform into a COLLECTION MISSION with pillar-specific framing.
            Give 3 concrete sub-tasks.
-  Pattern: "You are now a {role_title}! Your mission:
-            Step 1: Find {N} more things nearby that have {collection_criterion}.
-            Step 2: Photograph each one.
-            Step 3: {synthesis_task — name them, organize them, create something with them}."
-  Screen:  Mission card with {role_title} badge, {N+1} empty slots (first filled with initial photo),
-           and numbered task list with icons.
+  Pattern: "You are now a {role_title}! Your mission: {pillar_mission}."
+
+  PILLAR-SPECIFIC MISSIONS:
+    Mystery:     "Find things that match my riddle-clues!"
+    Creation:    "Collect ingredients — each one has a superpower!"
+    Performance: "Assemble your cast for the big show!"
+    Discovery:   "Gather evidence to test our hypothesis!"
+    Adventure:   "Find items that match your quest criterion!"
+    Nurture:     "Find things that need your help!"
+
+  Screen: Mission card with {role_title} badge, {N+1} empty slots (first filled with initial photo),
+          and numbered task list with icons.
 
 STEP 3: Multi-Round Exploration (3–4 rounds)
-  Purpose: Child physically explores, finds items, photographs them. AI reacts to each find
-           with enthusiasm, asks the child to DESCRIBE or NAME the find, and scaffolds if needed.
-  
+  Purpose: Child physically explores, finds items, photographs them.
+           AI reacts to each find with PILLAR-SPECIFIC interaction.
+
+  PILLAR-SPECIFIC PER-FIND INTERACTION:
+    Mystery:     AI gives riddle-clue → child searches → AI confirms match or redirects
+    Creation:    Child finds item → AI identifies its "superpower" (sticky, bouncy, etc.)
+    Performance: Child finds item → AI asks "What sound would it make?" → child assigns voice
+    Discovery:   Child finds item → AI asks about the hypothesis-relevant property → tallies
+    Adventure:   Child finds item → AI evaluates against quest criterion → harvests detail for naming
+    Nurture:     Child finds item → AI identifies its "need" → child proposes care solution
+
   Per-find pattern:
     (Child takes a photo)
-    AI: "{excited reaction}! What did you find? {specific question about the feature}?"
+    AI: "{excited reaction}! {pillar-specific interaction question}?"
     Child responses: describes it / says nothing / item doesn't clearly match
     AI follow-up:
-      - Match: "{validate + extend with knowledge}. {Assign a name/role}. {N} more to go!"
-      - No match: "{find something positive about it anyway}. That could count as {stretch}.
-                    {N} more to go!"
-      - Silent: "I see {AI describes what it sees in the photo}! What would YOU call it?"
+      - Match: "{validate + pillar-specific extension}. {N} more to go!"
+      - No match: "{find something positive anyway}. That could count as {stretch}. {N} more to go!"
+      - Silent: "I see {AI describes what it sees}! {pillar-specific prompt}?"
     Screen: New photo slides into next slot. Counter updates. Brief celebration animation.
 
   STUCK BRANCH (if child can't find something):
@@ -253,29 +234,29 @@ STEP 3: Multi-Round Exploration (3–4 rounds)
          Try {concrete location suggestion}!"
     This is CRITICAL — never leave the child without a concrete next action.
 
-STEP 4: Collection Complete + Synthesis
-  Purpose: All items found. Now the child DOES something with the collection — 
-           names it, tells a story, finds a pattern, or creates a classification.
-  Pattern: "Your collection is complete! Now, {synthesis_prompt}?"
-  
-  {synthesis_type} varies by entity:
-    - NARRATIVE: "What story would these {items} tell together?"
-    - CLASSIFICATION: "Can you sort them into groups? What's similar?"
-    - NAMING: "Give your collection a team name!"
-    - PATTERN: "What do all of these have in common? What's different?"
-  
-  Screen: All photos displayed together (grid or lineup). Connection lines or grouping visuals
-          appear based on {synthesis_type}.
+STEP 4: Synthesis — The Magic Moment
+  Purpose: Pillar-specific synthesis of the collection. This is the Cat5 equivalent
+           of the payoff — the emotional climax.
+
+  PILLAR-SPECIFIC SYNTHESIS:
+    Mystery:     AI reveals the HIDDEN PATTERN connecting all finds
+    Creation:    Child combines superpowers into an imaginary invention
+    Performance: AI narrates the ensemble concert — each item performs, then all together
+    Discovery:   AI tallies data against hypothesis — "Your prediction was RIGHT/SURPRISING!"
+    Adventure:   Child co-creates quest story with detail-driven character roles
+    Nurture:     Rescued items help EACH OTHER — mutual aid synthesis
+
+  Pattern: "Your collection is complete! Now, {pillar_synthesis_prompt}?"
+  Screen:  All photos displayed together (grid or lineup). Pillar-specific visualization
+           (connections, scores, story flow, transformation arcs).
 
 STEP 5: Discovery Celebration
-  Purpose: Celebrate the collection AND the pattern/connection the child found.
-           Ask a reflective question about WHY this pattern exists.
-  Pattern: "{celebration}! You found {N} different things that all {shared feature}.
-            Why do you think {reflective_question}?"
+  Purpose: Celebrate the collection AND the pattern/connection found.
+  Pattern: "You found {N} things that {shared discovery}! Why do you think {reflective_question}?"
   Screen:  Collection displayed as a cohesive set. Animated connections between items.
 
 STEP 6: Closing + IB Concepts
-  Purpose: Name Key Concepts naturally as praise.
+  Purpose: Name Key Concepts as praise.
   Pattern: "You discovered the {Key_Concept_1} of {feature} — {explanation}.
             And you found {Key_Concept_2} between {entity} and {other finds}.
             You earned your {badge_name}!"
@@ -285,15 +266,27 @@ STEP 6: Closing + IB Concepts
 
 ### Creative Variables (MUST be unique per entity)
 
-| Variable | Description | Example (stone) | Example (ladybug) |
-|---|---|---|---|
-| `{visual_feature}` | The specific observable feature that anchors the mission | Patterns/lines on the stone surface | Spots/dots on the ladybug's shell |
-| `{collection_criterion}` | What the child looks for | Things with interesting patterns/lines | Things with dots, spots, or circles |
-| `{metaphor}` | The frame that makes collecting meaningful | "Stone Theater Troupe" — each stone is an actor | "Polka-Dot Patrol" — child is a dot detective |
-| `{role_title}` | The child's mission role | "Director" | "Patrol Officer" |
-| `{synthesis_type}` | What the child does with the collection | NARRATIVE — creates a story | PATTERN — notices what connects them |
-| `{reflective_question}` | The "why" question at the end | "Why do you think stones get different patterns?" | "Why do so many different things have spots?" |
-| `{stuck_hint}` | Where to look if the child can't find items | "Try looking near the flower bed edges" | "Look really close at tree bark or flower centers" |
+#### Universal Variables (all pillars)
+
+| Variable | Description |
+|---|---|
+| `{visual_feature}` | The specific observable feature that anchors the mission |
+| `{collection_criterion}` | What the child looks for |
+| `{metaphor}` | The frame that makes collecting meaningful |
+| `{role_title}` | The child's mission role |
+| `{stuck_hint}` | Where to look if child can't find items |
+| `{reflective_question}` | The "why" question at the end |
+
+#### Pillar-Specific Variables (Cat5)
+
+| Pillar | Variables | Description |
+|---|---|---|
+| Mystery | `{riddle_clues}`, `{pattern_connection}`, `{reveal_narrative}` | Clues per find (texture, shape, function riddles), what connects all finds (the hidden pattern), how the reveal happens (dramatic unveiling) |
+| Creation | `{superpowers_per_item}`, `{combination_prompt}`, `{invention_name}` | Property AI assigns per find (sticky, bouncy, smooth), how to combine them, what the invention is called |
+| Performance | `{sound_per_item}`, `{ensemble_narrative}`, `{conductor_moments}` | Voice/sound child assigns per find, concert script (solos then ensemble), directing moments ("All together now!") |
+| Discovery | `{hypothesis}`, `{data_property}`, `{tally_result}` | Question to test ("Are most things here rough or smooth?"), what to measure per find, how to present results (chart, score) |
+| Adventure | `{quest_criterion}`, `{detail_harvesting}`, `{quest_narrative}` | What to find ("things that used to be something else"), what to ask per find ("What does it remind you of?"), how the story weaves character details |
+| Nurture | `{needs_per_item}`, `{care_solutions}`, `{mutual_aid_synthesis}` | Need AI identifies per find (dry, broken, lonely), care actions child proposes, how items help each other at synthesis |
 
 ### Dimension Anchoring (mapping-informed designs)
 
@@ -310,66 +303,69 @@ Before brainstorming creative variables, select 2–3 **anchor dimensions** from
 **How anchors shape creative variables:**
 - `{visual_feature}` comes from the primary anchor's `attribute` + `value` fields
 - `{collection_criterion}` generalizes the visual feature into a findable pattern
-- `{synthesis_type}` maps to the engagement ground dimension
+- Pillar-specific synthesis draws from the engagement ground dimension
 - `{reflective_question}` draws from reasoning or relationship dimension prompts
 - `{stuck_hint}` should reference WHERE the attribute naturally occurs (from context dimension if available)
-
-### Game Style Sub-Patterns (Cat 5)
-
-The `game_style` parameter (see program.md §1.6) constrains the synthesis step and overall collection arc. Use the matching sub-pattern below.
-
-#### `comparison_chart`
-- **Synthesis type**: CLASSIFICATION or PATTERN — child sorts, compares, or categorizes finds
-- **Collection focus**: Finds that have distinct, comparable properties (shape, color, size, function)
-- **Synthesis prompt direction**: "Sort these by…" / "Which ones are similar?" / "What's each one's job?"
-- **Reflective question direction**: "Why are they different?" / "Why does each one have its own [property]?"
-- **Role title direction**: "Inspector," "Detective," "Reporter" — child investigates and categorizes
-- **Examples**: The Playground Job Fair (playground), Building Detectives (city library), The Sunshine Parts Patrol (sunflower), Sign Spotter Safari (stop sign), Green Treasure Hunt (green apple)
-
-#### `naming_story`
-- **Synthesis type**: NAMING + NARRATIVE — child names finds as characters, then weaves a story
-- **Collection focus**: Varied, characterful finds that can become story protagonists
-- **Synthesis prompt direction**: "Give each one a name!" / "What's their story together?"
-- **Reflective question direction**: "Why do you think [items] ended up here together?"
-- **Role title direction**: "Scout," "Detective," "Explorer" — child discovers and narrates
-- **Examples**: The Rainbow Color Scout (double rainbow), The Shore Detective Agency (sandy beach)
 
 ### Entity Adaptation Checklist
 
 When adapting to a new entity, verify:
+- [ ] The pillar's magic moment is clearly present in Step 4
+- [ ] The game element creates genuine stakes (uncertainty, surprise, or challenge)
+- [ ] A blind reader could identify which pillar this design belongs to
+- [ ] The pillar's specific game mechanic drives Step 3 (not generic Q&A)
+- [ ] The stuck hint names REAL, SPECIFIC places to look (not "look around you")
+- [ ] The synthesis step uses the pillar-specific mechanic (not generic)
+- [ ] The reflective question has no single "correct" answer — it invites genuine wondering
 - [ ] The visual feature is something a 4–6 year old can ACTUALLY OBSERVE on this entity
 - [ ] The collection criterion is broad enough to find 3+ items in a typical outdoor setting
 - [ ] The collection criterion is specific enough to feel like a real mission (not just "find anything")
-- [ ] The synthesis task matches the collection type (narrative for varied items, pattern for similar items)
-- [ ] The stuck hint names REAL, SPECIFIC places to look (not "look around you")
-- [ ] The reflective question has no single "correct" answer — it invites genuine wondering
-- [ ] The game style sub-pattern is followed (see above) — synthesis type and collection focus match the assigned style
+- [ ] The metaphor makes sense for THIS entity (not forced/generic)
+- [ ] The role title is specific to what the child actually DOES (not generic "explorer")
+- [ ] Closing IB concepts are EARNED by what the child did, not pre-assigned
 - [ ] (Mapping-informed) Anchor dimensions are identified and drive the creative variables
 - [ ] (Mapping-informed) Visual feature and collection criterion trace to mapping attributes
-
-### Quick Entity Brainstorm Guide
-
-| Entity | Visual Feature | Collection Criterion | Mission Metaphor | Synthesis Type |
-|---|---|---|---|---|
-| Dandelion | Fluffy seed head / yellow petals | Things that are round or fluffy | "Fluffy Things Expedition" | CLASSIFICATION — sort by round vs fluffy |
-| Pinecone | Spiral scale pattern | Things with spiral or repeating patterns | "Pattern Detective Agency" | PATTERN — what's the repeating rule |
-| Puddle | Reflective surface | Things that reflect or mirror | "Mirror World Explorer" | NARRATIVE — what story does the reflection tell |
-| Feather | Soft texture + fine lines | Things that are light / would float in wind | "Wind Team Recruitment" | NAMING — give the team a name + powers |
-| Autumn leaf | Color (red/yellow/orange) | Things that are warm-colored | "Sunset Palette Collector" | CLASSIFICATION — sort by color gradient |
-| Flower | Symmetry / petal pattern | Things with symmetrical shapes | "Symmetry Spy Mission" | PATTERN — where else does symmetry appear |
-| Mushroom | Cap shape + gills underneath | Things with hidden undersides | "Secret Underside Inspector" | DISCOVERY — what's hiding underneath |
-| Snail shell | Spiral shape | Things with curves or spirals | "Spiral Safari" | PATTERN — spirals in nature |
-| Butterfly | Wing pattern / symmetry | Things with matching left-right sides | "Mirror Match Detective" | PATTERN — why is symmetry everywhere |
-| Bird | Movement / perching | Things at different heights | "Sky-to-Ground Survey" | CLASSIFICATION — sort by height |
 
 ---
 
 ## How the Agent Uses These Templates
 
-1. **Read the template** for the assigned category
-2. **Brainstorm creative variables** — use the Quick Entity Brainstorm Guide for inspiration, but always invent something FRESH. Never copy the example column directly.
-3. **Fill the step skeleton** with entity-specific content, expanding each step to full program.md format (complete dialogue, 3 response branches, screen descriptions)
-4. **Verify with the Entity Adaptation Checklist** before moving to self-evaluation
-5. **Run the 9-dimension rubric** as normal (D9 only for mapping-informed designs)
+1. **Read the base template** for the assigned category (Template A for Cat1, Template B for Cat5)
+2. **Read the pillar overlay** for the assigned experience pillar (within the base template's pillar-specific sections)
+3. **Brainstorm creative variables** — universal variables first, then pillar-specific variables. Use the Quick Entity Brainstorm Guide for inspiration, but always invent something FRESH. Never copy the example rows directly.
+4. **Fill the step skeleton** with entity-specific content, expanding each step to full program.md format (complete dialogue, 3 response branches, screen descriptions)
+5. **Verify with the Entity Adaptation Checklist** before moving to self-evaluation
+6. **Run the 10-dimension rubric** (D1–D10) as normal
 
-The template ensures structural consistency. The creative variables ensure every activity feels unique.
+The base template ensures structural consistency across a category. The pillar overlay ensures each activity delivers the right emotional experience. The creative variables ensure every activity feels unique.
+
+---
+
+## Quick Entity Brainstorm Guide
+
+The same entity can be designed under different pillars — the pillar determines the emotional shape of the experience. Use this table for inspiration, then invent something FRESH.
+
+### How the Same Entity Works Across Pillars
+
+| Entity | Pillar | Style | Metaphor Direction | Role Title Direction |
+|---|---|---|---|---|
+| Teddy bear | Nurture | `care_station` | "Teddy needs bedtime help" | "Bedtime Helper" |
+| Teddy bear | Mystery | `mystery_lens` | "What's teddy hiding?" | "Teddy Detective" |
+| Teddy bear | Creation | `inventor_workshop` | "Super Teddy modifications" | "Teddy Engineer" |
+| Lion | Performance | `voice_stage` | "Jungle talent show" | "Roar Reporter" |
+| Lion | Discovery | `prediction_lab` | "What will the lion do?" | "Lion Scientist" |
+| Dandelion | Adventure | `quest_collector` | "Find things that transform" | "Wish Puff Scout" |
+| Dandelion | Discovery | `field_experiment` | "Are most seeds fluffy?" | "Seed Scientist" |
+| Playground | Discovery | `field_experiment` | "Test playground hypothesis" | "Playground Researcher" |
+| Playground | Creation | `mix_lab` | "Combine equipment powers" | "Playground Inventor" |
+
+### Entity Type Brainstorm by Pillar
+
+| Entity Type | Natural Pillars | Why It Fits |
+|---|---|---|
+| Stuffed animals / toys | Nurture, Performance, Mystery | Rich emotional affordances — easy to care for, perform as, or investigate |
+| Food items | Adventure, Discovery, Creation | Natural life journeys, cause-effect transformations, combinable properties |
+| Vehicles (toy) | Adventure, Discovery | Destinations and time jumps; predict what happens on the route |
+| Household objects | Mystery, Creation, Nurture | Hidden lives to investigate, mashup potential, "help it" scenarios |
+| Animals (real or toy) | Performance, Discovery, Nurture | Expressive characters, observable behaviors to predict, care relationships |
+| Nature items (outdoor) | All pillars (Cat5) | Visually rich, findable, varied — work for any collection mission |
