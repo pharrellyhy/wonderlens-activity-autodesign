@@ -6,7 +6,7 @@
 
 1. Read `program.md` fully — this is your skill file containing all constraints, format, rubric, and seed exemplars.
 2. Read `templates.md` fully — this contains the structural skeletons for each activity category, including game style sub-patterns.
-3. Read `docs/game_styles.md` — this is the game style taxonomy reference (6 styles with examples).
+3. Read `docs/game_styles.md` — this is the game style taxonomy reference (12 styles under 6 Experience Pillars).
 4. Read `entity_guidance.md` fully — this teaches you how to read and use entity mapping YAML files.
 5. Read `conversation_bridge.md` fully — this defines warm/cold start bridge patterns.
 6. Read `transform.md` — these are the rules for converting engineering specs to production format.
@@ -15,7 +15,7 @@
 9. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
 
 ```
-assignment	entity	category	tier	status	d1_tech	d2_hook	d3_transition	d4_edge	d5_ib	d6_tier	d7_dialogue	d8_screen	d9_mapping	filename	timestamp
+assignment	entity	category	tier	pillar	style	status	d1_tech	d2_hook_transition	d3_edge	d4_ib	d5_tier	d6_dialogue	d7_screen	d8_mapping	d9_game_feel	d10_pillar_fidelity	filename	timestamp
 ```
 
 10. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting design loop."
@@ -26,7 +26,7 @@ For each assignment in `assignments.md` that is marked `- [ ]` (not yet complete
 
 ### Step 1: Parse the assignment
 
-Extract: entity, category, tier, style (if provided), scene (if provided), mapping (if provided), start type (if provided). If tier is not specified, infer it per program.md rules. If style is not specified, infer it per program.md §1.6 rules. If scene is not specified, invent one.
+Extract: entity, category, tier, pillar (if provided), style (if provided), scene (if provided), mapping (if provided), start type (if provided). If tier is not specified, infer it per program.md rules. If pillar/style is not specified, infer per program.md §1.6 rules. If scene is not specified, invent one.
 
 ### Step 1.5: Load entity mapping (if `mapping=` is specified)
 
@@ -48,11 +48,11 @@ If no `mapping=` parameter, skip this step entirely and proceed as before.
 
 ### Step 2: Load the category template + game style + dimension anchoring
 
-Read the matching template from `templates.md` (Template A for Category 1, Template B for Category 5). Use the step skeleton as scaffolding. Also read the **Game Style Sub-Patterns** section for the assigned style — this constrains the game mechanic, scenario type, escalation axis, and synthesis type.
+Read the matching base template from `templates.md` (Template A for Category 1, Template B for Category 5). Use the step skeleton as scaffolding. Also read the **Pillar Overlay** for the assigned Experience Pillar — this constrains the game mechanic, magic moment, escalation pattern, and synthesis type for both the core loop and the payoff step.
 
-**If mapping-informed**: Use the Dimension Anchoring section in the template to connect your anchor dimensions to creative variables. Brainstorm creative variables that are grounded in the mapping data — metaphor and role are still your invention, but vocabulary, facts, and sensory details must trace to mapping attributes. The game style sub-pattern further constrains which creative variables are appropriate.
+**If mapping-informed**: Use the Dimension Anchoring section in the template to connect your anchor dimensions to creative variables. Brainstorm creative variables (universal + pillar-specific) that are grounded in the mapping data — metaphor and role are still your invention, but vocabulary, facts, and sensory details must trace to mapping attributes. The pillar overlay further constrains which creative variables and game mechanics are appropriate.
 
-**If not mapping-informed**: Brainstorm fresh creative variables using the Quick Entity Brainstorm Guide as inspiration, constrained by the game style sub-pattern.
+**If not mapping-informed**: Brainstorm fresh creative variables (universal + pillar-specific) using the Quick Entity Brainstorm Guide as inspiration, constrained by the pillar overlay.
 
 ### Step 3: Generate the activity design
 
@@ -64,13 +64,13 @@ Follow the EXACT output format from program.md Phase 2. Be thorough. Do not abbr
 
 ### Step 4: Self-evaluate
 
-Run through all 9 rubric dimensions from program.md Phase 3. If any dimension FAILS:
+Run through all 10 rubric dimensions from program.md Phase 3. If any dimension FAILS:
 - Identify the specific issue
 - Fix it in the design
 - Re-evaluate
 - Repeat until all dimensions PASS
 
-**Note**: Dimension 9 (Entity Mapping Alignment) only applies to mapping-informed designs. Score as N/A if no mapping.
+**Note**: Dimension 8 (Entity Mapping Alignment) only applies to mapping-informed designs. Score as N/A if no mapping. Dimensions 9 (Game Feel) and 10 (Pillar Fidelity) apply to ALL designs.
 
 ### Step 5: Save the engineering spec
 
@@ -95,14 +95,14 @@ This ensures every design ships with both formats:
 Append a row to `results.tsv`:
 
 ```
-[full assignment text]\t[entity]\t[category]\t[tier]\t[PASS/FAIL]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F/N]\t[filename]\t[ISO timestamp]
+[assignment]\t[entity]\t[category]\t[tier]\t[pillar]\t[style]\t[PASS/FAIL]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F/N]\t[P/F]\t[P/F]\t[filename]\t[ISO timestamp]
 ```
 
-Column order: assignment, entity, category, tier, status, d1_tech, d2_hook, d3_transition, d4_edge, d5_ib, d6_tier, d7_dialogue, d8_screen, d9_mapping, filename, timestamp.
+Column order: assignment, entity, category, tier, pillar, style, status, d1_tech, d2_hook_transition, d3_edge, d4_ib, d5_tier, d6_dialogue, d7_screen, d8_mapping, d9_game_feel, d10_pillar_fidelity, filename, timestamp.
 
-For d9_mapping: use P (pass), F (fail), or N (N/A — no mapping).
+For d8_mapping: use P (pass), F (fail), or N (N/A — no mapping). d9_game_feel and d10_pillar_fidelity: always P or F.
 
-If you upgraded an older `results.tsv` that lacks `d9_mapping`, first add the column to the header and backfill `N` for earlier non-mapping rows before appending new results.
+If you upgraded an older `results.tsv`, first update the header to include all columns (pillar, style, d9_game_feel, d10_pillar_fidelity) and backfill appropriately before appending new results.
 
 ### Step 7: Mark assignment complete
 
@@ -112,7 +112,7 @@ In `assignments.md`, change `- [ ]` to `- [x]` for this assignment.
 
 ```bash
 git add designs/[entity]_cat[N]_spec.md designs/[entity]_cat[N]_prod.md results.tsv assignments.md
-git commit -m "Design: [entity] + cat[N] — ALL PASS (spec + prod)"
+git commit -m "Design: [entity] + cat[N] + [pillar] — ALL PASS (spec + prod)"
 ```
 
 ### Step 9: Next assignment
@@ -125,4 +125,4 @@ Move to the next `- [ ]` assignment. If none remain, say: "All assignments compl
 - **Never abbreviate later designs** because "they follow the same pattern." Each design is fully independent.
 - **If you encounter an error** (e.g., can't write a file), report it and continue with the next assignment.
 - **Commit after EVERY completed design**, not in batches. This is the ratchet — work is never lost.
-- **Quality over speed.** Take as many self-evaluation rounds as needed. A design that passes all 9 dimensions on the second try is better than a design that was rushed and would fail review.
+- **Quality over speed.** Take as many self-evaluation rounds as needed. A design that passes all 10 dimensions on the second try is better than a design that was rushed and would fail review.
