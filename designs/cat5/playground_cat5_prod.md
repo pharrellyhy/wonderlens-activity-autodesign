@@ -1,38 +1,36 @@
-## The Playground Job Fair
+## The Playground Material Detective
 
 ### A. Basic Info
 
 | Field | Value |
 |-------|-------|
-| Activity Name | The Playground Job Fair |
+| Activity Name | The Playground Material Detective |
 | Activity Category | Collection/Tracking Exploration (Out-of-Device) |
 | Recommended Tier | T1 (ages 4–6) |
-| Core IB Key Concepts | Function, Perspective |
-| Related Concepts | Community, Safety, Identity, Discovery |
-| ATL Skills Focus | Research Skills (observation, data collection), Thinking Skills (critical thinking), Communication Skills (expressing) |
-| Game Style | comparison_chart |
-| Design Version | 1.0 |
-| Last Updated | 2026-03-19 |
+| Core IB Key Concepts | Form, Causation |
+| Related Concepts | Structure, Discovery, Safety, Pattern |
+| ATL Skills Focus | Research Skills (observation, data collection), Thinking Skills (critical thinking, metacognition), Communication Skills (expressing) |
+| Game Style | field_experiment |
 
 ### B. Activity Overview
 
 **① Brief Description**
 
-After photographing the slide, the AI marvels at how smooth and shiny it is and wonders what JOB the slide does at the playground. The child becomes a "Playground Reporter" on a mission to find 3 more pieces of equipment, photograph each one, and figure out what special job it does — climbing, swinging, balancing, or something else. At the end, the child gives the whole playground a "team name" and reflects on how each piece has a different job but they all work together.
+After photographing the slide, the AI marvels at how shiny and hard the metal surface is and wonders — is MOST of the playground made of metal, or something else? The child becomes a "Playground Scientist" who first PREDICTS whether most playground equipment is made of metal or not-metal (plastic, wood, rubber), then collects evidence by photographing 3 more pieces of equipment and reporting what each one is made of. At the end, the AI tallies the real data and reveals whether the child's prediction was right or surprising.
 
 **② Educational Purpose (KUD)**
 
-- **K (Know):** Learn the vocabulary "smooth," "shiny," "bolts," "chain links," "balance." Learn that slides are smooth so you go fast, bars are at different heights for different climbers, and big bolts hold parts together like puzzle pieces.
-- **U (Understand):** Each piece of playground equipment has a specific Function — a job it does for children's bodies — and different children may feel brave or nervous about the same equipment, showing different Perspectives on the same place.
-- **D (Do):** Observe physical details of built structures; compare the purposes of different equipment; express personal feelings about playground features.
+- **K (Know):** Learn the vocabulary "metal," "plastic," "wood," "rubber," "material." Learn that playgrounds use different materials for different reasons — metal is strong, plastic is smooth, rubber is soft for safety, wood holds up outdoors.
+- **U (Understand):** Different parts of a playground are made of different materials for specific reasons (Causation) — the material's properties (Form) determine where it is used. A prediction can be tested by collecting and counting real evidence.
+- **D (Do):** Make a prediction and commit to it before collecting data; observe and identify materials through touch and sight; tally evidence and compare results to a hypothesis.
 
 **③ Design Highlight**
 
-The "Playground Job Fair" metaphor treats each piece of equipment as an employee with a special job — the slide's job is "speed delivery," the climbing frame's job is "muscle training," the swing's job is "flying practice." This personification makes functional analysis feel like play. The twist comes when the child realizes every piece has a DIFFERENT job, but together they form a team — and different kids might pick a different "favorite coworker" depending on how brave or careful they feel.
+The "Material Detective" metaphor turns the playground into a science lab. The child commits to a hypothesis BEFORE exploring — "I think most things are metal!" — creating genuine stakes. Each find adds a tally mark to either the "metal" or "not-metal" column, building suspense. The magic moment is the final count: "Metal: 2, Not-metal: 3 — SURPRISE! More things are NOT metal! Your prediction was close but the playground tricked you!" This creates the authentic "Was I right?!" feeling that defines the Discovery pillar.
 
 **④ Typical Scenario**
 
-Child photographs the slide, AI notices it is smooth and shiny, launches a "Playground Job Fair" to find 3 more pieces of equipment and name each one's job, child gives the playground team a group name and reflects on which job feels bravest.
+Child photographs a metal slide, AI notices the shiny metal surface, proposes a hypothesis about whether most playground things are metal or not-metal, child commits to a prediction, then finds 3 more pieces of equipment, reports the material of each, and the AI tallies the final score against the prediction.
 
 ### C. Interaction Flow
 
@@ -40,116 +38,114 @@ Child photographs the slide, AI notices it is smooth and shiny, launches a "Play
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted surprise) "Whoa — look at that slide! It's so smooth and shiny, like a silver river going down a hill. I bet if you touched it in the sun, it would feel warm like toast! What do you like best about this slide?"
+**AI says:** (delighted, curious) "Whoa — feel that slide! It's so shiny and hard. That's METAL! Metal is strong and smooth — that's why you zoom down so fast. But wait... I'm looking around this playground and I have a BIG question. Is EVERYTHING here made of metal? Or are some things made of something else? What do you think?"
 
 **Child responses:**
 
-1. (Ideal) "It's really fast!" / "I like going down it!" / "It's so tall!"
-2. (Unexpected) "It's hot!" / "My friend pushed me on it."
-3. (No response) Child looks at the screen or back at the slide.
+1. (Ideal) "Some things are different!" / "The swings are metal too!" / "I think it's all metal!"
+2. (Unexpected) "I don't know what metal is." / "I like the slide!"
+3. (No response) Child looks at the playground or the screen.
 
 **AI follow-up:**
 
-1. (impressed) "Really fast — whoooosh! You know why? The slide is smooth on purpose. That's its JOB — to help you zoom! I wonder what jobs the OTHER playground things have. Want to find out?"
-2. (validating warmly) "Oh, it can get warm in the sun! Metal heats up faster than plastic — the sun is like a little toaster for the slide. But you know what? Being smooth and warm is part of the slide's special job — helping you go FAST. I wonder what other jobs are hiding at this playground..."
-3. (wait 2s) (inviting) "This slide is so smooth — feel how shiny it looks! That smoothness has a purpose. It helps you zoom down super fast! That's the slide's special JOB. Should we find out what jobs the other playground things do?"
+1. (intrigued) "Interesting — you already have ideas! This slide is definitely metal — hard and shiny. But I wonder about the OTHER things. Are most of them metal too, or made of something different like plastic or wood? I think we should find out for REAL!"
+2. (warm, explaining) "Metal is the hard, shiny stuff — like this slide! If you knock on it, it goes CLANG. Some things at playgrounds are metal, and some are made of other stuff — like plastic, which is smooth, or wood, which feels rough. I have a fun idea to figure out what THIS playground is made of!"
+3. (wait 2s) (inviting) "This slide is metal — hard, shiny, and cold to touch! But look around. Are ALL the playground things metal? Or are some made of something else? I bet we can find out together!"
 
-**Screen:** Child's slide photo centered with shiny surface highlighted by a soft glow and tiny sparkle dots drifting along the surface.
+**Screen:** Slide photo centered with metallic sheen highlight and a small "METAL" label with shiny icon near the surface.
 
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (adventurous, reporter tone) "Okay — you are now an official Playground Reporter! Your mission has three parts. Part one: find 3 more playground things and take a photo of each one. Part two: figure out what JOB each one does for kids. Part three: give the whole playground team a name! Ready, Reporter?"
+**AI says:** (excited scientist) "Okay — here is my big question. Out of ALL the playground things, do you think MOST of them are made of metal... or MOST of them are made of something else — like plastic, wood, or rubber? This is your PREDICTION. What do you think — mostly metal, or mostly NOT metal?"
 
 **Child responses:**
 
-1. (Ideal) "Ready!" / "Yeah!" / "I know what to find!"
-2. (Uncertain) "What do you mean, a job?" / "Like what?"
-3. (No response) Child looks around the playground.
+1. (Ideal — picks metal) "Metal!" / "I think most are metal!" / "Everything is shiny!"
+2. (Ideal — picks not-metal) "Not metal!" / "I think plastic!" / "Wood!"
+3. (Uncertain) "I don't know!" / "Maybe both?" / "What's a prediction?"
 
 **AI follow-up:**
 
-1. (cheering) "Reporter is ON the case! Go find a piece of playground equipment, take a photo, and tell me what it does. I'll be right here, Reporter!"
-2. (explaining warmly) "A job means what it DOES for you! The slide's job is zoom — it makes you go fast. A ladder's job might be climb — it helps you go up. Every piece has a job! Go find one and take a photo, and we'll figure out its job together."
-3. (wait 2s) (gently encouraging) "Here is a tip — look for something you can climb, swing on, or balance on. Take a photo of it and we will figure out its job together!"
+1. (locking it in) "You predict MOSTLY METAL — got it! I'm writing that down. Now here's the deal — you are a Playground Scientist! Your job: find 3 more playground things, take a photo of each one, and tell me what it's made of. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
+2. (locking it in) "You predict MOSTLY NOT METAL — interesting! I'm writing that down. Now here's the deal — you are a Playground Scientist! Your job: find 3 more playground things, take a photo of each one, and tell me what it's made of. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
+3. (encouraging) "A prediction is your BEST GUESS before you check! Like saying 'I think it will rain today' before you look outside. So — take your best guess. Do you think MOST playground things are metal, or mostly something else like plastic or wood? Just pick one!"
 
-**Screen:** Reporter-themed mission card with "Playground Reporter" badge, four collection slots (first filled with slide photo labeled "Job: Speed!"), and a three-step task list.
+**Screen:** Scientist mission card with "Playground Scientist" badge. Tally board with two columns: "Metal" (shiny icon) and "Not Metal" (plastic/wood/rubber icons). Slide photo under "Metal" with "1" tally. Prediction banner at top: "My prediction: Mostly [Metal / Not Metal]!" Three empty photo slots below.
 
 
 #### Step 3: Multi-Round Interaction
 
-**Round 1 — First Find:**
+**Round 1 — First Evidence:**
 
-*(Child photographs something — e.g., the climbing frame or monkey bars)*
+*(Child photographs something — e.g., the swings)*
 
-**AI says:** (eager reporter voice) "Reporter report! Oh, what is that? I see bars at different heights — some low, some high! What job do you think this one does?"
+**AI says:** (eager scientist) "Evidence number two! Oh, I see the swings! Now here's the scientist question — what is the SEAT made of? Is it metal, plastic, wood, or rubber? Touch it if you can — what does it feel like?"
 
 **Child responses:**
 
-1. (Ideal) "You climb on it!" / "It helps you go up!"
-2. (Unexpected) "I don't like that one." / "It's scary."
+1. (Ideal) "It's rubber!" / "Plastic! It's bendy!" / "It feels smooth and soft!"
+2. (Unexpected) "I like swinging!" / "It's black!"
 3. (No response) Just takes the photo.
 
 **AI follow-up:**
 
-1. (impressed) "Climbing — YES! That's its job! Those bars are at different heights so smaller kids and bigger kids can all practice. It helps your arms get strong and teaches you to balance. Reporter Log: 'Climbing Frame — Job: Muscle Builder!' Two more to find, Reporter!"
-2. (warm and understanding) "A little scary? That makes sense — it's tall! Some kids feel brave on it and some feel a little nervous. That's totally okay. Its job is still to help kids practice climbing and holding on tight. Different kids feel different ways about the same thing! Reporter Log: 'Climbing Frame — Job: Brave Builder!' Two more, Reporter!"
-3. (wait 2s) (curious) "Look at all those bars — some low, some high! I think this one's job is climbing. It helps your body practice holding on tight and going up. What do YOU think — is climbing its job, or something else?"
+1. (writing it down excitedly) "Rubber — soft and bendy! That goes in the NOT METAL column! The tally so far: Metal has 1, Not Metal has 1. It's a TIE right now! Your prediction says mostly [metal/not-metal]... let's see what happens next! Two more to find, Scientist!"
+2. (validating, then redirecting) "Black — good eye! And that black seat — does it feel hard like metal, or soft and bendy? I think it's rubber or plastic — something soft so it doesn't hurt when you sit! That's NOT metal. Tally update: Metal 1, Not Metal 1. It's TIED! Two more, Scientist!"
+3. (wait 2s) (curious) "I can see the swing seat! It looks soft and bendy to me — not hard and shiny like the slide. I think it's rubber or plastic. That means: Metal 1, Not Metal 1 — a TIE so far! Two more to go. Find another playground thing and take a photo!"
 
-**Screen:** New photo slides into second slot with sparkle animation; slot label updates with job name; counter reads "2 of 4."
+**Screen:** New photo in slot 2. Tally board updates with animated tally mark. Running score: "Metal: 1 | Not Metal: 1." Prediction banner stays visible at top.
 
-**Round 2 — Second Find:** The child photographs the swings; AI points out the chain links and asks the job. Child identifies swinging/flying; AI names it "Flying Practice" and explains why chains bend.
+**Round 2 — Second Evidence:** Child photographs another piece (climbing structure, bench, etc.). AI asks about the material with the prompt "Knock on it — what sound does it make?" AI identifies material and updates tally dramatically: "Not Metal is WINNING!" or "Metal is catching up!" One more piece of evidence to go.
 
-**Round 3 — Third Find:** The child photographs a final piece (seesaw, sandbox, bench). Includes a stuck branch if the child searches too long — AI suggests looking for something to sit on, balance on, or spin. AI celebrates the final report and logs the job.
+**Round 3 — Third Evidence (Final Piece):** Child photographs final piece (tunnel, rubber mat, fence, seesaw). AI builds to climax: "This is the one that might decide everything!" After child reports material, AI adds final tally mark and announces the BIG RESULT is coming. Includes stuck branch: "Look near the sandbox for a wooden border, or check the ground under the swings for rubber!"
 
 
 #### Step 4: Celebration
 
-**AI says:** (proud and excited) "Playground Reporter, look at your collection! A slide for speed, a [first find] for [its job], a [second find] for [its job], and a [third find] for [its job]. Four different things — four different JOBS! Now the big question: what team name would you give this playground? If all these things worked together like a team, what would you call them?"
+**AI says:** (drumroll voice) "Okay Playground Scientist — time for the BIG REVEAL! You predicted that most playground things would be... MOSTLY [METAL / NOT METAL]! Let's count the evidence!"
+
+*(AI tallies aloud)*
+
+"The slide — METAL! That's one for metal. The [find 1] — [material]! The [find 2] — [material]! The [find 3] — [material]!"
+
+**If prediction was RIGHT**: (triumphant fanfare) "The final count: Metal [N], Not Metal [M]! Your prediction was... RIGHT! You KNEW it! Most things at this playground really ARE [mostly metal / mostly not-metal]! Playground Scientist, your instincts are amazing!"
+
+**If prediction was WRONG**: (gasping with delight) "The final count: Metal [N], Not Metal [M]! Your prediction was mostly [metal/not-metal], but SURPRISE — the playground TRICKED you! More things are actually [metal/not-metal] than you expected! That's what makes science so cool — sometimes you find out something you DIDN'T expect!"
+
+**If it's a TIE**: (amazed) "The final count: Metal 2, Not Metal 2! It's a PERFECT TIE! Nobody could have predicted that — the playground uses BOTH equally! That's a surprise result, Scientist!"
+
+**AI says:** (warm, wonder-filled) "You know what's really smart about playgrounds? They use DIFFERENT materials on purpose! The slide is metal because metal is smooth — that helps you zoom. The ground under the swings is rubber because rubber is soft — that keeps you safe if you fall. Every material has a REASON! Which material surprised you the most today?"
 
 **Child responses:**
 
-1. (Ideal) "The Super Playground Team!" / "The Fun Helpers!" / Any creative team name.
-2. (Unexpected) "I don't know a name." / "The playground."
-3. (No response)
+1. (Ideal) "I was right!" / "Rubber! I didn't know it was under the swings!" / "I want to test another playground!"
+2. (Unexpected) "I like metal best!" / "But I thought the swing was metal!"
+3. (No response) Child looks at the tally screen.
 
 **AI follow-up:**
 
-1. (celebrating) "[Child's team name] — I LOVE that! Every member has a different job but they all work together to help kids play, move, and grow strong. Which team member is YOUR favorite? The one that feels the most fun to you?"
-2. (playfully helping) "How about this — they all help your body do something. Speed, climbing, flying, [third job]. They could be 'The Body Helpers' or 'The Fun Crew!' Pick one, or make up your own!"
-3. (wait 2s) (gently) "What if we called them by what they do? They help kids zoom, climb, swing, and [verb]. I think they could be 'The Adventure Crew!' Or would you pick a different name?"
+1. (delighted) "That's what scientists DO — they guess, then check, and find out for real! Your experiment showed you something new about this playground!"
+2. (enthusiastic) "Great observation! The swing CHAIN is metal, but the SEAT is rubber. One piece of equipment can have DIFFERENT materials — that's a scientist-level discovery!"
+3. (wait 2s) (gentle) "Every material is here for a reason — smooth for speed, soft for safety, strong for climbing. Your experiment helped you see that!"
 
-**AI says:** (amazed and warm) "Reporter, you discovered something really cool. Every single piece of this playground has a DIFFERENT job — but not everyone feels the same way about each one! Some kids love the tall climbing frame because it feels brave. Other kids love the swings because flying feels free. Which one did YOU like best, and why?"
-
-**Child responses:**
-
-1. (Ideal) "The swings! Because I like flying!" / "The climbing one because I'm strong!"
-2. (Unexpected) "All of them!" / "None, I like the sandbox."
-3. (No response) Child looks at the collection quietly.
-
-**AI follow-up:**
-
-1. (delighted) "That tells me something special about YOU! You picked [choice] because of how it makes you FEEL. Another kid might pick a totally different one — and that's what's cool. The same playground feels different to every kid who plays here!"
-2. (warmly) "All of them — you love the whole team! That makes you an all-around playground fan. And you know what? If your friend was here, they might pick a different favorite. Everyone sees the playground a little differently!"
-3. (wait 2s) (gentle, prompting) "Think about which one makes your body feel the happiest — zooming, climbing, swinging, or balancing. Which one would you run to first?"
-
-**Screen:** All 4 photos in a grid with job labels, team name banner, and emoji-style feeling faces below each photo with sparkle connections.
+**Screen:** Full tally board with all 4 photos in two columns (Metal vs. Not Metal). Prediction banner lights up green (RIGHT!) or flashes orange with "SURPRISE!" text. Animated tally marks count up one by one. Large final score: "Metal: [N] | Not Metal: [M]." Reason arrows connect each photo to a purpose bubble.
 
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm celebration) "Congratulations, Playground Reporter! You did something amazing today. You discovered the Function of every piece — what job it does, from zooming to climbing to flying to [third job]. And you found out something even bigger — every kid has a different Perspective on the same playground. One kid feels brave on the climbing frame. Another feels free on the swings. Same playground, different feelings! You earned your Playground Reporter Badge!"
+**AI says:** (proud celebration) "Congratulations, Playground Scientist! You did real science today! You looked closely at the Form of every piece — what it's made of, how it feels, what it looks like. And you discovered the Causation — WHY each material is there. Metal for strength. Rubber for safety. Wood for grip. Every material has a reason! You earned your Playground Scientist Badge!"
 
 **Child responses:**
 
-1. (Engaged) Cheers, talks about wanting to visit other playgrounds, or asks about the badge.
+1. (Engaged) Cheers, talks about wanting to test more playgrounds, or asks about the badge.
 2. (Quiet) Smiles or says nothing.
 3. (No response) Child looks at the screen.
 
 **AI follow-up:**
 
-1. (encouraging) "Next time you visit ANY playground, try being a reporter again — every playground has different equipment with different jobs! See you on the next report, Reporter!"
-2. (warm) "Your badge is saved! Whenever you see playground equipment, think about its job. Bye for now, Reporter!"
-3. (wait 2s) (soft) "Your Reporter Badge is glowing. Great job today, Reporter!"
+1. (encouraging) "Next time you visit a playground, try the experiment again! Predict first, then count. Every playground might have a different answer. See you on the next experiment, Scientist!"
+2. (warm) "Your badge is saved! You're a real Playground Scientist now. Bye for now, Scientist!"
+3. (wait 2s) (soft) "Your Scientist Badge is glowing. Great experiment today!"
 
-**Screen:** Golden "Playground Reporter Badge" shaped like a notepad with slide photo at center and 3 collection photos as insets. "Function" in bold mechanical letters with gear icons and "Perspective" in multi-colored angled letters float artistically. Team name banner glows above.
+**Screen:** Golden "Playground Scientist Badge" shaped like a magnifying glass with tally chart inside. Slide photo at center with collection photos as insets. "Form" in crystalline letters with material texture swatches and "Causation" in arrow-shaped dynamic letters float artistically. Final tally result glows beneath.
