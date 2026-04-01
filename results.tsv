@@ -40,3 +40,4 @@ stop sign + category 1 (sustained verbal), tier=T1, style=helper_hotline, mappin
 bicycle + category 1 (sustained verbal), tier=T1, style=voice_acting, mapping=vehicles_bicycle	bicycle	1	T1	PASS	P	P	P	P	P	P	P	P	P	designs/bicycle_cat1_spec.md	2026-03-19T00:12:00Z
 goldfish + category 5 (collection/tracking), tier=T1, style=comparison_chart, mapping=animals_goldfish	goldfish	5	T1	PASS	P	P	P	P	P	P	P	P	P	designs/goldfish_cat5_spec.md	2026-03-23T00:01:00Z
 teddy bear + cat1 + Nurture (care_station upgrade)	teddy bear	1	T0	PASS	P	P	P	P	P	P	P	P	N	designs/cat1/teddy_bear_cat1_spec.md	2026-04-01T00:01:00Z
+rubber_duck + category 1 (sustained verbal), tier=T0, pillar=Creation, style=inventor_workshop	rubber_duck	1	T0	PASS	P	P	P	P	P	P	P	P	N	designs/cat1/rubber_duck_cat1_spec.md	2026-04-01T00:01:00Z
