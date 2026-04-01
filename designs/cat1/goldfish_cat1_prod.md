@@ -1,31 +1,30 @@
-## Goldfish Guess-What
+## Goldfish Guess-What Lab
 
 ### A. Basic Info
 
 | Field | Value |
 |-------|-------|
-| Activity Name | Goldfish Guess-What |
+| Activity Name | Goldfish Guess-What Lab |
 | Activity Category | Sustained Verbal Interaction (In-Device) |
 | Recommended Tier | T1 (ages 4–6) |
 | Core IB Key Concepts | Causation, Function |
-| Related Concepts | Habitat, Adaptation, Discovery, Empathy |
-| ATL Skills Focus | Thinking Skills (critical thinking, cause-and-effect), Communication Skills (expressing, listening), Research Skills (observation) |
-| Game Style | prediction_game |
-| Design Version | 1.0 |
-| Last Updated | 2026-03-19 |
+| Related Concepts | Habitat, Adaptation, Discovery, Prediction |
+| ATL Skills Focus | Thinking Skills (critical thinking, cause-and-effect), Communication Skills (expressing, listening), Research Skills (observation, data collection) |
+| Experience Pillar | Discovery |
+| Game Style | prediction_lab |
 
 ### B. Activity Overview
 
-**① Brief Description**: After the child photographs their goldfish, the AI marvels at how it glides and wiggles. The child becomes a "Goldfish Detective" who predicts what the goldfish will DO in different situations — what happens if we sprinkle food? What if we tap nearby? What if it spots something new in the bowl? Each round, the AI describes a cause, and the child guesses the goldfish's reaction, building an intuition for cause-and-effect in living creatures.
+**① Brief Description**: After the child photographs their goldfish, the AI marvels at its gliding, shimmery movement and invites the child to become a "Goldfish Scientist" who runs prediction experiments. In each round, the AI describes something about to happen near the goldfish — and the child must COMMIT to a specific prediction before the AI reveals the answer. Reveals are dramatic and scored: full points for correct predictions, half points for close guesses. A running tally creates genuine stakes: "You're 2 for 3 — can you go perfect?"
 
 **② Educational Purpose (KUD)**:
-- **K (Know)**: Learn that a goldfish has fins that help it swim, gills that let it breathe in water, and a fan-shaped tail that pushes it forward. Learn the words "fins," "gills," "scales," and "dart."
-- **U (Understand)**: Understand that when something happens near a goldfish, the fish reacts in a specific way — that's Causation (cause and effect). Understand that each body part has a job — fins for steering, gills for breathing, tail for zooming — that's Function.
-- **D (Do)**: Practice predicting outcomes based on observation. Practice describing animal behavior using specific words. Practice careful observation of a living creature.
+- **K (Know)**: A goldfish has a fan-shaped tail that pushes it through water; fins on the sides help it steer and balance; gills let it breathe underwater; goldfish dart away quickly when startled; goldfish swim upward toward food on the surface.
+- **U (Understand)**: When something happens near a goldfish, the fish reacts in a specific way — a cause creates an effect. That is Causation. Each body part has a specific job — tail pushes, fins steer, gills breathe, mouth eats. That is Function.
+- **D (Do)**: Practice committing to a prediction before seeing the outcome. Practice describing animal behavior using specific vocabulary. Practice observing cause-and-effect patterns in a living creature.
 
-**③ Design Highlight**: The "Goldfish Detective" metaphor turns passive fish-watching into an active prediction game. Instead of telling the child facts, the AI poses "what happens when..." scenarios and the child guesses the goldfish's reaction. The child feels like a scientist testing hypotheses — but it plays like a guessing game. Each round reveals how a specific body part (tail, fins, gills) WORKS by showing WHAT CAUSES it to do its thing.
+**③ Design Highlight**: The "prediction lab" mechanic transforms fish-watching into a scientific experiment with real stakes. The child must COMMIT ("I think the goldfish will...") before the AI reveals the dramatic answer. A running score creates genuine tension. Half-points reward close guesses, ensuring no child feels they "lost." Each reveal is dramatized with suspense, making the moment of truth thrilling whether the child is right or wrong.
 
-**④ Typical Scenario**: Child photographs pet goldfish in a bowl. AI notices how it glides and zooms. Child becomes a Goldfish Detective who predicts the fish's reactions in different scenarios.
+**④ Typical Scenario**: Child photographs their pet goldfish in a bowl at home. AI notices how it glides and shimmers. Child becomes a Goldfish Scientist who commits to predictions about the goldfish's reactions, then watches dramatic reveals with a running score.
 
 ### C. Interaction Flow
 
@@ -33,98 +32,108 @@
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted gasp) "Ohhh wow, a goldfish! Look at it gliding in there — so smooth and quiet! It's like a little golden submarine. I wonder... does your goldfish have a name?"
+**AI says:** (delighted gasp) "Ohhh WOW — a goldfish! Look at it gliding in there, so smooth and sparkly! It is like a tiny golden submarine. I wonder... does your goldfish have a name?"
 
 **Child responses:**
 
-1. (Ideal) "Goldie!" / "Bubbles!" / "Yes, it's [name]!" / Shares a name.
+1. (Ideal) "Goldie!" / "Bubbles!" / "Yes, it's [name]!"
 2. (Unexpected) "It's swimming!" / "It's orange!" / "I fed it!"
 3. (No response) Child watches the screen silently.
 
 **AI follow-up:**
 
-1. (warm, impressed) "[Name] — what a perfect name! [Name] looks like a real adventurer in there, zooming and gliding. I bet you notice a LOT about how [name] moves, huh?"
-2. (enthusiastic) "Yes! Look at it go — swimming and gliding! Those little fins are working SO hard. You really watch your fish closely, huh?"
-3. (wait 2s) (soft, wondering) "This goldfish is so pretty — those floaty fins waving like tiny flags! I bet it has lots of secrets. Want to be a detective with me?"
+1. (warm, impressed) "[Name] — what a perfect name! [Name] looks like a real adventurer in there, zooming and gliding. I bet you know a LOT about how [name] moves. Hey... want to test how much you know? Like a scientist?"
+2. (enthusiastic) "Yes! Look at it go — swimming and gliding! Those little fins are working SO hard. You really watch your fish closely. Hey... want to be a scientist and TEST what your goldfish does?"
+3. (wait 2s) (soft, wondering) "This goldfish is so pretty — those floaty fins waving like tiny flags! I bet it has lots of secrets. Want to do science experiments with me to find out?"
 
-**Screen:** Goldfish photo centered with gentle blue water ripple animation and tiny bubble animations floating upward.
+**Screen:** Goldfish photo centered with gentle blue water-ripple animation, tiny bubble animations floating upward, and soft golden shimmer outlining the fish.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, mystery-voice) "Okay, here's how our game works! I'll tell you something that happens near the goldfish. And YOU guess — what does the goldfish DO? Watch — I'll show you! If I say... 'Someone drops food flakes into the water' — hmm, what would the goldfish do? I think... it would zoom UP to the top with its tail going swish-swish-swish! See? Now YOUR turn to guess. Ready, Detective?"
+**AI says:** (playful, scientist voice) "Okay, here is how our lab works! I will tell you something that is ABOUT to happen near the goldfish. But before I tell you what the goldfish does — YOU have to lock in your prediction! You say: 'I think the goldfish will...' and then we find out! You get a point if you are right, and HALF a point if you are close. Let me show you!"
+
+(demo) "Ready? Something is about to happen: a shadow passes over the bowl. What will the goldfish do? I PREDICT... the goldfish will hide behind the little castle! Let me lock that in..."
+
+(dramatic pause) "And the answer is... the goldfish darts to the bottom and stays very still! Ohhh — I said hide behind the castle, but it stayed still at the bottom. That is close! Half point for me! See how it works? Now YOUR turn, Scientist. Ready?"
 
 **Child responses:**
 
 1. (Ideal) "Ready!" / "Yeah!" / "Let's go!"
-2. (Unexpected) "My fish does that!" / "It eats the food!" / Repeats "swish swish"
+2. (Unexpected) "My fish does that!" / "What's a prediction?" / "I want a point!"
 3. (No response) Child is quiet, possibly processing.
 
 **AI follow-up:**
 
-1. (excited countdown) "Okay, Detective — here comes your first case! Listen carefully..."
-2. (delighted) "Yes! It eats the food — swish swish, right up to the top! You already know a lot. Let's see if you can guess even MORE. Here comes your first case!"
-3. (wait 2s) (encouraging, gentle) "It's easy — I'll say what happens, and you guess what the fish does. Any answer is great! Here's the first one..."
+1. (excited countdown) "Okay, Scientist — Experiment Number One! Listen carefully..."
+2. (delighted) "You already know what your fish does? Then you are going to be AMAZING at this! A prediction is just a guess you lock in BEFORE you find out. Here comes Experiment Number One!"
+3. (wait 2s) (encouraging, gentle) "It is easy — I say what happens, you guess what the goldfish does. Any guess is great! Here comes the first one..."
 
-**Screen:** Goldfish photo on the left; on the right, a "Detective Game" magnifying glass icon with a cause-and-effect demo animation (food flakes falling, goldfish zooming up) and a "Round 1" badge.
+**Screen:** Goldfish photo on left; on the right, a "Prediction Lab" clipboard icon with scoring circles and running score display reading "Score: 0". Demo animation shows shadow passing, goldfish darting, and "½" appearing with a sparkle. "Experiment 1" badge glows below.
 
 #### Step 3: Multi-Round Interaction
 
-**Round 1 — "The Food Drop":**
+**Round 1 — "The Food Drop" (Experiment 1):**
 
-**AI says:** (mysterious narrator) "Case number one! Imagine... it's feeding time. You sprinkle tiny food flakes on top of the water. They float down slowly. What does the goldfish do?"
+**AI says:** (mysterious narrator) "Experiment Number One! Imagine... it is feeding time. You sprinkle tiny food flakes on top of the water. They float down slowly. BEFORE I tell you — lock in your prediction! What does the goldfish do?"
 
 **Child responses:**
 
-1. (Ideal) "It swims up!" / "It eats the food!" / "It goes to the top!"
-2. (Unexpected) "It's happy!" / "Yummy!" / "Bubble bubble!" / An emotional response rather than behavioral.
+1. (Ideal) "I think the goldfish will swim up!" / "It eats the food!" / "It goes to the top!"
+2. (Unexpected) "It's happy!" / "Yummy!" / "Bubble bubble!"
 3. (No response) Child is quiet or looking at the fish bowl.
 
 **AI follow-up:**
 
-1. (impressed detective voice) "Case SOLVED! The goldfish zooms right up to the top — swish goes that fan-shaped tail, pushing it up like a little paddle! The food CAUSES the fish to swim up. Nice detective work!"
-2. (warm validation) "Ooh, happy — yes! It gets excited! And when it's excited about food, it ZOOMS up with that swishy tail — swish swish! The food makes it move! Great thinking, Detective!"
-3. (wait 2s) (helpful, encouraging) "Here's a clue — the food is floating at the TOP. Where would the goldfish swim to get it? Up... or down?"
+1. (confirming lock-in) "Prediction locked: swim up to the top! Okay, here we go... *drumroll*... and the answer is... the goldfish ZOOMS right up to the surface — swish goes that fan-shaped tail, pushing it up like a paddle! YES! You got it! The food CAUSES the fish to swim up — tail swishing all the way! FULL POINT! Score: 1 out of 1!"
+2. (warm, helping lock in) "Ooh happy — so you predict the fish gets excited and wiggles? Locked in! Here we go... *drumroll*... the goldfish ZOOMS to the surface, tail swishing! Getting excited — yes! But it also zooms UP. Half point — you got the feeling right! Score: half out of 1!"
+3. (wait 2s) (helpful) "Here is a clue — the food is floating at the TOP of the water. Where would the goldfish swim? Up or down? Lock in your guess!"
 
-**Screen:** Goldfish bowl with food flakes drifting down; goldfish zooms upward with tail-swish motion lines; "CASE 1" stamp and golden star in the corner.
+**Screen:** Bowl scene with food flakes drifting down. "LOCKED IN" stamp on clipboard, drumroll animation, goldfish zooms upward with tail-swish motion lines. Score circle fills gold or half-gold. Running score updates.
 
-**Round 2 — "The Big Tap":** Someone bumps the table near the bowl — THUMP! The child guesses the goldfish's reaction. AI reveals it darts away fast, explaining the startle response and how fins help it escape.
+**Round 2 — "The Big Tap" (Experiment 2):** Someone bumps the table — THUMP! Child locks in prediction about the goldfish's reaction. AI reveals it darts away fast, side fins spread wide for a quick turn. The bump CAUSED the fish to flee. Scored with full or half point based on prediction accuracy.
 
-**Round 3 — "The New Shiny Pebble":** A brand new shiny blue pebble is dropped into the bowl; the child predicts the goldfish's curiosity. AI reveals it swims over and nibbles to investigate.
+**Round 3 — "The New Shiny Pebble" (Experiment 3):** A shiny blue pebble drops into the bowl. Child predicts the goldfish's reaction. AI reveals it swims down slowly and nibbles to investigate — that is how goldfish check if something is food. Scored accordingly, running tally updated.
 
-**Round 4 — "The Calm Dark Room":** The lights go out and the room is dark and quiet; the child guesses how the goldfish behaves. AI reveals it slows down and rests peacefully.
+**Round 4 — "The Calm Dark Room" (Experiment 4):** Nighttime, lights go off, total quiet. Child predicts what the goldfish does in darkness and silence. AI reveals it slows way down, tail barely moving, floating gently near the bottom — nothing CAUSING it to react. Surprise round scored; final tally revealed.
 
 #### Step 4: Celebration
 
-**AI says:** (proud, warm celebration) "WOW! You solved every single case! You figured out what makes a goldfish zoom, dart, nibble, and rest. You are officially a... GOLDFISH DETECTIVE! You watched, you guessed, and you were RIGHT. That's some seriously smart detective work!"
+**AI says:** (building suspense) "Okay, Scientist... the experiments are DONE. Time to count your score! You ran four experiments. You predicted what the goldfish would do when food drops... when the table bumps... when a pebble appears... and when the lights go out. And your final score is..."
+
+(dramatic pause, drumroll)
+
+"...[X] out of 4! [Score-specific reaction — perfect score gets 'FOUR OUT OF FOUR! PERFECT! You are a goldfish GENIUS!' / near-perfect gets 'AMAZING — almost every one right!' / any score gets warm celebration of what they learned]"
 
 **Child responses:**
 
-1. (Ideal) "Yay!" / "I'm a detective!" / Giggles or cheers.
-2. (Unexpected) "Can we play again?" / "I want more cases!" / "My fish is hungry."
+1. (Ideal) "Yay!" / "I got [X]!" / "I'm a scientist!"
+2. (Unexpected) "Can we do more?" / "I want to try again!"
 3. (No response) Child smiles or looks pleased.
 
 **AI follow-up:**
 
-1. (beaming) "The BEST Goldfish Detective! Your goldfish is lucky to have someone who understands it so well."
-2. (delighted) "You want MORE? That means you're a REAL detective — always curious! We can play again another day. For now, let me tell you something amazing about what you just did..."
-3. (wait 2s) (warm whisper) "You know what? I think your goldfish felt it too — you really paid attention. That's what great detectives do."
+1. (beaming) "The BEST Goldfish Scientist! Your goldfish is lucky to have someone who understands it so well."
+2. (delighted) "You want MORE experiments? That is exactly what real scientists say! We can run more another day. But first — let me tell you something amazing about what you just did..."
+3. (wait 2s) (warm whisper) "You know what? I think your goldfish can tell you have been paying attention. That is what great scientists do."
 
-**Screen:** Golden "GOLDFISH DETECTIVE" badge with the goldfish photo as a portrait inside, confetti and bubble animations, and a cheerful chime.
+**Screen:** Giant score display "[X] / 4" in bold golden numbers. Mini-icons for each experiment (food flakes, tapping hand, blue pebble, moon) with score circles beside them. "GOLDFISH SCIENTIST" title banner above. Confetti explosion for perfect score; golden frame around goldfish photo for any score.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "You know what you did today? Every time I said something happened — food drops, a bump, a new pebble — you figured out what the goldfish would DO. That's called Causation — when one thing CAUSES another thing to happen. And you noticed that the tail pushes, the fins steer, and the mouth nibbles — every part has its own job. That's called Function — how each part works! You're not just a detective. You're a goldfish scientist."
+**AI says:** (warm, reflective) "You know what you did today? Every time I told you something was about to happen — food drops, a bump, a pebble, the lights — you PREDICTED what the goldfish would do before I even told you. You figured out that causes make effects! Food CAUSES the fish to swim up. A bump CAUSES the fish to dart away. A new thing CAUSES the fish to investigate. And quiet CAUSES the fish to rest. That is called Causation — when one thing CAUSES another thing to happen!"
+
+"And you noticed something else — the tail PUSHES, the side fins STEER, the mouth NIBBLES, the gills BREATHE. Every part has its own job! That is called Function — how each part works! You are not just a scientist — you are a goldfish expert!"
 
 **Child responses:**
 
-1. (Ideal) "Causation!" / "I'm a scientist!" / Repeats a word happily.
+1. (Ideal) "Causation!" / "I'm a scientist!" / "Function!"
 2. (Unexpected) "Can I feed my fish now?" / "Bye goldfish!"
 3. (No response) Child listens or looks at the screen.
 
 **AI follow-up:**
 
-1. (celebrating) "That's right — Causation and Function! You earned your badge, Goldfish Detective. Go say hi to your fish — I bet it knows you understand it now!"
-2. (warm, laughing) "Go ahead — your goldfish is lucky to have such a great detective taking care of it! See you next time, Goldfish Detective!"
-3. (wait 2s) (gentle closing) "Great job today, Detective. Your goldfish has a really smart friend. See you next time!"
+1. (celebrating) "That is right — Causation and Function! You earned your badge, Goldfish Scientist. Go say hi to your fish — I bet it knows you understand it now!"
+2. (warm, laughing) "Go ahead — your goldfish is so lucky to have such a smart scientist! See you next time, Goldfish Scientist!"
+3. (wait 2s) (gentle closing) "Great job today, Scientist. Your goldfish has a really smart friend. See you next time!"
 
-**Screen:** Detective badge centered with "Causation" and "Function" in golden lettering, each with a small icon (chain-link for Causation, gear for Function), goldfish photo glowing behind, and a gentle "The End" ribbon.
+**Screen:** "GOLDFISH SCIENTIST" badge centered with goldfish photo portrait inside. "Causation" and "Function" in golden lettering with chain-link and gear icons. Four experiment icons as small trophies around the badge. Soft golden sparkle animations and a gentle "The End" ribbon.
