@@ -1,31 +1,32 @@
-## Roar Reporter
+## The Lion's Big Show
 
 ### A. Basic Info
 
 | Field | Value |
 |-------|-------|
-| Activity Name | Roar Reporter |
+| Activity Name | The Lion's Big Show |
 | Activity Category | Sustained Verbal Interaction (In-Device) |
 | Recommended Tier | T0 (ages 2–4) |
-| Core IB Key Concepts | Function, Causation |
-| Related Concepts | Adaptation, Growth, Discovery |
-| ATL Skills Focus | Communication Skills (listening, expressing), Thinking Skills (creative), Self-Management Skills (focus) |
-| Game Style | voice_acting |
-| Design Version | 1.0 |
-| Last Updated | 2026-03-19 |
+| Core IB Key Concepts | Perspective, Form |
+| Related Concepts | Expression, Identity, Creativity, Discovery |
+| ATL Skills Focus | Communication Skills (expressing, listening), Thinking Skills (creative), Self-Management Skills (emotional regulation) |
+| Experience Pillar | Performance |
+| Game Style | voice_stage |
+| Design Version | 2.0 |
+| Last Updated | 2026-04-01 |
 
 ### B. Activity Overview
 
-**① Brief Description**: The child becomes a "Roar Reporter" who tells the world what the lion is saying with each roar. AI presents short scenarios — the lion is happy, the lion is hungry, the lion sees a friend — and the child roars or speaks for the lion. Each roar has a PURPOSE (function) and a REASON (causation), naturally teaching that sounds communicate meaning.
+**① Brief Description**: The child becomes a "Roar Star" who performs AS the lion in front of a silly audience of jungle judges (a parrot, a monkey, and an elephant). Each round, the AI sets a performance challenge — roar a greeting, roar a lullaby, do a tiny whisper-roar — and the audience of judges reacts with over-the-top delight, gasps, or laughter. The challenges escalate with a surprise twist, and the finale is a standing ovation where every judge goes wild.
 
 **② Educational Purpose (KUD)**:
-- **K (Know)**: Lions have yellow-brown fur; lions make a loud roaring sound; a lion's roar tells others "I'm here"; lions are very big cats; a lion's fur feels warm and fuzzy
-- **U (Understand)**: Sounds have a purpose — a roar can say different things depending on what is happening (Function); different situations cause different reactions — why the lion roars changes what the roar means (Causation)
-- **D (Do)**: Express ideas through voice and sound; listen to a scenario and respond creatively; stay engaged through a multi-round voice game
+- **K (Know)**: Lions have a big fuzzy mane; lions make a loud roaring sound; a roar can say different things — hello, goodnight, surprise; lions are very big cats; the word "audience" means people (or animals!) watching a show
+- **U (Understand)**: The same lion can roar in many different ways depending on the situation — happy, sleepy, surprised — and each way feels different to the audience; that is Perspective. The lion has a recognizable Form — big mane, strong body, loud voice — and the child uses that form to create expressive performances.
+- **D (Do)**: Express emotions through voice and sound in escalating challenges; listen to performance prompts and respond creatively with vocal variety; adapt performance style when a surprise twist changes the rules
 
-**③ Design Highlight**: The metaphor of "Roar Reporter" transforms a voice game into a pretend journalism role — the child is not just imitating a lion but REPORTING what the lion says and why. This naturally foregrounds Function (what does the roar DO?) and Causation (WHY is it roaring?) without any explicit teaching.
+**③ Design Highlight**: The "Jungle Talent Show" metaphor transforms voice play into a PERFORMANCE with real stakes. Three silly jungle judges (Parrot, Monkey, Elephant) react to every roar with over-the-top audience responses — "The parrot fell off the branch!" or "The monkey is doing a happy dance!" This is NOT simple voice acting. Here, there is an AUDIENCE who reacts, creating the feeling of "They loved it!" A surprise twist in Round 3 ("Now do it WHISPERING!") adds genuine challenge and delight.
 
-**④ Typical Scenario**: Child photographs their toy lion on the playroom rug. AI reacts with delight and invites the child to become the lion's "Roar Reporter" — someone who can understand lion language and tell everyone what each roar means.
+**④ Typical Scenario**: A 2–4 year old photographs their toy lion. AI marvels at the mane and introduces the Jungle Talent Show: three silly judges are waiting for the lion's performance. The child performs as the lion in escalating challenges while the audience of judges reacts with increasing excitement, culminating in a standing ovation.
 
 ### C. Interaction Flow
 
@@ -33,96 +34,96 @@
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted gasp) "Wow, lion! So big! So fuzzy! Roar too?"
+**AI says:** (delighted gasp) "Whoa! A LION! Big fuzzy mane! I bet this lion has the BIGGEST roar. Show me? What does your lion sound like?"
 
 **Child responses:**
 
-1. (Ideal) Child roars "RRRR!" or "Rawr!"
-2. (Unexpected) "It's my toy!" or "That's Leo!"
-3. (No response) Child stares at screen or looks at the lion toy.
+1. (Ideal) "RRRR!" or "RAWR!" — child roars enthusiastically.
+2. (Unexpected) "It's my toy!" or "That's Leo!" or "It's soft!"
+3. (No response) Child stares at the screen or touches the toy lion.
 
 **AI follow-up:**
 
-1. (amazed) "WOW! So loud! Real lion roar!"
-2. (warm, delighted) "Your lion! Big roar inside!"
-3. (wait 2s) (playful whisper) "Psst... can you say RRRR?"
+1. (amazed) "WOW! So loud! I think some jungle friends heard that roar. They want MORE! Want to put on a BIG show?"
+2. (warm, excited) "Your lion! So fuzzy! I bet it has a big roar hiding inside. Want to help it do a BIG show? Some silly judges want to hear it!"
+3. (wait 2s) (playful whisper) "Psst... I think your lion wants to say RRRR! Can you help? Some jungle friends are waiting!"
 
-**Screen:** Lion photo centered with warm golden sparkles and soft savanna-grass illustration framing the edges.
+**Screen:** Lion photo centered with golden savanna-grass framing, soft sparkles around the mane, and three small animal silhouettes (parrot, monkey, elephant) peeking in from the right edge.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, conspiratorial) "You hear lion talk! Roar Reporter time! I tell story. You roar back."
-
-**AI demos:** (modeling) "Lion sees food! RRRR! 'Yummy!' Your turn!"
+**AI says:** (excited announcer) "Welcome to the Jungle Talent Show! Three judges here! Parrot... Monkey... and big Elephant! They want YOUR lion roar! I tell you HOW to roar. You roar! Judges go CRAZY! Watch — lion says HELLO! RRRR! Ohhh! Parrot fell off the branch! Ha! Your turn now!"
 
 **Child responses:**
 
-1. (Ideal) "OK!" or child giggles and nods.
-2. (Unexpected) Child roars immediately "RRRR!"
-3. (No response) Child watches quietly.
+1. (Ideal) Child laughs, says "OK!" or roars "RRRR!" eagerly.
+2. (Unexpected) "What's a judge?" or "I want monkey!" or child giggles.
+3. (No response) Child watches quietly with interest.
 
 **AI follow-up:**
 
-1. (cheering) "Let's go! First story!"
-2. (laughing) "Ha! Great roar! First story now!"
-3. (wait 2s) (encouraging) "Ready? Here comes a story for lion!"
+1. (cheering) "YES! Here comes Round One! Judges are ready! Parrot is on her branch. Monkey has popcorn. Elephant has big ears open. Let's GO!"
+2. (warm, playful) "Judges are silly friends watching the show! Monkey loves it! Ready? You roar, judges go WOW! Here comes Round One!"
+3. (wait 2s) (encouraging) "It's easy! Just roar when I say! Judges love EVERY roar! Ready? Here comes the first one!"
 
-**Screen:** "Roar Reporter" badge and microphone icon above the lion photo with a speech-bubble animation near the lion's mouth.
+**Screen:** "JUNGLE TALENT SHOW" banner in jungle-leaf lettering; lion photo on a small stage at center-left; three cartoon judge characters (parrot on branch, monkey with popcorn, elephant with big ears) on the right; "Round 1" star badge in corner.
 
 #### Step 3: Multi-Round Interaction
 
-**Round 1 — "Lion is Happy":**
+**Round 1 — "The Happy Hello Roar":**
 
-**AI says:** (bright storytelling) "Warm sun! Happy lion! What says lion?"
+**AI says:** (bright announcer) "Round One! Sun is up! Lion is happy! Show the judges your HAPPIEST roar! Ready? GO!"
 
 **Child responses:**
 
-1. (Ideal) "RRRR!" or "Rawr!" or "He says yay!"
-2. (Unexpected) "He's sleeping!" or unrelated response.
-3. (No response) Child is quiet.
+1. (Ideal) "RRRR!" or "RAWR!" or "Hiiiii!" — child roars or shouts happily.
+2. (Unexpected) "Meow!" or a silly sound, or "I'm a cat!"
+3. (No response) Child is quiet or shy.
 
 **AI follow-up:**
 
-1. (celebrating) "Yes! Happy RRRR! Warm sun makes soft roar!"
-2. (validating) "Sleepy lion! Tiny purr. Warm sun feels cozy."
-3. (wait 2s) (gentle prompt) "Maybe a little roar? Rrrr? The sun feels warm and fuzzy!"
+1. (audience goes wild) "OHHH! Parrot fell off the branch — AGAIN! Monkey is jumping up and down! Elephant flapped his ears SO hard the popcorn flew! They LOVED that happy roar! BIG gold star!"
+2. (delighted, laughing) "Meow?! Ha! The judges LOVE surprises! Parrot is giggling so hard she's spinning! Monkey says 'Do it again!' Even the elephant is smiling! Gold star for the surprise sound!"
+3. (wait 2s) (gentle) "Even a tiny roar counts! Try a little one... rrrr? The judges are waiting with their big silly faces!"
 
-**Screen:** Lion photo with bright yellow sun animation above; warm rays pulse gently; golden musical notes float up when the child responds.
+**Screen:** Stage spotlight on lion photo with golden sun animation; parrot tumbles off branch, monkey bounces with popcorn flying, elephant flaps ears; gold star stamps in the score area.
 
-**Round 2 — "Lion Sees a Friend":** Lion spots a friend far away; the child roars or speaks a big hello for the lion. AI reveals the roar means "I'm here! Come play!"
+**Round 2 — "The Sleepy Lullaby Roar":** Night time! Moon is out. Child does a soft, sleepy roar like a lullaby. The judges' eyes droop, monkey yawns, elephant sways — the whole audience almost falls asleep. Second gold star.
+
+**Round 3 — "The SURPRISE Whisper-Roar!" (Twist Challenge):** SURPRISE CHALLENGE — the judges dare the lion to do the tiniest, quietest whisper-roar ever. "Nobody thinks you can do it!" All three judges lean in close. When the child whispers, the crowd ERUPTS — monkey backflips, parrot screeches "ENCORE!", elephant stomps so hard the jungle shakes. Third gold star.
 
 #### Step 4: Celebration
 
-**AI says:** (proud, warm celebration) "You did it! Best Roar Reporter! You told lion story!"
+**AI says:** (announcer crescendo) "Three rounds! Three gold stars! ALL the judges are standing up! Parrot flying in circles — 'BRAVO! BRAVO!' Monkey throwing popcorn like confetti! Elephant TRUMPETING so loud the trees are shaking! STANDING OVATION! You are the ROAR STAR!"
 
 **Child responses:**
 
-1. (Ideal) Child giggles, roars again, or says "I did it!"
-2. (Unexpected) Child asks "Again?" or wants to keep playing.
-3. (No response) Child smiles or watches.
+1. (Ideal) Child roars triumphantly, giggles, claps, or says "Yay! I did it!"
+2. (Unexpected) "Again! More!" or "Encore!"
+3. (No response) Child beams or watches the celebration animation with delight.
 
 **AI follow-up:**
 
-1. (beaming) "Best reporter! Every roar talked!"
-2. (warm) "Love roaring? Roar again later!"
-3. (gentle celebration) "Look at your badge! Roar Reporter — that's you!"
+1. (overjoyed) "The BEST Roar Star the jungle has EVER seen! Every judge says you win! Parrot wants your autograph!"
+2. (thrilled) "ENCORE? The judges are SO happy! They say 'come back anytime!' You can roar for them again another day, Roar Star!"
+3. (wait 2s) (warm) "Look at that big smile! The judges see it too. Parrot says 'That smile is the best encore!' You are a real Roar Star!"
 
-**Screen:** Golden "Roar Reporter" badge with lion-head icon, confetti sparkles, and celebration chime.
+**Screen:** Full celebration — confetti rain, parrot spiraling with rainbow sparkles, monkey throwing popcorn confetti, elephant raising trunk with golden trumpet-blast rays; large golden "ROAR STAR" badge descends with lion photo framed inside, three gold stars underneath.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "Roars do jobs. That's Function! Things happen first. That's Causation!"
+**AI says:** (warm, reflective) "Wow, Roar Star. One lion, SO many roars! Happy roar, sleepy roar, whisper roar — every one different! Same lion, different feelings. That's Perspective! And the big mane, loud voice, fuzzy shape — that's what makes a lion a lion. That's Form! You are the Roar Star of the Jungle Talent Show!"
 
 **Child responses:**
 
-1. (Ideal) Child smiles, roars, or says "Bye lion!"
-2. (Unexpected) Child asks a question about lions.
-3. (No response) Child watches the screen.
+1. (Ideal) Child roars one more time, says "Bye lion!" or "I'm a Roar Star!"
+2. (Unexpected) "What's perspective?" or "I want to be a monkey!"
+3. (No response) Child watches the screen, content.
 
 **AI follow-up:**
 
-1. (warm closing) "Bye bye, lion! RRRR means 'see you later!'"
-2. (encouraging) "Great question! Take more lion photos!"
-3. (soft, closing) "RRRR! That's lion saying thank you. Bye bye, Roar Reporter!"
+1. (warm, proud) "RRRR! That's lion saying 'Thank you, Roar Star!' Bye bye! The judges are waving!"
+2. (warm, simple) "Perspective means same lion, different roars — that's what YOU showed! Monkeys are fun too — maybe next time! Bye, Roar Star!"
+3. (wait 2s) (soft, closing) "The judges are waving goodbye. Parrot says 'See you next time!' Bye bye, Roar Star. RRRR!"
 
-**Screen:** Lion photo at center with "Function" (speech-bubble icon) and "Causation" (sun-and-arrow icon) in artistic lettering; Roar Reporter badge in the corner; soft golden glow fades to closing.
+**Screen:** Lion photo at center with "Perspective" (speech-bubble icon) and "Form" (lion-silhouette icon) in jungle-leaf lettering; "ROAR STAR" badge with three gold stars in the corner; three judges waving; warm golden savanna sunset fade.
