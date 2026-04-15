@@ -24,3 +24,6 @@ temp/
 docs/_build/
 
 data
+
+.claude/worktrees/
+.superpowers/
