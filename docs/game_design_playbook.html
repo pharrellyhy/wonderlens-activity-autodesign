@@ -1,0 +1,2533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WonderLens Game Design Playbook</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&display=swap');
+
+    :root {
+      --bg: #FAFAF8;
+      --bg-sidebar: #F0EFEB;
+      --bg-card: #FFFFFF;
+      --bg-code: #F5F4F0;
+      --bg-highlight: #FFF8E1;
+      --text: #1A1A18;
+      --text-secondary: #6B6B63;
+      --text-muted: #9B9B91;
+      --border: #E2E1DB;
+      --border-active: #C5A55A;
+      --accent: #C5A55A;
+      --accent-soft: #F5EDDA;
+      --accent-hover: #B3933E;
+      --pillar-mystery: #5B6ABF;
+      --pillar-creation: #D4793A;
+      --pillar-performance: #C94B5E;
+      --pillar-discovery: #3A9B7A;
+      --pillar-adventure: #7B5EA7;
+      --pillar-nurture: #4A8FBF;
+      --pass: #3A9B7A;
+      --fail: #C94B5E;
+      --tier-a: #3A9B7A;
+      --tier-b: #5B6ABF;
+      --tier-p: #D4793A;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+      --sidebar-w: 280px;
+      --font-body: 'DM Sans', sans-serif;
+      --font-display: 'Fraunces', serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #18181B;
+      --bg-sidebar: #1E1E22;
+      --bg-card: #232328;
+      --bg-code: #2A2A30;
+      --bg-highlight: #2E2A1E;
+      --text: #E8E8E2;
+      --text-secondary: #A0A098;
+      --text-muted: #6B6B63;
+      --border: #3A3A40;
+      --border-active: #C5A55A;
+      --accent: #D4B86A;
+      --accent-soft: #3A3425;
+      --accent-hover: #E0C87A;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 24px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      z-index: 100;
+      padding: 24px 0;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .sidebar-header {
+      padding: 0 20px 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .sidebar-header h1 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .sidebar-header .subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .sidebar-controls {
+      display: flex;
+      gap: 8px;
+      padding: 0 20px;
+      margin-bottom: 16px;
+    }
+
+    .search-box {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 8px 12px 8px 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+
+    .search-box::before {
+      content: '⌕';
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .theme-toggle {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .toc {
+      list-style: none;
+      padding: 0 12px;
+    }
+
+    .toc li {
+      margin: 1px 0;
+    }
+
+    .toc a {
+      display: block;
+      padding: 6px 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      border-radius: 5px;
+      transition: all 0.15s;
+      line-height: 1.35;
+    }
+
+    .toc a:hover {
+      color: var(--text);
+      background: var(--accent-soft);
+    }
+
+    .toc a.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-weight: 500;
+    }
+
+    .toc .sub {
+      padding-left: 24px;
+      font-size: 12px;
+    }
+
+    /* ─── MOBILE TOGGLE ─── */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 200;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 20px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .main {
+      margin-left: var(--sidebar-w);
+      max-width: 1100px;
+      padding: 40px 48px 80px;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section {
+      margin-bottom: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 1px solid transparent;
+      transition: background 0.15s;
+    }
+
+    .section-header:hover {
+      background: var(--accent-soft);
+    }
+
+    .section.open>.section-header {
+      border-bottom-color: var(--border);
+    }
+
+    .section-number {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .section-chevron {
+      color: var(--text-muted);
+      font-size: 18px;
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+
+    .section.open>.section-header .section-chevron {
+      transform: rotate(90deg);
+    }
+
+    .section-body {
+      display: none;
+      padding: 24px;
+    }
+
+    .section.open>.section-body {
+      display: block;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    .section-body h3 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      margin: 28px 0 12px;
+      color: var(--text);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .section-body h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 20px 0 8px;
+      color: var(--text);
+    }
+
+    .section-body p {
+      margin: 8px 0;
+      color: var(--text);
+    }
+
+    .section-body strong {
+      font-weight: 600;
+    }
+
+    .section-body ul,
+    .section-body ol {
+      margin: 8px 0 8px 20px;
+      color: var(--text);
+    }
+
+    .section-body li {
+      margin: 4px 0;
+    }
+
+    /* ─── TABLES ─── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--bg-code);
+      border-bottom: 2px solid var(--border);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ─── PILLAR BADGES ─── */
+    .pillar {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .pillar-mystery {
+      background: #ECEDF8;
+      color: var(--pillar-mystery);
+    }
+
+    .pillar-creation {
+      background: #FBEEE2;
+      color: var(--pillar-creation);
+    }
+
+    .pillar-performance {
+      background: #F8E3E7;
+      color: var(--pillar-performance);
+    }
+
+    .pillar-discovery {
+      background: #E1F2EC;
+      color: var(--pillar-discovery);
+    }
+
+    .pillar-adventure {
+      background: #EDE7F4;
+      color: var(--pillar-adventure);
+    }
+
+    .pillar-nurture {
+      background: #E2EDF5;
+      color: var(--pillar-nurture);
+    }
+
+    [data-theme="dark"] .pillar-mystery {
+      background: #2A2D4A;
+    }
+
+    [data-theme="dark"] .pillar-creation {
+      background: #3A2A1E;
+    }
+
+    [data-theme="dark"] .pillar-performance {
+      background: #3A2228;
+    }
+
+    [data-theme="dark"] .pillar-discovery {
+      background: #1E3A2E;
+    }
+
+    [data-theme="dark"] .pillar-adventure {
+      background: #2E2540;
+    }
+
+    [data-theme="dark"] .pillar-nurture {
+      background: #1E2E3A;
+    }
+
+    /* ─── TIER BADGES ─── */
+    .tier {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    .tier-a {
+      background: #E1F2EC;
+      color: var(--tier-a);
+    }
+
+    .tier-b {
+      background: #ECEDF8;
+      color: var(--tier-b);
+    }
+
+    .tier-p {
+      background: #FBEEE2;
+      color: var(--tier-p);
+    }
+
+    [data-theme="dark"] .tier-a {
+      background: #1E3A2E;
+    }
+
+    [data-theme="dark"] .tier-b {
+      background: #2A2D4A;
+    }
+
+    [data-theme="dark"] .tier-p {
+      background: #3A2A1E;
+    }
+
+    /* ─── CODE BLOCKS ─── */
+    code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: var(--bg-code);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent);
+    }
+
+    pre {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      margin: 12px 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+
+    /* ─── PASS/FAIL ─── */
+    .pass {
+      color: var(--pass);
+      font-weight: 600;
+    }
+
+    .fail {
+      color: var(--fail);
+      font-weight: 600;
+    }
+
+    /* ─── CALLOUT ─── */
+    .callout {
+      background: var(--bg-highlight);
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    /* ─── FLOW DIAGRAM ─── */
+    .flow {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px;
+      margin: 12px 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.7;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    /* ─── CHECKLIST ─── */
+    .checklist {
+      list-style: none;
+      margin: 8px 0;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 6px 0 6px 28px;
+      position: relative;
+      color: var(--text);
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+    }
+
+    /* ─── STATUS BADGES ─── */
+    .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
+    .status-done {
+      background: #E1F2EC;
+      color: var(--pass);
+    }
+
+    .status-wip {
+      background: #FFF3E0;
+      color: #E67E22;
+    }
+
+    .status-planned {
+      background: #ECEDF8;
+      color: var(--pillar-mystery);
+    }
+
+    [data-theme="dark"] .status-done {
+      background: #1E3A2E;
+    }
+
+    [data-theme="dark"] .status-wip {
+      background: #3A2E1E;
+    }
+
+    [data-theme="dark"] .status-planned {
+      background: #2A2D4A;
+    }
+
+    .status-overview {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+
+    .status-overview h2 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .status-card {
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .status-card.done {
+      border-left: 3px solid var(--pass);
+    }
+
+    .status-card.wip {
+      border-left: 3px solid #E67E22;
+    }
+
+    .status-card.planned {
+      border-left: 3px solid var(--pillar-mystery);
+    }
+
+    .status-card .label {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .status-card .detail {
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    .status-card .files {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .section-files {
+      display: inline-block;
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 14px;
+      margin: 8px 0 0;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ─── EXAMPLE BLOCKS ─── */
+    .example-block {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    .example-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: var(--bg-code);
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border-bottom: 1px solid transparent;
+    }
+
+    .example-header:hover {
+      color: var(--text);
+    }
+
+    .example-block.open>.example-header {
+      border-bottom-color: var(--border);
+    }
+
+    .example-chevron {
+      font-size: 14px;
+      transition: transform 0.2s;
+      color: var(--text-muted);
+    }
+
+    .example-block.open>.example-header .example-chevron {
+      transform: rotate(90deg);
+    }
+
+    .example-body {
+      display: none;
+      padding: 20px;
+      font-size: 13px;
+      line-height: 1.6;
+      max-height: 700px;
+      overflow-y: auto;
+    }
+
+    .example-block.open>.example-body {
+      display: block;
+    }
+
+    .example-body h4 {
+      margin: 16px 0 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .example-body h4:first-child {
+      margin-top: 0;
+    }
+
+    .example-step {
+      margin: 10px 0;
+      padding: 10px 14px;
+      background: var(--bg);
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .example-step .step-label {
+      font-weight: 600;
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .example-step .ai {
+      color: var(--text);
+    }
+
+    .example-step .responses {
+      color: var(--text-secondary);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .example-step .screen {
+      color: var(--text-muted);
+      font-size: 12px;
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    .example-meta {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 12px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .example-meta dt {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .example-meta dd {
+      color: var(--text);
+    }
+
+    /* ─── SEARCH HIGHLIGHT ─── */
+    mark {
+      background: var(--accent);
+      color: #fff;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+        box-shadow: var(--shadow-md);
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 60px 20px 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')"
+    aria-label="Menu">☰</button>
+
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <h1>WonderLens<br>Game Playbook</h1>
+      <div class="subtitle">Design Reference</div>
+    </div>
+    <div class="sidebar-controls">
+      <div class="search-box">
+        <input type="text" id="search" placeholder="Search…" autocomplete="off">
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark mode">◐</button>
+    </div>
+    <ul class="toc" id="toc">
+      <li><a href="#status" style="font-weight:600;color:var(--accent)">Project Status</a></li>
+      <li><a href="#s1">1. How Games Fit in WonderLens</a></li>
+      <li><a href="#s2">2. Experience Pillars × Styles</a></li>
+      <li><a href="#s3">3. Game Types: What to Build</a></li>
+      <li><a href="#s3a" class="sub">3A. Entity Gold Standards</a></li>
+      <li><a href="#s3b" class="sub">3B. Property-Bridge Templates</a></li>
+      <li><a href="#s3c" class="sub">3C. Constellation-Adapted</a></li>
+      <li><a href="#s4">4. Design: Entity Gold Standard</a></li>
+      <li><a href="#s5">5. Design: Property-Bridge</a></li>
+      <li><a href="#s6">6. Quality Rubric (10 Dim)</a></li>
+      <li><a href="#s7">7. Game Selection Pipeline</a></li>
+      <li><a href="#s8">8. Automated Pipeline</a></li>
+      <li><a href="#s9">9. Expanding Inventory</a></li>
+      <li><a href="#s10">10. V1 Constraints</a></li>
+      <li><a href="#s11">11. File Structure & Naming</a></li>
+      <li><a href="#s12">12. Quick Checklists</a></li>
+      <li><a href="#s13">13. Reference Files</a></li>
+    </ul>
+  </nav>
+
+  <main class="main" id="content">
+
+    <!-- ═══ PROJECT STATUS ═══ -->
+    <div class="status-overview" id="status">
+      <h2>Project Status Overview</h2>
+      <p style="color:var(--text-secondary);font-size:14px;margin-bottom:16px;line-height:1.6">
+        The WonderLens Game Design system is being built in phases. This overview tracks what has been completed, what
+        is being worked on next, and what is planned for later. Each card links to the source files where the detailed
+        implementation or spec lives.
+      </p>
+      <p style="margin-bottom:16px;font-size:13px">
+        <span class="status status-done" style="margin-left:0">DONE</span> Spec and/or implementation complete — ready
+        to use.
+        &nbsp;&nbsp;<span class="status status-wip">NEXT UP</span> Design complete, implementation is the next priority.
+        &nbsp;&nbsp;<span class="status status-planned">PLANNED</span> Designed but not yet started — deferred behind
+        higher-priority work.
+      </p>
+      <div class="status-grid">
+        <div class="status-card done">
+          <div class="label">Infrastructure</div>
+          <div class="detail">The core reference files that define how games are structured — the style taxonomy (12
+            game styles organized under 6 emotional pillars), the templates designers fill in, the quality rubric, and
+            the automated generation workflow. These are the "rules of the game" for building games.</div>
+          <div class="files">docs/game_styles.md · templates.md · program.md · run.md</div>
+        </div>
+        <div class="status-card done">
+          <div class="label">12 Entity Gold Standards</div>
+          <div class="detail">Hand-crafted exemplar games — one for each of the 12 game styles. Each is designed for a
+            specific entity (e.g., lion, banana, teddy bear) and serves as the quality bar that all other games are
+            measured against. These are the "best possible" versions of each game type.</div>
+          <div class="files">designs/cat1/*_gold_*.md · designs/cat5/*_gold_*.md</div>
+        </div>
+        <div class="status-card done">
+          <div class="label">18 Property-Bridge Templates</div>
+          <div class="detail">Reusable game templates that work for ANY entity based on a detected visual property
+            (e.g., "this thing is round" → launch a shape-finding game). Unlike gold standards which are designed for
+            one entity, each property-bridge template serves hundreds of entities. 12 outdoor + 6 indoor templates
+            covering all styles.</div>
+          <div class="files">designs/cat5/*_property_gold_*.md · designs/cat1/*_property_gold_*.md</div>
+        </div>
+        <div class="status-card done">
+          <div class="label">Style Recommender Spec</div>
+          <div class="detail">The design for the system that decides WHICH game to play for a given entity. When a child
+            photographs something, this system analyzes the conversation context, matches the entity to the best game
+            style, and finds the most compatible existing game to reuse or adapt.</div>
+          <div class="files">docs/plans/2026-04-01-style-recommender.md</div>
+        </div>
+        <div class="status-card done">
+          <div class="label">Entity Bridging Spec</div>
+          <div class="detail">The design for handling entities that have NO pre-built game. Three fallback layers: (1)
+            bridge to a similar entity's game through natural conversation, (2) detect a visual property and use a
+            property-bridge template, (3) end with a rich conversation instead of a bad game.</div>
+          <div class="files">docs/plans/2026-04-08-entity-bridging.md</div>
+        </div>
+        <div class="status-card done">
+          <div class="label">10-Dimension Rubric</div>
+          <div class="detail">The quality checklist every game must pass before shipping. 10 dimensions covering
+            technical limits, emotional hooks, edge cases, IB curriculum alignment, age-appropriate language, dialogue
+            quality, screen design, entity grounding, genuine fun ("Game Feel"), and emotional identity ("Pillar
+            Fidelity").</div>
+          <div class="files">program.md (§Phase 3 rubric)</div>
+        </div>
+        <div class="status-card wip">
+          <div class="label">Implementation Prompts (Track C)</div>
+          <div class="detail">The actual LLM prompts that power the Style Recommender and Entity Bridging at runtime.
+            These are the "instructions" the AI follows when deciding which game to play and how to bridge between
+            entities. Currently designed but not yet written as prompt files.</div>
+          <div class="files">prompts/stage1_conversation_analyzer.md · prompts/stage2_style_matcher.md ·
+            constellation_map.yaml · conversation_bridge.md §5</div>
+        </div>
+        <div class="status-card planned">
+          <div class="label">Legacy Design Rewrite (Phase 2)</div>
+          <div class="detail">~25 games created under the old 6-style system need to be rewritten into the new 12-style
+            pillar system. Paused — the 12 gold standards + 18 property-bridge templates already provide a working game
+            library for launch.</div>
+        </div>
+        <div class="status-card planned">
+          <div class="label">Constellation Map Population</div>
+          <div class="detail">Building a lookup table that maps common entities children photograph (cats, dogs, toys,
+            household items) to existing gold standard games they can reuse. This is the cheapest way to expand game
+            coverage — no new game design needed, just mapping.</div>
+        </div>
+        <div class="status-card planned">
+          <div class="label">Cleanup (Phase 3)</div>
+          <div class="detail">Housekeeping — archive old-format files, update handoff documentation, rebuild the
+            concatenated design document for the full game library.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 1 ═══ -->
+    <div class="section open" id="s1">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">1</span>
+        <span class="section-title">How Games Fit in WonderLens</span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="flow">Child photographs entity → Entity recognition → Multi-turn conversation (5-15 turns)
+          → Game selection → Game plays (3-5 minutes)</div>
+
+        <h3>Two Game Categories</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Category</th>
+              <th>Setting</th>
+              <th>What happens</th>
+              <th>Duration</th>
+            </tr>
+            <tr>
+              <td><strong>Cat1</strong></td>
+              <td>Indoor, in-device</td>
+              <td>Child talks with AI about their photographed entity through a game mechanic</td>
+              <td>3-5 min</td>
+            </tr>
+            <tr>
+              <td><strong>Cat5</strong></td>
+              <td>Outdoor, out-of-device</td>
+              <td>Child physically explores, finds items, photographs them, AI reacts per game mechanic</td>
+              <td>5-8 min</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>How a Child Gets a Game</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Tier</th>
+              <th>When</th>
+              <th>Quality</th>
+              <th>Source</th>
+            </tr>
+            <tr>
+              <td><span class="tier tier-a">Tier A</span></td>
+              <td>Entity has its own gold standard game</td>
+              <td>10/10</td>
+              <td>Gold standard files</td>
+            </tr>
+            <tr>
+              <td><span class="tier tier-b">Tier B</span></td>
+              <td>Entity matches a constellation → adapted gold standard</td>
+              <td>8/10</td>
+              <td>Gold standard + adaptation</td>
+            </tr>
+            <tr>
+              <td><span class="tier tier-p">Tier P</span></td>
+              <td>Entity has a detectable property → property-bridge game</td>
+              <td>7-8/10</td>
+              <td>Property-bridge templates</td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td>No match → rich conversation ending</td>
+              <td>N/A</td>
+              <td>Conversation-only mode</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 2 ═══ -->
+    <div class="section" id="s2">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">2</span>
+        <span class="section-title">The 6 Experience Pillars × 12 Game Styles <span
+            class="status status-done">DONE</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">Source: <code>docs/game_styles.md</code> ·
+          <code>docs/plans/experience-pillars-redesign.md</code>
+        </div>
+        <p>Every game belongs to one pillar. The pillar determines the child's <strong>emotional experience</strong>.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Pillar</th>
+              <th>Child feels…</th>
+              <th>Magic moment</th>
+              <th>Cat1 Style</th>
+              <th>Cat5 Style</th>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-mystery">Mystery</span></td>
+              <td>"I figured it out!"</td>
+              <td>Hidden truth revealed</td>
+              <td><code>mystery_lens</code></td>
+              <td><code>mystery_trail</code></td>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-creation">Creation</span></td>
+              <td>"I made this!"</td>
+              <td>Invention unveiled</td>
+              <td><code>inventor_workshop</code></td>
+              <td><code>mix_lab</code></td>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-performance">Performance</span></td>
+              <td>"They loved it!"</td>
+              <td>Audience ovation</td>
+              <td><code>voice_stage</code></td>
+              <td><code>ensemble_show</code></td>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>"Was I right?!"</td>
+              <td>Prediction meets reality</td>
+              <td><code>prediction_lab</code></td>
+              <td><code>field_experiment</code></td>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>"Look how far we went!"</td>
+              <td>Whole journey visible</td>
+              <td><code>time_traveler</code></td>
+              <td><code>quest_collector</code></td>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-nurture">Nurture</span></td>
+              <td>"I helped!"</td>
+              <td>Visible transformation</td>
+              <td><code>care_station</code></td>
+              <td><code>rescue_team</code></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>How to Choose a Pillar</h3>
+        <p>Ask: <em>"After 3 minutes of play, how should the child FEEL?"</em></p>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>If you want the child to feel…</th>
+              <th>Choose</th>
+              <th>The game should have…</th>
+            </tr>
+            <tr>
+              <td>Clever, like a detective</td>
+              <td><span class="pillar pillar-mystery">Mystery</span></td>
+              <td>Hidden information, progressive clues, "aha!" reveal</td>
+            </tr>
+            <tr>
+              <td>Proud of something they made</td>
+              <td><span class="pillar pillar-creation">Creation</span></td>
+              <td>Open-ended building, snowballing modifications, "ta-da!" moment</td>
+            </tr>
+            <tr>
+              <td>Like a star on stage</td>
+              <td><span class="pillar pillar-performance">Performance</span></td>
+              <td>Expressive challenges, audience reactions, standing ovation</td>
+            </tr>
+            <tr>
+              <td>Like a scientist who tested an idea</td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>Predictions with stakes, real data, "was I right?!" moment</td>
+            </tr>
+            <tr>
+              <td>Like they went on a journey</td>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>Progress, choices, visible journey at the end</td>
+            </tr>
+            <tr>
+              <td>Like they truly helped</td>
+              <td><span class="pillar pillar-nurture">Nurture</span></td>
+              <td>Visible needs, care solutions, transformation you can see</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 3 ═══ -->
+    <div class="section" id="s3">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">3</span>
+        <span class="section-title">Game Types: What to Build <span class="status status-done">DONE</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+
+        <div class="section-files">Source: <code>designs/cat1/*_gold_*.md</code> · <code>designs/cat5/*_gold_*.md</code>
+          · <code>designs/cat1/*_property_gold_*.md</code> · <code>designs/cat5/*_property_gold_*.md</code></div>
+
+        <h3 id="s3a">3A. Entity Gold Standards <span class="tier tier-a">Tier A</span></h3>
+        <p><strong>What</strong>: A game designed for a <strong>specific entity</strong> (e.g., lion, banana,
+          playground).</p>
+        <p><strong>When to create</strong>: When an entity is in the IB mind map AND is common enough to justify a
+          hand-designed game.</p>
+        <p><strong>Quality</strong>: Highest (10/10). These are the exemplars.</p>
+        <p><strong>Current inventory</strong>: 12 gold standards (1 per style)</p>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Style</th>
+              <th>Entity</th>
+              <th>Cat</th>
+              <th>Activity Name</th>
+            </tr>
+            <tr>
+              <td><code>mystery_lens</code></td>
+              <td>toy_robot</td>
+              <td>1</td>
+              <td>Robot Inspector</td>
+            </tr>
+            <tr>
+              <td><code>mystery_trail</code></td>
+              <td>butterfly</td>
+              <td>5</td>
+              <td>The Butterfly World Detectives</td>
+            </tr>
+            <tr>
+              <td><code>inventor_workshop</code></td>
+              <td>rubber_duck</td>
+              <td>1</td>
+              <td>Super Duck Workshop</td>
+            </tr>
+            <tr>
+              <td><code>mix_lab</code></td>
+              <td>rock</td>
+              <td>5</td>
+              <td>Nature Inventor's Lab</td>
+            </tr>
+            <tr>
+              <td><code>voice_stage</code></td>
+              <td>lion</td>
+              <td>1</td>
+              <td>The Lion's Big Show</td>
+            </tr>
+            <tr>
+              <td><code>ensemble_show</code></td>
+              <td>bird</td>
+              <td>5</td>
+              <td>The Nature Orchestra</td>
+            </tr>
+            <tr>
+              <td><code>prediction_lab</code></td>
+              <td>goldfish</td>
+              <td>1</td>
+              <td>Goldfish Scientist</td>
+            </tr>
+            <tr>
+              <td><code>field_experiment</code></td>
+              <td>playground</td>
+              <td>5</td>
+              <td>The Playground Material Detective</td>
+            </tr>
+            <tr>
+              <td><code>time_traveler</code></td>
+              <td>banana</td>
+              <td>1</td>
+              <td>The Banana Time Machine</td>
+            </tr>
+            <tr>
+              <td><code>quest_collector</code></td>
+              <td>dandelion</td>
+              <td>5</td>
+              <td>Dandelion Quest</td>
+            </tr>
+            <tr>
+              <td><code>care_station</code></td>
+              <td>teddy_bear</td>
+              <td>1</td>
+              <td>Teddy's Care Station</td>
+            </tr>
+            <tr>
+              <td><code>rescue_team</code></td>
+              <td>flower</td>
+              <td>5</td>
+              <td>The Garden Rescue Squad</td>
+            </tr>
+          </table>
+        </div>
+        <p><strong>Files</strong>: <code>designs/cat{N}/{entity}_cat{N}_gold_spec.md</code> + <code>_gold_prod.md</code>
+        </p>
+
+        <p style="color:var(--text-secondary);font-size:13px;margin:12px 0 4px">Click to expand full examples of what a gold standard game looks like:</p>
+
+        <div class="example-block" onclick="toggleExample(event,this)">
+          <div class="example-header">
+            <span class="example-chevron">›</span>
+            <span>Cat1 Example: Robot Inspector (Toy Robot)</span>
+            <span class="pillar pillar-mystery" style="margin-left:auto">Mystery</span>
+            <code style="font-size:11px">mystery_lens</code>
+          </div>
+          <div class="example-body">
+            <p style="color:var(--text-secondary);font-size:12px;margin-bottom:8px">Full file: <code>designs/cat1/toy_robot_cat1_gold_spec.md</code> (197 lines) — below is a visual walkthrough of the key sections.</p>
+            <dl class="example-meta">
+              <dt>Entity</dt><dd>Toy robot</dd>
+              <dt>Tier</dt><dd>T1 (ages 4–6)</dd>
+              <dt>Pillar</dt><dd>Mystery — "I figured it out!"</dd>
+              <dt>IB Concepts</dt><dd>Form (what it looks like), Function (what it does)</dd>
+              <dt>Magic Moment</dt><dd>Each "Found it!" reveal + cumulative "every part SOLVED!"</dd>
+              <dt>Child's Role</dt><dd>Chief Robot Inspector</dd>
+            </dl>
+            <p><strong>How it works:</strong> AI secretly picks a detail on the child's own robot photo and feeds progressive clues — shape, function, location. The child looks at their photo and deduces which part. 3-4 rounds of escalating difficulty.</p>
+
+            <div class="example-step">
+              <div class="step-label">Step 1 — Emotional Hook</div>
+              <div class="ai"><strong>AI:</strong> <em>(amazed)</em> "Whoa, look at this robot! It has SO many cool parts — I see wheels, buttons, a pointy antenna... If your robot could talk, what do you think it would say?"</div>
+              <div class="responses"><strong>3 branches:</strong> Ideal → "Beep boop!" / Unexpected → "It has red eyes!" / Silence → wait 2s, whisper prompt</div>
+              <div class="screen"><strong>Screen:</strong> Robot photo centered with glowing pulse. Gear-shaped sparkles around edges.</div>
+            </div>
+
+            <div class="example-step">
+              <div class="step-label">Step 2 — Game Setup + Demo</div>
+              <div class="ai"><strong>AI:</strong> "I'm going to think of ONE secret part. I give clues, you guess! Watch — something round... helps your robot move... The WHEELS! Now let's play for REAL. Can you figure it out before my third clue?"</div>
+              <div class="screen"><strong>Screen:</strong> Robot photo left, "ROBOT INSPECTOR" magnifying glass right, demo animation, "Case 1" badge.</div>
+            </div>
+
+            <div class="example-step">
+              <div class="step-label">Round 1 — The Antenna <span style="color:var(--text-muted)">(easy — build confidence)</span></div>
+              <div class="ai"><strong>AI:</strong> <em>(mysterious)</em> "Case one! It is thin and pointy — like a tiny stick poking up!"</div>
+              <div class="responses"><strong>Ideal:</strong> "The antenna!" → "You GOT it on the FIRST clue! It picks up signals — like a tiny ear listening to the sky!"<br><strong>Wrong:</strong> "The arm!" → Clue 2: "It sticks UP from the very top of the head. Like a flag pole!"<br><strong>Silence:</strong> → "Look at the very TIP TOP of your robot..."</div>
+            </div>
+
+            <div class="example-step">
+              <div class="step-label">Round 2 — The Button <span style="color:var(--text-muted)">(introduces function)</span></div>
+              <div class="ai"><strong>AI:</strong> "Something small and round... and you can PUSH it with your finger!"</div>
+              <div class="responses"><strong>Ideal:</strong> "A button!" → "Buttons are like tiny commands!" · <strong>Wrong (eyes):</strong> → "You can push it IN, like a doorbell..."</div>
+            </div>
+
+            <div class="example-step">
+              <div class="step-label">Round 3 — The Joint <span style="color:var(--text-muted)">(tricky — hidden part)</span></div>
+              <div class="ai"><strong>AI:</strong> <em>(whisper)</em> "This one is sneaky! Hidden where two pieces CONNECT... it helps your robot BEND."</div>
+              <div class="responses"><strong>Ideal:</strong> "The bendy part!" → "Without joints, your robot would be stiff like a stick!" · <strong>Names limb:</strong> → "Look WHERE the arm bends..."</div>
+            </div>
+
+            <div class="example-step" style="border-left-color:var(--pass)">
+              <div class="step-label" style="color:var(--pass)">Step 4 — Magic Moment</div>
+              <div class="ai"><strong>AI:</strong> <em>(building excitement)</em> "Chief Inspector... you inspected the antenna — the signal-catcher! The button — the commander! The sneaky joint — the bendy connector! Every single part — SOLVED! You are officially the CHIEF ROBOT INSPECTOR!"</div>
+              <div class="screen"><strong>Screen:</strong> Golden "CHIEF ROBOT INSPECTOR" badge. Solved part icons orbit with checkmarks. Confetti burst.</div>
+            </div>
+
+            <div class="example-step">
+              <div class="step-label">Step 5 — IB Closing</div>
+              <div class="ai"><strong>AI:</strong> "You noticed what each part LOOKS like — that's <strong>Form</strong>! You figured out what each part DOES — that's <strong>Function</strong>! You didn't just play with your robot. You INSPECTED it."</div>
+            </div>
+
+            <div class="table-wrap" style="margin-top:16px">
+            <table>
+              <tr><th>#</th><th>Dimension</th><th>Score</th><th>Why</th></tr>
+              <tr><td>D9</td><td>Game Feel</td><td><span class="pass">PASS</span></td><td>Genuine uncertainty before each reveal. "Can I guess before clue 3?" creates real stakes.</td></tr>
+              <tr><td>D10</td><td>Pillar Fidelity</td><td><span class="pass">PASS</span></td><td>Mystery: clues → deduction → aha! Could NOT be re-labeled to another pillar.</td></tr>
+            </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-block" onclick="toggleExample(event,this)">
+          <div class="example-header">
+            <span class="example-chevron">›</span>
+            <span>Cat5 Example: The Wish Puff Quest (Dandelion)</span>
+            <span class="pillar pillar-adventure" style="margin-left:auto">Adventure</span>
+            <code style="font-size:11px">quest_collector</code>
+          </div>
+          <div class="example-body">
+            <p style="color:var(--text-secondary);font-size:12px;margin-bottom:8px">Full file: <code>designs/cat5/dandelion_cat5_gold_spec.md</code> — below is a visual walkthrough of the key sections.</p>
+            <dl class="example-meta">
+              <dt>Entity</dt><dd>Dandelion puff ball</dd>
+              <dt>Tier</dt><dd>T1 (ages 4–6)</dd>
+              <dt>Pillar</dt><dd>Adventure — "Look how far we went!"</dd>
+              <dt>IB Concepts</dt><dd>Change (transformations over time), Connection (shared abilities)</dd>
+              <dt>Magic Moment</dt><dd>Quest complete — co-created wind adventure story with all characters</dd>
+              <dt>Child's Role</dt><dd>Wish Puff Scout</dd>
+              <dt>Quest Criterion</dt><dd>"Find 3 things that are ready to fly!"</dd>
+            </dl>
+            <p><strong>How it works:</strong> Child searches outdoors for items matching the quest criterion. Each find is evaluated ("Is it ready to fly?"), named by the child, and woven into a collaborative story at the end.</p>
+
+            <div class="example-step">
+              <div class="step-label">Step 1 — Emotional Hook</div>
+              <div class="ai"><strong>AI:</strong> <em>(breathless wonder)</em> "Ohhh — a dandelion puff! Look at all those tiny seeds — each one has its own little parachute! If the wind blows, they'll ALL fly away like tiny wishes. Have you ever watched them float?"</div>
+              <div class="responses"><strong>3 branches:</strong> Ideal → "Yes! They fly super far!" / Unexpected → "It's a flower!" / Silence → "See all those tiny white pieces? They're waiting for the wind..."</div>
+              <div class="screen"><strong>Screen:</strong> Dandelion photo with glowing halo, animated seed wisps floating upward, "Quest: 0 of 3"</div>
+            </div>
+
+            <div class="example-step">
+              <div class="step-label">Step 2 — Mission Briefing</div>
+              <div class="ai"><strong>AI:</strong> <em>(adventurous)</em> "You are a Wish Puff Scout! Mission: find 3 things that are READY TO FLY. Leaves that could blow away! Seeds that could float! For each one, tell me what it reminds you of — we'll give it a quest name!"</div>
+              <div class="screen"><strong>Screen:</strong> Mission card with "Wish Puff Scout" badge, 3 empty quest slots, wind compass.</div>
+            </div>
+
+            <div class="example-step">
+              <div class="step-label">Round 1 — Find + Evaluate + Name</div>
+              <div class="ai"><em>(Child photographs a thin leaf)</em><br><strong>AI:</strong> <em>(examining)</em> "A leaf! Look how thin and papery it is. If the wind blew right now... would it fly? <em>(dramatic pause)</em> ... YES! Thin and light — totally ready to fly! Quest item #1! What does it remind you of?"</div>
+              <div class="responses"><strong>Ideal:</strong> "A tiny boat!" → "Tiny Boat! Quest: 1 of 3!" · <strong>Unexpected:</strong> "It's green!" → "Perfect for flying! What should we call it?" · <strong>Silence:</strong> → "It reminds ME of a little wing..."</div>
+              <div class="screen"><strong>Screen:</strong> Leaf photo in quest slot 1. "READY TO FLY? YES!" stamp. Quest counter: 1 of 3.</div>
+            </div>
+
+            <div class="example-step">
+              <div class="step-label">Round 2 — Second Find</div>
+              <div class="ai"><em>(Child photographs a feather)</em><br><strong>AI:</strong> "A feather — light as air, floats on the smallest breeze — <em>(dramatic pause)</em> YES! Quest item #2! What does it remind you of?"</div>
+              <div class="responses">Child names it → "Quest: 2 of 3! One more!"</div>
+            </div>
+
+            <div class="example-step">
+              <div class="step-label">Round 3 — Final Find + Quest Complete!</div>
+              <div class="ai"><em>(Child photographs a maple seed)</em><br><strong>AI:</strong> "A maple spinner! It SPINS when it falls! Ready to fly? ... ABSOLUTELY! QUEST COMPLETE — 3 of 3!"</div>
+              <div class="screen"><strong>Screen:</strong> "QUEST COMPLETE!" banner, all 3 photos with character names, celebration animation.</div>
+            </div>
+
+            <div class="example-step" style="border-left-color:var(--pass)">
+              <div class="step-label" style="color:var(--pass)">Step 4 — Magic Moment: Wind Adventure Story</div>
+              <div class="ai"><strong>AI:</strong> <em>(storyteller voice)</em> "Now... Cloud Puff, Tiny Boat, and Maple Spinner are all together! A big gust of wind comes and WHOOOOSH — they all lift off! Cloud Puff leads the way, Tiny Boat catches an updraft..." → AI narrates a co-created adventure using the child's character names and details.</div>
+              <div class="screen"><strong>Screen:</strong> Wind adventure trail showing all characters on a journey path.</div>
+            </div>
+
+            <div class="example-step">
+              <div class="step-label">Step 5 — IB Closing</div>
+              <div class="ai"><strong>AI:</strong> "Your dandelion changed from a yellow flower to a flying puff — that's <strong>Change</strong>! And all your quest items can fly, just like the dandelion — that's <strong>Connection</strong>! You earned your Wind Quest Badge!"</div>
+              <div class="screen"><strong>Screen:</strong> Golden "Wind Quest Badge" with dandelion silhouette, character photos, "Change" and "Connection" concept words.</div>
+            </div>
+
+            <div class="table-wrap" style="margin-top:16px">
+            <table>
+              <tr><th>#</th><th>Dimension</th><th>Score</th><th>Why</th></tr>
+              <tr><td>D9</td><td>Game Feel</td><td><span class="pass">PASS</span></td><td>Quest criterion creates genuine stakes per find. "Ready to fly?" verdict is a real game moment.</td></tr>
+              <tr><td>D10</td><td>Pillar Fidelity</td><td><span class="pass">PASS</span></td><td>Adventure: quest criterion + mission progression. Could NOT be re-labeled to another pillar.</td></tr>
+            </table>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="s3b">3B. Property-Bridge Templates <span class="tier tier-p">Tier P</span></h3>
+        <p><strong>What</strong>: A game parameterized by a <strong>detected visual property</strong> (e.g., "round,"
+          "red," "metal"), not a specific entity. Works for ANY entity with that property.</p>
+        <p><strong>Quality</strong>: Good (7-8/10). Structured game with real mechanic, but not entity-tailored.</p>
+        <p><strong>Current inventory</strong>: 18 property-bridge templates (12 Cat5 + 6 Cat1)</p>
+
+        <h4>Cat5 — Outdoor / Collection (12 templates)</h4>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Template</th>
+              <th>Style</th>
+              <th>Pillar</th>
+              <th>Property</th>
+              <th>How property drives the game</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td>Shape Quest</td>
+              <td><code>quest_collector</code></td>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>round, pointy, flat, curvy</td>
+              <td>Property becomes the quest criterion — "find 3 things that are [shape]!"</td>
+              <td>Car (round wheels) → "Find 3 round things!"</td>
+            </tr>
+            <tr>
+              <td>Color Scout</td>
+              <td><code>quest_collector</code></td>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>red, blue, green, yellow</td>
+              <td>Property becomes the quest criterion — "find 3 [color] things!"</td>
+              <td>Fire truck (red) → "Find 3 red things!"</td>
+            </tr>
+            <tr>
+              <td>Movers Quest</td>
+              <td><code>quest_collector</code></td>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>wheels, legs, wings</td>
+              <td>Property becomes the quest criterion — "find things that can move!"</td>
+              <td>Toy car (has wheels) → "Find 3 things that can move!"</td>
+            </tr>
+            <tr>
+              <td>Material Lab</td>
+              <td><code>field_experiment</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>metal, wood, plastic</td>
+              <td>Property becomes the hypothesis — "are most things [material] or not?" AI assesses from photos.</td>
+              <td>Fork (shiny metal) → "Are most things here metal or not?"</td>
+            </tr>
+            <tr>
+              <td>Size Experiment</td>
+              <td><code>field_experiment</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>bigger/smaller than reference</td>
+              <td>Entity becomes the size reference — "are most things bigger or smaller than [this]?"</td>
+              <td>Pinecone → "Bigger or smaller than your hand?"</td>
+            </tr>
+            <tr>
+              <td>Nature vs Made</td>
+              <td><code>field_experiment</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>natural, man-made</td>
+              <td>Property becomes the hypothesis — "are most things here natural or man-made?"</td>
+              <td>Park bench (man-made) → "More natural or man-made around here?"</td>
+            </tr>
+            <tr>
+              <td>Shiny Experiment</td>
+              <td><code>field_experiment</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>shiny, dull/matte</td>
+              <td>Property becomes the hypothesis — "are most things shiny or dull?" AI assesses from photos.</td>
+              <td>Doorknob (reflective) → "Mostly shiny or dull in this room?"</td>
+            </tr>
+            <tr>
+              <td>Old vs New</td>
+              <td><code>field_experiment</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>worn/faded, bright/clean</td>
+              <td>Property becomes the hypothesis — "are most things old-looking or new-looking?"</td>
+              <td>Rusty gate (visible wear) → "Mostly old-looking or new around here?"</td>
+            </tr>
+            <tr>
+              <td>Pattern Trail</td>
+              <td><code>mystery_trail</code></td>
+              <td><span class="pillar pillar-mystery">Mystery</span></td>
+              <td>stripes, spots, zigzag, lines</td>
+              <td>AI gives riddle-clues about patterned things. After 3 finds, reveals hidden connection.</td>
+              <td>Striped shirt → AI riddles lead to spots, zigzags, lines — "patterns are everywhere!"</td>
+            </tr>
+            <tr>
+              <td>Texture Mix</td>
+              <td><code>mix_lab</code></td>
+              <td><span class="pillar pillar-creation">Creation</span></td>
+              <td>rough, smooth, fuzzy, bumpy</td>
+              <td>AI assigns a "superpower" per visible texture. Child combines 2 superpowers into an invention.</td>
+              <td>Tree bark (rough-looking) → rough=GRIP, smooth=SPEED → "Invent something grippy AND fast!"</td>
+            </tr>
+            <tr>
+              <td>Sound Stage</td>
+              <td><code>ensemble_show</code></td>
+              <td><span class="pillar pillar-performance">Performance</span></td>
+              <td>sound potential (inferred from form)</td>
+              <td>AI imagines what sound each item would make from its visual form. Child directs an ensemble concert.
+              </td>
+              <td>Wooden spoon (long, hard) → "TAP TAP!" Find 3 more → concert with all sounds together</td>
+            </tr>
+            <tr>
+              <td>Living Rescue</td>
+              <td><code>rescue_team</code></td>
+              <td><span class="pillar pillar-nurture">Nurture</span></td>
+              <td>alive, plant, growing</td>
+              <td>AI identifies "needs" from photos of living things. Child proposes care. Rescued items help each
+                other.</td>
+              <td>Drooping plant → "Find 3 living things that need help!" → mutual aid circle</td>
+            </tr>
+          </table>
+        </div>
+
+        <h4>Cat1 — Indoor / Verbal (6 templates)</h4>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Template</th>
+              <th>Style</th>
+              <th>Pillar</th>
+              <th>Property</th>
+              <th>How property drives the game</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td>Detail Detective</td>
+              <td><code>mystery_lens</code></td>
+              <td><span class="pillar pillar-mystery">Mystery</span></td>
+              <td>color, shape, material</td>
+              <td>Property becomes the clue category — AI picks details of that property type on the entity, gives
+                progressive clues.</td>
+              <td>Colorful truck (many colors) → "I spy something NOT red on your truck…" → child deduces each color
+              </td>
+            </tr>
+            <tr>
+              <td>What-If Workshop</td>
+              <td><code>inventor_workshop</code></td>
+              <td><span class="pillar pillar-creation">Creation</span></td>
+              <td>any detected property</td>
+              <td>Property's OPPOSITE becomes modification prompt — "your [entity] is [property], what if it was
+                [opposite]?"</td>
+              <td>Shiny metal spoon → "What if it was FUZZY?" "What if it was SQUISHY?" → Super Spoon!</td>
+            </tr>
+            <tr>
+              <td>Property Predictor</td>
+              <td><code>prediction_lab</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>shape, size, material</td>
+              <td>Property generates prediction scenarios — "what happens when [entity] with [property] meets
+                [situation]?"</td>
+              <td>Round ball → "Rolls to the table edge — will it FALL or STOP?" → child predicts → reveal + score</td>
+            </tr>
+            <tr>
+              <td>Time Shifter</td>
+              <td><code>time_traveler</code></td>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>color, size, condition</td>
+              <td>Current property becomes one stop on a time journey — "it's [property] NOW, but what was it BEFORE?"
+              </td>
+              <td>Yellow banana → "Months ago it was a GREEN flower!" → timeline of color changes</td>
+            </tr>
+            <tr>
+              <td>Fix-It Station</td>
+              <td><code>care_station</code></td>
+              <td><span class="pillar pillar-nurture">Nurture</span></td>
+              <td>worn, faded, dusty, torn</td>
+              <td>Worn property triggers first care need. Needs escalate: physical → emotional → complex.</td>
+              <td>Faded stuffed animal → "Its color is fading! How can we help?" → visible transformation</td>
+            </tr>
+            <tr>
+              <td>Property Performer</td>
+              <td><code>voice_stage</code></td>
+              <td><span class="pillar pillar-performance">Performance</span></td>
+              <td>shape, size, color</td>
+              <td>Property becomes the performance theme — child performs AS the entity, expressing its property.</td>
+              <td>Round ball → "Your ball is SO round! Show me your biggest ROLL sound!" → audience goes wild</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="s3c">3C. Constellation-Adapted Games <span class="tier tier-b">Tier B</span></h3>
+        <p><strong>What</strong>: An entity gold standard game reused for a semantically similar entity. No new game
+          file needed — adaptation happens at runtime.</p>
+        <p><strong>Example</strong>: Kitten → no gold standard → kitten is in lion's constellation → lion's game
+          adapted: replace "roar" with "meow," "jungle" with "neighborhood."</p>
+        <p><strong>When to expand</strong>: Add entries to <code>constellation_map.yaml</code>. No game design needed —
+          just mapping.</p>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 4 ═══ -->
+    <div class="section" id="s4">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">4</span>
+        <span class="section-title">How to Design an Entity Gold Standard <span
+            class="status status-done">DONE</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">Source: <code>templates.md</code> · <code>entity_guidance.md</code> ·
+          <code>conversation_bridge.md</code> · <code>transform.md</code>
+        </div>
+        <h3>Step-by-step</h3>
+        <ol>
+          <li><strong>Choose entity + category + tier + pillar + style</strong> — Entity from IB mind map, category
+            based on where encountered, tier by age, pillar by desired emotional experience</li>
+          <li><strong>Read the entity mapping YAML</strong> — Note IB themes, primary key concepts (MUST use ≥1),
+            tier_guidance, select 2-3 anchor dimensions</li>
+          <li><strong>Read the base template + pillar overlay</strong> from <code>templates.md</code></li>
+          <li><strong>Study the gold standard for your style</strong> — Read both spec and prod</li>
+          <li><strong>Fill creative variables</strong> — Universal: <code>{metaphor}</code>, <code>{role_title}</code>,
+            <code>{escalation_axis}</code>. Pillar-specific per templates.md. Must be FRESH.
+          </li>
+          <li><strong>Write the spec</strong> — Step 1 (Hook), Step 2 (Setup+Demo), Step 3 (Core Loop 3-4 rounds), Step
+            4 (Magic Moment), Step 5 (IB Celebration). Each step: dialogue + 3 branches + screen.</li>
+          <li><strong>Self-evaluate against 10 dimensions</strong> — Fix failures, re-evaluate until ALL PASS</li>
+          <li><strong>Write the prod version</strong> — Bullet→table, condense rounds 2+, remove scorecard</li>
+          <li><strong>Save with correct naming</strong> — <code>{entity}_cat{N}_gold_spec.md</code> +
+            <code>_gold_prod.md</code>
+          </li>
+        </ol>
+
+        <h3>Spec File Format</h3>
+        <pre><code># Activity Design: {Entity} + Category {N} ({Category Name})
+
+            > Generated: {date} | {style info} | Agent: Activity Design Agent
+
+            ---
+
+            ## Activity: {Activity Name}
+
+            ### A. Basic Info
+            - **Activity Name**: ...
+            - **Experience Pillar**: ...
+            - **Game Style**: ...
+            - **Design Version**: 1.0
+            (bullet list format — see reference files)
+
+            ### B. Activity Overview
+            - ① Brief Description
+            - ② Educational Purpose (KUD)
+            - ③ Design Highlight
+            - ④ Typical Scenario
+
+            ### C. Interaction Flow — Detailed Design [Target Tier: {T}]
+            (Steps 1-5, full dialogue, 3 response branches, screen descriptions)
+
+            ## Self-Evaluation Scorecard
+            (10 dimensions, ALL PASS)</code></pre>
+
+        <h3>Prod File Format</h3>
+        <pre><code>## {Activity Name}
+
+            ### A. Basic Info
+            | Field | Value |
+            |-------|-------|
+            | Activity Name | ... |
+            (table format, no scorecard, condensed rounds)</code></pre>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 5 ═══ -->
+    <div class="section" id="s5">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">5</span>
+        <span class="section-title">How to Design a Property-Bridge Template <span
+            class="status status-done">DONE</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">Source: <code>docs/plans/2026-04-08-entity-bridging.md</code> (§Layer 2) ·
+          <code>templates.md</code>
+        </div>
+        <p>Same process as entity gold standard, with key differences:</p>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Aspect</th>
+              <th>Entity Gold Standard</th>
+              <th>Property-Bridge</th>
+            </tr>
+            <tr>
+              <td>Trigger</td>
+              <td>Specific entity (e.g., "lion")</td>
+              <td>Any entity with detected <code>{property}</code></td>
+            </tr>
+            <tr>
+              <td>Mapping Source</td>
+              <td>Entity mapping YAML or "none"</td>
+              <td><code>property-bridge</code></td>
+            </tr>
+            <tr>
+              <td>Content driver</td>
+              <td>Entity's unique characteristics</td>
+              <td>The detected property + game implications</td>
+            </tr>
+            <tr>
+              <td>Reusability</td>
+              <td>1 entity only</td>
+              <td>Many entities</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Allowed Properties (AI can see in photos)</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Property</th>
+              <th>Examples</th>
+              <th>Reliable?</th>
+            </tr>
+            <tr>
+              <td>Color</td>
+              <td>red, blue, green, yellow, brown</td>
+              <td><span class="pass">Very high</span></td>
+            </tr>
+            <tr>
+              <td>Shape</td>
+              <td>round, pointy, flat, long, curvy</td>
+              <td><span class="pass">High</span></td>
+            </tr>
+            <tr>
+              <td>Material type</td>
+              <td>metal, wood, plastic, fabric, stone</td>
+              <td><span class="pass">High</span></td>
+            </tr>
+            <tr>
+              <td>Size (relative)</td>
+              <td>bigger/smaller than hand</td>
+              <td><span class="pass">High</span></td>
+            </tr>
+            <tr>
+              <td>Natural vs man-made</td>
+              <td>tree vs bench</td>
+              <td><span class="pass">High</span></td>
+            </tr>
+            <tr>
+              <td>Alive vs not-alive</td>
+              <td>plant, animal vs object</td>
+              <td><span class="pass">High</span></td>
+            </tr>
+            <tr>
+              <td>Pattern</td>
+              <td>stripes, spots, zigzag</td>
+              <td><span class="pass">High</span></td>
+            </tr>
+            <tr>
+              <td>Shininess</td>
+              <td>reflective vs matte</td>
+              <td><span class="pass">High</span></td>
+            </tr>
+            <tr>
+              <td>Age/wear</td>
+              <td>rust, cracks vs bright, clean</td>
+              <td>Medium-high</td>
+            </tr>
+            <tr>
+              <td>Visible texture</td>
+              <td>rough bark, smooth glass</td>
+              <td>Medium</td>
+            </tr>
+            <tr>
+              <td>Movement capability</td>
+              <td>wheels, legs, wings</td>
+              <td>Medium</td>
+            </tr>
+            <tr>
+              <td>Sound potential</td>
+              <td>stick=tap, leaf=rustle</td>
+              <td>Creative inference</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Banned Properties</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Property</th>
+              <th>Why banned</th>
+            </tr>
+            <tr>
+              <td>Actual texture (touch)</td>
+              <td><span class="fail">Can't feel through a photo</span></td>
+            </tr>
+            <tr>
+              <td>Weight</td>
+              <td><span class="fail">Can't weigh through a photo</span></td>
+            </tr>
+            <tr>
+              <td>Temperature</td>
+              <td><span class="fail">Can't sense through a photo</span></td>
+            </tr>
+            <tr>
+              <td>Actual sound</td>
+              <td><span class="fail">Can't hear through a photo</span></td>
+            </tr>
+            <tr>
+              <td>Smell / taste</td>
+              <td><span class="fail">Can't sense through a photo</span></td>
+            </tr>
+            <tr>
+              <td>Flexibility</td>
+              <td><span class="fail">Ambiguous in static image</span></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="callout">
+          <strong>field_experiment Special Rule: AI-as-Assessor</strong><br>
+          AI assesses the property from the photo and announces it. Child does NOT self-report. This preserves the "Was
+          I right?!" surprise.<br>
+          <em>Example: AI says "Let me look closely… I can see it's SHINY!" (not "Is it shiny or dull?")</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 6 ═══ -->
+    <div class="section" id="s6">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">6</span>
+        <span class="section-title">Quality Rubric: 10 Dimensions <span class="status status-done">DONE</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">Source: <code>program.md</code> (§Phase 3 rubric)</div>
+        <p>Every game must pass ALL 10 dimensions.</p>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>#</th>
+              <th>Dimension</th>
+              <th>PASS when…</th>
+              <th>FAIL when…</th>
+            </tr>
+            <tr>
+              <td>D1</td>
+              <td><strong>V1 Technical Compliance</strong></td>
+              <td>No OCR, face detection, IMU, or before/after comparison</td>
+              <td>Design depends on blocked capability</td>
+            </tr>
+            <tr>
+              <td>D2</td>
+              <td><strong>Hook & Transition</strong></td>
+              <td>Step 1 opens with emotional resonance, grows naturally</td>
+              <td>Step 1 tests knowledge or assigns task abruptly</td>
+            </tr>
+            <tr>
+              <td>D3</td>
+              <td><strong>Edge Case Coverage</strong></td>
+              <td>Every step has 3 branches (ideal, unexpected, silence)</td>
+              <td>Missing branches or unexpected responses dismissed</td>
+            </tr>
+            <tr>
+              <td>D4</td>
+              <td><strong>IB Completeness</strong></td>
+              <td>1-2 Key Concepts named. KUD defined. ATL skills identified.</td>
+              <td>Concepts missing or don't match what child did</td>
+            </tr>
+            <tr>
+              <td>D5</td>
+              <td><strong>Tier Appropriateness</strong></td>
+              <td>Language matches tier. T0: ≤5 words. T1: 5-8. T2: complex.</td>
+              <td>Language too advanced or simple for tier</td>
+            </tr>
+            <tr>
+              <td>D6</td>
+              <td><strong>Dialogue Specificity</strong></td>
+              <td>All AI lines are actual dialogue with tone markers</td>
+              <td>Abstract descriptions like "AI guides…"</td>
+            </tr>
+            <tr>
+              <td>D7</td>
+              <td><strong>Screen & UI</strong></td>
+              <td>Every step has specific screen description</td>
+              <td>Vague or missing screen descriptions</td>
+            </tr>
+            <tr>
+              <td>D8</td>
+              <td><strong>Entity Mapping Alignment</strong></td>
+              <td>(Mapping-informed only) Concepts from mapping</td>
+              <td>Concepts not traceable to mapping</td>
+            </tr>
+            <tr>
+              <td>D9</td>
+              <td><strong>Game Feel</strong></td>
+              <td>Genuine uncertainty + satisfying resolution + stakes</td>
+              <td>Feels like structured Q&A with no surprise</td>
+            </tr>
+            <tr>
+              <td>D10</td>
+              <td><strong>Pillar Fidelity</strong></td>
+              <td>Blind reader could identify pillar. Emotional arc matches.</td>
+              <td>Could be re-labeled without feeling wrong</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Self-Evaluation Scorecard Template</h3>
+        <pre><code>| # | Dimension | Score | Notes |
+            |---|-------------------------|-----------|--------------------|
+            | 1 | V1 Technical Compliance | PASS/FAIL | [specific evidence] |
+            | 2 | Hook & Transition | PASS/FAIL | [specific evidence] |
+            | 3 | Edge Case Coverage | PASS/FAIL | [specific evidence] |
+            | 4 | IB Completeness | PASS/FAIL | [specific evidence] |
+            | 5 | Tier Appropriateness | PASS/FAIL | [specific evidence] |
+            | 6 | Dialogue Specificity | PASS/FAIL | [specific evidence] |
+            | 7 | Screen & UI | PASS/FAIL | [specific evidence] |
+            | 8 | Entity Mapping | PASS/N/A | [specific evidence] |
+            | 9 | Game Feel | PASS/FAIL | [specific evidence] |
+            |10 | Pillar Fidelity | PASS/FAIL | [specific evidence] |</code></pre>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 7 ═══ -->
+    <div class="section" id="s7">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">7</span>
+        <span class="section-title">Game Selection Pipeline <span class="status status-done">SPEC</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">Source: <code>docs/plans/2026-04-01-style-recommender.md</code> ·
+          <code>docs/plans/2026-04-08-entity-bridging.md</code>
+        </div>
+        <div class="flow">Child photographs entity
+          ↓
+          Entity in IB mind map? ──YES──→ Entity has gold standard game?
+          │ ├── YES → <strong>Tier A</strong> (gold standard)
+          │ └── NO → Style Recommender → <strong>Tier B</strong> (adapt)
+          │ → or <strong>Tier P</strong>
+          │
+          └── NO → Entity Bridging System
+          ├── Constellation match (≥ 0.7)?
+          │ └── YES → Bridge in conversation → <strong>Tier A/B</strong>
+          │
+          ├── Property bridge available?
+          │ └── YES → <strong>Tier P</strong> (property-bridge template)
+          │
+          └── No match → <strong>Conversation-only</strong> (no game)</div>
+
+        <h3>Entity Constellation Bridge Rules</h3>
+        <ol>
+          <li>One bridge attempt per conversation — never retry if child ignores it</li>
+          <li>Honor the original entity — bridge adds a connection, never dismisses</li>
+          <li>Category must match — don't bridge indoor entity to outdoor game</li>
+          <li>Minimum constellation score 0.7</li>
+          <li>Game references BOTH entities — "Since your kitten is a cousin of a lion…"</li>
+        </ol>
+
+        <h3>Bridge Types (strongest → weakest)</h3>
+        <ol>
+          <li>Same taxonomy (kitten → lion)</li>
+          <li>Part-of (swing → playground)</li>
+          <li>Same domain (tulip → sunflower)</li>
+          <li>Shared affordance (toy car → bicycle)</li>
+          <li>Same role (stuffed bunny → teddy bear)</li>
+          <li>Companion (toothbrush → toothbrush holder)</li>
+          <li>Shared habitat (pond frog → goldfish)</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 8 ═══ -->
+    <div class="section" id="s8">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">8</span>
+        <span class="section-title">Automated Game Design Pipeline <span class="status status-wip">NEXT UP</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">Source: <code>run.md</code> · <code>assignments.md</code> · <code>program.md</code> ·
+          <code>transform.md</code>
+        </div>
+        <p>Games can be generated automatically using an LLM agent. The agent reads entity mapping data, applies
+          templates, generates both spec and prod files, self-evaluates, and commits — with no human intervention.</p>
+
+        <h3>Setup (one-time)</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>File</th>
+              <th>What the agent learns</th>
+            </tr>
+            <tr>
+              <td><code>program.md</code></td>
+              <td>Constraints, output format, rubric, exemplars</td>
+            </tr>
+            <tr>
+              <td><code>templates.md</code></td>
+              <td>Structural skeletons + pillar overlays</td>
+            </tr>
+            <tr>
+              <td><code>docs/game_styles.md</code></td>
+              <td>12 game styles taxonomy</td>
+            </tr>
+            <tr>
+              <td><code>entity_guidance.md</code></td>
+              <td>How to read entity mapping YAMLs</td>
+            </tr>
+            <tr>
+              <td><code>conversation_bridge.md</code></td>
+              <td>Warm/cold start bridge patterns</td>
+            </tr>
+            <tr>
+              <td><code>transform.md</code></td>
+              <td>Spec → prod conversion rules</td>
+            </tr>
+            <tr>
+              <td><code>assignments.md</code></td>
+              <td>Work queue (what to generate)</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Assignment Queue Format</h3>
+        <pre><code>- [ ] goldfish + category 1, tier=T1, mapping=animals_goldfish,
+            start=warm+cold, scene=child photographs their pet goldfish</code></pre>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Field</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td><code>entity</code></td>
+              <td>Yes</td>
+              <td>The entity name</td>
+            </tr>
+            <tr>
+              <td><code>category</code></td>
+              <td>Yes</td>
+              <td>1 (Cat1) or 5 (Cat5)</td>
+            </tr>
+            <tr>
+              <td><code>tier</code></td>
+              <td>Yes</td>
+              <td>T0, T1, or T2</td>
+            </tr>
+            <tr>
+              <td><code>pillar</code></td>
+              <td>No</td>
+              <td>Experience pillar (inferred if omitted)</td>
+            </tr>
+            <tr>
+              <td><code>style</code></td>
+              <td>No</td>
+              <td>Game style (inferred if omitted)</td>
+            </tr>
+            <tr>
+              <td><code>mapping</code></td>
+              <td>No</td>
+              <td>Entity mapping ID — enables mapping-informed design</td>
+            </tr>
+            <tr>
+              <td><code>start</code></td>
+              <td>No</td>
+              <td><code>warm+cold</code> for dual bridge, or omit for cold-start only</td>
+            </tr>
+            <tr>
+              <td><code>scene</code></td>
+              <td>No</td>
+              <td>Trigger scene (invented if omitted)</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>The Design Loop</h3>
+        <div class="flow">Step 1: Parse assignment → extract entity, category, tier, pillar, style, mapping
+          ↓
+          Step 1.5: Load entity mapping YAML (if mapping= specified)
+          → Extract IB themes, key concepts, tier_guidance
+          → Select 2-3 anchor dimensions
+          ↓
+          Step 2: Load base template + pillar overlay
+          → Brainstorm creative variables grounded in mapping data
+          ↓
+          Step 3: Generate full activity design (spec format)
+          → 5-6 steps, full dialogue, 3 response branches, screen descriptions
+          ↓
+          Step 4: Self-evaluate against 10 dimensions
+          → Fix failures, re-evaluate until ALL PASS
+          ↓
+          Step 5: Save spec → designs/{entity}_cat{N}_gold_spec.md
+          ↓
+          Step 5.5: Transform spec → prod (apply transform.md rules)
+          → Save prod → designs/{entity}_cat{N}_gold_prod.md
+          ↓
+          Step 6: Log result → results.tsv
+          ↓
+          Step 7: Mark assignment [x] complete
+          ↓
+          Step 8: Git commit (spec + prod + results.tsv + assignments.md)
+          ↓
+          Step 9: Next assignment → repeat</div>
+
+        <h3>Mapping-Informed vs Non-Mapping</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Aspect</th>
+              <th>Mapping-informed</th>
+              <th>Non-mapping</th>
+            </tr>
+            <tr>
+              <td>Entity data</td>
+              <td>Full IB YAML (themes, concepts, tier_guidance)</td>
+              <td>None — agent uses general knowledge</td>
+            </tr>
+            <tr>
+              <td>Bridge type</td>
+              <td>Warm + cold start (Step 1a + 1b)</td>
+              <td>Cold start only (Step 1b)</td>
+            </tr>
+            <tr>
+              <td>D8 evaluation</td>
+              <td>Scored</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>Quality</td>
+              <td>Higher — grounded in researched IB data</td>
+              <td>Good — but less IB-grounded</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Batch Tips</h3>
+        <ul>
+          <li><strong>Parallelize</strong>: Different pillars can run simultaneously on separate agents</li>
+          <li><strong>Exemplar-first</strong>: Generate 1 gold standard per style before scaling</li>
+          <li><strong>Mix tiers</strong>: Vary T0/T1/T2 for diversity</li>
+          <li><strong>Diversify entities</strong>: Different types (animal, object, place) per style</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 9 ═══ -->
+    <div class="section" id="s9">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">9</span>
+        <span class="section-title">Expanding the Game Inventory <span
+            class="status status-planned">PLANNED</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <h3>Way 1: Expand Constellation Maps <span style="font-size:12px;color:var(--pass)">● Easiest</span></h3>
+        <p><strong>Effort</strong>: Minutes per entity. <strong>Impact</strong>: More entities get Tier B games.</p>
+        <pre><code># constellation_map.yaml
+            kitten:
+            constellation_match: lion
+            bridge_type: same_taxonomy
+            score: 0.85
+            adaptation_notes: "Replace roar with meow, jungle with neighborhood"</code></pre>
+
+        <h3>Way 2: Create New Property-Bridge Templates <span style="font-size:12px;color:var(--pillar-creation)">●
+            Moderate</span></h3>
+        <p><strong>Effort</strong>: ~2 hours per template. <strong>Impact</strong>: Covers many entities at once.</p>
+
+        <h3>Way 3: Create New Entity Gold Standards <span style="font-size:12px;color:var(--fail)">● Highest
+            effort</span></h3>
+        <p><strong>Effort</strong>: ~4 hours per gold standard. <strong>Impact</strong>: One entity gets a 10/10 game.
+        </p>
+
+        <h3>Priority Matrix</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Priority</th>
+              <th>Action</th>
+              <th>Targets</th>
+              <th>Rationale</th>
+            </tr>
+            <tr>
+              <td><strong>High</strong></td>
+              <td>Constellation mapping</td>
+              <td>Common pets, toys</td>
+              <td>High photo frequency, easy to map</td>
+            </tr>
+            <tr>
+              <td><strong>High</strong></td>
+              <td>Entity gold standards</td>
+              <td>Entities with rich IB mappings</td>
+              <td>Need their own games</td>
+            </tr>
+            <tr>
+              <td><strong>Medium</strong></td>
+              <td>Property-bridge templates</td>
+              <td>Indoor-specific properties</td>
+              <td>Improve Cat1 coverage</td>
+            </tr>
+            <tr>
+              <td><strong>Medium</strong></td>
+              <td>Legacy design rewrite</td>
+              <td>25 old designs</td>
+              <td>Bring into new pillar system</td>
+            </tr>
+            <tr>
+              <td><strong>Low</strong></td>
+              <td>New property types</td>
+              <td>Niche properties</td>
+              <td>Diminishing returns</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 10 ═══ -->
+    <div class="section" id="s10">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">10</span>
+        <span class="section-title">V1 Technical Constraints</span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Blocked</th>
+              <th>Cannot do</th>
+              <th>Workaround</th>
+            </tr>
+            <tr>
+              <td><span class="fail">OCR</span></td>
+              <td>Read text, signs, labels</td>
+              <td>Ask child to read aloud</td>
+            </tr>
+            <tr>
+              <td><span class="fail">Face detection</span></td>
+              <td>Detect expressions, smiles</td>
+              <td>Ask child to describe emotions</td>
+            </tr>
+            <tr>
+              <td><span class="fail">IMU</span></td>
+              <td>Detect camera angle/tilt</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td><span class="fail">State comparison</span></td>
+              <td>Compare before/after photos</td>
+              <td>Use single-photo designs</td>
+            </tr>
+            <tr>
+              <td><span class="fail">Non-speech audio</span></td>
+              <td>Detect clapping, tapping</td>
+              <td>Ask child to self-report</td>
+            </tr>
+          </table>
+        </div>
+        <p><strong>Safe capabilities</strong>: Object classification from photos, ASR (speech-to-text), multi-photo
+          workflows (each photo independent), text-to-speech.</p>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 11 ═══ -->
+    <div class="section" id="s11">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">11</span>
+        <span class="section-title">File Structure & Naming</span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <pre><code>designs/
+            ├── cat1/
+            │ ├── lion_cat1_gold_spec.md # Entity gold standard
+            │ ├── lion_cat1_gold_prod.md
+            │ ├── detail_detective_property_gold_spec.md # Property-bridge
+            │ ├── detail_detective_property_gold_prod.md
+            │ ├── eye_cat1_spec.md # Legacy design
+            │ └── eye_cat1_prod.md
+            ├── cat5/
+            │ ├── playground_cat5_gold_spec.md
+            │ ├── shape_quest_property_gold_spec.md
+            │ └── ...</code></pre>
+
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Type</th>
+              <th>Pattern</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td>Entity gold standard</td>
+              <td><code>{entity}_cat{N}_gold_spec.md</code></td>
+              <td><code>lion_cat1_gold_spec.md</code></td>
+            </tr>
+            <tr>
+              <td>Property-bridge</td>
+              <td><code>{name}_property_gold_spec.md</code></td>
+              <td><code>shape_quest_property_gold_spec.md</code></td>
+            </tr>
+            <tr>
+              <td>Legacy design</td>
+              <td><code>{entity}_cat{N}_spec.md</code></td>
+              <td><code>eye_cat1_spec.md</code></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Spec vs Prod</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Aspect</th>
+              <th>Spec</th>
+              <th>Prod</th>
+            </tr>
+            <tr>
+              <td>Title</td>
+              <td><code># Activity Design: …</code> (H1)</td>
+              <td><code>## Activity Name</code> (H2)</td>
+            </tr>
+            <tr>
+              <td>Metadata</td>
+              <td><code>> Generated: …</code></td>
+              <td>None</td>
+            </tr>
+            <tr>
+              <td>Basic Info</td>
+              <td>Bullet list</td>
+              <td>Table</td>
+            </tr>
+            <tr>
+              <td>Steps</td>
+              <td>Bold + blockquotes</td>
+              <td>H4 headers + inline</td>
+            </tr>
+            <tr>
+              <td>Rounds</td>
+              <td>All fully detailed</td>
+              <td>2+ condensed</td>
+            </tr>
+            <tr>
+              <td>Scorecard</td>
+              <td>Included</td>
+              <td>Not included</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 12 ═══ -->
+    <div class="section" id="s12">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">12</span>
+        <span class="section-title">Quick Reference Checklists</span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <h3>Before You Start</h3>
+        <ul class="checklist">
+          <li>Read the gold standard for your target style (spec + prod)</li>
+          <li>Read the pillar overlay in <code>templates.md</code></li>
+          <li>If mapping-informed: read the entity mapping YAML</li>
+          <li>Confirm entity + pillar pairing makes sense</li>
+          <li>Check existing inventory — does a similar game exist?</li>
+        </ul>
+
+        <h3>During Design</h3>
+        <ul class="checklist">
+          <li>Step 1 opens with emotion, not knowledge testing</li>
+          <li>Every step has 3 response branches (ideal, unexpected, silence)</li>
+          <li>All AI dialogue has tone/emotion markers</li>
+          <li>Screen descriptions are specific (not "an animation plays")</li>
+          <li>Language matches the target tier</li>
+          <li>The magic moment is clear and emotionally distinct</li>
+          <li>Rounds escalate (don't repeat same difficulty)</li>
+        </ul>
+
+        <h3>After Design</h3>
+        <ul class="checklist">
+          <li>Self-evaluation scorecard — ALL 10 dimensions PASS</li>
+          <li>D9 check: genuine uncertainty + satisfying resolution?</li>
+          <li>D10 check: blind reader could identify the pillar?</li>
+          <li>Prod version written (condensed format)</li>
+          <li>Saved with correct naming convention</li>
+          <li>Constellation adaptation notes added (if gold standard)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 13 ═══ -->
+    <div class="section" id="s13">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">13</span>
+        <span class="section-title">Reference Files</span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>File</th>
+              <th>What it contains</th>
+              <th>When to read</th>
+            </tr>
+            <tr>
+              <td><code>docs/game_styles.md</code></td>
+              <td>12 style definitions, lineage, distribution</td>
+              <td>Before choosing a style</td>
+            </tr>
+            <tr>
+              <td><code>templates.md</code></td>
+              <td>Base templates + pillar overlays + creative variables</td>
+              <td>Before writing any game</td>
+            </tr>
+            <tr>
+              <td><code>program.md</code></td>
+              <td>Agent instructions, format spec, rubric</td>
+              <td>For format requirements</td>
+            </tr>
+            <tr>
+              <td><code>run.md</code></td>
+              <td>Execution workflow, results logging</td>
+              <td>For end-to-end process</td>
+            </tr>
+            <tr>
+              <td><code>entity_guidance.md</code></td>
+              <td>How to read entity mapping YAMLs</td>
+              <td>For mapping-informed designs</td>
+            </tr>
+            <tr>
+              <td><code>conversation_bridge.md</code></td>
+              <td>Warm/cold start bridge patterns</td>
+              <td>For Step 1 design</td>
+            </tr>
+            <tr>
+              <td><code>docs/plans/2026-04-01-style-recommender.md</code></td>
+              <td>Style Recommender system design</td>
+              <td>For game selection logic</td>
+            </tr>
+            <tr>
+              <td><code>docs/plans/2026-04-08-entity-bridging.md</code></td>
+              <td>Entity bridging + property-bridge</td>
+              <td>For the full pipeline</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function toggle(header) {
+      header.parentElement.classList.toggle('open');
+      updateTocHighlight();
+    }
+
+    function toggleExample(e, el) {
+      // Only toggle if the click was on the header, not the body content
+      if (e.target.closest('.example-body')) return;
+      el.classList.toggle('open');
+    }
+
+    function toggleTheme() {
+      const d = document.documentElement;
+      d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? '' : 'dark');
+      localStorage.setItem('theme', d.getAttribute('data-theme'));
+    }
+
+    // Restore theme
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // Search
+    document.getElementById('search').addEventListener('input', function (e) {
+      const q = e.target.value.toLowerCase().trim();
+      document.querySelectorAll('.section').forEach(s => {
+        if (!q) {
+          s.style.display = '';
+          // Remove highlights
+          s.querySelectorAll('mark').forEach(m => {
+            m.replaceWith(document.createTextNode(m.textContent));
+          });
+          return;
+        }
+        const text = s.textContent.toLowerCase();
+        if (text.includes(q)) {
+          s.style.display = '';
+          s.classList.add('open');
+        } else {
+          s.style.display = 'none';
+        }
+      });
+    });
+
+    // TOC active state on scroll
+    function updateTocHighlight() {
+      const sections = document.querySelectorAll('.section');
+      const links = document.querySelectorAll('.toc a');
+      let current = '';
+      sections.forEach(s => {
+        const rect = s.getBoundingClientRect();
+        if (rect.top <= 100) current = s.id;
+      });
+      links.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', updateTocHighlight);
+
+    // Open first section on load
+    document.addEventListener('DOMContentLoaded', updateTocHighlight);
+
+    // Close sidebar on mobile when link clicked
+    document.querySelectorAll('.toc a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 900) {
+          document.querySelector('.sidebar').classList.remove('open');
+        }
+        // Open the target section
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target && !target.classList.contains('open')) {
+          target.classList.add('open');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -2,63 +2,62 @@
 
 ## Current Status
 
-- Status: in progress, documentation workflow updated after review
-- Date: 2026-03-18
+- Status: in progress, review-and-cleanup pass completed for the new v2 design docs and transform workflow docs
+- Date: 2026-03-19
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
 
-- Reviewed the new mapping-integration docs and fixed the highest-impact inconsistencies.
-- Corrected mapping dataset paths to `data/mappings_dev20_0318/_index.yaml` in:
-  - `program.md`
-  - `run.md`
-  - `entity_guidance.md`
-  - `docs/plans/mapping-integration.md`
-- Removed rubric-count drift:
-  - `program.md` no longer says "9 dimensions" in one place and "all 8 pass" in another.
-  - `README.md` now reflects the 9-dimension rubric with D9 conditional on mapping-informed designs.
-- Migrated `results.tsv` to the new schema by adding `d9_mapping` and backfilling `N` on the existing non-mapping rows.
-- Added a migration note to `run.md` so older `results.tsv` files are upgraded before new rows are appended.
-- Simplified `.gitignore` to repo-relevant ignores only and stopped ignoring the entire `data/` tree, which the new workflow depends on.
-- Updated `README.md` to document the new mapping files and dataset.
+- Reviewed the newly added transform workflow docs, taxonomy docs, and v2 design outputs.
+- Fixed transform workflow drift so the current output format is described correctly:
+  - `transform.md` now documents a 7-row Basic Info table, including `Game Style`
+  - `transform_run.md` now treats `transform_assignments.md` as a progress tracker, adds rerun guidance, and avoids concurrent appends to the shared output doc
+  - `docs/plans/design-transform.md` now lists the correct 17-file source set and removes the stale `bicycle_cat5.md` entry
+  - `docs/plans/game-style-taxonomy.md` now makes it explicit that the 5 demo activities are out of scope for this pass
+- Normalized v2 format drift:
+  - Replaced the remaining `1./2./3./4.` overview headers with `①/②/③/④`
+  - Standardized `ages 4-6` to `ages 4–6`
+  - Standardized all Step 3 headings to `Multi-Round Interaction`
+- Completed incomplete interaction specs in the cat5 outputs:
+  - Added missing no-response branches to the second Step 4 prompt in `double_rainbow_cat5_v2.md`, `sandy_beach_cat5_v2.md`, `stop_sign_cat5_v2.md`, `sunflower_cat5_v2.md`, and `playground_cat5_v2.md`
+  - Added the missing closing `Child responses` and `AI follow-up` blocks to `sandy_beach_cat5_v2.md`
+  - Fixed sunflower role-name drift by aligning the scenario and badge to `Plant Parts Inspector`
+- Rebuilt `docs/WonderLens_Game_Designs_v2.md` from the individual `designs/*_v2.md` files in assignment order so the combined doc is now a direct projection of the source files
 
 ## Verification
 
-- `rg -n "mappings_dev20_0318/_index.yaml|all 8 pass|8-dimension rubric|8-dimension|against ALL 8|passes all 8 dimensions" README.md program.md run.md templates.md entity_guidance.md conversation_bridge.md docs/plans/mapping-integration.md`
-  - Result: only the corrected `data/mappings_dev20_0318/_index.yaml` references remain; no stale 8-dimension language in reviewed docs
-- `python - <<'PY' ... results.tsv column count check ...`
-  - Result: all 11 rows have 16 columns
-- `git check-ignore -v data/mappings_dev20_0318/_index.yaml data/mappings_dev20_0318/.DS_Store || true`
-  - Result: `_index.yaml` is no longer ignored; `.DS_Store` is ignored via `.gitignore`
+- `rg -n "\\*\\*1\\. Brief Description\\*\\*|\\*\\*2\\. Educational Purpose \\(KUD\\)\\*\\*|\\*\\*3\\. Design Highlight\\*\\*|\\*\\*4\\. Typical Scenario\\*\\*|ages 4-6|6-row table|6 rows only|Basic Info is a 6-row table|bicycle_cat5|For each unchecked design|appends to the output file|Multi-Round Exploration|Plant Parts Patrol" docs/WonderLens_Game_Designs_v2.md transform.md transform_run.md docs/plans/design-transform.md docs/plans/game-style-taxonomy.md designs/*_v2.md`
+  - Result: no matches
+- `python - <<'PY' ... compare docs/WonderLens_Game_Designs_v2.md against ordered concatenation of all 17 designs/*_v2.md files ...`
+  - Result: `matches True`, `sections 17`, `game_style_rows 17`, `interaction_headings 17`
 - `git diff --check`
   - Result: clean
 
 ## Tests
 
-- No automated tests apply in this repo; the work in this pass was documentation/data-workflow validation.
+- No automated tests apply in this repo; this pass was document/prompt review plus text-level consistency verification.
+
+## Residual Risk
+
+- Several v2 designs still intentionally condense later rounds into one-line summaries instead of keeping full executable dialogue branches. That matches the current transform rule, but it means the v2 docs are best treated as production-format outputs, not fully runnable source specs. If a future pass needs executable prompt detail, use the original `designs/*_cat*.md` source files rather than the v2 docs.
 
 ## Repo State To Know
 
-- Current modified tracked files:
-  - `README.md`
-  - `assignments.md`
-  - `program.md`
-  - `results.tsv`
-  - `run.md`
-  - `templates.md`
-- Current untracked files/directories:
-  - `.gitignore`
-  - `HANDOFF.md`
-  - `conversation_bridge.md`
-  - `entity_guidance.md`
-  - `docs/`
-  - `data/`
-- `data/` is now visible to git by design; if the mapping dataset should be committed, it can be added explicitly in a follow-up step.
+- Current tracked modification:
+  - `designs/banana_cat1_v2.md`
+- Current untracked additions relevant to this pass:
+  - `docs/WonderLens_Game_Designs_v2.md`
+  - `docs/game_styles.md`
+  - `docs/plans/design-transform.md`
+  - `docs/plans/game-style-taxonomy.md`
+  - `transform.md`
+  - `transform_assignments.md`
+  - `transform_run.md`
+  - the remaining `designs/*_v2.md` files
+- Existing repo files such as `README.md`, `program.md`, and `run.md` were not changed in this pass
 
 ## Next Immediate Actions
 
-- Decide whether to commit the new mapping dataset under `data/`.
-- If continuing the mapping rollout, run one manual dry-run assignment using the updated instructions and confirm the generated output uses:
-  - both Step 1a/1b bridges
-  - mapping-sourced concepts/theme
-  - `d9_mapping` in `results.tsv`
+- Decide whether the v2 documents should remain concise production outputs or be expanded back toward runnable prompt specs.
+- If the v2 set is the intended deliverable, add the reviewed `designs/*_v2.md`, `docs/WonderLens_Game_Designs_v2.md`, and transform docs to git in one coherent commit.
+- If executable prompt fidelity matters more than compactness, revise the transform rules before generating another v2 batch.

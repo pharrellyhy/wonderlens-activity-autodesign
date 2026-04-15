@@ -29,7 +29,7 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: Each "found it!" reveal
 - **IB Key Concepts**: Form, Function
 - **Lineage**: New
-- **Example designs**: None yet — gold standard TBD
+- **Example designs**: toy_robot_cat1_gold (Robot Inspector)
 
 ### `mystery_trail` — "Follow clue-riddles, discover the hidden pattern"
 
@@ -41,7 +41,7 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: The pattern reveal — "WHOA, they're all connected!"
 - **IB Key Concepts**: Form, Causation, Connection
 - **Lineage**: New
-- **Example designs**: None yet — gold standard TBD
+- **Example designs**: butterfly_cat5_gold (The Butterfly World Detectives)
 
 ---
 
@@ -57,7 +57,7 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: The final "ta-da!" — all modifications combined into one glorious invention
 - **IB Key Concepts**: Function, Change, Connection
 - **Lineage**: New
-- **Example designs**: None yet — gold standard TBD
+- **Example designs**: rubber_duck_cat1_gold (Super Duck Workshop)
 
 ### `mix_lab` — "Collect ingredients, invent something new"
 
@@ -69,7 +69,7 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: The invention reveal — something that couldn't exist but SHOULD
 - **IB Key Concepts**: Form, Function, Connection
 - **Lineage**: New
-- **Example designs**: None yet — gold standard TBD
+- **Example designs**: rock_cat5_gold (Nature Inventor's Lab)
 
 ---
 
@@ -85,7 +85,7 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: Audience goes wild
 - **IB Key Concepts**: Perspective, Form
 - **Lineage**: Evolved from `voice_acting` — adds audience reaction mechanic, surprise twist challenges
-- **Example designs**: lion_cat1 (Roar Reporter), crayons_cat1 (Color Feelings), raincoat_cat1 (Rainy Day Feelings), piano_cat1 (Secret Song Storyteller)
+- **Example designs**: lion_cat1_gold (The Lion's Big Show), crayons_cat1 (Color Feelings), raincoat_cat1 (Rainy Day Feelings), piano_cat1 (Secret Song Storyteller)
 
 ### `ensemble_show` — "Assemble your cast, put on a show"
 
@@ -97,7 +97,7 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: "All together now!" — the full ensemble plays
 - **IB Key Concepts**: Form, Connection, Perspective
 - **Lineage**: New
-- **Example designs**: None yet — gold standard TBD
+- **Example designs**: bird_cat5_gold (The Nature Orchestra)
 
 ---
 
@@ -113,19 +113,20 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: Each reveal — right or wrong, there's drama
 - **IB Key Concepts**: Causation, Function
 - **Lineage**: Evolved from `prediction_game` — adds commit-before-reveal, dramatic reveals, running score
-- **Example designs**: goldfish_cat1 (Goldfish Guess-What), eye_cat1 (The Secret Eye Detective)
+- **Example designs**: goldfish_cat1_gold (Goldfish Scientist), eye_cat1 (The Secret Eye Detective)
 
 ### `field_experiment` — "Test a hypothesis outdoors"
 
 - **Category**: Cat 5 — Collection/Tracking Exploration (Out-of-Device)
-- **Child's role each round**: Predicts an answer, collects evidence, AI tallies real results
-- **What the AI does**: Proposes question: "Are most things near the ground rough or smooth?" Child PREDICTS, then collects 4-5 items
-- **What the child does**: Reports relevant property for each find; AI tallies: "3 rough, 2 smooth — your hypothesis was CORRECT!"
-- **Game element**: Hypothesis → evidence collection → real tally
-- **Magic moment**: The tally — real data, real result
+- **Child's role each round**: Predicts an answer, collects evidence, AI assesses each find from the photo and tallies results
+- **What the AI does**: Proposes a visually-verifiable hypothesis: "Are most things at the playground made of metal or something else?" Child PREDICTS, then collects 4-5 items. After each photo, **AI identifies the relevant property from the image** and announces it — the child does NOT self-report.
+- **What the child does**: Commits to a prediction before collecting; photographs items; reacts to AI's assessments. AI tallies: "Metal: 2, Not Metal: 3 — your hypothesis was SURPRISING!"
+- **Game element**: Hypothesis → evidence collection → AI-assessed tally → real result
+- **Magic moment**: The tally — real data, real result, genuine surprise
 - **IB Key Concepts**: Form, Causation
-- **Lineage**: Evolved from `comparison_chart` — adds pre-collection hypothesis, "was I right?" mechanic, data tallying
-- **Example designs**: playground_cat5 (The Playground Job Fair), sunflower_cat5 (The Sunshine Parts Patrol), stop_sign_cat5 (Sign Spotter Safari), green_apple_cat5 (Green Treasure Hunt), city_library_cat5 (Building Detectives)
+- **Visual verification constraint**: Hypotheses MUST use properties the AI can reliably assess from a photo. **Allowed**: color, shape, material type (metal/wood/plastic), size (bigger/smaller than X), count, alive/not-alive, category membership. **Banned**: texture (rough/smooth), weight (heavy/light), temperature (warm/cold), sound, smell, flexibility. The AI is the property assessor — it announces what it sees in the photo, preserving the "Was I right?!" surprise.
+- **Lineage**: Evolved from `comparison_chart` — adds pre-collection hypothesis, AI-as-assessor mechanic, data tallying
+- **Example designs**: playground_cat5_gold (The Playground Material Detective)
 
 ---
 
@@ -141,7 +142,7 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: Seeing the whole timeline assembled — "look how far we went!"
 - **IB Key Concepts**: Change, Connection, Causation
 - **Lineage**: Evolved from `storytelling_chain` — adds time-based progression, genuine choice points, timeline visualization
-- **Example designs**: banana_cat1 (The Banana's Big Adventure)
+- **Example designs**: banana_cat1_gold (The Banana Time Machine)
 
 ### `quest_collector` — "Mission with a purpose"
 
@@ -153,7 +154,7 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: "Quest complete!" — mission accomplished, story told
 - **IB Key Concepts**: Change, Form, Connection
 - **Lineage**: Evolved from `naming_story` — adds quest criterion framing, mission progression tracking; preserves detail harvesting
-- **Example designs**: dandelion_cat5 (The Wish Puff Safari), feather_cat5 (The Sky-Light Brigade), puddle_cat5 (The Puddle Portal), sandy_beach_cat5 (The Shore Detective Agency), autumn_leaf_cat5 (The Warm Color Treasure Hunt), pinecone_cat5 (The Spiral Code Breakers), crayons_cat5 (The Color Friends Adventure), double_rainbow_cat5 (The Rainbow Color Scout), raincoat_cat5 (The Rain Guard Patrol)
+- **Example designs**: dandelion_cat5_gold (Dandelion Quest), feather_cat5 (The Sky-Light Brigade), puddle_cat5 (The Puddle Portal), sandy_beach_cat5 (The Shore Detective Agency), autumn_leaf_cat5 (The Warm Color Treasure Hunt), pinecone_cat5 (The Spiral Code Breakers), crayons_cat5 (The Color Friends Adventure), double_rainbow_cat5 (The Rainbow Color Scout), raincoat_cat5 (The Rain Guard Patrol)
 
 ---
 
@@ -169,7 +170,7 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: The transformation — you can SEE your help working
 - **IB Key Concepts**: Responsibility, Function, Connection
 - **Lineage**: Evolved from `helper_hotline` — adds visible transformation, relationship arc with deepening gratitude
-- **Example designs**: teddy_bear_cat1 (Teddy's Bedtime Helper), firefighter_cat1 (Helper Hotline), toothbrush_holder_cat1 (The Bathroom Helper Game)
+- **Example designs**: teddy_bear_cat1_gold (Teddy's Care Station), firefighter_cat1 (Helper Hotline), toothbrush_holder_cat1 (The Bathroom Helper Game)
 
 ### `rescue_team` — "Find things that need help"
 
@@ -181,7 +182,7 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 - **Magic moment**: The rescued team helping EACH OTHER
 - **IB Key Concepts**: Responsibility, Connection, Perspective
 - **Lineage**: New
-- **Example designs**: None yet — gold standard TBD
+- **Example designs**: flower_cat5_gold (The Garden Rescue Squad)
 
 ---
 
@@ -206,17 +207,17 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 
 ## Style Distribution
 
-| Pillar | Style | Cat | Count | Designs |
-|--------|-------|-----|-------|---------|
-| Mystery | `mystery_lens` | 1 | 0 | — |
-| Mystery | `mystery_trail` | 5 | 0 | — |
-| Creation | `inventor_workshop` | 1 | 0 | — |
-| Creation | `mix_lab` | 5 | 0 | — |
-| Performance | `voice_stage` | 1 | 4 | lion, crayons, raincoat, piano |
-| Performance | `ensemble_show` | 5 | 0 | — |
-| Discovery | `prediction_lab` | 1 | 2 | goldfish, eye |
-| Discovery | `field_experiment` | 5 | 5 | playground, city_library, sunflower, stop_sign, green_apple |
-| Adventure | `time_traveler` | 1 | 1 | banana |
-| Adventure | `quest_collector` | 5 | 9 | dandelion, feather, puddle, sandy_beach, autumn_leaf, pinecone, crayons, double_rainbow, raincoat |
-| Nurture | `care_station` | 1 | 3 | teddy_bear, firefighter, toothbrush_holder |
-| Nurture | `rescue_team` | 5 | 0 | — |
+| Pillar | Style | Cat | Gold | Legacy | Designs (gold in **bold**) |
+|--------|-------|-----|------|--------|---------------------------|
+| Mystery | `mystery_lens` | 1 | 1 | 0 | **toy_robot** |
+| Mystery | `mystery_trail` | 5 | 1 | 0 | **butterfly** |
+| Creation | `inventor_workshop` | 1 | 1 | 0 | **rubber_duck** |
+| Creation | `mix_lab` | 5 | 1 | 0 | **rock** |
+| Performance | `voice_stage` | 1 | 1 | 3 | **lion**, crayons, raincoat, piano |
+| Performance | `ensemble_show` | 5 | 1 | 0 | **bird** |
+| Discovery | `prediction_lab` | 1 | 1 | 1 | **goldfish**, eye |
+| Discovery | `field_experiment` | 5 | 1 | 4 | **playground**, city_library, sunflower, stop_sign, green_apple |
+| Adventure | `time_traveler` | 1 | 1 | 0 | **banana** |
+| Adventure | `quest_collector` | 5 | 1 | 8 | **dandelion**, feather, puddle, sandy_beach, autumn_leaf, pinecone, crayons, double_rainbow, raincoat |
+| Nurture | `care_station` | 1 | 1 | 2 | **teddy_bear**, firefighter, toothbrush_holder |
+| Nurture | `rescue_team` | 5 | 1 | 0 | **flower** |

@@ -1,0 +1,229 @@
+<h2>Screen 3: Design Studio</h2>
+<p class="subtitle">The core editing experience. User selected "Roar Reporter" (lion, Cat 1, voice_acting). Every field is editable inline. Each section has an "Ask AI" button for targeted regeneration with comments.</p>
+
+<div style="background: #1a1a2e; border-radius: 12px; padding: 0; margin: 20px 0; font-family: system-ui, sans-serif; color: #e0e0e0; display: flex; min-height: 700px; overflow: hidden;">
+
+  <!-- LEFT: Step Navigation Sidebar -->
+  <div style="width: 220px; background: #15152a; border-right: 1px solid #333; padding: 16px 0; flex-shrink: 0;">
+    <div style="padding: 0 16px 16px; border-bottom: 1px solid #333;">
+      <h3 style="margin: 0; color: #fff; font-size: 15px;">🦁 Roar Reporter</h3>
+      <p style="margin: 4px 0 0; color: #888; font-size: 11px;">Cat 1 · voice_acting · T0</p>
+    </div>
+
+    <div style="padding: 12px 0;">
+      <div style="padding: 8px 16px; background: #252550; border-left: 3px solid #6c6cff; color: #fff; font-size: 13px; cursor: pointer;">📋 Basic Info</div>
+      <div style="padding: 8px 16px; color: #aaa; font-size: 13px; cursor: pointer;">🎯 Overview & KUD</div>
+      <div style="padding: 8px 16px; color: #aaa; font-size: 13px; cursor: pointer;">🎨 Creative Variables</div>
+      <div style="padding: 8px 16px; color: #888; font-size: 12px; margin-top: 8px; font-weight: 600;">INTERACTION FLOW</div>
+      <div style="padding: 8px 16px 8px 28px; color: #aaa; font-size: 13px; cursor: pointer;">Step 1: Bridge</div>
+      <div style="padding: 8px 16px 8px 28px; color: #aaa; font-size: 13px; cursor: pointer;">Step 2: Rules + Demo</div>
+      <div style="padding: 8px 16px 8px 28px; color: #aaa; font-size: 13px; cursor: pointer; font-weight: 600; color: #fff;">Step 3: Rounds ▾</div>
+      <div style="padding: 6px 16px 6px 42px; color: #8888cc; font-size: 12px; cursor: pointer;">Round 1</div>
+      <div style="padding: 6px 16px 6px 42px; color: #8888cc; font-size: 12px; cursor: pointer;">Round 2</div>
+      <div style="padding: 6px 16px 6px 42px; color: #8888cc; font-size: 12px; cursor: pointer;">Round 3</div>
+      <div style="padding: 8px 16px 8px 28px; color: #aaa; font-size: 13px; cursor: pointer;">Step 4: Celebration</div>
+      <div style="padding: 8px 16px 8px 28px; color: #aaa; font-size: 13px; cursor: pointer;">Step 5: Closing</div>
+    </div>
+  </div>
+
+  <!-- CENTER: Editor -->
+  <div style="flex: 1; padding: 24px; overflow-y: auto;">
+
+    <!-- Basic Info Section (active) -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h3 style="margin: 0; color: #fff;">📋 Basic Info</h3>
+      <button style="background: #2a2a5a; color: #8888ff; border: 1px solid #4a4a8a; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;">✨ Ask AI to improve this section</button>
+    </div>
+
+    <!-- Editable fields as form -->
+    <div style="display: grid; gap: 16px;">
+
+      <div style="background: #222244; border-radius: 8px; padding: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <label style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Activity Name</label>
+          <span style="color: #555; font-size: 11px; cursor: pointer;">💬 comment</span>
+        </div>
+        <div style="margin-top: 8px; padding: 8px 12px; background: #1a1a3a; border: 1px solid #333; border-radius: 6px; color: #fff; font-size: 14px;" contenteditable="true">Roar Reporter</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div style="background: #222244; border-radius: 8px; padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Activity Category</label>
+            <span style="color: #555; font-size: 11px; cursor: pointer;">💬</span>
+          </div>
+          <div style="margin-top: 8px; padding: 8px 12px; background: #1a1a3a; border: 1px solid #333; border-radius: 6px; color: #aaa; font-size: 13px;">
+            Sustained Verbal Interaction (In-Device)
+            <span style="float: right; color: #555;">▾</span>
+          </div>
+        </div>
+        <div style="background: #222244; border-radius: 8px; padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Recommended Tier</label>
+            <span style="color: #555; font-size: 11px; cursor: pointer;">💬</span>
+          </div>
+          <div style="margin-top: 8px; padding: 8px 12px; background: #1a1a3a; border: 1px solid #333; border-radius: 6px; color: #aaa; font-size: 13px;">
+            T0 (ages 2–4)
+            <span style="float: right; color: #555;">▾</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #222244; border-radius: 8px; padding: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <label style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Core IB Key Concepts</label>
+          <span style="color: #555; font-size: 11px; cursor: pointer;">💬 comment</span>
+        </div>
+        <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <span style="background: #3a3a6a; color: #a0a0ff; padding: 4px 12px; border-radius: 16px; font-size: 13px;">Function ✕</span>
+          <span style="background: #3a3a6a; color: #a0a0ff; padding: 4px 12px; border-radius: 16px; font-size: 13px;">Causation ✕</span>
+          <span style="background: #2a2a4a; color: #666; padding: 4px 12px; border-radius: 16px; font-size: 13px; border: 1px dashed #555; cursor: pointer;">+ Add concept</span>
+        </div>
+      </div>
+
+      <div style="background: #222244; border-radius: 8px; padding: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <label style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Game Style</label>
+          <span style="color: #555; font-size: 11px; cursor: pointer;">💬</span>
+        </div>
+        <div style="margin-top: 8px; padding: 8px 12px; background: #1a1a3a; border: 1px solid #333; border-radius: 6px; color: #aaa; font-size: 13px;">
+          voice_acting
+          <span style="float: right; color: #555;">▾</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- A round example to show dialogue editing -->
+    <div style="margin-top: 32px; border-top: 1px solid #333; padding-top: 24px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="margin: 0; color: #fff;">🔄 Step 3 — Round 1</h3>
+        <button style="background: #2a2a5a; color: #8888ff; border: 1px solid #4a4a8a; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;">✨ Ask AI to improve this round</button>
+      </div>
+
+      <!-- AI Says -->
+      <div style="background: #222244; border-radius: 8px; padding: 16px; margin-bottom: 12px; border-left: 3px solid #6c6cff;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <label style="color: #6c6cff; font-size: 12px; font-weight: 600;">🤖 AI SAYS</label>
+          <div style="display: flex; gap: 8px;">
+            <span style="color: #555; font-size: 11px; cursor: pointer;">💬 comment</span>
+            <span style="color: #555; font-size: 11px; cursor: pointer;">✨ regen</span>
+          </div>
+        </div>
+        <div style="margin-top: 8px; padding: 10px 14px; background: #1a1a3a; border: 1px solid #333; border-radius: 6px; color: #ddd; font-size: 13px; line-height: 1.6;" contenteditable="true">(excited) Oh wow, guess what? Your lion friend just saw something amazing — a bright rainbow appeared right over the savanna! 🌈 How does your lion feel about that? Can you tell me in your lion voice?</div>
+      </div>
+
+      <!-- Child Responses -->
+      <div style="background: #223322; border-radius: 8px; padding: 16px; margin-bottom: 12px; border-left: 3px solid #5c8c5c;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <label style="color: #5c8c5c; font-size: 12px; font-weight: 600;">👶 CHILD RESPONSES</label>
+          <span style="color: #555; font-size: 11px; cursor: pointer;">✨ regen all</span>
+        </div>
+
+        <div style="margin-top: 12px;">
+          <div style="display: flex; gap: 8px; align-items: start; margin-bottom: 10px;">
+            <span style="background: #2d4a2d; color: #7ddb7d; padding: 2px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; margin-top: 2px;">Ideal</span>
+            <div style="padding: 8px 12px; background: #1a2a1a; border: 1px solid #2a3a2a; border-radius: 6px; color: #ccc; font-size: 13px; flex: 1; line-height: 1.5;" contenteditable="true">"ROAR! I'm so happy! Look at all the pretty colors! I want to jump up and catch it!"</div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: start; margin-bottom: 10px;">
+            <span style="background: #4a4a2d; color: #dbdb7d; padding: 2px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; margin-top: 2px;">Unexpected</span>
+            <div style="padding: 8px 12px; background: #1a2a1a; border: 1px solid #2a3a2a; border-radius: 6px; color: #ccc; font-size: 13px; flex: 1; line-height: 1.5;" contenteditable="true">Child talks about something unrelated (e.g., "I saw a rainbow yesterday!")</div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: start;">
+            <span style="background: #4a2d2d; color: #db7d7d; padding: 2px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; margin-top: 2px;">Silent</span>
+            <div style="padding: 8px 12px; background: #1a2a1a; border: 1px solid #2a3a2a; border-radius: 6px; color: #ccc; font-size: 13px; flex: 1; line-height: 1.5;" contenteditable="true">Child doesn't respond after 5 seconds</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Follow-ups -->
+      <div style="background: #222244; border-radius: 8px; padding: 16px; margin-bottom: 12px; border-left: 3px solid #8c5ccc;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <label style="color: #8c5ccc; font-size: 12px; font-weight: 600;">🤖 AI FOLLOW-UPS</label>
+          <span style="color: #555; font-size: 11px; cursor: pointer;">✨ regen all</span>
+        </div>
+
+        <div style="margin-top: 12px;">
+          <div style="display: flex; gap: 8px; align-items: start; margin-bottom: 10px;">
+            <span style="background: #2d4a2d; color: #7ddb7d; padding: 2px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; margin-top: 2px;">→ Ideal</span>
+            <div style="padding: 8px 12px; background: #1a1a3a; border: 1px solid #333; border-radius: 6px; color: #ccc; font-size: 13px; flex: 1; line-height: 1.5;" contenteditable="true">(delighted) WOW, what a happy lion! Jumping up to catch the rainbow — I love that! Your lion sounds SO excited! 🦁</div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: start; margin-bottom: 10px;">
+            <span style="background: #4a4a2d; color: #dbdb7d; padding: 2px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; margin-top: 2px;">→ Unexpected</span>
+            <div style="padding: 8px 12px; background: #1a1a3a; border: 1px solid #333; border-radius: 6px; color: #ccc; font-size: 13px; flex: 1; line-height: 1.5;" contenteditable="true">(warm) Oh, you saw a rainbow too! That's so cool! Now imagine YOUR lion friend sees this rainbow — how would a big lion feel? Can you show me?</div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: start;">
+            <span style="background: #4a2d2d; color: #db7d7d; padding: 2px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; margin-top: 2px;">→ Silent</span>
+            <div style="padding: 8px 12px; background: #1a1a3a; border: 1px solid #333; border-radius: 6px; color: #ccc; font-size: 13px; flex: 1; line-height: 1.5;" contenteditable="true">(gentle) Hmm, I think the lion might be surprised! When I see a rainbow, I go "WOW!" — can you say "WOW" like a lion? Try a big roar-wow!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen Description -->
+      <div style="background: #2a2a3a; border-radius: 8px; padding: 16px; border-left: 3px solid #888;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <label style="color: #888; font-size: 12px; font-weight: 600;">🖥️ SCREEN DESCRIPTION</label>
+          <span style="color: #555; font-size: 11px; cursor: pointer;">💬 comment</span>
+        </div>
+        <div style="margin-top: 8px; padding: 8px 12px; background: #1a1a2a; border: 1px solid #333; border-radius: 6px; color: #aaa; font-size: 13px; line-height: 1.5;" contenteditable="true">Lion photo centered with animated rainbow arching over the savanna. Speech bubble with lion's mouth open. Warm golden lighting with rainbow colors reflecting on the grass.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Scorecard Sidebar -->
+  <div style="width: 200px; background: #15152a; border-left: 1px solid #333; padding: 16px; flex-shrink: 0;">
+    <h4 style="margin: 0 0 16px; color: #fff; font-size: 14px;">📊 Quality Score</h4>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #2d4a2d; border-radius: 6px;">
+        <span style="color: #ccc; font-size: 12px;">D1 Technical</span>
+        <span style="color: #7ddb7d; font-size: 12px; font-weight: 600;">PASS</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #2d4a2d; border-radius: 6px;">
+        <span style="color: #ccc; font-size: 12px;">D2 Hook Rule</span>
+        <span style="color: #7ddb7d; font-size: 12px; font-weight: 600;">PASS</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #2d4a2d; border-radius: 6px;">
+        <span style="color: #ccc; font-size: 12px;">D3 Transition</span>
+        <span style="color: #7ddb7d; font-size: 12px; font-weight: 600;">PASS</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #2d4a2d; border-radius: 6px;">
+        <span style="color: #ccc; font-size: 12px;">D4 Edge Cases</span>
+        <span style="color: #7ddb7d; font-size: 12px; font-weight: 600;">PASS</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #2d4a2d; border-radius: 6px;">
+        <span style="color: #ccc; font-size: 12px;">D5 IB Align</span>
+        <span style="color: #7ddb7d; font-size: 12px; font-weight: 600;">PASS</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #2d4a2d; border-radius: 6px;">
+        <span style="color: #ccc; font-size: 12px;">D6 Tier Match</span>
+        <span style="color: #7ddb7d; font-size: 12px; font-weight: 600;">PASS</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #4a4a2d; border-radius: 6px;">
+        <span style="color: #ccc; font-size: 12px;">D7 Dialogue</span>
+        <span style="color: #dbdb7d; font-size: 12px; font-weight: 600;">WARN</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #2d4a2d; border-radius: 6px;">
+        <span style="color: #ccc; font-size: 12px;">D8 Screens</span>
+        <span style="color: #7ddb7d; font-size: 12px; font-weight: 600;">PASS</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #2d4a2d; border-radius: 6px;">
+        <span style="color: #ccc; font-size: 12px;">D9 Mapping</span>
+        <span style="color: #7ddb7d; font-size: 12px; font-weight: 600;">PASS</span>
+      </div>
+    </div>
+
+    <button style="width: 100%; margin-top: 16px; background: #2a2a5a; color: #8888ff; border: 1px solid #4a4a8a; padding: 8px; border-radius: 6px; font-size: 12px; cursor: pointer;">🔄 Re-run Rubric</button>
+
+    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #333;">
+      <h4 style="margin: 0 0 12px; color: #fff; font-size: 13px;">💬 AI Comment Box</h4>
+      <textarea style="width: 100%; height: 80px; background: #1a1a3a; border: 1px solid #333; border-radius: 6px; color: #ccc; font-size: 12px; padding: 8px; resize: none; box-sizing: border-box;" placeholder="Type feedback for AI to regenerate this section..."></textarea>
+      <button style="width: 100%; margin-top: 8px; background: #4a3a7a; color: #d0b0ff; border: none; padding: 8px; border-radius: 6px; font-size: 12px; cursor: pointer;">✨ Regenerate with feedback</button>
+    </div>
+
+    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #333;">
+      <button style="width: 100%; background: #2d4a2d; color: #7ddb7d; border: none; padding: 10px; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: 600;">📥 Export Design</button>
+    </div>
+  </div>
+</div>
+
+<p style="color: #888; font-size: 13px; margin-top: 12px;">This mockup shows the Design Studio with three panels: (1) Left sidebar for step/round navigation, (2) Center editor with inline-editable fields for all design content, (3) Right sidebar with D1-D9 scorecard and AI comment box for targeted regeneration.</p>

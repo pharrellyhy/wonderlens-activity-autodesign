@@ -1,0 +1,2532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WonderLens 游戏设计手册</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&display=swap');
+
+    :root {
+      --bg: #FAFAF8;
+      --bg-sidebar: #F0EFEB;
+      --bg-card: #FFFFFF;
+      --bg-code: #F5F4F0;
+      --bg-highlight: #FFF8E1;
+      --text: #1A1A18;
+      --text-secondary: #6B6B63;
+      --text-muted: #9B9B91;
+      --border: #E2E1DB;
+      --border-active: #C5A55A;
+      --accent: #C5A55A;
+      --accent-soft: #F5EDDA;
+      --accent-hover: #B3933E;
+      --pillar-mystery: #5B6ABF;
+      --pillar-creation: #D4793A;
+      --pillar-performance: #C94B5E;
+      --pillar-discovery: #3A9B7A;
+      --pillar-adventure: #7B5EA7;
+      --pillar-nurture: #4A8FBF;
+      --pass: #3A9B7A;
+      --fail: #C94B5E;
+      --tier-a: #3A9B7A;
+      --tier-b: #5B6ABF;
+      --tier-p: #D4793A;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+      --sidebar-w: 280px;
+      --font-body: 'DM Sans', sans-serif;
+      --font-display: 'Fraunces', serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #18181B;
+      --bg-sidebar: #1E1E22;
+      --bg-card: #232328;
+      --bg-code: #2A2A30;
+      --bg-highlight: #2E2A1E;
+      --text: #E8E8E2;
+      --text-secondary: #A0A098;
+      --text-muted: #6B6B63;
+      --border: #3A3A40;
+      --border-active: #C5A55A;
+      --accent: #D4B86A;
+      --accent-soft: #3A3425;
+      --accent-hover: #E0C87A;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 24px;
+    }
+
+    body {
+      font-family: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      z-index: 100;
+      padding: 24px 0;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .sidebar-header {
+      padding: 0 20px 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .sidebar-header h1 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .sidebar-header .subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .sidebar-controls {
+      display: flex;
+      gap: 8px;
+      padding: 0 20px;
+      margin-bottom: 16px;
+    }
+
+    .search-box {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 8px 12px 8px 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+
+    .search-box::before {
+      content: '⌕';
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .theme-toggle {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .toc {
+      list-style: none;
+      padding: 0 12px;
+    }
+
+    .toc li {
+      margin: 1px 0;
+    }
+
+    .toc a {
+      display: block;
+      padding: 6px 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      border-radius: 5px;
+      transition: all 0.15s;
+      line-height: 1.35;
+    }
+
+    .toc a:hover {
+      color: var(--text);
+      background: var(--accent-soft);
+    }
+
+    .toc a.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-weight: 500;
+    }
+
+    .toc .sub {
+      padding-left: 24px;
+      font-size: 12px;
+    }
+
+    /* ─── MOBILE TOGGLE ─── */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 200;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 20px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .main {
+      margin-left: var(--sidebar-w);
+      max-width: 1100px;
+      padding: 40px 48px 80px;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section {
+      margin-bottom: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 1px solid transparent;
+      transition: background 0.15s;
+    }
+
+    .section-header:hover {
+      background: var(--accent-soft);
+    }
+
+    .section.open>.section-header {
+      border-bottom-color: var(--border);
+    }
+
+    .section-number {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .section-chevron {
+      color: var(--text-muted);
+      font-size: 18px;
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+
+    .section.open>.section-header .section-chevron {
+      transform: rotate(90deg);
+    }
+
+    .section-body {
+      display: none;
+      padding: 24px;
+    }
+
+    .section.open>.section-body {
+      display: block;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    .section-body h3 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      margin: 28px 0 12px;
+      color: var(--text);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .section-body h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 20px 0 8px;
+      color: var(--text);
+    }
+
+    .section-body p {
+      margin: 8px 0;
+      color: var(--text);
+    }
+
+    .section-body strong {
+      font-weight: 600;
+    }
+
+    .section-body ul,
+    .section-body ol {
+      margin: 8px 0 8px 20px;
+      color: var(--text);
+    }
+
+    .section-body li {
+      margin: 4px 0;
+    }
+
+    /* ─── TABLES ─── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--bg-code);
+      border-bottom: 2px solid var(--border);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ─── PILLAR BADGES ─── */
+    .pillar {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .pillar-mystery {
+      background: #ECEDF8;
+      color: var(--pillar-mystery);
+    }
+
+    .pillar-creation {
+      background: #FBEEE2;
+      color: var(--pillar-creation);
+    }
+
+    .pillar-performance {
+      background: #F8E3E7;
+      color: var(--pillar-performance);
+    }
+
+    .pillar-discovery {
+      background: #E1F2EC;
+      color: var(--pillar-discovery);
+    }
+
+    .pillar-adventure {
+      background: #EDE7F4;
+      color: var(--pillar-adventure);
+    }
+
+    .pillar-nurture {
+      background: #E2EDF5;
+      color: var(--pillar-nurture);
+    }
+
+    [data-theme="dark"] .pillar-mystery {
+      background: #2A2D4A;
+    }
+
+    [data-theme="dark"] .pillar-creation {
+      background: #3A2A1E;
+    }
+
+    [data-theme="dark"] .pillar-performance {
+      background: #3A2228;
+    }
+
+    [data-theme="dark"] .pillar-discovery {
+      background: #1E3A2E;
+    }
+
+    [data-theme="dark"] .pillar-adventure {
+      background: #2E2540;
+    }
+
+    [data-theme="dark"] .pillar-nurture {
+      background: #1E2E3A;
+    }
+
+    /* ─── TIER BADGES ─── */
+    .tier {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    .tier-a {
+      background: #E1F2EC;
+      color: var(--tier-a);
+    }
+
+    .tier-b {
+      background: #ECEDF8;
+      color: var(--tier-b);
+    }
+
+    .tier-p {
+      background: #FBEEE2;
+      color: var(--tier-p);
+    }
+
+    [data-theme="dark"] .tier-a {
+      background: #1E3A2E;
+    }
+
+    [data-theme="dark"] .tier-b {
+      background: #2A2D4A;
+    }
+
+    [data-theme="dark"] .tier-p {
+      background: #3A2A1E;
+    }
+
+    /* ─── CODE BLOCKS ─── */
+    code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: var(--bg-code);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent);
+    }
+
+    pre {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      margin: 12px 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+
+    /* ─── PASS/FAIL ─── */
+    .pass {
+      color: var(--pass);
+      font-weight: 600;
+    }
+
+    .fail {
+      color: var(--fail);
+      font-weight: 600;
+    }
+
+    /* ─── CALLOUT ─── */
+    .callout {
+      background: var(--bg-highlight);
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    /* ─── FLOW DIAGRAM ─── */
+    .flow {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px;
+      margin: 12px 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.7;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    /* ─── CHECKLIST ─── */
+    .checklist {
+      list-style: none;
+      margin: 8px 0;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 6px 0 6px 28px;
+      position: relative;
+      color: var(--text);
+    }
+
+    .checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+    }
+
+    /* ─── STATUS BADGES ─── */
+    .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
+    .status-done {
+      background: #E1F2EC;
+      color: var(--pass);
+    }
+
+    .status-wip {
+      background: #FFF3E0;
+      color: #E67E22;
+    }
+
+    .status-planned {
+      background: #ECEDF8;
+      color: var(--pillar-mystery);
+    }
+
+    [data-theme="dark"] .status-done {
+      background: #1E3A2E;
+    }
+
+    [data-theme="dark"] .status-wip {
+      background: #3A2E1E;
+    }
+
+    [data-theme="dark"] .status-planned {
+      background: #2A2D4A;
+    }
+
+    .status-overview {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+
+    .status-overview h2 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .status-card {
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .status-card.done {
+      border-left: 3px solid var(--pass);
+    }
+
+    .status-card.wip {
+      border-left: 3px solid #E67E22;
+    }
+
+    .status-card.planned {
+      border-left: 3px solid var(--pillar-mystery);
+    }
+
+    .status-card .label {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .status-card .detail {
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    .status-card .files {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .section-files {
+      display: inline-block;
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 14px;
+      margin: 8px 0 0;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ─── EXAMPLE BLOCKS ─── */
+    .example-block {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    .example-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: var(--bg-code);
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border-bottom: 1px solid transparent;
+    }
+
+    .example-header:hover {
+      color: var(--text);
+    }
+
+    .example-block.open>.example-header {
+      border-bottom-color: var(--border);
+    }
+
+    .example-chevron {
+      font-size: 14px;
+      transition: transform 0.2s;
+      color: var(--text-muted);
+    }
+
+    .example-block.open>.example-header .example-chevron {
+      transform: rotate(90deg);
+    }
+
+    .example-body {
+      display: none;
+      padding: 20px;
+      font-size: 13px;
+      line-height: 1.6;
+      max-height: 700px;
+      overflow-y: auto;
+    }
+
+    .example-block.open>.example-body {
+      display: block;
+    }
+
+    .example-body h4 {
+      margin: 16px 0 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .example-body h4:first-child {
+      margin-top: 0;
+    }
+
+    .example-step {
+      margin: 10px 0;
+      padding: 10px 14px;
+      background: var(--bg);
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .example-step .step-label {
+      font-weight: 600;
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .example-step .ai {
+      color: var(--text);
+    }
+
+    .example-step .responses {
+      color: var(--text-secondary);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .example-step .screen {
+      color: var(--text-muted);
+      font-size: 12px;
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    .example-meta {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 12px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .example-meta dt {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .example-meta dd {
+      color: var(--text);
+    }
+
+    /* ─── SEARCH HIGHLIGHT ─── */
+    mark {
+      background: var(--accent);
+      color: #fff;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+        box-shadow: var(--shadow-md);
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 60px 20px 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')"
+    aria-label="Menu">☰</button>
+
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <h1>WonderLens<br>游戏设计手册</h1>
+      <div class="subtitle">设计参考手册</div>
+    </div>
+    <div class="sidebar-controls">
+      <div class="search-box">
+        <input type="text" id="search" placeholder="搜索…" autocomplete="off">
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" title="切换主题" aria-label="切换深色模式">◐</button>
+    </div>
+    <ul class="toc" id="toc">
+      <li><a href="#status" style="font-weight:600;color:var(--accent)">项目进度</a></li>
+      <li><a href="#s1">1. 游戏在 WonderLens 中的定位</a></li>
+      <li><a href="#s2">2. Experience Pillar（体验支柱） × Game Style</a></li>
+      <li><a href="#s3">3. 游戏类型：构建什么</a></li>
+      <li><a href="#s3a" class="sub">3A. Entity Gold Standard</a></li>
+      <li><a href="#s3b" class="sub">3B. Property-Bridge 模板</a></li>
+      <li><a href="#s3c" class="sub">3C. Constellation 适配</a></li>
+      <li><a href="#s4">4. 设计：Entity Gold Standard</a></li>
+      <li><a href="#s5">5. 设计：Property-Bridge</a></li>
+      <li><a href="#s6">6. Quality Rubric（10 维度）</a></li>
+      <li><a href="#s7">7. 游戏选择流程</a></li>
+      <li><a href="#s8">8. 自动化游戏设计流程</a></li>
+      <li><a href="#s9">9. 扩展游戏库</a></li>
+      <li><a href="#s10">10. V1 技术限制</a></li>
+      <li><a href="#s11">11. 文件结构与命名</a></li>
+      <li><a href="#s12">12. 快速参考清单</a></li>
+      <li><a href="#s13">13. 参考文件</a></li>
+    </ul>
+  </nav>
+
+  <main class="main" id="content">
+
+    <!-- ═══ PROJECT STATUS ═══ -->
+    <div class="status-overview" id="status">
+      <h2>项目进度总览</h2>
+      <p style="color:var(--text-secondary);font-size:14px;margin-bottom:16px;line-height:1.6">
+        WonderLens 游戏设计系统正在分阶段构建。以下总览展示了各模块的完成情况、当前正在推进的工作，以及后续计划。每张卡片标注了对应的源文件，可直接查阅详细实现或设计文档。
+      </p>
+      <p style="margin-bottom:16px;font-size:13px">
+        <span class="status status-done" style="margin-left:0">已完成</span> 设计和/或实现已完成，可直接使用。
+        &nbsp;&nbsp;<span class="status status-wip">待实现</span> 设计文档已完成，实现是下一步优先事项。
+        &nbsp;&nbsp;<span class="status status-planned">规划中</span> 方案已设计但尚未启动，排在更高优先级工作之后。
+      </p>
+      <div class="status-grid">
+        <div class="status-card done">
+          <div class="label">基础设施</div>
+          <div class="detail">定义游戏结构的核心参考文件——包括游戏风格分类体系（6 个情感支柱下的 12 种游戏风格）、设计师填写的模板、质量评估标准、以及自动化生成流程。这些是「做游戏的规则」。</div>
+          <div class="files">docs/game_styles.md · templates.md · program.md · run.md</div>
+        </div>
+        <div class="status-card done">
+          <div class="label">12 个 Entity Gold Standard</div>
+          <div class="detail">精心手工设计的标杆游戏——12 种游戏风格各一个。每个都针对特定实体设计（如狮子、香蕉、泰迪熊），是所有同类游戏的质量标尺。可以理解为每种游戏类型的「满分样板」。</div>
+          <div class="files">designs/cat1/*_gold_*.md · designs/cat5/*_gold_*.md</div>
+        </div>
+        <div class="status-card done">
+          <div class="label">18 个 Property-Bridge 模板</div>
+          <div class="detail">可复用的游戏模板，基于 AI 检测到的视觉属性（如「这个东西是圆的」→ 启动找圆形物品的游戏）。与 gold standard 不同，每个 property-bridge
+            模板可服务于数百种实体。12 个户外模板 + 6 个室内模板，覆盖全部游戏风格。</div>
+          <div class="files">designs/cat5/*_property_gold_*.md · designs/cat1/*_property_gold_*.md</div>
+        </div>
+        <div class="status-card done">
+          <div class="label">Style Recommender 设计文档</div>
+          <div class="detail">决定「给这个实体玩哪个游戏」的系统设计。当孩子拍照后，系统分析对话上下文，将实体匹配到最佳游戏风格，找到最兼容的现有游戏进行复用或适配。</div>
+          <div class="files">docs/plans/2026-04-01-style-recommender.md</div>
+        </div>
+        <div class="status-card done">
+          <div class="label">Entity Bridging 设计文档</div>
+          <div class="detail">处理「没有预设游戏」的实体的兜底方案。三层降级策略：(1) 通过自然对话桥接到相似实体的游戏，(2) 检测视觉属性并使用 property-bridge 模板，(3)
+            以丰富的对话收尾，而非强行提供低质量游戏。</div>
+          <div class="files">docs/plans/2026-04-08-entity-bridging.md</div>
+        </div>
+        <div class="status-card done">
+          <div class="label">10 维质量评估体系</div>
+          <div class="detail">每个游戏出品前必须通过的质量清单。10 个维度覆盖：技术限制、情感开场、异常处理、IB 课程对齐、年龄适配语言、对话质量、屏幕设计、实体匹配、真实趣味性（Game
+            Feel）、以及情感辨识度（Pillar Fidelity）。</div>
+          <div class="files">program.md (§Phase 3 rubric)</div>
+        </div>
+        <div class="status-card wip">
+          <div class="label">实现层 Prompt（Track C）</div>
+          <div class="detail">驱动 Style Recommender 和 Entity Bridging 实际运行的 LLM 提示词。这些是 AI
+            在运行时决定「玩哪个游戏」和「如何桥接实体」的具体指令。设计方案已完成，提示词文件尚未编写。</div>
+          <div class="files">prompts/stage1_conversation_analyzer.md · prompts/stage2_style_matcher.md ·
+            constellation_map.yaml · conversation_bridge.md §5</div>
+        </div>
+        <div class="status-card planned">
+          <div class="label">旧版设计改写（Phase 2）</div>
+          <div class="detail">约 25 个在旧版 6 风格体系下创建的游戏，需要改写为新的 12 风格支柱体系。暂缓——12 个 gold standard + 18 个 property-bridge
+            模板已为上线提供了可用的游戏库。</div>
+        </div>
+        <div class="status-card planned">
+          <div class="label">Constellation Map 填充</div>
+          <div class="detail">建立查找表，将孩子常拍的实体（猫、狗、玩具、日用品）映射到可复用的 gold standard 游戏。这是扩展游戏覆盖面成本最低的方式——无需设计新游戏，只需建立映射关系。
+          </div>
+        </div>
+        <div class="status-card planned">
+          <div class="label">收尾工作（Phase 3）</div>
+          <div class="detail">日常维护——归档旧格式文件、更新交接文档、重建完整游戏库的合并文档。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 1 ═══ -->
+    <div class="section open" id="s1">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">1</span>
+        <span class="section-title">游戏在 WonderLens 中的定位</span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="flow">孩子拍摄实体 → 实体识别 → 多轮对话（5-15 轮）→ 游戏选择 → 游戏进行（3-5 分钟）</div>
+
+        <h3>两种游戏类别</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>类别</th>
+              <th>场景</th>
+              <th>玩法</th>
+              <th>时长</th>
+            </tr>
+            <tr>
+              <td><strong>Cat1</strong></td>
+              <td>室内，设备内</td>
+              <td>孩子通过游戏机制与 AI 讨论他们拍摄的实体</td>
+              <td>3-5 分钟</td>
+            </tr>
+            <tr>
+              <td><strong>Cat5</strong></td>
+              <td>户外，设备外</td>
+              <td>孩子在户外探索、寻找物品、拍照，AI 根据游戏机制作出反应</td>
+              <td>5-8 分钟</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>如何引导孩子开始一个游戏</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>层级</th>
+              <th>触发条件</th>
+              <th>质量</th>
+              <th>来源</th>
+            </tr>
+            <tr>
+              <td><span class="tier tier-a">Tier A</span></td>
+              <td>实体拥有自己的 gold standard 游戏</td>
+              <td>10/10</td>
+              <td>Gold standard 文件</td>
+            </tr>
+            <tr>
+              <td><span class="tier tier-b">Tier B</span></td>
+              <td>实体匹配到一个 constellation → 适配 gold standard</td>
+              <td>8/10</td>
+              <td>Gold standard + 适配</td>
+            </tr>
+            <tr>
+              <td><span class="tier tier-p">Tier P</span></td>
+              <td>实体有可检测的属性 → property-bridge 游戏</td>
+              <td>7-8/10</td>
+              <td>Property-bridge 模板</td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td>无匹配 → 以丰富的对话结束</td>
+              <td>N/A</td>
+              <td>纯对话模式</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 2 ═══ -->
+    <div class="section" id="s2">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">2</span>
+        <span class="section-title">6 大 Experience Pillar（体验支柱） × 12 种 Game Style <span
+            class="status status-done">已完成</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">相关文件: <code>docs/game_styles.md</code> ·
+          <code>docs/plans/experience-pillars-redesign.md</code>
+        </div>
+        <p>每个游戏都属于一个体验支柱。体验支柱决定孩子的<strong>情感体验</strong>。</p>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>体验支柱</th>
+              <th>孩子的感受…</th>
+              <th>Magic Moment（魔法时刻）</th>
+              <th>Cat1 Style</th>
+              <th>Cat5 Style</th>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-mystery">Mystery</span></td>
+              <td>"我发现了！"</td>
+              <td>隐藏的真相被揭示</td>
+              <td><code>mystery_lens</code></td>
+              <td><code>mystery_trail</code></td>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-creation">Creation</span></td>
+              <td>"这是我做的！"</td>
+              <td>发明作品亮相</td>
+              <td><code>inventor_workshop</code></td>
+              <td><code>mix_lab</code></td>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-performance">Performance</span></td>
+              <td>"他们好喜欢！"</td>
+              <td>观众起立鼓掌</td>
+              <td><code>voice_stage</code></td>
+              <td><code>ensemble_show</code></td>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>"我猜对了吗？！"</td>
+              <td>预测与现实对照</td>
+              <td><code>prediction_lab</code></td>
+              <td><code>field_experiment</code></td>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>"看我们走了多远！"</td>
+              <td>整段旅程一览无余</td>
+              <td><code>time_traveler</code></td>
+              <td><code>quest_collector</code></td>
+            </tr>
+            <tr>
+              <td><span class="pillar pillar-nurture">Nurture</span></td>
+              <td>"我帮到了！"</td>
+              <td>可见的变化与改善</td>
+              <td><code>care_station</code></td>
+              <td><code>rescue_team</code></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>如何选择体验支柱</h3>
+        <p>问自己：<em>"玩了 3 分钟后，孩子应该有什么感受？"</em></p>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>如果你希望孩子感受到…</th>
+              <th>选择</th>
+              <th>游戏应具备…</th>
+            </tr>
+            <tr>
+              <td>聪明，像个侦探</td>
+              <td><span class="pillar pillar-mystery">Mystery</span></td>
+              <td>隐藏信息、逐步揭示的线索、"啊哈！"的揭晓时刻</td>
+            </tr>
+            <tr>
+              <td>为自己的创作感到自豪</td>
+              <td><span class="pillar pillar-creation">Creation</span></td>
+              <td>开放式创造、层层叠加的修改、"看！"的展示时刻</td>
+            </tr>
+            <tr>
+              <td>像舞台上的明星</td>
+              <td><span class="pillar pillar-performance">Performance</span></td>
+              <td>表达性挑战、观众反应、起立鼓掌</td>
+            </tr>
+            <tr>
+              <td>像测试了一个想法的科学家</td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>有赌注的预测、真实数据、"我猜对了吗？！"的时刻</td>
+            </tr>
+            <tr>
+              <td>像经历了一段旅程</td>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>进展、选择、结束时可以回顾的旅程</td>
+            </tr>
+            <tr>
+              <td>真的帮助了别人</td>
+              <td><span class="pillar pillar-nurture">Nurture</span></td>
+              <td>可见的需求、关怀方案、肉眼可见的转变</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 3 ═══ -->
+    <div class="section" id="s3">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">3</span>
+        <span class="section-title">游戏类型：构建什么 <span class="status status-done">已完成</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+
+        <div class="section-files">相关文件: <code>designs/cat1/*_gold_*.md</code> · <code>designs/cat5/*_gold_*.md</code> ·
+          <code>designs/cat1/*_property_gold_*.md</code> · <code>designs/cat5/*_property_gold_*.md</code>
+        </div>
+
+        <h3 id="s3a">3A. Entity Gold Standard <span class="tier tier-a">Tier A</span></h3>
+        <p><strong>定义</strong>：为<strong>特定实体</strong>（如：狮子、香蕉、游乐场）设计的游戏。</p>
+        <p><strong>何时创建</strong>：当实体在 IB 思维导图中，且常见到足以值得手工设计专属游戏时。</p>
+        <p><strong>质量</strong>：最高（10/10）。这些是范例。</p>
+        <p><strong>当前库存</strong>：12 个 gold standard（每种 style 各 1 个）</p>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>Style</th>
+              <th>实体</th>
+              <th>Cat</th>
+              <th>活动名称</th>
+            </tr>
+            <tr>
+              <td><code>mystery_lens</code></td>
+              <td>toy_robot</td>
+              <td>1</td>
+              <td>Robot Inspector</td>
+            </tr>
+            <tr>
+              <td><code>mystery_trail</code></td>
+              <td>butterfly</td>
+              <td>5</td>
+              <td>The Butterfly World Detectives</td>
+            </tr>
+            <tr>
+              <td><code>inventor_workshop</code></td>
+              <td>rubber_duck</td>
+              <td>1</td>
+              <td>Super Duck Workshop</td>
+            </tr>
+            <tr>
+              <td><code>mix_lab</code></td>
+              <td>rock</td>
+              <td>5</td>
+              <td>Nature Inventor's Lab</td>
+            </tr>
+            <tr>
+              <td><code>voice_stage</code></td>
+              <td>lion</td>
+              <td>1</td>
+              <td>The Lion's Big Show</td>
+            </tr>
+            <tr>
+              <td><code>ensemble_show</code></td>
+              <td>bird</td>
+              <td>5</td>
+              <td>The Nature Orchestra</td>
+            </tr>
+            <tr>
+              <td><code>prediction_lab</code></td>
+              <td>goldfish</td>
+              <td>1</td>
+              <td>Goldfish Scientist</td>
+            </tr>
+            <tr>
+              <td><code>field_experiment</code></td>
+              <td>playground</td>
+              <td>5</td>
+              <td>The Playground Material Detective</td>
+            </tr>
+            <tr>
+              <td><code>time_traveler</code></td>
+              <td>banana</td>
+              <td>1</td>
+              <td>The Banana Time Machine</td>
+            </tr>
+            <tr>
+              <td><code>quest_collector</code></td>
+              <td>dandelion</td>
+              <td>5</td>
+              <td>Dandelion Quest</td>
+            </tr>
+            <tr>
+              <td><code>care_station</code></td>
+              <td>teddy_bear</td>
+              <td>1</td>
+              <td>Teddy's Care Station</td>
+            </tr>
+            <tr>
+              <td><code>rescue_team</code></td>
+              <td>flower</td>
+              <td>5</td>
+              <td>The Garden Rescue Squad</td>
+            </tr>
+          </table>
+        </div>
+        <p><strong>文件</strong>：<code>designs/cat{N}/{entity}_cat{N}_gold_spec.md</code> + <code>_gold_prod.md</code></p>
+
+        <p style="color:var(--text-secondary);font-size:13px;margin:12px 0 4px">点击展开完整的 gold standard 游戏示例，了解实际设计效果：</p>
+
+        <div class="example-block" onclick="toggleExample(event,this)">
+          <div class="example-header">
+            <span class="example-chevron">›</span>
+            <span>Cat1 示例：Robot Inspector（机器人大侦探）</span>
+            <span class="pillar pillar-mystery" style="margin-left:auto">Mystery</span>
+            <code style="font-size:11px">mystery_lens</code>
+          </div>
+          <div class="example-body">
+            <p style="color:var(--text-secondary);font-size:12px;margin-bottom:8px">
+              完整文件：<code>designs/cat1/toy_robot_cat1_gold_spec.md</code>（197 行）——以下为关键步骤的可视化展示。</p>
+            <dl class="example-meta">
+              <dt>实体</dt>
+              <dd>玩具机器人</dd>
+              <dt>年龄层</dt>
+              <dd>T1（4–6 岁）</dd>
+              <dt>体验支柱</dt>
+              <dd>Mystery — "我发现了！"</dd>
+              <dt>IB 概念</dt>
+              <dd>Form（长什么样）, Function（有什么用）</dd>
+              <dt>魔法时刻</dt>
+              <dd>每次"找到了！"的揭晓 + 最终"全部零件——破解完成！"</dd>
+              <dt>孩子角色</dt>
+              <dd>首席机器人检查官</dd>
+            </dl>
+            <p><strong>玩法：</strong>AI 偷偷选择孩子照片上机器人的一个细节，逐步给出线索（形状→功能→位置）。孩子看着照片推理猜测。3-4 轮，难度递增。</p>
+            <div class="example-step">
+              <div class="step-label">第 1 步 — 情感开场</div>
+              <div class="ai"><strong>AI：</strong><em>（惊喜）</em>"哇，看这个机器人！好多酷零件——我看到轮子、按钮、一根尖尖的天线…如果你的机器人会说话，你觉得它会说什么？"
+              </div>
+              <div class="responses"><strong>3 种回应：</strong>理想 → "嘟嘟！" / 意外 → "它有红眼睛！" / 沉默 → 等 2 秒，轻声引导</div>
+              <div class="screen"><strong>屏幕：</strong>机器人照片居中，发光脉冲效果。齿轮形状的小星星环绕边缘。</div>
+            </div>
+            <div class="example-step">
+              <div class="step-label">第 2 步 — 游戏设置 + 演示</div>
+              <div class="ai"><strong>AI：</strong>"我会想一个秘密零件。我给线索，你来猜！看——圆圆的…帮机器人移动的…轮子！明白了吗？现在来真的。你能在第三条线索之前猜到吗？"</div>
+              <div class="screen"><strong>屏幕：</strong>机器人照片在左，"机器人检查官"放大镜图标在右，演示动画，"案件 1"徽章。</div>
+            </div>
+            <div class="example-step">
+              <div class="step-label">第 1 轮 — 天线 <span style="color:var(--text-muted)">（简单——建立信心）</span></div>
+              <div class="ai"><strong>AI：</strong><em>（神秘）</em>"案件一！第一条线索…又细又尖——像一根小棍子往上戳！你猜是什么？"</div>
+              <div class="responses"><strong>理想：</strong>"天线！" →
+                "第一条线索就猜对了！天线接收信号——像一只听天空的小耳朵！"<br><strong>猜错：</strong>"手臂！" → 线索
+                2："从机器人头顶最上面伸出来的。像旗杆！"<br><strong>沉默：</strong>→ "看机器人最顶端…"</div>
+            </div>
+            <div class="example-step">
+              <div class="step-label">第 2 轮 — 按钮 <span style="color:var(--text-muted)">（引入功能概念）</span></div>
+              <div class="ai"><strong>AI：</strong>"又小又圆…你可以用手指按下去！"</div>
+              <div class="responses"><strong>理想：</strong>"按钮！" → "按钮就像小命令！" · <strong>猜错（眼睛）：</strong>→ "可以像按门铃一样按进去的…"
+              </div>
+            </div>
+            <div class="example-step">
+              <div class="step-label">第 3 轮 — 关节 <span style="color:var(--text-muted)">（较难——隐藏部位）</span></div>
+              <div class="ai"><strong>AI：</strong><em>（悄悄话）</em>"这个很 sneaky！藏在两个部件连接的地方…它帮机器人弯曲。"</div>
+              <div class="responses"><strong>理想：</strong>"会弯的地方！" → "没有关节，机器人会硬得像根棍子！" · <strong>说了肢体名称：</strong>→
+                "看手臂弯曲的地方——看到那个小连接点了吗？"</div>
+            </div>
+            <div class="example-step" style="border-left-color:var(--pass)">
+              <div class="step-label" style="color:var(--pass)">第 4 步 — 魔法时刻</div>
+              <div class="ai">
+                <strong>AI：</strong><em>（激动）</em>"首席检查官…你检查了天线——信号接收器！按钮——小指挥官！隐藏的关节——弯曲连接器！每个零件——全部破解！你正式成为首席机器人检查官！"
+              </div>
+              <div class="screen"><strong>屏幕：</strong>金色"首席机器人检查官"徽章。破解的零件图标带勾号环绕。五彩纸屑。</div>
+            </div>
+            <div class="example-step">
+              <div class="step-label">第 5 步 — IB 概念收尾</div>
+              <div class="ai"><strong>AI：</strong>"你观察了每个零件的样子——这就是 <strong>Form</strong>！你弄清了每个零件的用途——这就是
+                <strong>Function</strong>！你不只是在玩机器人。你在检查它。"</div>
+            </div>
+            <div class="table-wrap" style="margin-top:16px">
+              <table>
+                <tr>
+                  <th>#</th>
+                  <th>维度</th>
+                  <th>评分</th>
+                  <th>原因</th>
+                </tr>
+                <tr>
+                  <td>D9</td>
+                  <td>Game Feel</td>
+                  <td><span class="pass">PASS</span></td>
+                  <td>每次揭晓前都有真实的不确定感。"能在第三条线索前猜到吗？"制造真实的紧张感。</td>
+                </tr>
+                <tr>
+                  <td>D10</td>
+                  <td>Pillar Fidelity</td>
+                  <td><span class="pass">PASS</span></td>
+                  <td>Mystery：线索→推理→恍然大悟！不可能被重新标记为其他支柱。</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-block" onclick="toggleExample(event,this)">
+          <div class="example-header">
+            <span class="example-chevron">›</span>
+            <span>Cat5 示例：The Wish Puff Quest（蒲公英许愿任务）</span>
+            <span class="pillar pillar-adventure" style="margin-left:auto">Adventure</span>
+            <code style="font-size:11px">quest_collector</code>
+          </div>
+          <div class="example-body">
+            <p style="color:var(--text-secondary);font-size:12px;margin-bottom:8px">
+              完整文件：<code>designs/cat5/dandelion_cat5_gold_spec.md</code>——以下为关键步骤的可视化展示。</p>
+            <dl class="example-meta">
+              <dt>实体</dt>
+              <dd>蒲公英绒球</dd>
+              <dt>年龄层</dt>
+              <dd>T1（4–6 岁）</dd>
+              <dt>体验支柱</dt>
+              <dd>Adventure — "看我们走了多远！"</dd>
+              <dt>IB 概念</dt>
+              <dd>Change（随时间变化）, Connection（共同能力）</dd>
+              <dt>魔法时刻</dt>
+              <dd>任务完成——用所有角色共创风之冒险故事</dd>
+              <dt>孩子角色</dt>
+              <dd>许愿绒球侦察兵</dd>
+              <dt>任务标准</dt>
+              <dd>"找 3 个准备飞走的东西！"</dd>
+            </dl>
+            <p><strong>玩法：</strong>孩子在户外寻找符合任务标准的物品。每个发现都会被评估（"它准备好飞了吗？"），由孩子命名，最终编织成一个合作创作的故事。</p>
+            <div class="example-step">
+              <div class="step-label">第 1 步 — 情感开场</div>
+              <div class="ai">
+                <strong>AI：</strong><em>（屏息惊叹）</em>"哦——蒲公英绒球！看那些小种子——每颗都有自己的小降落伞！风一吹，它们就像小小的愿望一样飞走了。你看过它们飘吗？"</div>
+              <div class="responses"><strong>3 种回应：</strong>理想 → "看过！飞好远！" / 意外 → "是花！" / 沉默 → "看到那些白色小东西了吗？它们在等风…"
+              </div>
+              <div class="screen"><strong>屏幕：</strong>蒲公英照片带发光光晕，动画种子飘向上方，"任务：0/3"</div>
+            </div>
+            <div class="example-step">
+              <div class="step-label">第 2 步 — 任务说明</div>
+              <div class="ai"><strong>AI：</strong><em>（探险家语气）</em>"你现在是许愿绒球侦察兵！任务：找 3
+                个准备飞走的东西。能被风吹走的叶子！能飘起来的种子！每找到一个，告诉我它让你想到什么——我们给它起个任务名字！"</div>
+              <div class="screen"><strong>屏幕：</strong>任务卡，"许愿绒球侦察兵"徽章，3 个空任务槽，风之指南针。</div>
+            </div>
+            <div class="example-step">
+              <div class="step-label">第 1 轮 — 发现 + 评估 + 命名</div>
+              <div class="ai">
+                <em>（孩子拍了一片薄叶子）</em><br><strong>AI：</strong><em>（仔细看）</em>"一片叶子！看它多薄多轻。风一吹…它能飞走吗？<em>（戏剧性停顿）</em>…能！又薄又轻——完全准备好飞了！任务物品
+                #1！它让你想到什么？"</div>
+              <div class="responses"><strong>理想：</strong>"小船！" → "小船就是它的名字！任务：1/3！" · <strong>意外：</strong>"它是绿色的！" →
+                "绿色又薄——飞起来正好！叫它什么？" · <strong>沉默：</strong>→ "它让我想到一片小翅膀…你呢？"</div>
+              <div class="screen"><strong>屏幕：</strong>叶子照片放入任务槽 1。"准备飞了吗？是！"印章。任务计数：1/3。</div>
+            </div>
+            <div class="example-step">
+              <div class="step-label">第 2 轮 — 第二个发现</div>
+              <div class="ai"><em>（孩子拍了一根羽毛）</em><br><strong>AI：</strong>"一根羽毛——轻如空气，微风就能飘走——<em>（戏剧性停顿）</em>没错！任务物品
+                #2！它让你想到什么？"</div>
+              <div class="responses">孩子命名 → "任务：2/3！还差一个！"</div>
+            </div>
+            <div class="example-step">
+              <div class="step-label">第 3 轮 — 最后发现 + 任务完成！</div>
+              <div class="ai"><em>（孩子拍了一颗枫树翅果）</em><br><strong>AI：</strong>"枫树翅果！落下来的时候会旋转！准备好飞了吗？…当然！任务完成——3/3！"</div>
+              <div class="screen"><strong>屏幕：</strong>"任务完成！"横幅，3 张照片带角色名字，庆祝动画。</div>
+            </div>
+            <div class="example-step" style="border-left-color:var(--pass)">
+              <div class="step-label" style="color:var(--pass)">第 4 步 — 魔法时刻：风之冒险故事</div>
+              <div class="ai">
+                <strong>AI：</strong><em>（讲故事语气）</em>"现在…绒云、小船和旋转枫果都在一起了！一阵大风来了，呼——他们全部飞起来了！绒云带路，小船乘着上升气流…"→ AI
+                用孩子的角色名和细节讲述共创冒险故事。</div>
+              <div class="screen"><strong>屏幕：</strong>风之冒险路径图，所有角色在旅途中。"任务完成！"</div>
+            </div>
+            <div class="example-step">
+              <div class="step-label">第 5 步 — IB 概念收尾</div>
+              <div class="ai"><strong>AI：</strong>"你的蒲公英从黄色花朵变成了飞行绒球——这就是
+                <strong>Change</strong>！你找到的所有东西都能飞，就像蒲公英一样——这就是 <strong>Connection</strong>！你获得了风之任务徽章！"</div>
+              <div class="screen"><strong>屏幕：</strong>金色"风之任务徽章"，蒲公英剪影，角色照片，"Change"和"Connection"概念词。</div>
+            </div>
+            <div class="table-wrap" style="margin-top:16px">
+              <table>
+                <tr>
+                  <th>#</th>
+                  <th>维度</th>
+                  <th>评分</th>
+                  <th>原因</th>
+                </tr>
+                <tr>
+                  <td>D9</td>
+                  <td>Game Feel</td>
+                  <td><span class="pass">PASS</span></td>
+                  <td>任务标准为每次发现创造真实的紧张感。"准备好飞了吗？"的判定是真正的游戏时刻。</td>
+                </tr>
+                <tr>
+                  <td>D10</td>
+                  <td>Pillar Fidelity</td>
+                  <td><span class="pass">PASS</span></td>
+                  <td>Adventure：任务标准 + 任务进度 = 明确的 Adventure，不可能是其他支柱。</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="s3b">3B. Property-Bridge 模板 <span class="tier tier-p">Tier P</span></h3>
+        <p><strong>定义</strong>：由<strong>检测到的视觉属性</strong>（如"圆形"、"红色"、"金属"）参数化的游戏，非针对特定实体。适用于具有该属性的任何实体。</p>
+        <p><strong>质量</strong>：良好（7-8/10）。有结构化的游戏机制，但非针对特定实体定制。</p>
+        <p><strong>当前库存</strong>：18 个 property-bridge 模板（12 个 Cat5 + 6 个 Cat1）</p>
+
+        <h4>Cat5 — 户外 / 收集探索（12 个模板）</h4>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>模板</th>
+              <th>Style</th>
+              <th>体验支柱</th>
+              <th>属性</th>
+              <th>属性如何驱动游戏</th>
+              <th>示例</th>
+            </tr>
+            <tr>
+              <td>Shape Quest</td>
+              <td><code>quest_collector</code></td>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>round, pointy, flat, curvy</td>
+              <td>属性成为任务标准——"找 3 个 [形状] 的东西！"</td>
+              <td>汽车（圆形车轮）→ "找 3 个圆形的东西！"</td>
+            </tr>
+            <tr>
+              <td>Color Scout</td>
+              <td><code>quest_collector</code></td>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>red, blue, green, yellow</td>
+              <td>属性成为任务标准——"找 3 个 [颜色] 的东西！"</td>
+              <td>消防车（红色）→ "找 3 个红色的东西！"</td>
+            </tr>
+            <tr>
+              <td>Movers Quest</td>
+              <td><code>quest_collector</code></td>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>wheels, legs, wings</td>
+              <td>属性成为任务标准——"找能动的东西！"</td>
+              <td>玩具车（有轮子）→ "找 3 个能动的东西！"</td>
+            </tr>
+            <tr>
+              <td>Material Lab</td>
+              <td><code>field_experiment</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>metal, wood, plastic</td>
+              <td>属性成为假设——"大部分东西是 [材质] 还是不是？"AI 通过照片评估。</td>
+              <td>叉子（闪亮金属）→ "这里大部分是金属还是不是？"</td>
+            </tr>
+            <tr>
+              <td>Size Experiment</td>
+              <td><code>field_experiment</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>bigger/smaller（参照物）</td>
+              <td>实体成为大小参照——"大部分东西比 [这个] 大还是小？"</td>
+              <td>松果 → "比你的手大还是小？"</td>
+            </tr>
+            <tr>
+              <td>Nature vs Made</td>
+              <td><code>field_experiment</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>natural, man-made</td>
+              <td>属性成为假设——"这里大部分是天然的还是人造的？"</td>
+              <td>公园长椅（人造）→ "周围天然的多还是人造的多？"</td>
+            </tr>
+            <tr>
+              <td>Shiny Experiment</td>
+              <td><code>field_experiment</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>shiny, dull/matte</td>
+              <td>属性成为假设——"大部分东西是亮的还是暗的？"AI 通过照片评估。</td>
+              <td>门把手（反光）→ "这个房间里亮的多还是暗的多？"</td>
+            </tr>
+            <tr>
+              <td>Old vs New</td>
+              <td><code>field_experiment</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>worn/faded, bright/clean</td>
+              <td>属性成为假设——"大部分东西看起来旧还是新？"</td>
+              <td>锈迹斑斑的铁门（有磨损）→ "周围看起来旧的多还是新的多？"</td>
+            </tr>
+            <tr>
+              <td>Pattern Trail</td>
+              <td><code>mystery_trail</code></td>
+              <td><span class="pillar pillar-mystery">Mystery</span></td>
+              <td>stripes, spots, zigzag, lines</td>
+              <td>AI 给出关于图案事物的谜语线索。找到 3 个后，揭示隐藏的联系。</td>
+              <td>条纹衬衫 → AI 谜语引导找到斑点、锯齿、线条——"图案无处不在！"</td>
+            </tr>
+            <tr>
+              <td>Texture Mix</td>
+              <td><code>mix_lab</code></td>
+              <td><span class="pillar pillar-creation">Creation</span></td>
+              <td>rough, smooth, fuzzy, bumpy</td>
+              <td>AI 根据视觉纹理赋予"超能力"。孩子将 2 个超能力组合发明新东西。</td>
+              <td>树皮（看起来粗糙）→ 粗糙=抓握力, 光滑=速度 → "发明一个又能抓又快的东西！"</td>
+            </tr>
+            <tr>
+              <td>Sound Stage</td>
+              <td><code>ensemble_show</code></td>
+              <td><span class="pillar pillar-performance">Performance</span></td>
+              <td>由视觉形态推断声音</td>
+              <td>AI 根据外形想象每个物品会发出什么声音。孩子指挥一场合奏音乐会。</td>
+              <td>木勺（长条硬物）→ "嗒嗒嗒！" 再找 3 个 → 所有声音一起演奏</td>
+            </tr>
+            <tr>
+              <td>Living Rescue</td>
+              <td><code>rescue_team</code></td>
+              <td><span class="pillar pillar-nurture">Nurture</span></td>
+              <td>alive, plant, growing</td>
+              <td>AI 从生物照片中识别"需求"。孩子提出关爱方案。被救助的事物互相帮助。</td>
+              <td>萎靡的植物 → "找 3 个需要帮助的生物！" → 互助圆圈</td>
+            </tr>
+          </table>
+        </div>
+
+        <h4>Cat1 — 室内 / 语言互动（6 个模板）</h4>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>模板</th>
+              <th>Style</th>
+              <th>体验支柱</th>
+              <th>属性</th>
+              <th>属性如何驱动游戏</th>
+              <th>示例</th>
+            </tr>
+            <tr>
+              <td>Detail Detective</td>
+              <td><code>mystery_lens</code></td>
+              <td><span class="pillar pillar-mystery">Mystery</span></td>
+              <td>color, shape, material</td>
+              <td>属性成为线索类别——AI 选择实体上该属性类型的细节，逐步给出线索。</td>
+              <td>彩色卡车（多种颜色）→ "你的卡车上有个不是红色的东西…" → 孩子逐个猜出每种颜色</td>
+            </tr>
+            <tr>
+              <td>What-If Workshop</td>
+              <td><code>inventor_workshop</code></td>
+              <td><span class="pillar pillar-creation">Creation</span></td>
+              <td>任何检测到的属性</td>
+              <td>属性的反义词成为改造提示——"你的 [entity] 是 [属性]，如果变成 [反义] 呢？"</td>
+              <td>闪亮金属勺子 → "如果变成毛茸茸的呢？""如果变成软软的呢？" → 超级勺子！</td>
+            </tr>
+            <tr>
+              <td>Property Predictor</td>
+              <td><code>prediction_lab</code></td>
+              <td><span class="pillar pillar-discovery">Discovery</span></td>
+              <td>shape, size, material</td>
+              <td>属性生成预测场景——"当带有 [属性] 的 [entity] 遇到 [情境] 会怎样？"</td>
+              <td>圆球 → "滚到桌子边缘——会掉下去还是停住？" → 孩子预测 → 揭晓 + 得分</td>
+            </tr>
+            <tr>
+              <td>Time Shifter</td>
+              <td><code>time_traveler</code></td>
+              <td><span class="pillar pillar-adventure">Adventure</span></td>
+              <td>color, size, condition</td>
+              <td>当前属性成为时间旅行的一站——"现在是 [属性]，之前是什么样？"</td>
+              <td>黄色香蕉 → "几个月前它还是一朵绿色的花！" → 颜色变化的时间轴</td>
+            </tr>
+            <tr>
+              <td>Fix-It Station</td>
+              <td><code>care_station</code></td>
+              <td><span class="pillar pillar-nurture">Nurture</span></td>
+              <td>worn, faded, dusty, torn</td>
+              <td>磨损属性触发第一个关爱需求。需求逐步升级：身体 → 情感 → 复合问题。</td>
+              <td>褪色的布偶 → "它的颜色在变淡！怎么帮它？" → 可见的修复变化</td>
+            </tr>
+            <tr>
+              <td>Property Performer</td>
+              <td><code>voice_stage</code></td>
+              <td><span class="pillar pillar-performance">Performance</span></td>
+              <td>shape, size, color</td>
+              <td>属性成为表演主题——孩子扮演实体，用表达方式展现这个属性。</td>
+              <td>圆球 → "你的球好圆！给我听你最大的滚动声！" → 观众疯狂鼓掌</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="s3c">3C. Constellation 适配游戏 <span class="tier tier-b">Tier B</span></h3>
+        <p><strong>定义</strong>：将一个实体 gold standard 游戏复用于语义相似的实体。无需创建新的游戏文件——适配在运行时完成。</p>
+        <p><strong>示例</strong>：小猫 → 没有 gold standard → 小猫属于狮子的 constellation → 适配狮子的游戏：将"吼叫"替换为"喵"，"丛林"替换为"社区"。</p>
+        <p><strong>何时扩展</strong>：在 <code>constellation_map.yaml</code> 中添加条目。无需设计游戏——只需做映射。</p>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 4 ═══ -->
+    <div class="section" id="s4">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">4</span>
+        <span class="section-title">如何设计 Entity Gold Standard <span class="status status-done">已完成</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">相关文件: <code>templates.md</code> · <code>entity_guidance.md</code> ·
+          <code>conversation_bridge.md</code> · <code>transform.md</code>
+        </div>
+        <h3>分步指南</h3>
+        <ol>
+          <li><strong>选择实体 + 类别 + 层级 + 体验支柱 + style</strong> — 实体来自 IB 思维导图，类别基于使用场景，层级基于年龄，体验支柱基于期望的情感体验</li>
+          <li><strong>阅读实体映射 YAML</strong> — 记录 IB 主题、主要关键概念（必须使用 ≥1 个）、tier_guidance、选择 2-3 个锚定维度</li>
+          <li><strong>阅读基础模板 + 体验支柱覆盖层</strong>，来源：<code>templates.md</code></li>
+          <li><strong>研究对应 style 的 gold standard</strong> — 阅读 spec 和 prod 两个版本</li>
+          <li><strong>填写创意变量</strong> —
+            通用变量：<code>{metaphor}</code>、<code>{role_title}</code>、<code>{escalation_axis}</code>。体验支柱专属变量见
+            templates.md。必须是全新的。</li>
+          <li><strong>编写 spec</strong> — 步骤 1（Hook）、步骤 2（Setup+Demo）、步骤 3（核心循环 3-4 轮）、步骤 4（魔法时刻）、步骤 5（IB 庆典）。每步：对话 + 3
+            个分支 + 屏幕描述。</li>
+          <li><strong>对照 10 个维度进行自评</strong> — 修复失败项，重新评估直到全部 PASS</li>
+          <li><strong>编写 prod 版本</strong> — 项目列表→表格，精简第 2 轮及以后的内容，移除评分卡</li>
+          <li><strong>使用正确命名保存</strong> — <code>{entity}_cat{N}_gold_spec.md</code> + <code>_gold_prod.md</code></li>
+        </ol>
+
+        <h3>Spec 文件格式</h3>
+        <pre><code># Activity Design: {Entity} + Category {N} ({Category Name})
+
+            > Generated: {date} | {style info} | Agent: Activity Design Agent
+
+            ---
+
+            ## Activity: {Activity Name}
+
+            ### A. Basic Info
+            - **Activity Name**: ...
+            - **Experience Pillar**: ...
+            - **Game Style**: ...
+            - **Design Version**: 1.0
+            （项目列表格式 — 参见参考文件）
+
+            ### B. Activity Overview
+            - ① 简要描述
+            - ② 教育目标 (KUD)
+            - ③ 设计亮点
+            - ④ 典型场景
+
+            ### C. Interaction Flow — Detailed Design [Target Tier: {T}]
+            （步骤 1-5，完整对话，3 个响应分支，屏幕描述）
+
+            ## Self-Evaluation Scorecard
+            （10 个维度，全部 PASS）</code></pre>
+
+        <h3>Prod 文件格式</h3>
+        <pre><code>## {Activity Name}
+
+            ### A. Basic Info
+            | Field | Value |
+            |-------|-------|
+            | Activity Name | ... |
+            （表格格式，无评分卡，精简轮次）</code></pre>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 5 ═══ -->
+    <div class="section" id="s5">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">5</span>
+        <span class="section-title">如何设计 Property-Bridge 模板 <span class="status status-done">已完成</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">相关文件: <code>docs/plans/2026-04-08-entity-bridging.md</code> (§Layer 2) ·
+          <code>templates.md</code>
+        </div>
+        <p>流程与 entity gold standard 相同，但有以下关键差异：</p>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>方面</th>
+              <th>Entity Gold Standard</th>
+              <th>Property-Bridge</th>
+            </tr>
+            <tr>
+              <td>触发条件</td>
+              <td>特定实体（如"lion"）</td>
+              <td>任何具有被检测到的 <code>{property}</code> 的实体</td>
+            </tr>
+            <tr>
+              <td>映射来源</td>
+              <td>实体映射 YAML 或"无"</td>
+              <td><code>property-bridge</code></td>
+            </tr>
+            <tr>
+              <td>内容驱动</td>
+              <td>实体的独特特征</td>
+              <td>被检测到的属性 + 游戏含义</td>
+            </tr>
+            <tr>
+              <td>复用性</td>
+              <td>仅 1 个实体</td>
+              <td>多个实体</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>允许的属性（AI 可在照片中识别）</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>属性</th>
+              <th>示例</th>
+              <th>可靠性</th>
+            </tr>
+            <tr>
+              <td>颜色</td>
+              <td>red, blue, green, yellow, brown</td>
+              <td><span class="pass">非常高</span></td>
+            </tr>
+            <tr>
+              <td>形状</td>
+              <td>round, pointy, flat, long, curvy</td>
+              <td><span class="pass">高</span></td>
+            </tr>
+            <tr>
+              <td>材质类型</td>
+              <td>metal, wood, plastic, fabric, stone</td>
+              <td><span class="pass">高</span></td>
+            </tr>
+            <tr>
+              <td>尺寸（相对）</td>
+              <td>比手大/比手小</td>
+              <td><span class="pass">高</span></td>
+            </tr>
+            <tr>
+              <td>天然 vs 人造</td>
+              <td>树 vs 长椅</td>
+              <td><span class="pass">高</span></td>
+            </tr>
+            <tr>
+              <td>有生命 vs 无生命</td>
+              <td>植物、动物 vs 物体</td>
+              <td><span class="pass">高</span></td>
+            </tr>
+            <tr>
+              <td>图案</td>
+              <td>stripes, spots, zigzag</td>
+              <td><span class="pass">高</span></td>
+            </tr>
+            <tr>
+              <td>光泽度</td>
+              <td>反光 vs 哑光</td>
+              <td><span class="pass">高</span></td>
+            </tr>
+            <tr>
+              <td>老化/磨损</td>
+              <td>锈蚀、裂纹 vs 明亮、干净</td>
+              <td>中高</td>
+            </tr>
+            <tr>
+              <td>可见纹理</td>
+              <td>粗糙的树皮、光滑的玻璃</td>
+              <td>中</td>
+            </tr>
+            <tr>
+              <td>运动能力</td>
+              <td>轮子、腿、翅膀</td>
+              <td>中</td>
+            </tr>
+            <tr>
+              <td>声音潜力</td>
+              <td>棍子=敲击、树叶=沙沙声</td>
+              <td>创造性推断</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>禁止的属性</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>属性</th>
+              <th>禁止原因</th>
+            </tr>
+            <tr>
+              <td>实际触感（触觉）</td>
+              <td><span class="fail">无法通过照片触摸</span></td>
+            </tr>
+            <tr>
+              <td>重量</td>
+              <td><span class="fail">无法通过照片称量</span></td>
+            </tr>
+            <tr>
+              <td>温度</td>
+              <td><span class="fail">无法通过照片感知</span></td>
+            </tr>
+            <tr>
+              <td>实际声音</td>
+              <td><span class="fail">无法通过照片听到</span></td>
+            </tr>
+            <tr>
+              <td>气味/味道</td>
+              <td><span class="fail">无法通过照片感知</span></td>
+            </tr>
+            <tr>
+              <td>柔韧性</td>
+              <td><span class="fail">在静态图像中不明确</span></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="callout">
+          <strong>field_experiment 特殊规则：AI 作为评估者</strong><br>
+          AI 从照片中评估属性并宣布结果。孩子不需要自行报告。这保留了"我猜对了吗？！"的惊喜感。<br>
+          <em>示例：AI 说"让我仔细看看……我看到它是亮闪闪的！"（而不是"它是亮的还是暗的？"）</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 6 ═══ -->
+    <div class="section" id="s6">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">6</span>
+        <span class="section-title">Quality Rubric（质量评估维度）：10 个维度 <span class="status status-done">已完成</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">相关文件: <code>program.md</code> (§Phase 3 rubric)</div>
+        <p>每个游戏必须通过全部 10 个维度。</p>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>#</th>
+              <th>维度</th>
+              <th>PASS 条件…</th>
+              <th>FAIL 条件…</th>
+            </tr>
+            <tr>
+              <td>D1</td>
+              <td><strong>V1 技术合规</strong></td>
+              <td>不依赖 OCR、面部检测、IMU 或前后对比</td>
+              <td>设计依赖被屏蔽的能力</td>
+            </tr>
+            <tr>
+              <td>D2</td>
+              <td><strong>Hook 与过渡</strong></td>
+              <td>步骤 1 以情感共鸣开场，自然展开</td>
+              <td>步骤 1 测试知识或突然分配任务</td>
+            </tr>
+            <tr>
+              <td>D3</td>
+              <td><strong>边缘情况覆盖</strong></td>
+              <td>每一步有 3 个分支（理想、意外、沉默）</td>
+              <td>缺少分支或忽略意外回应</td>
+            </tr>
+            <tr>
+              <td>D4</td>
+              <td><strong>IB 完整性</strong></td>
+              <td>指定 1-2 个关键概念。定义 KUD。标注 ATL 技能。</td>
+              <td>概念缺失或与孩子的行为不匹配</td>
+            </tr>
+            <tr>
+              <td>D5</td>
+              <td><strong>层级适切性</strong></td>
+              <td>语言匹配层级。T0: ≤5 词。T1: 5-8 词。T2: 复杂。</td>
+              <td>语言对该层级来说太高级或太简单</td>
+            </tr>
+            <tr>
+              <td>D6</td>
+              <td><strong>对话具体性</strong></td>
+              <td>所有 AI 台词都是带语气标记的实际对话</td>
+              <td>抽象描述如"AI 引导…"</td>
+            </tr>
+            <tr>
+              <td>D7</td>
+              <td><strong>屏幕与 UI</strong></td>
+              <td>每一步都有具体的屏幕描述</td>
+              <td>模糊或缺少屏幕描述</td>
+            </tr>
+            <tr>
+              <td>D8</td>
+              <td><strong>实体映射对齐</strong></td>
+              <td>（仅限映射驱动型）概念来自映射</td>
+              <td>概念无法追溯到映射</td>
+            </tr>
+            <tr>
+              <td>D9</td>
+              <td><strong>游戏感</strong></td>
+              <td>真正的不确定性 + 令人满意的揭晓 + 赌注</td>
+              <td>感觉像结构化的问答，没有惊喜</td>
+            </tr>
+            <tr>
+              <td>D10</td>
+              <td><strong>体验支柱忠实度</strong></td>
+              <td>盲测读者能识别出体验支柱。情感弧线匹配。</td>
+              <td>换个标签也不会觉得违和</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Self-Evaluation Scorecard（自评记分卡）模板</h3>
+        <pre><code>| # | Dimension | Score | Notes |
+            |---|-------------------------|-----------|--------------------|
+            | 1 | V1 Technical Compliance | PASS/FAIL | [具体证据] |
+            | 2 | Hook & Transition | PASS/FAIL | [具体证据] |
+            | 3 | Edge Case Coverage | PASS/FAIL | [具体证据] |
+            | 4 | IB Completeness | PASS/FAIL | [具体证据] |
+            | 5 | Tier Appropriateness | PASS/FAIL | [具体证据] |
+            | 6 | Dialogue Specificity | PASS/FAIL | [具体证据] |
+            | 7 | Screen & UI | PASS/FAIL | [具体证据] |
+            | 8 | Entity Mapping | PASS/N/A | [具体证据] |
+            | 9 | Game Feel | PASS/FAIL | [具体证据] |
+            |10 | Pillar Fidelity | PASS/FAIL | [具体证据] |</code></pre>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 7 ═══ -->
+    <div class="section" id="s7">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">7</span>
+        <span class="section-title">游戏选择流程 <span class="status status-done">设计完成</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">相关文件: <code>docs/plans/2026-04-01-style-recommender.md</code> ·
+          <code>docs/plans/2026-04-08-entity-bridging.md</code>
+        </div>
+        <div class="flow">孩子拍摄实体
+          ↓
+          实体在 IB 思维导图中？──是──→ 实体有 gold standard 游戏？
+          │ ├── 是 → <strong>Tier A</strong>（gold standard）
+          │ └── 否 → Style Recommender → <strong>Tier B</strong>（适配）
+          │ → 或 <strong>Tier P</strong>
+          │
+          └── 否 → Entity Bridging 系统
+          ├── Constellation 匹配（≥ 0.7）？
+          │ └── 是 → 在对话中桥接 → <strong>Tier A/B</strong>
+          │
+          ├── Property bridge 可用？
+          │ └── 是 → <strong>Tier P</strong>（property-bridge 模板）
+          │
+          └── 无匹配 → <strong>纯对话</strong>（无游戏）</div>
+
+        <h3>Entity Constellation 桥接规则</h3>
+        <ol>
+          <li>每次对话只能尝试一次桥接——如果孩子忽略了，绝不重试</li>
+          <li>尊重原始实体——桥接是增加关联，绝不忽视原实体</li>
+          <li>类别必须匹配——不要将室内实体桥接到户外游戏</li>
+          <li>最低 constellation 分数 0.7</li>
+          <li>游戏引用两个实体——"既然你的小猫是狮子的亲戚……"</li>
+        </ol>
+
+        <h3>桥接类型（从强到弱）</h3>
+        <ol>
+          <li>同一分类体系（小猫 → 狮子）</li>
+          <li>部分-整体（秋千 → 游乐场）</li>
+          <li>同一领域（郁金香 → 向日葵）</li>
+          <li>共享功能（玩具车 → 自行车）</li>
+          <li>相同角色（毛绒兔子 → 泰迪熊）</li>
+          <li>伴随关系（牙刷 → 牙刷架）</li>
+          <li>共享栖息地（池塘青蛙 → 金鱼）</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 8 ═══ -->
+    <div class="section" id="s8">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">8</span>
+        <span class="section-title">自动化游戏设计流程 <span class="status status-wip">待实现</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="section-files">相关文件: <code>run.md</code> · <code>assignments.md</code> · <code>program.md</code> ·
+          <code>transform.md</code>
+        </div>
+        <p>游戏可通过 LLM 智能体自动生成。智能体读取实体映射数据、应用模板、生成 spec 和 prod 文件、自我评估并提交——无需人工干预。</p>
+
+        <h3>初始设置（一次性）</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>文件</th>
+              <th>智能体从中学习的内容</th>
+            </tr>
+            <tr>
+              <td><code>program.md</code></td>
+              <td>约束条件、输出格式、评估维度、范例</td>
+            </tr>
+            <tr>
+              <td><code>templates.md</code></td>
+              <td>结构骨架 + 体验支柱覆盖层 + 创意变量</td>
+            </tr>
+            <tr>
+              <td><code>docs/game_styles.md</code></td>
+              <td>12 种 Game Style 分类体系</td>
+            </tr>
+            <tr>
+              <td><code>entity_guidance.md</code></td>
+              <td>如何解读实体映射 YAML</td>
+            </tr>
+            <tr>
+              <td><code>conversation_bridge.md</code></td>
+              <td>热启动/冷启动桥接模式</td>
+            </tr>
+            <tr>
+              <td><code>transform.md</code></td>
+              <td>Spec → prod 转换规则</td>
+            </tr>
+            <tr>
+              <td><code>assignments.md</code></td>
+              <td>工作队列（需要生成什么）</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>任务队列格式</h3>
+        <pre><code>- [ ] goldfish + category 1, tier=T1, mapping=animals_goldfish,
+            start=warm+cold, scene=child photographs their pet goldfish</code></pre>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>字段</th>
+              <th>必填</th>
+              <th>说明</th>
+            </tr>
+            <tr>
+              <td><code>entity</code></td>
+              <td>是</td>
+              <td>实体名称</td>
+            </tr>
+            <tr>
+              <td><code>category</code></td>
+              <td>是</td>
+              <td>1（Cat1）或 5（Cat5）</td>
+            </tr>
+            <tr>
+              <td><code>tier</code></td>
+              <td>是</td>
+              <td>T0、T1 或 T2</td>
+            </tr>
+            <tr>
+              <td><code>pillar</code></td>
+              <td>否</td>
+              <td>体验支柱（省略时自动推断）</td>
+            </tr>
+            <tr>
+              <td><code>style</code></td>
+              <td>否</td>
+              <td>Game Style（省略时自动推断）</td>
+            </tr>
+            <tr>
+              <td><code>mapping</code></td>
+              <td>否</td>
+              <td>实体映射 ID — 启用映射驱动设计</td>
+            </tr>
+            <tr>
+              <td><code>start</code></td>
+              <td>否</td>
+              <td><code>warm+cold</code> 表示双桥接，或省略表示仅冷启动</td>
+            </tr>
+            <tr>
+              <td><code>scene</code></td>
+              <td>否</td>
+              <td>触发场景（省略时自动生成）</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>设计循环</h3>
+        <div class="flow">步骤 1：解析任务 → 提取 entity、category、tier、pillar、style、mapping
+          ↓
+          步骤 1.5：加载实体映射 YAML（如果指定了 mapping=）
+          → 提取 IB 主题、关键概念、tier_guidance
+          → 选择 2-3 个锚定维度
+          ↓
+          步骤 2：加载基础模板 + 体验支柱覆盖层
+          → 基于映射数据构思创意变量
+          ↓
+          步骤 3：生成完整活动设计（spec 格式）
+          → 5-6 步，完整对话，3 个响应分支，屏幕描述
+          ↓
+          步骤 4：对照 10 个维度自我评估
+          → 修复失败项，重新评估直到全部 PASS
+          ↓
+          步骤 5：保存 spec → designs/{entity}_cat{N}_gold_spec.md
+          ↓
+          步骤 5.5：将 spec 转换为 prod（应用 transform.md 规则）
+          → 保存 prod → designs/{entity}_cat{N}_gold_prod.md
+          ↓
+          步骤 6：记录结果 → results.tsv
+          ↓
+          步骤 7：标记任务 [x] 完成
+          ↓
+          步骤 8：Git 提交（spec + prod + results.tsv + assignments.md）
+          ↓
+          步骤 9：下一个任务 → 重复</div>
+
+        <h3>映射驱动型 vs 非映射型</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>方面</th>
+              <th>映射驱动型</th>
+              <th>非映射型</th>
+            </tr>
+            <tr>
+              <td>实体数据</td>
+              <td>完整 IB YAML（主题、概念、tier_guidance）</td>
+              <td>无——智能体使用通用知识</td>
+            </tr>
+            <tr>
+              <td>桥接类型</td>
+              <td>热启动 + 冷启动（步骤 1a + 1b）</td>
+              <td>仅冷启动（步骤 1b）</td>
+            </tr>
+            <tr>
+              <td>D8 评估</td>
+              <td>评分</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>质量</td>
+              <td>更高——基于研究过的 IB 数据</td>
+              <td>良好——但 IB 基础较弱</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>批量处理技巧</h3>
+        <ul>
+          <li><strong>并行化</strong>：不同体验支柱可在不同智能体上同时运行</li>
+          <li><strong>先做范例</strong>：在规模化之前，每种 style 先生成 1 个 gold standard</li>
+          <li><strong>混合层级</strong>：交替使用 T0/T1/T2 以增加多样性</li>
+          <li><strong>多样化实体</strong>：每种 style 使用不同类型（动物、物体、场所）的实体</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 9 ═══ -->
+    <div class="section" id="s9">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">9</span>
+        <span class="section-title">扩展游戏库 <span class="status status-planned">规划中</span></span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <h3>方式 1：扩展 Constellation 映射 <span style="font-size:12px;color:var(--pass)">● 最简单</span></h3>
+        <p><strong>工作量</strong>：每个实体仅需几分钟。<strong>影响</strong>：更多实体可获得 Tier B 游戏。</p>
+        <pre><code># constellation_map.yaml
+            kitten:
+            constellation_match: lion
+            bridge_type: same_taxonomy
+            score: 0.85
+            adaptation_notes: "Replace roar with meow, jungle with neighborhood"</code></pre>
+
+        <h3>方式 2：创建新的 Property-Bridge 模板 <span style="font-size:12px;color:var(--pillar-creation)">● 中等难度</span></h3>
+        <p><strong>工作量</strong>：每个模板约 2 小时。<strong>影响</strong>：一次性覆盖多个实体。</p>
+
+        <h3>方式 3：创建新的 Entity Gold Standard <span style="font-size:12px;color:var(--fail)">● 工作量最大</span></h3>
+        <p><strong>工作量</strong>：每个 gold standard 约 4 小时。<strong>影响</strong>：一个实体获得 10/10 的游戏。</p>
+
+        <h3>优先级矩阵</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>优先级</th>
+              <th>行动</th>
+              <th>目标</th>
+              <th>理由</th>
+            </tr>
+            <tr>
+              <td><strong>高</strong></td>
+              <td>Constellation 映射</td>
+              <td>常见宠物、玩具</td>
+              <td>拍照频率高，容易映射</td>
+            </tr>
+            <tr>
+              <td><strong>高</strong></td>
+              <td>Entity gold standard</td>
+              <td>具有丰富 IB 映射的实体</td>
+              <td>需要专属游戏</td>
+            </tr>
+            <tr>
+              <td><strong>中</strong></td>
+              <td>Property-bridge 模板</td>
+              <td>室内特有属性</td>
+              <td>提升 Cat1 覆盖率</td>
+            </tr>
+            <tr>
+              <td><strong>中</strong></td>
+              <td>旧版设计重写</td>
+              <td>25 个旧设计</td>
+              <td>纳入新的体验支柱系统</td>
+            </tr>
+            <tr>
+              <td><strong>低</strong></td>
+              <td>新属性类型</td>
+              <td>小众属性</td>
+              <td>收益递减</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 10 ═══ -->
+    <div class="section" id="s10">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">10</span>
+        <span class="section-title">V1 技术限制</span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>被屏蔽的能力</th>
+              <th>无法执行</th>
+              <th>替代方案</th>
+            </tr>
+            <tr>
+              <td><span class="fail">OCR</span></td>
+              <td>读取文字、标识、标签</td>
+              <td>让孩子大声朗读</td>
+            </tr>
+            <tr>
+              <td><span class="fail">面部检测</span></td>
+              <td>检测表情、微笑</td>
+              <td>让孩子描述情绪</td>
+            </tr>
+            <tr>
+              <td><span class="fail">IMU</span></td>
+              <td>检测相机角度/倾斜</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td><span class="fail">状态对比</span></td>
+              <td>对比前后照片</td>
+              <td>使用单张照片设计</td>
+            </tr>
+            <tr>
+              <td><span class="fail">非语音音频</span></td>
+              <td>检测拍掌、敲击</td>
+              <td>让孩子自行报告</td>
+            </tr>
+          </table>
+        </div>
+        <p><strong>安全可用的能力</strong>：通过照片进行物体分类、ASR（语音转文字）、多照片工作流（每张照片独立处理）、文字转语音。</p>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 11 ═══ -->
+    <div class="section" id="s11">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">11</span>
+        <span class="section-title">文件结构与命名</span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <pre><code>designs/
+            ├── cat1/
+            │ ├── lion_cat1_gold_spec.md # Entity gold standard
+            │ ├── lion_cat1_gold_prod.md
+            │ ├── detail_detective_property_gold_spec.md # Property-bridge
+            │ ├── detail_detective_property_gold_prod.md
+            │ ├── eye_cat1_spec.md # 旧版设计
+            │ └── eye_cat1_prod.md
+            ├── cat5/
+            │ ├── playground_cat5_gold_spec.md
+            │ ├── shape_quest_property_gold_spec.md
+            │ └── ...</code></pre>
+
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>类型</th>
+              <th>命名模式</th>
+              <th>示例</th>
+            </tr>
+            <tr>
+              <td>Entity gold standard</td>
+              <td><code>{entity}_cat{N}_gold_spec.md</code></td>
+              <td><code>lion_cat1_gold_spec.md</code></td>
+            </tr>
+            <tr>
+              <td>Property-bridge</td>
+              <td><code>{name}_property_gold_spec.md</code></td>
+              <td><code>shape_quest_property_gold_spec.md</code></td>
+            </tr>
+            <tr>
+              <td>旧版设计</td>
+              <td><code>{entity}_cat{N}_spec.md</code></td>
+              <td><code>eye_cat1_spec.md</code></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Spec vs Prod</h3>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>方面</th>
+              <th>Spec</th>
+              <th>Prod</th>
+            </tr>
+            <tr>
+              <td>标题</td>
+              <td><code># Activity Design: …</code>（H1）</td>
+              <td><code>## Activity Name</code>（H2）</td>
+            </tr>
+            <tr>
+              <td>元数据</td>
+              <td><code>> Generated: …</code></td>
+              <td>无</td>
+            </tr>
+            <tr>
+              <td>基本信息</td>
+              <td>项目列表</td>
+              <td>表格</td>
+            </tr>
+            <tr>
+              <td>步骤</td>
+              <td>加粗 + 引用块</td>
+              <td>H4 标题 + 行内</td>
+            </tr>
+            <tr>
+              <td>轮次</td>
+              <td>全部详细展开</td>
+              <td>第 2 轮及以后精简</td>
+            </tr>
+            <tr>
+              <td>评分卡</td>
+              <td>包含</td>
+              <td>不包含</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 12 ═══ -->
+    <div class="section" id="s12">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">12</span>
+        <span class="section-title">快速参考清单</span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <h3>开始之前</h3>
+        <ul class="checklist">
+          <li>阅读目标 style 的 gold standard（spec + prod）</li>
+          <li>阅读 <code>templates.md</code> 中的体验支柱覆盖层</li>
+          <li>如果是映射驱动型：阅读实体映射 YAML</li>
+          <li>确认实体 + 体验支柱配对合理</li>
+          <li>检查现有库存——是否已有类似游戏？</li>
+        </ul>
+
+        <h3>设计过程中</h3>
+        <ul class="checklist">
+          <li>步骤 1 以情感开场，而非知识测试</li>
+          <li>每一步都有 3 个响应分支（理想、意外、沉默）</li>
+          <li>所有 AI 对话都有语气/情感标记</li>
+          <li>屏幕描述具体明确（不是"播放一段动画"）</li>
+          <li>语言匹配目标层级</li>
+          <li>魔法时刻清晰且情感鲜明</li>
+          <li>轮次逐步升级（不重复同一难度）</li>
+        </ul>
+
+        <h3>设计完成后</h3>
+        <ul class="checklist">
+          <li>Self-Evaluation Scorecard（自评记分卡）—— 全部 10 个维度 PASS</li>
+          <li>D9 检查：真正的不确定性 + 令人满意的揭晓？</li>
+          <li>D10 检查：盲测读者能识别出体验支柱？</li>
+          <li>已编写 prod 版本（精简格式）</li>
+          <li>使用正确命名规范保存</li>
+          <li>已添加 constellation 适配说明（如果是 gold standard）</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ SECTION 13 ═══ -->
+    <div class="section" id="s13">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-number">13</span>
+        <span class="section-title">参考文件</span>
+        <span class="section-chevron">›</span>
+      </div>
+      <div class="section-body">
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>文件</th>
+              <th>内容</th>
+              <th>何时阅读</th>
+            </tr>
+            <tr>
+              <td><code>docs/game_styles.md</code></td>
+              <td>12 种 style 定义、渊源、分布</td>
+              <td>选择 style 之前</td>
+            </tr>
+            <tr>
+              <td><code>templates.md</code></td>
+              <td>基础模板 + 体验支柱覆盖层 + 创意变量</td>
+              <td>编写任何游戏之前</td>
+            </tr>
+            <tr>
+              <td><code>program.md</code></td>
+              <td>智能体指令、格式规范、评估维度</td>
+              <td>了解格式要求时</td>
+            </tr>
+            <tr>
+              <td><code>run.md</code></td>
+              <td>执行流程、结果记录</td>
+              <td>了解端到端流程时</td>
+            </tr>
+            <tr>
+              <td><code>entity_guidance.md</code></td>
+              <td>如何解读实体映射 YAML</td>
+              <td>进行映射驱动型设计时</td>
+            </tr>
+            <tr>
+              <td><code>conversation_bridge.md</code></td>
+              <td>热启动/冷启动桥接模式</td>
+              <td>设计步骤 1 时</td>
+            </tr>
+            <tr>
+              <td><code>docs/plans/2026-04-01-style-recommender.md</code></td>
+              <td>Style Recommender 系统设计</td>
+              <td>了解游戏选择逻辑时</td>
+            </tr>
+            <tr>
+              <td><code>docs/plans/2026-04-08-entity-bridging.md</code></td>
+              <td>Entity bridging + property-bridge</td>
+              <td>了解完整流程时</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function toggle(header) {
+      header.parentElement.classList.toggle('open');
+      updateTocHighlight();
+    }
+
+    function toggleExample(e, el) {
+      if (e.target.closest('.example-body')) return;
+      el.classList.toggle('open');
+    }
+
+    function toggleTheme() {
+      const d = document.documentElement;
+      d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? '' : 'dark');
+      localStorage.setItem('theme', d.getAttribute('data-theme'));
+    }
+
+    // Restore theme
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // Search
+    document.getElementById('search').addEventListener('input', function (e) {
+      const q = e.target.value.toLowerCase().trim();
+      document.querySelectorAll('.section').forEach(s => {
+        if (!q) {
+          s.style.display = '';
+          // Remove highlights
+          s.querySelectorAll('mark').forEach(m => {
+            m.replaceWith(document.createTextNode(m.textContent));
+          });
+          return;
+        }
+        const text = s.textContent.toLowerCase();
+        if (text.includes(q)) {
+          s.style.display = '';
+          s.classList.add('open');
+        } else {
+          s.style.display = 'none';
+        }
+      });
+    });
+
+    // TOC active state on scroll
+    function updateTocHighlight() {
+      const sections = document.querySelectorAll('.section');
+      const links = document.querySelectorAll('.toc a');
+      let current = '';
+      sections.forEach(s => {
+        const rect = s.getBoundingClientRect();
+        if (rect.top <= 100) current = s.id;
+      });
+      links.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', updateTocHighlight);
+
+    // Open first section on load
+    document.addEventListener('DOMContentLoaded', updateTocHighlight);
+
+    // Close sidebar on mobile when link clicked
+    document.querySelectorAll('.toc a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 900) {
+          document.querySelector('.sidebar').classList.remove('open');
+        }
+        // Open the target section
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target && !target.classList.contains('open')) {
+          target.classList.add('open');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

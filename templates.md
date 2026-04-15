@@ -200,7 +200,7 @@ STEP 2: Mission Briefing
     Mystery:     "Find things that match my riddle-clues!"
     Creation:    "Collect ingredients — each one has a superpower!"
     Performance: "Assemble your cast for the big show!"
-    Discovery:   "Gather evidence to test our hypothesis!"
+    Discovery:   "Gather evidence to test our hypothesis!" (hypothesis MUST use visually-verifiable properties — see constraints below)
     Adventure:   "Find items that match your quest criterion!"
     Nurture:     "Find things that need your help!"
 
@@ -215,7 +215,7 @@ STEP 3: Multi-Round Exploration (3–4 rounds)
     Mystery:     AI gives riddle-clue → child searches → AI confirms match or redirects
     Creation:    Child finds item → AI identifies its "superpower" (sticky, bouncy, etc.)
     Performance: Child finds item → AI asks "What sound would it make?" → child assigns voice
-    Discovery:   Child finds item → AI asks about the hypothesis-relevant property → tallies
+    Discovery:   Child photographs item → AI ASSESSES the hypothesis-relevant property from the photo → announces result → tallies (child does NOT self-report; AI is the assessor to preserve "Was I right?!" surprise)
     Adventure:   Child finds item → AI evaluates against quest criterion → harvests detail for naming
     Nurture:     Child finds item → AI identifies its "need" → child proposes care solution
 
@@ -284,7 +284,12 @@ STEP 6: Closing + IB Concepts
 | Mystery | `{riddle_clues}`, `{pattern_connection}`, `{reveal_narrative}` | Clues per find (texture, shape, function riddles), what connects all finds (the hidden pattern), how the reveal happens (dramatic unveiling) |
 | Creation | `{superpowers_per_item}`, `{combination_prompt}`, `{invention_name}` | Property AI assigns per find (sticky, bouncy, smooth), how to combine them, what the invention is called |
 | Performance | `{sound_per_item}`, `{ensemble_narrative}`, `{conductor_moments}` | Voice/sound child assigns per find, concert script (solos then ensemble), directing moments ("All together now!") |
-| Discovery | `{hypothesis}`, `{data_property}`, `{tally_result}` | Question to test ("Are most things here rough or smooth?"), what to measure per find, how to present results (chart, score) |
+| Discovery | `{hypothesis}`, `{data_property}`, `{tally_result}` | Question to test — **MUST be visually verifiable from a photo** (see allowed list below), what the AI assesses per find, how to present results (chart, score) |
+
+**Discovery `field_experiment` visual verification constraint:**
+- **Allowed hypothesis properties**: color, shape, material type (metal/wood/plastic/rubber), size (bigger/smaller than X), count, alive/not-alive, category membership (natural/man-made), position (above/below, near/far)
+- **Banned hypothesis properties**: texture (rough/smooth), weight (heavy/light), temperature (warm/cold), sound, smell, taste, flexibility (bendy/stiff)
+- **AI-as-assessor mechanic**: After each photo, the AI identifies the relevant property and announces it. The child reacts, but does NOT provide the data. This preserves genuine surprise at the tally. |
 | Adventure | `{quest_criterion}`, `{detail_harvesting}`, `{quest_narrative}` | What to find ("things that used to be something else"), what to ask per find ("What does it remind you of?"), how the story weaves character details |
 | Nurture | `{needs_per_item}`, `{care_solutions}`, `{mutual_aid_synthesis}` | Need AI identifies per find (dry, broken, lonely), care actions child proposes, how items help each other at synthesis |
 
