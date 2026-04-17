@@ -1307,6 +1307,9 @@
     }
 
     .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-family: var(--mono);
       font-size: 10px;
       letter-spacing: 0.04em;
@@ -1315,6 +1318,13 @@
       background: var(--bg);
       color: var(--ink);
       text-transform: uppercase;
+    }
+
+    .chip-icon {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+      display: block;
     }
 
     .chip-key {
@@ -3382,16 +3392,16 @@
           <div class="recap-row">
             <span class="recap-lbl">You earned</span>
             <div class="chips">
-              <span class="chip chip-rel">Pattern</span>
-              <span class="chip chip-rel">Camouflage</span>
+              <span class="chip chip-rel"><svg class="chip-icon" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-dasharray="1.5 1.5" stroke-width="0.8"/><circle cx="7" cy="7" r="2.5" fill="currentColor"/></svg>Pattern</span>
+              <span class="chip chip-rel"><svg class="chip-icon" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-dasharray="1.5 1.5" stroke-width="0.8"/><circle cx="7" cy="7" r="2.5" fill="currentColor"/></svg>Camouflage</span>
               <span class="callout-marker" aria-hidden="true">4</span>
             </div>
           </div>
           <div class="recap-row">
             <span class="recap-lbl">You practiced</span>
             <div class="chips">
-              <span class="chip chip-atl">Observing</span>
-              <span class="chip chip-atl">Describing</span>
+              <span class="chip chip-atl"><svg class="chip-icon" viewBox="0 0 14 14" aria-hidden="true"><path d="M 7 1 L 8.2 5.8 L 13 7 L 8.2 8.2 L 7 13 L 5.8 8.2 L 1 7 L 5.8 5.8 Z" fill="currentColor"/></svg>Observing</span>
+              <span class="chip chip-atl"><svg class="chip-icon" viewBox="0 0 14 14" aria-hidden="true"><path d="M 7 1 L 8.2 5.8 L 13 7 L 8.2 8.2 L 7 13 L 5.8 8.2 L 1 7 L 5.8 5.8 Z" fill="currentColor"/></svg>Describing</span>
               <span class="callout-marker" aria-hidden="true">5</span>
             </div>
           </div>
