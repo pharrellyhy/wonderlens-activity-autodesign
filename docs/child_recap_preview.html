@@ -1232,75 +1232,57 @@
       letter-spacing: 0.08em;
     }
 
-    .recap-badge {
+    .recap-badge-cluster {
+      position: relative;
       display: flex;
-      align-items: center;
       gap: 14px;
-      padding: 14px 16px;
-      background: var(--bg-deep);
-      border: 1px solid var(--line);
+      align-items: flex-start;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .badge-stamp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .badge-stamp svg {
+      display: block;
+    }
+
+    .stamp-lbl {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1;
+    }
+
+    .recap-identity {
+      position: relative;
       margin-bottom: 18px;
     }
 
-    .badge-circle {
-      width: 72px;
-      height: 72px;
-      flex-shrink: 0;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .badge-svg {
-      display: block;
-      overflow: visible;
-    }
-
-    .badge-dot {
-      fill: var(--accent);
-    }
-
-    .badge-ring-outer {
-      fill: none;
-      stroke: var(--accent);
-      stroke-width: 1;
-      stroke-dasharray: 3 3;
-    }
-
-    .badge-fill {
-      fill: var(--accent);
-    }
-
-    .badge-ring-inner {
-      fill: none;
-      stroke: var(--accent-deep);
-      stroke-width: 1;
-    }
-
-    .badge-letter {
+    .recap-role {
       font-family: var(--serif);
-      font-size: 34px;
-      fill: var(--bg);
-      font-style: italic;
-      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
-    }
-
-    .badge-title {
-      font-family: var(--serif);
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 500;
-      letter-spacing: -0.01em;
-      line-height: 1.1;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 4px;
     }
 
-    .badge-sub {
+    .recap-sub {
       font-family: var(--mono);
       font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-top: 4px;
+      color: var(--accent);
     }
 
     .recap-row {
@@ -2928,8 +2910,8 @@
       margin: 0 auto;
     }
 
-    .badge-circle,
-    .badge-title,
+    .recap-badge-cluster,
+    .recap-identity,
     .recap-row .chips,
     .recap-exit {
       position: relative;
@@ -3341,29 +3323,54 @@
             <span class="title">What you just did</span>
             <span class="date">Today</span>
           </div>
-          <div class="recap-badge">
-            <div class="badge-circle">
-              <svg viewBox="0 0 72 72" width="72" height="72" aria-hidden="true" class="badge-svg">
-                <!-- 4 outer decorative dots -->
-                <circle cx="36" cy="4"  r="1.5" class="badge-dot"/>
-                <circle cx="36" cy="68" r="1.5" class="badge-dot"/>
-                <circle cx="4"  cy="36" r="1.5" class="badge-dot"/>
-                <circle cx="68" cy="36" r="1.5" class="badge-dot"/>
-                <!-- outer dashed ring -->
-                <circle cx="36" cy="36" r="34" class="badge-ring-outer"/>
-                <!-- inner filled disc -->
-                <circle cx="36" cy="36" r="28" class="badge-fill"/>
-                <!-- inner highlight ring -->
-                <circle cx="36" cy="36" r="26" class="badge-ring-inner"/>
-                <!-- letterform -->
-                <text x="36" y="36" class="badge-letter" text-anchor="middle" dominant-baseline="central">L</text>
+          <div class="recap-badge-cluster">
+            <div class="badge-stamp stamp-entity">
+              <svg viewBox="0 0 56 56" width="56" height="56" aria-hidden="true">
+                <!-- dashed outer ring (vermilion) -->
+                <circle cx="28" cy="28" r="26" fill="none" stroke="var(--accent)" stroke-width="0.8" stroke-dasharray="2 2"/>
+                <!-- ladybug body -->
+                <ellipse cx="28" cy="31" rx="11" ry="9" fill="var(--accent)" stroke="var(--ink)" stroke-width="0.5"/>
+                <!-- head -->
+                <circle cx="28" cy="20" r="3" fill="var(--ink)"/>
+                <!-- elytra split -->
+                <line x1="28" y1="23" x2="28" y2="39" stroke="var(--ink)" stroke-width="0.6"/>
+                <!-- 4 spots -->
+                <circle cx="23" cy="28" r="1.3" fill="var(--ink)"/>
+                <circle cx="33" cy="28" r="1.3" fill="var(--ink)"/>
+                <circle cx="23" cy="34" r="1.3" fill="var(--ink)"/>
+                <circle cx="33" cy="34" r="1.3" fill="var(--ink)"/>
+                <!-- antennae -->
+                <line x1="26" y1="18" x2="24" y2="15" stroke="var(--ink)" stroke-width="0.6"/>
+                <line x1="30" y1="18" x2="32" y2="15" stroke="var(--ink)" stroke-width="0.6"/>
               </svg>
-              <span class="callout-marker" aria-hidden="true">1</span>
+              <span class="stamp-lbl">Entity</span>
             </div>
-            <div>
-              <div class="badge-title">Ladybug Detective<span class="callout-marker" aria-hidden="true">2</span></div>
-              <div class="badge-sub">Mystery · solved</div>
+            <div class="badge-stamp stamp-pillar">
+              <svg viewBox="0 0 56 56" width="56" height="56" aria-hidden="true">
+                <circle cx="28" cy="28" r="26" fill="none" stroke="var(--mystery)" stroke-width="0.8" stroke-dasharray="2 2"/>
+                <!-- magnifying glass -->
+                <circle cx="23" cy="24" r="9" fill="none" stroke="var(--mystery)" stroke-width="1.6"/>
+                <line x1="30" y1="31" x2="38" y2="39" stroke="var(--mystery)" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+              <span class="stamp-lbl">Mystery</span>
             </div>
+            <div class="badge-stamp stamp-progression">
+              <svg viewBox="0 0 56 56" width="56" height="56" aria-hidden="true">
+                <circle cx="28" cy="28" r="26" fill="none" stroke="var(--tier-1)" stroke-width="0.8" stroke-dasharray="2 2"/>
+                <!-- 3-dot axis ladder: L1 filled, L2 filled-bigger-current, L3 empty -->
+                <circle cx="28" cy="14" r="2.6" fill="var(--tier-1)"/>
+                <circle cx="28" cy="26" r="4" fill="var(--tier-1)"/>
+                <circle cx="28" cy="38" r="2.6" fill="none" stroke="var(--tier-1)" stroke-width="1.2"/>
+                <!-- axis label below -->
+                <text x="28" y="50" font-size="5" font-family="monospace" letter-spacing="0.1em" text-anchor="middle" fill="var(--tier-1)" font-weight="600">FORM·L2</text>
+              </svg>
+              <span class="stamp-lbl">Progression</span>
+            </div>
+            <span class="callout-marker" aria-hidden="true">1</span>
+          </div>
+          <div class="recap-identity">
+            <div class="recap-role">Ladybug Detective<span class="callout-marker" aria-hidden="true">2</span></div>
+            <div class="recap-sub">Mystery · solved</div>
           </div>
           <div class="recap-row">
             <span class="recap-lbl">The moment</span>
@@ -3395,8 +3402,8 @@
         </div>
       </div>
       <ol class="layout-callouts">
-        <li><span class="co-num">1</span><span class="co-name">Badge circle</span><span class="co-field"><code>role_title</code></span><span class="co-note">Serif, centered, single letter or glyph. The identity beat.</span></li>
-        <li><span class="co-num">2</span><span class="co-name">Title + pillar subtitle</span><span class="co-field"><code>role_title</code> · <code>pillar</code></span><span class="co-note">The badge the child earned, framed by the pillar's emotional mode.</span></li>
+        <li><span class="co-num">1</span><span class="co-name">Badge cluster</span><span class="co-field"><code>entity</code> · <code>pillar</code> · <code>progression</code></span><span class="co-note">Three small stamps — entity illustration, pillar icon, progression rung — render the activity's identity at a glance. One per tag-block core field; each swappable per entity / pillar / axis.</span></li>
+        <li><span class="co-num">2</span><span class="co-name">Role title + pillar subtitle</span><span class="co-field"><code>role_title</code> · <code>pillar</code></span><span class="co-note">Serif title below the stamp cluster, with the pillar's name as eyebrow caption.</span></li>
         <li><span class="co-num">3</span><span class="co-name">The moment</span><span class="co-field"><code>highlight_moment</code></span><span class="co-note">Hero of the screen. Large, warm, serif italic. See §05 for generation rule.</span></li>
         <li><span class="co-num">4</span><span class="co-name">You earned</span><span class="co-field"><code>related_concepts</code></span><span class="co-note">Child-friendly concept words. 2–4 chips; bounded, not growing.</span></li>
         <li><span class="co-num">5</span><span class="co-name">You practiced</span><span class="co-field"><code>atl_skills</code></span><span class="co-note">Child-friendly wording of the ATL skills practiced this activity.</span></li>
