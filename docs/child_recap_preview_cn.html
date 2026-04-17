@@ -1260,19 +1260,47 @@
     }
 
     .badge-circle {
-      width: 48px;
-      height: 48px;
-      background: var(--accent);
-      color: var(--bg);
-      border: 1px solid var(--ink);
-      border-radius: 50%;
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .badge-svg {
+      display: block;
+      overflow: visible;
+    }
+
+    .badge-dot {
+      fill: var(--accent);
+    }
+
+    .badge-ring-outer {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1;
+      stroke-dasharray: 3 3;
+    }
+
+    .badge-fill {
+      fill: var(--accent);
+    }
+
+    .badge-ring-inner {
+      fill: none;
+      stroke: var(--accent-deep);
+      stroke-width: 1;
+    }
+
+    .badge-letter {
       font-family: var(--serif);
-      font-size: 24px;
-      font-weight: 500;
-      flex-shrink: 0;
+      font-size: 34px;
+      fill: var(--bg);
+      font-style: italic;
+      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
     }
 
     .badge-title {
@@ -3330,7 +3358,24 @@
             <span class="date">今天</span>
           </div>
           <div class="recap-badge">
-            <div class="badge-circle">L<span class="callout-marker" aria-hidden="true">1</span></div>
+            <div class="badge-circle">
+              <svg viewBox="0 0 72 72" width="72" height="72" aria-hidden="true" class="badge-svg">
+                <!-- 4 outer decorative dots -->
+                <circle cx="36" cy="4"  r="1.5" class="badge-dot"/>
+                <circle cx="36" cy="68" r="1.5" class="badge-dot"/>
+                <circle cx="4"  cy="36" r="1.5" class="badge-dot"/>
+                <circle cx="68" cy="36" r="1.5" class="badge-dot"/>
+                <!-- outer dashed ring -->
+                <circle cx="36" cy="36" r="34" class="badge-ring-outer"/>
+                <!-- inner filled disc -->
+                <circle cx="36" cy="36" r="28" class="badge-fill"/>
+                <!-- inner highlight ring -->
+                <circle cx="36" cy="36" r="26" class="badge-ring-inner"/>
+                <!-- letterform -->
+                <text x="36" y="36" class="badge-letter" text-anchor="middle" dominant-baseline="central">L</text>
+              </svg>
+              <span class="callout-marker" aria-hidden="true">1</span>
+            </div>
             <div>
               <div class="badge-title">瓢虫小侦探<span class="callout-marker" aria-hidden="true">2</span></div>
               <div class="badge-sub">Mystery · 完成</div>
