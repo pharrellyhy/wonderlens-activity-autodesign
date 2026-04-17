@@ -2882,6 +2882,226 @@
       color: var(--ink-soft);
     }
 
+    /* ====== LAYOUT WALKTHROUGH · §03 ====== */
+    .layout-annotated {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 40px;
+      margin-top: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .layout-annotated { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    .layout-mockup {
+      /* Inherits .mockup-frame styling from Template 0 */
+    }
+
+    [data-callout] {
+      position: relative;
+    }
+
+    [data-callout]::after {
+      content: attr(data-callout);
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .recap-exit {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .layout-callouts {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .layout-callouts li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 14px;
+      row-gap: 4px;
+      padding: 12px 14px;
+      background: var(--bg-card);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      align-items: start;
+    }
+
+    .co-num {
+      grid-row: span 3;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .co-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .co-field {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .co-field code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .co-note {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    /* ====== MOMENT RULE · §05 ====== */
+    .moment-rule-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .moment-rule-grid { grid-template-columns: 1fr; }
+    }
+
+    .moment-col {
+      padding: 22px 24px;
+      background: var(--bg-card);
+      border-top: 3px solid var(--accent);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .moment-col-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .moment-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    .moment-col li {
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .moment-col li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .moment-col code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .moment-example {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--ink);
+      margin: 0 0 12px;
+    }
+
+    .moment-output-meta {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .moment-tier-examples {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .moment-tier-examples { grid-template-columns: 1fr; }
+    }
+
+    .moment-tier {
+      padding: 18px 22px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .moment-tier-lbl {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body {
@@ -2915,6 +3135,9 @@
     <nav>
       <a href="#purpose">Purpose</a>
       <a href="#anti-addiction">Anti-addiction</a>
+      <a href="#layout">Layout</a>
+      <a href="#contract">Contract</a>
+      <a href="#moment-rule">Moment rule</a>
     </nav>
     <div class="meta">Draft v0.1 · 2026-04-17 · Internal review</div>
   </header>
@@ -3071,6 +3294,177 @@
         <div class="mech-title">Opt-in history</div>
         <div class="mech-body">Earned badges live on a separate collection screen. A child who wants to see it can. It's never pushed in front of them.</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============== §03 LAYOUT ============== -->
+  <section id="layout">
+    <div class="sec-head">
+      <div class="sec-num">§ 03 / Layout · annotated mockup</div>
+      <h2 class="sec-title">One screen,<br />six <em>parts</em>.</h2>
+    </div>
+    <p class="sec-desc">The recap is a single scrollable screen. The hero is the <code>highlight_moment</code> one-liner; everything else is ambient framing. Numbers correspond to the callouts below.</p>
+
+    <div class="layout-annotated">
+      <div class="layout-mockup">
+        <div class="mockup-frame">
+          <div class="recap-head">
+            <span class="title">What you just did</span>
+            <span class="date">Today</span>
+          </div>
+          <div class="recap-badge">
+            <div class="badge-circle" data-callout="1">L</div>
+            <div>
+              <div class="badge-title" data-callout="2">Ladybug Detective</div>
+              <div class="badge-sub">Mystery · solved</div>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">The moment</span>
+            <div class="chips" data-callout="3">
+              <span class="chip chip-moment">You spotted the warning sign on the ladybug's back</span>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">You earned</span>
+            <div class="chips" data-callout="4">
+              <span class="chip chip-rel">Pattern</span>
+              <span class="chip chip-rel">Camouflage</span>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">You practiced</span>
+            <div class="chips" data-callout="5">
+              <span class="chip chip-atl">Observing</span>
+              <span class="chip chip-atl">Describing</span>
+            </div>
+          </div>
+          <div class="recap-exit" data-callout="6">
+            Next time you're outside, see if you can find another round, spotted thing.
+          </div>
+        </div>
+      </div>
+      <ol class="layout-callouts">
+        <li><span class="co-num">1</span><span class="co-name">Badge circle</span><span class="co-field"><code>role_title</code></span><span class="co-note">Serif, centered, single letter or glyph. The identity beat.</span></li>
+        <li><span class="co-num">2</span><span class="co-name">Title + pillar subtitle</span><span class="co-field"><code>role_title</code> · <code>pillar</code></span><span class="co-note">The badge the child earned, framed by the pillar's emotional mode.</span></li>
+        <li><span class="co-num">3</span><span class="co-name">The moment</span><span class="co-field"><code>highlight_moment</code></span><span class="co-note">Hero of the screen. Large, warm, serif italic. See §05 for generation rule.</span></li>
+        <li><span class="co-num">4</span><span class="co-name">You earned</span><span class="co-field"><code>related_concepts</code></span><span class="co-note">Child-friendly concept words. 2–4 chips; bounded, not growing.</span></li>
+        <li><span class="co-num">5</span><span class="co-name">You practiced</span><span class="co-field"><code>atl_skills</code></span><span class="co-note">Child-friendly wording of the ATL skills practiced this activity.</span></li>
+        <li><span class="co-num">6</span><span class="co-name">Exit copy</span><span class="co-field">pillar + axis-aware</span><span class="co-note">Real-world invitation or "see you tomorrow" soft-cap copy. Never a hook.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============== §04 CONTRACT ============== -->
+  <section id="contract">
+    <div class="sec-head">
+      <div class="sec-num">§ 04 / Tag-block contract</div>
+      <h2 class="sec-title">Six fields in,<br />one <em>recap</em> out.</h2>
+    </div>
+    <p class="sec-desc">The tag-block schema lives in Template 0 §04. This table enumerates which fields this screen reads, and how each one renders. Nothing else from the tag block reaches the child's eyes.</p>
+
+    <div class="mapping-table-wrap">
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Renders as</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-style"><code>role_title</code></td>
+            <td>Badge title (serif)</td>
+            <td>Main identity beat of the screen.</td>
+          </tr>
+          <tr>
+            <td class="m-style"><code>pillar</code></td>
+            <td>Subtitle ("Mystery · solved")</td>
+            <td>Emotional mode, sets the tone.</td>
+          </tr>
+          <tr>
+            <td class="m-style"><code>highlight_moment</code></td>
+            <td>Large serif pull-quote</td>
+            <td>Runtime-generated. Generation rule in §05.</td>
+          </tr>
+          <tr>
+            <td class="m-style"><code>related_concepts</code></td>
+            <td>"You earned" chip row</td>
+            <td>Child-friendly concept words. 2–4 chips.</td>
+          </tr>
+          <tr>
+            <td class="m-style"><code>atl_skills</code></td>
+            <td>"You practiced" chip row</td>
+            <td>Worded child-friendly, not IB jargon.</td>
+          </tr>
+          <tr>
+            <td class="m-style"><code>attributes</code></td>
+            <td>Feeds <code>highlight_moment</code></td>
+            <td>Not shown as chips; used as input to the one-liner.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-block" style="border-left-color: var(--tier-1); background: color-mix(in srgb, var(--tier-1) 6%, var(--bg));">
+      <strong>Explicitly not read.</strong> <code>key_concepts</code>, <code>transdisciplinary_theme</code>, <code>subject_tags</code>, <code>progression.*</code> — those are parent-facing (see Parent growth path doc). The child sees what they <em>did</em>, not how the IB framework classifies it.
+    </div>
+  </section>
+
+  <!-- ============== §05 MOMENT RULE ============== -->
+  <section id="moment-rule">
+    <div class="sec-head">
+      <div class="sec-num">§ 05 / <code>highlight_moment</code> generation</div>
+      <h2 class="sec-title">One sentence,<br />six to twelve <em>words</em>.</h2>
+    </div>
+    <p class="sec-desc">The hero of the recap is generated at activity-end from the child's actual responses during the session. These are the rules the generator follows.</p>
+
+    <div class="moment-rule-grid">
+      <div class="moment-col">
+        <div class="moment-col-head">Input</div>
+        <ul>
+          <li>Activity transcript (child turns)</li>
+          <li><code>attributes</code> — what the game invoked</li>
+          <li><code>pillar</code> — emotional mode</li>
+          <li><code>progression.topic_axis</code></li>
+        </ul>
+      </div>
+      <div class="moment-col">
+        <div class="moment-col-head">Output</div>
+        <p class="moment-example">"You spotted the warning sign on the ladybug's back"</p>
+        <p class="moment-output-meta">A <b>sanitized summary</b>. Second person, past tense, evocative and specific. 6–12 words.</p>
+      </div>
+      <div class="moment-col">
+        <div class="moment-col-head">Rules</div>
+        <ul>
+          <li>Always second-person ("You ___"), not child's name</li>
+          <li>Past tense, grounded in something the child actually said or did</li>
+          <li>No IB terminology, no tier names, no level numbers</li>
+          <li>6–12 words — a sentence, not a paragraph</li>
+          <li>If no usable material: pillar-generic fallback ("You solved a small mystery today.")</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="subhead" data-dir="Examples">By tier</h3>
+    <div class="moment-tier-examples">
+      <div class="moment-tier">
+        <span class="moment-tier-lbl">Tier 0 · 2–4 yrs</span>
+        <p class="moment-example">"You said 'red' when you saw the ladybug"</p>
+      </div>
+      <div class="moment-tier">
+        <span class="moment-tier-lbl">Tier 1 · 4–6 yrs</span>
+        <p class="moment-example">"You figured out why the ladybug is red"</p>
+      </div>
+      <div class="moment-tier">
+        <span class="moment-tier-lbl">Tier 2 · 6–8 yrs</span>
+        <p class="moment-example">"You predicted what birds do with red bugs, and you were right"</p>
+      </div>
+    </div>
+
+    <div class="note-block" style="margin-top: 32px;">
+      <strong>Privacy.</strong> The transcript is input to the generator only; it never surfaces verbatim in the recap. The output is a sanitized summary — paraphrased, abstracted, safe to display without review. Raw transcripts are a separate, opt-in feature of the parent dashboard (see Parent growth path doc §09).
     </div>
   </section>
 

@@ -2899,6 +2899,226 @@
       color: var(--ink-soft);
     }
 
+    /* ====== LAYOUT WALKTHROUGH · §03 ====== */
+    .layout-annotated {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 40px;
+      margin-top: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .layout-annotated { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    .layout-mockup {
+      /* Inherits .mockup-frame styling from Template 0 */
+    }
+
+    [data-callout] {
+      position: relative;
+    }
+
+    [data-callout]::after {
+      content: attr(data-callout);
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .recap-exit {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .layout-callouts {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .layout-callouts li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 14px;
+      row-gap: 4px;
+      padding: 12px 14px;
+      background: var(--bg-card);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      align-items: start;
+    }
+
+    .co-num {
+      grid-row: span 3;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .co-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .co-field {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .co-field code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .co-note {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    /* ====== MOMENT RULE · §05 ====== */
+    .moment-rule-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .moment-rule-grid { grid-template-columns: 1fr; }
+    }
+
+    .moment-col {
+      padding: 22px 24px;
+      background: var(--bg-card);
+      border-top: 3px solid var(--accent);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .moment-col-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .moment-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    .moment-col li {
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .moment-col li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .moment-col code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .moment-example {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--ink);
+      margin: 0 0 12px;
+    }
+
+    .moment-output-meta {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .moment-tier-examples {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .moment-tier-examples { grid-template-columns: 1fr; }
+    }
+
+    .moment-tier {
+      padding: 18px 22px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .moment-tier-lbl {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body {
@@ -2932,6 +3152,9 @@
     <nav>
       <a href="#purpose">目的</a>
       <a href="#anti-addiction">反成瘾</a>
+      <a href="#layout">布局</a>
+      <a href="#contract">契约</a>
+      <a href="#moment-rule">一句话规则</a>
     </nav>
     <div class="meta">草稿 v0.1 · 2026-04-17 · 内部评审</div>
   </header>
@@ -3087,6 +3310,177 @@
         <div class="mech-title">opt-in 的历史</div>
         <div class="mech-body">已获得的徽章在单独的收藏页。想看的孩子可以主动打开。不会被推到孩子眼前。</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============== §03 布局 ============== -->
+  <section id="layout">
+    <div class="sec-head">
+      <div class="sec-num">§ 03 / 布局 · 带注释的 mockup</div>
+      <h2 class="sec-title">一屏，<br />六个<em>部件</em>。</h2>
+    </div>
+    <p class="sec-desc">回顾屏就是一屏，竖着滚动。主角是 <code>highlight_moment</code> 这一句话；其他内容是背景框架。下方编号对应 mockup 中的标注。</p>
+
+    <div class="layout-annotated">
+      <div class="layout-mockup">
+        <div class="mockup-frame">
+          <div class="recap-head">
+            <span class="title">你刚刚做了什么</span>
+            <span class="date">今天</span>
+          </div>
+          <div class="recap-badge">
+            <div class="badge-circle" data-callout="1">L</div>
+            <div>
+              <div class="badge-title" data-callout="2">瓢虫小侦探</div>
+              <div class="badge-sub">Mystery · 完成</div>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">今天的瞬间</span>
+            <div class="chips" data-callout="3">
+              <span class="chip chip-moment">你发现了瓢虫背上的警告色</span>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">你收获了</span>
+            <div class="chips" data-callout="4">
+              <span class="chip chip-rel">图案</span>
+              <span class="chip chip-rel">伪装</span>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">你练习了</span>
+            <div class="chips" data-callout="5">
+              <span class="chip chip-atl">观察</span>
+              <span class="chip chip-atl">描述</span>
+            </div>
+          </div>
+          <div class="recap-exit" data-callout="6">
+            下次出门的时候，可以找找有没有另一个圆圆的、带斑点的东西。
+          </div>
+        </div>
+      </div>
+      <ol class="layout-callouts">
+        <li><span class="co-num">1</span><span class="co-name">徽章圆环</span><span class="co-field"><code>role_title</code></span><span class="co-note">Serif、居中、单字母或符号。是"身份"那一拍。</span></li>
+        <li><span class="co-num">2</span><span class="co-name">标题 + pillar 副标题</span><span class="co-field"><code>role_title</code> · <code>pillar</code></span><span class="co-note">孩子获得的角色头衔，由 pillar 的情绪模式包裹。</span></li>
+        <li><span class="co-num">3</span><span class="co-name">今天的瞬间</span><span class="co-field"><code>highlight_moment</code></span><span class="co-note">这一屏的主角。大号、温暖、serif 斜体。生成规则见 §05。</span></li>
+        <li><span class="co-num">4</span><span class="co-name">你收获了</span><span class="co-field"><code>related_concepts</code></span><span class="co-note">孩子能认得的概念词。2–4 个 chip；有上限，不会一直长。</span></li>
+        <li><span class="co-num">5</span><span class="co-name">你练习了</span><span class="co-field"><code>atl_skills</code></span><span class="co-note">ATL 能力的孩子化表达。</span></li>
+        <li><span class="co-num">6</span><span class="co-name">告别语</span><span class="co-field">pillar + axis 驱动</span><span class="co-note">现实世界邀请，或"明天见"的软上限收尾。从不是钩子。</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============== §04 契约 ============== -->
+  <section id="contract">
+    <div class="sec-head">
+      <div class="sec-num">§ 04 / Tag-block 契约</div>
+      <h2 class="sec-title">六个字段进去，<br />一个<em>回顾</em>出来。</h2>
+    </div>
+    <p class="sec-desc">Tag-block 的 schema 在 Template 0 §04。下面这张表列出这一屏读取哪些字段，以及每个字段怎么呈现。tag-block 里的其他字段都不会进入孩子视线。</p>
+
+    <div class="mapping-table-wrap">
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>字段</th>
+            <th>如何呈现</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-style"><code>role_title</code></td>
+            <td>Badge 标题（serif）</td>
+            <td>这一屏"身份"那一拍。</td>
+          </tr>
+          <tr>
+            <td class="m-style"><code>pillar</code></td>
+            <td>副标题（"Mystery · 完成"）</td>
+            <td>情绪模式，定调子。</td>
+          </tr>
+          <tr>
+            <td class="m-style"><code>highlight_moment</code></td>
+            <td>大号 serif 引句</td>
+            <td>运行时生成。生成规则见 §05。</td>
+          </tr>
+          <tr>
+            <td class="m-style"><code>related_concepts</code></td>
+            <td>"你收获了"的 chip 行</td>
+            <td>孩子能认得的概念词。2–4 个 chip。</td>
+          </tr>
+          <tr>
+            <td class="m-style"><code>atl_skills</code></td>
+            <td>"你练习了"的 chip 行</td>
+            <td>ATL 能力的孩子化表达，不是 IB 术语。</td>
+          </tr>
+          <tr>
+            <td class="m-style"><code>attributes</code></td>
+            <td>喂给 <code>highlight_moment</code></td>
+            <td>不作为 chip 展示；作为一句话生成器的输入。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-block" style="border-left-color: var(--tier-1); background: color-mix(in srgb, var(--tier-1) 6%, var(--bg));">
+      <strong>明确不读取。</strong> <code>key_concepts</code>、<code>transdisciplinary_theme</code>、<code>subject_tags</code>、<code>progression.*</code> —— 这些都是家长端的内容（见家长端成长路径文档）。孩子看到的是"我做了什么"，不是 IB 框架怎么分类。
+    </div>
+  </section>
+
+  <!-- ============== §05 一句话规则 ============== -->
+  <section id="moment-rule">
+    <div class="sec-head">
+      <div class="sec-num">§ 05 / <code>highlight_moment</code> 生成</div>
+      <h2 class="sec-title">一句话，<br /><em>六到十二个字</em>。</h2>
+    </div>
+    <p class="sec-desc">回顾屏的主角在活动结束时、由孩子本场说过的话生成。下面是生成器遵循的规则。</p>
+
+    <div class="moment-rule-grid">
+      <div class="moment-col">
+        <div class="moment-col-head">输入 / Input</div>
+        <ul>
+          <li>活动中孩子回合的 transcript</li>
+          <li><code>attributes</code> — what the game invoked</li>
+          <li><code>pillar</code> — emotional mode</li>
+          <li><code>progression.topic_axis</code></li>
+        </ul>
+      </div>
+      <div class="moment-col">
+        <div class="moment-col-head">输出 / Output</div>
+        <p class="moment-example">"你发现了瓢虫背上的警告色"</p>
+        <p class="moment-output-meta">一句净化后的摘要。第二人称、过去式、具体且有画面感。6–12 个字（中文约 10–20 字）。</p>
+      </div>
+      <div class="moment-col">
+        <div class="moment-col-head">规则 / Rules</div>
+        <ul>
+          <li>永远第二人称（"你 ___"），不用孩子的名字</li>
+          <li>过去式，落在孩子实际做过或说过的那一刻</li>
+          <li>不出现 IB 术语、tier 名称、level 编号</li>
+          <li>6–12 个英文单词（中文 10–20 字）—— 一句话，不是一段</li>
+          <li>如果没有可用的素材：用 pillar 通用的兜底句（"你今天解开了一个小谜题。"）</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="subhead" data-dir="举例">按 tier 举例</h3>
+    <div class="moment-tier-examples">
+      <div class="moment-tier">
+        <span class="moment-tier-lbl">Tier 0 · 2–4 yrs</span>
+        <p class="moment-example">"你看到瓢虫的时候说了'红色'"</p>
+      </div>
+      <div class="moment-tier">
+        <span class="moment-tier-lbl">Tier 1 · 4–6 yrs</span>
+        <p class="moment-example">"你想明白了瓢虫为什么是红色的"</p>
+      </div>
+      <div class="moment-tier">
+        <span class="moment-tier-lbl">Tier 2 · 6–8 yrs</span>
+        <p class="moment-example">"你预测了鸟看到红色虫子会怎么做，结果你猜对了"</p>
+      </div>
+    </div>
+
+    <div class="note-block" style="margin-top: 32px;">
+      <strong>隐私。</strong>Transcript 只是输入给生成器，从不原样出现在回顾屏。输出是一段净化后的摘要——经过改写、抽象过的、不需要人工审核就可以直接展示。原始 transcript 是家长端一个单独的 opt-in 功能（见家长端成长路径文档 §09）。
     </div>
   </section>
 
