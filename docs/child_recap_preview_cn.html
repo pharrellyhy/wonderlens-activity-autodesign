@@ -2803,6 +2803,97 @@
       font-weight: 500;
     }
 
+    /* ============ ANTI-ADDICTION TABLE + MECHANISMS (§02) ============ */
+    .anti-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 13px;
+    }
+
+    .anti-table th,
+    .anti-table td {
+      padding: 14px 18px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px dashed var(--line);
+      line-height: 1.55;
+    }
+
+    .anti-table th {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 500;
+      padding-bottom: 10px;
+    }
+
+    .anti-table tbody tr:hover {
+      background: color-mix(in srgb, var(--accent) 4%, transparent);
+    }
+
+    .anti-table .pattern {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--ink);
+      font-weight: 500;
+      min-width: 180px;
+    }
+
+    .anti-table .stance {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .mechanisms-block {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .mechanisms-block { grid-template-columns: 1fr; }
+    }
+
+    .mech {
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .mech-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .mech-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .mech-title code {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+    }
+
+    .mech-body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body {
@@ -2885,6 +2976,110 @@
 
     <div class="note-block" style="border-left-color: var(--tier-1); background: color-mix(in srgb, var(--tier-1) 6%, var(--bg));">
       <strong>这一屏明确不做什么。</strong>不做 streak，不做每日目标圈，不说"再 N 个就升级"，没有稀有度分级，没有推送，没有无限滚动，不和其他孩子比，不把孩子往下一局推。
+    </div>
+  </section>
+
+  <!-- ============== §02 ANTI-ADDICTION ============== -->
+  <section id="anti-addiction">
+    <div class="sec-head">
+      <div class="sec-num">§ 02 / 原则</div>
+      <h2 class="sec-title">八个模式，<br />八次<em>拒绝</em>。</h2>
+    </div>
+    <p class="sec-desc">这些都是 ed-tech 领域里常见的反模式。我们对每一个都明确拒绝。</p>
+
+    <table class="anti-table">
+      <thead>
+        <tr>
+          <th>模式</th>
+          <th>为什么有害</th>
+          <th>我们的立场</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="pattern">连胜 streak（"别断了链条"）</td>
+          <td>漏一天就有负罪感；不管需不需要都逼着每天用</td>
+          <td class="stance">不做 streak。永远不做</td>
+        </tr>
+        <tr>
+          <td class="pattern">随机奖励（随机掉落）</td>
+          <td>老虎机式的多巴胺循环</td>
+          <td class="stance">奖励由具体的认知动作决定，非随机</td>
+        </tr>
+        <tr>
+          <td class="pattern">无上限的徽章收集</td>
+          <td>让孩子一直刷，永远玩不"完"</td>
+          <td class="stance">上限固定，第一天就全部可见</td>
+        </tr>
+        <tr>
+          <td class="pattern">稀有 / 普通分级</td>
+          <td>赌博 + 囤积本能</td>
+          <td class="stance">所有徽章平等，不分稀有度</td>
+        </tr>
+        <tr>
+          <td class="pattern">排行榜 / 和别人比</td>
+          <td>社交焦虑、攀比</td>
+          <td class="stance">永远不展示其他孩子</td>
+        </tr>
+        <tr>
+          <td class="pattern">推送通知</td>
+          <td>人造 FOMO</td>
+          <td class="stance">App 永远不主动叫孩子回来</td>
+        </tr>
+        <tr>
+          <td class="pattern">无限滚动回顾</td>
+          <td>把孩子的眼睛黏在屏幕上</td>
+          <td class="stance">就一屏，有尽头，可关闭</td>
+        </tr>
+        <tr>
+          <td class="pattern">按时长给 XP</td>
+          <td>奖励"待得久"而不是"学到了"</td>
+          <td class="stance">奖励绑定到认知动作</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="mechanisms-block">
+      <div class="mech">
+        <div class="mech-num">机制 01</div>
+        <div class="mech-title">有界徽章体系</div>
+        <div class="mech-body">7 条轴 × 3 个级数 = 21 个槽位。第一天就固定；没有隐藏 / 锁死的槽。孩子第一次打开收藏页，就能看到完整宇宙的全貌。</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">机制 02</div>
+        <div class="mech-title">展示"深度"，不展示"总数"</div>
+        <div class="mech-body">每条轴的深度（L1→L2→L3 的进度条），不是一堆勋章堆在一起。"你在 Form 这条轴上越挖越深"比"你有 47 个 Form 徽章"有意义得多。</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">机制 03</div>
+        <div class="mech-title"><code>highlight_moment</code> 才是主角，徽章是背景</div>
+        <div class="mech-body">运行时生成的这一句话用大号 serif；徽章是小号、次级，不加星星 / 弹跳 / 动效。</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">机制 04</div>
+        <div class="mech-title">柔性会话上限</div>
+        <div class="mech-body">一次连续玩了 N 个活动以后（T0: 2，T1: 3，T2: 4），回顾屏以"今天动脑动得不错，明天见"收尾。App 不做硬锁——想继续玩的孩子依然可以继续。</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">机制 05</div>
+        <div class="mech-title">重玩被欢迎，不是重新发奖</div>
+        <div class="mech-body">同一个 entity 再玩一次，回顾强调"你这次注意到了 ___"，不发新徽章。</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">机制 06</div>
+        <div class="mech-title">UI 里完全没有 streak</div>
+        <div class="mech-body">不是藏起来，是不做。家长端如果愿意，可以看到频次；孩子端永远看不到"连续 N 天"这种计数。</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">机制 07</div>
+        <div class="mech-title">温柔收场，不是钩子</div>
+        <div class="mech-body">用"出门的时候可以找找另一件圆圆的、带斑点的东西"这样的邀请收尾；从不说"点这里继续"或"再 N 个就升级"。</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">机制 08</div>
+        <div class="mech-title">opt-in 的历史</div>
+        <div class="mech-body">已获得的徽章在单独的收藏页。想看的孩子可以主动打开。不会被推到孩子眼前。</div>
+      </div>
     </div>
   </section>
 

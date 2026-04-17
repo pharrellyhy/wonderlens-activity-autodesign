@@ -2786,6 +2786,97 @@
       font-weight: 500;
     }
 
+    /* ============ ANTI-ADDICTION TABLE + MECHANISMS (§02) ============ */
+    .anti-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 13px;
+    }
+
+    .anti-table th,
+    .anti-table td {
+      padding: 14px 18px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px dashed var(--line);
+      line-height: 1.55;
+    }
+
+    .anti-table th {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 500;
+      padding-bottom: 10px;
+    }
+
+    .anti-table tbody tr:hover {
+      background: color-mix(in srgb, var(--accent) 4%, transparent);
+    }
+
+    .anti-table .pattern {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--ink);
+      font-weight: 500;
+      min-width: 180px;
+    }
+
+    .anti-table .stance {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .mechanisms-block {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .mechanisms-block { grid-template-columns: 1fr; }
+    }
+
+    .mech {
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .mech-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .mech-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .mech-title code {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+    }
+
+    .mech-body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body {
@@ -2869,6 +2960,110 @@
 
     <div class="note-block" style="border-left-color: var(--tier-1); background: color-mix(in srgb, var(--tier-1) 6%, var(--bg));">
       <strong>What this screen explicitly doesn't do.</strong> No streaks, no daily-goal rings, no "N more until the next level", no rarity tiers, no push notifications, no infinite scroll, no peer comparison, no push toward another session.
+    </div>
+  </section>
+
+  <!-- ============== §02 ANTI-ADDICTION ============== -->
+  <section id="anti-addiction">
+    <div class="sec-head">
+      <div class="sec-num">§ 02 / Principles</div>
+      <h2 class="sec-title">Eight patterns,<br />eight <em>refusals</em>.</h2>
+    </div>
+    <p class="sec-desc">These are anti-patterns standard to ed-tech. We refuse each deliberately.</p>
+
+    <table class="anti-table">
+      <thead>
+        <tr>
+          <th>Pattern</th>
+          <th>Why it hurts</th>
+          <th>Our stance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="pattern">Streaks ("don't break your chain")</td>
+          <td>Creates guilt on skip days; pushes daily use regardless of need</td>
+          <td class="stance">No streaks. Ever.</td>
+        </tr>
+        <tr>
+          <td class="pattern">Variable rewards (random drops)</td>
+          <td>Slot-machine dopamine loop</td>
+          <td class="stance">Deterministic — earned by a specific cognitive act</td>
+        </tr>
+        <tr>
+          <td class="pattern">Unbounded collection</td>
+          <td>Grinding incentive; never "done"</td>
+          <td class="stance">Bounded set, visible from day 1</td>
+        </tr>
+        <tr>
+          <td class="pattern">Rare vs. common badges</td>
+          <td>Gambling / hoarding instinct</td>
+          <td class="stance">All badges equal. No rarity tiers</td>
+        </tr>
+        <tr>
+          <td class="pattern">Leaderboards / peer comparison</td>
+          <td>Social anxiety, competition</td>
+          <td class="stance">Never show another child</td>
+        </tr>
+        <tr>
+          <td class="pattern">External push notifications</td>
+          <td>Manufactured FOMO</td>
+          <td class="stance">App never pings the child</td>
+        </tr>
+        <tr>
+          <td class="pattern">Infinite-scroll recap</td>
+          <td>Eyes-on-screen loop</td>
+          <td class="stance">One screen, one ending, dismissible</td>
+        </tr>
+        <tr>
+          <td class="pattern">Time-based XP</td>
+          <td>Rewards duration over learning</td>
+          <td class="stance">Rewards tied to cognitive moves</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="mechanisms-block">
+      <div class="mech">
+        <div class="mech-num">Mechanism 01</div>
+        <div class="mech-title">Bounded badge universe</div>
+        <div class="mech-body">7 axes × 3 rungs = 21 slots. Fixed from day 1; no mystery / locked slots. The child sees the full universe the first time they open the collection.</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">Mechanism 02</div>
+        <div class="mech-title">Mastery display, not tally display</div>
+        <div class="mech-body">Depth per axis (filling bar L1→L2→L3), not a pile of medals. "You're getting deeper on Form" beats "you have 47 Form badges."</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">Mechanism 03</div>
+        <div class="mech-title"><code>highlight_moment</code> is hero, badges are ambient</div>
+        <div class="mech-body">The runtime-generated one-liner is large and serif; badges are secondary with no sparkles / pops / animation.</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">Mechanism 04</div>
+        <div class="mech-title">Soft session cap</div>
+        <div class="mech-body">After N activities in one sitting (T0: 2, T1: 3, T2: 4), the recap ends with "Good thinking today. See you tomorrow." App doesn't lock — a child who really wants to keep going can.</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">Mechanism 05</div>
+        <div class="mech-title">Replay is welcomed, not re-earned</div>
+        <div class="mech-body">Second playthrough of the same entity celebrates the new noticing, doesn't mint a new badge. "You saw the ladybug again, and this time you noticed…"</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">Mechanism 06</div>
+        <div class="mech-title">No streaks UI, anywhere</div>
+        <div class="mech-body">Not hidden, not built. The parent dashboard can show frequency if a parent wants it; the child never sees a "N days in a row" counter.</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">Mechanism 07</div>
+        <div class="mech-title">Exit with warmth, not a hook</div>
+        <div class="mech-body">End on an invitation to look at the real world ("Next time you're outside, see if you can find another round, spotted thing"). Never "tap to continue" or "N more until Level M."</div>
+      </div>
+      <div class="mech">
+        <div class="mech-num">Mechanism 08</div>
+        <div class="mech-title">Opt-in history</div>
+        <div class="mech-body">Earned badges live on a separate collection screen. A child who wants to see it can. It's never pushed in front of them.</div>
+      </div>
     </div>
   </section>
 
