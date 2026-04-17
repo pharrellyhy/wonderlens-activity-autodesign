@@ -1,0 +1,3915 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template 0 · WonderLens Activity Design — Internal Review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,50..100,0..1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F4EFE6;
+      --bg-deep: #ECE5D6;
+      --bg-card: #FAF6EC;
+      --ink: #141311;
+      --ink-soft: #3B3730;
+      --muted: #7A7468;
+      --line: #CCC3AE;
+      --line-soft: #E2DBC8;
+      --accent: #C5411C;
+      --accent-deep: #8E2A10;
+      --mystery: #3D4A5C;
+      --creation: #C5411C;
+      --performance: #C89021;
+      --discovery: #3A6B56;
+      --adventure: #8B5A3C;
+      --nurture: #A6497C;
+      --tier-0: #B06A3A;
+      --tier-1: #3A6B56;
+      --tier-2: #3D4A5C;
+      --serif: 'Fraunces', 'Noto Serif SC', Georgia, serif;
+      --sans: 'IBM Plex Sans', 'Noto Serif SC', -apple-system, sans-serif;
+      --mono: 'IBM Plex Mono', 'SF Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      font-feature-settings: "ss01", "ss02", "kern";
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(197, 65, 28, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 85% 70%, rgba(61, 74, 92, 0.04) 0%, transparent 50%);
+      min-height: 100vh;
+      padding-top: 54px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      z-index: 1;
+      mix-blend-mode: multiply;
+    }
+
+    /* ============ MASTHEAD ============ */
+    .masthead {
+      border-bottom: 1px solid var(--ink);
+      padding: 18px 48px 14px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 32px;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .masthead .brand {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      font-style: italic;
+    }
+
+    .masthead .brand b {
+      font-style: normal;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .masthead nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    .masthead nav a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .masthead nav a:hover {
+      color: var(--accent);
+    }
+
+    .masthead .meta {
+      color: var(--muted);
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      padding: 80px 48px 60px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--ink);
+      position: relative;
+    }
+
+    .hero .kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero .kicker::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(56px, 9vw, 132px);
+      font-weight: 300;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      font-variation-settings: "opsz" 144, "SOFT" 80;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+      color: var(--accent);
+    }
+
+    .hero .lede {
+      font-family: var(--serif);
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.5;
+      max-width: 780px;
+      color: var(--ink-soft);
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+
+    .hero .lede b {
+      font-weight: 500;
+      color: var(--ink);
+      background: linear-gradient(180deg, transparent 65%, rgba(197, 65, 28, 0.18) 65%);
+    }
+
+    .hero .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      padding-top: 32px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-meta .label {
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .hero-meta .value {
+      font-family: var(--serif);
+      font-size: 16px;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    /* ============ SECTION BASE ============ */
+    section {
+      padding: 80px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .sec-head {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+      align-items: baseline;
+    }
+
+    .sec-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-variation-settings: "opsz" 90;
+    }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 90, "WONK" 1;
+    }
+
+    .sec-desc {
+      grid-column: 2;
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 720px;
+      margin-top: 16px;
+      font-weight: 300;
+    }
+
+    /* ============ AT A GLANCE CARDS ============ */
+    .concerns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+    }
+
+    .concern {
+      padding: 36px 32px;
+      border-right: 1px solid var(--ink);
+      position: relative;
+    }
+
+    .concern:last-child {
+      border-right: none;
+    }
+
+    .concern .num {
+      font-family: var(--serif);
+      font-size: 72px;
+      font-weight: 300;
+      line-height: 0.8;
+      color: var(--accent);
+      font-variation-settings: "opsz" 144, "WONK" 1;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .concern .cn {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .concern h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .concern p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .concern .solves {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      border-top: 1px dashed var(--line);
+      padding-top: 12px;
+      display: block;
+    }
+
+    /* ============ SPINE / 5 BEATS ============ */
+    /* ============ PILLAR STRIP ============ */
+    .pillar-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      margin-bottom: 36px;
+    }
+
+    .pillar-cell {
+      padding: 20px 16px;
+      border-right: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-cell:last-child {
+      border-right: none;
+    }
+
+    .pillar-cell::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--p-color);
+    }
+
+    .pillar-cell .p-name {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--p-color);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .pillar-cell .p-feel {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.25;
+      font-variation-settings: "opsz" 90, "WONK" 1;
+    }
+
+    .p-mystery { --p-color: var(--mystery); }
+    .p-creation { --p-color: var(--creation); }
+    .p-performance { --p-color: var(--performance); }
+    .p-discovery { --p-color: var(--discovery); }
+    .p-adventure { --p-color: var(--adventure); }
+    .p-nurture { --p-color: var(--nurture); }
+
+    .pillar-strip-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .spine-wrap {
+      margin-top: 24px;
+    }
+
+    .spine-toggle {
+      display: inline-flex;
+      gap: 0;
+      border: 1px solid var(--ink);
+      margin-bottom: 32px;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .spine-toggle button {
+      background: transparent;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      border-right: 1px solid var(--ink);
+      transition: all 0.2s;
+    }
+
+    .spine-toggle button:last-child {
+      border-right: none;
+    }
+
+    .spine-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .spine-toggle button:hover:not(.active) {
+      background: var(--bg-deep);
+    }
+
+    .beats {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      position: relative;
+    }
+
+    .beats::before {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: 4%;
+      right: 4%;
+      height: 1px;
+      background: var(--ink);
+      z-index: 0;
+    }
+
+    .beat {
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      padding: 24px 20px;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .beat:hover {
+      transform: translateY(-4px);
+      box-shadow: 8px 8px 0 rgba(20, 19, 17, 0.08);
+    }
+
+    .beat .dot {
+      position: absolute;
+      top: -9px;
+      left: 20px;
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .beat .num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      margin-top: 16px;
+      display: block;
+    }
+
+    .beat h4 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    .beat p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    .beat .overlay-text {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+    }
+
+    .overlay-note {
+      margin-top: 24px;
+      padding: 18px 24px;
+      background: var(--bg-deep);
+      border-left: 3px solid var(--accent);
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      font-family: var(--serif);
+      font-weight: 300;
+    }
+
+    .overlay-note b {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ============ TAG BLOCK ============ */
+    .tagblock {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .code-panel {
+      background: var(--ink);
+      color: #E8E2D1;
+      padding: 32px 36px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.65;
+      border: 1px solid var(--ink);
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .code-panel::before {
+      content: "activity_header.yaml";
+      position: absolute;
+      top: -1px;
+      right: 24px;
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 10px;
+      padding: 4px 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .code-panel-skeleton::before {
+      content: "templates.md  ·  template_0";
+    }
+
+    .code-panel-skeleton {
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+
+    /* ============ SKELETON DETAILS/SUMMARY ============ */
+    .skeleton-details {
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+    }
+
+    .skeleton-details[open] {
+      background: var(--ink);
+    }
+
+    .skeleton-details summary {
+      padding: 22px 28px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .skeleton-details summary::-webkit-details-marker,
+    .skeleton-details summary::marker {
+      display: none;
+    }
+
+    .skeleton-details:not([open]) summary:hover {
+      background: var(--bg-deep);
+    }
+
+    .skeleton-details[open] summary {
+      border-bottom: 1px solid var(--accent);
+    }
+
+    .skeleton-details .sum-file {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .skeleton-details[open] .sum-file {
+      color: var(--bg);
+    }
+
+    .skeleton-details .sum-file strong {
+      background: var(--accent);
+      color: var(--bg);
+      padding: 4px 10px;
+      font-weight: 500;
+    }
+
+    .skeleton-details[open] .sum-file strong {
+      background: var(--accent);
+    }
+
+    .skeleton-details .sum-hint {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skeleton-details[open] .sum-hint {
+      color: #B8B0A0;
+    }
+
+    .skeleton-details .sum-arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+      font-style: normal;
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .skeleton-details[open] .sum-arrow {
+      transform: rotate(90deg);
+    }
+
+    .skeleton-details .sum-text::after {
+      content: "click to expand";
+    }
+
+    .skeleton-details[open] .sum-text::after {
+      content: "click to collapse";
+    }
+
+    .skeleton-details .code-panel-skeleton {
+      border: none;
+      margin: 0;
+    }
+
+    .skeleton-details .code-panel-skeleton::before {
+      display: none;
+    }
+
+    .code-panel .key {
+      color: #E8B85C;
+    }
+
+    .code-panel .str {
+      color: #D4BFA0;
+    }
+
+    .code-panel .cmt {
+      color: #6B6454;
+      font-style: italic;
+    }
+
+    .code-panel .num-c {
+      color: #C88F6B;
+    }
+
+    .code-panel .hl {
+      background: rgba(197, 65, 28, 0.18);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    .tag-legend h4 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .tag-legend ul {
+      list-style: none;
+    }
+
+    .tag-legend li {
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--line);
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 16px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .tag-legend li:last-child {
+      border-bottom: none;
+    }
+
+    .tag-legend li code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: none;
+    }
+
+    .tag-legend li span {
+      color: var(--ink-soft);
+    }
+
+    /* ============ BRIDGES / UPSTREAM-DOWNSTREAM ============ */
+    .subhead {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-top: 56px;
+      margin-bottom: 14px;
+      font-variation-settings: "opsz" 90, "WONK" 1;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .subhead::before {
+      content: attr(data-dir);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 1px solid var(--accent);
+      padding: 3px 8px;
+      transform: translateY(-4px);
+    }
+
+    .subhead-desc {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      max-width: 720px;
+      font-weight: 300;
+      margin-bottom: 28px;
+    }
+
+    .flow-diagram {
+      margin-top: 12px;
+      margin-bottom: 12px;
+      padding: 32px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      overflow-x: auto;
+    }
+
+    .flow-row {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+      min-width: 880px;
+    }
+
+    .flow-node {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--ink);
+      padding: 14px 16px;
+      position: relative;
+      min-width: 0;
+    }
+
+    .flow-node.hub {
+      background: var(--ink);
+      color: var(--bg);
+      flex: 1.4;
+    }
+
+    .flow-node.hub .node-label {
+      color: #E8B85C;
+    }
+
+    .flow-node.hub .node-name {
+      color: var(--bg);
+    }
+
+    .node-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .node-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 0 2px;
+    }
+
+    .tiers-bridge {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+      margin-top: 8px;
+    }
+
+    .tier-bridge-card {
+      padding: 28px 26px;
+      border-right: 1px solid var(--ink);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tier-bridge-card:last-child {
+      border-right: none;
+    }
+
+    .tier-bridge-card .tier-label {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 5px 10px;
+      text-transform: uppercase;
+    }
+
+    .tier-bridge-card.tier-a .tier-label {
+      background: var(--discovery);
+    }
+
+    .tier-bridge-card.tier-b .tier-label {
+      background: var(--adventure);
+    }
+
+    .tier-bridge-card.tier-p .tier-label {
+      background: var(--accent);
+    }
+
+    .tier-bridge-card h4 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.15;
+      margin-top: 24px;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .tier-bridge-card p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .feeds-from {
+      border-top: 1px dashed var(--line);
+      padding-top: 14px;
+      margin-top: auto;
+    }
+
+    .feeds-from strong {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .feeds-from ul {
+      list-style: none;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .feeds-from li {
+      padding: 2px 0;
+    }
+
+    .feeds-from code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: var(--bg-deep);
+      padding: 1px 4px;
+    }
+
+    .quality-mark {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .quality-mark b {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .note-block {
+      margin-top: 28px;
+      padding: 18px 24px;
+      background: var(--bg-deep);
+      border-left: 3px solid var(--accent);
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      font-weight: 300;
+    }
+
+    .note-block strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .note-block code {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    .mockups {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 8px;
+    }
+
+    .mockup {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mockup-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .mockup-label::after {
+      content: "not yet built";
+      color: var(--accent);
+      font-size: 9px;
+      border: 1px solid var(--accent);
+      padding: 2px 6px;
+      letter-spacing: 0.1em;
+    }
+
+    .mockup-frame {
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      padding: 24px 22px;
+      position: relative;
+      flex: 1;
+    }
+
+    .mockup-frame::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* Child recap mockup */
+    .recap-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .recap-head .title {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .recap-head .date {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .recap-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--bg-deep);
+      border: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .badge-circle {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      color: var(--bg);
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .badge-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .badge-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .recap-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 12px;
+      padding: 8px 0;
+      align-items: baseline;
+    }
+
+    .recap-lbl {
+      font-family: var(--serif);
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .chip {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      padding: 3px 9px;
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+
+    .chip-key {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .chip-rel {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    .chip-atl {
+      background: var(--bg);
+      color: var(--ink);
+      border-color: var(--ink);
+      font-style: italic;
+      text-transform: none;
+    }
+
+    /* Parent path mockup */
+    .path-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .path-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .path-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    .path-tier {
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 4px 8px;
+      background: var(--bg-deep);
+      border: 1px solid var(--line);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+    }
+
+    .path-axis {
+      padding: 12px 0;
+      border-bottom: 1px dotted var(--line-soft);
+    }
+
+    .path-axis:last-child {
+      border-bottom: none;
+    }
+
+    .axis-name-p {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .axis-ladder {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .axis-ladder .step {
+      flex: 1;
+      height: 20px;
+      border: 1px solid var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--bg);
+    }
+
+    .axis-ladder .step.filled {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .axis-ladder .step.current {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      position: relative;
+    }
+
+    .axis-ladder .step.current::after {
+      content: "◂";
+      position: absolute;
+      right: -14px;
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .axis-evidence {
+      font-family: var(--serif);
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .reads-from {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+
+    .path-legend {
+      margin-top: 14px;
+      padding: 8px 10px;
+      background: var(--bg-deep);
+      border-left: 2px solid var(--accent);
+      font-family: var(--serif);
+      font-size: 11px;
+      font-style: italic;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .reads-from code {
+      color: var(--accent);
+      background: var(--bg-deep);
+      padding: 1px 4px;
+      font-family: var(--mono);
+      text-transform: none;
+    }
+
+    /* ============ TIER ADAPTATION ============ */
+    .tier-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 36px;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+    }
+
+    .tier-tab {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--ink);
+      padding: 24px 32px;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tier-tab:last-child {
+      border-right: none;
+    }
+
+    .tier-tab::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--tier-color);
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+      z-index: 0;
+    }
+
+    .tier-tab.active::before {
+      transform: translateY(0);
+    }
+
+    .tier-tab.active {
+      color: var(--bg);
+    }
+
+    .tier-tab>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tier-tab[data-tier="T0"] {
+      --tier-color: var(--tier-0);
+    }
+
+    .tier-tab[data-tier="T1"] {
+      --tier-color: var(--tier-1);
+    }
+
+    .tier-tab[data-tier="T2"] {
+      --tier-color: var(--tier-2);
+    }
+
+    .tier-tab .tier-code {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .tier-tab .tier-name {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .tier-tab .tier-mode {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-style: italic;
+      opacity: 0.85;
+    }
+
+    .tier-panel {
+      display: none;
+      animation: tierIn 0.4s ease;
+    }
+
+    .tier-panel.active {
+      display: block;
+    }
+
+    @keyframes tierIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .dials {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+    }
+
+    .dial {
+      padding: 28px 24px;
+      border-right: 1px solid var(--line);
+      position: relative;
+    }
+
+    .dial:last-child {
+      border-right: none;
+    }
+
+    .dial-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dial-label::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .dial-value {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.35;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    .dial-example {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .dial-example::before {
+      content: "e.g.";
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-right: 6px;
+      font-style: normal;
+    }
+
+    /* ============ PROGRESSION AXES ============ */
+    .axis-wrap {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+    }
+
+    .axis-list {
+      border-left: 2px solid var(--ink);
+    }
+
+    .axis-btn {
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: 16px 20px;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .axis-btn:last-child {
+      border-bottom: none;
+    }
+
+    .axis-btn::before {
+      content: "";
+      position: absolute;
+      left: -2px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: transparent;
+      transition: background 0.2s;
+    }
+
+    .axis-btn.active::before {
+      background: var(--accent);
+    }
+
+    .axis-btn.active {
+      background: var(--bg-card);
+    }
+
+    .axis-btn .axis-code {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .axis-btn.active .axis-code {
+      color: var(--accent);
+    }
+
+    .axis-btn .axis-name {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--ink);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .axis-btn .axis-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 2px 8px;
+      background: var(--bg-deep);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 2px;
+    }
+
+    .ladder {
+      display: none;
+    }
+
+    .ladder.active {
+      display: block;
+      animation: tierIn 0.4s ease;
+    }
+
+    .ladder-head {
+      margin-bottom: 24px;
+    }
+
+    .ladder-head h4 {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      font-variation-settings: "opsz" 90, "WONK" 1;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .ladder-head p {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--ink-soft);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .rungs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .rung {
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      padding: 24px 22px;
+      position: relative;
+    }
+
+    .rung-num {
+      position: absolute;
+      top: -12px;
+      left: 16px;
+      background: var(--bg);
+      padding: 2px 10px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      border: 1px solid var(--ink);
+      text-transform: uppercase;
+    }
+
+    .rung:nth-child(1) .rung-num {
+      background: #F6E8D9;
+    }
+
+    .rung:nth-child(2) .rung-num {
+      background: #E8DFC7;
+    }
+
+    .rung:nth-child(3) .rung-num {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .rung h5 {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .rung p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .rung .example {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--serif);
+      font-size: 12px;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ============ CATEGORY COLLAPSE ============ */
+    .collapse-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .overlay-card {
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      padding: 32px;
+      position: relative;
+    }
+
+    .overlay-card h4 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .overlay-card .sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .overlay-fields {
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .overlay-fields .k {
+      color: var(--muted);
+    }
+
+    .overlay-fields .v {
+      color: var(--ink);
+    }
+
+    .overlay-fields .line {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      padding: 4px 0;
+      border-bottom: 1px dotted var(--line-soft);
+    }
+
+    .overlay-fields .line:last-child {
+      border-bottom: none;
+    }
+
+    /* ============ DECISIONS LOG ============ */
+    .decisions {
+      margin-top: 8px;
+    }
+
+    .decision {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+
+    .decision:last-child {
+      border-bottom: none;
+    }
+
+    .decision .dn {
+      font-family: var(--serif);
+      font-size: 40px;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 0.9;
+      font-variation-settings: "opsz" 144, "WONK" 1;
+    }
+
+    .decision .q {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .decision .a {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    .decision .a b {
+      background: linear-gradient(180deg, transparent 65%, rgba(197, 65, 28, 0.22) 65%);
+      font-weight: 500;
+    }
+
+    .stamp {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 6px 12px;
+      white-space: nowrap;
+      height: fit-content;
+      border: 1px solid var(--accent);
+      transform: rotate(-2deg);
+    }
+
+    .stamp.pending {
+      background: transparent;
+      color: var(--muted);
+      border-color: var(--muted);
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      padding: 60px 48px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-top: 1px solid var(--ink);
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    footer .claim {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.35;
+      font-style: italic;
+      color: var(--ink-soft);
+      font-variation-settings: "opsz" 90, "SOFT" 100;
+    }
+
+    footer h5 {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    footer ul {
+      list-style: none;
+      font-size: 13px;
+    }
+
+    footer li {
+      padding: 4px 0;
+      color: var(--ink-soft);
+    }
+
+    footer li::before {
+      content: "→";
+      color: var(--accent);
+      margin-right: 8px;
+    }
+
+    .version {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 960px) {
+      body {
+        padding-top: 72px;
+      }
+
+      .masthead {
+        padding: 14px 24px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .masthead nav {
+        display: none;
+      }
+
+      section,
+      .hero {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .sec-head {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .sec-desc {
+        grid-column: 1;
+      }
+
+      .concerns {
+        grid-template-columns: 1fr;
+      }
+
+      .concern {
+        border-right: none;
+        border-bottom: 1px solid var(--ink);
+      }
+
+      .concern:last-child {
+        border-bottom: none;
+      }
+
+      .beats {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .beats::before {
+        display: none;
+      }
+
+      .tagblock {
+        grid-template-columns: 1fr;
+      }
+
+      .dials {
+        grid-template-columns: 1fr;
+      }
+
+      .dial {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .axis-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .axis-list {
+        display: flex;
+        overflow-x: auto;
+        border-left: none;
+        border-bottom: 2px solid var(--ink);
+      }
+
+      .axis-btn {
+        min-width: 200px;
+        border-bottom: none;
+        border-right: 1px solid var(--line);
+      }
+
+      .rungs {
+        grid-template-columns: 1fr;
+      }
+
+      .collapse-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      footer {
+        grid-template-columns: 1fr;
+      }
+
+      .tier-tabs {
+        flex-direction: column;
+      }
+
+      .tier-tab {
+        border-right: none;
+        border-bottom: 1px solid var(--ink);
+      }
+
+      .tier-tab:last-child {
+        border-bottom: none;
+      }
+
+      .pillar-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .pillar-cell {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .pillar-cell:nth-child(3) {
+        border-right: none;
+      }
+
+      .tier-compare-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tcc-col {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .tcc-col:last-child {
+        border-bottom: none;
+      }
+
+      .cov-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cov-axis {
+        border-right: 1px dashed var(--line-soft);
+        border-bottom: 1px dashed var(--line-soft);
+      }
+
+      .cov-axis:nth-child(2n) {
+        border-right: none;
+      }
+
+      .ll-rungs {
+        grid-template-columns: 1fr;
+      }
+
+      .ll-rung {
+        border-right: none;
+        border-bottom: 1px dashed var(--line);
+      }
+
+      .ll-rung:last-child {
+        border-bottom: none;
+      }
+    }
+
+    /* ============ TIER COMPARE (§06 worked example) ============ */
+    .tier-compare {
+      margin-top: 56px;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+    }
+
+    .tier-compare-head {
+      padding: 22px 28px;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-deep);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tcc-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .tcc-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 90, "WONK" 1;
+    }
+
+    .tcc-scene {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .tcc-scene strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .tier-compare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .tcc-col {
+      padding: 26px 24px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tcc-col:last-child {
+      border-right: none;
+    }
+
+    .tcc-col-head {
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--tier-color);
+    }
+
+    .tcc-t0 {
+      --tier-color: var(--tier-0);
+    }
+
+    .tcc-t1 {
+      --tier-color: var(--tier-1);
+    }
+
+    .tcc-t2 {
+      --tier-color: var(--tier-2);
+    }
+
+    .tcc-tier {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tier-color);
+      font-weight: 500;
+    }
+
+    .tcc-tier-name {
+      display: block;
+      font-family: var(--serif);
+      font-size: 19px;
+      color: var(--ink);
+      margin-top: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .tcc-beat {
+      margin-bottom: 22px;
+    }
+
+    .tcc-beat-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .tcc-dialogue {
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .d-line {
+      margin-bottom: 8px;
+    }
+
+    .d-line .who {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-right: 6px;
+    }
+
+    .d-line em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .d-line.stage {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+      padding-left: 12px;
+    }
+
+    .tcc-caregiver {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .tcc-caregiver .cg-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .tcc-caregiver .cg-role {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    .tier-compare-note {
+      padding: 18px 28px;
+      border-top: 1px solid var(--line);
+      background: var(--bg-deep);
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    .tier-compare-note strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ============ LEVEL LEGEND (§07 L1/L2/L3 meta) ============ */
+    .level-legend {
+      margin-bottom: 36px;
+      padding: 24px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+    }
+
+    .ll-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .ll-rungs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px dashed var(--line);
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .ll-rung {
+      padding: 18px 22px;
+      border-right: 1px dashed var(--line);
+    }
+
+    .ll-rung:last-child {
+      border-right: none;
+    }
+
+    .ll-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .ll-kind {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-style: italic;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      font-variation-settings: "opsz" 90, "WONK" 1;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .ll-desc {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      display: block;
+    }
+
+    .ll-foot {
+      margin-top: 16px;
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    /* ============ MAPPING TABLE (§07 gold-standard check) ============ */
+    .mapping-table-wrap {
+      margin-top: 16px;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+      overflow-x: auto;
+    }
+
+    .mapping-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .mapping-table thead th {
+      background: var(--ink);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 14px 16px;
+      border-right: 1px solid #3B3730;
+      font-weight: 500;
+    }
+
+    .mapping-table thead th:last-child {
+      border-right: none;
+    }
+
+    .mapping-table tbody td {
+      padding: 14px 16px;
+      border-bottom: 1px dashed var(--line);
+      border-right: 1px dashed var(--line-soft);
+      vertical-align: top;
+    }
+
+    .mapping-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .mapping-table tbody td:last-child {
+      border-right: none;
+    }
+
+    .mapping-table tbody tr:hover {
+      background: var(--bg-deep);
+    }
+
+    .mapping-table .m-style {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .mapping-table .m-entity {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .mapping-table .pill {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--bg);
+      padding: 3px 8px;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    .pill-mystery {
+      background: var(--mystery);
+    }
+
+    .pill-creation {
+      background: var(--creation);
+    }
+
+    .pill-performance {
+      background: var(--performance);
+    }
+
+    .pill-discovery {
+      background: var(--discovery);
+    }
+
+    .pill-adventure {
+      background: var(--adventure);
+    }
+
+    .pill-nurture {
+      background: var(--nurture);
+    }
+
+    .mapping-table .m-axis {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .mapping-table .m-axis strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .mapping-table .m-why {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+
+    .mapping-coverage {
+      margin-top: 20px;
+      padding: 22px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+    }
+
+    .cov-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .cov-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+      border-top: 1px dashed var(--line);
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .cov-axis {
+      padding: 14px 10px;
+      text-align: center;
+      border-right: 1px dashed var(--line-soft);
+    }
+
+    .cov-axis:last-child {
+      border-right: none;
+    }
+
+    .cov-axis .cov-name {
+      font-family: var(--serif);
+      font-size: 13px;
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .cov-axis .cov-dots {
+      font-family: var(--mono);
+      font-size: 16px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .cov-axis .cov-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .cov-axis.thin .cov-dots {
+      color: var(--muted);
+    }
+
+    .cov-note {
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-top: 18px;
+      font-weight: 300;
+    }
+
+    .cov-note strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ============ PRINT ============ */
+    @media print {
+      body {
+        background: white;
+      }
+
+      body::before {
+        display: none;
+      }
+
+      .masthead {
+        position: static;
+      }
+
+      section {
+        page-break-inside: avoid;
+      }
+
+      .tier-panel {
+        display: block !important;
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="masthead">
+    <div class="brand"><b>WonderLens</b> · Activity Design Framework</div>
+    <nav>
+      <a href="#concerns">Concerns</a>
+      <a href="#spine">Spine</a>
+      <a href="#skeleton">Artifact</a>
+      <a href="#tags">Tag block</a>
+      <a href="#bridges">Bridges</a>
+      <a href="#tiers">Tiers</a>
+      <a href="#axes">Progression</a>
+      <a href="#decisions">Decisions</a>
+    </nav>
+    <div class="meta">Draft · 2026-04-15 · Internal review</div>
+  </header>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero">
+    <div class="kicker">Proposal · Template 0 · Category-agnostic skeleton</div>
+    <h1>One spine,<br />many <em>categories</em>.</h1>
+    <p class="lede">
+      Today the repo has <b>Template A</b> for Cat1 and <b>Template B</b> for Cat5. Each duplicates the same emotional
+      arc and drags its own copy of the tag and tier logic. <b>Template 0</b> lifts the shared bones into a single
+      skeleton — so every future category, tier, and pillar plugs in as a thin overlay instead of a new spine.
+    </p>
+    <div class="hero-meta">
+      <div>
+        <span class="label">For</span>
+        <span class="value">Internal team review</span>
+      </div>
+      <div>
+        <span class="label">Addresses</span>
+        <span class="value">3 standing asks</span>
+      </div>
+      <div>
+        <span class="label">Scope</span>
+        <span class="value">Template layer</span>
+      </div>
+      <div>
+        <span class="label">Status</span>
+        <span class="value">Draft · pending sign-off</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== AT A GLANCE ============== -->
+  <section id="concerns">
+    <div class="sec-head">
+      <div class="sec-num">§ 01 / At a glance</div>
+      <h2 class="sec-title">Three internal asks,<br />three <em>structural</em> answers.</h2>
+    </div>
+    <p class="sec-desc">Each concern you raised maps to a dedicated slot in Template 0. The goal is to make the things
+      you care about first-class at the template layer — so no design can ship without naming them.</p>
+
+    <div class="concerns">
+      <div class="concern">
+        <span class="num">01</span>
+        <div class="cn">"The tag system must be explicit — so it can bridge the upstream app, a child recap screen, and
+          a parent growth path."</div>
+        <h3>A first-class tag block</h3>
+        <p>A required header on every activity exposing entity, category, attributes, Key Concepts, Related Concepts,
+          and ATL skills — the exact hierarchy you asked for. The same block also feeds the game selection pipeline
+          upstream and the child + parent surfaces downstream.</p>
+        <span class="solves">→ see § 04 Tag block · § 05 Bridges</span>
+      </div>
+      <div class="concern">
+        <span class="num">02</span>
+        <div class="cn">"How do we design progression — same topic, a bit harder each time?"</div>
+        <h3>A shared progression axis</h3>
+        <p>Activities declare a <code>topic_axis</code> and a difficulty level 1–3. The seven axes are derived from the
+          seven IB Key Concepts already in the playbook, so progression rides the same thinking lens the rest of the
+          framework already uses.</p>
+        <span class="solves">→ see § 07 Progression</span>
+      </div>
+      <div class="concern">
+        <span class="num">03</span>
+        <div class="cn">"Same game adapted to age by interaction, or different activities per age?"</div>
+        <h3>Adapt within, split across</h3>
+        <p>A design targets one primary tier and optionally flexes to a neighbor via five explicit dials (AI role,
+          language, task depth, concept focus, caregiver role). Crossing two tiers means siblings on a shared axis — not
+          one stretched design.</p>
+        <span class="solves">→ see § 06 Tier adaptation</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SPINE ============== -->
+  <section id="spine">
+    <div class="sec-head">
+      <div class="sec-num">§ 02 / The spine</div>
+      <h2 class="sec-title">Five beats, <em>invariant</em>.</h2>
+    </div>
+    <p class="sec-desc">Every category — Cat1, Cat5, and the four still to come — rides the same 5-beat emotional arc.
+      What changes between categories is the <em>medium</em> of each beat (verbal dialogue vs. photo collection vs.
+      physical exploration), not the beat itself.</p>
+
+    <div class="pillar-strip-label">The 6 experience pillars — each pillar defines the emotional shape of beats 2–4</div>
+    <div class="pillar-strip">
+      <div class="pillar-cell p-mystery">
+        <span class="p-name">Mystery</span>
+        <span class="p-feel">"I figured it out!"</span>
+      </div>
+      <div class="pillar-cell p-creation">
+        <span class="p-name">Creation</span>
+        <span class="p-feel">"I made this!"</span>
+      </div>
+      <div class="pillar-cell p-performance">
+        <span class="p-name">Performance</span>
+        <span class="p-feel">"They loved it!"</span>
+      </div>
+      <div class="pillar-cell p-discovery">
+        <span class="p-name">Discovery</span>
+        <span class="p-feel">"Was I right?!"</span>
+      </div>
+      <div class="pillar-cell p-adventure">
+        <span class="p-name">Adventure</span>
+        <span class="p-feel">"Look how far we went!"</span>
+      </div>
+      <div class="pillar-cell p-nurture">
+        <span class="p-name">Nurture</span>
+        <span class="p-feel">"I helped!"</span>
+      </div>
+    </div>
+
+    <div class="spine-wrap">
+      <div class="spine-toggle" role="tablist">
+        <button class="active" data-overlay="base">Base skeleton</button>
+        <button data-overlay="cat1">Cat1 overlay</button>
+        <button data-overlay="cat5">Cat5 overlay</button>
+      </div>
+
+      <div class="beats">
+        <div class="beat">
+          <span class="dot"></span>
+          <span class="num">Beat 01</span>
+          <h4>Transition Bridge</h4>
+          <p>Photo → emotional or imaginative reaction. Never knowledge-testing.</p>
+          <div class="overlay-text"
+            data-base="Hook on the photographed entity. Warm start variant for mapping-informed designs."
+            data-cat1="Verbal reaction: ‘Wow, {entity}! {emotional observation}. {imaginative question}?’"
+            data-cat5="React to the entity's most striking visual feature. Highlight the feature onscreen."></div>
+        </div>
+        <div class="beat">
+          <span class="dot"></span>
+          <span class="num">Beat 02</span>
+          <h4>Frame + Role</h4>
+          <p>Assign role title + metaphor. State the mission in pillar-specific language.</p>
+          <div class="overlay-text"
+            data-base="Pillar overlay drives the framing language; universal {metaphor} + {role_title} get set here."
+            data-cat1="Introduce the game mechanic through example. In-device scenario framing."
+            data-cat5="Mission briefing + 3 concrete sub-tasks. Mission card with {role_title} badge."></div>
+        </div>
+        <div class="beat">
+          <span class="dot"></span>
+          <span class="num">Beat 03</span>
+          <h4>Core Loop</h4>
+          <p>N rounds of the pillar-specific mechanic. {escalation_axis} must ride the declared progression axis.</p>
+          <div class="overlay-text"
+            data-base="Rounds escalate along the declared topic_axis. Pillar overlay determines the interaction type."
+            data-cat1="3–5 verbal rounds. AI presents scenarios → child responds → AI validates with pillar elements."
+            data-cat5="3–4 photo rounds. Child explores physically, photographs finds, AI reacts per-find."></div>
+        </div>
+        <div class="beat">
+          <span class="dot"></span>
+          <span class="num">Beat 04</span>
+          <h4>Magic Moment</h4>
+          <p>Pillar-specific synthesis. Emotional climax. Blind reader should identify pillar from this beat alone.</p>
+          <div class="overlay-text"
+            data-base="The payoff that delivers on the pillar's promise. Fidelity check against rubric D9+D10."
+            data-cat1="Dramatic verbal reveal / audience ovation / transformation / tallied result."
+            data-cat5="Synthesis of the collection: hidden pattern, combined invention, ensemble concert, tally."></div>
+        </div>
+        <div class="beat">
+          <span class="dot"></span>
+          <span class="num">Beat 05</span>
+          <h4>Celebration + Concepts</h4>
+          <p>Name earned Key Concepts + Related Concepts as praise — never as knowledge check.</p>
+          <div class="overlay-text"
+            data-base="Badge + IB Key Concepts named as praise. Related Concepts become child-facing post-activity badges."
+            data-cat1="Role title awarded + 1–2 Key Concepts named. Badge animation."
+            data-cat5="Collection displayed cohesively + Key Concepts named. Animated connections between finds."></div>
+        </div>
+      </div>
+      <div class="overlay-note">
+        Cat1 and Cat5 become thin overlays that only override <b>8 fields</b>: beat medium, round count, camera use,
+        setting, step count, core mechanic, and the anchor-dimension priorities. Everything else — pillar overlays,
+        creative variables, entity adaptation checklist — is inherited from Template 0.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TEMPLATE 0 SKELETON ============== -->
+  <section id="skeleton">
+    <div class="sec-head">
+      <div class="sec-num">§ 03 / The artifact</div>
+      <h2 class="sec-title">Template 0, <em>in one file</em>.</h2>
+    </div>
+    <p class="sec-desc">Sections §01 and §02 describe the pieces in isolation. This is what they add up to — a single
+      skeleton that lives at the top of <code>templates.md</code>. Cat1, Cat5, and every future category simply
+      <code>extends: template_0</code> and overrides 8 fields. Everything else is inherited. The following sections zoom
+      into each block of this file.</p>
+
+    <details class="skeleton-details">
+      <summary>
+        <span class="sum-file"><strong>templates.md</strong>template_0  ·  ~100 lines</span>
+        <span class="sum-hint"><span class="sum-text"></span><span class="sum-arrow">▸</span></span>
+      </summary>
+<pre class="code-panel code-panel-skeleton"><span class="cmt"># ═══════════════════════════════════════════
+#  Template 0  —  Category-Agnostic Skeleton
+#  Lives at the top of templates.md
+#  Every category overlay: extends: template_0
+# ═══════════════════════════════════════════</span>
+
+<span class="key">extends</span>:         <span class="str">null</span>                  <span class="cmt"># root template</span>
+
+
+<span class="cmt"># ─── §0 · ACTIVITY HEADER (required on every design) ───────</span>
+
+<span class="key">header</span>:
+  <span class="key">activity_id</span>:   <span class="str">{slug}</span>                <span class="cmt"># e.g. ladybug_cat1_mystery_t1</span>
+  <span class="key">entity</span>:        <span class="str">{entity_name}</span>
+  <span class="key">entity_type</span>:   <span class="str">{animal|toy|food|household|vehicle|nature|...}</span>
+  <span class="key">category</span>:      <span class="str">{cat1..cat6}</span>
+  <span class="key">pillar</span>:        <span class="str">{mystery|creation|performance|discovery|adventure|nurture}</span>
+  <span class="key">style</span>:         <span class="str">{one of 12 game styles}</span>
+  <span class="key">tier</span>:          <span class="str">{T0|T1|T2}</span>            <span class="cmt"># primary target</span>
+  <span class="key">tier_variants</span>: <span class="str">[{T0|T1|T2}]</span>          <span class="cmt"># optional neighbor flex</span>
+
+  <span class="key">tags</span>:
+    <span class="key">attributes</span>:              []        <span class="cmt"># observable properties the game invokes</span>
+    <span class="key">key_concepts</span>:            []        <span class="cmt"># 1–2 from the 7 IB Key Concepts</span>
+    <span class="key">related_concepts</span>:        []        <span class="cmt"># 2–4 discipline-tagged badges</span>
+    <span class="key">atl_skills</span>:              []        <span class="cmt"># 2–3 ATL skills</span>
+    <span class="key">transdisciplinary_theme</span>: <span class="str">{1 of 6 PYP themes}</span>
+
+  <span class="key">kud</span>:
+    <span class="key">know</span>:       []                    <span class="cmt"># 2–5 facts / vocab</span>
+    <span class="key">understand</span>: []                    <span class="cmt"># 1–2 concepts (maps to key_concepts)</span>
+    <span class="key">do</span>:         []                    <span class="cmt"># 2–3 skills (maps to atl_skills)</span>
+
+  <span class="hl"><span class="key">progression</span>:                          <span class="cmt"># answers ask #2</span>
+    <span class="key">topic_axis</span>:       <span class="str">{form|function|causation|change|connection|perspective|responsibility}</span>
+    <span class="key">difficulty_level</span>: <span class="num-c">{1|2|3}</span>
+    <span class="key">next_step_hint</span>:   <span class="str">"..."</span>
+    <span class="key">reward_hook</span>:      <span class="str">"..."</span></span>
+
+  <span class="key">caregiver_role</span>:  <span class="str">{scaffold|co-explorer|observer}</span>   <span class="cmt"># default from tier</span>
+
+
+<span class="cmt"># ─── §1 · STRUCTURAL SPINE (5 beats, invariant) ────────────</span>
+
+<span class="key">spine</span>:
+  <span class="key">beat_1_transition_bridge</span>:
+    <span class="key">purpose</span>:  <span class="str">"Emotional hook: photo → imaginative reaction, never knowledge-test"</span>
+    <span class="key">pattern</span>:  <span class="str">"{emotional observation}. {imaginative question}?"</span>
+
+  <span class="key">beat_2_frame_and_role</span>:
+    <span class="key">purpose</span>:  <span class="str">"Assign {role_title} + {metaphor}. State the mission"</span>
+    <span class="key">overlay</span>:  pillar                <span class="cmt"># pillar overlay drives framing</span>
+
+  <span class="key">beat_3_core_loop</span>:
+    <span class="key">purpose</span>:    <span class="str">"N rounds of pillar-specific mechanic"</span>
+    <span class="key">escalation</span>: <span class="str">"{escalation_axis}"</span>    <span class="cmt"># rides progression.topic_axis</span>
+    <span class="key">overlay</span>:    pillar
+
+  <span class="key">beat_4_magic_moment</span>:
+    <span class="key">purpose</span>:  <span class="str">"Pillar-specific synthesis; emotional climax"</span>
+    <span class="key">fidelity</span>: <span class="str">"blind reader identifies pillar from this beat alone"</span>
+    <span class="key">overlay</span>:  pillar
+
+  <span class="key">beat_5_celebration</span>:
+    <span class="key">purpose</span>:  <span class="str">"Name earned Key Concepts + Related Concepts as praise"</span>
+    <span class="key">pattern</span>:  <span class="str">"You became a {role_title}! You used {key_concept}. You earned {related_concept}."</span>
+
+
+<span class="cmt"># ─── §2 · UNIVERSAL CREATIVE VARIABLES ─────────────────────</span>
+
+<span class="key">creative_variables</span>:
+  <span class="key">metaphor</span>:            <span class="str">"imaginative frame that turns education into play"</span>
+  <span class="key">role_title</span>:          <span class="str">"badge/title the child earns (specific to what they DO)"</span>
+  <span class="key">escalation_axis</span>:     <span class="str">"how rounds get richer; aligns with progression.topic_axis"</span>
+  <span class="key">reflective_question</span>: <span class="str">"closing 'why' that invites genuine wondering"</span>
+
+<span class="cmt"># pillar-specific variables layer on top — see pillar_overlays/ (unchanged)</span>
+
+
+<span class="cmt"># ─── §3 · TIER ADAPTATION DEFAULTS (answers ask #3) ────────</span>
+
+<span class="hl"><span class="key">tier_defaults</span>:
+  <span class="key">T0</span>:
+    <span class="key">ai_role</span>:        <span class="str">"Enthusiastic initiator + emotional co-regulator"</span>
+    <span class="key">language</span>:       <span class="str">"Onomatopoeia, 3–5 word sentences, slow + exaggerated"</span>
+    <span class="key">task_depth</span>:     <span class="str">"Single-step commands, immediate feedback"</span>
+    <span class="key">concept_focus</span>:  <span class="str">"Concrete attributes + basic function"</span>
+    <span class="key">caregiver_role</span>: <span class="str">scaffold</span>
+  <span class="key">T1</span>:
+    <span class="key">ai_role</span>:        <span class="str">"Curious co-explorer + thought starter"</span>
+    <span class="key">language</span>:       <span class="str">"Natural pace, simple compounds, open-ended why/how"</span>
+    <span class="key">task_depth</span>:     <span class="str">"2–3 step sequences, simple division of labor"</span>
+    <span class="key">concept_focus</span>:  <span class="str">"Causation, change, connection"</span>
+    <span class="key">caregiver_role</span>: <span class="str">co-explorer</span>
+  <span class="key">T2</span>:
+    <span class="key">ai_role</span>:        <span class="str">"Project advisor + resource coordinator"</span>
+    <span class="key">language</span>:       <span class="str">"Near-adult dialogue, complex syntax, logic markers"</span>
+    <span class="key">task_depth</span>:     <span class="str">"Multi-step, optional project tracks"</span>
+    <span class="key">concept_focus</span>:  <span class="str">"Perspective, responsibility, systems"</span>
+    <span class="key">caregiver_role</span>: <span class="str">observer</span></span>
+
+
+<span class="cmt"># ─── §4 · OVERLAY HOOKS (what each category overlay fills) ─</span>
+
+<span class="key">category_overrides_expected</span>:
+  - <span class="key">beat_medium</span>       <span class="cmt"># verbal_dialogue | photo_collection + physical | ...</span>
+  - <span class="key">round_count</span>       <span class="cmt"># 3–5 | 3–4 | ...</span>
+  - <span class="key">camera_use</span>        <span class="cmt"># initial_only | initial + per_round | ...</span>
+  - <span class="key">setting</span>           <span class="cmt"># indoor_quiet | outdoor | ...</span>
+  - <span class="key">step_count</span>        <span class="cmt"># 5 | 5–6 | ...</span>
+  - <span class="key">core_mechanic</span>     <span class="cmt"># scenario → verbal → validate  |  mission → find → synthesize</span>
+  - <span class="key">anchor_priority</span>   <span class="cmt"># engagement-first | physical-first</span>
+  - <span class="key">checklist_extras</span>  <span class="cmt"># category-specific adaptation checklist additions</span>
+</pre>
+    </details>
+
+    <div class="note-block">
+      <strong>What a category overlay looks like.</strong> A ~10-line file that declares <code>extends: template_0</code>
+      and fills the 8 hooks above. See <strong>§08</strong> for Cat1 and Cat5 as concrete overlays. Every future
+      category (Cat2–Cat6) follows the same shape — no new spine, no new tag block, no new tier defaults.
+    </div>
+  </section>
+
+  <!-- ============== TAG BLOCK ============== -->
+  <section id="tags">
+    <div class="sec-head">
+      <div class="sec-num">§ 04 / The tag block</div>
+      <h2 class="sec-title">Every activity starts with a <em>handshake</em>.</h2>
+    </div>
+    <p class="sec-desc">This YAML block is required at the top of every design. It's the contract between design and the
+      upstream app, the child's recap screen, and the parent's growth path dashboard. The highlighted fields are new or
+      newly-promoted to first-class status.</p>
+
+    <div class="tagblock">
+      <pre class="code-panel"><span class="key">activity_id</span>: <span class="str">ladybug_cat1_mystery_t1</span>
+        <span class="key">entity</span>: <span class="str">ladybug</span>
+        <span class="key">entity_type</span>: <span class="str">animal</span>
+        <span class="key">category</span>: <span class="str">cat1</span>
+        <span class="key">pillar</span>: <span class="str">mystery</span>
+        <span class="key">style</span>: <span class="str">mystery_lens</span>
+        <span class="key">tier</span>: <span class="str">T1</span>
+        <span class="key">tier_variants</span>: <span class="hl">[<span class="str">T0</span>]</span> <span
+          class="cmt"># flexes to neighbor</span>
+
+        <span class="key">tags</span>:
+        <span class="key">attributes</span>: <span class="hl">[<span class="str">red</span>, <span
+            class="str">black</span>, <span class="str">spots</span>, <span class="str">round</span>]</span>
+        <span class="key">key_concepts</span>: <span class="hl">[<span class="str">Form</span>, <span
+            class="str">Change</span>]</span> <span class="cmt"># 1–2 from 7</span>
+        <span class="key">related_concepts</span>: <span class="hl">[<span class="str">Pattern</span>, <span
+            class="str">Camouflage</span>]</span> <span class="cmt"># 2–4 discipline</span>
+        <span class="key">atl_skills</span>: [<span class="str">critical_thinking</span>, <span
+          class="str">observation</span>]
+        <span class="key">transdisciplinary_theme</span>: <span class="str">How the World Works</span>
+
+        <span class="key">kud</span>:
+        <span class="key">know</span>: [<span class="str">ladybugs have 6 legs</span>, <span class="str">spots vary by
+          species</span>]
+        <span class="key">understand</span>: [<span class="str">patterns help animals survive</span>]
+        <span class="key">do</span>: [<span class="str">observe carefully</span>, <span class="str">describe what you
+          see</span>]
+
+        <span class="key">progression</span>: <span class="hl"><span class="cmt"># NEW — answers ask #2</span></span>
+        <span class="key">topic_axis</span>: <span class="str">pattern_recognition</span>
+        <span class="key">difficulty_level</span>: <span class="num-c">2</span>
+        <span class="key">next_step_hint</span>: <span class="str">"move to level 3 on same axis, OR jump to
+          cause_effect level 1"</span>
+        <span class="key">reward_hook</span>: <span class="str">"pattern_recognition_L2 badge"</span>
+
+        <span class="key">caregiver_role</span>: <span class="str">co-explorer</span> <span class="cmt">#
+          tier-dependent</span>
+      </pre>
+
+      <div class="tag-legend">
+        <h4>Why these slots</h4>
+        <ul>
+          <li><code>attributes</code><span>Observable properties the game invokes. Feeds the property-bridge templates
+              from the playbook.</span></li>
+          <li><code>key_concepts</code><span>1–2 from the 7 IB Key Concepts. The "thinking lens". <b>Distinct tree</b>
+              from related concepts.</span></li>
+          <li><code>related_concepts</code><span>2–4 discipline-tagged concepts. The child-facing post-activity
+              badges.</span></li>
+          <li><code>atl_skills</code><span>2–3 ATL skills the child practiced. Feeds the parent growth path.</span></li>
+          <li><code>progression</code><span>New block. Turns "same-topic, slightly harder" into a first-class,
+              machine-readable axis.</span></li>
+          <li><code>tier_variants</code><span>In the header, not emergent. Explicit audit trail for the parent
+              dashboard.</span></li>
+          <li><code>caregiver_role</code><span>Soft guidance for now — tier-dependent default, can be tightened
+              later.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== BRIDGES ============== -->
+  <section id="bridges">
+    <div class="sec-head">
+      <div class="sec-num">§ 05 / Upstream &amp; downstream</div>
+      <h2 class="sec-title">The tag block is a <em>contract</em>.</h2>
+    </div>
+    <p class="sec-desc">The fields in §04 are not decorative. Each one is consumed by a real upstream or downstream
+      system. Some of those systems already exist (the playbook's game selection pipeline); others do not yet — and
+      Template 0 is what makes them specifiable. This section walks both directions.</p>
+
+    <div class="flow-diagram">
+      <div class="flow-row">
+        <div class="flow-node">
+          <span class="node-label">Input</span>
+          <span class="node-name">Child photographs an entity</span>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="node-label">Recognition</span>
+          <span class="node-name">Entity + visual properties detected</span>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node hub">
+          <span class="node-label">§04 Tag block</span>
+          <span class="node-name">entity · category · attributes · tier · concepts · progression</span>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="node-label">Selection</span>
+          <span class="node-name">Tier A / B / P / conv.</span>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="node-label">Runtime</span>
+          <span class="node-name">Activity plays</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead" data-dir="Upstream">From photo to activity</h3>
+    <p class="subhead-desc">When a child photographs an object, the game selection pipeline (playbook §7) decides which
+      activity plays. It reads the tag block to rank three tiers of match — Tier A &gt; Tier B &gt; Tier P &gt;
+      conversation-only. Every tag block field earns its place by feeding one of them.</p>
+
+    <div class="tiers-bridge">
+      <div class="tier-bridge-card tier-a">
+        <div class="tier-label">Tier A · 10/10</div>
+        <h4>Entity gold standard</h4>
+        <p>Entity has its own hand-designed gold standard. The pipeline does an exact match on entity + category. 12
+          exist today (playbook §3A).</p>
+        <div class="feeds-from">
+          <strong>Reads from tag block</strong>
+          <ul>
+            <li><code>entity</code> + <code>category</code> → exact lookup</li>
+            <li><code>tier</code> → language + task register</li>
+            <li><code>pillar</code> + <code>style</code> → game mechanic</li>
+            <li><code>key_concepts</code> → confirms KUD alignment</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tier-bridge-card tier-b">
+        <div class="tier-label">Tier B · 8/10</div>
+        <h4>Constellation-adapted</h4>
+        <p>No direct gold standard, but a semantically similar entity does have one (kitten → lion, swing → playground).
+          Runtime adaptation, no new design needed — just <code>constellation_map.yaml</code>.</p>
+        <div class="feeds-from">
+          <strong>Reads from tag block</strong>
+          <ul>
+            <li><code>entity</code> + <code>entity_type</code> → taxonomy / shared-role match</li>
+            <li><code>category</code> → <em>must</em> match (no indoor → outdoor bridging)</li>
+            <li><code>attributes</code> → shared affordances</li>
+            <li>min constellation score 0.7</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tier-bridge-card tier-p">
+        <div class="tier-label">Tier P · 7–8/10</div>
+        <h4>Property-bridge template</h4>
+        <p>No gold standard and no constellation match — but a detected visual property triggers a parameterized
+          template. 18 exist today (playbook §3B). Works for hundreds of entities at once.</p>
+        <div class="feeds-from">
+          <strong>Reads from tag block</strong>
+          <ul>
+            <li><code>attributes</code> → <em>the</em> key field for matching</li>
+            <li><code>category</code> → which template set (6 Cat1, 12 Cat5)</li>
+            <li><code>tier</code> → template's language flex</li>
+            <li>property must be visually verifiable from photo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-block">
+      <strong>Why this matters for Template 0.</strong> By making <code>attributes</code>, <code>entity_type</code>, and
+      <code>tier</code> first-class in the header, every gold standard designed under Template 0 becomes automatically
+      discoverable by the selection pipeline. The playbook describes the pipeline; the tag block is what lets every new
+      design plug into it on day one instead of being retrofitted later.
+    </div>
+
+    <h3 class="subhead" data-dir="Downstream">From activity to child &amp; parent</h3>
+    <p class="subhead-desc">After an activity finishes, the same tag block feeds two surfaces that <strong>do not exist
+        yet</strong> — the child recap and the parent growth path. Template 0 is what makes them buildable. The mockups
+      below show what each could look like when the tag block is in place.</p>
+
+    <div class="mockups">
+      <div class="mockup">
+        <div class="mockup-label"><span>Child recap · post-activity screen</span></div>
+        <div class="mockup-frame">
+          <div class="recap-head">
+            <span class="title">What you just did</span>
+            <span class="date">Today</span>
+          </div>
+          <div class="recap-badge">
+            <div class="badge-circle">L</div>
+            <div>
+              <div class="badge-title">Ladybug Detective</div>
+              <div class="badge-sub">Mystery · solved</div>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">You thought about</span>
+            <div class="chips">
+              <span class="chip chip-key">Form</span>
+              <span class="chip chip-key">Change</span>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">You earned</span>
+            <div class="chips">
+              <span class="chip chip-rel">Pattern</span>
+              <span class="chip chip-rel">Camouflage</span>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">You practiced</span>
+            <div class="chips">
+              <span class="chip chip-atl">Observing</span>
+              <span class="chip chip-atl">Describing</span>
+            </div>
+          </div>
+          <div class="reads-from">
+            Reads: <code>role_title</code> · <code>pillar</code> · <code>key_concepts</code> ·
+            <code>related_concepts</code> · <code>atl_skills</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-label"><span>Parent growth path · weekly view</span></div>
+        <div class="mockup-frame">
+          <div class="path-head">
+            <div>
+              <div class="path-title">Mia's growth path</div>
+              <div class="path-sub">Week of April 15</div>
+            </div>
+            <div class="path-tier">T1 · inquiry</div>
+          </div>
+          <div class="path-axis">
+            <div class="axis-name-p">Form → attribute description</div>
+            <div class="axis-ladder">
+              <div class="step filled">L1</div>
+              <div class="step filled">L2</div>
+              <div class="step current">L3</div>
+            </div>
+            <div class="axis-evidence">3 activities · ladybug, rainbow, sunflower</div>
+          </div>
+          <div class="path-axis">
+            <div class="axis-name-p">Connection → pattern &amp; grouping</div>
+            <div class="axis-ladder">
+              <div class="step filled">L1</div>
+              <div class="step current">L2</div>
+              <div class="step empty">L3</div>
+            </div>
+            <div class="axis-evidence">2 activities · leaves, blocks</div>
+          </div>
+          <div class="path-axis">
+            <div class="axis-name-p">Perspective → point of view</div>
+            <div class="axis-ladder">
+              <div class="step current">L1</div>
+              <div class="step empty">L2</div>
+              <div class="step empty">L3</div>
+            </div>
+            <div class="axis-evidence">1 activity · teddy bear</div>
+          </div>
+          <div class="path-legend">L1 notice · L2 extend · L3 reason — 3 cognitive rungs on the same concept; see §07 for each axis in detail</div>
+          <div class="reads-from">
+            Reads: <code>progression.topic_axis</code> · <code>progression.difficulty_level</code> ·
+            <code>progression.reward_hook</code> · <code>tier</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-block">
+      <strong>What's intentionally <em>not</em> designed yet.</strong> How recaps are triggered, how badges persist
+      across sessions, how the parent dashboard summarizes a month vs. a week, how the reward loop motivates return play
+      — all still open. What Template 0 fixes is the <em>data surface</em>: once every activity emits a consistent tag
+      block, these screens can be designed against a stable contract instead of chasing per-activity metadata.
+    </div>
+  </section>
+
+  <!-- ============== TIER ADAPTATION ============== -->
+  <section id="tiers">
+    <div class="sec-head">
+      <div class="sec-num">§ 06 / Tier adaptation · ask #3</div>
+      <h2 class="sec-title">Five dials, <em>per tier</em>.</h2>
+    </div>
+    <p class="sec-desc">Recommendation: adapt within a narrow tier neighborhood, split across. A single design targets
+      one tier and optionally flexes to a neighbor via these five dials. Crossing T0↔T2 in one design is too wide a
+      cognitive gap — those become siblings on a shared progression axis instead.</p>
+
+      <div class="tier-tabs">
+        <button class="tier-tab active" data-tier="T0">
+          <span class="tier-code">Tier 0 · 2–4 yrs · Pre-K</span>
+          <span class="tier-name">Exploration Companion</span>
+          <span class="tier-mode">Build safety + spark interest</span>
+        </button>
+        <button class="tier-tab" data-tier="T1">
+          <span class="tier-code">Tier 1 · 4–6 yrs · Pre-K → K</span>
+          <span class="tier-name">Inquiry Guide</span>
+          <span class="tier-mode">Purposeful inquiry + simple cooperation</span>
+        </button>
+        <button class="tier-tab" data-tier="T2">
+          <span class="tier-code">Tier 2 · 6–8 yrs · G1–G2</span>
+          <span class="tier-name">Project Collaborator</span>
+          <span class="tier-mode">Planned exploration + complex problem-solving</span>
+        </button>
+      </div>
+
+      <div class="tier-panel active" data-panel="T0">
+        <div class="dials">
+          <div class="dial">
+            <div class="dial-label">AI role</div>
+            <div class="dial-value">Enthusiastic game initiator + emotional co-regulator</div>
+            <div class="dial-example">Warm, anthropomorphized, exclaims with the child</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Language</div>
+            <div class="dial-value">Onomatopoeia, reduplication, 3–5 word sentences, slow + exaggerated</div>
+            <div class="dial-example">"Woof woof! Red! Big red ladybug!"</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Task depth</div>
+            <div class="dial-value">Single-step commands, immediate feedback</div>
+            <div class="dial-example">"Say 'red' with me!"</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Concept focus</div>
+            <div class="dial-value">Concrete attributes — color, shape, texture — and basic function</div>
+            <div class="dial-example">"Round. Red. Crawls."</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Caregiver role</div>
+            <div class="dial-value">Scaffold — actively co-plays with the child</div>
+            <div class="dial-example">Soft guidance, not a hard gate (for now)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-panel" data-panel="T1">
+        <div class="dials">
+          <div class="dial">
+            <div class="dial-label">AI role</div>
+            <div class="dial-value">Curious co-explorer + thought starter</div>
+            <div class="dial-example">Wondering alongside the child, not directing</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Language</div>
+            <div class="dial-value">Natural pace, complete sentences + simple compounds, open-ended "why/how"</div>
+            <div class="dial-example">"Why do you think the ladybug has spots?"</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Task depth</div>
+            <div class="dial-value">2–3 step sequences, simple division of labor between kids or parent-child</div>
+            <div class="dial-example">"First find 3 red things, then tell me which is biggest."</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Concept focus</div>
+            <div class="dial-value">Causation, change, connection — bridge from concrete to concept</div>
+            <div class="dial-example">"Why does the flower close at night?"</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Caregiver role</div>
+            <div class="dial-value">Co-explorer — shares discoveries, does not drive</div>
+            <div class="dial-example">Encouraged, not required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-panel" data-panel="T2">
+        <div class="dials">
+          <div class="dial">
+            <div class="dial-label">AI role</div>
+            <div class="dial-value">Project advisor + resource coordinator</div>
+            <div class="dial-example">Treats the child as a junior researcher</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Language</div>
+            <div class="dial-value">Near-adult dialogue, complex syntax, logic markers ("first…then", "if…then")</div>
+            <div class="dial-example">"First we'll predict, then we'll test, and if we're surprised we'll investigate
+              why."</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Task depth</div>
+            <div class="dial-value">Multi-step, optional project tracks, plan → experiment → record results</div>
+            <div class="dial-example">"Plan your route, collect your evidence, then present your findings."</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Concept focus</div>
+            <div class="dial-value">Perspective, responsibility, systems — abstract + cross-disciplinary</div>
+            <div class="dial-example">"How does the playground connect kids, trees, and rain?"</div>
+          </div>
+          <div class="dial">
+            <div class="dial-label">Caregiver role</div>
+            <div class="dial-value">Observer — steps back, lets the child drive</div>
+            <div class="dial-example">Optional</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-compare">
+        <div class="tier-compare-head">
+          <div class="tcc-title">Same activity, <em>three tiers</em>.</div>
+          <div class="tcc-scene"><strong>Ladybug</strong> · Mystery · mystery_lens — Beat 1 &amp; Beat 3 rendered through each tier's dials</div>
+        </div>
+        <div class="tier-compare-grid">
+
+          <div class="tcc-col tcc-t0">
+            <div class="tcc-col-head">
+              <span class="tcc-tier">Tier 0 · 2–4 yrs</span>
+              <span class="tcc-tier-name">Exploration Companion</span>
+            </div>
+            <div class="tcc-beat">
+              <div class="tcc-beat-label">Beat 1 · Transition Bridge</div>
+              <div class="tcc-dialogue">
+                <div class="d-line"><span class="who">AI</span><em>gasps</em> "Oooh! A ladybug!"</div>
+                <div class="d-line"><span class="who">AI</span>"So red! So round!"</div>
+                <div class="d-line"><span class="who">AI</span>"Can you say 'red'?"</div>
+                <div class="d-line stage">[child tries]</div>
+                <div class="d-line"><span class="who">AI</span>"Yes! Red! Pretty!"</div>
+              </div>
+            </div>
+            <div class="tcc-beat">
+              <div class="tcc-beat-label">Beat 3 · Core Loop (round 1)</div>
+              <div class="tcc-dialogue">
+                <div class="d-line"><span class="who">AI</span><em>whispers</em> "Look close! Dots!"</div>
+                <div class="d-line stage">[zoom to spots]</div>
+                <div class="d-line"><span class="who">AI</span>"Can you say 'dots'?"</div>
+                <div class="d-line stage">[child tries]</div>
+                <div class="d-line"><span class="who">AI</span>"Dots! Black dots on red!"</div>
+              </div>
+            </div>
+            <div class="tcc-caregiver">
+              <span class="cg-label">Caregiver</span>
+              <span class="cg-role">scaffold — echoes the words aloud with the child so they have someone to copy</span>
+            </div>
+          </div>
+
+          <div class="tcc-col tcc-t1">
+            <div class="tcc-col-head">
+              <span class="tcc-tier">Tier 1 · 4–6 yrs</span>
+              <span class="tcc-tier-name">Inquiry Guide</span>
+            </div>
+            <div class="tcc-beat">
+              <div class="tcc-beat-label">Beat 1 · Transition Bridge</div>
+              <div class="tcc-dialogue">
+                <div class="d-line"><span class="who">AI</span>"Whoa, look at this ladybug! Bright red with black dots — almost like it's dressed up for something."</div>
+                <div class="d-line"><span class="who">AI</span>"What do you think that red color is <em>for</em>?"</div>
+              </div>
+            </div>
+            <div class="tcc-beat">
+              <div class="tcc-beat-label">Beat 3 · Core Loop (round 1)</div>
+              <div class="tcc-dialogue">
+                <div class="d-line"><span class="who">AI</span>"Ladybug Detective, first clue: if the bright red is actually a warning, then what should birds do when they see it?"</div>
+                <div class="d-line stage">[child guesses]</div>
+                <div class="d-line"><span class="who">AI</span>"Good thinking. Let's check — most birds actually skip red bugs. Looks like red really does mean 'don't eat me.'"</div>
+              </div>
+            </div>
+            <div class="tcc-caregiver">
+              <span class="cg-label">Caregiver</span>
+              <span class="cg-role">co-explorer — shares what they notice, doesn't drive</span>
+            </div>
+          </div>
+
+          <div class="tcc-col tcc-t2">
+            <div class="tcc-col-head">
+              <span class="tcc-tier">Tier 2 · 6–8 yrs</span>
+              <span class="tcc-tier-name">Project Collaborator</span>
+            </div>
+            <div class="tcc-beat">
+              <div class="tcc-beat-label">Beat 1 · Transition Bridge</div>
+              <div class="tcc-dialogue">
+                <div class="d-line"><span class="who">AI</span>"You found a ladybug — one of the few insects most people actually like. Before we investigate, pick three features that stand out and tell me what you notice."</div>
+                <div class="d-line stage">[child describes]</div>
+                <div class="d-line"><span class="who">AI</span>"Okay. Hold onto this question: if a ladybug wanted to hide from predators, would those features help or hurt?"</div>
+              </div>
+            </div>
+            <div class="tcc-beat">
+              <div class="tcc-beat-label">Beat 3 · Core Loop (round 1)</div>
+              <div class="tcc-dialogue">
+                <div class="d-line"><span class="who">AI</span>"Here's how we test the 'warning color' idea. Predict first: would a bird be more likely to eat a brown beetle or a ladybug? Commit to an answer, then we'll check what real experiments found."</div>
+                <div class="d-line stage">[child predicts]</div>
+                <div class="d-line"><span class="who">AI</span>"Noted. The study found 78% of birds avoided the red-marked ones — so the ladybug is actually harder to eat than the brown beetle. That's one data point for the 'warning color' idea."</div>
+              </div>
+            </div>
+            <div class="tcc-caregiver">
+              <span class="cg-label">Caregiver</span>
+              <span class="cg-role">observer — steps back, lets the child drive</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="tier-compare-note">
+          Same pillar, same entity, same 5 beats. The <strong>only</strong> things that change between columns are the 5 dials — language register, task depth, who's talking, concept framing, caregiver posture. That's what "adapt within a narrow tier neighborhood" looks like in practice. Jumping T0↔T2 in one column would read as two unrelated designs — which is exactly why that's a sibling-on-an-axis case, not a single flexible activity.
+        </div>
+      </div>
+  </section>
+
+  <!-- ============== PROGRESSION AXES ============== -->
+  <section id="axes">
+    <div class="sec-head">
+      <div class="sec-num">§ 07 / Progression · ask #2</div>
+      <h2 class="sec-title">Seven axes,<br />from the seven <em>Key Concepts</em>.</h2>
+    </div>
+    <p class="sec-desc">Seven progression axes, one per IB Key Concept — derived directly from the seven the framework
+      already uses (playbook §2, program.md §1.4). Each axis is a trajectory through one concept. The thinking lens and
+      the progression ladder share the same seven names, so nothing new has to be memorized.</p>
+
+    <div class="note-block" style="margin-top: 0; margin-bottom: 32px;">
+      <strong>Derivation.</strong> Form / Function / Causation / Change / Connection / Perspective / Responsibility are
+      already how every activity picks its "thinking lens" today. Promoting them to progression axes means a T1 Form-L2
+      design and a T0 Form-L1 design sit on the same ladder — the child's growth story reads as <em>moving along a
+        concept</em>, not <em>graduating from one game to another</em>. Color, shape, texture, size are all sub-cases of
+      Form; they specialize a rung, they are not axes themselves.</p>
+    </div>
+
+    <div class="level-legend">
+      <div class="ll-title">What L1 / L2 / L3 mean on every axis</div>
+      <div class="ll-rungs">
+        <div class="ll-rung">
+          <span class="ll-num">L1</span>
+          <span class="ll-kind">Notice</span>
+          <span class="ll-desc">Observe, name, or identify one instance of the concept.</span>
+        </div>
+        <div class="ll-rung">
+          <span class="ll-num">L2</span>
+          <span class="ll-kind">Extend</span>
+          <span class="ll-desc">Add more examples, more parts, more steps, or a related viewpoint.</span>
+        </div>
+        <div class="ll-rung">
+          <span class="ll-num">L3</span>
+          <span class="ll-kind">Reason</span>
+          <span class="ll-desc">Explain why, predict what-if, or state the rule that ties the whole set together.</span>
+        </div>
+      </div>
+      <div class="ll-foot">The exact wording differs per axis — Form's L1 is "name a dominant attribute", Connection's L1 is "match one shared property", Responsibility's L1 is "notice a need" — but the cognitive move underneath is identical: <strong>L1 first observation → L2 elaboration → L3 explanation</strong>. L1/L2/L3 are a <em>cognitive depth</em> axis and are orthogonal to T0/T1/T2, which adapts language register to age. A 4-year-old and a 7-year-old can both be on Form-L2; the rung is the same, the words differ.</div>
+    </div>
+
+    <div class="axis-wrap">
+      <div class="axis-list">
+        <button class="axis-btn active" data-axis="form">
+          <span class="axis-code">Key concept 01</span>
+          <span class="axis-name">Form</span>
+          <span class="axis-tag">what is it like?</span>
+        </button>
+        <button class="axis-btn" data-axis="function">
+          <span class="axis-code">Key concept 02</span>
+          <span class="axis-name">Function</span>
+          <span class="axis-tag">how does it work?</span>
+        </button>
+        <button class="axis-btn" data-axis="causation">
+          <span class="axis-code">Key concept 03</span>
+          <span class="axis-name">Causation</span>
+          <span class="axis-tag">why is it like this?</span>
+        </button>
+        <button class="axis-btn" data-axis="change">
+          <span class="axis-code">Key concept 04</span>
+          <span class="axis-name">Change</span>
+          <span class="axis-tag">how is it changing?</span>
+        </button>
+        <button class="axis-btn" data-axis="connection">
+          <span class="axis-code">Key concept 05</span>
+          <span class="axis-name">Connection</span>
+          <span class="axis-tag">how is it connected?</span>
+        </button>
+        <button class="axis-btn" data-axis="perspective">
+          <span class="axis-code">Key concept 06</span>
+          <span class="axis-name">Perspective</span>
+          <span class="axis-tag">whose point of view?</span>
+        </button>
+        <button class="axis-btn" data-axis="responsibility">
+          <span class="axis-code">Key concept 07</span>
+          <span class="axis-name">Responsibility</span>
+          <span class="axis-tag">what should we do?</span>
+        </button>
+      </div>
+
+      <div class="ladders">
+        <div class="ladder active" data-ladder="form">
+          <div class="ladder-head">
+            <h4>Form <span style="color: var(--muted); font-size: 18px; font-style: italic;">— attribute
+                description</span></h4>
+            <p>From naming one observable attribute to explaining why the attribute matters. Color, shape, texture,
+              size, pattern all live here as specializations of a single rung.</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">Level 01</span>
+              <h5>Name a dominant attribute</h5>
+              <p>Child picks one observable property and names it — color, shape, size, texture, pattern, or count.</p>
+              <div class="example">"The ladybug is red." / "It is round." / "It has spots."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 02</span>
+              <h5>Name multiple, locate each</h5>
+              <p>Child names 2–3 attributes and places each on a specific part of the entity.</p>
+              <div class="example">"Red body, black spots, tiny black legs."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 03</span>
+              <h5>Explain why the attribute exists</h5>
+              <p>Child reasons about purpose — warning, camouflage, ripeness, signaling, protection.</p>
+              <div class="example">"Red warns birds not to eat it."</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="function">
+          <div class="ladder-head">
+            <h4>Function <span style="color: var(--muted); font-size: 18px; font-style: italic;">— part &amp;
+                function</span></h4>
+            <p>From pointing at parts to predicting what happens when a part is missing. The classic part–whole
+              trajectory.</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">Level 01</span>
+              <h5>Point to and name the parts</h5>
+              <p>Child names the visible parts of the entity without explaining what they do.</p>
+              <div class="example">"Wheels. Door. Window. Roof."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 02</span>
+              <h5>Explain what each part does</h5>
+              <p>Child connects each part to its role.</p>
+              <div class="example">"Wheels roll. Door opens so people get in. Window lets you see out."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 03</span>
+              <h5>Predict what happens without a part</h5>
+              <p>Child reasons counterfactually about a removed or broken part.</p>
+              <div class="example">"No wheels? It can't move. No door? Nobody gets in."</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="causation">
+          <div class="ladder-head">
+            <h4>Causation <span style="color: var(--muted); font-size: 18px; font-style: italic;">— cause &amp;
+                effect</span></h4>
+            <p>From describing what happened to explaining the underlying mechanism.</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">Level 01</span>
+              <h5>Describe what happened</h5>
+              <p>Child narrates the observed event without inferring cause.</p>
+              <div class="example">"The flower closed up."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 02</span>
+              <h5>Predict what will happen next</h5>
+              <p>Child projects a future outcome from the current state.</p>
+              <div class="example">"If I bring it into the sun, it will open again."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 03</span>
+              <h5>Explain the mechanism</h5>
+              <p>Child gives a causal story for the observed behavior.</p>
+              <div class="example">"The petals need sunlight to stay open — they close to save energy at night."</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="change">
+          <div class="ladder-head">
+            <h4>Change <span style="color: var(--muted); font-size: 18px; font-style: italic;">— sequence &amp;
+                transformation</span></h4>
+            <p>From ordering two moments to telling a full transformation journey with connecting causes.</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">Level 01</span>
+              <h5>Order two moments</h5>
+              <p>Child places two states in correct temporal order.</p>
+              <div class="example">"First the green banana. Then the yellow banana."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 02</span>
+              <h5>Fill in before &amp; after</h5>
+              <p>Child adds a missing third moment to complete a sequence.</p>
+              <div class="example">"Before: green. Now: yellow. After: brown and soft."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 03</span>
+              <h5>Tell a transformation journey</h5>
+              <p>Child narrates the whole arc with connecting causes between stages.</p>
+              <div class="example">"The seed drank rain, grew a stem, made leaves, opened a flower, then dropped new
+                seeds."</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="connection">
+          <div class="ladder-head">
+            <h4>Connection <span style="color: var(--muted); font-size: 18px; font-style: italic;">— pattern &amp;
+                grouping</span></h4>
+            <p>From matching one shared property to articulating the rule that connects a whole set. Pattern recognition
+              and classification both live here.</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">Level 01</span>
+              <h5>Match one shared property</h5>
+              <p>Child finds a second item that shares a single visible property with the first.</p>
+              <div class="example">"This leaf is also green, like the apple!"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 02</span>
+              <h5>Find 3+ examples of a property</h5>
+              <p>Child extends the match to a small collection and groups them.</p>
+              <div class="example">"Three spotted things: the ladybug, the ball, the cow."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 03</span>
+              <h5>Identify the rule that connects the set</h5>
+              <p>Child articulates the property or purpose the whole group shares — and why the grouping is meaningful.
+              </p>
+              <div class="example">"They all have spots. Spots help them hide from predators."</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="perspective">
+          <div class="ladder-head">
+            <h4>Perspective <span style="color: var(--muted); font-size: 18px; font-style: italic;">— point of
+                view</span></h4>
+            <p>From attributing a simple feeling to generating dialogue between two entities — empathy as a ladder.</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">Level 01</span>
+              <h5>Attribute a feeling</h5>
+              <p>Child assigns a simple emotion to the entity.</p>
+              <div class="example">"The teddy is sleepy."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 02</span>
+              <h5>Imagine the entity's view of you</h5>
+              <p>Child reverses viewpoint and imagines what the entity sees / feels about the child.</p>
+              <div class="example">"Teddy thinks I'm big and warm."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 03</span>
+              <h5>Generate dialogue to a third party</h5>
+              <p>Child voices the entity speaking about something other than itself.</p>
+              <div class="example">"Teddy tells Bunny: 'My child is gentle and tucks me in.'"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="responsibility">
+          <div class="ladder-head">
+            <h4>Responsibility <span style="color: var(--muted); font-size: 18px; font-style: italic;">— care &amp;
+                impact</span></h4>
+            <p>From noticing a need to reasoning about long-term impact of care or neglect. Natural home for the Nurture
+              pillar.</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">Level 01</span>
+              <h5>Notice a need</h5>
+              <p>Child observes that the entity has a need — dirty, dry, lonely, broken.</p>
+              <div class="example">"The flower is droopy."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 02</span>
+              <h5>Propose a care action</h5>
+              <p>Child names a concrete action that would help.</p>
+              <div class="example">"I'll give it water and move it near the window."</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">Level 03</span>
+              <h5>Reason about long-term impact</h5>
+              <p>Child explains what happens over time with care, and what happens without it.</p>
+              <div class="example">"If I water it every day, it grows. If I forget, the leaves dry and fall off."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead" data-dir="Check">The 12 gold standards on the 7 axes</h3>
+    <p class="subhead-desc">A sanity check: classifying every existing Tier-A gold standard from the playbook onto the 7 axes. These are <em>proposed</em> mappings — the review conversation is where they get confirmed or corrected.</p>
+
+    <div class="mapping-table-wrap">
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>Style</th>
+            <th>Entity</th>
+            <th>Pillar</th>
+            <th>Axis · Rung</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-style">mystery_lens</td>
+            <td class="m-entity">toy_robot</td>
+            <td><span class="pill pill-mystery">Mystery</span></td>
+            <td class="m-axis"><strong>Function</strong> · L2</td>
+            <td class="m-why">Deduce what each part does</td>
+          </tr>
+          <tr>
+            <td class="m-style">mystery_trail</td>
+            <td class="m-entity">butterfly</td>
+            <td><span class="pill pill-mystery">Mystery</span></td>
+            <td class="m-axis"><strong>Connection</strong> · L2</td>
+            <td class="m-why">Find 3+ things that share a hidden pattern</td>
+          </tr>
+          <tr>
+            <td class="m-style">inventor_workshop</td>
+            <td class="m-entity">rubber_duck</td>
+            <td><span class="pill pill-creation">Creation</span></td>
+            <td class="m-axis"><strong>Function</strong> · L2</td>
+            <td class="m-why">Reason about what each part could do instead</td>
+          </tr>
+          <tr>
+            <td class="m-style">mix_lab</td>
+            <td class="m-entity">rock</td>
+            <td><span class="pill pill-creation">Creation</span></td>
+            <td class="m-axis"><strong>Form</strong> · L2</td>
+            <td class="m-why">Name and place multiple observable attributes</td>
+          </tr>
+          <tr>
+            <td class="m-style">voice_stage</td>
+            <td class="m-entity">lion</td>
+            <td><span class="pill pill-performance">Performance</span></td>
+            <td class="m-axis"><strong>Perspective</strong> · L1</td>
+            <td class="m-why">Voice the entity — attribute a simple emotion</td>
+          </tr>
+          <tr>
+            <td class="m-style">ensemble_show</td>
+            <td class="m-entity">bird</td>
+            <td><span class="pill pill-performance">Performance</span></td>
+            <td class="m-axis"><strong>Perspective</strong> · L2</td>
+            <td class="m-why">Give each find a voice — imagine its point of view</td>
+          </tr>
+          <tr>
+            <td class="m-style">prediction_lab</td>
+            <td class="m-entity">goldfish</td>
+            <td><span class="pill pill-discovery">Discovery</span></td>
+            <td class="m-axis"><strong>Causation</strong> · L2</td>
+            <td class="m-why">Predict the next state, then reveal</td>
+          </tr>
+          <tr>
+            <td class="m-style">field_experiment</td>
+            <td class="m-entity">playground</td>
+            <td><span class="pill pill-discovery">Discovery</span></td>
+            <td class="m-axis"><strong>Connection</strong> · L3</td>
+            <td class="m-why">Identify the rule a sampled set obeys</td>
+          </tr>
+          <tr>
+            <td class="m-style">time_traveler</td>
+            <td class="m-entity">banana</td>
+            <td><span class="pill pill-adventure">Adventure</span></td>
+            <td class="m-axis"><strong>Change</strong> · L2</td>
+            <td class="m-why">Fill in "before / now / after" on a transformation</td>
+          </tr>
+          <tr>
+            <td class="m-style">quest_collector</td>
+            <td class="m-entity">dandelion</td>
+            <td><span class="pill pill-adventure">Adventure</span></td>
+            <td class="m-axis"><strong>Connection</strong> · L2</td>
+            <td class="m-why">Find 3+ things that match a quest criterion</td>
+          </tr>
+          <tr>
+            <td class="m-style">care_station</td>
+            <td class="m-entity">teddy_bear</td>
+            <td><span class="pill pill-nurture">Nurture</span></td>
+            <td class="m-axis"><strong>Responsibility</strong> · L2</td>
+            <td class="m-why">Notice a need, propose a concrete care action</td>
+          </tr>
+          <tr>
+            <td class="m-style">rescue_team</td>
+            <td class="m-entity">flower</td>
+            <td><span class="pill pill-nurture">Nurture</span></td>
+            <td class="m-axis"><strong>Responsibility</strong> · L2</td>
+            <td class="m-why">Care actions + mutual aid between finds</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mapping-coverage">
+      <div class="cov-head">Coverage check — gold standards per axis</div>
+      <div class="cov-grid">
+        <div class="cov-axis thin">
+          <span class="cov-name">Form</span>
+          <span class="cov-dots">●</span>
+          <span class="cov-count">1</span>
+        </div>
+        <div class="cov-axis">
+          <span class="cov-name">Function</span>
+          <span class="cov-dots">●●</span>
+          <span class="cov-count">2</span>
+        </div>
+        <div class="cov-axis thin">
+          <span class="cov-name">Causation</span>
+          <span class="cov-dots">●</span>
+          <span class="cov-count">1</span>
+        </div>
+        <div class="cov-axis thin">
+          <span class="cov-name">Change</span>
+          <span class="cov-dots">●</span>
+          <span class="cov-count">1</span>
+        </div>
+        <div class="cov-axis">
+          <span class="cov-name">Connection</span>
+          <span class="cov-dots">●●●</span>
+          <span class="cov-count">3</span>
+        </div>
+        <div class="cov-axis">
+          <span class="cov-name">Perspective</span>
+          <span class="cov-dots">●●</span>
+          <span class="cov-count">2</span>
+        </div>
+        <div class="cov-axis">
+          <span class="cov-name">Responsibility</span>
+          <span class="cov-dots">●●</span>
+          <span class="cov-count">2</span>
+        </div>
+      </div>
+      <div class="cov-note">All 7 axes have ≥1 representative in the current Tier-A inventory — the axes aren't invented categories, they cover what the playbook already documents. <strong>Connection, Perspective,</strong> and <strong>Responsibility</strong> are best represented. <strong>Form, Causation,</strong> and <strong>Change</strong> have only one gold standard each — worth asking whether those axes need more Tier-A anchors before Tier-B constellation and Tier-P property-bridge content expands against them.</div>
+    </div>
+  </section>
+
+  <!-- ============== CATEGORY OVERLAY COLLAPSE ============== -->
+  <section id="overlays">
+    <div class="sec-head">
+      <div class="sec-num">§ 08 / How Cat1 &amp; Cat5 collapse</div>
+      <h2 class="sec-title">Templates A &amp; B become <em>overlays</em>.</h2>
+    </div>
+    <p class="sec-desc">Under Template 0, each category overlay only needs to fill in 8 fields — everything else (pillar
+      overlays, creative variables, checklists, dimension anchoring) is inherited. Adding Cat2–Cat6 becomes a
+      copy-paste-and-override job, not a from-scratch template.</p>
+
+    <div class="collapse-grid">
+      <div class="overlay-card">
+        <h4>Template A</h4>
+        <span class="sub">Category 1 — Sustained verbal · in-device</span>
+        <div class="overlay-fields">
+          <div class="line"><span class="k">extends:</span><span class="v">template_0</span></div>
+          <div class="line"><span class="k">beat_medium:</span><span class="v">verbal_dialogue</span></div>
+          <div class="line"><span class="k">round_count:</span><span class="v">3–5</span></div>
+          <div class="line"><span class="k">camera_use:</span><span class="v">initial_only</span></div>
+          <div class="line"><span class="k">setting:</span><span class="v">indoor_quiet</span></div>
+          <div class="line"><span class="k">step_count:</span><span class="v">5</span></div>
+          <div class="line"><span class="k">core_mechanic:</span><span class="v">scenario → verbal → validate</span>
+          </div>
+          <div class="line"><span class="k">anchor_priority:</span><span class="v">engagement-first</span></div>
+        </div>
+      </div>
+      <div class="overlay-card">
+        <h4>Template B</h4>
+        <span class="sub">Category 5 — Collection/tracking · out-of-device</span>
+        <div class="overlay-fields">
+          <div class="line"><span class="k">extends:</span><span class="v">template_0</span></div>
+          <div class="line"><span class="k">beat_medium:</span><span class="v">photo_collection + physical</span></div>
+          <div class="line"><span class="k">round_count:</span><span class="v">3–4</span></div>
+          <div class="line"><span class="k">camera_use:</span><span class="v">initial + per_round</span></div>
+          <div class="line"><span class="k">setting:</span><span class="v">outdoor</span></div>
+          <div class="line"><span class="k">step_count:</span><span class="v">5–6</span></div>
+          <div class="line"><span class="k">core_mechanic:</span><span class="v">mission → find → synthesize</span>
+          </div>
+          <div class="line"><span class="k">anchor_priority:</span><span class="v">physical-first</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== DECISIONS ============== -->
+  <section id="decisions">
+    <div class="sec-head">
+      <div class="sec-num">§ 09 / Decisions log</div>
+      <h2 class="sec-title">Four calls, <em>four answers</em>.</h2>
+    </div>
+    <p class="sec-desc">These were open questions before the internal review. The answers are now locked in and drive
+      the shape of Template 0.</p>
+
+    <div class="decisions">
+      <div class="decision">
+        <div class="dn">01</div>
+        <div>
+          <div class="q">How many canonical <code>topic_axis</code> values do we seed, and where do they come from?
+          </div>
+          <div class="a"><b>Seven</b>, one per IB Key Concept — Form, Function, Causation, Change, Connection,
+            Perspective, Responsibility. The earlier draft picked overly-specific axes (e.g. "color_naming") that were
+            really just sub-cases of Form. Deriving directly from the Key Concepts means the thinking lens and the
+            progression ladder share the same seven names.</div>
+        </div>
+        <div class="stamp">Decided</div>
+      </div>
+      <div class="decision">
+        <div class="dn">02</div>
+        <div>
+          <div class="q">Does <code>tier_variants</code> live in the header, or is it emergent at runtime?</div>
+          <div class="a"><b>In the header.</b> Explicit &gt; implicit for audit + parent-dashboard purposes. Authors pay
+            a small authoring cost in exchange for traceability.</div>
+        </div>
+        <div class="stamp">Decided</div>
+      </div>
+      <div class="decision">
+        <div class="dn">03</div>
+        <div>
+          <div class="q">Are <code>key_concepts</code> and <code>related_concepts</code> one tree or two?</div>
+          <div class="a"><b>Distinct trees.</b> Key Concepts are the IB "thinking lens" (7 universal). Related Concepts
+            are discipline-tagged child-facing badges. Parent dashboard can display them in two separate columns.</div>
+        </div>
+        <div class="stamp">Decided</div>
+      </div>
+      <div class="decision">
+        <div class="dn">04</div>
+        <div>
+          <div class="q">Is caregiver role at T0 a hard gate or soft guidance?</div>
+          <div class="a"><b>Soft guidance for now.</b> T0 designs default to <code>caregiver_role: scaffold</code>, but
+            the system doesn't refuse to start if caregiver isn't present. Can be tightened into a gate after we watch
+            real usage.</div>
+        </div>
+        <div class="stamp">Decided</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="claim">
+      "One skeleton the whole product can grow into — so the tag system, the progression ladder, and the parent-facing
+      growth path all read from the same spine."
+    </div>
+    <div>
+      <h5>Next actions</h5>
+      <ul>
+        <li>Internal team sign-off on Template 0 shape</li>
+        <li>Draft <code>docs/progression_axes.md</code></li>
+        <li>Refactor <code>templates.md</code> (Template A/B → overlays)</li>
+        <li>Promote tag block in <code>program.md</code></li>
+      </ul>
+      <h5 style="margin-top: 20px;">Post-approval</h5>
+      <ul>
+        <li>L × T interactive walkthrough for author onboarding (3×3 matrix: one axis × 3 levels × 3 tiers, showing example dialogue in each cell)</li>
+        <li>Author training guide with worked examples</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Reference</h5>
+      <ul>
+        <li>templates.md · current spine</li>
+        <li>program.md · output format</li>
+        <li>entity_guidance.md · tier guidance</li>
+        <li>docs/game_design_playbook.md</li>
+      </ul>
+    </div>
+    <div class="version">
+      <span>Version 0.1 · Draft for review</span>
+      <span>WonderLens x 奇朵 · Activity Design Framework · 2026-04-15</span>
+    </div>
+  </footer>
+
+  <script>
+    // Spine overlay toggle
+    const spineButtons = document.querySelectorAll('.spine-toggle button');
+    const overlayTexts = document.querySelectorAll('.overlay-text');
+    spineButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        spineButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const mode = btn.dataset.overlay;
+        overlayTexts.forEach(el => {
+          el.textContent = el.dataset[mode];
+        });
+      });
+    });
+    // Initialize
+    overlayTexts.forEach(el => {el.textContent = el.dataset.base;});
+
+    // Tier tabs
+    const tierTabs = document.querySelectorAll('.tier-tab');
+    const tierPanels = document.querySelectorAll('.tier-panel');
+    tierTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tier = tab.dataset.tier;
+        tierTabs.forEach(t => t.classList.remove('active'));
+        tierPanels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelector(`.tier-panel[data-panel="${tier}"]`).classList.add('active');
+      });
+    });
+
+    // Axis ladder switcher
+    const axisBtns = document.querySelectorAll('.axis-btn');
+    const ladders = document.querySelectorAll('.ladder');
+    axisBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const axis = btn.dataset.axis;
+        axisBtns.forEach(b => b.classList.remove('active'));
+        ladders.forEach(l => l.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelector(`.ladder[data-ladder="${axis}"]`).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+
+</html>

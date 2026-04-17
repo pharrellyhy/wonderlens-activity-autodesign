@@ -1,0 +1,3895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template 0 · WonderLens 活动设计框架 · 内部评审</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,50..100,0..1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F4EFE6;
+      --bg-deep: #ECE5D6;
+      --bg-card: #FAF6EC;
+      --ink: #141311;
+      --ink-soft: #3B3730;
+      --muted: #7A7468;
+      --line: #CCC3AE;
+      --line-soft: #E2DBC8;
+      --accent: #C5411C;
+      --accent-deep: #8E2A10;
+      --mystery: #3D4A5C;
+      --creation: #C5411C;
+      --performance: #C89021;
+      --discovery: #3A6B56;
+      --adventure: #8B5A3C;
+      --nurture: #A6497C;
+      --tier-0: #B06A3A;
+      --tier-1: #3A6B56;
+      --tier-2: #3D4A5C;
+      --serif: 'Fraunces', 'Noto Serif SC', Georgia, serif;
+      --sans: 'IBM Plex Sans', 'Noto Serif SC', -apple-system, sans-serif;
+      --mono: 'IBM Plex Mono', 'SF Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      font-feature-settings: "ss01", "ss02", "kern";
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(197, 65, 28, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 85% 70%, rgba(61, 74, 92, 0.04) 0%, transparent 50%);
+      min-height: 100vh;
+      padding-top: 54px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      z-index: 1;
+      mix-blend-mode: multiply;
+    }
+
+    /* ============ MASTHEAD ============ */
+    .masthead {
+      border-bottom: 1px solid var(--ink);
+      padding: 18px 48px 14px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 32px;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .masthead .brand {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      font-style: italic;
+    }
+
+    .masthead .brand b {
+      font-style: normal;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .masthead nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    .masthead nav a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .masthead nav a:hover {
+      color: var(--accent);
+    }
+
+    .masthead .meta {
+      color: var(--muted);
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      padding: 80px 48px 60px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--ink);
+      position: relative;
+    }
+
+    .hero .kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero .kicker::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(56px, 9vw, 132px);
+      font-weight: 300;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      font-variation-settings: "opsz" 144, "SOFT" 80;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+      color: var(--accent);
+    }
+
+    .hero .lede {
+      font-family: var(--serif);
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.5;
+      max-width: 780px;
+      color: var(--ink-soft);
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+
+    .hero .lede b {
+      font-weight: 500;
+      color: var(--ink);
+      background: linear-gradient(180deg, transparent 65%, rgba(197, 65, 28, 0.18) 65%);
+    }
+
+    .hero .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      padding-top: 32px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-meta .label {
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .hero-meta .value {
+      font-family: var(--serif);
+      font-size: 16px;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    /* ============ SECTION BASE ============ */
+    section {
+      padding: 80px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .sec-head {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+      align-items: baseline;
+    }
+
+    .sec-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-variation-settings: "opsz" 90;
+    }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 90, "WONK" 1;
+    }
+
+    .sec-desc {
+      grid-column: 2;
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 720px;
+      margin-top: 16px;
+      font-weight: 300;
+    }
+
+    /* ============ AT A GLANCE CARDS ============ */
+    .concerns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+    }
+
+    .concern {
+      padding: 36px 32px;
+      border-right: 1px solid var(--ink);
+      position: relative;
+    }
+
+    .concern:last-child {
+      border-right: none;
+    }
+
+    .concern .num {
+      font-family: var(--serif);
+      font-size: 72px;
+      font-weight: 300;
+      line-height: 0.8;
+      color: var(--accent);
+      font-variation-settings: "opsz" 144, "WONK" 1;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .concern .cn {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .concern h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .concern p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .concern .solves {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      border-top: 1px dashed var(--line);
+      padding-top: 12px;
+      display: block;
+    }
+
+    /* ============ PILLAR STRIP ============ */
+    .pillar-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      margin-bottom: 36px;
+    }
+
+    .pillar-cell {
+      padding: 20px 16px;
+      border-right: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-cell:last-child {
+      border-right: none;
+    }
+
+    .pillar-cell::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--p-color);
+    }
+
+    .pillar-cell .p-name {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--p-color);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .pillar-cell .p-feel {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.25;
+      font-variation-settings: "opsz" 90, "WONK" 1;
+    }
+
+    .p-mystery {
+      --p-color: var(--mystery);
+    }
+
+    .p-creation {
+      --p-color: var(--creation);
+    }
+
+    .p-performance {
+      --p-color: var(--performance);
+    }
+
+    .p-discovery {
+      --p-color: var(--discovery);
+    }
+
+    .p-adventure {
+      --p-color: var(--adventure);
+    }
+
+    .p-nurture {
+      --p-color: var(--nurture);
+    }
+
+    .pillar-strip-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* ============ SPINE / 5 BEATS ============ */
+    .spine-wrap {
+      margin-top: 24px;
+    }
+
+    .spine-toggle {
+      display: inline-flex;
+      gap: 0;
+      border: 1px solid var(--ink);
+      margin-bottom: 32px;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .spine-toggle button {
+      background: transparent;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      border-right: 1px solid var(--ink);
+      transition: all 0.2s;
+    }
+
+    .spine-toggle button:last-child {
+      border-right: none;
+    }
+
+    .spine-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .spine-toggle button:hover:not(.active) {
+      background: var(--bg-deep);
+    }
+
+    .beats {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      position: relative;
+    }
+
+    .beats::before {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: 4%;
+      right: 4%;
+      height: 1px;
+      background: var(--ink);
+      z-index: 0;
+    }
+
+    .beat {
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      padding: 24px 20px;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .beat:hover {
+      transform: translateY(-4px);
+      box-shadow: 8px 8px 0 rgba(20, 19, 17, 0.08);
+    }
+
+    .beat .dot {
+      position: absolute;
+      top: -9px;
+      left: 20px;
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .beat .num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      margin-top: 16px;
+      display: block;
+    }
+
+    .beat h4 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    .beat p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    .beat .overlay-text {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+    }
+
+    .overlay-note {
+      margin-top: 24px;
+      padding: 18px 24px;
+      background: var(--bg-deep);
+      border-left: 3px solid var(--accent);
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      font-family: var(--serif);
+      font-weight: 300;
+    }
+
+    .overlay-note b {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ============ TAG BLOCK ============ */
+    .tagblock {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .code-panel {
+      background: var(--ink);
+      color: #E8E2D1;
+      padding: 32px 36px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.65;
+      border: 1px solid var(--ink);
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .code-panel::before {
+      content: "activity_header.yaml";
+      position: absolute;
+      top: -1px;
+      right: 24px;
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 10px;
+      padding: 4px 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .code-panel-skeleton::before {
+      content: "templates.md  ·  template_0";
+    }
+
+    .code-panel-skeleton {
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+
+    /* ============ SKELETON DETAILS/SUMMARY ============ */
+    .skeleton-details {
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+    }
+
+    .skeleton-details[open] {
+      background: var(--ink);
+    }
+
+    .skeleton-details summary {
+      padding: 22px 28px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .skeleton-details summary::-webkit-details-marker,
+    .skeleton-details summary::marker {
+      display: none;
+    }
+
+    .skeleton-details:not([open]) summary:hover {
+      background: var(--bg-deep);
+    }
+
+    .skeleton-details[open] summary {
+      border-bottom: 1px solid var(--accent);
+    }
+
+    .skeleton-details .sum-file {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .skeleton-details[open] .sum-file {
+      color: var(--bg);
+    }
+
+    .skeleton-details .sum-file strong {
+      background: var(--accent);
+      color: var(--bg);
+      padding: 4px 10px;
+      font-weight: 500;
+    }
+
+    .skeleton-details .sum-hint {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skeleton-details[open] .sum-hint {
+      color: #B8B0A0;
+    }
+
+    .skeleton-details .sum-arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+      font-style: normal;
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .skeleton-details[open] .sum-arrow {
+      transform: rotate(90deg);
+    }
+
+    .skeleton-details .sum-text::after {
+      content: "点击展开";
+    }
+
+    .skeleton-details[open] .sum-text::after {
+      content: "点击收起";
+    }
+
+    .skeleton-details .code-panel-skeleton {
+      border: none;
+      margin: 0;
+    }
+
+    .skeleton-details .code-panel-skeleton::before {
+      display: none;
+    }
+
+    .code-panel .key {
+      color: #E8B85C;
+    }
+
+    .code-panel .str {
+      color: #D4BFA0;
+    }
+
+    .code-panel .cmt {
+      color: #6B6454;
+      font-style: italic;
+    }
+
+    .code-panel .num-c {
+      color: #C88F6B;
+    }
+
+    .code-panel .hl {
+      background: rgba(197, 65, 28, 0.18);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    .tag-legend h4 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .tag-legend ul {
+      list-style: none;
+    }
+
+    .tag-legend li {
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--line);
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 16px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .tag-legend li:last-child {
+      border-bottom: none;
+    }
+
+    .tag-legend li code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: none;
+    }
+
+    .tag-legend li span {
+      color: var(--ink-soft);
+    }
+
+    /* ============ BRIDGES / UPSTREAM-DOWNSTREAM ============ */
+    .subhead {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-top: 56px;
+      margin-bottom: 14px;
+      font-variation-settings: "opsz" 90, "WONK" 1;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .subhead::before {
+      content: attr(data-dir);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 1px solid var(--accent);
+      padding: 3px 8px;
+      transform: translateY(-4px);
+    }
+
+    .subhead-desc {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      max-width: 720px;
+      font-weight: 300;
+      margin-bottom: 28px;
+    }
+
+    .flow-diagram {
+      margin-top: 12px;
+      margin-bottom: 12px;
+      padding: 32px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      overflow-x: auto;
+    }
+
+    .flow-row {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+      min-width: 880px;
+    }
+
+    .flow-node {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--ink);
+      padding: 14px 16px;
+      position: relative;
+      min-width: 0;
+    }
+
+    .flow-node.hub {
+      background: var(--ink);
+      color: var(--bg);
+      flex: 1.4;
+    }
+
+    .flow-node.hub .node-label {
+      color: #E8B85C;
+    }
+
+    .flow-node.hub .node-name {
+      color: var(--bg);
+    }
+
+    .node-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .node-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 0 2px;
+    }
+
+    .tiers-bridge {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+      margin-top: 8px;
+    }
+
+    .tier-bridge-card {
+      padding: 28px 26px;
+      border-right: 1px solid var(--ink);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tier-bridge-card:last-child {
+      border-right: none;
+    }
+
+    .tier-bridge-card .tier-label {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 5px 10px;
+      text-transform: uppercase;
+    }
+
+    .tier-bridge-card.tier-a .tier-label {
+      background: var(--discovery);
+    }
+
+    .tier-bridge-card.tier-b .tier-label {
+      background: var(--adventure);
+    }
+
+    .tier-bridge-card.tier-p .tier-label {
+      background: var(--accent);
+    }
+
+    .tier-bridge-card h4 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.15;
+      margin-top: 24px;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .tier-bridge-card p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .feeds-from {
+      border-top: 1px dashed var(--line);
+      padding-top: 14px;
+      margin-top: auto;
+    }
+
+    .feeds-from strong {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .feeds-from ul {
+      list-style: none;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .feeds-from li {
+      padding: 2px 0;
+    }
+
+    .feeds-from code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: var(--bg-deep);
+      padding: 1px 4px;
+    }
+
+    .quality-mark {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .quality-mark b {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .note-block {
+      margin-top: 28px;
+      padding: 18px 24px;
+      background: var(--bg-deep);
+      border-left: 3px solid var(--accent);
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      font-weight: 300;
+    }
+
+    .note-block strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .note-block code {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    .mockups {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 8px;
+    }
+
+    .mockup {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mockup-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .mockup-label::after {
+      content: "not yet built";
+      color: var(--accent);
+      font-size: 9px;
+      border: 1px solid var(--accent);
+      padding: 2px 6px;
+      letter-spacing: 0.1em;
+    }
+
+    .mockup-frame {
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      padding: 24px 22px;
+      position: relative;
+      flex: 1;
+    }
+
+    .mockup-frame::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* Child recap mockup */
+    .recap-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .recap-head .title {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .recap-head .date {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .recap-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--bg-deep);
+      border: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .badge-circle {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      color: var(--bg);
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .badge-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .badge-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .recap-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 12px;
+      padding: 8px 0;
+      align-items: baseline;
+    }
+
+    .recap-lbl {
+      font-family: var(--serif);
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .chip {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      padding: 3px 9px;
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+
+    .chip-key {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .chip-rel {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    .chip-atl {
+      background: var(--bg);
+      color: var(--ink);
+      border-color: var(--ink);
+      font-style: italic;
+      text-transform: none;
+    }
+
+    /* Parent path mockup */
+    .path-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .path-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .path-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    .path-tier {
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 4px 8px;
+      background: var(--bg-deep);
+      border: 1px solid var(--line);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+    }
+
+    .path-axis {
+      padding: 12px 0;
+      border-bottom: 1px dotted var(--line-soft);
+    }
+
+    .path-axis:last-child {
+      border-bottom: none;
+    }
+
+    .axis-name-p {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .axis-ladder {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .axis-ladder .step {
+      flex: 1;
+      height: 20px;
+      border: 1px solid var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--bg);
+    }
+
+    .axis-ladder .step.filled {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .axis-ladder .step.current {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      position: relative;
+    }
+
+    .axis-ladder .step.current::after {
+      content: "◂";
+      position: absolute;
+      right: -14px;
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .axis-evidence {
+      font-family: var(--serif);
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .reads-from {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+
+    .path-legend {
+      margin-top: 14px;
+      padding: 8px 10px;
+      background: var(--bg-deep);
+      border-left: 2px solid var(--accent);
+      font-family: var(--serif);
+      font-size: 11px;
+      font-style: italic;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .reads-from code {
+      color: var(--accent);
+      background: var(--bg-deep);
+      padding: 1px 4px;
+      font-family: var(--mono);
+      text-transform: none;
+    }
+
+    /* ============ TIER ADAPTATION ============ */
+    .tier-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 36px;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+    }
+
+    .tier-tab {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--ink);
+      padding: 24px 32px;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tier-tab:last-child {
+      border-right: none;
+    }
+
+    .tier-tab::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--tier-color);
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+      z-index: 0;
+    }
+
+    .tier-tab.active::before {
+      transform: translateY(0);
+    }
+
+    .tier-tab.active {
+      color: var(--bg);
+    }
+
+    .tier-tab>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tier-tab[data-tier="T0"] {
+      --tier-color: var(--tier-0);
+    }
+
+    .tier-tab[data-tier="T1"] {
+      --tier-color: var(--tier-1);
+    }
+
+    .tier-tab[data-tier="T2"] {
+      --tier-color: var(--tier-2);
+    }
+
+    .tier-tab .tier-code {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .tier-tab .tier-name {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .tier-tab .tier-mode {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-style: italic;
+      opacity: 0.85;
+    }
+
+    .tier-panel {
+      display: none;
+      animation: tierIn 0.4s ease;
+    }
+
+    .tier-panel.active {
+      display: block;
+    }
+
+    @keyframes tierIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .dials {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+    }
+
+    .dial {
+      padding: 28px 24px;
+      border-right: 1px solid var(--line);
+      position: relative;
+    }
+
+    .dial:last-child {
+      border-right: none;
+    }
+
+    .dial-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dial-label::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .dial-value {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.35;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    .dial-example {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .dial-example::before {
+      content: "e.g.";
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-right: 6px;
+      font-style: normal;
+    }
+
+    /* ============ PROGRESSION AXES ============ */
+    .axis-wrap {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+    }
+
+    .axis-list {
+      border-left: 2px solid var(--ink);
+    }
+
+    .axis-btn {
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: 16px 20px;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .axis-btn:last-child {
+      border-bottom: none;
+    }
+
+    .axis-btn::before {
+      content: "";
+      position: absolute;
+      left: -2px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: transparent;
+      transition: background 0.2s;
+    }
+
+    .axis-btn.active::before {
+      background: var(--accent);
+    }
+
+    .axis-btn.active {
+      background: var(--bg-card);
+    }
+
+    .axis-btn .axis-code {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .axis-btn.active .axis-code {
+      color: var(--accent);
+    }
+
+    .axis-btn .axis-name {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--ink);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .axis-btn .axis-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 2px 8px;
+      background: var(--bg-deep);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 2px;
+    }
+
+    .ladder {
+      display: none;
+    }
+
+    .ladder.active {
+      display: block;
+      animation: tierIn 0.4s ease;
+    }
+
+    .ladder-head {
+      margin-bottom: 24px;
+    }
+
+    .ladder-head h4 {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      font-variation-settings: "opsz" 90, "WONK" 1;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .ladder-head p {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--ink-soft);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .rungs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .rung {
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      padding: 24px 22px;
+      position: relative;
+    }
+
+    .rung-num {
+      position: absolute;
+      top: -12px;
+      left: 16px;
+      background: var(--bg);
+      padding: 2px 10px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      border: 1px solid var(--ink);
+      text-transform: uppercase;
+    }
+
+    .rung:nth-child(1) .rung-num {
+      background: #F6E8D9;
+    }
+
+    .rung:nth-child(2) .rung-num {
+      background: #E8DFC7;
+    }
+
+    .rung:nth-child(3) .rung-num {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .rung h5 {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .rung p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .rung .example {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--serif);
+      font-size: 12px;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ============ CATEGORY COLLAPSE ============ */
+    .collapse-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .overlay-card {
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      padding: 32px;
+      position: relative;
+    }
+
+    .overlay-card h4 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .overlay-card .sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .overlay-fields {
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .overlay-fields .k {
+      color: var(--muted);
+    }
+
+    .overlay-fields .v {
+      color: var(--ink);
+    }
+
+    .overlay-fields .line {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      padding: 4px 0;
+      border-bottom: 1px dotted var(--line-soft);
+    }
+
+    .overlay-fields .line:last-child {
+      border-bottom: none;
+    }
+
+    /* ============ DECISIONS LOG ============ */
+    .decisions {
+      margin-top: 8px;
+    }
+
+    .decision {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+
+    .decision:last-child {
+      border-bottom: none;
+    }
+
+    .decision .dn {
+      font-family: var(--serif);
+      font-size: 40px;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 0.9;
+      font-variation-settings: "opsz" 144, "WONK" 1;
+    }
+
+    .decision .q {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .decision .a {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    .decision .a b {
+      background: linear-gradient(180deg, transparent 65%, rgba(197, 65, 28, 0.22) 65%);
+      font-weight: 500;
+    }
+
+    .stamp {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 6px 12px;
+      white-space: nowrap;
+      height: fit-content;
+      border: 1px solid var(--accent);
+      transform: rotate(-2deg);
+    }
+
+    .stamp.pending {
+      background: transparent;
+      color: var(--muted);
+      border-color: var(--muted);
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      padding: 60px 48px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-top: 1px solid var(--ink);
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    footer .claim {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.35;
+      font-style: italic;
+      color: var(--ink-soft);
+      font-variation-settings: "opsz" 90, "SOFT" 100;
+    }
+
+    footer h5 {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    footer ul {
+      list-style: none;
+      font-size: 13px;
+    }
+
+    footer li {
+      padding: 4px 0;
+      color: var(--ink-soft);
+    }
+
+    footer li::before {
+      content: "→";
+      color: var(--accent);
+      margin-right: 8px;
+    }
+
+    .version {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 960px) {
+      body {
+        padding-top: 72px;
+      }
+
+      .masthead {
+        padding: 14px 24px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .masthead nav {
+        display: none;
+      }
+
+      section,
+      .hero {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .sec-head {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .sec-desc {
+        grid-column: 1;
+      }
+
+      .concerns {
+        grid-template-columns: 1fr;
+      }
+
+      .concern {
+        border-right: none;
+        border-bottom: 1px solid var(--ink);
+      }
+
+      .concern:last-child {
+        border-bottom: none;
+      }
+
+      .beats {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .beats::before {
+        display: none;
+      }
+
+      .tagblock {
+        grid-template-columns: 1fr;
+      }
+
+      .dials {
+        grid-template-columns: 1fr;
+      }
+
+      .dial {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .axis-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .axis-list {
+        display: flex;
+        overflow-x: auto;
+        border-left: none;
+        border-bottom: 2px solid var(--ink);
+      }
+
+      .axis-btn {
+        min-width: 200px;
+        border-bottom: none;
+        border-right: 1px solid var(--line);
+      }
+
+      .rungs {
+        grid-template-columns: 1fr;
+      }
+
+      .collapse-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      footer {
+        grid-template-columns: 1fr;
+      }
+
+      .tier-tabs {
+        flex-direction: column;
+      }
+
+      .tier-tab {
+        border-right: none;
+        border-bottom: 1px solid var(--ink);
+      }
+
+      .tier-tab:last-child {
+        border-bottom: none;
+      }
+
+      .pillar-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .pillar-cell {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .pillar-cell:nth-child(3) {
+        border-right: none;
+      }
+
+      .tier-compare-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tcc-col {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .tcc-col:last-child {
+        border-bottom: none;
+      }
+
+      .cov-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cov-axis {
+        border-right: 1px dashed var(--line-soft);
+        border-bottom: 1px dashed var(--line-soft);
+      }
+
+      .cov-axis:nth-child(2n) {
+        border-right: none;
+      }
+
+      .ll-rungs {
+        grid-template-columns: 1fr;
+      }
+
+      .ll-rung {
+        border-right: none;
+        border-bottom: 1px dashed var(--line);
+      }
+
+      .ll-rung:last-child {
+        border-bottom: none;
+      }
+    }
+
+    /* ============ TIER COMPARE (§06 worked example) ============ */
+    .tier-compare {
+      margin-top: 56px;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+    }
+
+    .tier-compare-head {
+      padding: 22px 28px;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-deep);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tcc-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .tcc-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 90, "WONK" 1;
+    }
+
+    .tcc-scene {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .tcc-scene strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .tier-compare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .tcc-col {
+      padding: 26px 24px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tcc-col:last-child {
+      border-right: none;
+    }
+
+    .tcc-col-head {
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--tier-color);
+    }
+
+    .tcc-t0 {
+      --tier-color: var(--tier-0);
+    }
+
+    .tcc-t1 {
+      --tier-color: var(--tier-1);
+    }
+
+    .tcc-t2 {
+      --tier-color: var(--tier-2);
+    }
+
+    .tcc-tier {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tier-color);
+      font-weight: 500;
+    }
+
+    .tcc-tier-name {
+      display: block;
+      font-family: var(--serif);
+      font-size: 19px;
+      color: var(--ink);
+      margin-top: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .tcc-beat {
+      margin-bottom: 22px;
+    }
+
+    .tcc-beat-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .tcc-dialogue {
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .d-line {
+      margin-bottom: 8px;
+    }
+
+    .d-line .who {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-right: 6px;
+    }
+
+    .d-line em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .d-line.stage {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+      padding-left: 12px;
+    }
+
+    .tcc-caregiver {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .tcc-caregiver .cg-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .tcc-caregiver .cg-role {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    .tier-compare-note {
+      padding: 18px 28px;
+      border-top: 1px solid var(--line);
+      background: var(--bg-deep);
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    .tier-compare-note strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ============ LEVEL LEGEND (§07 L1/L2/L3 meta) ============ */
+    .level-legend {
+      margin-bottom: 36px;
+      padding: 24px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+    }
+
+    .ll-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .ll-rungs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px dashed var(--line);
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .ll-rung {
+      padding: 18px 22px;
+      border-right: 1px dashed var(--line);
+    }
+
+    .ll-rung:last-child {
+      border-right: none;
+    }
+
+    .ll-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .ll-kind {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-style: italic;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      font-variation-settings: "opsz" 90, "WONK" 1;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .ll-desc {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      display: block;
+    }
+
+    .ll-foot {
+      margin-top: 16px;
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    /* ============ MAPPING TABLE (§07 gold-standard check) ============ */
+    .mapping-table-wrap {
+      margin-top: 16px;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+      overflow-x: auto;
+    }
+
+    .mapping-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .mapping-table thead th {
+      background: var(--ink);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 14px 16px;
+      border-right: 1px solid #3B3730;
+      font-weight: 500;
+    }
+
+    .mapping-table thead th:last-child {
+      border-right: none;
+    }
+
+    .mapping-table tbody td {
+      padding: 14px 16px;
+      border-bottom: 1px dashed var(--line);
+      border-right: 1px dashed var(--line-soft);
+      vertical-align: top;
+    }
+
+    .mapping-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .mapping-table tbody td:last-child {
+      border-right: none;
+    }
+
+    .mapping-table tbody tr:hover {
+      background: var(--bg-deep);
+    }
+
+    .mapping-table .m-style {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .mapping-table .m-entity {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .mapping-table .pill {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--bg);
+      padding: 3px 8px;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    .pill-mystery {
+      background: var(--mystery);
+    }
+
+    .pill-creation {
+      background: var(--creation);
+    }
+
+    .pill-performance {
+      background: var(--performance);
+    }
+
+    .pill-discovery {
+      background: var(--discovery);
+    }
+
+    .pill-adventure {
+      background: var(--adventure);
+    }
+
+    .pill-nurture {
+      background: var(--nurture);
+    }
+
+    .mapping-table .m-axis {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .mapping-table .m-axis strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .mapping-table .m-why {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+
+    .mapping-coverage {
+      margin-top: 20px;
+      padding: 22px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+    }
+
+    .cov-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .cov-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+      border-top: 1px dashed var(--line);
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .cov-axis {
+      padding: 14px 10px;
+      text-align: center;
+      border-right: 1px dashed var(--line-soft);
+    }
+
+    .cov-axis:last-child {
+      border-right: none;
+    }
+
+    .cov-axis .cov-name {
+      font-family: var(--serif);
+      font-size: 13px;
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .cov-axis .cov-dots {
+      font-family: var(--mono);
+      font-size: 16px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .cov-axis .cov-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .cov-axis.thin .cov-dots {
+      color: var(--muted);
+    }
+
+    .cov-note {
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-top: 18px;
+      font-weight: 300;
+    }
+
+    .cov-note strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ============ PRINT ============ */
+    @media print {
+      body {
+        background: white;
+      }
+
+      body::before {
+        display: none;
+      }
+
+      .masthead {
+        position: static;
+      }
+
+      section {
+        page-break-inside: avoid;
+      }
+
+      .tier-panel {
+        display: block !important;
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="masthead">
+    <div class="brand"><b>WonderLens</b> · 活动设计框架</div>
+    <nav>
+      <a href="#concerns">诉求</a>
+      <a href="#spine">主干</a>
+      <a href="#skeleton">完整骨架</a>
+      <a href="#tags">Tag Block</a>
+      <a href="#bridges">上下游</a>
+      <a href="#tiers">Tier 适配</a>
+      <a href="#axes">进阶轴</a>
+      <a href="#decisions">决策</a>
+    </nav>
+    <div class="meta">草稿 · 2026-04-15 · 内部评审</div>
+  </header>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero">
+    <div class="kicker">提案 · Template 0 · 跨 Category 的通用骨架</div>
+    <h1>一副骨架，<br />承载所有 <em>category</em>。</h1>
+    <p class="lede">
+      目前仓库里 Cat1 走的是 <b>Template A</b>，Cat5 走的是 <b>Template B</b>。两套各自复述一次相同的情感弧线，各自拷贝一份
+      tag 和 tier 的逻辑。<b>Template 0</b> 把共用的部分抽出来合成一副完整框架——以后新增的 category、tier、pillar
+      都只是薄薄一层 overlay，不用再造新的主干。
+    </p>
+    <div class="hero-meta">
+      <div>
+        <span class="label">受众</span>
+        <span class="value">内部团队评审</span>
+      </div>
+      <div>
+        <span class="label">回应</span>
+        <span class="value">3 条内部诉求</span>
+      </div>
+      <div>
+        <span class="label">范围</span>
+        <span class="value">Template 层</span>
+      </div>
+      <div>
+        <span class="label">状态</span>
+        <span class="value">草稿 · 待签收</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== AT A GLANCE ============== -->
+  <section id="concerns">
+    <div class="sec-head">
+      <div class="sec-num">§ 01 / 总览</div>
+      <h2 class="sec-title">三条诉求，<br />三处<em>结构性</em>答复。</h2>
+    </div>
+    <p class="sec-desc">内部讨论里提到的每一条诉求，都在 Template 0 里对应一个专门的位置。目的是把大家关心的事情直接写进 template
+      这一层——让每个设计都不可能绕过它们发出去。</p>
+
+    <div class="concerns">
+      <div class="concern">
+        <span class="num">01</span>
+        <div class="cn">"标签体系要够明确——要能对接上游的 app、儿童端的'小回顾'、家长端的'成长路径'。"</div>
+        <h3>让 tag block 变成必填项</h3>
+        <p>每个活动顶部都必须带一个 tag block，里面包含 entity、category、attributes、Key Concepts、Related
+          Concepts、ATL——和内部讨论里提到的层级完全对齐。同一份 tag block 既喂上游的游戏选配管线，也喂下游的儿童端和家长端。</p>
+        <span class="solves">→ 参见 § 04 Tag Block · § 05 上下游对接</span>
+      </div>
+      <div class="concern">
+        <span class="num">02</span>
+        <div class="cn">"进阶活动怎么设计——同样讲颜色，怎么一步一步稍微难一点？"</div>
+        <h3>一套共用的 progression 轴</h3>
+        <p>活动在 tag block 里声明 <code>topic_axis</code> 和 1–3 级难度。七条轴直接从项目里已经在用的 7 个 IB Key
+          Concept 里长出来——思考透镜和进阶阶梯共用同一套名字，没有新东西要记。</p>
+        <span class="solves">→ 参见 § 07 进阶轴</span>
+      </div>
+      <div class="concern">
+        <span class="num">03</span>
+        <div class="cn">"同一个游戏按交互去适配年龄，还是不同年龄各自做一套活动？"</div>
+        <h3>相邻 tier 内部适配，跨度大就拆</h3>
+        <p>一份设计先锚定一个主 tier，需要时可以向相邻 tier 延伸一步，靠五个明确的开关（AI 角色、语言、任务深度、概念聚焦、看护者角色）来调。跨两个
+          tier 就不是一份设计能扛的，应该拆成同一条 progression 轴上的两个相似活动。</p>
+        <span class="solves">→ 参见 § 06 Tier 适配</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SPINE ============== -->
+  <section id="spine">
+    <div class="sec-head">
+      <div class="sec-num">§ 02 / 主干</div>
+      <h2 class="sec-title">五节主干，<br /><em>不可动摇</em>。</h2>
+    </div>
+    <p class="sec-desc">所有 category——Cat1、Cat5，以及后面还没做的四个——都沿着同一条 5 节情感弧线。不同 category
+      之间变的是每一节的<em>互动形式</em>（纯对话、拍照收集、实地探索），节拍本身不变。</p>
+
+    <div class="pillar-strip-label">6 个 experience pillar —— 每个 pillar 决定 Beat 2–4 的情感走向</div>
+    <div class="pillar-strip">
+      <div class="pillar-cell p-mystery">
+        <span class="p-name">Mystery</span>
+        <span class="p-feel">"我想明白了！"</span>
+      </div>
+      <div class="pillar-cell p-creation">
+        <span class="p-name">Creation</span>
+        <span class="p-feel">"这是我做的！"</span>
+      </div>
+      <div class="pillar-cell p-performance">
+        <span class="p-name">Performance</span>
+        <span class="p-feel">"他们好喜欢！"</span>
+      </div>
+      <div class="pillar-cell p-discovery">
+        <span class="p-name">Discovery</span>
+        <span class="p-feel">"我猜对了吗？！"</span>
+      </div>
+      <div class="pillar-cell p-adventure">
+        <span class="p-name">Adventure</span>
+        <span class="p-feel">"看我走了多远！"</span>
+      </div>
+      <div class="pillar-cell p-nurture">
+        <span class="p-name">Nurture</span>
+        <span class="p-feel">"我帮到了！"</span>
+      </div>
+    </div>
+
+    <div class="spine-wrap">
+      <div class="spine-toggle" role="tablist">
+        <button class="active" data-overlay="base">基础骨架</button>
+        <button data-overlay="cat1">Cat1 覆盖</button>
+        <button data-overlay="cat5">Cat5 覆盖</button>
+      </div>
+
+      <div class="beats">
+        <div class="beat">
+          <span class="dot"></span>
+          <span class="num">Beat 01</span>
+          <h4>情感过渡</h4>
+          <p>从照片出发，给一个情绪或想象上的回应。不要知识测验。</p>
+          <div class="overlay-text" data-base="锚定在被拍到的 entity 上的情感钩子。mapping 驱动的设计再配一个 warm start 变体。"
+            data-cat1="口头反应：'哇，{entity}！{情感观察}。{想象问题}？'" data-cat5="对 entity 最显眼的视觉特征做出反应，屏幕上高亮这个特征。"></div>
+        </div>
+        <div class="beat">
+          <span class="dot"></span>
+          <span class="num">Beat 02</span>
+          <h4>立角色 · 立框架</h4>
+          <p>分配 role title 和 metaphor，用 pillar 专属的语言把任务说出来。</p>
+          <div class="overlay-text" data-base="pillar overlay 决定框架语言；通用的 {metaphor} 和 {role_title} 在这里就位。"
+            data-cat1="通过例子把玩法讲清楚。in-device 的场景框架。" data-cat5="任务简报 + 3 个具体子任务。任务卡配 {role_title} 徽章。"></div>
+        </div>
+        <div class="beat">
+          <span class="dot"></span>
+          <span class="num">Beat 03</span>
+          <h4>核心循环</h4>
+          <p>N 轮 pillar 专属玩法。{escalation_axis} 必须沿着声明的 progression 轴往上走。</p>
+          <div class="overlay-text" data-base="按声明的 topic_axis 逐轮升级。pillar overlay 决定互动形态。"
+            data-cat1="3–5 轮纯对话。AI 给情境 → 孩子回应 → AI 用 pillar 元素给反馈。" data-cat5="3–4 轮实地拍照。孩子真的走动、拍照，AI 按每一张单独回应。"></div>
+        </div>
+        <div class="beat">
+          <span class="dot"></span>
+          <span class="num">Beat 04</span>
+          <h4>高光时刻</h4>
+          <p>pillar 专属的汇总，情绪顶点。首次使用者也能从这一节认出是哪个 pillar。</p>
+          <div class="overlay-text" data-base="兑现 pillar 承诺的那一下。对应 10 维评分的 D9 和 D10。"
+            data-cat1="戏剧化的口头揭晓 / 观众欢呼 / 蜕变 / 结果汇总。" data-cat5="对收集到的东西做 pillar 专属汇总：隐藏图案、组合发明、合唱收官、假设验证。"></div>
+        </div>
+        <div class="beat">
+          <span class="dot"></span>
+          <span class="num">Beat 05</span>
+          <h4>庆祝 + 点名概念</h4>
+          <p>把孩子刚刚达成的 Key Concepts 和 Related Concepts 作为称赞说出来——不是考试。</p>
+          <div class="overlay-text" data-base="徽章 + IB Key Concepts 以称赞形式点名。Related Concepts 变成儿童端活动后的徽章。"
+            data-cat1="授予 role title + 点名 1–2 个 Key Concepts。徽章动画。" data-cat5="收集成果整齐展示 + 点名 Key Concepts。各项之间用动画连线。">
+          </div>
+        </div>
+      </div>
+      <div class="overlay-note">
+        Cat1 和 Cat5 都只是薄薄一层 overlay，只需要覆盖 <b>8 个字段</b>：每节的互动形式、轮数、相机使用、场景、步数、核心玩法、anchor 维度优先级。
+        其他所有东西——pillar overlay、创作变量、entity 适配清单——都从 Template 0 继承。
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TEMPLATE 0 SKELETON ============== -->
+  <section id="skeleton">
+    <div class="sec-head">
+      <div class="sec-num">§ 03 / 完整骨架</div>
+      <h2 class="sec-title">Template 0,<br /><em>一整份文件</em>。</h2>
+    </div>
+    <p class="sec-desc">§01 和 §02 把各个部件分开讲,这一节把它们拼回一整份文件——这就是 Template 0 在
+      <code>templates.md</code> 里实际的样子。Cat1、Cat5 以及未来的每一个 category 都只需要 <code>extends:
+        template_0</code> 再覆盖 8 个字段,其余全部从这里继承。后面几节会逐块放大看。
+    </p>
+
+    <details class="skeleton-details">
+      <summary>
+        <span class="sum-file"><strong>templates.md</strong>template_0 · 约 100 行</span>
+        <span class="sum-hint"><span class="sum-text"></span><span class="sum-arrow">▸</span></span>
+      </summary>
+      <pre class="code-panel code-panel-skeleton"><span class="cmt"># ═══════════════════════════════════════════
+          # Template 0 — 跨 Category 的通用骨架
+          # 存放位置: templates.md 顶部
+          # 每个 category overlay: extends: template_0
+          # ═══════════════════════════════════════════</span>
+
+        <span class="key">extends</span>: <span class="str">null</span> <span class="cmt"># 根模板</span>
+
+
+        <span class="cmt"># ─── §0 · 活动 Header (每个设计必填) ─────────────────────</span>
+
+        <span class="key">header</span>:
+        <span class="key">activity_id</span>: <span class="str">{slug}</span> <span class="cmt"># 如
+          ladybug_cat1_mystery_t1</span>
+        <span class="key">entity</span>: <span class="str">{entity_name}</span>
+        <span class="key">entity_type</span>: <span class="str">{animal|toy|food|household|vehicle|nature|...}</span>
+        <span class="key">category</span>: <span class="str">{cat1..cat6}</span>
+        <span class="key">pillar</span>: <span
+          class="str">{mystery|creation|performance|discovery|adventure|nurture}</span>
+        <span class="key">style</span>: <span class="str">{12 个 game style 之一}</span>
+        <span class="key">tier</span>: <span class="str">{T0|T1|T2}</span> <span class="cmt"># 主 tier</span>
+        <span class="key">tier_variants</span>: <span class="str">[{T0|T1|T2}]</span> <span class="cmt"># 可选: 向相邻 tier
+          弹性延伸</span>
+
+        <span class="key">tags</span>:
+        <span class="key">attributes</span>: [] <span class="cmt"># 游戏用到的可观察属性</span>
+        <span class="key">key_concepts</span>: [] <span class="cmt"># 从 7 个 IB Key Concept 里挑 1–2 个</span>
+        <span class="key">related_concepts</span>: [] <span class="cmt"># 2–4 个学科标签徽章</span>
+        <span class="key">atl_skills</span>: [] <span class="cmt"># 2–3 个 ATL 能力</span>
+        <span class="key">transdisciplinary_theme</span>: <span class="str">{6 个 PYP 主题之一}</span>
+
+        <span class="key">kud</span>:
+        <span class="key">know</span>: [] <span class="cmt"># 2–5 个事实 / 词汇</span>
+        <span class="key">understand</span>: [] <span class="cmt"># 1–2 个概念 (对应 key_concepts)</span>
+        <span class="key">do</span>: [] <span class="cmt"># 2–3 个能力 (对应 atl_skills)</span>
+
+        <span class="hl"><span class="key">progression</span>: <span class="cmt"># 回应诉求 #2</span>
+          <span class="key">topic_axis</span>: <span
+            class="str">{form|function|causation|change|connection|perspective|responsibility}</span>
+          <span class="key">difficulty_level</span>: <span class="num-c">{1|2|3}</span>
+          <span class="key">next_step_hint</span>: <span class="str">"..."</span>
+          <span class="key">reward_hook</span>: <span class="str">"..."</span></span>
+
+        <span class="key">caregiver_role</span>: <span class="str">{scaffold|co-explorer|observer}</span> <span
+          class="cmt"># 默认值由 tier 决定</span>
+
+
+        <span class="cmt"># ─── §1 · 五节主干 (invariant, 不可动摇) ────────────────</span>
+
+        <span class="key">spine</span>:
+        <span class="key">beat_1_transition_bridge</span>:
+        <span class="key">purpose</span>: <span class="str">"情感钩子: 照片 → 情绪或想象回应, 不做知识测验"</span>
+        <span class="key">pattern</span>: <span class="str">"{情感观察}. {想象问题}?"</span>
+
+        <span class="key">beat_2_frame_and_role</span>:
+        <span class="key">purpose</span>: <span class="str">"分配 {role_title} + {metaphor}, 说出任务"</span>
+        <span class="key">overlay</span>: pillar <span class="cmt"># pillar overlay 决定框架语言</span>
+
+        <span class="key">beat_3_core_loop</span>:
+        <span class="key">purpose</span>: <span class="str">"N 轮 pillar 专属玩法"</span>
+        <span class="key">escalation</span>: <span class="str">"{escalation_axis}"</span> <span class="cmt"># 沿
+          progression.topic_axis 爬升</span>
+        <span class="key">overlay</span>: pillar
+
+        <span class="key">beat_4_magic_moment</span>:
+        <span class="key">purpose</span>: <span class="str">"pillar 专属汇总; 情绪顶点"</span>
+        <span class="key">fidelity</span>: <span class="str">"首次使用者也能从这一节认出是哪个 pillar"</span>
+        <span class="key">overlay</span>: pillar
+
+        <span class="key">beat_5_celebration</span>:
+        <span class="key">purpose</span>: <span class="str">"把 Key Concepts 和 Related Concepts 作为称赞点名"</span>
+        <span class="key">pattern</span>: <span class="str">"你成了 {role_title}! 你用到了 {key_concept}, 还收获了
+          {related_concept}."</span>
+
+
+        <span class="cmt"># ─── §2 · 通用创作变量 ──────────────────────────────────</span>
+
+        <span class="key">creative_variables</span>:
+        <span class="key">metaphor</span>: <span class="str">"把教育变成玩的那层想象框架"</span>
+        <span class="key">role_title</span>: <span class="str">"孩子获得的角色头衔 (要贴合孩子实际在做的事)"</span>
+        <span class="key">escalation_axis</span>: <span class="str">"每轮怎么变得更难; 必须对齐 progression.topic_axis"</span>
+        <span class="key">reflective_question</span>: <span class="str">"收尾时的 '为什么', 使孩子真正感到好奇"</span>
+
+        <span class="cmt"># pillar 专属变量在这之上再叠一层 —— 见 pillar_overlays/ (不变)</span>
+
+
+        <span class="cmt"># ─── §3 · Tier 适配默认值 (回应诉求 #3) ──────────────────</span>
+
+        <span class="hl"><span class="key">tier_defaults</span>:
+          <span class="key">T0</span>:
+          <span class="key">ai_role</span>: <span class="str">"热情的游戏发起者 + 情绪共鸣者"</span>
+          <span class="key">language</span>: <span class="str">"拟声词、叠词、3–5 词短句, 语速慢语调夸张"</span>
+          <span class="key">task_depth</span>: <span class="str">"单步指令, 即时反馈"</span>
+          <span class="key">concept_focus</span>: <span class="str">"具体属性 + 基本功能"</span>
+          <span class="key">caregiver_role</span>: <span class="str">scaffold</span>
+          <span class="key">T1</span>:
+          <span class="key">ai_role</span>: <span class="str">"好奇的共同探索者 + 思维启发者"</span>
+          <span class="key">language</span>: <span class="str">"自然语速, 简单复合句, 开放式 '为什么 / 怎么样'"</span>
+          <span class="key">task_depth</span>: <span class="str">"2–3 步序列, 简单分工"</span>
+          <span class="key">concept_focus</span>: <span class="str">"因果、变化、联系"</span>
+          <span class="key">caregiver_role</span>: <span class="str">co-explorer</span>
+          <span class="key">T2</span>:
+          <span class="key">ai_role</span>: <span class="str">"项目顾问 + 资源协调者"</span>
+          <span class="key">language</span>: <span class="str">"接近成人的对话, 复杂句式, 逻辑连接词"</span>
+          <span class="key">task_depth</span>: <span class="str">"多步任务, 可选的项目式分支"</span>
+          <span class="key">concept_focus</span>: <span class="str">"观点、责任、系统"</span>
+          <span class="key">caregiver_role</span>: <span class="str">observer</span></span>
+
+
+        <span class="cmt"># ─── §4 · Overlay 接口 (每个 category 需要填的字段) ──────</span>
+
+        <span class="key">category_overrides_expected</span>:
+        - <span class="key">beat_medium</span> <span class="cmt"># verbal_dialogue | photo_collection + physical |
+          ...</span>
+        - <span class="key">round_count</span> <span class="cmt"># 3–5 | 3–4 | ...</span>
+        - <span class="key">camera_use</span> <span class="cmt"># initial_only | initial + per_round | ...</span>
+        - <span class="key">setting</span> <span class="cmt"># indoor_quiet | outdoor | ...</span>
+        - <span class="key">step_count</span> <span class="cmt"># 5 | 5–6 | ...</span>
+        - <span class="key">core_mechanic</span> <span class="cmt"># scenario → verbal → validate | mission → find →
+          synthesize</span>
+        - <span class="key">anchor_priority</span> <span class="cmt"># engagement-first | physical-first</span>
+        - <span class="key">checklist_extras</span> <span class="cmt"># 每个 category 自己的适配检查项</span>
+      </pre>
+    </details>
+
+    <div class="note-block">
+      <strong>一个 category overlay 长什么样。</strong>大约 10 行的文件, 顶部写一行 <code>extends:
+        template_0</code>, 然后把上面列出的 8 个 hook 填进去。<strong>§08</strong> 里可以看到 Cat1 和 Cat5
+      作为具体 overlay 的样子。未来的 Cat2–Cat6 都沿用同一结构——不用再写新的主干、新的 tag block、新的 tier 默认值。
+    </div>
+  </section>
+
+  <!-- ============== TAG BLOCK ============== -->
+  <section id="tags">
+    <div class="sec-head">
+      <div class="sec-num">§ 04 / Tag Block</div>
+      <h2 class="sec-title">每个活动，<br />都从一次<em>对接</em>开始。</h2>
+    </div>
+    <p class="sec-desc">这段 YAML 是每个设计最顶部必备的 block——也是游戏设计和上游 app、儿童端小回顾、家长端成长路径之间的契约。
+      高亮的字段是新增的，或者刚从可选变成必填。</p>
+
+    <div class="tagblock">
+      <pre class="code-panel"><span class="key">activity_id</span>: <span class="str">ladybug_cat1_mystery_t1</span>
+        <span class="key">entity</span>: <span class="str">ladybug</span>
+        <span class="key">entity_type</span>: <span class="str">animal</span>
+        <span class="key">category</span>: <span class="str">cat1</span>
+        <span class="key">pillar</span>: <span class="str">mystery</span>
+        <span class="key">style</span>: <span class="str">mystery_lens</span>
+        <span class="key">tier</span>: <span class="str">T1</span>
+        <span class="key">tier_variants</span>: <span class="hl">[<span class="str">T0</span>]</span> <span
+          class="cmt"># 向相邻 tier 弹性延伸</span>
+
+        <span class="key">tags</span>:
+        <span class="key">attributes</span>: <span class="hl">[<span class="str">red</span>, <span
+            class="str">black</span>, <span class="str">spots</span>, <span class="str">round</span>]</span>
+        <span class="key">key_concepts</span>: <span class="hl">[<span class="str">Form</span>, <span
+            class="str">Change</span>]</span> <span class="cmt"># 从 7 个里挑 1–2 个</span>
+        <span class="key">related_concepts</span>: <span class="hl">[<span class="str">Pattern</span>, <span
+            class="str">Camouflage</span>]</span> <span class="cmt"># 2–4 个学科标签</span>
+        <span class="key">atl_skills</span>: [<span class="str">critical_thinking</span>, <span
+          class="str">observation</span>]
+        <span class="key">transdisciplinary_theme</span>: <span class="str">How the World Works</span>
+
+        <span class="key">kud</span>:
+        <span class="key">know</span>: [<span class="str">瓢虫有 6 条腿</span>, <span class="str">不同种类斑点不同</span>]
+        <span class="key">understand</span>: [<span class="str">图案可以帮助动物生存</span>]
+        <span class="key">do</span>: [<span class="str">仔细观察</span>, <span class="str">描述所见</span>]
+
+        <span class="key">progression</span>: <span class="hl"><span class="cmt"># 新增 —— 回应诉求 #2</span></span>
+        <span class="key">topic_axis</span>: <span class="str">connection</span>
+        <span class="key">difficulty_level</span>: <span class="num-c">2</span>
+        <span class="key">next_step_hint</span>: <span class="str">"升到同一条轴的 L3，或跳到 causation L1"</span>
+        <span class="key">reward_hook</span>: <span class="str">"connection_L2 徽章"</span>
+
+        <span class="key">caregiver_role</span>: <span class="str">co-explorer</span> <span class="cmt"># 看 tier
+          而定</span>
+      </pre>
+
+      <div class="tag-legend">
+        <h4>每个字段的用处</h4>
+        <ul>
+          <li><code>attributes</code><span>游戏用到的可观察属性。直接喂给 playbook 里的 property-bridge template。</span></li>
+          <li><code>key_concepts</code><span>从 7 个 IB Key Concept 里挑 1–2 个——"思考透镜"。和 related_concepts
+              属于<b>两套独立的分类</b>。</span></li>
+          <li><code>related_concepts</code><span>2–4 个带学科标签的概念。儿童端活动后可以拿走的徽章。</span></li>
+          <li><code>atl_skills</code><span>孩子练到的 2–3 个 ATL 能力。喂给家长端的成长路径。</span></li>
+          <li><code>progression</code><span>新增的 block。把"同一个话题，稍微难一点"变成程序可读的一级字段。</span></li>
+          <li><code>tier_variants</code><span>写在 header 里，不靠 runtime 推断。家长端要能审计到。</span></li>
+          <li><code>caregiver_role</code><span>目前只是软引导——按 tier 给默认值，以后可以升级为硬门槛。</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== BRIDGES ============== -->
+  <section id="bridges">
+    <div class="sec-head">
+      <div class="sec-num">§ 05 / 上下游对接</div>
+      <h2 class="sec-title">Tag Block，<br /> 是一份<em>契约</em>。</h2>
+    </div>
+    <p class="sec-desc">§04 里的字段都不是装饰。每一个都对接一个真实存在的上游或下游系统。有些系统今天已经有了（playbook
+      里描述的游戏选配管线），有些还没有——Template 0 就是让它们可以被具体设计出来的前提。本节沿两个方向各走一遍。</p>
+
+    <div class="flow-diagram">
+      <div class="flow-row">
+        <div class="flow-node">
+          <span class="node-label">输入</span>
+          <span class="node-name">孩子给物体拍照</span>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="node-label">识别</span>
+          <span class="node-name">识别出 entity 和视觉属性</span>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node hub">
+          <span class="node-label">§04 Tag Block</span>
+          <span class="node-name">entity · category · attributes · tier · concepts · progression</span>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="node-label">选配</span>
+          <span class="node-name">Tier A / B / P / 纯对话</span>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <span class="node-label">运行时</span>
+          <span class="node-name">活动开始</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead" data-dir="上游">从照片到活动</h3>
+    <p class="subhead-desc">孩子拍下一个物体后，游戏选配管线（参见 playbook §7）决定适配哪个活动。读取 tag block，按 Tier A
+      &gt; Tier B &gt; Tier P &gt; 纯对话的优先级排序。tag block 里每一个字段都能在这条管线里找到自己的出口。</p>
+
+    <div class="tiers-bridge">
+      <div class="tier-bridge-card tier-a">
+        <div class="tier-label">Tier A · 10/10</div>
+        <h4>Entity 金标准</h4>
+        <p>该 entity 已经有一个专门设计的金标准游戏。管线直接按 entity + category 精确匹配。今天库里有 12
+          个（playbook §3A）。</p>
+        <div class="feeds-from">
+          <strong>读取的 tag block 字段</strong>
+          <ul>
+            <li><code>entity</code> + <code>category</code> → 精确查找</li>
+            <li><code>tier</code> → 语言 + 任务深度</li>
+            <li><code>pillar</code> + <code>style</code> → 游戏玩法</li>
+            <li><code>key_concepts</code> → 确认 KUD 对齐</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tier-bridge-card tier-b">
+        <div class="tier-label">Tier B · 8/10</div>
+        <h4>Constellation 适配</h4>
+        <p>没有直接的金标准，但有一个语义相近的 entity 有（比如小猫 → 狮子，秋千 → 游乐场）。运行时适配，不用新设计——只改
+          <code>constellation_map.yaml</code>。
+        </p>
+        <div class="feeds-from">
+          <strong>读取的 tag block 字段</strong>
+          <ul>
+            <li><code>entity</code> + <code>entity_type</code> → 分类 / 角色匹配</li>
+            <li><code>category</code> → <em>必须</em>一致（室内不能桥接户外）</li>
+            <li><code>attributes</code> → 共享的 affordance</li>
+            <li>constellation 得分至少 0.7</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tier-bridge-card tier-p">
+        <div class="tier-label">Tier P · 7–8/10</div>
+        <h4>Property-bridge template</h4>
+        <p>既没有金标准也没有 constellation 匹配——但检测到的视觉属性可以触发一个参数化模板。今天库里有 18 个（playbook §3B）。一个模板可以服务成百上千个
+          entity。</p>
+        <div class="feeds-from">
+          <strong>读取的 tag block 字段</strong>
+          <ul>
+            <li><code>attributes</code> → <em>最关键的</em>匹配字段</li>
+            <li><code>category</code> → 决定用哪套模板（Cat1 有 6 个 / Cat5 有 12 个）</li>
+            <li><code>tier</code> → 模板内的语言弹性</li>
+            <li>属性必须能从照片里看得出来</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-block">
+      <strong>Template 0 的意义在这里。</strong> 把 <code>attributes</code>、<code>entity_type</code>、<code>tier</code>
+      三个字段提到 header 的一级位置，意味着每一个按 Template 0 画出来的金标准都可以被选配管线直接发现。playbook
+      描述了这条管线，而 tag block 让每一份新设计当天就能接进去——不用以后一遍一遍回头补元数据。
+    </div>
+
+    <h3 class="subhead" data-dir="下游">从活动到儿童端、家长端</h3>
+    <p class="subhead-desc">活动结束后，同一份 tag block 要喂两个<strong>目前还不存在</strong>的界面——儿童端的小回顾和家长端的成长路径。
+      Template 0 让这两个界面可以被具体设计出来。下面两个粗略的 mockup 展示了 tag block 就位之后它们大致长什么样。</p>
+
+    <div class="mockups">
+      <div class="mockup">
+        <div class="mockup-label"><span>儿童端小回顾 · 活动结束页</span></div>
+        <div class="mockup-frame">
+          <div class="recap-head">
+            <span class="title">你刚刚做了什么</span>
+            <span class="date">今天</span>
+          </div>
+          <div class="recap-badge">
+            <div class="badge-circle">🐞</div>
+            <div>
+              <div class="badge-title">瓢虫小侦探</div>
+              <div class="badge-sub">Mystery · 完成</div>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">你在思考</span>
+            <div class="chips">
+              <span class="chip chip-key">Form</span>
+              <span class="chip chip-key">Change</span>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">你收获了</span>
+            <div class="chips">
+              <span class="chip chip-rel">图案</span>
+              <span class="chip chip-rel">伪装</span>
+            </div>
+          </div>
+          <div class="recap-row">
+            <span class="recap-lbl">你练习了</span>
+            <div class="chips">
+              <span class="chip chip-atl">观察</span>
+              <span class="chip chip-atl">描述</span>
+            </div>
+          </div>
+          <div class="reads-from">
+            读取：<code>role_title</code> · <code>pillar</code> · <code>key_concepts</code> ·
+            <code>related_concepts</code> · <code>atl_skills</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-label"><span>家长端成长路径 · 周视图</span></div>
+        <div class="mockup-frame">
+          <div class="path-head">
+            <div>
+              <div class="path-title">孩子的成长路径</div>
+              <div class="path-sub">4 月 15 日当周</div>
+            </div>
+            <div class="path-tier">T1 · 探究引导</div>
+          </div>
+          <div class="path-axis">
+            <div class="axis-name-p">Form → 属性描述</div>
+            <div class="axis-ladder">
+              <div class="step filled">L1</div>
+              <div class="step filled">L2</div>
+              <div class="step current">L3</div>
+            </div>
+            <div class="axis-evidence">3 个活动 · 瓢虫、彩虹、向日葵</div>
+          </div>
+          <div class="path-axis">
+            <div class="axis-name-p">Connection → 图案 &amp; 归类</div>
+            <div class="axis-ladder">
+              <div class="step filled">L1</div>
+              <div class="step current">L2</div>
+              <div class="step empty">L3</div>
+            </div>
+            <div class="axis-evidence">2 个活动 · 树叶、积木</div>
+          </div>
+          <div class="path-axis">
+            <div class="axis-name-p">Perspective → 换位视角</div>
+            <div class="axis-ladder">
+              <div class="step current">L1</div>
+              <div class="step empty">L2</div>
+              <div class="step empty">L3</div>
+            </div>
+            <div class="axis-evidence">1 个活动 · 泰迪熊</div>
+          </div>
+          <div class="path-legend">L1 识别 · L2 扩展 · L3 推理 —— 同一个 concept 上的 3 级认知深度，详见 §07</div>
+          <div class="reads-from">
+            读取：<code>progression.topic_axis</code> · <code>progression.difficulty_level</code> ·
+            <code>progression.reward_hook</code> · <code>tier</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-block">
+      <strong>这些事情 Template 0 故意没有设计：</strong>
+      小回顾怎么触发、徽章跨会话怎么持久化、家长端月视图和周视图怎么汇总、奖励循环怎么驱动复玩——这些全都是未解题。Template 0
+      锁定的只是<em>数据这一层</em>：一旦所有活动都输出一份一致的 tag block，这些界面就可以基于一份稳定契约去做设计，不用每个活动都去追元数据。
+    </div>
+  </section>
+
+  <!-- ============== TIER ADAPTATION ============== -->
+  <section id="tiers">
+    <div class="sec-head">
+      <div class="sec-num">§ 06 / Tier 适配 · 诉求 #3</div>
+      <h2 class="sec-title">五个开关，<br /><em>逐 tier</em> 调节。</h2>
+    </div>
+    <p class="sec-desc">建议：邻近 tier 之间做内部适配，跨度大就拆。一份设计先锁定一个主 tier，必要时通过五个明确的开关向相邻 tier
+      延伸一步。T0 ↔ T2 直接跨两级的认知差距太大——那种情况应该拆成同一条 progression 轴上的两个相似活动，而不是让一份设计硬撑。</p>
+
+    <div class="tier-tabs">
+      <button class="tier-tab active" data-tier="T0">
+        <span class="tier-code">Tier 0 · 2–4 岁 · Pre-K</span>
+        <span class="tier-name">探索陪伴</span>
+        <span class="tier-mode">建立安全感，点燃兴趣</span>
+      </button>
+      <button class="tier-tab" data-tier="T1">
+        <span class="tier-code">Tier 1 · 4–6 岁 · Pre-K → K</span>
+        <span class="tier-name">探究引导</span>
+        <span class="tier-mode">有目的的探究 + 简单协作</span>
+      </button>
+      <button class="tier-tab" data-tier="T2">
+        <span class="tier-code">Tier 2 · 6–8 岁 · G1–G2</span>
+        <span class="tier-name">项目协作</span>
+        <span class="tier-mode">有计划的探索 + 复杂问题解决</span>
+      </button>
+    </div>
+
+    <div class="tier-panel active" data-panel="T0">
+      <div class="dials">
+        <div class="dial">
+          <div class="dial-label">AI 角色</div>
+          <div class="dial-value">热情的游戏发起者 + 情绪共鸣者</div>
+          <div class="dial-example">温暖、拟人化，会和孩子一起惊叹</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">语言</div>
+          <div class="dial-value">拟声词、叠词、3–5 词短句，语速慢、语调夸张</div>
+          <div class="dial-example">"汪汪！红色！大大的红瓢虫！"</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">任务深度</div>
+          <div class="dial-value">单步指令，即时反馈</div>
+          <div class="dial-example">"和我一起说——红！"</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">概念聚焦</div>
+          <div class="dial-value">具体属性——颜色、形状、质感——以及基本功能</div>
+          <div class="dial-example">"圆的。红的。会爬。"</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">看护者角色</div>
+          <div class="dial-value">陪玩者——主动和孩子一起玩</div>
+          <div class="dial-example">目前是软引导，不做强制</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-panel" data-panel="T1">
+      <div class="dials">
+        <div class="dial">
+          <div class="dial-label">AI 角色</div>
+          <div class="dial-value">好奇的共同探索者 + 思维启发者</div>
+          <div class="dial-example">和孩子一起纳闷，不下指令</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">语言</div>
+          <div class="dial-value">自然语速，完整句 + 简单复合句，开放式的"为什么 / 怎么样"</div>
+          <div class="dial-example">"你觉得瓢虫为什么身上有斑点？"</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">任务深度</div>
+          <div class="dial-value">2–3 步的序列任务，支持同伴或亲子的简单分工</div>
+          <div class="dial-example">"先找 3 个红色的东西，再告诉我哪个最大。"</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">概念聚焦</div>
+          <div class="dial-value">因果、变化、联系——从具体经验搭桥到抽象概念</div>
+          <div class="dial-example">"花为什么到晚上会合起来？"</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">看护者角色</div>
+          <div class="dial-value">共同探索者——分享发现，不主导</div>
+          <div class="dial-example">鼓励但不要求</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-panel" data-panel="T2">
+      <div class="dials">
+        <div class="dial">
+          <div class="dial-label">AI 角色</div>
+          <div class="dial-value">项目顾问 + 资源协调者</div>
+          <div class="dial-example">把孩子当成小研究员对待</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">语言</div>
+          <div class="dial-value">接近成人的对话，复杂句式，用"首先……然后……"、"如果……那么……"之类的逻辑词</div>
+          <div class="dial-example">"我们先预测，再验证；如果结果出乎意料，就去查原因。"</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">任务深度</div>
+          <div class="dial-value">多步任务，可选的项目式分支，计划 → 实验 → 记录结果</div>
+          <div class="dial-example">"规划路线、收集证据，然后把你的发现讲一遍。"</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">概念聚焦</div>
+          <div class="dial-value">观点、责任、系统——抽象概念 + 跨学科联系</div>
+          <div class="dial-example">"游乐场把孩子、树、雨水连在一起，这中间是怎么运作的？"</div>
+        </div>
+        <div class="dial">
+          <div class="dial-label">看护者角色</div>
+          <div class="dial-value">旁观者——退后，让孩子主导</div>
+          <div class="dial-example">可选</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-compare">
+      <div class="tier-compare-head">
+        <div class="tcc-title">同一个活动，<em>三个 tier</em>。</div>
+        <div class="tcc-scene"><strong>瓢虫</strong> · Mystery · mystery_lens —— Beat 1 和 Beat 3 分别用每个 tier 的开关呈现</div>
+      </div>
+      <div class="tier-compare-grid">
+
+        <div class="tcc-col tcc-t0">
+          <div class="tcc-col-head">
+            <span class="tcc-tier">Tier 0 · 2–4 岁</span>
+            <span class="tcc-tier-name">探索陪伴</span>
+          </div>
+          <div class="tcc-beat">
+            <div class="tcc-beat-label">Beat 1 · 情感过渡</div>
+            <div class="tcc-dialogue">
+              <div class="d-line"><span class="who">AI</span><em>惊叹</em> "哦——瓢虫！"</div>
+              <div class="d-line"><span class="who">AI</span>"好红！好圆！"</div>
+              <div class="d-line"><span class="who">AI</span>"你能说'红色'吗？"</div>
+              <div class="d-line stage">[孩子试着说]</div>
+              <div class="d-line"><span class="who">AI</span>"对！红色！好漂亮！"</div>
+            </div>
+          </div>
+          <div class="tcc-beat">
+            <div class="tcc-beat-label">Beat 3 · 核心循环（第 1 轮）</div>
+            <div class="tcc-dialogue">
+              <div class="d-line"><span class="who">AI</span><em>小声</em> "凑近看！有点点！"</div>
+              <div class="d-line stage">[放大斑点]</div>
+              <div class="d-line"><span class="who">AI</span>"你能说'点点'吗？"</div>
+              <div class="d-line stage">[孩子试着说]</div>
+              <div class="d-line"><span class="who">AI</span>"点点！红身子上的黑点点！"</div>
+            </div>
+          </div>
+          <div class="tcc-caregiver">
+            <span class="cg-label">看护者</span>
+            <span class="cg-role">陪玩者——和孩子一起把词跟读出来，让孩子有个可以模仿的人</span>
+          </div>
+        </div>
+
+        <div class="tcc-col tcc-t1">
+          <div class="tcc-col-head">
+            <span class="tcc-tier">Tier 1 · 4–6 岁</span>
+            <span class="tcc-tier-name">探究引导</span>
+          </div>
+          <div class="tcc-beat">
+            <div class="tcc-beat-label">Beat 1 · 情感过渡</div>
+            <div class="tcc-dialogue">
+              <div class="d-line"><span class="who">AI</span>"哇，你看这只瓢虫！红红的身子上全是黑点——像不像特意打扮过？"</div>
+              <div class="d-line"><span class="who">AI</span>"你觉得这身红色是<em>干什么用的</em>？"</div>
+            </div>
+          </div>
+          <div class="tcc-beat">
+            <div class="tcc-beat-label">Beat 3 · 核心循环（第 1 轮）</div>
+            <div class="tcc-dialogue">
+              <div class="d-line"><span class="who">AI</span>"瓢虫侦探，第一条线索：如果这身红色真的是一种警告，鸟看到它应该怎么做？"</div>
+              <div class="d-line stage">[孩子猜]</div>
+              <div class="d-line"><span class="who">AI</span>"想得不错。我们对一下——大部分鸟看到红色的虫子确实不会下嘴。看来红色真的在说'别吃我'。"</div>
+            </div>
+          </div>
+          <div class="tcc-caregiver">
+            <span class="cg-label">看护者</span>
+            <span class="cg-role">共同探索者——分享自己看到的，不主导</span>
+          </div>
+        </div>
+
+        <div class="tcc-col tcc-t2">
+          <div class="tcc-col-head">
+            <span class="tcc-tier">Tier 2 · 6–8 岁</span>
+            <span class="tcc-tier-name">项目协作</span>
+          </div>
+          <div class="tcc-beat">
+            <div class="tcc-beat-label">Beat 1 · 情感过渡</div>
+            <div class="tcc-dialogue">
+              <div class="d-line"><span
+                  class="who">AI</span>"你找到了一只瓢虫——这是少数几种人们真心喜欢的昆虫之一。在开始研究之前，挑出它身上三个最明显的特点，告诉我你注意到了什么。"</div>
+              <div class="d-line stage">[孩子描述]</div>
+              <div class="d-line"><span class="who">AI</span>"好。带着这个问题往下看：如果一只瓢虫想躲开天敌，这些特点是帮它还是害它？"</div>
+            </div>
+          </div>
+          <div class="tcc-beat">
+            <div class="tcc-beat-label">Beat 3 · 核心循环（第 1 轮）</div>
+            <div class="tcc-dialogue">
+              <div class="d-line"><span
+                  class="who">AI</span>"我们用这个思路来验证'警告色'这个想法。先做一个预测：你觉得鸟更容易吃掉一只棕色的甲虫，还是一只瓢虫？先定答案，我们再来对一下真实实验的结果。"</div>
+              <div class="d-line stage">[孩子预测]</div>
+              <div class="d-line"><span class="who">AI</span>"记下了。实际研究发现 78%
+                的鸟会避开红色带斑的昆虫——所以瓢虫其实比棕色甲虫更难被吃到。这就是'警告色'这个想法的一条证据。"</div>
+            </div>
+          </div>
+          <div class="tcc-caregiver">
+            <span class="cg-label">看护者</span>
+            <span class="cg-role">旁观者——退后，让孩子主导</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="tier-compare-note">
+        同一个 pillar、同一个 entity、同样的 5 节主干。三列之间<strong>只有</strong>五个开关在变——语言风格、任务深度、谁在说话、概念聚焦、看护者角色。这就是"邻近 tier
+        内部适配"在实际活动里的样子。T0 ↔ T2 直接跨两级的话，两列读起来会像两份互不相关的设计——这正是为什么那种情况应该拆成同一条轴上的两个相似活动，而不是让一份设计硬撑。
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PROGRESSION AXES ============== -->
+  <section id="axes">
+    <div class="sec-head">
+      <div class="sec-num">§ 07 / 进阶轴 · 诉求 #2</div>
+      <h2 class="sec-title">七条轴，<br />来自七个 <em>Key Concept</em>。</h2>
+    </div>
+    <p class="sec-desc">七条进阶轴直接来自项目里已经在用的 7 个 IB Key Concept（参见 playbook §2 和 program.md §1.4）。
+      每一条轴就是孩子沿着一个 concept 往前走的轨迹。思考透镜和进阶阶梯共用同一套 7 个名字——没有新东西要记。</p>
+
+    <div class="note-block" style="margin-top: 0; margin-bottom: 32px;">
+      <strong>推导逻辑。</strong> Form / Function / Causation / Change / Connection / Perspective / Responsibility
+      这七个本来就是每个活动挑"思考透镜"时用的 Key Concept。把它们同时当作进阶轴，意味着一个 T1 上的 Form-L2 设计和一个 T0
+      上的 Form-L1 设计会落在同一条阶梯上——孩子的成长故事读起来是<em>沿着一个 concept 往前走</em>，而不是<em>从一个游戏毕业到下一个游戏</em>。
+      颜色、形状、质感、大小都是 Form 的子例，只填在某一级台阶上，它们本身不是轴。
+    </div>
+
+    <div class="level-legend">
+      <div class="ll-title">L1 / L2 / L3 在每一条轴上的共同含义</div>
+      <div class="ll-rungs">
+        <div class="ll-rung">
+          <span class="ll-num">L1</span>
+          <span class="ll-kind">识别</span>
+          <span class="ll-desc">看见、指出或说出这个概念的一个实例。</span>
+        </div>
+        <div class="ll-rung">
+          <span class="ll-num">L2</span>
+          <span class="ll-kind">扩展</span>
+          <span class="ll-desc">多找几个例子、多说几个部件、多走几步，或者换一个视角。</span>
+        </div>
+        <div class="ll-rung">
+          <span class="ll-num">L3</span>
+          <span class="ll-kind">推理</span>
+          <span class="ll-desc">解释为什么、推演"如果……会怎样"，或说出把整组东西连起来的规则。</span>
+        </div>
+      </div>
+      <div class="ll-foot">每条轴里具体的说法不同——Form 的 L1 是"说出一个主要属性"，Connection 的 L1 是"匹配一个相同属性"，Responsibility 的 L1
+        是"注意到一个需求"——但底层的认知动作是一样的：<strong>L1 第一次观察 → L2 扩展 → L3 解释</strong>。L1 / L2 / L3 是一条<em>认知深度</em>轴，和 T0 / T1 / T2
+        正交——后者只是根据年龄调整语言风格。一个 4 岁和一个 7 岁的孩子都可以处在 Form-L2 上，级数相同，只是说话方式不同。</div>
+    </div>
+
+    <div class="axis-wrap">
+      <div class="axis-list">
+        <button class="axis-btn active" data-axis="form">
+          <span class="axis-code">Key Concept 01</span>
+          <span class="axis-name">Form</span>
+          <span class="axis-tag">长什么样？</span>
+        </button>
+        <button class="axis-btn" data-axis="function">
+          <span class="axis-code">Key Concept 02</span>
+          <span class="axis-name">Function</span>
+          <span class="axis-tag">怎么运作？</span>
+        </button>
+        <button class="axis-btn" data-axis="causation">
+          <span class="axis-code">Key Concept 03</span>
+          <span class="axis-name">Causation</span>
+          <span class="axis-tag">为什么是这样？</span>
+        </button>
+        <button class="axis-btn" data-axis="change">
+          <span class="axis-code">Key Concept 04</span>
+          <span class="axis-name">Change</span>
+          <span class="axis-tag">怎么在变？</span>
+        </button>
+        <button class="axis-btn" data-axis="connection">
+          <span class="axis-code">Key Concept 05</span>
+          <span class="axis-name">Connection</span>
+          <span class="axis-tag">怎么相连？</span>
+        </button>
+        <button class="axis-btn" data-axis="perspective">
+          <span class="axis-code">Key Concept 06</span>
+          <span class="axis-name">Perspective</span>
+          <span class="axis-tag">谁的视角？</span>
+        </button>
+        <button class="axis-btn" data-axis="responsibility">
+          <span class="axis-code">Key Concept 07</span>
+          <span class="axis-name">Responsibility</span>
+          <span class="axis-tag">我们该怎么做？</span>
+        </button>
+      </div>
+
+      <div class="ladders">
+        <div class="ladder active" data-ladder="form">
+          <div class="ladder-head">
+            <h4>Form <span style="color: var(--muted); font-size: 18px; font-style: italic;">— 属性描述</span></h4>
+            <p>从说出一个可观察的属性，到讲清楚这个属性为什么重要。颜色、形状、质感、大小、图案都作为同一级台阶的不同子例出现。</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">L1</span>
+              <h5>说出一个主要属性</h5>
+              <p>孩子挑出一个可观察的属性并说出来——颜色、形状、大小、质感、图案、数量都可以。</p>
+              <div class="example">"瓢虫是红的。" / "它是圆的。" / "它身上有斑点。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L2</span>
+              <h5>说出多个属性并指出位置</h5>
+              <p>孩子同时说出 2–3 个属性，并且把每个属性落到 entity 的某个部位上。</p>
+              <div class="example">"红色的身子，黑色的斑点，黑黑的小腿。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L3</span>
+              <h5>解释这个属性为什么存在</h5>
+              <p>孩子对属性的目的做出解释——警告、伪装、成熟、信号、保护等。</p>
+              <div class="example">"红色是在告诉小鸟'别吃我'。"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="function">
+          <div class="ladder-head">
+            <h4>Function <span style="color: var(--muted); font-size: 18px; font-style: italic;">— 部件与功能</span></h4>
+            <p>从指出部件，到预测某个部件如果少了会发生什么。经典的 part–whole 轨迹。</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">L1</span>
+              <h5>指出并命名部件</h5>
+              <p>孩子把 entity 可见的部件一一叫出名字，但不解释它们做什么。</p>
+              <div class="example">"轮子。车门。车窗。车顶。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L2</span>
+              <h5>解释每个部件的作用</h5>
+              <p>孩子把每一个部件和它的功能对上。</p>
+              <div class="example">"轮子负责跑，车门是让人上车用的，车窗可以看外面。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L3</span>
+              <h5>预测少一个部件会怎样</h5>
+              <p>孩子对缺失或损坏的部件做反事实推理。</p>
+              <div class="example">"没有轮子？它就跑不动了。没有门？谁都上不来。"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="causation">
+          <div class="ladder-head">
+            <h4>Causation <span style="color: var(--muted); font-size: 18px; font-style: italic;">— 因与果</span></h4>
+            <p>从描述发生了什么，到解释背后的机制。</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">L1</span>
+              <h5>描述发生了什么</h5>
+              <p>孩子如实描述观察到的现象，不做原因推断。</p>
+              <div class="example">"花合起来了。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L2</span>
+              <h5>预测接下来会发生什么</h5>
+              <p>孩子从当前状态出发，预测下一步可能发生的事。</p>
+              <div class="example">"我把它搬到太阳底下，它应该就会再打开。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L3</span>
+              <h5>解释背后的机制</h5>
+              <p>孩子给出一个因果故事来说明为什么会这样。</p>
+              <div class="example">"花瓣要靠阳光才能撑开，晚上合起来是为了省力气。"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="change">
+          <div class="ladder-head">
+            <h4>Change <span style="color: var(--muted); font-size: 18px; font-style: italic;">— 顺序与演变</span></h4>
+            <p>从给两个时刻排序，到讲出一条有前因后果的完整演变轨迹。</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">L1</span>
+              <h5>给两个时刻排顺序</h5>
+              <p>孩子把两个状态按时间先后放对位置。</p>
+              <div class="example">"先是绿香蕉，后是黄香蕉。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L2</span>
+              <h5>补上"之前 / 之后"</h5>
+              <p>孩子补上缺失的第三个时刻，把序列补完整。</p>
+              <div class="example">"之前是绿的，现在是黄的，之后会变成棕色、软软的。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L3</span>
+              <h5>讲出一条完整的演变故事</h5>
+              <p>孩子把每一步之间的原因也讲出来，串成一条有因果的故事。</p>
+              <div class="example">"种子喝了雨水，长出茎，长出叶子，开出花，最后又掉出新的种子。"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="connection">
+          <div class="ladder-head">
+            <h4>Connection <span style="color: var(--muted); font-size: 18px; font-style: italic;">— 图案与归类</span></h4>
+            <p>从匹配一个相同属性，到说出整组东西共享的规则。Pattern recognition 和 classification 都放在这一条轴上。</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">L1</span>
+              <h5>匹配一个相同属性</h5>
+              <p>孩子再找到一个和原来那个东西共享一个可见属性的东西。</p>
+              <div class="example">"这片叶子也是绿色的，和苹果一样！"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L2</span>
+              <h5>找出 3 个以上的同类</h5>
+              <p>孩子把相同属性扩展成一个小合集，并把它们归到一起。</p>
+              <div class="example">"三个带斑点的东西：瓢虫、小球、小奶牛。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L3</span>
+              <h5>说出连接整组东西的规则</h5>
+              <p>孩子说出这一组东西共享的属性或作用，并能解释这种分组为什么有意义。</p>
+              <div class="example">"它们都有斑点。斑点可以帮它们躲开敌人。"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="perspective">
+          <div class="ladder-head">
+            <h4>Perspective <span style="color: var(--muted); font-size: 18px; font-style: italic;">— 换位视角</span></h4>
+            <p>从给 entity 安一种情绪，到让它去和第三者对话——共情也是一条阶梯。</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">L1</span>
+              <h5>给 entity 安一种情绪</h5>
+              <p>孩子把一种简单的情感安到 entity 身上。</p>
+              <div class="example">"泰迪困了。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L2</span>
+              <h5>想象 entity 眼中的你</h5>
+              <p>孩子反转视角，想象 entity 会怎么看自己、怎么感觉自己。</p>
+              <div class="example">"泰迪觉得我又大又暖。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L3</span>
+              <h5>让 entity 对第三者说话</h5>
+              <p>孩子替 entity 说话，而且不是在讲它自己，是在向另一个角色描述某件事。</p>
+              <div class="example">"泰迪跟兔兔说：'我的小主人很温柔，她每晚都帮我盖被子。'"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ladder" data-ladder="responsibility">
+          <div class="ladder-head">
+            <h4>Responsibility <span style="color: var(--muted); font-size: 18px; font-style: italic;">— 照料与影响</span>
+            </h4>
+            <p>从注意到一个需求，到推理长期照料或不照料会发生什么。Nurture pillar 的天然归宿。</p>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <span class="rung-num">L1</span>
+              <h5>注意到一个需求</h5>
+              <p>孩子注意到 entity 有需要——脏了、干了、孤单、坏了。</p>
+              <div class="example">"花蔫了。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L2</span>
+              <h5>提出一个具体的照料动作</h5>
+              <p>孩子能说出一个具体的、能帮上忙的行动。</p>
+              <div class="example">"我给它浇点水，再把它搬到窗边。"</div>
+            </div>
+            <div class="rung">
+              <span class="rung-num">L3</span>
+              <h5>推理长期影响</h5>
+              <p>孩子讲出持续照料会怎么样，以及不照料又会怎么样。</p>
+              <div class="example">"每天给它浇水它就会长大。我忘了浇，它的叶子就会干掉、掉下来。"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead" data-dir="核对">12 个金标准落在 7 条轴上的位置</h3>
+    <p class="subhead-desc">快速核对一下：把 playbook 里现有的 12 个 Tier-A 金标准逐一映射到 7 条轴上。这是<em>我的建议分类</em>——评审时再确认或调整。</p>
+
+    <div class="mapping-table-wrap">
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>风格</th>
+            <th>Entity</th>
+            <th>Pillar</th>
+            <th>轴 · 级数</th>
+            <th>判定依据</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-style">mystery_lens</td>
+            <td class="m-entity">toy_robot</td>
+            <td><span class="pill pill-mystery">Mystery</span></td>
+            <td class="m-axis"><strong>Function</strong> · L2</td>
+            <td class="m-why">推断每个部件的作用</td>
+          </tr>
+          <tr>
+            <td class="m-style">mystery_trail</td>
+            <td class="m-entity">butterfly</td>
+            <td><span class="pill pill-mystery">Mystery</span></td>
+            <td class="m-axis"><strong>Connection</strong> · L2</td>
+            <td class="m-why">找到 3 个以上有相同隐藏图案的东西</td>
+          </tr>
+          <tr>
+            <td class="m-style">inventor_workshop</td>
+            <td class="m-entity">rubber_duck</td>
+            <td><span class="pill pill-creation">Creation</span></td>
+            <td class="m-axis"><strong>Function</strong> · L2</td>
+            <td class="m-why">想象每个部件能变成什么样</td>
+          </tr>
+          <tr>
+            <td class="m-style">mix_lab</td>
+            <td class="m-entity">rock</td>
+            <td><span class="pill pill-creation">Creation</span></td>
+            <td class="m-axis"><strong>Form</strong> · L2</td>
+            <td class="m-why">说出多个可观察属性并各自定位</td>
+          </tr>
+          <tr>
+            <td class="m-style">voice_stage</td>
+            <td class="m-entity">lion</td>
+            <td><span class="pill pill-performance">Performance</span></td>
+            <td class="m-axis"><strong>Perspective</strong> · L1</td>
+            <td class="m-why">替 entity 发声——安一种简单情绪</td>
+          </tr>
+          <tr>
+            <td class="m-style">ensemble_show</td>
+            <td class="m-entity">bird</td>
+            <td><span class="pill pill-performance">Performance</span></td>
+            <td class="m-axis"><strong>Perspective</strong> · L2</td>
+            <td class="m-why">给每一个找到的东西赋予声音、视角</td>
+          </tr>
+          <tr>
+            <td class="m-style">prediction_lab</td>
+            <td class="m-entity">goldfish</td>
+            <td><span class="pill pill-discovery">Discovery</span></td>
+            <td class="m-axis"><strong>Causation</strong> · L2</td>
+            <td class="m-why">预测下一步会发生什么，再揭晓</td>
+          </tr>
+          <tr>
+            <td class="m-style">field_experiment</td>
+            <td class="m-entity">playground</td>
+            <td><span class="pill pill-discovery">Discovery</span></td>
+            <td class="m-axis"><strong>Connection</strong> · L3</td>
+            <td class="m-why">说出这组东西共享的规则</td>
+          </tr>
+          <tr>
+            <td class="m-style">time_traveler</td>
+            <td class="m-entity">banana</td>
+            <td><span class="pill pill-adventure">Adventure</span></td>
+            <td class="m-axis"><strong>Change</strong> · L2</td>
+            <td class="m-why">补上"之前 / 现在 / 之后"这条变化线</td>
+          </tr>
+          <tr>
+            <td class="m-style">quest_collector</td>
+            <td class="m-entity">dandelion</td>
+            <td><span class="pill pill-adventure">Adventure</span></td>
+            <td class="m-axis"><strong>Connection</strong> · L2</td>
+            <td class="m-why">找 3 个以上符合任务标准的东西</td>
+          </tr>
+          <tr>
+            <td class="m-style">care_station</td>
+            <td class="m-entity">teddy_bear</td>
+            <td><span class="pill pill-nurture">Nurture</span></td>
+            <td class="m-axis"><strong>Responsibility</strong> · L2</td>
+            <td class="m-why">注意到需求，提出一个具体的照料动作</td>
+          </tr>
+          <tr>
+            <td class="m-style">rescue_team</td>
+            <td class="m-entity">flower</td>
+            <td><span class="pill pill-nurture">Nurture</span></td>
+            <td class="m-axis"><strong>Responsibility</strong> · L2</td>
+            <td class="m-why">照料动作 + 被救的物件互相帮助</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mapping-coverage">
+      <div class="cov-head">覆盖检查 —— 每条轴有几个金标准</div>
+      <div class="cov-grid">
+        <div class="cov-axis thin">
+          <span class="cov-name">Form</span>
+          <span class="cov-dots">●</span>
+          <span class="cov-count">1</span>
+        </div>
+        <div class="cov-axis">
+          <span class="cov-name">Function</span>
+          <span class="cov-dots">●●</span>
+          <span class="cov-count">2</span>
+        </div>
+        <div class="cov-axis thin">
+          <span class="cov-name">Causation</span>
+          <span class="cov-dots">●</span>
+          <span class="cov-count">1</span>
+        </div>
+        <div class="cov-axis thin">
+          <span class="cov-name">Change</span>
+          <span class="cov-dots">●</span>
+          <span class="cov-count">1</span>
+        </div>
+        <div class="cov-axis">
+          <span class="cov-name">Connection</span>
+          <span class="cov-dots">●●●</span>
+          <span class="cov-count">3</span>
+        </div>
+        <div class="cov-axis">
+          <span class="cov-name">Perspective</span>
+          <span class="cov-dots">●●</span>
+          <span class="cov-count">2</span>
+        </div>
+        <div class="cov-axis">
+          <span class="cov-name">Responsibility</span>
+          <span class="cov-dots">●●</span>
+          <span class="cov-count">2</span>
+        </div>
+      </div>
+      <div class="cov-note">7 条轴在现有的 Tier-A 清单里都至少有 1 个代表——这些轴不是凭空发明出来的，它们覆盖了 playbook
+        已经记录的全部金标准。<strong>Connection、Perspective、Responsibility</strong> 代表最充足。<strong>Form、Causation、Change</strong>
+        各只有 1 个金标准——值得讨论这几条是否需要补更多 Tier-A 锚点，再让 Tier-B 星座和 Tier-P property-bridge 的内容基于它们扩展。</div>
+    </div>
+  </section>
+
+  <!-- ============== CATEGORY OVERLAY COLLAPSE ============== -->
+  <section id="overlays">
+    <div class="sec-head">
+      <div class="sec-num">§ 08 / Cat1 和 Cat5 怎么简化</div>
+      <h2 class="sec-title">Template A 和 B，<br />都变成 <em>overlay</em>。</h2>
+    </div>
+    <p class="sec-desc">在 Template 0 之下，每个 category overlay 只需要填 8 个字段——其他所有东西（pillar overlay、创作变量、检查清单、维度锚定）
+      都继承自 Template 0。之后新增 Cat2–Cat6 从"重写一套模板"变成"复制 + 改几行 override"。</p>
+
+    <div class="collapse-grid">
+      <div class="overlay-card">
+        <h4>Template A</h4>
+        <span class="sub">Category 1 — 持续对话 · in-device</span>
+        <div class="overlay-fields">
+          <div class="line"><span class="k">extends:</span><span class="v">template_0</span></div>
+          <div class="line"><span class="k">beat_medium:</span><span class="v">verbal_dialogue</span></div>
+          <div class="line"><span class="k">round_count:</span><span class="v">3–5</span></div>
+          <div class="line"><span class="k">camera_use:</span><span class="v">initial_only</span></div>
+          <div class="line"><span class="k">setting:</span><span class="v">indoor_quiet</span></div>
+          <div class="line"><span class="k">step_count:</span><span class="v">5</span></div>
+          <div class="line"><span class="k">core_mechanic:</span><span class="v">scenario → verbal → validate</span>
+          </div>
+          <div class="line"><span class="k">anchor_priority:</span><span class="v">engagement-first</span></div>
+        </div>
+      </div>
+      <div class="overlay-card">
+        <h4>Template B</h4>
+        <span class="sub">Category 5 — 收集 / 追踪 · out-of-device</span>
+        <div class="overlay-fields">
+          <div class="line"><span class="k">extends:</span><span class="v">template_0</span></div>
+          <div class="line"><span class="k">beat_medium:</span><span class="v">photo_collection + physical</span></div>
+          <div class="line"><span class="k">round_count:</span><span class="v">3–4</span></div>
+          <div class="line"><span class="k">camera_use:</span><span class="v">initial + per_round</span></div>
+          <div class="line"><span class="k">setting:</span><span class="v">outdoor</span></div>
+          <div class="line"><span class="k">step_count:</span><span class="v">5–6</span></div>
+          <div class="line"><span class="k">core_mechanic:</span><span class="v">mission → find → synthesize</span>
+          </div>
+          <div class="line"><span class="k">anchor_priority:</span><span class="v">physical-first</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== DECISIONS ============== -->
+  <section id="decisions">
+    <div class="sec-head">
+      <div class="sec-num">§ 09 / 决策记录</div>
+      <h2 class="sec-title">四个问题，<em>四个决定</em>。</h2>
+    </div>
+    <p class="sec-desc">这些原本都是评审前的待决问题。内部讨论后的回复现在已锁定，直接决定了 Template 0 的最终形状。</p>
+
+    <div class="decisions">
+      <div class="decision">
+        <div class="dn">01</div>
+        <div>
+          <div class="q"><code>topic_axis</code> 预设几条，从哪里推出来？</div>
+          <div class="a"><b>七条，对应 7 个 IB Key
+              Concept</b>——Form、Function、Causation、Change、Connection、Perspective、Responsibility。
+            上一稿挑的轴（比如 "color_naming"）太具体了，其实只是 Form 的一个子例。直接从 Key Concept 推导的好处是：思考透镜和进阶阶梯共用同一套 7
+            个名字，团队不用再记一套新词汇。</div>
+        </div>
+        <div class="stamp">已定</div>
+      </div>
+      <div class="decision">
+        <div class="dn">02</div>
+        <div>
+          <div class="q"><code>tier_variants</code> 写在 header 里，还是靠 runtime 推断？</div>
+          <div class="a"><b>写在 header 里。</b>家长端看板和审计都需要显式信息。作者多花一点点成本换可追溯性。</div>
+        </div>
+        <div class="stamp">已定</div>
+      </div>
+      <div class="decision">
+        <div class="dn">03</div>
+        <div>
+          <div class="q"><code>key_concepts</code> 和 <code>related_concepts</code> 算同一套分类，还是两套？</div>
+          <div class="a"><b>两套独立的分类。</b> Key Concepts 是 IB 的"思考透镜"（通用的 7 个）。Related Concepts
+            是带学科标签、面向儿童的徽章。家长端看板可以直接把它们分两列展示。</div>
+        </div>
+        <div class="stamp">已定</div>
+      </div>
+      <div class="decision">
+        <div class="dn">04</div>
+        <div>
+          <div class="q">T0 的看护者角色是硬门槛还是软引导？</div>
+          <div class="a"><b>目前是软引导。</b> T0 默认 <code>caregiver_role: scaffold</code>，但系统不会因为没有看护者就拒绝开始。
+            等真实使用数据出来之后再决定要不要升级为硬门槛。</div>
+        </div>
+        <div class="stamp">已定</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="claim">
+      "一副整个产品都能长进去的骨架——让 tag 系统、progression 阶梯、家长端成长路径都从同一条主干上读数据。"
+    </div>
+    <div>
+      <h5>下一步</h5>
+      <ul>
+        <li>内部团队签收 Template 0 的结构</li>
+        <li>起草 <code>docs/progression_axes.md</code></li>
+        <li>重构 <code>templates.md</code>（Template A / B → overlay）</li>
+        <li>在 <code>program.md</code> 里把 tag block 提升为必填</li>
+      </ul>
+      <h5 style="margin-top: 20px;">签收通过后</h5>
+      <ul>
+        <li>L × T 交互式演练（3×3 矩阵：1 条轴 × 3 级深度 × 3 个 tier，每格显示一段示例对话），用于作者培训</li>
+        <li>作者培训指南 + 完整的 worked example</li>
+      </ul>
+    </div>
+    <div>
+      <h5>参考文件</h5>
+      <ul>
+        <li>templates.md · 当前主干</li>
+        <li>program.md · 输出格式</li>
+        <li>entity_guidance.md · tier 指南</li>
+        <li>docs/game_design_playbook.md</li>
+      </ul>
+    </div>
+    <div class="version">
+      <span>版本 0.1 · 评审草稿</span>
+      <span>WonderLens x 奇朵 · 活动设计框架 · 2026-04-15</span>
+    </div>
+  </footer>
+
+  <script>
+    // Spine overlay toggle
+    const spineButtons = document.querySelectorAll('.spine-toggle button');
+    const overlayTexts = document.querySelectorAll('.overlay-text');
+    spineButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        spineButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const mode = btn.dataset.overlay;
+        overlayTexts.forEach(el => {
+          el.textContent = el.dataset[mode];
+        });
+      });
+    });
+    // Initialize
+    overlayTexts.forEach(el => {el.textContent = el.dataset.base;});
+
+    // Tier tabs
+    const tierTabs = document.querySelectorAll('.tier-tab');
+    const tierPanels = document.querySelectorAll('.tier-panel');
+    tierTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tier = tab.dataset.tier;
+        tierTabs.forEach(t => t.classList.remove('active'));
+        tierPanels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelector(`.tier-panel[data-panel="${tier}"]`).classList.add('active');
+      });
+    });
+
+    // Axis ladder switcher
+    const axisBtns = document.querySelectorAll('.axis-btn');
+    const ladders = document.querySelectorAll('.ladder');
+    axisBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const axis = btn.dataset.axis;
+        axisBtns.forEach(b => b.classList.remove('active'));
+        ladders.forEach(l => l.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelector(`.ladder[data-ladder="${axis}"]`).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+
+</html>
