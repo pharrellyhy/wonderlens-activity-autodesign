@@ -2896,15 +2896,18 @@
     }
 
     .layout-mockup {
-      /* Inherits .mockup-frame styling from Template 0 */
+      max-width: 360px;
+      margin: 0 auto;
     }
 
-    [data-callout] {
+    .badge-circle,
+    .badge-title,
+    .recap-row .chips,
+    .recap-exit {
       position: relative;
     }
 
-    [data-callout]::after {
-      content: attr(data-callout);
+    .callout-marker {
       position: absolute;
       top: -8px;
       right: -8px;
@@ -2916,10 +2919,8 @@
       font-family: var(--mono);
       font-size: 11px;
       font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
+      text-align: center;
+      line-height: 22px;
     }
 
     .recap-exit {
@@ -3313,34 +3314,38 @@
             <span class="date">Today</span>
           </div>
           <div class="recap-badge">
-            <div class="badge-circle" data-callout="1">L</div>
+            <div class="badge-circle">L<span class="callout-marker" aria-hidden="true">1</span></div>
             <div>
-              <div class="badge-title" data-callout="2">Ladybug Detective</div>
+              <div class="badge-title">Ladybug Detective<span class="callout-marker" aria-hidden="true">2</span></div>
               <div class="badge-sub">Mystery · solved</div>
             </div>
           </div>
           <div class="recap-row">
             <span class="recap-lbl">The moment</span>
-            <div class="chips" data-callout="3">
+            <div class="chips">
               <span class="chip chip-moment">You spotted the warning sign on the ladybug's back</span>
+              <span class="callout-marker" aria-hidden="true">3</span>
             </div>
           </div>
           <div class="recap-row">
             <span class="recap-lbl">You earned</span>
-            <div class="chips" data-callout="4">
+            <div class="chips">
               <span class="chip chip-rel">Pattern</span>
               <span class="chip chip-rel">Camouflage</span>
+              <span class="callout-marker" aria-hidden="true">4</span>
             </div>
           </div>
           <div class="recap-row">
             <span class="recap-lbl">You practiced</span>
-            <div class="chips" data-callout="5">
+            <div class="chips">
               <span class="chip chip-atl">Observing</span>
               <span class="chip chip-atl">Describing</span>
+              <span class="callout-marker" aria-hidden="true">5</span>
             </div>
           </div>
-          <div class="recap-exit" data-callout="6">
+          <div class="recap-exit">
             Next time you're outside, see if you can find another round, spotted thing.
+            <span class="callout-marker" aria-hidden="true">6</span>
           </div>
         </div>
       </div>

@@ -2913,15 +2913,18 @@
     }
 
     .layout-mockup {
-      /* Inherits .mockup-frame styling from Template 0 */
+      max-width: 360px;
+      margin: 0 auto;
     }
 
-    [data-callout] {
+    .badge-circle,
+    .badge-title,
+    .recap-row .chips,
+    .recap-exit {
       position: relative;
     }
 
-    [data-callout]::after {
-      content: attr(data-callout);
+    .callout-marker {
       position: absolute;
       top: -8px;
       right: -8px;
@@ -2933,10 +2936,8 @@
       font-family: var(--mono);
       font-size: 11px;
       font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
+      text-align: center;
+      line-height: 22px;
     }
 
     .recap-exit {
@@ -3329,34 +3330,38 @@
             <span class="date">今天</span>
           </div>
           <div class="recap-badge">
-            <div class="badge-circle" data-callout="1">L</div>
+            <div class="badge-circle">L<span class="callout-marker" aria-hidden="true">1</span></div>
             <div>
-              <div class="badge-title" data-callout="2">瓢虫小侦探</div>
+              <div class="badge-title">瓢虫小侦探<span class="callout-marker" aria-hidden="true">2</span></div>
               <div class="badge-sub">Mystery · 完成</div>
             </div>
           </div>
           <div class="recap-row">
             <span class="recap-lbl">今天的瞬间</span>
-            <div class="chips" data-callout="3">
+            <div class="chips">
               <span class="chip chip-moment">你发现了瓢虫背上的警告色</span>
+              <span class="callout-marker" aria-hidden="true">3</span>
             </div>
           </div>
           <div class="recap-row">
             <span class="recap-lbl">你收获了</span>
-            <div class="chips" data-callout="4">
+            <div class="chips">
               <span class="chip chip-rel">图案</span>
               <span class="chip chip-rel">伪装</span>
+              <span class="callout-marker" aria-hidden="true">4</span>
             </div>
           </div>
           <div class="recap-row">
             <span class="recap-lbl">你练习了</span>
-            <div class="chips" data-callout="5">
+            <div class="chips">
               <span class="chip chip-atl">观察</span>
               <span class="chip chip-atl">描述</span>
+              <span class="callout-marker" aria-hidden="true">5</span>
             </div>
           </div>
-          <div class="recap-exit" data-callout="6">
+          <div class="recap-exit">
             下次出门的时候，可以找找有没有另一个圆圆的、带斑点的东西。
+            <span class="callout-marker" aria-hidden="true">6</span>
           </div>
         </div>
       </div>
@@ -3449,7 +3454,7 @@
       <div class="moment-col">
         <div class="moment-col-head">输出 / Output</div>
         <p class="moment-example">"你发现了瓢虫背上的警告色"</p>
-        <p class="moment-output-meta">一句净化后的摘要。第二人称、过去式、具体且有画面感。6–12 个字（中文约 10–20 字）。</p>
+        <p class="moment-output-meta"><b>一句净化后的摘要。</b>第二人称、过去式、具体且有画面感。6–12 个字（中文约 10–20 字）。</p>
       </div>
       <div class="moment-col">
         <div class="moment-col-head">规则 / Rules</div>
