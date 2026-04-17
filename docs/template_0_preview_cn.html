@@ -216,6 +216,71 @@
       font-weight: 400;
     }
 
+    .revnote {
+      margin-top: 36px;
+      padding: 18px 22px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .revnote summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+
+    .revnote summary::marker,
+    .revnote summary::-webkit-details-marker {
+      color: var(--accent);
+    }
+
+    .revnote[open] summary {
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .revnote-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 2px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .revnote ol {
+      margin: 0;
+      padding-left: 22px;
+      color: var(--ink-soft);
+    }
+
+    .revnote li {
+      margin-bottom: 10px;
+    }
+
+    .revnote li:last-child {
+      margin-bottom: 0;
+    }
+
+    .revnote code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
     /* ============ SECTION BASE ============ */
     section {
       padding: 80px 48px;
@@ -759,6 +824,80 @@
       color: var(--ink-soft);
     }
 
+    .tag-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .tag-split { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    .tag-split-col {
+      background: color-mix(in srgb, var(--cream) 50%, transparent);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 18px 20px 8px;
+    }
+
+    .tag-split-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tag-split-head[data-surface="parent"] { color: var(--tier-1); }
+    .tag-split-head[data-surface="child"]  { color: var(--tier-0); }
+
+    .tag-split-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tag-split-col li {
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--line);
+      display: grid;
+      grid-template-columns: 115px 1fr;
+      gap: 14px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .tag-split-col li:last-child { border-bottom: none; }
+
+    .tag-split-col li code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .tag-split-col li span { color: var(--ink-soft); }
+
+    .tag-split-foot {
+      margin-top: 18px;
+      padding: 14px 18px;
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      border-left: 2px solid var(--accent);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .tag-split-foot code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
     /* ============ BRIDGES / UPSTREAM-DOWNSTREAM ============ */
     .subhead {
       font-family: var(--serif);
@@ -1172,6 +1311,59 @@
       border-color: var(--ink);
       font-style: italic;
       text-transform: none;
+    }
+
+    .chip-subject {
+      background: color-mix(in srgb, var(--tier-1) 14%, var(--bg));
+      color: var(--tier-1);
+      border-color: color-mix(in srgb, var(--tier-1) 38%, transparent);
+    }
+
+    .chip-moment {
+      background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+      color: var(--ink);
+      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+      font-style: italic;
+      font-family: var(--serif);
+      font-size: 12px;
+      text-transform: none;
+      letter-spacing: 0;
+      padding: 6px 12px;
+      line-height: 1.4;
+    }
+
+    .path-frame-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .path-frame-rows {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .path-frame-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 12px;
+      align-items: center;
+      font-size: 11px;
+    }
+
+    .pfr-lbl {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
     /* Parent path mockup */
@@ -2395,6 +2587,118 @@
       line-height: 1.45;
     }
 
+    /* ====== L1/L2/L3 transition rules ====== */
+    .trans-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .trans-grid { grid-template-columns: 1fr; }
+    }
+
+    .trans-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 22px 24px 18px;
+    }
+
+    .trans-within { border-top: 3px solid var(--tier-0); }
+    .trans-across { border-top: 3px solid var(--tier-1); }
+
+    .trans-label {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+
+    .trans-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .trans-body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .trans-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      align-items: baseline;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .trans-arrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 2px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .trans-up   .trans-arrow { background: color-mix(in srgb, var(--accent) 12%, var(--bg)); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent); }
+    .trans-hold .trans-arrow { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+    .trans-down .trans-arrow { background: color-mix(in srgb, var(--tier-1) 10%, var(--bg)); color: var(--tier-1); border: 1px solid color-mix(in srgb, var(--tier-1) 36%, transparent); }
+
+    .trans-cond { color: var(--ink); }
+    .trans-cond b { color: var(--accent); font-weight: 600; }
+
+    .trans-foot {
+      margin-top: 18px;
+      padding: 18px 24px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .trans-foot-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 16px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 700px) {
+      .trans-row { grid-template-columns: 1fr; gap: 6px; }
+      .trans-arrow { justify-self: start; }
+      .trans-foot-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    .tff-lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .tff-body code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
     .mapping-coverage {
       margin-top: 20px;
       padding: 22px 28px;
@@ -2512,7 +2816,7 @@
       <a href="#axes">进阶轴</a>
       <a href="#decisions">决策</a>
     </nav>
-    <div class="meta">草稿 · 2026-04-15 · 内部评审</div>
+    <div class="meta">草稿 v0.2 · 2026-04-17 · 内部评审</div>
   </header>
 
   <!-- ============== HERO ============== -->
@@ -2539,9 +2843,19 @@
       </div>
       <div>
         <span class="label">状态</span>
-        <span class="value">草稿 · 待签收</span>
+        <span class="value">草稿 v0.2 · 待签收</span>
       </div>
     </div>
+
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.2</span> 根据 PM 评审意见做了四处修订 · 2026-04-17</summary>
+      <ol>
+        <li><b>看护者角色改为跨 tier 累加</b>（§03 · §04 · §06）—— T0 <code>[scaffold]</code> → T1 <code>[scaffold, co-explorer]</code> → T2 <code>[observer, co-explorer, scaffold]</code>（权重依次递减），不再是每个 tier 一个固定角色。</li>
+        <li><b>Tag block 按下游面拆成两组</b>（§04 · §05）—— 新增两个可选字段：<code>highlight_moment</code>（儿童端运行时一句话）和 <code>subject_tags</code>（家长端跨学科分类）。字段说明和 mockup 都重写，明确哪个字段喂给哪个面。</li>
+        <li><b>新增 L1↔L2↔L3 升降级规则</b>（§07）—— 一个新的小节，列了活动内和活动间的升级 / 保持 / 降级的可量化触发条件，还有"不让孩子挫败"原则、同辈跳跃、以及个性化接口的预留方案。</li>
+        <li><b>软化 §06 T1 Beat 3 的对话</b>—— 原版的"如果红色真的是一种警告，鸟应该怎么做？"对 4–6 岁偏抽象。换成先给具体前提，再问鸟具体会做什么的 what-will-it-do 版本。</li>
+      </ol>
+    </details>
   </section>
 
   <!-- ============== AT A GLANCE ============== -->
@@ -2734,8 +3048,8 @@
           <span class="key">next_step_hint</span>: <span class="str">"..."</span>
           <span class="key">reward_hook</span>: <span class="str">"..."</span></span>
 
-        <span class="key">caregiver_role</span>: <span class="str">{scaffold|co-explorer|observer}</span> <span
-          class="cmt"># 默认值由 tier 决定</span>
+        <span class="key">caregiver_role</span>: <span class="str">[scaffold, co-explorer, observer]</span> <span
+          class="cmt"># 累加列表；默认值由 tier 决定</span>
 
 
         <span class="cmt"># ─── §1 · 五节主干 (invariant, 不可动摇) ────────────────</span>
@@ -2785,19 +3099,19 @@
           <span class="key">language</span>: <span class="str">"拟声词、叠词、3–5 词短句, 语速慢语调夸张"</span>
           <span class="key">task_depth</span>: <span class="str">"单步指令, 即时反馈"</span>
           <span class="key">concept_focus</span>: <span class="str">"具体属性 + 基本功能"</span>
-          <span class="key">caregiver_role</span>: <span class="str">scaffold</span>
+          <span class="key">caregiver_role</span>: <span class="str">[scaffold]</span>                               <span class="cmt"># 唯一角色</span>
           <span class="key">T1</span>:
           <span class="key">ai_role</span>: <span class="str">"好奇的共同探索者 + 思维启发者"</span>
           <span class="key">language</span>: <span class="str">"自然语速, 简单复合句, 开放式 '为什么 / 怎么样'"</span>
           <span class="key">task_depth</span>: <span class="str">"2–3 步序列, 简单分工"</span>
           <span class="key">concept_focus</span>: <span class="str">"因果、变化、联系"</span>
-          <span class="key">caregiver_role</span>: <span class="str">co-explorer</span>
+          <span class="key">caregiver_role</span>: <span class="str">[scaffold, co-explorer]</span>                 <span class="cmt"># 权重大致各半</span>
           <span class="key">T2</span>:
           <span class="key">ai_role</span>: <span class="str">"项目顾问 + 资源协调者"</span>
           <span class="key">language</span>: <span class="str">"接近成人的对话, 复杂句式, 逻辑连接词"</span>
           <span class="key">task_depth</span>: <span class="str">"多步任务, 可选的项目式分支"</span>
           <span class="key">concept_focus</span>: <span class="str">"观点、责任、系统"</span>
-          <span class="key">caregiver_role</span>: <span class="str">observer</span></span>
+          <span class="key">caregiver_role</span>: <span class="str">[observer, co-explorer, scaffold]</span>      <span class="cmt"># 权重依次递减</span></span>
 
 
         <span class="cmt"># ─── §4 · Overlay 接口 (每个 category 需要填的字段) ──────</span>
@@ -2843,16 +3157,21 @@
         <span class="key">tier_variants</span>: <span class="hl">[<span class="str">T0</span>]</span> <span
           class="cmt"># 向相邻 tier 弹性延伸</span>
 
-        <span class="key">tags</span>:
+        <span class="key">tags</span>:                                 <span class="cmt"># 按下游面拆成两组</span>
+        <span class="cmt"># — 儿童端（直观的成果展示）—</span>
         <span class="key">attributes</span>: <span class="hl">[<span class="str">red</span>, <span
             class="str">black</span>, <span class="str">spots</span>, <span class="str">round</span>]</span>
-        <span class="key">key_concepts</span>: <span class="hl">[<span class="str">Form</span>, <span
-            class="str">Change</span>]</span> <span class="cmt"># 从 7 个里挑 1–2 个</span>
         <span class="key">related_concepts</span>: <span class="hl">[<span class="str">Pattern</span>, <span
-            class="str">Camouflage</span>]</span> <span class="cmt"># 2–4 个学科标签</span>
+            class="str">Camouflage</span>]</span> <span class="cmt"># 2–4 个孩子能认得的学科标签</span>
+        <span class="key">highlight_moment</span>: <span class="hl"><span class="str">"你发现了瓢虫背上的警告色"</span></span> <span class="cmt"># 新增 —— 运行时生成</span>
+        <span class="cmt"># — 家长端（IB + 跨学科框架）—</span>
+        <span class="key">key_concepts</span>: <span class="hl">[<span class="str">Form</span>, <span
+            class="str">Change</span>]</span> <span class="cmt"># 从 7 个 IB Key Concept 里挑 1–2 个</span>
         <span class="key">atl_skills</span>: [<span class="str">critical_thinking</span>, <span
-          class="str">observation</span>]
+          class="str">observation</span>] <span class="cmt"># IB ATL</span>
         <span class="key">transdisciplinary_theme</span>: <span class="str">How the World Works</span>
+        <span class="key">subject_tags</span>: <span class="hl">[<span class="str">science</span>, <span
+            class="str">biology</span>]</span> <span class="cmt"># 新增 —— 跨学科分类</span>
 
         <span class="key">kud</span>:
         <span class="key">know</span>: [<span class="str">瓢虫有 6 条腿</span>, <span class="str">不同种类斑点不同</span>]
@@ -2865,22 +3184,36 @@
         <span class="key">next_step_hint</span>: <span class="str">"升到同一条轴的 L3，或跳到 causation L1"</span>
         <span class="key">reward_hook</span>: <span class="str">"connection_L2 徽章"</span>
 
-        <span class="key">caregiver_role</span>: <span class="str">co-explorer</span> <span class="cmt"># 看 tier
-          而定</span>
+        <span class="key">caregiver_role</span>: <span class="hl">[<span class="str">scaffold</span>, <span class="str">co-explorer</span>]</span> <span class="cmt"># 累加列表；默认值由 tier 决定</span>
       </pre>
 
       <div class="tag-legend">
-        <h4>每个字段的用处</h4>
-        <ul>
-          <li><code>attributes</code><span>游戏用到的可观察属性。直接喂给 playbook 里的 property-bridge template。</span></li>
-          <li><code>key_concepts</code><span>从 7 个 IB Key Concept 里挑 1–2 个——"思考透镜"。和 related_concepts
-              属于<b>两套独立的分类</b>。</span></li>
-          <li><code>related_concepts</code><span>2–4 个带学科标签的概念。儿童端活动后可以拿走的徽章。</span></li>
-          <li><code>atl_skills</code><span>孩子练到的 2–3 个 ATL 能力。喂给家长端的成长路径。</span></li>
-          <li><code>progression</code><span>新增的 block。把"同一个话题，稍微难一点"变成程序可读的一级字段。</span></li>
-          <li><code>tier_variants</code><span>写在 header 里，不靠 runtime 推断。家长端要能审计到。</span></li>
-          <li><code>caregiver_role</code><span>目前只是软引导——按 tier 给默认值，以后可以升级为硬门槛。</span></li>
-        </ul>
+        <h4>每个字段的用处——按服务的下游面拆开</h4>
+        <p style="margin:0 0 16px; color:var(--muted); font-size:14px; line-height:1.55;">下游用户分成两类。<b>儿童端的活动回顾</b>需要直观、看得见的"我做了什么"；<b>家长端的成长路径</b>需要 IB 框架 + 跨学科分类，把活动放进课程坐标。有些字段两边都用，大多数只服务其中一边。</p>
+        <div class="tag-split">
+          <div class="tag-split-col">
+            <div class="tag-split-head" data-surface="child">儿童端 · 直观的成果展示</div>
+            <ul>
+              <li><code>role_title</code><span>孩子获得的角色头衔。动作感强、贴合他们实际做的事。</span></li>
+              <li><code>pillar</code><span>情绪模式（Mystery、Creation 等）——变成任务的大框架。</span></li>
+              <li><code>related_concepts</code><span>2–4 个孩子能认出的学科标签（图案、伪装…），作为徽章展示。</span></li>
+              <li><code>highlight_moment</code><span><b>新增。</b>运行时生成的一句话："你发现了 / 你想出了 / 你照顾了…"。是一份具体的奖杯，不是总结。</span></li>
+              <li><code>attributes</code><span>游戏里用到的可观察属性——回放孩子当下注意到的东西。</span></li>
+            </ul>
+          </div>
+          <div class="tag-split-col">
+            <div class="tag-split-head" data-surface="parent">家长端 · IB + 跨学科框架</div>
+            <ul>
+              <li><code>key_concepts</code><span>从 7 个 IB Key Concept 里挑 1–2 个——家长追踪"思维深度"的主轴。和 related_concepts 属于<b>两套独立的分类</b>。</span></li>
+              <li><code>atl_skills</code><span>练到的 2–3 个 IB ATL 能力。家长可以跨活动看元能力的累积。</span></li>
+              <li><code>transdisciplinary_theme</code><span>6 个 IB 跨学科主题中的哪一个。</span></li>
+              <li><code>subject_tags</code><span><b>新增。</b>跨学科分类（science / language / art / math / social-emotional）。家长可以按这个筛选，或和学校科目做对照——与儿童端有意错开。</span></li>
+              <li><code>progression</code><span>活动瞄准的 axis + 难度等级，以及下一步建议。驱动成长路径里的阶梯视图。</span></li>
+              <li><code>tier</code> · <code>tier_variants</code><span>清晰的审计线索——活动是按哪个年龄档调过的。</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tag-split-foot"><code>caregiver_role</code> 是<em>列表</em>而不是单值——T0 只有 <code>[scaffold]</code>；T1 加上 <code>co-explorer</code>；T2 三者都在，但权重依次递减。目前只是软引导，即使看护者没到场，系统也不会拒绝开始。</div>
       </div>
     </div>
   </section>
@@ -3002,10 +3335,9 @@
             </div>
           </div>
           <div class="recap-row">
-            <span class="recap-lbl">你在思考</span>
+            <span class="recap-lbl">今天的瞬间</span>
             <div class="chips">
-              <span class="chip chip-key">Form</span>
-              <span class="chip chip-key">Change</span>
+              <span class="chip chip-moment">你发现了瓢虫背上的警告色</span>
             </div>
           </div>
           <div class="recap-row">
@@ -3023,8 +3355,9 @@
             </div>
           </div>
           <div class="reads-from">
-            读取：<code>role_title</code> · <code>pillar</code> · <code>key_concepts</code> ·
+            读取：<code>role_title</code> · <code>pillar</code> · <code>highlight_moment</code> ·
             <code>related_concepts</code> · <code>atl_skills</code>
+            <span style="display:block; margin-top:6px; font-style:italic; opacity:.8;">不出现 IB 术语——孩子看到的是"我做了什么"，不是框架怎么归类。</span>
           </div>
         </div>
       </div>
@@ -3067,9 +3400,39 @@
             <div class="axis-evidence">1 个活动 · 泰迪熊</div>
           </div>
           <div class="path-legend">L1 识别 · L2 扩展 · L3 推理 —— 同一个 concept 上的 3 级认知深度，详见 §07</div>
+
+          <div class="path-frame-sub">本周在 IB 框架上的分布</div>
+          <div class="path-frame-rows">
+            <div class="path-frame-row">
+              <span class="pfr-lbl">Key Concepts</span>
+              <div class="chips">
+                <span class="chip chip-key">Form ·3</span>
+                <span class="chip chip-key">Connection ·2</span>
+                <span class="chip chip-key">Perspective ·1</span>
+              </div>
+            </div>
+            <div class="path-frame-row">
+              <span class="pfr-lbl">ATL Skills</span>
+              <div class="chips">
+                <span class="chip chip-atl">观察 ·5</span>
+                <span class="chip chip-atl">描述 ·4</span>
+                <span class="chip chip-atl">批判思维 ·2</span>
+              </div>
+            </div>
+            <div class="path-frame-row">
+              <span class="pfr-lbl">学科</span>
+              <div class="chips">
+                <span class="chip chip-subject">科学 ·4</span>
+                <span class="chip chip-subject">语言 ·1</span>
+                <span class="chip chip-subject">社交情感 ·1</span>
+              </div>
+            </div>
+          </div>
+
           <div class="reads-from">
             读取：<code>progression.topic_axis</code> · <code>progression.difficulty_level</code> ·
-            <code>progression.reward_hook</code> · <code>tier</code>
+            <code>tier</code> · <code>key_concepts</code> · <code>atl_skills</code> · <code>transdisciplinary_theme</code> · <code>subject_tags</code>
+            <span style="display:block; margin-top:6px; font-style:italic; opacity:.8;">完整的 IB + 跨学科面——家长既能看到深度进展，也能把活动对上学校科目。</span>
           </div>
         </div>
       </div>
@@ -3133,8 +3496,8 @@
         </div>
         <div class="dial">
           <div class="dial-label">看护者角色</div>
-          <div class="dial-value">陪玩者——主动和孩子一起玩</div>
-          <div class="dial-example">目前是软引导，不做强制</div>
+          <div class="dial-value"><strong>陪玩者</strong>（唯一角色）</div>
+          <div class="dial-example">主动和孩子一起玩——跟读 AI 的话，和孩子一起把注意力保持在当下</div>
         </div>
       </div>
     </div>
@@ -3163,8 +3526,8 @@
         </div>
         <div class="dial">
           <div class="dial-label">看护者角色</div>
-          <div class="dial-value">共同探索者——分享发现，不主导</div>
-          <div class="dial-example">鼓励但不要求</div>
+          <div class="dial-value"><strong>陪玩者 + 共同探索者</strong>（权重大致各半）</div>
+          <div class="dial-example">孩子卡住时切回陪玩，其余时间分享自己看到的</div>
         </div>
       </div>
     </div>
@@ -3193,8 +3556,8 @@
         </div>
         <div class="dial">
           <div class="dial-label">看护者角色</div>
-          <div class="dial-value">旁观者——退后，让孩子主导</div>
-          <div class="dial-example">可选</div>
+          <div class="dial-value"><strong>旁观者</strong> · <em>共同探索者</em> · <span style="opacity:.55">陪玩者</span> <span style="font-size:12px;color:var(--muted);letter-spacing:.04em;">（权重依次递减）</span></div>
+          <div class="dial-example">默认退后；孩子主动邀请时切入共同探索；只有在孩子明确请求时才切回陪玩</div>
         </div>
       </div>
     </div>
@@ -3233,7 +3596,7 @@
           </div>
           <div class="tcc-caregiver">
             <span class="cg-label">看护者</span>
-            <span class="cg-role">陪玩者——和孩子一起把词跟读出来，让孩子有个可以模仿的人</span>
+            <span class="cg-role"><strong>陪玩者</strong>——和孩子一起把词跟读出来，让孩子有个可以模仿的人</span>
           </div>
         </div>
 
@@ -3252,14 +3615,14 @@
           <div class="tcc-beat">
             <div class="tcc-beat-label">Beat 3 · 核心循环（第 1 轮）</div>
             <div class="tcc-dialogue">
-              <div class="d-line"><span class="who">AI</span>"瓢虫侦探，第一条线索：如果这身红色真的是一种警告，鸟看到它应该怎么做？"</div>
+              <div class="d-line"><span class="who">AI</span>"瓢虫侦探，第一条线索：红色的小虫子很多吃起来都是苦苦的，鸟不太喜欢。那如果一只鸟看到这只红色的瓢虫，你觉得它会怎么做？"</div>
               <div class="d-line stage">[孩子猜]</div>
-              <div class="d-line"><span class="who">AI</span>"想得不错。我们对一下——大部分鸟看到红色的虫子确实不会下嘴。看来红色真的在说'别吃我'。"</div>
+              <div class="d-line"><span class="who">AI</span>"想得真好——大部分鸟看到红色的虫子都会绕着走。看来红色有点像一个小牌子，在说'别吃我'。"</div>
             </div>
           </div>
           <div class="tcc-caregiver">
             <span class="cg-label">看护者</span>
-            <span class="cg-role">共同探索者——分享自己看到的，不主导</span>
+            <span class="cg-role"><strong>陪玩者 + 共同探索者</strong>——孩子卡住时接上话头，其余时间分享自己看到的</span>
           </div>
         </div>
 
@@ -3289,7 +3652,7 @@
           </div>
           <div class="tcc-caregiver">
             <span class="cg-label">看护者</span>
-            <span class="cg-role">旁观者——退后，让孩子主导</span>
+            <span class="cg-role"><strong>旁观者 + 共同探索者</strong>——默认退后，孩子邀请时再切入；只在孩子明确请求时才陪玩</span>
           </div>
         </div>
 
@@ -3573,6 +3936,64 @@
       </div>
     </div>
 
+    <h3 class="subhead" data-dir="切换">升/降级 —— 什么时候在级数之间移动</h3>
+    <p class="subhead-desc">评审里的两个子问题：(1) L1/L2/L3 够不够细？(2) 什么时候把孩子往上升、什么时候往下挪？答案是：三级就是承诺，同一级内部靠五个 tier 开关把任务深度拉开。级数之间的切换先用可量化的硬指标跑起来——先把能测的东西推上线，等有了足够的数据，再用一个按孩子个体调的节奏模型替换这些阈值。</p>
+
+    <div class="trans-grid">
+      <div class="trans-card trans-within">
+        <div class="trans-label">活动内部</div>
+        <div class="trans-sub">逐轮 · 同一次活动里的递进</div>
+        <div class="trans-body">
+          <div class="trans-row trans-up">
+            <span class="trans-arrow">↑ 升级</span>
+            <span class="trans-cond">孩子在<b>连续 2 轮以上</b>不需要重复提示就能完成当前级，或者在当前级上自发做出了 L+1 的回答（如：只让他命名，他自己讲出了原因）。</span>
+          </div>
+          <div class="trans-row trans-hold">
+            <span class="trans-arrow">· 保持</span>
+            <span class="trans-cond">答得慢但没跑题。留在当前级，只换例子来保持新鲜感。</span>
+          </div>
+          <div class="trans-row trans-down">
+            <span class="trans-arrow">↓ 降级</span>
+            <span class="trans-cond">孩子连续 <b>2 次尝试</b>都没能完成当前级（沉默超过 6 秒、跑题、复读提示）。降一级，仍在同一条轴上——绝不在活动中途弃轴。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trans-card trans-across">
+        <div class="trans-label">活动之间</div>
+        <div class="trans-sub">逐次 · 同一条轴上的长期进阶</div>
+        <div class="trans-body">
+          <div class="trans-row trans-up">
+            <span class="trans-arrow">↑ 升级</span>
+            <span class="trans-cond">同一条轴上<b>连续 3 次活动</b>都以当前级完成——下一次该轴活动默认升到 +1 级。</span>
+          </div>
+          <div class="trans-row trans-hold">
+            <span class="trans-arrow">· 保持</span>
+            <span class="trans-cond">连续成功不到 3 次，或不同轴上表现不一。保留当前级，换 entity 和 pillar 增加多样性。</span>
+          </div>
+          <div class="trans-row trans-down">
+            <span class="trans-arrow">↓ 降级</span>
+            <span class="trans-cond">孩子在同一条轴上<b>连续 2 次</b>都出现了活动内降级——下一次该轴活动默认降到 −1 级（最低保底 L1）。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trans-foot">
+      <div class="trans-foot-row">
+        <span class="tff-lbl">不让孩子挫败</span>
+        <span class="tff-body">降级从不以"失败"的语气呈现。话术从"再试一次"切换到换一个切入点："我先告诉你我看到了什么"。孩子感受到的是多样性，不是退步。</span>
+      </div>
+      <div class="trans-foot-row">
+        <span class="tff-lbl">同辈跳跃</span>
+        <span class="tff-body">如果孩子在一条轴上已经到 L3，下一次活动可以跳到一条<em>相关轴</em>的 L1（Form L3 → Connection L1），不必硬在别的轴上也塞 L3。既保持新鲜感，又不强推深度。</span>
+      </div>
+      <div class="trans-foot-row">
+        <span class="tff-lbl">个性化接口</span>
+        <span class="tff-body">这些阈值是 tag block 上游配置里的 <code>progression_policy</code> 对象——不写死。V1 用上面的默认值；等每个孩子累计约 ≥ 200 次会话后，直接替换成按孩子个体的节奏模型，不需要改任何活动设计。</span>
+      </div>
+    </div>
+
     <h3 class="subhead" data-dir="核对">12 个金标准落在 7 条轴上的位置</h3>
     <p class="subhead-desc">快速核对一下：把 playbook 里现有的 12 个 Tier-A 金标准逐一映射到 7 条轴上。这是<em>我的建议分类</em>——评审时再确认或调整。</p>
 
@@ -3841,8 +4262,8 @@
       </ul>
     </div>
     <div class="version">
-      <span>版本 0.1 · 评审草稿</span>
-      <span>WonderLens x 奇朵 · 活动设计框架 · 2026-04-15</span>
+      <span>版本 0.2 · 评审草稿</span>
+      <span>WonderLens x 奇朵 · 活动设计框架 · 2026-04-17</span>
     </div>
   </footer>
 

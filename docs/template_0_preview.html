@@ -216,6 +216,71 @@
       font-weight: 400;
     }
 
+    .revnote {
+      margin-top: 36px;
+      padding: 18px 22px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .revnote summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+
+    .revnote summary::marker,
+    .revnote summary::-webkit-details-marker {
+      color: var(--accent);
+    }
+
+    .revnote[open] summary {
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .revnote-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 2px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .revnote ol {
+      margin: 0;
+      padding-left: 22px;
+      color: var(--ink-soft);
+    }
+
+    .revnote li {
+      margin-bottom: 10px;
+    }
+
+    .revnote li:last-child {
+      margin-bottom: 0;
+    }
+
+    .revnote code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
     /* ============ SECTION BASE ============ */
     section {
       padding: 80px 48px;
@@ -746,6 +811,80 @@
       color: var(--ink-soft);
     }
 
+    .tag-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .tag-split { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    .tag-split-col {
+      background: color-mix(in srgb, var(--cream) 50%, transparent);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 18px 20px 8px;
+    }
+
+    .tag-split-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tag-split-head[data-surface="parent"] { color: var(--tier-1); }
+    .tag-split-head[data-surface="child"]  { color: var(--tier-0); }
+
+    .tag-split-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tag-split-col li {
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--line);
+      display: grid;
+      grid-template-columns: 115px 1fr;
+      gap: 14px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .tag-split-col li:last-child { border-bottom: none; }
+
+    .tag-split-col li code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .tag-split-col li span { color: var(--ink-soft); }
+
+    .tag-split-foot {
+      margin-top: 18px;
+      padding: 14px 18px;
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      border-left: 2px solid var(--accent);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .tag-split-foot code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
     /* ============ BRIDGES / UPSTREAM-DOWNSTREAM ============ */
     .subhead {
       font-family: var(--serif);
@@ -1159,6 +1298,59 @@
       border-color: var(--ink);
       font-style: italic;
       text-transform: none;
+    }
+
+    .chip-subject {
+      background: color-mix(in srgb, var(--tier-1) 14%, var(--bg));
+      color: var(--tier-1);
+      border-color: color-mix(in srgb, var(--tier-1) 38%, transparent);
+    }
+
+    .chip-moment {
+      background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+      color: var(--ink);
+      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+      font-style: italic;
+      font-family: var(--serif);
+      font-size: 12px;
+      text-transform: none;
+      letter-spacing: 0;
+      padding: 6px 12px;
+      line-height: 1.4;
+    }
+
+    .path-frame-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .path-frame-rows {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .path-frame-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 12px;
+      align-items: center;
+      font-size: 11px;
+    }
+
+    .pfr-lbl {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
     /* Parent path mockup */
@@ -2382,6 +2574,118 @@
       line-height: 1.45;
     }
 
+    /* ====== L1/L2/L3 transition rules ====== */
+    .trans-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .trans-grid { grid-template-columns: 1fr; }
+    }
+
+    .trans-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 22px 24px 18px;
+    }
+
+    .trans-within { border-top: 3px solid var(--tier-0); }
+    .trans-across { border-top: 3px solid var(--tier-1); }
+
+    .trans-label {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+
+    .trans-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .trans-body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .trans-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      align-items: baseline;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .trans-arrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 2px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .trans-up   .trans-arrow { background: color-mix(in srgb, var(--accent) 12%, var(--bg)); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent); }
+    .trans-hold .trans-arrow { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+    .trans-down .trans-arrow { background: color-mix(in srgb, var(--tier-1) 10%, var(--bg)); color: var(--tier-1); border: 1px solid color-mix(in srgb, var(--tier-1) 36%, transparent); }
+
+    .trans-cond { color: var(--ink); }
+    .trans-cond b { color: var(--accent); font-weight: 600; }
+
+    .trans-foot {
+      margin-top: 18px;
+      padding: 18px 24px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .trans-foot-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 16px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 700px) {
+      .trans-row { grid-template-columns: 1fr; gap: 6px; }
+      .trans-arrow { justify-self: start; }
+      .trans-foot-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    .tff-lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .tff-body code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
     .mapping-coverage {
       margin-top: 20px;
       padding: 22px 28px;
@@ -2499,7 +2803,7 @@
       <a href="#axes">Progression</a>
       <a href="#decisions">Decisions</a>
     </nav>
-    <div class="meta">Draft · 2026-04-15 · Internal review</div>
+    <div class="meta">Draft v0.2 · 2026-04-17 · Internal review</div>
   </header>
 
   <!-- ============== HERO ============== -->
@@ -2526,9 +2830,19 @@
       </div>
       <div>
         <span class="label">Status</span>
-        <span class="value">Draft · pending sign-off</span>
+        <span class="value">Draft v0.2 · pending sign-off</span>
       </div>
     </div>
+
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.2</span> Four changes from PM review — 2026-04-17</summary>
+      <ol>
+        <li><b>Caregiver role is now cumulative across tiers</b> (§03 · §04 · §06) — T0 <code>[scaffold]</code> → T1 <code>[scaffold, co-explorer]</code> → T2 <code>[observer, co-explorer, scaffold]</code> with decreasing weight, instead of one fixed role per tier.</li>
+        <li><b>Tag block split by downstream surface</b> (§04 · §05) — two new optional fields: <code>highlight_moment</code> (child-facing runtime one-liner) and <code>subject_tags</code> (parent-facing cross-subject classification). Legend and mockups rewritten to make child vs. parent surfaces explicit.</li>
+        <li><b>L1↔L2↔L3 transition rules added</b> (§07) — new subsection with concrete quantified promote / hold / demote triggers, within-activity and across-activity. Dignity rule + sibling-axis jump + personalization hook documented.</li>
+        <li><b>§06 T1 Beat 3 dialogue softened</b> — the "if the red is a warning, what should birds do?" prompt was too abstract for 4–6. Now reframed as a concrete what-will-it-do question grounded in prior observation.</li>
+      </ol>
+    </details>
   </section>
 
   <!-- ============== AT A GLANCE ============== -->
@@ -2732,7 +3046,7 @@
     <span class="key">next_step_hint</span>:   <span class="str">"..."</span>
     <span class="key">reward_hook</span>:      <span class="str">"..."</span></span>
 
-  <span class="key">caregiver_role</span>:  <span class="str">{scaffold|co-explorer|observer}</span>   <span class="cmt"># default from tier</span>
+  <span class="key">caregiver_role</span>:  <span class="str">[scaffold, co-explorer, observer]</span>   <span class="cmt"># cumulative list; tier-dependent default</span>
 
 
 <span class="cmt"># ─── §1 · STRUCTURAL SPINE (5 beats, invariant) ────────────</span>
@@ -2780,19 +3094,19 @@
     <span class="key">language</span>:       <span class="str">"Onomatopoeia, 3–5 word sentences, slow + exaggerated"</span>
     <span class="key">task_depth</span>:     <span class="str">"Single-step commands, immediate feedback"</span>
     <span class="key">concept_focus</span>:  <span class="str">"Concrete attributes + basic function"</span>
-    <span class="key">caregiver_role</span>: <span class="str">scaffold</span>
+    <span class="key">caregiver_role</span>: <span class="str">[scaffold]</span>                                <span class="cmt"># sole role</span>
   <span class="key">T1</span>:
     <span class="key">ai_role</span>:        <span class="str">"Curious co-explorer + thought starter"</span>
     <span class="key">language</span>:       <span class="str">"Natural pace, simple compounds, open-ended why/how"</span>
     <span class="key">task_depth</span>:     <span class="str">"2–3 step sequences, simple division of labor"</span>
     <span class="key">concept_focus</span>:  <span class="str">"Causation, change, connection"</span>
-    <span class="key">caregiver_role</span>: <span class="str">co-explorer</span>
+    <span class="key">caregiver_role</span>: <span class="str">[scaffold, co-explorer]</span>                  <span class="cmt"># roughly equal weights</span>
   <span class="key">T2</span>:
     <span class="key">ai_role</span>:        <span class="str">"Project advisor + resource coordinator"</span>
     <span class="key">language</span>:       <span class="str">"Near-adult dialogue, complex syntax, logic markers"</span>
     <span class="key">task_depth</span>:     <span class="str">"Multi-step, optional project tracks"</span>
     <span class="key">concept_focus</span>:  <span class="str">"Perspective, responsibility, systems"</span>
-    <span class="key">caregiver_role</span>: <span class="str">observer</span></span>
+    <span class="key">caregiver_role</span>: <span class="str">[observer, co-explorer, scaffold]</span>       <span class="cmt"># decreasing weight</span></span>
 
 
 <span class="cmt"># ─── §4 · OVERLAY HOOKS (what each category overlay fills) ─</span>
@@ -2837,16 +3151,21 @@
         <span class="key">tier_variants</span>: <span class="hl">[<span class="str">T0</span>]</span> <span
           class="cmt"># flexes to neighbor</span>
 
-        <span class="key">tags</span>:
+        <span class="key">tags</span>:                                 <span class="cmt"># split by surface they feed</span>
+        <span class="cmt"># — child-facing (intuitive achievement display) —</span>
         <span class="key">attributes</span>: <span class="hl">[<span class="str">red</span>, <span
             class="str">black</span>, <span class="str">spots</span>, <span class="str">round</span>]</span>
-        <span class="key">key_concepts</span>: <span class="hl">[<span class="str">Form</span>, <span
-            class="str">Change</span>]</span> <span class="cmt"># 1–2 from 7</span>
         <span class="key">related_concepts</span>: <span class="hl">[<span class="str">Pattern</span>, <span
-            class="str">Camouflage</span>]</span> <span class="cmt"># 2–4 discipline</span>
+            class="str">Camouflage</span>]</span> <span class="cmt"># 2–4 discipline, child-friendly words</span>
+        <span class="key">highlight_moment</span>: <span class="hl"><span class="str">"You spotted the warning sign on the ladybug's back"</span></span> <span class="cmt"># NEW — runtime-generated</span>
+        <span class="cmt"># — parent-facing (IB + cross-subject framework) —</span>
+        <span class="key">key_concepts</span>: <span class="hl">[<span class="str">Form</span>, <span
+            class="str">Change</span>]</span> <span class="cmt"># 1–2 from 7 IB KCs</span>
         <span class="key">atl_skills</span>: [<span class="str">critical_thinking</span>, <span
-          class="str">observation</span>]
+          class="str">observation</span>] <span class="cmt"># IB ATL</span>
         <span class="key">transdisciplinary_theme</span>: <span class="str">How the World Works</span>
+        <span class="key">subject_tags</span>: <span class="hl">[<span class="str">science</span>, <span
+            class="str">biology</span>]</span> <span class="cmt"># NEW — cross-subject classification</span>
 
         <span class="key">kud</span>:
         <span class="key">know</span>: [<span class="str">ladybugs have 6 legs</span>, <span class="str">spots vary by
@@ -2862,27 +3181,36 @@
           cause_effect level 1"</span>
         <span class="key">reward_hook</span>: <span class="str">"pattern_recognition_L2 badge"</span>
 
-        <span class="key">caregiver_role</span>: <span class="str">co-explorer</span> <span class="cmt">#
-          tier-dependent</span>
+        <span class="key">caregiver_role</span>: <span class="hl">[<span class="str">scaffold</span>, <span class="str">co-explorer</span>]</span> <span class="cmt"># cumulative list; tier-dependent default</span>
       </pre>
 
       <div class="tag-legend">
-        <h4>Why these slots</h4>
-        <ul>
-          <li><code>attributes</code><span>Observable properties the game invokes. Feeds the property-bridge templates
-              from the playbook.</span></li>
-          <li><code>key_concepts</code><span>1–2 from the 7 IB Key Concepts. The "thinking lens". <b>Distinct tree</b>
-              from related concepts.</span></li>
-          <li><code>related_concepts</code><span>2–4 discipline-tagged concepts. The child-facing post-activity
-              badges.</span></li>
-          <li><code>atl_skills</code><span>2–3 ATL skills the child practiced. Feeds the parent growth path.</span></li>
-          <li><code>progression</code><span>New block. Turns "same-topic, slightly harder" into a first-class,
-              machine-readable axis.</span></li>
-          <li><code>tier_variants</code><span>In the header, not emergent. Explicit audit trail for the parent
-              dashboard.</span></li>
-          <li><code>caregiver_role</code><span>Soft guidance for now — tier-dependent default, can be tightened
-              later.</span></li>
-        </ul>
+        <h4>Why these slots — split by the surface they feed</h4>
+        <p style="margin:0 0 16px; color:var(--muted); font-size:14px; line-height:1.55;">Downstream consumers split cleanly into two surfaces. <b>Child recap</b> needs intuitive, visible, "what I did" labels. <b>Parent growth path</b> needs the IB framework + cross-subject classification that positions the activity inside the curriculum. Some tags feed both; most feed one or the other.</p>
+        <div class="tag-split">
+          <div class="tag-split-col">
+            <div class="tag-split-head" data-surface="child">Child-facing · intuitive achievement</div>
+            <ul>
+              <li><code>role_title</code><span>The badge the child earned. Verb-forward, specific to what they did.</span></li>
+              <li><code>pillar</code><span>The emotional mode (Mystery, Creation, …) — becomes the mission frame.</span></li>
+              <li><code>related_concepts</code><span>2–4 child-friendly concept words (Pattern, Camouflage, …) shown as earned chips.</span></li>
+              <li><code>highlight_moment</code><span><b>NEW.</b> Runtime-generated one-liner: "you spotted / you figured out / you cared for…". A concrete trophy, not a summary.</span></li>
+              <li><code>attributes</code><span>Observable properties the game invoked — echoes what the child actually noticed.</span></li>
+            </ul>
+          </div>
+          <div class="tag-split-col">
+            <div class="tag-split-head" data-surface="parent">Parent-facing · IB + subject framework</div>
+            <ul>
+              <li><code>key_concepts</code><span>1–2 of the 7 IB Key Concepts. The "thinking lens" parents use to track depth. <b>Distinct tree</b> from related concepts.</span></li>
+              <li><code>atl_skills</code><span>2–3 IB ATL skills practiced. Parents can read them as cross-activity meta-skill growth.</span></li>
+              <li><code>transdisciplinary_theme</code><span>Which of the 6 IB TD themes the activity lives under.</span></li>
+              <li><code>subject_tags</code><span><b>NEW.</b> Cross-subject classification (science / language / art / math / social-emotional). Lets parents filter or compare with school subjects — distinct from the child view.</span></li>
+              <li><code>progression</code><span>The axis + level the activity targeted, plus the next step. Drives the growth-path ladder visualization.</span></li>
+              <li><code>tier</code> · <code>tier_variants</code><span>Explicit audit trail — which age register the activity was tuned to.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tag-split-foot"><code>caregiver_role</code> is a <em>list</em>, not a single value — T0 is <code>[scaffold]</code>, T1 adds <code>co-explorer</code>, T2 includes all three with decreasing weight. Soft guidance for now; the runtime doesn't refuse to start if caregiver isn't present.</div>
       </div>
     </div>
   </section>
@@ -3007,10 +3335,9 @@
             </div>
           </div>
           <div class="recap-row">
-            <span class="recap-lbl">You thought about</span>
+            <span class="recap-lbl">The moment</span>
             <div class="chips">
-              <span class="chip chip-key">Form</span>
-              <span class="chip chip-key">Change</span>
+              <span class="chip chip-moment">You spotted the warning sign on the ladybug's back</span>
             </div>
           </div>
           <div class="recap-row">
@@ -3028,8 +3355,9 @@
             </div>
           </div>
           <div class="reads-from">
-            Reads: <code>role_title</code> · <code>pillar</code> · <code>key_concepts</code> ·
+            Reads: <code>role_title</code> · <code>pillar</code> · <code>highlight_moment</code> ·
             <code>related_concepts</code> · <code>atl_skills</code>
+            <span style="display:block; margin-top:6px; font-style:italic; opacity:.8;">No IB terminology — the child sees what they <em>did</em>, not how the framework classifies it.</span>
           </div>
         </div>
       </div>
@@ -3072,9 +3400,39 @@
             <div class="axis-evidence">1 activity · teddy bear</div>
           </div>
           <div class="path-legend">L1 notice · L2 extend · L3 reason — 3 cognitive rungs on the same concept; see §07 for each axis in detail</div>
+
+          <div class="path-frame-sub">This week across the IB framework</div>
+          <div class="path-frame-rows">
+            <div class="path-frame-row">
+              <span class="pfr-lbl">Key Concepts</span>
+              <div class="chips">
+                <span class="chip chip-key">Form ·3</span>
+                <span class="chip chip-key">Connection ·2</span>
+                <span class="chip chip-key">Perspective ·1</span>
+              </div>
+            </div>
+            <div class="path-frame-row">
+              <span class="pfr-lbl">ATL Skills</span>
+              <div class="chips">
+                <span class="chip chip-atl">Observing ·5</span>
+                <span class="chip chip-atl">Describing ·4</span>
+                <span class="chip chip-atl">Critical thinking ·2</span>
+              </div>
+            </div>
+            <div class="path-frame-row">
+              <span class="pfr-lbl">Subjects</span>
+              <div class="chips">
+                <span class="chip chip-subject">Science ·4</span>
+                <span class="chip chip-subject">Language ·1</span>
+                <span class="chip chip-subject">Social-emotional ·1</span>
+              </div>
+            </div>
+          </div>
+
           <div class="reads-from">
             Reads: <code>progression.topic_axis</code> · <code>progression.difficulty_level</code> ·
-            <code>progression.reward_hook</code> · <code>tier</code>
+            <code>tier</code> · <code>key_concepts</code> · <code>atl_skills</code> · <code>transdisciplinary_theme</code> · <code>subject_tags</code>
+            <span style="display:block; margin-top:6px; font-style:italic; opacity:.8;">Full IB + cross-subject surface — lets parents track depth <em>and</em> position activities against school subjects.</span>
           </div>
         </div>
       </div>
@@ -3140,8 +3498,8 @@
           </div>
           <div class="dial">
             <div class="dial-label">Caregiver role</div>
-            <div class="dial-value">Scaffold — actively co-plays with the child</div>
-            <div class="dial-example">Soft guidance, not a hard gate (for now)</div>
+            <div class="dial-value"><strong>Scaffold</strong> (sole role)</div>
+            <div class="dial-example">Actively co-plays — echoes the AI's words, holds attention with the child</div>
           </div>
         </div>
       </div>
@@ -3170,8 +3528,8 @@
           </div>
           <div class="dial">
             <div class="dial-label">Caregiver role</div>
-            <div class="dial-value">Co-explorer — shares discoveries, does not drive</div>
-            <div class="dial-example">Encouraged, not required</div>
+            <div class="dial-value"><strong>Scaffold + Co-explorer</strong> (roughly equal)</div>
+            <div class="dial-example">Scaffolds when the child stalls; shares what they notice the rest of the time</div>
           </div>
         </div>
       </div>
@@ -3201,8 +3559,8 @@
           </div>
           <div class="dial">
             <div class="dial-label">Caregiver role</div>
-            <div class="dial-value">Observer — steps back, lets the child drive</div>
-            <div class="dial-example">Optional</div>
+            <div class="dial-value"><strong>Observer</strong> · <em>Co-explorer</em> · <span style="opacity:.55">Scaffold</span> <span style="font-size:12px;color:var(--muted);letter-spacing:.04em;">(decreasing weight)</span></div>
+            <div class="dial-example">Mostly steps back; joins as co-explorer when invited; scaffolds only if the child explicitly asks</div>
           </div>
         </div>
       </div>
@@ -3241,7 +3599,7 @@
             </div>
             <div class="tcc-caregiver">
               <span class="cg-label">Caregiver</span>
-              <span class="cg-role">scaffold — echoes the words aloud with the child so they have someone to copy</span>
+              <span class="cg-role"><strong>scaffold</strong> — echoes the words aloud so the child has someone to copy</span>
             </div>
           </div>
 
@@ -3260,14 +3618,14 @@
             <div class="tcc-beat">
               <div class="tcc-beat-label">Beat 3 · Core Loop (round 1)</div>
               <div class="tcc-dialogue">
-                <div class="d-line"><span class="who">AI</span>"Ladybug Detective, first clue: if the bright red is actually a warning, then what should birds do when they see it?"</div>
+                <div class="d-line"><span class="who">AI</span>"Ladybug Detective, first clue: red bugs often taste yucky to birds. So if a bird sees this red ladybug, what do you think the bird will do?"</div>
                 <div class="d-line stage">[child guesses]</div>
-                <div class="d-line"><span class="who">AI</span>"Good thinking. Let's check — most birds actually skip red bugs. Looks like red really does mean 'don't eat me.'"</div>
+                <div class="d-line"><span class="who">AI</span>"Good thinking — most birds leave red bugs alone. Looks like red is kind of a 'don't eat me' sign."</div>
               </div>
             </div>
             <div class="tcc-caregiver">
               <span class="cg-label">Caregiver</span>
-              <span class="cg-role">co-explorer — shares what they notice, doesn't drive</span>
+              <span class="cg-role"><strong>scaffold + co-explorer</strong> — jumps in when the child stalls, otherwise shares what they notice</span>
             </div>
           </div>
 
@@ -3294,7 +3652,7 @@
             </div>
             <div class="tcc-caregiver">
               <span class="cg-label">Caregiver</span>
-              <span class="cg-role">observer — steps back, lets the child drive</span>
+              <span class="cg-role"><strong>observer + co-explorer</strong> — steps back by default, engages when the child invites them in; scaffolds only on direct request</span>
             </div>
           </div>
 
@@ -3589,6 +3947,64 @@
       </div>
     </div>
 
+    <h3 class="subhead" data-dir="Transitions">Promotion &amp; demotion — when to move the child between rungs</h3>
+    <p class="subhead-desc">Two sub-questions from the review: (1) is L1/L2/L3 granular enough? and (2) when should the runtime move a child up or down? Answer: the three rungs are the commitment; within each rung the task depth stretches via the 5 tier dials. Movement between rungs starts with concrete quantified triggers — we get something measurable into production first, then replace the thresholds with a per-child pace model once there's enough session data to train one.</p>
+
+    <div class="trans-grid">
+      <div class="trans-card trans-within">
+        <div class="trans-label">Within a single activity</div>
+        <div class="trans-sub">round-by-round · in-session escalation</div>
+        <div class="trans-body">
+          <div class="trans-row trans-up">
+            <span class="trans-arrow">↑ promote</span>
+            <span class="trans-cond">Child answered the current rung correctly in <b>2+ rounds</b> without prompt-repetition, or spontaneously produced an L+1 response (e.g. gave a reason when asked to name).</span>
+          </div>
+          <div class="trans-row trans-hold">
+            <span class="trans-arrow">· hold</span>
+            <span class="trans-cond">Mixed or slow but on-topic. Stay at current rung, vary the exemplar instead.</span>
+          </div>
+          <div class="trans-row trans-down">
+            <span class="trans-arrow">↓ demote</span>
+            <span class="trans-cond">Child did not complete the current rung after <b>2 attempts</b> (silence > 6s, off-topic, or repeats the prompt back). Drop one rung, same axis — never abandon the axis mid-activity.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trans-card trans-across">
+        <div class="trans-label">Across activities</div>
+        <div class="trans-sub">session-by-session · axis progression</div>
+        <div class="trans-body">
+          <div class="trans-row trans-up">
+            <span class="trans-arrow">↑ promote</span>
+            <span class="trans-cond">Child finished at the current rung in <b>3 consecutive activities</b> on the same axis — next activity on that axis defaults to rung + 1.</span>
+          </div>
+          <div class="trans-row trans-hold">
+            <span class="trans-arrow">· hold</span>
+            <span class="trans-cond">Fewer than 3 consecutive successes, or mixed success across axes. Keep rung, rotate entities and pillars for variety.</span>
+          </div>
+          <div class="trans-row trans-down">
+            <span class="trans-arrow">↓ demote</span>
+            <span class="trans-cond">Child needed an in-activity demote in <b>2 consecutive sessions</b> on the same axis — next activity on that axis defaults to rung − 1 (floor L1).</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trans-foot">
+      <div class="trans-foot-row">
+        <span class="tff-lbl">Dignity rule</span>
+        <span class="tff-body">A demote is never surfaced as failure. Language switches from "let's try again" to a new framing: "let me show you what I notice first". The child experiences variety, not regression.</span>
+      </div>
+      <div class="trans-foot-row">
+        <span class="tff-lbl">Sibling jump</span>
+        <span class="tff-body">If the child has hit L3 on one axis, the next activity can jump to L1 on a <em>related</em> axis (Form L3 → Connection L1) instead of forcing L3 elsewhere. Keeps novelty without pushing depth faster than the child can absorb.</span>
+      </div>
+      <div class="trans-foot-row">
+        <span class="tff-lbl">Personalization hook</span>
+        <span class="tff-body">These thresholds are a <code>progression_policy</code> object in the tag block's upstream config — not hardcoded. V1 uses the defaults above; once ≥ ~200 sessions per child are logged, swap in a per-child pace model without any activity design change.</span>
+      </div>
+    </div>
+
     <h3 class="subhead" data-dir="Check">The 12 gold standards on the 7 axes</h3>
     <p class="subhead-desc">A sanity check: classifying every existing Tier-A gold standard from the playbook onto the 7 axes. These are <em>proposed</em> mappings — the review conversation is where they get confirmed or corrected.</p>
 
@@ -3861,8 +4277,8 @@
       </ul>
     </div>
     <div class="version">
-      <span>Version 0.1 · Draft for review</span>
-      <span>WonderLens x 奇朵 · Activity Design Framework · 2026-04-15</span>
+      <span>Version 0.2 · Draft for review</span>
+      <span>WonderLens x 奇朵 · Activity Design Framework · 2026-04-17</span>
     </div>
   </footer>
 
