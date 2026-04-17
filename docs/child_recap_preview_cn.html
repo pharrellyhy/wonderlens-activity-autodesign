@@ -3140,6 +3140,299 @@
       margin-bottom: 10px;
     }
 
+    /* ====== PERSISTENCE · §06 ====== */
+    .persist-rules {
+      list-style: none;
+      padding: 0;
+      margin: 28px 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .persist-rules { grid-template-columns: 1fr; }
+    }
+
+    .persist-rules li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      align-items: baseline;
+    }
+
+    .persist-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .persist-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+
+    .persist-body p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .slot-grid {
+      margin-top: 24px;
+      padding: 22px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .slot-header,
+    .slot-row {
+      display: grid;
+      grid-template-columns: 140px 1fr 1fr 1fr;
+      gap: 14px;
+      padding: 8px 0;
+      align-items: center;
+    }
+
+    .slot-header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 8px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .slot-header span {
+      text-align: center;
+    }
+
+    .slot-header span:first-child {
+      text-align: left;
+    }
+
+    .slot-row:not(:last-child) {
+      border-bottom: 1px dotted var(--line-soft);
+    }
+
+    .slot-axis {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .slot-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: var(--bg);
+      border: 1px solid var(--line-soft);
+      border-radius: 3px;
+      min-height: 36px;
+    }
+
+    .slot-cell.filled {
+      background: color-mix(in srgb, var(--accent) 12%, var(--bg));
+      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+    }
+
+    .slot-cell.filled.current {
+      background: color-mix(in srgb, var(--accent) 22%, var(--bg));
+      border-color: var(--accent);
+      border-width: 1.5px;
+    }
+
+    .slot-mark {
+      font-size: 14px;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .slot-cell:not(.filled) .slot-mark {
+      color: var(--line);
+    }
+
+    .slot-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    .slot-legend {
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 700px) {
+      .slot-header,
+      .slot-row {
+        grid-template-columns: 90px 1fr 1fr 1fr;
+        gap: 8px;
+      }
+      .slot-cell { padding: 4px 8px; min-height: 32px; }
+      .slot-axis { font-size: 12px; }
+    }
+
+    /* ====== COPY TONE · §07 ====== */
+    .tone-set {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 900px) {
+      .tone-set { grid-template-columns: 1fr; }
+    }
+
+    .tone-card {
+      padding: 22px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .tone-t0 { border-top: 3px solid var(--tier-0); }
+    .tone-t1 { border-top: 3px solid var(--tier-1); }
+    .tone-t2 { border-top: 3px solid var(--tier-2); }
+
+    .tone-head {
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px dashed var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tone-tier {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .tone-name {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .tone-row {
+      padding: 10px 0;
+      border-bottom: 1px dotted var(--line-soft);
+    }
+
+    .tone-row:last-child {
+      border-bottom: none;
+    }
+
+    .tone-lbl {
+      display: block;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .tone-val {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    /* ====== OPEN QUESTIONS · §09 ====== */
+    .open-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .open-list li {
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--tier-1);
+      border-radius: 0 4px 4px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .open-q {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .open-lean {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    /* ====== SCOPE · §10 ====== */
+    .scope-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .scope-list li {
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--muted);
+      border-radius: 0 4px 4px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .scope-item {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .scope-reason {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body {
@@ -3176,6 +3469,11 @@
       <a href="#layout">布局</a>
       <a href="#contract">契约</a>
       <a href="#moment-rule">一句话规则</a>
+      <a href="#persistence">留存</a>
+      <a href="#copy-tone">语气</a>
+      <a href="#edges">边界</a>
+      <a href="#open">悬而未决</a>
+      <a href="#scope">本轮不做</a>
     </nav>
     <div class="meta">草稿 v0.1 · 2026-04-17 · 内部评审</div>
   </header>
@@ -3551,6 +3849,239 @@
     </div>
   </section>
 
+  <!-- ============== §06 跨会话留存 ============== -->
+  <section id="persistence">
+    <div class="sec-head">
+      <div class="sec-num">§ 06 / 跨会话留存</div>
+      <h2 class="sec-title">二十一个槽位，<br />有上限<em>且可见</em>。</h2>
+    </div>
+    <p class="sec-desc">孩子得到的徽章生活在一个有界的宇宙里：7 条进阶轴 × 3 个级数 = 21 个槽位。第一天就固定。当孩子主动打开收藏页（永远不推送），他们看到的是完整的宇宙——有的亮着，有的还在等待。</p>
+
+    <ol class="persist-rules">
+      <li>
+        <span class="persist-num">01</span>
+        <div class="persist-body">
+          <div class="persist-title">首次获得</div>
+          <p>槽位在收藏页里亮起来。安静的一刻——没有庆祝、没有 modal、没有 confetti。徽章存在了，这本身就是信号。</p>
+        </div>
+      </li>
+      <li>
+        <span class="persist-num">02</span>
+        <div class="persist-body">
+          <div class="persist-title">重复获得</div>
+          <p>同一个槽位再次获得时，在徽章旁边加一个小计数（×2、×3…）。槽位本身的视觉状态不变——不升金级，不加星星，没有稀有度切换。</p>
+        </div>
+      </li>
+      <li>
+        <span class="persist-num">03</span>
+        <div class="persist-body">
+          <div class="persist-title">深度向前填充</div>
+          <p>每条轴展示 L1 → L2 → L3 的进度。到达过的深度就一直在——即便孩子后续在某次活动里发生了降级。回顾屏会用措辞承认这次退让；收藏页永远不回撤。</p>
+        </div>
+      </li>
+      <li>
+        <span class="persist-num">04</span>
+        <div class="persist-body">
+          <div class="persist-title">收藏页是主动打开</div>
+          <p>通过一个低调的"看看你的收藏"链接进入——永远不会在回顾结束时自动跳转过去。想去看的孩子可以去；不想去的孩子永远不必被带过去。</p>
+        </div>
+      </li>
+    </ol>
+
+    <h3 class="subhead" data-dir="举例">一个孩子的 21 槽位状态</h3>
+    <p class="subhead-desc">Mia 累计约 30 次活动后的当前收藏。亮起的槽位是实心 vermilion；暗的槽位还在等待。重复获得的槽位带着一个小计数。</p>
+
+    <div class="slot-grid">
+      <div class="slot-header">
+        <span></span>
+        <span>L1 识别</span>
+        <span>L2 扩展</span>
+        <span>L3 推理</span>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Form</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×4</span></div>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×2</span></div>
+        <div class="slot-cell filled current"><span class="slot-mark">●</span><span class="slot-count">×1</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Function</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×3</span></div>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×1</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Causation</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×2</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Change</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×2</span></div>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×1</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Connection</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×5</span></div>
+        <div class="slot-cell filled current"><span class="slot-mark">●</span><span class="slot-count">×2</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Perspective</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×1</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Responsibility</span>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+    </div>
+    <p class="slot-legend"><strong>21 个槽位亮了 13 个</strong> · Form 和 Connection 深度最好 · Responsibility 还没开始。这段描述是自动生成的；详细如何喂给家长端的"好奇画像"见家长端成长路径文档。</p>
+  </section>
+
+  <!-- ============== §07 语气 · 按 tier ============== -->
+  <section id="copy-tone">
+    <div class="sec-head">
+      <div class="sec-num">§ 07 / 语气 · 按 tier</div>
+      <h2 class="sec-title">同样的动作，<br /><em>三种声音</em>。</h2>
+    </div>
+    <p class="sec-desc">回顾屏的每一行都按 tier 调整措辞。认知深度可以一样（这里三列可能都是 Form L1）；用词不一样。下面是生成器作为参考的样板。</p>
+
+    <div class="tone-set">
+      <div class="tone-card tone-t0">
+        <div class="tone-head">
+          <span class="tone-tier">Tier 0 · 2–4 岁</span>
+          <span class="tone-name">探索陪伴</span>
+        </div>
+        <div class="tone-row"><span class="tone-lbl">角色头衔</span><span class="tone-val">"瓢虫观察员"</span></div>
+        <div class="tone-row"><span class="tone-lbl">今天的瞬间</span><span class="tone-val">"你看到瓢虫的时候说了'红色'"</span></div>
+        <div class="tone-row"><span class="tone-lbl">你练习了</span><span class="tone-val">"仔细看"</span></div>
+        <div class="tone-row"><span class="tone-lbl">告别语</span><span class="tone-val">"下次见！"</span></div>
+      </div>
+      <div class="tone-card tone-t1">
+        <div class="tone-head">
+          <span class="tone-tier">Tier 1 · 4–6 岁</span>
+          <span class="tone-name">探究引导</span>
+        </div>
+        <div class="tone-row"><span class="tone-lbl">角色头衔</span><span class="tone-val">"瓢虫小侦探"</span></div>
+        <div class="tone-row"><span class="tone-lbl">今天的瞬间</span><span class="tone-val">"你想明白了瓢虫为什么是红色的"</span></div>
+        <div class="tone-row"><span class="tone-lbl">你练习了</span><span class="tone-val">"观察"</span></div>
+        <div class="tone-row"><span class="tone-lbl">告别语</span><span class="tone-val">"今天动脑动得不错。"</span></div>
+      </div>
+      <div class="tone-card tone-t2">
+        <div class="tone-head">
+          <span class="tone-tier">Tier 2 · 6–8 岁</span>
+          <span class="tone-name">项目协作</span>
+        </div>
+        <div class="tone-row"><span class="tone-lbl">角色头衔</span><span class="tone-val">"瓢虫田野研究员"</span></div>
+        <div class="tone-row"><span class="tone-lbl">今天的瞬间</span><span class="tone-val">"你预测了鸟看到红色虫子会怎么做，你猜对了"</span></div>
+        <div class="tone-row"><span class="tone-lbl">你练习了</span><span class="tone-val">"观察 · 描述"</span></div>
+        <div class="tone-row"><span class="tone-lbl">告别语</span><span class="tone-val">"干得漂亮。想接着玩的时候再回来。"</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §08 边界情况 ============== -->
+  <section id="edges">
+    <div class="sec-head">
+      <div class="sec-num">§ 08 / 边界情况</div>
+      <h2 class="sec-title">事情出状况时，<br /><em>怎么处理</em>。</h2>
+    </div>
+    <p class="sec-desc">不是每次活动都干净利落地结束。下面五种具体情况，以及回顾屏各自的处理方式。</p>
+
+    <div class="mapping-table-wrap">
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>边界情况</th>
+            <th>怎么处理</th>
+            <th>为什么</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-style">活动中降级</td>
+            <td>措辞软化为"你注意到了…"而不是"你想明白了…"</td>
+            <td>L1 的框架更安全；回顾不应该替孩子声称一个没发生的认知动作。</td>
+          </tr>
+          <tr>
+            <td class="m-style">孩子中途弃局</td>
+            <td>不显示回顾。下次开机以中性欢迎切入。</td>
+            <td>这种时候给回顾读起来像审问。孩子需要的是重置，不是成绩单。</td>
+          </tr>
+          <tr>
+            <td class="m-style">一周内重玩同一 entity</td>
+            <td><code>highlight_moment</code> 承认重玩（"你又看到了瓢虫，这次你注意到了…"）</td>
+            <td>尊重孩子的主动性——他们自己选择回来——同时不铸造重复徽章。</td>
+          </tr>
+          <tr>
+            <td class="m-style">软上限触发</td>
+            <td>告别语切到"今天动脑动得不错，明天见。" App 不做硬锁。</td>
+            <td>反成瘾原则：只是给信号，不强制。</td>
+          </tr>
+          <tr>
+            <td class="m-style">ASR 没能捕捉到可用的引句</td>
+            <td>回退到 pillar 通用的 <code>highlight_moment</code>（"你今天解开了一个小谜题。"）</td>
+            <td>回顾绝不留空。一句通用话比一个缺席的主角好。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== §09 悬而未决 ============== -->
+  <section id="open">
+    <div class="sec-head">
+      <div class="sec-num">§ 09 / 悬而未决</div>
+      <h2 class="sec-title">三件事<br /><em>还没定</em>。</h2>
+    </div>
+    <p class="sec-desc">故意保留的问题——需要产品讨论定下来。</p>
+
+    <ul class="open-list">
+      <li>
+        <span class="open-q">家长能不能把收藏页整体关掉？</span>
+        <span class="open-lean">默认：可以。完全不想要游戏化的家长，应该有一个简单的总开关。</span>
+      </li>
+      <li>
+        <span class="open-q">已获得的徽章，视觉上会"褪色"吗？什么时候？</span>
+        <span class="open-lean">默认：永不褪色。家长可以手动归档一个学期，但默认是永久保留。</span>
+      </li>
+      <li>
+        <span class="open-q">孩子端要不要做"一周总结 / 一月总结"这样的周期性屏？</span>
+        <span class="open-lean">延后。任何周期性的东西都可能变成习惯循环。如果要做，先在家长端做。</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============== §10 本轮不做 ============== -->
+  <section id="scope">
+    <div class="sec-head">
+      <div class="sec-num">§ 10 / 本轮不做</div>
+      <h2 class="sec-title">三件事这份文档<br /><em>不设计</em>。</h2>
+    </div>
+    <p class="sec-desc">明确写出来，圈定边界。</p>
+
+    <ul class="scope-list">
+      <li>
+        <span class="scope-item">孩子端的"月 / 周"汇总屏</span>
+        <span class="scope-reason">周期性总结有变成习惯循环的风险。真要做，也先在家长端做。</span>
+      </li>
+      <li>
+        <span class="scope-item">"分享给家长"的推送流</span>
+        <span class="scope-reason">家长通过自己的面板看到回顾内容，而不是从孩子这一端被推。</span>
+      </li>
+      <li>
+        <span class="scope-item">离线 / 断网时的徽章状态</span>
+        <span class="scope-reason">离线时首次获得、数据同步冲突等——单独的产品问题。</span>
+      </li>
+    </ul>
+  </section>
+
   <footer>
     <div class="claim">
       "一副整个产品都能长进去的骨架——让 tag 系统、progression 阶梯、家长端成长路径都从同一条主干上读数据。"
@@ -3578,6 +4109,15 @@
         <li>docs/game_design_playbook.md</li>
       </ul>
     </div>
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.1</span> 初稿 · 2026-04-17</summary>
+      <ol>
+        <li>按设计稿 2026-04-17-downstream-surfaces-split-design.md 从 Template 0 §05 中抽出。</li>
+        <li>反成瘾原则和 8 条具体机制（§02）是这份文档的核心。先读这一节。</li>
+        <li>徽章宇宙固定在 21 个槽位（7 条轴 × 3 个级数）—— 这是产品立场，不是 UX 细节。</li>
+        <li>Mockup 用了三枚 stamp 的徽章组（entity · pillar · progression）+ 印刷体 moment + 小图标的 earned/practiced chip —— 是"印章收藏"的气质，不是街机徽章。</li>
+      </ol>
+    </details>
     <div class="version">
       <span>版本 0.2 · 评审草稿</span>
       <span>WonderLens x 奇朵 · 活动设计框架 · 2026-04-17</span>

@@ -3123,6 +3123,299 @@
       margin-bottom: 10px;
     }
 
+    /* ====== PERSISTENCE · §06 ====== */
+    .persist-rules {
+      list-style: none;
+      padding: 0;
+      margin: 28px 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .persist-rules { grid-template-columns: 1fr; }
+    }
+
+    .persist-rules li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      align-items: baseline;
+    }
+
+    .persist-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .persist-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+
+    .persist-body p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .slot-grid {
+      margin-top: 24px;
+      padding: 22px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .slot-header,
+    .slot-row {
+      display: grid;
+      grid-template-columns: 140px 1fr 1fr 1fr;
+      gap: 14px;
+      padding: 8px 0;
+      align-items: center;
+    }
+
+    .slot-header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 8px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .slot-header span {
+      text-align: center;
+    }
+
+    .slot-header span:first-child {
+      text-align: left;
+    }
+
+    .slot-row:not(:last-child) {
+      border-bottom: 1px dotted var(--line-soft);
+    }
+
+    .slot-axis {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .slot-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: var(--bg);
+      border: 1px solid var(--line-soft);
+      border-radius: 3px;
+      min-height: 36px;
+    }
+
+    .slot-cell.filled {
+      background: color-mix(in srgb, var(--accent) 12%, var(--bg));
+      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+    }
+
+    .slot-cell.filled.current {
+      background: color-mix(in srgb, var(--accent) 22%, var(--bg));
+      border-color: var(--accent);
+      border-width: 1.5px;
+    }
+
+    .slot-mark {
+      font-size: 14px;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .slot-cell:not(.filled) .slot-mark {
+      color: var(--line);
+    }
+
+    .slot-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    .slot-legend {
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 700px) {
+      .slot-header,
+      .slot-row {
+        grid-template-columns: 90px 1fr 1fr 1fr;
+        gap: 8px;
+      }
+      .slot-cell { padding: 4px 8px; min-height: 32px; }
+      .slot-axis { font-size: 12px; }
+    }
+
+    /* ====== COPY TONE · §07 ====== */
+    .tone-set {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 900px) {
+      .tone-set { grid-template-columns: 1fr; }
+    }
+
+    .tone-card {
+      padding: 22px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .tone-t0 { border-top: 3px solid var(--tier-0); }
+    .tone-t1 { border-top: 3px solid var(--tier-1); }
+    .tone-t2 { border-top: 3px solid var(--tier-2); }
+
+    .tone-head {
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px dashed var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tone-tier {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .tone-name {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .tone-row {
+      padding: 10px 0;
+      border-bottom: 1px dotted var(--line-soft);
+    }
+
+    .tone-row:last-child {
+      border-bottom: none;
+    }
+
+    .tone-lbl {
+      display: block;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .tone-val {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    /* ====== OPEN QUESTIONS · §09 ====== */
+    .open-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .open-list li {
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--tier-1);
+      border-radius: 0 4px 4px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .open-q {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .open-lean {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    /* ====== SCOPE · §10 ====== */
+    .scope-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .scope-list li {
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--muted);
+      border-radius: 0 4px 4px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .scope-item {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .scope-reason {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body {
@@ -3159,6 +3452,11 @@
       <a href="#layout">Layout</a>
       <a href="#contract">Contract</a>
       <a href="#moment-rule">Moment rule</a>
+      <a href="#persistence">Persistence</a>
+      <a href="#copy-tone">Copy tone</a>
+      <a href="#edges">Edges</a>
+      <a href="#open">Open</a>
+      <a href="#scope">Scope</a>
     </nav>
     <div class="meta">Draft v0.1 · 2026-04-17 · Internal review</div>
   </header>
@@ -3535,6 +3833,239 @@
     </div>
   </section>
 
+  <!-- ============== §06 PERSISTENCE ============== -->
+  <section id="persistence">
+    <div class="sec-head">
+      <div class="sec-num">§ 06 / Persistence</div>
+      <h2 class="sec-title">Twenty-one slots,<br />bounded <em>and visible</em>.</h2>
+    </div>
+    <p class="sec-desc">The child's earned badges live in a bounded universe: 7 progression axes × 3 rungs = 21 slots. Fixed from day 1. When the child opens the collection view (never pushed), they see the full universe — some lit, some dim.</p>
+
+    <ol class="persist-rules">
+      <li>
+        <span class="persist-num">01</span>
+        <div class="persist-body">
+          <div class="persist-title">First-time earn</div>
+          <p>The slot lights up in the child's collection view. A quiet moment — no fanfare, no modal, no confetti. The badge exists now; that's the signal.</p>
+        </div>
+      </li>
+      <li>
+        <span class="persist-num">02</span>
+        <div class="persist-body">
+          <div class="persist-title">Re-earn</div>
+          <p>Subsequent earnings of the same slot add a small count (×2, ×3 …) next to the badge. The visual state of the slot itself doesn't change — no gold-tier, no sparkle, no rarity shift.</p>
+        </div>
+      </li>
+      <li>
+        <span class="persist-num">03</span>
+        <div class="persist-body">
+          <div class="persist-title">Depth fills forward</div>
+          <p>Each axis shows L1 → L2 → L3 as a filling progression bar. Once a depth is reached, it stays — even if the child has an in-session demote later. The recap acknowledges regression in tone; the collection never retracts.</p>
+        </div>
+      </li>
+      <li>
+        <span class="persist-num">04</span>
+        <div class="persist-body">
+          <div class="persist-title">Collection is opt-in</div>
+          <p>Reached via a discreet "see your collection" link — never auto-transitioned into at recap's end. The child who wants to admire their badges can; the child who doesn't never has to.</p>
+        </div>
+      </li>
+    </ol>
+
+    <h3 class="subhead" data-dir="Example">One child's 21-slot state</h3>
+    <p class="subhead-desc">Mia's current collection after ~30 activities. Filled slots show as solid vermilion; dim slots are still waiting. Re-earned slots carry a small count.</p>
+
+    <div class="slot-grid">
+      <div class="slot-header">
+        <span></span>
+        <span>L1 Notice</span>
+        <span>L2 Extend</span>
+        <span>L3 Reason</span>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Form</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×4</span></div>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×2</span></div>
+        <div class="slot-cell filled current"><span class="slot-mark">●</span><span class="slot-count">×1</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Function</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×3</span></div>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×1</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Causation</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×2</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Change</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×2</span></div>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×1</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Connection</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×5</span></div>
+        <div class="slot-cell filled current"><span class="slot-mark">●</span><span class="slot-count">×2</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Perspective</span>
+        <div class="slot-cell filled"><span class="slot-mark">●</span><span class="slot-count">×1</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+      <div class="slot-row">
+        <span class="slot-axis">Responsibility</span>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+        <div class="slot-cell"><span class="slot-mark">○</span></div>
+      </div>
+    </div>
+    <p class="slot-legend"><strong>13 of 21 slots lit</strong> · most depth on Form + Connection · Responsibility still to try. Caption is auto-generated; see Parent growth path doc for how this feeds the curiosity profile.</p>
+  </section>
+
+  <!-- ============== §07 COPY TONE ============== -->
+  <section id="copy-tone">
+    <div class="sec-head">
+      <div class="sec-num">§ 07 / Copy tone · by tier</div>
+      <h2 class="sec-title">Same moves,<br />three <em>voices</em>.</h2>
+    </div>
+    <p class="sec-desc">Every row of the recap adapts its language to the tier. The cognitive depth may be the same (all of these might be Form L1); the words are not. These are reference samples the generator aims toward.</p>
+
+    <div class="tone-set">
+      <div class="tone-card tone-t0">
+        <div class="tone-head">
+          <span class="tone-tier">Tier 0 · 2–4 yrs</span>
+          <span class="tone-name">Exploration Companion</span>
+        </div>
+        <div class="tone-row"><span class="tone-lbl">Role title</span><span class="tone-val">"Ladybug Watcher"</span></div>
+        <div class="tone-row"><span class="tone-lbl">Highlight moment</span><span class="tone-val">"You said 'red' when you saw the ladybug"</span></div>
+        <div class="tone-row"><span class="tone-lbl">You practiced</span><span class="tone-val">"Looking carefully"</span></div>
+        <div class="tone-row"><span class="tone-lbl">Exit copy</span><span class="tone-val">"See you next time!"</span></div>
+      </div>
+      <div class="tone-card tone-t1">
+        <div class="tone-head">
+          <span class="tone-tier">Tier 1 · 4–6 yrs</span>
+          <span class="tone-name">Inquiry Guide</span>
+        </div>
+        <div class="tone-row"><span class="tone-lbl">Role title</span><span class="tone-val">"Ladybug Detective"</span></div>
+        <div class="tone-row"><span class="tone-lbl">Highlight moment</span><span class="tone-val">"You figured out why the ladybug is red"</span></div>
+        <div class="tone-row"><span class="tone-lbl">You practiced</span><span class="tone-val">"Observing"</span></div>
+        <div class="tone-row"><span class="tone-lbl">Exit copy</span><span class="tone-val">"Good thinking today."</span></div>
+      </div>
+      <div class="tone-card tone-t2">
+        <div class="tone-head">
+          <span class="tone-tier">Tier 2 · 6–8 yrs</span>
+          <span class="tone-name">Project Collaborator</span>
+        </div>
+        <div class="tone-row"><span class="tone-lbl">Role title</span><span class="tone-val">"Ladybug Field Researcher"</span></div>
+        <div class="tone-row"><span class="tone-lbl">Highlight moment</span><span class="tone-val">"You predicted what birds do with red bugs, and you were right"</span></div>
+        <div class="tone-row"><span class="tone-lbl">You practiced</span><span class="tone-val">"Observing · Describing"</span></div>
+        <div class="tone-row"><span class="tone-lbl">Exit copy</span><span class="tone-val">"Nice work. Come back when you want to keep going."</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §08 EDGES ============== -->
+  <section id="edges">
+    <div class="sec-head">
+      <div class="sec-num">§ 08 / Edge cases</div>
+      <h2 class="sec-title">What happens<br />when <em>things break</em>.</h2>
+    </div>
+    <p class="sec-desc">Not every activity ends cleanly. Five specific situations and how the recap handles each one.</p>
+
+    <div class="mapping-table-wrap">
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>Edge case</th>
+            <th>What happens</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-style">In-activity demote</td>
+            <td>Language softens to "You noticed…" rather than "You figured out…"</td>
+            <td>The L1 frame is safer; the recap shouldn't falsely claim a cognitive move the child didn't make.</td>
+          </tr>
+          <tr>
+            <td class="m-style">Child rage-quits mid-activity</td>
+            <td>No recap shown. Next session opens with neutral welcome.</td>
+            <td>A recap now would read as interrogation. The child needs a reset, not a report card.</td>
+          </tr>
+          <tr>
+            <td class="m-style">Repeat entity within a week</td>
+            <td><code>highlight_moment</code> acknowledges replay ("You saw the ladybug again, and this time you noticed…")</td>
+            <td>Honors the child's agency — they chose to come back — without minting a duplicate badge.</td>
+          </tr>
+          <tr>
+            <td class="m-style">Soft cap triggered</td>
+            <td>Exit copy switches to "Good thinking today. See you tomorrow." App does not lock.</td>
+            <td>Explicit anti-addiction rule: signal, don't force.</td>
+          </tr>
+          <tr>
+            <td class="m-style">ASR failed to capture usable quote</td>
+            <td>Falls back to pillar-generic <code>highlight_moment</code> ("You solved a small mystery today.")</td>
+            <td>The recap never empty-states. A generic line is better than a missing hero.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== §09 OPEN ============== -->
+  <section id="open">
+    <div class="sec-head">
+      <div class="sec-num">§ 09 / Open questions</div>
+      <h2 class="sec-title">Three things<br /><em>still open</em>.</h2>
+    </div>
+    <p class="sec-desc">Deliberately unresolved — they're the kind of questions the product discussion needs before we lock them down.</p>
+
+    <ul class="open-list">
+      <li>
+        <span class="open-q">Can parents opt the collection view off entirely?</span>
+        <span class="open-lean">Default: yes. Parents who prefer no gamification at all should have an easy off-switch.</span>
+      </li>
+      <li>
+        <span class="open-q">How long until earned badges "fade" in visual state, if ever?</span>
+        <span class="open-lean">Default: never fade. A parent can archive a semester manually, but the default is permanence.</span>
+      </li>
+      <li>
+        <span class="open-q">Should there be end-of-week / end-of-month synthesis screens for the child?</span>
+        <span class="open-lean">Deferred. Anything periodic risks becoming a habit loop. If we add it, it comes in via the parent dashboard first.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============== §10 SCOPE ============== -->
+  <section id="scope">
+    <div class="sec-head">
+      <div class="sec-num">§ 10 / Out of scope</div>
+      <h2 class="sec-title">Three things this doc<br /><em>doesn't design</em>.</h2>
+    </div>
+    <p class="sec-desc">Named explicitly to bound the scope.</p>
+
+    <ul class="scope-list">
+      <li>
+        <span class="scope-item">Monthly / weekly roll-ups for the child</span>
+        <span class="scope-reason">Periodic summaries risk becoming a habit loop. If they ship, they live on the parent dashboard first.</span>
+      </li>
+      <li>
+        <span class="scope-item">Share-with-parent flow</span>
+        <span class="scope-reason">Parents see recap content via their own dashboard, not pushed to them from the child's session.</span>
+      </li>
+      <li>
+        <span class="scope-item">Offline / disconnected badge state</span>
+        <span class="scope-reason">First-time-earn while offline, sync conflicts, etc. — separate product question.</span>
+      </li>
+    </ul>
+  </section>
+
   <footer>
     <div class="claim">
       "One skeleton the whole product can grow into — so the tag system, the progression ladder, and the parent-facing
@@ -3563,6 +4094,15 @@
         <li>docs/game_design_playbook.md</li>
       </ul>
     </div>
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.1</span> Inaugural draft · 2026-04-17</summary>
+      <ol>
+        <li>Extracted from Template 0 §05 per design spec 2026-04-17-downstream-surfaces-split-design.md.</li>
+        <li>Anti-addiction principles and 8 concrete mechanisms are the defining content (§02). Read that section first.</li>
+        <li>Badge universe is bounded at 21 slots (7 axes × 3 rungs) — this is a product stance, not a UX detail.</li>
+        <li>Recap mockup uses a 3-stamp hero cluster (entity · pillar · progression) + typographic moment + small-icon earned/practiced chips — stamp-collection aesthetic, not arcade badges.</li>
+      </ol>
+    </details>
     <div class="version">
       <span>Version 0.2 · Draft for review</span>
       <span>WonderLens x 奇朵 · Activity Design Framework · 2026-04-17</span>
