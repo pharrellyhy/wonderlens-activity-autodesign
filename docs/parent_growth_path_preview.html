@@ -2269,6 +2269,48 @@
       justify-content: space-between;
     }
 
+    .companion-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 0;
+      border-top: 1px dashed var(--line);
+      margin-top: 28px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cl-lbl {
+      color: var(--accent);
+    }
+
+    .companion-link a {
+      font-family: var(--serif);
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+    }
+
+    .cl-note {
+      font-family: var(--sans);
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--ink-soft);
+      font-size: 12px;
+      margin-left: auto;
+    }
+
+    @media (max-width: 700px) {
+      .companion-link { flex-wrap: wrap; gap: 8px; }
+      .cl-note { margin-left: 0; }
+    }
+
     /* ============ RESPONSIVE ============ */
     @media (max-width: 960px) {
       body {
@@ -4003,6 +4045,11 @@
         <li>No predictive features, no peer comparison, no letter grades — stance choices, not feature gaps.</li>
       </ol>
     </details>
+    <div class="companion-link">
+      <span class="cl-lbl">Companion surface</span>
+      <a href="child_recap_preview.html">Child recap →</a>
+      <span class="cl-note">Same tag block, different lens.</span>
+    </div>
     <div class="version">
       <span>Version 0.1 · Draft for review</span>
       <span>WonderLens x 奇朵 · Parent dashboard design · 2026-04-17</span>
