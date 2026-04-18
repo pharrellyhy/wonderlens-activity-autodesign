@@ -31,6 +31,7 @@
       --tier-0: #B06A3A;
       --tier-1: #3A6B56;
       --tier-2: #3D4A5C;
+      --warn: #C8923A;
       --serif: 'Fraunces', 'Noto Serif SC', Georgia, serif;
       --sans: 'IBM Plex Sans', 'Noto Serif SC', -apple-system, sans-serif;
       --mono: 'IBM Plex Mono', 'SF Mono', monospace;
@@ -3253,6 +3254,15 @@
       line-height: 1.5;
     }
 
+    .tier-bands-ref {
+      margin-top: 6px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .stacked-bar {
       display: flex;
       width: 100%;
@@ -3269,7 +3279,7 @@
       font-family: var(--mono);
       font-size: 10px;
       letter-spacing: 0.06em;
-      color: #FAF6EC;
+      color: var(--bg-card);
       padding: 0 6px;
       overflow: hidden;
       white-space: nowrap;
@@ -3308,8 +3318,9 @@
       z-index: 1;
     }
 
+    /* Over-band state — not applied at v0.1; promoted for future telemetry-driven use */
     .time-fill--over {
-      background: #C8923A;
+      background: var(--warn);
     }
 
     .time-label {
@@ -3742,7 +3753,7 @@
           <div class="time-label">62 min</div>
         </div>
         <div class="gauge-caption">Gentle amount this week.</div>
-        <div style="color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px;">Ranges &middot; T0 20&ndash;60 &middot; T1 45&ndash;90 &middot; T2 60&ndash;120 min/week</div>
+        <div class="tier-bands-ref">Ranges &middot; T0 20&ndash;60 &middot; T1 45&ndash;90 &middot; T2 60&ndash;120 min/week</div>
       </div>
     </div>
 
