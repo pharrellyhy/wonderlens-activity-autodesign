@@ -3043,26 +3043,6 @@
       margin-bottom: 0;
     }
 
-    #curiosity .reads-from,
-    #in-their-words .reads-from {
-      margin-top: 24px;
-      padding-top: 12px;
-      border-top: 1px dashed var(--line);
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      line-height: 1.6;
-    }
-
-    #curiosity .reads-from code,
-    #in-their-words .reads-from code {
-      color: var(--accent);
-      background: var(--bg-deep);
-      padding: 1px 4px;
-      font-family: var(--mono);
-    }
-
     /* ============ §04 IN THEIR WORDS ============ */
     .quote-stack {
       grid-column: 2;
@@ -3394,7 +3374,9 @@
     <p class="sec-desc">一个紧凑的 7 瓣雷达——每一瓣对应一个 IB Key Concept。它的任务是一眼告诉家长，<b>这一周 ta 是个什么样的思考者？</b>不排名、不打分、不和别的孩子比较。填充面积反映这一概念被碰到的频次；外轮廓延伸反映孩子走到了多深。</p>
 
     <div class="curiosity-wrap">
-      <svg class="curiosity-radial" viewBox="-130 -130 260 260" aria-label="Curiosity radial">
+      <svg class="curiosity-radial" viewBox="-130 -130 260 260" role="img" aria-labelledby="curiosity-radial-title curiosity-radial-desc">
+        <title id="curiosity-radial-title">米娅在 7 个 IB 核心概念上的好奇心图谱</title>
+        <desc id="curiosity-radial-desc">形态和视角是最突出的瓣；责任是最小的。</desc>
         <!-- Background rings (3 concentric for L1/L2/L3 reference) -->
         <circle class="ring" r="35" />
         <circle class="ring" r="65" />
@@ -3460,7 +3442,7 @@
         <div class="quote-attrib">
           <span class="quote-who">米娅说</span>
           <span class="quote-ctx">周二 &middot; 和向日葵一起玩</span>
-          <a class="quote-replay" href="#">回放 &#x2197;</a>
+          <a class="quote-replay" href="#in-their-words">回放 &#x2197;</a>
         </div>
       </div>
 
@@ -3469,7 +3451,7 @@
         <div class="quote-attrib">
           <span class="quote-who">米娅说</span>
           <span class="quote-ctx">周三 &middot; 去花园散步时</span>
-          <a class="quote-replay" href="#">回放 &#x2197;</a>
+          <a class="quote-replay" href="#in-their-words">回放 &#x2197;</a>
         </div>
       </div>
 
@@ -3478,7 +3460,7 @@
         <div class="quote-attrib">
           <span class="quote-who">米娅说</span>
           <span class="quote-ctx">周六上午 &middot; 在桌上分树叶</span>
-          <a class="quote-replay" href="#">回放 &#x2197;</a>
+          <a class="quote-replay" href="#in-their-words">回放 &#x2197;</a>
         </div>
       </div>
     </div>
