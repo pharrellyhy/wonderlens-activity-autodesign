@@ -2264,45 +2264,9 @@
       max-width: 1280px;
       margin: 0 auto;
       border-top: 1px solid var(--ink);
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 48px;
-      align-items: start;
-    }
-
-    footer .claim {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 300;
-      line-height: 1.35;
-      font-style: italic;
-      color: var(--ink-soft);
-      font-variation-settings: "opsz" 90, "SOFT" 100;
-    }
-
-    footer h5 {
-      font-family: var(--mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    footer ul {
-      list-style: none;
-      font-size: 13px;
-    }
-
-    footer li {
-      padding: 4px 0;
-      color: var(--ink-soft);
-    }
-
-    footer li::before {
-      content: "→";
-      color: var(--accent);
-      margin-right: 8px;
     }
 
     .version {
@@ -2314,7 +2278,6 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      grid-column: 1 / -1;
       display: flex;
       justify-content: space-between;
     }
@@ -2408,10 +2371,6 @@
 
       .hero-meta {
         grid-template-columns: 1fr 1fr;
-      }
-
-      footer {
-        grid-template-columns: 1fr;
       }
 
       .tier-tabs {
@@ -4049,7 +4008,7 @@
 
 
   <footer>
-    <details class="revnote" style="grid-column: 1 / -1;">
+    <details class="revnote">
       <summary><span class="revnote-tag">v0.1</span> 首次草稿 · 2026-04-17</summary>
       <ol>
         <li>依据设计规范 2026-04-17-downstream-surfaces-split-design.md 从 Template 0 §05 拆分而来。</li>
@@ -4058,7 +4017,7 @@
       </ol>
     </details>
     <div class="version">
-      <span>Version 0.1 · 评审草稿</span>
+      <span>版本 0.1 · 评审草稿</span>
       <span>WonderLens x 奇朵 · 家长端面板设计 · 2026-04-17</span>
     </div>
   </footer>
