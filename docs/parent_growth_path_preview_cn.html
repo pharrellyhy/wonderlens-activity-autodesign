@@ -1326,6 +1326,96 @@
       font-weight: 400;
     }
 
+    /* ============ SCOPE LIST (§11) ============ */
+    .scope-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .scope-list li {
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--muted);
+      border-radius: 0 4px 4px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .scope-item {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .scope-reason {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    /* ============ PRIVACY STACK (§09) ============ */
+    .privacy-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .privacy-stack .privacy-note {
+      grid-column: auto;
+      margin-top: 0;
+      max-width: none;
+    }
+
+    /* ============ CADENCE BLOCK (§08) ============ */
+    .cadence-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cadence-list li {
+      padding: 14px 18px;
+      background: var(--bg-card);
+      border-left: 2px solid var(--line);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 18px;
+      align-items: baseline;
+    }
+
+    .cadence-list .cad-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .cadence-list .cad-body {
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 720px) {
+      .cadence-list li {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+
     .mockups {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -3409,6 +3499,11 @@
       <a href="#in-their-words">孩子的原话</a>
       <a href="#try-at-home">在家一起</a>
       <a href="#gauges">节奏</a>
+      <a href="#contract">读取契约</a>
+      <a href="#cadence">周期</a>
+      <a href="#privacy">隐私</a>
+      <a href="#edges">边界情况</a>
+      <a href="#scope">不做什么</a>
     </nav>
     <div class="meta">草稿 v0.1 · 2026-04-17 · 内部评审</div>
   </header>
@@ -3776,36 +3871,195 @@
   </section>
 
 
+  <!-- ============== §07 读取契约 ============== -->
+  <section id="contract">
+    <div class="sec-head">
+      <div class="sec-num">§ 07 / 读取契约</div>
+      <h2 class="sec-title">每个模块，<br />读哪些<em>字段</em>。</h2>
+    </div>
+    <p class="sec-desc">家长端面板完整的读取契约——每个模块分别吃哪些 tag block 字段。这是整个面板的视角；范围更窄的孩子端 recap 读取契约见 <a href="child_recap_preview_cn.html#contract">孩子 recap §04</a>。没列在这里的，不会出现在面板上。</p>
+
+    <div class="mapping-table-wrap">
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>模块</th>
+            <th>字段</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-style">进度（L×T 阶梯）</td>
+            <td><code>progression.topic_axis</code>、<code>progression.difficulty_level</code>、<code>progression.next_step_hint</code>、<code>tier</code></td>
+          </tr>
+          <tr>
+            <td class="m-style">IB 框架 chips</td>
+            <td><code>key_concepts</code>、<code>atl_skills</code>、<code>transdisciplinary_theme</code>、<code>subject_tags</code></td>
+          </tr>
+          <tr>
+            <td class="m-style">好奇心图谱</td>
+            <td><code>key_concepts</code>、<code>progression.difficulty_level</code>（聚合）</td>
+          </tr>
+          <tr>
+            <td class="m-style">孩子的原话</td>
+            <td><code>highlight_moment</code>、opt-in 的孩子原话</td>
+          </tr>
+          <tr>
+            <td class="m-style">在家一起</td>
+            <td><code>progression.topic_axis</code>、<code>progression.next_step_hint</code>、最近的 <code>entity</code></td>
+          </tr>
+          <tr>
+            <td class="m-style">节奏条</td>
+            <td><code>caregiver_role</code>、session-duration 遥测</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-block">
+      <strong>明确不读取：</strong><code>role_title</code> &mdash; 那是孩子端的身份，不是家长端的数据。
+    </div>
+  </section>
+
+  <!-- ============== §08 周期 ============== -->
+  <section id="cadence">
+    <div class="sec-head">
+      <div class="sec-num">§ 08 / 查看周期</div>
+      <h2 class="sec-title">默认看一周，<br />两个<em>变焦</em>。</h2>
+    </div>
+    <p class="sec-desc">面板默认打开的是一个滚动的周窗。两个切换把视野拉长，但不改变模块本身。空状态用文案处理，而不是渲染半空的模块。</p>
+
+    <ul class="cadence-list">
+      <li>
+        <span class="cad-label">默认</span>
+        <span class="cad-body">周视图 &mdash; 滚动 7 天（周日&ndash;周六）。</span>
+      </li>
+      <li>
+        <span class="cad-label">切换 · 月</span>
+        <span class="cad-body">自然月。同样的六个模块，在一个月的窗口上聚合。</span>
+      </li>
+      <li>
+        <span class="cad-label">切换 · 学期</span>
+        <span class="cad-body">12 周。同样的六个模块，在一个学期的窗口上聚合。</span>
+      </li>
+    </ul>
+
+    <div class="note-block">
+      <strong>空状态。</strong>如果当前窗口内活动少于 3 条，面板折叠成一个&ldquo;还在了解米娅中&rdquo;的 onboarding 状态——一段温暖、欢迎的文案——而不是渲染半空的模块。半空的节奏条和空的 pull-quote 看起来像故障；一个明确的 onboarding 状态看起来是诚实的。
+    </div>
+  </section>
+
+  <!-- ============== §09 隐私 & 数据范围 ============== -->
+  <section id="privacy">
+    <div class="sec-head">
+      <div class="sec-num">§ 09 / 隐私 &amp; 数据范围</div>
+      <h2 class="sec-title">什么显示，<br />什么<em>绝不显示</em>。</h2>
+    </div>
+    <p class="sec-desc">四类——默认、opt-in、绝不显示、留存期。默认是刻意保守的；家长通过主动 opt-in 换到更多细节，不是反过来。</p>
+
+    <div class="privacy-stack">
+      <div class="privacy-note">
+        <span class="privacy-label">默认显示</span>
+        <span class="privacy-body"><code>highlight_moment</code>、聚合的 tag 计数、session 时长。</span>
+      </div>
+      <div class="privacy-note">
+        <span class="privacy-label">Opt-in</span>
+        <span class="privacy-body">&ldquo;孩子的原话&rdquo;模块里的具体孩子原话，通过 onboarding 设置开启。默认关闭。</span>
+      </div>
+      <div class="privacy-note">
+        <span class="privacy-label">绝不显示</span>
+        <span class="privacy-body">活动的逐字记录、其他孩子的数据、预测分数。不是可配置项 &mdash; 是立场。</span>
+      </div>
+      <div class="privacy-note">
+        <span class="privacy-label">留存期</span>
+        <span class="privacy-body">面板上滚动 12 个月；之外归档。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §10 边界情况 ============== -->
+  <section id="edges">
+    <div class="sec-head">
+      <div class="sec-num">§ 10 / 边界情况</div>
+      <h2 class="sec-title">四个时刻，<br />面板会<em>接住</em>。</h2>
+    </div>
+    <p class="sec-desc">明确列出来，这样默认渲染器知道当顺利路径的假设不成立时该怎么处理。</p>
+
+    <div class="mapping-table-wrap">
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>情况</th>
+            <th>处理</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-style">新孩子（本周少于 3 条活动）</td>
+            <td>折叠成&ldquo;还在了解米娅中&rdquo;的 onboarding 状态。</td>
+          </tr>
+          <tr>
+            <td class="m-style">单轴过度集中</td>
+            <td>好奇心图谱的文案引导到相邻轴，作为&ldquo;下一件可以试的事&rdquo; &mdash; 从不框成缺陷。</td>
+          </tr>
+          <tr>
+            <td class="m-style">降级（demote）</td>
+            <td>不作为负面信息呈现；静默地吸收进阶梯状态里。</td>
+          </tr>
+          <tr>
+            <td class="m-style">一个账号下多个孩子</td>
+            <td>每个孩子一个独立的面板；从不横向比较。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== §11 不做什么 ============== -->
+  <section id="scope">
+    <div class="sec-head">
+      <div class="sec-num">§ 11 / 不做什么</div>
+      <h2 class="sec-title">五件事，<br />这份设计<em>不做</em>。</h2>
+    </div>
+    <p class="sec-desc">明确列出来，给范围划界，也让面板对&ldquo;它是什么&rdquo;以及&ldquo;它不是什么&rdquo;保持诚实。</p>
+
+    <ul class="scope-list">
+      <li>
+        <span class="scope-item">跨孩子的比较（同账号或其他家庭）</span>
+        <span class="scope-reason">是立场，不是功能空缺。比较是我们不想教给家长的习惯。</span>
+      </li>
+      <li>
+        <span class="scope-item">学校报告导出</span>
+        <span class="scope-reason">不是它的活。面板是给家长一个对话的起点，不是给学校的一份文档。</span>
+      </li>
+      <li>
+        <span class="scope-item">通知节奏（推送频率、邮件摘要）</span>
+        <span class="scope-reason">是另一个产品决策，落在这份设计之外。</span>
+      </li>
+      <li>
+        <span class="scope-item">活动逐字记录的下钻视图</span>
+        <span class="scope-reason">需要自己独立的一轮设计 &mdash; 隐私、摘要、回放语义，都要各自处理。</span>
+      </li>
+      <li>
+        <span class="scope-item">发展里程碑带</span>
+        <span class="scope-reason">延后：有引发家长焦虑的风险；等到一个更温和的表达方式出现之前，先不做。</span>
+      </li>
+    </ul>
+  </section>
+
+
   <footer>
-    <div class="claim">
-      "一副整个产品都能长进去的骨架——让 tag 系统、progression 阶梯、家长端成长路径都从同一条主干上读数据。"
-    </div>
-    <div>
-      <h5>下一步</h5>
-      <ul>
-        <li>内部团队签收 Template 0 的结构</li>
-        <li>起草 <code>docs/progression_axes.md</code></li>
-        <li>重构 <code>templates.md</code>（Template A / B → overlay）</li>
-        <li>在 <code>program.md</code> 里把 tag block 提升为必填</li>
-      </ul>
-      <h5 style="margin-top: 20px;">签收通过后</h5>
-      <ul>
-        <li>L × T 交互式演练（3×3 矩阵：1 条轴 × 3 级深度 × 3 个 tier，每格显示一段示例对话），用于作者培训</li>
-        <li>作者培训指南 + 完整的 worked example</li>
-      </ul>
-    </div>
-    <div>
-      <h5>参考文件</h5>
-      <ul>
-        <li>templates.md · 当前主干</li>
-        <li>program.md · 输出格式</li>
-        <li>entity_guidance.md · tier 指南</li>
-        <li>docs/game_design_playbook.md</li>
-      </ul>
-    </div>
+    <details class="revnote" style="grid-column: 1 / -1;">
+      <summary><span class="revnote-tag">v0.1</span> 首次草稿 · 2026-04-17</summary>
+      <ol>
+        <li>依据设计规范 2026-04-17-downstream-surfaces-split-design.md 从 Template 0 §05 拆分而来。</li>
+        <li>在 L×T 阶梯之外新增四个模块：好奇心图谱、孩子的原话、在家一起、节奏条。</li>
+        <li>不做预测、不做同龄比较、不做等级打分 — 是立场选择，不是功能空缺。</li>
+      </ol>
+    </details>
     <div class="version">
-      <span>版本 0.2 · 评审草稿</span>
-      <span>WonderLens x 奇朵 · 活动设计框架 · 2026-04-17</span>
+      <span>Version 0.1 · 评审草稿</span>
+      <span>WonderLens x 奇朵 · 家长端面板设计 · 2026-04-17</span>
     </div>
   </footer>
 

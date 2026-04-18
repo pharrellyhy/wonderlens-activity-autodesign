@@ -1313,6 +1313,96 @@
       font-weight: 400;
     }
 
+    /* ============ SCOPE LIST (§11) ============ */
+    .scope-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .scope-list li {
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--muted);
+      border-radius: 0 4px 4px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .scope-item {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .scope-reason {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    /* ============ PRIVACY STACK (§09) ============ */
+    .privacy-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .privacy-stack .privacy-note {
+      grid-column: auto;
+      margin-top: 0;
+      max-width: none;
+    }
+
+    /* ============ CADENCE BLOCK (§08) ============ */
+    .cadence-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cadence-list li {
+      padding: 14px 18px;
+      background: var(--bg-card);
+      border-left: 2px solid var(--line);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 18px;
+      align-items: baseline;
+    }
+
+    .cadence-list .cad-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .cadence-list .cad-body {
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 720px) {
+      .cadence-list li {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+
     .mockups {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -3396,6 +3486,11 @@
       <a href="#in-their-words">In their words</a>
       <a href="#try-at-home">Try at home</a>
       <a href="#gauges">Gauges</a>
+      <a href="#contract">Contract</a>
+      <a href="#cadence">Cadence</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#edges">Edges</a>
+      <a href="#scope">Scope</a>
     </nav>
     <div class="meta">Draft v0.1 · 2026-04-17 · Internal review</div>
   </header>
@@ -3763,37 +3858,195 @@
   </section>
 
 
+  <!-- ============== §07 TAG-BLOCK CONTRACT ============== -->
+  <section id="contract">
+    <div class="sec-head">
+      <div class="sec-num">§ 07 / Tag-block contract</div>
+      <h2 class="sec-title">Every module,<br />named <em>fields</em>.</h2>
+    </div>
+    <p class="sec-desc">The parent dashboard's full read contract — which tag-block fields feed which module. This is the dashboard-wide view; the narrower child-recap read contract lives in <a href="child_recap_preview.html#contract">Child recap §04</a>. Anything not listed here is not surfaced on the dashboard.</p>
+
+    <div class="mapping-table-wrap">
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Fields</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-style">Progress (L×T ladder)</td>
+            <td><code>progression.topic_axis</code>, <code>progression.difficulty_level</code>, <code>progression.next_step_hint</code>, <code>tier</code></td>
+          </tr>
+          <tr>
+            <td class="m-style">IB framework chips</td>
+            <td><code>key_concepts</code>, <code>atl_skills</code>, <code>transdisciplinary_theme</code>, <code>subject_tags</code></td>
+          </tr>
+          <tr>
+            <td class="m-style">Curiosity profile</td>
+            <td><code>key_concepts</code>, <code>progression.difficulty_level</code> (aggregate)</td>
+          </tr>
+          <tr>
+            <td class="m-style">In their words</td>
+            <td><code>highlight_moment</code>, opt-in child utterances</td>
+          </tr>
+          <tr>
+            <td class="m-style">Try at home</td>
+            <td><code>progression.topic_axis</code>, <code>progression.next_step_hint</code>, recent <code>entity</code></td>
+          </tr>
+          <tr>
+            <td class="m-style">Gauges</td>
+            <td><code>caregiver_role</code>, session-duration telemetry</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-block">
+      <strong>Explicitly not read:</strong> <code>role_title</code> &mdash; that's child-facing identity, not parent-facing data.
+    </div>
+  </section>
+
+  <!-- ============== §08 VIEW CADENCE ============== -->
+  <section id="cadence">
+    <div class="sec-head">
+      <div class="sec-num">§ 08 / View cadence</div>
+      <h2 class="sec-title">Weekly by default,<br />with <em>two zooms</em>.</h2>
+    </div>
+    <p class="sec-desc">The dashboard opens to a weekly rolling window. Two toggles widen the lens without changing the modules. Empty states are handled in copy, not in half-populated modules.</p>
+
+    <ul class="cadence-list">
+      <li>
+        <span class="cad-label">Default</span>
+        <span class="cad-body">Weekly &mdash; rolling 7 days (Sun&ndash;Sat).</span>
+      </li>
+      <li>
+        <span class="cad-label">Toggle · monthly</span>
+        <span class="cad-body">Calendar month. Same six modules, aggregated across the month.</span>
+      </li>
+      <li>
+        <span class="cad-label">Toggle · term</span>
+        <span class="cad-body">12 weeks. Same six modules, aggregated across the term.</span>
+      </li>
+    </ul>
+
+    <div class="note-block">
+      <strong>Empty state.</strong> If there are fewer than 3 activities in the current window, the dashboard collapses to a &ldquo;still getting to know Mia&rdquo; onboarding state &mdash; warm, welcoming copy &mdash; rather than rendering half-empty modules. Half-empty gauges and an empty pull-quote stack would read as a failure; an explicit onboarding state reads as honest.
+    </div>
+  </section>
+
+  <!-- ============== §09 PRIVACY & DATA SCOPE ============== -->
+  <section id="privacy">
+    <div class="sec-head">
+      <div class="sec-num">§ 09 / Privacy &amp; data scope</div>
+      <h2 class="sec-title">What shows,<br />what <em>never does</em>.</h2>
+    </div>
+    <p class="sec-desc">Four categories &mdash; default, opt-in, never shown, retention. The defaults are deliberately conservative; the parent earns more detail by opting in, not the other way around.</p>
+
+    <div class="privacy-stack">
+      <div class="privacy-note">
+        <span class="privacy-label">Default shown</span>
+        <span class="privacy-body"><code>highlight_moment</code>, aggregate tag counts, session duration.</span>
+      </div>
+      <div class="privacy-note">
+        <span class="privacy-label">Opt-in</span>
+        <span class="privacy-body">Specific child-utterance highlights in the &ldquo;In their words&rdquo; module, turned on via an onboarding setting. Off by default.</span>
+      </div>
+      <div class="privacy-note">
+        <span class="privacy-label">Never shown</span>
+        <span class="privacy-body">Raw activity transcripts, other children's data, predictive scores. Not a feature flag &mdash; a stance.</span>
+      </div>
+      <div class="privacy-note">
+        <span class="privacy-label">Retention</span>
+        <span class="privacy-body">Rolling 12 months on the dashboard; archived beyond that.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §10 EDGE CASES ============== -->
+  <section id="edges">
+    <div class="sec-head">
+      <div class="sec-num">§ 10 / Edge cases</div>
+      <h2 class="sec-title">Four moments<br />the dashboard <em>handles</em>.</h2>
+    </div>
+    <p class="sec-desc">Named explicitly so that the default renderer knows what to do when the happy-path assumptions break.</p>
+
+    <div class="mapping-table-wrap">
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>Situation</th>
+            <th>Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-style">New child (&lt; 3 activities this week)</td>
+            <td>Collapse to &ldquo;getting to know Mia&rdquo; onboarding state.</td>
+          </tr>
+          <tr>
+            <td class="m-style">Single-axis over-indexing</td>
+            <td>Curiosity profile copy nudges toward a neighbor axis as &ldquo;next to try&rdquo; &mdash; never framed as a deficit.</td>
+          </tr>
+          <tr>
+            <td class="m-style">Demote streaks</td>
+            <td>Do not surface as a negative; absorbed into ladder state silently.</td>
+          </tr>
+          <tr>
+            <td class="m-style">Multiple children on one account</td>
+            <td>Each child has a separate dashboard; never cross-compared.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== §11 OUT OF SCOPE ============== -->
+  <section id="scope">
+    <div class="sec-head">
+      <div class="sec-num">§ 11 / Out of scope</div>
+      <h2 class="sec-title">Five things this doc<br /><em>doesn't design</em>.</h2>
+    </div>
+    <p class="sec-desc">Named explicitly to bound the scope and keep the dashboard honest about what it is &mdash; and what it isn't.</p>
+
+    <ul class="scope-list">
+      <li>
+        <span class="scope-item">Cross-child comparisons (same account or other families)</span>
+        <span class="scope-reason">A stance, not a feature gap. Comparison is a habit we don't want to teach.</span>
+      </li>
+      <li>
+        <span class="scope-item">School-report export</span>
+        <span class="scope-reason">Not its job. The dashboard is a conversation prompt for parents, not a document for schools.</span>
+      </li>
+      <li>
+        <span class="scope-item">Notification cadence (push frequency, email digests)</span>
+        <span class="scope-reason">Separate product decision. Lives outside this design.</span>
+      </li>
+      <li>
+        <span class="scope-item">Activity-transcript drill-down view</span>
+        <span class="scope-reason">Needs its own design round &mdash; privacy, summarization, and replay semantics all require their own treatment.</span>
+      </li>
+      <li>
+        <span class="scope-item">Developmental-milestones ribbon</span>
+        <span class="scope-reason">Deferred: risk of parental anxiety; deferred until a gentler framing exists.</span>
+      </li>
+    </ul>
+  </section>
+
+
   <footer>
-    <div class="claim">
-      "One skeleton the whole product can grow into — so the tag system, the progression ladder, and the parent-facing
-      growth path all read from the same spine."
-    </div>
-    <div>
-      <h5>Next actions</h5>
-      <ul>
-        <li>Internal team sign-off on Template 0 shape</li>
-        <li>Draft <code>docs/progression_axes.md</code></li>
-        <li>Refactor <code>templates.md</code> (Template A/B → overlays)</li>
-        <li>Promote tag block in <code>program.md</code></li>
-      </ul>
-      <h5 style="margin-top: 20px;">Post-approval</h5>
-      <ul>
-        <li>L × T interactive walkthrough for author onboarding (3×3 matrix: one axis × 3 levels × 3 tiers, showing example dialogue in each cell)</li>
-        <li>Author training guide with worked examples</li>
-      </ul>
-    </div>
-    <div>
-      <h5>Reference</h5>
-      <ul>
-        <li>templates.md · current spine</li>
-        <li>program.md · output format</li>
-        <li>entity_guidance.md · tier guidance</li>
-        <li>docs/game_design_playbook.md</li>
-      </ul>
-    </div>
+    <details class="revnote" style="grid-column: 1 / -1;">
+      <summary><span class="revnote-tag">v0.1</span> Inaugural draft · 2026-04-17</summary>
+      <ol>
+        <li>Extracted from Template 0 §05 per design spec 2026-04-17-downstream-surfaces-split-design.md.</li>
+        <li>Four new modules beyond the L×T ladder: curiosity profile, in their words, try at home, gauges.</li>
+        <li>No predictive features, no peer comparison, no letter grades — stance choices, not feature gaps.</li>
+      </ol>
+    </details>
     <div class="version">
-      <span>Version 0.2 · Draft for review</span>
-      <span>WonderLens x 奇朵 · Activity Design Framework · 2026-04-17</span>
+      <span>Version 0.1 · Draft for review</span>
+      <span>WonderLens x 奇朵 · Parent dashboard design · 2026-04-17</span>
     </div>
   </footer>
 
