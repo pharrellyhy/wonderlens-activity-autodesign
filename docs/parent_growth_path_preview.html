@@ -3138,6 +3138,216 @@
       }
     }
 
+    /* ============ §05 TRY AT HOME ============ */
+    .try-grid {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 960px;
+    }
+
+    .suggestion-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 22px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .suggestion-card .suggestion-text {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.45;
+      color: var(--ink);
+      font-weight: 400;
+      font-variation-settings: "opsz" 90;
+    }
+
+    .suggestion-card .suggestion-tag {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .suggestion-card .tag-lbl {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .suggestion-card .tag-val {
+      color: var(--muted);
+    }
+
+    .anti-engagement-note {
+      grid-column: 2;
+      max-width: 960px;
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: var(--bg-deep);
+      border-left: 2px solid var(--muted);
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    .anti-engagement-note .aen-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .anti-engagement-note .aen-body {
+      font-family: var(--serif);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    #try-at-home .reads-from {
+      grid-column: 2;
+      max-width: 960px;
+    }
+
+    /* ============ §06 GAUGES ============ */
+    .gauges-strip {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 960px;
+    }
+
+    .gauge {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .gauge-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .gauge-caption {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .stacked-bar {
+      display: flex;
+      width: 100%;
+      height: 30px;
+      border: 1px solid var(--line);
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .bar-seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: #FAF6EC;
+      padding: 0 6px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .seg-scaffold { background: var(--tier-0); }
+    .seg-coexplorer { background: var(--tier-1); }
+    .seg-observer { background: var(--tier-2); }
+
+    .time-bar {
+      position: relative;
+      width: 100%;
+      height: 30px;
+      background: var(--bg-deep);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .time-band-min,
+    .time-band-max {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--muted);
+      z-index: 2;
+    }
+
+    .time-fill {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: var(--accent);
+      z-index: 1;
+    }
+
+    .time-fill--over {
+      background: #C8923A;
+    }
+
+    .time-label {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink);
+      z-index: 3;
+      letter-spacing: 0.04em;
+    }
+
+    #gauges .reads-from {
+      grid-column: 2;
+      max-width: 960px;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 960px) {
+      .try-grid,
+      .anti-engagement-note,
+      .gauges-strip {
+        grid-column: 1;
+        grid-template-columns: 1fr;
+      }
+
+      .anti-engagement-note {
+        gap: 6px;
+      }
+
+      #try-at-home .reads-from,
+      #gauges .reads-from {
+        grid-column: 1;
+      }
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body {
@@ -3173,6 +3383,8 @@
       <a href="#layout">Layout</a>
       <a href="#curiosity">Curiosity</a>
       <a href="#in-their-words">In their words</a>
+      <a href="#try-at-home">Try at home</a>
+      <a href="#gauges">Gauges</a>
     </nav>
     <div class="meta">Draft v0.1 · 2026-04-17 · Internal review</div>
   </header>
@@ -3455,6 +3667,86 @@
     <div class="privacy-note">
       <span class="privacy-label">Privacy</span>
       <span class="privacy-body">Default shows <code>highlight_moment</code> strings only &mdash; these are runtime-generated summaries, not raw transcripts. Direct child-utterance highlights are surfaced only if the parent opts in during onboarding.</span>
+    </div>
+  </section>
+
+  <!-- ============== §05 TRY THIS AT HOME ============== -->
+  <section id="try-at-home">
+    <div class="sec-head">
+      <div class="sec-num">§ 05 / Try this at home &middot; offline</div>
+      <h2 class="sec-title">Close the app,<br />go <em>outside</em>.</h2>
+    </div>
+    <p class="sec-desc">Two to three concrete, offline, parent-participation suggestions per week &mdash; never more. The bound is deliberate: past three, it turns into a chore list and loses its warmth. These prompts read the week's axis profile and the activities the child actually touched, and hand back something the pair can do together without a screen.</p>
+
+    <div class="try-grid">
+      <div class="suggestion-card">
+        <div class="suggestion-text">On your walk, look for three spotted things together.</div>
+        <div class="suggestion-tag">
+          <span class="tag-lbl">Extends</span>
+          <span class="tag-val">Connection axis &middot; matches pattern-finding</span>
+        </div>
+      </div>
+
+      <div class="suggestion-card">
+        <div class="suggestion-text">At dinner, ask her which leaf on her plate would sort with the pointy pile.</div>
+        <div class="suggestion-tag">
+          <span class="tag-lbl">Extends</span>
+          <span class="tag-val">Form axis &middot; matches pattern-finding</span>
+        </div>
+      </div>
+
+      <div class="suggestion-card">
+        <div class="suggestion-text">Before bed, let her tell you one thing the ladybug's spots could mean to a bird.</div>
+        <div class="suggestion-tag">
+          <span class="tag-lbl">Extends</span>
+          <span class="tag-val">Perspective axis &middot; matches storytelling</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="anti-engagement-note">
+      <span class="aen-label">Intent</span>
+      <span class="aen-body">This module's purpose is to <b>send the parent-child pair away from the app</b>. It's the anti-engagement feature. Copy here never says &ldquo;open the app again&rdquo; or &ldquo;do one more activity&rdquo; &mdash; it says &ldquo;go do this with them, no screen.&rdquo;</span>
+    </div>
+
+    <div class="reads-from">
+      <b>Reads from:</b> current <code>progression.topic_axis</code> + <code>progression.next_step_hint</code> + entity hints from the week's activities
+    </div>
+  </section>
+
+  <!-- ============== §06 GAUGES STRIP ============== -->
+  <section id="gauges">
+    <div class="sec-head">
+      <div class="sec-num">§ 06 / Gauges &middot; co-play &amp; time</div>
+      <h2 class="sec-title">Ambient,<br /><em>not graded</em>.</h2>
+    </div>
+    <p class="sec-desc">Two small gauges at the footer of the dashboard. They're visible without being judgmental &mdash; a tally, not a verdict. The first tracks the distribution of <code>caregiver_role</code> across the week; the second tracks total session duration against a gentle healthy-range band.</p>
+
+    <div class="gauges-strip">
+      <div class="gauge co-play">
+        <div class="gauge-title">Co-play share &middot; this week</div>
+        <div class="stacked-bar" role="img" aria-label="Co-play share: 18% scaffold, 55% co-explorer, 27% observer.">
+          <div class="bar-seg seg-scaffold" style="width: 18%;">scaffold</div>
+          <div class="bar-seg seg-coexplorer" style="width: 55%;">co-explorer</div>
+          <div class="bar-seg seg-observer" style="width: 27%;">observer</div>
+        </div>
+        <div class="gauge-caption">This week you were mostly a co-explorer.</div>
+      </div>
+
+      <div class="gauge time">
+        <div class="gauge-title">Time this week &middot; T1 band</div>
+        <div class="time-bar" role="img" aria-label="Time this week: 62 minutes, within the T1 healthy band of 45 to 90 minutes.">
+          <div class="time-band-min" style="left: 45%;"></div>
+          <div class="time-band-max" style="left: 90%;"></div>
+          <div class="time-fill" style="width: 62%;"></div>
+          <div class="time-label">62 min</div>
+        </div>
+        <div class="gauge-caption">Gentle amount this week.</div>
+      </div>
+    </div>
+
+    <div class="reads-from">
+      <b>Reads from:</b> <code>caregiver_role</code> (list, per activity) aggregated over the window + session-duration telemetry
     </div>
   </section>
 

@@ -3151,6 +3151,216 @@
       }
     }
 
+    /* ============ §05 TRY AT HOME ============ */
+    .try-grid {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 960px;
+    }
+
+    .suggestion-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 22px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .suggestion-card .suggestion-text {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.45;
+      color: var(--ink);
+      font-weight: 400;
+      font-variation-settings: "opsz" 90;
+    }
+
+    .suggestion-card .suggestion-tag {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .suggestion-card .tag-lbl {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .suggestion-card .tag-val {
+      color: var(--muted);
+    }
+
+    .anti-engagement-note {
+      grid-column: 2;
+      max-width: 960px;
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: var(--bg-deep);
+      border-left: 2px solid var(--muted);
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    .anti-engagement-note .aen-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .anti-engagement-note .aen-body {
+      font-family: var(--serif);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    #try-at-home .reads-from {
+      grid-column: 2;
+      max-width: 960px;
+    }
+
+    /* ============ §06 GAUGES ============ */
+    .gauges-strip {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 960px;
+    }
+
+    .gauge {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .gauge-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .gauge-caption {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .stacked-bar {
+      display: flex;
+      width: 100%;
+      height: 30px;
+      border: 1px solid var(--line);
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .bar-seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: #FAF6EC;
+      padding: 0 6px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .seg-scaffold { background: var(--tier-0); }
+    .seg-coexplorer { background: var(--tier-1); }
+    .seg-observer { background: var(--tier-2); }
+
+    .time-bar {
+      position: relative;
+      width: 100%;
+      height: 30px;
+      background: var(--bg-deep);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .time-band-min,
+    .time-band-max {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--muted);
+      z-index: 2;
+    }
+
+    .time-fill {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: var(--accent);
+      z-index: 1;
+    }
+
+    .time-fill--over {
+      background: #C8923A;
+    }
+
+    .time-label {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink);
+      z-index: 3;
+      letter-spacing: 0.04em;
+    }
+
+    #gauges .reads-from {
+      grid-column: 2;
+      max-width: 960px;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 960px) {
+      .try-grid,
+      .anti-engagement-note,
+      .gauges-strip {
+        grid-column: 1;
+        grid-template-columns: 1fr;
+      }
+
+      .anti-engagement-note {
+        gap: 6px;
+      }
+
+      #try-at-home .reads-from,
+      #gauges .reads-from {
+        grid-column: 1;
+      }
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body {
@@ -3186,6 +3396,8 @@
       <a href="#layout">布局</a>
       <a href="#curiosity">好奇心图谱</a>
       <a href="#in-their-words">孩子的原话</a>
+      <a href="#try-at-home">在家一起</a>
+      <a href="#gauges">节奏</a>
     </nav>
     <div class="meta">草稿 v0.1 · 2026-04-17 · 内部评审</div>
   </header>
@@ -3468,6 +3680,86 @@
     <div class="privacy-note">
       <span class="privacy-label">隐私</span>
       <span class="privacy-body">默认只展示 <code>highlight_moment</code> 字段——这些是运行时生成的小结，不是原始录音/逐字稿。孩子直接说出的话只有在家长 onboarding 时主动勾选&ldquo;允许&rdquo;的情况下才会出现在这里。</span>
+    </div>
+  </section>
+
+  <!-- ============== §05 在家一起试试 ============== -->
+  <section id="try-at-home">
+    <div class="sec-head">
+      <div class="sec-num">§ 05 / 在家一起 &middot; offline</div>
+      <h2 class="sec-title">关掉 app，<br />一起<em>出门</em>去。</h2>
+    </div>
+    <p class="sec-desc">每周 2–3 条具体的、线下的、家长一起参与的建议——绝不超过三条。这个上限是故意设的：一旦超过三条，它就会变成一张打卡清单，失去温度。这些建议读取本周的轴画像和孩子真正玩过的活动，反过来给家长一对线下、不用屏幕就能做的事。</p>
+
+    <div class="try-grid">
+      <div class="suggestion-card">
+        <div class="suggestion-text">散步的时候，一起找三件带斑点的东西。</div>
+        <div class="suggestion-tag">
+          <span class="tag-lbl">延伸</span>
+          <span class="tag-val">Connection 轴 &middot; 呼应找规律</span>
+        </div>
+      </div>
+
+      <div class="suggestion-card">
+        <div class="suggestion-text">吃饭的时候，问问她盘子里的哪片叶子应该归到&ldquo;尖尖的&rdquo;那一堆。</div>
+        <div class="suggestion-tag">
+          <span class="tag-lbl">延伸</span>
+          <span class="tag-val">Form 轴 &middot; 呼应找规律</span>
+        </div>
+      </div>
+
+      <div class="suggestion-card">
+        <div class="suggestion-text">睡前让她讲一讲：瓢虫身上的斑点，在一只鸟看来可能是什么意思。</div>
+        <div class="suggestion-tag">
+          <span class="tag-lbl">延伸</span>
+          <span class="tag-val">Perspective 轴 &middot; 呼应说故事</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="anti-engagement-note">
+      <span class="aen-label">意图</span>
+      <span class="aen-body">这个模块的目的是<b>把家长和孩子从 app 里推出去</b>。它是反留存的。这里的文案从来不说&ldquo;再打开一次 app&rdquo;或者&ldquo;再做一个活动&rdquo;——它说的是&ldquo;现在和她一起去做这件事，不用屏幕&rdquo;。</span>
+    </div>
+
+    <div class="reads-from">
+      <b>读取自：</b>当前的 <code>progression.topic_axis</code> + <code>progression.next_step_hint</code> + 本周活动里的 entity 线索
+    </div>
+  </section>
+
+  <!-- ============== §06 节奏条 ============== -->
+  <section id="gauges">
+    <div class="sec-head">
+      <div class="sec-num">§ 06 / 节奏条 &middot; 共玩 &amp; 时间</div>
+      <h2 class="sec-title">在旁边，<br /><em>不在评分</em>。</h2>
+    </div>
+    <p class="sec-desc">面板底部的两个小节奏条。它们在场，但不评判——只是一个可见的计数，不是结论。第一条追踪本周 <code>caregiver_role</code> 的分布；第二条追踪总时长，对照一个温和的健康区间。</p>
+
+    <div class="gauges-strip">
+      <div class="gauge co-play">
+        <div class="gauge-title">本周共玩占比</div>
+        <div class="stacked-bar" role="img" aria-label="本周共玩占比：18% 主导，55% 共同探索，27% 观察。">
+          <div class="bar-seg seg-scaffold" style="width: 18%;">主导</div>
+          <div class="bar-seg seg-coexplorer" style="width: 55%;">共同探索</div>
+          <div class="bar-seg seg-observer" style="width: 27%;">观察</div>
+        </div>
+        <div class="gauge-caption">这周你更多是&ldquo;共同探索&rdquo;。</div>
+      </div>
+
+      <div class="gauge time">
+        <div class="gauge-title">本周时间 &middot; T1 区间</div>
+        <div class="time-bar" role="img" aria-label="本周时间：62 分钟，落在 T1 健康区间 45 到 90 分钟之内。">
+          <div class="time-band-min" style="left: 45%;"></div>
+          <div class="time-band-max" style="left: 90%;"></div>
+          <div class="time-fill" style="width: 62%;"></div>
+          <div class="time-label">62 分钟</div>
+        </div>
+        <div class="gauge-caption">这周花的时间不多，刚刚好。</div>
+      </div>
+    </div>
+
+    <div class="reads-from">
+      <b>读取自：</b><code>caregiver_role</code>（每个活动一条，逐条聚合到窗口） + session-duration 遥测
     </div>
   </section>
 
