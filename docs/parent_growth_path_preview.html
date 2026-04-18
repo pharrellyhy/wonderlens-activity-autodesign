@@ -2943,6 +2943,221 @@
       font-weight: 500;
     }
 
+    /* ============ §03 CURIOSITY PROFILE ============ */
+    .curiosity-wrap {
+      grid-column: 2;
+      max-width: 760px;
+    }
+
+    .curiosity-radial {
+      width: 100%;
+      max-width: 420px;
+      display: block;
+      margin: 16px auto;
+    }
+
+    .curiosity-radial .ring {
+      fill: none;
+      stroke: var(--line);
+      stroke-dasharray: 3 3;
+      stroke-width: 1;
+    }
+
+    .curiosity-radial .spoke {
+      stroke: var(--line-soft);
+      stroke-width: 1;
+    }
+
+    .curiosity-radial .profile-fill {
+      fill: color-mix(in srgb, var(--accent) 22%, transparent);
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      stroke-linejoin: round;
+    }
+
+    .curiosity-radial .labels text {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      fill: var(--muted);
+    }
+
+    .curiosity-caption {
+      margin: 28px auto 24px;
+      max-width: 560px;
+      padding: 14px 24px;
+      border-left: 3px solid var(--accent);
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 1.45;
+      color: var(--ink-soft);
+      background: color-mix(in srgb, var(--accent) 4%, transparent);
+    }
+
+    .caption-rules {
+      margin-top: 24px;
+      padding: 16px 20px;
+      background: var(--bg-deep);
+      border: 1px solid var(--line-soft);
+    }
+
+    .caption-rules-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .caption-rules-list {
+      margin: 0;
+      padding-left: 20px;
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .caption-rules-list li {
+      margin-bottom: 6px;
+    }
+
+    .caption-rules-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    #curiosity .reads-from,
+    #in-their-words .reads-from {
+      margin-top: 24px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      line-height: 1.6;
+    }
+
+    #curiosity .reads-from code,
+    #in-their-words .reads-from code {
+      color: var(--accent);
+      background: var(--bg-deep);
+      padding: 1px 4px;
+      font-family: var(--mono);
+    }
+
+    /* ============ §04 IN THEIR WORDS ============ */
+    .quote-stack {
+      grid-column: 2;
+      display: grid;
+      gap: 16px;
+      max-width: 760px;
+    }
+
+    .quote-card {
+      background: var(--bg-card);
+      border-left: 4px solid var(--accent);
+      padding: 22px 26px;
+      border-radius: 4px;
+    }
+
+    .quote-card .quote-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 23px;
+      line-height: 1.4;
+      color: var(--ink);
+      font-variation-settings: "opsz" 90;
+    }
+
+    .quote-card .quote-attrib {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .quote-card .quote-who {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .quote-card .quote-ctx {
+      color: var(--muted);
+    }
+
+    .quote-card .quote-replay {
+      margin-left: auto;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--line);
+      padding-bottom: 1px;
+    }
+
+    .quote-card .quote-replay:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .privacy-note {
+      grid-column: 2;
+      max-width: 760px;
+      margin-top: 24px;
+      padding: 14px 18px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 2px solid var(--accent);
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    .privacy-note .privacy-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .privacy-note .privacy-body {
+      font-family: var(--serif);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .privacy-note .privacy-body code {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      background: var(--bg-deep);
+      padding: 1px 4px;
+    }
+
+    @media (max-width: 960px) {
+      .curiosity-wrap,
+      .quote-stack,
+      .privacy-note {
+        grid-column: 1;
+      }
+
+      .privacy-note {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body {
@@ -2976,6 +3191,8 @@
     <nav>
       <a href="#purpose">Purpose</a>
       <a href="#layout">Layout</a>
+      <a href="#curiosity">Curiosity</a>
+      <a href="#in-their-words">In their words</a>
     </nav>
     <div class="meta">Draft v0.1 · 2026-04-17 · Internal review</div>
   </header>
@@ -3152,6 +3369,110 @@
         <li><span class="co-num">5</span><span class="co-name">Try this at home</span><span class="co-field">pillar + axis-aware suggestion</span><span class="co-note">One concrete, offline, zero-prep co-play prompt. Derived from the week's axis profile. Never a screen-time nudge.</span></li>
         <li><span class="co-num">6</span><span class="co-name">Gauges strip</span><span class="co-field">co-play share &middot; time-this-week</span><span class="co-note">Footer metrics. How much was done with a caregiver nearby, and total time. No streak, no &ldquo;goal met&rdquo; badge, no comparison.</span></li>
       </ol>
+    </div>
+  </section>
+
+  <!-- ============== §03 CURIOSITY PROFILE ============== -->
+  <section id="curiosity">
+    <div class="sec-head">
+      <div class="sec-num">§ 03 / Curiosity profile</div>
+      <h2 class="sec-title">What kind of<br /><em>thinker</em>?</h2>
+    </div>
+    <p class="sec-desc">A compact 7-lobed radial — one lobe per IB Key Concept. Its job is to answer, at a glance, <b>what kind of thinker is my kid this week?</b> without ranking, scoring, or comparing. Filled area tracks how often each concept was touched; outline reach tracks how deep the child went.</p>
+
+    <div class="curiosity-wrap">
+      <svg class="curiosity-radial" viewBox="-130 -130 260 260" aria-label="Curiosity radial">
+        <!-- Background rings (3 concentric for L1/L2/L3 reference) -->
+        <circle class="ring" r="35" />
+        <circle class="ring" r="65" />
+        <circle class="ring" r="95" />
+
+        <!-- 7 axis spokes -->
+        <g class="spokes">
+          <line x1="0" y1="0" x2="0" y2="-105" class="spoke" data-axis="form" />
+          <line x1="0" y1="0" x2="82.1" y2="-65.7" class="spoke" data-axis="function" />
+          <line x1="0" y1="0" x2="102.3" y2="23.5" class="spoke" data-axis="causation" />
+          <line x1="0" y1="0" x2="45.5" y2="94.6" class="spoke" data-axis="change" />
+          <line x1="0" y1="0" x2="-45.5" y2="94.6" class="spoke" data-axis="connection" />
+          <line x1="0" y1="0" x2="-102.3" y2="23.5" class="spoke" data-axis="perspective" />
+          <line x1="0" y1="0" x2="-82.1" y2="-65.7" class="spoke" data-axis="responsibility" />
+        </g>
+
+        <!-- Filled polygon based on per-axis frequency + depth -->
+        <polygon class="profile-fill"
+                 points="0,-95 74.2,-59.5 63.4,14.6 23.9,49.5 -28.3,58.6 -82.9,17.7 -15.6,-12.6" />
+
+        <!-- Axis labels just past each spoke -->
+        <g class="labels">
+          <text x="0" y="-115" text-anchor="middle">Form</text>
+          <text x="95" y="-72" text-anchor="start">Function</text>
+          <text x="118" y="28" text-anchor="start">Causation</text>
+          <text x="52" y="112" text-anchor="middle">Change</text>
+          <text x="-52" y="112" text-anchor="middle">Connection</text>
+          <text x="-118" y="28" text-anchor="end">Perspective</text>
+          <text x="-95" y="-72" text-anchor="end">Responsibility</text>
+        </g>
+      </svg>
+
+      <blockquote class="curiosity-caption">
+        &ldquo;Mia is a pattern-finder and a storyteller. She explores Form and Perspective most deeply; Responsibility is next to try.&rdquo;
+      </blockquote>
+
+      <div class="caption-rules">
+        <div class="caption-rules-head">Caption rules &middot; how this sentence is generated</div>
+        <ol class="caption-rules-list">
+          <li>Name the 1&ndash;2 dominant concepts with <b>personality words</b> (pattern-finder, storyteller, investigator, carer, &hellip;) &mdash; not raw concept names.</li>
+          <li>Mention the lowest-frequency axis as a gentle &ldquo;<b>next to try</b>&rdquo;, never as a weakness or a gap.</li>
+          <li>Never imply the child should &ldquo;<b>catch up</b>&rdquo; on anything. This is a profile, not a checklist.</li>
+        </ol>
+      </div>
+
+      <div class="reads-from">
+        <b>Reads from:</b> aggregate <code>key_concepts</code> + <code>progression.difficulty_level</code> across the session window
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §04 IN THEIR WORDS ============== -->
+  <section id="in-their-words">
+    <div class="sec-head">
+      <div class="sec-num">§ 04 / In their words &middot; this week</div>
+      <h2 class="sec-title">The week,<br />in <em>her voice</em>.</h2>
+    </div>
+    <p class="sec-desc">Two to three pull-quotes per week, rendered in serif and warm &mdash; deliberately journal-like, not metric-like. These are the lines the child noticed, in the child&rsquo;s language. No counters, no averages, no achievement frame.</p>
+
+    <div class="quote-stack">
+      <div class="quote-card">
+        <div class="quote-text">&ldquo;The flower closes to save energy at night.&rdquo;</div>
+        <div class="quote-attrib">
+          <span class="quote-who">Mia said</span>
+          <span class="quote-ctx">Tuesday &middot; playing with a sunflower</span>
+          <a class="quote-replay" href="#">Replay &#x2197;</a>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-text">&ldquo;The ladybug&rsquo;s spots are a warning, like a stop sign.&rdquo;</div>
+        <div class="quote-attrib">
+          <span class="quote-who">Mia said</span>
+          <span class="quote-ctx">Wednesday &middot; on a garden walk</span>
+          <a class="quote-replay" href="#">Replay &#x2197;</a>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-text">&ldquo;If I sort the leaves by their edges, the pointy ones all go together.&rdquo;</div>
+        <div class="quote-attrib">
+          <span class="quote-who">Mia said</span>
+          <span class="quote-ctx">Saturday morning &middot; sorting leaves on the table</span>
+          <a class="quote-replay" href="#">Replay &#x2197;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="privacy-note">
+      <span class="privacy-label">Privacy</span>
+      <span class="privacy-body">Default shows <code>highlight_moment</code> strings only &mdash; these are runtime-generated summaries, not raw transcripts. Direct child-utterance highlights are surfaced only if the parent opts in during onboarding.</span>
     </div>
   </section>
 

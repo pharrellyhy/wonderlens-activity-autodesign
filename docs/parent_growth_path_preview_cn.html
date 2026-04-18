@@ -2956,6 +2956,221 @@
       font-weight: 500;
     }
 
+    /* ============ §03 CURIOSITY PROFILE ============ */
+    .curiosity-wrap {
+      grid-column: 2;
+      max-width: 760px;
+    }
+
+    .curiosity-radial {
+      width: 100%;
+      max-width: 420px;
+      display: block;
+      margin: 16px auto;
+    }
+
+    .curiosity-radial .ring {
+      fill: none;
+      stroke: var(--line);
+      stroke-dasharray: 3 3;
+      stroke-width: 1;
+    }
+
+    .curiosity-radial .spoke {
+      stroke: var(--line-soft);
+      stroke-width: 1;
+    }
+
+    .curiosity-radial .profile-fill {
+      fill: color-mix(in srgb, var(--accent) 22%, transparent);
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      stroke-linejoin: round;
+    }
+
+    .curiosity-radial .labels text {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      fill: var(--muted);
+    }
+
+    .curiosity-caption {
+      margin: 28px auto 24px;
+      max-width: 560px;
+      padding: 14px 24px;
+      border-left: 3px solid var(--accent);
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 1.45;
+      color: var(--ink-soft);
+      background: color-mix(in srgb, var(--accent) 4%, transparent);
+    }
+
+    .caption-rules {
+      margin-top: 24px;
+      padding: 16px 20px;
+      background: var(--bg-deep);
+      border: 1px solid var(--line-soft);
+    }
+
+    .caption-rules-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .caption-rules-list {
+      margin: 0;
+      padding-left: 20px;
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .caption-rules-list li {
+      margin-bottom: 6px;
+    }
+
+    .caption-rules-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    #curiosity .reads-from,
+    #in-their-words .reads-from {
+      margin-top: 24px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      line-height: 1.6;
+    }
+
+    #curiosity .reads-from code,
+    #in-their-words .reads-from code {
+      color: var(--accent);
+      background: var(--bg-deep);
+      padding: 1px 4px;
+      font-family: var(--mono);
+    }
+
+    /* ============ §04 IN THEIR WORDS ============ */
+    .quote-stack {
+      grid-column: 2;
+      display: grid;
+      gap: 16px;
+      max-width: 760px;
+    }
+
+    .quote-card {
+      background: var(--bg-card);
+      border-left: 4px solid var(--accent);
+      padding: 22px 26px;
+      border-radius: 4px;
+    }
+
+    .quote-card .quote-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 23px;
+      line-height: 1.4;
+      color: var(--ink);
+      font-variation-settings: "opsz" 90;
+    }
+
+    .quote-card .quote-attrib {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .quote-card .quote-who {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .quote-card .quote-ctx {
+      color: var(--muted);
+    }
+
+    .quote-card .quote-replay {
+      margin-left: auto;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--line);
+      padding-bottom: 1px;
+    }
+
+    .quote-card .quote-replay:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .privacy-note {
+      grid-column: 2;
+      max-width: 760px;
+      margin-top: 24px;
+      padding: 14px 18px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 2px solid var(--accent);
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    .privacy-note .privacy-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .privacy-note .privacy-body {
+      font-family: var(--serif);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .privacy-note .privacy-body code {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      background: var(--bg-deep);
+      padding: 1px 4px;
+    }
+
+    @media (max-width: 960px) {
+      .curiosity-wrap,
+      .quote-stack,
+      .privacy-note {
+        grid-column: 1;
+      }
+
+      .privacy-note {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+
     /* ============ PRINT ============ */
     @media print {
       body {
@@ -2989,6 +3204,8 @@
     <nav>
       <a href="#purpose">目的</a>
       <a href="#layout">布局</a>
+      <a href="#curiosity">好奇心图谱</a>
+      <a href="#in-their-words">孩子的原话</a>
     </nav>
     <div class="meta">草稿 v0.1 · 2026-04-17 · 内部评审</div>
   </header>
@@ -3165,6 +3382,110 @@
         <li><span class="co-num">5</span><span class="co-name">可以在家一起试试</span><span class="co-field">基于 pillar + axis 生成的建议</span><span class="co-note">一条具体的、不用屏幕、零准备的线下共玩建议。由本周的轴画像推出。不是"继续使用 app"的钩子。</span></li>
         <li><span class="co-num">6</span><span class="co-name">底栏度量</span><span class="co-field">共玩占比 &middot; 本周时长</span><span class="co-note">底部的度量条。多少活动是和看护者一起完成的、总时长是多少。不做 streak，不做"达成目标"徽章，不做任何比较。</span></li>
       </ol>
+    </div>
+  </section>
+
+  <!-- ============== §03 好奇心图谱 ============== -->
+  <section id="curiosity">
+    <div class="sec-head">
+      <div class="sec-num">§ 03 / 好奇心图谱</div>
+      <h2 class="sec-title">ta 是个什么样的<br /><em>思考者</em>？</h2>
+    </div>
+    <p class="sec-desc">一个紧凑的 7 瓣雷达——每一瓣对应一个 IB Key Concept。它的任务是一眼告诉家长，<b>这一周 ta 是个什么样的思考者？</b>不排名、不打分、不和别的孩子比较。填充面积反映这一概念被碰到的频次；外轮廓延伸反映孩子走到了多深。</p>
+
+    <div class="curiosity-wrap">
+      <svg class="curiosity-radial" viewBox="-130 -130 260 260" aria-label="Curiosity radial">
+        <!-- Background rings (3 concentric for L1/L2/L3 reference) -->
+        <circle class="ring" r="35" />
+        <circle class="ring" r="65" />
+        <circle class="ring" r="95" />
+
+        <!-- 7 axis spokes -->
+        <g class="spokes">
+          <line x1="0" y1="0" x2="0" y2="-105" class="spoke" data-axis="form" />
+          <line x1="0" y1="0" x2="82.1" y2="-65.7" class="spoke" data-axis="function" />
+          <line x1="0" y1="0" x2="102.3" y2="23.5" class="spoke" data-axis="causation" />
+          <line x1="0" y1="0" x2="45.5" y2="94.6" class="spoke" data-axis="change" />
+          <line x1="0" y1="0" x2="-45.5" y2="94.6" class="spoke" data-axis="connection" />
+          <line x1="0" y1="0" x2="-102.3" y2="23.5" class="spoke" data-axis="perspective" />
+          <line x1="0" y1="0" x2="-82.1" y2="-65.7" class="spoke" data-axis="responsibility" />
+        </g>
+
+        <!-- Filled polygon based on per-axis frequency + depth -->
+        <polygon class="profile-fill"
+                 points="0,-95 74.2,-59.5 63.4,14.6 23.9,49.5 -28.3,58.6 -82.9,17.7 -15.6,-12.6" />
+
+        <!-- Axis labels just past each spoke -->
+        <g class="labels">
+          <text x="0" y="-115" text-anchor="middle">形态</text>
+          <text x="95" y="-72" text-anchor="start">功能</text>
+          <text x="118" y="28" text-anchor="start">因果</text>
+          <text x="52" y="112" text-anchor="middle">变化</text>
+          <text x="-52" y="112" text-anchor="middle">联系</text>
+          <text x="-118" y="28" text-anchor="end">视角</text>
+          <text x="-95" y="-72" text-anchor="end">责任</text>
+        </g>
+      </svg>
+
+      <blockquote class="curiosity-caption">
+        &ldquo;米娅是个找规律的人，也是个说故事的人。她最常探索形态和视角；责任是她下一个可以试试的方向。&rdquo;
+      </blockquote>
+
+      <div class="caption-rules">
+        <div class="caption-rules-head">这句话是怎么生成的 &middot; 三条规则</div>
+        <ol class="caption-rules-list">
+          <li>用<b>人格词</b>（找规律的人、说故事的人、小侦探、小照顾者&hellip;）点出 1&ndash;2 个主导概念——不直接念概念名。</li>
+          <li>把出现频次最低的那条轴说成&ldquo;<b>下一个可以试试</b>&rdquo;，不说成短板，也不说成弱项。</li>
+          <li>绝不暗示孩子需要&ldquo;<b>补上</b>&rdquo;什么。这是一张画像，不是一张清单。</li>
+        </ol>
+      </div>
+
+      <div class="reads-from">
+        <b>读取自：</b>session 窗口内聚合的 <code>key_concepts</code> + <code>progression.difficulty_level</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §04 孩子的原话 ============== -->
+  <section id="in-their-words">
+    <div class="sec-head">
+      <div class="sec-num">§ 04 / 孩子的原话 &middot; 这一周</div>
+      <h2 class="sec-title">这一周，<br />用<em>她的话</em>说。</h2>
+    </div>
+    <p class="sec-desc">每周 2–3 条 pull-quote，用衬线字、暖色——有意做成日记的样子，不是指标的样子。这些是孩子自己注意到的话，用孩子自己的语言。没有计数，没有平均值，没有&ldquo;达成&rdquo;框架。</p>
+
+    <div class="quote-stack">
+      <div class="quote-card">
+        <div class="quote-text">&ldquo;花到晚上合起来是为了省力气。&rdquo;</div>
+        <div class="quote-attrib">
+          <span class="quote-who">米娅说</span>
+          <span class="quote-ctx">周二 &middot; 和向日葵一起玩</span>
+          <a class="quote-replay" href="#">回放 &#x2197;</a>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-text">&ldquo;瓢虫身上的斑点是一种警告，就像停车标志一样。&rdquo;</div>
+        <div class="quote-attrib">
+          <span class="quote-who">米娅说</span>
+          <span class="quote-ctx">周三 &middot; 去花园散步时</span>
+          <a class="quote-replay" href="#">回放 &#x2197;</a>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-text">&ldquo;按树叶的边缘来分，尖尖的就都在一起了。&rdquo;</div>
+        <div class="quote-attrib">
+          <span class="quote-who">米娅说</span>
+          <span class="quote-ctx">周六上午 &middot; 在桌上分树叶</span>
+          <a class="quote-replay" href="#">回放 &#x2197;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="privacy-note">
+      <span class="privacy-label">隐私</span>
+      <span class="privacy-body">默认只展示 <code>highlight_moment</code> 字段——这些是运行时生成的小结，不是原始录音/逐字稿。孩子直接说出的话只有在家长 onboarding 时主动勾选&ldquo;允许&rdquo;的情况下才会出现在这里。</span>
     </div>
   </section>
 
