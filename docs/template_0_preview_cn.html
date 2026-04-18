@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 
 <head>
   <meta charset="UTF-8" />
@@ -1219,7 +1219,8 @@
       transition: border-left-color 0.15s;
     }
 
-    .surface-card:hover {
+    .surface-card:hover,
+    .surface-card:focus-visible {
       border-left-color: var(--ink);
     }
 
@@ -3405,10 +3406,11 @@
     <p class="subhead-desc">这两个面的完整设计各自成文。Template 0 负责提供它们共同依赖的契约。</p>
 
     <div class="surface-strip">
-      <a class="surface-card" href="child_recap_preview_cn.html">
+      <a class="surface-card" href="child_recap_preview_cn.html" aria-label="儿童端活动回顾 — 查看完整设计">
         <div class="sc-label">下游面 · 2 之 1</div>
         <div class="sc-title">儿童端活动回顾</div>
         <div class="sc-purpose">活动后的儿童端画面。庆祝孩子刚刚完成的那个具体认知动作；轻柔收尾，不钩人，不打连胜。</div>
+        <!-- Keep in sync with child_recap_preview_cn.html §04 Contract -->
         <div class="sc-reads">
           <span class="sc-reads-lbl">Reads</span>
           <code>role_title</code>
@@ -3419,10 +3421,11 @@
         </div>
         <div class="sc-arrow">查看完整设计 →</div>
       </a>
-      <a class="surface-card" href="parent_growth_path_preview_cn.html">
+      <a class="surface-card" href="parent_growth_path_preview_cn.html" aria-label="家长端成长路径 — 查看完整设计">
         <div class="sc-label">下游面 · 2 之 2</div>
         <div class="sc-title">家长端成长路径</div>
         <div class="sc-purpose">家长端面板。随着时间把成长变得可读可行动，不沦为成绩单。</div>
+        <!-- Keep in sync with parent_growth_path_preview_cn.html §07 Tag-block contract -->
         <div class="sc-reads">
           <span class="sc-reads-lbl">Reads</span>
           <code>progression.*</code>

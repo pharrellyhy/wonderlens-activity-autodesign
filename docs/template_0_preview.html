@@ -1206,7 +1206,8 @@
       transition: border-left-color 0.15s;
     }
 
-    .surface-card:hover {
+    .surface-card:hover,
+    .surface-card:focus-visible {
       border-left-color: var(--ink);
     }
 
@@ -3404,10 +3405,11 @@
     <p class="subhead-desc">The full specs for these surfaces live in their own docs. The contract they depend on is what Template 0 provides.</p>
 
     <div class="surface-strip">
-      <a class="surface-card" href="child_recap_preview.html">
+      <a class="surface-card" href="child_recap_preview.html" aria-label="Child recap — full design">
         <div class="sc-label">Surface · 1 of 2</div>
         <div class="sc-title">Child recap</div>
         <div class="sc-purpose">The post-activity screen. Celebrates the specific cognitive act the child just made; soft-sign-off, no hooks, no streaks.</div>
+        <!-- Keep in sync with child_recap_preview.html §04 Contract -->
         <div class="sc-reads">
           <span class="sc-reads-lbl">Reads</span>
           <code>role_title</code>
@@ -3418,10 +3420,11 @@
         </div>
         <div class="sc-arrow">Full design →</div>
       </a>
-      <a class="surface-card" href="parent_growth_path_preview.html">
+      <a class="surface-card" href="parent_growth_path_preview.html" aria-label="Parent growth path — full design">
         <div class="sc-label">Surface · 2 of 2</div>
         <div class="sc-title">Parent growth path</div>
         <div class="sc-purpose">The parent dashboard. Makes growth legible and actionable over time, without turning into a grade report.</div>
+        <!-- Keep in sync with parent_growth_path_preview.html §07 Tag-block contract -->
         <div class="sc-reads">
           <span class="sc-reads-lbl">Reads</span>
           <code>progression.*</code>
