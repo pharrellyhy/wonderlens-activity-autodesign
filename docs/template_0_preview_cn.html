@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 
 <head>
   <meta charset="UTF-8" />
@@ -624,8 +624,8 @@
     /* ============ TAG BLOCK ============ */
     .tagblock {
       display: grid;
-      grid-template-columns: 3fr 2fr;
-      gap: 40px;
+      grid-template-columns: 1fr;
+      gap: 32px;
       align-items: start;
     }
 
@@ -1191,6 +1191,96 @@
       height: 6px;
       background: var(--accent);
       border-radius: 50%;
+    }
+
+    /* §05 下游面参考条 */
+    .surface-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .surface-strip { grid-template-columns: 1fr; }
+    }
+
+    .surface-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 24px 26px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      text-decoration: none;
+      color: inherit;
+      transition: border-left-color 0.15s;
+    }
+
+    .surface-card:hover,
+    .surface-card:focus-visible {
+      border-left-color: var(--ink);
+    }
+
+    .sc-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .sc-title {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .sc-purpose {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    .sc-reads {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+      font-size: 11px;
+    }
+
+    .sc-reads-lbl {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 8px;
+    }
+
+    .sc-reads code {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      padding: 2px 6px;
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      border-radius: 2px;
+    }
+
+    .sc-arrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 4px;
     }
 
     /* Child recap mockup */
@@ -2097,10 +2187,6 @@
         display: none;
       }
 
-      .tagblock {
-        grid-template-columns: 1fr;
-      }
-
       .dials {
         grid-template-columns: 1fr;
       }
@@ -2854,6 +2940,7 @@
         <li><b>Tag block 按下游面拆成两组</b>（§04 · §05）—— 新增两个可选字段：<code>highlight_moment</code>（儿童端运行时一句话）和 <code>subject_tags</code>（家长端跨学科分类）。字段说明和 mockup 都重写，明确哪个字段喂给哪个面。</li>
         <li><b>新增 L1↔L2↔L3 升降级规则</b>（§07）—— 一个新的小节，列了活动内和活动间的升级 / 保持 / 降级的可量化触发条件，还有"不让孩子挫败"原则、同辈跳跃、以及个性化接口的预留方案。</li>
         <li><b>软化 §06 T1 Beat 3 的对话</b>—— 原版的"如果红色真的是一种警告，鸟应该怎么做？"对 4–6 岁偏抽象。换成先给具体前提，再问鸟具体会做什么的 what-will-it-do 版本。</li>
+        <li><b>下游面单独成文</b>（§05）。<code>child_recap_preview.html</code> 和 <code>parent_growth_path_preview.html</code> 承载各自完整设计；§05 只保留上游管线 + 一条指向两份文档的参考条。</li>
       </ol>
     </details>
   </section>
@@ -3315,133 +3402,41 @@
       描述了这条管线，而 tag block 让每一份新设计当天就能接进去——不用以后一遍一遍回头补元数据。
     </div>
 
-    <h3 class="subhead" data-dir="下游">从活动到儿童端、家长端</h3>
-    <p class="subhead-desc">活动结束后，同一份 tag block 要喂两个<strong>目前还不存在</strong>的界面——儿童端的小回顾和家长端的成长路径。
-      Template 0 让这两个界面可以被具体设计出来。下面两个粗略的 mockup 展示了 tag block 就位之后它们大致长什么样。</p>
+    <h3 class="subhead" data-dir="下游">Tag block 喂的两个面</h3>
+    <p class="subhead-desc">这两个面的完整设计各自成文。Template 0 负责提供它们共同依赖的契约。</p>
 
-    <div class="mockups">
-      <div class="mockup">
-        <div class="mockup-label"><span>儿童端小回顾 · 活动结束页</span></div>
-        <div class="mockup-frame">
-          <div class="recap-head">
-            <span class="title">你刚刚做了什么</span>
-            <span class="date">今天</span>
-          </div>
-          <div class="recap-badge">
-            <div class="badge-circle">🐞</div>
-            <div>
-              <div class="badge-title">瓢虫小侦探</div>
-              <div class="badge-sub">Mystery · 完成</div>
-            </div>
-          </div>
-          <div class="recap-row">
-            <span class="recap-lbl">今天的瞬间</span>
-            <div class="chips">
-              <span class="chip chip-moment">你发现了瓢虫背上的警告色</span>
-            </div>
-          </div>
-          <div class="recap-row">
-            <span class="recap-lbl">你收获了</span>
-            <div class="chips">
-              <span class="chip chip-rel">图案</span>
-              <span class="chip chip-rel">伪装</span>
-            </div>
-          </div>
-          <div class="recap-row">
-            <span class="recap-lbl">你练习了</span>
-            <div class="chips">
-              <span class="chip chip-atl">观察</span>
-              <span class="chip chip-atl">描述</span>
-            </div>
-          </div>
-          <div class="reads-from">
-            读取：<code>role_title</code> · <code>pillar</code> · <code>highlight_moment</code> ·
-            <code>related_concepts</code> · <code>atl_skills</code>
-            <span style="display:block; margin-top:6px; font-style:italic; opacity:.8;">不出现 IB 术语——孩子看到的是"我做了什么"，不是框架怎么归类。</span>
-          </div>
+    <div class="surface-strip">
+      <a class="surface-card" href="child_recap_preview_cn.html" aria-label="儿童端活动回顾 — 查看完整设计">
+        <div class="sc-label">下游面 · 2 之 1</div>
+        <div class="sc-title">儿童端活动回顾</div>
+        <div class="sc-purpose">活动后的儿童端画面。庆祝孩子刚刚完成的那个具体认知动作；轻柔收尾，不钩人，不打连胜。</div>
+        <!-- Keep in sync with child_recap_preview_cn.html §04 Contract -->
+        <div class="sc-reads">
+          <span class="sc-reads-lbl">Reads</span>
+          <code>role_title</code>
+          <code>pillar</code>
+          <code>highlight_moment</code>
+          <code>related_concepts</code>
+          <code>atl_skills</code>
         </div>
-      </div>
-
-      <div class="mockup">
-        <div class="mockup-label"><span>家长端成长路径 · 周视图</span></div>
-        <div class="mockup-frame">
-          <div class="path-head">
-            <div>
-              <div class="path-title">孩子的成长路径</div>
-              <div class="path-sub">4 月 15 日当周</div>
-            </div>
-            <div class="path-tier">T1 · 探究引导</div>
-          </div>
-          <div class="path-axis">
-            <div class="axis-name-p">Form → 属性描述</div>
-            <div class="axis-ladder">
-              <div class="step filled">L1</div>
-              <div class="step filled">L2</div>
-              <div class="step current">L3</div>
-            </div>
-            <div class="axis-evidence">3 个活动 · 瓢虫、彩虹、向日葵</div>
-          </div>
-          <div class="path-axis">
-            <div class="axis-name-p">Connection → 图案 &amp; 归类</div>
-            <div class="axis-ladder">
-              <div class="step filled">L1</div>
-              <div class="step current">L2</div>
-              <div class="step empty">L3</div>
-            </div>
-            <div class="axis-evidence">2 个活动 · 树叶、积木</div>
-          </div>
-          <div class="path-axis">
-            <div class="axis-name-p">Perspective → 换位视角</div>
-            <div class="axis-ladder">
-              <div class="step current">L1</div>
-              <div class="step empty">L2</div>
-              <div class="step empty">L3</div>
-            </div>
-            <div class="axis-evidence">1 个活动 · 泰迪熊</div>
-          </div>
-          <div class="path-legend">L1 识别 · L2 扩展 · L3 推理 —— 同一个 concept 上的 3 级认知深度，详见 §07</div>
-
-          <div class="path-frame-sub">本周在 IB 框架上的分布</div>
-          <div class="path-frame-rows">
-            <div class="path-frame-row">
-              <span class="pfr-lbl">Key Concepts</span>
-              <div class="chips">
-                <span class="chip chip-key">Form ·3</span>
-                <span class="chip chip-key">Connection ·2</span>
-                <span class="chip chip-key">Perspective ·1</span>
-              </div>
-            </div>
-            <div class="path-frame-row">
-              <span class="pfr-lbl">ATL Skills</span>
-              <div class="chips">
-                <span class="chip chip-atl">观察 ·5</span>
-                <span class="chip chip-atl">描述 ·4</span>
-                <span class="chip chip-atl">批判思维 ·2</span>
-              </div>
-            </div>
-            <div class="path-frame-row">
-              <span class="pfr-lbl">学科</span>
-              <div class="chips">
-                <span class="chip chip-subject">科学 ·4</span>
-                <span class="chip chip-subject">语言 ·1</span>
-                <span class="chip chip-subject">社交情感 ·1</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="reads-from">
-            读取：<code>progression.topic_axis</code> · <code>progression.difficulty_level</code> ·
-            <code>tier</code> · <code>key_concepts</code> · <code>atl_skills</code> · <code>transdisciplinary_theme</code> · <code>subject_tags</code>
-            <span style="display:block; margin-top:6px; font-style:italic; opacity:.8;">完整的 IB + 跨学科面——家长既能看到深度进展，也能把活动对上学校科目。</span>
-          </div>
+        <div class="sc-arrow">查看完整设计 →</div>
+      </a>
+      <a class="surface-card" href="parent_growth_path_preview_cn.html" aria-label="家长端成长路径 — 查看完整设计">
+        <div class="sc-label">下游面 · 2 之 2</div>
+        <div class="sc-title">家长端成长路径</div>
+        <div class="sc-purpose">家长端面板。随着时间把成长变得可读可行动，不沦为成绩单。</div>
+        <!-- Keep in sync with parent_growth_path_preview_cn.html §07 Tag-block contract -->
+        <div class="sc-reads">
+          <span class="sc-reads-lbl">Reads</span>
+          <code>progression.*</code>
+          <code>key_concepts</code>
+          <code>atl_skills</code>
+          <code>subject_tags</code>
+          <code>tier</code>
+          <code>caregiver_role</code>
         </div>
-      </div>
-    </div>
-
-    <div class="note-block">
-      <strong>这些事情 Template 0 故意没有设计：</strong>
-      小回顾怎么触发、徽章跨会话怎么持久化、家长端月视图和周视图怎么汇总、奖励循环怎么驱动复玩——这些全都是未解题。Template 0
-      锁定的只是<em>数据这一层</em>：一旦所有活动都输出一份一致的 tag block，这些界面就可以基于一份稳定契约去做设计，不用每个活动都去追元数据。
+        <div class="sc-arrow">查看完整设计 →</div>
+      </a>
     </div>
   </section>
 
