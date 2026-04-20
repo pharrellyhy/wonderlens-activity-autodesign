@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progression walkthrough · L1 ↔ L2 ↔ L3 in action</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,50..100,0..1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ============ TOKENS (from Template 0) ============ */
+    :root {
+      --bg: #F4EFE6;
+      --bg-deep: #ECE5D6;
+      --bg-card: #FAF6EC;
+      --ink: #141311;
+      --ink-soft: #3B3730;
+      --muted: #7A7468;
+      --line: #CCC3AE;
+      --line-soft: #E2DBC8;
+      --accent: #C5411C;
+      --accent-deep: #8E2A10;
+      --mystery: #3D4A5C;
+      --creation: #C5411C;
+      --performance: #C89021;
+      --discovery: #3A6B56;
+      --adventure: #8B5A3C;
+      --nurture: #A6497C;
+      --tier-0: #B06A3A;
+      --tier-1: #3A6B56;
+      --tier-2: #3D4A5C;
+      --serif: 'Fraunces', 'Noto Serif SC', Georgia, serif;
+      --sans: 'IBM Plex Sans', 'Noto Serif SC', -apple-system, sans-serif;
+      --mono: 'IBM Plex Mono', 'SF Mono', monospace;
+    }
+
+    /* ============ BASE ============ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      font-feature-settings: "ss01", "ss02", "kern";
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(197, 65, 28, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 85% 70%, rgba(61, 74, 92, 0.04) 0%, transparent 50%);
+      min-height: 100vh;
+      padding-top: 54px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      z-index: 1;
+      mix-blend-mode: multiply;
+    }
+
+    /* ============ MASTHEAD ============ */
+    .masthead {
+      border-bottom: 1px solid var(--ink);
+      padding: 18px 48px 14px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 32px;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .masthead .brand {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      font-style: italic;
+    }
+
+    .masthead .brand b {
+      font-style: normal;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .breadcrumb {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-left: 16px;
+    }
+
+    .breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumb a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 1px;
+    }
+
+    @media (max-width: 700px) {
+      .breadcrumb {
+        display: none;
+      }
+    }
+
+    .masthead nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    .masthead nav a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .masthead nav a:hover {
+      color: var(--accent);
+    }
+
+    .masthead nav a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 1px;
+    }
+
+    .masthead .meta {
+      color: var(--muted);
+    }
+
+    /* ============ SECTION BASE ============ */
+    section {
+      padding: 80px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .sec-head {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+      align-items: baseline;
+    }
+
+    .sec-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      font-variation-settings: "opsz" 90;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 90, "WONK" 1;
+    }
+
+    .sec-desc {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 720px;
+      font-weight: 300;
+    }
+
+    /* ============ INTRO LEGEND ============ */
+    .legend-compact {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px 20px;
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .lc-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px;
+      align-items: baseline;
+    }
+
+    .lc-row dt {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .lc-row dd {
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink-soft);
+      font-weight: 300;
+    }
+
+    @media (max-width: 700px) {
+      .lc-row {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+    }
+
+    /* ============ REVNOTE ============ */
+    .revnote {
+      margin-top: 36px;
+      padding: 18px 22px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .revnote summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+
+    .revnote summary::marker,
+    .revnote summary::-webkit-details-marker {
+      color: var(--accent);
+    }
+
+    .revnote summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 1px;
+    }
+
+    .revnote[open] summary {
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .revnote-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 2px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .revnote ol {
+      margin: 0;
+      padding-left: 22px;
+      color: var(--ink-soft);
+    }
+
+    .revnote li {
+      margin-bottom: 10px;
+    }
+
+    .revnote li:last-child {
+      margin-bottom: 0;
+    }
+
+    .revnote code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    /* ============ VERSION ============ */
+    .version {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 48px 64px;
+    }
+
+    @media (max-width: 700px) {
+      section {
+        padding: 48px 20px;
+      }
+
+      footer {
+        padding: 32px 20px 48px;
+      }
+
+      .sec-head {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="masthead">
+    <div class="brand"><b>WonderLens</b> · Progression walkthrough</div><span class="breadcrumb">← <a
+        href="template_0_preview.html#axes">Template 0 · §07 Progression</a></span>
+    <nav>
+      <a href="#intro">Intro</a>
+      <a href="#scenario-1">Scenario 1</a>
+      <a href="#scenario-2">Scenario 2</a>
+      <a href="#scenario-3">Scenario 3</a>
+      <a href="#scenario-4">Scenario 4</a>
+      <a href="#rules">Rules</a>
+    </nav>
+    <div class="meta">Draft v0.1 · 2026-04-20 · Internal review</div>
+  </header>
+
+  <!-- ============== §00 INTRO ============== -->
+  <section id="intro">
+    <div class="sec-head">
+      <div class="sec-num">§ 00 / How to read this</div>
+      <h2 class="sec-title">A child's journey through rungs — <em>four scenarios</em>.</h2>
+    </div>
+    <p class="sec-desc">Template 0 §07 specifies WHEN the runtime promotes, holds, or demotes a child's rung on each
+      axis. This doc shows WHAT that looks like for specific child journeys. Not a live simulator — hand-authored
+      scenarios chosen to make the temporal dynamics concrete.</p>
+
+    <dl class="legend-compact">
+      <div class="lc-row">
+        <dt>↑ promote</dt>
+        <dd>next rung up</dd>
+      </div>
+      <div class="lc-row">
+        <dt>· hold</dt>
+        <dd>same rung, next activity varies exemplar</dd>
+      </div>
+      <div class="lc-row">
+        <dt>↓ demote</dt>
+        <dd>drop one rung, same axis (dignity rule applies)</dd>
+      </div>
+      <div class="lc-row">
+        <dt>⇢ sibling jump</dt>
+        <dd>switch to related axis at L1</dd>
+      </div>
+      <div class="lc-row">
+        <dt>~ soft-reframe</dt>
+        <dd>same rung, different beat (not a demote)</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.1</span> Inaugural draft · 2026-04-20</summary>
+      <ol>
+        <li>Four scenarios covering steady progression, hit-a-wall recovery (dignity rule + sibling jump), across-axis
+          independence, and reluctance vs inability.</li>
+        <li>Hand-authored — not a live simulator. Each scenario is a horizontal timeline of 5–8 activity cards with
+          transition indicators and dialogue snippets on key events.</li>
+        <li>Scenarios 5 (personalization hypothetical) and 6 (long arc) deferred to v0.2 — design captured in
+          <code>docs/plans/2026-04-20-progression-walkthrough-design.md</code> §6.
+        </li>
+      </ol>
+    </details>
+    <div class="version">
+      <span>Version 0.1 · Draft for review</span>
+      <span>WonderLens x 奇朵 · Progression walkthrough · 2026-04-20</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>
