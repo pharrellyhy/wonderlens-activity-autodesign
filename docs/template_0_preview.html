@@ -1291,6 +1291,107 @@
       border-radius: 50%;
     }
 
+    /* §05 upstream flow boxes (Moment + Matcher) */
+    .flow-box.flow-moment,
+    .flow-box.flow-matcher {
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      margin: 12px 0;
+    }
+    .flow-box .fb-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .flow-box .fb-line {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 2px 0;
+    }
+    .flow-box .fb-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      margin-left: 6px;
+    }
+    .flow-box .fb-desc {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+    .flow-box .fb-desc code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+    /* Vertical flow arrow between Moment/Matcher boxes (distinct from horizontal .flow-arrow inside .flow-row) */
+    .flow-arrow.flow-arrow-v {
+      display: block;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 20px;
+      color: var(--muted);
+      margin: 4px 0;
+      padding: 0;
+    }
+
+    /* §05 upstream catalog-time reads prefix */
+    .upstream-reads {
+      margin: 32px 0 20px;
+      padding: 18px 22px;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+    .ur-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .ur-sub {
+      color: var(--muted);
+      font-weight: normal;
+      letter-spacing: 0.08em;
+    }
+    .ur-body {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--ink-soft);
+    }
+    .ur-body code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      padding: 2px 6px;
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      border-radius: 2px;
+    }
+    .ur-note {
+      margin-top: 12px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .downstream-reads-head {
+      margin-top: 20px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
     /* §05 downstream surface reference strip */
     .surface-strip {
       display: grid;
@@ -3057,7 +3158,7 @@
       <a href="#spine">Spine</a>
       <a href="#skeleton">Artifact</a>
       <a href="#tags">Tag block</a>
-      <a href="#bridges">Bridges</a>
+      <a href="#bridges">Data pipeline</a>
       <a href="#tiers">Tiers</a>
       <a href="#axes">Progression</a>
       <a href="#decisions">Decisions</a>
@@ -3516,7 +3617,7 @@
   <!-- ============== BRIDGES ============== -->
   <section id="bridges">
     <div class="sec-head">
-      <div class="sec-num">§ 05 / Upstream &amp; downstream</div>
+      <div class="sec-num">§ 05 / Data pipeline · upstream &amp; downstream</div>
       <h2 class="sec-title">The tag block is a <em>contract</em>.</h2>
     </div>
     <p class="sec-desc">The fields in §04 are not decorative. Each one is consumed by a real upstream or downstream
@@ -3556,6 +3657,27 @@
     <p class="subhead-desc">When a child photographs an object, the game selection pipeline (playbook §7) decides which
       activity plays. It reads the tag block to rank three tiers of match — Tier A &gt; Tier B &gt; Tier P &gt;
       conversation-only. Every tag block field earns its place by feeding one of them.</p>
+
+    <div class="flow-box flow-moment">
+      <div class="fb-label">Moment</div>
+      <div class="fb-body">
+        <div class="fb-line">entity seen <span class="fb-tag">(camera)</span></div>
+        <div class="fb-line">tier <span class="fb-tag">(onboarding)</span></div>
+        <div class="fb-line">setting <span class="fb-tag">(time + place)</span></div>
+        <div class="fb-line">caregiver present <span class="fb-tag">(runtime)</span></div>
+      </div>
+    </div>
+
+    <div class="flow-arrow flow-arrow-v">&darr;</div>
+
+    <div class="flow-box flow-matcher">
+      <div class="fb-label">Matcher</div>
+      <div class="fb-body">
+        <div class="fb-desc">Reads catalog tag blocks &middot; ranks by <code>entity_class</code> rollup + <code>tier_range</code> fit &middot; picks best-matching activity shell.</div>
+      </div>
+    </div>
+
+    <div class="flow-arrow flow-arrow-v">&darr;</div>
 
     <div class="tiers-bridge">
       <div class="tier-bridge-card tier-a">
@@ -3614,6 +3736,16 @@
 
     <h3 class="subhead" data-dir="Downstream">Two surfaces consume the tag block</h3>
     <p class="subhead-desc">The full specs for these surfaces live in their own docs. The contract they depend on is what Template 0 provides.</p>
+
+    <div class="upstream-reads">
+      <div class="ur-head">Upstream reads <span class="ur-sub">&middot; catalog-time</span></div>
+      <div class="ur-body">
+        <code>entity_class</code> &middot; <code>entity_binding</code> &middot; <code>tier_range</code> &middot; <code>pillar</code> &middot; <code>category</code> &middot; <code>progression.topic_axis</code> &middot; <code>key_concepts</code> &middot; <code>atl_skills</code> &middot; <code>subject_tags</code> &middot; <code>transdisciplinary_theme</code>
+      </div>
+      <div class="ur-note">Matcher logic: see <code>docs/upstream_matcher.md</code> <em>(to be written separately)</em>.</div>
+    </div>
+
+    <div class="downstream-reads-head">Downstream reads <span class="ur-sub">&middot; instance-time</span></div>
 
     <div class="surface-strip">
       <a class="surface-card" href="child_recap_preview.html" aria-label="Child recap — full design">
