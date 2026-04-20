@@ -364,6 +364,269 @@
       flex-wrap: wrap;
     }
 
+    /* ============ SCENARIO TIMELINE (shared across scenarios 1-4) ============ */
+    /* Activity card — the atomic unit of a scenario timeline */
+    .ac {
+      flex: 0 0 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      scroll-snap-align: start;
+    }
+
+    .ac-head {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .ac-num {
+      color: var(--accent);
+    }
+
+    .ac-entity {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .ac-rungs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ac-rung {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 2px;
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .ac-rung-arrow {
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .ac-outcome {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      flex-grow: 1;
+    }
+
+    .ac-trigger {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      display: flex;
+      gap: 6px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .ac-trigger-glyph {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .ac-detail {
+      font-size: 11px;
+    }
+
+    .ac-detail summary {
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .ac-detail summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .ac-dialogue {
+      padding: 8px 10px;
+      margin-top: 6px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 2px solid var(--accent);
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    /* Transition indicator between cards */
+    .transition {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 0 8px;
+      align-self: center;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+    }
+
+    .transition .t-glyph {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .transition .t-label {
+      text-transform: uppercase;
+      color: var(--muted);
+      max-width: 90px;
+      text-align: center;
+    }
+
+    .transition[data-type="promote"] .t-glyph {
+      color: var(--accent);
+    }
+
+    .transition[data-type="hold"] .t-glyph {
+      color: var(--muted);
+    }
+
+    .transition[data-type="demote"] .t-glyph {
+      color: var(--tier-0);
+    }
+
+    .transition[data-type="sibling-jump"] .t-glyph {
+      color: var(--accent);
+    }
+
+    .transition[data-type="soft-reframe"] .t-glyph {
+      color: var(--muted);
+    }
+
+    /* Timeline container */
+    .timeline {
+      display: flex;
+      gap: 0;
+      padding: 24px 0;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      align-items: stretch;
+    }
+
+    /* State panel */
+    .state-panel {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      border-left: 2px solid var(--line);
+      border-radius: 0 4px 4px 0;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+
+    .state-panel strong {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .state-panel code {
+      font-size: 11px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      padding: 1px 5px;
+      border-radius: 2px;
+    }
+
+    /* Scenario wrapper */
+    .scenario {
+      margin-top: 48px;
+      scroll-margin-top: 80px;
+    }
+
+    .scenario-tldr {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-style: italic;
+      color: var(--ink-soft);
+      margin: 8px 0 14px;
+    }
+
+    .scenario-context {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 0;
+      border-top: 1px dashed var(--line);
+      border-bottom: 1px dashed var(--line);
+      margin-bottom: 8px;
+    }
+
+    .scenario-context strong {
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .scenario-close {
+      margin-top: 18px;
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      padding: 12px 16px;
+      border-left: 2px solid var(--accent);
+      background: color-mix(in srgb, var(--accent) 3%, var(--bg));
+    }
+
+    .scenario-close strong {
+      font-family: var(--serif);
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    /* Mobile collapse */
+    @media (max-width: 700px) {
+      .timeline {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .transition {
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 4px 0;
+      }
+    }
+
     /* ============ FOOTER ============ */
     footer {
       max-width: 1280px;
@@ -436,6 +699,147 @@
         <dd>same rung, different beat (not a demote)</dd>
       </div>
     </dl>
+  </section>
+
+  <!-- ============== §01 SCENARIO 1 — STEADY PROGRESSION ============== -->
+  <section class="scenario" id="scenario-1">
+    <div class="sec-head">
+      <div class="sec-num">§ 01 / Steady progression</div>
+      <h2 class="sec-title">The baseline journey — most activities hold, promotions happen at <em>natural
+          breakpoints</em>.</h2>
+    </div>
+    <p class="scenario-tldr">Mia works the Form axis across 5 activities. She promotes L1 → L2 early, then holds steady
+      through 3 L2 activities, earning the cross-activity promote to L3.</p>
+
+    <div class="scenario-context">
+      <span><strong>Child</strong>Mia · T1 · 4–6 yrs</span>
+      <span><strong>Axis</strong>Form</span>
+      <span><strong>Entity</strong>Ladybug → Butterfly → Sunflower</span>
+    </div>
+
+    <div class="timeline">
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 1</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Ladybug</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">Named 4 attributes in 2 rounds without prompt-repeat.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · solid L1, no spontaneous L+1 yet</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">hold</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 2</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Ladybug (new exemplar)</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">Named 3 attributes, then spontaneously said "the spots are why birds don't eat it."
+        </div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↑</span>
+          <span>promote (next activity) · spontaneous L+1 response</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="promote">
+        <span class="t-glyph">↑</span>
+        <span class="t-label">promote · next activity L2</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 3</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Butterfly</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">Listed 4 attributes + pointed at one.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · completing L2 successfully</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">hold</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 4</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Butterfly (second session)</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">Listed 5 attributes, located each.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · 2nd L2 success on Form</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">hold</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 5</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Sunflower</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">Listed 6 attributes, located each, compared to butterfly.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↑</span>
+          <span>cross-activity promote · 3 consecutive L2 successes</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="state-panel">
+      <strong>State after Scenario 1</strong>
+      Form: <code>L1 → L1 → L2 → L2 → L2 → (L3 next)</code>
+    </div>
+
+    <div class="scenario-close">
+      <strong>Why this matters:</strong> most activities in real use will look like this. Promotions happen at natural
+      breakpoints (spontaneous L+1, or 3-session consecutive completion), not on every success. Holding is not
+      stagnation — it's how the system gives exemplars room to vary while the child internalizes the rung.
+    </div>
   </section>
 
   <!-- ============== FOOTER ============== -->
