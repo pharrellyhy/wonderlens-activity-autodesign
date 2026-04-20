@@ -2047,45 +2047,9 @@
       max-width: 1280px;
       margin: 0 auto;
       border-top: 1px solid var(--ink);
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 48px;
-      align-items: start;
-    }
-
-    footer .claim {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 300;
-      line-height: 1.35;
-      font-style: italic;
-      color: var(--ink-soft);
-      font-variation-settings: "opsz" 90, "SOFT" 100;
-    }
-
-    footer h5 {
-      font-family: var(--mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    footer ul {
-      list-style: none;
-      font-size: 13px;
-    }
-
-    footer li {
-      padding: 4px 0;
-      color: var(--ink-soft);
-    }
-
-    footer li::before {
-      content: "→";
-      color: var(--accent);
-      margin-right: 8px;
     }
 
     .companion-link {
@@ -2139,7 +2103,6 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      grid-column: 1 / -1;
       display: flex;
       justify-content: space-between;
     }
@@ -2233,10 +2196,6 @@
 
       .hero-meta {
         grid-template-columns: 1fr 1fr;
-      }
-
-      footer {
-        grid-template-columns: 1fr;
       }
 
       .tier-tabs {
@@ -4132,32 +4091,6 @@
   </section>
 
   <footer>
-    <div class="claim">
-      "一副整个产品都能长进去的骨架——让 tag 系统、progression 阶梯、家长端成长路径都从同一条主干上读数据。"
-    </div>
-    <div>
-      <h5>下一步</h5>
-      <ul>
-        <li>内部团队签收 Template 0 的结构</li>
-        <li>起草 <code>docs/progression_axes.md</code></li>
-        <li>重构 <code>templates.md</code>（Template A / B → overlay）</li>
-        <li>在 <code>program.md</code> 里把 tag block 提升为必填</li>
-      </ul>
-      <h5 style="margin-top: 20px;">签收通过后</h5>
-      <ul>
-        <li>L × T 交互式演练（3×3 矩阵：1 条轴 × 3 级深度 × 3 个 tier，每格显示一段示例对话），用于作者培训</li>
-        <li>作者培训指南 + 完整的 worked example</li>
-      </ul>
-    </div>
-    <div>
-      <h5>参考文件</h5>
-      <ul>
-        <li>templates.md · 当前主干</li>
-        <li>program.md · 输出格式</li>
-        <li>entity_guidance.md · tier 指南</li>
-        <li>docs/game_design_playbook.md</li>
-      </ul>
-    </div>
     <details class="revnote">
       <summary><span class="revnote-tag">v0.1</span> 初稿 · 2026-04-17</summary>
       <ol>
