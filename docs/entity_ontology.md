@@ -114,7 +114,7 @@ These aren't strict taxonomy — they tag *capability*. An entity can belong to 
 2. **Abstract class memberships are additive** — an activity can target `entity_class: [ladybug, beetle, insect, small_creature, warning_colored_small_creature, living_thing, observable_thing]` to enable rollup on either axis.
 3. **`entity_binding: agnostic` activities** use the minimal chain: `entity_class: [observable_thing]`.
 4. **Adding a new entity**: if your activity uses an entity not in this file, add it to the ontology in the same PR as the activity. New entities never break existing chains.
-5. **Never shrink the ontology** — renaming or removing a class is a breaking change requiring repo-wide migration and a version bump to v1.0.
+5. **Never shrink the ontology** — renaming or removing a class is a breaking change (see Versioning).
 
 ---
 
