@@ -1304,6 +1304,92 @@
       border-radius: 50%;
     }
 
+    /* §05 pipeline — shared eyebrow for new heads (fb-label / ur-head / downstream-reads-head) */
+    .flow-box .fb-label,
+    .ur-head,
+    .downstream-reads-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .flow-box .fb-label { margin-bottom: 8px; }
+    .downstream-reads-head { margin-top: 20px; }
+
+    /* §05 upstream flow boxes (Moment + Matcher) */
+    .flow-box {
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      margin: 12px 0;
+    }
+    .flow-box .fb-line {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 2px 0;
+    }
+    .flow-box .fb-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      margin-left: 6px;
+    }
+    .flow-box .fb-desc {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+    .flow-box .fb-desc code,
+    .ur-body code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+    /* Vertical flow arrow between Moment/Matcher boxes (distinct from horizontal .flow-arrow inside .flow-row) */
+    .flow-arrow.flow-arrow-v {
+      display: block;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 20px;
+      color: var(--muted);
+      margin: 4px 0;
+    }
+
+    /* §05 upstream catalog-time reads prefix */
+    .upstream-reads {
+      margin: 32px 0 20px;
+      padding: 18px 22px;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+    .ur-sub {
+      color: var(--muted);
+      font-weight: normal;
+      letter-spacing: 0.08em;
+    }
+    .ur-body {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--ink-soft);
+    }
+    .ur-body code {
+      padding: 2px 6px;
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      border-radius: 2px;
+    }
+    .ur-note {
+      margin-top: 12px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
     /* §05 下游面参考条 */
     .surface-strip {
       display: grid;
@@ -3070,7 +3156,7 @@
       <a href="#spine">主干</a>
       <a href="#skeleton">完整骨架</a>
       <a href="#tags">Tag Block</a>
-      <a href="#bridges">上下游</a>
+      <a href="#bridges">数据管线</a>
       <a href="#tiers">Tier 适配</a>
       <a href="#axes">进阶轴</a>
       <a href="#decisions">决策</a>
@@ -3519,7 +3605,7 @@
   <!-- ============== BRIDGES ============== -->
   <section id="bridges">
     <div class="sec-head">
-      <div class="sec-num">§ 05 / 上下游对接</div>
+      <div class="sec-num">§ 05 / 数据管线 · 上游 · 下游</div>
       <h2 class="sec-title">Tag Block，<br /> 是一份<em>契约</em>。</h2>
     </div>
     <p class="sec-desc">§04 里的字段都不是装饰。每一个都对接一个真实存在的上游或下游系统。有些系统今天已经有了（playbook
@@ -3557,6 +3643,27 @@
     <h3 class="subhead" data-dir="上游">从照片到活动</h3>
     <p class="subhead-desc">孩子拍下一个物体后，游戏选配管线（参见 playbook §7）决定适配哪个活动。读取 tag block，按 Tier A
       &gt; Tier B &gt; Tier P &gt; 纯对话的优先级排序。tag block 里每一个字段都能在这条管线里找到自己的出口。</p>
+
+    <div class="flow-box flow-moment">
+      <div class="fb-label">场景</div>
+      <div class="fb-body">
+        <div class="fb-line">看到的 entity <span class="fb-tag">（相机）</span></div>
+        <div class="fb-line">tier <span class="fb-tag">（入门设置）</span></div>
+        <div class="fb-line">环境 <span class="fb-tag">（时间 + 地点）</span></div>
+        <div class="fb-line">照护者在场 <span class="fb-tag">（运行时）</span></div>
+      </div>
+    </div>
+
+    <div class="flow-arrow flow-arrow-v">&darr;</div>
+
+    <div class="flow-box flow-matcher">
+      <div class="fb-label">匹配器</div>
+      <div class="fb-body">
+        <div class="fb-desc">读取目录标签块 &middot; 按 <code>entity_class</code> 上滚 + <code>tier_range</code> 适配排序 &middot; 选出最佳匹配的活动骨架。</div>
+      </div>
+    </div>
+
+    <div class="flow-arrow flow-arrow-v">&darr;</div>
 
     <div class="tiers-bridge">
       <div class="tier-bridge-card tier-a">
@@ -3615,6 +3722,16 @@
 
     <h3 class="subhead" data-dir="下游">Tag block 喂的两个面</h3>
     <p class="subhead-desc">这两个面的完整设计各自成文。Template 0 负责提供它们共同依赖的契约。</p>
+
+    <div class="upstream-reads">
+      <div class="ur-head">上游读取 <span class="ur-sub">&middot; 目录时</span></div>
+      <div class="ur-body">
+        <code>entity_class</code> &middot; <code>entity_binding</code> &middot; <code>tier_range</code> &middot; <code>pillar</code> &middot; <code>category</code> &middot; <code>progression.topic_axis</code> &middot; <code>key_concepts</code> &middot; <code>atl_skills</code> &middot; <code>subject_tags</code> &middot; <code>transdisciplinary_theme</code>
+      </div>
+      <div class="ur-note">匹配器逻辑：见 <code>docs/upstream_matcher.md</code> <em>（单独成文）</em>。</div>
+    </div>
+
+    <div class="downstream-reads-head">下游读取 <span class="ur-sub">&middot; 运行时</span></div>
 
     <div class="surface-strip">
       <a class="surface-card" href="child_recap_preview_cn.html" aria-label="儿童端活动回顾 — 查看完整设计">
