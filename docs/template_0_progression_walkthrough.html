@@ -665,6 +665,81 @@
       margin-right: 6px;
     }
 
+    /* ============ AXES SNAPSHOT (Scenario 3 — across-axis independence) ============ */
+    .axes-snapshot {
+      margin-top: 18px;
+      padding: 20px 24px;
+      background: color-mix(in srgb, var(--accent) 3%, var(--bg));
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .as-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .as-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .as-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 40px;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .as-name {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+    }
+
+    .as-bar {
+      height: 6px;
+      border-radius: 2px;
+      background: var(--line);
+      position: relative;
+    }
+
+    .as-l0 { background: var(--line); }
+
+    .as-l1 {
+      background: linear-gradient(to right, color-mix(in srgb, var(--accent) 30%, transparent) 33%, var(--line) 33%);
+    }
+
+    .as-l2 {
+      background: linear-gradient(to right, color-mix(in srgb, var(--accent) 60%, transparent) 66%, var(--line) 66%);
+    }
+
+    .as-l3 {
+      background: color-mix(in srgb, var(--accent) 85%, transparent);
+    }
+
+    .as-val {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-align: right;
+    }
+
+    .as-caption {
+      margin-top: 14px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
     /* Mobile collapse */
     @media (max-width: 700px) {
       .timeline {
@@ -1091,6 +1166,185 @@
       The runtime's bookkeeping is elaborate — rung-per-axis drift, sibling jumps on axis floor, return trajectories.
       Both are true simultaneously. The dignity rule + sibling jump are the two design choices most likely to be misread
       in prose; here they are visible in the dialogue snippets and the state-panel evolution.
+    </div>
+  </section>
+
+  <!-- ============== §03 SCENARIO 3 — ACROSS-AXIS INDEPENDENCE ============== -->
+  <section class="scenario" id="scenario-3">
+    <div class="sec-head">
+      <div class="sec-num">§ 03 / Across-axis independence</div>
+      <h2 class="sec-title">Rung state is <em>per axis</em>, not global — a child lives at multiple rungs simultaneously.
+      </h2>
+    </div>
+    <p class="scenario-tldr">Mia is strong on Form (L3), weaker on Causation (L1), and barely initialized on
+      Responsibility (L1). These coexist in the same session, at the same instant. No "level." Seven bars, drifting
+      independently.</p>
+
+    <div class="scenario-context">
+      <span><strong>Child</strong>Mia · T1 · 4–6 yrs</span>
+      <span><strong>Axes</strong>Form (strong), Causation (weaker), Responsibility (barely touched)</span>
+      <span><strong>Entity</strong>Bee (sustained)</span>
+    </div>
+
+    <div class="timeline" tabindex="0" role="region" aria-label="Scenario 3 activity timeline">
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 1</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Bee</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L3</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L3</span>
+        </div>
+        <div class="ac-outcome">Listed 6 parts, located each, spontaneous — "the fuzzy bits catch pollen."</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · clean L3 on Form</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">hold</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 2</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Bee (new framing)</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L3</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L3</span>
+        </div>
+        <div class="ac-outcome">Matched 5 parts to functions — "stinger: defend", "wings: fly", "eyes: see flowers."</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · 2nd L3 on Form, new framing same rung</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">hold</span>
+      </div>
+
+      <article class="ac" data-axis="causation">
+        <header class="ac-head">
+          <span class="ac-num">Activity 3</span>
+          <span class="ac-axis">Causation</span>
+        </header>
+        <div class="ac-entity">Bee</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">Mixed answers — "bees buzz because... they're fast?" One plausible, one off.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · Causation still at L1 — same child, different axis</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">hold</span>
+      </div>
+
+      <article class="ac" data-axis="responsibility">
+        <header class="ac-head">
+          <span class="ac-num">Activity 4</span>
+          <span class="ac-axis">Responsibility</span>
+        </header>
+        <div class="ac-entity">Bee</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">Stayed on-topic when asked "what do bees need from us?" — but only minimal engagement.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · Responsibility barely initialized · L1 minimal</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">hold</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 5</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Bee</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L3</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L3</span>
+        </div>
+        <div class="ac-outcome">3rd consecutive L3 on Form — full part/function map without scaffold.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · personalization hook would kick in at ≥200 sessions (not yet)</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="axes-snapshot">
+      <strong class="as-head">Rung across all 7 axes · snapshot after Scenario 3</strong>
+      <div class="as-grid">
+        <div class="as-row" data-rung="L3">
+          <span class="as-name">Form</span>
+          <span class="as-bar as-l3"></span>
+          <span class="as-val">L3</span>
+        </div>
+        <div class="as-row" data-rung="L0">
+          <span class="as-name">Function</span>
+          <span class="as-bar as-l0"></span>
+          <span class="as-val">—</span>
+        </div>
+        <div class="as-row" data-rung="L1">
+          <span class="as-name">Causation</span>
+          <span class="as-bar as-l1"></span>
+          <span class="as-val">L1</span>
+        </div>
+        <div class="as-row" data-rung="L0">
+          <span class="as-name">Change</span>
+          <span class="as-bar as-l0"></span>
+          <span class="as-val">—</span>
+        </div>
+        <div class="as-row" data-rung="L0">
+          <span class="as-name">Connection</span>
+          <span class="as-bar as-l0"></span>
+          <span class="as-val">—</span>
+        </div>
+        <div class="as-row" data-rung="L0">
+          <span class="as-name">Perspective</span>
+          <span class="as-bar as-l0"></span>
+          <span class="as-val">—</span>
+        </div>
+        <div class="as-row" data-rung="L1">
+          <span class="as-name">Responsibility</span>
+          <span class="as-bar as-l1"></span>
+          <span class="as-val">L1</span>
+        </div>
+      </div>
+      <p class="as-caption">There is no XP bar. There are 7 bars, and they drift independently.</p>
+    </div>
+
+    <div class="scenario-close">
+      <strong>Why this matters:</strong> Mia is at L3 on Form AND L1 on Causation AND uninitialized on Change — all at
+      the same instant. "What level is Mia on?" has no single answer. The runtime tracks rung <em>per axis</em>, and the
+      parent dashboard curiosity radial (<code>parent_growth_path_preview.html</code> §03) is this same snapshot at a
+      longer time window.
     </div>
   </section>
 
