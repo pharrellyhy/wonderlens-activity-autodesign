@@ -740,6 +740,71 @@
       color: var(--ink);
     }
 
+    /* ============ DISTINCTION BOX (Scenario 4 — reluctance vs inability) ============ */
+    .distinction-box {
+      margin-top: 18px;
+      padding: 20px 24px;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .db-head {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .db-body p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin: 6px 0;
+    }
+
+    .db-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .db-col {
+      padding: 12px 14px;
+      border-radius: 4px;
+    }
+
+    .db-demote {
+      background: color-mix(in srgb, var(--tier-0) 10%, transparent);
+      border-left: 2px solid var(--tier-0);
+    }
+
+    .db-soft {
+      background: color-mix(in srgb, var(--muted) 10%, transparent);
+      border-left: 2px solid var(--muted);
+    }
+
+    .db-col-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .db-col-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 700px) {
+      .db-compare { grid-template-columns: 1fr; }
+    }
+
     /* Mobile collapse */
     @media (max-width: 700px) {
       .timeline {
@@ -1345,6 +1410,121 @@
       the same instant. "What level is Mia on?" has no single answer. The runtime tracks rung <em>per axis</em>, and the
       parent dashboard curiosity radial (<code>parent_growth_path_preview.html</code> §03) is this same snapshot at a
       longer time window.
+    </div>
+  </section>
+
+  <!-- ============== §04 SCENARIO 4 — RELUCTANCE VS INABILITY ============== -->
+  <section class="scenario" id="scenario-4">
+    <div class="sec-head">
+      <div class="sec-num">§ 04 / Reluctance vs inability</div>
+      <h2 class="sec-title">Silence isn't a demote — the runtime has a <em>softer move</em> for when a child needs a
+        breath, not a lower rung.</h2>
+    </div>
+    <p class="scenario-tldr">Mia goes quiet mid-activity after two correct attributes. The runtime reads it as an
+      emotional pause, not a cognitive gap — shifts to a lower-pressure beat (soft-reframe), holds the rung, and Mia
+      re-engages well enough to earn a promote on the next activity.</p>
+
+    <div class="scenario-context">
+      <span><strong>Child</strong>Mia · T1 · 4–6 yrs</span>
+      <span><strong>Axis</strong>Form</span>
+      <span><strong>Entity</strong>Mushroom (fresh — shows this isn't ladybug-only)</span>
+    </div>
+
+    <div class="timeline" tabindex="0" role="region" aria-label="Scenario 4 activity timeline">
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 1</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Mushroom</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">Named 2 attributes ("white", "round top"), then 8s silence. Runtime shifts to a
+          lower-pressure beat within the activity — second mushroom image, "oh look, this one is different. I wonder
+          what you see." Mia answers softly.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">~</span>
+          <span>hold · soft-reframe within activity — emotional pause, not cognitive gap</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="soft-reframe">
+        <span class="t-glyph">~</span>
+        <span class="t-label">soft-reframe within activity #1 — child re-engaged</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 2</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Mushroom (same session, 2 min later)</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L3</span>
+        </div>
+        <div class="ac-outcome">Re-engages after the gentler re-entry; names 4 attributes across 2 rounds —
+          "stem", "cap", "bumpy underneath", "shorter than a carrot."</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↑</span>
+          <span>promote · earned L3 within activity #2 — next-activity on Form advances</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="promote">
+        <span class="t-glyph">↑</span>
+        <span class="t-label">promote · L2→L3 earned within activity #2</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">Activity 3</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">Mushroom</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L3</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L3</span>
+        </div>
+        <div class="ac-outcome">Completes L3 by comparing the mushroom to a familiar fruit — "the top is round like
+          an apple, but the stem is thin like a carrot." Full analogy, unprompted.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · clean L3 on Form</span>
+        </div>
+      </article>
+    </div>
+
+    <aside class="distinction-box">
+      <div class="db-head">Silence ≠ Demote</div>
+      <div class="db-body">
+        <p><strong>A demote requires 2 attempts</strong> — silence <em>plus</em> off-topic wander <em>plus</em>
+          repeat-prompt-back. A single silence after a correct response is often just the child thinking, resting, or
+          needing a gentler re-entry.</p>
+        <p>The runtime has a separate <strong>soft-reframe</strong> move for this — it's a beat-level adjustment within
+          the activity, NOT a rung change.</p>
+      </div>
+      <div class="db-compare">
+        <div class="db-col db-demote">
+          <span class="db-col-label">Demote</span>
+          <span class="db-col-text">Child's cognitive state genuinely mismatches the rung. Drop.</span>
+        </div>
+        <div class="db-col db-soft">
+          <span class="db-col-label">Soft-reframe</span>
+          <span class="db-col-text">Child's emotional / attention state needs a breath. Same rung, softer prompt.</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="scenario-close">
+      <strong>Why this matters:</strong> The runtime isn't rung-greedy. It has intermediate moves — soft-reframe,
+      exemplar variation — that preserve rung without forcing the child past their current edge. Distinguishing can't
+      from won't is the system's clearest design statement: children aren't optimized through, they're listened to.
     </div>
   </section>
 
