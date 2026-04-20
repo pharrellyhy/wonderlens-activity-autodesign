@@ -581,13 +581,21 @@
       color: var(--ink-soft);
     }
 
-    .state-panel strong {
+    /* Accent-eyebrow: shared "mono / 10px / uppercase / accent" caption label.
+       Used above accent-tinted card regions (state-panel, axes-snapshot, distinction-box).
+       Each selector keeps its own margin-bottom below. */
+    .state-panel strong,
+    .as-head,
+    .db-col-label {
       font-family: var(--mono);
       font-size: 10px;
-      text-transform: uppercase;
       letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--accent);
       display: block;
+    }
+
+    .state-panel strong {
       margin-bottom: 6px;
     }
 
@@ -675,12 +683,6 @@
     }
 
     .as-head {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
       margin-bottom: 14px;
     }
 
@@ -786,12 +788,6 @@
     }
 
     .db-col-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
       margin-bottom: 6px;
     }
 
