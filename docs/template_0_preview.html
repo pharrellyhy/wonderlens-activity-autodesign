@@ -1291,23 +1291,28 @@
       border-radius: 50%;
     }
 
+    /* §05 pipeline — shared eyebrow for new heads (fb-label / ur-head / downstream-reads-head) */
+    .flow-box .fb-label,
+    .ur-head,
+    .downstream-reads-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .flow-box .fb-label { margin-bottom: 8px; }
+    .downstream-reads-head { margin-top: 20px; }
+
     /* §05 upstream flow boxes (Moment + Matcher) */
-    .flow-box.flow-moment,
-    .flow-box.flow-matcher {
+    .flow-box {
       padding: 16px 20px;
       background: var(--bg-card);
       border: 1px solid var(--line);
       border-left: 3px solid var(--accent);
       border-radius: 0 4px 4px 0;
       margin: 12px 0;
-    }
-    .flow-box .fb-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
     }
     .flow-box .fb-line {
       font-size: 13px;
@@ -1325,7 +1330,8 @@
       line-height: 1.55;
       color: var(--ink-soft);
     }
-    .flow-box .fb-desc code {
+    .flow-box .fb-desc code,
+    .ur-body code {
       font-family: var(--mono);
       font-size: 11px;
       color: var(--accent);
@@ -1338,7 +1344,6 @@
       font-size: 20px;
       color: var(--muted);
       margin: 4px 0;
-      padding: 0;
     }
 
     /* §05 upstream catalog-time reads prefix */
@@ -1348,14 +1353,6 @@
       background: color-mix(in srgb, var(--accent) 4%, var(--bg));
       border-left: 2px solid var(--accent);
       border-radius: 0 4px 4px 0;
-    }
-    .ur-head {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
     }
     .ur-sub {
       color: var(--muted);
@@ -1368,9 +1365,6 @@
       color: var(--ink-soft);
     }
     .ur-body code {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
       padding: 2px 6px;
       background: color-mix(in srgb, var(--accent) 8%, transparent);
       border-radius: 2px;
@@ -1381,15 +1375,6 @@
       font-style: italic;
       font-size: 12px;
       color: var(--muted);
-    }
-    .downstream-reads-head {
-      margin-top: 20px;
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
     }
 
     /* §05 downstream surface reference strip */
