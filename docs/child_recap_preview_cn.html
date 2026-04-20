@@ -122,6 +122,13 @@
     }
     .breadcrumb a:hover { text-decoration: underline; }
 
+    .breadcrumb a:focus-visible,
+    .companion-link a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 1px;
+    }
+
     @media (max-width: 700px) {
       .breadcrumb { display: none; }
     }
@@ -4106,7 +4113,7 @@
       <span class="cl-note">同一份 tag block，换一个视角。</span>
     </div>
     <div class="version">
-      <span>版本 0.2 · 评审草稿</span>
+      <span>版本 0.1 · 评审草稿</span>
       <span>WonderLens x 奇朵 · 活动设计框架 · 2026-04-17</span>
     </div>
   </footer>

@@ -122,6 +122,13 @@
     }
     .breadcrumb a:hover { text-decoration: underline; }
 
+    .breadcrumb a:focus-visible,
+    .companion-link a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 1px;
+    }
+
     @media (max-width: 700px) {
       .breadcrumb { display: none; }
     }
@@ -4090,7 +4097,7 @@
       <span class="cl-note">Same tag block, different lens.</span>
     </div>
     <div class="version">
-      <span>Version 0.2 · Draft for review</span>
+      <span>Version 0.1 · Draft for review</span>
       <span>WonderLens x 奇朵 · Activity Design Framework · 2026-04-17</span>
     </div>
   </footer>

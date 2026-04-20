@@ -31,6 +31,7 @@
       --tier-0: #B06A3A;
       --tier-1: #3A6B56;
       --tier-2: #3D4A5C;
+      /* --warn: parent-dashboard only; used by §06 over-band state. Not shared across the 3 docs. */
       --warn: #C8923A;
       --serif: 'Fraunces', 'Noto Serif SC', Georgia, serif;
       --sans: 'IBM Plex Sans', 'Noto Serif SC', -apple-system, sans-serif;
@@ -122,6 +123,13 @@
       text-decoration: none;
     }
     .breadcrumb a:hover { text-decoration: underline; }
+
+    .breadcrumb a:focus-visible,
+    .companion-link a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 1px;
+    }
 
     @media (max-width: 700px) {
       .breadcrumb { display: none; }
