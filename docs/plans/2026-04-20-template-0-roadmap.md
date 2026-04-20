@@ -4,23 +4,27 @@
 > Covers the "Next actions" + "Post-approval" items originally listed in Template 0's v0.2 footer.
 
 **Date:** 2026-04-20
-**Template 0 authority:** `docs/template_0_preview.html` (v0.2, 2026-04-17)
-**Ancillary specs:** `docs/plans/2026-04-17-downstream-surfaces-split-design.md`
+**Last updated:** 2026-04-20 — items 2/3/4/6 landed; **Item 7 added** (matchability tags, shipped as PR #10)
+**Template 0 authority:** `docs/template_0_preview.html` (v0.3, 2026-04-20)
+**Ancillary specs:** `docs/plans/2026-04-17-downstream-surfaces-split-design.md` · `docs/plans/2026-04-20-matchability-tags-design.md`
 
 ---
 
-## The 6 items and their state
+## The 7 items and their state
 
 | # | Item | State |
 |---|---|---|
 | 1 | Internal team sign-off on Template 0 shape | Process (not code) — owner-driven |
-| 2 | Draft `docs/progression_axes.md` | ❌ **outstanding** |
-| 3 | Refactor `templates.md` (Template A/B → pillar overlays on Template 0) | ❌ **outstanding — biggest** |
-| 4 | Promote tag block in `program.md` | ❌ **outstanding** |
+| 2 | Draft `docs/progression_axes.md` | ✅ **shipped** (PR #5) |
+| 3 | Refactor `templates.md` (Template A/B → pillar overlays on Template 0) | ✅ **shipped** (PR #7, v1.0) |
+| 4 | Promote tag block in `program.md` | ✅ **shipped** (PR #6) |
 | 5 | L × T interactive walkthrough for author onboarding | ✅ already shipped (`docs/template_0_lt_walkthrough.html` + `_cn.html`) |
-| 6 | Author training guide with worked examples | ❌ outstanding (depends on #3 landing) |
+| 6 | Author training guide with worked examples | ✅ **shipped** (PR #8, v0.1) |
+| 7 | **[NEW]** Matchability tags — `entity_binding` + `entity_class` + `tier_range` + §05 pipeline update + `docs/entity_ontology.md` | ✅ **shipped** (PR #10, Template 0 v0.3) |
 
-Items 2, 3, 4 are **pre-approval** (they close out the v0.2 roadmap). Item 6 is **post-approval** and depends on #3.
+**Status summary:** All 6 original roadmap items complete. One new item (#7 Matchability tags) added + shipped after the roadmap's initial framing — addresses the recall-first ask raised during post-surfaces-split review.
+
+Item 1 (internal sign-off) remains a process step — owner-driven, not code.
 
 ---
 
@@ -483,6 +487,53 @@ cd .worktrees/docs/author-training
 
 ---
 
+<a id="item-7-matchability"></a>
+## 6b. Item 7 — **[NEW 2026-04-20]** Matchability tags + upstream pipeline
+
+> **Added to the roadmap after items 1–6 were defined.** Surfaced during post-surfaces-split review when the question shifted from "deep-link to the best-fit activity" to "map a small catalog onto as many moments as possible." Shipped as PR #10.
+
+**Type:** docs-only change, 3 new tag fields + §05 pipeline depiction update.
+**Files:** 6 HTML (Template 0, child recap, parent dashboard — EN + CN) + 1 net-new markdown (`docs/entity_ontology.md`).
+**Depends on:** items 2–6 all landed (this sits on top of the v0.2 foundation).
+**Status:** ✅ **shipped** as PR #10 · Template 0 bumped **v0.2 → v0.3**.
+
+### What it ships
+
+**Three new catalog-time fields in Template 0 §04:**
+- `entity_binding` — `bound` / `parameterized` / `agnostic` — declares how tightly coupled the activity is to its nominal entity
+- `entity_class` — ordered list (specific → general) that lets the matcher roll up when exact-entity matches miss
+- `tier_range` — `primary` + `span` + `elasticity` — accepts tier stretch
+
+**§05 pipeline update (renamed "Data pipeline · upstream & downstream"):**
+- New Moment + Matcher boxes showing the upstream stage the matcher occupies
+- "Upstream reads · catalog-time" prefix listing the 10 tags the matcher consumes
+- Downstream reference strip unchanged (still links to child recap + parent dashboard)
+
+**New supporting doc:**
+- `docs/entity_ontology.md` — canonical class hierarchy: `observable_thing` root, natural vs human-made subtrees, 6 abstract/cross-cutting classes, 5 worked example chains
+
+**Downstream doc annotations:**
+- Child recap §04 contract + parent dashboard §07 contract now note that the 3 new tags are matcher-only (not read by the surfaces)
+
+### Why it was added after the initial roadmap
+
+The original 6 items closed out v0.2's PM-feedback loop (tag-block split by surface, caregiver cumulative roles, L1↔L2↔L3 transitions, etc.). Matchability became visible as a gap only AFTER v0.2 shipped and the question changed from "what does an activity describe" to "how does the catalog get mapped to moments." The recall-first framing (small catalog → maximize coverage per activity) doesn't fit cleanly into any of items 1–6.
+
+### Design + implementation specs
+
+- `docs/plans/2026-04-20-matchability-tags-design.md`
+- `docs/plans/2026-04-20-matchability-tags-implementation.md`
+
+Both ship with PR #10.
+
+### Deferred to future rounds (out of scope)
+
+- **Tier 2 matchability tags**: `skill_focus`, `activity_shape`, `fallback_match`, `pillar_compatible`, `setting_flex`, `time_of_day_flex`, `energy_flex`
+- **Matcher logic doc** (`docs/upstream_matcher.md`) — referenced by §05 as a forward link; not yet written. Belongs in a separate spec cycle once runtime architecture settles.
+- **Runtime telemetry** for match quality
+
+---
+
 <a id="7-conventions"></a>
 ## 7. Execution conventions (apply to every item)
 
@@ -541,29 +592,48 @@ Run code-reviewer + code-simplifier subagents on the diff before opening the PR.
 
 ---
 
-## Suggested ordering
+## Suggested ordering (historical — for reference)
 
-If you can only do one at a time:
+The original plan ordered items as:
 
 1. **Item 1** (sign-off) — unblocks structural items 3 and 4
-2. **Item 2** (progression_axes.md) — can run in parallel with 1, and it sharpens the spec that items 3, 4, 6 all build on
+2. **Item 2** (progression_axes.md) — can run in parallel with 1, sharpens the spec items 3, 4, 6 build on
 3. **Item 4** (program.md tag-block promotion) — medium lift, unblocks item 6
 4. **Item 3** (templates.md refactor) — biggest, highest risk, should go after sign-off
 5. **Item 6** (author training guide) — depends on 2, 3, 4 landing
 
-If you can parallelize: items 2 + 4 can be split across two sessions without conflict. Items 3 needs sign-off first.
+**What actually happened**: items 2→4→3→6 shipped in PRs #5, #6, #7, #8 in that order. Item 7 (matchability) was added later and shipped as #10. Item 1 (sign-off) is still owner-driven.
 
 ---
 
 ## Summary table
 
-| # | Item | Scope | Depends on | State |
-|---|---|---|---|---|
-| 1 | Internal sign-off | Process | — | Pending |
-| 2 | `docs/progression_axes.md` | 1 worktree, ~500 lines | — | ❌ |
-| 3 | Refactor `templates.md` | 1 brainstorm + plan + 2–4 PRs | item 1 | ❌ |
-| 4 | Promote tag block in `program.md` | 1 worktree, 1 PR | items 2+3 (loose) | ❌ |
-| 5 | L × T walkthrough | — | — | ✅ shipped |
-| 6 | Author training guide | 1 worktree, 1 PR | items 2+3+4 | ❌ |
+| # | Item | Scope | Depends on | State | Delivered via |
+|---|---|---|---|---|---|
+| 1 | Internal sign-off | Process | — | Pending | owner-driven |
+| 2 | `docs/progression_axes.md` | 1 worktree, ~500 lines | — | ✅ shipped | PR #5 |
+| 3 | Refactor `templates.md` | 1 brainstorm + plan + 2–4 PRs | item 1 | ✅ shipped | PR #7 (v1.0) |
+| 4 | Promote tag block in `program.md` | 1 worktree, 1 PR | items 2+3 (loose) | ✅ shipped | PR #6 |
+| 5 | L × T walkthrough | — | — | ✅ shipped | pre-existing |
+| 6 | Author training guide | 1 worktree, 1 PR | items 2+3+4 | ✅ shipped | PR #8 (v0.1) |
+| 7 | **[NEW]** Matchability tags + §05 pipeline + entity ontology | 1 worktree, 1 PR, 13 commits | items 2–6 | ✅ shipped | PR #10 (Template 0 v0.3) |
 
-All five outstanding items are independent of the downstream-surfaces-split PR — they can start today.
+Only Item 1 (process-level team sign-off) remains. All code/doc work from this roadmap + the post-roadmap addition is merged.
+
+---
+
+## Change log for this roadmap doc
+
+- **2026-04-20 initial** — items 1–6 defined based on Template 0 v0.2's "Next actions" + "Post-approval" footer
+- **2026-04-20 revised** — items 2/3/4/6 marked shipped; **Item 7 (matchability tags) added** as a post-initial addition. Prompted by the question "given a limited catalog, how can the upstream app map to as many activities as possible?" which revealed a gap not covered by items 1–6. Full design + implementation plan + PR shipped same day.
+
+### Sections newly added in this revision
+
+For reviewers comparing against the prior version:
+
+- **Header block** — "Last updated" line + new mention of `matchability-tags-design.md`; "Template 0 authority" bumped to v0.3
+- **The 7 items and their state** (was "6 items") — new row 7 + all other rows marked shipped with PR refs
+- **§6b Item 7 — Matchability tags** — entirely new section inserted between Item 6 and §7 Execution conventions
+- **Suggested ordering** — reworded from imperative ("If you can only do one at a time") to retrospective ("What actually happened")
+- **Summary table** — new "Delivered via" column; all states updated; new row 7
+- **Change log** (this section) — entirely new

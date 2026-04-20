@@ -27,4 +27,6 @@ data
 
 .claude/
 .claude/worktrees/
+.worktrees/
 .superpowers/
+.playwright-mcp/
