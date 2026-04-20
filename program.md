@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.2 | **Date**: 2026-04-20
+> **Version**: 1.3 | **Date**: 2026-04-20
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.3 — 2026-04-20**: Align `progression.difficulty_level` wire format to the Template 0 authority (`docs/template_0_preview.html` §04) and `docs/progression_axes.md`: bare integer `1|2|3`, not `L1|L2|L3`. The `L1/L2/L3` forms remain the human-readable rung labels in prose and UI copy.
 > **v1.2 — 2026-04-20**: Sync template-reading flow to the new `templates.md` v1.0 structure (Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix). Replaces the "Template A for Cat1 / Template B for Cat5" split with three-layer composition (Template 0 + pillar overlay + category modifier).
 > **v1.1 — 2026-04-20**: Introduce `## Tag block — the central contract` section (new Phase 1.9) as the structured output artifact every activity emits for downstream child-recap and parent-dashboard surfaces. Add pre-output self-check step to the generation loop.
 
@@ -248,7 +249,7 @@ kud:
 
 progression:
   topic_axis: <one-of-7-axes>            # required — see docs/progression_axes.md for enum
-  difficulty_level: <L1|L2|L3>           # required — three cognitive rungs (L1 notice · L2 extend · L3 reason)
+  difficulty_level: <1|2|3>              # required — bare integer; three cognitive rungs (1 notice · 2 extend · 3 reason). L1/L2/L3 are human-readable labels only.
   next_step_hint: "<one-sentence>"       # required — where this activity points next
   reward_hook: "<badge/chip label>"      # optional — drives recap chip copy
 
@@ -282,7 +283,7 @@ Each row: field · required/optional · valid values · consumer(s) · purpose.
 | `kud.understand` | required | 1–2 conceptual understandings | parent dashboard | U of KUD — maps to `key_concepts`. |
 | `kud.do` | required | 2–3 skills | parent dashboard | D of KUD — maps to `atl_skills`. |
 | `progression.topic_axis` | required | one of 7 axis enum values (see `docs/progression_axes.md`) | parent dashboard | Drives the L×T ladder "where on the growth path" visual. |
-| `progression.difficulty_level` | required | `L1`, `L2`, `L3` | parent dashboard | Cognitive rung on the axis (three per axis). |
+| `progression.difficulty_level` | required | `1`, `2`, `3` (bare integer) | parent dashboard | Cognitive rung on the axis (three per axis). The L1/L2/L3 forms are human-readable labels used in prose and UI only. |
 | `progression.next_step_hint` | required | one-sentence pointer | parent dashboard ("Try at home") | Where this activity points the child next. |
 | `progression.reward_hook` | optional | badge/chip label | child recap (chip copy) | Ties recap chip wording to the progression step. |
 | `caregiver_role` | required | list from `{scaffold, co-explorer, observer}`; T0 defaults to `[scaffold]`, T1 adds `co-explorer`, T2 may include all three (cumulative) | parent dashboard (gauges) | Tier-dependent default; authors may override with justification. |
@@ -306,7 +307,7 @@ Before emitting a completed activity design, verify:
 - [ ] `highlight_moment` is 6–12 words and references a concrete child action (not a topic summary).
 - [ ] `related_concepts` has 2–4 items; `key_concepts` has 1–2 items; `atl_skills` has 2–3 items.
 - [ ] `progression.topic_axis` is one of the 7 enum values defined in `docs/progression_axes.md`.
-- [ ] `progression.difficulty_level` is `L1`, `L2`, or `L3`.
+- [ ] `progression.difficulty_level` is the bare integer `1`, `2`, or `3` (not `L1`/`L2`/`L3` — those are prose labels only).
 - [ ] `progression.next_step_hint` is concrete (names an axis, a level, or an adjacent entity — not "keep exploring").
 - [ ] `transdisciplinary_theme` is one of the 6 IB themes listed in §1.4.
 - [ ] `caregiver_role` list matches tier default unless the design justifies the override.
