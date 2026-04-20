@@ -3031,6 +3031,40 @@
       color: var(--accent);
     }
 
+    .walkthrough-link {
+      margin: 24px 0 8px;
+      padding: 20px 24px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+    .wl-eyebrow {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .wl-link {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+    }
+    .wl-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .wl-body {
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
     .mapping-coverage {
       margin-top: 20px;
       padding: 22px 28px;
@@ -4325,6 +4359,14 @@
         <span class="tff-lbl">Personalization hook</span>
         <span class="tff-body">These thresholds are a <code>progression_policy</code> object in the tag block's upstream config — not hardcoded. V1 uses the defaults above; once ≥ ~200 sessions per child are logged, swap in a per-child pace model without any activity design change.</span>
       </div>
+    </div>
+
+    <div class="walkthrough-link">
+      <span class="wl-eyebrow">For a visual walkthrough</span>
+      <a class="wl-link" href="template_0_progression_walkthrough.html">
+        4 scenarios showing these rules in action →
+      </a>
+      <p class="wl-body">Steady progression · hit-a-wall recovery · across-axis independence · reluctance vs inability. Each with dialogue snippets on key events.</p>
     </div>
 
     <h3 class="subhead" data-dir="Check">The 12 gold standards on the 7 axes</h3>
