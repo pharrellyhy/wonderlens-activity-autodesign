@@ -1,8 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.0 | **Date**: 2026-03-10
+> **Version**: 1.1 | **Date**: 2026-04-20
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
+>
+> **v1.1 — 2026-04-20**: Introduce `## Tag block — the central contract` section (new Phase 1.9) as the structured output artifact every activity emits for downstream child-recap and parent-dashboard surfaces. Add pre-output self-check step to the generation loop.
 
 ---
 
@@ -17,8 +19,9 @@ You are an **Activity Design Agent** for WonderLens (奇朵), an AI-powered educ
 4. Generate a complete activity design following the exact output format
 5. Self-evaluate against the rubric (10 dimensions)
 6. If any dimension FAILS → identify the issue, fix it, re-evaluate
-7. Only present the final design after ALL dimensions pass
-8. Append a brief rubric scorecard at the end
+7. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
+8. Only present the final design after ALL dimensions pass AND the tag-block self-check passes
+9. Append a brief rubric scorecard at the end
 
 **You never show intermediate drafts. You only present the final, self-evaluated design.**
 
@@ -86,7 +89,7 @@ Every activity must map to this framework:
 
 **Related Concepts** (post-activity badges — these are the specific concept tags):
 Examples: Emotion, Pattern, Structure, Creativity, Systems, Rules, Fairness, Safety, Identity, Expression, Collaboration, Discovery, Conservation, Meaning, Role, etc.
-Assign 2–4 related concepts per activity.
+Assign 2–4 related concepts per activity. These populate the `related_concepts` field of the tag block (see §1.9) and render as child-facing "you earned" chips on the child recap screen.
 
 ### 1.5 V1 Technical Constraints (HARD RULES)
 
@@ -194,7 +197,7 @@ When an assignment includes `mapping=entity_id`, you MUST read the entity's mapp
 **What the mapping provides**:
 - **Primary/secondary themes** with weights — your activity's IB theme must come from these
 - **Primary/secondary Key Concepts** with relevance scores — you must select from these (see entity_guidance.md §2)
-- **Candidate Related Concepts** with discipline tags — source at least 2 of your Related Concepts from these
+- **Candidate Related Concepts** with discipline tags — source at least 2 of your Related Concepts from these (these then flow into the `related_concepts` tag-block field; see §1.9)
 - **Tier guidance** with dimension attributes — ground your vocabulary, facts, and sensory details in these (don't invent)
 
 **What the mapping does NOT provide**:
@@ -203,6 +206,115 @@ When an assignment includes `mapping=entity_id`, you MUST read the entity's mapp
 - The exact AI dialogue — still written fresh, but vocabulary and facts must be traceable to mapping attributes
 
 Read `conversation_bridge.md` for warm/cold start bridge requirements.
+
+### 1.9 Tag block — the central contract
+
+The **tag block** is the single structured output artifact that every activity design must emit. It is the contract between this design file and the two downstream surfaces that consume it: the **child recap screen** (post-activity celebration) and the **parent growth-path dashboard** (weekly legibility of growth). The canonical schema lives in `docs/template_0_preview.html` §04; this section is the author-facing version of that contract — the fields you must fill, what values are valid, and which consumer reads each one.
+
+**Why this matters.** Without a well-formed tag block, the child recap cannot name the moment the child just made, and the parent dashboard cannot place the activity on a progression axis. Empty, placeholder, or drifted fields are runtime bugs — the recap falls back to generic copy and the dashboard collapses to an onboarding state. Treat the tag block as load-bearing output, not as metadata trim.
+
+#### Schema
+
+Emit the tag block as a YAML-style section at the top of every completed design (above or immediately below the Basic Info block; both placements are acceptable). Use the exact field names and nesting shown below — downstream readers key on literal strings.
+
+```yaml
+# Tag block — required on every activity design
+activity_id: <entity>_<category>_<pillar>_<tier>   # e.g., ladybug_cat1_mystery_t1
+entity: <entity_name>                              # required — the photographed object
+entity_type: <animal|plant|artifact|scene|...>     # optional but recommended — taxonomy bucket
+category: <cat1|cat2|cat3|cat4|cat5|cat6>          # required — matches §1.3 category numbering
+pillar: <mystery|creation|performance|discovery|adventure|nurture>   # required — lowercase; rendered capitalized
+style: <mystery_lens|mystery_trail|...>            # required — one of the 12 game styles (§1.6)
+tier: <T0|T1|T2>                                   # required
+tier_variants: [<T0|T1|T2>, ...]                   # optional — neighbor tiers the design flexes to
+role_title: "<verb-forward child role>"            # required — e.g., "Ladybug Detective"
+highlight_moment: "<6–12 word runtime one-liner>"  # required — design-time template, runtime fills specifics
+
+# — child-facing tags —
+attributes: [<observable>, ...]                    # required — visual/sensory properties the game invoked
+related_concepts: [<Concept>, <Concept>, ...]      # required — 2–4 discipline/child-friendly words (§1.4)
+
+# — parent-facing tags (IB + cross-subject) —
+key_concepts: [<Form|Function|Causation|Change|Connection|Perspective|Responsibility>, ...]  # required — 1–2 of 7
+atl_skills: [<critical_thinking|creative_thinking|observation|information_literacy|listening|expressing|collaboration|empathy|focus|...>, ...]   # required — 2–3 IB ATL sub-skills
+transdisciplinary_theme: "<one of 6 IB themes>"    # required
+subject_tags: [<science|language|art|math|social_emotional|...>, ...]   # required — cross-subject classification
+
+kud:
+  know: [<fact>, ...]           # required — 2–5 items
+  understand: [<concept>, ...]  # required — 1–2 items
+  do: [<skill>, ...]            # required — 2–3 items
+
+progression:
+  topic_axis: <one-of-7-axes>            # required — see docs/progression_axes.md for enum
+  difficulty_level: <L1|L2|L3>           # required — three cognitive rungs (L1 notice · L2 extend · L3 reason)
+  next_step_hint: "<one-sentence>"       # required — where this activity points next
+  reward_hook: "<badge/chip label>"      # optional — drives recap chip copy
+
+caregiver_role: [<scaffold|co-explorer|observer>, ...]   # required — T0 default [scaffold]; T1 adds co-explorer; T2 may include all three (cumulative)
+pillar_payoff: "<one-sentence magic-moment recap>"        # optional — author note that the pillar's emotional arc landed
+```
+
+#### Field-by-field spec
+
+Each row: field · required/optional · valid values · consumer(s) · purpose.
+
+| Field | Req? | Valid values | Consumer | Purpose |
+|---|---|---|---|---|
+| `activity_id` | required | `<entity>_<category>_<pillar>_<tier>` snake-case | pipeline | Stable key for gold-standard lookup and mapping runs. |
+| `entity` | required | free-form entity name | both | What the child photographed. |
+| `entity_type` | optional | `animal`, `plant`, `artifact`, `scene`, `food`, `toy`, `vehicle`, other | pipeline / Tier B | Taxonomy bucket for constellation matching. |
+| `category` | required | `cat1`–`cat6` (see §1.3) | pipeline / parent dashboard | Which of the 6 activity categories. |
+| `pillar` | required | lowercase: `mystery`, `creation`, `performance`, `discovery`, `adventure`, `nurture` (rendered capitalized by consumers) | both | Child recap: subtitle ("Mystery · solved"). Parent: curiosity profile. |
+| `style` | required | 12 styles in §1.6 | pipeline | Game mechanic — narrows the creative variables. |
+| `tier` | required | `T0`, `T1`, `T2` | parent dashboard / pipeline | Age register audit trail + language flex. |
+| `tier_variants` | optional | subset of `{T0, T1, T2}` | pipeline | Neighbor tiers this design flexes into. |
+| `role_title` | required | verb-forward noun phrase ("Ladybug Detective") | child recap | The badge title on the recap screen (serif hero). |
+| `highlight_moment` | required | 6–12 word one-liner, design-time template | both | Child recap: large serif pull-quote. Parent: "In their words" list. See child_recap §05 for generation rules. |
+| `attributes` | required | observable properties list (`red`, `round`, `spots`) | child recap (feeds `highlight_moment`) / Tier P | Properties the game actually invoked. Feeds the one-liner at runtime. |
+| `related_concepts` | required | 2–4 capitalised concept words (§1.4 list) | child recap | "You earned" chip row. Child-friendly, not IB jargon. |
+| `key_concepts` | required | 1–2 of the 7 IB Key Concepts | parent dashboard | IB framework chips + curiosity profile. Distinct tree from `related_concepts`. |
+| `atl_skills` | required | 2–3 snake_case IB ATL sub-skills (`critical_thinking`, `creative_thinking`, `observation`, `information_literacy`, `listening`, `expressing`, `collaboration`, `empathy`, `focus`, …) — sourced from the 5 ATL categories in §1.4 | both | Child recap: "You practiced" chips (child-friendly wording). Parent: IB framework chips. |
+| `transdisciplinary_theme` | required | one of the 6 IB themes (§1.4) | parent dashboard | Which TD theme the activity lives under. |
+| `subject_tags` | required | `science`, `language`, `art`, `math`, `social_emotional`, others | parent dashboard | Cross-subject classification — lets parents filter against school subjects. |
+| `kud.know` | required | 2–5 specific facts | parent dashboard (IB frame) | K of KUD — see §1.4. |
+| `kud.understand` | required | 1–2 conceptual understandings | parent dashboard | U of KUD — maps to `key_concepts`. |
+| `kud.do` | required | 2–3 skills | parent dashboard | D of KUD — maps to `atl_skills`. |
+| `progression.topic_axis` | required | one of 7 axis enum values (see `docs/progression_axes.md`) | parent dashboard | Drives the L×T ladder "where on the growth path" visual. |
+| `progression.difficulty_level` | required | `L1`, `L2`, `L3` | parent dashboard | Cognitive rung on the axis (three per axis). |
+| `progression.next_step_hint` | required | one-sentence pointer | parent dashboard ("Try at home") | Where this activity points the child next. |
+| `progression.reward_hook` | optional | badge/chip label | child recap (chip copy) | Ties recap chip wording to the progression step. |
+| `caregiver_role` | required | list from `{scaffold, co-explorer, observer}`; T0 defaults to `[scaffold]`, T1 adds `co-explorer`, T2 may include all three (cumulative) | parent dashboard (gauges) | Tier-dependent default; authors may override with justification. |
+| `pillar_payoff` | optional | one-sentence magic-moment recap | author/review | Internal note that the pillar's emotional arc landed. Not rendered. |
+
+#### Consumer contracts (reference)
+
+- **Child recap** (`docs/child_recap_preview.html` §04) reads: `role_title`, `pillar`, `highlight_moment`, `related_concepts`, `atl_skills`, `attributes` (feeds `highlight_moment`). Everything else is explicitly not surfaced to the child.
+- **Parent growth-path dashboard** (`docs/parent_growth_path_preview.html` §07) reads: `progression.topic_axis`, `progression.difficulty_level`, `progression.next_step_hint`, `tier`, `key_concepts`, `atl_skills`, `transdisciplinary_theme`, `subject_tags`, `pillar`, `highlight_moment` (list), `caregiver_role`, recent `entity`. Explicitly **not** read: `role_title` (child-facing only).
+- **Template 0 canonical spec** (`docs/template_0_preview.html` §04) is the source of truth if this section ever drifts. When in doubt, match §04.
+- **Upstream selection pipeline** (`docs/template_0_preview.html` §05) reads `entity`, `entity_type`, `category`, `tier`, `pillar`, `style`, `key_concepts`, `attributes` to rank Tier A / B / P / conversation-only matches.
+
+#### Pre-output self-check
+
+Before emitting a completed activity design, verify:
+
+- [ ] All **required** tag-block fields are present with non-placeholder values (no `TBD`, `TODO`, `<...>`, empty strings, empty lists).
+- [ ] `entity`, `category`, `pillar`, `style`, `tier` agree with the assignment input and with Basic Info.
+- [ ] `pillar` is one of the 6 overlays; `style` is one of the 12 styles listed in §1.6 and matches the chosen pillar's row.
+- [ ] `role_title` is a verb-forward noun phrase (names what the child did, not a generic label).
+- [ ] `highlight_moment` is 6–12 words and references a concrete child action (not a topic summary).
+- [ ] `related_concepts` has 2–4 items; `key_concepts` has 1–2 items; `atl_skills` has 2–3 items.
+- [ ] `progression.topic_axis` is one of the 7 enum values defined in `docs/progression_axes.md`.
+- [ ] `progression.difficulty_level` is `L1`, `L2`, or `L3`.
+- [ ] `progression.next_step_hint` is concrete (names an axis, a level, or an adjacent entity — not "keep exploring").
+- [ ] `transdisciplinary_theme` is one of the 6 IB themes listed in §1.4.
+- [ ] `caregiver_role` list matches tier default unless the design justifies the override.
+- [ ] `kud.know` / `kud.understand` / `kud.do` are populated with the same content used in Basic Info §B.② (no drift between the two).
+- [ ] No field value is a placeholder, ellipsis, or instruction-shaped string ("pick one of...", "see mapping", etc.).
+
+If any box fails, fix the design and re-run both the 10-dimension rubric and this self-check. Do **not** emit a design with an incomplete tag block — downstream surfaces will silently fall back to generic copy.
+
+> **Cross-reference:** see `docs/progression_axes.md` for the 7-axis enum and L1/L2/L3 rung definitions. If that file is not yet merged when you read this, the same axes are listed in `docs/template_0_preview.html` §07; `docs/progression_axes.md` becomes the sole source of truth once it lands.
 
 ---
 
@@ -219,7 +331,7 @@ Generate the activity design in this EXACT structure. Do not skip sections, do n
 - **Activity Category**: [one of the 6 categories, with number]
 - **Recommended Tier**: [T0/T1/T2] with age range
 - **Core IB Key Concepts**: [1–2 from the 7]
-- **Related Concepts (Discipline)**: [2–4 specific concept tags]
+- **Related Concepts (Discipline)**: [2–4 specific concept tags] (these populate `related_concepts` in the tag block — see §1.9)
 - **ATL Skills Focus**: [2–3 with sub-skills in parentheses]
 - **Experience Pillar**: [one of: Mystery, Creation, Performance, Discovery, Adventure, Nurture]
 - **Game Style**: [one of: mystery_lens, inventor_workshop, voice_stage, prediction_lab, time_traveler, care_station, mystery_trail, mix_lab, ensemble_show, field_experiment, quest_collector, rescue_team]
