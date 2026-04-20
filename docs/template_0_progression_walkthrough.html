@@ -518,7 +518,11 @@
     }
 
     .transition[data-type="soft-reframe"] .t-glyph {
-      color: var(--muted);
+      color: color-mix(in srgb, var(--muted) 60%, var(--accent));
+    }
+
+    .transition[data-type="soft-reframe"] .t-label {
+      font-style: italic;
     }
 
     /* Timeline container */
@@ -529,6 +533,12 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       align-items: stretch;
+    }
+
+    .timeline:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
     }
 
     /* State panel */
@@ -564,7 +574,7 @@
     /* Scenario wrapper */
     .scenario {
       margin-top: 48px;
-      scroll-margin-top: 80px;
+      scroll-margin-top: 70px;
     }
 
     .scenario-tldr {
