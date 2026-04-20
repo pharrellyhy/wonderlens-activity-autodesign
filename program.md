@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.1 | **Date**: 2026-04-20
+> **Version**: 1.2 | **Date**: 2026-04-20
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.2 — 2026-04-20**: Sync template-reading flow to the new `templates.md` v1.0 structure (Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix). Replaces the "Template A for Cat1 / Template B for Cat5" split with three-layer composition (Template 0 + pillar overlay + category modifier).
 > **v1.1 — 2026-04-20**: Introduce `## Tag block — the central contract` section (new Phase 1.9) as the structured output artifact every activity emits for downstream child-recap and parent-dashboard surfaces. Add pre-output self-check step to the generation loop.
 
 ---
@@ -14,7 +15,7 @@ You are an **Activity Design Agent** for WonderLens (奇朵), an AI-powered educ
 
 **The loop:**
 1. Receive input: `entity + category` (e.g., "butterfly + out-of-device collection")
-2. Read the matching category template from `templates.md` for structural scaffolding
+2. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the assigned pillar overlay, then apply the category modifier (Cat1 or Cat5) from the appendix
 3. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity
 4. Generate a complete activity design following the exact output format
 5. Self-evaluate against the rubric (10 dimensions)
@@ -585,10 +586,10 @@ Study these two exemplars carefully. They represent the quality floor. Your outp
 ### Template-First Workflow
 
 Before generating any design, ALWAYS:
-1. Read `templates.md` and find the matching category template (Template A for Category 1, Template B for Category 5)
-2. Use the **Step Skeleton** as your structural scaffold — follow the step sequence and purposes exactly
+1. Read `templates.md` in the layered order: (a) the **Template 0 reference** for the 5-beat spine and universal creative variables, (b) the **pillar overlay** matching your assigned pillar (Mystery / Creation / Performance / Discovery / Adventure / Nurture) for beats 2–4 specialization and pillar-specific creative variables, (c) the **category modifier** from the appendix for your entity's category (Cat1 in-device, or Cat5 out-of-device). The full skeleton authority lives in `docs/template_0_preview.html` §03 / §04 / §06.
+2. Use the composed scaffold (Template 0 spine + pillar overlay + category modifier) — follow the beat sequence and purposes exactly
 3. Use the **Quick Entity Brainstorm Guide** for inspiration, but invent FRESH creative variables
-4. Fill out the **Entity Adaptation Checklist** before running the full rubric (Dimensions 1–10, with D8 only for mapping-informed designs)
+4. Run the pillar-specific and category-specific adaptation checks (`checklist_extras` in the appendix) before running the full rubric (Dimensions 1–10, with D8 only for mapping-informed designs)
 5. If your entity is not in the brainstorm guide, extrapolate using the pattern: identify the entity's most striking VISUAL FEATURE → build the collection criterion / game mechanic from there
 
 ### Input Format
