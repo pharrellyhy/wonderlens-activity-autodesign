@@ -475,6 +475,34 @@
       line-height: 1.5;
     }
 
+    .ac-dialogue-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .ac-dialogue-col code {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 6px 8px;
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      color: var(--accent);
+      border-radius: 2px;
+      word-break: break-all;
+      line-height: 1.5;
+    }
+
+    .ac-dialogue-lbl {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
     /* Transition indicator between cards */
     .transition {
       flex: 0 0 auto;
@@ -569,6 +597,21 @@
       background: color-mix(in srgb, var(--accent) 8%, transparent);
       padding: 1px 5px;
       border-radius: 2px;
+    }
+
+    .state-panel .state-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 4px 0;
+      flex-wrap: wrap;
+    }
+
+    .state-panel .state-row em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 11px;
+      color: var(--muted);
     }
 
     /* Scenario wrapper */
@@ -849,6 +892,205 @@
       <strong>Why this matters:</strong> most activities in real use will look like this. Promotions happen at natural
       breakpoints (spontaneous L+1, or 3-session consecutive completion), not on every success. Holding is not
       stagnation — it's how the system gives exemplars room to vary while the child internalizes the rung.
+    </div>
+  </section>
+
+  <!-- ============== §02 SCENARIO 2 — HIT-A-WALL RECOVERY ============== -->
+  <section class="scenario" id="scenario-2">
+    <div class="sec-head">
+      <div class="sec-num">§ 02 / Hit-a-wall recovery</div>
+      <h2 class="sec-title">Causation hits a floor — runtime preserves dignity and <em>jumps to a sibling axis</em>.</h2>
+    </div>
+    <p class="scenario-tldr">Mia struggles on Causation L2, gets softly demoted, still can't find traction at L1 — so the
+      runtime reframes to the Connection axis at L1. She finds her footing there, promotes, and Causation bounces back
+      a session later.</p>
+
+    <div class="scenario-context">
+      <span><strong>Child</strong>Mia · T1 · 4–6 yrs</span>
+      <span><strong>Axes</strong>Causation, Connection</span>
+      <span><strong>Entity</strong>Ladybug (sustained)</span>
+    </div>
+
+    <div class="timeline" tabindex="0" role="region" aria-label="Scenario 2 activity timeline">
+      <article class="ac" data-axis="causation">
+        <header class="ac-head">
+          <span class="ac-num">Activity 1</span>
+          <span class="ac-axis">Causation</span>
+        </header>
+        <div class="ac-entity">Ladybug</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">Answered "red because sun" but couldn't connect the red to why predators avoid it.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · mixed but on-topic, one more L2 try</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">hold</span>
+      </div>
+
+      <article class="ac" data-axis="causation">
+        <header class="ac-head">
+          <span class="ac-num">Activity 2</span>
+          <span class="ac-axis">Causation</span>
+        </header>
+        <div class="ac-entity">Ladybug</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">Silent for ~8 seconds. Repeated the prompt back instead of answering.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↓</span>
+          <span>demote · 2 attempts without complete — step down to L1</span>
+        </div>
+        <details class="ac-detail">
+          <summary>What happened here</summary>
+          <div class="ac-dialogue-split">
+            <div class="ac-dialogue-col">
+              <div class="ac-dialogue-lbl">What the runtime recorded</div>
+              <code>{"axis": "causation", "rung_change": "L2→L1", "trigger": "2_attempts_no_complete"}</code>
+            </div>
+            <div class="ac-dialogue-col">
+              <div class="ac-dialogue-lbl">What Mia heard</div>
+              <div class="ac-dialogue">"Hmm — let me show you what I notice about the ladybug's red. Then you can
+                tell me what you notice."</div>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <div class="transition" data-type="demote">
+        <span class="t-glyph">↓</span>
+        <span class="t-label">demote · drop to L1</span>
+      </div>
+
+      <article class="ac" data-axis="causation">
+        <header class="ac-head">
+          <span class="ac-num">Activity 3</span>
+          <span class="ac-axis">Causation</span>
+        </header>
+        <div class="ac-entity">Ladybug</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">Still silent. Started naming unrelated objects nearby ("cup", "window").</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">⇢</span>
+          <span>Causation at floor · runtime invokes sibling-axis jump to Connection</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="sibling-jump">
+        <span class="t-glyph">⇢</span>
+        <span class="t-label">sibling jump · Connection L1</span>
+      </div>
+
+      <article class="ac" data-axis="connection">
+        <header class="ac-head">
+          <span class="ac-num">Activity 4</span>
+          <span class="ac-axis">Connection</span>
+        </header>
+        <div class="ac-entity">Ladybug</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">Named 3 things the ladybug connects to — grass, leaf, another ladybug.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>hold · steady L1 on the new axis</span>
+        </div>
+        <details class="ac-detail">
+          <summary>What happened here</summary>
+          <div class="ac-dialogue-split">
+            <div class="ac-dialogue-col">
+              <div class="ac-dialogue-lbl">What the runtime recorded</div>
+              <code>{"axis_switch": "causation→connection", "rung": "L1", "trigger": "sibling_jump_on_axis_floor"}</code>
+            </div>
+            <div class="ac-dialogue-col">
+              <div class="ac-dialogue-lbl">What Mia heard</div>
+              <div class="ac-dialogue">"Look at all the things the ladybug touches — the grass, the leaf. Let's see
+                how they all go together."</div>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">hold</span>
+      </div>
+
+      <article class="ac" data-axis="connection">
+        <header class="ac-head">
+          <span class="ac-num">Activity 5</span>
+          <span class="ac-axis">Connection</span>
+        </header>
+        <div class="ac-entity">Ladybug</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">Named 4 connections + spontaneously explained "the grass keeps her safe because she
+          hides under it."</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↑</span>
+          <span>promote · spontaneous L+1 response on Connection</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="promote">
+        <span class="t-glyph">↑</span>
+        <span class="t-label">promote · next activity L2</span>
+      </div>
+
+      <article class="ac" data-axis="causation">
+        <header class="ac-head">
+          <span class="ac-num">Activity 6</span>
+          <span class="ac-axis">Causation (return)</span>
+        </header>
+        <div class="ac-entity">Ladybug</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">"Red warns birds she tastes bad." Clean L2 causal chain on the original axis.</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↑</span>
+          <span>promote · Causation bounced back after detour</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="state-panel">
+      <strong>Rung-per-axis evolution</strong>
+      <div class="state-row">Start <code>{Form: L2, Causation: L2, Connection: L1}</code></div>
+      <div class="state-row">After #3 <code>{Form: L2, Causation: L1, Connection: L1}</code> <em>— Causation hit
+          floor</em></div>
+      <div class="state-row">After #5 <code>{Form: L2, Causation: L1, Connection: L2}</code> <em>— Connection promoted
+          via sibling jump</em></div>
+      <div class="state-row">After #6 <code>{Form: L2, Causation: L2, Connection: L2}</code> <em>— Causation bounced
+          back</em></div>
+    </div>
+
+    <div class="scenario-close">
+      <strong>Why this matters:</strong> The child's experience is continuous — she hears new framings, not failures.
+      The runtime's bookkeeping is elaborate — rung-per-axis drift, sibling jumps on axis floor, return trajectories.
+      Both are true simultaneously. The dignity rule + sibling jump are the two design choices most likely to be misread
+      in prose; here they are visible in the dialogue snippets and the state-panel evolution.
     </div>
   </section>
 
