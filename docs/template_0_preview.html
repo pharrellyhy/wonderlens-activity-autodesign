@@ -3148,7 +3148,7 @@
       <a href="#axes">Progression</a>
       <a href="#decisions">Decisions</a>
     </nav>
-    <div class="meta">Draft v0.2 · 2026-04-17 · Internal review</div>
+    <div class="meta">Draft v0.3 · 2026-04-17 · Internal review</div>
   </header>
 
   <!-- ============== HERO ============== -->
@@ -3175,18 +3175,19 @@
       </div>
       <div>
         <span class="label">Status</span>
-        <span class="value">Draft v0.2 · pending sign-off</span>
+        <span class="value">Draft v0.3 · pending sign-off</span>
       </div>
     </div>
 
     <details class="revnote">
-      <summary><span class="revnote-tag">v0.2</span> Four changes from PM review — 2026-04-17</summary>
+      <summary><span class="revnote-tag">v0.3</span> Five changes from PM review + matchability + upstream pipeline — 2026-04-17</summary>
       <ol>
         <li><b>Caregiver role is now cumulative across tiers</b> (§03 · §04 · §06) — T0 <code>[scaffold]</code> → T1 <code>[scaffold, co-explorer]</code> → T2 <code>[observer, co-explorer, scaffold]</code> with decreasing weight, instead of one fixed role per tier.</li>
         <li><b>Tag block split by downstream surface</b> (§04 · §05) — two new optional fields: <code>highlight_moment</code> (child-facing runtime one-liner) and <code>subject_tags</code> (parent-facing cross-subject classification). Legend and mockups rewritten to make child vs. parent surfaces explicit.</li>
         <li><b>L1↔L2↔L3 transition rules added</b> (§07) — new subsection with concrete quantified promote / hold / demote triggers, within-activity and across-activity. Dignity rule + sibling-axis jump + personalization hook documented.</li>
         <li><b>§06 T1 Beat 3 dialogue softened</b> — the "if the red is a warning, what should birds do?" prompt was too abstract for 4–6. Now reframed as a concrete what-will-it-do question grounded in prior observation.</li>
         <li><b>Downstream surfaces extracted into their own docs</b> (§05). <code>child_recap_preview.html</code> and <code>parent_growth_path_preview.html</code> now carry the full designs; §05 keeps only the upstream pipeline + a compact reference strip to both.</li>
+        <li><b>Matchability tags added</b> (§04) + <b>upstream pipeline made explicit</b> (§05) — three new static fields (<code>entity_binding</code>, <code>entity_class</code>, <code>tier_range</code>) let one activity match many moments. §05's flow diagram now shows the matcher as a distinct upstream stage reading catalog-time tags; downstream surfaces unchanged. See <code>docs/plans/2026-04-20-matchability-tags-design.md</code>.</li>
       </ol>
     </details>
   </section>
@@ -4598,7 +4599,7 @@
       </ul>
     </div>
     <div class="version">
-      <span>Version 0.2 · Draft for review</span>
+      <span>Version 0.3 · Draft for review</span>
       <span>WonderLens x 奇朵 · Activity Design Framework · 2026-04-17</span>
     </div>
   </footer>
