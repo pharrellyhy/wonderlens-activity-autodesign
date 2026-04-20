@@ -921,7 +921,8 @@
       color: var(--ink-soft);
     }
 
-    .legend-val code {
+    .legend-val code,
+    .tl-body code {
       font-family: var(--mono);
       font-size: 11px;
       color: var(--accent);
@@ -929,6 +930,8 @@
       background: color-mix(in srgb, var(--accent) 6%, transparent);
       border-radius: 2px;
     }
+
+    .tl-body code { margin-right: 2px; }
 
     .legend-val a {
       color: var(--accent);
@@ -983,16 +986,6 @@
       font-size: 13px;
       line-height: 1.6;
       color: var(--ink-soft);
-    }
-
-    .tl-body code {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
-      padding: 1px 4px;
-      background: color-mix(in srgb, var(--accent) 6%, transparent);
-      border-radius: 2px;
-      margin-right: 2px;
     }
 
     .tl-foot {
