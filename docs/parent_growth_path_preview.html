@@ -3915,6 +3915,10 @@
     <div class="note-block">
       <strong>Explicitly not read:</strong> <code>role_title</code> &mdash; that's child-facing identity, not parent-facing data.
     </div>
+
+    <div class="note-block">
+      <strong>Also not read (matcher-only):</strong> <code>entity_binding</code>, <code>entity_class</code>, <code>tier_range</code> &mdash; matcher-only tags; the parent dashboard reads resolved instance values, not the declaration shape.
+    </div>
   </section>
 
   <!-- ============== §08 VIEW CADENCE ============== -->

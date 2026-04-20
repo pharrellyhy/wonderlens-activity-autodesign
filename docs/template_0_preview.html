@@ -885,6 +885,117 @@
       color: var(--accent);
     }
 
+    /* ---- Matchability legend group (net-new) ---- */
+    .legend-group-head {
+      margin-top: 28px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .legend-row {
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--line);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .legend-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .legend-key code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .legend-val {
+      color: var(--ink-soft);
+    }
+
+    .legend-val code,
+    .tl-body code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      padding: 1px 4px;
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      border-radius: 2px;
+    }
+
+    .tl-body code { margin-right: 2px; }
+
+    .legend-val a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .legend-val a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ---- Tag lifecycle (catalog-time vs instance-time) ---- */
+    .tag-lifecycle {
+      margin-top: 24px;
+      padding: 20px 24px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .tl-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .tl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 960px) {
+      .tl-grid { grid-template-columns: 1fr; }
+    }
+
+    .tl-lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .tl-body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .tl-foot {
+      margin-top: 14px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
     /* ============ BRIDGES / UPSTREAM-DOWNSTREAM ============ */
     .subhead {
       font-family: var(--serif);
@@ -1178,6 +1289,92 @@
       height: 6px;
       background: var(--accent);
       border-radius: 50%;
+    }
+
+    /* §05 pipeline — shared eyebrow for new heads (fb-label / ur-head / downstream-reads-head) */
+    .flow-box .fb-label,
+    .ur-head,
+    .downstream-reads-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .flow-box .fb-label { margin-bottom: 8px; }
+    .downstream-reads-head { margin-top: 20px; }
+
+    /* §05 upstream flow boxes (Moment + Matcher) */
+    .flow-box {
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      margin: 12px 0;
+    }
+    .flow-box .fb-line {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 2px 0;
+    }
+    .flow-box .fb-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      margin-left: 6px;
+    }
+    .flow-box .fb-desc {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+    .flow-box .fb-desc code,
+    .ur-body code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+    /* Vertical flow arrow between Moment/Matcher boxes (distinct from horizontal .flow-arrow inside .flow-row) */
+    .flow-arrow.flow-arrow-v {
+      display: block;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 20px;
+      color: var(--muted);
+      margin: 4px 0;
+    }
+
+    /* §05 upstream catalog-time reads prefix */
+    .upstream-reads {
+      margin: 32px 0 20px;
+      padding: 18px 22px;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+    .ur-sub {
+      color: var(--muted);
+      font-weight: normal;
+      letter-spacing: 0.08em;
+    }
+    .ur-body {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--ink-soft);
+    }
+    .ur-body code {
+      padding: 2px 6px;
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      border-radius: 2px;
+    }
+    .ur-note {
+      margin-top: 12px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 12px;
+      color: var(--muted);
     }
 
     /* §05 downstream surface reference strip */
@@ -2946,12 +3143,12 @@
       <a href="#spine">Spine</a>
       <a href="#skeleton">Artifact</a>
       <a href="#tags">Tag block</a>
-      <a href="#bridges">Bridges</a>
+      <a href="#bridges">Data pipeline</a>
       <a href="#tiers">Tiers</a>
       <a href="#axes">Progression</a>
       <a href="#decisions">Decisions</a>
     </nav>
-    <div class="meta">Draft v0.2 · 2026-04-17 · Internal review</div>
+    <div class="meta">Draft v0.3 · 2026-04-17 · Internal review</div>
   </header>
 
   <!-- ============== HERO ============== -->
@@ -2978,18 +3175,19 @@
       </div>
       <div>
         <span class="label">Status</span>
-        <span class="value">Draft v0.2 · pending sign-off</span>
+        <span class="value">Draft v0.3 · pending sign-off</span>
       </div>
     </div>
 
     <details class="revnote">
-      <summary><span class="revnote-tag">v0.2</span> Four changes from PM review — 2026-04-17</summary>
+      <summary><span class="revnote-tag">v0.3</span> Five changes from PM review + matchability + upstream pipeline — 2026-04-17</summary>
       <ol>
         <li><b>Caregiver role is now cumulative across tiers</b> (§03 · §04 · §06) — T0 <code>[scaffold]</code> → T1 <code>[scaffold, co-explorer]</code> → T2 <code>[observer, co-explorer, scaffold]</code> with decreasing weight, instead of one fixed role per tier.</li>
         <li><b>Tag block split by downstream surface</b> (§04 · §05) — two new optional fields: <code>highlight_moment</code> (child-facing runtime one-liner) and <code>subject_tags</code> (parent-facing cross-subject classification). Legend and mockups rewritten to make child vs. parent surfaces explicit.</li>
         <li><b>L1↔L2↔L3 transition rules added</b> (§07) — new subsection with concrete quantified promote / hold / demote triggers, within-activity and across-activity. Dignity rule + sibling-axis jump + personalization hook documented.</li>
         <li><b>§06 T1 Beat 3 dialogue softened</b> — the "if the red is a warning, what should birds do?" prompt was too abstract for 4–6. Now reframed as a concrete what-will-it-do question grounded in prior observation.</li>
         <li><b>Downstream surfaces extracted into their own docs</b> (§05). <code>child_recap_preview.html</code> and <code>parent_growth_path_preview.html</code> now carry the full designs; §05 keeps only the upstream pipeline + a compact reference strip to both.</li>
+        <li><b>Matchability tags added</b> (§04) + <b>upstream pipeline made explicit</b> (§05) — three new static fields (<code>entity_binding</code>, <code>entity_class</code>, <code>tier_range</code>) let one activity match many moments. §05's flow diagram now shows the matcher as a distinct upstream stage reading catalog-time tags; downstream surfaces unchanged. See <code>docs/plans/2026-04-20-matchability-tags-design.md</code>.</li>
       </ol>
     </details>
   </section>
@@ -3292,13 +3490,17 @@
     <div class="tagblock">
       <pre class="code-panel"><span class="key">activity_id</span>: <span class="str">ladybug_cat1_mystery_t1</span>
         <span class="key">entity</span>: <span class="str">ladybug</span>
+        <span class="key">entity_class</span>: <span class="hl">[<span class="str">ladybug</span>, <span class="str">beetle</span>, <span class="str">insect</span>, <span class="str">small_creature</span>, <span class="str">warning_colored_small_creature</span>, <span class="str">patterned_thing</span>, <span class="str">living_thing</span>, <span class="str">natural_thing</span>, <span class="str">observable_thing</span>]</span> <span class="cmt"># ordered specific → general</span>
+        <span class="key">entity_binding</span>: <span class="hl"><span class="str">parameterized</span></span> <span class="cmt"># bound | parameterized | agnostic</span>
         <span class="key">entity_type</span>: <span class="str">animal</span>
         <span class="key">category</span>: <span class="str">cat1</span>
         <span class="key">pillar</span>: <span class="str">mystery</span>
         <span class="key">style</span>: <span class="str">mystery_lens</span>
-        <span class="key">tier</span>: <span class="str">T1</span>
-        <span class="key">tier_variants</span>: <span class="hl">[<span class="str">T0</span>]</span> <span
-          class="cmt"># flexes to neighbor</span>
+
+        <span class="key">tier_range</span>: <span class="hl"><span class="cmt"># NEW — matchability: preferred + span + elasticity</span></span>
+        <span class="key">primary</span>:    <span class="str">T1</span>
+        <span class="key">span</span>:       <span class="hl">[<span class="str">T0</span>, <span class="str">T1</span>, <span class="str">T2</span>]</span>
+        <span class="key">elasticity</span>: <span class="str">neighbor</span>          <span class="cmt"># strict | neighbor | broad</span>
 
         <span class="key">tags</span>:                                 <span class="cmt"># split by surface they feed</span>
         <span class="cmt"># — child-facing (intuitive achievement display) —</span>
@@ -3355,11 +3557,45 @@
               <li><code>transdisciplinary_theme</code><span>Which of the 6 IB TD themes the activity lives under.</span></li>
               <li><code>subject_tags</code><span><b>NEW.</b> Cross-subject classification (science / language / art / math / social-emotional). Lets parents filter or compare with school subjects — distinct from the child view.</span></li>
               <li><code>progression</code><span>The axis + level the activity targeted, plus the next step. Drives the growth-path ladder visualization.</span></li>
-              <li><code>tier</code> · <code>tier_variants</code><span>Explicit audit trail — which age register the activity was tuned to.</span></li>
+              <li><code>tier_range.primary</code><span>Explicit audit trail — which age register the activity was tuned to. (Instance-time <code>tier</code> records what the child actually played at.)</span></li>
             </ul>
           </div>
         </div>
         <div class="tag-split-foot"><code>caregiver_role</code> is a <em>list</em>, not a single value — T0 is <code>[scaffold]</code>, T1 adds <code>co-explorer</code>, T2 includes all three with decreasing weight. Soft guidance for now; the runtime doesn't refuse to start if caregiver isn't present.</div>
+
+        <div class="legend-group-head">Matchability — three tags that keep a small catalog portable</div>
+
+        <div class="legend-row">
+          <div class="legend-key"><code>entity_class</code></div>
+          <div class="legend-val">Ordered list from specific to general. The matcher rolls up when exact-entity matches miss. See <a href="entity_ontology.md"><code>docs/entity_ontology.md</code></a> for the canonical class hierarchy.</div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-key"><code>entity_binding</code></div>
+          <div class="legend-val"><code>bound</code> = activity needs this specific entity. <code>parameterized</code> = entity is a slot; works for any member of the class. <code>agnostic</code> = cognitive drill, works on anything.</div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-key"><code>tier_range</code></div>
+          <div class="legend-val"><code>primary</code> = preferred tier. <code>span</code> = accepted tiers. <code>elasticity</code>: <code>strict</code> = primary only; <code>neighbor</code> = &plusmn;1 tier; <code>broad</code> = all three.</div>
+        </div>
+
+        <div class="tag-lifecycle">
+          <div class="tl-head">Tag lifecycle — catalog-time vs instance-time</div>
+          <div class="tl-grid">
+            <div class="tl-col">
+              <div class="tl-lbl">Catalog-time · author declares</div>
+              <div class="tl-body">
+                <code>entity_class</code>, <code>entity_binding</code>, <code>tier_range</code>, <code>pillar</code>, <code>key_concepts</code>, <code>atl_skills</code>, <code>subject_tags</code>, <code>transdisciplinary_theme</code>, <code>category</code>, <code>progression.topic_axis</code>
+              </div>
+            </div>
+            <div class="tl-col">
+              <div class="tl-lbl">Instance-time · runtime populates</div>
+              <div class="tl-body">
+                <code>entity</code> (what was seen), <code>tier</code> (child's actual tier), <code>highlight_moment</code> (runtime one-liner), <code>caregiver_role</code> (observed), <code>progression.difficulty_level</code> (rung reached), <code>progression.next_step_hint</code>
+              </div>
+            </div>
+          </div>
+          <div class="tl-foot">Rule of thumb: if the value would differ between two children playing the "same" activity, it's instance-time.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -3367,7 +3603,7 @@
   <!-- ============== BRIDGES ============== -->
   <section id="bridges">
     <div class="sec-head">
-      <div class="sec-num">§ 05 / Upstream &amp; downstream</div>
+      <div class="sec-num">§ 05 / Data pipeline · upstream &amp; downstream</div>
       <h2 class="sec-title">The tag block is a <em>contract</em>.</h2>
     </div>
     <p class="sec-desc">The fields in §04 are not decorative. Each one is consumed by a real upstream or downstream
@@ -3407,6 +3643,27 @@
     <p class="subhead-desc">When a child photographs an object, the game selection pipeline (playbook §7) decides which
       activity plays. It reads the tag block to rank three tiers of match — Tier A &gt; Tier B &gt; Tier P &gt;
       conversation-only. Every tag block field earns its place by feeding one of them.</p>
+
+    <div class="flow-box flow-moment">
+      <div class="fb-label">Moment</div>
+      <div class="fb-body">
+        <div class="fb-line">entity seen <span class="fb-tag">(camera)</span></div>
+        <div class="fb-line">tier <span class="fb-tag">(onboarding)</span></div>
+        <div class="fb-line">setting <span class="fb-tag">(time + place)</span></div>
+        <div class="fb-line">caregiver present <span class="fb-tag">(runtime)</span></div>
+      </div>
+    </div>
+
+    <div class="flow-arrow flow-arrow-v">&darr;</div>
+
+    <div class="flow-box flow-matcher">
+      <div class="fb-label">Matcher</div>
+      <div class="fb-body">
+        <div class="fb-desc">Reads catalog tag blocks &middot; ranks by <code>entity_class</code> rollup + <code>tier_range</code> fit &middot; picks best-matching activity shell.</div>
+      </div>
+    </div>
+
+    <div class="flow-arrow flow-arrow-v">&darr;</div>
 
     <div class="tiers-bridge">
       <div class="tier-bridge-card tier-a">
@@ -3465,6 +3722,16 @@
 
     <h3 class="subhead" data-dir="Downstream">Two surfaces consume the tag block</h3>
     <p class="subhead-desc">The full specs for these surfaces live in their own docs. The contract they depend on is what Template 0 provides.</p>
+
+    <div class="upstream-reads">
+      <div class="ur-head">Upstream reads <span class="ur-sub">&middot; catalog-time</span></div>
+      <div class="ur-body">
+        <code>entity_class</code> &middot; <code>entity_binding</code> &middot; <code>tier_range</code> &middot; <code>pillar</code> &middot; <code>category</code> &middot; <code>progression.topic_axis</code> &middot; <code>key_concepts</code> &middot; <code>atl_skills</code> &middot; <code>subject_tags</code> &middot; <code>transdisciplinary_theme</code>
+      </div>
+      <div class="ur-note">Matcher logic: see <code>docs/upstream_matcher.md</code> <em>(to be written separately)</em>.</div>
+    </div>
+
+    <div class="downstream-reads-head">Downstream reads <span class="ur-sub">&middot; instance-time</span></div>
 
     <div class="surface-strip">
       <a class="surface-card" href="child_recap_preview.html" aria-label="Child recap — full design">
@@ -4332,7 +4599,7 @@
       </ul>
     </div>
     <div class="version">
-      <span>Version 0.2 · Draft for review</span>
+      <span>Version 0.3 · Draft for review</span>
       <span>WonderLens x 奇朵 · Activity Design Framework · 2026-04-17</span>
     </div>
   </footer>
