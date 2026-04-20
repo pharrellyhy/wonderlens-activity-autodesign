@@ -3414,8 +3414,6 @@
         <span class="key">primary</span>:    <span class="str">T1</span>
         <span class="key">span</span>:       <span class="hl">[<span class="str">T0</span>, <span class="str">T1</span>, <span class="str">T2</span>]</span>
         <span class="key">elasticity</span>: <span class="str">neighbor</span>          <span class="cmt"># strict | neighbor | broad</span>
-        <span class="key">tier_variants</span>: <span class="hl">[<span class="str">T0</span>]</span> <span
-          class="cmt"># flexes to neighbor</span>
 
         <span class="key">tags</span>:                                 <span class="cmt"># split by surface they feed</span>
         <span class="cmt"># — child-facing (intuitive achievement display) —</span>
@@ -3472,7 +3470,7 @@
               <li><code>transdisciplinary_theme</code><span>Which of the 6 IB TD themes the activity lives under.</span></li>
               <li><code>subject_tags</code><span><b>NEW.</b> Cross-subject classification (science / language / art / math / social-emotional). Lets parents filter or compare with school subjects — distinct from the child view.</span></li>
               <li><code>progression</code><span>The axis + level the activity targeted, plus the next step. Drives the growth-path ladder visualization.</span></li>
-              <li><code>tier</code> · <code>tier_variants</code><span>Explicit audit trail — which age register the activity was tuned to.</span></li>
+              <li><code>tier_range.primary</code><span>Explicit audit trail — which age register the activity was tuned to. (Instance-time <code>tier</code> records what the child actually played at.)</span></li>
             </ul>
           </div>
         </div>
