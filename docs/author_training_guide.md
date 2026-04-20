@@ -170,7 +170,7 @@ From `docs/progression_axes.md` §Form:
 T1 sits comfortably at **L2** for this entity — the child can name three things (red body, black spots, tiny legs) and place each on a part of the ladybug. L3 (the "spots warn predators" reasoning) is reachable at T1 but is more typically the T2 move. So:
 
 - `progression.topic_axis: form`
-- `progression.difficulty_level: L2`
+- `progression.difficulty_level: 2`
 - `{escalation_axis}`: Form — each round asks for a deeper notice-and-locate move.
 
 Detection cues I'll lean on (from `docs/progression_axes.md` §Form):
@@ -347,7 +347,7 @@ kud:
 
 progression:
   topic_axis: form
-  difficulty_level: L2
+  difficulty_level: 2
   next_step_hint: "Move to Form L3 — ask why the red warns predators, then try another spotted bug."
   reward_hook: "Ladybug Detective badge"
 
@@ -388,7 +388,7 @@ Everything else in the tag block — `key_concepts`, `progression.*`, `transdisc
 **Parent dashboard** (`docs/parent_growth_path_preview.html` §03 `#curiosity` + §07 `#contract`) reads the full tag block. Specific modules:
 
 - **Curiosity profile** (§03 radial) adds one tick to the **Form** lobe at L2-depth. The caption rule would mention the child as an *observer* / *attribute-namer* (the Form personality word from `docs/progression_axes.md`).
-- **Progress (L×T ladder)** (§07) places this activity at `topic_axis: form · difficulty_level: L2 · tier: T1`, and the "Try at home" module points at the `next_step_hint` ("Move to Form L3 — ask why the red warns predators").
+- **Progress (L×T ladder)** (§07) places this activity at `topic_axis: form · difficulty_level: 2 · tier: T1`, and the "Try at home" module points at the `next_step_hint` ("Move to Form L3 — ask why the red warns predators").
 - **In their words** (§04) can lift `highlight_moment` as a quote card: *"I figured out the ladybug's warning message — red plus spots."* — attributed with Tuesday / ladybug context.
 - **IB framework chips** (§07) render `key_concepts: [Form, Causation]`, `atl_skills`, `transdisciplinary_theme: "How the world works"`, `subject_tags: [science, language]`.
 - **Gauges** (§07) reads `caregiver_role: [scaffold, co-explorer]` — the T1 shared-role gauge lights up.
@@ -483,7 +483,7 @@ From `docs/progression_axes.md` §Causation:
 At T0, the child commits to *"yes, most are yellow"* before going out — that's a prediction, which sits at **L1**: the child is *noticing and naming an outcome* in the simplest possible form. (T1+ versions of this same design would climb to L2 with a richer prediction like "most in my garden will be yellow because the sunflower is".)
 
 - `progression.topic_axis: causation`
-- `progression.difficulty_level: L1`
+- `progression.difficulty_level: 1`
 - `{escalation_axis}`: each round adds one more data point against the prediction — escalation is accumulation, not cognitive leap.
 
 ### Step 6 — Fill the slots
@@ -664,7 +664,7 @@ kud:
 
 progression:
   topic_axis: causation
-  difficulty_level: L1
+  difficulty_level: 1
   next_step_hint: "Move to Causation L2 — predict which way the sunflower will turn tomorrow morning."
   reward_hook: "Flower Scientist chip"
 
@@ -705,7 +705,7 @@ The child does NOT see `key_concepts`, `progression.*`, `transdisciplinary_theme
 **Parent dashboard** (`docs/parent_growth_path_preview.html` §03 `#curiosity` + §07 `#contract`):
 
 - **Curiosity profile** ticks the **Causation** lobe at L1-depth. Parent-facing caption would call the child an *investigator* / *explainer* (Causation's personality word in `docs/progression_axes.md`).
-- **Progress (L×T ladder)** places this at `topic_axis: causation · difficulty_level: L1 · tier: T0`.
+- **Progress (L×T ladder)** places this at `topic_axis: causation · difficulty_level: 1 · tier: T0`.
 - **Try at home** picks up `next_step_hint` ("Move to Causation L2 — predict which way the sunflower will turn tomorrow morning").
 - **In their words** can quote the `highlight_moment`.
 - **IB framework chips** render `[Causation, Form]`, `atl_skills`, `"How the world works"`, `[science, language]`.
@@ -778,7 +778,7 @@ From `docs/progression_axes.md` §Perspective:
 T2 sits at **L3**: I'll ask the child to voice Super Construction Paper talking to *another piece of paper* ("what would you tell Regular Paper about your new powers?"). That's the most generative rung on the Perspective ladder.
 
 - `progression.topic_axis: perspective`
-- `progression.difficulty_level: L3`
+- `progression.difficulty_level: 3`
 - `{escalation_axis}` = Perspective — round 1 the paper has a simple feeling, round 4 the paper narrates itself to another.
 
 This axis choice also lets the activity straddle **Perspective + Change** in `key_concepts` without splitting the progression — the escalation climbs Perspective while Change lives in the `key_concepts` list (per `docs/progression_axes.md` §"Axis interaction — activities that genuinely straddle two axes").
@@ -970,7 +970,7 @@ kud:
 
 progression:
   topic_axis: perspective
-  difficulty_level: L3
+  difficulty_level: 3
   next_step_hint: "Sibling jump: Responsibility L2 — design a care protocol for the Super Paper when it's feeling sad."
   reward_hook: "Paper Engineer badge"
 
@@ -1011,7 +1011,7 @@ Child-facing surfaces do not show `key_concepts`, `progression.*`, `transdiscipl
 **Parent dashboard** (`docs/parent_growth_path_preview.html` §03 `#curiosity` + §07 `#contract`):
 
 - **Curiosity profile** ticks the **Perspective** lobe at L3-depth — the deepest rung. Personality-word caption reads *storyteller* / *voice-giver* (Perspective's personality word in `docs/progression_axes.md`).
-- **Progress (L×T ladder)** places this at `topic_axis: perspective · difficulty_level: L3 · tier: T2` — near the top-right corner of the ladder.
+- **Progress (L×T ladder)** places this at `topic_axis: perspective · difficulty_level: 3 · tier: T2` — near the top-right corner of the ladder.
 - **Try at home** picks up `next_step_hint` ("Sibling jump: Responsibility L2 — design a care protocol for the Super Paper when it's feeling sad").
 - **In their words** lifts the `highlight_moment` as a quote card.
 - **IB framework chips** render `[Perspective, Change]`, `atl_skills`, `"How we express ourselves"`, `[art, language, social_emotional]`.
