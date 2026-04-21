@@ -1,0 +1,310 @@
+- entity_id: daily_objects_rubber_duck
+  entity_name: Rubber Duck
+  entity_name_cn: 橡皮鸭
+  domain: daily_objects
+  parent_category: toys
+  subcategory: bath_toys
+  primary_theme:
+    theme_id: how_we_express
+    weight: 0.42
+    reasoning: A rubber duck invites playful expression through its squeak, its bright face, and the voices and stories
+      children invent for it during bath time.
+  secondary_themes:
+  - theme_id: how_world_works
+    weight: 0.36
+    reasoning: Children notice how the duck floats, bobs, and squeaks, which opens up early questions about why some toys
+      ride on water and make sound when squeezed.
+    context_trigger: when the child squeezes the duck to hear the squeak or pushes it under and watches it pop back up
+  - theme_id: who_we_are
+    weight: 0.22
+    reasoning: The duck often becomes a special bath-time companion, linked to routines, favorite moments, and the child's
+      sense of "my duck".
+    context_trigger: when the child names the duck, insists on bringing it to the bath, or talks about it as a friend
+  primary_key_concepts:
+  - concept_id: function
+    relevance: 1.0
+    reasoning: The rubber duck's whole design is about doing things — floating, squeaking, being grabbed — which helps
+      children link a familiar toy to the idea that objects have jobs.
+  - concept_id: change
+    relevance: 0.95
+    reasoning: When the duck is squeezed, pressed under water, or re-imagined with new powers, children feel how one object
+      can act differently in different moments.
+  - concept_id: form
+    relevance: 0.9
+    reasoning: Its round body, flat bottom, tiny beak, and bright color make it easy for children to notice and describe
+      distinctive features of a familiar object.
+  secondary_key_concepts:
+  - concept_id: causation
+    relevance: 0.6
+    reasoning: Children can connect actions to effects — squeeze makes squeak, push down makes it pop up — which supports
+      early cause-and-effect thinking.
+  - concept_id: connection
+    relevance: 0.4
+    reasoning: The duck connects to bath routines, to real ducks the child has seen, and to other floating bath toys,
+      helping children notice how play objects fit into everyday life.
+  candidate_related_concepts:
+  - concept_id: imagination
+    discipline: Arts
+    reasoning: Children easily imagine new powers and stories for the duck, treating it as a character that can talk,
+      fly, or glow.
+  - concept_id: creativity
+    discipline: Arts
+    reasoning: Adding pretend features to the duck (wings, lights, a voice) invites children to invent and combine new
+      ideas on top of a familiar shape.
+  - concept_id: expression
+    discipline: Arts
+    reasoning: The duck's squeak, splashes, and silly voices give children a playful outlet for making sounds and acting
+      out feelings.
+  - concept_id: discovery
+    discipline: Science
+    reasoning: Trying different things with the duck (hold it under, spin it, drop it) turns bath time into a small
+      hands-on investigation of how it behaves.
+  tier_guidance:
+    tier_0:
+      dimensions:
+        appearance:
+        - attribute: body_color
+          value: bright yellow body
+          topics:
+          - What color is the duck?
+          - Can you point to the yellow part?
+          - Is the duck a sunny color?
+        - attribute: beak
+          value: a tiny orange beak
+          topics:
+          - Can you find the duck's beak?
+          - What color is the beak?
+          - Is the beak big or little?
+        - attribute: shape
+          value: round and smooth body
+          topics:
+          - Is the duck round or pointy?
+          - Can you trace the duck's shape with your finger?
+          - Does it have a soft round back?
+        - attribute: size
+          value: small, fits in one hand
+          topics:
+          - Is the duck big or little?
+          - Can you hold it in one hand?
+          - Is it smaller than your head?
+        senses:
+        - attribute: squeak_sound
+          value: a funny squeak when squeezed
+          topics:
+          - What sound does the duck make?
+          - Can you say "squeak, squeak"?
+          - Do you like the squeaky noise?
+        - attribute: rubber_feel
+          value: soft, bendy rubber
+          topics:
+          - Does the duck feel soft or hard?
+          - Can you squish it with your fingers?
+          - Is it bouncy?
+        - attribute: smooth_surface
+          value: smooth all around, no bumps
+          topics:
+          - Is the duck smooth or bumpy?
+          - How does it feel on your hand?
+        function:
+        - attribute: floats_on_water
+          value: sits on top of the water
+          topics:
+          - Does the duck float or sink?
+          - Where does the duck go in the tub?
+          - Can the duck swim?
+        - attribute: bath_buddy
+          value: a friend for bath time
+          topics:
+          - Do you play with duck in the bath?
+          - Is duck your bath friend?
+        emotions:
+        - Do you love your duck?
+        - Does the squeak make you laugh?
+        - Is the duck silly or serious?
+        - Do you feel happy in the bath with duck?
+    tier_1:
+      dimensions:
+        appearance:
+        - attribute: painted_eyes
+          value: two little painted eyes that look curious
+          topics:
+          - Why do you think the duck has eyes painted on, not real eyes?
+          - How is a painted eye different from a sticker eye?
+        - attribute: flat_bottom
+          value: a flat belly that helps it sit upright on water
+          topics:
+          - Why is the duck flat on the bottom, not round like a ball?
+          - How is a flat bottom different from a pointy bottom for floating?
+        - attribute: hollow_body
+          value: hollow inside so it can hold air
+          topics:
+          - Why is the duck empty inside, like a little balloon?
+          - How is a hollow duck different from a solid toy block?
+        context:
+        - attribute: bath_time
+          value: lives in the bathtub during bath time
+          topics:
+          - Why does the duck belong in the bath and not on the couch?
+          - How is a wet-and-ready toy different from a stuffed animal?
+        - attribute: shelf_storage
+          value: sits on the edge of the tub or in a toy basket
+          topics:
+          - Why do we dry the duck and put it on the shelf after the bath?
+          - How is a duck on the shelf different from a duck in the water?
+        - attribute: pool_and_sink
+          value: can also play in the sink, pool, or a bowl of water
+          topics:
+          - Why can the duck play in any water, not only the bathtub?
+          - How is a sink game different from a bathtub game?
+        function:
+        - attribute: squeeze_and_squeak
+          value: air rushes out when you squeeze it, making the squeak
+          topics:
+          - Why does squeezing the duck make a squeak, like pressing a whoopee cushion?
+          - How is a squeeze-squeak different from ringing a bell?
+        - attribute: bobbing_motion
+          value: bobs up and down on little waves
+          topics:
+          - Why does the duck bob up and down, like a boat?
+          - How is bobbing different from sinking?
+        - attribute: pop_back_up
+          value: springs back to the top when pushed under
+          topics:
+          - Why does the duck come back up when you push it down?
+          - How is popping up different from staying under like a stone?
+        senses:
+        - attribute: wet_skin_feel
+          value: cool and slippery when it's wet
+          topics:
+          - Why does the duck feel slippery in the water?
+          - How is wet rubber different from dry rubber on your hand?
+        - attribute: warm_water_warmth
+          value: warms up a little in warm bath water
+          topics:
+          - Why does the duck feel warmer in warm water?
+          - How is a warm duck different from a cold duck to hold?
+        structure:
+        - attribute: tiny_hole
+          value: a small hole underneath that lets air and water in and out
+          topics:
+          - Why is there a little hole under the duck, like a secret door?
+          - How is a duck with a hole different from one that's closed up?
+        - attribute: molded_shape
+          value: made in one smooth piece, like a squishy statue
+          topics:
+          - Why is the duck made in one piece, not glued together?
+          - How is one smooth piece different from many snap-together parts?
+        emotions:
+        - How do you feel when your duck is with you in the bath?
+        - Would you give your duck a name? What would it be?
+        - Does the squeak feel silly, cheerful, or a little surprising?
+        relationship:
+        - How is your rubber duck different from a real duck at the pond?
+        - What other bath toys do you have, and how is the duck different?
+        - How is the duck like a bath buddy, and how is it like a pet?
+    tier_2:
+      dimensions:
+        appearance:
+        - attribute: cartoon_styling
+          value: The duck's big head, round body, and simple painted face are stylized so small children can easily
+            recognize it as a friendly character rather than a realistic bird.
+          topics:
+          - Why might a toy duck look more cartoony than a real duck?
+          - What feelings might the rounded, simple shape create compared to a detailed one?
+        - attribute: color_brightness
+          value: The bright yellow color stands out against blue water and white bathtubs, making the duck easy to spot and
+            visually exciting during play.
+          topics:
+          - Why might bright yellow be a popular color for a bath toy?
+          - How might the duck feel different if it were painted gray or brown?
+        change:
+        - attribute: squeak_wears_out
+          value: Over time the squeaker inside can get clogged with soap or water and the squeak gets softer, quieter, or
+            stops working.
+          topics:
+          - Why might an old duck squeak less than a new one?
+          - What could you do to help a duck that isn't squeaking much anymore?
+        - attribute: mildew_inside
+          value: Water can stay trapped inside and grow dark spots, so the duck changes on the inside even if the outside still
+            looks yellow.
+          topics:
+          - Why might the inside of the duck look different from the outside after many baths?
+          - How could you help a bath toy stay clean on the inside?
+        - attribute: imaginary_upgrades
+          value: Children can imagine adding new powers to the duck — wings to fly, lights to glow, a voice to talk —
+            turning one simple toy into many different ducks in their mind.
+          topics:
+          - If you could give your duck one brand-new power, what would it be?
+          - How is a pretend-powered duck different from the real toy duck?
+        context:
+        - attribute: bath_time_routine
+          value: The duck often appears only at bath time, which ties it to a daily routine of getting clean, warm, and
+            ready for bed.
+          topics:
+          - Why do you think ducks are usually bath toys, not bed toys?
+          - How could a bath routine feel different without a favorite bath toy?
+        - attribute: shared_play_contexts
+          value: The duck can move between the tub, a sink, a pool, or a puddle, adapting to wherever there's water and
+            someone to play with it.
+          topics:
+          - Why can one duck work in many different kinds of water?
+          - How might playing with the duck in a pool feel different from playing in the tub?
+        function:
+        - attribute: buoyancy_principle
+          value: The duck is light and hollow, so the air inside helps it stay above water instead of sinking like a rock
+            or a coin.
+          topics:
+          - Why does something light and hollow stay up while something heavy sinks?
+          - What might happen if the duck filled completely with water inside?
+        - attribute: pretend_character_role
+          value: Beyond floating, the duck often takes on a pretend role — captain of a boat crew, brave swimmer, or shy
+            visitor — whatever story the child builds around it.
+          topics:
+          - What kind of character does your duck become when you play with it?
+          - Why is it fun to give a simple toy a big story or job?
+        senses:
+        - attribute: soft_squeeze_feel
+          value: Pressing the duck gives a little resistance and then a soft "give", which is different from squeezing a
+            stuffed animal or a wooden block.
+          topics:
+          - Why does squeezing rubber feel different from squeezing a pillow?
+          - How might the squeeze feel if the duck were much thicker or much thinner?
+        - attribute: squeak_pitch_variation
+          value: Pressing gently or hard can change the squeak — a little squeeze makes a tiny sound and a big squeeze can
+            make a louder, longer squeak.
+          topics:
+          - Why might a big squeeze sound different from a tiny squeeze?
+          - How could you make the squeak last longer?
+        structure:
+        - attribute: squeaker_reed_inside
+          value: Inside the duck is a small part (a reed) that vibrates as air rushes past, turning a squeeze into a sound
+            the same way blowing into a whistle makes a note.
+          topics:
+          - How can a tiny part inside turn a squeeze into a sound?
+          - What might happen if that little part got stuck or broken?
+        - attribute: seamless_molding
+          value: The duck is molded from soft plastic in one piece so there are no seams that could leak or pinch little
+            fingers.
+          topics:
+          - Why is it safer for a bath toy to have no sharp edges or seams?
+          - What could go wrong if the duck were glued together from many pieces?
+        emotions:
+        - Does your duck feel like a friend, a silly toy, or something else? Why?
+        - How would bath time feel different without your duck?
+        - If your duck had feelings, what would it like best about bath time?
+        imagination:
+        - If your duck had wings, a glow, and a voice, what adventures could it go on?
+        - Invent a brand-new super power for your duck and describe what would happen the first time it used it.
+        - Pretend your duck is the captain of a tiny bath boat crew — who are the other crew members?
+        narrative:
+        - Tell a story about your duck's most exciting bath adventure.
+        - Once upon a time, a rubber duck fell out of the tub and went on a journey — what happened?
+        - Tell a story where your duck teaches a new bath toy how to float and squeak.
+        reasoning:
+        - Why do you think rubber ducks are yellow more often than other colors?
+        - What would change about bath time if rubber ducks didn't float at all?
+        - If you invented a new bath toy, what would it do that a rubber duck can't?
+        relationship:
+        - How is your rubber duck like a little boat, and how is it different?
+        - What other toys does your duck remind you of? What makes them similar?
+        - How is the squeaky duck like a whistle, and how is it different?

@@ -1,0 +1,322 @@
+- entity_id: plants_flower
+  entity_name: Flower
+  entity_name_cn: 花
+  domain: plants
+  parent_category: flowers
+  subcategory: generic_flowers
+  primary_theme:
+    theme_id: how_world_works
+    weight: 0.4
+    reasoning: Any flower helps children see basic plant parts (petals, stem, leaves) and notice signs of health —
+      droopy, fresh, wilting, blooming — linking what they see to how living things grow.
+  secondary_themes:
+  - theme_id: sharing_planet
+    weight: 0.36
+    reasoning: Flowers live in shared gardens, parks, and balconies alongside bees, birds, and people, and they
+      depend on water, sun, and caretakers.
+    context_trigger: when the child notices a bee on a flower, sees a drooping flower, or talks about who takes
+      care of the garden
+  - theme_id: how_we_express
+    weight: 0.24
+    reasoning: Flowers are a universal symbol of beauty, care, and gifts; children often draw them, pick them, or
+      give them to others as a way of expressing feelings.
+    context_trigger: when the child wants to pick the flower for someone or draws flowers on paper
+  primary_key_concepts:
+  - concept_id: responsibility
+    relevance: 1.0
+    reasoning: Flowers can show signs of needing help (droopy, dry, fallen) which gives children a clear moment to
+      notice need and take responsibility for care.
+  - concept_id: connection
+    relevance: 0.95
+    reasoning: Flowers connect to water, soil, sun, pollinators, and the people who care for them, making them an
+      ideal way to introduce webs of care and interdependence.
+  - concept_id: form
+    relevance: 0.85
+    reasoning: Petals, stems, leaves, colors, and scents give children plenty of shared features to notice across
+      many different flowers.
+  secondary_key_concepts:
+  - concept_id: change
+    relevance: 0.7
+    reasoning: Flowers bud, bloom, droop, and dry, offering small-scale change children can observe day to day.
+  - concept_id: causation
+    relevance: 0.6
+    reasoning: Why is the flower drooping? Why did it open today? Each visible state has a cause — water, sun,
+      time, care — children can link to the plant's needs.
+  candidate_related_concepts:
+  - concept_id: care
+    discipline: Social Studies
+    reasoning: Caring for a flower — watering, shading, talking to it — is a concrete way to practice care in
+      everyday life.
+  - concept_id: interdependence
+    discipline: Science
+    reasoning: Flowers depend on pollinators and caretakers and in turn support them, a clear example of
+      interdependence for young children.
+  - concept_id: empathy
+    discipline: Social Studies
+    reasoning: Noticing that a droopy flower "looks sad" gives children a low-stakes way to practice empathy for
+      other living things.
+  - concept_id: conservation
+    discipline: Social Studies
+    reasoning: Choosing not to pick every flower, or replanting fallen petals, introduces the idea of protecting
+      living things.
+  tier_guidance:
+    tier_0:
+      dimensions:
+        appearance:
+        - attribute: petals
+          value: soft petals all around the center
+          topics:
+          - Can you point to a petal?
+          - How many petals can you count?
+          - What color are the petals?
+        - attribute: flower_color
+          value: one or many bright colors
+          topics:
+          - What color is the flower?
+          - Do you see more than one color?
+          - Which color is your favorite?
+        - attribute: stem
+          value: a green stem holding up the flower
+          topics:
+          - Can you find the stem?
+          - Is it thick or thin?
+          - How tall is the stem?
+        - attribute: leaves
+          value: green leaves on the stem
+          topics:
+          - Can you find a leaf?
+          - Are the leaves big or little?
+          - What color are the leaves?
+        senses:
+        - attribute: smell
+          value: a soft sweet or fresh smell
+          topics:
+          - Does the flower smell nice?
+          - Is the smell strong or soft?
+          - Does it smell like anything you know?
+        - attribute: petal_feel
+          value: petals feel soft and silky
+          topics:
+          - Do the petals feel soft or rough?
+          - What do they feel like to touch?
+        state:
+        - attribute: droopy_or_fresh
+          value: standing up tall (fresh) or hanging down (droopy)
+          topics:
+          - Does the flower look tall and happy?
+          - Or does it look a little droopy?
+          - Do you think it's thirsty?
+        emotions:
+        - Do you like this flower?
+        - Does it look happy or sad to you?
+        - Would you smell it or just look at it?
+        - Is the flower friendly?
+    tier_1:
+      dimensions:
+        appearance:
+        - attribute: petal_count
+          value: a certain number of petals, sometimes many, sometimes only a few
+          topics:
+          - Why do different flowers have different numbers of petals?
+          - How is a flower with many petals different from one with only four or five?
+        - attribute: center_of_flower
+          value: a little circle in the middle, often a different color
+          topics:
+          - Why is the center usually a different color from the petals?
+          - How is the middle of a flower different from its outside?
+        - attribute: bud_stage
+          value: closed-up buds before the flower opens
+          topics:
+          - Why does a flower start as a closed bud?
+          - How is a bud different from an open flower?
+        - attribute: stem_leaves
+          value: leaves spaced along the stem
+          topics:
+          - Why are there leaves on the stem, not just flowers?
+          - How is a leafy stem different from a bare one?
+        context:
+        - attribute: gardens_and_parks
+          value: grows in gardens, parks, pots, and window boxes
+          topics:
+          - Why do flowers often grow in gardens more than on sidewalks?
+          - How is a garden flower different from a wild one?
+        - attribute: sun_and_water
+          value: needs sunlight and water to grow well
+          topics:
+          - Why do flowers need sun and water?
+          - How is a watered flower different from a dry one?
+        - attribute: seasonal_bloom
+          value: blooms in certain seasons, especially spring and summer
+          topics:
+          - Why do many flowers bloom in spring and summer?
+          - How is a spring garden different from a winter one?
+        function:
+        - attribute: attract_pollinators
+          value: bright colors and smell bring bees, butterflies, and birds
+          topics:
+          - Why do flowers use color and smell to invite bees and butterflies?
+          - How is attracting an insect different from scaring one away?
+        - attribute: make_seeds
+          value: flowers make seeds so new flowers can grow
+          topics:
+          - Why does a flower make seeds?
+          - How is a seed different from a petal?
+        - attribute: stem_support
+          value: the stem holds the flower up to the sun
+          topics:
+          - Why does the stem need to be strong?
+          - How is a strong stem different from a weak one?
+        senses:
+        - attribute: scent_strength
+          value: some flowers have strong smells, others are almost scentless
+          topics:
+          - Why do some flowers smell strong and others barely smell?
+          - How is a strong flower smell different from a food smell?
+        - attribute: petal_softness
+          value: petals are soft, a little cool, and sometimes slightly slick
+          topics:
+          - Why are petals soft like paper?
+          - How is a petal different from a leaf to touch?
+        structure:
+        - attribute: flower_parts
+          value: petals, center, stem, leaves, and roots
+          topics:
+          - Why does a flower have so many different parts?
+          - How is a flower like a little team with different jobs?
+        - attribute: thin_stem_and_roots
+          value: a thin stem above the ground and roots hidden below it
+          topics:
+          - Why does a flower need roots underground?
+          - How is a stem above ground different from roots below it?
+        state:
+        - attribute: signs_of_needing_help
+          value: droopy petals, dry leaves, or a tilted stem can mean the flower needs water, shade, or support
+          topics:
+          - Why do flowers droop when they're thirsty?
+          - How is a droopy flower different from a fresh one?
+        - attribute: fresh_healthy_look
+          value: upright stem, plump petals, and bright color mean the flower is healthy
+          topics:
+          - How can you tell a flower is doing well just by looking?
+          - How is a healthy flower different from a wilting one?
+        emotions:
+        - How does a droopy flower make you feel?
+        - Would you want to take care of a flower? Why?
+        - Does a bright flower feel cheerful, calming, or exciting to you?
+        relationship:
+        - How is a flower different from a leaf on a tree?
+        - How is a flower like a gift, and how is it different?
+        - What other pretty things remind you of a flower?
+    tier_2:
+      dimensions:
+        appearance:
+        - attribute: shape_variety
+          value: Flowers come in many shapes — open and flat, deep and tubular, round and fluffy — and each shape
+            matches the kind of pollinator most likely to visit.
+          topics:
+          - Why might flowers look so different from each other?
+          - How might a tubular flower invite a different visitor than a flat one?
+        - attribute: color_signals
+          value: Bright flower colors often act as signals — red can invite some birds, blue or purple can call
+            bees, so color is less about looking pretty to us and more about sending a message.
+          topics:
+          - Why might a flower's color matter more to a bee than to us?
+          - How is a flower's color like a sign on a door?
+        - attribute: petal_arrangement
+          value: Petals often arrange in a clear pattern (ring of petals, spiral, or bell), and that arrangement
+            helps visitors land and reach the sweet nectar inside.
+          topics:
+          - Why is the way petals are arranged more than just decoration?
+          - How might a bee use the petals to find its way into the flower?
+        change:
+        - attribute: bud_to_bloom
+          value: A flower starts as a closed bud that opens slowly as the petals grow and the center develops, so
+            there are many "in-between" stages between bud and full bloom.
+          topics:
+          - Why do you think a flower opens slowly instead of suddenly?
+          - What might the bud be protecting while it's still closed?
+        - attribute: wilting_and_recovery
+          value: When a flower droops, sometimes water and shade can bring it back upright, and sometimes it has
+            moved past the point where it can recover — showing that care has to happen in time.
+          topics:
+          - Why might a droopy flower sometimes recover and sometimes not?
+          - How can you tell if a flower is tired but okay, or too far gone?
+        - attribute: petal_dropping
+          value: At the end of blooming, petals fall off so the flower can focus energy on making seeds, which
+            will become next year's plants.
+          topics:
+          - Why might a flower drop its petals instead of keeping them forever?
+          - How does losing petals still help the plant keep going?
+        context:
+        - attribute: garden_care_system
+          value: Flowers in a garden rely on a web of care — someone watering, pulling weeds, shading them on hot
+            days, and noticing when they need help.
+          topics:
+          - Who are all the people and creatures helping a garden bloom?
+          - What might happen to a garden without anyone to notice and care?
+        - attribute: neighbors_in_the_garden
+          value: Flowers share their patch with leaves, twigs, pebbles, insects, and other flowers, and these
+            neighbors can actually help each other (shade, support, pollination).
+          topics:
+          - How might a leaf or twig near a flower actually be helping it?
+          - Why is it useful for different garden things to be close to each other?
+        function:
+        - attribute: pollination_exchange
+          value: Flowers offer nectar and pollen to visiting insects; in exchange, the insects carry pollen from
+            flower to flower, which lets the plants make seeds.
+          topics:
+          - Why is it useful that flowers and insects help each other?
+          - What might happen to flowers if there were no insect visitors at all?
+        - attribute: structural_support_for_petals
+          value: The stem and green base hold the heavy head of petals up to the light; when the stem weakens
+            from dryness or damage, the flower tilts or droops.
+          topics:
+          - Why does the whole flower droop when only the stem is weak?
+          - How is holding up a flower head like carrying a heavy backpack?
+        senses:
+        - attribute: scent_as_invitation
+          value: A flower's smell travels on the air to invite pollinators from far away; stronger scents can
+            carry further, especially at certain times of day.
+          topics:
+          - Why might a flower's smell be strongest in the morning or evening?
+          - How is a flower's smell like a loud call to a bee?
+        - attribute: petal_temperature
+          value: Petals often feel a little cooler than surrounding air because of water inside them; a warm
+            limp petal can be a sign the flower has lost too much water.
+          topics:
+          - Why might a healthy petal feel cool to touch?
+          - How could you tell a flower is dehydrated just by feeling its petals?
+        structure:
+        - attribute: vascular_tubes
+          value: Inside the stem are tiny tubes that move water from the roots up to the petals and carry food
+            down to the roots — a one-plant delivery system.
+          topics:
+          - How is a flower's stem like a little delivery system?
+          - What might happen if those tubes got blocked or crushed?
+        - attribute: roots_and_stability
+          value: Roots hold the flower in place and pull water and nutrients from the soil; a flower with weak
+            roots might fall over even in small wind.
+          topics:
+          - Why do flowers need strong roots, not just a strong stem?
+          - How is a root below ground different from a stem above it?
+        emotions:
+        - How do you feel when you see a droopy flower that nobody is helping?
+        - Would you rather plant a flower yourself or take care of one someone else planted? Why?
+        - If a flower could thank you for helping it, what do you think it would say?
+        imagination:
+        - Pretend a flower and a nearby leaf and pebble became friends — how could they help each other?
+        - If you could invent a flower that never needs water, what would it look like?
+        - Imagine a flower that can talk — what would it ask you for on a hot day?
+        narrative:
+        - Tell a story about a drooping flower that gets rescued by a surprise helper.
+        - Once upon a time, a flower and the bee that visited it had an argument — how did they fix it?
+        - Tell a story where a flower leads a rescue team of garden helpers.
+        reasoning:
+        - Why do you think flowers need both people AND insects to live well in a garden?
+        - What would change about a garden if no one watered or noticed the flowers?
+        - If you saw one droopy flower and one fresh flower side by side, what clues would help you guess what was
+          different in their lives?
+        relationship:
+        - How is a flower like a little living friend, and how is it different?
+        - What other things need daily care like a flower does?
+        - How is caring for a flower like caring for a pet? How is it different?

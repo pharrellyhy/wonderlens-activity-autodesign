@@ -1,0 +1,311 @@
+- entity_id: animals_butterfly
+  entity_name: Butterfly
+  entity_name_cn: 蝴蝶
+  domain: animals
+  parent_category: invertebrates
+  subcategory: insects
+  primary_theme:
+    theme_id: sharing_planet
+    weight: 0.44
+    reasoning: Butterflies live inside a web of flowers, leaves, and damp ground — a visible example of how a small
+      creature shares a habitat with many other living things.
+  secondary_themes:
+  - theme_id: how_world_works
+    weight: 0.34
+    reasoning: Butterflies help children think about why things are built a certain way — big wings for flying,
+      long tongues for drinking nectar, bright colors that match their flowers.
+    context_trigger: when the child asks how the butterfly flies, how it eats, or why it likes a certain flower
+  - theme_id: how_we_express
+    weight: 0.22
+    reasoning: Butterfly wings are so patterned and colorful that children often describe them like paintings and
+      invent names for the patterns.
+    context_trigger: when the child notices the wing patterns, colors, or compares the butterfly to art
+  primary_key_concepts:
+  - concept_id: form
+    relevance: 1.0
+    reasoning: Wings, antennae, spots, stripes, and tiny bodies give children plenty of precise details to notice
+      and describe.
+  - concept_id: causation
+    relevance: 0.95
+    reasoning: Why the butterfly lives in this garden, why it picks this flower, why it rests on this leaf — each
+      behavior has a reason connected to its needs.
+  - concept_id: change
+    relevance: 0.85
+    reasoning: Butterflies go through a dramatic life cycle — egg, caterpillar, chrysalis, butterfly — one of the
+      clearest examples of transformation in nature.
+  secondary_key_concepts:
+  - concept_id: connection
+    relevance: 0.7
+    reasoning: Butterflies connect flowers, leaves, water, and other insects into one interdependent network that
+      children can explore in a park or garden.
+  - concept_id: pattern
+    relevance: 0.5
+    reasoning: Wing patterns are often symmetric and repeating, giving children a chance to notice pattern and
+      symmetry in a living thing.
+  candidate_related_concepts:
+  - concept_id: habitat
+    discipline: Science
+    reasoning: Butterflies need specific things — flowers, leaves, damp spots — so they're a strong entry point
+      to the idea of habitat.
+  - concept_id: discovery
+    discipline: Science
+    reasoning: Watching a butterfly draws children into discovery-style looking — where did it go, what did it
+      touch, what is it eating?
+  - concept_id: interdependence
+    discipline: Science
+    reasoning: Butterflies both need and help plants — drinking nectar while spreading pollen — introducing the
+      idea of mutual dependence.
+  - concept_id: symmetry
+    discipline: Math/Arts
+    reasoning: Butterfly wings are often mirror-symmetric, giving children a natural example of symmetry.
+  tier_guidance:
+    tier_0:
+      dimensions:
+        appearance:
+        - attribute: wing_color
+          value: bright colors or bold dark patterns
+          topics:
+          - What color is the butterfly?
+          - Can you point to the brightest part?
+          - Does it have more than one color?
+        - attribute: wing_shape
+          value: two big wings on each side
+          topics:
+          - Can you find the butterfly's wings?
+          - Are the wings big or little?
+          - Do the wings look like leaves?
+        - attribute: body
+          value: a thin little body in the middle
+          topics:
+          - Can you find the body?
+          - Is it bigger or smaller than the wings?
+        - attribute: antennae
+          value: two little antennae on the head
+          topics:
+          - Can you find the tiny antennae?
+          - What do they look like?
+          - Are they long or short?
+        senses:
+        - attribute: silent_flight
+          value: very quiet, almost no sound when flying
+          topics:
+          - Does the butterfly make noise?
+          - Is it loud or quiet?
+        function:
+        - attribute: flies
+          value: flutters around on its wings
+          topics:
+          - How does the butterfly move?
+          - Is it fast or slow in the air?
+        - attribute: lands_on_flowers
+          value: lands on bright flowers
+          topics:
+          - Where is the butterfly sitting?
+          - Did it land on a flower?
+        emotions:
+        - Do you think butterflies are pretty?
+        - Does it feel happy?
+        - Would you want to follow the butterfly?
+        - Is the butterfly friendly or shy?
+    tier_1:
+      dimensions:
+        appearance:
+        - attribute: wing_patterns
+          value: spots, stripes, or matching dots like tiny paintings
+          topics:
+          - Why do butterfly wings look like paintings?
+          - How is a spotted wing different from a striped wing?
+        - attribute: wing_symmetry
+          value: the two wings mirror each other
+          topics:
+          - Why do the two wings look exactly the same on each side?
+          - How is a mirror-match pattern different from a random one?
+        - attribute: scale_dust
+          value: tiny powdery dust on the wings
+          topics:
+          - Why do butterfly wings leave dust on your fingers?
+          - How are wing scales different from feathers?
+        - attribute: six_legs
+          value: six tiny legs under the body
+          topics:
+          - Why does the butterfly have six legs, not four or two?
+          - How is a butterfly leg different from your leg?
+        context:
+        - attribute: flower_visits
+          value: spends lots of time on bright flowers
+          topics:
+          - Why do butterflies love flowers so much?
+          - How is a flower garden different from a parking lot for a butterfly?
+        - attribute: leafy_rests
+          value: rests on leaves in the shade
+          topics:
+          - Why do butterflies stop on flat green leaves sometimes?
+          - How is resting on a leaf different from resting on a flower?
+        - attribute: puddle_visits
+          value: sometimes lands at damp patches on the ground to drink
+          topics:
+          - Why would a butterfly land on a wet spot of dirt?
+          - How is a drinking puddle different from a swimming pool?
+        - attribute: sunny_warm_air
+          value: active on warm, sunny days
+          topics:
+          - Why do butterflies like sunny days more than rainy ones?
+          - How is a warm sunny afternoon different from a cold morning for a butterfly?
+        function:
+        - attribute: sipping_nectar
+          value: drinks sweet nectar from flowers with a long coiled tongue
+          topics:
+          - Why does a butterfly need a long thin tongue instead of a mouth?
+          - How is sipping nectar different from chewing food?
+        - attribute: antennae_smelling
+          value: uses antennae to smell flowers and find food
+          topics:
+          - Why are the antennae important, like tiny noses?
+          - How is smelling with antennae different from smelling with your nose?
+        - attribute: wing_flapping
+          value: flaps wings up and down to rise and steer
+          topics:
+          - Why does the butterfly flap so gently compared to a bee?
+          - How is fluttering different from a bird's strong flap?
+        senses:
+        - attribute: soft_landing
+          value: lands so softly you barely see it touch
+          topics:
+          - Why does a butterfly land so gently on a petal?
+          - How is a butterfly landing different from a bird landing?
+        - attribute: wing_beat_pattern
+          value: wing beats in a fluttery up-down-up-down rhythm
+          topics:
+          - Why does the flight look fluttery instead of steady?
+          - How is butterfly flight different from airplane flight?
+        structure:
+        - attribute: three_body_parts
+          value: head, chest (thorax), and belly (abdomen) in a row
+          topics:
+          - Why is a butterfly's body split into three parts?
+          - How is a butterfly's body different from a mouse's body?
+        - attribute: wing_veins
+          value: tiny lines inside each wing, like little twigs holding paper
+          topics:
+          - Why do wings have those tiny lines inside them?
+          - How are wing veins different from leaf veins?
+        emotions:
+        - How does a butterfly make you feel when it lands near you?
+        - Would you be quiet or loud around a butterfly? Why?
+        - Does a butterfly feel peaceful, playful, or magical to you?
+        relationship:
+        - How is a butterfly different from a moth?
+        - What other flying things remind you of a butterfly?
+        - How is a butterfly like a flower with wings, and how is it different?
+    tier_2:
+      dimensions:
+        appearance:
+        - attribute: eye_spots_as_disguise
+          value: Some butterflies have big round "eye spots" on their wings that aren't real eyes — they're
+            patterns that can fool a predator into thinking they're looking at a much bigger animal.
+          topics:
+          - Why might a fake eye on a wing scare away a bird?
+          - How could a pattern protect a butterfly without any fighting?
+        - attribute: colors_that_match_food
+          value: Many butterflies have colors that match the bright flowers they visit, which helps them blend in
+            while feeding or helps them attract a mate.
+          topics:
+          - Why might a butterfly's color match the flowers in its home?
+          - How is being colorful helpful in one place and risky in another?
+        - attribute: body_fuzz
+          value: A butterfly's body is often covered in tiny hairs that help it pick up pollen and stay a little
+            warmer in cool air.
+          topics:
+          - Why could tiny body hairs matter for carrying pollen?
+          - How might those hairs help on a cold morning?
+        change:
+        - attribute: full_metamorphosis
+          value: Butterflies go through four very different stages — egg, caterpillar, chrysalis, adult — changing
+            shape completely instead of just getting bigger.
+          topics:
+          - Why do you think the butterfly changes so completely instead of just growing larger?
+          - How is a caterpillar's life very different from a butterfly's life?
+        - attribute: wings_drying_after_emerging
+          value: When a butterfly first comes out of its chrysalis, its wings are wet and crumpled, and it has to
+            wait quietly for them to dry and harden before it can fly.
+          topics:
+          - Why can't a brand-new butterfly fly right away?
+          - What might happen if a new butterfly tried to fly too soon?
+        - attribute: short_adult_life
+          value: Adult butterflies usually live only a few weeks, so everything they do — feeding, mating, laying
+            eggs — happens in a busy short window.
+          topics:
+          - Why might a butterfly live such a short time as an adult?
+          - How does a short life change the way a butterfly spends its day?
+        context:
+        - attribute: habitat_requirements
+          value: Butterflies need specific parts in their home — nectar flowers, leaves for caterpillars to eat, and
+            damp spots for minerals — and they live where all three are close together.
+          topics:
+          - Why does a butterfly need more than just one kind of place to thrive?
+          - How could you tell if a garden is a good home for a butterfly?
+        - attribute: host_plants_for_eggs
+          value: Female butterflies often lay eggs only on certain plants — the exact plants their caterpillars
+            need to eat — so the species depends on those plants existing nearby.
+          topics:
+          - Why would a butterfly be picky about where it lays eggs?
+          - What might happen to a kind of butterfly if its special plant disappeared from an area?
+        function:
+        - attribute: pollination_role
+          value: While sipping nectar, butterflies move pollen from flower to flower, helping the plants make seeds
+            — so the butterfly is also a tiny helper for the garden.
+          topics:
+          - Why is moving pollen between flowers important for the plants?
+          - How is a butterfly helping even when it thinks it's just eating?
+        - attribute: temperature_dependence
+          value: Butterflies can't warm their own bodies well, so they often sit with wings open in the sun before
+            they can fly with full strength.
+          topics:
+          - Why do butterflies need to warm up before flying fast?
+          - What might you see a butterfly do on a cool morning?
+        senses:
+        - attribute: taste_with_feet
+          value: Butterflies can actually taste with sensors on their feet, so they learn a lot about a flower the
+            moment they land.
+          topics:
+          - Why could it be useful to taste with your feet when you land?
+          - How might the world feel different if you could taste a leaf just by stepping on it?
+        - attribute: uv_color_vision
+          value: Butterflies can see colors people can't, including patterns on flowers invisible to our eyes, so
+            a flower can look like a glowing target to them.
+          topics:
+          - Why might a flower look different to a butterfly than it does to you?
+          - How could a hidden pattern help a butterfly find the nectar quickly?
+        structure:
+        - attribute: proboscis_coiling
+          value: The butterfly's long drinking tongue (proboscis) coils up like a spring under its head when not in
+            use and unrolls into a straw when feeding.
+          topics:
+          - Why might a coiling tongue be better than a stiff straight one?
+          - How is a proboscis different from a juice straw?
+        - attribute: exoskeleton
+          value: A butterfly's body is covered by a thin hard shell called an exoskeleton, so the body is protected
+            from outside without needing inner bones.
+          topics:
+          - Why is it useful to have the tough part of your body on the outside?
+          - How is having an exoskeleton different from having bones like you?
+        emotions:
+        - How does watching a butterfly flutter past make you feel — calm, excited, curious? Why?
+        - Would you rather watch one butterfly closely or see many at once? Why?
+        - If a butterfly landed on your finger, how would you want to react?
+        imagination:
+        - If you could paint your own wing pattern, what would it look like and what story would it tell?
+        - Pretend you're a butterfly in a busy garden — where do you go first and why?
+        - Invent a brand-new kind of butterfly with a secret power. Where would it live?
+        narrative:
+        - Tell a story about a butterfly mapping out its secret garden world.
+        - Once upon a time, a butterfly met a caterpillar who didn't believe it could change — what happened?
+        - Tell a story about a butterfly that teams up with a bee to help a sad flower.
+        reasoning:
+        - Why do you think butterflies spend so much time on flowers instead of on the ground?
+        - What would change about a garden if all the butterflies suddenly disappeared?
+        - If you saw a butterfly far from any flower, what might it be doing?
+        relationship:
+        - How is a butterfly like a flower, and how is it different?
+        - What other creatures remind you of a butterfly? What do they share?
+        - How is a butterfly's life cycle like a person growing up, and how is it different?

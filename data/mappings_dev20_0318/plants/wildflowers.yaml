@@ -1,0 +1,308 @@
+- entity_id: plants_dandelion
+  entity_name: Dandelion
+  entity_name_cn: 蒲公英
+  domain: plants
+  parent_category: flowers
+  subcategory: wildflowers
+  primary_theme:
+    theme_id: how_world_works
+    weight: 0.44
+    reasoning: A dandelion shows children how a plant changes form — yellow flower to fluffy puff — and how seeds
+      travel on the wind, opening up simple science about growth, change, and movement.
+  secondary_themes:
+  - theme_id: sharing_planet
+    weight: 0.34
+    reasoning: Dandelions grow in lawns, cracks, and fields shared by many creatures, and their seeds spread to
+      new places across the neighborhood.
+    context_trigger: when the child points out dandelions growing all over a lawn or in sidewalk cracks
+  - theme_id: how_we_express
+    weight: 0.22
+    reasoning: Dandelion puffs are classic wish-making, blowing toys, and drawings; children express wishes,
+      imagination, and wonder through them.
+    context_trigger: when the child blows a puff and makes a wish, or says the seeds look like tiny wishes
+  primary_key_concepts:
+  - concept_id: change
+    relevance: 1.0
+    reasoning: A dandelion's life is a clear story of transformation — yellow flower to white puff to flying seeds
+      — perfect for seeing change happen over days.
+  - concept_id: connection
+    relevance: 0.9
+    reasoning: Dandelion seeds travel, connecting one patch of grass to another and linking the plant to wind,
+      insects, and other wildflowers.
+  - concept_id: form
+    relevance: 0.9
+    reasoning: The puff head, the single stalk, the jagged leaves, and each tiny parachute give children lots of
+      specific features to notice.
+  secondary_key_concepts:
+  - concept_id: function
+    relevance: 0.7
+    reasoning: Each part of the dandelion has a job — the yellow flower attracts pollinators, the puff spreads
+      seeds, the deep root anchors the plant.
+  - concept_id: causation
+    relevance: 0.4
+    reasoning: Why did the puff open? Why did the seeds fly? Why do dandelions grow everywhere? Each question
+      hints at causes children can explore.
+  candidate_related_concepts:
+  - concept_id: transformation
+    discipline: Science
+    reasoning: The yellow-flower-to-puff change is a vivid example of transformation children can see in a few
+      days.
+  - concept_id: diversity
+    discipline: Science
+    reasoning: Dandelions live alongside many other wild plants, helping children notice variety in a single patch
+      of grass.
+  - concept_id: nature
+    discipline: Science
+    reasoning: Dandelions are a classic "first wild plant" children learn to recognize, anchoring an awareness of
+      wild plants near home.
+  - concept_id: discovery
+    discipline: Science
+    reasoning: Finding dandelions in different stages (bud, flower, puff) turns a walk into a small investigation
+      of plant change.
+  tier_guidance:
+    tier_0:
+      dimensions:
+        appearance:
+        - attribute: puff_head
+          value: a soft white ball of fluff
+          topics:
+          - What color is the puff ball?
+          - Can you point to all the fluff?
+          - Is it soft and round?
+        - attribute: yellow_flower
+          value: a bright yellow flower before the puff
+          topics:
+          - Have you seen the yellow dandelion too?
+          - What color is the flower?
+          - Is it bigger than your thumb?
+        - attribute: single_stem
+          value: one thin green stem
+          topics:
+          - Can you find the stem?
+          - Is the stem thick or thin?
+          - How tall is the stem?
+        - attribute: jagged_leaves
+          value: leaves with pointy edges near the ground
+          topics:
+          - Can you find the dandelion's leaves?
+          - Are the leaves smooth or pointy?
+        senses:
+        - attribute: fluffy_feel
+          value: the puff feels very soft, like tiny feathers
+          topics:
+          - Does the puff feel soft or hard?
+          - What does it feel like on your finger?
+        - attribute: milky_stem
+          value: white juice inside the stem
+          topics:
+          - Did you know the stem has a little white drink inside?
+          - Have you seen it come out?
+        function:
+        - attribute: blows_away
+          value: the fluff flies away when you blow on it
+          topics:
+          - What happens when you blow the puff?
+          - Where do the pieces go?
+          - Do they fly high or low?
+        emotions:
+        - Do you like making a wish on a dandelion?
+        - Is a dandelion pretty to you?
+        - Does the puff make you feel happy?
+        - Would you want to plant one?
+    tier_1:
+      dimensions:
+        appearance:
+        - attribute: seed_parachutes
+          value: tiny seeds each with a little white umbrella
+          topics:
+          - Why does each seed have its own little umbrella?
+          - How is a parachute seed different from a plain seed?
+        - attribute: yellow_sunburst
+          value: the yellow flower looks like a tiny sunburst
+          topics:
+          - Why does the yellow flower look like a little sun?
+          - How is a dandelion flower different from a daisy?
+        - attribute: many_tiny_flowers
+          value: one yellow head is made of lots of tiny flowers packed together
+          topics:
+          - Why is a dandelion flower actually lots of tiny flowers?
+          - How is "a bunch of little flowers" different from "one big flower"?
+        - attribute: hollow_stem
+          value: a hollow stem that bends but doesn't break easily
+          topics:
+          - Why is the stem hollow inside, like a little straw?
+          - How is a hollow stem different from a thick tree branch?
+        context:
+        - attribute: grass_and_lawns
+          value: grows in grass, fields, and even sidewalk cracks
+          topics:
+          - Why do dandelions show up almost anywhere there's grass?
+          - How is a dandelion different from a garden flower that needs lots of care?
+        - attribute: spring_bloom_time
+          value: shows up in spring and early summer
+          topics:
+          - Why do dandelions pop up so much in spring?
+          - How is a spring dandelion different from a winter lawn?
+        - attribute: breeze_days
+          value: puff seeds fly most on breezy days
+          topics:
+          - Why is a breezy day the best for a dandelion puff?
+          - How is a windy day different from a still day for seeds?
+        function:
+        - attribute: wind_dispersal
+          value: seeds ride the wind to new spots to grow
+          topics:
+          - Why do seeds need to fly to new places?
+          - How is flying seeds different from seeds falling straight down?
+        - attribute: nectar_for_insects
+          value: the yellow flower gives food to bees and early bugs
+          topics:
+          - Why do bees like dandelions so much in spring?
+          - How is a dandelion's food different from a bee's honey?
+        - attribute: deep_tap_root
+          value: a long root under the ground holds it tight
+          topics:
+          - Why does a dandelion have a long strong root?
+          - How is a deep root different from a tiny shallow one?
+        senses:
+        - attribute: gentle_float
+          value: seeds drift slowly, not fast like falling stones
+          topics:
+          - Why do dandelion seeds float slowly through the air?
+          - How is floating different from falling?
+        - attribute: light_weight
+          value: the whole puff is almost weightless in your hand
+          topics:
+          - Why is a dandelion puff so light?
+          - How is a feather-light plant different from a heavy fruit?
+        structure:
+        - attribute: puff_arrangement
+          value: seeds arranged in a perfect round ball
+          topics:
+          - Why do the seeds form a round ball shape?
+          - How is a puff ball different from a flat flower?
+        - attribute: umbrella_bristles
+          value: each seed has little bristly threads that work as a parachute
+          topics:
+          - Why do the threads spread out like a little umbrella?
+          - How are bristly threads different from solid petals?
+        emotions:
+        - How does it feel to blow a dandelion and watch the seeds fly?
+        - What wish would you make on a dandelion puff?
+        - Does a dandelion feel magical, ordinary, or something else?
+        relationship:
+        - How is a dandelion different from a rose or a tulip?
+        - How is a dandelion like a sunflower, and how is it different?
+        - How is a dandelion puff like a little cloud, and how is it different?
+    tier_2:
+      dimensions:
+        appearance:
+        - attribute: flower_to_puff_transformation
+          value: A dandelion changes from a closed green bud to an open yellow flower, then closes again before
+            opening as a fluffy white puff — the same plant in very different forms.
+          topics:
+          - Why do you think one plant goes through so many looks?
+          - How might each stage help the dandelion do its job?
+        - attribute: ready_to_fly_state
+          value: When the puff is fully open and dry, each seed sits loose on its parachute — a visible sign that
+            it's "ready to fly" with the next breeze.
+          topics:
+          - How can you tell just by looking that a puff is ready for the wind?
+          - What might change about a puff on a wet day versus a dry day?
+        - attribute: hollow_stem_liquid
+          value: If the stem is broken, a milky white liquid appears inside; it's a signal that the plant is
+            alive and was carrying food up to its flower or puff.
+          topics:
+          - Why might a plant have a liquid inside its stem?
+          - What might the milky liquid do for the flower above?
+        change:
+        - attribute: puff_opening_sequence
+          value: The puff opens from a tight closed head into a round ball as the seeds mature and the bristles
+            unfold — a change you can watch across a few days.
+          topics:
+          - Why do you think the puff opens slowly instead of all at once?
+          - How is a puff opening different from a popcorn popping open?
+        - attribute: seed_spreading_journeys
+          value: Each dandelion seed might travel many yards, or even a whole garden away, depending on wind and
+            where it lands — so one plant can become many plants.
+          topics:
+          - Why does it help a plant if its seeds travel far from it?
+          - What might happen to seeds that fall right next to their parent plant?
+        - attribute: full_life_cycle
+          value: From seed to green rosette of leaves to yellow flower to white puff to new seeds — dandelions
+            complete a whole cycle in a single season.
+          topics:
+          - How is the dandelion's life cycle like a story that starts over every year?
+          - Which stage do you think is the most important to the plant's future?
+        context:
+        - attribute: parks_and_roadsides
+          value: Dandelions often spread along paths, edges, and lawns where soil is bare or thin, making them
+            common companions of cities and parks.
+          topics:
+          - Why might dandelions be good at living in cracks and busy edges?
+          - How is a roadside dandelion different from a garden rose?
+        - attribute: shared_flight_companions
+          value: Dandelions aren't the only things in a park ready to fly — maple seeds, feathery grass, and
+            loose leaves can also ride the wind, linking the dandelion to a whole team of flight-ready things.
+          topics:
+          - Why do you think nature has so many different ways to travel on air?
+          - How is a dandelion seed different from a maple "helicopter" seed?
+        function:
+        - attribute: parachute_engineering
+          value: The little bristly parachute slows the seed down so wind can carry it sideways instead of
+            straight down — a simple "living engineering" trick.
+          topics:
+          - Why does the parachute need to slow the seed down, not speed it up?
+          - How is a dandelion parachute like a toy parachute, and different?
+        - attribute: early_spring_food_source
+          value: Dandelion flowers are one of the first foods available for bees and insects in early spring,
+            before most other flowers have bloomed.
+          topics:
+          - Why is an "early" flower important for bees waking up from winter?
+          - What might happen to early bees if dandelions disappeared from a lawn?
+        senses:
+        - attribute: breath_triggered_motion
+          value: A gentle puff of breath is all it takes to lift the seeds because their parachutes are so light —
+            making blowing a dandelion a small weather experiment.
+          topics:
+          - Why can something as small as your breath lift all those seeds?
+          - How is a dandelion's breath-test different from a soap-bubble test?
+        - attribute: fluff_clinging
+          value: The tiny seed hairs can cling to fur, clothes, and hands, so dandelions sometimes hitchhike on
+            people and animals in addition to flying.
+          topics:
+          - Why might it help the plant if its seeds could stick to a person or a dog?
+          - How is "riding on fur" different from "riding on wind"?
+        structure:
+        - attribute: composite_flower
+          value: What looks like one flower is actually many tiny flowers (florets) all pressed together — each
+            future seed has its own flower hidden in there.
+          topics:
+          - How can one "flower" be a whole crowd of tiny flowers?
+          - Why might packing many flowers in one head be useful?
+        - attribute: tap_root_anchor
+          value: Dandelions have a long deep root that reaches far down, which is why pulling out a dandelion is
+            much harder than pulling out a blade of grass.
+          topics:
+          - Why does a deep root make a dandelion hard to remove?
+          - How is a deep tap root different from the roots of grass?
+        emotions:
+        - How do you feel when you see a field of dandelions — cheerful, peaceful, or something else?
+        - Would you pick a dandelion or leave it for the bees? Why?
+        - If you could save a dandelion wish for later, what would you wish for?
+        imagination:
+        - Pretend you are a tiny dandelion seed on its very first flight — what do you see below you?
+        - If a dandelion puff could pick where its seeds flew, where would it send them?
+        - Invent a brand-new seed shape that could travel in a way a dandelion seed can't.
+        narrative:
+        - Tell a story about a dandelion seed that lands in an unusual place and starts a new garden.
+        - Once upon a time, a whole field of dandelions decided to bloom at exactly the same time — what happened?
+        - Tell a story about a tiny bee that relies on a single dandelion early in spring.
+        reasoning:
+        - Why do you think dandelions grow in so many places while some flowers only grow in gardens?
+        - What would change about a lawn that never had any dandelions?
+        - If you saw a dandelion with no puff, what do you think happened to it?
+        relationship:
+        - How is a dandelion puff like a tiny cloud, and how is it different?
+        - What other plants remind you of a dandelion? What do they share?
+        - How is a dandelion's journey like a traveler leaving home?

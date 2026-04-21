@@ -1,0 +1,330 @@
+- entity_id: daily_objects_toy_robot
+  entity_name: Toy Robot
+  entity_name_cn: 玩具机器人
+  domain: daily_objects
+  parent_category: toys
+  subcategory: action_toys
+  primary_theme:
+    theme_id: how_world_works
+    weight: 0.46
+    reasoning: A toy robot is full of visible parts — wheels, buttons, antennae, joints — that invite children to
+      notice shapes, feel textures, and figure out how each part does its job.
+  secondary_themes:
+  - theme_id: how_we_express
+    weight: 0.3
+    reasoning: Robots spark imaginative voices, beeps, and missions, giving children a character to speak for and
+      express themselves through.
+    context_trigger: when the child gives the robot a voice ("beep boop!") or makes up a mission for it
+  - theme_id: who_we_are
+    weight: 0.24
+    reasoning: Children often bond with a favorite robot as a brave helper or friend, connecting the toy to their own
+      identity and interests.
+    context_trigger: when the child calls the robot "my robot", gives it a name, or insists it joins their play
+  primary_key_concepts:
+  - concept_id: form
+    relevance: 1.0
+    reasoning: The robot's distinct parts — round button, pointy antenna, flat panel, bendy joint — let children
+      practice describing shapes, sizes, and textures in close detail.
+  - concept_id: function
+    relevance: 1.0
+    reasoning: Each part has a clear job — wheels roll, buttons turn things on, antennae catch signals, joints bend —
+      helping children link part to purpose.
+  - concept_id: structure
+    relevance: 0.9
+    reasoning: The robot is built from many connected pieces, so children can see how a whole thing is made of parts
+      working together in one body.
+  secondary_key_concepts:
+  - concept_id: connection
+    relevance: 0.7
+    reasoning: Joints, wires, and sockets show how separate parts connect, introducing the idea that connections let
+      things work as a team.
+  - concept_id: design
+    relevance: 0.5
+    reasoning: The robot shows that things are designed on purpose — each part was chosen for a reason — which is an
+      early entry point into design thinking.
+  candidate_related_concepts:
+  - concept_id: observation
+    discipline: Science
+    reasoning: The robot is a perfect object for careful looking — children can scan for details, spot tiny features,
+      and describe what they see.
+  - concept_id: discovery
+    discipline: Science
+    reasoning: Kids love finding new parts they hadn't noticed before, turning a familiar toy into a small field of
+      discovery.
+  - concept_id: mechanism
+    discipline: Science
+    reasoning: The robot introduces the idea that hidden mechanisms (gears, motors, batteries) make visible actions
+      happen.
+  - concept_id: imagination
+    discipline: Arts
+    reasoning: Children easily build stories, missions, and personalities around a robot, so its parts become props in
+      imaginative play.
+  tier_guidance:
+    tier_0:
+      dimensions:
+        appearance:
+        - attribute: body_color
+          value: a mix of bright colors on its body
+          topics:
+          - What color is your robot?
+          - Can you point to a red part?
+          - Does it have more than one color?
+        - attribute: body_shape
+          value: a boxy, blocky body
+          topics:
+          - Is the robot square or round?
+          - Can you trace the robot with your finger?
+          - Does it have flat sides?
+        - attribute: face
+          value: a simple face on the front
+          topics:
+          - Can you find the robot's face?
+          - Where are its eyes?
+          - Does it look happy or serious?
+        - attribute: size
+          value: small, about the size of a book
+          topics:
+          - Is the robot big or little?
+          - Can you hold it in two hands?
+          - Is it smaller than you?
+        senses:
+        - attribute: hard_feel
+          value: hard plastic body
+          topics:
+          - Does the robot feel hard or soft?
+          - What does it feel like on your hand?
+        - attribute: robot_sounds
+          value: beeps, whirrs, or clicks
+          topics:
+          - What sound does the robot make?
+          - Can you beep like a robot?
+          - Do you hear a whirring noise?
+        - attribute: weight
+          value: a little bit heavy
+          topics:
+          - Is the robot heavy or light?
+          - Can you lift it with one hand?
+        function:
+        - attribute: moves
+          value: rolls or walks a little
+          topics:
+          - Does your robot move?
+          - Where does it go?
+          - Is it fast or slow?
+        - attribute: plays_with_me
+          value: a toy to play pretend with
+          topics:
+          - Do you play with your robot a lot?
+          - Is it your friend?
+        emotions:
+        - Do you love your robot?
+        - Is it a brave robot or a silly one?
+        - Does the robot make you feel happy?
+        - Would you take the robot on adventures?
+    tier_1:
+      dimensions:
+        appearance:
+        - attribute: antenna
+          value: a thin, pointy antenna sticking up on top
+          topics:
+          - Why does the robot have something pointy on its head?
+          - How is an antenna different from a regular stick?
+        - attribute: eyes
+          value: two round eyes that look like little moons or bulbs
+          topics:
+          - Why do robot eyes often look round and glowy?
+          - How are robot eyes different from your eyes?
+        - attribute: button
+          value: a little round button on its body
+          topics:
+          - Why does the robot have a little round button on it?
+          - How is a push button different from a dial or a switch?
+        - attribute: joint
+          value: small bendy spots where two pieces meet
+          topics:
+          - Why does the robot have little creases at its arms and legs?
+          - How is a bendy joint different from a stiff stick?
+        - attribute: wheels_or_feet
+          value: wheels, treads, or tiny feet at the bottom
+          topics:
+          - Why does the robot have wheels instead of legs (or legs instead of wheels)?
+          - How is rolling different from walking for a robot?
+        context:
+        - attribute: playroom
+          value: lives in the playroom or toy shelf
+          topics:
+          - Why do robots usually live on toy shelves, not in the kitchen?
+          - How is a play shelf different from a toolbox for a toy?
+        - attribute: pretend_missions
+          value: goes on pretend missions, rescues, and adventures
+          topics:
+          - Why do robots feel like they should go on missions?
+          - How is a mission different from just playing catch?
+        function:
+        - attribute: signal_catching
+          value: the antenna pretends to pick up signals from far away
+          topics:
+          - Why might a robot need to catch signals, like ears for radio?
+          - How is catching a signal different from seeing with eyes?
+        - attribute: push_to_start
+          value: pressing the button turns it on, makes lights blink, or plays a sound
+          topics:
+          - Why does one tiny button make a big thing happen?
+          - How is pushing a button different from flipping a switch?
+        - attribute: joint_bending
+          value: joints let arms and legs bend so the robot can pose
+          topics:
+          - Why does a robot need joints to move, like you need elbows?
+          - How is a bendy arm different from a straight stick arm?
+        - attribute: watching_with_eyes
+          value: the eyes look like they see everything in front of them
+          topics:
+          - Why do robot eyes make the robot feel alive?
+          - How is a robot eye different from a camera on a phone?
+        senses:
+        - attribute: click_sound
+          value: a little click when you press a button
+          topics:
+          - Why does a button click when you press it?
+          - How is a click different from a buzz?
+        - attribute: cool_plastic_touch
+          value: smooth, cool plastic on the outside
+          topics:
+          - Why does plastic feel cool, even indoors?
+          - How is plastic different from metal to touch?
+        structure:
+        - attribute: body_panels
+          value: flat panels that make up the chest and back
+          topics:
+          - Why is the robot made of flat panels, like a little room?
+          - How is a paneled body different from a soft round body?
+        - attribute: limbs
+          value: two arms and two legs attached to the body
+          topics:
+          - Why does the robot have two arms and two legs like you?
+          - How is a robot arm different from a doll's arm?
+        - attribute: screws_or_snaps
+          value: tiny screws or snaps holding the pieces together
+          topics:
+          - Why does the robot need tiny screws, like little buttons of metal?
+          - How is a screwed-on part different from a glued-on part?
+        emotions:
+        - How does your robot feel to you — brave, funny, or calm?
+        - Would you rather your robot be a helper or a hero? Why?
+        - Does the beeping noise feel friendly or alarming?
+        relationship:
+        - How is your toy robot different from a stuffed animal?
+        - What other toys do you have that have moving parts, and how are they different?
+        - How is a robot like a person, and how is it different?
+    tier_2:
+      dimensions:
+        appearance:
+        - attribute: light_up_features
+          value: Many toy robots have tiny LEDs inside the eyes or chest that light up when turned on, so the robot
+            "comes alive" visually when a button is pressed.
+          topics:
+          - Why do you think designers often put lights inside a robot's eyes or chest?
+          - How might the robot feel different if it had no lights at all?
+        - attribute: decorative_dials_and_labels
+          value: Robots often have pretend dials, gauges, or labels printed on them that don't actually do anything but
+            make the robot look more mechanical.
+          topics:
+          - Why might a toy have dials printed on it that can't move?
+          - What feeling do pretend gauges and labels create for a player?
+        - attribute: symmetry_and_pose
+          value: Most toy robots have arms and legs arranged symmetrically, which makes them feel balanced and
+            "person-like" rather than alien or creature-like.
+          topics:
+          - Why might a symmetrical robot feel more like a friend than a wiggly, lopsided one?
+          - How would a robot with mismatched arms and legs feel different to play with?
+        change:
+        - attribute: battery_powered_state
+          value: The robot acts very different with fresh batteries (loud sounds, bright lights, fast moves) than with
+            old batteries (slow, quiet, or not moving at all).
+          topics:
+          - Why does the robot seem slower or quieter when its batteries are old?
+          - How is a robot without batteries different from a robot with fresh ones?
+        - attribute: wear_on_joints
+          value: Over time, joints can get loose or stuck from lots of posing, changing how well the robot can stand up
+            or hold a pose.
+          topics:
+          - Why might an older robot have a harder time standing up?
+          - How could you tell a joint is wearing out without opening the robot?
+        - attribute: imagined_upgrades
+          value: Children often imagine adding new features — laser eyes, jetpacks, voice boxes — transforming the
+            robot in their mind even when the real toy stays the same.
+          topics:
+          - If you could bolt on one brand-new part, what would it be and what would it do?
+          - How is a robot with pretend upgrades different from the real plastic robot?
+        context:
+        - attribute: shared_imaginative_worlds
+          value: A toy robot often joins scenes built from other toys — cars, blocks, figures — so the robot's role
+            changes depending on the mini world the child builds.
+          topics:
+          - How is playing with the robot alone different from playing with it among other toys?
+          - Why might a robot act like a hero in one scene and a helper in another?
+        - attribute: storage_and_care
+          value: Robots often live on a shelf or in a box to protect their thin parts (antenna, wheels) from being
+            bent or lost.
+          topics:
+          - Why are some robot parts more delicate than others?
+          - How should you put a robot away so its thin parts don't break?
+        function:
+        - attribute: sensor_to_action_loop
+          value: Real and pretend robots work on the idea that a sensor (eye, ear, button) notices something and then
+            a part reacts — light turns on, arm moves, sound plays.
+          topics:
+          - Why does a robot need to notice something before it can do something?
+          - What might happen if a robot had sensors but no way to move or react?
+        - attribute: modular_design
+          value: Many toy robots are built so parts (arms, heads, weapons) can be swapped, showing the idea that one
+            body can have many different roles depending on its parts.
+          topics:
+          - Why is it useful for a robot to have swappable parts instead of fixed ones?
+          - If you could swap one part of your robot for something new, what would you choose?
+        senses:
+        - attribute: motor_whirr
+          value: When the robot moves, tiny motors inside whirr and buzz, and the sound changes based on how hard the
+            motor is working.
+          topics:
+          - Why might a robot sound louder when it's going uphill or pushing something?
+          - How would the robot feel different if it moved completely silently?
+        - attribute: button_click_feedback
+          value: Buttons are designed to click when pressed so your finger can feel the "yes, it worked" moment even
+            without looking.
+          topics:
+          - Why might a clicky button feel better than a button that presses silently?
+          - How could you tell a button is broken just by how it feels?
+        structure:
+        - attribute: internal_motors_and_wires
+          value: Inside the robot are small motors, wires, and a battery holder, all hidden behind the plastic shell
+            but connected like a tiny machine.
+          topics:
+          - Why is it helpful to hide the wires and motors inside a robot?
+          - What might happen if one of the wires inside came loose?
+        - attribute: joint_hinges
+          value: Joints are often simple hinges — one smooth pin holding two plastic pieces — which allow one clear
+            direction of bending.
+          topics:
+          - Why can your robot's elbow only bend in one direction?
+          - How is a hinge joint different from a ball joint?
+        emotions:
+        - Does your robot feel more like a friend, a helper, or a soldier? Why?
+        - How would playtime feel different if your robot didn't beep or light up at all?
+        - If your robot had feelings, what do you think would make it happiest?
+        imagination:
+        - Invent a brand-new part for your robot. What would it look like and what would it do?
+        - If your robot had one secret power it has been hiding, what would it be?
+        - Pretend your robot leads a team of other toys on a rescue — what job does each teammate have?
+        narrative:
+        - Tell a story about your robot's most dangerous mission.
+        - Once upon a time, a toy robot's antenna broke off — what happened next?
+        - Tell a story where your robot meets a very different robot and they have to work together.
+        reasoning:
+        - Why do you think toy robots are often designed to look a little bit like people?
+        - What would change about your robot if one of its parts (like the wheels or antenna) were missing?
+        - If you were designing a new robot, what part would you add that no other robot has?
+        relationship:
+        - How is your toy robot like a real machine (like a vacuum cleaner), and how is it different?
+        - What other toys remind you of the robot? What makes them similar?
+        - How is a robot's joint like your elbow, and how is it different?
