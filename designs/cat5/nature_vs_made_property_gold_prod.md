@@ -12,7 +12,7 @@
 | ATL Skills Focus | Research Skills (observation, data collection), Thinking Skills (critical thinking, analysis), Communication Skills (expressing) |
 | Game Style | field_experiment |
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{origin}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
 

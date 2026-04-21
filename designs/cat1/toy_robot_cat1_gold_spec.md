@@ -22,7 +22,7 @@
 - **Trigger Scene**: Child photographs their toy robot on the playroom floor
 - **Mapping Source**: none
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 Attribute IDs from `data/mappings_dev20_0318/daily_objects/action_toys.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
@@ -43,7 +43,7 @@ entity_attributes_covered:
   - tier_2.function.sensor_to_action_loop
 ```
 
-### A.6 Constellation Adaptation Notes
+### A.2 Constellation Adaptation Notes
 
 Recipe for running this activity when the photographed entity is a constellation
 neighbor of Toy Robot (e.g., action figure, toy dinosaur, lego figure) instead

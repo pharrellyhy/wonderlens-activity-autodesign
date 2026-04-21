@@ -22,7 +22,7 @@
 - **Trigger Scene**: Child photographs their toy lion on the playroom floor. AI gasps at the big fuzzy mane and invites the child to put on a show where THEY become the lion's voice and a crowd of silly judges reacts.
 - **Mapping Source**: none
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 Attribute IDs from `data/mappings_dev20_0318/animals/big_cats.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
@@ -35,7 +35,7 @@ entity_attributes_covered:
   - tier_1.function.communication_roar
 ```
 
-### A.6 Constellation Adaptation Notes
+### A.2 Constellation Adaptation Notes
 
 Recipe for running this activity when the photographed entity is a constellation
 neighbor of Lion (e.g., cat, kitten, tiger, leopard, stuffed lion) instead of a

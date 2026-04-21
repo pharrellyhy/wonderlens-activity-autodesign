@@ -15,7 +15,7 @@
 | Design Version | 2.0 |
 | Last Updated | 2026-04-01 |
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 Attribute IDs from `data/mappings_dev20_0318/animals/big_cats.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
@@ -28,7 +28,7 @@ entity_attributes_covered:
   - tier_1.function.communication_roar
 ```
 
-### A.6 Constellation Adaptation Notes
+### A.2 Constellation Adaptation Notes
 
 Recipe for running this activity when the photographed entity is a constellation
 neighbor of Lion (e.g., cat, kitten, tiger, leopard, stuffed lion) instead of a

@@ -14,7 +14,7 @@
 | Trigger Entity | Any entity with detected material attribute |
 | Mapping Source | property-bridge |
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{material}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
 

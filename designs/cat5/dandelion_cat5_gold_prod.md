@@ -17,7 +17,7 @@
 - **Design Version**: 3.0 — quest_collector redesign
 - **Last Updated**: 2026-04-01
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 Attribute IDs from `data/mappings_dev20_0318/plants/wildflowers.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
@@ -39,7 +39,7 @@ entity_attributes_covered:
   - tier_2.senses.breath_triggered_motion
 ```
 
-### A.6 Constellation Adaptation Notes
+### A.2 Constellation Adaptation Notes
 
 Recipe for running this activity when the photographed entity is a constellation
 neighbor of Dandelion (e.g., other wind-dispersed plants like milkweed puff,

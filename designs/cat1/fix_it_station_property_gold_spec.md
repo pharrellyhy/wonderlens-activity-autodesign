@@ -23,7 +23,7 @@
 - **Property Bridge**: AI detects a worn/needs-care property (faded, dusty, scratched, torn, old-looking, droopy, sad-looking) on the entity. This property SEEDS the first need in the care station. If the entity does NOT look worn, AI playfully imagines a need: "Your shiny new robot looks great... but wait — I think it's feeling a little LONELY! Can you help?"
 - **Mapping Source**: none
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{needs_care_property}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
 

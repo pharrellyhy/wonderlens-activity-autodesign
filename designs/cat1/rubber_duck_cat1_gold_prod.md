@@ -12,7 +12,7 @@
 | ATL Skills Focus | Thinking Skills (creative, divergent), Communication Skills (expressing, listening), Self-Management Skills (focus, engagement) |
 | Game Style | inventor_workshop |
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 Attribute IDs from `data/mappings_dev20_0318/daily_objects/bath_toys.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
@@ -28,7 +28,7 @@ entity_attributes_covered:
   - tier_2.senses.squeak_pitch_variation
 ```
 
-### A.6 Constellation Adaptation Notes
+### A.2 Constellation Adaptation Notes
 
 Recipe for running this activity when the photographed entity is a constellation
 neighbor of Rubber Duck (e.g., bath toy, toy boat, floating ring) instead of a
