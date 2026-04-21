@@ -1,11 +1,11 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.5 | **Date**: 2026-04-17
+> **Version**: 1.5 | **Date**: 2026-04-21
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
-> **v1.5 — 2026-04-17**: Extend `entity_attributes_covered` with dual matcher semantics keyed on `entity_binding` — `bound` games use strict overlap (every listed ID must resolve in the specific entity YAML); `parameterized` property-bridge templates use loose overlap (any one ID matching an entity's `tier_guidance` qualifies, and the matched attribute's value substitutes the template parameter). See new "Matcher semantics" subsection under §1.9.
-> **v1.4 — 2026-04-17**: Introduce `entity_attributes_covered` as a required tag-block field — a flat list of dotted-path attribute IDs (`tier_{0,1,2}.{dimension}.{attribute}`) that the activity exercises from its entity's `tier_guidance`. Consumed by the upstream matcher; validated against the entity YAML.
+> **v1.5 — 2026-04-21**: Extend `entity_attributes_covered` with dual matcher semantics keyed on `entity_binding` — `bound` games use strict overlap (every listed ID must resolve in the specific entity YAML); `parameterized` property-bridge templates use loose overlap (any one ID matching an entity's `tier_guidance` qualifies, and the matched attribute's value substitutes the template parameter). See new "Matcher semantics" subsection under §1.9.
+> **v1.4 — 2026-04-20**: Introduce `entity_attributes_covered` as a required tag-block field — a flat list of dotted-path attribute IDs (`tier_{0,1,2}.{dimension}.{attribute}`) that the activity exercises from its entity's `tier_guidance`. Consumed by the upstream matcher; validated against the entity YAML.
 > **v1.3 — 2026-04-20**: Align `progression.difficulty_level` wire format to the Template 0 authority (`docs/template_0_preview.html` §04) and `docs/progression_axes.md`: bare integer `1|2|3`, not `L1|L2|L3`. The `L1/L2/L3` forms remain the human-readable rung labels in prose and UI copy.
 > **v1.2 — 2026-04-20**: Sync template-reading flow to the new `templates.md` v1.0 structure (Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix). Replaces the "Template A for Cat1 / Template B for Cat5" split with three-layer composition (Template 0 + pillar overlay + category modifier).
 > **v1.1 — 2026-04-20**: Introduce `## Tag block — the central contract` section (new Phase 1.9) as the structured output artifact every activity emits for downstream child-recap and parent-dashboard surfaces. Add pre-output self-check step to the generation loop.
