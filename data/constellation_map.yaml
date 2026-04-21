@@ -1,0 +1,294 @@
+# Constellation Map — Layer 1 Entity Bridging Data
+#
+# Batch-pre-computed mapping from each gold/mapped entity to its semantically
+# related unmapped entities. Consumed by the Entity Bridging system's Layer 1
+# matcher when a photographed entity is NOT in the IB mind map.
+#
+# Design authority: docs/plans/2026-04-08-entity-bridging.md §Layer 1 (the
+# `Constellation Table` at lines 48–67). This file encodes that table.
+#
+# Matcher contract:
+#   Given an unmapped entity E from a photo, look up entries where E appears
+#   in `constellation`. If multiple matches exist, prefer entries whose
+#   `bridge_strength` is higher. Use `bridge_prompt_pattern` (with `[entity]`
+#   replaced) as the conversational bridge. Route the resulting game to
+#   `pillar` + `category` of the matched mapped entity. Never bridge across
+#   categories (Cat1 entity must not route to a Cat5 gold, and vice versa).
+#
+# Per-entry fields:
+#   mapped_entity          — the known (gold or legacy) entity to bridge toward
+#   category               — 1 (in-device) or 5 (out-of-device); matches the
+#                            mapped entity's gold/legacy design's category
+#   pillar                 — Experience Pillar (null if legacy entity without a
+#                            rewritten gold-standard yet)
+#   gold_standard          — path to the gold-standard design file (null if legacy)
+#   bridge_type            — semantic relation between mapped and constellation
+#                            (see entity-bridging §Bridge Types Reference)
+#   bridge_strength        — very_strong | strong | moderate | weak
+#                            (determines matcher preference when multiple hit)
+#   bridge_prompt_pattern  — AI utterance template; `[entity]` is the child's
+#                            actual photographed entity
+#   constellation          — unmapped entities that bridge to this mapped entity
+#
+# Adaptation guidance (how to swap `[entity]` into each round of the game) lives
+# in each gold-standard design file's `constellation_notes` block, NOT here.
+# See entity-bridging §"Changes to Existing Gold Standards" for that format.
+
+version: 0.2
+generated: 2026-04-21
+source_design: docs/plans/2026-04-08-entity-bridging.md
+#
+# v0.2 (2026-04-21) — backfilled 5 Cat5 gold constellations (dandelion, butterfly,
+#                     rock, bird, flower); all 12 gold-standard entities now have
+#                     constellation entries.
+# v0.1 (2026-04-20) — initial constellation map from entity-bridging §Layer 1
+#                     table (20 entries: 6 Cat1 gold + 1 Cat5 gold + 13 legacy).
+
+constellations:
+
+  # ─── Cat1 · Gold standards ─────────────────────────────────────────────
+
+  - mapped_entity: lion
+    category: 1
+    pillar: Performance
+    gold_standard: designs/cat1/lion_cat1_gold_prod.md
+    bridge_type: same_taxonomy
+    bridge_strength: very_strong
+    bridge_prompt_pattern: "Your [entity] is part of the cat family, just like a lion!"
+    constellation: [cat, kitten, tiger, leopard, stuffed_lion]
+
+  - mapped_entity: goldfish
+    category: 1
+    pillar: Discovery
+    gold_standard: designs/cat1/goldfish_cat1_gold_prod.md
+    bridge_type: shared_habitat
+    bridge_strength: moderate
+    bridge_prompt_pattern: "Your [entity] lives in water, just like a goldfish!"
+    constellation: [pond_fish, betta, turtle, frog]
+
+  - mapped_entity: banana
+    category: 1
+    pillar: Adventure
+    gold_standard: designs/cat1/banana_cat1_gold_prod.md
+    bridge_type: same_domain
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is a fruit, just like a banana!"
+    constellation: [plantain, fruit_bowl, mango, pear]
+
+  - mapped_entity: teddy_bear
+    category: 1
+    pillar: Nurture
+    gold_standard: designs/cat1/teddy_bear_cat1_gold_prod.md
+    bridge_type: same_role
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is a cozy friend, just like a teddy bear!"
+    constellation: [stuffed_bunny, plush_toy, doll, sock_monkey]
+
+  - mapped_entity: toy_robot
+    category: 1
+    pillar: Mystery
+    gold_standard: designs/cat1/toy_robot_cat1_gold_prod.md
+    bridge_type: same_role
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is a toy with cool parts, just like a robot!"
+    constellation: [action_figure, toy_dinosaur, lego_figure]
+
+  - mapped_entity: rubber_duck
+    category: 1
+    pillar: Creation
+    gold_standard: designs/cat1/rubber_duck_cat1_gold_prod.md
+    bridge_type: companion
+    bridge_strength: moderate
+    bridge_prompt_pattern: "Your [entity] loves bath time, just like a rubber duck!"
+    constellation: [bath_toy, toy_boat, floating_ring]
+
+  # ─── Cat5 · Gold standards ─────────────────────────────────────────────
+
+  - mapped_entity: playground
+    category: 5
+    pillar: Discovery
+    gold_standard: designs/cat5/playground_cat5_gold_prod.md
+    bridge_type: part_of
+    bridge_strength: very_strong
+    bridge_prompt_pattern: "That [entity] is part of a playground!"
+    constellation: [swing, slide, seesaw, sandbox, climbing_frame]
+
+  - mapped_entity: dandelion
+    category: 5
+    pillar: Adventure
+    gold_standard: designs/cat5/dandelion_cat5_gold_prod.md
+    bridge_type: same_domain
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] grows wild in grassy places, just like a dandelion!"
+    constellation: [clover, thistle, plantain_weed, wild_grass, chickweed, field_daisy]
+
+  - mapped_entity: butterfly
+    category: 5
+    pillar: Mystery
+    gold_standard: designs/cat5/butterfly_cat5_gold_prod.md
+    bridge_type: same_taxonomy
+    bridge_strength: very_strong
+    bridge_prompt_pattern: "Your [entity] is an insect, just like a butterfly!"
+    constellation: [moth, dragonfly, bee, ladybug, grasshopper, caterpillar]
+
+  - mapped_entity: rock
+    category: 5
+    pillar: Creation
+    gold_standard: designs/cat5/rock_cat5_gold_prod.md
+    bridge_type: same_domain
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is a hard piece of earth, just like a rock!"
+    constellation: [pebble, stone, boulder, river_stone, gravel, brick_piece]
+
+  - mapped_entity: bird
+    category: 5
+    pillar: Performance
+    gold_standard: designs/cat5/bird_cat5_gold_prod.md
+    bridge_type: same_taxonomy
+    bridge_strength: very_strong
+    bridge_prompt_pattern: "Your [entity] has feathers and a voice, just like a bird!"
+    constellation: [sparrow, robin, crow, pigeon, seagull, wild_duck, swan]
+
+  - mapped_entity: flower
+    category: 5
+    pillar: Nurture
+    gold_standard: designs/cat5/flower_cat5_gold_prod.md
+    bridge_type: shared_affordance
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is a plant that can need a little care, just like a flower!"
+    constellation: [wilting_houseplant, drooping_leaf, young_sapling, broken_stem, herb_plant, weed_with_bloom]
+
+  # ─── Cat1 · Legacy (pending gold-standard rewrite) ─────────────────────
+
+  - mapped_entity: sunflower
+    category: 1
+    pillar: null           # legacy — from old `Plant Parts Inspector` design; pillar TBD post-rewrite
+    gold_standard: null
+    bridge_type: same_domain
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is a flower — like a sunflower's cousin!"
+    constellation: [tulip, daisy, rose, wildflower]
+
+  - mapped_entity: piano
+    category: 1
+    pillar: null
+    gold_standard: null
+    bridge_type: same_domain
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] makes music, just like a piano!"
+    constellation: [guitar, drum, xylophone, music_box]
+
+  - mapped_entity: crayons
+    category: 1
+    pillar: null
+    gold_standard: null
+    bridge_type: same_role
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is for making art, just like crayons!"
+    constellation: [colored_pencils, markers, paintbrush, chalk]
+
+  - mapped_entity: raincoat
+    category: 1
+    pillar: null
+    gold_standard: null
+    bridge_type: shared_affordance
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] keeps you dry, just like a raincoat!"
+    constellation: [umbrella, rain_boots, jacket, poncho]
+
+  - mapped_entity: firefighter
+    category: 1
+    pillar: null
+    gold_standard: null
+    bridge_type: same_domain
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is a helper, just like a firefighter!"
+    constellation: [police_officer, doctor, nurse, mail_carrier]
+
+  - mapped_entity: toothbrush_holder
+    category: 1
+    pillar: null
+    gold_standard: null
+    bridge_type: companion
+    bridge_strength: moderate
+    bridge_prompt_pattern: "Your [entity] lives in the bathroom, just like a toothbrush holder!"
+    constellation: [soap_dish, towel_rack, cup_holder]
+
+  - mapped_entity: stop_sign
+    category: 1
+    pillar: null
+    gold_standard: null
+    bridge_type: same_domain
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] tells people what to do, just like a stop sign!"
+    constellation: [traffic_light, crosswalk_sign, speed_bump]
+
+  - mapped_entity: eye
+    category: 1
+    pillar: null
+    gold_standard: null
+    bridge_type: shared_affordance
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] helps you see things, just like an eye!"
+    constellation: [magnifying_glass, glasses, mirror, camera]
+
+  - mapped_entity: green_apple
+    category: 1
+    pillar: null
+    gold_standard: null
+    bridge_type: same_domain
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is a fruit, just like a green apple!"
+    constellation: [orange, pear, strawberry, cherry]
+
+  - mapped_entity: city_library
+    category: 1
+    pillar: null
+    gold_standard: null
+    bridge_type: same_domain
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is a special building, just like a library!"
+    constellation: [bookstore, school, museum, post_office]
+
+  - mapped_entity: bicycle
+    category: 1
+    pillar: null
+    gold_standard: null
+    bridge_type: shared_affordance
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] has wheels, just like a bicycle!"
+    constellation: [toy_car, scooter, skateboard, tricycle, wagon]
+
+  # ─── Cat5 · Legacy (pending gold-standard rewrite) ─────────────────────
+
+  - mapped_entity: double_rainbow
+    category: 5
+    pillar: null
+    gold_standard: null
+    bridge_type: same_domain
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] is made of light and color, just like a rainbow!"
+    constellation: [sunset, clouds, rain_puddle, prism]
+
+  - mapped_entity: sandy_beach
+    category: 5
+    pillar: null
+    gold_standard: null
+    bridge_type: shared_habitat
+    bridge_strength: moderate
+    bridge_prompt_pattern: "Your [entity] is near water, just like a sandy beach!"
+    constellation: [lake_shore, river_bank, pool, water_park]
+
+# ─── Coverage notes ────────────────────────────────────────────────────
+
+# All 12 gold-standard entities are now in the constellation map:
+#   Cat1 gold (6): lion, goldfish, banana, teddy_bear, toy_robot, rubber_duck
+#   Cat5 gold (6): playground, dandelion, butterfly, rock, bird, flower
+
+# Legacy Cat5 entities mentioned in style-recommender §"Current Game Inventory"
+# but still not represented:
+#   - feather, puddle, autumn_leaf, pinecone
+# These belong to nature_landscapes or natural_phenomena. Adding them would
+# typically use `same_domain` bridges (e.g., feather → dried_leaves, stones,
+# twigs as "natural things kids find outside"). Out of scope until legacy
+# Cat5 designs get rewritten into pillar gold-standards.
