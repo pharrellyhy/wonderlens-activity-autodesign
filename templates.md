@@ -1,6 +1,6 @@
 # Templates
 
-> **Version**: 1.0 | **Date**: 2026-04-20
+> **Version**: 1.1 | **Date**: 2026-04-17
 > **Owns**: the pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture) and the Cat1 / Cat5 category modifier appendix.
 > **Does NOT own**: the 5-beat spine, the tag block schema, or the tier defaults — those live in `docs/template_0_preview.html` §03 / §04 / §06 and are the single source of truth for the category-agnostic skeleton.
 > **Consumed by**: `program.md` Phase 5 (template-reading flow), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), `designs/cat{1,5}/*.md` (gold-standard outputs).
@@ -49,6 +49,8 @@ The overlay hooks the pillar overlays specialize are exactly **beats 2, 3, and 4
 Every pillar overlay layers 2–3 pillar-specific variables on top of these four (see each overlay below).
 
 **Tag block.** Every design emits the §04 tag block (activity_id, entity, category, pillar, style, tier, tier_variants, tags, kud, progression, caregiver_role). The authoritative shape + field semantics live in `docs/template_0_preview.html` §04 and are re-stated in `program.md` §1.9. This file does not duplicate the tag-block schema.
+
+**Attribute coverage.** Every activity must populate `entity_attributes_covered` in its tag block — a flat list of dotted-path IDs (`tier_{0,1,2}.{dimension}.{attribute}`) that the activity exercises from its entity's `tier_guidance`. The matcher uses this list to route photographed entities to activities, so every ID must resolve to a real `attribute:` entry under `data/mappings_dev20_0318/.../{yaml}`. See `program.md` §1.9 for the full contract and the entity YAML's `tier_guidance` section for the source of valid IDs.
 
 **Tier dials.** T0 / T1 / T2 set language register, task depth, concept focus, AI role, and cumulative caregiver role. Authoritative table in `docs/template_0_preview.html` §06. Tier-guidance detail lives in `entity_guidance.md`.
 
@@ -311,4 +313,5 @@ The same entity can be designed under different pillars — the pillar determine
 
 ## Revnote
 
+- **v1.1 · 2026-04-17** · Note the new required tag-block field `entity_attributes_covered` in the Template 0 reference section. Authors must populate it in every activity; valid IDs are sourced from the entity YAML's `tier_guidance`. Full contract lives in `program.md` §1.9 and `docs/template_0_preview.html` §04.
 - **v1.0 · 2026-04-20** · Refactor to Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix (Option B, single file). Replaces the v0.x Template A / Template B dual-template structure. Template 0 skeleton authority now lives in `docs/template_0_preview.html` §03 / §04 / §06; this file owns the pillar overlays and the category modifiers. Creative variables stay per-overlay because they are genuinely pillar-specific (`{hidden_details}` is Mystery-only, `{modifications}` is Creation-only, etc.).

@@ -3195,7 +3195,7 @@
       <a href="#axes">进阶轴</a>
       <a href="#decisions">决策</a>
     </nav>
-    <div class="meta">草稿 v0.3 · 2026-04-17 · 内部评审</div>
+    <div class="meta">草稿 v0.4 · 2026-04-17 · 内部评审</div>
   </header>
 
   <!-- ============== HERO ============== -->
@@ -3222,10 +3222,16 @@
       </div>
       <div>
         <span class="label">状态</span>
-        <span class="value">草稿 v0.3 · 待签收</span>
+        <span class="value">草稿 v0.4 · 待签收</span>
       </div>
     </div>
 
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.4</span> 新增 <code>entity_attributes_covered</code> 作为必填的上游 matcher 标签 · 2026-04-17</summary>
+      <ol>
+        <li><b><code>entity_attributes_covered</code> 升为必填字段</b>（§04）——一个扁平的 dotted-path ID 列表（<code>tier_{0,1,2}.{dimension}.{attribute}</code>），列举本活动实际触发到的 <code>tier_guidance</code> 属性。上游 matcher 用它把拍到的 entity 路由到匹配的活动；由 <code>data/mappings_dev20_0318/</code> 下的 entity YAML 做校验。</li>
+      </ol>
+    </details>
     <details class="revnote">
       <summary><span class="revnote-tag">v0.3</span> PM 评审修订 + matchability 标签 + 明确上游管线 · 2026-04-17</summary>
       <ol>
@@ -3570,6 +3576,15 @@
         <span class="key">reward_hook</span>: <span class="str">"connection_L2 徽章"</span>
 
         <span class="key">caregiver_role</span>: <span class="hl">[<span class="str">scaffold</span>, <span class="str">co-explorer</span>]</span> <span class="cmt"># 累加列表；默认值由 tier 决定</span>
+
+        <span class="cmt"># — 上游 matcher：本活动实际调用到的 entity tier_guidance 属性 —</span>
+        <span class="key">entity_attributes_covered</span>: <span class="hl"><span class="cmt"># 新增 —— 必填；扁平的 dotted-path ID 列表</span></span>
+          - <span class="str">tier_0.appearance.spots</span>
+          - <span class="str">tier_0.appearance.red_color</span>
+          - <span class="str">tier_0.senses.small_size</span>
+          - <span class="str">tier_1.function.warning_signal</span>
+          - <span class="str">tier_1.context.garden_habitat</span>
+          - <span class="str">tier_2.reasoning.pattern_purpose</span>
       </pre>
 
       <div class="tag-legend">
@@ -4628,7 +4643,7 @@
       </ul>
     </div>
     <div class="version">
-      <span>版本 0.3 · 评审草稿</span>
+      <span>版本 0.4 · 评审草稿</span>
       <span>WonderLens x 奇朵 · 活动设计框架 · 2026-04-17</span>
     </div>
   </footer>

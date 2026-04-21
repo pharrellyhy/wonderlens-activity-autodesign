@@ -1,6 +1,6 @@
 # Author Training Guide
 
-> **Version**: 0.1 | **Date**: 2026-04-20
+> **Version**: 0.2 | **Date**: 2026-04-17
 > **Owns**: the end-to-end walkthrough a new author (or a fine-tuned model) follows to turn an `entity × category × pillar × tier` input into a structurally valid, fully-tagged WonderLens activity design.
 > **Does NOT own**: the 5-beat spine (→ `docs/template_0_preview.html` §03 `#skeleton`), the pillar-overlay content (→ `templates.md`), the axis enum (→ `docs/progression_axes.md`), or the tag-block schema (→ `program.md` §1.9 and `docs/template_0_preview.html` §04 `#tags`).
 > **Consumed by**: human authors on their first design pass, fine-tuned generation agents that need an in-context walkthrough, and reviewers who want a checklist to audit a finished design against.
@@ -351,6 +351,14 @@ progression:
   next_step_hint: "Move to Form L3 — ask why the red warns predators, then try another spotted bug."
   reward_hook: "Ladybug Detective badge"
 
+entity_attributes_covered:
+  - tier_0.appearance.red_back
+  - tier_0.appearance.black_spots
+  - tier_0.appearance.round_shape
+  - tier_1.function.warning_signal
+  - tier_1.context.leaves_and_gardens
+  - tier_2.reasoning.predator_response
+
 caregiver_role: [scaffold, co-explorer]
 pillar_payoff: "Child names the hidden warning-signal message after three clue rounds — the classic Mystery 'I figured it out!' reveal."
 ```
@@ -370,7 +378,7 @@ pillar_payoff: "Child names the hidden warning-signal message after three clue r
 | 9 | Game Feel | PASS | Genuine uncertainty on each clue; the "warning signal" reveal is an emotional climax; the detective frame gives replay appetite. |
 | 10 | Pillar Fidelity | PASS | Blind reader would peg this as Mystery — clue → guess → reveal loop, "I figured it out!" payoff, zoom-in sparkle at Beat 4. Re-labeling to Creation or Performance would feel wrong. |
 
-Tag-block pre-output self-check (from `program.md` §1.9): all required fields populated, no placeholders, enums valid (`form` is in the 7-axis enum; `L2` is a valid rung; `cat1`, `mystery`, `mystery_lens`, `T1` are all valid values; `caregiver_role` matches T1 default `[scaffold, co-explorer]`). ✓
+Tag-block pre-output self-check (from `program.md` §1.9): all required fields populated, no placeholders, enums valid (`form` is in the 7-axis enum; `L2` is a valid rung; `cat1`, `mystery`, `mystery_lens`, `T1` are all valid values; `caregiver_role` matches T1 default `[scaffold, co-explorer]`); `entity_attributes_covered` lists 6 dotted-path IDs (3× T0 appearance, 1× T1 function, 1× T1 context, 1× T2 reasoning) that the activity actually exercises. ✓
 
 ### Step 9 — Downstream rendering notes
 
@@ -668,6 +676,14 @@ progression:
   next_step_hint: "Move to Causation L2 — predict which way the sunflower will turn tomorrow morning."
   reward_hook: "Flower Scientist chip"
 
+entity_attributes_covered:
+  - tier_0.appearance.flower_color
+  - tier_0.appearance.petals
+  - tier_0.appearance.stem
+  - tier_0.senses.petal_feel
+  - tier_1.context.gardens_and_parks
+  - tier_1.function.attract_pollinators
+
 caregiver_role: [scaffold]
 pillar_payoff: "Child commits to yellow-wins, photographs three flowers outside, and the tally chart flips to reveal whether they were right — Discovery's 'Was I right?!' payoff."
 ```
@@ -687,7 +703,7 @@ pillar_payoff: "Child commits to yellow-wins, photographs three flowers outside,
 | 9 | Game Feel | PASS | Real uncertainty — the child's guess is genuinely on the line; the tally reveal preserves surprise (AI is the assessor); the flip-the-chart moment is an emotional climax. |
 | 10 | Pillar Fidelity | PASS | Discovery signature: commit-then-check; AI-as-assessor; the "Was I right?!" payoff at chart flip. Blind reader would peg this as Discovery over Mystery (no hidden thing) or Adventure (no journey). |
 
-Tag-block self-check: all required fields populated; `causation` is a valid axis enum; `L1` is a valid rung; `cat5`, `discovery`, `field_experiment`, `T0` all valid; `caregiver_role: [scaffold]` matches T0 default. ✓
+Tag-block self-check: all required fields populated; `causation` is a valid axis enum; `L1` is a valid rung; `cat5`, `discovery`, `field_experiment`, `T0` all valid; `caregiver_role: [scaffold]` matches T0 default; `entity_attributes_covered` lists 6 dotted-path IDs drawn from `plants/generic_flowers.yaml` tier_guidance (`tier_0.appearance.flower_color`, `petals`, `stem`; `tier_0.senses.petal_feel`; `tier_1.context.gardens_and_parks`; `tier_1.function.attract_pollinators`) — each resolves to a real `attribute:` entry. ✓
 
 ### Step 9 — Downstream rendering notes
 
@@ -974,6 +990,15 @@ progression:
   next_step_hint: "Sibling jump: Responsibility L2 — design a care protocol for the Super Paper when it's feeling sad."
   reward_hook: "Paper Engineer badge"
 
+entity_attributes_covered:
+  - tier_0.appearance.color
+  - tier_0.appearance.flat_sheet
+  - tier_1.function.cuttable
+  - tier_1.function.stackable
+  - tier_1.context.craft_projects
+  - tier_2.reasoning.material_transformation
+  - tier_2.perspective.voice_of_a_made_thing
+
 caregiver_role: [observer, co-explorer, scaffold]
 pillar_payoff: "Child stacks four modifications plus a voice onto construction paper and unveils Super Construction Paper as a character with an inner life — Creation's 'I made this!' reveal, grown up."
 ```
@@ -993,7 +1018,7 @@ pillar_payoff: "Child stacks four modifications plus a voice onto construction p
 | 9 | Game Feel | PASS | Real stakes — the child's inventions get stacked and they earn final-name rights; genuine uncertainty in each round's invention; the ta-da reveal is a concrete climax; surprise in Round 4's Perspective-L3 ask. |
 | 10 | Pillar Fidelity | PASS | Creation signature intact — what-if proposals, yes-and elaboration, never correcting, stacked modifications revealed as Super {entity}. Relabeling as Discovery (no prediction) or Mystery (nothing hidden) would feel wrong. |
 
-Tag-block self-check: all required fields populated; `perspective` is a valid axis; `L3` is a valid rung; `cat1`, `creation`, `inventor_workshop`, `T2` all valid; `caregiver_role: [observer, co-explorer, scaffold]` matches T2 cumulative default. ✓
+Tag-block self-check: all required fields populated; `perspective` is a valid axis; `L3` is a valid rung; `cat1`, `creation`, `inventor_workshop`, `T2` all valid; `caregiver_role: [observer, co-explorer, scaffold]` matches T2 cumulative default; `entity_attributes_covered` lists 7 dotted-path IDs spanning T0 appearance, T1 function/context, and T2 reasoning/perspective — each follows the `tier_{0,1,2}.{dimension}.{attribute}` format and tracks what the four-round design actually exercises. ✓
 
 ### Step 9 — Downstream rendering notes
 
@@ -1033,11 +1058,12 @@ You are on your own now. Here is the checklist to run the first time you generat
 7. **Fill the universal slots**: `{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`. Then fill the pillar-specific slots from Step 3.
 8. **Write all 5 beats** in `program.md` format — every AI line concrete with a tone marker, every step with 3 child-response branches, every step with a Screen description.
 9. **Emit the tag block** per `program.md` §1.9 — every field populated, no placeholders.
-10. **Run the 10-dimension rubric** from this guide. Every dimension must PASS.
-11. **Run the tag-block self-check** from `program.md` §1.9. Every box must tick.
-12. **Spot-check the downstream contract**: does your `highlight_moment` read well as a pull-quote? Does `progression.topic_axis` match what Beat 3 actually climbed? Does `caregiver_role` match the tier default unless you have explicit justification?
+10. **Populate `entity_attributes_covered`** — enumerate the `tier_guidance` attributes your activity actually exercises as dotted-path IDs (`tier_{0,1,2}.{dimension}.{attribute}`). Open the entity's YAML under `data/mappings_dev20_0318/` and copy real `attribute:` names; the matcher validates every ID.
+11. **Run the 10-dimension rubric** from this guide. Every dimension must PASS.
+12. **Run the tag-block self-check** from `program.md` §1.9. Every box must tick.
+13. **Spot-check the downstream contract**: does your `highlight_moment` read well as a pull-quote? Does `progression.topic_axis` match what Beat 3 actually climbed? Does `caregiver_role` match the tier default unless you have explicit justification?
 
-If you trip at step 10 or 11, go back to the highest-numbered step that produced the problem and redo from there. Do not patch a broken tag block at emit time — the downstream consumers (`docs/child_recap_preview.html` §04 and `docs/parent_growth_path_preview.html` §07) will silently fall back to generic copy if a required field is missing, and that failure is invisible to you at author time.
+If you trip at step 11 or 12, go back to the highest-numbered step that produced the problem and redo from there. Do not patch a broken tag block at emit time — the downstream consumers (`docs/child_recap_preview.html` §04 and `docs/parent_growth_path_preview.html` §07) will silently fall back to generic copy if a required field is missing, and the upstream matcher will refuse to route photographed entities to your activity if `entity_attributes_covered` is empty or drifted. Both failures are invisible to you at author time.
 
 The two must-pass gates before shipping any design are:
 
@@ -1050,4 +1076,5 @@ Pass both. Then, and only then, emit.
 
 ## Revnote
 
+- **v0.2 · 2026-04-17** · Populate `entity_attributes_covered` in all 3 worked-example tag blocks (ladybug / sunflower / construction paper) with 6–7 dotted-path IDs each, extend each example's Step 8 tag-block self-check to reference the new field, and add a dedicated step (new step 10) in the "Generating your 4th activity" closing checklist reminding authors to enumerate coverage from the entity's `tier_guidance`. Sunflower IDs are drawn from real `attribute:` entries in `data/mappings_dev20_0318/plants/generic_flowers.yaml`; ladybug and construction-paper IDs illustrate the `tier_{0,1,2}.{dimension}.{attribute}` format since those entities have no canonical YAML yet.
 - **v0.1 · 2026-04-20** · Inaugural draft with 3 worked examples spanning tiers (T0 / T1 / T2), pillars (Mystery / Creation / Discovery), categories (Cat1 in-device, Cat5 out-of-device), and axes (Form / Causation / Perspective). Each example runs the same 9-step workflow — read skeleton, apply overlay, apply category modifier, apply tier dial, pick axis + L, fill slots with full dialogue, emit tag block, self-check against 10-dim rubric, document downstream rendering. Cross-references target live anchors in `docs/template_0_preview.html`, `templates.md`, `program.md` §1.9, `docs/progression_axes.md`, `docs/child_recap_preview.html` §04 `#contract`, and `docs/parent_growth_path_preview.html` §03 `#curiosity` + §07 `#contract`. Intent: a reader of this guide alone can produce a 4th activity without re-opening the underlying spec docs.
