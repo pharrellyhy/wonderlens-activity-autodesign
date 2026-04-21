@@ -1,0 +1,309 @@
+- entity_id: natural_phenomena_rock
+  entity_name: Rock
+  entity_name_cn: 岩石
+  domain: natural_phenomena
+  parent_category: geology
+  subcategory: rocks
+  primary_theme:
+    theme_id: how_world_works
+    weight: 0.46
+    reasoning: A rock is a perfect invitation to talk about hardness, weight, and what things are made of — the
+      simplest version of "what is this made of and what can it do?".
+  secondary_themes:
+  - theme_id: sharing_planet
+    weight: 0.28
+    reasoning: Rocks are everywhere outside and quietly share space with plants and animals, hosting moss,
+      bugs, and tiny ecosystems.
+    context_trigger: when the child notices moss on a rock, a bug hiding under one, or a rock-lined path in the
+      park
+  - theme_id: how_we_express
+    weight: 0.26
+    reasoning: Rocks become treasure for kids — collected, stacked, painted, used as props — letting them express
+      creativity with simple natural objects.
+    context_trigger: when the child keeps a favorite rock, stacks them, or decorates a found stone
+  primary_key_concepts:
+  - concept_id: form
+    relevance: 1.0
+    reasoning: Rocks come in endless shapes, textures, colors, and weights, giving children material to describe
+      with many specific words.
+  - concept_id: function
+    relevance: 0.9
+    reasoning: A rock's strength, weight, and hardness give it real jobs in nature and in play — anchor, wall,
+      seat, tool — which children can link directly to what it's made of.
+  - concept_id: structure
+    relevance: 0.9
+    reasoning: Rocks are solid but show cracks, layers, and grains that hint at how they were made, introducing
+      the idea that even a "simple" thing has inner structure.
+  secondary_key_concepts:
+  - concept_id: change
+    relevance: 0.6
+    reasoning: Rocks change slowly through weathering, cracking, and smoothing, helping children notice change
+      that happens over long stretches of time.
+    reasoning_alt: Wearing of rocks by water or wind is a gentle intro to slow change.
+  - concept_id: causation
+    relevance: 0.5
+    reasoning: Why is this rock smooth? Why is it heavy? Why is it cracked? Every rock's look has causes — water,
+      wind, heat, pressure — that children can wonder about.
+  candidate_related_concepts:
+  - concept_id: materials
+    discipline: Science
+    reasoning: Rocks are a clear example of "material" with its own set of properties — a great entry point into
+      materials thinking.
+  - concept_id: creativity
+    discipline: Arts
+    reasoning: Rocks invite creativity — stacking, painting, pretending, collecting — which turns natural objects
+      into art materials and toys.
+  - concept_id: connection
+    discipline: Science
+    reasoning: Rocks connect to soil, water, mountains, and beaches, showing how one material weaves through many
+      places in nature.
+  - concept_id: time
+    discipline: Science
+    reasoning: Rocks are very old and change slowly, which gives children a small window into deep time.
+  tier_guidance:
+    tier_0:
+      dimensions:
+        appearance:
+        - attribute: color
+          value: gray, brown, or speckled colors
+          topics:
+          - What color is the rock?
+          - Does it have spots?
+          - Is it the same color all over?
+        - attribute: shape
+          value: round, bumpy, or chunky
+          topics:
+          - Is the rock round or pointy?
+          - Can you trace its shape with your finger?
+          - Does it look like anything you've seen before?
+        - attribute: size
+          value: fits in your hand or bigger
+          topics:
+          - Is the rock big or little?
+          - Can you hold it in one hand?
+          - Is it bigger than your shoe?
+        senses:
+        - attribute: hard_feel
+          value: very hard — it doesn't squish
+          topics:
+          - Does the rock feel hard or soft?
+          - Can you squeeze it?
+          - Is it solid all the way through?
+        - attribute: weight
+          value: heavy for its size
+          topics:
+          - Is the rock heavy or light?
+          - Can you pick it up with one hand?
+        - attribute: cold_to_touch
+          value: a little cool in your hand
+          topics:
+          - Does the rock feel warm or cool?
+          - Does it feel cold in the shade?
+        function:
+        - attribute: stays_put
+          value: sits still and doesn't move
+          topics:
+          - Does the rock move or stay in place?
+          - Does the wind push it?
+        emotions:
+        - Do you like this rock?
+        - Does it feel like a friend in your pocket?
+        - Is it a brave rock or a cozy rock?
+        - Would you keep it as a treasure?
+    tier_1:
+      dimensions:
+        appearance:
+        - attribute: surface_texture
+          value: smooth, rough, or covered in tiny bumps
+          topics:
+          - Why does one rock feel smooth and another feel bumpy?
+          - How is a smooth rock different from a bumpy rock for sliding?
+        - attribute: speckles_and_grains
+          value: tiny specks of different colors mixed in
+          topics:
+          - Why do rocks often have little specks of different colors?
+          - How is a plain color rock different from a speckled one?
+        - attribute: cracks_and_chips
+          value: small cracks or chipped corners
+          topics:
+          - Why do rocks have cracks and chips in them?
+          - How is a cracked rock different from a smooth round one?
+        - attribute: shine_when_wet
+          value: looks darker and shinier when it's wet
+          topics:
+          - Why do rocks look shinier when you put water on them?
+          - How is a wet rock different from a dry rock to look at?
+        context:
+        - attribute: ground_and_paths
+          value: found on paths, in gardens, and along streams
+          topics:
+          - Why are there so many rocks on a garden path?
+          - How is a rock on a path different from one in a stream?
+        - attribute: beaches_and_rivers
+          value: rounded smooth rocks come from water rolling them
+          topics:
+          - Why are beach and river rocks so smooth?
+          - How is a beach rock different from a rock on a mountain?
+        - attribute: plant_neighbors
+          value: plants, moss, and bugs live around and under rocks
+          topics:
+          - Why do tiny plants and bugs love living near rocks?
+          - How is a rock with moss different from a bare rock?
+        function:
+        - attribute: anchoring_weight
+          value: heavy enough to hold down leaves or lids in the wind
+          topics:
+          - Why can a small rock be a good paperweight?
+          - How is anchoring different from decorating?
+        - attribute: stacking_stability
+          value: flat rocks can stack into little towers
+          topics:
+          - Why do flat rocks stack better than round ones?
+          - How is a stack of rocks different from a stack of blocks?
+        - attribute: tool_use
+          value: rocks can be used to tap, break, or hold things
+          topics:
+          - Why might someone use a rock as a tool, like a mini hammer?
+          - How is using a rock different from using a plastic toy?
+        senses:
+        - attribute: scratchy_vs_smooth
+          value: some rocks feel scratchy on your hand, others glide
+          topics:
+          - Why are some rocks scratchy while others are smooth?
+          - How is a scratchy rock different from sandpaper?
+        - attribute: clink_sound
+          value: a clink or tap sound when two rocks touch
+          topics:
+          - Why does tapping two rocks make a clink sound?
+          - How is a clink different from a clatter of sticks?
+        structure:
+        - attribute: layers_or_stripes
+          value: some rocks show thin layers or stripes through the side
+          topics:
+          - Why do some rocks look like they have stripes inside?
+          - How are layers in a rock different from layers in a cake?
+        - attribute: solid_all_through
+          value: solid inside, not hollow
+          topics:
+          - Why is a rock solid all the way through?
+          - How is solid different from hollow for holding weight?
+        emotions:
+        - How does a heavy rock feel when you pick it up — steady, strong, or something else?
+        - Would you keep this rock or put it back? Why?
+        - Which rock would you pick as your favorite from a pile?
+        relationship:
+        - How is a rock different from a pebble or a boulder?
+        - What other hard things remind you of a rock?
+        - How is a rock like a brick, and how is it different?
+    tier_2:
+      dimensions:
+        appearance:
+        - attribute: mineral_sparkle
+          value: Some rocks have shiny flecks inside because they contain tiny crystals of different minerals, each
+            reflecting light in its own way.
+          topics:
+          - Why do some rocks sparkle while others look completely dull?
+          - How might the sparkles tell you something about what's in the rock?
+        - attribute: color_from_minerals
+          value: A rock's color comes from the minerals inside it — iron makes it reddish, carbon makes it dark,
+            so color is a clue about what the rock is made of.
+          topics:
+          - Why might two rocks look very different even if they were found in the same place?
+          - How could a rock's color be a hint about its ingredients?
+        - attribute: size_classification
+          value: Depending on size, we use different names — pebble, stone, rock, boulder — even though they can
+            all be made of the same material.
+          topics:
+          - Why do people use different words for small and large rocks?
+          - How is thinking about size different from thinking about material?
+        change:
+        - attribute: weathering_over_time
+          value: Wind, rain, freezing water, and plant roots slowly break rocks into smaller pieces, so a rock you
+            see today may look different in many years.
+          topics:
+          - Why might water be able to slowly change a tough rock?
+          - How could a plant root change a rock over a long time?
+        - attribute: smoothing_by_water
+          value: Rolling in streams, rivers, and ocean waves grinds sharp edges off rocks, which is why
+            water-carried stones are so smooth and rounded.
+          topics:
+          - Why does water make rocks smooth instead of breaking them in pieces?
+          - How could you guess that a rock has spent a lot of time in water?
+        - attribute: rocks_breaking
+          value: Rocks can crack from freezing water, falling, or being hit, so a single rock can become many
+            smaller rocks over time.
+          topics:
+          - Why might water freezing inside a rock crack it open?
+          - How is a rock that broke in half related to the pieces you see?
+        context:
+        - attribute: rock_types_and_origins
+          value: Different rocks form in different ways — from cooled lava, from pressed-down sand, or from deep
+            heat and pressure — so a rock carries a story about where it came from.
+          topics:
+          - Why might one rock have layers while another looks glassy and smooth?
+          - How is a rock's origin like its life story?
+        - attribute: rocks_as_mini_habitats
+          value: A single rock can shelter bugs, moss, and tiny plants on and under it, acting like a mini habitat
+            for several small creatures.
+          topics:
+          - Why might a bug choose to live under a rock instead of in the open?
+          - How could you turn a rock into a tiny garden for moss and bugs without hurting it?
+        function:
+        - attribute: strength_from_hardness
+          value: Rocks are strong because their minerals are packed so tightly together that they resist being
+            squashed, which is why they make good walls, roads, and foundations.
+          topics:
+          - Why might people build walls from rocks instead of soft things?
+          - How is a rock's strength different from a tree's strength?
+        - attribute: combining_properties
+          value: Although rocks are strong, they're not flexible or light; combining a rock's strength with other
+            properties (like bendiness or lightness) in imagination lets children invent impossible new materials.
+          topics:
+          - If you could combine a rock's strength with a feather's lightness, what could you build?
+          - What's something rocks are bad at that other materials are good at?
+        senses:
+        - attribute: temperature_memory
+          value: Rocks hold onto temperature for a long time — a sun-warmed rock stays warm long after the sun
+            sets, and a shaded rock can stay cool through the afternoon.
+          topics:
+          - Why might a rock feel warm long after the sun has moved?
+          - How could a warm rock be useful to a small animal?
+        - attribute: heft_sense
+          value: Rocks feel extra heavy for their size because their minerals are so densely packed — a rock no
+            bigger than an apple can weigh much more than an apple.
+          topics:
+          - Why might a small rock feel heavier than a much bigger ball?
+          - How can you tell just by lifting something whether it's rock or a lighter material?
+        structure:
+        - attribute: grain_and_crystal_structure
+          value: Inside a rock, tiny grains or crystals are locked together, which is why breaking a rock can
+            reveal a shiny or patterned inside that the outside doesn't show.
+          topics:
+          - Why might the inside of a rock look different from the outside?
+          - How is a rock's inside like a secret picture?
+        - attribute: layering_and_bedding
+          value: Some rocks form in layers pressed down on top of each other; those layers can record what was
+            around when the rock was made.
+          topics:
+          - Why would layers in a rock tell a story about long ago?
+          - How is reading rock layers like reading a very slow book?
+        emotions:
+        - How does holding a heavy, solid rock make you feel — steady, calm, strong? Why?
+        - Would you rather collect tiny pebbles or look for one big special rock? Why?
+        - If you had a special pocket rock, what would you use it for?
+        imagination:
+        - If your rock had a hidden superpower (like strength, heat storage, or something new), what would it be?
+        - Pretend your rock is the guardian of a tiny world under a bush — what does it protect?
+        - Invent a new kind of rock that has never existed. What is it made of and what does it do?
+        narrative:
+        - Tell a story about a rock that has been sitting in the same spot for a very long time — what has it seen?
+        - Once upon a time, a small rock tumbled down a river — how did it change along the way?
+        - Tell a story where a rock teams up with a leaf and a feather to solve a problem.
+        reasoning:
+        - Why do you think rocks are used for walls and bridges while feathers and leaves are not?
+        - What would happen to a garden path with no rocks at all?
+        - If you found two rocks that looked different, what could you guess about where each came from?
+        relationship:
+        - How is a rock like a brick, and how is it different?
+        - What other hard things remind you of a rock? What do they share?
+        - How is the rock's strength like a shield, and how is it different?

@@ -1,0 +1,317 @@
+- entity_id: animals_bird
+  entity_name: Bird
+  entity_name_cn: 鸟
+  domain: animals
+  parent_category: vertebrates
+  subcategory: birds
+  primary_theme:
+    theme_id: sharing_planet
+    weight: 0.42
+    reasoning: Birds are visible neighbors in parks, yards, and trees, helping children notice other living things
+      that share the same outdoor spaces.
+  secondary_themes:
+  - theme_id: how_we_express
+    weight: 0.34
+    reasoning: Bird songs, calls, and colorful plumage are some of the most expressive signals in nature, and children
+      love imitating them and giving them meaning.
+    context_trigger: when the child imitates a bird call, invents words for what it's "saying", or points at a
+      brightly colored bird
+  - theme_id: how_world_works
+    weight: 0.24
+    reasoning: Flight, singing, nesting, and feather structure are perfect prompts for early questions about how
+      living things do what they do.
+    context_trigger: when the child asks how the bird flies, how the song comes out, or why the bird is on that
+      branch
+  primary_key_concepts:
+  - concept_id: form
+    relevance: 1.0
+    reasoning: Birds' wings, beaks, feathers, songs, and sizes vary widely, inviting children to observe and describe
+      each bird's distinct voice and look.
+  - concept_id: connection
+    relevance: 0.9
+    reasoning: Birds connect to trees, to other creatures, to weather, and to the sounds of a place, showing how
+      living things fit into a web of relationships.
+  - concept_id: function
+    relevance: 0.9
+    reasoning: Wings are for flying, beaks for pecking, songs for calling — every part of a bird has a job children
+      can link back to what the bird does.
+  secondary_key_concepts:
+  - concept_id: perspective
+    relevance: 0.7
+    reasoning: Children can imagine what a bird sees from up high, what it hears, and why it might choose one branch
+      over another, practicing seeing through another's eyes.
+  - concept_id: change
+    relevance: 0.5
+    reasoning: Birds change throughout a day and across seasons — waking, singing, migrating, raising chicks —
+      offering many natural change cues.
+  candidate_related_concepts:
+  - concept_id: communication
+    discipline: Social Studies
+    reasoning: Bird songs and calls are a clear example of non-verbal communication, helping children think about how
+      creatures send messages without words.
+  - concept_id: habitat
+    discipline: Science
+    reasoning: Birds are closely tied to where they live — nests, branches, feeders, ponds — making them an easy
+      entry point into the idea of habitat.
+  - concept_id: pattern
+    discipline: Science
+    reasoning: Bird songs, feather colors, and flight paths all show recognizable patterns that children can notice
+      and repeat.
+  - concept_id: role
+    discipline: Arts
+    reasoning: Birds easily take on "roles" in children's imaginations — lead singer, messenger, watcher — turning
+      observation into story.
+  tier_guidance:
+    tier_0:
+      dimensions:
+        appearance:
+        - attribute: body_color
+          value: one or several colors on its body
+          topics:
+          - What color is the bird?
+          - Can you point to the colored feathers?
+          - Is it one color or many?
+        - attribute: wings
+          value: two wings on the sides
+          topics:
+          - Can you find the bird's wings?
+          - How many wings does it have?
+          - Are the wings big or small?
+        - attribute: beak
+          value: a pointy beak in front
+          topics:
+          - Where is the bird's beak?
+          - Is the beak sharp or round?
+          - What color is the beak?
+        - attribute: size
+          value: small, fits on a branch
+          topics:
+          - Is the bird big or little?
+          - Would the bird fit in your hands?
+          - Is it smaller than you?
+        senses:
+        - attribute: song_sound
+          value: chirps, tweets, and sings
+          topics:
+          - What sound does the bird make?
+          - Can you say "tweet tweet"?
+          - Is it singing or quiet?
+        - attribute: flutter_sound
+          value: soft flutter when it flies
+          topics:
+          - Do you hear the wings flap?
+          - What does flapping sound like?
+        function:
+        - attribute: flies
+          value: flaps wings and flies in the sky
+          topics:
+          - Does the bird fly up or down?
+          - Where does the bird go?
+          - How does the bird move?
+        - attribute: sits_on_branch
+          value: stands or sits on a branch
+          topics:
+          - Where is the bird standing?
+          - Does it hold on with its feet?
+        emotions:
+        - Do you like the bird's song?
+        - Does the bird look happy?
+        - Is the bird a friendly neighbor?
+        - Would you want to sit near it?
+    tier_1:
+      dimensions:
+        appearance:
+        - attribute: feather_coat
+          value: a smooth coat of small feathers
+          topics:
+          - Why are birds covered in feathers instead of fur?
+          - How is a feather different from a hair?
+        - attribute: tail_shape
+          value: a fanned or pointed tail at the back
+          topics:
+          - Why do birds have tails, like little rudders?
+          - How is a long tail different from a short tail in the air?
+        - attribute: feet
+          value: thin feet with little claws to grip the branch
+          topics:
+          - Why are bird feet so thin and clingy?
+          - How is a bird's grip different from your hand's grip?
+        - attribute: eyes
+          value: bright, small eyes that look very alert
+          topics:
+          - Why do bird eyes look so awake and darting?
+          - How is a bird eye different from a cat eye?
+        context:
+        - attribute: branches_and_trees
+          value: most often seen on branches, hedges, or fences
+          topics:
+          - Why do birds spend so much time on branches?
+          - How is a branch different from the ground for a small bird?
+        - attribute: morning_chorus
+          value: many birds sing most in the early morning and around sunset
+          topics:
+          - Why do birds sing so much in the morning?
+          - How is morning singing different from afternoon singing?
+        - attribute: gardens_and_parks
+          value: common in gardens, parks, and near feeders
+          topics:
+          - Why do gardens and parks have lots of birds?
+          - How is a park with trees different from an empty parking lot for birds?
+        function:
+        - attribute: flying_flight
+          value: strong wings let the bird take off, glide, and land
+          topics:
+          - Why do birds need strong wings to lift into the air?
+          - How is gliding different from flapping?
+        - attribute: singing_to_communicate
+          value: songs and calls say "here I am", "stay away", or "danger"
+          topics:
+          - Why would a bird sing instead of just sitting quietly?
+          - How is a song different from a short chirp of warning?
+        - attribute: pecking_and_grabbing
+          value: the beak picks up seeds, bugs, or berries
+          topics:
+          - Why do birds use a beak instead of hands?
+          - How is a sharp beak different from a flat one for eating?
+        senses:
+        - attribute: song_variety
+          value: different birds have different songs, like different voices
+          topics:
+          - Why does every bird have its own song?
+          - How is one bird's tweet different from another bird's?
+        - attribute: feather_feel
+          value: feathers feel light, smooth, and a little slick
+          topics:
+          - Why do feathers feel slick, like tiny scales?
+          - How is a feather different from a soft stuffed-toy fur?
+        structure:
+        - attribute: hollow_bones
+          value: light bones inside help the bird stay airborne
+          topics:
+          - Why do you think flying animals need light bones?
+          - How are hollow bones different from our solid bones for flying?
+        - attribute: wing_layers
+          value: wings are made of many feathers in layers, like a fan
+          topics:
+          - Why are wings built out of lots of feathers instead of one flat piece?
+          - How is a layered wing different from a single leaf?
+        emotions:
+        - How do you feel when you hear a bird sing outside your window?
+        - Would you want a bird as a quiet friend? What would you name it?
+        - Does a flying bird feel free, brave, or something else to you?
+        relationship:
+        - How is a bird like an airplane, and how is it different?
+        - What other animals remind you of a bird? How are they different?
+        - How is a bird's song like a song we sing, and how is it different?
+    tier_2:
+      dimensions:
+        appearance:
+        - attribute: camouflage_vs_display_coloring
+          value: Some birds are colorful to show off to mates, while others are dull and streaky to blend in with bark
+            or grass — their color is tied to whether they want to be seen or hidden.
+          topics:
+          - Why might some birds want to stand out while others want to hide?
+          - How would a forest bird feel different about its colors than a bird in a wide field?
+        - attribute: beak_shape_specialization
+          value: Beaks come in many shapes — tiny cones for seeds, long thin beaks for nectar, hooked beaks for
+            tearing — and each shape matches the food the bird eats most.
+          topics:
+          - Why might a seed-eater and a bug-eater have different beaks?
+          - What kind of food do you think a long curved beak is best for?
+        - attribute: posture_and_stance
+          value: Birds hold themselves in different ways — upright like a robin, flat against a tree like a
+            woodpecker, or low and horizontal like a duck — each pose helping them do their job.
+          topics:
+          - Why might a woodpecker lean flat against the tree while other birds stand upright?
+          - How does a bird's pose tell you something about where it lives?
+        change:
+        - attribute: seasonal_migration
+          value: Many birds travel long distances when seasons change, following food and warmth, so the birds you
+            see in summer might not be the same ones you see in winter.
+          topics:
+          - Why do birds sometimes leave when it gets cold instead of staying?
+          - How would your park feel different in a season with fewer birds?
+        - attribute: molting_feathers
+          value: Birds slowly replace their feathers over time, so their colors and patterns can change across a
+            year, sometimes becoming brighter for spring and plainer in winter.
+          topics:
+          - Why do you think a bird might grow new feathers instead of keeping the same ones forever?
+          - How could you tell a bird was getting a fresh set of feathers?
+        - attribute: growth_from_chick
+          value: Birds start as eggs, hatch into fluffy chicks, and grow real flight feathers before they can fly —
+            a step-by-step change.
+          topics:
+          - Why might a chick need to wait to fly instead of flying right after hatching?
+          - How is a chick different from a grown bird in what it can do?
+        context:
+        - attribute: nesting_sites
+          value: Birds often pick specific places to build nests — dense bushes, tree forks, eaves — where eggs and
+            chicks can stay hidden and safe.
+          topics:
+          - Why would a bird choose a hidden spot for a nest instead of a wide-open branch?
+          - What kinds of nesting spots might be safest in your neighborhood?
+        - attribute: shared_soundscape
+          value: In any outdoor place, many birds sing at once, weaving different songs together into a kind of
+            natural music that changes over the day.
+          topics:
+          - Why do several birds often sing at the same time instead of one at a time?
+          - How is a morning full of bird songs different from a quiet midday?
+        function:
+        - attribute: flight_mechanics
+          value: Birds flap downward to push against the air and shape their wings to glide, like a swimmer using
+            arms to push water and then gliding forward.
+          topics:
+          - How is a bird pushing against air like you pushing against water in a pool?
+          - What might happen if a bird couldn't spread its wing feathers fully?
+        - attribute: song_as_language
+          value: Songs can mean "this is my space", "I'm looking for a friend", or "watch out" — so one bird's singing
+            carries real information to other birds.
+          topics:
+          - Why is a bird's song more like a message than just a noise?
+          - How is a warning call different from a greeting song?
+        senses:
+        - attribute: sharp_eyesight
+          value: Many birds can see small details from far away, spotting seeds, bugs, or movement that we might
+            miss.
+          topics:
+          - Why do you think seeing far is useful when you're flying high?
+          - How would the world look different if you could see as sharply as a bird?
+        - attribute: song_as_signal
+          value: Bird songs travel well through trees and across yards; the patterns of notes work like personal
+            signatures so other birds know who is singing.
+          topics:
+          - Why might a song travel through a forest better than a quiet whisper?
+          - How could two birds tell each other apart just by sound?
+        structure:
+        - attribute: wing_shape_variety
+          value: Wings come in different shapes — long and pointed for fast flyers, short and rounded for quick
+            turners — each shape built for the kind of flying the bird does.
+          topics:
+          - Why might a bird that chases bugs need different wings from one that soars high?
+          - How might a wing change the way a bird moves through the air?
+        - attribute: feather_zipper_barbs
+          value: Each feather is made of tiny branches that hook together like a zipper, so the feather stays smooth
+            and strong even when the wind is rough.
+          topics:
+          - Why is it helpful for feathers to zip back together after they get ruffled?
+          - What might happen if a feather's tiny hooks were broken?
+        emotions:
+        - How does seeing a wild bird fly overhead make you feel — calm, curious, amazed? Why?
+        - Would you rather watch a single bird for a long time or spot many different birds quickly? Why?
+        - If a bird landed very close to you, what would you want to say to it?
+        imagination:
+        - If this bird were the lead singer of a nature band, what kind of song would it sing?
+        - Pretend you could see through the bird's eyes for a day — what would you want to check out first?
+        - Invent a brand-new kind of bird with a special power. What does it look like and what does it do?
+        narrative:
+        - Tell a story about a bird who sings a message that helps another animal.
+        - Once upon a time, a tiny bird went on a very long journey — what happened along the way?
+        - Tell a story about a bird that learns a new song from a very unusual neighbor.
+        reasoning:
+        - Why do you think most birds can fly but a few, like penguins, don't?
+        - What would change about your neighborhood if all the birds suddenly went quiet?
+        - If a bird sings only in the morning, what do you think its song might mean?
+        relationship:
+        - How is a bird's singing like a musician playing an instrument, and how is it different?
+        - What other flying things remind you of a bird? How are they similar?
+        - How is a bird's nest like your bedroom, and how is it different?
