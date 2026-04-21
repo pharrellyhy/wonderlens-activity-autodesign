@@ -14,6 +14,18 @@
 | Trigger Entity | Any entity (size comparison works universally) |
 | Mapping Source | property-bridge |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{size}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.size          # most common path
+  - tier_0.appearance.body_size     # e.g., lion, bird, goldfish
+  - tier_0.appearance.paw_size      # e.g., lion
+  - tier_1.appearance.key_size      # e.g., piano
+```
+
 ### B. Activity Overview
 
 **① Brief Description**

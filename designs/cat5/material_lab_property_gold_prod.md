@@ -14,6 +14,19 @@
 | Trigger Entity | Any entity with detected material attribute |
 | Mapping Source | property-bridge |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{material}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.senses.rubber_feel              # e.g., rubber_duck
+  - tier_0.senses.fabric_feel              # e.g., raincoat, plush_toys
+  - tier_0.senses.hard_feel                # e.g., toy_robot (plastic)
+  - tier_1.structure.stuffing_material     # e.g., plush_toys
+  - tier_2.structure.key_surface_material  # e.g., piano
+```
+
 ### B. Activity Overview
 
 **① Brief Description**

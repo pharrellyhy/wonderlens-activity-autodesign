@@ -23,6 +23,19 @@
 - **Property Bridge**: AI detects a prominent property on the entity (e.g., "red" from the color category). This detected property SEEDS the clue category — every round becomes an "I Spy" deduction about a different detail defined by that property category. If color detected → each round targets a different color detail. If shape detected → each round targets a different shaped part. If material detected → each round targets a different material section.
 - **Mapping Source**: none
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{property}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Any one of these seeds the mystery-clue category at runtime.
+  - tier_0.appearance.color     # seeds "color" mystery
+  - tier_0.appearance.shape     # seeds "shape" mystery
+  - tier_0.appearance.pattern   # seeds "pattern" mystery
+  - tier_0.senses.touch_feel    # seeds "texture/material" mystery
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs their entity, the AI detects a prominent property (e.g., the dominant color "red" on a toy truck). The AI marvels at the entity, then reveals: "I noticed something special — your [entity] is full of secret colors!" The detected property seeds the CLUE CATEGORY for a multi-round "I Spy" deduction game. Each round, the AI picks a different detail on the entity defined by that property category and gives a progressive, descriptive clue. The child scans the photo, deduces the detail, and earns a "Found it!" each round. 3–4 rounds, each targeting a different detail, building toward the cumulative "You found every [property] secret!" celebration.

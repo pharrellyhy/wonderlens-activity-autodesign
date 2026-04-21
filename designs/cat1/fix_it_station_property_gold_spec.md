@@ -23,6 +23,20 @@
 - **Property Bridge**: AI detects a worn/needs-care property (faded, dusty, scratched, torn, old-looking, droopy, sad-looking) on the entity. This property SEEDS the first need in the care station. If the entity does NOT look worn, AI playfully imagines a need: "Your shiny new robot looks great... but wait — I think it's feeling a little LONELY! Can you help?"
 - **Mapping Source**: none
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{needs_care_property}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Any one of these signals a needs-care property that seeds the first fix-it round.
+  - tier_1.appearance.tip_wear                 # e.g., crayons
+  - tier_2.change.fur_matting_over_time        # e.g., plush_toys
+  - tier_2.change.squeak_wears_out             # e.g., bath_toys
+  - tier_2.change.stitch_looseness_and_repair  # e.g., plush_toys
+  - tier_2.change.waterproof_coating_wear      # e.g., raincoat
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs their entity, the AI detects a property that suggests the entity needs care (e.g., faded color, loose thread, dusty surface). The AI frames the child as a special fix-it caretaker. The detected property seeds the FIRST need, then needs escalate across three rounds: physical → emotional → complex (all three at once). Each time the child proposes a fix, the entity VISIBLY transforms — color brightens, threads mend, smiles appear — and the entity's gratitude deepens, until by the final round the entity calls the child by name and expresses deep personal trust. The magic moment is the visible transformation: you can SEE your help working.

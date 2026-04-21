@@ -1,6 +1,6 @@
 # Templates
 
-> **Version**: 1.1 | **Date**: 2026-04-17
+> **Version**: 1.1 | **Date**: 2026-04-20
 > **Owns**: the pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture) and the Cat1 / Cat5 category modifier appendix.
 > **Does NOT own**: the 5-beat spine, the tag block schema, or the tier defaults — those live in `docs/template_0_preview.html` §03 / §04 / §06 and are the single source of truth for the category-agnostic skeleton.
 > **Consumed by**: `program.md` Phase 5 (template-reading flow), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), `designs/cat{1,5}/*.md` (gold-standard outputs).
@@ -313,5 +313,5 @@ The same entity can be designed under different pillars — the pillar determine
 
 ## Revnote
 
-- **v1.1 · 2026-04-17** · Note the new required tag-block field `entity_attributes_covered` in the Template 0 reference section. Authors must populate it in every activity; valid IDs are sourced from the entity YAML's `tier_guidance`. Full contract lives in `program.md` §1.9 and `docs/template_0_preview.html` §04.
+- **v1.1 · 2026-04-20** · Note the new required tag-block field `entity_attributes_covered` in the Template 0 reference section. Authors must populate it in every activity; valid IDs are sourced from the entity YAML's `tier_guidance`. Full contract lives in `program.md` §1.9 and `docs/template_0_preview.html` §04.
 - **v1.0 · 2026-04-20** · Refactor to Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix (Option B, single file). Replaces the v0.x Template A / Template B dual-template structure. Template 0 skeleton authority now lives in `docs/template_0_preview.html` §03 / §04 / §06; this file owns the pillar overlays and the category modifiers. Creative variables stay per-overlay because they are genuinely pillar-specific (`{hidden_details}` is Mystery-only, `{modifications}` is Creation-only, etc.).

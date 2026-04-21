@@ -23,6 +23,18 @@
 - **Mapping Source**: property-bridge
 - **IB Theme**: How the World Works
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{size}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.size          # most common path
+  - tier_0.appearance.body_size     # e.g., lion, bird, goldfish
+  - tier_0.appearance.paw_size      # e.g., lion
+  - tier_1.appearance.key_size      # e.g., piano
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs any object, the AI notices its size relative to a familiar reference — the child's hand. The AI announces the size observation and then poses a big question: "Are MOST things around here bigger or smaller than your hand?" The child becomes a "Size Scientist" who first PREDICTS whether the majority of nearby objects are bigger or smaller than their hand, then collects evidence by photographing 3 more objects. The AI assesses each photo's size visually relative to the reference and tallies results. At the end, the AI reveals whether the child's prediction was right or surprising.

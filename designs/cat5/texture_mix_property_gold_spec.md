@@ -24,6 +24,19 @@
 - **IB Theme**: How the World Works
 - **Template Parameters**: `{texture}` -- detected visible texture property (e.g., rough, smooth, fuzzy, bumpy, shiny, ridged, grainy, crinkly). Example value used throughout: **rough**.
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{texture}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.senses.touch_feel     # e.g., crayons, piano
+  - tier_0.senses.surface_feel   # e.g., plush_toys
+  - tier_0.senses.rubber_feel    # e.g., rubber_duck
+  - tier_0.senses.hard_feel      # e.g., toy_robot
+  - tier_0.senses.fabric_feel    # e.g., raincoat
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs any object, the AI notices a visible texture -- for example, "rough" on tree bark. The AI marvels at how the bark LOOKS -- all those bumps, lines, and uneven ridges visible in the photo -- and reveals the texture's "superpower": GRIP (things that look rough can hold on tight). The child becomes a Texture Inventor and goes on a mission to collect 3 items with different visible textures, each of which the AI assigns a unique superpower based on how the texture LOOKS in the photo (e.g., smooth-looking = SPEED, fuzzy-looking = WARMTH, bumpy-looking = ARMOR). At synthesis, the child picks two superpowers to combine and invents something that has never existed before. IMPORTANT: All texture assessment is VISUAL -- the AI analyzes what the texture LOOKS like in the photograph, not asking the child to touch. This template works for any detected visible texture: rough, smooth, fuzzy, bumpy, shiny, ridged, grainy, crinkly, etc.

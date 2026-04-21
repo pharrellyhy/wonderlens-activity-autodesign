@@ -23,6 +23,20 @@
 - **Mapping Source**: property-bridge
 - **IB Theme**: Sharing the Planet
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{alive_state}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Living-thing signals -- a hit on any of these marks the entity as alive/natural.
+  - tier_2.context.habitat_requirements        # e.g., butterfly, bird
+  - tier_2.change.full_metamorphosis           # e.g., insects
+  - tier_2.change.short_adult_life             # e.g., butterfly
+  - tier_1.function.sipping_nectar             # e.g., butterfly
+  - tier_2.change.color_shift_with_age_health  # e.g., goldfish
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After photographing any living thing, the AI notices a sign of need — the plant looks thirsty, the flower is drooping, the tree has a broken branch, the bug looks lost. The AI frames the child as a "Life Rescuer" and challenges them to find 3 more living things nearby that need help. For each find, the AI identifies a "need" from the photo (drooping, dry, fallen, lonely, overgrown, tangled, dusty, wilting) — the child does NOT self-report the need. The child then proposes a care solution for each. At synthesis, the AI reveals how the rescued living things can help EACH OTHER — forming a mutual aid circle. The magic moment is discovering that the things you rescued can take care of one another.

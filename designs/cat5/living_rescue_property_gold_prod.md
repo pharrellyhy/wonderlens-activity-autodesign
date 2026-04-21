@@ -12,6 +12,20 @@
 | ATL Skills Focus | Social Skills (empathy, cooperation), Thinking Skills (creative thinking, transfer), Communication Skills (expressing) |
 | Game Style | rescue_team |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{alive_state}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Living-thing signals -- a hit on any of these marks the entity as alive/natural.
+  - tier_2.context.habitat_requirements        # e.g., butterfly, bird
+  - tier_2.change.full_metamorphosis           # e.g., insects
+  - tier_2.change.short_adult_life             # e.g., butterfly
+  - tier_1.function.sipping_nectar             # e.g., butterfly
+  - tier_2.change.color_shift_with_age_health  # e.g., goldfish
+```
+
 ### B. Activity Overview
 
 **① Brief Description**

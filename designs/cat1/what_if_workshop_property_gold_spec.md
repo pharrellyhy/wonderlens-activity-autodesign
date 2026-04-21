@@ -23,6 +23,19 @@
 - **Mapping Source**: property-bridge
 - **IB Theme**: How the World Works (properties, change, function)
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{property}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Any one of these supplies the property to invert in the what-if flip.
+  - tier_0.appearance.shape         # invert shape ("round -> square")
+  - tier_0.appearance.size          # invert size ("big -> tiny")
+  - tier_0.senses.touch_feel        # invert texture ("shiny -> fuzzy")
+  - tier_1.appearance.shine_level   # invert shininess
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs an everyday object, the AI detects several physical properties — shiny, hard, small, smooth, etc. The child becomes a "What-If Inventor" in a magical flip-workshop. Each round, the AI names ONE detected property, celebrates it, then flips it to its OPPOSITE and asks the child to imagine the consequences. "Your spoon is SO shiny! What if it was FUZZY instead?" The child imagines what would happen, describing the absurd result. Each round flips a different property. In the grand finale, ALL flipped properties combine into a "Super [Entity]" — the fuzziest, squishiest, most enormous version of the object — and the child hears the full ridiculous creation described in one breathless, delightful reveal.
