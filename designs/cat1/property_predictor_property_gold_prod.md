@@ -17,6 +17,19 @@
 | Property Bridge | AI detects physical properties; each experiment tests what that property DOES in a scenario |
 | Example Entity | Rubber ball (properties: round, bouncy, small) |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{property}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Any one of these seeds a prediction experiment.
+  - tier_0.appearance.shape             # predict rolling/stacking behavior
+  - tier_0.appearance.size              # predict fit/weight-ish behavior
+  - tier_0.senses.touch_feel            # predict bounce/drag behavior
+  - tier_1.structure.stuffing_material  # predict float/sink behavior
+```
+
 ### B. Activity Overview
 
 **1. Brief Description**: After the child photographs a rubber ball, the AI marvels at its round, bouncy-looking shape and invites the child to become a "Ball Scientist" who runs prediction experiments. The AI detects the ball's key properties — round, bouncy, small — and generates scenarios: what happens when THIS property meets THAT situation? In each round, the child must COMMIT to a prediction BEFORE the AI reveals the answer. Reveals are dramatic and scored: full points for correct, half points for close. A running tally creates genuine stakes.

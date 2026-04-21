@@ -16,6 +16,20 @@
 | Property Bridge | AI detects a current property that changes over time; each time jump explores how that property was different |
 | Example Entity | Yellow banana (property = yellow/color) |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{property}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Any one of these supplies a property that changes over time (the time-jump engine).
+  - tier_2.change.waterproof_coating_wear      # e.g., raincoat (condition over time)
+  - tier_2.change.full_metamorphosis           # e.g., butterfly (form over time)
+  - tier_2.change.brown_spots_sugar_change     # e.g., banana (color over time)
+  - tier_2.change.color_shift_with_age_health  # e.g., goldfish (color over time)
+  - tier_2.change.fur_matting_over_time        # e.g., plush_toys (texture over time)
+```
+
 ### B. Activity Overview
 
 **1. Brief Description**: The child becomes a "Time Shifter" who uses the photographed entity's detected property as a portal through time. The AI notices a specific property RIGHT NOW and reveals it has not always been the same. Together, they shift through time — visiting the entity at different moments to discover how the property looked, felt, and behaved differently. At a critical moment, the child makes a choice that branches the entity's future. The magic moment is seeing the whole timeline assembled — the property transforming at every stop.

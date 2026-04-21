@@ -23,6 +23,20 @@
 - **Property Bridge**: AI detects a salient property of the entity (bouncy, shiny, fluffy, big, tiny, smooth, bumpy, sparkly, soft, loud, etc.) and uses it as the PERFORMANCE THEME. The child performs AS the entity, with the property driving the performance challenges. Works for any entity+property: shiny fork → "sparkle performance," fluffy cat → "fluffiest walk," big truck → "biggest engine roar."
 - **Mapping Source**: none
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{property}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Any one of these supplies the salient property that becomes the performance theme.
+  - tier_0.appearance.shape         # "shape performance" (bouncy/round/pointy)
+  - tier_0.appearance.size          # "size performance" (tiny/giant)
+  - tier_0.senses.sound             # "sound performance"
+  - tier_0.function.moves           # "motion performance"
+  - tier_1.appearance.shine_level   # "sparkle performance"
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs their entity, the AI detects a standout property and turns it into a talent-show PERFORMANCE THEME. The child becomes the entity's voice and performs the property in increasingly creative ways: big, small, slow, fast, silly, serious. A panel of silly judges reacts to every performance with over-the-top delight, gasps, or laughter. Each round takes the detected property and asks the child to EXPRESS it differently. Round 3 introduces a surprise twist that takes the property to an unexpected place. The finale is a standing ovation — "The judges have NEVER seen a [property] performance like that!"

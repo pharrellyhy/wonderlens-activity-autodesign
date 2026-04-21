@@ -14,6 +14,20 @@
 | Game Style | voice_stage |
 | Property Bridge | AI detects a salient property (bouncy, shiny, fluffy, big, tiny, smooth, sparkly, soft, loud, etc.) and uses it as the PERFORMANCE THEME. Child performs AS the entity with the property driving challenges. |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{property}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Any one of these supplies the salient property that becomes the performance theme.
+  - tier_0.appearance.shape         # "shape performance" (bouncy/round/pointy)
+  - tier_0.appearance.size          # "size performance" (tiny/giant)
+  - tier_0.senses.sound             # "sound performance"
+  - tier_0.function.moves           # "motion performance"
+  - tier_1.appearance.shine_level   # "sparkle performance"
+```
+
 ### B. Activity Overview
 
 **① Brief Description**

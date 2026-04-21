@@ -14,6 +14,20 @@
 | Game Style | care_station |
 | Property Bridge | AI detects a worn/needs-care property (faded, dusty, scratched, torn, old-looking, droopy, sad-looking) and uses it to seed the first need. If entity doesn't look worn, AI playfully imagines a need. |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{needs_care_property}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Any one of these signals a needs-care property that seeds the first fix-it round.
+  - tier_1.appearance.tip_wear                 # e.g., crayons
+  - tier_2.change.fur_matting_over_time        # e.g., plush_toys
+  - tier_2.change.squeak_wears_out             # e.g., bath_toys
+  - tier_2.change.stitch_looseness_and_repair  # e.g., plush_toys
+  - tier_2.change.waterproof_coating_wear      # e.g., raincoat
+```
+
 ### B. Activity Overview
 
 **① Brief Description**
