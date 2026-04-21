@@ -34,10 +34,19 @@
 # in each gold-standard design file's `constellation_notes` block, NOT here.
 # See entity-bridging §"Changes to Existing Gold Standards" for that format.
 
-version: 0.2
+version: 0.3
 generated: 2026-04-21
 source_design: docs/plans/2026-04-08-entity-bridging.md
 #
+# v0.3 (2026-04-21) — tuning pass from post-§A.6-drafting review:
+#                     • banana: dropped `fruit_bowl` (container, not individual
+#                       fruit — Time Pilot game needs a single-subject frame);
+#                       added `papaya` to keep 4 neighbors at same_domain/strong.
+#                     • rubber_duck: bridge_type `companion` → `shared_affordance`,
+#                       bridge_strength `moderate` → `strong`. All neighbors
+#                       (bath_toy, toy_boat, floating_ring) share the buoyancy
+#                       affordance with the duck — "companion" undersold the
+#                       mechanical relationship.
 # v0.2 (2026-04-21) — backfilled 5 Cat5 gold constellations (dandelion, butterfly,
 #                     rock, bird, flower); all 12 gold-standard entities now have
 #                     constellation entries.
@@ -73,7 +82,7 @@ constellations:
     bridge_type: same_domain
     bridge_strength: strong
     bridge_prompt_pattern: "Your [entity] is a fruit, just like a banana!"
-    constellation: [plantain, fruit_bowl, mango, pear]
+    constellation: [plantain, mango, pear, papaya]
 
   - mapped_entity: teddy_bear
     category: 1
@@ -97,9 +106,9 @@ constellations:
     category: 1
     pillar: Creation
     gold_standard: designs/cat1/rubber_duck_cat1_gold_prod.md
-    bridge_type: companion
-    bridge_strength: moderate
-    bridge_prompt_pattern: "Your [entity] loves bath time, just like a rubber duck!"
+    bridge_type: shared_affordance
+    bridge_strength: strong
+    bridge_prompt_pattern: "Your [entity] floats in water at bath time, just like a rubber duck!"
     constellation: [bath_toy, toy_boat, floating_ring]
 
   # ─── Cat5 · Gold standards ─────────────────────────────────────────────
