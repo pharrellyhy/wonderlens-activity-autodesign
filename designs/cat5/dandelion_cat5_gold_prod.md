@@ -39,6 +39,33 @@ entity_attributes_covered:
   - tier_2.senses.breath_triggered_motion
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Dandelion (e.g., other wind-dispersed plants like milkweed puff,
+thistle seed head, wildflower in seed, maple "helicopter" seed) instead of a
+dandelion puff itself. The neighbor list, bridge type, and initial bridge
+prompt will live in `data/constellation_map.yaml` under
+`mapped_entity: dandelion` (Cat5 entry pending per that file's coverage notes)
+— this section describes how The Wish Puff Quest adapts mechanically for a
+bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The "Wish Puff Scout" role_title and the quest criterion "Find 3 things that are ready to fly!" — this criterion gives the collection Adventure-pillar purpose; swapping it loses the game feel.
+- The COMMIT evaluation mechanic per find ("Is it ready to fly? *(pause)* YES!") with a "Ready to fly? YES!" stamp — the pass/fail moment is what makes the quest game-like.
+- The detail-harvesting step ("What does it remind you of?") that generates each quest-team character name — this is what turns the collection into a cast for the Wind Adventure finale.
+
+**Swap** — re-phrase for the bridged entity:
+- Transition bridge "Look at all those tiny parachutes — seeds ready to fly!" → the neighbor's flight mechanism (milkweed: "big silky parachutes"; thistle: "purple-topped fluff that floats"; maple seed: "that wing that spins like a helicopter"). Keep "ready to fly" as the bridge line.
+- The seed character name "Cloud Puff" (harvested from dandelion) → a new first-character name harvested from the neighbor (milkweed: "Silky Cloud"; maple: "Spinny Wing"). Built from the child's detail answer regardless of neighbor.
+- Step 6 Closing line "a dandelion starts as a yellow flower and transforms into a puff ball" → the neighbor's Change story (milkweed: "a green pod cracks open into silky seeds"; maple seed: "a flower on the tree becomes a winged seed"). Keep the Change key-concept landing.
+- Step 5 reflection "parachute seeds!" callout near dandelion → the neighbor's flight-engineering label ("silk parachutes", "wing shape", "feathery fluff").
+
+**Watch** — gotchas to avoid:
+- If the neighbor isn't a seed-head at all (a butterfly would match "ready to fly" but belongs to butterfly's own constellation — this game is for plant/seed neighbors), confirm bridge_type before routing; never cross-bridge from insect/bird to a plant quest.
+- The Round 3 "doesn't match" branch (child photographs a rock) still applies — don't delete it just because the neighbor changed; rocks are off-criterion for ANY flight-ready quest.
+- Never skip the detail-harvest if the child gives a minimal answer — scaffold it ("does it look like a wing? a parachute? a tiny boat?") rather than defaulting to a generic name; the characters' personality is what carries the Wind Adventure.
+
 ### B. Activity Overview
 
 - **① Brief Description**: After photographing a dandelion, the AI marvels at its puffy seed head — all those tiny parachutes, ready to fly! The AI frames a quest: "Find 3 things in this park that are ready to fly!" The child becomes a Wish Puff Scout on a wind quest. For each find, the AI evaluates it against the quest criterion ("Is it ready to fly?"), creating a pass/fail game moment, and then harvests a personal detail ("What does it remind you of?") to generate a character name. Once 3 quest items are collected, the child co-creates a wind adventure story featuring all the characters, with each character's role shaped by the detail the child provided. The quest criterion gives the collection PURPOSE and DIRECTION; the detail harvesting gives each find PERSONALITY.

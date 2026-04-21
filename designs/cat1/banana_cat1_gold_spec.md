@@ -42,6 +42,30 @@ entity_attributes_covered:
   - tier_2.context.bunch_position_effect
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Banana (e.g., plantain, fruit bowl, mango, pear) instead of a
+banana itself. The neighbor list, bridge type, and initial bridge prompt live
+in `data/constellation_map.yaml` under `mapped_entity: banana` — this section
+describes how The Banana Time Machine adapts mechanically for a bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The "Time Pilot" role_title and the 5-stop past→future timeline ("3 months ago → 6 weeks ago → 2 weeks ago → yesterday → tomorrow") — the journey-map magic moment depends on this span.
+- The branching CHOICE POINT in Round 3 — the child's decision must genuinely route which Round 4 scene plays (Adventure pillar dies without real stakes).
+- The "*WHOOOOSH!* spinning the time dial" transition between rounds — this ritual sound-cue makes each time-jump feel like piloting, not a slideshow.
+
+**Swap** — re-phrase for the bridged entity:
+- "Tropical jungle" origin → neighbor-appropriate origin (mango: "a mango tree in a warm orchard"; pear: "a pear tree in an autumn orchard"; plantain: "a tall plantain plant in the tropics"; fruit bowl: "each fruit in its own starting place" — becomes a multi-origin montage).
+- Ripening-during-voyage plot ("green → yellow on the ship") → neighbor's ripening signature (mango: "green → golden-red, getting softer"; pear: "hard green → speckled and juicy"; plantain: rarely ripens to yellow for eating — swap to "gets even starchier, ready for frying").
+- Round 3 CHOICE POINT "fruit bowl vs. blender" → two fates that make sense for the neighbor (mango: "sliced fresh vs. frozen in smoothies"; pear: "baked pie vs. raw crunch"; fruit bowl: "shared at a family snack vs. packed for a picnic").
+- Round 1 "green banana gang on the plant, called a 'hand'" → neighbor's cluster/single-fruit reality (mango: "heavy single fruit hanging alone"; pear: "two or three pears swaying together").
+
+**Watch** — gotchas to avoid:
+- Fruit bowl is a CONTAINER, not one fruit — run the time machine for ONE featured fruit inside the bowl (let the child pick), or narrate parallel timelines (risk: too abstract for T1; default to picking one).
+- Plantain's culinary path is usually cooked-green, not eaten-yellow — don't recycle the banana's ripening script wholesale; the "cold ship ripens it yellow" beat misleads for plantain.
+- Never collapse the CHOICE POINT into a single pre-chosen path — if the neighbor has only one plausible fate, invent a fork (e.g., "eaten today vs. saved for tomorrow") so Causation still lands.
+
 ### B. Activity Overview
 
 - **① Brief Description**: The child becomes a "Time Pilot" who flies a magical time machine powered by the banana. Together, they travel backward and forward through time — visiting the banana months ago when it was a tiny green flower on a tropical plant, weeks ago when it was a plump green banana sailing across the ocean, yesterday when it sat on a store shelf hoping to be picked, and then forward to tomorrow and beyond. At a critical moment, the child makes a choice that branches the banana's future. At the end, the child sees the whole timeline assembled as a journey map — every stop the banana made through time.

@@ -38,6 +38,32 @@ entity_attributes_covered:
   - tier_2.senses.heft_sense
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Rock (e.g., other solid/hard natural objects like pebble, stone,
+boulder, brick, shell) instead of a rock itself. The neighbor list, bridge
+type, and initial bridge prompt will live in `data/constellation_map.yaml`
+under `mapped_entity: rock` (Cat5 entry pending per that file's coverage
+notes) — this section describes how Nature Inventor's Lab adapts mechanically
+for a bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The "Nature Inventor" role_title and the superpower-naming ritual (rock = STRENGTH, leaf = FLEXIBILITY, feather = LIGHTNESS, stick = LENGTH) — each find gets ONE named property.
+- The 4-ingredient collection + "pick two to combine" invention synthesis — this is the Creation-pillar magic moment where the child's invention gets narrated back.
+- The child's invention name being treated as original and honored ("No one has ever invented a [X] before — only YOU!") — this is what makes the child feel like a real inventor.
+
+**Swap** — re-phrase for the bridged entity:
+- Seed superpower for the photographed entity "Rock = STRENGTH" → neighbor's signature property (pebble: "STRENGTH + smoothness"; boulder: "MASSIVE STRENGTH"; brick: "STRENGTH + stackability"; shell: "HARDNESS + hollow inside"). Keep strength as the anchor for rock-family neighbors; add a twist for ones that differ.
+- Transition bridge "Feel how HARD it is — like a tiny mountain you can hold!" → neighbor's heft-and-feel (pebble: "smooth and cool in your palm"; boulder: "too big to lift — you'd need a whole team!"; shell: "hard outside but light for its size").
+- Round 1–3 finds stay open-ended (leaf, feather, stick, pinecone, flower petal) — they DON'T change based on the seed; every neighbor still needs a flex partner, a light partner, a long partner.
+- Closing "every superpower helps that thing do its JOB in nature" → acknowledge the neighbor's real job (boulder: "boulders block paths and hold back rivers"; shell: "shells protect soft creatures inside"; brick: "bricks build walls that last").
+
+**Watch** — gotchas to avoid:
+- Brick is human-made, not natural — if bridged, keep the lab metaphor but acknowledge the brick is "made from baked rock," preserving the "every material has a property" insight; don't pretend it grew in a forest.
+- If the neighbor is enormous (boulder), the child can't hold it — skip the "squeeze it" instruction and pivot to "look at it" observation; same property lands without the tactile beat.
+- Never skip the invention synthesis step — three-property collection with no combination is just a nature walk. If the child picks the same property twice, gently redirect ("two strengths just makes one super-strong — try mixing with [other]").
+
 ### B. Activity Overview
 
 - **① Brief Description**: After photographing a rock, the AI marvels at how hard and tough it is — and reveals the rock's "superpower": STRENGTH. The child becomes a Nature Inventor and goes on a mission to collect 3 more natural items, each of which the AI assigns a unique superpower based on its material properties (e.g., leaf = flexibility, feather = lightness, stick = length). At synthesis, the child picks two superpowers to combine and invents something that has never existed before — naming it, describing what it does, and hearing the AI bring the invention to life in vivid words.

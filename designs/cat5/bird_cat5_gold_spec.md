@@ -40,6 +40,32 @@ entity_attributes_covered:
   - tier_2.senses.song_as_signal
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Bird (e.g., other vocal outdoor creatures like sparrow, robin,
+pigeon, crow, duck) instead of a generic bird. The neighbor list, bridge type,
+and initial bridge prompt will live in `data/constellation_map.yaml` under
+`mapped_entity: bird` (Cat5 entry pending per that file's coverage notes) —
+this section describes how The Nature Orchestra adapts mechanically for a
+bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The "Nature Conductor" role_title and the 4-performer assembly (lead singer + drummer + whisperer + bell-ringer) — the ensemble cast is the Performance pillar's stage.
+- The ALL-TOGETHER-NOW finale where every performer plays at once under the child's direction ("LOUDER!") — this is the magic moment; solos without the unison climax collapse the game.
+- The child-assigns-sound mechanic where the child (not AI) picks each found object's concert sound — ownership of the assigned sounds is what makes the child feel like the boss of the orchestra.
+
+**Swap** — re-phrase for the bridged entity:
+- Transition bridge "Listen — it is singing a little song!" → neighbor's signature sound (pigeon: "coo coo cooo, a soft rolling song"; crow: "CAW CAW, bold announcements"; duck: "quack quack, chatting to the water"; robin: "bright morning whistle"). Keep "what do you think it is singing about?"
+- The photographed bird's role label "Lead Singer" → same label for all vocal neighbors (any bird-family neighbor is still the Lead Singer); the SOUND it makes in the concert scene changes (crow: "CAW CAW CAW", duck: "QUACK QUACK QUAAACK").
+- Step 2 framing "a bird was singing by itself — let's give it a band" → "[neighbor] was making its [sound] all alone — let's find it some bandmates!"
+- Step 5 Closing insight "different sounds work as a team" stays verbatim — the 3 found-objects (stick, leaf, pebble) don't change; only the lead singer's voice does.
+
+**Watch** — gotchas to avoid:
+- If the neighbor is a non-songbird (crow, duck, pigeon), don't romanticize the voice as "beautiful song" — reframe as "strong caller" or "chatty voice" so the child's real bird doesn't feel misrepresented.
+- If the photographed bird is silent in the photo (common), describe an IMAGINED song the child can help invent; don't claim "listen, it IS singing!" when the child heard nothing.
+- Never let the AI pick sounds for the stick, leaf, and pebble — the child's agency in naming those is what makes them own the orchestra; scaffold at most by offering a menu ("TAP or CRACK?") not a decision.
+
 ### B. Activity Overview
 
 - **① Brief Description**: The child photographs a bird singing on a branch and becomes the "Nature Conductor" — tasked with assembling a Nature Orchestra. The child searches for 3 more natural "performers" (a stick, a leaf, a pebble), photographs each one, and assigns a unique sound to it. At the climax, the AI narrates a concert where each performer plays its solo, then all together in a grand ensemble finale that the child gets to direct.

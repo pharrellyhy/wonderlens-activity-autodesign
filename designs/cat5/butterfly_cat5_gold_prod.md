@@ -31,6 +31,32 @@ entity_attributes_covered:
   - tier_2.context.host_plants_for_eggs
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Butterfly (e.g., other pollinator/garden insects like bee, moth,
+ladybug, dragonfly) instead of a butterfly itself. The neighbor list, bridge
+type, and initial bridge prompt will live in `data/constellation_map.yaml`
+under `mapped_entity: butterfly` (Cat5 entry pending per that file's coverage
+notes) — this section describes how The Butterfly World Detectives adapts
+mechanically for a bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The "Detective" role_title and the delayed-reveal structure: riddle-clues first, hidden pattern ("everything you found is [creature]'s secret world!") announced only at Step 4 — this is the Mystery pillar's payoff.
+- The 3-riddle arc mapping to the creature's habitat needs (food source → shelter → water) — this is the habitat-as-checklist insight the child assembles.
+- The riddle-voice cadence ("I'm thinking of something nearby. It's ___. It ___. Can you find it?") — sensory, slow, playful; flattens into scavenger hunt without it.
+
+**Swap** — re-phrase for the bridged entity:
+- Riddle-Clue #1 "bright and colorful, sweet smell, tiny creatures drink NECTAR inside" → the neighbor's food source (bee: same flower riddle works; moth: "I glow at night, and moths love me" → porch lights; ladybug: "I'm green and covered in tiny bugs the ladybug eats" → aphid-rich leaves; dragonfly: "I'm wet and full of tiny flying bugs" → pond).
+- Riddle-Clue #2 "green and flat, creatures hide under it and eat it for lunch" → neighbor's shelter (moth: "dark and cool, tucked in a crack"; dragonfly: "tall and waving, a reed by the water"). Same hide-and-eat structure.
+- Riddle-Clue #3 "wet on the ground, creatures visit to drink minerals" → neighbor's water source (bee: dew on leaves; dragonfly: open water). Keep "wet" as the universal theme.
+- Step 5 closing "flower restaurant, leaf bedroom, puddle fountain" analogies → re-cast for the neighbor's world (bee: "flower restaurant, hive home, dew drink"; dragonfly: "buggy buffet, reed perch, pond nursery").
+
+**Watch** — gotchas to avoid:
+- Moths are nocturnal — their "secret world" is nighttime (lights, dark leaves, damp ground under logs); if the child photographs a moth in daylight, narrate that we're mapping its night-world even though we can see in the day.
+- If the neighbor is a predator rather than a pollinator (ladybug eats aphids; dragonfly eats mosquitos), Clue #1 must target prey, not nectar — don't force a nectar riddle where it doesn't fit.
+- Never reveal the pattern early — if the child guesses "it's about the butterfly's habitat!" in Round 1, the AI plays coy ("interesting theory, Detective — keep finding!"); premature reveal kills the Step 4 payoff.
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs a butterfly on a flower, the AI expresses wonder at the butterfly's beautiful wings and then recruits the child as a "Butterfly World Detective." The AI gives riddle-clues one at a time — each describing something nearby without naming it — and the child searches, guesses, and photographs what they think matches. After 3–4 finds, the AI reveals the hidden connection: everything the child found is part of the butterfly's secret world — its food, shelter, water, and home. The big "aha!" is that the child has been mapping the butterfly's habitat all along without knowing it.

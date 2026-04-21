@@ -28,6 +28,29 @@ entity_attributes_covered:
   - tier_1.function.communication_roar
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Lion (e.g., cat, kitten, tiger, leopard, stuffed lion) instead of a
+lion itself. The neighbor list, bridge type, and initial bridge prompt live in
+`data/constellation_map.yaml` under `mapped_entity: lion` — this section
+describes how The Lion's Big Show adapts mechanically for a bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The talent-show frame and the three jungle judges (parrot, monkey, elephant) — the magic moment's standing ovation depends on this character cast.
+- The escalation from a greeting-roar to a lullaby-roar to a whisper-roar (same vocal-variety arc; only the sound itself changes).
+- The child's role_title "Roar Star" — keep the cat-family fierceness framing even when the neighbor is smaller or cuddlier.
+
+**Swap** — re-phrase for the bridged entity:
+- Round 1 prompt "Do your biggest, loudest roar!" → neighbor's most recognizable sound (cat's "meow!", tiger's "grrr!", stuffed lion's "rawr!"). Keep the superlative framing ("biggest, loudest…").
+- Habitat references from "jungle" → neighbor-appropriate context (cat: "your living room stage"; tiger: "the big cats' arena"; stuffed lion: "the toy shelf stage"). The judges stay the same.
+- Magic-moment line "Even the jungle trees are cheering!" → swap tree imagery to match the neighbor's setting while keeping the "audience explodes" spirit.
+
+**Watch** — gotchas to avoid:
+- If the neighbor is a stuffed toy (e.g., stuffed_lion), the child's performance is FOR the toy as audience-plus-performer — don't force the toy to roar, have the child narrate while holding it.
+- Kittens and quiet cats may not vocalize loudly in real life — reframe "loud" as "most confident" or "most expressive" so a child with a quiet cat doesn't feel their entity is "wrong".
+- Never drop Performance pillar — if the neighbor doesn't offer vocal range (e.g., a silent plushie), pivot to sound-imitation rather than abandoning sound entirely.
+
 ### B. Activity Overview
 
 **① Brief Description**: The child becomes a "Roar Star" who performs AS the lion in front of a silly audience of jungle judges (a parrot, a monkey, and an elephant). Each round, the AI sets a performance challenge — roar a greeting, roar a lullaby, do a tiny whisper-roar — and the audience of judges reacts with over-the-top delight, gasps, or laughter. The challenges escalate with a surprise twist, and the finale is a standing ovation where every judge goes wild.
