@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>进阶过程演示 · L1 ↔ L2 ↔ L3 在实际中如何运作</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,50..100,0..1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ============ TOKENS (from Template 0) ============ */
+    :root {
+      --bg: #F4EFE6;
+      --bg-deep: #ECE5D6;
+      --bg-card: #FAF6EC;
+      --ink: #141311;
+      --ink-soft: #3B3730;
+      --muted: #7A7468;
+      --line: #CCC3AE;
+      --line-soft: #E2DBC8;
+      --accent: #C5411C;
+      --accent-deep: #8E2A10;
+      --mystery: #3D4A5C;
+      --creation: #C5411C;
+      --performance: #C89021;
+      --discovery: #3A6B56;
+      --adventure: #8B5A3C;
+      --nurture: #A6497C;
+      --tier-0: #B06A3A;
+      --tier-1: #3A6B56;
+      --tier-2: #3D4A5C;
+      --serif: 'Fraunces', 'Noto Serif SC', Georgia, serif;
+      --sans: 'IBM Plex Sans', 'Noto Serif SC', -apple-system, sans-serif;
+      --mono: 'IBM Plex Mono', 'SF Mono', monospace;
+    }
+
+    /* ============ BASE ============ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      font-feature-settings: "ss01", "ss02", "kern";
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(197, 65, 28, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 85% 70%, rgba(61, 74, 92, 0.04) 0%, transparent 50%);
+      min-height: 100vh;
+      padding-top: 54px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      z-index: 1;
+      mix-blend-mode: multiply;
+    }
+
+    /* ============ MASTHEAD ============ */
+    .masthead {
+      border-bottom: 1px solid var(--ink);
+      padding: 18px 48px 14px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 32px;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .masthead .brand {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      font-style: italic;
+    }
+
+    .masthead .brand b {
+      font-style: normal;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .breadcrumb {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-left: 16px;
+    }
+
+    .breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumb a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 1px;
+    }
+
+    @media (max-width: 700px) {
+      .breadcrumb {
+        display: none;
+      }
+    }
+
+    @media (max-width: 960px) {
+      body {
+        padding-top: 72px;
+      }
+
+      .masthead {
+        padding: 14px 24px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .masthead nav {
+        display: none;
+      }
+    }
+
+    .masthead nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    .masthead nav a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .masthead nav a:hover {
+      color: var(--accent);
+    }
+
+    .masthead nav a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 1px;
+    }
+
+    .masthead .meta {
+      color: var(--muted);
+    }
+
+    /* ============ SECTION BASE ============ */
+    section {
+      padding: 80px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .sec-head {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+      align-items: baseline;
+    }
+
+    .sec-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      font-variation-settings: "opsz" 90;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 90, "WONK" 1;
+    }
+
+    .sec-desc {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 720px;
+      font-weight: 300;
+    }
+
+    /* ============ INTRO LEGEND ============ */
+    .legend-compact {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px 20px;
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .lc-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px;
+      align-items: baseline;
+    }
+
+    .lc-row dt {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .lc-row dd {
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink-soft);
+      font-weight: 300;
+    }
+
+    @media (max-width: 700px) {
+      .lc-row {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+    }
+
+    /* ============ REVNOTE ============ */
+    .revnote {
+      margin-top: 36px;
+      padding: 18px 22px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .revnote summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+
+    .revnote summary::marker,
+    .revnote summary::-webkit-details-marker {
+      color: var(--accent);
+    }
+
+    .revnote summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 1px;
+    }
+
+    .revnote[open] summary {
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .revnote-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 2px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .revnote ol {
+      margin: 0;
+      padding-left: 22px;
+      color: var(--ink-soft);
+    }
+
+    .revnote li {
+      margin-bottom: 10px;
+    }
+
+    .revnote li:last-child {
+      margin-bottom: 0;
+    }
+
+    .revnote code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    /* ============ VERSION ============ */
+    .version {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ============ SCENARIO TIMELINE (shared across scenarios 1-4) ============ */
+    /* Activity card — the atomic unit of a scenario timeline */
+    .ac {
+      flex: 0 0 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      scroll-snap-align: start;
+    }
+
+    .ac-head {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .ac-num {
+      color: var(--accent);
+    }
+
+    .ac-entity {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .ac-rungs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ac-rung {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 2px;
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .ac-rung-arrow {
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .ac-outcome {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      flex-grow: 1;
+    }
+
+    .ac-trigger {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      display: flex;
+      gap: 6px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .ac-trigger-glyph {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .ac-detail {
+      font-size: 11px;
+    }
+
+    .ac-detail summary {
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .ac-detail summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .ac-dialogue {
+      padding: 8px 10px;
+      margin-top: 6px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 2px solid var(--accent);
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .ac-dialogue-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .ac-dialogue-col code {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 6px 8px;
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      color: var(--accent);
+      border-radius: 2px;
+      word-break: break-all;
+      line-height: 1.5;
+    }
+
+    .ac-dialogue-lbl {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    /* Transition indicator between cards */
+    .transition {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 0 8px;
+      align-self: center;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+    }
+
+    .transition .t-glyph {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .transition .t-label {
+      text-transform: uppercase;
+      color: var(--muted);
+      max-width: 90px;
+      text-align: center;
+    }
+
+    .transition[data-type="promote"] .t-glyph {
+      color: var(--accent);
+    }
+
+    .transition[data-type="hold"] .t-glyph {
+      color: var(--muted);
+    }
+
+    .transition[data-type="demote"] .t-glyph {
+      color: var(--tier-0);
+    }
+
+    .transition[data-type="sibling-jump"] .t-glyph {
+      color: var(--accent);
+    }
+
+    .transition[data-type="soft-reframe"] .t-glyph {
+      color: color-mix(in srgb, var(--muted) 60%, var(--accent));
+    }
+
+    .transition[data-type="soft-reframe"] .t-label {
+      font-style: italic;
+    }
+
+    /* Timeline container */
+    .timeline {
+      display: flex;
+      gap: 0;
+      padding: 24px 0;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      align-items: stretch;
+    }
+
+    .timeline:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* State panel */
+    .state-panel {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      border-left: 2px solid var(--line);
+      border-radius: 0 4px 4px 0;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+
+    /* Accent-eyebrow: shared "mono / 10px / uppercase / accent" caption label.
+       Used above accent-tinted card regions (state-panel, axes-snapshot, distinction-box).
+       Each selector keeps its own margin-bottom below. */
+    .state-panel strong,
+    .as-head,
+    .db-col-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+    }
+
+    .state-panel strong {
+      margin-bottom: 6px;
+    }
+
+    .state-panel code {
+      font-size: 11px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      padding: 1px 5px;
+      border-radius: 2px;
+    }
+
+    .state-panel .state-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 4px 0;
+      flex-wrap: wrap;
+    }
+
+    .state-panel .state-row em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* Scenario wrapper */
+    .scenario {
+      margin-top: 48px;
+      scroll-margin-top: 70px;
+    }
+
+    .scenario-tldr {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-style: italic;
+      color: var(--ink-soft);
+      margin: 8px 0 14px;
+    }
+
+    .scenario-context {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 0;
+      border-top: 1px dashed var(--line);
+      border-bottom: 1px dashed var(--line);
+      margin-bottom: 8px;
+    }
+
+    .scenario-context strong {
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .scenario-close {
+      margin-top: 18px;
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      padding: 12px 16px;
+      border-left: 2px solid var(--accent);
+      background: color-mix(in srgb, var(--accent) 3%, var(--bg));
+    }
+
+    .scenario-close strong {
+      font-family: var(--serif);
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    /* ============ AXES SNAPSHOT (Scenario 3 — across-axis independence) ============ */
+    .axes-snapshot {
+      margin-top: 18px;
+      padding: 20px 24px;
+      background: color-mix(in srgb, var(--accent) 3%, var(--bg));
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .as-head {
+      margin-bottom: 14px;
+    }
+
+    .as-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .as-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 40px;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .as-name {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+    }
+
+    .as-bar {
+      height: 6px;
+      border-radius: 2px;
+      background: var(--line);
+      position: relative;
+    }
+
+    .as-l0 { background: var(--line); }
+
+    .as-l1 {
+      background: linear-gradient(to right, color-mix(in srgb, var(--accent) 30%, transparent) 33%, var(--line) 33%);
+    }
+
+    .as-l2 {
+      background: linear-gradient(to right, color-mix(in srgb, var(--accent) 60%, transparent) 66%, var(--line) 66%);
+    }
+
+    .as-l3 {
+      background: color-mix(in srgb, var(--accent) 85%, transparent);
+    }
+
+    .as-val {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-align: right;
+    }
+
+    .as-caption {
+      margin-top: 14px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    /* ============ DISTINCTION BOX (Scenario 4 — reluctance vs inability) ============ */
+    .distinction-box {
+      margin-top: 18px;
+      padding: 20px 24px;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .db-head {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .db-body p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin: 6px 0;
+    }
+
+    .db-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .db-col {
+      padding: 12px 14px;
+      border-radius: 4px;
+    }
+
+    .db-demote {
+      background: color-mix(in srgb, var(--tier-0) 10%, transparent);
+      border-left: 2px solid var(--tier-0);
+    }
+
+    .db-soft {
+      background: color-mix(in srgb, var(--muted) 10%, transparent);
+      border-left: 2px solid var(--muted);
+    }
+
+    .db-col-label {
+      margin-bottom: 6px;
+    }
+
+    .db-col-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 700px) {
+      .db-compare { grid-template-columns: 1fr; }
+    }
+
+    /* ============ THREE-RULES SUMMARY (§05) ============ */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 18px;
+    }
+    .rule-card {
+      padding: 20px 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+    .rule-head {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .rule-body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin: 0 0 14px;
+    }
+    .rule-body code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      padding: 1px 4px;
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      border-radius: 2px;
+    }
+    .rule-shown {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+    }
+    @media (max-width: 960px) {
+      .rules-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Mobile collapse */
+    @media (max-width: 700px) {
+      .timeline {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .transition {
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 4px 0;
+      }
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 48px 64px;
+    }
+
+    @media (max-width: 700px) {
+      section {
+        padding: 48px 20px;
+      }
+
+      footer {
+        padding: 32px 20px 48px;
+      }
+
+      .sec-head {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="masthead">
+    <div class="brand"><b>WonderLens</b> · 进阶过程演示</div><span class="breadcrumb">← <a
+        href="template_0_preview_cn.html#axes">Template 0 · §07 进阶</a></span>
+    <nav>
+      <a href="#intro">导读</a>
+      <a href="#scenario-1">场景 1</a>
+      <a href="#scenario-2">场景 2</a>
+      <a href="#scenario-3">场景 3</a>
+      <a href="#scenario-4">场景 4</a>
+      <a href="#rules">三条规则</a>
+    </nav>
+    <div class="meta">草稿 v0.1 · 2026-04-20 · 内部评审</div>
+  </header>
+
+  <!-- ============== §00 INTRO ============== -->
+  <section id="intro">
+    <div class="sec-head">
+      <div class="sec-num">§ 00 / 如何阅读</div>
+      <h2 class="sec-title">一个孩子在阶梯上的旅程 — <em>四个场景</em>。</h2>
+    </div>
+    <p class="sec-desc">Template 0 §07 规定了运行时在各轴上何时让孩子的阶梯晋级、保持或回退。本文展示这些规则在具体孩子的旅程中是什么样子。不是实时模拟器 — 是手工设计的场景，让时间维度的动态变化变得具体。</p>
+
+    <dl class="legend-compact">
+      <div class="lc-row">
+        <dt>↑ 晋级</dt>
+        <dd>下一档</dd>
+      </div>
+      <div class="lc-row">
+        <dt>· 保持</dt>
+        <dd>同档，下一个活动换例子</dd>
+      </div>
+      <div class="lc-row">
+        <dt>↓ 回退</dt>
+        <dd>降一档，同一轴（适用尊严原则）</dd>
+      </div>
+      <div class="lc-row">
+        <dt>⇢ 相邻轴跳转</dt>
+        <dd>切换到相邻轴的 L1</dd>
+      </div>
+      <div class="lc-row">
+        <dt>~ 温和换场</dt>
+        <dd>同档，换节奏（不是回退）</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ============== §01 SCENARIO 1 — STEADY PROGRESSION ============== -->
+  <section class="scenario" id="scenario-1">
+    <div class="sec-head">
+      <div class="sec-num">§ 01 / 平稳推进</div>
+      <h2 class="sec-title">基准旅程 — 多数活动保持同档，晋级发生在<em>自然的节点</em>上。</h2>
+    </div>
+    <p class="scenario-tldr">米娅在 5 个活动中深耕 Form 轴。她很快从 L1 晋到 L2，然后在 3 个 L2 活动中保持稳定，跨活动晋到 L3。</p>
+
+    <div class="scenario-context">
+      <span><strong>Child</strong>米娅 · T1 · 4-6 岁</span>
+      <span><strong>Axis</strong>Form</span>
+      <span><strong>Entity</strong>瓢虫 → 蝴蝶 → 向日葵</span>
+    </div>
+
+    <div class="timeline" tabindex="0" role="region" aria-label="场景 1 活动时间线">
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 1</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">瓢虫</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">两轮里说了 4 个特征，不需要重复提示。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · L1 扎实，暂未出现自发的 L+1</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">保持</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 2</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">瓢虫（换例子）</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">说了 3 个特征，然后自己说了一句：『鸟不吃它是因为这些点点。』</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↑</span>
+          <span>晋级（下一个活动）· 自发的 L+1 回应</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="promote">
+        <span class="t-glyph">↑</span>
+        <span class="t-label">晋级 · 下一活动 L2</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 3</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">蝴蝶</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">列出 4 个特征，还指出其中一个。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · L2 顺利完成</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">保持</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 4</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">蝴蝶（第二次）</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">列出 5 个特征，并逐个定位。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · Form 轴的第 2 次 L2 成功</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">保持</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 5</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">向日葵</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">列出 6 个特征，逐个定位，还和蝴蝶做了比较。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↑</span>
+          <span>跨活动晋级 · 连续 3 次 L2 成功</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="state-panel">
+      <strong>场景 1 结束后的状态</strong>
+      Form: <code>L1 → L1 → L2 → L2 → L2 → (L3 next)</code>
+    </div>
+
+    <div class="scenario-close">
+      <strong>为什么这很重要：</strong>实际使用中，多数活动都是这个样子。晋级发生在自然的节点（自发的 L+1，或连续 3 个会话完成），而不是每次成功都晋级。保持不是停滞 — 它让系统在孩子内化当前阶梯的同时，给例子留出变化的空间。
+    </div>
+  </section>
+
+  <!-- ============== §02 SCENARIO 2 — HIT-A-WALL RECOVERY ============== -->
+  <section class="scenario" id="scenario-2">
+    <div class="sec-head">
+      <div class="sec-num">§ 02 / 撞墙后的恢复</div>
+      <h2 class="sec-title">Causation 触底 — 运行时保住尊严，<em>跳到相邻轴</em>。</h2>
+    </div>
+    <p class="scenario-tldr">米娅在 Causation L2 上挣扎，被温和地回退；在 L1 仍然找不到着力点 — 于是运行时换帧到 Connection 轴的 L1。她在那里找到立足点，晋级了，一个会话后 Causation 也回升了。</p>
+
+    <div class="scenario-context">
+      <span><strong>Child</strong>米娅 · T1 · 4-6 岁</span>
+      <span><strong>Axes</strong>Causation, Connection</span>
+      <span><strong>Entity</strong>瓢虫（持续使用）</span>
+    </div>
+
+    <div class="timeline" tabindex="0" role="region" aria-label="场景 2 活动时间线">
+      <article class="ac" data-axis="causation">
+        <header class="ac-head">
+          <span class="ac-num">活动 1</span>
+          <span class="ac-axis">Causation</span>
+        </header>
+        <div class="ac-entity">瓢虫</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">回答了『红色是因为太阳』，但没能把红色和捕食者为什么避开它联系起来。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · 回答有杂音但没跑题，L2 再试一次</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">保持</span>
+      </div>
+
+      <article class="ac" data-axis="causation">
+        <header class="ac-head">
+          <span class="ac-num">活动 2</span>
+          <span class="ac-axis">Causation</span>
+        </header>
+        <div class="ac-entity">瓢虫</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">沉默了约 8 秒。没有回答，而是把提示重复了一遍。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↓</span>
+          <span>回退 · 2 次尝试都没完成 — 降到 L1</span>
+        </div>
+        <details class="ac-detail">
+          <summary>这里发生了什么</summary>
+          <div class="ac-dialogue-split">
+            <div class="ac-dialogue-col">
+              <div class="ac-dialogue-lbl">运行时记录</div>
+              <code>{"axis": "causation", "rung_change": "L2→L1", "trigger": "2_attempts_no_complete"}</code>
+            </div>
+            <div class="ac-dialogue-col">
+              <div class="ac-dialogue-lbl">米娅听到的</div>
+              <div class="ac-dialogue">"嗯——我先给你看看我看到瓢虫的红色。然后你告诉我你看到了什么。"</div>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <div class="transition" data-type="demote">
+        <span class="t-glyph">↓</span>
+        <span class="t-label">回退 · 降到 L1</span>
+      </div>
+
+      <article class="ac" data-axis="causation">
+        <header class="ac-head">
+          <span class="ac-num">活动 3</span>
+          <span class="ac-axis">Causation</span>
+        </header>
+        <div class="ac-entity">瓢虫</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">还是沉默。开始念叨旁边不相关的东西（『杯子』、『窗户』）。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">⇢</span>
+          <span>Causation 触底 · 运行时触发相邻轴跳转到 Connection</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="sibling-jump">
+        <span class="t-glyph">⇢</span>
+        <span class="t-label">相邻轴跳转 · Connection L1</span>
+      </div>
+
+      <article class="ac" data-axis="connection">
+        <header class="ac-head">
+          <span class="ac-num">活动 4</span>
+          <span class="ac-axis">Connection</span>
+        </header>
+        <div class="ac-entity">瓢虫</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">说了 3 个和瓢虫相连的东西 — 草、叶子、另一只瓢虫。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · 在新轴上稳住 L1</span>
+        </div>
+        <details class="ac-detail">
+          <summary>这里发生了什么</summary>
+          <div class="ac-dialogue-split">
+            <div class="ac-dialogue-col">
+              <div class="ac-dialogue-lbl">运行时记录</div>
+              <code>{"axis_switch": "causation→connection", "rung": "L1", "trigger": "sibling_jump_on_axis_floor"}</code>
+            </div>
+            <div class="ac-dialogue-col">
+              <div class="ac-dialogue-lbl">米娅听到的</div>
+              <div class="ac-dialogue">"看看瓢虫碰到的所有东西——草、叶子。我们来看看它们怎么连在一起。"</div>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">保持</span>
+      </div>
+
+      <article class="ac" data-axis="connection">
+        <header class="ac-head">
+          <span class="ac-num">活动 5</span>
+          <span class="ac-axis">Connection</span>
+        </header>
+        <div class="ac-entity">瓢虫</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">说了 4 个连接，还自己解释说『草保护她，因为她躲在草底下』。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↑</span>
+          <span>晋级 · Connection 上出现自发的 L+1 回应</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="promote">
+        <span class="t-glyph">↑</span>
+        <span class="t-label">晋级 · 下一活动 L2</span>
+      </div>
+
+      <article class="ac" data-axis="causation">
+        <header class="ac-head">
+          <span class="ac-num">活动 6</span>
+          <span class="ac-axis">Causation（回归）</span>
+        </header>
+        <div class="ac-entity">瓢虫</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">『红色警告鸟她不好吃。』在原来的轴上清晰地说出了 L2 因果链。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↑</span>
+          <span>晋级 · Causation 绕一圈之后回升了</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="state-panel">
+      <strong>每轴阶梯的演化</strong>
+      <div class="state-row">起点 <code>{Form: L2, Causation: L2, Connection: L1}</code></div>
+      <div class="state-row">活动 #3 后 <code>{Form: L2, Causation: L1, Connection: L1}</code> <em>— Causation 触底</em></div>
+      <div class="state-row">活动 #5 后 <code>{Form: L2, Causation: L1, Connection: L2}</code> <em>— Connection 通过相邻轴跳转晋级</em></div>
+      <div class="state-row">活动 #6 后 <code>{Form: L2, Causation: L2, Connection: L2}</code> <em>— Causation 回升</em></div>
+    </div>
+
+    <div class="scenario-close">
+      <strong>为什么这很重要：</strong>孩子的体验是连贯的 — 她听到的是新的提问方式，而不是失败。运行时的记账很精细 — 每轴阶梯的漂移、触底时的相邻轴跳转、回归轨迹。两者同时成立。尊严原则 + 相邻轴跳转是两个最容易被文字误读的设计选择；这里它们在对话片段和状态面板的演化里清楚可见。
+    </div>
+  </section>
+
+  <!-- ============== §03 SCENARIO 3 — ACROSS-AXIS INDEPENDENCE ============== -->
+  <section class="scenario" id="scenario-3">
+    <div class="sec-head">
+      <div class="sec-num">§ 03 / 各轴独立</div>
+      <h2 class="sec-title">阶梯状态是<em>按轴</em>记的，不是全局的 — 同一个孩子同时处于多个阶梯。</h2>
+    </div>
+    <p class="scenario-tldr">米娅在 Form 上很强（L3），在 Causation 上较弱（L1），在 Responsibility 上几乎刚起步（L1）。这些状态在同一个会话、同一个瞬间共存。没有『等级』。七根条，各自独立地推移。</p>
+
+    <div class="scenario-context">
+      <span><strong>Child</strong>米娅 · T1 · 4-6 岁</span>
+      <span><strong>Axes</strong>Form（强）、Causation（较弱）、Responsibility（刚起步）</span>
+      <span><strong>Entity</strong>蜜蜂（持续使用）</span>
+    </div>
+
+    <div class="timeline" tabindex="0" role="region" aria-label="场景 3 活动时间线">
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 1</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">蜜蜂</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L3</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L3</span>
+        </div>
+        <div class="ac-outcome">列出了 6 个部位，每个都定位了，并自发说出：『毛茸茸的地方是用来粘花粉的。』</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · Form 上干净的 L3</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">保持</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 2</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">蜜蜂（换一个切入点）</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L3</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L3</span>
+        </div>
+        <div class="ac-outcome">把 5 个部位和功能对应起来 — 『刺：防御』、『翅膀：飞』、『眼睛：看花』。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · Form 上第 2 次 L3，同档换切入点</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">保持</span>
+      </div>
+
+      <article class="ac" data-axis="causation">
+        <header class="ac-head">
+          <span class="ac-num">活动 3</span>
+          <span class="ac-axis">Causation</span>
+        </header>
+        <div class="ac-entity">蜜蜂</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">回答有对有错 — 『蜜蜂嗡嗡是因为……它们飞得快？』一个说得过去，一个跑偏了。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · Causation 仍在 L1 — 同一个孩子，不同的轴</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">保持</span>
+      </div>
+
+      <article class="ac" data-axis="responsibility">
+        <header class="ac-head">
+          <span class="ac-num">活动 4</span>
+          <span class="ac-axis">Responsibility</span>
+        </header>
+        <div class="ac-entity">蜜蜂</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L1</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L1</span>
+        </div>
+        <div class="ac-outcome">被问『蜜蜂需要我们为它做什么』时没有跑题 — 但投入程度很低。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · Responsibility 刚起步 · L1 最低程度</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="hold">
+        <span class="t-glyph">·</span>
+        <span class="t-label">保持</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 5</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">蜜蜂</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L3</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L3</span>
+        </div>
+        <div class="ac-outcome">Form 上连续第 3 次 L3 — 不需要脚手架就能完整地讲出部位/功能的对应。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · 个性化接口要在每个孩子 ≥200 会话后才会启用（目前还没到）</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="axes-snapshot">
+      <strong class="as-head">七个轴的阶梯 · 场景 3 结束时的快照</strong>
+      <div class="as-grid">
+        <div class="as-row" data-rung="L3">
+          <span class="as-name">Form</span>
+          <span class="as-bar as-l3"></span>
+          <span class="as-val">L3</span>
+        </div>
+        <div class="as-row" data-rung="L0">
+          <span class="as-name">Function</span>
+          <span class="as-bar as-l0"></span>
+          <span class="as-val">—</span>
+        </div>
+        <div class="as-row" data-rung="L1">
+          <span class="as-name">Causation</span>
+          <span class="as-bar as-l1"></span>
+          <span class="as-val">L1</span>
+        </div>
+        <div class="as-row" data-rung="L0">
+          <span class="as-name">Change</span>
+          <span class="as-bar as-l0"></span>
+          <span class="as-val">—</span>
+        </div>
+        <div class="as-row" data-rung="L0">
+          <span class="as-name">Connection</span>
+          <span class="as-bar as-l0"></span>
+          <span class="as-val">—</span>
+        </div>
+        <div class="as-row" data-rung="L0">
+          <span class="as-name">Perspective</span>
+          <span class="as-bar as-l0"></span>
+          <span class="as-val">—</span>
+        </div>
+        <div class="as-row" data-rung="L1">
+          <span class="as-name">Responsibility</span>
+          <span class="as-bar as-l1"></span>
+          <span class="as-val">L1</span>
+        </div>
+      </div>
+      <p class="as-caption">没有经验条。有七根条，它们各自独立推移。</p>
+    </div>
+
+    <div class="scenario-close">
+      <strong>为什么这很重要：</strong>米娅同时在 Form 上处于 L3，在 Causation 上处于 L1，在 Connection 上尚未起步 — 都在同一个瞬间。『米娅处于哪个等级？』没有单一答案。运行时<em>按轴</em>跟踪阶梯，而家长 dashboard 的好奇心径向图（<code>parent_growth_path_preview.html</code> §03）就是这同一个快照在更长时间窗口下的视图。
+    </div>
+  </section>
+
+  <!-- ============== §04 SCENARIO 4 — RELUCTANCE VS INABILITY ============== -->
+  <section class="scenario" id="scenario-4">
+    <div class="sec-head">
+      <div class="sec-num">§ 04 / 不想 vs 不能</div>
+      <h2 class="sec-title">沉默不是回退 — 当孩子需要的是喘口气、而不是更低的阶梯时，运行时有一套<em>更温和的动作</em>。</h2>
+    </div>
+    <p class="scenario-tldr">米娅在说出两个正确特征之后，活动中途沉默了。运行时把这读作情绪上的停顿，而不是认知上的缺口 — 换成压力更低的节奏（温和换场），保住当前阶梯，米娅重新投入，并在下一个活动中赢得了晋级。</p>
+
+    <div class="scenario-context">
+      <span><strong>Child</strong>米娅 · T1 · 4-6 岁</span>
+      <span><strong>Axis</strong>Form</span>
+      <span><strong>Entity</strong>蘑菇（新 — 说明这不是只发生在瓢虫身上）</span>
+    </div>
+
+    <div class="timeline" tabindex="0" role="region" aria-label="场景 4 活动时间线">
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 1</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">蘑菇</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L2</span>
+        </div>
+        <div class="ac-outcome">说了 2 个特征（『白色』、『顶上是圆的』），然后沉默了 8 秒。运行时在活动内换到压力更低的节奏 — 换了第二张蘑菇的图，『你看，这个不一样哦。我想知道你看到了什么。』米娅轻声回答了。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">~</span>
+          <span>保持 · 活动内温和换场 — 情绪上的停顿，不是认知上的缺口</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="soft-reframe">
+        <span class="t-glyph">~</span>
+        <span class="t-label">活动 #1 内温和换场 — 孩子重新投入</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 2</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">蘑菇（同一会话，2 分钟后）</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L2</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L3</span>
+        </div>
+        <div class="ac-outcome">在更温和的切入之后重新投入；两轮里说了 4 个特征 — 『柄』、『帽子』、『下面凹凸的』、『比胡萝卜矮』。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">↑</span>
+          <span>晋级 · 在活动 #2 内达到了 L3 — Form 轴的下一个活动晋级</span>
+        </div>
+      </article>
+
+      <div class="transition" data-type="promote">
+        <span class="t-glyph">↑</span>
+        <span class="t-label">晋级 · 活动 #2 内获得 L2→L3</span>
+      </div>
+
+      <article class="ac" data-axis="form">
+        <header class="ac-head">
+          <span class="ac-num">活动 3</span>
+          <span class="ac-axis">Form</span>
+        </header>
+        <div class="ac-entity">蘑菇</div>
+        <div class="ac-rungs">
+          <span class="ac-rung">L3</span>
+          <span class="ac-rung-arrow">→</span>
+          <span class="ac-rung">L3</span>
+        </div>
+        <div class="ac-outcome">通过把蘑菇和熟悉的水果做比较来完成 L3 — 『顶上像苹果一样圆，但柄像胡萝卜一样细。』完整的类比，没人提示。</div>
+        <div class="ac-trigger">
+          <span class="ac-trigger-glyph">·</span>
+          <span>保持 · Form 上干净的 L3</span>
+        </div>
+      </article>
+    </div>
+
+    <aside class="distinction-box">
+      <div class="db-head">沉默 ≠ 回退</div>
+      <div class="db-body">
+        <p><strong>回退需要 2 次尝试</strong> — 沉默<em>加上</em>跑题游走<em>加上</em>把提示重复回来。在正确回答之后的单次沉默，通常只是孩子在思考、休息，或需要一个更温和的重新进入。</p>
+        <p>运行时有一个单独的<strong>温和换场</strong>动作 — 这是活动内节奏层面的调整，<strong>不是</strong>阶梯变化。</p>
+      </div>
+      <div class="db-compare">
+        <div class="db-col db-demote">
+          <span class="db-col-label">回退</span>
+          <span class="db-col-text">孩子的认知状态真的和阶梯不匹配。降档。</span>
+        </div>
+        <div class="db-col db-soft">
+          <span class="db-col-label">温和换场</span>
+          <span class="db-col-text">孩子的情绪 / 注意状态需要喘口气。同档，换一个更柔和的提示。</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="scenario-close">
+      <strong>为什么这很重要：</strong>运行时并不贪档。它有中间动作 — 温和换场、变换例子 — 这些动作保住阶梯，不会逼孩子越过当前的边界。把『不能』和『不想』区分开来，是这个系统最清晰的设计宣言：孩子不是被优化穿过去的，他们是被倾听的。
+    </div>
+  </section>
+
+  <!-- ============== §05 THREE RULES · ONE PLACE ============== -->
+  <section class="scenario" id="rules">
+    <div class="sec-head">
+      <div class="sec-num">§ 05 / 三条规则 · 一处集中</div>
+      <h2 class="sec-title">把场景里演示的规则重新讲一遍。</h2>
+    </div>
+
+    <div class="rules-grid">
+      <div class="rule-card">
+        <div class="rule-head">尊严原则</div>
+        <p class="rule-body">回退从不会以失败的样子呈现。语言会从『我们再试一次』切换到『我先给你看看我注意到什么』。孩子感受到的是变化，不是倒退。</p>
+        <div class="rule-shown">↑ 出现在场景 2 的活动 2</div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-head">相邻轴跳转</div>
+        <p class="rule-body">当孩子在某一轴上达到 L3 时，下一个活动可以转向<em>相邻</em>轴的 L1（Form L3 → Connection L1），而不是在别的轴上也强推 L3。保持新鲜感，同时不把深度推得比孩子吸收得快。反向同样适用 — 某一轴卡在底部 L1 时，跳到相邻轴的 L1。</p>
+        <div class="rule-shown">↑ 出现在场景 2 的活动 3 → 4</div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-head">个性化接口</div>
+        <p class="rule-body">上面的阈值（晋级看 2 次、回退看 2 次、跨活动晋级看 3 次）在上游目录配置里是一个 <code>progression_policy</code> 对象 — 不是硬编码的。V1 使用这些默认值。一旦每个孩子记录了 ≥200 个会话，可以换成按孩子的节奏模型，<strong>不需要改任何活动设计</strong>。</p>
+        <div class="rule-shown">— 基础性的 · 适用于每个场景</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.1</span> 首版草稿 · 2026-04-20</summary>
+      <ol>
+        <li>四个场景涵盖平稳推进、撞墙后的恢复（尊严原则 + 相邻轴跳转）、各轴独立、以及不想 vs 不能。</li>
+        <li>手工设计 — 不是实时模拟器。每个场景是 5-8 个活动卡片的横向时间线，关键节点带有转换指示器和对话摘录。</li>
+        <li>场景 5（个性化假设）和场景 6（长时段视图）推迟到 v0.2 — 设计捕获在 <code>docs/plans/2026-04-20-progression-walkthrough-design.md</code> §6。</li>
+      </ol>
+    </details>
+    <div class="version">
+      <span>版本 0.1 · 评审草稿</span>
+      <span>WonderLens x 奇朵 · 进阶过程演示 · 2026-04-20</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>

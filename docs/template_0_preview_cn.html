@@ -3044,6 +3044,40 @@
       color: var(--accent);
     }
 
+    .walkthrough-link {
+      margin: 24px 0 8px;
+      padding: 20px 24px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+    .wl-eyebrow {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .wl-link {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+    }
+    .wl-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .wl-body {
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
     .mapping-coverage {
       margin-top: 20px;
       padding: 22px 28px;
@@ -4316,6 +4350,14 @@
         <span class="tff-lbl">个性化接口</span>
         <span class="tff-body">这些阈值是 tag block 上游配置里的 <code>progression_policy</code> 对象——不写死。V1 用上面的默认值；等每个孩子累计约 ≥ 200 次会话后，直接替换成按孩子个体的节奏模型，不需要改任何活动设计。</span>
       </div>
+    </div>
+
+    <div class="walkthrough-link">
+      <span class="wl-eyebrow">可视化演示</span>
+      <a class="wl-link" href="template_0_progression_walkthrough_cn.html">
+        四个场景 · 这些规则在实际中如何运作 →
+      </a>
+      <p class="wl-body">平稳推进 · 撞墙后的恢复 · 各轴独立 · 不想 vs 不能。每个场景在关键节点附有对话摘录。</p>
     </div>
 
     <h3 class="subhead" data-dir="核对">12 个金标准落在 7 条轴上的位置</h3>
