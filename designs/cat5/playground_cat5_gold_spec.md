@@ -23,6 +23,20 @@
 - **Mapping Source**: none
 - **IB Theme**: How the World Works
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/buildings_places/play_areas.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.senses.ground_feel
+  - tier_1.appearance.slide_surface_shine
+  - tier_1.senses.sun_warmed_parts
+  - tier_1.structure.bolts_and_joints
+  - tier_1.structure.swing_chain_links
+  - tier_2.appearance.texture_mix_on_surfaces
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After photographing the slide, the AI marvels at how shiny and hard the metal surface is and wonders — is MOST of the playground made of metal, or something else? The child becomes a "Playground Scientist" who first PREDICTS whether most playground equipment is made of metal or not-metal (plastic, wood, rubber), then collects evidence by photographing 3 more pieces of equipment and reporting what each one is made of. At the end, the AI tallies the real data and reveals whether the child's prediction was right or surprising.

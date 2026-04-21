@@ -23,6 +23,23 @@
 - **Mapping Source**: none
 - **IB Theme**: How We Express Ourselves (expression, culture, creativity)
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/animals/birds.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.body_color
+  - tier_0.senses.song_sound
+  - tier_0.function.sits_on_branch
+  - tier_1.context.branches_and_trees
+  - tier_1.function.singing_to_communicate
+  - tier_1.senses.song_variety
+  - tier_2.context.shared_soundscape
+  - tier_2.function.song_as_language
+  - tier_2.senses.song_as_signal
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: The child photographs a bird singing on a branch and becomes the "Nature Conductor" — tasked with assembling a Nature Orchestra. The child searches for 3 more natural "performers" (a stick, a leaf, a pebble), photographs each one, and assigns a unique sound to it. At the climax, the AI narrates a concert where each performer plays its solo, then all together in a grand ensemble finale that the child gets to direct.

@@ -23,6 +23,26 @@
 - **Mapping Source**: none
 - **IB Theme**: Sharing the Planet
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/plants/generic_flowers.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.petals
+  - tier_0.appearance.stem
+  - tier_0.appearance.leaves
+  - tier_0.state.droopy_or_fresh
+  - tier_1.context.sun_and_water
+  - tier_1.function.stem_support
+  - tier_1.state.signs_of_needing_help
+  - tier_1.state.fresh_healthy_look
+  - tier_2.change.wilting_and_recovery
+  - tier_2.context.garden_care_system
+  - tier_2.context.neighbors_in_the_garden
+  - tier_2.function.structural_support_for_petals
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: The child photographs a flower and notices it looks a little droopy. The AI frames the child as a "Rescue Captain" leading a Garden Rescue Squad. The child explores the garden to find 3 more things that need help — a dry leaf, a fallen twig, a lonely pebble — and proposes care for each. At synthesis, the rescued items help EACH OTHER: the leaf shades the pebble, the twig props up a wilting petal, the pebble holds down the leaf in the wind. The magic moment is seeing the rescued team form a mutual aid circle.

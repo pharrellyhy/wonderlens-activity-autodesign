@@ -12,6 +12,23 @@
 | ATL Skills Focus | Communication Skills (expressing, listening), Thinking Skills (creative thinking), Social Skills (collaboration) |
 | Game Style | ensemble_show |
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/animals/birds.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.body_color
+  - tier_0.senses.song_sound
+  - tier_0.function.sits_on_branch
+  - tier_1.context.branches_and_trees
+  - tier_1.function.singing_to_communicate
+  - tier_1.senses.song_variety
+  - tier_2.context.shared_soundscape
+  - tier_2.function.song_as_language
+  - tier_2.senses.song_as_signal
+```
+
 ### B. Activity Overview
 
 **① Brief Description**
