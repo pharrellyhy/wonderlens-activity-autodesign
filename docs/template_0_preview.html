@@ -3182,7 +3182,7 @@
       <a href="#axes">Progression</a>
       <a href="#decisions">Decisions</a>
     </nav>
-    <div class="meta">Draft v0.3 · 2026-04-17 · Internal review</div>
+    <div class="meta">Draft v0.4 · 2026-04-17 · Internal review</div>
   </header>
 
   <!-- ============== HERO ============== -->
@@ -3209,10 +3209,16 @@
       </div>
       <div>
         <span class="label">Status</span>
-        <span class="value">Draft v0.3 · pending sign-off</span>
+        <span class="value">Draft v0.4 · pending sign-off</span>
       </div>
     </div>
 
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.4</span> Add <code>entity_attributes_covered</code> as a required upstream-matcher tag — 2026-04-17</summary>
+      <ol>
+        <li><b><code>entity_attributes_covered</code> promoted to required</b> (§04) — a flat list of dotted-path IDs (<code>tier_{0,1,2}.{dimension}.{attribute}</code>) enumerating the <code>tier_guidance</code> attributes each activity exercises. Consumed by the upstream matcher to route photographed entities to activities; validated against the entity YAML in <code>data/mappings_dev20_0318/</code>.</li>
+      </ol>
+    </details>
     <details class="revnote">
       <summary><span class="revnote-tag">v0.3</span> Five changes from PM review + matchability + upstream pipeline — 2026-04-17</summary>
       <ol>
@@ -3567,6 +3573,15 @@
         <span class="key">reward_hook</span>: <span class="str">"connection_L2 badge"</span>
 
         <span class="key">caregiver_role</span>: <span class="hl">[<span class="str">scaffold</span>, <span class="str">co-explorer</span>]</span> <span class="cmt"># cumulative list; tier-dependent default</span>
+
+        <span class="cmt"># — upstream matcher: attributes this activity exercises from entity tier_guidance —</span>
+        <span class="key">entity_attributes_covered</span>: <span class="hl"><span class="cmt"># NEW — required; flat list of dotted-path IDs</span></span>
+          - <span class="str">tier_0.appearance.spots</span>
+          - <span class="str">tier_0.appearance.red_color</span>
+          - <span class="str">tier_0.senses.small_size</span>
+          - <span class="str">tier_1.function.warning_signal</span>
+          - <span class="str">tier_1.context.garden_habitat</span>
+          - <span class="str">tier_2.reasoning.pattern_purpose</span>
       </pre>
 
       <div class="tag-legend">
@@ -4641,7 +4656,7 @@
       </ul>
     </div>
     <div class="version">
-      <span>Version 0.3 · Draft for review</span>
+      <span>Version 0.4 · Draft for review</span>
       <span>WonderLens x 奇朵 · Activity Design Framework · 2026-04-17</span>
     </div>
   </footer>
