@@ -23,6 +23,18 @@
 - **Mapping Source**: property-bridge
 - **IB Theme**: How the World Works
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{shininess}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_1.appearance.shine_level                 # e.g., crayons
+  - tier_1.appearance.reflective_strips           # e.g., raincoat
+  - tier_2.appearance.surface_finish_glossiness   # e.g., raincoat
+  - tier_1.appearance.scale_shimmer_pattern       # e.g., goldfish
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs any object, the AI assesses its shininess from the photo — is the surface reflective, glossy, metallic (SHINY) or matte, rough, textured (DULL)? The AI announces the assessment with excitement and then poses a big question: "Are MOST things around here SHINY or DULL?" The child becomes a "Shine Scientist" who first PREDICTS whether the majority of nearby objects are shiny or dull, then collects evidence by photographing 3 more objects. The AI is the property assessor — it examines each photo and announces "SHINY!" or "DULL!" based on visual evidence. The child does NOT self-report. At the end, the AI tallies results and reveals whether the child's prediction was right or surprising.

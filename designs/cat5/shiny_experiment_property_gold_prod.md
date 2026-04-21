@@ -14,6 +14,18 @@
 | Trigger Entity | Any entity where AI detects shiny/reflective or matte/dull surface |
 | Mapping Source | property-bridge |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{shininess}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_1.appearance.shine_level                 # e.g., crayons
+  - tier_1.appearance.reflective_strips           # e.g., raincoat
+  - tier_2.appearance.surface_finish_glossiness   # e.g., raincoat
+  - tier_1.appearance.scale_shimmer_pattern       # e.g., goldfish
+```
+
 ### B. Activity Overview
 
 **① Brief Description**

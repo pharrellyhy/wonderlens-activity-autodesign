@@ -20,6 +20,18 @@
 | Last Updated | 2026-04-08 |
 | Template Parameters | `{shape}` -- detected shape property (e.g., round, pointy, flat, long, curvy). Example: **round** |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{shape}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.shape         # most common path
+  - tier_0.appearance.body_shape    # e.g., toy_robot
+  - tier_0.appearance.wing_shape    # e.g., butterfly
+  - tier_1.appearance.hood_shape    # e.g., raincoat (entity-specific shape features also qualify)
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs any object, the AI notices a prominent shape attribute -- for example, "round." The AI marvels at the shape and frames a quest: "Find 3 things that are round!" The child becomes a Shape Scout. For each find, the AI evaluates it against the quest criterion ("Is it round?"), creating a pass/fail game moment, and then harvests a personal detail ("What does it remind you of?") to generate a character name. Once 3 quest items are collected, the child co-creates a story featuring all the shape-friends rolling, bouncing, or spinning together. This template works for any detected shape: round, pointy, flat, long, curvy.

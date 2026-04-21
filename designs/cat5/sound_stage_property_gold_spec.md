@@ -23,6 +23,19 @@
 - **Mapping Source**: property-bridge
 - **IB Theme**: How We Express Ourselves (expression, culture, creativity)
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{sound}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.senses.sound          # most common path (crayons, piano, bath_toys, libraries, etc.)
+  - tier_0.senses.song_sound     # e.g., bird
+  - tier_0.senses.silent_flight  # e.g., butterfly (absence-of-sound still qualifies)
+  - tier_0.senses.squeak_sound   # e.g., rubber_duck
+  - tier_0.senses.robot_sounds   # e.g., toy_robot
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs any object, the AI looks at the photo and IMAGINES what sound it would make based on its visual form — a long hard shape might go TAP, a thin crinkly thing might go RUSTLE, a smooth round object might go CLINK. The AI announces this creative inference with excitement and onomatopoeia, then frames the child as a "Sound Conductor" who must find 3 more items that look like they could make interesting sounds. For each find, the AI examines the photo and imagines the sound from visual form alone. The child can agree or suggest their own sound. At the climax, the AI narrates a concert — each performer plays its solo, then ALL TOGETHER NOW!

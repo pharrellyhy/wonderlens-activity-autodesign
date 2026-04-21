@@ -20,6 +20,18 @@
 | Last Updated | 2026-04-08 |
 | Template Parameters | `{movement_type}` — detected movement feature (e.g., wheels, legs, wings, rollable shape). Example: **wheels** (toy car trigger) |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{movement_type}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.function.moves             # generic action-toy path
+  - tier_0.function.flies             # wing-driven entities (butterfly, bird)
+  - tier_0.appearance.wheels_or_feet  # e.g., toy_robot
+  - tier_1.function.wing_flapping     # e.g., butterfly
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs any object, the AI notices a visible movement feature — for example, wheels on a toy car. The AI marvels at the movement capability and frames a quest: "Find 3 things that can MOVE!" The child becomes a Motion Scout. For each find, the AI evaluates it against the quest criterion ("Can it move?") by examining the photo for movement-enabling features (wheels, legs, wings, round/rollable shape), creating a pass/fail game moment, and then harvests a personal detail ("If this could move anywhere, where would it GO?") to generate a character name and destination. Once 3 quest items are collected, the child co-creates a road trip story featuring all the movers going on a journey together. This template works for any entity with a visible movement feature.

@@ -23,6 +23,22 @@
 - **Mapping Source**: property-bridge
 - **IB Theme**: How the World Works
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{origin}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  # Natural-origin signals (living, habitat, growth)
+  - tier_2.context.habitat_requirements   # e.g., butterfly, bird
+  - tier_1.context.flower_visits          # e.g., butterfly
+  - tier_2.change.full_metamorphosis      # e.g., insects
+  # Made-origin signals (design, manufacture, storage)
+  - tier_1.context.playroom               # e.g., toy_robot
+  - tier_1.context.storage_spot           # e.g., crayons
+  - tier_2.structure.modular_design       # e.g., toy_robot
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After photographing any outdoor object, the AI identifies whether it is natural (made by nature) or man-made (made by people) and wonders — are MOST things around here natural or man-made? The child becomes a "Nature Detective" who first PREDICTS whether most nearby things are natural or man-made, then collects evidence by photographing 3 more items. The AI ASSESSES each photo (natural vs man-made is highly reliably identifiable visually — trees, rocks, puddles, clouds vs benches, fences, signs, cars). At the end, the AI tallies the real data and reveals whether the child's prediction was right or surprising.

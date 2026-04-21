@@ -24,6 +24,19 @@
 - **IB Theme**: How the World Works
 - **Template Parameters**: `{age_appearance}` — detected age/wear category (old-looking or new-looking). Old-looking visual cues: rust, cracks, peeling paint, faded colors, rounded edges from wear, moss/lichen, stains, scratches. New-looking visual cues: bright colors, clean surfaces, sharp edges, shiny, no scratches. Example value used throughout: **old-looking** (worn wooden bench trigger).
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{age_appearance}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_1.appearance.tip_wear                             # e.g., crayons
+  - tier_2.change.waterproof_coating_wear                  # e.g., raincoat
+  - tier_2.change.fur_matting_over_time                    # e.g., plush_toys
+  - tier_2.change.cracks_and_peeling_in_rubbery_materials  # e.g., raincoat
+  - tier_2.change.squeak_wears_out                         # e.g., bath_toys
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After photographing any object, the AI examines the photo and detects visible signs of age or newness — for example, worn wood, faded paint, and scratches on an old bench. The AI marvels at the evidence of time and wonders — are MOST things around here old-looking or new-looking? The child becomes a "Time Detective" who first PREDICTS whether most nearby things are old-looking or new-looking, then collects evidence by photographing 3 more items. The AI is the property assessor: it examines each photo for visual age cues (rust, cracks, fading, moss vs. bright colors, clean surfaces, sharp edges, shine) and announces its verdict. At the end, the AI tallies the real data and reveals whether the child's prediction was right or surprising. The insight: "Old things have STORIES — every scratch is an adventure they had! New things are just starting their adventures!"

@@ -20,6 +20,18 @@
 | Last Updated | 2026-04-08 |
 | Template Parameters | `{pattern}` -- detected visual pattern property (e.g., stripes, spots, zigzags, lines, waves, dots, ridges). Example: **stripes** |
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{pattern}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.pattern                # e.g., raincoat
+  - tier_1.appearance.wing_patterns          # e.g., butterfly
+  - tier_1.appearance.key_pattern            # e.g., piano
+  - tier_1.appearance.scale_shimmer_pattern  # e.g., goldfish
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs any object, the AI notices a visual pattern -- for example, "stripes." The AI marvels at the pattern and recruits the child as a "Pattern Detective." The AI gives riddle-clues one at a time -- each describing something nearby with a DIFFERENT kind of visual pattern -- and the child searches, guesses, and photographs what they think matches. After 3 finds, the AI reveals the hidden connection: everything the child found has a pattern, and patterns are EVERYWHERE -- in nature, in clothes, in buildings. This template works for any detected visual pattern: stripes, spots, zigzags, waves, dots, ridges, checks, swirls, etc.

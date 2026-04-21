@@ -24,6 +24,17 @@
 - **IB Theme**: How We Express Ourselves
 - **Template Parameters**: `{color}` -- detected color property (e.g., red, blue, green, yellow, brown, orange, purple, pink, white, black). Example value used throughout: **red**.
 
+### A.5 Entity Attributes Covered
+
+This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{color}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.color         # most common path (raincoat, crayon, piano, libraries, etc.)
+  - tier_0.appearance.body_color    # e.g., rubber_duck, toy_robot, goldfish, lion, bird
+  - tier_0.appearance.wing_color    # e.g., butterfly
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs any object, the AI notices a prominent color -- for example, "red." The AI marvels at the color and frames a quest: "Find 3 red things!" The child becomes a Color Scout on a color-hunting quest. For each find, the AI evaluates it against the quest criterion ("Is it red?"), creating a pass/fail game moment, and then harvests a personal detail ("What does it remind you of?") to generate a character name. Once 3 quest items are collected, the child co-creates a story featuring the "Red Team" (or whatever color) going on an adventure together. The quest criterion gives the collection PURPOSE and DIRECTION; the detail harvesting gives each find PERSONALITY. This template works for any detected color: red, blue, green, yellow, brown, orange, purple, pink, etc.
