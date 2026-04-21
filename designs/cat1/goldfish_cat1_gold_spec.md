@@ -22,6 +22,24 @@
 - **Trigger Scene**: Child photographs their pet goldfish gliding in a bowl or small tank at home
 - **Mapping Source**: none
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/animals/pet_fish.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_1.appearance.fin_shape
+  - tier_1.appearance.tail_style
+  - tier_1.function.movement_style
+  - tier_1.function.breathing_method
+  - tier_1.function.defense_hiding
+  - tier_1.structure.gills
+  - tier_1.structure.mouth_position
+  - tier_2.function.fin_control_steering_braking
+  - tier_2.context.light_day_night_routine
+  - tier_2.senses.lateral_line_water_vibration_sense
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs their goldfish, the AI marvels at its gliding, shimmery movement and invites the child to become a "Goldfish Scientist" who runs prediction experiments. In each round, the AI describes something that is about to happen near the goldfish — and the child must COMMIT to a specific prediction of what the goldfish will do BEFORE the AI reveals the answer. Reveals are dramatic and scored: full points for correct predictions, half points for close guesses. A running tally creates genuine stakes: "You're 2 for 3 — can you go perfect?" The final score celebration makes each child feel like a real scientist who tested their ideas.

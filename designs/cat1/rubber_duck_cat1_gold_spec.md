@@ -23,6 +23,22 @@
 - **Mapping Source**: none
 - **IB Theme**: How We Express Ourselves (expression, creativity)
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/daily_objects/bath_toys.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.body_color
+  - tier_0.senses.squeak_sound
+  - tier_0.function.floats_on_water
+  - tier_1.function.squeeze_and_squeak
+  - tier_2.appearance.cartoon_styling
+  - tier_2.change.imaginary_upgrades
+  - tier_2.function.pretend_character_role
+  - tier_2.senses.squeak_pitch_variation
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs their rubber duck, the AI marvels at how cute and squeaky it is. The child becomes a "Duck Builder" — a tiny inventor in a magic workshop. Each round, the AI proposes a wild "what if" modification to the duck: wings, glowing, talking. The child imagines what happens with each change. In the grand finale, the AI combines ALL modifications into one glorious "Super Duck" — a flying, glowing, talking duck — and the child gets to hear the whole creation described in one breathless, delightful reveal.

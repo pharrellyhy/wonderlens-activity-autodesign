@@ -14,6 +14,25 @@
 | Design Version | 2.0 |
 | Last Updated | 2026-04-01 |
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/food/tropical_fruits.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.color
+  - tier_0.appearance.shape
+  - tier_1.appearance.peel_spots
+  - tier_1.context.store_display
+  - tier_1.context.kitchen_counter_ripening
+  - tier_1.function.cooking_mashing
+  - tier_1.structure.fruit_sections
+  - tier_2.appearance.curve_direction_and_reason
+  - tier_2.change.brown_spots_sugar_change
+  - tier_2.context.shipping_and_green_harvest
+  - tier_2.context.bunch_position_effect
+```
+
 ### B. Activity Overview
 
 **① Brief Description**: The child becomes a "Time Pilot" who flies a magical time machine powered by the banana. Together, they travel backward and forward through time — visiting the banana months ago when it was a tiny green flower on a tropical plant, weeks ago when it was a plump green banana sailing across the ocean, yesterday when it sat on a store shelf hoping to be picked, and then forward to tomorrow and beyond. At a critical moment, the child makes a choice that branches the banana's future. At the end, the child sees the whole timeline assembled as a journey map — every stop the banana made through time.

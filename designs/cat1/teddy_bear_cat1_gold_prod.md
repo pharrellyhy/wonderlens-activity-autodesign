@@ -12,6 +12,23 @@
 | ATL Skills Focus | Social Skills (empathy, caring), Communication Skills (expressing, listening), Self-Management Skills (emotional regulation) |
 | Game Style | care_station |
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/daily_objects/plush_toys.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.color
+  - tier_0.senses.surface_feel
+  - tier_1.function.comfort_hugging
+  - tier_1.function.pretend_friend
+  - tier_1.function.sleep_routine_helper
+  - tier_1.senses.warmth_after_hug
+  - tier_2.context.comfort_during_new_situations
+  - tier_2.function.deep_pressure_comfort
+  - tier_2.function.role_play_practice
+```
+
 ### B. Activity Overview
 
 **① Brief Description**

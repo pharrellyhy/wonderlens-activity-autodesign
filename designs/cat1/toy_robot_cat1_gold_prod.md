@@ -12,6 +12,27 @@
 | ATL Skills Focus | Thinking Skills (critical thinking, deduction), Research Skills (observation, information literacy), Communication Skills (expressing, listening) |
 | Game Style | mystery_lens |
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/daily_objects/action_toys.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_1.appearance.antenna
+  - tier_1.appearance.eyes
+  - tier_1.appearance.button
+  - tier_1.appearance.joint
+  - tier_1.appearance.wheels_or_feet
+  - tier_1.function.signal_catching
+  - tier_1.function.watching_with_eyes
+  - tier_1.function.push_to_start
+  - tier_1.function.joint_bending
+  - tier_1.senses.click_sound
+  - tier_1.structure.limbs
+  - tier_2.appearance.light_up_features
+  - tier_2.function.sensor_to_action_loop
+```
+
 ### B. Activity Overview
 
 **① Brief Description**

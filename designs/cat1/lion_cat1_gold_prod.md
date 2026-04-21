@@ -15,6 +15,19 @@
 | Design Version | 2.0 |
 | Last Updated | 2026-04-01 |
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/animals/big_cats.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.covering
+  - tier_0.appearance.body_size
+  - tier_0.senses.sound
+  - tier_1.appearance.mane_look
+  - tier_1.function.communication_roar
+```
+
 ### B. Activity Overview
 
 **① Brief Description**: The child becomes a "Roar Star" who performs AS the lion in front of a silly audience of jungle judges (a parrot, a monkey, and an elephant). Each round, the AI sets a performance challenge — roar a greeting, roar a lullaby, do a tiny whisper-roar — and the audience of judges reacts with over-the-top delight, gasps, or laughter. The challenges escalate with a surprise twist, and the finale is a standing ovation where every judge goes wild.
