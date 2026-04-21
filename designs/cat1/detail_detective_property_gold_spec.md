@@ -23,7 +23,7 @@
 - **Property Bridge**: AI detects a prominent property on the entity (e.g., "red" from the color category). This detected property SEEDS the clue category — every round becomes an "I Spy" deduction about a different detail defined by that property category. If color detected → each round targets a different color detail. If shape detected → each round targets a different shaped part. If material detected → each round targets a different material section.
 - **Mapping Source**: none
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{property}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
 

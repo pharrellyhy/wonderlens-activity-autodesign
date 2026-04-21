@@ -22,7 +22,7 @@
 - **Trigger Scene**: Child spots and photographs a butterfly resting on a flower in the park
 - **Mapping Source**: none
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 Attribute IDs from `data/mappings_dev20_0318/animals/insects.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
@@ -41,7 +41,7 @@ entity_attributes_covered:
   - tier_2.context.host_plants_for_eggs
 ```
 
-### A.6 Constellation Adaptation Notes
+### A.2 Constellation Adaptation Notes
 
 Recipe for running this activity when the photographed entity is a constellation
 neighbor of Butterfly (e.g., other pollinator/garden insects like bee, moth,

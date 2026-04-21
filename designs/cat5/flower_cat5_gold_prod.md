@@ -12,7 +12,7 @@
 | ATL Skills Focus | Social Skills (empathy, cooperation), Thinking Skills (creative thinking, transfer), Communication Skills (expressing) |
 | Game Style | rescue_team |
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 Attribute IDs from `data/mappings_dev20_0318/plants/generic_flowers.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
@@ -32,7 +32,7 @@ entity_attributes_covered:
   - tier_2.function.structural_support_for_petals
 ```
 
-### A.6 Constellation Adaptation Notes
+### A.2 Constellation Adaptation Notes
 
 Recipe for running this activity when the photographed entity is a constellation
 neighbor of Flower (e.g., other garden plants like tulip, rose, daisy, potted

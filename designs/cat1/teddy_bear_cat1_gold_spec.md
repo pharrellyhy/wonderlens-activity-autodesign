@@ -22,7 +22,7 @@
 - **Trigger Scene**: Child photographs their teddy bear sitting on the bed in the evening light
 - **Mapping Source**: none
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 Attribute IDs from `data/mappings_dev20_0318/daily_objects/plush_toys.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
@@ -39,7 +39,7 @@ entity_attributes_covered:
   - tier_2.function.role_play_practice
 ```
 
-### A.6 Constellation Adaptation Notes
+### A.2 Constellation Adaptation Notes
 
 Recipe for running this activity when the photographed entity is a constellation
 neighbor of Teddy Bear (e.g., stuffed bunny, plush toy, doll, sock monkey)

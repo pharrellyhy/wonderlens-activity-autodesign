@@ -22,7 +22,7 @@
 - **Trigger Scene**: Child photographs their pet goldfish gliding in a bowl or small tank at home
 - **Mapping Source**: none
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 Attribute IDs from `data/mappings_dev20_0318/animals/pet_fish.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
@@ -40,7 +40,7 @@ entity_attributes_covered:
   - tier_2.senses.lateral_line_water_vibration_sense
 ```
 
-### A.6 Constellation Adaptation Notes
+### A.2 Constellation Adaptation Notes
 
 Recipe for running this activity when the photographed entity is a constellation
 neighbor of Goldfish (e.g., pond fish, betta, turtle, frog) instead of a

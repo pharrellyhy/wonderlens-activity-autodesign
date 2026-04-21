@@ -20,7 +20,7 @@
 | Last Updated | 2026-04-08 |
 | Template Parameters | `{age_appearance}` — detected age/wear category (old-looking or new-looking). Old cues: rust, cracks, peeling, fading, moss, scratches. New cues: bright colors, clean surfaces, sharp edges, shine. Example: **old-looking** (worn bench trigger) |
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 This template is **parameterized** (not bound to one entity). It matches any entity whose `tier_guidance` contains at least one of the attribute paths below. The property value (e.g., `{age_appearance}`) is extracted from the matched entity's YAML at runtime and substituted for the template parameter. See `program.md` §1.9 "Matcher semantics" for the dual-overlap rule.
 

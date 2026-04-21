@@ -12,7 +12,7 @@
 | ATL Skills Focus | Research Skills (observation, data collection), Thinking Skills (critical thinking, metacognition), Communication Skills (expressing) |
 | Game Style | field_experiment |
 
-### A.5 Entity Attributes Covered
+### A.1 Entity Attributes Covered
 
 Attribute IDs from `data/mappings_dev20_0318/buildings_places/play_areas.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
@@ -26,7 +26,7 @@ entity_attributes_covered:
   - tier_2.appearance.texture_mix_on_surfaces
 ```
 
-### A.6 Constellation Adaptation Notes
+### A.2 Constellation Adaptation Notes
 
 Recipe for running this activity when the photographed entity is a constellation
 neighbor of Playground (e.g., swing, slide, seesaw, sandbox, climbing frame) —
