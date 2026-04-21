@@ -17,6 +17,28 @@
 - **Design Version**: 3.0 — quest_collector redesign
 - **Last Updated**: 2026-04-01
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/plants/wildflowers.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.puff_head
+  - tier_0.appearance.yellow_flower
+  - tier_0.function.blows_away
+  - tier_1.appearance.seed_parachutes
+  - tier_1.function.wind_dispersal
+  - tier_1.senses.gentle_float
+  - tier_1.senses.light_weight
+  - tier_1.structure.puff_arrangement
+  - tier_1.structure.umbrella_bristles
+  - tier_2.appearance.flower_to_puff_transformation
+  - tier_2.change.seed_spreading_journeys
+  - tier_2.context.shared_flight_companions
+  - tier_2.function.parachute_engineering
+  - tier_2.senses.breath_triggered_motion
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After photographing a dandelion, the AI marvels at its puffy seed head — all those tiny parachutes, ready to fly! The AI frames a quest: "Find 3 things in this park that are ready to fly!" The child becomes a Wish Puff Scout on a wind quest. For each find, the AI evaluates it against the quest criterion ("Is it ready to fly?"), creating a pass/fail game moment, and then harvests a personal detail ("What does it remind you of?") to generate a character name. Once 3 quest items are collected, the child co-creates a wind adventure story featuring all the characters, with each character's role shaped by the detail the child provided. The quest criterion gives the collection PURPOSE and DIRECTION; the detail harvesting gives each find PERSONALITY.

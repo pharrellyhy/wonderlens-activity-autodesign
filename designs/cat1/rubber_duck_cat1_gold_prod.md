@@ -12,6 +12,22 @@
 | ATL Skills Focus | Thinking Skills (creative, divergent), Communication Skills (expressing, listening), Self-Management Skills (focus, engagement) |
 | Game Style | inventor_workshop |
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/daily_objects/bath_toys.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.body_color
+  - tier_0.senses.squeak_sound
+  - tier_0.function.floats_on_water
+  - tier_1.function.squeeze_and_squeak
+  - tier_2.appearance.cartoon_styling
+  - tier_2.change.imaginary_upgrades
+  - tier_2.function.pretend_character_role
+  - tier_2.senses.squeak_pitch_variation
+```
+
 ### B. Activity Overview
 
 **① Brief Description**

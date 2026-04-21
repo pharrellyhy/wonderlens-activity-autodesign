@@ -22,6 +22,25 @@
 - **Trigger Scene**: Child spots and photographs a butterfly resting on a flower in the park
 - **Mapping Source**: none
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/animals/insects.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.wing_color
+  - tier_0.appearance.wing_shape
+  - tier_0.appearance.antennae
+  - tier_0.function.lands_on_flowers
+  - tier_1.appearance.wing_patterns
+  - tier_1.context.flower_visits
+  - tier_1.context.leafy_rests
+  - tier_1.context.puddle_visits
+  - tier_1.function.sipping_nectar
+  - tier_2.context.habitat_requirements
+  - tier_2.context.host_plants_for_eggs
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs a butterfly on a flower, the AI expresses wonder at the butterfly's beautiful wings and then recruits the child as a "Butterfly World Detective." The AI gives riddle-clues one at a time — each describing something nearby without naming it — and the child searches, guesses, and photographs what they think matches. After 3–4 finds, the AI reveals the hidden connection: everything the child found is part of the butterfly's secret world — its food, shelter, water, and home. The big "aha!" is that the child has been mapping the butterfly's habitat all along without knowing it.

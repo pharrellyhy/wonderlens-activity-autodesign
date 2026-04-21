@@ -22,6 +22,23 @@
 - **Trigger Scene**: Child photographs their teddy bear sitting on the bed in the evening light
 - **Mapping Source**: none
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/daily_objects/plush_toys.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.color
+  - tier_0.senses.surface_feel
+  - tier_1.function.comfort_hugging
+  - tier_1.function.pretend_friend
+  - tier_1.function.sleep_routine_helper
+  - tier_1.senses.warmth_after_hug
+  - tier_2.context.comfort_during_new_situations
+  - tier_2.function.deep_pressure_comfort
+  - tier_2.function.role_play_practice
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs their teddy bear, the AI notices teddy is shivering a little and looks like it needs help. The child becomes teddy's special caretaker across three rounds of escalating needs — from a simple physical problem (teddy is cold) to an emotional one (teddy is scared of the dark) to a complex combination (teddy is cold AND lonely AND can't sleep). Each time the child helps, teddy VISIBLY gets better — shivering stops, tears dry, a smile grows — and teddy's gratitude deepens, until by the final round teddy calls the child by name and says they're the best friend in the whole world.

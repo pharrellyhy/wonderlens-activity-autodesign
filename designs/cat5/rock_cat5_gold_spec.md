@@ -23,6 +23,21 @@
 - **Mapping Source**: none
 - **IB Theme**: How the World Works
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/natural_phenomena/rocks.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.senses.hard_feel
+  - tier_0.senses.weight
+  - tier_1.function.tool_use
+  - tier_1.structure.solid_all_through
+  - tier_2.function.strength_from_hardness
+  - tier_2.function.combining_properties
+  - tier_2.senses.heft_sense
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After photographing a rock, the AI marvels at how hard and tough it is — and reveals the rock's "superpower": STRENGTH. The child becomes a Nature Inventor and goes on a mission to collect 3 more natural items, each of which the AI assigns a unique superpower based on its material properties (e.g., leaf = flexibility, feather = lightness, stick = length). At synthesis, the child picks two superpowers to combine and invents something that has never existed before — naming it, describing what it does, and hearing the AI bring the invention to life in vivid words.

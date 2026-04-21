@@ -12,6 +12,20 @@
 | ATL Skills Focus | Research Skills (observation, data collection), Thinking Skills (critical thinking, metacognition), Communication Skills (expressing) |
 | Game Style | field_experiment |
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/buildings_places/play_areas.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.senses.ground_feel
+  - tier_1.appearance.slide_surface_shine
+  - tier_1.senses.sun_warmed_parts
+  - tier_1.structure.bolts_and_joints
+  - tier_1.structure.swing_chain_links
+  - tier_2.appearance.texture_mix_on_surfaces
+```
+
 ### B. Activity Overview
 
 **① Brief Description**

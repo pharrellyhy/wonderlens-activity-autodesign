@@ -22,6 +22,27 @@
 - **Trigger Scene**: Child photographs their toy robot on the playroom floor
 - **Mapping Source**: none
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/daily_objects/action_toys.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_1.appearance.antenna
+  - tier_1.appearance.eyes
+  - tier_1.appearance.button
+  - tier_1.appearance.joint
+  - tier_1.appearance.wheels_or_feet
+  - tier_1.function.signal_catching
+  - tier_1.function.watching_with_eyes
+  - tier_1.function.push_to_start
+  - tier_1.function.joint_bending
+  - tier_1.senses.click_sound
+  - tier_1.structure.limbs
+  - tier_2.appearance.light_up_features
+  - tier_2.function.sensor_to_action_loop
+```
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs their toy robot, the AI marvels at all its cool parts — buttons, wheels, antenna, joints. The child becomes a "Chief Robot Inspector" who must figure out which secret part the AI is thinking of by listening to clues one at a time. Each round, the AI picks a different detail on the robot and gives progressive clues (shape, texture, function, then imaginative), and the child deduces which part it is. The fewer clues needed, the sharper the inspector!

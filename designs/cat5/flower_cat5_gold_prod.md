@@ -12,6 +12,26 @@
 | ATL Skills Focus | Social Skills (empathy, cooperation), Thinking Skills (creative thinking, transfer), Communication Skills (expressing) |
 | Game Style | rescue_team |
 
+### A.5 Entity Attributes Covered
+
+Attribute IDs from `data/mappings_dev20_0318/plants/generic_flowers.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+
+```yaml
+entity_attributes_covered:
+  - tier_0.appearance.petals
+  - tier_0.appearance.stem
+  - tier_0.appearance.leaves
+  - tier_0.state.droopy_or_fresh
+  - tier_1.context.sun_and_water
+  - tier_1.function.stem_support
+  - tier_1.state.signs_of_needing_help
+  - tier_1.state.fresh_healthy_look
+  - tier_2.change.wilting_and_recovery
+  - tier_2.context.garden_care_system
+  - tier_2.context.neighbors_in_the_garden
+  - tier_2.function.structural_support_for_petals
+```
+
 ### B. Activity Overview
 
 **① Brief Description**
