@@ -43,6 +43,31 @@ entity_attributes_covered:
   - tier_2.function.sensor_to_action_loop
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Toy Robot (e.g., action figure, toy dinosaur, lego figure) instead
+of a toy robot itself. The neighbor list, bridge type, and initial bridge
+prompt live in `data/constellation_map.yaml` under `mapped_entity: toy_robot`
+— this section describes how Robot Inspector adapts mechanically for a
+bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The "Chief Inspector" role_title and the progressive-clue deduction mechanic (shape → function → imaginative) — this clue-laddering is the Mystery pillar's engine.
+- The 3–4 case structure where each round targets a DIFFERENT part, building the "my toy is full of discoverable details" reveal.
+- The "first-clue solve" bonus framing — rewards careful looking and gives the game replay-value.
+
+**Swap** — re-phrase for the bridged entity:
+- Case 1 target "antenna (thin and pointy, catches signals)" → neighbor's signature protrusion (action figure: "weapon or accessory"; toy dinosaur: "spike or horn on the back"; lego figure: "hat or hair piece") with clue 1 re-written for that shape.
+- Case 2 target "button (small, round, pushed with a finger)" → neighbor's equivalent small interactive feature (action figure: "a latch that clicks"; dinosaur: "a roar button or squeeze spot"; lego figure: "the stud on top of the head that connects to other bricks").
+- Case 3 target "joint (hidden where two pieces connect, helps bend)" → neighbor's actual articulation points (action figure: "shoulder and knee joints that pose"; dinosaur: "jaw hinge"; lego figure: "the torso-twist between hips and chest").
+- Case 4 target "eyes (two little glowing moons)" → neighbor's face feature (dinosaur: "tiny painted eyes plus nostrils"; lego figure: "printed stud-face"; action figure: "sculpted eyes and visor").
+
+**Watch** — gotchas to avoid:
+- If the neighbor has fewer distinct parts (a minimalist lego figure may have only head, body, legs), drop Round 4 rather than inventing parts that aren't there — Mystery dies when clues don't point at anything real.
+- Don't keep "signal-catcher," "sensor-to-action loop," or other robot-specific Function language — re-derive each part's job from the neighbor's actual role (a dinosaur horn defends; a figure's weapon battles).
+- Never give clues that require the child to touch the toy physically if the photographed subject is a tiny lego figure — "feel the bumpy joint" works for large robots but not for 4cm plastic minifigures; pivot to visual-only clues.
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs their toy robot, the AI marvels at all its cool parts — buttons, wheels, antenna, joints. The child becomes a "Chief Robot Inspector" who must figure out which secret part the AI is thinking of by listening to clues one at a time. Each round, the AI picks a different detail on the robot and gives progressive clues (shape, texture, function, then imaginative), and the child deduces which part it is. The fewer clues needed, the sharper the inspector!

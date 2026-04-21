@@ -31,6 +31,30 @@ entity_attributes_covered:
   - tier_2.senses.lateral_line_water_vibration_sense
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Goldfish (e.g., pond fish, betta, turtle, frog) instead of a
+goldfish itself. The neighbor list, bridge type, and initial bridge prompt live
+in `data/constellation_map.yaml` under `mapped_entity: goldfish` — this section
+describes how Goldfish Guess-What Lab adapts mechanically for a bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The "Scientist" role_title and the COMMIT-BEFORE-REVEAL prediction mechanic — the child must say "I think the [creature] will…" before the dramatic answer.
+- The running tally with full-point / half-point scoring across 4 experiments — this is the stakes engine that defines the Discovery pillar.
+- The four-experiment arc (food stimulus → sudden disturbance → novel object → calm/quiet) as the causation-probing sequence.
+
+**Swap** — re-phrase for the bridged entity:
+- Round 1 "The Food Drop" — "sprinkle food flakes" → habitat-appropriate feeding (betta: "drop a pellet on the surface"; turtle: "drop a lettuce leaf"; frog: "a cricket lands nearby"). The expected reaction text (swim up, dart, lunge) shifts with the creature.
+- Round 2 "The Big Tap" — same table-thump cause; the effect shifts (pond fish dart, turtle pulls in head, frog leaps). Keep the "THUMP → predict the reaction" structure.
+- Round 3 "The New Shiny Pebble" — a novel object dropped into the creature's water/enclosure; investigation behavior swaps (betta flares, turtle approaches slowly, frog stays still and watches).
+- Closing Function recap "tail pushes, fins steer, gills breathe, mouth eats" → neighbor's functional parts (turtle: "shell protects, legs paddle, head scouts"; frog: "legs kick, tongue snaps, eyes watch").
+
+**Watch** — gotchas to avoid:
+- Don't keep fish-only vocabulary ("gills," "fins," "swim") for a turtle or frog — that breaks the Know targets; re-derive the K-list from the neighbor's actual anatomy.
+- If the neighbor lives on land-plus-water (frog, turtle), Round 4 "calm dark room" still works but the resting behavior differs (turtle tucks in; frog sits motionless) — don't force "floats gently near the bottom".
+- Never skip the lock-in beat — letting the child narrate reactions AFTER the reveal collapses the prediction lab into passive observation and kills the Discovery feel.
+
 ### B. Activity Overview
 
 **① Brief Description**: After the child photographs their goldfish, the AI marvels at its gliding, shimmery movement and invites the child to become a "Goldfish Scientist" who runs prediction experiments. In each round, the AI describes something about to happen near the goldfish — and the child must COMMIT to a specific prediction before the AI reveals the answer. Reveals are dramatic and scored: full points for correct predictions, half points for close guesses. A running tally creates genuine stakes: "You're 2 for 3 — can you go perfect?"

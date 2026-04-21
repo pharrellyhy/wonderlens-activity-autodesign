@@ -29,6 +29,31 @@ entity_attributes_covered:
   - tier_2.function.role_play_practice
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Teddy Bear (e.g., stuffed bunny, plush toy, doll, sock monkey)
+instead of a teddy bear itself. The neighbor list, bridge type, and initial
+bridge prompt live in `data/constellation_map.yaml` under
+`mapped_entity: teddy_bear` — this section describes how Teddy's Cozy Care
+Station adapts mechanically for a bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The 3-round escalation from physical need → emotional need → complex combined need — this is the empathy-stretching arc that defines the Nurture pillar.
+- The VISIBLE TRANSFORMATION narration ("shivering stops → smile grows → calls child by name") — the child must see each care act work, or the magic moment collapses.
+- The "caretaker" role_title and the hearts-floating-up payoff that escalates 1 → 2 → 3 hearts across rounds.
+
+**Swap** — re-phrase for the bridged entity:
+- Round 1 "Teddy is shivering! Brrr brrr!" → neighbor's cold-signal (bunny: "ears are drooping and cold"; doll: "hands feel icy"; sock monkey: "tail is stiff with cold") — keep the "something warm" fix but re-name the body part.
+- Round 2 "scared of the dark, eyes big and round" → neighbor's scared-signal (bunny: "ears pinned back"; doll: "eyes wide shut tight"; sock monkey: "arms hugging itself"). The comfort words ("it's okay! I'm here!") stay the same.
+- Round 3 magic line "[Child's name], you're my best friend in the whole world!" → use the child's actual name regardless of neighbor; the neighbor's voice/accent can shift (bunny whispers, doll speaks gently, sock monkey says it with a playful lilt) but the calling-by-name beat is fixed.
+- Vocabulary list "shivering, cozy, scared, brave, friend" stays — but the pronoun for the entity swaps cleanly (teddy → bunny → sock monkey); avoid keeping "teddy" hardcoded in the AI lines.
+
+**Watch** — gotchas to avoid:
+- Dolls and some plush toys have clear faces that never actually change — narrate the transformation in the child's imagination ("imagine the smile growing"), don't claim a physical change the photo doesn't support.
+- Sock monkey's floppy shape can read as already-sad — don't start Round 1 assuming it's "shivering"; check the child's description first (it may be napping, dancing, etc.).
+- Never skip the name-calling in Round 3 — that's the emotional payoff; if the AI doesn't have the child's name yet, harvest it earlier in Step 1 rather than using a generic "friend" in the finale.
+
 ### B. Activity Overview
 
 **① Brief Description**

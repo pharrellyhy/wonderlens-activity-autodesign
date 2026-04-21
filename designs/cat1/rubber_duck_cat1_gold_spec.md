@@ -39,6 +39,31 @@ entity_attributes_covered:
   - tier_2.senses.squeak_pitch_variation
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Rubber Duck (e.g., bath toy, toy boat, floating ring) instead of a
+rubber duck itself. The neighbor list, bridge type, and initial bridge prompt
+live in `data/constellation_map.yaml` under `mapped_entity: rubber_duck` — this
+section describes how Super Duck Workshop adapts mechanically for a bridged
+entity.
+
+**Preserve** — must not change across neighbors:
+- The "Builder" role_title and the 3-round stacking mechanic (physical mod → sensory mod → imaginative mod) — each round's modification STAYS for the finale reveal.
+- The Super [X] finale where all three mods are stacked and narrated in one breathless line — this is the "I made this!" Creation-pillar magic moment.
+- The onomatopoeia ritual (whoooosh, bzzzzz, quack) — toddlers feel the sounds in their mouths; never drop to flat description.
+
+**Swap** — re-phrase for the bridged entity:
+- Entity name everywhere (Super Duck → Super Boat, Super Ring, Super [bath toy]) and the closing badge label "Duck Builder" → "Boat Builder" / "Ring Builder" etc.
+- Round 1 "What if duck had WINGS? Where would duck fly?" → a physical mod that suits the neighbor (toy boat: "What if boat had ROCKETS? Where would boat blast off?"; floating ring: "What if ring had SPRINGS? How high would ring bounce?"; generic bath toy: "What if [toy] had WHEELS? Where would [toy] roll?").
+- Round 3 "Talk!" quack-becomes-talk → neighbor's equivalent (boat: "horn becomes music"; ring: "squeak becomes singing"; generic bath toy: its actual sound becoming full sentences). Keep the "give it voice" beat.
+- Closing Function recap "Duck floats and quacks" → neighbor's baseline functions (boat: "boat floats and moves"; ring: "ring floats and spins"; bath toy: "toy floats and [its sound]").
+
+**Watch** — gotchas to avoid:
+- If the neighbor doesn't squeak (e.g., a toy boat with no squeaker), don't demand a squeeze-sound — the "squeak_pitch_variation" attribute doesn't transfer; lean on movement/buoyancy instead.
+- Keep bath-time context even when the neighbor is primarily a pool toy (floating ring) — anchor in warm-water play; don't drift into "at the beach" unless the child's photo says so.
+- Never truncate to 2 mods to save time — the 3-stack is what makes Super [X] feel earned; cut transition chatter before cutting a round.
+
 ### B. Activity Overview
 
 - **① Brief Description**: After the child photographs their rubber duck, the AI marvels at how cute and squeaky it is. The child becomes a "Duck Builder" — a tiny inventor in a magic workshop. Each round, the AI proposes a wild "what if" modification to the duck: wings, glowing, talking. The child imagines what happens with each change. In the grand finale, the AI combines ALL modifications into one glorious "Super Duck" — a flying, glowing, talking duck — and the child gets to hear the whole creation described in one breathless, delightful reveal.
