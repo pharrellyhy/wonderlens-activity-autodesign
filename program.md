@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.4 | **Date**: 2026-04-17
+> **Version**: 1.5 | **Date**: 2026-04-17
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.5 — 2026-04-17**: Extend `entity_attributes_covered` with dual matcher semantics keyed on `entity_binding` — `bound` games use strict overlap (every listed ID must resolve in the specific entity YAML); `parameterized` property-bridge templates use loose overlap (any one ID matching an entity's `tier_guidance` qualifies, and the matched attribute's value substitutes the template parameter). See new "Matcher semantics" subsection under §1.9.
 > **v1.4 — 2026-04-17**: Introduce `entity_attributes_covered` as a required tag-block field — a flat list of dotted-path attribute IDs (`tier_{0,1,2}.{dimension}.{attribute}`) that the activity exercises from its entity's `tier_guidance`. Consumed by the upstream matcher; validated against the entity YAML.
 > **v1.3 — 2026-04-20**: Align `progression.difficulty_level` wire format to the Template 0 authority (`docs/template_0_preview.html` §04) and `docs/progression_axes.md`: bare integer `1|2|3`, not `L1|L2|L3`. The `L1/L2/L3` forms remain the human-readable rung labels in prose and UI copy.
 > **v1.2 — 2026-04-20**: Sync template-reading flow to the new `templates.md` v1.0 structure (Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix). Replaces the "Template A for Cat1 / Template B for Cat5" split with three-layer composition (Template 0 + pillar overlay + category modifier).
@@ -294,8 +295,18 @@ Each row: field · required/optional · valid values · consumer(s) · purpose.
 | `progression.next_step_hint` | required | one-sentence pointer | parent dashboard ("Try at home") | Where this activity points the child next. |
 | `progression.reward_hook` | optional | badge/chip label | child recap (chip copy) | Ties recap chip wording to the progression step. |
 | `caregiver_role` | required | list from `{scaffold, co-explorer, observer}`; T0 defaults to `[scaffold]`, T1 adds `co-explorer`, T2 may include all three (cumulative) | parent dashboard (gauges) | Tier-dependent default; authors may override with justification. |
-| `entity_attributes_covered` | required | list of dotted-path attribute IDs (`tier_{0,1,2}.{dimension}.{attribute}`) | upstream matcher | Enumerates the tier_guidance attributes this activity exercises. Used by the matcher to route photographed entities to this activity. |
+| `entity_attributes_covered` | required | list of dotted-path attribute IDs (`tier_{0,1,2}.{dimension}.{attribute}`) | upstream matcher | Enumerates the tier_guidance attributes this activity exercises. Used by the matcher to route photographed entities to this activity. The overlap rule depends on `entity_binding`: `bound` → strict (every ID must resolve in the specific entity YAML); `parameterized` → loose (any one ID matching qualifies; the matched attribute's value fills the template parameter); `agnostic` → required but matcher may treat differently at runtime. See "Matcher semantics" below. |
 | `pillar_payoff` | optional | one-sentence magic-moment recap | author/review | Internal note that the pillar's emotional arc landed. Not rendered. |
+
+#### Matcher semantics
+
+`entity_attributes_covered` is consumed via two different overlap rules, selected by the activity's `entity_binding`. The full routing pipeline lives in `docs/template_0_preview.html` §05.
+
+- **`entity_binding: bound`** — entity-coupled gold design (e.g., `banana_cat1_gold`, `butterfly_cat5_gold`). **Strict overlap.** Every ID in `entity_attributes_covered` must resolve to an `attribute:` entry under the specific entity's `tier_guidance` YAML (`data/mappings_dev20_0318/.../{yaml}`). IDs that fail to resolve are lint errors, not soft mismatches.
+- **`entity_binding: parameterized`** — property-bridge template (e.g., `color_scout_property_gold`, `material_lab_property_gold`). **Loose overlap.** The template declares 2–4 abstract attribute paths that a candidate entity *could* expose. A photographed entity qualifies if **at least one** listed ID appears in its `tier_guidance`. At runtime, the matched attribute's `value` is then extracted and substituted for the template parameter (`{color}`, `{material}`, `{shape}`, etc.). The list is a catch-net, not a contract.
+- **`entity_binding: agnostic`** — field still required; the matcher may apply either rule or a category-specific one (runtime decides based on `style` and `pillar`).
+
+Authors do not need to encode `entity_binding` manually when it can be inferred from the design's top-matter (`Mapping Source: property-bridge` → `parameterized`; a single `Trigger Entity: {entity_name}` → `bound`). Downstream tooling derives it; design authors only have to pick the right overlap semantics when choosing which attribute IDs to list.
 
 #### Consumer contracts (reference)
 
@@ -319,7 +330,10 @@ Before emitting a completed activity design, verify:
 - [ ] `progression.next_step_hint` is concrete (names an axis, a level, or an adjacent entity — not "keep exploring").
 - [ ] `transdisciplinary_theme` is one of the 6 IB themes listed in §1.4.
 - [ ] `caregiver_role` list matches tier default unless the design justifies the override.
-- [ ] `entity_attributes_covered` lists at least 4 attribute IDs and every ID exists in the entity's `data/mappings_dev20_0318/.../{yaml}` `tier_guidance`.
+- [ ] `entity_attributes_covered` follows the overlap rule for the design's `entity_binding`:
+  - **bound** (entity-coupled gold) → lists at least 4 attribute IDs, and **every** ID resolves to an `attribute:` entry in that entity's `data/mappings_dev20_0318/.../{yaml}` `tier_guidance` (strict overlap).
+  - **parameterized** (property-bridge template) → lists 2–4 abstract attribute paths a candidate entity could plausibly expose under `tier_guidance`. The matcher uses loose overlap at runtime (any one hit qualifies), and the matched attribute's value fills the template parameter.
+  - See §1.9 "Matcher semantics" for the full rule.
 - [ ] `kud.know` / `kud.understand` / `kud.do` are populated with the same content used in Basic Info §B.② (no drift between the two).
 - [ ] No field value is a placeholder, ellipsis, or instruction-shaped string ("pick one of...", "see mapping", etc.).
 
