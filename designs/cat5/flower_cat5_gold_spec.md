@@ -43,6 +43,32 @@ entity_attributes_covered:
   - tier_2.function.structural_support_for_petals
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Flower (e.g., other garden plants like tulip, rose, daisy, potted
+houseplant, herb sprig) instead of a generic flower. The neighbor list, bridge
+type, and initial bridge prompt will live in `data/constellation_map.yaml`
+under `mapped_entity: flower` (Cat5 entry pending per that file's coverage
+notes) — this section describes how The Garden Rescue Squad adapts mechanically
+for a bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The "Rescue Captain" role_title and the 3-more-finds mission (dry leaf + fallen twig + lonely pebble joining the seed plant) — the mutual-aid team needs all four to form.
+- The MUTUAL AID synthesis in Step 4 where rescued items help EACH OTHER (leaf shades pebble, twig props petal, pebble anchors leaf) — this flip from one-way care to interdependence IS the Nurture-pillar magic moment.
+- The signs-of-need diagnostic frame ("petals drooping", "edges curling", "fallen over") — observing distress and naming a care solution is the Responsibility key-concept landing.
+
+**Swap** — re-phrase for the bridged entity:
+- Transition bridge "Its petals are drooping down" → neighbor's distress-signal (tulip: "its tall stem is bending — too tired to stand"; rose: "one petal hanging, a thorn looks stuck"; potted plant: "the soil looks dry and cracked"; herb sprig: "leaves turning pale from too much sun").
+- Round 4 finale "the twig props up a wilting PETAL" → neighbor's supportable part (tulip: "the twig props up the tall stem"; potted plant: "the pebble weighs down soil so it doesn't blow away"). The neighbor's specific body part replaces "petal" in the mutual-aid cross-references.
+- Seed slot label "Flower — needs water" in the mission card → the neighbor's actual need (tulip: "Tulip — needs support"; dry potted plant: "Plant — needs water and shade"; rose with a bent stem: "Rose — needs gentle hands").
+- Care solution menu in Round 1 (water / shade / hug) → broadened for indoor/container plants (potted: "water + better spot near window"); don't force outdoor-only solutions on a houseplant.
+
+**Watch** — gotchas to avoid:
+- Cactus and succulents don't want "water" as the default fix — if bridged, check the neighbor first; offering water to a droopy cactus is wrong-care; pivot to "less water, more light".
+- If the seed plant is a potted houseplant (indoor, solo on a windowsill), the child may have no garden around them to find the 3 other rescues — pivot rescues to other indoor items (a droopy paper flower, a dusty vase, a wilted bouquet leaf).
+- Never name the mutual aid pattern before Step 4 — if the child spots it in Round 2 ("the pebble could help the leaf!"), the AI praises but defers the reveal until all 4 are rescued; premature reveal drains the climax.
+
 ### B. Activity Overview
 
 - **① Brief Description**: The child photographs a flower and notices it looks a little droopy. The AI frames the child as a "Rescue Captain" leading a Garden Rescue Squad. The child explores the garden to find 3 more things that need help — a dry leaf, a fallen twig, a lonely pebble — and proposes care for each. At synthesis, the rescued items help EACH OTHER: the leaf shades the pebble, the twig props up a wilting petal, the pebble holds down the leaf in the wind. The magic moment is seeing the rescued team form a mutual aid circle.

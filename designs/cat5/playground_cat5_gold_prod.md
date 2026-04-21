@@ -26,6 +26,31 @@ entity_attributes_covered:
   - tier_2.appearance.texture_mix_on_surfaces
 ```
 
+### A.6 Constellation Adaptation Notes
+
+Recipe for running this activity when the photographed entity is a constellation
+neighbor of Playground (e.g., swing, slide, seesaw, sandbox, climbing frame) —
+these are PARTS of a playground photographed in isolation. The neighbor list,
+bridge type, and initial bridge prompt live in `data/constellation_map.yaml`
+under `mapped_entity: playground` — this section describes how The Playground
+Material Detective adapts mechanically for a bridged entity.
+
+**Preserve** — must not change across neighbors:
+- The "Playground Scientist" role_title and the PREDICT → COLLECT 3 → TALLY REVEAL arc — hypothesis-before-evidence is the Discovery pillar's engine.
+- The metal-vs-not-metal classification frame with running tally — the binary choice is what makes the prediction testable at T1.
+- The Causation closing ("metal for strength, rubber for safety, wood for grip") — every material has a reason, and the child must walk away with that insight.
+
+**Swap** — re-phrase for the bridged entity:
+- Transition Bridge "Feel that slide! It's METAL!" → anchor the bridge prompt on the specific part the child photographed (swing: "Those chains are METAL — feel them!"; sandbox: "Those wooden borders — feel how WOOD holds up outdoors!"; climbing frame: "That bar is METAL and SO strong!"). Seed the first tally mark with whatever material the photographed part shows.
+- Step 2 Prediction framing "are MOST playground things metal or not-metal?" stays verbatim — the swing, slide, etc. all live inside a playground, so the question's scope is identical.
+- Round 1–3 evidence gathering still expects the child to walk around the playground — the seed part changes which column gets the starting tally (slide → metal; sandbox → not-metal; rubber mat under swing → not-metal).
+- Closing line "the slide is metal because metal is smooth" → the child's actual seed part (seesaw: "because metal is strong and holds two riders"; sandbox: "because wood stands up to weather").
+
+**Watch** — gotchas to avoid:
+- For neighbors that are ambiguous-material (a climbing frame can be metal OR molded plastic), let the child's photo assessment seed the tally — don't hardcode "metal" as the starter.
+- If the child photographs the sandbox specifically, the seed tally may land in Not-Metal, which inverts which prediction feels "surprising" — the game still works but the AI's lines about "shiny zoom" need to swap to material properties that actually apply.
+- Never drop the prediction lock-in — a playground survey without a committed guess is just a scavenger hunt, not science. If the child refuses to predict, the AI must propose a default ("Let's predict mostly metal — lock it in?").
+
 ### B. Activity Overview
 
 **① Brief Description**
