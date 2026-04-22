@@ -11,6 +11,8 @@
 | Related Concepts | Creativity, Imagination, Discovery, Expression |
 | ATL Skills Focus | Thinking Skills (creative, divergent), Communication Skills (expressing, listening), Self-Management Skills (focus, engagement) |
 | Game Style | inventor_workshop |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

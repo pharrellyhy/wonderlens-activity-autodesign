@@ -11,6 +11,8 @@
 | Related Concepts | Emotion, Safety, Expression, Empathy |
 | ATL Skills Focus | Social Skills (empathy, caring), Communication Skills (expressing, listening), Self-Management Skills (emotional regulation) |
 | Game Style | care_station |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

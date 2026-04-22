@@ -12,6 +12,8 @@
 | ATL Skills Focus | Thinking Skills (critical thinking, cause-and-effect), Communication Skills (expressing, listening), Research Skills (observation, data collection) |
 | Experience Pillar | Discovery |
 | Game Style | prediction_lab |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

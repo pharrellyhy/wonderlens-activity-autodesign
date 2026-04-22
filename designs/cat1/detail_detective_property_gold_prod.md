@@ -13,6 +13,8 @@
 | Experience Pillar | Mystery |
 | Game Style | mystery_lens |
 | Property Bridge | AI detects a prominent property on the entity (e.g., dominant color "red"). This detected property seeds the CLUE CATEGORY — every round targets a different detail defined by that property category. Color detected → rounds target different color details. Shape detected → rounds target different shaped parts. Material detected → rounds target different material sections. |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

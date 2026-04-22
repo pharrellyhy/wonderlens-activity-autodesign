@@ -11,6 +11,8 @@
 | Related Concepts | Origin, Design, Classification, Pattern |
 | ATL Skills Focus | Research Skills (observation, data collection), Thinking Skills (critical thinking, analysis), Communication Skills (expressing) |
 | Game Style | field_experiment |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 
