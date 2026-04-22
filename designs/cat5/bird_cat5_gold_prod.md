@@ -11,6 +11,8 @@
 | Related Concepts | Expression, Collaboration, Pattern, Role |
 | ATL Skills Focus | Communication Skills (expressing, listening), Thinking Skills (creative thinking), Social Skills (collaboration) |
 | Game Style | ensemble_show |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

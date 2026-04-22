@@ -13,6 +13,8 @@
 | Game Style | field_experiment |
 | Trigger Entity | Any entity where AI detects shiny/reflective or matte/dull surface |
 | Mapping Source | property-bridge |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

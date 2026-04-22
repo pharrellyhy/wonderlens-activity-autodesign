@@ -11,6 +11,8 @@
 | Related Concepts | Structure, Creativity, Materials, Connection |
 | ATL Skills Focus | Thinking Skills (creative thinking), Research Skills (observation), Communication Skills (expressing) |
 | Game Style | mix_lab |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

@@ -13,6 +13,8 @@
 | Experience Pillar | Nurture |
 | Game Style | care_station |
 | Property Bridge | AI detects a worn/needs-care property (faded, dusty, scratched, torn, old-looking, droopy, sad-looking) and uses it to seed the first need. If entity doesn't look worn, AI playfully imagines a need. |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

@@ -11,6 +11,8 @@
 | Related Concepts | Habitat, Pattern, Connection, Discovery |
 | ATL Skills Focus | Research Skills (observation, data collection), Thinking Skills (critical thinking, transfer), Communication Skills (expressing reasoning) |
 | Game Style | mystery_trail |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

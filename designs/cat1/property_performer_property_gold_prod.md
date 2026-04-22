@@ -13,6 +13,8 @@
 | Experience Pillar | Performance |
 | Game Style | voice_stage |
 | Property Bridge | AI detects a salient property (bouncy, shiny, fluffy, big, tiny, smooth, sparkly, soft, loud, etc.) and uses it as the PERFORMANCE THEME. Child performs AS the entity with the property driving challenges. |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

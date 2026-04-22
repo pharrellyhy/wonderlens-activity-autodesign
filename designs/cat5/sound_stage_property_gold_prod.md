@@ -13,6 +13,8 @@
 | Game Style | ensemble_show |
 | Trigger Entity | Any entity that makes or could make a sound, OR any outdoor context |
 | Mapping Source | property-bridge |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

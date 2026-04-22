@@ -13,6 +13,8 @@
 | Game Style | inventor_workshop |
 | Trigger Entity | Any entity with detected {property} attributes |
 | Mapping Source | property-bridge |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 

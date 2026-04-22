@@ -11,6 +11,8 @@
 | Related Concepts | Structure, Discovery, Design, Observation |
 | ATL Skills Focus | Thinking Skills (critical thinking, deduction), Research Skills (observation, information literacy), Communication Skills (expressing, listening) |
 | Game Style | mystery_lens |
+| Design Version | 1.0 |
+| Last Updated | 2026-04-21 |
 
 ### A.1 Entity Attributes Covered
 
