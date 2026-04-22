@@ -4,13 +4,13 @@
 > Covers the "Next actions" + "Post-approval" items originally listed in Template 0's v0.2 footer.
 
 **Date:** 2026-04-20
-**Last updated:** 2026-04-20 — items 2/3/4/6 landed; **Item 7 added** (matchability tags, shipped as PR #10)
+**Last updated:** 2026-04-20 — items 2/3/4/6 landed; Item 7 shipped (PR #10); **Item 8 added** (progression walkthrough, shipped as PR #11)
 **Template 0 authority:** `docs/template_0_preview.html` (v0.3, 2026-04-20)
-**Ancillary specs:** `docs/plans/2026-04-17-downstream-surfaces-split-design.md` · `docs/plans/2026-04-20-matchability-tags-design.md`
+**Ancillary specs:** `docs/plans/2026-04-17-downstream-surfaces-split-design.md` · `docs/plans/2026-04-20-matchability-tags-design.md` · `docs/plans/2026-04-20-progression-walkthrough-design.md`
 
 ---
 
-## The 7 items and their state
+## The 8 items and their state
 
 | # | Item | State |
 |---|---|---|
@@ -20,9 +20,10 @@
 | 4 | Promote tag block in `program.md` | ✅ **shipped** (PR #6) |
 | 5 | L × T interactive walkthrough for author onboarding | ✅ already shipped (`docs/template_0_lt_walkthrough.html` + `_cn.html`) |
 | 6 | Author training guide with worked examples | ✅ **shipped** (PR #8, v0.1) |
-| 7 | **[NEW]** Matchability tags — `entity_binding` + `entity_class` + `tier_range` + §05 pipeline update + `docs/entity_ontology.md` | ✅ **shipped** (PR #10, Template 0 v0.3) |
+| 7 | Matchability tags — `entity_binding` + `entity_class` + `tier_range` + §05 pipeline update + `docs/entity_ontology.md` | ✅ **shipped** (PR #10, Template 0 v0.3) |
+| 8 | **[NEW]** Progression walkthrough — 4 scenarios visualizing §07 L1↔L2↔L3 transitions in action | ✅ **shipped** (PR #11, v0.1) |
 
-**Status summary:** All 6 original roadmap items complete. One new item (#7 Matchability tags) added + shipped after the roadmap's initial framing — addresses the recall-first ask raised during post-surfaces-split review.
+**Status summary:** All 6 original roadmap items complete. Two post-initial additions (Items 7 + 8) shipped — both address gaps that became visible only AFTER the v0.2 foundation landed. Item 7 addresses recall-first upstream matching; Item 8 makes the temporal dynamics of §07's transition rules vivid rather than just prose-described.
 
 Item 1 (internal sign-off) remains a process step — owner-driven, not code.
 
@@ -592,6 +593,49 @@ Run code-reviewer + code-simplifier subagents on the diff before opening the PR.
 
 ---
 
+<a id="item-8-progression-walkthrough"></a>
+## 6c. Item 8 — **[NEW 2026-04-20]** Progression walkthrough
+
+> **Added to the roadmap after items 1–7 were shipped.** Surfaced in the same post-v0.3 review session where Item 7 landed — once Template 0 §07's transition rules were firm and matchability tags locked the catalog-time story, the next gap was making §07's temporal dynamics vivid. Shipped as PR #11.
+
+**Type:** new companion preview doc (HTML/CSS only), no code changes.
+**Files:** 2 new HTML files (EN + CN) + small cross-link addition to Template 0 §07 in both locales.
+**Depends on:** Template 0 v0.3 (§07 transition rules are the spec the walkthrough visualizes).
+**Status:** ✅ **shipped** as PR #11 · walkthrough v0.1.
+
+### What it ships
+
+**One new preview doc in two locales:** `docs/template_0_progression_walkthrough.html` + `_cn.html`. Four scenarios, each a horizontal timeline of 3–6 activity cards showing how the runtime's promote / hold / demote / sibling-jump / soft-reframe triggers apply to a specific child journey:
+
+- **Scenario 1 — Steady progression** (baseline). 5 activities on Form axis. Shows the unremarkable happy path: most activities hold, promotions happen at natural breakpoints.
+- **Scenario 2 — Hit-a-wall recovery.** 6 activities. Causation demote → sibling-axis jump to Connection → Causation bounces back. Two dialogue-callout expansions show what the runtime recorded vs what Mia heard (the dignity rule in action).
+- **Scenario 3 — Across-axis independence.** 5 activities + a 7-axis snapshot visual. Kills the "one global rung" intuition — Mia is at L3 on Form, L1 on Causation, L1 on Responsibility, uninitialized on Connection, all simultaneously.
+- **Scenario 4 — Reluctance vs inability.** 3 activities + a dedicated comparison box distinguishing demote (cognitive-state mismatch) from soft-reframe (emotional breath).
+
+Plus a **three-rules summary §05** restating §07's dignity rule / sibling jump / personalization hook with pointers to where each showed up in the scenarios.
+
+**Cross-link** from Template 0 §07 to the walkthrough in both locales — a cream-tinted block sitting under the three-rules footer.
+
+### Why it was added after the initial roadmap
+
+Items 1–7 closed out Template 0's v0.2–v0.3 spec work. But the §07 transition rules describe WHEN promotions/demotions happen in abstract terms; readers kept missing the **dignity rule** (demote is never surfaced as failure), the **per-axis state** (it's not one global ladder), and the **sibling-axis jump** (stuck at floor → pivot, not force). Prose made them invisible; a visual walkthrough makes them vivid.
+
+### Design + implementation specs
+
+- `docs/plans/2026-04-20-progression-walkthrough-design.md` (~460 lines)
+- `docs/plans/2026-04-20-progression-walkthrough-implementation.md` (~1290 lines, 11 tasks)
+
+Both ship with PR #11.
+
+### Deferred to future rounds (explicitly out of scope)
+
+- **Scenario 5** — personalization hypothetical (split view: "v1 threshold rules" vs "per-child pace model" applied to the same history)
+- **Scenario 6** — long-arc compressed timeline (12+ sessions in one view, ties to parent dashboard curiosity radial)
+- **Live simulator** — deliberate: hand-authored scenarios avoid codifying transitional v1 thresholds as permanent
+- **Parameter tweaking / interactive rung state** — future v0.2
+
+---
+
 ## Suggested ordering (historical — for reference)
 
 The original plan ordered items as:
@@ -602,7 +646,7 @@ The original plan ordered items as:
 4. **Item 3** (templates.md refactor) — biggest, highest risk, should go after sign-off
 5. **Item 6** (author training guide) — depends on 2, 3, 4 landing
 
-**What actually happened**: items 2→4→3→6 shipped in PRs #5, #6, #7, #8 in that order. Item 7 (matchability) was added later and shipped as #10. Item 1 (sign-off) is still owner-driven.
+**What actually happened**: items 2→4→3→6 shipped in PRs #5, #6, #7, #8 in that order. Items 7 (matchability) and 8 (progression walkthrough) were added in a post-v0.3 review session and shipped as PRs #10 and #11. Item 1 (sign-off) is still owner-driven.
 
 ---
 
@@ -616,20 +660,33 @@ The original plan ordered items as:
 | 4 | Promote tag block in `program.md` | 1 worktree, 1 PR | items 2+3 (loose) | ✅ shipped | PR #6 |
 | 5 | L × T walkthrough | — | — | ✅ shipped | pre-existing |
 | 6 | Author training guide | 1 worktree, 1 PR | items 2+3+4 | ✅ shipped | PR #8 (v0.1) |
-| 7 | **[NEW]** Matchability tags + §05 pipeline + entity ontology | 1 worktree, 1 PR, 13 commits | items 2–6 | ✅ shipped | PR #10 (Template 0 v0.3) |
+| 7 | Matchability tags + §05 pipeline + entity ontology | 1 worktree, 1 PR, 13 commits | items 2–6 | ✅ shipped | PR #10 (Template 0 v0.3) |
+| 8 | **[NEW]** Progression walkthrough — 4 scenarios, dialogue callouts, 7-axis snapshot, distinction-box | 1 worktree, 1 PR, 16 commits | Template 0 v0.3 + §07 transition rules | ✅ shipped | PR #11 (walkthrough v0.1) |
 
-Only Item 1 (process-level team sign-off) remains. All code/doc work from this roadmap + the post-roadmap addition is merged.
+Only Item 1 (process-level team sign-off) remains. All code/doc work from this roadmap + the two post-roadmap additions (Items 7 + 8) is merged.
 
 ---
 
 ## Change log for this roadmap doc
 
 - **2026-04-20 initial** — items 1–6 defined based on Template 0 v0.2's "Next actions" + "Post-approval" footer
-- **2026-04-20 revised** — items 2/3/4/6 marked shipped; **Item 7 (matchability tags) added** as a post-initial addition. Prompted by the question "given a limited catalog, how can the upstream app map to as many activities as possible?" which revealed a gap not covered by items 1–6. Full design + implementation plan + PR shipped same day.
+- **2026-04-20 revised (first pass)** — items 2/3/4/6 marked shipped; **Item 7 (matchability tags) added** as a post-initial addition. Prompted by the question "given a limited catalog, how can the upstream app map to as many activities as possible?" which revealed a gap not covered by items 1–6. Full design + implementation plan + PR shipped same day.
+- **2026-04-20 revised (second pass)** — **Item 8 (progression walkthrough) added** as a second post-initial addition. Prompted by the observation that Template 0 §07's transition rules describe WHEN promotions/demotions happen but can't make the temporal dynamics vivid in prose — readers kept missing the dignity rule, per-axis state, and sibling-axis jump. Full design + implementation plan + PR shipped same day.
 
-### Sections newly added in this revision
+### Sections newly added in THIS revision (second pass)
 
-For reviewers comparing against the prior version:
+For reviewers comparing against the first-pass version:
+
+- **Header block** — "Last updated" line extended; mention of `progression-walkthrough-design.md` added to Ancillary specs
+- **The 8 items and their state** (was "7 items") — new row 8; status summary reworded to reference both post-roadmap additions
+- **§6c Item 8 — Progression walkthrough** — entirely new section inserted between §6b (Item 7 Matchability tags) and §7 Execution conventions
+- **Suggested ordering** — "What actually happened" line extended to mention Item 8 as PR #11
+- **Summary table** — new row 8
+- **Change log** — this bullet + next subsection
+
+### Sections newly added in the FIRST revision (pass 1)
+
+For reviewers comparing against the very-original version:
 
 - **Header block** — "Last updated" line + new mention of `matchability-tags-design.md`; "Template 0 authority" bumped to v0.3
 - **The 7 items and their state** (was "6 items") — new row 7 + all other rows marked shipped with PR refs
