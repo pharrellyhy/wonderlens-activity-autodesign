@@ -1,0 +1,2347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matching Guideline · WonderLens Activity Design — Internal Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,50..100,0..1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F4EFE6;
+      --bg-deep: #ECE5D6;
+      --bg-card: #FAF6EC;
+      --ink: #141311;
+      --ink-soft: #3B3730;
+      --muted: #7A7468;
+      --line: #CCC3AE;
+      --line-soft: #E2DBC8;
+      --accent: #C5411C;
+      --accent-deep: #8E2A10;
+      --mystery: #3D4A5C;
+      --creation: #C5411C;
+      --performance: #C89021;
+      --discovery: #3A6B56;
+      --adventure: #8B5A3C;
+      --nurture: #A6497C;
+      --tier-0: #B06A3A;
+      --tier-1: #3A6B56;
+      --tier-2: #3D4A5C;
+      --serif: 'Fraunces', 'Noto Serif SC', Georgia, serif;
+      --sans: 'IBM Plex Sans', 'Noto Serif SC', -apple-system, sans-serif;
+      --mono: 'IBM Plex Mono', 'SF Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      font-feature-settings: "ss01", "ss02", "kern";
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(197, 65, 28, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 85% 70%, rgba(61, 74, 92, 0.04) 0%, transparent 50%);
+      min-height: 100vh;
+      padding-top: 54px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      z-index: 1;
+      mix-blend-mode: multiply;
+    }
+
+    /* ============ MASTHEAD (sticky TOC) ============ */
+    .masthead {
+      border-bottom: 1px solid var(--ink);
+      padding: 18px 48px 14px;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--bg);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 32px;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .masthead .brand {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      font-style: italic;
+    }
+    .masthead .brand b {
+      font-style: normal; font-weight: 600; margin-right: 4px;
+    }
+    .masthead nav { display: flex; gap: 20px; flex-wrap: wrap; }
+    .masthead nav a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .masthead nav a:hover { color: var(--accent); }
+    .masthead .meta { color: var(--muted); }
+
+    /* ============ HERO ============ */
+    .hero {
+      padding: 80px 48px 60px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--ink);
+      position: relative;
+    }
+    .hero .kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero .kicker::before {
+      content: ""; width: 40px; height: 1px;
+      background: var(--accent); display: inline-block;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(56px, 9vw, 132px);
+      font-weight: 300;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      font-variation-settings: "opsz" 144, "SOFT" 80;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+      color: var(--accent);
+    }
+    .hero .lede {
+      font-family: var(--serif);
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.5;
+      max-width: 780px;
+      color: var(--ink-soft);
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+    .hero .lede b {
+      font-weight: 500;
+      color: var(--ink);
+      background: linear-gradient(180deg, transparent 65%, rgba(197, 65, 28, 0.18) 65%);
+    }
+    .hero .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      padding-top: 32px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .hero-meta .label { color: var(--muted); margin-bottom: 6px; display: block; }
+    .hero-meta .value {
+      font-family: var(--serif);
+      font-size: 16px;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    /* ============ REVNOTE ============ */
+    .revnote {
+      margin-top: 36px;
+      padding: 18px 22px;
+      background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .revnote summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+    .revnote summary::marker,
+    .revnote summary::-webkit-details-marker { color: var(--accent); }
+    .revnote[open] summary {
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+    .revnote-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 2px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+    .revnote ol { margin: 0; padding-left: 22px; color: var(--ink-soft); }
+    .revnote li { margin-bottom: 10px; }
+    .revnote li:last-child { margin-bottom: 0; }
+    .revnote code { font-family: var(--mono); font-size: 11px; color: var(--accent); }
+
+    /* ============ SECTION BASE ============ */
+    section {
+      padding: 80px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    .sec-head {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 32px;
+      margin-bottom: 44px;
+      align-items: baseline;
+    }
+    .sec-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-variation-settings: "opsz" 90;
+    }
+    .sec-title em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 90, "WONK" 1;
+    }
+    .sec-desc {
+      grid-column: 2;
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 760px;
+      margin-top: 14px;
+      font-weight: 300;
+    }
+
+    /* ============ PROSE ============ */
+    .prose { max-width: 840px; }
+    .prose p { margin-bottom: 18px; color: var(--ink-soft); font-size: 15px; line-height: 1.7; }
+    .prose p b { color: var(--ink); font-weight: 500; }
+    .prose p code, .prose li code, td code, th code {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      padding: 1px 5px;
+      border-radius: 2px;
+    }
+    .prose ul, .prose ol { padding-left: 22px; margin-bottom: 18px; color: var(--ink-soft); }
+    .prose li { margin-bottom: 10px; line-height: 1.65; }
+    .prose h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin: 32px 0 14px;
+      line-height: 1.2;
+    }
+    .prose h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 24px 0 10px;
+    }
+
+    /* ============ CALLOUT ============ */
+    .callout {
+      margin: 22px 0;
+      padding: 16px 20px;
+      background: var(--bg-deep);
+      border-left: 3px solid var(--accent);
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+    .callout b { font-weight: 500; color: var(--ink); }
+    .callout.warn {
+      border-left-color: var(--mystery);
+      background: color-mix(in srgb, var(--mystery) 6%, var(--bg));
+    }
+    .callout.note {
+      border-left-color: var(--discovery);
+      background: color-mix(in srgb, var(--discovery) 5%, var(--bg));
+    }
+
+    /* ============ LAYER CARDS ============ */
+    .layers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+      margin-bottom: 24px;
+    }
+    .layer {
+      padding: 28px 24px;
+      border-right: 1px solid var(--ink);
+      position: relative;
+    }
+    .layer:last-child { border-right: none; }
+    .layer .num {
+      font-family: var(--serif);
+      font-size: 56px;
+      font-weight: 300;
+      line-height: 0.9;
+      color: var(--accent);
+      font-variation-settings: "opsz" 144, "WONK" 1;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .layer h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .layer p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .layer .path {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--accent);
+      border-top: 1px dashed var(--line);
+      padding-top: 10px;
+      display: block;
+      line-height: 1.45;
+      word-break: break-all;
+    }
+
+    /* ============ GLOSSARY ============ */
+    .glossary { border: 1px solid var(--line); background: var(--bg-card); }
+    .glossary dt {
+      padding: 14px 22px 4px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+      border-top: 1px dashed var(--line);
+    }
+    .glossary dt:first-child { border-top: none; }
+    .glossary dd {
+      padding: 0 22px 14px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+    .glossary dd code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* ============ SOURCES TABLE ============ */
+    .src-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+    }
+    .src-table th, .src-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top;
+    }
+    .src-table th {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      background: var(--bg-deep);
+      font-weight: 500;
+    }
+    .src-table td code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+    .src-table tr:last-child td { border-bottom: none; }
+
+    /* ============ PIPELINE DIAGRAM ============ */
+    .pipe-wrap {
+      margin: 24px 0 36px;
+      padding: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      overflow-x: auto;
+    }
+    .pipe-wrap svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+    .pipe-caption {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ============ STEP LIST ============ */
+    .steps { counter-reset: step; margin-top: 24px; }
+    .step {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+    .step:last-child { border-bottom: none; }
+    .step .sn {
+      font-family: var(--serif);
+      font-size: 44px;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 0.9;
+      font-variation-settings: "opsz" 144, "WONK" 1;
+    }
+    .step h4 {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .step p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+    .step p code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* ============ RULE BOX ============ */
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 18px 0;
+    }
+    .rule-box {
+      padding: 20px 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--ink);
+      position: relative;
+    }
+    .rule-box::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--rb-color, var(--accent));
+    }
+    .rule-box.bound { --rb-color: var(--creation); }
+    .rule-box.param { --rb-color: var(--discovery); }
+    .rule-box.agnostic { --rb-color: var(--mystery); }
+    .rule-box .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rb-color);
+      margin-bottom: 8px;
+      display: block;
+      font-weight: 500;
+    }
+    .rule-box h4 {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .rule-box p { font-size: 13px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 10px; }
+    .rule-box .formula {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 10px 12px;
+      background: var(--bg-deep);
+      border-left: 2px solid var(--rb-color);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    /* ============ CODE PANEL ============ */
+    .code-panel {
+      background: var(--ink);
+      color: #E8E2D1;
+      padding: 28px 32px;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.7;
+      border: 1px solid var(--ink);
+      position: relative;
+      overflow-x: auto;
+      margin: 18px 0;
+    }
+    .code-panel::before {
+      content: attr(data-file);
+      position: absolute;
+      top: -1px;
+      right: 24px;
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 10px;
+      padding: 4px 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .code-panel .key { color: #E8B85C; }
+    .code-panel .str { color: #D4BFA0; }
+    .code-panel .cmt { color: #6B6454; font-style: italic; }
+    .code-panel .hl { background: rgba(197, 65, 28, 0.22); padding: 1px 4px; border-radius: 2px; }
+    .code-panel pre { white-space: pre-wrap; }
+
+    /* ============ WALKTHROUGH ============ */
+    .walk {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .walk-step {
+      padding: 18px 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+    }
+    .walk-step .wh {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .walk-step h4 {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .walk-step p, .walk-step li {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+    .walk-step code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .walk-step ul { padding-left: 22px; margin-top: 4px; }
+
+    /* ============ CHECKLIST ============ */
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0;
+    }
+    .checklist li {
+      padding: 12px 0 12px 32px;
+      border-bottom: 1px dashed var(--line);
+      position: relative;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 16px;
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--accent);
+      border-radius: 2px;
+    }
+    .checklist li b { color: var(--ink); font-weight: 500; }
+    .checklist li code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .checklist-group {
+      margin-top: 24px;
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+    }
+    .checklist-group h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .checklist-group p {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+      line-height: 1.55;
+    }
+
+    /* ============ GOTCHAS ============ */
+    .gotcha-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .gotcha {
+      padding: 16px 18px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--mystery);
+    }
+    .gotcha .gw {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mystery);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .gotcha h4 {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .gotcha p { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+    .gotcha p code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    /* ============ CHEAT SHEET ============ */
+    .cheat {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--ink);
+      background: var(--bg-card);
+    }
+    .cheat-col { padding: 32px 28px; border-right: 1px solid var(--ink); }
+    .cheat-col:last-child { border-right: none; }
+    .cheat-col h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .cheat-col h3 em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: "opsz" 90, "WONK" 1;
+    }
+    .cheat-col .sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+      display: block;
+    }
+    .cheat-col ol {
+      padding-left: 22px;
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+    .cheat-col ol li { margin-bottom: 10px; }
+    .cheat-col ol li b { color: var(--ink); font-weight: 500; }
+    .cheat-col ol li code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 6%, transparent);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      padding: 60px 48px 80px;
+      max-width: 1280px;
+      margin: 0 auto;
+      color: var(--ink-soft);
+      font-family: var(--sans);
+      font-size: 13px;
+    }
+    footer .version {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 22px;
+      margin-top: 22px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 960px) {
+      .layers, .rule-grid, .gotcha-list, .cheat, .hero .hero-meta { grid-template-columns: 1fr; }
+      .cheat-col { border-right: none; border-bottom: 1px solid var(--ink); }
+      .cheat-col:last-child { border-bottom: none; }
+      .sec-head { grid-template-columns: 1fr; gap: 10px; }
+      .sec-desc { grid-column: 1; }
+      section { padding: 60px 28px; }
+      .masthead { padding: 14px 20px; flex-wrap: wrap; gap: 14px; }
+      .hero { padding: 60px 28px 40px; }
+    }
+
+    /* ==== §05 Trace gallery ==== */
+    .trace-gallery { margin-top: 40px; border-top: 1px dashed var(--line); padding-top: 36px; }
+    .trace-gallery h3 { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+    .trace-gallery h3 em { color: var(--accent); font-style: italic; }
+    .trace-gallery .gallery-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; max-width: 760px; }
+    .trace-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: 26px; flex-wrap: wrap; }
+    .trace-tab { background: transparent; border: none; border-bottom: 2px solid transparent; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--muted); padding: 10px 18px; cursor: pointer; transition: all 0.18s ease; text-transform: uppercase; margin-bottom: -1px; }
+    .trace-tab:hover { color: var(--ink-soft); }
+    .trace-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+    .trace-panel { display: none; }
+    .trace-panel.active { display: block; }
+    .trace-meta { display: grid; grid-template-columns: 90px 1fr; gap: 10px 20px; background: var(--bg-card); border: 1px solid var(--line-soft); padding: 14px 18px; border-radius: 4px; margin-bottom: 20px; align-items: baseline; }
+    .trace-meta .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+    .trace-meta .value { font-size: 14px; color: var(--ink); line-height: 1.5; }
+    .trace-meta .value code { background: var(--bg-deep); padding: 1px 6px; border-radius: 3px; font-size: 12.5px; font-family: var(--mono); }
+    .trace-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 3px; margin-bottom: 22px; padding: 16px; background: var(--bg-deep); border: 1px solid var(--line-soft); border-radius: 4px; }
+    .chip { display: inline-flex; align-items: center; padding: 6px 11px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; background: var(--bg-card); border: 1px solid var(--line); color: var(--ink); border-radius: 3px; }
+    .chip.decision { background: #FCF6E3; border-color: #D6B84F; color: #6F5A10; }
+    .chip.outcome { background: #EBF2ED; border-color: #3A6B56; color: #234437; font-weight: 500; }
+    .chip.off { background: var(--bg-deep); border-color: var(--muted); color: var(--muted); font-style: italic; }
+    .chip.pick { background: var(--bg-card); border-color: var(--accent); color: var(--accent); font-weight: 500; }
+    .chip-sep { color: var(--muted); font-family: var(--mono); font-size: 11px; padding: 0 1px; }
+    .trace-steps { list-style: none; counter-reset: tracestep; padding: 0; margin: 0; }
+    .trace-steps li { counter-increment: tracestep; position: relative; padding: 9px 0 9px 44px; font-size: 14px; line-height: 1.55; color: var(--ink-soft); border-bottom: 1px dashed var(--line-soft); }
+    .trace-steps li:last-child { border-bottom: none; }
+    .trace-steps li::before { content: counter(tracestep, decimal-leading-zero); position: absolute; left: 0; top: 11px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--muted); font-weight: 500; }
+    .trace-steps li code { background: var(--bg-deep); padding: 1px 6px; border-radius: 3px; font-size: 12px; font-family: var(--mono); }
+    .trace-steps li b { color: var(--ink); font-weight: 500; }
+    .trace-steps pre { background: var(--bg-deep); border: 1px solid var(--line-soft); border-radius: 3px; padding: 9px 13px; font-family: var(--mono); font-size: 11.5px; line-height: 1.55; color: var(--ink); margin: 8px 0 4px; overflow-x: auto; white-space: pre; }
+    .trace-steps .code-panel { margin: 8px 0 4px; padding: 22px 26px 22px 26px; font-size: 11.5px; line-height: 1.7; }
+    .trace-steps .code-panel pre { background: transparent; border: none; padding: 0; margin: 0; color: inherit; font-size: inherit; line-height: inherit; }
+    .prose > .code-panel { margin: 16px 0 20px; }
+    .trace-detail { margin-top: 8px; }
+    .trace-detail-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; font-weight: 500; margin-right: 8px; }
+    .trace-quote { font-family: var(--serif); font-size: 14px; font-style: italic; color: var(--ink-soft); border-left: 2px solid var(--accent); padding: 6px 14px; margin: 8px 0; background: var(--bg-card); border-radius: 0 3px 3px 0; }
+    .trace-swap { display: grid; grid-template-columns: 1fr; gap: 4px; margin: 8px 0; padding: 8px 12px; background: var(--bg-card); border: 1px solid var(--line-soft); border-radius: 3px; }
+    .trace-swap .before { color: var(--muted); font-size: 13px; font-family: var(--serif); font-style: italic; position: relative; padding-left: 18px; }
+    .trace-swap .before::before { content: "−"; position: absolute; left: 4px; color: var(--muted); font-weight: bold; font-style: normal; font-family: var(--mono); }
+    .trace-swap .after { color: var(--ink); font-size: 13px; font-family: var(--serif); font-style: italic; position: relative; padding-left: 18px; }
+    .trace-swap .after::before { content: "+"; position: absolute; left: 4px; color: var(--accent); font-weight: bold; font-style: normal; font-family: var(--mono); }
+  </style>
+</head>
+
+<body>
+
+  <header class="masthead">
+    <div class="brand"><b>WonderLens</b> · Matching Guideline</div>
+    <nav>
+      <a href="#problem">01 Problem</a>
+      <a href="#layers">02 Layers</a>
+      <a href="#glossary">03 Glossary</a>
+      <a href="#sources">04 Sources</a>
+      <a href="#pipeline">05 Pipeline</a>
+      <a href="#semantics">06 Matcher</a>
+      <a href="#example">07 Example</a>
+      <a href="#checklist">08 Authoring</a>
+      <a href="#gotchas">09 Edge cases</a>
+      <a href="#cheat">10 Cheat</a>
+    </nav>
+    <div class="meta">v0.1 · 2026-04-21</div>
+  </header>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero">
+    <div class="kicker">Internal Reference · Matching Pipeline · Canonical</div>
+    <h1>One photo in,<br />one <em>game</em> out.</h1>
+    <p class="lede">
+      The matching pipeline is how a photographed entity becomes the right activity. Today its logic is scattered across
+      <b>five files</b> — entity YAMLs, the constellation map, gold and property design §A.1 / §A.2 blocks, and
+      <code>program.md</code> §1.9. This document binds all five into a single reference — so any author or engineer
+      can read one page and understand how the decision is actually made.
+    </p>
+    <div class="hero-meta">
+      <div>
+        <span class="label">For</span>
+        <span class="value">Authors · Engineers</span>
+      </div>
+      <div>
+        <span class="label">Scope</span>
+        <span class="value">Matching layer only</span>
+      </div>
+      <div>
+        <span class="label">Normative source</span>
+        <span class="value">program.md §1.9</span>
+      </div>
+      <div>
+        <span class="label">Status</span>
+        <span class="value">v0.1 · Inaugural draft</span>
+      </div>
+    </div>
+
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.1</span> Inaugural draft — bind entity YAMLs, constellation map, and dual-semantics matcher into one page — 2026-04-21</summary>
+      <ol>
+        <li>Pulls <code>entity_attributes_covered</code> contract and dual matcher semantics from <code>program.md</code> §1.9 — this HTML is an <b>explanatory mirror</b>, not a new spec. If the two ever drift, <code>program.md</code> wins.</li>
+        <li>Walks one concrete non-gold entity (<code>stuffed_bunny</code> → Teddy's Care Station via <code>teddy_bear</code> constellation) from photo to game pick — see §07.</li>
+        <li>Pipeline SVG simplifies the 12-box layout in <code>docs/diagrams/matching-pipeline-general.excalidraw</code>; canonical source stays in the <code>.excalidraw</code> file.</li>
+        <li>Constellation field names in §02/§05 follow <code>data/constellation_map.yaml</code> v0.3; §A.1/§A.2 naming follows current gold/property design files (the Excalidraw legend uses stale §A.5/§A.6 labels — this doc uses the live names).</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- ============== §01 THE MATCHING PROBLEM ============== -->
+  <section id="problem">
+    <div class="sec-head">
+      <div class="sec-num">§ 01 / The matching problem</div>
+      <h2 class="sec-title">A child photographs<br />something. <em>Now what?</em></h2>
+    </div>
+    <p class="sec-desc">The child's photo is the only signal. The system has to pick one activity design out of many,
+      run it, and make it feel like that game was <em>written for this thing</em>. Four properties of the real product
+      make the problem non-trivial.</p>
+
+    <div class="prose">
+      <p>At the moment the shutter closes, we know almost nothing: a bounding box, maybe a top-1 label from an entity
+        recognizer, some exif metadata, and the child's tier. From that, we must route to one of a growing library of
+        games — and the game must feel bespoke.</p>
+
+      <p><b>Four structural reasons this is hard.</b></p>
+
+      <ol>
+        <li><b>Photos are messy.</b> A plush rabbit might be labeled <code>stuffed_bunny</code>, <code>rabbit</code>,
+          or <code>plush_toy</code> depending on the recognizer's confidence. The matcher today relies on exact string
+          membership against an authored list of canonical neighbors (the constellation map); semantic/embedding
+          fallback is a planned mitigation, not yet implemented. See <a href="#gotchas">§09 STRING MATCH</a>.</li>
+        <li><b>The entity library is small.</b> Roughly twenty canonical entities have authored <code>tier_guidance</code>
+          under <code>data/mappings_dev20_0318/</code>. Any photograph outside that set has to be <em>bridged</em> to
+          a neighbor before a game can run at all.</li>
+        <li><b>The game library is growing.</b> Each pillar adds gold-standard games (one per pillar × category so
+          far) plus property-bridge templates (Detail Detective, Color Scout, Material Lab, …). The matcher must pick
+          the best game from a pool that is wider than the entity pool.</li>
+        <li><b>Authors want leverage.</b> A new game written today should reach many entities tomorrow without
+          hand-wiring each pairing. That is why property-bridge templates exist, and why games carry
+          <code>entity_attributes_covered</code> instead of a fixed entity list.</li>
+      </ol>
+
+      <div class="callout">
+        <b>The one-line framing.</b> Matching is not a lookup; it is a <em>routing</em> decision over two asymmetric
+        libraries — entities on one side, games on the other — joined by attribute paths and a constellation of
+        semantic bridges.
+      </div>
+
+      <p>Everything in the rest of this document exists to make one of those four problems tractable. §02 describes
+        the three data layers that carry the information. §05 walks the decision path end-to-end. §06 is the one
+        technical rule that ties the pieces together. The rest are examples, checklists, and gotchas.</p>
+    </div>
+  </section>
+
+  <!-- ============== §02 THREE KNOWLEDGE LAYERS ============== -->
+  <section id="layers">
+    <div class="sec-head">
+      <div class="sec-num">§ 02 / Three knowledge layers</div>
+      <h2 class="sec-title">Entity facts,<br />neighbor graph, <em>game contracts</em>.</h2>
+    </div>
+    <p class="sec-desc">The matching system reads from three independent sources. Each owns a different kind of
+      knowledge and each is maintained by a different cadence. Confusing them is the most common authoring mistake.</p>
+
+    <div class="layers">
+      <div class="layer">
+        <span class="num">01</span>
+        <h3>Entity YAMLs</h3>
+        <p>Per-entity <code>tier_guidance</code> organized as <code>tier_0/1/2</code> × <em>dimensions</em> (appearance,
+          senses, function, context, emotions…) × <em>attributes</em>. Each attribute carries a literal <code>value</code>
+          string plus child-facing <code>topics</code>. This is the entity's "what we know about it" record.</p>
+        <span class="path">data/mappings_dev20_0318/&lt;domain&gt;/&lt;file&gt;.yaml<br />
+          e.g. daily_objects/bath_toys.yaml (rubber_duck)</span>
+      </div>
+      <div class="layer">
+        <span class="num">02</span>
+        <h3>Constellation map</h3>
+        <p>Per-entity routing table for <em>unmapped</em> photographs. Each entry declares
+          <code>mapped_entity</code>, <code>category</code>, <code>pillar</code>, <code>gold_standard</code>,
+          <code>bridge_type</code>, <code>bridge_strength</code>, <code>bridge_prompt_pattern</code>, and a
+          <code>constellation</code> of semantic neighbors. Never bridges across categories.</p>
+        <span class="path">data/constellation_map.yaml<br />
+          v0.3 · 20 entries (12 gold + 8 legacy)</span>
+      </div>
+      <div class="layer">
+        <span class="num">03</span>
+        <h3>Activity designs</h3>
+        <p>Each game's §A.1 <code>entity_attributes_covered</code> lists the dotted attribute paths it exercises.
+          Bound games (e.g. <code>teddy_bear_cat1_gold</code>) list real IDs from one entity YAML. Parameterized
+          templates (e.g. <code>detail_detective_property_gold</code>) list abstract paths. Bound games also carry a
+          §A.2 Constellation Adaptation Notes block (Preserve / Swap / Watch).</p>
+        <span class="path">designs/cat1/*.md · designs/cat5/*.md<br />
+          per-design §A.1 and §A.2 sections</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>How the three layers compose</h3>
+      <p>The <b>entity YAML</b> answers "what are the observable and conceptual hooks on this entity?" The
+        <b>constellation map</b> answers "if I don't know this entity, what <em>mapped</em> entity should I pretend it
+        is?" The <b>activity design</b> answers "which hooks does this game actually exercise, and if the entity is
+        only a bridged neighbor, what must I preserve, swap, or watch out for?"</p>
+
+      <p>Each layer is authored independently. A new entity YAML does not require editing any game design. A new
+        game design does not require editing any entity YAML. A new constellation entry does not require editing
+        either — it adds a neighbor, and the existing game designs adapt via §A.2. <b>This decoupling is the point.</b>
+      </p>
+
+      <div class="callout note">
+        <b>Rule of thumb.</b> If your change is about <em>what the object is</em>, edit the entity YAML. If it's
+        about <em>what game to run when</em>, edit the design. If it's about <em>which unknown objects should route
+        to a known one</em>, edit <code>constellation_map.yaml</code>. Don't cross layers.
+      </div>
+
+      <h3 style="margin-top: 32px;">What each layer actually looks like</h3>
+      <p>Abbreviated but structurally faithful excerpts from each layer. These are the shapes the matcher reads.</p>
+
+      <div class="trace-detail"><span class="trace-detail-label">Layer 1 — entity YAML</span>
+        One file per entity under <code>data/mappings_dev20_0318/&lt;domain&gt;/&lt;file&gt;.yaml</code>. Each file
+        contains one or more entity records; each record has a <code>tier_guidance</code> block with per-tier
+        dimensions and attributes. Matcher flattens this to a set of dotted paths.</div>
+<div class="code-panel" data-file="data/mappings_dev20_0318/daily_objects/bath_toys.yaml">
+<pre>- <span class="key">entity_id:</span> daily_objects_rubber_duck
+  <span class="key">entity_name:</span> Rubber Duck
+  <span class="key">domain:</span> daily_objects
+  <span class="key">parent_category:</span> toys
+  <span class="key">subcategory:</span> bath_toys
+  <span class="key">tier_guidance:</span>
+    <span class="key">tier_0:</span>
+      <span class="key">appearance:</span>
+        <span class="key">body_color:</span>
+          <span class="key">value:</span> <span class="str">"yellow"</span>
+          <span class="key">topics:</span> [<span class="str">"what color"</span>, <span class="str">"which color"</span>, <span class="str">"like the sun"</span>]
+        <span class="key">cartoon_styling:</span>
+          <span class="key">value:</span> <span class="str">"rounded"</span>
+          <span class="key">topics:</span> [<span class="str">"cute"</span>, <span class="str">"soft shapes"</span>]
+      <span class="key">senses:</span>
+        <span class="key">squeak_sound:</span>
+          <span class="key">value:</span> <span class="str">"squeak when squeezed"</span>
+          <span class="key">topics:</span> [<span class="str">"sound"</span>, <span class="str">"what noise"</span>]
+      <span class="key">function:</span>
+        <span class="key">floats_on_water:</span>
+          <span class="key">value:</span> <span class="str">"stays on the water"</span>
+          <span class="key">topics:</span> [<span class="str">"floats"</span>, <span class="str">"doesn't sink"</span>]
+    <span class="key">tier_1:</span>
+      <span class="key">function:</span>
+        <span class="key">squeeze_and_squeak:</span>
+          <span class="key">value:</span> <span class="str">"press the duck → squeak happens"</span>
+          <span class="key">topics:</span> [<span class="str">"cause and effect"</span>, <span class="str">"try it"</span>]
+    <span class="key">tier_2:</span>
+      <span class="key">appearance:</span>
+        <span class="key">cartoon_styling:</span>
+          <span class="key">value:</span> <span class="str">"stylized cute face, not realistic"</span>
+          <span class="key">topics:</span> [<span class="str">"why drawn this way"</span>, <span class="str">"compared to a real duck"</span>]
+
+<span class="cmt"># Matcher flattens this to:
+#   tier_0.appearance.body_color
+#   tier_0.appearance.cartoon_styling
+#   tier_0.senses.squeak_sound
+#   tier_0.function.floats_on_water
+#   tier_1.function.squeeze_and_squeak
+#   tier_2.appearance.cartoon_styling</span></pre>
+</div>
+
+      <div class="trace-detail"><span class="trace-detail-label">Layer 2 — constellation map</span>
+        Single file <code>data/constellation_map.yaml</code> with ~20 entries. Each entry names one mapped entity
+        and lists its unmapped semantic neighbors, plus the bridge vocabulary to use when routing a photographed
+        neighbor back to that mapped entity's gold game.</div>
+<div class="code-panel" data-file="data/constellation_map.yaml · excerpt">
+<pre><span class="key">version:</span> 0.3
+
+<span class="key">constellations:</span>
+  - <span class="key">mapped_entity:</span> teddy_bear
+    <span class="key">category:</span> 1
+    <span class="key">pillar:</span> Nurture
+    <span class="key">gold_standard:</span> designs/cat1/teddy_bear_cat1_gold_prod.md
+    <span class="key">bridge_type:</span> same_role
+    <span class="key">bridge_strength:</span> strong
+    <span class="key">bridge_prompt_pattern:</span> <span class="str">"Your [entity] is a cozy friend, just like a teddy bear!"</span>
+    <span class="key">constellation:</span> [stuffed_bunny, plush_toy, doll, sock_monkey]
+
+  - <span class="key">mapped_entity:</span> rubber_duck
+    <span class="key">category:</span> 1
+    <span class="key">pillar:</span> Creation
+    <span class="key">gold_standard:</span> designs/cat1/rubber_duck_cat1_gold_prod.md
+    <span class="key">bridge_type:</span> shared_affordance
+    <span class="key">bridge_strength:</span> strong
+    <span class="key">bridge_prompt_pattern:</span> <span class="str">"Your [entity] floats in water at bath time, just like a rubber duck!"</span>
+    <span class="key">constellation:</span> [bath_toy, toy_boat, floating_ring]</pre>
+</div>
+
+      <div class="trace-detail"><span class="trace-detail-label">Layer 3 — activity design markdown</span>
+        One markdown file per game (spec + prod pair) under <code>designs/cat1/</code> or <code>designs/cat5/</code>.
+        The matcher only reads the <b>§A.1</b> code fence (attribute paths the game covers) and, for bound games,
+        the <b>§A.2</b> block (how to adapt when the entity came in via the constellation).</div>
+<div class="code-panel" data-file="designs/cat1/teddy_bear_cat1_gold_spec.md · sections only">
+<pre><span class="cmt">## Activity: Teddy's Cozy Care Station</span>
+
+<span class="cmt">### A. Basic Info</span>
+- <span class="key">Activity Name:</span> Teddy's Cozy Care Station
+- <span class="key">Experience Pillar:</span> Nurture
+- <span class="key">Recommended Tier:</span> T0 (ages 2–4)
+- <span class="key">Design Version:</span> 1.0
+- <span class="key">Last Updated:</span> 2026-04-21
+
+<span class="cmt">### A.1 Entity Attributes Covered</span>
+<span class="str">```yaml</span>
+<span class="key">entity_attributes_covered:</span>
+  - tier_0.appearance.color
+  - tier_0.senses.surface_feel
+  - tier_1.function.comfort_hugging
+  - tier_1.function.pretend_friend
+  - tier_1.function.sleep_routine_helper
+<span class="str">```</span>
+
+<span class="cmt">### A.2 Constellation Adaptation Notes</span>
+<span class="key">**Preserve**</span> — must not change across neighbors:
+- The 3-round escalation (physical → emotional → combined)
+- The caretaker role_title and hearts-floating-up payoff
+
+<span class="key">**Swap**</span> — re-phrase for the bridged entity:
+- <span class="str">"Teddy is shivering"</span> → neighbor's cold-signal (bunny: ears drooping, doll: icy hands)
+- Pronoun teddy → bunny → doll (never hardcode <span class="str">"teddy"</span>)
+
+<span class="key">**Watch**</span> — gotchas to avoid:
+- Dolls' faces don't actually change — narrate transformations in imagination
+- Never skip name-calling in Round 3
+
+<span class="cmt">### B. Activity Overview</span>
+<span class="cmt">(… prose describing the child-facing game flow …)</span></pre>
+</div>
+    </div>
+  </section>
+
+  <!-- ============== §03 GLOSSARY ============== -->
+  <section id="glossary">
+    <div class="sec-head">
+      <div class="sec-num">§ 03 / Core concepts glossary</div>
+      <h2 class="sec-title">Twelve terms,<br /><em>three sentences</em> each.</h2>
+    </div>
+    <p class="sec-desc">Every other section reuses these twelve terms exactly as defined here. When in doubt, read
+      this section first.</p>
+
+    <dl class="glossary">
+      <dt>Entity</dt>
+      <dd>The object the child photographed. May be <em>mapped</em> (has its own YAML under
+        <code>data/mappings_dev20_0318/</code>) or <em>unmapped</em> (not in the registry but possibly in the
+        constellation of a mapped entity).</dd>
+
+      <dt>Attribute</dt>
+      <dd>A single authored property of an entity inside its <code>tier_guidance</code> block. Keyed as
+        <code>tier_N.&lt;dimension&gt;.&lt;attribute&gt;</code> (e.g. <code>tier_0.appearance.body_color</code>).
+        Each attribute owns a literal <code>value</code> and a set of child-facing <code>topics</code>.</dd>
+
+      <dt>Property</dt>
+      <dd>A generic cross-entity dimension like <em>color</em>, <em>shape</em>, <em>texture</em>, <em>material</em>.
+        Property-bridge templates parameterize against properties, not against specific entities. One property can
+        resolve to many attribute paths across the entity library.</dd>
+
+      <dt>Gold design</dt>
+      <dd>A pillar-owning, entity-coupled activity design (e.g. <code>teddy_bear_cat1_gold</code>,
+        <code>butterfly_cat5_gold</code>). Twelve exist — one per pillar × in-device / out-of-device category. They
+        are bound games with rich §A.1 attribute coverage and a §A.2 adaptation block.</dd>
+
+      <dt>Property-bridge template</dt>
+      <dd>A parameterized game design (e.g. <code>detail_detective_property_gold</code>,
+        <code>color_scout_property_gold</code>). It declares abstract attribute paths under §A.1 and substitutes the
+        matched entity's attribute value into the game at runtime.</dd>
+
+      <dt>entity_binding</dt>
+      <dd>The declared coupling strength of a game: <code>bound</code> (one entity, strict overlap),
+        <code>parameterized</code> (property template, loose overlap), or <code>agnostic</code> (runtime-decided,
+        legacy). See §06 for the dual rule. Derived from top-matter by tooling — authors rarely set it by hand.</dd>
+
+      <dt>Constellation</dt>
+      <dd>The list of semantic neighbors under a mapped entity's entry in <code>constellation_map.yaml</code>. An
+        unmapped photographed entity is matched by searching these lists. Never crosses <code>category</code>.</dd>
+
+      <dt>bridge_type</dt>
+      <dd>The semantic relation a constellation edge encodes: <code>same_taxonomy</code>, <code>shared_habitat</code>,
+        <code>same_role</code>, <code>same_domain</code>, <code>shared_affordance</code>, <code>part_of</code>, or
+        <code>companion</code>. Drives the <code>bridge_prompt_pattern</code> wording the AI uses.</dd>
+
+      <dt>bridge_strength</dt>
+      <dd>Ordinal preference — <code>very_strong</code> &gt; <code>strong</code> &gt; <code>moderate</code> &gt;
+        <code>weak</code>. Used to rank candidates when one unmapped entity matches multiple mapped entities'
+        constellations.</dd>
+
+      <dt>§A.1 (entity_attributes_covered)</dt>
+      <dd>The required tag-block field inside each activity design that enumerates the attribute paths the game
+        exercises. For bound games it is a concrete list of IDs from one entity YAML; for parameterized templates it
+        is a short list of abstract paths. Consumed by the matcher.</dd>
+
+      <dt>§A.2 (Constellation Adaptation Notes)</dt>
+      <dd>Adaptation recipe inside each bound gold design. Three blocks: <b>Preserve</b> (must not change across
+        neighbors), <b>Swap</b> (re-phrase for the bridged entity), <b>Watch</b> (gotchas to avoid). Applied when the
+        matcher picks a bound game for a bridged (non-gold) entity.</dd>
+
+      <dt>Dual-semantics matcher</dt>
+      <dd>The rule in <code>program.md</code> §1.9 that reads <code>entity_binding</code> and selects between <em>strict</em>
+        overlap (bound) and <em>loose</em> overlap (parameterized) when scoring
+        <code>entity_attributes_covered</code> against an entity's <code>tier_guidance</code>. See §06 for the full
+        statement.</dd>
+
+      <dt>Category (Cat1 / Cat5)</dt>
+      <dd>The structural class of an activity. <b>Cat1</b> = Sustained Verbal Interaction (in-device, child talks with
+        the AI about the photographed entity). <b>Cat5</b> = Collection/Tracking Exploration (out-of-device, child
+        moves around the real world collecting evidence). Categories never mix inside the constellation map — a Cat1
+        unmapped entity only bridges to Cat1 mapped entities.</dd>
+
+      <dt>Tier (T0 / T1 / T2)</dt>
+      <dd>The child-age band a game or entity row is tuned for. <b>T0</b> ≈ ages 2–4 (single-word answers, sensory
+        focus). <b>T1</b> ≈ ages 4–6 (short sentences, cause/effect). <b>T2</b> ≈ ages 6–8 (multi-step reasoning,
+        roleplay). Each entity YAML carries <code>tier_0/1/2</code> sub-blocks; each game declares its
+        <code>Recommended Tier</code>; the matcher penalizes tier mismatch in step 9.</dd>
+
+      <dt>Pillar (Experience Pillar)</dt>
+      <dd>Six emotional/cognitive themes every game declares one of: <b>Mystery</b> (deduction, clues),
+        <b>Creation</b> (making/imagining), <b>Performance</b> (showing off, roleplay), <b>Discovery</b> (exploring,
+        hypothesizing), <b>Adventure</b> (quest, journey), <b>Nurture</b> (care, empathy). Drives rank step 9 via
+        child's recent-pillar history.</dd>
+
+      <dt>Recognizer</dt>
+      <dd>The vision component that takes the photo pixels and returns a top-1 canonical label plus a confidence
+        score (e.g. <code>{label: "rubber_duck", confidence: 0.91}</code>). This matching guideline treats the
+        recognizer as a black box — its vocabulary and thresholds are owned upstream.</dd>
+
+      <dt>Property detector</dt>
+      <dd>A separate vision subsystem that runs only when constellation lookup misses. It returns fixed-schema
+        features: <code>color</code>, <code>shape</code>, <code>material</code>, <code>pattern</code>, each with a
+        value and confidence. Used to route unmapped photos to parameterized templates when no entity neighbor exists.</dd>
+
+      <dt>Registry / _index.yaml</dt>
+      <dd>The master index <code>data/mappings_dev20_0318/_index.yaml</code> that lists every canonical entity the
+        system knows, keyed to its YAML file path. Step 3 of the pipeline is a membership test against this file —
+        "is the recognizer's label a known entity?"</dd>
+
+      <dt>Tag block</dt>
+      <dd>The canonical metadata record emitted by every activity run. Defined in <code>program.md</code> §1.9.
+        Mandatory fields: <code>entity</code>, <code>activity</code>, <code>pillar</code>, <code>tier</code>,
+        <code>bridge_applied</code> (null / mapped_entity / "property"), plus a <code>progression</code> block with
+        <code>topic_axis</code> and <code>difficulty_level</code>. Downstream consumers (child recap, parent
+        dashboard) only read the tag block — never the raw game script.</dd>
+    </dl>
+  </section>
+
+  <!-- ============== §04 DATA SOURCES CATALOG ============== -->
+  <section id="sources">
+    <div class="sec-head">
+      <div class="sec-num">§ 04 / Data sources catalog</div>
+      <h2 class="sec-title">What lives where,<br /><em>who updates it</em>.</h2>
+    </div>
+    <p class="sec-desc">Every file that feeds matching. Source of truth means: this is where the rule is defined;
+      other files quote or mirror it.</p>
+
+    <table class="src-table">
+      <thead>
+        <tr>
+          <th style="width:32%">Path</th>
+          <th style="width:14%">Owner</th>
+          <th style="width:34%">Source of truth for</th>
+          <th style="width:20%">Update cadence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>data/mappings_dev20_0318/&lt;domain&gt;/*.yaml</code></td>
+          <td>Entity authors</td>
+          <td>Per-entity <code>tier_guidance</code> — the attribute IDs the matcher reads for overlap scoring.</td>
+          <td>On new entity; rare</td>
+        </tr>
+        <tr>
+          <td><code>data/mappings_dev20_0318/_index.yaml</code></td>
+          <td>Entity authors</td>
+          <td>Registry of all mapped entities. The matcher's first membership test.</td>
+          <td>On new entity</td>
+        </tr>
+        <tr>
+          <td><code>data/constellation_map.yaml</code></td>
+          <td>Bridging author</td>
+          <td>Per-mapped-entity neighbor list, bridge type / strength / prompt. The matcher's second membership test.</td>
+          <td>On new neighbor</td>
+        </tr>
+        <tr>
+          <td><code>designs/cat1/**</code> · <code>designs/cat5/**</code></td>
+          <td>Design authors</td>
+          <td>Per-game §A.1 <code>entity_attributes_covered</code> and §A.2 Constellation Adaptation Notes.</td>
+          <td>On new design / revision</td>
+        </tr>
+        <tr>
+          <td><code>program.md</code> §1.9</td>
+          <td>Framework owner</td>
+          <td><b>Normative</b> — tag block schema, matcher semantics (strict vs. loose overlap), pre-output self-check.</td>
+          <td>Breaking-change only</td>
+        </tr>
+        <tr>
+          <td><code>templates.md</code></td>
+          <td>Framework owner</td>
+          <td>Template 0 authoring patterns; how Cat1 and Cat5 collapse into the shared spine.</td>
+          <td>Breaking-change only</td>
+        </tr>
+        <tr>
+          <td><code>docs/progression_axes.md</code></td>
+          <td>Framework owner</td>
+          <td>The seven IB-derived progression axes + L1/L2/L3 rung definitions used by
+            <code>progression.topic_axis</code>.</td>
+          <td>Breaking-change only</td>
+        </tr>
+        <tr>
+          <td><code>docs/template_0_preview.html</code></td>
+          <td>Framework owner</td>
+          <td>Canonical tag-block schema diagram and upstream / downstream data-pipeline reference.</td>
+          <td>Framework revisions</td>
+        </tr>
+        <tr>
+          <td><code>docs/diagrams/matching-pipeline-*.excalidraw</code></td>
+          <td>Framework owner</td>
+          <td>Canonical 12-step pipeline layout. The SVGs in §05 and §07 are simplified renders of these files.</td>
+          <td>On pipeline change</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">
+      <b>Contradiction to be aware of.</b> The
+      <code>matching-pipeline-example.excalidraw</code> legend refers to §A.5 / §A.6 in the teddy_bear gold design. The
+      live design files use §A.1 / §A.2 (renamed; see the Rename commit <code>356f822</code>). This document follows
+      the live filenames. The diagram will be updated in a later pass.
+    </div>
+  </section>
+
+  <!-- ============== §05 PIPELINE ============== -->
+  <section id="pipeline">
+    <div class="sec-head">
+      <div class="sec-num">§ 05 / Full matching pipeline</div>
+      <h2 class="sec-title">Twelve steps<br /><em>from shutter to game</em>.</h2>
+    </div>
+    <p class="sec-desc">One canonical path, with explicit off-ramps. The diagram is a simplified render of
+      <code>docs/diagrams/matching-pipeline-general.excalidraw</code>; the <code>.excalidraw</code> file stays the
+      visual source of truth.</p>
+
+    <div class="pipe-wrap">
+      <svg viewBox="0 0 1200 1000" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="Matching pipeline — twelve steps from photo to game">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#141311"/>
+          </marker>
+          <marker id="arrow-off" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#7A7468"/>
+          </marker>
+        </defs>
+        <style>
+          .box { fill: #FAF6EC; stroke: #141311; stroke-width: 1.2; }
+          .box-accent { fill: #FAF6EC; stroke: #C5411C; stroke-width: 1.6; }
+          .box-off { fill: #ECE5D6; stroke: #7A7468; stroke-width: 1; stroke-dasharray: 4 3; }
+          .diamond { fill: #FAF6EC; stroke: #141311; stroke-width: 1.2; }
+          .lbl { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; fill: #141311; }
+          .lbl-sm { font-family: 'IBM Plex Mono', monospace; font-size: 10px; fill: #7A7468; letter-spacing: 0.06em; }
+          .lbl-accent { font-family: 'IBM Plex Mono', monospace; font-size: 10px; fill: #C5411C; font-weight: 500; letter-spacing: 0.08em; }
+          .lbl-head { font-family: 'Fraunces', serif; font-size: 13px; fill: #141311; font-weight: 500; }
+          .lbl-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.08em; }
+          .arrow { stroke: #141311; stroke-width: 1; fill: none; }
+          .arrow-off { stroke: #7A7468; stroke-width: 0.8; fill: none; stroke-dasharray: 4 3; }
+          .br-yes { fill: #3A6B56; }
+          .br-no { fill: #C5411C; }
+          .br-neutral { fill: #7A7468; }
+        </style>
+
+        <!-- ==== Top: photo → recognizer (center column, cx=530) ==== -->
+        <rect class="box-accent" x="400" y="40" width="260" height="60" rx="4"/>
+        <text class="lbl-accent" x="530" y="62" text-anchor="middle">STEP 1</text>
+        <text class="lbl-head" x="530" y="82" text-anchor="middle">Child photograph</text>
+
+        <rect class="box" x="400" y="140" width="260" height="60" rx="4"/>
+        <text class="lbl-sm" x="530" y="162" text-anchor="middle">STEP 2</text>
+        <text class="lbl-head" x="530" y="182" text-anchor="middle">Entity recognizer</text>
+
+        <!-- ==== Diamond cascade (center) ==== -->
+        <polygon class="diamond" points="440,275 530,235 620,275 530,315"/>
+        <text class="lbl-sm" x="530" y="270" text-anchor="middle">STEP 3</text>
+        <text class="lbl" x="530" y="285" text-anchor="middle">in registry?</text>
+
+        <polygon class="diamond" points="440,395 530,355 620,395 530,435"/>
+        <text class="lbl-sm" x="530" y="390" text-anchor="middle">STEP 5a</text>
+        <text class="lbl" x="530" y="405" text-anchor="middle">in constellation?</text>
+
+        <polygon class="diamond" points="440,515 530,475 620,515 530,555"/>
+        <text class="lbl-sm" x="530" y="510" text-anchor="middle">STEP 6a</text>
+        <text class="lbl" x="530" y="525" text-anchor="middle">property detectable?</text>
+
+        <!-- ==== Outcome column (right, cx=900) ==== -->
+        <rect class="box" x="770" y="245" width="260" height="60" rx="4"/>
+        <text class="lbl-accent" x="900" y="267" text-anchor="middle">STEP 4 · MAPPED</text>
+        <text class="lbl" x="900" y="287" text-anchor="middle">load tier_guidance</text>
+
+        <rect class="box" x="770" y="365" width="260" height="60" rx="4"/>
+        <text class="lbl-accent" x="900" y="387" text-anchor="middle">STEP 5 · BRIDGED</text>
+        <text class="lbl" x="900" y="407" text-anchor="middle">neighbor as proxy</text>
+
+        <rect class="box" x="770" y="485" width="260" height="60" rx="4"/>
+        <text class="lbl-accent" x="900" y="507" text-anchor="middle">STEP 6 · PROPERTY-BRIDGED</text>
+        <text class="lbl" x="900" y="527" text-anchor="middle">parameterize on {property}</text>
+
+        <!-- No-match off-ramp (left of Property? diamond) -->
+        <rect class="box-off" x="30" y="490" width="230" height="50" rx="4"/>
+        <text class="lbl-sm" x="145" y="510" text-anchor="middle">OFF-RAMP</text>
+        <text class="lbl" x="145" y="528" text-anchor="middle" style="fill:#7A7468">conversation-only (END)</text>
+
+        <!-- ==== Arrows: top cascade ==== -->
+        <line class="arrow" x1="530" y1="100" x2="530" y2="138" marker-end="url(#arrow)"/>
+        <line class="arrow" x1="530" y1="200" x2="530" y2="233" marker-end="url(#arrow)"/>
+
+        <!-- 3 yes → mapped -->
+        <line class="arrow" x1="620" y1="275" x2="768" y2="275" marker-end="url(#arrow)"/>
+        <text class="lbl-tag br-yes" x="694" y="268" text-anchor="middle">YES</text>
+        <!-- 3 no → 5a -->
+        <line class="arrow" x1="530" y1="315" x2="530" y2="353" marker-end="url(#arrow)"/>
+        <text class="lbl-tag br-no" x="542" y="338">NO</text>
+
+        <!-- 5a hit → bridged -->
+        <line class="arrow" x1="620" y1="395" x2="768" y2="395" marker-end="url(#arrow)"/>
+        <text class="lbl-tag br-yes" x="694" y="388" text-anchor="middle">HIT</text>
+        <!-- 5a miss → 6a -->
+        <line class="arrow" x1="530" y1="435" x2="530" y2="473" marker-end="url(#arrow)"/>
+        <text class="lbl-tag br-no" x="542" y="458">MISS</text>
+
+        <!-- 6a yes → property -->
+        <line class="arrow" x1="620" y1="515" x2="768" y2="515" marker-end="url(#arrow)"/>
+        <text class="lbl-tag br-yes" x="694" y="508" text-anchor="middle">YES</text>
+        <!-- 6a no → off-ramp (left) -->
+        <line class="arrow-off" x1="440" y1="515" x2="262" y2="515" marker-end="url(#arrow-off)"/>
+        <text class="lbl-tag br-neutral" x="350" y="508" text-anchor="middle">NO</text>
+
+        <!-- ==== Merge trunk: three outcomes → step 7 ==== -->
+        <line class="arrow" x1="1030" y1="275" x2="1080" y2="275"/>
+        <line class="arrow" x1="1030" y1="395" x2="1080" y2="395"/>
+        <line class="arrow" x1="1030" y1="515" x2="1080" y2="515"/>
+        <line class="arrow" x1="1080" y1="275" x2="1080" y2="625"/>
+        <path class="arrow" d="M 1080 625 L 684 625" marker-end="url(#arrow)"/>
+
+        <!-- ==== Linear backend ==== -->
+        <rect class="box-accent" x="380" y="585" width="300" height="80" rx="4"/>
+        <text class="lbl-accent" x="530" y="607" text-anchor="middle">STEP 7 · CANDIDATE SET</text>
+        <text class="lbl" x="530" y="627" text-anchor="middle">bound games whose §A.1 overlaps</text>
+        <text class="lbl" x="530" y="643" text-anchor="middle">+ parameterized templates whose</text>
+        <text class="lbl" x="530" y="659" text-anchor="middle">abstract path matches</text>
+
+        <line class="arrow" x1="530" y1="665" x2="530" y2="703" marker-end="url(#arrow)"/>
+
+        <rect class="box" x="380" y="705" width="300" height="80" rx="4"/>
+        <text class="lbl-sm" x="530" y="727" text-anchor="middle">STEP 8 · DUAL SEMANTICS</text>
+        <text class="lbl" x="530" y="747" text-anchor="middle">bound → strict overlap</text>
+        <text class="lbl" x="530" y="763" text-anchor="middle">parameterized → loose overlap</text>
+        <text class="lbl-sm" x="530" y="779" text-anchor="middle">(see §06)</text>
+
+        <!-- 8 → 9 elbow (step 9 is bottom-left at cx=130) -->
+        <path class="arrow" d="M 530 785 L 530 830 L 130 830 L 130 858" marker-end="url(#arrow)"/>
+
+        <!-- ==== Bottom row: 5 boxes at y=860-930 ==== -->
+        <rect class="box" x="30" y="860" width="200" height="70" rx="4"/>
+        <text class="lbl-sm" x="130" y="882" text-anchor="middle">STEP 9 · RANK</text>
+        <text class="lbl" x="130" y="902" text-anchor="middle">bridge_strength · pillar</text>
+        <text class="lbl" x="130" y="918" text-anchor="middle">tier · recency</text>
+
+        <rect class="box-accent" x="260" y="860" width="200" height="70" rx="4"/>
+        <text class="lbl-accent" x="360" y="882" text-anchor="middle">STEP 10 · PICK</text>
+        <text class="lbl-head" x="360" y="908" text-anchor="middle">one game chosen</text>
+
+        <rect class="box" x="490" y="860" width="200" height="70" rx="4"/>
+        <text class="lbl-sm" x="590" y="882" text-anchor="middle">STEP 11 · ADAPT</text>
+        <text class="lbl" x="590" y="902" text-anchor="middle">§A.2 preserve · swap</text>
+        <text class="lbl" x="590" y="918" text-anchor="middle">· watch</text>
+
+        <rect class="box" x="720" y="860" width="200" height="70" rx="4"/>
+        <text class="lbl-sm" x="820" y="882" text-anchor="middle">STEP 12 · EMIT</text>
+        <text class="lbl" x="820" y="908" text-anchor="middle">tag block emitted</text>
+
+        <rect class="box-off" x="950" y="860" width="200" height="70" rx="4"/>
+        <text class="lbl-sm" x="1050" y="882" text-anchor="middle" style="fill:#7A7468">DOWNSTREAM</text>
+        <text class="lbl" x="1050" y="908" text-anchor="middle" style="fill:#7A7468">recap · dashboard</text>
+
+        <!-- Bottom-row connectors -->
+        <line class="arrow" x1="230" y1="895" x2="258" y2="895" marker-end="url(#arrow)"/>
+        <line class="arrow" x1="460" y1="895" x2="488" y2="895" marker-end="url(#arrow)"/>
+        <line class="arrow" x1="690" y1="895" x2="718" y2="895" marker-end="url(#arrow)"/>
+        <line class="arrow-off" x1="920" y1="895" x2="948" y2="895" marker-end="url(#arrow-off)"/>
+
+        <!-- ==== Legend ==== -->
+        <rect x="30" y="962" width="14" height="14" class="box-accent"/>
+        <text class="lbl-sm" x="52" y="974">accent = decision / pick point</text>
+        <rect x="310" y="962" width="14" height="14" class="box"/>
+        <text class="lbl-sm" x="332" y="974">standard step</text>
+        <rect x="470" y="962" width="14" height="14" class="box-off"/>
+        <text class="lbl-sm" x="492" y="974">off-ramp / downstream (stub)</text>
+      </svg>
+      <div class="pipe-caption">Simplified render · canonical layout in docs/diagrams/matching-pipeline-general.excalidraw</div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="sn">01</div>
+        <div>
+          <h4>Photo in</h4>
+          <p>Child snaps a picture. The matcher receives the image, a tier (<code>T0</code>/<code>T1</code>/<code>T2</code>),
+            and — optionally — exif or last-session context. No text from the child yet.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">02</div>
+        <div>
+          <h4>Entity recognizer</h4>
+          <p>Vision model returns a candidate entity label with confidence (e.g. <code>stuffed_bunny</code> · 0.82).
+            The matcher uses this as the initial key. Low-confidence calls are held for a tie-break in step 9.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">03</div>
+        <div>
+          <h4>Is the entity mapped?</h4>
+          <p>Membership test against <code>data/mappings_dev20_0318/_index.yaml</code>. If yes, we load that entity's
+            <code>tier_guidance</code> directly (step 4a). If no, the entity is <em>unmapped</em> and we route to the
+            constellation check (step 4b).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">04</div>
+        <div>
+          <h4>Mapped path · load tier_guidance</h4>
+          <p>The entity's YAML is loaded in full. Its flat attribute paths (<code>tier_N.dim.attr</code>) are the set
+            the matcher overlays onto each candidate game's §A.1. Proceed to step 7.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">05</div>
+        <div>
+          <h4>Unmapped · check constellation_map</h4>
+          <p>Scan <code>data/constellation_map.yaml</code> for an entry whose <code>constellation</code> list contains
+            the unmapped entity's label. On hit, use the corresponding <code>mapped_entity</code> as a <em>proxy</em>:
+            load <em>its</em> tier_guidance and fire the <code>bridge_prompt_pattern</code> so the child hears the
+            semantic bridge ("Your stuffed_bunny is a cozy friend, just like a teddy bear!"). Proceed to step 7.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">06</div>
+        <div>
+          <h4>No constellation hit · detect a property</h4>
+          <p>Last resort before the conversation-only off-ramp: try to detect a generic visual property — a color, a
+            shape, a material — from the photo directly. If a property is recoverable, route to the set of
+            parameterized property-bridge templates. The matched property value becomes the runtime substitution for
+            the template's <code>{property}</code> parameter.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">07</div>
+        <div>
+          <h4>Build the candidate set</h4>
+          <p>Collect every game whose §A.1 <code>entity_attributes_covered</code> <em>overlaps</em> the entity's
+            attribute paths. Bound games contribute when their full list is a subset; parameterized templates
+            contribute when any one of their abstract paths is a subset. <b>Typical set size is 5–20 entries</b> —
+            because common paths like <code>tier_0.appearance.color</code> appear in almost every mapped entity, most
+            parameterized templates land in the set on every run. Step 09 (rank) is what narrows to one. Empty set
+            is an error — fall back to a conversation-only session. <b>Overlap is exact-string</b> on the full
+            dotted path — <code>body_color</code> ≠ <code>color</code>; see <a href="#gotchas">§09 STRING MATCH</a>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">08</div>
+        <div>
+          <h4>Apply the dual-semantics filter</h4>
+          <p>This is the heart of the matcher. For each candidate, dispatch on
+            <code>entity_binding</code>: <b>bound</b> → require strict overlap; <b>parameterized</b> → loose overlap;
+            <b>agnostic</b> → runtime-chosen rule. Candidates failing their rule are dropped. See §06 for the
+            formal statement.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">09</div>
+        <div>
+          <h4>Rank survivors</h4>
+          <p>Sort by: <code>bridge_strength</code> (if bridged) → pillar fit (child's recent history vs. candidate
+            pillar) → tier match against target tier → recency penalty (avoid repeating the last game). Ties break
+            toward higher §A.1 coverage count.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">10</div>
+        <div>
+          <h4>Pick the top game</h4>
+          <p>One game wins. Its activity design becomes the runtime script. If the entity was bridged via the
+            constellation, the §A.2 block of the chosen bound game is now in scope.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">11</div>
+        <div>
+          <h4>Apply adaptation</h4>
+          <p>For a bridged run, read §A.2 Constellation Adaptation Notes: <b>Preserve</b> the mechanics that must
+            stay identical, <b>Swap</b> the scripted references for the actual photographed entity, and <b>Watch</b>
+            the per-neighbor gotchas. For a parameterized template, substitute <code>{property}</code> with the
+            matched value.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="sn">12</div>
+        <div>
+          <h4>Emit the tag block · downstream consumers read</h4>
+          <p>The chosen game emits the tag block defined in <code>program.md</code> §1.9 (activity_id, entity,
+            category, pillar, tier, attributes, related_concepts, key_concepts, ATL skills, progression axis, …).
+            The child recap and parent growth-path dashboard read from this block. Matching is done.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <b>Where §A.2 enters.</b> Notice the §A.2 adaptation block is only read at <em>step 11</em> — after a game is
+      already chosen, and only when the entity reached this pipeline by bridging. A direct mapped-entity run skips
+      §A.2 entirely and uses the design's scripted dialogue verbatim.
+    </div>
+
+    <!-- ==== Trace gallery ==== -->
+    <div class="trace-gallery">
+      <h3>Four worked traces · <em>one per path class</em></h3>
+      <p class="gallery-sub">Pre-computed walks through the pipeline against real fixture data
+        (<code>data/mappings_dev20_0318/*</code>, <code>data/constellation_map.yaml</code>, and the 12 gold + 18
+        property-bridge designs under <code>designs/</code>). No live matcher — these are authored traces, not
+        runtime output. Use them as reference runs when authoring new designs or diagnosing why a photographed
+        entity took the path it took.</p>
+
+      <div class="callout note" style="margin-bottom: 22px;">
+        <b>Quick vocabulary.</b> Each trace uses these terms — all defined in §03 if you need the long version,
+        but here's the one-liner per concept so the traces read straight through:
+        <ul style="margin-top: 8px; padding-left: 20px; font-size: 13px; line-height: 1.7;">
+          <li><b>Recognizer</b> — vision model that turns a photo into <code>{label, confidence}</code> (e.g. <code>{"rubber_duck", 0.91}</code>).</li>
+          <li><b>Registry / _index.yaml</b> — the list of ~20 canonical entities the system knows about.</li>
+          <li><b>tier_guidance</b> — the authored-facts block inside each entity YAML, flattened to dotted paths like <code>tier_0.appearance.body_color</code>.</li>
+          <li><b>§A.1</b> — per-game attribute list: "these are the attribute paths this game exercises."</li>
+          <li><b>§A.2</b> — per-gold-game adaptation recipe: Preserve / Swap / Watch, applied when the entity came in via bridging.</li>
+          <li><b>Constellation map</b> — authored table of neighbors: "if you see X, treat it as mapped entity Y and say Z to introduce the bridge."</li>
+          <li><b>Property detector</b> — vision subsystem returning <code>{color, shape, material, pattern}</code> with confidences; runs only when constellation lookup misses.</li>
+          <li><b>Bound game</b> — written for one specific entity (strict overlap). <b>Parameterized template</b> — written for any entity exposing a property (loose overlap). See <a href="#semantics">§06</a>.</li>
+          <li><b>Tag block</b> — the metadata record the chosen game emits at the end; what downstream recap + parent dashboard consume.</li>
+        </ul>
+      </div>
+
+      <div class="trace-tabs" role="tablist">
+        <button class="trace-tab active" data-trace="mapped" role="tab">① Mapped</button>
+        <button class="trace-tab" data-trace="bridged" role="tab">② Bridged</button>
+        <button class="trace-tab" data-trace="property" role="tab">③ Property-bridged</button>
+        <button class="trace-tab" data-trace="nomatch" role="tab">④ No match</button>
+      </div>
+
+      <!-- ============ Trace 1 · MAPPED ============ -->
+      <div class="trace-panel active" data-trace="mapped">
+        <div class="trace-meta">
+          <span class="label">Input</span>
+          <span class="value"><code>rubber_duck</code> · photo confidence 0.91 · target tier T1</span>
+          <span class="label">Match</span>
+          <span class="value"><code>rubber_duck_cat1_gold</code> — Creation · <em>The Bubble Bath Laboratory</em></span>
+        </div>
+
+        <div class="trace-strip" aria-label="MAPPED path">
+          <span class="chip">Photo</span><span class="chip-sep">→</span>
+          <span class="chip">Recognizer</span><span class="chip-sep">→</span>
+          <span class="chip decision">registry? YES</span><span class="chip-sep">→</span>
+          <span class="chip outcome">MAPPED</span><span class="chip-sep">→</span>
+          <span class="chip">Candidate set</span><span class="chip-sep">→</span>
+          <span class="chip">Dual · bound strict</span><span class="chip-sep">→</span>
+          <span class="chip">Rank</span><span class="chip-sep">→</span>
+          <span class="chip pick">PICK</span><span class="chip-sep">→</span>
+          <span class="chip off">Adapt (skipped)</span><span class="chip-sep">→</span>
+          <span class="chip">Emit</span>
+        </div>
+
+        <ol class="trace-steps">
+          <li>Recognizer returns <code>rubber_duck</code> at 0.91 confidence. Above the 0.6 floor — accepted verbatim.</li>
+          <li>Registry lookup in <code>data/mappings_dev20_0318/_index.yaml</code>:
+            <div class="code-panel" data-file="_index.yaml · lookup"><pre>rubber_duck  →  daily_objects/bath_toys.yaml</pre></div>
+            Hit. Route to the <b>MAPPED</b> path.
+          </li>
+          <li>Load <code>data/mappings_dev20_0318/daily_objects/bath_toys.yaml</code>. Flatten its <code>tier_guidance</code> block to a path set:
+            <div class="code-panel" data-file="flattened paths · rubber_duck"><pre>tier_0.appearance.body_color
+tier_0.senses.squeak_sound
+tier_0.function.floats_on_water
+tier_1.function.squeeze_and_squeak
+tier_2.appearance.cartoon_styling
+<span class="cmt">(… plus ~12 more paths across tier_1/tier_2)</span></pre></div>
+          </li>
+          <li>Build candidate set. Check each registered game's §A.1. For <code>rubber_duck_cat1_gold</code>:
+            <div class="code-panel" data-file="rubber_duck_cat1_gold · §A.1"><pre><span class="key">entity_attributes_covered:</span>
+  - tier_0.appearance.body_color
+  - tier_0.senses.squeak_sound
+  - tier_0.function.floats_on_water
+  - tier_1.function.squeeze_and_squeak
+  - tier_2.appearance.cartoon_styling</pre></div>
+            All 5 paths present in the loaded entity → strict overlap passes. Parameterized templates (detail_detective on <code>body_color</code>, property_performer on <code>floats_on_water</code>, …) also join the set via one-path overlap. Typical set size here: 6–8.
+          </li>
+          <li>Dual-semantics filter. <code>rubber_duck_cat1_gold</code>: <code>entity_binding: bound</code> → strict overlap ✓. Parameterized candidates: loose overlap ✓ → all pass.</li>
+          <li>Rank. Bound match beats parameterized candidates on coverage count (5 matching paths vs 1). Pillar fit: <code>Creation</code> is the day's pillar. Tier match: T1 requested, T0 game — acceptable downshift.</li>
+          <li>Pick <code>rubber_duck_cat1_gold</code> — "Super Duck Workshop" (Creation). Runtime flag: <code>bridged=false</code>.</li>
+          <li>Adaptation step is a <b>no-op</b>: bridged=false, so §A.2 is skipped. Scripted dialogue runs verbatim:
+            <div class="trace-quote">"(delighted squeal) Ohhh! A duck! Quack quack! So cute. Is duck splashy today?"</div>
+          </li>
+          <li>Emit tag block to downstream:
+            <div class="code-panel" data-file="tag block · emitted"><pre><span class="key">entity:</span> rubber_duck
+<span class="key">activity:</span> super_duck_workshop
+<span class="key">pillar:</span> Creation
+<span class="key">tier:</span> T0
+<span class="key">bridge_applied:</span> <span class="cmt">null</span>
+<span class="key">progression.topic_axis:</span> Function
+<span class="key">progression.difficulty_level:</span> 1</pre></div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- ============ Trace 2 · BRIDGED ============ -->
+      <div class="trace-panel" data-trace="bridged">
+        <div class="trace-meta">
+          <span class="label">Input</span>
+          <span class="value"><code>stuffed_bunny</code> · photo confidence 0.82 · target tier T0</span>
+          <span class="label">Match</span>
+          <span class="value"><code>teddy_bear_cat1_gold</code> — Nurture · <em>The Care Station</em>, adapted for <code>stuffed_bunny</code></span>
+        </div>
+
+        <div class="trace-strip" aria-label="BRIDGED path">
+          <span class="chip">Photo</span><span class="chip-sep">→</span>
+          <span class="chip">Recognizer</span><span class="chip-sep">→</span>
+          <span class="chip decision">registry? NO</span><span class="chip-sep">→</span>
+          <span class="chip decision">constellation? HIT</span><span class="chip-sep">→</span>
+          <span class="chip outcome">BRIDGED</span><span class="chip-sep">→</span>
+          <span class="chip">Candidate set</span><span class="chip-sep">→</span>
+          <span class="chip">Dual · bound strict</span><span class="chip-sep">→</span>
+          <span class="chip">Rank</span><span class="chip-sep">→</span>
+          <span class="chip pick">PICK</span><span class="chip-sep">→</span>
+          <span class="chip outcome">Adapt §A.2</span><span class="chip-sep">→</span>
+          <span class="chip">Emit</span>
+        </div>
+
+        <ol class="trace-steps">
+          <li>Recognizer returns <code>stuffed_bunny</code> at 0.82 confidence. Accepted.</li>
+          <li>Registry lookup: <code>stuffed_bunny</code> is <b>not</b> in <code>_index.yaml</code>. It's an unmapped neighbor, not a mapped entity.</li>
+          <li>Scan <code>data/constellation_map.yaml</code> for entries whose <code>constellation</code> list contains the literal string <code>stuffed_bunny</code>. <b>Exact match, not semantic</b> — if the recognizer had returned <code>plush_rabbit</code> or <code>bunny_plush</code>, this step would miss and fall through to property detection. See <a href="#gotchas">§09 STRING MATCH</a>. Found:
+            <div class="code-panel" data-file="constellation_map.yaml · matched entry"><pre>- <span class="key">mapped_entity:</span> teddy_bear
+  <span class="key">category:</span> 1
+  <span class="key">pillar:</span> Nurture
+  <span class="key">gold_standard:</span> designs/cat1/teddy_bear_cat1_gold_prod.md
+  <span class="key">bridge_type:</span> same_role
+  <span class="key">bridge_strength:</span> strong
+  <span class="key">bridge_prompt_pattern:</span> <span class="str">"Your [entity] is a cozy friend, just like a teddy bear!"</span>
+  <span class="key">constellation:</span> [<span class="hl">stuffed_bunny</span>, plush_toy, doll, sock_monkey]</pre></div>
+          </li>
+          <li>Substitute <code>[entity]</code> in the bridge prompt and fire it as the child's onboarding utterance:
+            <div class="trace-swap">
+              <span class="before">Your [entity] is a cozy friend, just like a teddy bear!</span>
+              <span class="after">Your stuffed_bunny is a cozy friend, just like a teddy bear!</span>
+            </div>
+          </li>
+          <li>Load <b>teddy_bear</b>'s tier_guidance as the proxy entity from <code>data/mappings_dev20_0318/daily_objects/plush_toys.yaml</code>:
+            <div class="code-panel" data-file="flattened paths · teddy_bear (proxy)"><pre>tier_0.appearance.color
+tier_0.senses.surface_feel
+tier_1.function.comfort_hugging
+tier_1.function.pretend_friend
+tier_1.function.sleep_routine_helper
+<span class="cmt">(… plus ~10 more paths)</span></pre></div>
+            The matcher uses teddy_bear's paths for overlap — we have no tier_guidance for stuffed_bunny itself.
+          </li>
+          <li>Build candidate set. <code>teddy_bear_cat1_gold</code> is the bound match; its §A.1 is a subset of the loaded paths. ~10–12 parameterized templates also join via one-path overlap (detail_detective on color, texture_mix on surface_feel, shape_quest on shape, …). Typical set size: 10–15.</li>
+          <li>Dual-semantics filter. <code>teddy_bear_cat1_gold</code>: <code>entity_binding: bound</code> → strict overlap against proxy → pass. Parameterized candidates: loose overlap → all pass. Set survives largely intact.</li>
+          <li>Rank. <code>bridge_strength=strong</code> boosts the bound-via-bridge candidate. Pillar fit: Nurture (day's pillar). Bound gold beats parameterized on coverage count.</li>
+          <li>Pick <code>teddy_bear_cat1_gold</code> — "Teddy's Cozy Care Station" (Nurture). Runtime flag: <code>bridged=true</code>.</li>
+          <li>Read <b>§A.2 Constellation Adaptation Notes</b>:
+            <div class="trace-detail"><span class="trace-detail-label">Preserve</span>3-round escalation (physical → emotional → combined), visible-transformation narration, caretaker role + hearts payoff.</div>
+            <div class="trace-detail"><span class="trace-detail-label">Swap</span>pronoun <code>teddy → bunny</code>; body-part cold-signals (teddy's whole body → bunny's <em>ears</em>); keep comfort vocabulary ("cozy", "brave", "friend").</div>
+            <div class="trace-detail"><span class="trace-detail-label">Watch</span>dolls have static faces — narrate transformations "in the child's imagination"; sock monkeys can read as already-sad; never skip name-calling in Round 3.</div>
+          </li>
+          <li>Apply swap to Round 1 opener:
+            <div class="trace-swap">
+              <span class="before">"Teddy is shivering! Brrr brrr! Teddy's whole body is cold!"</span>
+              <span class="after">"Bunny's ears are drooping and cold! Brrr brrr! They need something warm!"</span>
+            </div>
+          </li>
+          <li>Emit tag block with bridging metadata:
+            <div class="code-panel" data-file="tag block · bridged"><pre><span class="key">entity:</span> stuffed_bunny
+<span class="key">activity:</span> cozy_care_station
+<span class="key">pillar:</span> Nurture
+<span class="key">tier:</span> T0
+<span class="key">bridge_applied:</span> teddy_bear
+<span class="key">bridge_type:</span> same_role
+<span class="key">bridge_strength:</span> strong</pre></div>
+            Downstream recap uses <code>bridge_applied</code> to render "your stuffed_bunny ~ teddy_bear" phrasing.
+          </li>
+        </ol>
+      </div>
+
+      <!-- ============ Trace 3 · PROPERTY-BRIDGED ============ -->
+      <div class="trace-panel" data-trace="property">
+        <div class="trace-meta">
+          <span class="label">Input</span>
+          <span class="value"><code>red_toy_truck</code> · photo confidence 0.78 · detected property <code>color: red</code> · target tier T1</span>
+          <span class="label">Match</span>
+          <span class="value"><code>detail_detective_property_gold</code> — Mystery · <em>Detail Detective</em>, seeded on <code>color</code></span>
+        </div>
+
+        <div class="trace-strip" aria-label="PROPERTY-BRIDGED path">
+          <span class="chip">Photo</span><span class="chip-sep">→</span>
+          <span class="chip">Recognizer</span><span class="chip-sep">→</span>
+          <span class="chip decision">registry? NO</span><span class="chip-sep">→</span>
+          <span class="chip decision">constellation? MISS</span><span class="chip-sep">→</span>
+          <span class="chip decision">property? YES (color=red)</span><span class="chip-sep">→</span>
+          <span class="chip outcome">PROPERTY-BRIDGED</span><span class="chip-sep">→</span>
+          <span class="chip">Candidate set</span><span class="chip-sep">→</span>
+          <span class="chip">Dual · param loose</span><span class="chip-sep">→</span>
+          <span class="chip">Rank</span><span class="chip-sep">→</span>
+          <span class="chip pick">PICK</span><span class="chip-sep">→</span>
+          <span class="chip outcome">Substitute {property}</span><span class="chip-sep">→</span>
+          <span class="chip">Emit</span>
+        </div>
+
+        <ol class="trace-steps">
+          <li>Recognizer returns <code>red_toy_truck</code> at 0.78 confidence. Above threshold — usable label, just not one the mind-map knows.</li>
+          <li>Registry lookup: <code>red_toy_truck</code> <b>not</b> in <code>_index.yaml</code>.</li>
+          <li>Constellation scan: no entry has <code>toy_truck</code> or <code>red_toy_truck</code> in its <code>constellation</code> list. Bridged path fails.</li>
+          <li>Property detector runs as the last gate before the off-ramp:
+            <div class="code-panel" data-file="property detector · output"><pre>{
+  <span class="key">"color"</span>:    { <span class="key">"value"</span>: <span class="hl"><span class="str">"red"</span></span>,     <span class="key">"confidence"</span>: 0.88 },
+  <span class="key">"shape"</span>:    { <span class="key">"value"</span>: <span class="cmt">null</span>,      <span class="key">"confidence"</span>: 0.34 },
+  <span class="key">"material"</span>: { <span class="key">"value"</span>: <span class="str">"plastic"</span>, <span class="key">"confidence"</span>: 0.52 },
+  <span class="key">"pattern"</span>:  { <span class="key">"value"</span>: <span class="cmt">null</span>,      <span class="key">"confidence"</span>: 0.21 }
+}</pre></div>
+            Dominant: <code>color=red</code> at 0.88 (above 0.7 threshold). Route to <b>PROPERTY-BRIDGED</b>.
+          </li>
+          <li>Build candidate set. Filter parameterized templates whose §A.1 contains a color-seeded path. <code>detail_detective_property_gold</code> §A.1:
+            <div class="code-panel" data-file="detail_detective · §A.1"><pre><span class="key">entity_attributes_covered:</span>
+  - <span class="hl">tier_0.appearance.color</span>     <span class="cmt"># seeds "color" mystery</span>
+  - tier_0.appearance.shape     <span class="cmt"># seeds "shape" mystery</span>
+  - tier_0.appearance.pattern   <span class="cmt"># seeds "pattern" mystery</span>
+  - tier_0.senses.touch_feel    <span class="cmt"># seeds "texture" mystery</span></pre></div>
+            Match on <code>tier_0.appearance.color</code> (first entry). Also in set: <code>color_scout</code> (Discovery), <code>property_predictor</code> (Creation). Set size: 3. <b>Overlap is exact-string</b> on the full dotted path — a game that listed <code>tier_0.appearance.body_color</code> would not be in this set even though it semantically means the same thing. See <a href="#gotchas">§09 STRING MATCH</a>.
+          </li>
+          <li>Dual-semantics filter. All three declare <code>entity_binding: parameterized</code> → <b>loose overlap</b> (one matching path suffices) → all pass.</li>
+          <li>Rank. <code>bridge_strength</code> N/A (property-bridged, not entity-bridged). Pillar fit: child's recent history favors Mystery. Tier fit: all T1-compatible. <code>detail_detective</code> wins.</li>
+          <li>Pick <code>detail_detective_property_gold</code> — "Detail Detective" (Mystery).</li>
+          <li>Substitute template parameters at runtime:
+            <div class="code-panel" data-file="runtime substitution"><pre><span class="key">{entity}</span>         →  <span class="str">"truck"</span>
+<span class="key">{property}</span>       →  <span class="str">"color"</span>
+<span class="key">{property_value}</span> →  <span class="str">"red"</span></pre></div>
+          </li>
+          <li>Apply substitution to the opening line of the template's scripted dialogue:
+            <div class="trace-swap">
+              <span class="before">"Whoa, look at your {entity}! It is SO {property_value} — like a fire engine!"</span>
+              <span class="after">"Whoa, look at your truck! It is SO red — like a fire engine!"</span>
+            </div>
+          </li>
+          <li>Emit tag block with property metadata:
+            <div class="code-panel" data-file="tag block · property-bridged"><pre><span class="key">entity:</span> red_toy_truck
+<span class="key">activity:</span> detail_detective
+<span class="key">pillar:</span> Mystery
+<span class="key">tier:</span> T1
+<span class="key">bridge_applied:</span> property
+<span class="key">property:</span> color=red
+<span class="key">progression.topic_axis:</span> Form</pre></div>
+            Recap uses the <code>property</code> field to render "you learned a new color today."
+          </li>
+        </ol>
+      </div>
+
+      <!-- ============ Trace 4 · NO MATCH ============ -->
+      <div class="trace-panel" data-trace="nomatch">
+        <div class="trace-meta">
+          <span class="label">Input</span>
+          <span class="value"><code>abstract_sculpture</code> · photo confidence 0.44 · no dominant property detected</span>
+          <span class="label">Match</span>
+          <span class="value">off-ramp — conversation-only session, no game emitted</span>
+        </div>
+
+        <div class="trace-strip" aria-label="NO MATCH path">
+          <span class="chip">Photo</span><span class="chip-sep">→</span>
+          <span class="chip">Recognizer</span><span class="chip-sep">→</span>
+          <span class="chip decision">registry? NO</span><span class="chip-sep">→</span>
+          <span class="chip decision">constellation? MISS</span><span class="chip-sep">→</span>
+          <span class="chip decision">property? NO</span><span class="chip-sep">→</span>
+          <span class="chip off">OFF-RAMP</span>
+        </div>
+
+        <ol class="trace-steps">
+          <li>Recognizer returns <code>abstract_sculpture</code> at 0.44 — <b>below</b> the 0.6 confidence floor. Matcher still proceeds with the low-confidence label rather than rejecting the photo outright (silent reject is worse UX).</li>
+          <li>Registry lookup: not in <code>_index.yaml</code>.</li>
+          <li>Constellation scan: no entry contains the literal string <code>abstract_sculpture</code>. A recognizer label that drifted in spelling (e.g., <code>abstract_sculpt</code>, <code>sculpture_abstract</code>) vs a constellation entry would also land here even if the concept is mapped — see <a href="#gotchas">§09 STRING MATCH</a>.</li>
+          <li>Property detector output — <b>all below 0.7 threshold</b>:
+            <div class="code-panel" data-file="property detector · all miss"><pre>{
+  <span class="key">"color"</span>:    { <span class="key">"value"</span>: <span class="str">"mixed"</span>,  <span class="key">"confidence"</span>: 0.31 },  <span class="cmt">// multi-tone gradient</span>
+  <span class="key">"shape"</span>:    { <span class="key">"value"</span>: <span class="cmt">null</span>,     <span class="key">"confidence"</span>: 0.18 },  <span class="cmt">// organic freeform</span>
+  <span class="key">"material"</span>: { <span class="key">"value"</span>: <span class="str">"mixed"</span>,  <span class="key">"confidence"</span>: 0.29 },  <span class="cmt">// mixed media</span>
+  <span class="key">"pattern"</span>:  { <span class="key">"value"</span>: <span class="cmt">null</span>,     <span class="key">"confidence"</span>: 0.12 }
+}</pre></div>
+            No dominant property recoverable. All three match paths exhausted.
+          </li>
+          <li>Exit to the <b>conversation-only off-ramp</b>. The AI falls back to an open prompt with no scripted follow-up:
+            <div class="trace-quote">"This is something really special — can you tell me about it?"</div>
+          </li>
+          <li>No game chosen. No tag block emitted. Session metadata only:
+            <div class="code-panel" data-file="session metadata · no match"><pre><span class="key">activity:</span> <span class="cmt">null</span>
+<span class="key">session_type:</span> curious_moment
+<span class="key">entity_raw:</span> abstract_sculpture
+<span class="key">confidence:</span> 0.44
+<span class="key">reason:</span> all_match_paths_exhausted</pre></div>
+            Downstream recap shows a <em>"curious moment"</em> card instead of an activity card; parent dashboard surfaces it under "open-ended exploration."
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §06 MATCHER SEMANTICS ============== -->
+  <section id="semantics">
+    <div class="sec-head">
+      <div class="sec-num">§ 06 / Matcher semantics · the dual rule</div>
+      <h2 class="sec-title">Two overlap rules,<br />one <em>dispatch</em>.</h2>
+    </div>
+    <p class="sec-desc">This is the only formal rule in the matching pipeline. Everything else is plumbing. The
+      normative statement lives in <code>program.md</code> §1.9 "Matcher semantics"; this section is an explanatory
+      mirror of that spec.</p>
+
+    <div class="prose">
+      <p>Each activity design declares an <code>entity_binding</code>. The matcher dispatches on that field to
+        decide <em>how</em> to compare the game's §A.1 <code>entity_attributes_covered</code> against the entity's
+        <code>tier_guidance</code> attribute paths.</p>
+    </div>
+
+    <div class="rule-grid">
+      <div class="rule-box bound">
+        <span class="tag">entity_binding: bound</span>
+        <h4>Strict overlap</h4>
+        <p>The game is written for one specific entity. Every ID in
+          <code>entity_attributes_covered</code> must resolve to an <code>attribute:</code> entry under that entity's
+          <code>tier_guidance</code>. Missing IDs are lint errors, not soft mismatches.</p>
+        <div class="formula">
+          §A.1 ⊆ entity.tier_guidance.paths
+        </div>
+      </div>
+      <div class="rule-box param">
+        <span class="tag">entity_binding: parameterized</span>
+        <h4>Loose overlap</h4>
+        <p>The game is a property-bridge template. Its §A.1 lists 2–4 abstract paths that <em>any</em> qualifying
+          entity could expose. An entity qualifies if at least one path is present in its tier_guidance; the matched
+          attribute's value fills <code>{property}</code> at runtime.</p>
+        <div class="formula">
+          §A.1 ∩ entity.tier_guidance.paths ≠ ∅
+        </div>
+      </div>
+      <div class="rule-box agnostic">
+        <span class="tag">entity_binding: agnostic</span>
+        <h4>Runtime-decided</h4>
+        <p>Rare, mostly legacy. The field is still required for completeness, but the matcher may apply either
+          strict or loose overlap (or a category-specific one) based on the design's declared
+          <code>style</code> and <code>pillar</code> at runtime.</p>
+        <div class="formula">
+          dispatch(style, pillar) → {strict | loose | custom}
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>Why two rules</h3>
+      <p>A <b>bound</b> game is written against a single entity's actual hooks — Teddy's Care Station knows teddy is
+        plush and might be shivering because <code>tier_0.senses.touch_feel</code> and
+        <code>tier_0.emotions.comfort_signal</code> exist in that entity's YAML. The game would not make sense if
+        any of those hooks were missing. Strict overlap enforces that.</p>
+      <p>A <b>parameterized</b> template is the opposite. Detail Detective works for any entity with a visible
+        property — color, shape, pattern, texture — because its mechanic is the <em>game loop</em>, not the
+        <em>object</em>. It cannot require all four paths; requiring even two would shrink the reachable entity pool
+        by half. Loose overlap keeps the template's scope wide while still guaranteeing the matched property has an
+        authored value string to substitute at runtime.</p>
+
+      <h3>Inference from top-matter</h3>
+      <p>Authors do not set <code>entity_binding</code> by hand. Tooling derives it from the design's header:
+        <code>Trigger Entity: {entity_name}</code> → <code>bound</code>;
+        <code>Trigger Entity: Any entity with a detected {property}…</code> plus the word "Property Bridge" → <code>parameterized</code>.
+        Authors only have to pick the overlap semantics implicitly, by choosing which attribute IDs to list.</p>
+
+      <h3>Normative pointer</h3>
+      <div class="callout warn">
+        <b>Source of truth.</b> <code>program.md</code> §1.9, subsection "Matcher semantics". If this document and
+        <code>program.md</code> ever disagree, <code>program.md</code> wins and this section is out of date — file a
+        PR to re-sync. The pre-output self-check for §A.1 also lives in <code>program.md</code> §1.9 and is mirrored
+        in §08 below.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §07 WORKED EXAMPLE ============== -->
+  <section id="example">
+    <div class="sec-head">
+      <div class="sec-num">§ 07 / Worked example</div>
+      <h2 class="sec-title">stuffed_bunny<br />→ <em>Teddy's Care Station</em>.</h2>
+    </div>
+    <p class="sec-desc">The example below is the one drawn in <code>docs/diagrams/matching-pipeline-example.excalidraw</code>.
+      Non-gold entity <code>stuffed_bunny</code> is not in the twenty-entity registry, so the matcher must bridge.
+      We follow the 12 pipeline steps.</p>
+
+    <div class="walk">
+      <div class="walk-step">
+        <div class="wh">STEP 1–2 · PHOTO &amp; RECOGNIZE</div>
+        <h4>Child photographs a plush rabbit</h4>
+        <p>Recognizer returns label <code>stuffed_bunny</code> with confidence 0.82, target tier <code>T0</code>.</p>
+      </div>
+
+      <div class="walk-step">
+        <div class="wh">STEP 3 · REGISTRY CHECK</div>
+        <h4><code>stuffed_bunny</code> ∉ <code>_index.yaml</code> · NOT MAPPED</h4>
+        <p>The twenty-entity registry contains no <code>stuffed_bunny</code>. Route to the constellation check.</p>
+      </div>
+
+      <div class="walk-step">
+        <div class="wh">STEP 4b–5a · CONSTELLATION BRIDGE</div>
+        <h4><code>constellation_map.yaml</code> → <code>mapped_entity: teddy_bear</code> · HIT</h4>
+        <p>The teddy_bear entry lists its constellation neighbors:</p>
+        <div class="code-panel" data-file="data/constellation_map.yaml">
+<pre><span class="cmt"># ─── Cat1 · Gold standards ─────────</span>
+- <span class="key">mapped_entity:</span> teddy_bear
+  <span class="key">category:</span> 1
+  <span class="key">pillar:</span> Nurture
+  <span class="key">gold_standard:</span> designs/cat1/teddy_bear_cat1_gold_prod.md
+  <span class="key">bridge_type:</span> same_role
+  <span class="key">bridge_strength:</span> strong
+  <span class="key">bridge_prompt_pattern:</span> <span class="str">"Your [entity] is a cozy friend, just like a teddy bear!"</span>
+  <span class="key">constellation:</span> [<span class="hl">stuffed_bunny</span>, plush_toy, doll, sock_monkey]</pre>
+        </div>
+        <p>Fire the bridge prompt to the child / AI side: <em>"Your stuffed_bunny is a cozy friend, just like a teddy
+          bear!"</em> Proxy entity = <code>teddy_bear</code>. Its <code>tier_guidance</code> is what we score games
+          against.</p>
+      </div>
+
+      <div class="walk-step">
+        <div class="wh">STEP 7 · CANDIDATE SET</div>
+        <h4>Collect games whose §A.1 overlaps teddy_bear's tier_guidance</h4>
+        <p>In scope this run: one bound gold (<code>teddy_bear_cat1_gold</code> · Nurture · care_station) and every
+          parameterized property template whose abstract path matches a tier_0 appearance or senses attribute on
+          teddy_bear (<code>detail_detective</code>, <code>color_scout</code>, <code>texture_mix</code>, …).</p>
+      </div>
+
+      <div class="walk-step">
+        <div class="wh">STEP 8 · DUAL SEMANTICS</div>
+        <h4>Bound game: strict overlap · parameterized: loose overlap</h4>
+        <p>The bound game's §A.1 is checked as a full subset:</p>
+        <div class="code-panel" data-file="designs/cat1/teddy_bear_cat1_gold_spec.md · §A.1">
+<pre><span class="key">entity_attributes_covered:</span>
+  - tier_0.appearance.color
+  - tier_0.senses.surface_feel
+  - tier_1.function.comfort_hugging
+  - tier_1.function.pretend_friend
+  - tier_1.function.sleep_routine_helper
+  - tier_1.senses.warmth_after_hug
+  - tier_2.context.comfort_during_new_situations
+  - tier_2.function.deep_pressure_comfort
+  - tier_2.function.role_play_practice</pre>
+        </div>
+        <p>All nine IDs resolve against the proxy teddy_bear YAML (<code>data/mappings_dev20_0318/daily_objects/plush_toys.yaml</code>).
+          Strict overlap passes. Parameterized templates also survive — but their intersection count is lower.</p>
+      </div>
+
+      <div class="walk-step">
+        <div class="wh">STEP 9–10 · RANK &amp; PICK</div>
+        <h4>Teddy's Cozy Care Station wins</h4>
+        <p>Ranking favors the bound gold — <code>bridge_strength: strong</code>, a richer §A.1 (9 IDs vs. 2–4 for
+          templates), and pillar fit for a tier-0 plush-toy session pointing at Nurture. Final pick:
+          <code>teddy_bear_cat1_gold · care_station</code>.</p>
+      </div>
+
+      <div class="walk-step">
+        <div class="wh">STEP 11 · ADAPT VIA §A.2</div>
+        <h4>Preserve · Swap · Watch (from teddy_bear_cat1_gold_spec.md)</h4>
+        <ul>
+          <li><b>Preserve.</b> 3-round escalation (physical → emotional → combined); the VISIBLE TRANSFORMATION
+            narration; the "caretaker" role_title and hearts-floating-up payoff.</li>
+          <li><b>Swap.</b> Round 1 "Teddy is shivering" → <em>"your bunny's ears are drooping and cold"</em>; Round 2
+            "scared of the dark" → <em>"ears pinned back"</em>; Round 3 calling child by name — kept identical.
+            Pronoun swap throughout so "teddy" is never hardcoded.</li>
+          <li><b>Watch.</b> Plush rabbit faces don't physically change — narrate the transformation in the child's
+            imagination. Don't start assuming the bunny is already sad — check the child's description first.</li>
+        </ul>
+      </div>
+
+      <div class="walk-step">
+        <div class="wh">STEP 12 · EMIT TAG BLOCK</div>
+        <h4>Runtime tag block (abbreviated)</h4>
+        <div class="code-panel" data-file="runtime tag block">
+<pre><span class="cmt"># — Tag block · emitted to child recap + parent dashboard —</span>
+<span class="key">activity_id:</span>        teddy_bear_cat1_nurture_t0
+<span class="key">entity:</span>             <span class="hl">stuffed_bunny</span>         <span class="cmt"># real photographed object, NOT proxy</span>
+<span class="key">entity_type:</span>        toy
+<span class="key">category:</span>           cat1
+<span class="key">pillar:</span>             nurture
+<span class="key">style:</span>              care_station
+<span class="key">tier:</span>               T0
+<span class="key">role_title:</span>         <span class="str">"Bunny's Caretaker"</span>        <span class="cmt"># swap applied from §A.2</span>
+<span class="key">highlight_moment:</span>   <span class="str">"You kept your bunny warm and brave"</span>
+<span class="key">attributes:</span>         [soft, plush, droopy_ears]
+<span class="key">related_concepts:</span>   [Emotion, Safety, Empathy]
+<span class="key">key_concepts:</span>       [Responsibility, Connection]
+<span class="key">atl_skills:</span>         [empathy, expressing, listening]
+<span class="key">entity_attributes_covered:</span> <span class="cmt"># scored against proxy teddy_bear YAML</span>
+  - tier_0.appearance.color
+  - tier_0.senses.surface_feel
+  - tier_1.function.comfort_hugging
+  ...
+<span class="key">caregiver_role:</span>     [scaffold]
+<span class="key">progression:</span>
+  <span class="key">topic_axis:</span>       responsibility
+  <span class="key">difficulty_level:</span> 1</pre>
+        </div>
+        <p>Downstream: the child recap highlights "Bunny's Caretaker" and the heart chips; the parent dashboard
+          places this session on the <em>Responsibility</em> axis at L1.</p>
+      </div>
+    </div>
+
+    <div class="callout note">
+      <b>Only one worked example on purpose.</b> The mechanics are identical for any bridged entity. Swap
+      <code>stuffed_bunny</code> for <code>mango</code> and the path goes via <code>banana</code> (Adventure); swap
+      for <code>moth</code> and the path goes via <code>butterfly</code> (Mystery). The routing structure is
+      constant.
+    </div>
+  </section>
+
+  <!-- ============== §08 AUTHORING CHECKLIST ============== -->
+  <section id="checklist">
+    <div class="sec-head">
+      <div class="sec-num">§ 08 / Authoring checklist</div>
+      <h2 class="sec-title">Three recipes,<br /><em>one discipline</em>.</h2>
+    </div>
+    <p class="sec-desc">Three things you might be adding: a bound game, a parameterized template, or a new entity
+      YAML. Each has a short list of must-dos that keep §05 working. Mirror of the pre-output self-check in
+      <code>program.md</code> §1.9.</p>
+
+    <div class="checklist-group">
+      <h4>Recipe 1 · Adding a bound game</h4>
+      <p>Entity-coupled gold design (e.g. <code>lion_cat1_gold</code>, <code>flower_cat5_gold</code>).</p>
+      <ul class="checklist">
+        <li>Pick a mapped entity. Confirm it has a <code>tier_guidance</code> block in
+          <code>data/mappings_dev20_0318/</code> and an entry in <code>_index.yaml</code>.</li>
+        <li>Populate §A.1 <code>entity_attributes_covered</code> with <b>at least 4</b> attribute IDs drawn from that
+          entity's tier_guidance. Every ID must resolve — run the lint step below.</li>
+        <li>Spread the IDs across <code>tier_0</code>, <code>tier_1</code>, and (where the game supports it)
+          <code>tier_2</code>. A bound game with all IDs at tier_0 will be un-rankable for older children.</li>
+        <li>Write the §A.2 Constellation Adaptation Notes block: <b>Preserve</b> (mechanics that must stay
+          identical), <b>Swap</b> (per-neighbor vocabulary substitutions), <b>Watch</b> (per-neighbor gotchas).
+          Check the constellation entry in <code>constellation_map.yaml</code> for the neighbor list.</li>
+        <li>Confirm the dual-semantics outcome: the game is <code>bound</code>, strict overlap must pass against the
+          target entity.</li>
+        <li>Run the <code>program.md</code> §1.9 pre-output self-check. All required tag-block fields, no
+          placeholders, all IDs resolve, all self-check boxes tick.</li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
+      <h4>Recipe 2 · Adding a parameterized property template</h4>
+      <p>Game that runs on many entities by reading one property (e.g. <code>detail_detective</code>,
+        <code>material_lab</code>, <code>shape_quest</code>).</p>
+      <ul class="checklist">
+        <li>Pick a property category (color, shape, pattern, texture, material, size, sound, …). The template's
+          entire mechanic has to flow from that one property.</li>
+        <li>Populate §A.1 with <b>2–4 abstract attribute paths</b> that real entities are likely to expose. Pick
+          paths that appear in <b>≥3 entity YAMLs</b> — one-entity templates are effectively bound games and should
+          be re-authored as bound.</li>
+        <li>Keep §A.1 short. Loose overlap means any one hit qualifies; a long §A.1 makes the template look heavier
+          than it is at ranking time.</li>
+        <li>Use the <code>{property}</code> substitution convention throughout the design. The runtime will inject
+          the matched attribute's <code>value</code> string — if the script hardcodes "red" or "wheels" it will
+          break for non-truck entities.</li>
+        <li>Confirm the dual-semantics outcome: <code>entity_binding: parameterized</code>, loose overlap, and the
+          pre-output self-check passes (see <code>program.md</code> §1.9).</li>
+        <li>Do <em>not</em> write a §A.2 block for parameterized templates — the adaptation happens at the
+          parameter level, not at the neighbor level.</li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
+      <h4>Recipe 3 · Adding a new entity YAML</h4>
+      <p>New mapped entity (e.g. adding <code>frog</code> under <code>animals/amphibians.yaml</code>).</p>
+      <ul class="checklist">
+        <li>Pick the right domain folder under <code>data/mappings_dev20_0318/</code> (<code>animals/</code>,
+          <code>daily_objects/</code>, <code>plants/</code>, <code>natural_phenomena/</code>, …). Match the shape of
+          the sibling YAML files exactly — downstream readers key on literal field names.</li>
+        <li>Populate <code>tier_guidance</code> with <code>tier_0</code>, <code>tier_1</code>, and optionally
+          <code>tier_2</code> dimensions. Each attribute needs a <code>value</code> string and 2–3 child-facing
+          <code>topics</code>.</li>
+        <li>Add the entity to <code>_index.yaml</code>. Without this the registry check at step 3 will miss it.</li>
+        <li>Pick a <b>neighbor</b> mapped entity in <code>constellation_map.yaml</code> whose
+          <code>category</code> and <code>pillar</code> fit, and add the new entity to that neighbor's
+          <code>constellation</code> list — <em>or</em> write a new top-level constellation entry if the new entity
+          is itself a gold standard.</li>
+        <li>Verify that at least one existing bound game's §A.1 overlaps the new entity's tier_guidance <em>or</em>
+          at least one parameterized template's §A.1 matches. If neither, the matcher will fall back to
+          conversation-only — that is an authoring gap, not the matcher's fault.</li>
+        <li>Sanity-check: pick two random attribute IDs from the new YAML and confirm the game you expect to route
+          to actually lists them (bound) or can loosely match them (parameterized).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============== §09 EDGE CASES ============== -->
+  <section id="gotchas">
+    <div class="sec-head">
+      <div class="sec-num">§ 09 / Edge cases and gotchas</div>
+      <h2 class="sec-title">What breaks,<br /><em>and what to do</em>.</h2>
+    </div>
+    <p class="sec-desc">The pipeline has explicit off-ramps; the authoring layer has a few silent ways to drift.
+      These are the ones to watch.</p>
+
+    <div class="gotcha-list">
+      <div class="gotcha">
+        <span class="gw">STRING MATCH, NOT SEMANTIC</span>
+        <h4>Steps 5–7 compare strings, not meanings</h4>
+        <p>The whole matcher is exact-string comparison on canonical labels and dotted-path keys.
+          Constellation membership is a literal <code>recognizer_label in entry.constellation[*]</code> test;
+          candidate-set overlap is set intersection on the flattened path strings. If the recognizer returns
+          <code>plush_rabbit</code> but the list has <code>stuffed_bunny</code>, it's a miss — fall-through to
+          property detection. If one entity YAML uses <code>tier_0.appearance.body_color</code> and another uses
+          <code>tier_0.appearance.color</code>, games bound to one can't reach the other unless the game's §A.1
+          enumerates both paths. <b>Known drift in this repo:</b> <code>rubber_duck</code> uses
+          <code>body_color</code>, <code>teddy_bear</code> uses <code>color</code>; property templates
+          standardize on <code>color</code>. <b>Future mitigations</b> (none implemented yet): an authoring
+          vocabulary spec for attribute suffixes, recognizer label canonicalization (snake_case, lemmatize),
+          a <code>synonyms:</code> field in <code>constellation_map</code> entries, an embedding-based nearest-
+          neighbor fallback, or an LLM fallback before the off-ramp. For now: author discipline is the only
+          safeguard.</p>
+      </div>
+      <div class="gotcha">
+        <span class="gw">UNMAPPED &amp; UN-BRIDGED</span>
+        <h4>Entity in no constellation</h4>
+        <p>Photo recognized as an entity that appears in no <code>constellation</code> list and exposes no detectable
+          property. Pipeline takes the conversation-only off-ramp. <b>Fix:</b> add the entity to a sibling
+          constellation, or accept the fallback until the entity earns a gold design.</p>
+      </div>
+      <div class="gotcha">
+        <span class="gw">EMPTY OVERLAP</span>
+        <h4>Game with zero §A.1 hits</h4>
+        <p>A bound game's §A.1 lists IDs that no longer exist in the entity YAML (e.g. after a
+          <code>tier_guidance</code> refactor). Strict overlap fails silently; the game drops out of the candidate
+          set. <b>Fix:</b> run the §1.9 pre-output self-check lint — unresolved IDs are errors, not warnings.</p>
+      </div>
+      <div class="gotcha">
+        <span class="gw">TIES AT RANK</span>
+        <h4>Multiple games survive equally</h4>
+        <p>Two bound games for the same entity, identical bridge_strength, equal §A.1 coverage. Current tiebreaker:
+          highest <code>entity_attributes_covered</code> count, then alphabetical by activity_id. <b>Author action:</b>
+          differentiate by pillar so the ranker can lean on curiosity-profile history.</p>
+      </div>
+      <div class="gotcha">
+        <span class="gw">LOW CONFIDENCE</span>
+        <h4>Recognizer returned ambiguous label</h4>
+        <p>Entity label at 0.4 confidence. Matcher can treat the label as probabilistic and expand the candidate set
+          across top-N labels, or defer to parameterized templates only (safer). <b>Default:</b> when in doubt,
+          property-bridge — it degrades gracefully.</p>
+      </div>
+      <div class="gotcha">
+        <span class="gw">PATH TYPOS</span>
+        <h4>§A.1 ID that does not resolve</h4>
+        <p>Typical: <code>tier_0.apperance.color</code> (missing <em>a</em>), <code>tier_0.sense.squeak_sound</code>
+          (singular). Strict overlap fails for bound games; loose overlap silently under-matches for templates.
+          <b>Fix:</b> lint §A.1 against the live YAML at CI time.</p>
+      </div>
+      <div class="gotcha">
+        <span class="gw">TIER MISMATCH</span>
+        <h4>Game supports only T0, child is T2</h4>
+        <p>The ranker penalizes tier mismatch. If no game at any tier matches the entity, the fallback is the
+          conversation-only off-ramp — never stretch a T0 game to a T2 child. <b>Author action:</b> either widen the
+          game's <code>tier_variants</code> or ship a tier-T2 sibling design on the same axis.</p>
+      </div>
+      <div class="gotcha">
+        <span class="gw">CROSS-CATEGORY BRIDGE</span>
+        <h4>Constellation entry that spans Cat1 ↔ Cat5</h4>
+        <p>Forbidden by the constellation-map contract (<code>"Never bridge across categories"</code>). A Cat5
+          unmapped entity must only appear in a Cat5 mapped entity's constellation. <b>Lint rule:</b> verify
+          consistency at <code>_index.yaml</code> load time.</p>
+      </div>
+      <div class="gotcha">
+        <span class="gw">§A.2 DRIFT</span>
+        <h4>§A.2 references a neighbor no longer in the constellation</h4>
+        <p>Design's Swap block mentions <code>sock_monkey</code>; <code>constellation_map.yaml</code> removed it in a
+          cleanup pass. Bridged runs for the removed neighbor now use §A.2 verbatim without validation. <b>Fix:</b>
+          CI check that §A.2 Swap entries ⊆ the mapped entity's current constellation list.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== §10 CHEAT SHEET ============== -->
+  <section id="cheat">
+    <div class="sec-head">
+      <div class="sec-num">§ 10 / Cheat sheet</div>
+      <h2 class="sec-title">One page,<br /><em>two lenses</em>.</h2>
+    </div>
+    <p class="sec-desc">Read the matcher from the runtime side (left) or from the authoring side (right). Both
+      lenses are the same rule set viewed differently.</p>
+
+    <div class="cheat">
+      <div class="cheat-col">
+        <h3>Finding the <em>game</em> from a photo</h3>
+        <span class="sub">Runtime · 10 second mental model</span>
+        <ol>
+          <li><b>Is the entity mapped?</b> Check <code>_index.yaml</code>. If yes, load its tier_guidance.</li>
+          <li><b>If not, is it in a constellation?</b> Scan <code>constellation_map.yaml</code> for a hit. Use the
+            mapped neighbor as a proxy.</li>
+          <li><b>If still not, is there a detectable property?</b> If yes, route to parameterized templates. If no,
+            fall back to conversation-only.</li>
+          <li><b>Build the candidate set.</b> Every game whose §A.1 overlaps the entity's (or proxy's)
+            tier_guidance.</li>
+          <li><b>Apply the dual filter.</b> <code>bound</code> → strict; <code>parameterized</code> → loose.</li>
+          <li><b>Rank.</b> bridge_strength · pillar fit · tier match · §A.1 coverage.</li>
+          <li><b>Adapt.</b> Bridged runs read §A.2 (Preserve / Swap / Watch). Parameterized runs substitute
+            <code>{property}</code>.</li>
+          <li><b>Emit tag block.</b> Downstream surfaces (<code>child_recap</code>, parent dashboard) read from it.</li>
+        </ol>
+      </div>
+      <div class="cheat-col">
+        <h3>Writing content that will be <em>findable</em></h3>
+        <span class="sub">Authoring · 10 rules that keep you matchable</span>
+        <ol>
+          <li><b>Bound games:</b> list 4+ real IDs in §A.1. Every one must resolve. Spread across tiers.</li>
+          <li><b>Parameterized templates:</b> list 2–4 abstract paths. Every path must appear in ≥3 entity YAMLs.</li>
+          <li><b>Never cross bind-types:</b> a property template never names a specific entity; a bound game never
+            uses <code>{property}</code> substitution.</li>
+          <li><b>§A.2 is only for bound games.</b> Property templates adapt via parameters, not neighbors.</li>
+          <li><b>New entity YAML:</b> add to <code>_index.yaml</code> AND to a constellation, or it is effectively
+            invisible to unmapped-lookup.</li>
+          <li><b>Constellations never cross category.</b> Cat1 entity ↔ Cat1 neighbors only.</li>
+          <li><b>Field names matter.</b> Downstream keys on literal strings — <code>tier_guidance</code>,
+            <code>dimensions</code>, <code>attribute</code>, <code>value</code>, <code>bridge_prompt_pattern</code>,
+            <code>constellation</code>.</li>
+          <li><b>Run the §1.9 self-check.</b> If any box fails, the tag block is a silent runtime bug.</li>
+          <li><b>If your change is about the object,</b> edit the entity YAML. If it's about the game, edit the
+            design. If it's about routing, edit the constellation map.</li>
+          <li><b>Normative source is <code>program.md</code> §1.9.</b> This document is the explanatory mirror — if
+            they disagree, §1.9 wins.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER · §11 VERSION ============== -->
+  <footer>
+    <details class="revnote" open>
+      <summary><span class="revnote-tag">v0.1</span> 2026-04-21 · Inaugural draft — binds entity attributes, constellation map, and dual-semantics matcher into one reference.</summary>
+      <ol>
+        <li>Normative source for §06 matcher semantics is <code>program.md</code> §1.9. This document mirrors, does
+          not extend.</li>
+        <li>§05 pipeline SVG is a simplified render of <code>docs/diagrams/matching-pipeline-general.excalidraw</code>.</li>
+        <li>§07 worked example follows <code>docs/diagrams/matching-pipeline-example.excalidraw</code>
+          (<code>stuffed_bunny</code> via <code>teddy_bear</code> constellation).</li>
+        <li>Known stale reference: the example Excalidraw legend labels §A.5 / §A.6; live designs use §A.1 / §A.2.
+          To be reconciled in the next diagram pass.</li>
+      </ol>
+    </details>
+    <div class="version">
+      <span>Version 0.1 · Internal reference · Draft for review</span>
+      <span>WonderLens x 奇朵 · Matching Guideline · 2026-04-21</span>
+    </div>
+  </footer>
+
+  <script>
+    // Trace gallery tab switcher (§05)
+    document.querySelectorAll('.trace-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var key = tab.dataset.trace;
+        var gallery = tab.closest('.trace-gallery');
+        gallery.querySelectorAll('.trace-tab').forEach(function (t) { t.classList.remove('active'); });
+        gallery.querySelectorAll('.trace-panel').forEach(function (p) { p.classList.remove('active'); });
+        tab.classList.add('active');
+        gallery.querySelector('.trace-panel[data-trace="' + key + '"]').classList.add('active');
+      });
+    });
+  </script>
+</body>
+
+</html>
