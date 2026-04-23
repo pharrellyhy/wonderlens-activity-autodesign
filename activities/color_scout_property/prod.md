@@ -10,7 +10,7 @@
 | Core IB Key Concepts | **Form** (What is it like?) & **Connection** (How is it connected to other things?) |
 | Related Concepts (Discipline) | Pattern, Similarity, Observation, Identity |
 | ATL Skills Focus | Research Skills (observation, collecting and recording data), Thinking Skills (creative thinking -- interpreting and imagining), Communication Skills (expressing -- narrative co-creation) |
-| Experience Pillar | Adventure |
+| Experience Pillar | Discovery |
 | Game Style | quest_collector |
 | Trigger Entity | Any entity with detected {color} attribute |
 | Trigger Scene | Child photographs any object where AI detects a prominent color (e.g., a bright red toy, a blue backpack, a green leaf) |

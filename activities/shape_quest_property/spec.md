@@ -30,7 +30,7 @@ The matched shape value is substituted into the `{shape}` template parameter at 
 
 ## Experience pillar & game style
 
-- **Pillar:** Adventure
+- **Pillar:** Discovery
 - **Game style:** `quest_collector` (criterion-driven collection + detail-harvest + story synthesis)
 - **Mechanic:** `collect`
 - **Observation angle:** `shape`

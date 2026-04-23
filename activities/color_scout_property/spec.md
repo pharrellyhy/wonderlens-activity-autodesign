@@ -29,7 +29,7 @@ The matched color value is substituted into the `{color}` template parameter at 
 
 ## Experience pillar & game style
 
-- **Pillar:** Adventure
+- **Pillar:** Discovery
 - **Game style:** `quest_collector` (criterion-driven collection + detail-harvest + story synthesis)
 - **Mechanic:** `collect`
 - **Observation angle:** `color`
