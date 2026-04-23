@@ -157,22 +157,3 @@ entity_attributes_covered:
 3. *(waits 2s)* *(soft)* "Your Shape Quest Badge is shining. Bye for now, Scout!"
 
 **Screen**: Golden "Shape Quest Badge" -- circular, with circle silhouette at center and 4 photos as insets with character names. **"Form"** and **"Connection"** float up artistically. Shape compass between concept words. Soft chime. Animated circles settle.
-
----
-
-## Self-Evaluation Scorecard
-
-| # | Dimension | Score | Notes |
-|---|-----------|-------|-------|
-| 1 | V1 Technical Compliance | PASS | Each photo processed independently. No OCR, face detection, IMU, or state-change comparison. |
-| 2 | Hook & Transition | PASS | Opens with emotional wonder about shape, not knowledge testing. Quest grows naturally from detected attribute. |
-| 3 | Edge Case Coverage | PASS | All steps have 3 response branches. Stuck branch, doesn't-match branch, and silence branches included. |
-| 4 | IB Completeness | PASS | KUD defined. Form + Connection as Key Concepts. Closing names concepts as earned praise. |
-| 5 | Tier Appropriateness | PASS | T1: short sentences, concrete vocabulary, achievable 3-item quest for ages 4-6. |
-| 6 | Dialogue Specificity | PASS | Every AI line is concrete dialogue with tone/emotion markers. Zero "AI guides" placeholders. |
-| 7 | Screen & UI Completeness | PASS | Every step has specific screen descriptions with animations and visual elements. |
-| 8 | Entity Mapping Alignment | N/A | Property-bridge template -- trigger is detected shape attribute, not a specific entity. |
-| 9 | Game Feel | PASS | Quest criterion creates stakes. Mission progression creates momentum. Shape adventure is earned reward. |
-| 10 | Pillar Fidelity | PASS | Adventure pillar: quest criterion gives collection PURPOSE, mission progression creates visible progress. |
-
-**Overall**: ALL PASS -- property-bridge quest_collector template parameterized by `{shape}`.
