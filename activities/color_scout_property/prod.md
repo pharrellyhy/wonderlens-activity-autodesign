@@ -10,7 +10,7 @@
 | Core IB Key Concepts | **Form** (What is it like?) & **Connection** (How is it connected to other things?) |
 | Related Concepts (Discipline) | Pattern, Similarity, Observation, Identity |
 | ATL Skills Focus | Research Skills (observation, collecting and recording data), Thinking Skills (creative thinking -- interpreting and imagining), Communication Skills (expressing -- narrative co-creation) |
-| Experience Pillar | Adventure |
+| Experience Pillar | Discovery |
 | Game Style | quest_collector |
 | Trigger Entity | Any entity with detected {color} attribute |
 | Trigger Scene | Child photographs any object where AI detects a prominent color (e.g., a bright red toy, a blue backpack, a green leaf) |
@@ -156,22 +156,3 @@ entity_attributes_covered:
 3. *(waits 2s)* *(soft)* "Your Color Quest Badge is shining bright red. Bye for now, Scout!"
 
 **Screen**: Golden "Color Quest Badge" -- circular, with red paint-drop silhouette at center and 4 photos as insets with character names. **"Form"** and **"Connection"** float up artistically. Color compass between concept words. Soft chime. Red paint-drops and color-sparkles settle.
-
----
-
-## Self-Evaluation Scorecard
-
-| # | Dimension | Score | Notes |
-|---|-----------|-------|-------|
-| 1 | V1 Technical Compliance | PASS | Each photo processed independently. No OCR, face detection, IMU, or state-change comparison. |
-| 2 | Hook & Transition | PASS | Opens with emotional wonder about color, not knowledge testing. Quest grows naturally from detected attribute. |
-| 3 | Edge Case Coverage | PASS | All steps have 3 response branches. Stuck branch, doesn't-match branch, and silence branches included. |
-| 4 | IB Completeness | PASS | KUD defined. Form + Connection as Key Concepts. Closing names concepts as earned praise. |
-| 5 | Tier Appropriateness | PASS | T1: short sentences, concrete vocabulary, achievable 3-item quest for ages 4-6. |
-| 6 | Dialogue Specificity | PASS | Every AI line is concrete dialogue with tone/emotion markers. Zero "AI guides" placeholders. |
-| 7 | Screen & UI Completeness | PASS | Every step has specific screen descriptions with animations and visual elements. |
-| 8 | Entity Mapping Alignment | N/A | Property-bridge template -- trigger is detected color attribute, not a specific entity. |
-| 9 | Game Feel | PASS | Quest criterion creates stakes. Mission progression creates momentum. Red Team adventure is earned reward. |
-| 10 | Pillar Fidelity | PASS | Adventure pillar: quest criterion gives collection PURPOSE, mission progression creates visible progress. |
-
-**Overall**: ALL PASS -- property-bridge quest_collector template parameterized by `{color}`.

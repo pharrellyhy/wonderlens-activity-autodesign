@@ -3209,10 +3209,16 @@
       </div>
       <div>
         <span class="label">Status</span>
-        <span class="value">Draft v0.4 · pending sign-off</span>
+        <span class="value">Draft v0.5 · pending sign-off</span>
       </div>
     </div>
 
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.5</span> Add <code>activity_signature</code> block — 2026-04-23</summary>
+      <ol>
+        <li><b><code>activity_signature</code> block added</b> (§04) — 6-field signature for each activity: <code>observation_angle</code>, <code>mechanic</code>, <code>entity_role</code>, <code>focal_attribute</code>, <code>bridge_prerequisites</code>, <code>preview_label</code>+<code>preview_prompt</code>. See <a href="activity_vocabulary.md"><code>docs/activity_vocabulary.md</code></a> for enum closure.</li>
+      </ol>
+    </details>
     <details class="revnote">
       <summary><span class="revnote-tag">v0.4</span> Add <code>entity_attributes_covered</code> as a required upstream-matcher tag — 2026-04-17</summary>
       <ol>
@@ -3435,6 +3441,18 @@
 
   <span class="key">caregiver_role</span>:  <span class="str">[scaffold, co-explorer, observer]</span>   <span class="cmt"># cumulative list; tier-dependent default</span>
 
+  <span class="hl"><span class="key">activity_signature</span>:                       <span class="cmt"># answers "should this activity follow this conversation?"</span>
+    <span class="key">observation_angle</span>: <span class="str">{color|shape|size|texture|material|pattern|function|origin|behavior|state}</span>
+    <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|voice|build|predict|narrate}</span>
+    <span class="key">entity_role</span>:       <span class="str">{subject|exemplar|catalyst|reference}</span>
+    <span class="key">focal_attribute</span>:   <span class="str">"..."</span>                <span class="cmt"># the parameterized attribute</span>
+    <span class="key">bridge_prerequisites</span>:
+      <span class="key">primary</span>:   [<span class="str">...</span>]
+      <span class="key">secondary</span>: [<span class="str">...</span>]
+    <span class="key">preview_label</span>:    <span class="str">"..."</span>
+    <span class="key">preview_prompt</span>:   <span class="str">"..."</span>
+    <span class="key">role_pivot_note</span>:  <span class="str">"..."</span>              <span class="cmt"># optional; used when entity_role shifts</span></span>
+
 
 <span class="cmt"># ─── §1 · STRUCTURAL SPINE (5 beats, invariant) ────────────</span>
 
@@ -3633,7 +3651,7 @@
             <div class="tl-col">
               <div class="tl-lbl">Catalog-time · author declares</div>
               <div class="tl-body">
-                <code>entity_class</code>, <code>entity_binding</code>, <code>tier_range</code>, <code>pillar</code>, <code>key_concepts</code>, <code>atl_skills</code>, <code>subject_tags</code>, <code>transdisciplinary_theme</code>, <code>category</code>, <code>progression.topic_axis</code>
+                <code>entity_class</code>, <code>entity_binding</code>, <code>tier_range</code>, <code>pillar</code>, <code>key_concepts</code>, <code>atl_skills</code>, <code>subject_tags</code>, <code>transdisciplinary_theme</code>, <code>category</code>, <code>progression.topic_axis</code>, <code>activity_signature</code>
               </div>
             </div>
             <div class="tl-col">
@@ -3775,7 +3793,7 @@
     <div class="upstream-reads">
       <div class="ur-head">Upstream reads <span class="ur-sub">&middot; catalog-time</span></div>
       <div class="ur-body">
-        <code>entity_class</code> &middot; <code>entity_binding</code> &middot; <code>tier_range</code> &middot; <code>pillar</code> &middot; <code>category</code> &middot; <code>progression.topic_axis</code> &middot; <code>key_concepts</code> &middot; <code>atl_skills</code> &middot; <code>subject_tags</code> &middot; <code>transdisciplinary_theme</code>
+        <code>entity_class</code> &middot; <code>entity_binding</code> &middot; <code>tier_range</code> &middot; <code>pillar</code> &middot; <code>category</code> &middot; <code>progression.topic_axis</code> &middot; <code>key_concepts</code> &middot; <code>atl_skills</code> &middot; <code>subject_tags</code> &middot; <code>transdisciplinary_theme</code> &middot; <code>activity_signature.observation_angle</code>
       </div>
       <div class="ur-note">Matcher logic: see <code>docs/upstream_matcher.md</code> <em>(to be written separately)</em>.</div>
     </div>
@@ -3795,6 +3813,10 @@
           <code>highlight_moment</code>
           <code>related_concepts</code>
           <code>atl_skills</code>
+          <code>activity_signature.observation_angle</code>
+          <code>activity_signature.mechanic</code>
+          <code>activity_signature.entity_role</code>
+          <code>activity_signature.focal_attribute</code>
         </div>
         <div class="sc-arrow">Full design →</div>
       </a>
@@ -3811,6 +3833,9 @@
           <code>subject_tags</code>
           <code>tier</code>
           <code>caregiver_role</code>
+          <code>activity_signature.observation_angle</code>
+          <code>activity_signature.mechanic</code>
+          <code>activity_signature.focal_attribute</code>
         </div>
         <div class="sc-arrow">Full design →</div>
       </a>

@@ -1,0 +1,60 @@
+{
+  "scenarios": [
+    {
+      "name": "pen_color_matches_color_scout",
+      "photo_entity": "red_pen",
+      "detected_properties": ["red", "cylindrical", "smooth", "plastic"],
+      "conversation_signature": {
+        "dominant_angle": "color",
+        "secondary_angles": ["shape"],
+        "entity_role_implied": "subject"
+      },
+      "age_tier": 1,
+      "candidate_games": ["color_scout_property", "shape_quest_property"],
+      "expected_pick": "color_scout_property",
+      "expected_role_pivot_fires": true,
+      "rationale": "Conversation attended to color; Color Scout's angle=color matches primary → +1.5. Shape Quest's angle=shape matches secondary → +0.75. Color wins."
+    },
+    {
+      "name": "ladybug_shape_matches_shape_quest",
+      "photo_entity": "ladybug",
+      "detected_properties": ["red", "round", "spotted"],
+      "conversation_signature": {
+        "dominant_angle": "shape",
+        "secondary_angles": ["pattern"],
+        "entity_role_implied": "subject"
+      },
+      "age_tier": 1,
+      "candidate_games": ["color_scout_property", "shape_quest_property", "polka_dot_patrol"],
+      "expected_pick": "shape_quest_property",
+      "expected_role_pivot_fires": true,
+      "rationale": "Conversation shifted to shape; Shape Quest primary matches, others don't on primary."
+    },
+    {
+      "name": "lion_behavior_matches_voice_stage",
+      "photo_entity": "lion",
+      "detected_properties": ["mammal", "big", "golden"],
+      "conversation_signature": {
+        "dominant_angle": "behavior",
+        "secondary_angles": ["function"],
+        "entity_role_implied": "subject"
+      },
+      "age_tier": 1,
+      "candidate_games": ["voice_stage_lion", "color_scout_property"],
+      "expected_pick": "voice_stage_lion",
+      "expected_role_pivot_fires": false,
+      "rationale": "Voice Stage Lion is Tier A match; also angle=behavior matches primary. Tier A score (10) + signature bonus (1.5) dominates. entity_role=subject throughout, no pivot."
+    },
+    {
+      "name": "no_conversation_signature_legacy_behavior",
+      "photo_entity": "crayons",
+      "detected_properties": ["multi-colored", "wax"],
+      "conversation_signature": null,
+      "age_tier": 0,
+      "candidate_games": ["color_friends_adventure_crayons", "color_scout_property"],
+      "expected_pick": "color_friends_adventure_crayons",
+      "expected_role_pivot_fires": false,
+      "rationale": "No conversation_signature → no bonus from this plan. Existing Tier A beats Tier P (10 vs 7). Backwards-compatible."
+    }
+  ]
+}
