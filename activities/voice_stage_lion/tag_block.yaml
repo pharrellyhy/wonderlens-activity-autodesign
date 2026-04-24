@@ -38,13 +38,17 @@ caregiver_role: [scaffold, co-explorer]
 
 # ─── §2 · ACTIVITY SIGNATURE ───────────────────────────
 activity_signature:
+  # ── Layer 1: editorial identity (fixed; matcher reads these) ──
   observation_angle: behavior
   mechanic: voice
   entity_role: subject
-  focal_attribute: "lion_voice"
   bridge_prerequisites:
     primary:   [behavior, function]
     secondary: [sound, context]
+
+  # ── Layer 2: presentation (author templates; runtime renders) ──
+  focal_attribute: "lion_voice"
+  intro: "The child gives the {entity} a voice and personality to match its presence."
   preview_label:  "Let's voice the lion!"
   preview_prompt: "The lion looks fierce. What would it say if it could talk?"
   role_pivot_note: ""

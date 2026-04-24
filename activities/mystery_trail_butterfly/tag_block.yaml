@@ -38,13 +38,17 @@ caregiver_role: [scaffold, co-explorer]
 
 # ─── §2 · ACTIVITY SIGNATURE ───────────────────────────
 activity_signature:
+  # ── Layer 1: editorial identity (fixed; matcher reads these) ──
   observation_angle: pattern
   mechanic: collect
   entity_role: subject
-  focal_attribute: "butterfly_wing_pattern"
   bridge_prerequisites:
     primary:   [pattern]
     secondary: [color, shape]
+
+  # ── Layer 2: presentation (author templates; runtime renders) ──
+  focal_attribute: "butterfly_wing_pattern"
+  intro: "The child hunts for three more things that share the {entity}'s wing pattern, connecting patterns across the world."
   preview_label:  "Trail the mystery patterns!"
   preview_prompt: "The butterfly's wings have amazing patterns. Let's find more patterns in nature!"
   role_pivot_note: ""

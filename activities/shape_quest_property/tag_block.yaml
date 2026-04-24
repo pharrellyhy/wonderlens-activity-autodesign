@@ -38,13 +38,17 @@ caregiver_role: [scaffold, co-explorer]
 
 # ─── §2 · ACTIVITY SIGNATURE ───────────────────────────
 activity_signature:
+  # ── Layer 1: editorial identity (fixed; matcher reads these) ──
   observation_angle: shape
   mechanic: collect
   entity_role: exemplar
-  focal_attribute: "{matched_shape}"    # runtime-parameterized from matched property
   bridge_prerequisites:
     primary:   [shape]
     secondary: [size, pattern]
+
+  # ── Layer 2: presentation (author templates; runtime renders) ──
+  focal_attribute: "{matched_shape}"    # runtime-parameterized from matched property
+  intro: "The child finds three {shape} things using the photographed {entity} as a starting example."
   preview_label:  "Find three {shape} things!"
   preview_prompt: "You noticed the {shape} of the {entity}. Let's go find more {shape} things together."
   role_pivot_note: |
