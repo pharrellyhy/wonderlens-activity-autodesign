@@ -2,7 +2,11 @@
 
 > Created: 2026-04-21
 > Owner: TBD
-> Status: Planned
+> **Status: Superseded on 2026-04-23** → see [`2026-04-23-matcher-verification-eval.md`](2026-04-23-matcher-verification-eval.md)
+>
+> The follow-up plan widens scope from Layer 2 (property-bridge) only to all three matching paths:
+> Tier A strict-overlap lint + Layer 1 constellation routing + Layer 2 property-bridge routing.
+> Content below is preserved for historical context; Part C of the new plan is the direct successor.
 
 ## Purpose
 
