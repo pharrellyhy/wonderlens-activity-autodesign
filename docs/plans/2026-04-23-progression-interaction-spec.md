@@ -307,10 +307,9 @@ This is a design spec. The implementation work it unlocks:
 
 | Work item | Repo | Plan |
 |---|---|---|
-| Add Soft-Reframe trigger + wait-time constants | `wonderlens-ai` | Addendum to `docs/plans/2026-04-21-progression-runtime-backend.md` (or a small new follow-up plan) |
-| Same, in demo | `fullstack-demo` | Addendum to `docs/plans/2026-04-21-progression-runtime-demo.md` |
-| Agent system-prompt composition (banned phrases + implicit correction) | `wonderlens-ai` | New plan: `2026-04-23-agent-dialogue-constraints.md` |
-| Prompt eval suite (banned-phrase + implicit-correction regression tests) | `wonderlens-ai` | Same plan as above |
+| Soft-Reframe trigger + wait-time constants | `wonderlens-ai` | **Folded into `docs/plans/2026-04-21-progression-runtime-backend.md`** (pre-execution) — §0.2 gains row 6, §0.4 upgraded, policy fields renamed to spec-aligned names |
+| Same, in demo | `fullstack-demo` | Addendum to `docs/plans/2026-04-21-progression-runtime-demo.md` (row 3, pending) |
+| Agent system-prompt composition (banned phrases + implicit correction) + eval suite | `wonderlens-ai` | **New plan drafted:** `docs/plans/2026-04-24-agent-dialogue-constraints-backend.md` |
 | Template 0 §07 footer cross-link (EN + CN) | this repo | Tiny PR, ~5 lines |
 | Runtime integration doc footnote | this repo | Same tiny PR |
 | Walkthrough v0.2 — Soft-Reframe row reference | this repo | Follow-up, non-blocking |
@@ -322,3 +321,4 @@ No work item in this table is large; the point of the spec is to make each one u
 ## Revnote
 
 - **v0.1** (2026-04-23) — Inaugural draft. Establishes the dialogue/interaction layer between Template 0 §07 (rules) and the live agent prompt (voice). Adds Soft-Reframe as trigger #6, codifies the banned-phrase list and implicit-correction pattern, specifies universal 6–10s wait-time. Two Mermaid diagrams: mid-activity decision flow + doc-layering. Pedagogical citations trace every rule to Colorado ELDG / EYFS Development Matters / China MoE 3–6 Guidelines.
+- **v0.1.1** (2026-04-24) — §10 handoff table updated: row-1 (Soft-Reframe trigger + wait-time constants) folded directly into the `wonderlens-ai` backend plan rather than shipping as a separate addendum, since the parent plan had not started execution. Row-2 (dialogue constraints + eval) remains a separate new plan per review-surface separation.
