@@ -2,7 +2,7 @@
 
 **Audience:** PMs, authors, eng leadership, anyone who needs the "why" before reading the "how."
 
-**Status:** 2026-04-22. Design shipped (Template 0 §07, walkthrough). Implementation plans shipped in sibling repos. This brief is the connective tissue — what problem it solves, what we get, what it's not.
+**Status:** 2026-04-23. Design shipped (Template 0 §07, walkthrough). Implementation plans shipped in sibling repos. This brief is the connective tissue — what problem it solves, what we get, what it's not.
 
 ---
 
@@ -226,4 +226,4 @@ Template 0 told us what a single activity looks like. The progression runtime te
 
 ## Revnote
 
-- **v0.1** (2026-04-22) — Inaugural background brief. Covers problem statement, design intent, expected outcomes by audience, scope limits, risks, and pitch. Written after design (§07) + walkthrough (PR #11) + implementation plans (2026-04-21) all shipped; serves as the connective tissue for readers who need the why without the 3000-line how.
+- **v0.1** (2026-04-23) — Inaugural background brief. Covers problem statement, design intent, expected outcomes by audience, scope limits, risks, and pitch. Written after design (§07) + walkthrough (PR #11) + implementation plans (2026-04-21) all shipped; serves as the connective tissue for readers who need the why without the 3000-line how.
