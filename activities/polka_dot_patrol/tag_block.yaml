@@ -38,13 +38,17 @@ caregiver_role: [scaffold, co-explorer]
 
 # ─── §2 · ACTIVITY SIGNATURE ───────────────────────────
 activity_signature:
+  # ── Layer 1: editorial identity (fixed; matcher reads these) ──
   observation_angle: pattern
   mechanic: collect
   entity_role: exemplar
-  focal_attribute: "polka_dots"
   bridge_prerequisites:
     primary:   [pattern]
     secondary: [color, shape]
+
+  # ── Layer 2: presentation (author templates; runtime renders) ──
+  focal_attribute: "polka_dots"
+  intro: "The child patrols the neighborhood looking for three more spotted things, using the {entity} as the first clue."
   preview_label:  "Find three polka-dotted things!"
   preview_prompt: "You noticed the polka dots on the {entity}. Let's find more polka-dotted things!"
   role_pivot_note: |

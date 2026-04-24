@@ -8,7 +8,7 @@
 
 ## observation_angle (10 values)
 
-What attribute/dimension the activity centers on. Sub-dimension within `progression.topic_axis`.
+What attribute/dimension the activity centers on. **Orthogonal to `progression.topic_axis`** — all 7 IB Key Concepts can use all 10 angles (see design spec §3.2 for examples).
 
 | Token | Definition | Example games | Example focal_attribute |
 |---|---|---|---|
