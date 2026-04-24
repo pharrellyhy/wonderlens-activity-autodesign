@@ -1,7 +1,7 @@
 # Activity Signature — Design Spec
 
 **Date:** 2026-04-23
-**Status:** Draft, pending review
+**Status:** Approved design surface; implementation in progress
 **Template 0 authority:** `docs/template_0_preview.html` §04 (tag block)
 **Background brief:** `docs/plans/2026-04-23-progression-background-brief.md` (related systems overview)
 
@@ -50,7 +50,7 @@ Three triggers converged:
 ## 2 · Scope
 
 ### In scope
-- New `activity_signature` block in Template 0 §04 tag block with 6 fields (below)
+- New `activity_signature` block in Template 0 §04 tag block with 8 required fields plus optional `role_pivot_note` (below)
 - Closed vocabularies for `observation_angle`, `mechanic`, `entity_role`
 - Per-game directory restructure (`activities/<game_id>/`) replacing flat `gold_standards/*.md` + `property_bridges/*.md` layout
 - Game loader update (parses per-game dir)
@@ -65,7 +65,7 @@ Three triggers converged:
 ### Out of scope (explicit deferrals)
 - **LLM-based `dominant_angle` classification from raw conversation transcripts.** V1 derives dominant_angle via a simple keyword-matching heuristic. A proper LLM classifier is follow-up work.
 - **Child recap UI / parent dashboard UI changes.** This plan updates the payloads; the React/iOS surfaces that consume them are separate plans.
-- **Backfilling activity_signature for all 12 gold standards + 14 property bridges.** V1 plan includes the schema + a migration pass for the 5 most-played activities; remaining backfills are mechanical follow-ups.
+- **Backfilling activity_signature for the full catalog.** V1 includes the schema + a migration pass for 5 seed activities; remaining backfills are mechanical follow-ups.
 - **Cumulative session logs in the per-game dir.** `.latest.yaml` is last-run only; historical queries go through the DB.
 - **Entity role-change detection heuristics beyond `entity_role` field reads.** The runtime surfaces the pivot via `role_pivot_note` when authored; it does not auto-detect pivots at runtime.
 - **Vocabulary extension beyond the V1 closed sets.** If a game needs an angle/mechanic not in the enum, it's a spec conversation, not a code change.
@@ -87,8 +87,8 @@ activity_signature:
   mechanic: collect                 # required, enum — §3.3
   entity_role: exemplar             # required, enum — §3.4
   bridge_prerequisites:             # required
-    primary:   [color]              # 1-3 angles; must-have for clean transition
-    secondary: [pattern, visibility] # 0-3 angles; nice-to-have
+    primary:   [color]              # 1-3 closed observation_angle values; strongest transition signal
+    secondary: [pattern, visibility] # 0-3 values; enum values score, free-form descriptors document nuance
 
   # ── Layer 2: presentation (templated at authoring, rendered at session start) ──
   focal_attribute: red              # required; may be a {placeholder} for parameterized activities
@@ -102,7 +102,7 @@ activity_signature:
 
 All fields go under a single `activity_signature` key in the existing Template 0 §04 tag block. They do not replace any existing fields.
 
-**Two-layer distinction:** Layer 1 fields are read by the upstream matcher to score candidate activities against the conversation signature — they never change per session. Layer 2 fields are author-written templates that the runtime renders at session start using concrete entity data from the photo. The matcher reads Layer 1 only; everything downstream (child recap, parent dashboard, pre-activity preview) reads rendered Layer 2 strings.
+**Two-layer distinction:** Layer 1 fields are read by the upstream matcher to score candidate activities against the conversation signature — they never change per session. Layer 2 fields are author-written templates that the runtime renders at session start using concrete entity data from the photo. The matcher reads Layer 1 only. Downstream surfaces read rendered Layer 2 strings for display, and also store or render selected Layer 1 classifications (`observation_angle`, `mechanic`, `entity_role`) for recap and dashboard aggregation.
 
 ### 3.2 Observation angle — closed enum (10 values)
 
@@ -190,7 +190,7 @@ A single sentence, third-person, describing what the child does. Serves parent-d
 
 | activity_id | Template | Rendered |
 |---|---|---|
-| color_scout_property | `"The child finds three {focal_color} things using the {entity} as a starting example."` | *"The child finds three red things using the ladybug as a starting example."* |
+| color_scout_property | `"The child finds three {color} things using the {entity} as a starting example."` | *"The child finds three red things using the ladybug as a starting example."* |
 | voice_stage_lion | `"The child gives the {entity} a voice and personality to match its presence."` | *"The child gives the lion a voice and personality to match its presence."* |
 | pet_caretakers_mission | `"The child walks around to find three more things a {pet_type} needs — using the photographed {entity} as a starting point."` | *"The child walks around to find three more things a cat needs — using the photographed cat food as a starting point."* |
 
@@ -207,7 +207,7 @@ A single sentence, third-person, describing what the child does. Serves parent-d
 
 ### 3.6 focal_attribute
 
-The specific attribute value parameterized into the activity. Flat string, drawn from the entity's `attributes` list or a property the vision pipeline detected.
+The specific attribute value parameterized into the activity. Flat string, usually drawn from the entity's `attributes` list or a property the vision pipeline detected. Bound/non-visual games may use an author-stable descriptor when the focal trait is not a literal detected property (for example `lion_voice`).
 
 Example usage:
 - Activity `observation_angle: color`, entity = ladybug → `focal_attribute: red`
@@ -219,8 +219,8 @@ The runtime reads this into prompts: *"find three RED things"* not *"find three 
 ### 3.7 bridge_prerequisites
 
 Lists conversation themes the activity naturally extends. Two tiers:
-- `primary` — 1-3 angles; a clean transition requires at least one primary match with the conversation's `dominant_angle`
-- `secondary` — 0-3 angles; nice-to-have signal, scored lower but still valid
+- `primary` — 1-3 closed `observation_angle` values; the strongest transition signal, scored against `dominant_angle` and `secondary_angles`
+- `secondary` — 0-3 values; closed enum values may be scored later, while free-form descriptors are editorial notes only
 
 ```yaml
 bridge_prerequisites:
@@ -228,7 +228,7 @@ bridge_prerequisites:
   secondary: [pattern, visibility]
 ```
 
-Use same vocabulary as `observation_angle` (the 10 values in §3.2). Secondary entries can include angles outside the strict 10 if they're editorially meaningful (e.g., `visibility` — a synthesis of color + pattern in the ladybug case); these are free-form strings.
+`primary` MUST use the same vocabulary as `observation_angle` (the 10 values in §3.2). `secondary` SHOULD use that vocabulary when possible, but may include non-enum descriptors if they are editorially meaningful (e.g., `visibility` — a synthesis of color + pattern in the ladybug case). V1 matcher scoring ignores non-enum secondary values.
 
 ### 3.8 preview_label + preview_prompt
 
@@ -305,7 +305,7 @@ Consumer repos (wonderlens-ai, fullstack-demo) — synced read-only copy + runti
 | `tag_block.yaml` | yes (autodesign only) | Structured metadata the matcher + downstream surfaces read. Reviewed by eng + authors. |
 | `recap.template.yaml` | yes (autodesign only) | Shape + example of the child-recap payload this game produces. Reviewers see "what the child will be told." |
 | `dashboard.template.yaml` | yes (autodesign only) | Shape + example of the parent-dashboard fragment. Reviewers see how this game contributes to the running dashboard. |
-| `recap.latest.yaml` | **no** — runtime write | Last-run snapshot, written on session end. Gitignored or committed-but-annotated ("auto-generated — do not hand-edit"). |
+| `recap.latest.yaml` | **no** — runtime write | Last-run snapshot, written on session end. Committed when useful for review, annotated "auto-generated — do not hand-edit." |
 | `dashboard.latest.yaml` | **no** — runtime write | Same. |
 
 ### 4.4 Sync discipline (autodesign ↔ consumer repos)
@@ -313,7 +313,7 @@ Consumer repos (wonderlens-ai, fullstack-demo) — synced read-only copy + runti
 - Autodesign is **source of truth** for hand-edited files (`spec.md`, `prod.md`, `tag_block.yaml`, `*.template.yaml`)
 - Consumer repos receive a read-only copy via a sync script (new in this plan) or manual `cp -r activities/ <consumer>/activities/`
 - Changes to any of the 5 hand-edited files → PR on autodesign → merge → sync into consumers → PR on consumers
-- `recap.latest.yaml` and `dashboard.latest.yaml` are **not** synced; they're consumer-repo-local, written by that repo's runtime
+- `recap.latest.yaml` and `dashboard.latest.yaml` are **not** synced from autodesign; they're consumer-repo-local, written by that repo's runtime and committed only when a consumer PR intentionally includes last-run review artifacts
 
 ### 4.5 Runtime write semantics for `.latest.yaml` (Option A, decided)
 
@@ -392,10 +392,10 @@ Existing progression bonus (from 2026-04-21 backend plan): `+2.0` for rung match
 **Pen → color scenario resolution:**
 - Conversation signature: `dominant_angle = "color"`, secondary_angles = ["shape"]
 - Candidates from Tier P: Color Scout (angle=color, score 7.0), Shape Quest (angle=shape, score 7.0)
-- With bonuses: Color Scout → 7.0 + 1.5 = 8.5; Shape Quest → 7.0 + 0.75 = 7.75
+- With bonuses: Color Scout → 7.0 + 1.5 angle match + 0.5 primary-bridge match = 9.0; Shape Quest → 7.0 + 0.75 secondary-angle match + 0.5 primary-bridge match = 8.25
 - Color Scout wins. Coherent transition.
 
-If Shape Quest were the only option, it still picks it (score 7.75 > min viable 3.0), but the runtime surfaces the pivot via `role_pivot_note` because the angle shifted.
+If Shape Quest were the only option, it still picks it (score 8.25 > min viable 3.0), but the runtime surfaces the pivot via `role_pivot_note` because the conversation treated the pen as the subject while the activity treats it as an exemplar.
 
 ### 5.4 When conversation_signature is null
 
@@ -429,13 +429,13 @@ New fields:
 - **Exploration matrix** — 2D: mechanic × angle, values = session counts. Surfaces imbalance (e.g., "lots of collect, no voice").
 - **Per-session fields** — `axis`, `angle`, `mechanic`, `entity_role` on each session in the timeline.
 
-These are computed from `activity_session_outcomes` + the game's `tag_block.yaml`; no new persistence needed beyond adding `observation_angle` and `mechanic` columns to `activity_session_outcomes` (both repos).
+These are computed from `activity_session_outcomes` + the game's `tag_block.yaml`; no new persistence needed beyond adding the four activity-signature snapshot columns in §7 to `activity_session_outcomes` (both repos).
 
 ### 6.3 Template 0 §04 HTML preview update
 
 Two additions to `docs/template_0_preview.html`:
 1. New subsection showing the `activity_signature` block inline with the existing tag block YAML render
-2. New entry in the §04 "fields read by downstream surfaces" table (lifecycle annotation) marking `observation_angle` and `mechanic` as read by both child recap AND parent dashboard
+2. New entry in the §04 "fields read by downstream surfaces" table (lifecycle annotation) marking `observation_angle`, `mechanic`, `entity_role`, and `focal_attribute` as downstream-readable where applicable
 
 CN mirror (`template_0_preview_cn.html`) gets parallel update. YAML tokens (`activity_signature`, `observation_angle`, enum values) stay English per house style.
 
@@ -466,14 +466,14 @@ No new tables. The per-game `.latest.yaml` files are filesystem state, not DB.
 
 ### 8.1 Games to migrate in V1
 
-Plan migrates **5 games** to the new per-game dir layout:
+V1 migrates **5 games** to the new per-game dir layout:
 1. `color_scout_property` (Cat5, most-played property bridge)
 2. `shape_quest_property` (Cat5, second-most-played)
 3. `voice_stage_lion` (Cat1, canonical gold standard)
 4. `mystery_trail_butterfly` (Cat5, gold standard, demonstrates Connection axis)
 5. `polka_dot_patrol` (Cat5, gold standard, demonstrates pattern angle)
 
-Remaining games (24 total) migrate in follow-up PRs, one batch per PR. The loader supports both layouts during transition (§8.2).
+Remaining games migrate in follow-up PRs, one batch per PR. The loader supports both layouts during transition (§8.2); `activities/README.md` tracks the current count.
 
 ### 8.2 Dual-layout loader
 
@@ -483,7 +483,7 @@ The loader reads from **both** old-style and new-style paths during migration:
 def load_all_games() -> list[GameDefinition]:
     games = []
     # New layout
-    for game_dir in sorted((_BASE / "activities").glob("*/")):
+    for game_dir in sorted(p for p in (_BASE / "activities").glob("*/") if p.name != "_schema"):
         games.append(load_from_dir(game_dir))
     # Legacy layout (flat .md files)
     for subdir in ("gold_standards", "property_bridges"):
@@ -533,7 +533,7 @@ Purpose: one place authors look up legal values; one place eng verifies against.
 - **Template 0 §04** ↔ this spec (§04 gains the `activity_signature` block in the preview HTML)
 - **Matchability tags design** (`docs/plans/2026-04-20-matchability-tags-design.md`) — complementary. Matchability tags answer "can this entity run this activity?"; activity_signature answers "should this activity follow this conversation?"
 - **Progression runtime plans** (`docs/plans/2026-04-21-progression-runtime-*.md`) — activity_signature enables angle-resolved progression (Form/color L2 vs Form/shape L2). Selector bonus (§5.3) stacks with progression's rung bonus.
-- **Child recap preview** (`docs/child_recap_preview.html`) — §04 tag block contract gains two read fields
+- **Child recap preview** (`docs/child_recap_preview.html`) — §04 tag block contract gains activity-signature read fields
 - **Parent dashboard preview** (`docs/parent_growth_path_preview.html`) — §03 curiosity radial design + §07 contract gain angle-resolved data
 - **Background brief** (`docs/plans/2026-04-23-progression-background-brief.md`) — related system context
 
@@ -591,4 +591,4 @@ Total: 21 tasks. All TDD-shaped per repo conventions.
 
 ## Revnote
 
-- **v0.1** (2026-04-23) — Inaugural design spec. Establishes 6-field `activity_signature` block with 3 closed vocabularies, per-game directory restructure, last-run cache (`recap.latest.yaml` / `dashboard.latest.yaml`) semantics, matcher scoring extension, and downstream surface payload changes. V1 migrates 5 games; remaining 19 games deferred to follow-up PRs under the same spec.
+- **v0.1** (2026-04-23) — Inaugural design spec. Establishes layered `activity_signature` block with 3 closed vocabularies, per-game directory restructure, last-run cache (`recap.latest.yaml` / `dashboard.latest.yaml`) semantics, matcher scoring extension, and downstream surface payload changes. V1 migrates 5 seed games; remaining catalog migrations are follow-up PRs under the same spec.
