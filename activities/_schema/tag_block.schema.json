@@ -65,7 +65,11 @@
       "uniqueItems": true
     },
     "related_concepts": { "type": "array", "items": { "type": "string" } },
-    "atl_skills": { "type": "array", "items": { "type": "string" } },
+    "atl_skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Recommended WonderLens thinking/learning skill tokens; see docs/activity_vocabulary.md. Not enum-enforced during legacy migration."
+    },
     "transdisciplinary_theme": { "type": "string" },
 
     "kud": {
@@ -131,12 +135,14 @@
             "compare",
             "collect",
             "sort",
+            "deduce",
             "voice",
             "build",
             "predict",
-            "narrate"
+            "narrate",
+            "care"
           ],
-          "description": "Closed enum — mirrors docs/activity_vocabulary.md mechanic (8 values)."
+          "description": "Closed enum — mirrors docs/activity_vocabulary.md mechanic (10 values)."
         },
         "entity_role": {
           "enum": ["subject", "exemplar", "catalyst", "reference"],

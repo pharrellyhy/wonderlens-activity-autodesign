@@ -37,8 +37,8 @@ Spec additions landed after the plan was first written. Search this plan for `�
 **Required reading before starting:** `docs/plans/2026-04-23-activity-signature-design.md`
 
 That doc is authoritative for:
-- The 6-field `activity_signature` block (§3)
-- 3 closed vocabularies: `observation_angle` (10), `mechanic` (8), `entity_role` (4) (§3.2-3.4)
+- The required `activity_signature` block (§3)
+- 3 closed vocabularies: `observation_angle` (10), `mechanic` (10), `entity_role` (4) (§3.2-3.4)
 - Per-game directory layout (§4)
 - Matcher scoring (§5.3)
 - Payload extensions (§6)
@@ -130,7 +130,7 @@ Path: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktree
 
 > **Canonical source** for the three closed enums in Template 0 §04's `activity_signature` block. Any addition here MUST be reflected in both consumer repos' enum code; enum-drift tests compare against this doc.
 
-**Version:** 1.0 · 2026-04-23
+**Version:** 1.2 · 2026-04-27
 
 ---
 
@@ -151,20 +151,22 @@ What attribute/dimension the activity centers on. **Orthogonal to `progression.t
 | `behavior` | How it moves/acts/interacts | Mood Changer, Dream Whisperer | friendly, hides, flies |
 | `state` | Condition | Fix-It Station, Old vs New | worn, fresh, alive |
 
-## mechanic (8 values)
+## mechanic (10 values)
 
 What the child actually does during the activity.
 
 | Token | Definition | Example games |
 |---|---|---|
 | `enumerate` | Name parts or list attributes | Detail Detective, Mix Lab |
-| `compare` | Contrast two+ items | (future) |
+| `compare` | Contrast two+ items | Material Detective, comparison-chart games |
 | `collect` | Find N things matching a criterion | Color Scout, Shape Quest, most property bridges |
-| `sort` | Categorize into groups | (future) |
+| `sort` | Categorize into groups | Nature vs Made |
+| `deduce` | Infer an answer from clues or evidence | Mystery Lens, Mystery Trail |
 | `voice` | Give the entity a voice | Voice Stage Lion, Playground Voices |
 | `build` | Make/invent something | What-If Workshop, Inventor Workshop |
 | `predict` | "What happens next?" | Apple What Happens Next, Prediction Lab |
 | `narrate` | Tell a story | Library Book's Journey, storytelling_chain games |
+| `care` | Notice a need and propose help | Care Station, Rescue Team |
 
 ## entity_role (4 values)
 
@@ -227,7 +229,7 @@ Find the text (around the existing `caregiver_role:` line) and add a new block b
 
   <span class="hl"><span class="key">activity_signature</span>:                       <span class="cmt"># answers "should this activity follow this conversation?"</span>
     <span class="key">observation_angle</span>: <span class="str">{color|shape|size|texture|material|pattern|function|origin|behavior|state}</span>
-    <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|voice|build|predict|narrate}</span>
+    <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care}</span>
     <span class="key">entity_role</span>:       <span class="str">{subject|exemplar|catalyst|reference}</span>
     <span class="key">focal_attribute</span>:   <span class="str">"..."</span>                <span class="cmt"># the parameterized attribute</span>
     <span class="key">bridge_prerequisites</span>:
@@ -269,10 +271,10 @@ Apply the same two changes to `docs/template_0_preview_cn.html`:
 
 - [ ] **Step 6: Revnote update**
 
-Find the revision note block (usually bottom of the §08 section or footer). Add a bullet under the current version (or bump v0.3 → v0.4 if the doc's at v0.3):
+Find the revision note block (usually bottom of the §08 section or footer). Add a bullet under the current version; the Template 0 preview is now at v0.6 after the PM-review clarification pass:
 
 ```html
-<li><b>activity_signature block added</b> (§04) — 6-field signature for each activity: observation_angle, mechanic, entity_role, focal_attribute, bridge_prerequisites, preview_label+prompt. See <code>docs/activity_vocabulary.md</code> for enum closure.</li>
+<li><b>activity_signature block added</b> (§04) — signature fields for each activity: observation_angle, mechanic, entity_role, focal_attribute, bridge_prerequisites, preview_label+prompt. See <code>docs/activity_vocabulary.md</code> for enum closure.</li>
 ```
 
 Mirror in CN.
@@ -624,7 +626,7 @@ gh pr create --title "feat(activity-signature): vocabulary + Template 0 §04 + 5
 
 Authoring-side work for the activity_signature extension (design spec already merged).
 
-- \`docs/activity_vocabulary.md\` — closed enums (10 angles / 8 mechanics / 4 roles)
+- \`docs/activity_vocabulary.md\` — closed enums (10 angles / 10 mechanics / 4 roles)
 - Template 0 §04 preview (EN + CN) — new \`activity_signature\` block
 - 5 games migrated to per-game dir layout under \`activities/\`
 - \`docs/plans/fixtures/activity_signature_scenarios.json\` — shared test vector
@@ -675,7 +677,7 @@ Per `memory/feedback_plan_datetime.md`: this plan is `2026-04-23-activity-signat
 
 ## 5 · Verification summary
 
-- [ ] `docs/activity_vocabulary.md` committed with 10 angles / 8 mechanics / 4 roles
+- [ ] `docs/activity_vocabulary.md` committed with 10 angles / 10 mechanics / 4 roles
 - [ ] Template 0 §04 EN + CN render the new `activity_signature` block
 - [ ] Template 0 revnote updated
 - [ ] 5 game directories exist under `activities/` with all 5 required files each:
@@ -690,5 +692,6 @@ Per `memory/feedback_plan_datetime.md`: this plan is `2026-04-23-activity-signat
 
 ## Revnote
 
+- **v0.3** (2026-04-27) — Aligned version numbering with the PM-review clarification pass: vocabulary v1.2, Template 0 v0.6, 10 mechanics, and WonderLens thinking/learning language for `atl_skills`.
 - **v0.2** (2026-04-24) — Added `activity_signature.intro` field requirement for each migrated game's `tag_block.yaml`. Updated Task 3 steps 2–6 with the specific intro template to author per game. Updated verification checklist. See design spec §3.5 for field definition and constraints.
 - **v0.1** (2026-04-23) — Inaugural authoring plan. 4 tasks: worktree + vocabulary doc, Template 0 §04 update (EN+CN), 5-game migration to per-game dir layout, shared scenario fixture + PR. Produces the design artifacts the backend + demo plans consume. V1 migrates 5 games; remaining 19 games deferred to follow-up PRs under the same schema.

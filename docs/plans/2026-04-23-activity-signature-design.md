@@ -1,6 +1,7 @@
 # Activity Signature — Design Spec
 
 **Date:** 2026-04-23
+**Version:** v0.2 · 2026-04-27
 **Status:** Approved design surface; implementation in progress
 **Template 0 authority:** `docs/template_0_preview.html` §04 (tag block)
 **Background brief:** `docs/plans/2026-04-23-progression-background-brief.md` (related systems overview)
@@ -41,7 +42,7 @@ What's missing:
 ### 1.3 Why now
 
 Three triggers converged:
-- **Progression runtime** (2026-04-21 plans) added per-axis state. Authors now ask "at what *angle* of Form is Mia at L2?" — the current schema can't distinguish Form/color L2 from Form/shape L2.
+- **Progression runtime** (2026-04-21 plans) added per-axis state. Authors now ask "which *angle* of Form did Mia practice?" V1 still keeps one level per `topic_axis` (for example, Form = L2); `activity_signature` records whether that evidence came through color, shape, pattern, etc. It does not create separate Form/color and Form/shape levels.
 - **Parent dashboard** curiosity radial design wants to split axis-exposure by attribute angle (8 color sessions vs 2 shape sessions tells a different story than "10 Form sessions").
 - **Matchability tags** (2026-04-20) answered "CAN this entity run this activity?" but left "SHOULD this activity follow this conversation?" unanswered.
 
@@ -79,6 +80,55 @@ Three triggers converged:
 ## 3 · The new tag block fields
 
 ### 3.1 Schema (YAML)
+
+Complete Template 0 activity header context (`docs/template_0_preview.html` §04):
+
+```yaml
+# ─── §0 · ACTIVITY HEADER (required on every design) ───────
+header:
+  activity_id:   {slug}                # e.g. ladybug_cat1_mystery_t1
+  entity:        {entity_name}
+  entity_type:   {animal|toy|food|household|vehicle|nature|...}
+  category:      {cat1..cat6}
+  pillar:        {mystery|creation|performance|discovery|adventure|nurture}
+  style:         {one of 12 game styles}
+  tier:          {T0|T1|T2}            # primary target
+  tier_variants: [{T0|T1|T2}]          # optional neighbor flex
+
+  tags:
+    attributes:              []        # observable properties the game invokes
+    key_concepts:            []        # 1-2 from the 7 IB Key Concepts
+    related_concepts:        []        # 2-4 discipline-tagged badges
+    atl_skills:              []        # 2-3 WonderLens thinking/learning skill tags
+    transdisciplinary_theme: {1 of 6 PYP themes}
+
+  kud:
+    know:       []                     # 2-5 facts / vocab
+    understand: []                     # 1-2 concepts (maps to key_concepts)
+    do:         []                     # 2-3 skills (maps to atl_skills)
+
+  progression:                          # answers ask #2
+    topic_axis:       {form|function|causation|change|connection|perspective|responsibility}
+    difficulty_level: {1|2|3}
+    next_step_hint:   "..."
+    reward_hook:      "..."
+
+  caregiver_role:  [scaffold, co-explorer, observer]   # cumulative list; tier-dependent default
+
+  activity_signature:                       # answers "should this activity follow this conversation?"
+    observation_angle: {color|shape|size|texture|material|pattern|function|origin|behavior|state}
+    mechanic:          {enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care}
+    entity_role:       {subject|exemplar|catalyst|reference}
+    focal_attribute:   "..."                # the parameterized attribute
+    bridge_prerequisites:
+      primary:   [...]
+      secondary: [...]
+    preview_label:    "..."
+    preview_prompt:   "..."
+    role_pivot_note:  "..."                 # optional; used when entity_role shifts
+```
+
+Activity-signature excerpt with concrete example values:
 
 ```yaml
 activity_signature:
@@ -137,9 +187,24 @@ observation_angle:
 
 A common confusion: earlier drafts of this spec implied visual angles "belong to" Form and functional angles "belong to" Function/Causation. That's wrong. The Cat Food → Pet Caretaker's Mission example uses `observation_angle: function` with `topic_axis: responsibility`; no axis owns any angle. The 4 conceptually-richer axes (Change, Connection, Perspective, Responsibility) are the **most angle-flexible** because they're interpretive stances on attributes rather than attribute types themselves.
 
-**Closure discipline:** these 10 are authoritative. Adding an 11th requires a spec update + migration of existing games. If an activity's angle doesn't fit, pick the closest match and note the delta in `spec.md`.
+**Closure discipline:** these 10 are authoritative for V1 matching and dashboard aggregation. The list is intentionally not an exhaustive ontology of everything a child can notice. Adding an 11th requires a spec update + migration of existing games. If an activity's angle doesn't fit, pick the closest match and note the delta in `spec.md`.
 
-### 3.3 Mechanic — closed enum (8 values)
+Good future candidates:
+- `quantity` — how many, more/less, countable sets
+- `emotion` — perceived feeling/expression/tone in a story or performance context
+
+Usually covered elsewhere:
+- `comparison` is normally a `mechanic`, because the child compares; the angle being compared is still `size`, `color`, `material`, etc.
+- `sequence` and temporal order usually belong under `progression.topic_axis: change`; add an angle only if the activity truly centers on ordering itself.
+
+Recognition/safety-limited candidates:
+- Distance and direction are hard to infer reliably and can create unsafe movement prompts.
+- Smell, taste, sound, and temperature are not photo-verifiable; taste is especially safety-sensitive.
+- Touch can appear as `texture`, but runtime copy should not claim photo certainty when the value requires child report.
+
+**`Function` vs `function`:** `Function` in `key_concepts` / `progression.topic_axis` is the IB conceptual lens: "how does this work?" `function` in `observation_angle` is the entity attribute under attention: "what does this object do?" Example: a cat-food activity can use `observation_angle: function` because the food's purpose is feeding a pet, while `progression.topic_axis: responsibility` because the activity asks what care a pet needs. The same activity can also list `key_concepts: [Function, Responsibility]` if both concepts are explicit.
+
+### 3.3 Mechanic — closed enum (10 values)
 
 ```yaml
 mechanic:
@@ -147,13 +212,34 @@ mechanic:
   - compare     # "which is bigger?", "how are these alike?"
   - collect     # "find three things that are [X]"
   - sort        # "put these into groups"
+  - deduce      # "use clues to figure it out"
   - voice       # "what would the ladybug say?"
   - build       # "make something with this"
   - predict     # "what happens if…?"
   - narrate     # "tell me the story of this"
+  - care        # "what does this need, and how can we help?"
 ```
 
-**Rationale:** each maps 1:1 to an established game_style family. `collect` is the Cat5 mission mechanic; `voice` maps to voice_stage/ensemble_show; `predict` to prediction_lab; etc. Authors already think in these buckets; the tag just makes it explicit.
+**Rationale:** each maps to the child's primary action, not necessarily 1:1 to a game style. `deduce` covers Mystery clue-solving; `care` covers Nurture help/rescue loops; `collect` covers many Cat5 missions; `voice` maps to voice_stage/ensemble_show; `predict` maps to prediction_lab/field_experiment. Authors already think in these buckets; the tag makes the primary action explicit while `game_style` preserves the richer pillar-specific structure.
+
+Mechanic-to-style guidance:
+
+| Game style | Pillar | Recommended primary mechanic |
+|---|---|---|
+| `mystery_lens` | Mystery | `deduce` |
+| `mystery_trail` | Mystery | `deduce` or `collect` depending on whether clue-solving or physical search is primary |
+| `inventor_workshop` | Creation | `build` |
+| `mix_lab` | Creation | `build` |
+| `voice_stage` | Performance | `voice` |
+| `ensemble_show` | Performance | `voice` |
+| `prediction_lab` | Discovery | `predict` |
+| `field_experiment` | Discovery | `predict` for hypothesis-led experiments; `collect` for simple property hunts |
+| `time_traveler` | Adventure | `narrate` |
+| `quest_collector` | Adventure | `collect` |
+| `care_station` | Nurture | `care` |
+| `rescue_team` | Nurture | `care` or `collect` depending on whether helping or finding is primary |
+
+Imagination does not automatically mean `pillar: creation` or `mechanic: build`. Mystery, Performance, Adventure, and Nurture can all use imagination. Use Creation only when the emotional payoff is "I made this" and the child invents/builds something.
 
 ### 3.4 Entity role — closed enum (4 values)
 
@@ -173,6 +259,10 @@ entity_role:
 | subject | exemplar | Ladybug chat → "find three red things" | yes — "ladybug becomes an example of red" |
 | subject | catalyst | Ladybug chat → building a bug hotel | yes — "ladybug inspired us to build something new" |
 | subject | reference | Ladybug chat → drawing a pattern using spots | yes — "using the ladybug's spots as our pattern guide" |
+
+Additional examples:
+- A red pen that launches "find three red things" is `exemplar`: the pen is one example of red. This is close to upstream's "property → activity" bridge, assuming `red` is not modeled as its own subject node.
+- A ladybug chat → general animal flashcards is `exemplar` if the framing is "the ladybug is one animal; let's look at more animals." It is `catalyst` if the ladybug only sparked a separate flashcard activity and no longer participates. A ladybug-specific fact activity remains `subject`.
 
 ### 3.5 intro — one-sentence observer-facing description
 
@@ -230,6 +320,11 @@ bridge_prerequisites:
 
 `primary` MUST use the same vocabulary as `observation_angle` (the 10 values in §3.2). `secondary` SHOULD use that vocabulary when possible, but may include non-enum descriptors if they are editorially meaningful (e.g., `visibility` — a synthesis of color + pattern in the ladybug case). V1 matcher scoring ignores non-enum secondary values.
 
+Secondary runtime uses beyond first selection:
+- If the child rejects a recommended activity and asks to switch, use compatible bridge prerequisites to swap to a nearby activity instead of a random one.
+- If the child finishes with high engagement, use the completed activity's signature as context for a coherent next activity.
+- If a future runtime prepares several activities in advance, bridge prerequisites can help assemble a candidate set whose transitions are easy to explain.
+
 ### 3.8 preview_label + preview_prompt
 
 Short strings the upstream app can display during the conversation → activity transition.
@@ -242,6 +337,33 @@ V1: both are author-written. Future: auto-generate from templates.
 ### 3.9 role_pivot_note
 
 Optional. Used only when the activity's `entity_role` differs from the conversation's (most common transitions: subject → exemplar/catalyst/reference). One-sentence explanation the runtime can surface to make the pivot explicit.
+
+### 3.10 atl_skills as thinking/learning tags
+
+`atl_skills` stays in the tag block for compatibility, but new authoring should treat it as WonderLens "Thinking & Learning Skills" rather than the legacy ATL taxonomy. This answers the PM need for explicit thinking-mode tags like calculation, logic, imagination, and language expression without adding another parallel field.
+
+Closest existing fields:
+- `subject_tags` answers curriculum domain: math, science, language, social-emotional, etc.
+- `activity_signature.mechanic` answers what the child does: collect, compare, deduce, care, etc.
+- `atl_skills` answers the practiced thinking/learning skill: counting, logical_reasoning, language_expression, imagination, etc.
+
+For activities about quantity, prefer `subject_tags: [math]` plus specific `atl_skills`:
+
+```yaml
+# Find three red things
+subject_tags: [math, science]
+atl_skills: [counting, observation, classification]
+
+# Which group has more?
+subject_tags: [math]
+atl_skills: [counting, quantity_comparison, evidence_collection]
+
+# Sort by size
+subject_tags: [math]
+atl_skills: [measurement, classification, logical_reasoning]
+```
+
+The recommended token list lives in `docs/activity_vocabulary.md`. The schema does not enforce it yet so legacy activities keep validating during migration.
 
 ---
 
@@ -512,12 +634,13 @@ Per-game effort: ~30-60 min for an author familiar with the game. The 5 V1 migra
 
 ## 9 · Vocabulary storage
 
-Closed enums live in a new canonical doc in the autodesign repo:
+Closed enums and recommended thinking/learning-skill tags live in a canonical doc in the autodesign repo:
 
 `docs/activity_vocabulary.md`:
 - Section per enum (`observation_angle`, `mechanic`, `entity_role`)
 - Each value has: canonical token, one-sentence definition, 2-3 example game mappings, example focal_attribute values
-- Versioned header (v1.0 for this plan; bump on any addition)
+- Recommended `atl_skills` token list for new authoring; not schema-enforced yet
+- Versioned header (v1.2 as of 2026-04-27; bump on any addition)
 
 Consumer repos import the vocabulary by:
 - Runtime enums duplicated in `progression/models.py` or a new `activity_signature/vocabulary.py`
@@ -532,7 +655,7 @@ Purpose: one place authors look up legal values; one place eng verifies against.
 
 - **Template 0 §04** ↔ this spec (§04 gains the `activity_signature` block in the preview HTML)
 - **Matchability tags design** (`docs/plans/2026-04-20-matchability-tags-design.md`) — complementary. Matchability tags answer "can this entity run this activity?"; activity_signature answers "should this activity follow this conversation?"
-- **Progression runtime plans** (`docs/plans/2026-04-21-progression-runtime-*.md`) — activity_signature enables angle-resolved progression (Form/color L2 vs Form/shape L2). Selector bonus (§5.3) stacks with progression's rung bonus.
+- **Progression runtime plans** (`docs/plans/2026-04-21-progression-runtime-*.md`) — activity_signature enables angle-resolved evidence/exposure on top of the existing one-level-per-axis progression state. Selector bonus (§5.3) stacks with progression's rung bonus.
 - **Child recap preview** (`docs/child_recap_preview.html`) — §04 tag block contract gains activity-signature read fields
 - **Parent dashboard preview** (`docs/parent_growth_path_preview.html`) — §03 curiosity radial design + §07 contract gain angle-resolved data
 - **Background brief** (`docs/plans/2026-04-23-progression-background-brief.md`) — related system context
@@ -542,7 +665,7 @@ Purpose: one place authors look up legal values; one place eng verifies against.
 ## 11 · Verification checklist
 
 ### 11.1 Schema
-- [ ] `activity_vocabulary.md` published with 10 angles, 8 mechanics, 4 roles
+- [ ] `activity_vocabulary.md` published with 10 angles, 10 mechanics, 4 roles
 - [ ] Template 0 §04 preview HTML renders the new block
 - [ ] Template 0 §04 CN mirror updated
 - [ ] Enum drift test passes in both repos
@@ -591,4 +714,5 @@ Total: 21 tasks. All TDD-shaped per repo conventions.
 
 ## Revnote
 
+- **v0.2** (2026-04-27) — PM-review clarification pass. Clarifies observation-angle scope and safety limits, `Function` vs `function`, mechanic-to-game-style mapping, imagination vs Creation, entity-role examples, bridge-prerequisite reuse, one-level-per-axis progression semantics, and `atl_skills` as WonderLens thinking/learning tags.
 - **v0.1** (2026-04-23) — Inaugural design spec. Establishes layered `activity_signature` block with 3 closed vocabularies, per-game directory restructure, last-run cache (`recap.latest.yaml` / `dashboard.latest.yaml`) semantics, matcher scoring extension, and downstream surface payload changes. V1 migrates 5 seed games; remaining catalog migrations are follow-up PRs under the same spec.

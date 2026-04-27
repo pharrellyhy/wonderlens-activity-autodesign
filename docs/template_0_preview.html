@@ -3182,7 +3182,7 @@
       <a href="#axes">Progression</a>
       <a href="#decisions">Decisions</a>
     </nav>
-    <div class="meta">Draft v0.4 · 2026-04-17 · Internal review</div>
+    <div class="meta">Draft v0.6 · 2026-04-27 · Internal review</div>
   </header>
 
   <!-- ============== HERO ============== -->
@@ -3209,14 +3209,20 @@
       </div>
       <div>
         <span class="label">Status</span>
-        <span class="value">Draft v0.5 · pending sign-off</span>
+        <span class="value">Draft v0.6 · PM review updates</span>
       </div>
     </div>
 
     <details class="revnote">
+      <summary><span class="revnote-tag">v0.6</span> PM review clarifications for activity signature — 2026-04-27</summary>
+      <ol>
+        <li><b>Vocabulary and tag language updated</b> (§04) — Template comments now point authors to WonderLens thinking/learning skill tags, the mechanic enum includes <code>deduce</code> and <code>care</code>, and <code>docs/activity_vocabulary.md</code> is at v1.2 for PM-review clarifications.</li>
+      </ol>
+    </details>
+    <details class="revnote">
       <summary><span class="revnote-tag">v0.5</span> Add <code>activity_signature</code> block — 2026-04-23</summary>
       <ol>
-        <li><b><code>activity_signature</code> block added</b> (§04) — 6-field signature for each activity: <code>observation_angle</code>, <code>mechanic</code>, <code>entity_role</code>, <code>focal_attribute</code>, <code>bridge_prerequisites</code>, <code>preview_label</code>+<code>preview_prompt</code>. See <a href="activity_vocabulary.md"><code>docs/activity_vocabulary.md</code></a> for enum closure.</li>
+        <li><b><code>activity_signature</code> block added</b> (§04) — signature fields for each activity: <code>observation_angle</code>, <code>mechanic</code>, <code>entity_role</code>, <code>focal_attribute</code>, <code>bridge_prerequisites</code>, <code>preview_label</code>+<code>preview_prompt</code>. See <a href="activity_vocabulary.md"><code>docs/activity_vocabulary.md</code></a> for enum closure.</li>
       </ol>
     </details>
     <details class="revnote">
@@ -3425,7 +3431,7 @@
     <span class="key">attributes</span>:              []        <span class="cmt"># observable properties the game invokes</span>
     <span class="key">key_concepts</span>:            []        <span class="cmt"># 1–2 from the 7 IB Key Concepts</span>
     <span class="key">related_concepts</span>:        []        <span class="cmt"># 2–4 discipline-tagged badges</span>
-    <span class="key">atl_skills</span>:              []        <span class="cmt"># 2–3 ATL skills</span>
+    <span class="key">atl_skills</span>:              []        <span class="cmt"># 2–3 WonderLens thinking/learning skill tags</span>
     <span class="key">transdisciplinary_theme</span>: <span class="str">{1 of 6 PYP themes}</span>
 
   <span class="key">kud</span>:
@@ -3443,7 +3449,7 @@
 
   <span class="hl"><span class="key">activity_signature</span>:                       <span class="cmt"># answers "should this activity follow this conversation?"</span>
     <span class="key">observation_angle</span>: <span class="str">{color|shape|size|texture|material|pattern|function|origin|behavior|state}</span>
-    <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|voice|build|predict|narrate}</span>
+    <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care}</span>
     <span class="key">entity_role</span>:       <span class="str">{subject|exemplar|catalyst|reference}</span>
     <span class="key">focal_attribute</span>:   <span class="str">"..."</span>                <span class="cmt"># the parameterized attribute</span>
     <span class="key">bridge_prerequisites</span>:
@@ -3570,8 +3576,8 @@
         <span class="cmt"># — parent-facing (IB + cross-subject framework) —</span>
         <span class="key">key_concepts</span>: <span class="hl">[<span class="str">Form</span>, <span
             class="str">Change</span>]</span> <span class="cmt"># 1–2 from 7 IB KCs</span>
-        <span class="key">atl_skills</span>: [<span class="str">critical_thinking</span>, <span
-          class="str">observation</span>] <span class="cmt"># IB ATL</span>
+        <span class="key">atl_skills</span>: [<span class="str">logical_reasoning</span>, <span
+          class="str">observation</span>] <span class="cmt"># WonderLens thinking/learning skills</span>
         <span class="key">transdisciplinary_theme</span>: <span class="str">How the World Works</span>
         <span class="key">subject_tags</span>: <span class="hl">[<span class="str">science</span>, <span
             class="str">biology</span>]</span> <span class="cmt"># NEW — cross-subject classification</span>
@@ -3620,7 +3626,7 @@
             <div class="tag-split-head" data-surface="parent">Parent-facing · IB + subject framework</div>
             <ul>
               <li><code>key_concepts</code><span>1–2 of the 7 IB Key Concepts. The "thinking lens" parents use to track depth. <b>Distinct tree</b> from related concepts.</span></li>
-              <li><code>atl_skills</code><span>2–3 IB ATL skills practiced. Parents can read them as cross-activity meta-skill growth.</span></li>
+              <li><code>atl_skills</code><span>2–3 WonderLens thinking/learning skills practiced, such as counting, logical reasoning, imagination, or language expression.</span></li>
               <li><code>transdisciplinary_theme</code><span>Which of the 6 IB TD themes the activity lives under.</span></li>
               <li><code>subject_tags</code><span><b>NEW.</b> Cross-subject classification (science / language / art / math / social-emotional). Lets parents filter or compare with school subjects — distinct from the child view.</span></li>
               <li><code>progression</code><span>The axis + level the activity targeted, plus the next step. Drives the growth-path ladder visualization.</span></li>

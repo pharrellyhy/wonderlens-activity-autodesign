@@ -23,7 +23,7 @@ Same directory restructure: each game becomes a folder (`activities/<game_id>/`)
 ```yaml
 activity_signature:
   observation_angle: color          # enum, 10 values — §3.2 of design spec
-  mechanic: collect                 # enum, 8 values — §3.3
+  mechanic: collect                 # enum, 10 values — §3.3
   entity_role: exemplar             # enum, 4 values — §3.4
   focal_attribute: red              # string, parameterized attribute
   bridge_prerequisites:

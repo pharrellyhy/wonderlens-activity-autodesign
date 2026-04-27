@@ -31,7 +31,7 @@ The directory name MUST equal the `activity_id` inside that dir's `tag_block.yam
 
 ## Canonical vocabulary
 
-The three closed enums in `tag_block.yaml activity_signature` — `observation_angle` (10), `mechanic` (8), `entity_role` (4) — are defined in [`docs/activity_vocabulary.md`](../docs/activity_vocabulary.md). The schema's enum lists must stay in sync with that doc; drift is CI-blocked.
+The three closed enums in `tag_block.yaml activity_signature` — `observation_angle` (10), `mechanic` (10), `entity_role` (4) — are defined in [`docs/activity_vocabulary.md`](../docs/activity_vocabulary.md). The schema's enum lists must stay in sync with that doc; drift is CI-blocked.
 
 ## Validation
 

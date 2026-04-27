@@ -3195,7 +3195,7 @@
       <a href="#axes">进阶轴</a>
       <a href="#decisions">决策</a>
     </nav>
-    <div class="meta">草稿 v0.4 · 2026-04-17 · 内部评审</div>
+    <div class="meta">草稿 v0.6 · 2026-04-27 · 内部评审</div>
   </header>
 
   <!-- ============== HERO ============== -->
@@ -3222,14 +3222,20 @@
       </div>
       <div>
         <span class="label">状态</span>
-        <span class="value">草稿 v0.5 · 待签收</span>
+        <span class="value">草稿 v0.6 · PM 评审修订</span>
       </div>
     </div>
 
     <details class="revnote">
+      <summary><span class="revnote-tag">v0.6</span> activity signature 的 PM 评审澄清 · 2026-04-27</summary>
+      <ol>
+        <li><b>更新词表与标签语言</b>（§04）——Template 注释改为 WonderLens 思维/学习方式标签；mechanic 枚举加入 <code>deduce</code> 和 <code>care</code>；<code>docs/activity_vocabulary.md</code> 升到 v1.2，承载 PM 评审澄清。</li>
+      </ol>
+    </details>
+    <details class="revnote">
       <summary><span class="revnote-tag">v0.5</span> 新增 <code>activity_signature</code> 区块 · 2026-04-23</summary>
       <ol>
-        <li><b>新增 <code>activity_signature</code> 区块</b>（§04）——每个活动的 6 字段签名：<code>observation_angle</code>、<code>mechanic</code>、<code>entity_role</code>、<code>focal_attribute</code>、<code>bridge_prerequisites</code>、<code>preview_label</code>+<code>preview_prompt</code>。枚举闭包见 <a href="activity_vocabulary.md"><code>docs/activity_vocabulary.md</code></a>。</li>
+        <li><b>新增 <code>activity_signature</code> 区块</b>（§04）——每个活动的签名字段：<code>observation_angle</code>、<code>mechanic</code>、<code>entity_role</code>、<code>focal_attribute</code>、<code>bridge_prerequisites</code>、<code>preview_label</code>+<code>preview_prompt</code>。枚举闭包见 <a href="activity_vocabulary.md"><code>docs/activity_vocabulary.md</code></a>。</li>
       </ol>
     </details>
     <details class="revnote">
@@ -3426,7 +3432,7 @@
         <span class="key">attributes</span>: [] <span class="cmt"># 游戏用到的可观察属性</span>
         <span class="key">key_concepts</span>: [] <span class="cmt"># 从 7 个 IB Key Concept 里挑 1–2 个</span>
         <span class="key">related_concepts</span>: [] <span class="cmt"># 2–4 个学科标签徽章</span>
-        <span class="key">atl_skills</span>: [] <span class="cmt"># 2–3 个 ATL 能力</span>
+        <span class="key">atl_skills</span>: [] <span class="cmt"># 2–3 个 WonderLens 思维/学习方式标签</span>
         <span class="key">transdisciplinary_theme</span>: <span class="str">{6 个 PYP 主题之一}</span>
 
         <span class="key">kud</span>:
@@ -3446,7 +3452,7 @@
 
         <span class="hl"><span class="key">activity_signature</span>:                       <span class="cmt"># 回应 "该活动是否应当承接本次对话?"</span>
           <span class="key">observation_angle</span>: <span class="str">{color|shape|size|texture|material|pattern|function|origin|behavior|state}</span>
-          <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|voice|build|predict|narrate}</span>
+          <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care}</span>
           <span class="key">entity_role</span>:       <span class="str">{subject|exemplar|catalyst|reference}</span>
           <span class="key">focal_attribute</span>:   <span class="str">"..."</span>                <span class="cmt"># 可参数化的焦点属性</span>
           <span class="key">bridge_prerequisites</span>:
@@ -3576,8 +3582,8 @@
         <span class="cmt"># — 家长端（IB + 跨学科框架）—</span>
         <span class="key">key_concepts</span>: <span class="hl">[<span class="str">Form</span>, <span
             class="str">Change</span>]</span> <span class="cmt"># 从 7 个 IB Key Concept 里挑 1–2 个</span>
-        <span class="key">atl_skills</span>: [<span class="str">critical_thinking</span>, <span
-          class="str">observation</span>] <span class="cmt"># IB ATL</span>
+        <span class="key">atl_skills</span>: [<span class="str">logical_reasoning</span>, <span
+          class="str">observation</span>] <span class="cmt"># WonderLens 思维/学习方式</span>
         <span class="key">transdisciplinary_theme</span>: <span class="str">How the World Works</span>
         <span class="key">subject_tags</span>: <span class="hl">[<span class="str">science</span>, <span
             class="str">biology</span>]</span> <span class="cmt"># 新增 —— 跨学科分类</span>
@@ -3623,7 +3629,7 @@
             <div class="tag-split-head" data-surface="parent">家长端 · IB + 跨学科框架</div>
             <ul>
               <li><code>key_concepts</code><span>从 7 个 IB Key Concept 里挑 1–2 个——家长追踪"思维深度"的主轴。和 related_concepts 属于<b>两套独立的分类</b>。</span></li>
-              <li><code>atl_skills</code><span>练到的 2–3 个 IB ATL 能力。家长可以跨活动看元能力的累积。</span></li>
+              <li><code>atl_skills</code><span>练到的 2–3 个 WonderLens 思维/学习方式，例如 counting、logical_reasoning、imagination、language_expression。</span></li>
               <li><code>transdisciplinary_theme</code><span>6 个 IB 跨学科主题中的哪一个。</span></li>
               <li><code>subject_tags</code><span><b>新增。</b>跨学科分类（science / language / art / math / social-emotional）。家长可以按这个筛选，或和学校科目做对照——与儿童端有意错开。</span></li>
               <li><code>progression</code><span>活动瞄准的 axis + 难度等级，以及下一步建议。驱动成长路径里的阶梯视图。</span></li>
