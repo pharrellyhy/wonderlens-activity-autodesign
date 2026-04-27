@@ -86,7 +86,8 @@
       "required": ["topic_axis", "difficulty_level"],
       "properties": {
         "topic_axis": {
-          "enum": ["form", "function", "causation", "change", "connection", "perspective", "responsibility"]
+          "enum": ["form", "function", "causation", "change", "connection", "perspective", "responsibility"],
+          "description": "Conceptual lens practiced by the activity. Orthogonal to activity_signature.observation_angle: the same axis can use many angles, and the same angle can support many axes."
         },
         "difficulty_level": { "type": "integer", "minimum": 1, "maximum": 3 },
         "next_step_hint": { "type": "string" },
@@ -119,15 +120,17 @@
             "color",
             "shape",
             "size",
+            "quantity",
             "texture",
             "material",
             "pattern",
             "function",
             "origin",
             "behavior",
+            "emotion",
             "state"
           ],
-          "description": "Closed enum — mirrors docs/activity_vocabulary.md observation_angle (10 values)."
+          "description": "Closed enum — mirrors docs/activity_vocabulary.md observation_angle (12 values). Names the attribute/dimension under attention; orthogonal to progression.topic_axis, which names the conceptual lens."
         },
         "mechanic": {
           "enum": [
@@ -160,13 +163,33 @@
           "properties": {
             "primary": {
               "type": "array",
-              "items": { "type": "string" },
-              "minItems": 1
+              "items": {
+                "enum": [
+                  "color",
+                  "shape",
+                  "size",
+                  "quantity",
+                  "texture",
+                  "material",
+                  "pattern",
+                  "function",
+                  "origin",
+                  "behavior",
+                  "emotion",
+                  "state"
+                ]
+              },
+              "minItems": 1,
+              "maxItems": 3,
+              "uniqueItems": true,
+              "description": "Strongest transition angles; must use the same closed vocabulary as activity_signature.observation_angle."
             },
             "secondary": {
               "type": "array",
               "items": { "type": "string" },
-              "description": "V1: may contain non-enum strings; scored-against-enum subset only."
+              "maxItems": 3,
+              "uniqueItems": true,
+              "description": "Prefer observation_angle enum values when possible. V1 permits non-enum editorial descriptors; only the enum subset participates in structured scoring."
             }
           }
         },

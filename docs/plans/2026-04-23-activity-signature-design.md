@@ -1,7 +1,7 @@
 # Activity Signature — Design Spec
 
 **Date:** 2026-04-23
-**Version:** v0.2 · 2026-04-27
+**Version:** v0.4 · 2026-04-27
 **Status:** Approved design surface; implementation in progress
 **Template 0 authority:** `docs/template_0_preview.html` §04 (tag block)
 **Background brief:** `docs/plans/2026-04-23-progression-background-brief.md` (related systems overview)
@@ -116,7 +116,7 @@ header:
   caregiver_role:  [scaffold, co-explorer, observer]   # cumulative list; tier-dependent default
 
   activity_signature:                       # answers "should this activity follow this conversation?"
-    observation_angle: {color|shape|size|texture|material|pattern|function|origin|behavior|state}
+    observation_angle: {color|shape|size|quantity|texture|material|pattern|function|origin|behavior|emotion|state}
     mechanic:          {enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care}
     entity_role:       {subject|exemplar|catalyst|reference}
     focal_attribute:   "..."                # the parameterized attribute
@@ -154,7 +154,7 @@ All fields go under a single `activity_signature` key in the existing Template 0
 
 **Two-layer distinction:** Layer 1 fields are read by the upstream matcher to score candidate activities against the conversation signature — they never change per session. Layer 2 fields are author-written templates that the runtime renders at session start using concrete entity data from the photo. The matcher reads Layer 1 only. Downstream surfaces read rendered Layer 2 strings for display, and also store or render selected Layer 1 classifications (`observation_angle`, `mechanic`, `entity_role`) for recap and dashboard aggregation.
 
-### 3.2 Observation angle — closed enum (10 values)
+### 3.2 Observation angle — closed enum (12 values)
 
 ```yaml
 observation_angle:
@@ -162,6 +162,7 @@ observation_angle:
   - color       # red, blue, green, … — surface color
   - shape       # round, pointy, flat, long, curvy
   - size        # tiny, small, big, huge; relative size
+  - quantity    # how many, more/less, countable sets
   - texture     # smooth, rough, fuzzy, shiny
   - material    # metal, wood, plastic, fabric, stone, glass
   - pattern     # stripes, spots, zigzag, checkered, plain
@@ -170,10 +171,17 @@ observation_angle:
   - function    # what it does, how it works, what it's for
   - origin      # where it came from, who made it, natural vs made
   - behavior    # how it moves, acts, interacts; lives/not-lives
+  - emotion     # perceived feeling, expression, or tone
   - state       # condition — worn/fresh, full/empty, alive/asleep
 ```
 
-**Rationale:** 6 visual/physical + 4 functional/conceptual. The split is a reading aid for authors, not a classification. **Observation_angle is orthogonal to `topic_axis`** — all 7 IB Key Concepts can use all 10 angles. Picking an angle does NOT fix the axis; picking an axis does NOT fix the angle. Examples (same entity, angle = `color`):
+**Rationale:** 7 physical/quantitative + 5 functional/conceptual/social-emotional. The split is a reading aid for authors, not a classification.
+
+**Observation_angle is orthogonal to `topic_axis`.** They answer different questions:
+- `observation_angle` asks: "Which attribute or dimension of the photographed entity is the activity attending to?" Examples: color, quantity, emotion, function.
+- `topic_axis` asks: "What conceptual lens is the child practicing?" Examples: Form, Function, Causation, Change, Connection, Perspective, Responsibility.
+
+This means picking an angle does NOT fix the axis, and picking an axis does NOT fix the angle. The same angle can support different conceptual axes depending on what the activity asks the child to do with that attribute. Examples (same entity, angle = `color`):
 
 | topic_axis | Activity framing |
 |---|---|
@@ -185,13 +193,24 @@ observation_angle:
 | Perspective | *"how does a bird see this red vs a human?"* |
 | Responsibility | *"the red means 'don't eat me' — how should we respond to bugs with warning colors?"* |
 
-A common confusion: earlier drafts of this spec implied visual angles "belong to" Form and functional angles "belong to" Function/Causation. That's wrong. The Cat Food → Pet Caretaker's Mission example uses `observation_angle: function` with `topic_axis: responsibility`; no axis owns any angle. The 4 conceptually-richer axes (Change, Connection, Perspective, Responsibility) are the **most angle-flexible** because they're interpretive stances on attributes rather than attribute types themselves.
+The reverse is also true: the same `topic_axis` can use many angles. If `topic_axis: perspective`, the activity might ask how a bird sees `color`, how a pet feels `emotion`, how a tiny bug experiences `size`, or how a tool's `function` changes who benefits from it.
 
-**Closure discipline:** these 10 are authoritative for V1 matching and dashboard aggregation. The list is intentionally not an exhaustive ontology of everything a child can notice. Adding an 11th requires a spec update + migration of existing games. If an activity's angle doesn't fit, pick the closest match and note the delta in `spec.md`.
+Common combinations:
 
-Good future candidates:
-- `quantity` — how many, more/less, countable sets
-- `emotion` — perceived feeling/expression/tone in a story or performance context
+| observation_angle | topic_axis | Example framing |
+|---|---|---|
+| `quantity` | Form | "How many spots can we count?" |
+| `quantity` | Causation | "Why are there more blocks in this pile?" |
+| `quantity` | Change | "Did the number grow, shrink, or stay the same?" |
+| `emotion` | Perspective | "How might the lion feel when it roars softly?" |
+| `emotion` | Responsibility | "If the toy looks lonely, what caring choice can we make?" |
+| `function` | Responsibility | "This food helps a pet eat; what else does a pet need from us?" |
+| `material` | Causation | "Why does the metal spoon make a louder sound than the cloth?" |
+| `origin` | Connection | "Who or what helped this object get here?" |
+
+A common confusion: visual angles do not "belong to" Form, and functional angles do not "belong to" Function/Causation. The Cat Food → Pet Caretaker's Mission example uses `observation_angle: function` with `topic_axis: responsibility`; no axis owns any angle. The 4 conceptually-richer axes (Change, Connection, Perspective, Responsibility) are especially angle-flexible because they're interpretive stances on attributes rather than attribute types themselves.
+
+**Closure discipline:** these 12 are authoritative for V1 matching and dashboard aggregation. The list is intentionally not an exhaustive ontology of everything a child can notice. Adding a 13th requires a spec update + migration of existing games. If an activity's angle doesn't fit, pick the closest match and note the delta in `spec.md`.
 
 Usually covered elsewhere:
 - `comparison` is normally a `mechanic`, because the child compares; the angle being compared is still `size`, `color`, `material`, etc.
@@ -318,7 +337,7 @@ bridge_prerequisites:
   secondary: [pattern, visibility]
 ```
 
-`primary` MUST use the same vocabulary as `observation_angle` (the 10 values in §3.2). `secondary` SHOULD use that vocabulary when possible, but may include non-enum descriptors if they are editorially meaningful (e.g., `visibility` — a synthesis of color + pattern in the ladybug case). V1 matcher scoring ignores non-enum secondary values.
+`primary` MUST use the same vocabulary as `observation_angle` (the 12 values in §3.2). `secondary` SHOULD use that vocabulary when possible, but may include non-enum descriptors if they are editorially meaningful (e.g., `visibility` — a synthesis of color + pattern in the ladybug case). V1 matcher scoring ignores non-enum secondary values.
 
 Secondary runtime uses beyond first selection:
 - If the child rejects a recommended activity and asks to switch, use compatible bridge prerequisites to swap to a nearby activity instead of a random one.
@@ -340,12 +359,24 @@ Optional. Used only when the activity's `entity_role` differs from the conversat
 
 ### 3.10 atl_skills as thinking/learning tags
 
-`atl_skills` stays in the tag block for compatibility, but new authoring should treat it as WonderLens "Thinking & Learning Skills" rather than the legacy ATL taxonomy. This answers the PM need for explicit thinking-mode tags like calculation, logic, imagination, and language expression without adding another parallel field.
+The current tag system already touches math, logic, imagination, language expression, etc., but those thinking modes are not always explicit. For activities that need a clear thinking-mode tag such as "calculation," "logic," "language expression," or "quantity thinking," use the closest existing field instead of adding a new one.
+
+Keep the existing `atl_skills` field, but redefine its authoring vocabulary as WonderLens "Thinking & Learning Skills" rather than the legacy ATL taxonomy. This gives curriculum authors and AI generation prompts a direct handle for specific thinking modes without adding a new parallel tag module. Product copy can display the same field as "Thinking & Learning Skills" or "孩子练习的思维方式"; the internal YAML key remains `atl_skills` for compatibility.
 
 Closest existing fields:
 - `subject_tags` answers curriculum domain: math, science, language, social-emotional, etc.
 - `activity_signature.mechanic` answers what the child does: collect, compare, deduce, care, etc.
 - `atl_skills` answers the practiced thinking/learning skill: counting, logical_reasoning, language_expression, imagination, etc.
+
+Why keep it:
+- For curriculum/design: "make activities around computational thinking" becomes concrete tokens such as `counting`, `quantity_comparison`, `logical_reasoning`, `pattern_recognition`, and `evidence_collection`.
+- For AI generation: prompts can ask for a target thinking skill directly instead of inferring it from subject or mechanic.
+- For parent-facing surfaces: the dashboard can show emergent growth such as "started using logical reasoning" or "more confident with quantity comparison" without exposing IB terminology.
+
+Why not create a new field now:
+- A new field would duplicate `atl_skills` unless we first migrate every existing activity and downstream consumer.
+- The useful change is the vocabulary and display label, not the storage shape.
+- Schema enforcement can wait until legacy tags are migrated; for now the recommended controlled vocabulary lives in `docs/activity_vocabulary.md`.
 
 For activities about quantity, prefer `subject_tags: [math]` plus specific `atl_skills`:
 
@@ -353,14 +384,38 @@ For activities about quantity, prefer `subject_tags: [math]` plus specific `atl_
 # Find three red things
 subject_tags: [math, science]
 atl_skills: [counting, observation, classification]
+activity_signature:
+  observation_angle: color
+  mechanic: collect
+  entity_role: exemplar
+  focal_attribute: red
+  bridge_prerequisites:
+    primary: [color]
+    secondary: [pattern]
 
 # Which group has more?
 subject_tags: [math]
 atl_skills: [counting, quantity_comparison, evidence_collection]
+activity_signature:
+  observation_angle: quantity
+  mechanic: compare
+  entity_role: catalyst
+  focal_attribute: more_less
+  bridge_prerequisites:
+    primary: [quantity]
+    secondary: [size]
 
 # Sort by size
 subject_tags: [math]
 atl_skills: [measurement, classification, logical_reasoning]
+activity_signature:
+  observation_angle: size
+  mechanic: sort
+  entity_role: exemplar
+  focal_attribute: relative_size
+  bridge_prerequisites:
+    primary: [size]
+    secondary: [shape]
 ```
 
 The recommended token list lives in `docs/activity_vocabulary.md`. The schema does not enforce it yet so legacy activities keep validating during migration.
@@ -640,7 +695,7 @@ Closed enums and recommended thinking/learning-skill tags live in a canonical do
 - Section per enum (`observation_angle`, `mechanic`, `entity_role`)
 - Each value has: canonical token, one-sentence definition, 2-3 example game mappings, example focal_attribute values
 - Recommended `atl_skills` token list for new authoring; not schema-enforced yet
-- Versioned header (v1.2 as of 2026-04-27; bump on any addition)
+- Versioned header (v1.3 as of 2026-04-27; bump on any addition)
 
 Consumer repos import the vocabulary by:
 - Runtime enums duplicated in `progression/models.py` or a new `activity_signature/vocabulary.py`
@@ -665,7 +720,7 @@ Purpose: one place authors look up legal values; one place eng verifies against.
 ## 11 · Verification checklist
 
 ### 11.1 Schema
-- [ ] `activity_vocabulary.md` published with 10 angles, 10 mechanics, 4 roles
+- [ ] `activity_vocabulary.md` published with 12 angles, 10 mechanics, 4 roles
 - [ ] Template 0 §04 preview HTML renders the new block
 - [ ] Template 0 §04 CN mirror updated
 - [ ] Enum drift test passes in both repos
@@ -714,5 +769,7 @@ Total: 21 tasks. All TDD-shaped per repo conventions.
 
 ## Revnote
 
-- **v0.2** (2026-04-27) — PM-review clarification pass. Clarifies observation-angle scope and safety limits, `Function` vs `function`, mechanic-to-game-style mapping, imagination vs Creation, entity-role examples, bridge-prerequisite reuse, one-level-per-axis progression semantics, and `atl_skills` as WonderLens thinking/learning tags.
+- **v0.4** (2026-04-27) — Adds `quantity` and `emotion` to the closed `observation_angle` enum; updates examples and schema-count references from 10 to 12 angles.
+- **v0.3** (2026-04-27) — Expanded the `atl_skills` clarification in §3.10: keep the existing field, treat it as WonderLens thinking/learning skills, use it for curriculum/AI-generation/parent-facing thinking modes, and defer schema enforcement until legacy migration.
+- **v0.2** (2026-04-27) — Review clarification pass. Clarifies observation-angle scope and safety limits, `Function` vs `function`, mechanic-to-game-style mapping, imagination vs Creation, entity-role examples, bridge-prerequisite reuse, one-level-per-axis progression semantics, and `atl_skills` as WonderLens thinking/learning tags.
 - **v0.1** (2026-04-23) — Inaugural design spec. Establishes layered `activity_signature` block with 3 closed vocabularies, per-game directory restructure, last-run cache (`recap.latest.yaml` / `dashboard.latest.yaml`) semantics, matcher scoring extension, and downstream surface payload changes. V1 migrates 5 seed games; remaining catalog migrations are follow-up PRs under the same spec.

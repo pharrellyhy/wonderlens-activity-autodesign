@@ -3195,7 +3195,7 @@
       <a href="#axes">进阶轴</a>
       <a href="#decisions">决策</a>
     </nav>
-    <div class="meta">草稿 v0.6 · 2026-04-27 · 内部评审</div>
+    <div class="meta">草稿 v0.7 · 2026-04-27 · 内部评审</div>
   </header>
 
   <!-- ============== HERO ============== -->
@@ -3222,14 +3222,20 @@
       </div>
       <div>
         <span class="label">状态</span>
-        <span class="value">草稿 v0.6 · PM 评审修订</span>
+        <span class="value">草稿 v0.7 · 枚举更新</span>
       </div>
     </div>
 
     <details class="revnote">
-      <summary><span class="revnote-tag">v0.6</span> activity signature 的 PM 评审澄清 · 2026-04-27</summary>
+      <summary><span class="revnote-tag">v0.7</span> 新增 <code>quantity</code> 与 <code>emotion</code> observation angle · 2026-04-27</summary>
       <ol>
-        <li><b>更新词表与标签语言</b>（§04）——Template 注释改为 WonderLens 思维/学习方式标签；mechanic 枚举加入 <code>deduce</code> 和 <code>care</code>；<code>docs/activity_vocabulary.md</code> 升到 v1.2，承载 PM 评审澄清。</li>
+        <li><b>扩展 <code>observation_angle</code></b>（§04）——闭合枚举现在有 12 个值，在已有物理与概念角度之外，加入 <code>quantity</code> 和 <code>emotion</code>。</li>
+      </ol>
+    </details>
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.6</span> activity signature 的评审澄清 · 2026-04-27</summary>
+      <ol>
+        <li><b>更新词表与标签语言</b>（§04）——Template 注释改为 WonderLens 思维/学习方式标签；mechanic 枚举加入 <code>deduce</code> 和 <code>care</code>；<code>docs/activity_vocabulary.md</code> 升到 v1.2，承载评审澄清。</li>
       </ol>
     </details>
     <details class="revnote">
@@ -3245,7 +3251,7 @@
       </ol>
     </details>
     <details class="revnote">
-      <summary><span class="revnote-tag">v0.3</span> PM 评审修订 + matchability 标签 + 明确上游管线 · 2026-04-17</summary>
+      <summary><span class="revnote-tag">v0.3</span> 评审修订 + matchability 标签 + 明确上游管线 · 2026-04-17</summary>
       <ol>
         <li><b>看护者角色改为跨 tier 累加</b>（§03 · §04 · §06）—— T0 <code>[scaffold]</code> → T1 <code>[scaffold, co-explorer]</code> → T2 <code>[observer, co-explorer, scaffold]</code>（权重依次递减），不再是每个 tier 一个固定角色。</li>
         <li><b>Tag block 按下游面拆成两组</b>（§04 · §05）—— 新增两个可选字段：<code>highlight_moment</code>（儿童端运行时一句话）和 <code>subject_tags</code>（家长端跨学科分类）。字段说明和 mockup 都重写，明确哪个字段喂给哪个面。</li>
@@ -3451,7 +3457,7 @@
           class="cmt"># 累加列表；默认值由 tier 决定</span>
 
         <span class="hl"><span class="key">activity_signature</span>:                       <span class="cmt"># 回应 "该活动是否应当承接本次对话?"</span>
-          <span class="key">observation_angle</span>: <span class="str">{color|shape|size|texture|material|pattern|function|origin|behavior|state}</span>
+          <span class="key">observation_angle</span>: <span class="str">{color|shape|size|quantity|texture|material|pattern|function|origin|behavior|emotion|state}</span>
           <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care}</span>
           <span class="key">entity_role</span>:       <span class="str">{subject|exemplar|catalyst|reference}</span>
           <span class="key">focal_attribute</span>:   <span class="str">"..."</span>                <span class="cmt"># 可参数化的焦点属性</span>

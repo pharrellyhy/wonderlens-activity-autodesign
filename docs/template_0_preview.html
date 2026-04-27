@@ -3182,7 +3182,7 @@
       <a href="#axes">Progression</a>
       <a href="#decisions">Decisions</a>
     </nav>
-    <div class="meta">Draft v0.6 · 2026-04-27 · Internal review</div>
+    <div class="meta">Draft v0.7 · 2026-04-27 · Internal review</div>
   </header>
 
   <!-- ============== HERO ============== -->
@@ -3209,14 +3209,20 @@
       </div>
       <div>
         <span class="label">Status</span>
-        <span class="value">Draft v0.6 · PM review updates</span>
+        <span class="value">Draft v0.7 · enum update</span>
       </div>
     </div>
 
     <details class="revnote">
-      <summary><span class="revnote-tag">v0.6</span> PM review clarifications for activity signature — 2026-04-27</summary>
+      <summary><span class="revnote-tag">v0.7</span> Add <code>quantity</code> and <code>emotion</code> observation angles — 2026-04-27</summary>
       <ol>
-        <li><b>Vocabulary and tag language updated</b> (§04) — Template comments now point authors to WonderLens thinking/learning skill tags, the mechanic enum includes <code>deduce</code> and <code>care</code>, and <code>docs/activity_vocabulary.md</code> is at v1.2 for PM-review clarifications.</li>
+        <li><b><code>observation_angle</code> expanded</b> (§04) — the closed enum now has 12 values, adding <code>quantity</code> and <code>emotion</code> alongside the existing physical and conceptual angles.</li>
+      </ol>
+    </details>
+    <details class="revnote">
+      <summary><span class="revnote-tag">v0.6</span> Review clarifications for activity signature — 2026-04-27</summary>
+      <ol>
+        <li><b>Vocabulary and tag language updated</b> (§04) — Template comments now point authors to WonderLens thinking/learning skill tags, the mechanic enum includes <code>deduce</code> and <code>care</code>, and <code>docs/activity_vocabulary.md</code> is at v1.2 for review clarifications.</li>
       </ol>
     </details>
     <details class="revnote">
@@ -3232,7 +3238,7 @@
       </ol>
     </details>
     <details class="revnote">
-      <summary><span class="revnote-tag">v0.3</span> Five changes from PM review + matchability + upstream pipeline — 2026-04-17</summary>
+      <summary><span class="revnote-tag">v0.3</span> Five review changes + matchability + upstream pipeline — 2026-04-17</summary>
       <ol>
         <li><b>Caregiver role is now cumulative across tiers</b> (§03 · §04 · §06) — T0 <code>[scaffold]</code> → T1 <code>[scaffold, co-explorer]</code> → T2 <code>[observer, co-explorer, scaffold]</code> with decreasing weight, instead of one fixed role per tier.</li>
         <li><b>Tag block split by downstream surface</b> (§04 · §05) — two new optional fields: <code>highlight_moment</code> (child-facing runtime one-liner) and <code>subject_tags</code> (parent-facing cross-subject classification). Legend and mockups rewritten to make child vs. parent surfaces explicit.</li>
@@ -3448,7 +3454,7 @@
   <span class="key">caregiver_role</span>:  <span class="str">[scaffold, co-explorer, observer]</span>   <span class="cmt"># cumulative list; tier-dependent default</span>
 
   <span class="hl"><span class="key">activity_signature</span>:                       <span class="cmt"># answers "should this activity follow this conversation?"</span>
-    <span class="key">observation_angle</span>: <span class="str">{color|shape|size|texture|material|pattern|function|origin|behavior|state}</span>
+    <span class="key">observation_angle</span>: <span class="str">{color|shape|size|quantity|texture|material|pattern|function|origin|behavior|emotion|state}</span>
     <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care}</span>
     <span class="key">entity_role</span>:       <span class="str">{subject|exemplar|catalyst|reference}</span>
     <span class="key">focal_attribute</span>:   <span class="str">"..."</span>                <span class="cmt"># the parameterized attribute</span>

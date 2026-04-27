@@ -22,7 +22,7 @@ Same directory restructure: each game becomes a folder (`activities/<game_id>/`)
 
 ```yaml
 activity_signature:
-  observation_angle: color          # enum, 10 values — §3.2 of design spec
+  observation_angle: color          # enum, 12 values — §3.2 of design spec
   mechanic: collect                 # enum, 10 values — §3.3
   entity_role: exemplar             # enum, 4 values — §3.4
   focal_attribute: red              # string, parameterized attribute
@@ -116,5 +116,6 @@ All three plans expect `superpowers:subagent-driven-development` (recommended) o
 
 ## Revnote
 
+- **v0.3** (2026-04-27) — Updated observation-angle references to 12 values after adding `quantity` and `emotion`.
 - **v0.2** (2026-04-23) — Split from monolithic 20-task combined plan into three repo-specific implementation plans (linked in the header). This doc is now a thin coordination layer — scenario contract, limitations, repos, execution order — rather than containing task bodies.
 - **v0.1** (2026-04-23) — Inaugural single-doc combined plan covering 20 tasks across all three repos. Superseded by v0.2 split.

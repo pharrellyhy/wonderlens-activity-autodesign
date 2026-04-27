@@ -38,7 +38,7 @@ Spec additions landed after the plan was first written. Search this plan for `�
 
 That doc is authoritative for:
 - The required `activity_signature` block (§3)
-- 3 closed vocabularies: `observation_angle` (10), `mechanic` (10), `entity_role` (4) (§3.2-3.4)
+- 3 closed vocabularies: `observation_angle` (12), `mechanic` (10), `entity_role` (4) (§3.2-3.4)
 - Per-game directory layout (§4)
 - Matcher scoring (§5.3)
 - Payload extensions (§6)
@@ -130,25 +130,27 @@ Path: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktree
 
 > **Canonical source** for the three closed enums in Template 0 §04's `activity_signature` block. Any addition here MUST be reflected in both consumer repos' enum code; enum-drift tests compare against this doc.
 
-**Version:** 1.2 · 2026-04-27
+**Version:** 1.3 · 2026-04-27
 
 ---
 
-## observation_angle (10 values)
+## observation_angle (12 values)
 
-What attribute/dimension the activity centers on. **Orthogonal to `progression.topic_axis`** — all 7 IB Key Concepts can use all 10 angles (see design spec §3.2 for examples).
+What attribute/dimension the activity centers on. **Orthogonal to `progression.topic_axis`** — all 7 IB Key Concepts can use all 12 angles (see design spec §3.2 for examples).
 
 | Token | Definition | Example games | Example focal_attribute |
 |---|---|---|---|
 | `color` | Surface color | Color Scout, Color Friends Adventure | red, blue, yellow |
 | `shape` | Outline/form geometry | Shape Quest, Circle Spotter Challenge | round, pointy, long |
 | `size` | Absolute or relative scale | (none yet — V2 addition) | tiny, huge |
+| `quantity` | Count or amount | Counting Hunt, More-or-Less Mission | three, more, fewer |
 | `texture` | Surface feel | Texture Mix, Fluffy Expedition | fuzzy, smooth, rough |
 | `material` | Substance composition | Material Lab, Nature vs Made | wood, metal, fabric |
 | `pattern` | Repeating visual design | Pattern Trail, Polka Dot Patrol | spots, stripes, zigzag |
 | `function` | What it does / how it works | Detail Detective, What-If Workshop | moves, carries, protects |
 | `origin` | Where it came from | Time Shifter, Library Book's Journey | natural, man-made, local |
 | `behavior` | How it moves/acts/interacts | Mood Changer, Dream Whisperer | friendly, hides, flies |
+| `emotion` | Perceived feeling, expression, or tone | Voice Stage, Feelings Detective | happy, worried, excited |
 | `state` | Condition | Fix-It Station, Old vs New | worn, fresh, alive |
 
 ## mechanic (10 values)
@@ -228,7 +230,7 @@ Find the text (around the existing `caregiver_role:` line) and add a new block b
   <span class="key">caregiver_role</span>:  <span class="str">[scaffold, co-explorer, observer]</span>   <span class="cmt"># cumulative list; tier-dependent default</span>
 
   <span class="hl"><span class="key">activity_signature</span>:                       <span class="cmt"># answers "should this activity follow this conversation?"</span>
-    <span class="key">observation_angle</span>: <span class="str">{color|shape|size|texture|material|pattern|function|origin|behavior|state}</span>
+    <span class="key">observation_angle</span>: <span class="str">{color|shape|size|quantity|texture|material|pattern|function|origin|behavior|emotion|state}</span>
     <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care}</span>
     <span class="key">entity_role</span>:       <span class="str">{subject|exemplar|catalyst|reference}</span>
     <span class="key">focal_attribute</span>:   <span class="str">"..."</span>                <span class="cmt"># the parameterized attribute</span>
@@ -271,7 +273,7 @@ Apply the same two changes to `docs/template_0_preview_cn.html`:
 
 - [ ] **Step 6: Revnote update**
 
-Find the revision note block (usually bottom of the §08 section or footer). Add a bullet under the current version; the Template 0 preview is now at v0.6 after the PM-review clarification pass:
+Find the revision note block (usually bottom of the §08 section or footer). Add a bullet under the current version; the Template 0 preview is now at v0.6 after the review clarification pass:
 
 ```html
 <li><b>activity_signature block added</b> (§04) — signature fields for each activity: observation_angle, mechanic, entity_role, focal_attribute, bridge_prerequisites, preview_label+prompt. See <code>docs/activity_vocabulary.md</code> for enum closure.</li>
@@ -626,7 +628,7 @@ gh pr create --title "feat(activity-signature): vocabulary + Template 0 §04 + 5
 
 Authoring-side work for the activity_signature extension (design spec already merged).
 
-- \`docs/activity_vocabulary.md\` — closed enums (10 angles / 10 mechanics / 4 roles)
+- \`docs/activity_vocabulary.md\` — closed enums (12 angles / 10 mechanics / 4 roles)
 - Template 0 §04 preview (EN + CN) — new \`activity_signature\` block
 - 5 games migrated to per-game dir layout under \`activities/\`
 - \`docs/plans/fixtures/activity_signature_scenarios.json\` — shared test vector
@@ -677,7 +679,7 @@ Per `memory/feedback_plan_datetime.md`: this plan is `2026-04-23-activity-signat
 
 ## 5 · Verification summary
 
-- [ ] `docs/activity_vocabulary.md` committed with 10 angles / 10 mechanics / 4 roles
+- [ ] `docs/activity_vocabulary.md` committed with 12 angles / 10 mechanics / 4 roles
 - [ ] Template 0 §04 EN + CN render the new `activity_signature` block
 - [ ] Template 0 revnote updated
 - [ ] 5 game directories exist under `activities/` with all 5 required files each:
@@ -692,6 +694,7 @@ Per `memory/feedback_plan_datetime.md`: this plan is `2026-04-23-activity-signat
 
 ## Revnote
 
-- **v0.3** (2026-04-27) — Aligned version numbering with the PM-review clarification pass: vocabulary v1.2, Template 0 v0.6, 10 mechanics, and WonderLens thinking/learning language for `atl_skills`.
+- **v0.4** (2026-04-27) — Aligned observation-angle enum references with vocabulary v1.3: 12 angles after adding `quantity` and `emotion`.
+- **v0.3** (2026-04-27) — Aligned version numbering with the review clarification pass: vocabulary v1.2, Template 0 v0.6, 10 mechanics, and WonderLens thinking/learning language for `atl_skills`.
 - **v0.2** (2026-04-24) — Added `activity_signature.intro` field requirement for each migrated game's `tag_block.yaml`. Updated Task 3 steps 2–6 with the specific intro template to author per game. Updated verification checklist. See design spec §3.5 for field definition and constraints.
 - **v0.1** (2026-04-23) — Inaugural authoring plan. 4 tasks: worktree + vocabulary doc, Template 0 §04 update (EN+CN), 5-game migration to per-game dir layout, shared scenario fixture + PR. Produces the design artifacts the backend + demo plans consume. V1 migrates 5 games; remaining 19 games deferred to follow-up PRs under the same schema.

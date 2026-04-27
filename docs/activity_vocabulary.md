@@ -2,34 +2,32 @@
 
 > **Canonical source** for the three closed enums in Template 0 §04's `activity_signature` block. Any addition here MUST be reflected in both consumer repos' enum code; enum-drift tests compare against this doc. This file also records the recommended WonderLens `atl_skills` vocabulary used for thinking/learning-skill tagging.
 
-**Version:** 1.2 · 2026-04-27
+**Version:** 1.3 · 2026-04-27
 
 ---
 
-## observation_angle (10 values)
+## observation_angle (12 values)
 
-What attribute/dimension the activity centers on. **Orthogonal to `progression.topic_axis`** — all 7 IB Key Concepts can use all 10 angles (see design spec §3.2 for examples). This is a Layer 1 activity-signature field: the matcher reads it before activity start, and downstream surfaces aggregate it after the session.
+What attribute/dimension the activity centers on. **Orthogonal to `progression.topic_axis`** — all 7 IB Key Concepts can use all 12 angles. `observation_angle` names the attribute under attention; `topic_axis` names the conceptual lens. For example, `observation_angle: quantity` can support Form ("how many?"), Causation ("why more?"), or Change ("did the amount grow?"). See design spec §3.2 for the full explanation. This is a Layer 1 activity-signature field: the matcher reads it before activity start, and downstream surfaces aggregate it after the session.
 
 | Token | Definition | Example games | Example focal_attribute |
 |---|---|---|---|
 | `color` | Surface color | Color Scout, Color Friends Adventure | red, blue, yellow |
 | `shape` | Outline/form geometry | Shape Quest, Circle Spotter Challenge | round, pointy, long |
 | `size` | Absolute or relative scale | Size Experiment | tiny, huge |
+| `quantity` | Count or amount | Counting Hunt, More-or-Less Mission | three, more, fewer |
 | `texture` | Surface feel | Texture Mix, Fluffy Expedition | fuzzy, smooth, rough |
 | `material` | Substance composition | Material Lab, Nature vs Made | wood, metal, fabric |
 | `pattern` | Repeating visual design | Pattern Trail, Polka Dot Patrol | spots, stripes, zigzag |
 | `function` | What it does / how it works | Detail Detective, What-If Workshop | writes, carries, protects |
 | `origin` | Where it came from | Time Shifter, Library Book's Journey | natural, man-made, local |
 | `behavior` | How it moves/acts/interacts | Mood Changer, Dream Whisperer | roars, hides, flies |
+| `emotion` | Perceived feeling, expression, or tone | Voice Stage, Feelings Detective | happy, worried, excited |
 | `state` | Condition | Fix-It Station, Old vs New | worn, fresh, alive |
 
 ### Observation-angle scope notes
 
-The V1 list is intentionally not exhaustive. It is a small closed set for stable matcher behavior, not a complete ontology of everything a child can notice.
-
-Strong future candidates:
-- `quantity` — how many, more/less, countable sets
-- `emotion` — perceived feeling/expression/tone in a story or performance context
+The V1 list is intentionally compact. It is a closed set for stable matcher behavior, not a complete ontology of everything a child can notice.
 
 Usually covered elsewhere:
 - `comparison` is usually a `mechanic`, because the child compares; the angle being compared is still `size`, `color`, `material`, etc.
@@ -150,14 +148,38 @@ Examples:
 # Find three red things
 subject_tags: [math, science]
 atl_skills: [counting, observation, classification]
+activity_signature:
+  observation_angle: color
+  mechanic: collect
+  entity_role: exemplar
+  focal_attribute: red
+  bridge_prerequisites:
+    primary: [color]
+    secondary: [pattern]
 
 # Which group has more?
 subject_tags: [math]
 atl_skills: [counting, quantity_comparison, evidence_collection]
+activity_signature:
+  observation_angle: quantity
+  mechanic: compare
+  entity_role: catalyst
+  focal_attribute: more_less
+  bridge_prerequisites:
+    primary: [quantity]
+    secondary: [size]
 
 # Sort by size
 subject_tags: [math]
 atl_skills: [measurement, classification, logical_reasoning]
+activity_signature:
+  observation_angle: size
+  mechanic: sort
+  entity_role: exemplar
+  focal_attribute: relative_size
+  bridge_prerequisites:
+    primary: [size]
+    secondary: [shape]
 ```
 
 ---
@@ -178,5 +200,6 @@ Drift test compares parsed tables above against enum members; failure = CI block
 
 ## Revnote
 
-- **v1.2 · 2026-04-27** — PM-review clarification pass: documents observation-angle scope boundaries, adds game-style-to-mechanic mapping, clarifies entity-role examples, expands bridge-prerequisite uses, and adds the recommended WonderLens `atl_skills` vocabulary.
+- **v1.3 · 2026-04-27** — Adds `quantity` and `emotion` to the closed `observation_angle` enum.
+- **v1.2 · 2026-04-27** — Review clarification pass: documents observation-angle scope boundaries, adds game-style-to-mechanic mapping, clarifies entity-role examples, expands bridge-prerequisite uses, and adds the recommended WonderLens `atl_skills` vocabulary.
 - **v1.1 · 2026-04-27** — Adds `deduce` and `care` mechanics.
