@@ -33,6 +33,10 @@ The directory name MUST equal the `activity_id` inside that dir's `tag_block.yam
 
 The three closed enums in `tag_block.yaml activity_signature` — `observation_angle` (12), `mechanic` (10), `entity_role` (4) — are defined in [`docs/activity_vocabulary.md`](../docs/activity_vocabulary.md). The schema's enum lists must stay in sync with that doc; drift is CI-blocked.
 
+For field ownership and authoring guidance, use [`docs/activity_tag_block_usage.md`](../docs/activity_tag_block_usage.md). It separates matcher-facing, runtime-presentation, child-recap, and parent-dashboard fields.
+
+For a full tag-block plus progression-algorithm reference, use [`docs/activity_tag_block_progression_guide.md`](../docs/activity_tag_block_progression_guide.md) or the Chinese companion [`docs/activity_tag_block_progression_guide_cn.md`](../docs/activity_tag_block_progression_guide_cn.md). For workflow diagrams, use [`docs/activity_matcher_progression_workflows.md`](../docs/activity_matcher_progression_workflows.md) or the Chinese companion [`docs/activity_matcher_progression_workflows_cn.md`](../docs/activity_matcher_progression_workflows_cn.md).
+
 ## Validation
 
 Validate all `tag_block.yaml` files against the schema:

@@ -498,6 +498,10 @@ The one exception: `docs/child_recap_preview.html` §05 (`highlight_moment` gene
 
 Three surfaces, same three fields, different aggregation. That's the whole reason the axis enum has to be fixed and small.
 
+Each completed activity contributes one event to the selected parent-view window. `topic_axis` groups the event into an axis row, `difficulty_level` contributes evidence to that row's rung state, and `next_step_hint` contributes a candidate suggestion. A later activity on a different axis should add another event, not erase the earlier axis evidence.
+
+`next_step_hint` is a recommendation, not a guarantee. The next activity still has to match the child's next photo, available catalog entries, tier support, safety constraints, and conversation context. If no eligible activity matches the hinted axis/rung, the selector should choose the best coherent eligible activity and the dashboard should treat that as following the child's current curiosity, not as a failed progression step.
+
 ### Cross-reference
 
 For the canonical YAML shape of the whole tag block (not just `progression`), see `docs/template_0_preview.html` §04. For the generation rules (which field is required, which is optional, which is runtime-generated), see `program.md` Tag Block section (added in Phase 1b).

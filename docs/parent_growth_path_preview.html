@@ -2187,11 +2187,11 @@
     }
 
     /* ============ DECISIONS LOG ============ */
-    .decisions {
+    .choices {
       margin-top: 8px;
     }
 
-    .decision {
+    .choice {
       display: grid;
       grid-template-columns: 60px 1fr auto;
       gap: 24px;
@@ -2200,11 +2200,11 @@
       align-items: start;
     }
 
-    .decision:last-child {
+    .choice:last-child {
       border-bottom: none;
     }
 
-    .decision .dn {
+    .choice .dn {
       font-family: var(--serif);
       font-size: 40px;
       font-weight: 300;
@@ -2213,7 +2213,7 @@
       font-variation-settings: "opsz" 144, "WONK" 1;
     }
 
-    .decision .q {
+    .choice .q {
       font-family: var(--serif);
       font-size: 18px;
       font-weight: 400;
@@ -2222,13 +2222,13 @@
       margin-bottom: 8px;
     }
 
-    .decision .a {
+    .choice .a {
       font-size: 14px;
       color: var(--ink-soft);
       line-height: 1.6;
     }
 
-    .decision .a b {
+    .choice .a b {
       background: linear-gradient(180deg, transparent 65%, rgba(197, 65, 28, 0.22) 65%);
       font-weight: 500;
     }
@@ -3894,11 +3894,23 @@
           </tr>
           <tr>
             <td class="m-style">Curiosity profile</td>
-            <td><code>key_concepts</code>, <code>progression.difficulty_level</code> (aggregate)</td>
+            <td><code>key_concepts</code>, <code>progression.difficulty_level</code>, <code>activity_signature.observation_angle</code> (aggregate)</td>
+          </tr>
+          <tr>
+            <td class="m-style">Angle split</td>
+            <td><code>progression.topic_axis</code>, <code>activity_signature.observation_angle</code>, <code>progression.difficulty_level</code></td>
+          </tr>
+          <tr>
+            <td class="m-style">Exploration matrix</td>
+            <td><code>activity_signature.mechanic</code>, <code>activity_signature.observation_angle</code></td>
           </tr>
           <tr>
             <td class="m-style">In their words</td>
             <td><code>highlight_moment</code>, opt-in child utterances</td>
+          </tr>
+          <tr>
+            <td class="m-style">Session timeline</td>
+            <td><code>entity</code>, <code>progression.topic_axis</code>, <code>activity_signature.observation_angle</code>, <code>activity_signature.mechanic</code>, <code>activity_signature.entity_role</code></td>
           </tr>
           <tr>
             <td class="m-style">Try at home</td>
@@ -3910,6 +3922,10 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="note-block">
+      <strong>Aggregation rule:</strong> one tag block describes one completed activity. The dashboard rolls activity events into the selected window instead of showing each tag block directly. <code>progression.topic_axis</code> chooses the ladder row, <code>progression.difficulty_level</code> contributes rung evidence for that row, <code>key_concepts</code> / <code>atl_skills</code> / <code>subject_tags</code> contribute distribution counts, and <code>activity_signature.observation_angle</code> + <code>activity_signature.mechanic</code> feed the angle split and exploration matrix. <code>progression.next_step_hint</code> enters a suggestion pool for Try at home; it is not a reserved next activity.
     </div>
 
     <div class="note-block">
@@ -4034,7 +4050,7 @@
       </li>
       <li>
         <span class="scope-item">Notification cadence (push frequency, email digests)</span>
-        <span class="scope-reason">Separate product decision. Lives outside this design.</span>
+        <span class="scope-reason">Separate product choice. Lives outside this design.</span>
       </li>
       <li>
         <span class="scope-item">Activity-transcript drill-down view</span>

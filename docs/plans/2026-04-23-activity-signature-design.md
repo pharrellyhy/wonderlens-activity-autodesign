@@ -5,6 +5,8 @@
 **Status:** Approved design surface; implementation in progress
 **Template 0 authority:** `docs/template_0_preview.html` §04 (tag block)
 **Background brief:** `docs/plans/2026-04-23-progression-background-brief.md` (related systems overview)
+**Tag block usage supplement:** `docs/activity_tag_block_usage.md` (field ownership, upstream/downstream consumers, authoring rules)
+**Full tag block + progression guide:** `docs/activity_tag_block_progression_guide.md`
 
 ---
 
@@ -153,6 +155,8 @@ activity_signature:
 All fields go under a single `activity_signature` key in the existing Template 0 §04 tag block. They do not replace any existing fields.
 
 **Two-layer distinction:** Layer 1 fields are read by the upstream matcher to score candidate activities against the conversation signature — they never change per session. Layer 2 fields are author-written templates that the runtime renders at session start using concrete entity data from the photo. The matcher reads Layer 1 only. Downstream surfaces read rendered Layer 2 strings for display, and also store or render selected Layer 1 classifications (`observation_angle`, `mechanic`, `entity_role`) for recap and dashboard aggregation.
+
+For the full field ownership map — upstream matcher vs runtime presentation vs parent/child downstream fields — see `docs/activity_tag_block_usage.md`.
 
 ### 3.2 Observation angle — closed enum (12 values)
 
@@ -514,7 +518,7 @@ Why commit these to git (not gitignore):
 - Reviewer can compare spec.md changes against recap.latest.yaml changes in one PR
 - Catches "I changed the prompts and didn't realize the recap copy now says X" regressions
 
-**Decision to lock:** `.latest.yaml` files ARE committed to git. If authors find this noisy during rapid iteration, gitignoring them is a 1-line change; starting committed is the cautious default.
+**Locked behavior:** `.latest.yaml` files ARE committed to git. If authors find this noisy during rapid iteration, gitignoring them is a 1-line change; starting committed is the cautious default.
 
 ---
 
@@ -566,6 +570,8 @@ New bonuses (from this plan):
 
 Existing progression bonus (from 2026-04-21 backend plan): `+2.0` for rung match on target axis. This plan's bonuses are **additive**, not replacements.
 
+**Progression targeting is best-effort.** `target_axis`, `target_rung`, and a prior activity's `progression.next_step_hint` express the preferred next learning direction, but they do not override hard eligibility. The child's next photo may only produce candidates on a different entity class, observation angle, tier span, or safety envelope. In that case, the selector picks the best coherent eligible activity and records that progression continuity was not available. Parent-facing copy should frame `next_step_hint` as a suggested direction, not a promise that the next selected activity will match it.
+
 **Pen → color scenario resolution:**
 - Conversation signature: `dominant_angle = "color"`, secondary_angles = ["shape"]
 - Candidates from Tier P: Color Scout (angle=color, score 7.0), Shape Quest (angle=shape, score 7.0)
@@ -600,6 +606,8 @@ The template YAML (`recap.template.yaml`) per game specifies the skeleton; at ru
 ### 6.2 Parent dashboard payload additions
 
 Existing payload: curiosity radial (7 axes), key_concepts_exposure, atl_skills_trail, session timeline.
+
+A tag block is a per-activity record. Parent-facing growth path views aggregate completed activity events over a selected window, usually week or month. `progression.topic_axis` groups events into ladder rows, `progression.difficulty_level` contributes rung evidence within each row, and `progression.next_step_hint` contributes to a recent suggestion pool. These values guide continuity, but they are not a promise that the next photo will trigger the same axis/rung.
 
 New fields:
 - **Curiosity radial angle split** — each axis now has `by_angle: {color: {sessions: N, rungs_reached: [...]}}` etc. Existing `current_rung_overall` per axis preserved for back-compat.
@@ -696,6 +704,8 @@ Closed enums and recommended thinking/learning-skill tags live in a canonical do
 - Each value has: canonical token, one-sentence definition, 2-3 example game mappings, example focal_attribute values
 - Recommended `atl_skills` token list for new authoring; not schema-enforced yet
 - Versioned header (v1.3 as of 2026-04-27; bump on any addition)
+
+Field ownership and authoring rules live in `docs/activity_tag_block_usage.md`.
 
 Consumer repos import the vocabulary by:
 - Runtime enums duplicated in `progression/models.py` or a new `activity_signature/vocabulary.py`

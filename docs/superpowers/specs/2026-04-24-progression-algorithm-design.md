@@ -143,19 +143,104 @@ flowchart LR
 
 Each round should emit more than a pass/fail label. The classifier can start heuristic and become LLM-assisted later.
 
+The evidence vector is the per-round "what did we observe?" object. It should describe the child's response before the progression engine decides `promote`, `hold`, `soft_reframe`, `demote`, or `sibling_jump`.
+
+Conceptually, it captures:
+
+- what the child understood;
+- how independently they showed it;
+- how much time or help they needed;
+- whether they stayed engaged;
+- how confident the system is in each signal.
+
 | Field | Type | Meaning |
 |---|---:|---|
-| `correctness` | `0.0..1.0` | How well the response satisfies the current rung goal |
-| `spontaneity` | `0.0..1.0` | Whether the child answered without heavy prompting |
-| `latency_bucket` | enum | `fast`, `normal`, `long_wait`, `silence_after_correct`, `silence_no_attempt` |
-| `hint_level` | enum | `none`, `light_hint`, `multiple_choice`, `modeling`, `caregiver_help` |
-| `language_depth` | enum | `none`, `name`, `extend`, `reason`, `spontaneous_l_plus_1` |
-| `on_topic_persistence` | `0.0..1.0` | Whether the child stayed with the activity despite imperfection |
-| `prompt_repetition` | boolean | Whether the child repeated the prompt instead of answering |
-| `off_topic` | boolean | Whether the response left the activity frame |
-| `affect_energy` | optional enum | `engaged`, `hesitant`, `tired`, `frustrated`, `playful`, `unknown` |
+| `correctness` | `0.0..1.0` | How well the response satisfies the current rung goal. This is not just right/wrong: a partially relevant answer can be partial evidence. Example: for Form L1, "red" is high; "bug" is weak or partial depending on prompt. |
+| `spontaneity` | `0.0..1.0` | Whether the child answered independently, without repeated prompts or heavy support. A fast unprompted answer scores high; an answer after multiple choice or modeling scores lower. |
+| `latency_bucket` | enum | How the child's response timing should be interpreted. This separates normal thinking time from silence that may indicate overload. |
+| `hint_level` | enum | The strongest support used before the child could respond. This prevents over-promoting scaffolded success. |
+| `language_depth` | enum | The cognitive depth shown in the child's words. This maps closely to L1/L2/L3: name, extend, reason, or spontaneous deeper reasoning. |
+| `on_topic_persistence` | `0.0..1.0` | Whether the child stayed with the activity despite imperfection. This protects engaged struggle from being treated as failure. |
+| `prompt_repetition` | boolean | Whether the child repeated the prompt instead of answering. Often a sign they did not process the task yet. |
+| `off_topic` | boolean | Whether the response left the activity frame. Example: asked about ladybug color; child starts talking about lunch. |
+| `affect_energy` | optional enum | A soft estimate of emotional or energy state. Low reliability in V1; advisory only. |
 
 V1 does not need all fields to be perfect. Missing or uncertain fields should default to neutral evidence, not negative evidence.
+
+The most important V1 fields are likely `latency_bucket`, `hint_level`, `correctness`, `language_depth`, and `on_topic_persistence`. They give most of the algorithm's value without depending too much on fragile emotion detection.
+
+### 6.1 Enum meanings
+
+#### `latency_bucket`
+
+| Value | Meaning | Progression interpretation |
+|---|---|---|
+| `fast` | Child responds quickly after the prompt. | Stronger independence signal if the answer is correct. |
+| `normal` | Child responds within expected wait time. | Neutral or healthy pacing. |
+| `long_wait` | Child needs extended processing time but eventually responds. | May increase `support_needed`; not failure by itself. |
+| `silence_after_correct` | Child was previously correct, then goes quiet. | Usually `soft_reframe`; no mastery penalty. |
+| `silence_no_attempt` | Child gives no answer after the full wait window. | Possible failed attempt, but not automatic demotion alone. |
+
+#### `hint_level`
+
+| Value | Meaning | Progression interpretation |
+|---|---|---|
+| `none` | No hint needed. | Strong independence signal. |
+| `light_hint` | Small nudge, such as "look at the spots." | Mild support; still useful mastery evidence. |
+| `multiple_choice` | Child chooses from options. | Some evidence, but less independent. Avoid promoting too quickly. |
+| `modeling` | Agent demonstrates first: "I notice the red back." | High support needed; usually hold, or demote only if repeated with low mastery. |
+| `caregiver_help` | Adult helps the child answer. | Treat as supported participation, not independent mastery. |
+
+#### `language_depth`
+
+| Value | Meaning | Example |
+|---|---|---|
+| `none` | No meaningful task response. | Silence, unrelated sound, "I don't know." |
+| `name` | Names one attribute, part, event, need, or viewpoint. | "It is red." |
+| `extend` | Adds more detail, examples, parts, sequence, or contrast. | "It is red with black spots." |
+| `reason` | Explains why, predicts what-if, or states a rule. | "Red warns birds not to eat it." |
+| `spontaneous_l_plus_1` | Gives deeper reasoning than the prompt asked for. | Asked "What color?" child says "Red so birds don't eat it." |
+
+#### `affect_energy`
+
+| Value | Meaning | Progression interpretation |
+|---|---|---|
+| `engaged` | Child seems attentive and participating. | Supports continuing or holding. |
+| `hesitant` | Child is participating but unsure or slow. | Prefer `soft_reframe` or gentle hint. |
+| `tired` | Child may be low energy. | Avoid interpreting weak response as low ability. |
+| `frustrated` | Child shows signs of overload. | Consider softening, modeling, or ending gracefully. |
+| `playful` | Child is energetic, possibly divergent. | May indicate engagement even if the response is messy. |
+| `unknown` | No reliable affect signal. | Neutral; do not use in decision. |
+
+For implementation, enum reliability should be treated as uneven:
+
+| Enum | Reliability in V1 |
+|---|---|
+| `latency_bucket` | High, because runtime can measure it. |
+| `hint_level` | High, if the agent/runtime records support moves. |
+| `language_depth` | Medium, because it needs heuristic or LLM judgment. |
+| `affect_energy` | Low, advisory only. |
+
+Example evidence vector:
+
+```yaml
+evidence:
+  correctness: 0.85
+  correctness_confidence: 0.72
+  spontaneity: 0.40
+  latency_bucket: long_wait
+  latency_confidence: 1.0
+  hint_level: multiple_choice
+  hint_confidence: 1.0
+  language_depth: name
+  language_depth_confidence: 0.68
+  on_topic_persistence: 0.90
+  prompt_repetition: false
+  off_topic: false
+  affect_energy: hesitant
+```
+
+Interpretation: the child got it mostly right and stayed engaged, but needed time and multiple-choice support. That should usually lead to `hold` or `soft_reframe`, not `promote`.
 
 ---
 
@@ -357,7 +442,127 @@ Promotion should be staged by default: first mark internal `promote_ready`, then
 
 ---
 
-## 12. Runtime Workflow
+## 12. Timing, Activity Coverage, and Axis Routing
+
+This section answers three product-design questions that affect implementation and catalog planning:
+
+1. When does progression affect the next activity?
+2. Does every axis/rung need a separate prepared activity?
+3. Which axis should the system choose after a child goes beyond L3?
+
+### 12.1 When progression takes effect
+
+Progression has two time scales:
+
+| Time scale | Happens during live activity? | What can change | What should not change |
+|---|---|---|---|
+| Turn-level adaptation | Yes | Wait time, hint, multiple choice, modeling, Soft-Reframe, Dignity Reframe wording | Do not suddenly replace the whole activity. |
+| Activity/session outcome | After the activity finishes | Axis state, mastery scores, next recommended rung, next recommended axis | Do not rewrite the completed activity retroactively. |
+
+The runtime may adapt **inside** the activity, but durable progression state should normally commit **after** the activity finishes. This keeps the live experience stable: the child does not feel the system swapping games mid-stream.
+
+Example:
+
+```text
+Current activity: Form L1
+Child response: names color quickly, then adds "red warns birds"
+During activity: agent can ask one richer follow-up
+After activity: Form state updates; selector recommends Form L2 or L3-ready content next
+Next activity: chosen from catalog using updated Form state
+```
+
+This also means `promote` is best understood as **"next activity should target a higher rung"**, not "interrupt the current activity and load a new L2 activity immediately." The exception is an activity that already contains authored elastic prompts for multiple rungs; in that case, the agent may use a richer prompt within the same activity, but the persisted rung still updates at session end.
+
+### 12.2 Avoiding activity explosion
+
+A naive interpretation would require `7 axes x 3 rungs = 21` separate activity types, multiplied by entities, pillars, and age tiers. That is too much content work.
+
+The recommended catalog model is **activity families with elastic rung variants**, not one bespoke activity per cell.
+
+| Catalog layer | What authors prepare | Example |
+|---|---|---|
+| Activity family | A reusable game mechanic and entity/pillar structure | "Color Scout" or "Part Detective" |
+| Primary axis | The one axis this activity formally updates | `form` |
+| Rung variant pack | L1/L2/L3 prompt patterns inside the same family | L1 name color; L2 name and locate features; L3 explain why feature exists |
+| Runtime selector | Chooses the best available family/rung for the child's current axis state | Pick Form L2 if available; otherwise use elastic Form L1 with L2 micro-challenge |
+
+For a Form activity, one family can cover three rungs:
+
+| Rung | Prompt shape | Child evidence |
+|---|---|---|
+| Form L1 | "What color/shape/part do you notice?" | Names one attribute |
+| Form L2 | "Where do you see two or three details?" | Names multiple attributes and locates them |
+| Form L3 | "Why might it have that color, shape, or pattern?" | Explains purpose or reason |
+
+This means promotion does **not** require the team to immediately author a totally separate L2 activity for every L1 activity. The selector should be availability-aware:
+
+1. Prefer an exact match: same axis, recommended rung, suitable tier, fresh entity/pillar.
+2. If no exact match exists, use the same activity family with a higher-rung prompt variant.
+3. If no higher-rung variant exists, hold the rung but add a richer micro-challenge.
+4. If the axis is saturated or at ceiling, use sibling-axis routing.
+
+Catalog coverage should grow toward a matrix of strong axis/rung families, but V1 can start with fewer well-designed families as long as each has elastic prompt variants and the selector records when it had to fall back.
+
+### 12.3 What happens beyond L3
+
+There is no L4 in the current model. When a child shows stable L3 evidence on an axis, the system should preserve the L3 mastery and route the next activity laterally to a related sibling axis at L1 or L2.
+
+The sibling jump is not a demotion. It means: "You have gone deep here; now let's connect that strength to a nearby way of thinking."
+
+Recommended default sibling graph:
+
+| Current axis at L3 | Primary sibling jump | Fallback sibling | Rationale |
+|---|---|---|---|
+| Form | Connection L1 | Function L1 | From noticing attributes to grouping shared attributes or asking what parts do |
+| Function | Causation L1 | Change L1 | From how it works to why it behaves that way or what changes when a part changes |
+| Causation | Change L1 | Function L1 | From why something happens to how that cause unfolds over time |
+| Change | Causation L1 | Responsibility L1 | From transformation sequence to why it changed or what care it needs next |
+| Connection | Perspective L1 | Form L2 | From relationships between things to different viewpoints on those relationships |
+| Perspective | Responsibility L1 | Connection L1 | From seeing another viewpoint to deciding what helpful action follows |
+| Responsibility | Perspective L1 | Connection L1 | From care/action to who needs what, or how the child is connected to the system |
+
+The runtime should treat this table as a default, not a prison. The final sibling choice should combine:
+
+- conceptual adjacency from the table;
+- child's current mastery and engagement on candidate sibling axes;
+- recent exposure, to avoid repetition;
+- catalog availability;
+- entity/pillar freshness;
+- parent or educator policy constraints, if any.
+
+At L3 ceiling, sibling routing should usually choose a related axis where the child has lower or less recent evidence. At L1 floor with repeated overload, sibling routing should instead choose an axis with higher predicted engagement or stronger recent success. These are different use cases:
+
+| Sibling-jump case | Goal | Selection bias |
+|---|---|---|
+| L3 ceiling | Preserve novelty and broaden thinking | Conceptually adjacent, less recently explored axis |
+| L1 persistent overload | Restore confidence and engagement | Axis with higher engagement, lower support need, or stronger prior success |
+
+Example L3 ceiling:
+
+```text
+Mia reaches Form L3 on ladybugs:
+"Red warns birds not to eat it."
+
+Next activity should not invent Form L4.
+Recommended jump: Connection L1
+"Can you find another small thing with warning colors or spots?"
+```
+
+Example L1 overload:
+
+```text
+Mia struggles with Causation L1 twice:
+no answer, then repeats the prompt.
+
+Next activity should not keep forcing Causation.
+Recommended relief jump: Form L1 or Connection L1, depending on her stronger recent engagement.
+```
+
+The completed activity still updates only its declared primary axis. A sibling jump affects **the next selection**, not the axis credited for the activity that just ended.
+
+---
+
+## 13. Runtime Workflow
 
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"actorBkg": "#f8fafc", "actorBorder": "#475569", "actorTextColor": "#0f172a", "signalColor": "#334155", "signalTextColor": "#0f172a", "noteBkgColor": "#fef3c7", "noteBorderColor": "#b45309"}}}%%
@@ -394,7 +599,7 @@ The classifier can be shallow in V1. The progression engine should not depend on
 
 ---
 
-## 13. Explainability Event
+## 14. Explainability Event
 
 Every decision should emit a compact explanation record.
 
@@ -428,7 +633,7 @@ Reason codes are important. They make debugging possible and support parent-faci
 
 ---
 
-## 14. Migration From Current Rules
+## 15. Migration From Current Rules
 
 The improved engine can be introduced without breaking current consumers.
 
@@ -451,7 +656,7 @@ Shadow-mode divergence examples to inspect:
 
 ---
 
-## 15. Testing Strategy
+## 16. Testing Strategy
 
 Use deterministic fixtures first.
 
@@ -479,7 +684,7 @@ Checks:
 
 ---
 
-## 16. Future Learned Personalization
+## 17. Future Learned Personalization
 
 The hand-authored V1 weights are not the final intelligence. They are an interpretable scaffold.
 
@@ -496,7 +701,7 @@ The learned model should remain advisory unless it can produce calibrated confid
 
 ---
 
-## 17. Open Decisions for Implementation Planning
+## 18. Open Decisions for Implementation Planning
 
 - Which repo owns the canonical policy config shape.
 - Whether internal `promote_ready` is persisted or recomputed from recent evidence.
@@ -504,12 +709,14 @@ The learned model should remain advisory unless it can produce calibrated confid
 - Whether caregiver help is a separate evidence dimension or a `hint_level`.
 - How much transcript text, if any, is retained for audits versus converted immediately into reason codes.
 - What confidence threshold each classifier-derived evidence field needs before it can affect promotion or demotion.
+- Whether each activity family must ship all three rung variants before launch, or whether fallback micro-challenges are acceptable for early catalog gaps.
+- Whether the sibling-axis graph should be global first, then later tuned by age tier, entity type, or child profile.
 
 These are implementation planning decisions, not blockers for the algorithm design.
 
 ---
 
-## 18. Design Summary
+## 19. Design Summary
 
 The progression engine should no longer ask only, "Did the child pass the threshold?" It should ask:
 

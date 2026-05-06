@@ -2200,11 +2200,11 @@
     }
 
     /* ============ DECISIONS LOG ============ */
-    .decisions {
+    .choices {
       margin-top: 8px;
     }
 
-    .decision {
+    .choice {
       display: grid;
       grid-template-columns: 60px 1fr auto;
       gap: 24px;
@@ -2213,11 +2213,11 @@
       align-items: start;
     }
 
-    .decision:last-child {
+    .choice:last-child {
       border-bottom: none;
     }
 
-    .decision .dn {
+    .choice .dn {
       font-family: var(--serif);
       font-size: 40px;
       font-weight: 300;
@@ -2226,7 +2226,7 @@
       font-variation-settings: "opsz" 144, "WONK" 1;
     }
 
-    .decision .q {
+    .choice .q {
       font-family: var(--serif);
       font-size: 18px;
       font-weight: 400;
@@ -2235,13 +2235,13 @@
       margin-bottom: 8px;
     }
 
-    .decision .a {
+    .choice .a {
       font-size: 14px;
       color: var(--ink-soft);
       line-height: 1.6;
     }
 
-    .decision .a b {
+    .choice .a b {
       background: linear-gradient(180deg, transparent 65%, rgba(197, 65, 28, 0.22) 65%);
       font-weight: 500;
     }
@@ -3907,11 +3907,23 @@
           </tr>
           <tr>
             <td class="m-style">好奇心图谱</td>
-            <td><code>key_concepts</code>、<code>progression.difficulty_level</code>（聚合）</td>
+            <td><code>key_concepts</code>、<code>progression.difficulty_level</code>、<code>activity_signature.observation_angle</code>（聚合）</td>
+          </tr>
+          <tr>
+            <td class="m-style">观察角度拆分</td>
+            <td><code>progression.topic_axis</code>、<code>activity_signature.observation_angle</code>、<code>progression.difficulty_level</code></td>
+          </tr>
+          <tr>
+            <td class="m-style">探索矩阵</td>
+            <td><code>activity_signature.mechanic</code>、<code>activity_signature.observation_angle</code></td>
           </tr>
           <tr>
             <td class="m-style">孩子的原话</td>
             <td><code>highlight_moment</code>、opt-in 的孩子原话</td>
+          </tr>
+          <tr>
+            <td class="m-style">活动时间线</td>
+            <td><code>entity</code>、<code>progression.topic_axis</code>、<code>activity_signature.observation_angle</code>、<code>activity_signature.mechanic</code>、<code>activity_signature.entity_role</code></td>
           </tr>
           <tr>
             <td class="m-style">在家一起</td>
@@ -3923,6 +3935,10 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="note-block">
+      <strong>聚合规则：</strong>一份 tag block 描述一次完成的活动。家长端不会直接展示这一行，而是把 activity events 聚合到当前窗口。<code>progression.topic_axis</code> 决定 L&times;T 阶梯的行，<code>progression.difficulty_level</code> 提供该行的 rung 证据，<code>key_concepts</code> / <code>atl_skills</code> / <code>subject_tags</code> 进入分布统计，<code>activity_signature.observation_angle</code> + <code>activity_signature.mechanic</code> 进入观察角度拆分和探索矩阵。<code>progression.next_step_hint</code> 进入「在家一起」的建议池，不代表已经锁定下一次活动。
     </div>
 
     <div class="note-block">
@@ -4047,7 +4063,7 @@
       </li>
       <li>
         <span class="scope-item">通知节奏（推送频率、邮件摘要）</span>
-        <span class="scope-reason">是另一个产品决策，落在这份设计之外。</span>
+        <span class="scope-reason">是另一个产品议题，落在这份设计之外。</span>
       </li>
       <li>
         <span class="scope-item">活动逐字记录的下钻视图</span>

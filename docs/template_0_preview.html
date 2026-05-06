@@ -2191,11 +2191,11 @@
     }
 
     /* ============ DECISIONS LOG ============ */
-    .decisions {
+    .choices {
       margin-top: 8px;
     }
 
-    .decision {
+    .choice {
       display: grid;
       grid-template-columns: 60px 1fr auto;
       gap: 24px;
@@ -2204,11 +2204,11 @@
       align-items: start;
     }
 
-    .decision:last-child {
+    .choice:last-child {
       border-bottom: none;
     }
 
-    .decision .dn {
+    .choice .dn {
       font-family: var(--serif);
       font-size: 40px;
       font-weight: 300;
@@ -2217,7 +2217,7 @@
       font-variation-settings: "opsz" 144, "WONK" 1;
     }
 
-    .decision .q {
+    .choice .q {
       font-family: var(--serif);
       font-size: 18px;
       font-weight: 400;
@@ -2226,13 +2226,13 @@
       margin-bottom: 8px;
     }
 
-    .decision .a {
+    .choice .a {
       font-size: 14px;
       color: var(--ink-soft);
       line-height: 1.6;
     }
 
-    .decision .a b {
+    .choice .a b {
       background: linear-gradient(180deg, transparent 65%, rgba(197, 65, 28, 0.22) 65%);
       font-weight: 500;
     }
@@ -3180,7 +3180,7 @@
       <a href="#bridges">Data pipeline</a>
       <a href="#tiers">Tiers</a>
       <a href="#axes">Progression</a>
-      <a href="#decisions">Decisions</a>
+      <a href="#design-log">Design log</a>
     </nav>
     <div class="meta">Draft v0.7 · 2026-04-27 · Internal review</div>
   </header>
@@ -4611,17 +4611,17 @@
     </div>
   </section>
 
-  <!-- ============== DECISIONS ============== -->
-  <section id="decisions">
+  <!-- ============== DESIGN LOG ============== -->
+  <section id="design-log">
     <div class="sec-head">
-      <div class="sec-num">§ 09 / Decisions log</div>
+      <div class="sec-num">§ 09 / Design log</div>
       <h2 class="sec-title">Four calls, <em>four answers</em>.</h2>
     </div>
     <p class="sec-desc">These were open questions before the internal review. The answers are now locked in and drive
       the shape of Template 0.</p>
 
-    <div class="decisions">
-      <div class="decision">
+    <div class="choices">
+      <div class="choice">
         <div class="dn">01</div>
         <div>
           <div class="q">How many canonical <code>topic_axis</code> values do we seed, and where do they come from?
@@ -4631,27 +4631,27 @@
             really just sub-cases of Form. Deriving directly from the Key Concepts means the thinking lens and the
             progression ladder share the same seven names.</div>
         </div>
-        <div class="stamp">Decided</div>
+        <div class="stamp">Locked</div>
       </div>
-      <div class="decision">
+      <div class="choice">
         <div class="dn">02</div>
         <div>
           <div class="q">Does <code>tier_variants</code> live in the header, or is it emergent at runtime?</div>
           <div class="a"><b>In the header.</b> Explicit &gt; implicit for audit + parent-dashboard purposes. Authors pay
             a small authoring cost in exchange for traceability.</div>
         </div>
-        <div class="stamp">Decided</div>
+        <div class="stamp">Locked</div>
       </div>
-      <div class="decision">
+      <div class="choice">
         <div class="dn">03</div>
         <div>
           <div class="q">Are <code>key_concepts</code> and <code>related_concepts</code> one tree or two?</div>
           <div class="a"><b>Distinct trees.</b> Key Concepts are the IB "thinking lens" (7 universal). Related Concepts
             are discipline-tagged child-facing badges. Parent dashboard can display them in two separate columns.</div>
         </div>
-        <div class="stamp">Decided</div>
+        <div class="stamp">Locked</div>
       </div>
-      <div class="decision">
+      <div class="choice">
         <div class="dn">04</div>
         <div>
           <div class="q">Is caregiver role at T0 a hard gate or soft guidance?</div>
@@ -4659,7 +4659,7 @@
             the system doesn't refuse to start if caregiver isn't present. Can be tightened into a gate after we watch
             real usage.</div>
         </div>
-        <div class="stamp">Decided</div>
+        <div class="stamp">Locked</div>
       </div>
     </div>
   </section>

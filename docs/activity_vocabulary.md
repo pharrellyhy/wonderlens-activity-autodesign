@@ -2,6 +2,8 @@
 
 > **Canonical source** for the three closed enums in Template 0 §04's `activity_signature` block. Any addition here MUST be reflected in both consumer repos' enum code; enum-drift tests compare against this doc. This file also records the recommended WonderLens `atl_skills` vocabulary used for thinking/learning-skill tagging.
 
+For field ownership and authoring guidance across upstream matcher, runtime presentation, child recap, and parent dashboard, see `docs/activity_tag_block_usage.md`.
+
 **Version:** 1.3 · 2026-04-27
 
 ---
@@ -189,7 +191,7 @@ activity_signature:
 - Adding a value: bump minor (1.0 → 1.1); requires matching change in both consumer repos' enum code
 - Removing a value: major bump (1.0 → 2.0); requires migration of all affected games
 - Renaming: treat as remove + add
-- Adding recommended `atl_skills` tokens or explanatory mappings: bump minor; schema enforcement remains a separate decision
+- Adding recommended `atl_skills` tokens or explanatory mappings: bump minor; schema enforcement remains a separate change
 
 ## Consumer mirrors
 

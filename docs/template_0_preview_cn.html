@@ -2204,11 +2204,11 @@
     }
 
     /* ============ DECISIONS LOG ============ */
-    .decisions {
+    .choices {
       margin-top: 8px;
     }
 
-    .decision {
+    .choice {
       display: grid;
       grid-template-columns: 60px 1fr auto;
       gap: 24px;
@@ -2217,11 +2217,11 @@
       align-items: start;
     }
 
-    .decision:last-child {
+    .choice:last-child {
       border-bottom: none;
     }
 
-    .decision .dn {
+    .choice .dn {
       font-family: var(--serif);
       font-size: 40px;
       font-weight: 300;
@@ -2230,7 +2230,7 @@
       font-variation-settings: "opsz" 144, "WONK" 1;
     }
 
-    .decision .q {
+    .choice .q {
       font-family: var(--serif);
       font-size: 18px;
       font-weight: 400;
@@ -2239,13 +2239,13 @@
       margin-bottom: 8px;
     }
 
-    .decision .a {
+    .choice .a {
       font-size: 14px;
       color: var(--ink-soft);
       line-height: 1.6;
     }
 
-    .decision .a b {
+    .choice .a b {
       background: linear-gradient(180deg, transparent 65%, rgba(197, 65, 28, 0.22) 65%);
       font-weight: 500;
     }
@@ -3193,7 +3193,7 @@
       <a href="#bridges">数据管线</a>
       <a href="#tiers">Tier 适配</a>
       <a href="#axes">进阶轴</a>
-      <a href="#decisions">决策</a>
+      <a href="#design-log">方案记录</a>
     </nav>
     <div class="meta">草稿 v0.7 · 2026-04-27 · 内部评审</div>
   </header>
@@ -4603,16 +4603,16 @@
     </div>
   </section>
 
-  <!-- ============== DECISIONS ============== -->
-  <section id="decisions">
+  <!-- ============== DESIGN LOG ============== -->
+  <section id="design-log">
     <div class="sec-head">
-      <div class="sec-num">§ 09 / 决策记录</div>
-      <h2 class="sec-title">四个问题，<em>四个决定</em>。</h2>
+      <div class="sec-num">§ 09 / 方案记录</div>
+      <h2 class="sec-title">四个问题，<em>四个答案</em>。</h2>
     </div>
-    <p class="sec-desc">这些原本都是评审前的待决问题。内部讨论后的回复现在已锁定，直接决定了 Template 0 的最终形状。</p>
+    <p class="sec-desc">这些原本都是评审前的待处理问题。内部讨论后的回复现在已锁定，直接形成 Template 0 的最终形状。</p>
 
-    <div class="decisions">
-      <div class="decision">
+    <div class="choices">
+      <div class="choice">
         <div class="dn">01</div>
         <div>
           <div class="q"><code>topic_axis</code> 预设几条，从哪里推出来？</div>
@@ -4623,7 +4623,7 @@
         </div>
         <div class="stamp">已定</div>
       </div>
-      <div class="decision">
+      <div class="choice">
         <div class="dn">02</div>
         <div>
           <div class="q"><code>tier_variants</code> 写在 header 里，还是靠 runtime 推断？</div>
@@ -4631,7 +4631,7 @@
         </div>
         <div class="stamp">已定</div>
       </div>
-      <div class="decision">
+      <div class="choice">
         <div class="dn">03</div>
         <div>
           <div class="q"><code>key_concepts</code> 和 <code>related_concepts</code> 算同一套分类，还是两套？</div>
@@ -4640,12 +4640,12 @@
         </div>
         <div class="stamp">已定</div>
       </div>
-      <div class="decision">
+      <div class="choice">
         <div class="dn">04</div>
         <div>
           <div class="q">T0 的看护者角色是硬门槛还是软引导？</div>
           <div class="a"><b>目前是软引导。</b> T0 默认 <code>caregiver_role: scaffold</code>，但系统不会因为没有看护者就拒绝开始。
-            等真实使用数据出来之后再决定要不要升级为硬门槛。</div>
+            等真实使用数据出来之后再看是否升级为硬门槛。</div>
         </div>
         <div class="stamp">已定</div>
       </div>
