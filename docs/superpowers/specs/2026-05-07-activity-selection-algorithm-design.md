@@ -128,6 +128,57 @@ Use a gated-band selector:
 
 This combines explicit product priorities with tunable weights. Bands prevent progression targeting from overriding editorial coherence, while scores keep ranking flexible as the catalog grows.
 
+### 5.1 End-To-End Selector Flow
+
+```mermaid
+flowchart TD
+    Inputs["Inputs: conversation_signature, progression_target, play_history, runtime_context"] --> Catalog["Load active activity catalog"]
+    Catalog --> Validate{"Valid tag_block.yaml?"}
+    Validate -->|No| ExcludeInvalid["Exclude with invalid tag-block reason"]
+    Validate -->|Yes| Eligibility["Apply hard eligibility gates"]
+
+    Eligibility --> Tier{"Tier, binding, class, property, safety pass?"}
+    Tier -->|No| ExcludeEligible["Record exclusion reason code"]
+    Tier -->|Yes| Resolve["Resolve runtime parameters"]
+
+    Resolve --> Parameters{"Required parameters filled?"}
+    Parameters -->|No| ExcludeProperty["Exclude missing runtime property"]
+    Parameters -->|Yes| Score["Compute score components"]
+
+    Score --> Components["eligibility_fit + conversation_coherence + progression_fit + freshness + catalog_quality + product_policy"]
+    Components --> Bands["Assign priority band"]
+
+    Bands --> B1{"Band 1 exact continuity available?"}
+    B1 -->|Yes| RankB1["Rank Band 1 candidates"]
+    B1 -->|No| B2{"Band 2 near continuity available?"}
+
+    B2 -->|Yes| RankB2["Rank Band 2 candidates"]
+    B2 -->|No| B3{"Band 3 conversation-first available?"}
+
+    B3 -->|Yes| RankB3["Rank Band 3 candidates"]
+    B3 -->|No| B4{"Band 4 progression weak-coherence available?"}
+
+    B4 -->|Yes| RankB4["Rank Band 4 candidates"]
+    B4 -->|No| B5{"Band 5 safe fallback available?"}
+
+    B5 -->|Yes| RankB5["Rank Band 5 candidates"]
+    B5 -->|No| NoPick["No activity selected: ask for another photo, continue conversation, or end gracefully"]
+
+    RankB1 --> Winner["Select winner"]
+    RankB2 --> Winner
+    RankB3 --> Winner
+    RankB4 --> Winner
+    RankB5 --> Winner
+
+    Winner --> Render["Render preview_label, preview_prompt, intro, and role_pivot_note if needed"]
+    Render --> Event["Emit activity_selection_event with band, score_breakdown, reason_codes, fallback_reason"]
+    Event --> Start["Start selected activity"]
+
+    ExcludeInvalid --> Audit["Audit trail"]
+    ExcludeEligible --> Audit
+    ExcludeProperty --> Audit
+```
+
 ---
 
 ## 6. Eligibility Gate
