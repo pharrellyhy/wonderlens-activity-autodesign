@@ -1,7 +1,7 @@
 # Activity Selection Algorithm Design - Selector Only
 
 **Date:** 2026-05-07
-**Status:** Draft for user review
+**Status:** Approved selector design
 **Scope:** Runtime activity selector only
 **Primary sources:** `docs/activity_tag_block_progression_guide.md`, `docs/activity_matcher_progression_workflows.md`, `docs/activity_tag_block_usage.md`, `activities/_schema/tag_block.schema.json`, `docs/superpowers/specs/2026-04-24-progression-algorithm-design.md`
 
