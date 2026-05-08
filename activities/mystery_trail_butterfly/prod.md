@@ -16,7 +16,7 @@
 
 ### A.1 Entity Attributes Covered
 
-Attribute IDs from `data/mappings_dev20_0318/animals/insects.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
+Attribute IDs from `MAPPING_ROOT/animals/insects.yaml` `tier_guidance` that this activity exercises. Consumed by the upstream matcher to route photographed entities to this game.
 
 ```yaml
 entity_attributes_covered:

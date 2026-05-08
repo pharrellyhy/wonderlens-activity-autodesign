@@ -1,7 +1,7 @@
 # Templates
 
-> **Version**: 1.2 | **Date**: 2026-05-08
-> **Owns**: the pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture) and the Cat1 / Cat5 category modifier appendix.
+> **Version**: 1.3 | **Date**: 2026-05-08
+> **Owns**: the mechanic adapters, pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture), and the Cat1 / Cat5 category modifier appendix.
 > **Does NOT own**: the migrated five-file package layout, the tag block schema, or the tier defaults — those live in `activities/README.md`, `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` §1.9.
 > **Consumed by**: `program.md` Phase 5 (template-reading flow), `run.md` (activity package loop), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), `activities/*/prod.md` (runtime outputs), and legacy `designs/cat{1,5}/*.md` references.
 
@@ -9,15 +9,26 @@
 
 ## How templates work
 
-An activity design is built by composing three layers:
+An activity design is built by composing four layers:
 
 1. **Template 0** — the category-agnostic skeleton. It defines the 5-beat spine (Transition Bridge → Frame & Role → Core Loop → Magic Moment → Celebration), the universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the three tier dials (T0 / T1 / T2). The migrated output contract lives in `program.md` §1.9 and `activities/README.md`.
-2. **Pillar overlay** — one of the six overlays below (Mystery / Creation / Performance / Discovery / Adventure / Nurture). It specializes beats 2, 3, and 4: the framing metaphor, the per-round interaction mechanic, the magic-moment shape. It also declares a small set of pillar-specific creative variables (e.g. `{hidden_details}` for Mystery, `{modifications}` for Creation) that stack on top of the universal four.
-3. **Category modifier** — Cat1 (in-device, sustained verbal) or Cat5 (out-of-device, collection/tracking), drawn from the appendix at the bottom of this file. Category modifiers are small — 8 fields (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras). They do not reshape the pillar; they only set the physical frame the pillar plays inside.
+2. **Mechanic adapter** — one of the ten `activity_signature.mechanic` adapters below. It defines what the child actually does in the repeated loop. This is the primary PM/product intent layer and must not be overwritten by pillar or style.
+3. **Category modifier** — Cat1 (in-device, sustained verbal) or Cat5 (out-of-device, collection/tracking), drawn from the appendix at the bottom of this file. Category modifiers are small — 8 fields (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras). They set the physical frame for the mechanic.
+4. **Pillar/style scaffold** — one of the six overlays below (Mystery / Creation / Performance / Discovery / Adventure / Nurture) and its Cat1/Cat5 style. It provides emotional payoff, metaphor flavor, and magic-moment shape. If no pillar/style cleanly fits, choose the least misleading scaffold only when the mechanic remains intact; otherwise block generation per `program.md` Phase 0.
 
-The three layers compose like this: `Template 0 + pillar overlay + category modifier → a design's structural scaffold`. The agent then fills the `{slots}` and expands each beat to full program.md format.
+The layers compose like this:
 
-**Why Option B (one file).** Each pillar's creative variables (like `{hidden_details}`, `{modifications}`, `{quest_criterion}`) are pillar-specific and worth keeping next to the pillar's interaction mechanic. A split-file layout forced a reader to jump between a creative-variables index and a beat-level overlay. This file keeps each overlay self-contained: game mechanic, payoff, variables, beats, axis affinity, and example references all in one place.
+```text
+Template 0 spine
++ Mechanic Adapter
++ Category Modifier
++ Optional Pillar/Style scaffold
+= activity scaffold
+```
+
+The agent then fills the `{slots}` and expands each beat to full `program.md` format.
+
+**Why Option B (one file).** Mechanics, pillar creative variables (like `{hidden_details}`, `{modifications}`, `{quest_criterion}`), and category modifiers all influence the executable scaffold. Keeping them together avoids split-file drift while still making the mechanic layer the first-class child-action contract.
 
 ---
 
@@ -29,13 +40,13 @@ Compressed spine for quick reference (authoritative version lives in the preview
 
 ```
 beat_1_transition_bridge  — emotional hook; photo → imaginative reaction; NEVER knowledge-test
-beat_2_frame_and_role     — assign {role_title} + {metaphor}; state the mission    ← pillar overlay drives
-beat_3_core_loop          — N rounds of pillar-specific mechanic; escalates on {escalation_axis} ← pillar overlay drives
-beat_4_magic_moment       — pillar-specific synthesis; the emotional climax        ← pillar overlay drives
+beat_2_frame_and_role     — assign {role_title} + {metaphor}; state the mission    ← mechanic + scaffold drive
+beat_3_core_loop          — N rounds of the canonical mechanic; escalates on {escalation_axis} ← mechanic adapter drives
+beat_4_magic_moment       — synthesis / payoff; the emotional climax               ← scaffold/pillar flavors
 beat_5_celebration        — name earned Key Concepts + Related Concepts as praise
 ```
 
-The overlay hooks the pillar overlays specialize are exactly **beats 2, 3, and 4**. Beats 1 and 5 are universal — same shape for every pillar.
+The mechanic adapter owns the repeated child action in **beat 3**. The pillar/style scaffold flavors **beats 2, 3, and 4** only after the mechanic is set. Beats 1 and 5 are universal — same shape for every mechanic and pillar.
 
 **Universal creative variables** (all pillars inherit these from §02 of the Template 0 skeleton):
 
@@ -47,6 +58,27 @@ The overlay hooks the pillar overlays specialize are exactly **beats 2, 3, and 4
 | `{reflective_question}` | The closing "why" that invites genuine wondering — no single correct answer. |
 
 Every pillar overlay layers 2–3 pillar-specific variables on top of these four (see each overlay below).
+
+---
+
+## Mechanic adapters
+
+Mechanic adapters define the child-action loop independent of pillar. Use the adapter matching `activity_signature.mechanic` and Phase 0 `canonical_mechanic`; then apply category and pillar/style scaffolding around it. If an activity concept cannot be expressed by one of these adapters without changing the child action, stop with `readiness: blocked_until_product_decision` or recommend a vocabulary/template extension.
+
+| Mechanic | Core loop | Notes |
+| --- | --- | --- |
+| `enumerate` | notice/name → AI confirms/extends → next attribute/part | Use for naming visible parts, counting obvious features, or listing attributes. Avoid OCR/text-reading and unreliable photo counting. |
+| `compare` | inspect A/B → child states same/different/preference → AI names contrast | The compared angle must still be a concrete `observation_angle` such as color, size, material, quantity, or state. |
+| `collect` | mission criterion → child finds/photos → AI reacts → collection synthesis | Best for Cat5 and parameterized property bridges. Criterion must be broad enough for 3+ finds and V1-visible when AI assesses photos. |
+| `sort` | rule or child-made rule → group items → explain grouping | Use when the child's action is categorizing. If the rule is child-invented, AI validates and helps name it rather than correcting. |
+| `deduce` | clue/evidence → child guesses → AI reveals or gives next clue | Use for mystery, Guess-in-10, hidden detail, and evidence-based inference. Always include soft hints when the child is stuck. |
+| `voice` | role prompt → child speaks as entity/item → AI reacts as audience/partner | ASR captures words only. Do not require sound-quality, volume, rhythm, or emotion detection. |
+| `build` | material/idea prompt → child creates or imagines → AI adds/combines | In Cat1/Cat5 this is imaginative or collection-combination build. Physical material builds are unsupported Cat3 unless a Cat3 workflow exists. |
+| `predict` | commit guess → reveal/result → tally or consequence | Preserve commit-before-reveal. Out-of-device hypotheses must use V1-visible properties. |
+| `narrate` | story setup → child adds choice/detail → AI weaves sequence | Use for story chains, journey planning, choice stories, and recap-style co-narration. Pre-authored branching may be required for quality. |
+| `care` | need appears → child proposes help → AI shows gratitude/impact | Use for empathy, responsibility, rescue, and repair metaphors. Avoid before/after state-change verification; impact can be narrated or self-reported. |
+
+**Mechanic adapter self-check.** Before writing runtime dialogue, verify: (a) Step 3's repeated child action matches the adapter, (b) `tag_block.yaml activity_signature.mechanic` uses the same mechanic, (c) the selected pillar/style does not replace the adapter loop with a different action, and (d) unsupported PM product needs are blocked instead of hidden in dialogue.
 
 **Tag block.** Every migrated activity package emits `activities/<activity_id>/tag_block.yaml`. The authoritative shape and field semantics live in `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` §1.9. This file does not duplicate the tag-block schema.
 
@@ -253,15 +285,16 @@ Category modifiers are small overrides on top of Template 0. Each modifier fills
 | `camera_use` | Initial photo only — no additional photos after launch | Initial photo + 2–3 additional photos during collection |
 | `setting` | Indoor, quiet — sofa, table, floor; minimal distraction | Outdoor — park, yard, playground, nature trail, or a large indoor space with findable variety |
 | `step_count` | 5 steps (Bridge → Setup & Demo → Core Loop → Payoff → Celebration) | 5–6 steps (Bridge → Mission Briefing → Exploration → Synthesis → Discovery Celebration → Closing) |
-| `core_mechanic` | `scenario → verbal → validate` — AI presents pillar scenario, child responds verbally, AI validates with pillar-specific game element | `mission → find → synthesize` — AI frames collection mission, child explores and photographs, AI reacts per find, child synthesizes the set |
+| `category_frame` | `scenario → verbal → validate` — AI presents a mechanic-specific scenario, child responds verbally, AI validates through the chosen mechanic | `mission → find → synthesize` — AI frames a physical mission, child explores and photographs, AI reacts per find, child synthesizes the set |
 | `anchor_priority` | **Engagement-first** — primary anchor = emotions / imagination / narrative / reasoning; secondary = relationship; physical ground = appearance / senses / function | **Physical-first** — primary anchor = appearance (drives the visual feature children hunt for); secondary = structure / senses; engagement ground = relationship / reasoning (drives synthesis) |
 | `checklist_extras` | Verify: (a) magic moment is present in Step 4, (b) blind reader can identify the pillar, (c) role title is specific to what the child DOES, (d) metaphor isn't generic | Verify: (a) visual feature is 4–6 year old observable, (b) collection criterion is broad enough for 3+ finds but specific enough to feel like a mission, (c) stuck hint names REAL, SPECIFIC places to look, (d) reflective question has no single correct answer |
 
-**How the three layers compose.** A concrete example: `lion + Cat1 + Performance + T0`.
+**How the layers compose.** A concrete example: `lion + Cat1 + Performance + T0`.
 
 1. **Template 0 supplies** the 5-beat spine, the 4 universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the T0 tier dial (onomatopoeia, 3–5 word sentences, `caregiver_role: [scaffold]`).
-2. **Performance overlay supplies** the stage framing for beat 2, the challenge-perform-react loop for beat 3, the standing-ovation magic moment for beat 4, and the three pillar-specific variables (`{challenges}`, `{audience_character}`, `{twist_challenge}`).
-3. **Cat1 modifier supplies** `verbal_dialogue` medium, 3–5 rounds, initial-photo-only, indoor quiet setting, 5 steps, `scenario → verbal → validate` mechanic, engagement-first anchoring, and the Cat1 checklist extras.
+2. **Voice mechanic adapter supplies** the repeated child action: role prompt → child speaks as the entity → AI reacts as audience/partner.
+3. **Cat1 modifier supplies** `verbal_dialogue` medium, 3–5 rounds, initial-photo-only, indoor quiet setting, 5 steps, engagement-first anchoring, and the Cat1 checklist extras.
+4. **Performance / `voice_stage` scaffold supplies** the stage framing for beat 2, audience flavor around the voice loop, standing-ovation magic moment for beat 4, and the three pillar-specific variables (`{challenges}`, `{audience_character}`, `{twist_challenge}`).
 
 The agent then fills `{role_title}` (e.g. "Roar Reporter"), `{metaphor}` (e.g. "jungle talent show"), the three Performance-specific slots, expands each beat to full `program.md` dialogue, and emits the five-file activity package.
 
@@ -269,15 +302,16 @@ The agent then fills `{role_title}` (e.g. "Roar Reporter"), `{metaphor}` (e.g. "
 
 ## How the agent uses these templates
 
-1. **Pick the pillar** from the entity + mood signal (see Quick Entity Brainstorm Guide below, `entity_guidance.md`, and the mapping). Pillar is usually given by the assignment.
-2. **Read the Template 0 reference** (above + `docs/template_0_preview.html` §03) to internalize the 5-beat spine, universal creative variables, and tag-block shape.
-3. **Apply the pillar overlay** — the relevant `## Overlay: {Pillar}` section above. It defines beats 2, 3, and 4, plus the pillar-specific creative variables.
-4. **Apply the category modifier** from the appendix — pull the 8 fields that specialize for Cat1 or Cat5 (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras).
-5. **Fill all `{slots}`** with entity-specific content. Universal variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`) first, then pillar-specific (`{hidden_details}`, `{modifications}`, `{quest_criterion}`, etc.).
-6. **Expand each beat to full dialogue** — complete AI lines, 3 child response branches (ideal / unexpected / silence), follow-up branches, and screen descriptions — per `program.md` format.
-7. **Do not condense runtime rounds** — every round in `activities/*/prod.md` must be executable on its own, not a summary of a pattern.
-8. **Emit the five-file package** per `program.md` §1.9 and `activities/README.md` — run the package self-check before output.
-9. **Run the 10-dimension rubric** (D1–D10) as normal, and the pillar-specific and category-specific adaptation checks from the appendix's `checklist_extras`.
+1. **Run Phase 0** from `program.md` when the assignment is concept-led or lacks a full entity + category request. This produces `canonical_mechanic`, input mode, readiness, and scaffold fit.
+2. **Pick the mechanic adapter** from `activity_signature.mechanic` / `canonical_mechanic`. This is the primary child-action layer.
+3. **Read the Template 0 reference** (above + `docs/template_0_preview.html` §03) to internalize the 5-beat spine, universal creative variables, and package shape.
+4. **Apply the category modifier** from the appendix — pull the 8 fields that specialize for Cat1 or Cat5 (beat medium, round count, camera use, setting, step count, category frame, anchor priority, checklist extras).
+5. **Pick the pillar/style scaffold** only after the mechanic and category are fixed. Use the overlay that best supports the mechanic's emotional payoff; if scaffold fit is weak, disclose it in `spec.md` or block per Phase 0.
+6. **Fill all `{slots}`** with entity- or PM-specific content. Universal variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`) first, then mechanic-specific loop details, then pillar-specific flavor (`{hidden_details}`, `{modifications}`, `{quest_criterion}`, etc.).
+7. **Expand each beat to full dialogue** — complete AI lines, 3 child response branches (ideal / unexpected / silence), follow-up branches, and screen descriptions — per `program.md` format.
+8. **Do not condense runtime rounds** — every round in `activities/*/prod.md` must be executable on its own, not a summary of a pattern.
+9. **Emit the five-file package** per `program.md` §1.9 and `activities/README.md` — run the package self-check before output.
+10. **Run the 10-dimension rubric** (D1–D10), especially mechanic fidelity + scaffold honesty, and the category-specific adaptation checks from the appendix's `checklist_extras`.
 
 ---
 
@@ -314,6 +348,7 @@ The same entity can be designed under different pillars — the pillar determine
 
 ## Revnote
 
+- **v1.3 · 2026-05-08** · Add the mechanic adapter layer between Template 0 and pillar/style scaffolds. Mechanics now define the primary child-action loop; pillar/style provides emotional payoff only after mechanic and category are fixed.
 - **v1.2 · 2026-05-08** · Align template consumption with the migrated `activities/<activity_id>/` five-file package. Templates now explicitly forbid condensed runtime rounds and defer tag-block shape to `activities/_schema/tag_block.schema.json`.
 - **v1.1 · 2026-04-20** · Legacy inline-design note for `entity_attributes_covered`; superseded for migrated packages by v1.2 and `activities/_schema/tag_block.schema.json`.
 - **v1.0 · 2026-04-20** · Refactor to Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix (Option B, single file). Replaces the v0.x Template A / Template B dual-template structure. Template 0 skeleton authority now lives in `docs/template_0_preview.html` §03 / §04 / §06; this file owns the pillar overlays and the category modifiers. Creative variables stay per-overlay because they are genuinely pillar-specific (`{hidden_details}` is Mystery-only, `{modifications}` is Creation-only, etc.).

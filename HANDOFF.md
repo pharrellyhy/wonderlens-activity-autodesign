@@ -2,62 +2,53 @@
 
 ## Current Status
 
-- Status: in progress, review-and-cleanup pass completed for the new v2 design docs and transform workflow docs
-- Date: 2026-03-19
+- Status: mechanic-first activity concept adaptation workflow implemented in authoring docs
+- Date: 2026-05-08
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
 
-- Reviewed the newly added transform workflow docs, taxonomy docs, and v2 design outputs.
-- Fixed transform workflow drift so the current output format is described correctly:
-  - `transform.md` now documents a 7-row Basic Info table, including `Game Style`
-  - `transform_run.md` now treats `transform_assignments.md` as a progress tracker, adds rerun guidance, and avoids concurrent appends to the shared output doc
-  - `docs/plans/design-transform.md` now lists the correct 17-file source set and removes the stale `bicycle_cat5.md` entry
-  - `docs/plans/game-style-taxonomy.md` now makes it explicit that the 5 demo activities are out of scope for this pass
-- Normalized v2 format drift:
-  - Replaced the remaining `1./2./3./4.` overview headers with `①/②/③/④`
-  - Standardized `ages 4-6` to `ages 4–6`
-  - Standardized all Step 3 headings to `Multi-Round Interaction`
-- Completed incomplete interaction specs in the cat5 outputs:
-  - Added missing no-response branches to the second Step 4 prompt in `double_rainbow_cat5_v2.md`, `sandy_beach_cat5_v2.md`, `stop_sign_cat5_v2.md`, `sunflower_cat5_v2.md`, and `playground_cat5_v2.md`
-  - Added the missing closing `Child responses` and `AI follow-up` blocks to `sandy_beach_cat5_v2.md`
-  - Fixed sunflower role-name drift by aligning the scenario and badge to `Plant Parts Inspector`
-- Rebuilt `docs/WonderLens_Game_Designs_v2.md` from the individual `designs/*_v2.md` files in assignment order so the combined doc is now a direct projection of the source files
+- Added `program.md` Phase 0 for Activity Concept Adaptation Briefs.
+- Made `activity_signature.mechanic` the primary activity-intent signal; pillar and `game_style` remain required scaffold metadata.
+- Documented formal assignment types: `entity_activity`, `activity_concept`, `match_pattern`, and `capability_probe`.
+- Documented three input modes: `mapping_informed`, `parameterized`, and `concept_only`.
+- Clarified that entity mapping YAML is useful for grounding and matchability, but not mandatory for concept-only or parameterized briefs.
+- Added mechanic adapters to `templates.md` so Template 0 composes as mechanic-first before category and pillar/style scaffolding.
+- Updated `run.md` to stop on `blocked_until_product_decision` instead of forcing package generation.
+- Marked `transform.md` and `transform_run.md` as legacy-only and not applicable to activity concept adaptation.
+- Updated `README.md` to reflect concept-led assignment shape, adaptation brief behavior, and the detailed input data source model.
+- Defined `MAPPING_ROOT=data/mappings_dev20_0318` across the current authoring docs so future mapping-path moves have a named setting to update.
+- Added `examples/` with concrete examples for each input data source and Phase 0 input mode.
+- Added `GOAL.md` as the Codex `/goal` objective and success criteria contract.
 
 ## Verification
 
-- `rg -n "\\*\\*1\\. Brief Description\\*\\*|\\*\\*2\\. Educational Purpose \\(KUD\\)\\*\\*|\\*\\*3\\. Design Highlight\\*\\*|\\*\\*4\\. Typical Scenario\\*\\*|ages 4-6|6-row table|6 rows only|Basic Info is a 6-row table|bicycle_cat5|For each unchecked design|appends to the output file|Multi-Round Exploration|Plant Parts Patrol" docs/WonderLens_Game_Designs_v2.md transform.md transform_run.md docs/plans/design-transform.md docs/plans/game-style-taxonomy.md designs/*_v2.md`
-  - Result: no matches
-- `python - <<'PY' ... compare docs/WonderLens_Game_Designs_v2.md against ordered concatenation of all 17 designs/*_v2.md files ...`
-  - Result: `matches True`, `sections 17`, `game_style_rows 17`, `interaction_headings 17`
 - `git diff --check`
   - Result: clean
-
-## Tests
-
-- No automated tests apply in this repo; this pass was document/prompt review plus text-level consistency verification.
+- Targeted consistency scan across `program.md`, `templates.md`, `run.md`, `transform.md`, `transform_run.md`, `README.md`, and `HANDOFF.md`
+  - Result: no stale Dimension 10 rubric name or template-first guidance outside expected historical changelog text and runtime-placeholder warnings
+- Targeted README scan for input-source terms: `Input Data Sources`, `assignment_type`, `activity_concept`, `mapping_informed`, `parameterized`, `concept_only`, `product_capabilities`, and `mappings_dev20_0318`
+  - Result: expected references present
+- Targeted mapping-root scan across active workflow docs and migrated package provenance text
+  - Result: load instructions use `MAPPING_ROOT`; remaining literal mapping path references are the root definition and project tree location
+- Runtime placeholder scan on touched migrated `prod.md` files
+  - Result: no exact forbidden condensed-round placeholders found
+- Targeted examples scan for all data-source and mode headings
+  - Result: expected example coverage present
+- Targeted goal and assignment-type scan across `GOAL.md`, `README.md`, `program.md`, `run.md`, `assignments.md`, and `examples/`
+  - Result: `/goal` command, success criteria, `assignment_type`, `activity_concept`, and all four assignment type names are documented
+- Legacy naming scan for `pm_idea=`, `PM-lightweight`, `pm_only`, and related old terms
+  - Result: `pm_idea=` appears only as a documented legacy alias; old `PM-lightweight` / `pm_only` terms are absent from active docs
+- Targeted diff review of the changed docs
+  - Result: changes are limited to the mechanic-first activity concept adaptation workflow and related documentation state
 
 ## Residual Risk
 
-- Several v2 designs still intentionally condense later rounds into one-line summaries instead of keeping full executable dialogue branches. That matches the current transform rule, but it means the v2 docs are best treated as production-format outputs, not fully runnable source specs. If a future pass needs executable prompt detail, use the original `designs/*_cat*.md` source files rather than the v2 docs.
-
-## Repo State To Know
-
-- Current tracked modification:
-  - `designs/banana_cat1_v2.md`
-- Current untracked additions relevant to this pass:
-  - `docs/WonderLens_Game_Designs_v2.md`
-  - `docs/game_styles.md`
-  - `docs/plans/design-transform.md`
-  - `docs/plans/game-style-taxonomy.md`
-  - `transform.md`
-  - `transform_assignments.md`
-  - `transform_run.md`
-  - the remaining `designs/*_v2.md` files
-- Existing repo files such as `README.md`, `program.md`, and `run.md` were not changed in this pass
+- The existing `results.tsv` header predates the migrated package loop and is not changed in this pass.
+- `d10_pillar_fidelity` remains the documented log column name for compatibility, but it now records Dimension 10 Mechanic Fidelity + Scaffold Honesty.
+- No schema enum changes were made; unsupported mechanics still need future schema/template work.
 
 ## Next Immediate Actions
 
-- Decide whether the v2 documents should remain concise production outputs or be expanded back toward runnable prompt specs.
-- If the v2 set is the intended deliverable, add the reviewed `designs/*_v2.md`, `docs/WonderLens_Game_Designs_v2.md`, and transform docs to git in one coherent commit.
-- If executable prompt fidelity matters more than compactness, revise the transform rules before generating another v2 batch.
+- Review the mechanic-first workflow wording with PM / 教研.
+- If accepted, use concept rows as `assignment_type=activity_concept, activity_concept=...` assignments and let Phase 0 decide whether to generate, assume, or block.

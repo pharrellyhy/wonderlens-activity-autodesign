@@ -1,6 +1,8 @@
 # Transform Execution Loop
 
 > Legacy workflow only. Use this loop only for old `designs/*_spec.md` -> `designs/*_prod.md` transformations. Do **not** run it for migrated `activities/*/prod.md`, where later rounds must remain fully expanded.
+>
+> Do **not** run this loop for activity concept spreadsheet / concept-led assignments. Those use `program.md` Phase 0 (`activity_concept row -> adaptation_brief -> assignment line or migrated package`) before any package generation.
 
 ## Setup
 

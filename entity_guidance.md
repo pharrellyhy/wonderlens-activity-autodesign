@@ -2,6 +2,7 @@
 
 > **Purpose**: Teaches the Activity Design Agent how to read structured entity mapping YAML files and use them to ground activity designs in entity-specific data.
 > **When to read**: Before designing any activity that has a `mapping=` parameter in its assignment.
+> **Mapping root**: `MAPPING_ROOT=data/mappings_dev20_0318` (repo-relative). The registry lives at `MAPPING_ROOT/_index.yaml`.
 
 ---
 
@@ -224,7 +225,7 @@ This makes it traceable during D9 evaluation which mapping dimensions drove the 
 ## Quick Reference: Reading a Mapping File
 
 ```
-1. Open `data/mappings_dev20_0318/_index.yaml` → find entity_id → get file path
+1. Open `MAPPING_ROOT/_index.yaml` → find entity_id → get file path
 2. Open the YAML file → find the entity block
 3. Note: primary_theme, primary_key_concepts (these are your starting constraints)
 4. Read tier_guidance for target tier → scan all dimensions

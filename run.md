@@ -1,25 +1,29 @@
 # Run Instructions - Autonomous Activity Package Loop
 
 > This file tells the agent how to execute. Read this AFTER reading `program.md`.
+> When launched from Codex `/goal`, use `GOAL.md` as the objective and success criteria, and use this file as the execution procedure.
 
 ## Setup (one-time, do this first)
 
-1. Read `program.md` fully - constraints, migrated package format, rubric, and seed exemplars.
-2. Read `templates.md` fully - Template 0 reference, pillar overlays, and Cat1/Cat5 category modifiers.
-3. Read `docs/game_styles.md` - game style taxonomy reference.
-4. Read `activities/README.md` - required five-file package layout.
-5. Read `activities/_schema/tag_block.schema.json` and `docs/activity_vocabulary.md` - tag-block schema and current enum vocabulary.
-6. Read `docs/activity_tag_block_usage.md` and `docs/activity_tag_block_progression_guide.md` - field ownership, recap/dashboard usage, and progression guidance.
-7. Read `entity_guidance.md` and `conversation_bridge.md` when an assignment is mapping-informed or requests warm/cold bridge handling.
-8. Read `assignments.md` - work queue.
-9. Verify `activities/` exists with `_schema/tag_block.schema.json`.
-10. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
+Entity mapping root: `MAPPING_ROOT=data/mappings_dev20_0318` (repo-relative). Use `MAPPING_ROOT/_index.yaml` as the entity registry whenever mapping data is required.
+
+1. Read `GOAL.md` - goal, assignment type names, and success criteria.
+2. Read `program.md` fully - constraints, migrated package format, rubric, and seed exemplars.
+3. Read `templates.md` fully - Template 0 reference, mechanic adapters, Cat1/Cat5 category modifiers, and pillar/style scaffolds.
+4. Read `docs/game_styles.md` - game style taxonomy reference.
+5. Read `activities/README.md` - required five-file package layout.
+6. Read `activities/_schema/tag_block.schema.json` and `docs/activity_vocabulary.md` - tag-block schema and current enum vocabulary.
+7. Read `docs/activity_tag_block_usage.md` and `docs/activity_tag_block_progression_guide.md` - field ownership, recap/dashboard usage, and progression guidance.
+8. Read `entity_guidance.md` and `conversation_bridge.md` when an assignment is mapping-informed or requests warm/cold bridge handling.
+9. Read `assignments.md` - work queue.
+10. Verify `activities/` exists with `_schema/tag_block.schema.json`.
+11. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
 
 ```
 assignment	entity	category	tier	pillar	style	status	d1_tech	d2_hook_transition	d3_edge	d4_ib	d5_tier	d6_dialogue	d7_screen	d8_mapping	d9_game_feel	d10_pillar_fidelity	filename	timestamp
 ```
 
-11. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting activity package loop."
+12. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting activity package loop."
 
 ## The Loop (repeat for every uncompleted assignment)
 
@@ -27,11 +31,35 @@ For each assignment in `assignments.md` that is marked `- [ ]` (not yet complete
 
 ### Step 1: Parse the assignment
 
-Extract: entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), mapping (if provided), start type (if provided), output activity_id (if provided). If tier is not specified, infer it per `program.md` rules. If mechanic is specified, treat it as the primary child-action requirement and carry it into `activity_signature.mechanic`. If pillar/style is not specified, infer per `program.md` section 1.6 using mechanic first, then entity affordances, category, and pillar fit. If scene is not specified, invent one.
+Extract: assignment_type (if provided), activity_concept (if provided), legacy pm_idea (if provided), description/notes (if provided), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), mapping (if provided), product_capabilities (if provided), start type (if provided), and output activity_id (if provided). Treat legacy `pm_idea=` as `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared.
 
-### Step 1.5: Load entity mapping (if `mapping=` is specified)
+If `assignment_type` is not specified, infer it:
 
-1. Read `data/mappings_dev20_0318/_index.yaml` and find the entity_id.
+- `entity + category` with no concept field -> `entity_activity`
+- `activity_concept=` or legacy `pm_idea=` -> `activity_concept`
+- property/category-driven concept with runtime placeholders -> `match_pattern`
+- declared product dependency flags or unsupported category risk -> `capability_probe`
+
+If tier is not specified, infer it per `program.md` rules. If scene is not specified, invent one unless the assignment is blocked in the adaptation brief.
+
+### Step 1.1: Create adaptation brief
+
+Run `program.md` Phase 0 before scaffold composition. This is required for `activity_concept`, `match_pattern`, `capability_probe`, legacy `pm_idea`, and underspecified rows; it is allowed for normal `entity_activity` rows.
+
+1. Classify `input_mode` as `mapping_informed`, `parameterized`, or `concept_only`.
+2. Identify `canonical_mechanic` and `mechanic_confidence`. If `mechanic=` is specified, it wins unless it is outside the current enum.
+3. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, product capability flags, and scaffold fit.
+4. If `readiness=blocked_until_product_decision`, stop. Output the adaptation brief and missing capability/template decision. Do not create package files, append `results.tsv`, mark the assignment complete, or commit.
+5. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
+6. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
+
+### Step 1.5: Load entity mapping (when required or available)
+
+Read mapping YAML when `mapping=` is specified, when the adaptation brief has `input_mode=mapping_informed`, or when the package claims entity-specific mapping grounding. Do not require mapping for `concept_only` or `parameterized` briefs that use runtime placeholders.
+
+If mapping is required:
+
+1. Read `MAPPING_ROOT/_index.yaml` and find the entity_id.
 2. Read the mapped YAML file and locate the entity block.
 3. Extract:
    - target-tier `primary_theme` and `secondary_themes`
@@ -42,19 +70,21 @@ Extract: entity, category, tier, mechanic (if provided), pillar (if provided), s
    - Cat1: engagement-first plus one physical anchor.
    - Cat5: physical-first plus one engagement anchor.
 5. Select Key Concepts, IB theme, and Related Concepts per `entity_guidance.md`.
-6. If no `mapping=` parameter is present, skip this step.
+6. If no mapping is present and the brief is `parameterized`, keep focal attributes and entity values as runtime placeholders.
+7. If no mapping is present and the brief is `concept_only`, do not invent mapping-derived facts or Key Concepts.
 
 ### Step 2: Compose the scaffold
 
 Read `templates.md` in layered order:
 
 1. Template 0 reference.
-2. Assigned pillar overlay.
+2. Mechanic adapter matching `canonical_mechanic`.
 3. Cat1 or Cat5 category modifier.
+4. Pillar/style scaffold selected by the adaptation brief.
 
-Use the composed scaffold as the activity's beat structure. Do not use the retired "Template A / Template B" split. If mapping-informed, ground creative variables in the selected dimensions and mapping attributes. If not mapping-informed, brainstorm fresh variables constrained by the pillar overlay.
+Use the composed scaffold as the activity's beat structure. Do not use the retired "Template A / Template B" split. If mapping-informed, ground creative variables in the selected dimensions and mapping attributes. If parameterized, use stable placeholders. If concept-only, avoid entity-specific claims.
 
-If the assignment provided `mechanic=`, adapt the scaffold so the child's actual repeated action matches that mechanic. Keep the selected `game_style` coherent with the mechanic, but do not let style override the requested action.
+The child's actual repeated action must match `canonical_mechanic`. Keep the selected `game_style` coherent with the mechanic, but do not let style override the requested action. If scaffold fit is weak, disclose it in `spec.md` or stop before generation.
 
 ### Step 3: Generate the migrated activity package
 
@@ -71,7 +101,7 @@ activities/<activity_id>/
 
 Rules:
 
-- `spec.md`: author/reviewer reference with premise, target, rationale, selection trigger, pillar/game style, and `## Self-Evaluation Scorecard`.
+- `spec.md`: author/reviewer reference with premise, target, rationale, selection trigger, pillar/game style, optional `## Adaptation Rationale`, and `## Self-Evaluation Scorecard`.
 - `prod.md`: runtime prompt guidance with Basic Info, Activity Overview, and full Interaction Flow. It must not contain a scorecard.
 - `tag_block.yaml`: structured metadata matching `activities/_schema/tag_block.schema.json`.
 - `recap.template.yaml`: child recap payload using the same focal attribute, role/badge, and next-step direction.
@@ -92,7 +122,7 @@ Run through all 10 rubric dimensions from `program.md` Phase 3 against the actua
 3. Re-evaluate.
 4. Repeat until all dimensions PASS.
 
-Dimension 8 only applies to mapping-informed designs. Score as N/A if no mapping. Dimensions 9 and 10 always apply.
+Dimension 8 only applies to mapping-informed designs. Score as N/A if no mapping. Dimensions 9 and 10 always apply. Dimension 10 checks mechanic fidelity + scaffold honesty, even though the legacy log column name remains `d10_pillar_fidelity`.
 
 ### Step 4.5: Independent scorecard review
 
@@ -100,11 +130,11 @@ Spawn a separate reviewer agent to independently check the same 10 dimensions ag
 
 Reviewer instructions:
 
-- Read `program.md` Phase 3 and the generated `activities/<activity_id>/` package.
+- Read `program.md` Phase 0 and Phase 3, the adaptation brief / `spec.md` `## Adaptation Rationale` when present, and the generated `activities/<activity_id>/` package.
 - Read `templates.md`, `activities/README.md`, `activities/_schema/tag_block.schema.json`, and `docs/activity_vocabulary.md`.
 - If the assignment has `mapping=`, also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`.
 - Evaluate the package files directly, not the authoring agent's claimed scorecard.
-- Return PASS/FAIL/N/A for each dimension with brief evidence and concrete file/section references for any issue.
+- Return PASS/FAIL/N/A for each dimension with brief evidence and concrete file/section references for any issue. For Dimension 10, explicitly confirm that Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic` and the adaptation brief's `canonical_mechanic` when present.
 
 If the reviewer flags any FAIL or credible uncertainty, fix the package, rerun the author self-evaluation, and spawn a fresh independent review. Only finalize the `## Self-Evaluation Scorecard`, append `results.tsv`, and mark the assignment complete after both the author check and independent reviewer check pass.
 
@@ -118,6 +148,8 @@ Before logging or committing, verify:
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` equals `tag_block.yaml` `activity_signature.focal_attribute`.
 - Every `prod.md` Step 3 round is fully expanded; no condensed-round placeholders remain.
 - `spec.md` contains exactly one `## Self-Evaluation Scorecard`.
+- Concept-led packages with `generate_with_assumptions` include `spec.md` `## Adaptation Rationale`.
+- `prod.md` Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic`.
 - `prod.md` contains zero `## Self-Evaluation Scorecard` sections.
 
 ### Step 6: Log the result
@@ -130,7 +162,7 @@ Append a row to `results.tsv`:
 
 Column order: assignment, entity, category, tier, pillar, style, status, d1_tech, d2_hook_transition, d3_edge, d4_ib, d5_tier, d6_dialogue, d7_screen, d8_mapping, d9_game_feel, d10_pillar_fidelity, filename, timestamp.
 
-For `d8_mapping`: use P, F, or N. `d9_game_feel` and `d10_pillar_fidelity` are always P or F.
+For `d8_mapping`: use P, F, or N. `d9_game_feel` and `d10_pillar_fidelity` are always P or F. The `d10_pillar_fidelity` column is retained for log compatibility and now records Dimension 10 Mechanic Fidelity + Scaffold Honesty.
 
 ### Step 7: Mark assignment complete
 

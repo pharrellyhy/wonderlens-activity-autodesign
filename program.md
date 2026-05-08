@@ -1,9 +1,11 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.7 | **Date**: 2026-05-08
+> **Version**: 1.9 | **Date**: 2026-05-08
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.9 — 2026-05-08**: Formalize assignment types (`entity_activity`, `activity_concept`, `match_pattern`, `capability_probe`), replace new `pm_idea=` usage with `activity_concept=`, rename Phase 0 `pm_only` mode to `concept_only`, and add `GOAL.md` as the Codex `/goal` completion contract.
+> **v1.8 — 2026-05-08**: Add Phase 0 Activity Concept Adaptation Brief. Mechanic is now the primary intent signal for concept-led assignments; pillar/game style remain required scaffold metadata but must not override the canonical mechanic. Entity mapping is optional for concept-only briefs and required only when the package claims mapping-informed grounding or matcher-ready entity routing.
 > **v1.7 — 2026-05-08**: Require a separate reviewer agent to independently check the 10-dimension `spec.md` scorecard against the actual package files before the scorecard is finalized, results are logged, or an assignment is marked complete.
 > **v1.6 — 2026-05-08**: Make the migrated `activities/<activity_id>/` five-file package the default output target. `prod.md` must keep every runtime round fully expanded; only `spec.md` carries the author-editorial `## Self-Evaluation Scorecard`; `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` are separate package files aligned to `activities/_schema/tag_block.schema.json`.
 > **v1.5 — 2026-04-21**: Legacy inline-design tag block revision: extended `entity_attributes_covered` with dual matcher semantics keyed on `entity_binding`. Superseded for migrated packages by v1.6 and `activities/_schema/tag_block.schema.json`.
@@ -19,18 +21,103 @@
 You are an **Activity Design Agent** for WonderLens (奇朵), an AI-powered educational camera for children ages 2–8. Your job is to **invent and fully design** interactive activities given only an **entity + activity category** as input.
 
 **The loop:**
-1. Receive input: `entity + category` (e.g., "butterfly + out-of-device collection")
-2. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the assigned pillar overlay, then apply the category modifier (Cat1 or Cat5) from the appendix
-3. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity
-4. Generate a complete migrated activity package following the exact output format
-5. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking
-6. If any dimension FAILS → identify the issue, fix it, re-evaluate
-7. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
-8. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
-9. Only present the final package after ALL dimensions pass AND the package self-check passes.
-10. Put the rubric scorecard in `activities/<activity_id>/spec.md`; do not put a scorecard in `prod.md`.
+1. Receive input: an `assignment_type` row from `assignments.md`. New rows should use one of `entity_activity`, `activity_concept`, `match_pattern`, or `capability_probe`. Legacy `pm_idea=` rows are treated as `assignment_type=activity_concept` with `activity_concept=<value>`.
+2. Run **Phase 0: PM Idea Adaptation Brief** before scaffold selection. Decide input mode, canonical mechanic, readiness, mapping usefulness, trigger condition, product-capability risks, and scaffold fit.
+3. If the brief is `blocked_until_product_decision`, stop with the adaptation brief. Do not force a package, log results, or mark the assignment complete.
+4. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1 or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
+5. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
+6. Generate a complete migrated activity package following the exact output format.
+7. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking.
+8. If any dimension FAILS → identify the issue, fix it, re-evaluate.
+9. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
+10. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
+11. Only present the final package after ALL dimensions pass AND the package self-check passes.
+12. Put the rubric scorecard in `activities/<activity_id>/spec.md`; do not put a scorecard in `prod.md`.
 
 **You never show intermediate drafts. You only present the final, self-evaluated design.**
+
+---
+
+## Phase 0: Activity Concept Adaptation Brief
+
+Use this phase before full package generation whenever the assignment is concept-led, has `assignment_type=activity_concept`, `assignment_type=match_pattern`, `assignment_type=capability_probe`, legacy `pm_idea=`, or provides only description / mechanic / adaptation notes instead of a fully specified entity + category package request. Lack of entity mapping must not block this brief. It should only block full generation when the activity claims entity-specific facts, mapping-grounded IB alignment, or matcher-ready entity routing.
+
+### 0.0 Assignment types
+
+Assignment type names describe the row in `assignments.md`; input modes describe the Phase 0 grounding decision.
+
+| Assignment type | When used | Required / typical fields |
+|---|---|---|
+| `entity_activity` | A specific photographed entity or entity class should become an activity package. | `entity`, `category`, optional `mapping`, `mechanic`, `tier`, `scene` |
+| `activity_concept` | A PM, curriculum, or design concept describes the desired child experience before entity grounding is final. | `activity_concept`, `description`, optional `mechanic`, `category`, `product_capabilities` |
+| `match_pattern` | The activity is a reusable property/category pattern that runtime matching can fill later. | `activity_concept`, `description`, `mechanic`, `category`, placeholder-bearing trigger or focal attribute |
+| `capability_probe` | The row tests whether a product-dependent concept can be generated under current capabilities. | `activity_concept`, `description`, `product_capabilities`, optional `mechanic`, `category` |
+
+If `assignment_type` is missing, infer it conservatively:
+
+- `entity + category` with no `activity_concept=` -> `entity_activity`
+- `activity_concept=` or legacy `pm_idea=` -> `activity_concept`
+- property/category-driven concept with runtime placeholders -> `match_pattern`
+- declared product dependency flags or unsupported category risk -> `capability_probe`
+
+### 0.1 Input modes
+
+| Mode | When used | Entity mapping role |
+|---|---|---|
+| `mapping_informed` | Activity concept is tied to a specific photographed entity or entity class and `mapping=` is supplied | Primary grounding source for attributes, tier language, IB concepts, bridge prerequisites, trigger fit, and matchability |
+| `parameterized` | Activity concept is about an attribute/category, e.g. color hunt, shape sort, animal sounds | Mapping is used later by the matcher/runtime to fill placeholders such as `{matched_color}`, `{matched_shape}`, or `{entity_class}` |
+| `concept_only` | Activity concept is a broad mechanic or product concept with no entity yet | Mapping is optional; produce an adaptation brief and only generate a package if the concept can be safely represented without entity-specific grounding |
+
+Default to `parameterized` when the activity concept is property/category driven. Use `mapping_informed` only when a specific mapping source is supplied.
+
+### 0.2 Brief shape
+
+Before choosing pillar/style or writing package files, produce this internal brief:
+
+```yaml
+adaptation_brief:
+  input_mode: <mapping_informed|parameterized|concept_only>
+  core_promise: "<what child experience PM wants>"
+  canonical_mechanic: <enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care>
+  mechanic_confidence: <high|medium|low>
+
+  category_decision: <cat1|cat5|unsupported_cat2|unsupported_cat3|unsupported_cat4|unsupported_cat6>
+  readiness: <ready_to_generate|generate_with_assumptions|blocked_until_product_decision>
+
+  trigger_condition: "<best photo/conversation/environment condition>"
+  entity_role: <subject|exemplar|catalyst|reference>
+  observation_angle: <color|shape|size|quantity|texture|material|pattern|function|origin|behavior|emotion|state>
+  focal_attribute: "<stable attribute or runtime placeholder>"
+
+  mapping_use:
+    required: <true|false>
+    available: <true|false>
+    value_if_available: ["attributes", "tier language", "bridge prerequisites", "IB concepts", "matchability"]
+    missing_mapping_risk: <none|low|medium|high>
+
+  product_capability_flags:
+    - <requires_assets|requires_ui_state|requires_materials|requires_motion_safety|ocr_risk|pose_risk|before_after_risk>
+
+  scaffold_choice:
+    pillar: <Discovery|Performance|Mystery|Creation|Adventure|Nurture>
+    game_style: <mystery_lens|mystery_trail|inventor_workshop|mix_lab|voice_stage|ensemble_show|prediction_lab|field_experiment|time_traveler|quest_collector|care_station|rescue_team>
+    scaffold_fit: <strong|acceptable|weak>
+
+  assumptions:
+    - "<only assumptions needed to proceed>"
+```
+
+### 0.3 Readiness rules
+
+- `ready_to_generate`: current Cat1/Cat5 package workflow, V1 constraints, and existing schema can represent the idea safely.
+- `generate_with_assumptions`: generation may proceed, but `spec.md` must include an `Adaptation Rationale` section summarizing the assumptions and any weak scaffold fit.
+- `blocked_until_product_decision`: stop after the brief. Do not create package files, append `results.tsv`, or mark the assignment complete. Use this for unsupported categories, required assets/UI state/material workflow/motion safety, OCR risk, pose risk, before/after state verification, or a mechanic that cannot be represented by current workflow without distorting the activity concept.
+
+### 0.4 Entity mapping use
+
+Entity mapping is valuable for choosing visible `focal_attribute` values, selecting `activity_signature.observation_angle`, setting `bridge_prerequisites`, deciding `entity_role`, grounding tier language and facts, selecting IB concepts for mapping-informed designs, improving trigger quality, and making parameterized templates matchable across entities.
+
+Entity mapping is optional or less useful when the activity is standalone, product-mode selected, asset/UI-first, unsupported Cat3 material workflow, or language/audio practice where the entity only supplies a word. If no mapping is available, generate a `concept_only` or `parameterized` brief rather than inventing mapping-grounded claims.
 
 ---
 
@@ -125,9 +212,9 @@ Assign 2–4 related concepts per activity. These populate the `related_concepts
 
 ### 1.6 Mechanics and Game Styles
 
-Every activity must be assigned one of 12 game styles, organized under 6 Experience Pillars. Each pillar defines a distinct emotional experience. The style frames the child's role, package structure, and emotional arc; the activity mechanic declares what the child actually does. Read `docs/game_styles.md` for the full reference.
+Every generated package must still include one of the required `pillar` values and a `game_style`, but **mechanic is the primary intent signal**. The activity mechanic declares what the child actually does and is consumed by selector fit, runtime recap phrasing, and parent analytics. Pillar and game style frame the emotional payoff and scaffold, but they must not override or distort the canonical mechanic from the assignment or Phase 0 brief. Read `docs/game_styles.md` and `docs/activity_vocabulary.md` for the full reference.
 
-**Mechanic-first assignment rule:** If an assignment provides `mechanic=`, treat it as the primary child-action requirement and choose a pillar/style that expresses that mechanic well. Do not pick a game style first and then force the mechanic to fit. `game_style` is still required in the output package, but `activity_signature.mechanic` is the selector and analytics action signal.
+**Mechanic-first assignment rule:** If an assignment provides `mechanic=` or the activity concept strongly implies a mechanic, treat it as the primary child-action requirement and carry it into `tag_block.yaml` `activity_signature.mechanic`. Choose a pillar/style that can express that mechanic honestly. If no current pillar/style can express it without changing the child action, mark the brief `blocked_until_product_decision` or `generate_with_assumptions` with `scaffold_fit: weak`; do not silently force the activity concept into a misleading game style.
 
 **The 6 Experience Pillars:**
 
@@ -163,13 +250,14 @@ Every activity must be assigned one of 12 game styles, organized under 6 Experie
 | Nurture | `rescue_team` | Find things that need help → mutual aid | Finds can be framed as needing care or rescue |
 
 **How styles constrain design:**
-- The pillar determines the emotional arc and magic moment
-- The style narrows the creative variables to a proven pattern
-- The mechanic may be specified in the assignment (`mechanic=collect`); honor it before choosing or inferring style
-- The style is specified in the assignment (`pillar=Discovery, style=prediction_lab`) or inferred from the mechanic, entity affordances, category, and pillar fit
-- Record the pillar AND style in Basic Info as `Experience Pillar` and `Game Style`
+- The mechanic determines the repeated child action and must match `activity_signature.mechanic`.
+- The pillar determines the emotional arc and magic moment only after the mechanic is chosen.
+- The style narrows creative variables to a proven scaffold, but the scaffold is secondary to mechanic fidelity.
+- The mechanic may be specified in the assignment (`mechanic=collect`) or inferred in Phase 0; honor it before choosing or inferring style.
+- The style is specified in the assignment (`pillar=Discovery, style=prediction_lab`) or inferred from mechanic, entity affordances, category, and scaffold fit.
+- Record the pillar AND style in Basic Info as `Experience Pillar` and `Game Style`, even when `spec.md` notes that the style is an acceptable or weak scaffold compromise.
 
-**If pillar/style is not specified**, infer using the requested mechanic first, then the "When to use" columns above. When ambiguous, prefer the pillar whose cognitive domain best matches the entity's natural affordances.
+**If pillar/style is not specified**, infer using the canonical mechanic first, then the "When to use" columns above. When ambiguous, prefer the pillar whose emotional payoff best supports the mechanic without changing the child action. If no single style fits cleanly, choose the least misleading scaffold only when the mechanic remains intact; otherwise block generation and recommend a template/product extension.
 
 ### 1.7 Core Design Principles (NON-NEGOTIABLE)
 
@@ -198,9 +286,13 @@ Every activity must be assigned one of 12 game styles, organized under 6 Experie
 
 ### 1.8 Entity Mapping Data
 
+Canonical mapping root: `MAPPING_ROOT=data/mappings_dev20_0318` (repo-relative). All mapping load instructions below refer to this root. If the mapping data moves, update this constant and keep the entity registry at `MAPPING_ROOT/_index.yaml`.
+
+Entity mapping YAML is a grounding and matchability layer, not the only source of activity intent. Use it whenever an assignment includes `mapping=entity_id`, whenever Phase 0 sets `input_mode: mapping_informed`, or whenever a generated package claims entity-specific facts or mapping-grounded IB alignment. Do not require mapping for every concept-led assignment: `parameterized` and `concept_only` briefs may proceed without mapping as long as they do not invent entity-specific claims.
+
 When an assignment includes `mapping=entity_id`, you MUST read the entity's mapping YAML before designing:
 
-1. Open `data/mappings_dev20_0318/_index.yaml` → find the entity_id → get the YAML file path
+1. Open `MAPPING_ROOT/_index.yaml` → find the entity_id → get the YAML file path
 2. Open the YAML file → locate the entity block
 3. Read `entity_guidance.md` for rules on how to use the mapping data
 
@@ -211,9 +303,13 @@ When an assignment includes `mapping=entity_id`, you MUST read the entity's mapp
 - **Tier guidance** with dimension attributes — ground your vocabulary, facts, and sensory details in these (don't invent)
 
 **What the mapping does NOT provide**:
-- The activity metaphor, role, or game mechanic — these are still your creative invention
+- The activity concept's core promise — infer this from `activity_concept`, legacy `pm_idea`, description, notes, trigger condition, or assignment text
+- The canonical mechanic when the activity concept already specifies or strongly implies one
+- The activity metaphor or role — these are still your creative invention
 - The step structure — still comes from `templates.md`
-- The exact AI dialogue — still written fresh, but vocabulary and facts must be traceable to mapping attributes
+- The exact AI dialogue — still written fresh, but vocabulary and facts must be traceable to mapping attributes when the package is mapping-informed
+
+**Mapping absence rule**: missing mapping should not block an `adaptation_brief`. It only blocks full package generation when the proposed package needs entity-specific facts, warm/cold mapping bridges, mapping-grounded Key Concepts, or matcher-ready routing that cannot be expressed as a parameterized placeholder.
 
 Read `conversation_bridge.md` for warm/cold start bridge requirements.
 
@@ -431,7 +527,7 @@ activities/<activity_id>/
 [celebration first, then naturally names the Key Concepts the child explored; include child responses, AI follow-up, and Screen]
 ```
 
-`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`.
+`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`. For concept-led assignments, include an `## Adaptation Rationale` section before the scorecard summarizing the Phase 0 brief: core promise, canonical mechanic, input mode, readiness, trigger condition, mapping use, product-capability flags, scaffold fit, and assumptions.
 
 ### Format Rules
 
@@ -530,14 +626,14 @@ Does the design feel like a GAME, not just a structured conversation?
 - Would a child want to play this again (replayability)? → Should be YES
 - Is there at least one moment of surprise, drama, or delight beyond warm encouragement? → Must be YES
 
-### Dimension 10: Pillar Fidelity (PASS/FAIL)
+### Dimension 10: Mechanic Fidelity + Scaffold Honesty (PASS/FAIL)
 
-Does the design deliver the emotional experience promised by its Experience Pillar?
-- Could a blind reader identify which pillar this design belongs to from the interaction alone? → Must be YES
-- Does the magic moment match the pillar's defined magic moment type? → Must be YES
-- Does the core loop use the pillar's specific game mechanic (not generic Q&A)? → Must be YES
-- Is the child's emotional arc consistent with the pillar's "child feels..." definition? → Must be YES
-- Could this design be re-labeled to a different pillar without feeling wrong? → Must be NO
+Does the design preserve the child action promised by the assignment or Phase 0 brief, while using pillar/style scaffolding honestly?
+- Does the child's repeated action in `prod.md` match `tag_block.yaml` `activity_signature.mechanic` and the Phase 0 `canonical_mechanic` if present? → Must be YES
+- Does the selected pillar/style support the mechanic without distorting the activity concept or entity intent? → Must be YES
+- If `scaffold_fit` is `weak` or `generate_with_assumptions`, does `spec.md` disclose the scaffold compromise and assumptions in `## Adaptation Rationale`? → Must be YES
+- Does the package avoid forcing unsupported mechanics, product capabilities, or categories into a misleading current style? → Must be YES
+- Does the design still deliver a clear emotional payoff / magic moment consistent with its chosen pillar? → Must be YES
 
 ### Rubric Scorecard (append at end of every `spec.md`)
 
@@ -555,7 +651,7 @@ Does the design deliver the emotional experience promised by its Experience Pill
 | 7 | Screen & UI Completeness | PASS/FAIL | [brief note] |
 | 8 | Entity Mapping Alignment | PASS/FAIL/N/A | [brief note — N/A if no mapping] |
 | 9 | Game Feel | PASS/FAIL | [brief note] |
-| 10 | Pillar Fidelity | PASS/FAIL | [brief note] |
+| 10 | Mechanic Fidelity + Scaffold Honesty | PASS/FAIL | [brief note] |
 
 **Overall**: ALL PASS / [N] FAIL(s) — [fixed/presenting]
 ```
@@ -610,14 +706,15 @@ Study these two exemplars carefully. They represent the quality floor. Your outp
 
 ## Phase 5: How to Use This
 
-### Template-First Workflow
+### Mechanic-First Workflow
 
 Before generating any design, ALWAYS:
-1. Read `templates.md` in the layered order: (a) the **Template 0 reference** for the 5-beat spine and universal creative variables, (b) the **pillar overlay** matching your assigned pillar (Mystery / Creation / Performance / Discovery / Adventure / Nurture) for beats 2–4 specialization and pillar-specific creative variables, (c) the **category modifier** from the appendix for your entity's category (Cat1 in-device, or Cat5 out-of-device). The full skeleton authority lives in `docs/template_0_preview.html` §03 / §04 / §06.
-2. Use the composed scaffold (Template 0 spine + pillar overlay + category modifier) — follow the beat sequence and purposes exactly
-3. Use the **Quick Entity Brainstorm Guide** for inspiration, but invent FRESH creative variables
-4. Run the pillar-specific and category-specific adaptation checks (`checklist_extras` in the appendix) before running the full rubric (Dimensions 1–10, with D8 only for mapping-informed designs)
-5. If your entity is not in the brainstorm guide, extrapolate using the pattern: identify the entity's most striking VISUAL FEATURE → build the collection criterion / game mechanic from there
+1. Run Phase 0 when the assignment is concept-led, has `activity_concept=`, has legacy `pm_idea=`, or lacks a fully specified entity + category request.
+2. Read `templates.md` in the layered order: (a) the **Template 0 reference** for the 5-beat spine and universal creative variables, (b) the **Mechanic Adapter** matching `canonical_mechanic`, (c) the **category modifier** for Cat1 or Cat5, and then (d) the least misleading pillar/style scaffold required by the package schema.
+3. Use the composed scaffold (Template 0 spine + mechanic adapter + category modifier + optional pillar/style scaffold) — follow the beat sequence and keep the child action faithful to `activity_signature.mechanic`.
+4. Use the **Quick Entity Brainstorm Guide** for inspiration, but invent FRESH creative variables.
+5. Run the mechanic fidelity, scaffold honesty, and category-specific checks before running the full rubric (Dimensions 1–10, with D8 only for mapping-informed designs).
+6. If your entity is not in the brainstorm guide, extrapolate using the pattern: identify the entity's most striking VISUAL FEATURE → choose the focal attribute / observation angle → build the activity loop from the canonical mechanic.
 
 ### Input Format
 
@@ -628,12 +725,21 @@ Design an activity for: [entity] + [category number or name]
 Optional: tier=[T0/T1/T2], mechanic=[mechanic], pillar=[pillar], style=[game_style], scene=[brief scenario]
 ```
 
+For concept-led adaptation, it may look like:
+
+```
+Adapt activity concept: assignment_type=activity_concept, activity_concept=[activity name], description=[concept description], notes=[PM / curriculum / design comments]
+Optional: mechanic=[mechanic], category=[category hint], entity=[entity or entity class], mapping=[entity_id], product_capabilities=[declared capability flags]
+```
+
 Examples:
 - `Design an activity for: butterfly + category 5 (collection/tracking), mechanic=deduce`
 - `Design an activity for: toy car + category 1 (sustained verbal), tier=T0, mechanic=voice, style=voice_stage`
 - `Design an activity for: kitchen vegetables + category 3 (material exploration), tier=T1, scene=child photographs broccoli on kitchen counter`
+- `Adapt activity concept: assignment_type=activity_concept, activity_concept=Scavenger Hunt, description=find X things with a shared color or shape, mechanic=collect`
+- `Adapt activity concept: assignment_type=capability_probe, activity_concept=涂色游戏, description=child photographs colors and AI fills a line drawing, category=cat5`
 
-If `mechanic=` is provided, honor it when setting `activity_signature.mechanic`. If `style=` is omitted, infer it per §1.6 rules from mechanic, entity affordances, category, and pillar fit.
+If `mechanic=` is provided, honor it when setting `activity_signature.mechanic`. If `style=` is omitted, infer it per §1.6 rules from the canonical mechanic, entity affordances, category, and scaffold fit. If an activity concept requires unsupported product capabilities, output the adaptation brief and block instead of forcing generation.
 
 ### If tier is not specified
 
