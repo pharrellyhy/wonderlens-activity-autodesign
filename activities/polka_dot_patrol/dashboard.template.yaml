@@ -20,6 +20,8 @@ dashboard_fragment:
     key_concepts_exposure:
       Form:
         angle: pattern
+      Connection:
+        angle: pattern
     atl_skills_trail:
       - observation
       - classification

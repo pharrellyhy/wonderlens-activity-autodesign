@@ -124,9 +124,41 @@ describes how The Lion's Big Show adapts mechanically for a bridged entity.
 
 **Screen:** Stage spotlight on lion photo with golden sun animation; parrot tumbles off branch, monkey bounces with popcorn flying, elephant flaps ears; gold star stamps in the score area.
 
-**Round 2 — "The Sleepy Lullaby Roar":** Night time! Moon is out. Child does a soft, sleepy roar like a lullaby. The judges' eyes droop, monkey yawns, elephant sways — the whole audience almost falls asleep. Second gold star.
+**Round 2 — "The Sleepy Lullaby Roar":**
 
-**Round 3 — "The SURPRISE Whisper-Roar!" (Twist Challenge):** SURPRISE CHALLENGE — the judges dare the lion to do the tiniest, quietest whisper-roar ever. "Nobody thinks you can do it!" All three judges lean in close. When the child whispers, the crowd ERUPTS — monkey backflips, parrot screeches "ENCORE!", elephant stomps so hard the jungle shakes. Third gold star.
+**AI says:** (soft, dreamy narrator) "Round Two! Night time! Moon is out. Lion is sooo sleepy. Can you do a sleeeepy roar? Soft and slow... like a lullaby. Ready? Go!"
+
+**Child responses:**
+
+1. (Ideal) "Rrrrr..." or "Shhh... rrrr" — child does a quiet, drawn-out roar.
+2. (Unexpected) "RRRR!" — child does a loud roar instead, or says "Night night!"
+3. (No response) Child is quiet or processing.
+
+**AI follow-up:**
+
+1. (hushed, amazed) "Ohhh... look! Parrot's eyes are closing. Monkey put down the popcorn and is yawning. Elephant is swaying... back and forth... back and forth. Your sleepy roar made the WHOLE audience almost fall asleep! That was beautiful! Second gold star!"
+2. (laughing quietly) "A BIG roar! Ha! The judges jumped awake! Monkey spilled the popcorn everywhere! That wasn't sleepy, but the judges LOVED the surprise! Elephant says 'Whoa! Wide awake now!' Star for the wake-up call!"
+3. (wait 2s) (gentle, modeling) "Try it like this... rrrrrr... nice and soft, like you're tucking the lion in. Even a tiny whisper counts. The judges have their blankets ready!"
+
+**Screen:** Stage dims to moonlit blue-purple tones; a crescent moon rises behind the lion photo. If child responds softly, parrot droops on branch with half-closed eyes, monkey yawns with popcorn lowered, and elephant sways gently. If child roars loudly, judges startle awake comically. Second gold star stamps in and "Round 2 COMPLETE" appears in soft starlight letters.
+
+**Round 3 — "The SURPRISE Whisper-Roar!" (Twist Challenge):**
+
+**AI says:** (dramatic, conspiratorial whisper) "Round Three! SURPRISE CHALLENGE! The judges say... can the lion do a WHISPER roar? Shhh! The tiniest, quietest, most secret roar EVER! This is the HARDEST one! Nobody thinks you can do it! Can you? Shhhh... GO!"
+
+**Child responses:**
+
+1. (Ideal) "...rrrr..." or "psst... rawr" — child attempts a whisper roar.
+2. (Unexpected) "RRRR!" — child does a big roar instead, laughs, or says "I can't whisper!"
+3. (No response) Child giggles, covers mouth, or is quiet.
+
+**AI follow-up:**
+
+1. (absolutely stunned, building to explosion) "Wait... did you hear that? Parrot leaned in... Monkey leaned in... Elephant put his GIANT ear right up close... and... THEY HEARD IT! A WHISPER ROAR! The crowd is going BANANAS! Monkey is doing backflips! Parrot is screeching 'ENCORE! ENCORE!' Elephant STOMPED so hard the whole jungle shook! Nobody thought it was possible! THIRD GOLD STAR!"
+2. (delighted, amazed) "You did a BIG roar instead! And guess what? The judges LOVED the surprise! Parrot says 'That's NOT a whisper — that's a SUPER roar!' Monkey fell over laughing! The elephant says 'My ears are still ringing!' They give you the star for being BRAVE! Gold star number three!"
+3. (wait 2s) (encouraging whisper) "The quiet... IS the whisper roar! Even silence can be a performance! Parrot is leaning in so close she almost fell off again! Try a teensy tiny one? Even just... 'rr'?"
+
+**Screen:** Stage goes dramatic with a single spotlight narrowed on the lion photo. "SURPRISE CHALLENGE" banner flashes in bold red-gold letters. If child whispers, judges lean forward in exaggerated poses, then explode into celebration: confetti burst, parrot spirals, monkey backflips, elephant trumpets with trunk up. Third gold star stamps in with extra sparkle and "Round 3 COMPLETE — ALL STARS!" flashes.
 
 #### Step 4: Celebration
 

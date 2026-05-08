@@ -10,13 +10,14 @@
 | Core IB Key Concepts | Form, Connection |
 | Related Concepts | Pattern, Discovery, Observation, Similarities and Differences |
 | ATL Skills Focus | Research Skills (observation, data collection), Thinking Skills (analysis, comparison) |
-| Game Style | comparison_chart |
+| Experience Pillar | Adventure |
+| Game Style | quest_collector |
 
 ### B. Activity Overview
 
 **① Brief Description**
 
-After the child photographs a ladybug, the AI gasps at its beautiful polka-dotted shell and wonders whether those tiny black dots are like buttons, windows, or something else entirely. The child becomes a "Polka-Dot Patrol Officer" — heading out on a detective adventure to find 3 things nearby that also have dots, spots, or circles. Each round, the child photographs a spotted find and describes its pattern. After all three are collected, the comparison_chart synthesis guides the child to examine how the same basic pattern — dots — looks completely different on each item: big splotches vs. tiny speckles vs. perfect round circles. The child gives each find a creative name (like "Freckle Stone" or "Polka Petal"), turning observation into imagination.
+After the child photographs a ladybug, the AI gasps at its beautiful polka-dotted shell and wonders whether those tiny black dots are like buttons, windows, or something else entirely. The child becomes a "Polka-Dot Patrol Officer" — heading out on a detective adventure to find 3 things nearby that also have dots, spots, or circles. Each round, the child photographs a spotted find and describes its pattern. After all three are collected, the quest_collector synthesis guides the child to compare how the same basic pattern looks different on each item, name each find, and send the full Polka-Dot Patrol on a tiny parade adventure together.
 
 **② Educational Purpose (KUD)**
 
@@ -26,11 +27,11 @@ After the child photographs a ladybug, the AI gasps at its beautiful polka-dotte
 
 **③ Design Highlight**
 
-The comparison_chart synthesis transforms a scavenger hunt into genuine analysis. Instead of simply collecting spotted things, the child places all three finds side by side and examines how the "same" pattern is actually different every time — big blotchy spots on a mushroom, tiny speckles on a pebble, perfect round circles on a flower petal. This concrete, visual comparison makes abstract ideas like "same but different" tangible for a 4-year-old. The creative naming layer ("Freckle Stone," "Polka Petal") lets the child own their discoveries, turning scientific observation into personal expression.
+The quest_collector synthesis transforms a scavenger hunt into a purposeful pattern mission. Instead of simply collecting spotted things, the child places all three finds side by side and examines how the "same" pattern is actually different every time — big blotchy spots on a mushroom, tiny speckles on a pebble, perfect round circles on a flower petal. The creative naming layer ("Freckle Stone," "Polka Petal") lets the child own their discoveries, and the final patrol parade stitches the finds into one shared adventure.
 
 **④ Typical Scenario**
 
-Child photographs a ladybug → AI admires its polka dots and sparks imagination → child becomes a Polka-Dot Patrol Officer → finds and photographs 3 things with dots, spots, or circles → compares how the dots differ across all finds → gives each a creative name → celebrates with the Polka-Dot Patrol Officer badge and reflects on Form and Connection.
+Child photographs a ladybug → AI admires its polka dots and sparks imagination → child becomes a Polka-Dot Patrol Officer → finds and photographs 3 things with dots, spots, or circles → compares how the dots differ across all finds → gives each a creative name → sends the patrol on a tiny parade adventure → celebrates with the Polka-Dot Patrol Officer badge and reflects on Form and Connection.
 
 ### C. Interaction Flow
 
@@ -160,19 +161,35 @@ If still stuck: "What about leaves? Turn one over — sometimes the back has lit
 
 **AI response to naming:** (celebrating) "I love those names! [Name 1], [Name 2], and [Name 3] — your very own Polka-Dot collection!"
 
-**Screen:** All 4 photos (ladybug + 3 finds) displayed side by side with comparison labels highlighting dot size (big, medium, tiny); animated dotted lines connect similar patterns; creative name tags appear beneath each photo.
+**AI says:** (storytelling excitement) "Now the Polka-Dot Patrol has one last mission! Ladybug leads the way, [Name 1] rolls beside her, [Name 2] hops over a leaf, and [Name 3] guards the back. Where should your patrol parade go?"
+
+**Child responses:**
+
+1. (Ideal) "To the garden!" / "Under the leaf!" / "To a dot party!" / child suggests a destination
+2. (Unexpected) "They stay here." / "They are sleepy." / child slows or changes the story
+3. (No response) Child looks at the collection quietly.
+
+**AI follow-up:**
+
+1. (delighted narration) "To the garden they go! Ladybug calls, 'Follow the dots!' [Name 1], [Name 2], and [Name 3] march along the dotted path. The whole patrol made it together!"
+2. (warm, adapting) "They can stay here and guard the dot clues! Ladybug whispers, 'Patrol team, hold your places.' Every spotted friend has a job."
+3. (wait 2s) (gentle narration) "The patrol starts softly. Ladybug steps first, then each spotted friend follows the dotted trail. They are a tiny team with a big mission."
+
+**Screen:** All 4 photos (ladybug + 3 finds) displayed side by side with comparison labels highlighting dot size (big, medium, tiny); animated dotted lines connect similar patterns; creative name tags appear beneath each photo; a dotted parade path curls across the collection.
 
 **AI says:** (warm, ceremonial) "Polka-Dot Patrol Officer — you did it! You found dots, spots, and circles hiding everywhere. You are officially a Polka-Dot Patrol Officer!"
 
 **Child responses:**
 
 1. (Engaged) "Yay!" / "I'm a Patrol Officer!" / "I found so many!"
-2. (Quiet) Child smiles at the badge.
+2. (Unexpected) "Can I find stripes next?" / "I like the parade!" / child asks for another pattern.
+3. (No response) Child smiles at the badge.
 
 **AI follow-up:**
 
 1. (proud) "The best Patrol Officer! You found spots that nobody else even noticed. Those detective eyes are amazing!"
-2. (warm) "Look at that badge — you earned it! Every dot you found was a clue, and you solved them all."
+2. (warm) "Stripes can be your next patrol! Today you solved the dot mission, and your spotted parade made it all the way home."
+3. (wait 2s) (warm) "Look at that badge — you earned it! Every dot you found was a clue, and you solved them all."
 
 **Screen:** Badge spinning into center labeled "Polka-Dot Patrol Officer" with ladybug and magnifying glass motif; collection photos as small insets; "Form" and "Connection" in bright spotted lettering; confetti with polka-dot patterns drifts down.
 
@@ -183,11 +200,13 @@ If still stuck: "What about leaves? Turn one over — sometimes the back has lit
 **Child responses:**
 
 1. (Engaged) "Bye!" / "I'll find more dots!" / "Dots are everywhere!"
-2. (Quiet) Child waves or smiles.
+2. (Unexpected) "I want stripes!" / "Again!" / child asks for another patrol.
+3. (No response) Child waves or smiles.
 
 **AI follow-up:**
 
 1. (celebration) "Dots ARE everywhere! Keep those detective eyes open. Bye, Polka-Dot Patrol Officer!"
-2. (gentle) "Great patrol today. The dots will be waiting for you next time. Bye bye, Officer!"
+2. (gentle) "Another patrol can happen next time. Today your dot mission is complete, and your badge is shining. Bye, Officer!"
+3. (wait 2s) (gentle) "Great patrol today. The dots will be waiting for you next time. Bye bye, Officer!"
 
 **Screen:** Badge centered with "Polka-Dot Patrol Officer" title; collection photos as small insets around the badge; "Form" and "Connection" in bright polka-dot-patterned lettering; spotted confetti and a gentle sparkle animation.

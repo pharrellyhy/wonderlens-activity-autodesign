@@ -11,7 +11,7 @@ entity: lion
 entity_class: [big_cat, mammal, animal]
 entity_binding: bound
 tier_range:
-  primary: T1
+  primary: T0
   span: [T0, T1, T2]
   elasticity: "±1"
 
@@ -29,12 +29,12 @@ kud:
   do:         ["give the lion a voice and personality"]
 
 progression:
-  topic_axis: connection
+  topic_axis: perspective
   difficulty_level: 2
   next_step_hint: "Next time, try voicing a different animal with a different feeling"
   reward_hook: "Earned the Roar Star badge"
 
-caregiver_role: [scaffold, co-explorer]
+caregiver_role: [scaffold]
 
 # ─── §2 · ACTIVITY SIGNATURE ───────────────────────────
 activity_signature:

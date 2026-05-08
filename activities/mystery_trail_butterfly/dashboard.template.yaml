@@ -6,7 +6,7 @@ dashboard_fragment:
     angle: pattern
     mechanic: collect
     entity_role: subject
-    focal_attribute: "butterfly_wing_pattern"
+    focal_attribute: "butterfly_secret_world"
     entry_rung: "{runtime_entry_rung}"
     exit_rung:  "{runtime_exit_rung}"
     outcome:    "{runtime_outcome}"         # promote | hold | demote | soft_reframe
@@ -18,6 +18,8 @@ dashboard_fragment:
     exploration_matrix:
       cell: "collect × pattern"              # bumps this cell's count
     key_concepts_exposure:
+      Form:
+        angle: pattern
       Connection:
         angle: pattern
     atl_skills_trail:

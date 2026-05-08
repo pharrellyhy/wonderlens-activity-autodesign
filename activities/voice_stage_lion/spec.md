@@ -8,10 +8,10 @@ The child becomes a "Roar Star" who performs AS the lion in front of a silly aud
 
 ## Target
 
-- **IB axis:** Connection (primary, via perspective-taking) + Form (secondary, via the lion's recognizable features)
-- **Primary rung:** T1 (ages 4–6); elastic to T0 (2–4) with shorter prompts and simpler onomatopoeia
+- **IB axis:** Perspective (primary, via taking the lion's voice) + Form (secondary, via the lion's recognizable features)
+- **Primary rung:** T0 (ages 2–4); elastic to T1 (4–6) with slightly longer prompts
 - **Tier elasticity:** T0–T2 (±1)
-- **Age tier:** child is verbal enough to make sounds on cue and follow a 3-round call-and-response structure.
+- **Age tier:** child can make simple sounds on cue and follow a short 3-round call-and-response structure with caregiver scaffolding if needed.
 
 ## Pedagogical rationale
 
@@ -40,3 +40,22 @@ Constellation neighbors (cat, kitten, tiger, leopard, stuffed lion) can substitu
 - **Mechanic:** `voice`
 - **Observation angle:** `behavior` (how the lion sounds, how the voice varies)
 - **Entity role:** `subject` (the lion IS the star — no role pivot)
+
+## Self-Evaluation Scorecard
+
+Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, and `templates.md` Performance + Cat1 rules.
+
+| # | Dimension | Score | Notes |
+|---|-----------|-------|-------|
+| 1 | V1 Technical Compliance | PASS | The game uses the initial lion photo and spoken child responses only. It does not require OCR, face/pose detection, IMU sensing, non-speech audio recognition, or before/after comparison. |
+| 2 | Hook & Transition | PASS | Step 1 starts with emotional excitement about the lion's mane and roar, then naturally escalates into the Jungle Talent Show audience frame. |
+| 3 | Edge Case Coverage | PASS | Each step has ideal, unexpected, and no-response paths with 2s waits for silence. All three roar rounds now include explicit branch copy and the surprise-sound validation strategy. |
+| 4 | IB Completeness | PASS | Perspective + Form are named in Basic Info, tag metadata, and closing. KUD, related concepts, and ATL skills are specific to lion form, vocal expression, listening, and emotional performance. |
+| 5 | Tier Appropriateness | PASS | Runtime and metadata now target T0: short call-and-response prompts, onomatopoeia, single action per round, and caregiver scaffolding as the primary support. |
+| 6 | Dialogue Specificity | PASS | AI lines are concrete spoken copy with tone markers; judge reactions are specific and playful, with no abstract "AI guides" placeholders in the runnable steps. |
+| 7 | Screen & UI Completeness | PASS | The flow specifies stage layout, judge characters, round star, sun/moon/stage changes, gold stars, confetti, and the final Roar Star badge. |
+| 8 | Entity Mapping Alignment | N/A | Bound activity uses entity attributes in tag metadata, but this was not generated from a `mapping=` assignment requiring full mapping-informed D8 checks. |
+| 9 | Game Feel | PASS | Audience reactions, gold stars, the whisper-roar twist, and the standing ovation create uncertainty, surprise, and a clear emotional climax. |
+| 10 | Pillar Fidelity | PASS | Performance is unmistakable: child performs as the lion, judges react as an audience, the third round adds a twist challenge, and Step 4 delivers the standing ovation payoff. |
+
+**Overall**: ALL PASS — 1 issue found and fixed during self-evaluation: spec/tag metadata said primary T1 while the runtime activity and dialogue are T0.

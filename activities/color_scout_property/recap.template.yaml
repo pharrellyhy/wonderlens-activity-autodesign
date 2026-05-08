@@ -14,7 +14,7 @@ recap_payload:
     child_label: "{runtime_color}"
     badge_emoji_none: true
 
-  highlight_moment: "You found THREE {runtime_color} things!"
+  highlight_moment: "Your {runtime_color} team started an adventure!"
 
   finds:
     - {label: "{find_1}", photo: "{photo_1}"}
@@ -30,7 +30,7 @@ recap_payload:
 rendered:
   title:  "You were a Color Scout today!"
   line_1: "We noticed a lot of {runtime_color}."
-  line_2: "You collected 3 {runtime_color} things."
-  line_3: "The {runtime_entity} helped us spot {runtime_color} in our whole world."
+  line_2: "You collected 3 {runtime_color} teammates."
+  line_3: "The {runtime_entity} became the first example in your {runtime_color} Team adventure."
   badge:  "Color Scout"
   next:   "Next time, let's notice shapes too."

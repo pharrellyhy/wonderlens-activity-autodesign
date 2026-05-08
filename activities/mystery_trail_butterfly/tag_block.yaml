@@ -18,21 +18,21 @@ tier_range:
 category: animals
 attributes: [wings, pattern, habitat]
 
-key_concepts: [Connection]
-related_concepts: [pattern, camouflage, symmetry]
+key_concepts: [Form, Connection]
+related_concepts: [habitat, pattern, connection, discovery]
 atl_skills: [observation, classification]
 transdisciplinary_theme: Sharing_The_Planet
 
 kud:
   know:       ["butterflies have patterned wings and depend on flowers, leaves, and water"]
-  understand: ["patterns help butterflies survive in their habitats"]
+  understand: ["flowers, leaves, and wet ground connect into a butterfly habitat"]
   do:         ["find the parts of a butterfly's habitat hidden nearby"]
 
 progression:
   topic_axis: connection
   difficulty_level: 2
-  next_step_hint: "Next time, compare how different animals use patterns"
-  reward_hook: "Earned the Pattern Tracker badge"
+  next_step_hint: "Next time, compare how different animals build secret habitat worlds"
+  reward_hook: "Earned the Butterfly World Detective badge"
 
 caregiver_role: [scaffold, co-explorer]
 
@@ -47,10 +47,10 @@ activity_signature:
     secondary: [color, shape]
 
   # ── Layer 2: presentation (author templates; runtime renders) ──
-  focal_attribute: "butterfly_wing_pattern"
-  intro: "The child hunts for three more things that share the {entity}'s wing pattern, connecting patterns across the world."
-  preview_label:  "Trail the mystery patterns!"
-  preview_prompt: "The butterfly's wings have amazing patterns. Let's find more patterns in nature!"
+  focal_attribute: "butterfly_secret_world"
+  intro: "The child follows riddle-clues to map the {entity}'s secret habitat world."
+  preview_label:  "Solve the butterfly's secret world!"
+  preview_prompt: "The butterfly's wings are beautiful. Let's follow clues to find what it needs nearby!"
   role_pivot_note: ""
 
 # ─── §3 · MATCHABILITY (from 2026-04-20 spec) ─────────

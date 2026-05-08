@@ -6,7 +6,7 @@ dashboard_fragment:
     angle: color
     mechanic: collect
     entity_role: exemplar
-    focal_attribute: "{runtime_color}"
+    focal_attribute: "{matched_color}"
     entry_rung: "{runtime_entry_rung}"
     exit_rung:  "{runtime_exit_rung}"
     outcome:    "{runtime_outcome}"         # promote | hold | demote | soft_reframe
@@ -19,6 +19,8 @@ dashboard_fragment:
       cell: "collect × color"                # bumps this cell's count
     key_concepts_exposure:
       Form:
+        angle: color
+      Connection:
         angle: color
     atl_skills_trail:
       - observation

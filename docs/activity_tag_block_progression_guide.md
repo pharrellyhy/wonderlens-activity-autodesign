@@ -42,8 +42,8 @@ activity_id: color_scout_property
 version: 1
 source_entity_exemplar: ladybug
 template_type: cat5
-pillar: Discovery
-game_style: field_experiment
+pillar: Adventure
+game_style: quest_collector
 
 entity: "{parameterized_by_matched_property}"
 entity_class: []
@@ -56,8 +56,8 @@ tier_range:
 category: objects
 attributes: []
 
-key_concepts: [Form]
-related_concepts: [variety, attention]
+key_concepts: [Form, Connection]
+related_concepts: [pattern, similarity, observation, identity]
 atl_skills: [observation, classification]
 transdisciplinary_theme: How_We_Express_Ourselves
 subject_tags: [science]
@@ -65,7 +65,7 @@ subject_tags: [science]
 kud:
   know: ["the focal color appears on many kinds of things"]
   understand: ["color is a property we can use to group things"]
-  do: ["find 3 things that share the focal color"]
+  do: ["find 3 things that share the focal color", "turn the color finds into a team adventure"]
 
 progression:
   topic_axis: form

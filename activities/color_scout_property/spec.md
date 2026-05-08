@@ -29,8 +29,27 @@ The matched color value is substituted into the `{color}` template parameter at 
 
 ## Experience pillar & game style
 
-- **Pillar:** Discovery
+- **Pillar:** Adventure
 - **Game style:** `quest_collector` (criterion-driven collection + detail-harvest + story synthesis)
 - **Mechanic:** `collect`
 - **Observation angle:** `color`
 - **Entity role:** `exemplar` (parameterized — the entity becomes one example of the color class)
+
+## Self-Evaluation Scorecard
+
+Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, and `templates.md` Adventure + Cat5 rules.
+
+| # | Dimension | Score | Notes |
+|---|-----------|-------|-------|
+| 1 | V1 Technical Compliance | PASS | Each photo is processed independently. No OCR, face/expression/pose detection, IMU sensing, non-speech audio detection, or before/after comparison is required. |
+| 2 | Hook & Transition | PASS | Step 1 opens with color wonder around the photographed object, then naturally pivots from "this is red" to "what else is red?" before the quest begins. |
+| 3 | Edge Case Coverage | PASS | Each dialogue step now has ideal, unexpected, and no-response paths; no-response prompts include a 2s wait, and the Cat5 stuck/doesn't-match branches give concrete search redirects. |
+| 4 | IB Completeness | PASS | Form + Connection are named in Basic Info, tag metadata, and the closing. KUD, related concepts, and ATL skills are specific to color grouping, observation, classification, naming, and story co-creation. |
+| 5 | Tier Appropriateness | PASS | T1 quest structure is concrete and achievable: find 3 same-color items, answer short open prompts, and co-create a simple Red Team adventure. |
+| 6 | Dialogue Specificity | PASS | AI lines are concrete, playful dialogue with tone markers; quest verdicts, naming prompts, and celebration lines are written as spoken copy rather than abstract instructions. |
+| 7 | Screen & UI Completeness | PASS | Every step includes specific visual state: color highlight, quest slots, "Red? YES!" stamp, completion banner, adventure trail, and Color Quest badge. |
+| 8 | Entity Mapping Alignment | N/A | Parameterized property-bridge activity; it routes from detected color attributes rather than one mapping-informed entity assignment. |
+| 9 | Game Feel | PASS | Per-find verdicts create uncertainty, the 0/3 to 3/3 quest counter gives stakes, and "QUEST COMPLETE!" unlocks an earned Red Team adventure. |
+| 10 | Pillar Fidelity | PASS | Adventure is now aligned across spec, prod, and tag metadata. The core loop is quest criterion -> collect -> detail harvest -> journey/story synthesis, matching `quest_collector`. |
+
+**Overall**: ALL PASS — 1 issue found and fixed during self-evaluation: package metadata/prod prose had drifted toward Discovery/field_experiment, but the actual runtime loop is Adventure/quest_collector.

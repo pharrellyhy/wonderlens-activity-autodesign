@@ -10,8 +10,8 @@ recap_payload:
   entity_role:     subject
 
   focal_attribute:
-    token: "butterfly_wing_pattern"
-    child_label: "the butterfly's wing pattern"
+    token: "butterfly_secret_world"
+    child_label: "the butterfly's secret world"
     badge_emoji_none: true
 
   highlight_moment: "You mapped the butterfly's whole secret world!"
@@ -22,15 +22,15 @@ recap_payload:
     - {label: "{find_3}", photo: "{photo_3}"}  # e.g. wet spot
 
   difficulty_level: 2
-  next_step_hint:  "Next time, let's compare how different animals use patterns"
+  next_step_hint:  "Next time, let's compare how different animals build secret habitat worlds"
 
   caregiver_observed: co-explorer
-  reward_badge:       pattern_tracker
+  reward_badge:       butterfly_world_detective
 
 rendered:
-  title:  "You tracked the butterfly's mystery trail!"
+  title:  "You were a Butterfly World Detective today!"
   line_1: "We followed riddle-clues through the park."
-  line_2: "Every find turned out to be something the butterfly needs."
+  line_2: "Every find was part of the butterfly's habitat."
   line_3: "You mapped the butterfly's secret world — its food, shelter, and water."
-  badge:  "Pattern Tracker"
-  next:   "Next time, let's compare how different animals use patterns."
+  badge:  "Butterfly World Detective"
+  next:   "Next time, let's compare how different animals build secret habitat worlds."

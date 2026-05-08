@@ -14,7 +14,7 @@ recap_payload:
     child_label: "polka dots"
     badge_emoji_none: true
 
-  highlight_moment: "You found THREE spotted treasures!"
+  highlight_moment: "You led THREE spotted treasures on patrol!"
 
   finds:
     - {label: "{find_1}", photo: "{photo_1}"}
@@ -30,7 +30,7 @@ recap_payload:
 rendered:
   title:  "You were a Polka-Dot Patrol Officer today!"
   line_1: "We noticed polka dots hiding everywhere."
-  line_2: "You collected 3 spotted treasures with totally different dots."
-  line_3: "The {runtime_entity} helped us spot the same pattern in a whole new world."
-  badge:  "Polka Dot Patrol"
+  line_2: "You collected and named 3 spotted treasures."
+  line_3: "Your patrol followed one dotted pattern into a tiny parade."
+  badge:  "Polka-Dot Patrol"
   next:   "Next time, let's compare dots to stripes or zigzags."

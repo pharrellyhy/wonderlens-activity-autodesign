@@ -24,13 +24,13 @@ recap_payload:
   difficulty_level: 2
   next_step_hint:  "Next time, let's try voicing a different animal"
 
-  caregiver_observed: co-explorer
-  reward_badge:       voice_stage
+  caregiver_observed: scaffold
+  reward_badge:       roar_star
 
 rendered:
-  title:  "You gave the lion a voice!"
+  title:  "You were the Roar Star today!"
   line_1: "We heard a happy roar, a sleepy roar, and a whisper roar."
   line_2: "Same lion — three totally different feelings."
   line_3: "The judges loved every one of your roars!"
-  badge:  "Voice Stage Lion"
+  badge:  "Roar Star"
   next:   "Next time, let's try voicing a different animal."

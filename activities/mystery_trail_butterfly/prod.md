@@ -7,7 +7,7 @@
 | Activity Name | The Butterfly World Detectives |
 | Activity Category | Collection/Tracking Exploration (Out-of-Device) |
 | Recommended Tier | T1 (ages 4–6) |
-| Core IB Key Concepts | Form, Causation |
+| Core IB Key Concepts | Form, Connection |
 | Related Concepts | Habitat, Pattern, Connection, Discovery |
 | ATL Skills Focus | Research Skills (observation, data collection), Thinking Skills (critical thinking, transfer), Communication Skills (expressing reasoning) |
 | Game Style | mystery_trail |
@@ -65,7 +65,7 @@ mechanically for a bridged entity.
 
 - **② Educational Purpose (KUD)**:
   - **K (Know)**: Learn the vocabulary "nectar," "habitat," "shelter," "wings," "antenna." Learn that butterflies need specific things to survive — flowers for nectar, leaves for resting, puddles for water, and plants for laying eggs.
-  - **U (Understand)**: Understand that the Form of things in nature (bright colors, flat surfaces, wet spots) reveals clues about why they exist in a particular place, and that Causation explains why butterflies live where they do — each element of their habitat serves a purpose.
+  - **U (Understand)**: Understand that the Form of things in nature (bright colors, flat surfaces, wet spots) reveals clues, and that Connection links those different things into one butterfly habitat.
   - **D (Do)**: Practice deductive reasoning from riddle-clues, search for and photograph matching items outdoors, and articulate why all their finds are connected.
 
 - **③ Design Highlight**: The "Butterfly World Detectives" frame transforms a nature scavenger hunt into a mystery investigation. The key mechanism is riddle-driven search with a delayed pattern reveal: the child doesn't know WHY they're finding these specific things until the end, when the AI reveals that every single find is something a butterfly needs. The riddles are sensory and playful ("I'm bright and I smell sweet..."), making each search feel like solving a puzzle. The magic moment — "Everything you found is part of your butterfly's secret world!" — reframes the entire activity retroactively, giving the child an "I figured it out!" rush.
@@ -132,11 +132,91 @@ mechanically for a bridged entity.
 
 **Screen:** New photo slides into first slot with golden sparkles and "SOLVED!" animation. Flower icon appears. Counter: "Clue 1 of 3 — SOLVED!" and "CLUE #2" banner pulses.
 
-**Round 2 — Riddle-Clue #2: The Leaf:** AI gives riddle about something "green and flat" that creatures hide under and eat for lunch. Child searches for a leaf. AI reveals leaves are butterfly shelter and caterpillar food.
+**Round 2 — Riddle-Clue #2: The Leaf**
 
-**Round 3 — Riddle-Clue #3: The Puddle / Wet Spot:** AI gives riddle about something "wet on the ground" that butterflies visit to drink (not swim). Child searches for a puddle, damp mud, or wet spot. AI reveals butterflies "puddle" to drink minerals. Includes stuck branch with hints about dark/damp dirt near tree trunks.
+**AI says:** (building excitement, mystery voice) "Riddle-Clue number TWO! Here it comes, Detective... I'm thinking of something that's green and flat. It can be big or small. Tiny creatures like to hide UNDER it when it rains. And some creatures even eat it for lunch! Can you find one? Go search and snap a photo!"
 
-**Round 4 (Optional Bonus):** Bonus riddle about something "small, round, and colorful" — a berry or seed that birds near butterflies eat. Only played if child is highly engaged.
+**Child responses:**
+
+1. (Ideal) Child photographs a leaf. "A leaf!" / "This big green one!" / "Here!"
+2. (Unexpected) Child photographs grass, moss, or something else green. "Is it the grass?" / "This green thing?"
+3. (No response / stuck) Child looks around without photographing.
+
+**AI follow-up:**
+
+1. (impressed) "A leaf — BRILLIANT, Detective! Leaves are like little green umbrellas — butterflies hide under them when it's rainy or too hot. And baby caterpillars — that's what butterflies used to be — they MUNCH on leaves for food! Second clue — SOLVED! One more to go!"
+2. (validating, then redirecting) "Ooh, grass IS green! You're on the right track — but my riddle says something FLAT that creatures hide UNDER. Think bigger and flatter — something on a bush or a tree, something that could be like a tiny roof. Look up at the branches or on a bush — do you see something flat and green?"
+3. (wait 2s) (helpful) "Detective hint! Look at any tree or bush near you. See those flat, green things growing on the branches? They're like tiny green blankets! Grab a photo of one you can reach!"
+
+**STUCK BRANCH** (if child still cannot find a leaf):
+
+**AI says:** (reassuring) "That's okay! Look near a tree, a bush, or even right on the ground. A leaf can be huge or tiny, fresh green or crunchy brown. Find something flat that came from a plant."
+
+**Child responses:**
+
+1. (Ideal) "I found one!" / Child spots a leaf.
+2. (Still stuck) "I can't reach it." / "There aren't any."
+3. (No response) Child keeps searching.
+
+**AI follow-up:**
+
+1. (cheering) "Take the photo, Detective! That leaf is clue number two!"
+2. (warm, flexible) "If you can't reach a leaf, photograph a bush, grass, or plant nearby. It still helps us learn about where butterflies rest and where caterpillars eat!"
+3. (wait 2s) (gentle) "Try photographing the closest plant you can see. We can use that as our leaf clue."
+
+**Screen:** Second photo slides into the second slot. A burst of green sparkles and "SOLVED!" animation. A small leaf icon appears. Counter updates to "Clue 2 of 3 — SOLVED!" and "CLUE #3" banner pulses.
+
+**Round 3 — Riddle-Clue #3: The Puddle / Wet Spot**
+
+**AI says:** (dramatic, hushed detective voice) "Last riddle-clue, Detective — this is the tricky one! I'm thinking of something WET. You might find it on the ground. It could be a tiny puddle, or a damp patch of mud, or even drops on a rock. Butterflies visit it, but NOT to swim — they go there to DRINK! Find something wet and take a photo!"
+
+**Child responses:**
+
+1. (Ideal) Child photographs a puddle, wet mud, dew on grass, or a damp spot. "A puddle!" / "Wet mud!" / "I found water!"
+2. (Unexpected) Child photographs a water fountain, a bottle, or a dry patch. "Is it this?" / "I found a fountain!"
+3. (No response / stuck) Child cannot find anything wet.
+
+**AI follow-up:**
+
+1. (thrilled, almost shouting) "YES! You found it, Detective! Butterflies actually drink from puddles and wet mud — it's called 'puddling!' The wet ground has tiny minerals that butterflies need, like vitamins! Final clue — SOLVED! ALL clues solved!"
+2. (encouraging) "That does have water! But my riddle is about something on the GROUND — a puddle, a damp muddy spot, or even wet leaves. Butterflies land on the ground to drink! Look near a shady spot or where the ground dips down — any wet patches?"
+3. (wait 2s) (helpful whisper) "This one IS tricky! Look for a shady spot near a tree or a low place in the ground — water collects there. Even a patch of dark, damp dirt counts! Or check near a water fountain or faucet — the ground is often wet nearby."
+
+**STUCK BRANCH** (if child truly cannot find anything wet):
+
+**AI says:** (reassuring) "It's a dry day! That's okay, Detective. Look for the DARKEST patch of dirt you can find — dark dirt is usually a little damp. Or check near a tree trunk at the very bottom — it's often moist there. Even one drop on a leaf counts!"
+
+**Child responses:**
+
+1. (Ideal) "I found some dark dirt!" / Child photographs a damp-looking area.
+2. (Still stuck) "Everything is dry!" / "I can't find water."
+3. (No response) Child keeps looking.
+
+**AI follow-up:**
+
+1. (encouraging) "Perfect — go photograph it! Dark dirt is damp dirt, and butterflies love it!"
+2. (warm, flexible) "That's totally fine! Take a photo of anything near the ground — a rock, some dirt, a patch of moss. Butterflies visit ALL of these! We'll count it, Detective!"
+3. (wait 2s) (gentle) "How about this — just photograph the ground near the closest tree. That counts! Butterflies love resting on cool, shady ground."
+
+**Screen:** Third photo slides into the final slot. A big burst of multi-colored sparkles and an "ALL CLUES SOLVED!" animation. All three slots glow with golden borders. A "REVEAL TIME!" banner appears and pulses dramatically. A large magnifying glass icon shimmers in the center.
+
+**Round 4 (Optional Bonus) — If child is highly engaged:**
+
+**AI says:** (excited) "Wait — BONUS clue, Detective! I'm thinking of something small, round, and colorful. It might be a berry, a seed, or a tiny bud. Butterflies don't eat it — but the birds that live near butterflies do! Can you spot one?"
+
+**Child responses:**
+
+1. (Ideal) Child photographs a berry, seed pod, or small bud.
+2. (Unexpected) Child photographs something else round and colorful.
+3. (No response / wants to move on) "What's the secret?" / "Tell me!"
+
+**AI follow-up:**
+
+1. (amazed) "Bonus clue SOLVED! Birds eat berries and seeds, and birds and butterflies share the same park — they're neighbors! Now — are you ready for the BIG secret?"
+2. (accepting) "That's a great find! It's round and colorful — I'll count it! Now — ready for the BIG secret?"
+3. (laughing) "You want the secret? I don't blame you — okay, here it comes!"
+
+**Screen:** If bonus round played, a bonus "star" slot lights up next to the three main slots. Then the "REVEAL TIME!" banner appears.
 
 #### Step 4: Celebration
 
@@ -160,6 +240,12 @@ mechanically for a bridged entity.
 
 **AI says:** (amazed, reflective) "Detective, look at your map — a flower, a leaf, and a wet spot. They look SO different from each other! But they ALL ended up being things your butterfly needs. Why do you think the butterfly picked THIS park to live in?"
 
+**Child responses:**
+
+1. (Ideal) "Because it has flowers and leaves!" / "It has everything!" / child names a habitat element
+2. (Unexpected) "Because it is pretty!" / "Because it likes it!" / child gives a general preference
+3. (No response) Child looks at the habitat map.
+
 **AI follow-up:**
 
 1. (delighted) "Exactly! This park has EVERYTHING a butterfly needs — food, water, shelter — all in one place. That's why it lives here!"
@@ -168,16 +254,18 @@ mechanically for a bridged entity.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, proud celebration) "Congratulations, Butterfly World Detective! You did something incredible today. You looked closely at the **Form** of things — bright petals, flat green leaves, wet ground — and you figured out what they really are. And you discovered the **Causation** — the reason your butterfly lives here. It's not by accident — every single thing you found is something the butterfly NEEDS. Flowers, leaves, water — they all have a job! You earned your Butterfly World Detective Badge!"
+**AI says:** (warm, proud celebration) "Congratulations, Butterfly World Detective! You did something incredible today. You looked closely at the **Form** of things — bright petals, flat green leaves, wet ground — and you figured out what they really are. And you discovered the **Connection** — the flower, the leaf, and the wet ground all link together into your butterfly's secret world. Flowers, leaves, water — they all have a job! You earned your Butterfly World Detective Badge!"
 
 **Child responses:**
 
 1. (Engaged) Cheers, talks about butterflies, wants to find more.
-2. (Quiet) Smiles or says nothing.
+2. (Unexpected) "Can we find a bee world?" / "I liked the puddle!" / child asks about another creature or clue.
+3. (No response) Smiles or says nothing.
 
 **AI follow-up:**
 
 1. (encouraging) "Next time you see a butterfly, look around — see if you can spot its flower restaurant, its leaf bedroom, and its puddle fountain! You'll see its whole world now. Bye for now, Detective!"
-2. (warm) "Your detective badge is saved! Every butterfly you see has its own secret world — now YOU know how to find it. Bye, Detective!"
+2. (warm) "A bee world would have clues too! Today you solved the butterfly world, and your detective badge is saved. Bye, Detective!"
+3. (wait 2s) (warm) "Your detective badge is saved! Every butterfly you see has its own secret world — now YOU know how to find it. Bye, Detective!"
 
-**Screen:** Golden "Butterfly World Detective Badge" — circular, butterfly silhouette center, 3 collection photos as insets with connection labels. "Form" styled with petal-shaped fills, "Causation" with arrow-chain links. Habitat icon between concepts. Soft chime. Animated butterflies drift and settle on badge.
+**Screen:** Golden "Butterfly World Detective Badge" — circular, butterfly silhouette center, 3 collection photos as insets with connection labels. "Form" styled with petal-shaped fills, "Connection" with linked habitat lines. Habitat icon between concepts. Soft chime. Animated butterflies drift and settle on badge.

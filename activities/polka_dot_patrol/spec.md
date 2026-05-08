@@ -32,8 +32,27 @@ Because the trigger is pattern-as-property, the entity functions as an *exemplar
 
 ## Experience pillar & game style
 
-- **Pillar:** Discovery
-- **Game style:** `quest_collector` (from the source gold standard — criterion-driven collection of 3 spotted things, with comparison-chart synthesis)
+- **Pillar:** Adventure
+- **Game style:** `quest_collector` (criterion-driven collection of 3 spotted things, with comparison plus patrol-story synthesis)
 - **Mechanic:** `collect`
 - **Observation angle:** `pattern`
 - **Entity role:** `exemplar` (parameterized — the ladybug is one example of the polka-dot pattern class)
+
+## Self-Evaluation Scorecard
+
+Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, and `templates.md` Adventure + Cat5 rules.
+
+| # | Dimension | Score | Notes |
+|---|-----------|-------|-------|
+| 1 | V1 Technical Compliance | PASS | Multi-photo collection is allowed; each photo is assessed independently for visible dots/spots/circles. No blocked OCR, face/pose, IMU, non-speech audio, or state-change detection is required. |
+| 2 | Hook & Transition | PASS | Step 1 starts with delight in the ladybug's polka dots and grows into a patrol mission to find more spotted things, without a sudden quiz-like task assignment. |
+| 3 | Edge Case Coverage | PASS | Every dialogue step now has three child response paths, including no-response branches with waits. The outdoor stuck branch gives concrete hints for flowers, ground, leaves, and bark. |
+| 4 | IB Completeness | PASS | Form + Connection are named in Basic Info, tag metadata, and the closing. KUD covers dot vocabulary, same/different comparison, observation, analysis, and creative naming/storytelling. |
+| 5 | Tier Appropriateness | PASS | The T1 hunt uses concrete visual language (dots, spots, speckles, circles), a 3-find mission, and short comparison/naming prompts suitable for ages 4-6. |
+| 6 | Dialogue Specificity | PASS | AI lines are concrete spoken copy with tone markers; the patrol setup, per-find reactions, comparison prompts, naming prompt, and parade narration are all explicit. |
+| 7 | Screen & UI Completeness | PASS | Each step has specific screen treatment: highlighted ladybug dots, mission card, collection slots, comparison labels, dotted parade path, badge, concept words, and spotted confetti. |
+| 8 | Entity Mapping Alignment | N/A | Parameterized pattern-property activity; it is not a mapping-informed assignment with a required entity YAML read. |
+| 9 | Game Feel | PASS | The patrol mission has visible progress, the final find completes the set, and the new parade story gives the named finds an earned payoff beyond a static comparison chart. |
+| 10 | Pillar Fidelity | PASS | Adventure is now explicit. The activity uses a quest criterion, collection progress, detail naming, and a final patrol-story journey, so `quest_collector` is no longer just a metadata label. |
+
+**Overall**: ALL PASS — 2 issues found and fixed during self-evaluation: the runtime Basic Info still used retired `comparison_chart` wording, and the previous synthesis stopped before the Adventure-style story payoff.

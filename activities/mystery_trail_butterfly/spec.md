@@ -17,7 +17,7 @@ After a child photographs a butterfly on a flower, the AI marvels at the wings a
 
 A butterfly's wing patterns make it a natural observation target, but the deeper idea is that no creature exists in isolation — it lives inside a web of food, shelter, and water sources. This activity doesn't *tell* the child that, it *walks them through it* via three riddle-clues, then reframes the collection at the end ("Everything you found is your butterfly's secret world!"). The child assembles the habitat concept themselves, which is the IB learning-moment the Mystery pillar targets.
 
-The delayed-reveal structure also models scientific inference: observations come first, the pattern emerges second. The riddle-voice ("I'm thinking of something nearby. It's bright and colorful, it has a sweet smell...") is sensory and concrete, keeping the inference accessible at T1. **Form** is the clue layer (bright petals, flat green leaves, wet ground); **Causation** (the original spec's second Key Concept) is the reveal layer (why the butterfly chose this park). We also surface **Connection** via the habitat web — pattern is a strong related concept here because wing patterns are what first drew the child's eye.
+The delayed-reveal structure also models scientific inference: observations come first, the pattern emerges second. The riddle-voice ("I'm thinking of something nearby. It's bright and colorful, it has a sweet smell...") is sensory and concrete, keeping the inference accessible at T1. **Form** is the clue layer (bright petals, flat green leaves, wet ground); **Connection** is the reveal layer, because the flower, leaf, and wet spot become one habitat web. Pattern remains a strong related concept because wing patterns are what first drew the child's eye.
 
 ## Selection trigger
 
@@ -41,3 +41,22 @@ Constellation neighbors (bee, moth, ladybug, dragonfly) substitute via `data/con
 - **Mechanic:** `collect`
 - **Observation angle:** `pattern` (the butterfly's wing pattern is the entry hook; the habitat pattern is the hidden reveal)
 - **Entity role:** `subject` (the butterfly IS the case to solve — no role pivot)
+
+## Self-Evaluation Scorecard
+
+Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, and `templates.md` Mystery + Cat5 rules.
+
+| # | Dimension | Score | Notes |
+|---|-----------|-------|-------|
+| 1 | V1 Technical Compliance | PASS | The activity uses independent photos and dialogue-based riddle solving. It does not require OCR, face/pose detection, IMU sensing, non-speech audio recognition, or before/after visual comparison. |
+| 2 | Hook & Transition | PASS | Step 1 opens with wonder at the butterfly's wings and flower choice, then moves naturally into "what else is part of its secret world?" |
+| 3 | Edge Case Coverage | PASS | Dialogue steps include ideal, unexpected, and no-response paths with 2s waits where relevant; the search rounds include concrete stuck hints and validation before redirecting wrong guesses. |
+| 4 | IB Completeness | PASS | Form + Connection now align across Basic Info, closing, and tag metadata. KUD covers nectar/habitat/shelter vocabulary, habitat connection, riddle deduction, outdoor search, and reasoning expression. |
+| 5 | Tier Appropriateness | PASS | T1 riddles use concrete sensory clues and a manageable listen -> search -> photograph loop; habitat terms are introduced in context rather than tested upfront. |
+| 6 | Dialogue Specificity | PASS | The riddle-clues, validations, reveal, reflection, and closing are concrete spoken lines with tone markers rather than abstract author notes. |
+| 7 | Screen & UI Completeness | PASS | Each step has specific visuals: wing glow, detective badge, clue slots, solved animations, habitat map, labeled connection lines, and Butterfly World Detective badge. |
+| 8 | Entity Mapping Alignment | N/A | Bound activity uses entity attributes in tag metadata, but this was not generated from a `mapping=` assignment requiring full mapping-informed D8 checks. |
+| 9 | Game Feel | PASS | The child solves clue-riddles without knowing the hidden pattern, and the Step 4 habitat reveal retroactively reframes all finds as the butterfly's secret world. |
+| 10 | Pillar Fidelity | PASS | Mystery is clear from the riddle-clue loop, delayed reveal, detective role, and "I figured it out" payoff. Updated tag metadata now describes the same habitat mystery as the runtime flow. |
+
+**Overall**: ALL PASS — 2 issues found and fixed during self-evaluation: the tag block still described a generic pattern hunt, and the closing used Causation where the current Mystery/Cat5 design is Form + Connection.
