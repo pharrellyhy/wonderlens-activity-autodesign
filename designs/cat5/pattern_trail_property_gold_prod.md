@@ -53,7 +53,7 @@ entity_attributes_covered:
 
 **Context**: Child photographs any object where AI detects a visual pattern. Example: a striped shirt.
 
-**AI says:** *(breathless, delighted)* "Ohhh -- look at your shirt! Do you see those LINES going side by side? Those are called STRIPES! They go this way and that way, marching together like a team. Your shirt has a PATTERN! Have you ever noticed stripes on other things too?"
+**AI says:** [breathless, delighted] "Ohhh -- look at your shirt! Do you see those LINES going side by side? Those are called STRIPES! They go this way and that way, marching together like a team. Your shirt has a PATTERN! Have you ever noticed stripes on other things too?"
 
 **Child responses:**
 
@@ -63,15 +63,15 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (excited, conspiratorial) "YES! Zebras have stripes, socks have stripes -- stripes are sneaky, they show up EVERYWHERE! But here's the thing -- stripes aren't the ONLY pattern out there. There are spots, zigzags, wavy lines... I bet there are MORE patterns hiding all around you RIGHT NOW. What if we could find them?"
-2. (warm, curious) "It IS a great shirt! And those blue and white lines? That's a PATTERN called stripes! But here's a secret -- your shirt isn't the only thing with a pattern. There are spots, zigzags, all kinds of patterns hiding nearby. Want to find them?"
-3. (wait 2s) (gentle, wondering) "See those lines on your shirt? They repeat -- over and over -- side by side. That's a pattern called stripes! And I bet there are MORE patterns hiding all around you. I have an idea -- want to be a detective and find them?"
+1. [excited, conspiratorial] "YES! Zebras have stripes, socks have stripes -- stripes are sneaky, they show up EVERYWHERE! But here's the thing -- stripes aren't the ONLY pattern out there. There are spots, zigzags, wavy lines... I bet there are MORE patterns hiding all around you RIGHT NOW. What if we could find them?"
+2. [warm, curious] "It IS a great shirt! And those blue and white lines? That's a PATTERN called stripes! But here's a secret -- your shirt isn't the only thing with a pattern. There are spots, zigzags, all kinds of patterns hiding nearby. Want to find them?"
+3. (wait 2s) [gentle, wondering] "See those lines on your shirt? They repeat -- over and over -- side by side. That's a pattern called stripes! And I bet there are MORE patterns hiding all around you. I have an idea -- want to be a detective and find them?"
 
 **Screen:** Trigger photo centered with animated highlight lines tracing the detected pattern. "STRIPES" in bold, striped-textured letters. Pulsing magnifying glass icon with "?" in the corner.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** *(adventurous, detective tone)* "Alright -- you are now an official Pattern Detective! Here's your mission: I'm going to give you riddle-clues about things hiding nearby. Each one has a DIFFERENT kind of pattern! You search, you guess, and you take a photo. After you find them all, I'll tell you the SECRET that connects everything. Ready, Detective?"
+**AI says:** [adventurous, detective tone] "Alright -- you are now an official Pattern Detective! Here's your mission: I'm going to give you riddle-clues about things hiding nearby. Each one has a DIFFERENT kind of pattern! You search, you guess, and you take a photo. After you find them all, I'll tell you the SECRET that connects everything. Ready, Detective?"
 
 **Child responses:**
 
@@ -81,9 +81,9 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (thrilled) "Here comes your first riddle-clue! Listen carefully, Detective..."
-2. (encouraging) "A pattern is when something REPEATS -- like the stripes on your shirt, the same lines over and over! I'll give you riddle-clues and you just listen, look, and search. Here comes the first one..."
-3. (wait 2s) (playful whisper) "Okay Detective, here's how it works -- I describe something with a pattern, you find it! Easy! Let's start with your very first riddle-clue..."
+1. [thrilled] "Here comes your first riddle-clue! Listen carefully, Detective..."
+2. [encouraging] "A pattern is when something REPEATS -- like the stripes on your shirt, the same lines over and over! I'll give you riddle-clues and you just listen, look, and search. Here comes the first one..."
+3. (wait 2s) [playful whisper] "Okay Detective, here's how it works -- I describe something with a pattern, you find it! Easy! Let's start with your very first riddle-clue..."
 
 **Screen:** Detective-themed mission card with "Pattern Detective" badge, magnifying glass over pattern mosaic, 3 empty circle slots, trigger photo above with golden star, pulsing "CLUE #1" banner.
 
@@ -91,7 +91,7 @@ entity_attributes_covered:
 
 **Round 1 -- Riddle-Clue #1: Something with Spots (full detail)**
 
-**AI says:** *(mysterious, slow riddle voice)* "Riddle-Clue number one! Listen closely, Detective... I'm thinking of something nearby. It's small and has SPOTS -- like tiny painted dots, scattered all over it. The dots might be dark on something light, or light on something dark. Can you find something with spots? Go look and take a photo!"
+**AI says:** [mysterious, slow riddle voice] "Riddle-Clue number one! Listen closely, Detective... I'm thinking of something nearby. It's small and has SPOTS -- like tiny painted dots, scattered all over it. The dots might be dark on something light, or light on something dark. Can you find something with spots? Go look and take a photo!"
 
 **Child responses:**
 
@@ -102,8 +102,8 @@ entity_attributes_covered:
 **AI follow-up:**
 
 1. (triumphant) "YES, Detective! Look at those SPOTS -- little dots sprinkled all over! Each dot is like a tiny circle, and they repeat across the whole thing. That's a pattern called SPOTS! Different from your stripes -- stripes are lines, but spots are DOTS! First clue -- SOLVED! Two more to go!"
-2. (thoughtful, encouraging) "Ooh, interesting find! My riddle is about something with SPOTS -- tiny dots or circles repeated across it. Think of a ladybug's back, or a shirt with polka dots, or even a leaf with little bumps. Can you find something with dots on it?"
-3. (wait 2s) (helpful whisper) "Detective hint! Spots are tiny dots or circles that repeat. Look at the ground -- do you see a stone with speckles? Or check your clothes -- any polka dots? Even a bumpy rock with different-colored flecks counts!"
+2. [thoughtful, encouraging] "Ooh, interesting find! My riddle is about something with SPOTS -- tiny dots or circles repeated across it. Think of a ladybug's back, or a shirt with polka dots, or even a leaf with little bumps. Can you find something with dots on it?"
+3. (wait 2s) [helpful whisper] "Detective hint! Spots are tiny dots or circles that repeat. Look at the ground -- do you see a stone with speckles? Or check your clothes -- any polka dots? Even a bumpy rock with different-colored flecks counts!"
 
 **Screen:** Photo slides into first slot with spotted sparkles and "SOLVED!" animation. Spots icon appears. Counter: "Clue 1 of 3 -- SOLVED!" and "CLUE #2" pulses.
 
@@ -113,7 +113,7 @@ entity_attributes_covered:
 
 #### Step 4: Celebration
 
-**AI says:** *(slow, dramatic build-up)* "Okay, Pattern Detective -- look at everything you found. Something with spots... something with zigzags... something with lines in a row... And remember where we started -- your shirt with STRIPES! Now here's the SECRET I've been hiding... *(dramatic pause)* ...EVERYTHING you found has a PATTERN! Spots, zigzags, lines, stripes -- they're ALL patterns! Nature and people BOTH love making patterns! Stripes, spots, zigzags -- PATTERNS ARE EVERYWHERE!"
+**AI says:** [slow, dramatic build-up] "Okay, Pattern Detective -- look at everything you found. Something with spots... something with zigzags... something with lines in a row... And remember where we started -- your shirt with STRIPES! Now here's the SECRET I've been hiding... [dramatic pause] ...EVERYTHING you found has a PATTERN! Spots, zigzags, lines, stripes -- they're ALL patterns! Nature and people BOTH love making patterns! Stripes, spots, zigzags -- PATTERNS ARE EVERYWHERE!"
 
 **Child responses:**
 
@@ -122,23 +122,23 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (celebrating) "You DID find them all! Spots are dots that repeat. Zigzags are angles that repeat. Lines are straight rows that repeat. Stripes are bands that repeat. They all REPEAT -- that's what makes them patterns! And you found them in totally different places -- on clothes, on the ground, on plants! Patterns connect EVERYTHING!"
-2. (validating) "It IS cool! There are even MORE patterns -- spirals that swirl, waves that roll, checks that crisscross. Every time you look at something, ask: does it have a pattern? I bet the answer is YES!"
+1. [celebrating] "You DID find them all! Spots are dots that repeat. Zigzags are angles that repeat. Lines are straight rows that repeat. Stripes are bands that repeat. They all REPEAT -- that's what makes them patterns! And you found them in totally different places -- on clothes, on the ground, on plants! Patterns connect EVERYTHING!"
+2. [validating] "It IS cool! There are even MORE patterns -- spirals that swirl, waves that roll, checks that crisscross. Every time you look at something, ask: does it have a pattern? I bet the answer is YES!"
 
 **Reflection prompt:**
 
-**AI says:** *(amazed, reflective)* "Detective, look at your collection -- stripes, spots, zigzags, and lines. They look SO different from each other! But they ALL turned out to be patterns. Why do you think there are so many different KINDS of patterns?"
+**AI says:** [amazed, reflective] "Detective, look at your collection -- stripes, spots, zigzags, and lines. They look SO different from each other! But they ALL turned out to be patterns. Why do you think there are so many different KINDS of patterns?"
 
 **AI follow-up:**
 
-1. (delighted) "Exactly! Different patterns do different jobs! Stripes on a zebra help it hide. Spots on a ladybug warn predators. Zigzags on a snake help it blend in. Patterns aren't just pretty -- they're USEFUL!"
-2. (warmly) "They ARE pretty! And patterns aren't just for looking at. Stripes help zebras hide, spots warn predators away, zigzags help snakes blend in. Pretty AND useful!"
+1. [delighted] "Exactly! Different patterns do different jobs! Stripes on a zebra help it hide. Spots on a ladybug warn predators. Zigzags on a snake help it blend in. Patterns aren't just pretty -- they're USEFUL!"
+2. [warmly] "They ARE pretty! And patterns aren't just for looking at. Stripes help zebras hide, spots warn predators away, zigzags help snakes blend in. Pretty AND useful!"
 
 **Screen:** Collection photos in a circle around trigger photo. Golden connection lines with labels: "SPOTS," "ZIGZAGS," "LINES." Trigger labeled "STRIPES." Shimmering "PATTERNS" word above in mixed-pattern-textured letters. Nature examples animate: zebra stripes, ladybug spots, snake zigzags.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** *(warm, proud celebration)* "Congratulations, Pattern Detective! You did something incredible today. You looked closely at the **Form** of things -- the stripes, the spots, the zigzags, the lines -- and you recognized that they're all patterns. And you discovered the **Connection** -- that patterns link totally different things together! A shirt and a leaf and a sidewalk crack -- all connected by pattern! You earned your Pattern Detective Badge!"
+**AI says:** [warm, proud celebration] "Congratulations, Pattern Detective! You did something incredible today. You looked closely at the **Form** of things -- the stripes, the spots, the zigzags, the lines -- and you recognized that they're all patterns. And you discovered the **Connection** -- that patterns link totally different things together! A shirt and a leaf and a sidewalk crack -- all connected by pattern! You earned your Pattern Detective Badge!"
 
 **Child responses:**
 
@@ -147,7 +147,7 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (encouraging) "Next time you go outside, look at EVERYTHING around you -- clothes, leaves, buildings, bugs -- and ask: what's YOUR pattern? You'll see stripes, spots, and zigzags everywhere! Bye for now, Detective!"
-2. (warm) "Your detective badge is saved! Patterns are hiding everywhere -- now YOU know how to spot them. Bye, Detective!"
+1. [encouraging] "Next time you go outside, look at EVERYTHING around you -- clothes, leaves, buildings, bugs -- and ask: what's YOUR pattern? You'll see stripes, spots, and zigzags everywhere! Bye for now, Detective!"
+2. [warm] "Your detective badge is saved! Patterns are hiding everywhere -- now YOU know how to spot them. Bye, Detective!"
 
 **Screen:** Golden "Pattern Detective Badge" -- circular, magnifying glass over pattern mosaic center, 3 collection photos with pattern labels, trigger photo at top. "Form" in mixed-pattern-filled letters, "Connection" with golden thread-link weaving between letters. Pattern mosaic icon between concepts. Soft chime. Pattern fragments drift and settle on badge.

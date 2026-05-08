@@ -56,7 +56,7 @@ entity_attributes_covered:
 
 > **Context**: Child photographs a bouncy rubber ball with no prior conversation. AI detects properties: round, bouncy.
 >
-> **AI says**: "*(delighted gasp)* Whoa! A BALL! And it's SO bouncy! I can tell — look how round it is! If your ball could be in a talent show, it would BOUNCE right onto the stage! Boing boing boing! Can you show me? What does your ball sound like when it bounces?"
+> **AI says**: "[delighted gasp] Whoa! A BALL! And it's SO bouncy! I can tell — look how round it is! If your ball could be in a talent show, it would BOUNCE right onto the stage! Boing boing boing! Can you show me? What does your ball sound like when it bounces?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Boing boing!" / "Bounce bounce!" / child makes bouncing sounds
@@ -64,15 +64,15 @@ entity_attributes_covered:
 > 3. (No response) Child stares at the screen or touches the ball.
 >
 > **AI follow-up**:
-> 1. "*(amazed, jaw-drop)* BOING BOING! WOW! That was the BOUNCIEST sound I ever heard! You know what? Some silly judges heard that bounce. They want MORE! Want to put on a BIG bouncy show?"
-> 2. "*(warm, excited)* Your ball! So round and bouncy! I bet it has the best bounce sound hiding inside. Want to help it do a BIG show? Some silly judges want to see it bounce!"
-> 3. *(waits 2 seconds)* "*(playful whisper)* Psst... I think your ball wants to go BOING! Can you help? Some silly judges are waiting to see the bounciest show ever!"
+> 1. "[amazed, jaw-drop] BOING BOING! WOW! That was the BOUNCIEST sound I ever heard! You know what? Some silly judges heard that bounce. They want MORE! Want to put on a BIG bouncy show?"
+> 2. "[warm, excited] Your ball! So round and bouncy! I bet it has the best bounce sound hiding inside. Want to help it do a BIG show? Some silly judges want to see it bounce!"
+> 3. [waits 2 seconds] "[playful whisper] Psst... I think your ball wants to go BOING! Can you help? Some silly judges are waiting to see the bounciest show ever!"
 >
 > **Screen**: Ball photo centered on screen with a bright, colorful stage background — spotlight beams, curtain edges. Soft bouncing animation on the ball photo — gentle up-down wobble. Three small shadowed character silhouettes (a penguin with a scorecard, a hamster with popcorn, and a giraffe with a big grin) peek in from the right edge, as if curious.
 
 **Step 2: Game Setup + Demo — "The [Property] Talent Show"**
 
-> **AI says**: "*(excited announcer voice)* Welcome to the Bouncy Talent Show! Three judges are here! Penguin... Hamster... and tall Giraffe! They want to see YOUR ball bounce! I tell you HOW to bounce. You bounce! Judges go CRAZY! Watch — ball says HELLO! BOING! Ohhh! Penguin dropped his scorecard! Ha! Your turn now!"
+> **AI says**: "[excited announcer voice] Welcome to the Bouncy Talent Show! Three judges are here! Penguin... Hamster... and tall Giraffe! They want to see YOUR ball bounce! I tell you HOW to bounce. You bounce! Judges go CRAZY! Watch — ball says HELLO! BOING! Ohhh! Penguin dropped his scorecard! Ha! Your turn now!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child laughs, says "BOING!" or "OK!" eagerly.
@@ -80,9 +80,9 @@ entity_attributes_covered:
 > 3. (No response) Child watches quietly with interest.
 >
 > **AI follow-up**:
-> 1. "*(cheering)* YES! Here comes Round One! Judges are ready! Penguin has his scorecard. Hamster has popcorn. Giraffe is stretching her neck to see! Let's GO!"
-> 2. "*(warm, playful)* Judges are silly friends watching the show! Hamster loves bouncing! Ready? You bounce, judges go WOW! Here comes Round One!"
-> 3. *(waits 2 seconds)* "*(encouraging, gentle)* It's easy! Just bounce when I say! Judges love EVERY bounce! Ready? Here comes the first one!"
+> 1. "[cheering] YES! Here comes Round One! Judges are ready! Penguin has his scorecard. Hamster has popcorn. Giraffe is stretching her neck to see! Let's GO!"
+> 2. "[warm, playful] Judges are silly friends watching the show! Hamster loves bouncing! Ready? You bounce, judges go WOW! Here comes Round One!"
+> 3. [waits 2 seconds] "[encouraging, gentle] It's easy! Just bounce when I say! Judges love EVERY bounce! Ready? Here comes the first one!"
 >
 > **Screen**: "BOUNCY TALENT SHOW" banner in bright, bouncy lettering at top. Ball photo at center-left on a small stage platform. Three judge characters appear on the right: a tuxedoed penguin holding a scorecard, a hamster with tiny popcorn, and a giraffe whose head pokes in from above — all drawn in friendly cartoon style with eager faces. A "Round 1" star badge glows in the corner.
 
@@ -92,7 +92,7 @@ entity_attributes_covered:
 
 **Round 1 — "The BIGGEST Bounce!" (Big, bold, high-success)**
 
-> **AI says**: "*(bright announcer)* Round One! Your ball is on stage! Show the judges your BIGGEST, BOUNCIEST bounce! Ready? GO! BOING BOING BOING!"
+> **AI says**: "[bright announcer] Round One! Your ball is on stage! Show the judges your BIGGEST, BOUNCIEST bounce! Ready? GO! BOING BOING BOING!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "BOING BOING BOING!" / "BOUNCE!" / child bounces or makes loud bouncing sounds
@@ -100,15 +100,15 @@ entity_attributes_covered:
 > 3. (No response) Child is quiet or shy.
 >
 > **AI follow-up**:
-> 1. "*(audience goes wild)* OHHH! Penguin DROPPED his scorecard — it says TEN! Hamster is jumping up and down — the popcorn is flying EVERYWHERE! Giraffe's neck is wobbling like jelly! They LOVED that big bouncy bounce! BIG gold star!"
-> 2. "*(delighted, laughing)* Wheee?! Ha! The judges LOVE surprises! Penguin wrote 'WOW' on his scorecard! Hamster fell over giggling! Giraffe is nodding so hard her spots are jiggling! Gold star for the surprise sound!"
-> 3. *(waits 2 seconds)* "*(gentle, encouraging)* Even a tiny boing counts! Try a little one... boing? The judges are leaning forward with their big silly faces!"
+> 1. "[audience goes wild] OHHH! Penguin DROPPED his scorecard — it says TEN! Hamster is jumping up and down — the popcorn is flying EVERYWHERE! Giraffe's neck is wobbling like jelly! They LOVED that big bouncy bounce! BIG gold star!"
+> 2. "[delighted, laughing] Wheee?! Ha! The judges LOVE surprises! Penguin wrote 'WOW' on his scorecard! Hamster fell over giggling! Giraffe is nodding so hard her spots are jiggling! Gold star for the surprise sound!"
+> 3. [waits 2 seconds] "[gentle, encouraging] Even a tiny boing counts! Try a little one... boing? The judges are leaning forward with their big silly faces!"
 >
 > **Screen**: Stage spotlight on ball photo; bright bounce-lines radiate outward. When child responds: penguin fumbles scorecard showing "10!", hamster bounces with popcorn flying, giraffe's neck wobbles comically. A gold star stamps in the score area. "Round 1 COMPLETE" sparkles.
 
 **Round 2 — "The Slow-Motion Bounce" (Contrasting tempo)**
 
-> **AI says**: "*(soft, dreamy narrator)* Round Two! Sloooow motion! Your ball is bouncing in slow motion now. Boooooing... boooooing... nice and slow, up and down. Can you do the SLOWEST bounce ever? Ready? Slooooow... GO!"
+> **AI says**: "[soft, dreamy narrator] Round Two! Sloooow motion! Your ball is bouncing in slow motion now. Boooooing... boooooing... nice and slow, up and down. Can you do the SLOWEST bounce ever? Ready? Slooooow... GO!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Boooooing... boooooing..." (slow, drawn-out) — child does a slow bounce sound.
@@ -116,15 +116,15 @@ entity_attributes_covered:
 > 3. (No response) Child is quiet or processing.
 >
 > **AI follow-up**:
-> 1. "*(hushed, mesmerized)* Ohhh... look! Penguin's head is going up... and down... up... and down... following the bounce. Hamster put the popcorn down and is swaying. Giraffe's long neck is going baaaack and fooorth like a pendulum. Your slow bounce hypnotized the WHOLE audience! Second gold star!"
-> 2. "*(laughing gently)* A FAST bounce! Ha! The judges jumped! Penguin's scorecard went flying! Hamster says 'Whoa, that was NOT slow!' Giraffe's eyes went wide! Star for the speedy surprise!"
-> 3. *(waits 2 seconds)* "*(gentle, modeling)* Try it like this... boooooing... nice and slooooow, like you're floating. Even a tiny slow boing counts. The judges have their eyes going back and forth!"
+> 1. "[hushed, mesmerized] Ohhh... look! Penguin's head is going up... and down... up... and down... following the bounce. Hamster put the popcorn down and is swaying. Giraffe's long neck is going baaaack and fooorth like a pendulum. Your slow bounce hypnotized the WHOLE audience! Second gold star!"
+> 2. "[laughing gently] A FAST bounce! Ha! The judges jumped! Penguin's scorecard went flying! Hamster says 'Whoa, that was NOT slow!' Giraffe's eyes went wide! Star for the speedy surprise!"
+> 3. [waits 2 seconds] "[gentle, modeling] Try it like this... boooooing... nice and slooooow, like you're floating. Even a tiny slow boing counts. The judges have their eyes going back and forth!"
 >
 > **Screen**: Stage shifts to dreamy slow-motion effect — background stretches with light trails, ball photo gently lifts and lowers in a slow arc. When child responds slowly: penguin's head follows in slow motion, hamster sways gently, giraffe's neck pendulums. Second gold star stamps in. If fast: judges startle comically. "Round 2 COMPLETE" in soft floating letters.
 
 **Round 3 — "SURPRISE — Bounce on the MOON!" (Twist Challenge)**
 
-> **AI says**: "*(dramatic, conspiratorial whisper building to excitement)* Round Three! SURPRISE CHALLENGE! The judges say... what if your ball bounced on the MOON?! No gravity! Super slow! Super HIGH! Your ball goes booooing... up up up UP into SPACE! Nobody has EVER bounced on the moon before! Can you do it? Ready? THREE... TWO... ONE... MOON BOUNCE!"
+> **AI says**: "[dramatic, conspiratorial whisper building to excitement] Round Three! SURPRISE CHALLENGE! The judges say... what if your ball bounced on the MOON?! No gravity! Super slow! Super HIGH! Your ball goes booooing... up up up UP into SPACE! Nobody has EVER bounced on the moon before! Can you do it? Ready? THREE... TWO... ONE... MOON BOUNCE!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Booooing... UP!" / "Wheeeee!" / child makes a slow rising sound / "To the moon!"
@@ -132,15 +132,15 @@ entity_attributes_covered:
 > 3. (No response) Child giggles, looks amazed, or is quiet.
 >
 > **AI follow-up**:
-> 1. "*(absolutely stunned, building to explosion)* LOOK! Your ball is going UP... and UP... and UP... past the stars... past the planets... Penguin's jaw DROPPED! Hamster is standing on the chair screaming 'HIGHER! HIGHER!' Giraffe stretched her neck ALL the way to space to watch! A MOON BOUNCE! The crowd is going BANANAS! THIRD GOLD STAR! The judges have NEVER seen a bounce like THAT!"
-> 2. "*(delighted, amazed)* A big bounce BLASTED right past the moon! The judges' mouths are WIDE open! Penguin wrote 'IMPOSSIBLE!' on his scorecard! Hamster fainted from amazement! Giraffe says 'I can see it from up here!' GOLD STAR for the BLAST-OFF bounce!"
-> 3. *(waits 2 seconds)* "*(encouraging whisper)* The moon is SO far! Try a big slooow one going up up up... even just going 'uuuuup' counts! Penguin is holding his breath! Try it?"
+> 1. "[absolutely stunned, building to explosion] LOOK! Your ball is going UP... and UP... and UP... past the stars... past the planets... Penguin's jaw DROPPED! Hamster is standing on the chair screaming 'HIGHER! HIGHER!' Giraffe stretched her neck ALL the way to space to watch! A MOON BOUNCE! The crowd is going BANANAS! THIRD GOLD STAR! The judges have NEVER seen a bounce like THAT!"
+> 2. "[delighted, amazed] A big bounce BLASTED right past the moon! The judges' mouths are WIDE open! Penguin wrote 'IMPOSSIBLE!' on his scorecard! Hamster fainted from amazement! Giraffe says 'I can see it from up here!' GOLD STAR for the BLAST-OFF bounce!"
+> 3. [waits 2 seconds] "[encouraging whisper] The moon is SO far! Try a big slooow one going up up up... even just going 'uuuuup' counts! Penguin is holding his breath! Try it?"
 >
 > **Screen**: Stage transforms — background shifts to a starry space scene with the moon glowing above. Ball photo rises slowly upward with a glowing trail. "SURPRISE — MOON BOUNCE!" banner flashes in cosmic gold-blue lettering. When child responds: ball arcs upward past illustrated stars and planets. Judges react HUGE — penguin drops everything, hamster stands on chair, giraffe's neck extends past the top of the screen into the stars. EXPLOSION of celebration — confetti bursts into star shapes, cosmic sparkles everywhere. Third gold star stamps in with extra rocket-flame sparkle. "Round 3 COMPLETE — ALL STARS!" flashes.
 
 **Step 4: Payoff — Standing Ovation (The Magic Moment)**
 
-> **AI says**: "*(building excitement, announcer crescendo)* Three rounds! Three gold stars! And now... ALL the judges are standing up! Penguin is holding up his scorecard and it says 'PERFECT!' Hamster is throwing popcorn in the air like confetti! Giraffe is clapping her hooves WAY up high! STANDING OVATION for the ball! The judges say: 'We have NEVER seen a bouncy performance like that! Big bounces, slow bounces, MOON bounces — AMAZING!' You are the BOUNCE STAR!"
+> **AI says**: "[building excitement, announcer crescendo] Three rounds! Three gold stars! And now... ALL the judges are standing up! Penguin is holding up his scorecard and it says 'PERFECT!' Hamster is throwing popcorn in the air like confetti! Giraffe is clapping her hooves WAY up high! STANDING OVATION for the ball! The judges say: 'We have NEVER seen a bouncy performance like that! Big bounces, slow bounces, MOON bounces — AMAZING!' You are the BOUNCE STAR!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child bounces or says "BOING!" triumphantly, giggles, claps, or says "Yay!"
@@ -148,15 +148,15 @@ entity_attributes_covered:
 > 3. (No response) Child beams, smiles wide, or watches the celebration animation with delight.
 >
 > **AI follow-up**:
-> 1. "*(overjoyed)* The BEST Bounce Star EVER! Every judge says you win! Penguin wants your autograph! Hamster wants to bounce with you!"
-> 2. "*(thrilled)* ENCORE? The judges are SO happy! They say 'come back anytime!' You can bounce for them again another day, Bounce Star!"
-> 3. *(waits 2 seconds)* "*(warm, celebratory)* Look at that big smile! The judges see it too. Penguin says 'That smile bounces right off the page!' You are a REAL Bounce Star!"
+> 1. "[overjoyed] The BEST Bounce Star EVER! Every judge says you win! Penguin wants your autograph! Hamster wants to bounce with you!"
+> 2. "[thrilled] ENCORE? The judges are SO happy! They say 'come back anytime!' You can bounce for them again another day, Bounce Star!"
+> 3. [waits 2 seconds] "[warm, celebratory] Look at that big smile! The judges see it too. Penguin says 'That smile bounces right off the page!' You are a REAL Bounce Star!"
 >
 > **Screen**: Full celebration scene: confetti rains in bouncy rainbow colors across the entire screen. Penguin holds up "PERFECT" scorecard with sparkles. Hamster throws popcorn confetti. Giraffe claps at the very top of the screen with neck stretched in celebration. A large golden "BOUNCE STAR" badge descends from the top of the screen with the ball photo framed inside it, three gold stars underneath. Triumphant fanfare energy. A crowd of tiny silhouette characters in the background throws hats in the air.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective, gently amazed)* Wow, Bounce Star. You showed the judges that one bouncy ball can bounce SO many ways! Big bounce, slow bounce, MOON bounce — every bounce was different! Same ball, same bounciness, but you made it feel different every time. That's called Perspective — one ball, many bounces! And the judges loved the round shape, the bounciness — that's what makes your ball YOUR ball. That's called Form! You are the Bounce Star of the Bouncy Talent Show!"
+> **AI says**: "[warm, reflective, gently amazed] Wow, Bounce Star. You showed the judges that one bouncy ball can bounce SO many ways! Big bounce, slow bounce, MOON bounce — every bounce was different! Same ball, same bounciness, but you made it feel different every time. That's called Perspective — one ball, many bounces! And the judges loved the round shape, the bounciness — that's what makes your ball YOUR ball. That's called Form! You are the Bounce Star of the Bouncy Talent Show!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child bounces one more time, says "Bye ball!" or "I'm a Bounce Star!" or smiles happily.
@@ -164,9 +164,9 @@ entity_attributes_covered:
 > 3. (No response) Child watches the screen, content and quiet.
 >
 > **AI follow-up**:
-> 1. "*(warm, proud)* BOING! That's ball saying 'Thank you, Bounce Star!' Bye bye! The judges are waving!"
-> 2. "*(warm, simple)* Perspective means same ball, different bounces — and that's what YOU showed! Hamsters are fun too — maybe next time! Bye, Bounce Star!"
-> 3. *(waits 2 seconds)* "*(soft, closing)* The judges are waving goodbye. Penguin says 'See you next show!' Bye bye, Bounce Star. BOING!"
+> 1. "[warm, proud] BOING! That's ball saying 'Thank you, Bounce Star!' Bye bye! The judges are waving!"
+> 2. "[warm, simple] Perspective means same ball, different bounces — and that's what YOU showed! Hamsters are fun too — maybe next time! Bye, Bounce Star!"
+> 3. [waits 2 seconds] "[soft, closing] The judges are waving goodbye. Penguin says 'See you next show!' Bye bye, Bounce Star. BOING!"
 >
 > **Screen**: Ball photo at center with "Perspective" (speech-bubble icon with multiple bounce styles inside) and "Form" (ball-silhouette icon) in bright, playful lettering. "BOUNCE STAR" badge glows in the corner with three gold stars. The three judges wave from the side of the screen. Warm spotlight glow fades to a cheerful closing scene.
 

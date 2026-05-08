@@ -35,7 +35,7 @@
 > **Context**: Child has just finished a tier_guidance conversation about crayons.
 > **Conversation anchor**: emotions — "Which crayon color makes you happy?"
 >
-> **AI says**: "*(warm, building on earlier)* You like colors! Which feels happy?"
+> **AI says**: "[warm, building on earlier] You like colors! Which feels happy?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Red!" or "The blue one!"
@@ -43,9 +43,9 @@
 > 3. (No response) Child is quiet or looking at crayons
 >
 > **AI follow-up**:
-> 1. "*(delighted)* Ooh, red! Happy red! Wizard pick!"
-> 2. "*(warm, validating)* Drawing is fun! Which feels happy?"
-> 3. *(wait 2 seconds)* "*(gentle, playful)* Hmm, look at all those colors! Which one smiles?"
+> 1. "[delighted] Ooh, red! Happy red! Wizard pick!"
+> 2. "[warm, validating] Drawing is fun! Which feels happy?"
+> 3. [wait 2 seconds] "[gentle, playful] Hmm, look at all those colors! Which one smiles?"
 >
 > **Screen**: Child's crayon photo centered with a soft golden glow around the crayon pile. A small sparkle animation pulses gently near the brightest colors, recalling the earlier conversation.
 
@@ -53,7 +53,7 @@
 
 > **Context**: Child photographs crayons with no prior conversation.
 >
-> **AI says**: "*(excited, wonder)* Wooow, crayons! So many colors! Which one is your friend?"
+> **AI says**: "[excited, wonder] Wooow, crayons! So many colors! Which one is your friend?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "This one!" or "The green one!"
@@ -61,15 +61,15 @@
 > 3. (No response) Child stares at screen or looks at crayons
 >
 > **AI follow-up**:
-> 1. "*(delighted)* Ooh, green! Cool green friend!"
-> 2. "*(warm, validating)* All of them? Wow! Which is silliest?"
-> 3. *(wait 2 seconds)* "*(playful whisper)* Psst! I think that red one is waving at you!"
+> 1. "[delighted] Ooh, green! Cool green friend!"
+> 2. "[warm, validating] All of them? Wow! Which is silliest?"
+> 3. [wait 2 seconds] "[playful whisper] Psst! I think that red one is waving at you!"
 >
 > **Screen**: Child's crayon photo centered with rainbow sparkle animation around the edges. Soft, colorful particles float up gently from the crayons.
 
 **Step 2: Rule Introduction + Demo**
 
-> **AI says**: "*(playful, magical tone)* You are Color Wizard! Colors get feelings! Yellow says, 'Hee hee!' Your turn!"
+> **AI says**: "[playful, magical tone] You are Color Wizard! Colors get feelings! Yellow says, 'Hee hee!' Your turn!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child laughs, repeats, or says a feeling word
@@ -77,9 +77,9 @@
 > 3. (No response) Child watches quietly
 >
 > **AI follow-up**:
-> 1. "*(celebrating)* Yes! Color wizard! More feelings!"
-> 2. "*(warm, reassuring)* You ARE wizard! Happy? Sleepy? Silly?"
-> 3. *(wait 2 seconds)* "*(encouraging whisper)* Try it! Say 'hee hee' like yellow!"
+> 1. "[celebrating] Yes! Color wizard! More feelings!"
+> 2. "[warm, reassuring] You ARE wizard! Happy? Sleepy? Silly?"
+> 3. [wait 2 seconds] "[encouraging whisper] Try it! Say 'hee hee' like yellow!"
 >
 > **Screen**: A small wizard hat icon appears above the crayon photo. A yellow crayon wiggles with a speech bubble saying "Hee hee!" Sparkle effects surround it.
 
@@ -87,7 +87,7 @@
 
 > **Round 1: Red Crayon**
 >
-> **AI says**: "*(curious, pointing)* Look! Red! Pshhh! How feels red?"
+> **AI says**: "[curious, pointing] Look! Red! Pshhh! How feels red?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Happy!" or "Mad!" or any feeling word
@@ -95,15 +95,15 @@
 > 3. (No response) Child is quiet
 >
 > **AI follow-up**:
-> 1. "*(amazed)* Happy red! Whooo! Great wizard!"
-> 2. "*(impressed)* Fire! Yes! Hot red! Excited red?"
-> 3. *(wait 2 seconds)* "*(gentle prompt)* Hmm, is red happy? Or sleepy? Or silly? You pick!"
+> 1. "[amazed] Happy red! Whooo! Great wizard!"
+> 2. "[impressed] Fire! Yes! Hot red! Excited red?"
+> 3. [wait 2 seconds] "[gentle prompt] Hmm, is red happy? Or sleepy? Or silly? You pick!"
 >
 > **Screen**: The red crayon from the photo glows and gently bounces. When the child answers, a matching emoji face (happy, excited, etc.) appears next to the red crayon with a sparkle burst. A small "Round 1" star appears in the corner.
 
 > **Round 2: Blue Crayon**
 >
-> **AI says**: "*(mysterious whisper)* Now blue. Shhhhh. How feels blue?"
+> **AI says**: "[mysterious whisper] Now blue. Shhhhh. How feels blue?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Sad!" or "Sleepy!" or "Calm!"
@@ -111,15 +111,15 @@
 > 3. (No response) Child looks at crayons or stays quiet
 >
 > **AI follow-up**:
-> 1. "*(soft, warm)* Sleepy blue. Shhhhh. Blue is resting."
-> 2. "*(delighted)* Sky blue! Calm blue? Happy blue?"
-> 3. *(wait 2 seconds)* "*(gentle)* I think blue feels sleepy. Zzzz. *(snoring sound)* Do you think so?"
+> 1. "[soft, warm] Sleepy blue. Shhhhh. Blue is resting."
+> 2. "[delighted] Sky blue! Calm blue? Happy blue?"
+> 3. [wait 2 seconds] "[gentle] I think blue feels sleepy. Zzzz. [snoring sound] Do you think so?"
 >
 > **Screen**: The blue crayon from the photo glows softly with a gentle pulsing light. When the child answers, a matching emoji face appears beside it. Tiny animated "Zzz" or stars float if the child says sleepy/calm. Both Round 1 and Round 2 stars now visible.
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "*(big celebration tone)* Yaaay! You did it! COLOR WIZARD!"
+> **AI says**: "[big celebration tone] Yaaay! You did it! COLOR WIZARD!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child laughs, claps, or says "Yay!"
@@ -127,15 +127,15 @@
 > 3. (No response) Child smiles or watches
 >
 > **AI follow-up**:
-> 1. "*(warm, proud)* The best wizard! Colors love you!"
-> 2. "*(delighted)* More? Wow! Lucky colors!"
-> 3. "*(warm, gentle)* So great. Colors smile now."
+> 1. "[warm, proud] The best wizard! Colors love you!"
+> 2. "[delighted] More? Wow! Lucky colors!"
+> 3. "[warm, gentle] So great. Colors smile now."
 >
 > **Screen**: A big sparkling wizard badge animates onto screen with the text "Color Wizard ✨" in child-friendly lettering. The crayon photo is in the background with all the crayons gently glowing their colors. Confetti particles rain down.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective)* Red felt one way. Blue felt another. That's Perspective! Shape and color matter. That's Form!"
+> **AI says**: "[warm, reflective] Red felt one way. Blue felt another. That's Perspective! Shape and color matter. That's Form!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child listens, smiles, or says "Yay!"
@@ -143,9 +143,9 @@
 > 3. (No response) Child watches the screen
 >
 > **AI follow-up**:
-> 1. "*(proud)* Great job, Color Wizard! Bye-bye crayons!"
-> 2. "*(warm, simple)* It means your way. So cool!"
-> 3. "*(gentle, warm)* You did wonderful today. Bye-bye, Color Wizard!"
+> 1. "[proud] Great job, Color Wizard! Bye-bye crayons!"
+> 2. "[warm, simple] It means your way. So cool!"
+> 3. "[gentle, warm] You did wonderful today. Bye-bye, Color Wizard!"
 >
 > **Screen**: The words "Perspective" and "Form" appear artistically in crayon-style lettering, each in a different bright color. Small crayon icons frame the words. The wizard badge sits in the corner. Gentle rainbow shimmer in the background.
 
@@ -161,7 +161,7 @@
 | 4 | Edge Case Coverage | PASS | Every step includes 3 child response branches (ideal, unexpected, no response). All unexpected branches validate first then redirect. All silence branches include wait + gentle prompt. |
 | 5 | IB Completeness | PASS | Perspective + Form named as Key Concepts. 3 Related Concepts listed (2 from mapping). KUD fully defined with specifics. 2 ATL skills with sub-skills. Closing speech celebrates first, then names concepts naturally. Concepts are earned — child assigned feelings (Perspective) and observed colors/shapes (Form). |
 | 6 | Tier Appropriateness | PASS | All AI sentences ≤5 words (checked each line). Onomatopoeia used: "whooo," "shhhhh," "zzzz," "pshhh," "hee hee." Single-step instructions throughout. Call-and-response model. Max 2 rounds in Step 3. Vocabulary: basic color names, feeling words, simple nouns. |
-| 7 | Dialogue Specificity | PASS | Every AI line is concrete dialogue with tone/emotion markers in parentheses. Zero abstract instructions like "AI guides." All responses are warm, playful, child-appropriate. |
+| 7 | Dialogue Specificity | PASS | Every AI line is concrete dialogue with tone/emotion markers in square brackets. Zero abstract instructions like "AI guides." All responses are warm, playful, child-appropriate. |
 | 8 | Screen & UI Completeness | PASS | Every step includes specific screen description with layout, animation, and visual elements (glow, sparkle, emoji faces, wizard badge, confetti, crayon-style lettering). |
 | 9 | Entity Mapping Alignment | PASS | Perspective (primary, relevance=1.0) + Form (primary, relevance=1.1) — avoids Form+Connection default. IB theme = How We Express Ourselves (primary, weight=0.58). Related Concepts: Creativity + Expression from mapping. Vocabulary grounded in tier_0: "many bright colors" (appearance/color), "smooth and waxy" (senses/touch_feel), "short round sticks" (appearance/shape). Warm start references emotions dimension ("Which crayon color makes you happy?"). Warm start uses Recall opener flavor from conversation_bridge.md §2. Anchor dimensions: emotions (engagement), senses (physical), appearance (physical). |
 

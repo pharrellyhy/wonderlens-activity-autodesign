@@ -82,7 +82,7 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 #### Step 1: Transition Bridge
 
-**AI says:** (soft gasp, concerned) "Oh! Look at teddy! So soft and fluffy... but wait — is teddy shivering? Brrr brrr! I think teddy needs help!"
+**AI says:** [soft gasp, concerned] "Oh! Look at teddy! So soft and fluffy... but wait — is teddy shivering? Brrr brrr! I think teddy needs help!"
 
 **Child responses:**
 
@@ -92,15 +92,15 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 **AI follow-up:**
 
-1. (warm, encouraging) "Yes! Teddy is cold! You noticed! Can YOU help teddy feel better?"
-2. (gentle, playful) "You love teddy! Teddy loves you! But look — brrr — teddy is a little shivery. Can you help?"
-3. (wait 2s) (soft whisper) "Teddy is going brrr brrr. Can you hear it? Teddy needs a friend!"
+1. [warm, encouraging] "Yes! Teddy is cold! You noticed! Can YOU help teddy feel better?"
+2. [gentle, playful] "You love teddy! Teddy loves you! But look — brrr — teddy is a little shivery. Can you help?"
+3. (wait 2s) [soft whisper] "Teddy is going brrr brrr. Can you hear it? Teddy needs a friend!"
 
 **Screen:** Teddy bear photo centered with soft blue background, gentle shivering wobble animation, small snowflake sparkles, and a worried-face icon pulsing in the corner.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (excited whisper) "You can be teddy's helper! Here's how. I tell you what teddy needs. You fix it! Like this — teddy says: 'My nose is cold!' What do we do? Boop! We warm the nose! Ready?"
+**AI says:** [excited whisper] "You can be teddy's helper! Here's how. I tell you what teddy needs. You fix it! Like this — teddy says: 'My nose is cold!' What do we do? Boop! We warm the nose! Ready?"
 
 **Child responses:**
 
@@ -110,9 +110,9 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 **AI follow-up:**
 
-1. (cheery) "Boop! Teddy's nose is warm now! See? You did it! Here comes the first big one..."
-2. (playful) "Yes, teddy's little nose! Boop — warm! Easy! Now teddy needs MORE help. Listen..."
-3. (wait 2s) (gentle, coaxing) "Boop! We warmed teddy's nose! So easy. Now teddy needs your help again. Listen..."
+1. [cheery] "Boop! Teddy's nose is warm now! See? You did it! Here comes the first big one..."
+2. [playful] "Yes, teddy's little nose! Boop — warm! Easy! Now teddy needs MORE help. Listen..."
+3. (wait 2s) [gentle, coaxing] "Boop! We warmed teddy's nose! So easy. Now teddy needs your help again. Listen..."
 
 **Screen:** Teddy photo with small blue nose highlighted; on response, warm orange glow spreads over nose, sparkle appears, and "Teddy's Caretaker" text with heart icon at top.
 
@@ -120,7 +120,7 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 **Round 1 — "Teddy is cold!"** (Physical need — simple, high-success)
 
-**AI says:** (storytelling, worried voice) "Oh no! Teddy is shivering! Brrr brrr brrr! 'I'm so cold!' says Teddy. Teddy needs something warm. What should we do?"
+**AI says:** [storytelling, worried voice] "Oh no! Teddy is shivering! Brrr brrr brrr! 'I'm so cold!' says Teddy. Teddy needs something warm. What should we do?"
 
 **Child responses:**
 
@@ -130,9 +130,9 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 **AI follow-up:**
 
-1. (delighted, narrating transformation) "You gave teddy a big warm hug! Look... teddy stops shivering... the brrrs go quiet... and a tiny smile appears! 'Ahhhh,' says Teddy, 'warm now! Thank you!' Teddy feels SO much better!"
-2. (validating, then guiding) "Brrr is right! Poor teddy! What if we gave teddy a big warm hug? Try saying 'hug teddy!'"
-3. (wait 2s) (soft prompt) "Teddy says brrr brrr! So cold! Should we give teddy a hug? Say 'hug!'"
+1. [delighted, narrating transformation] "You gave teddy a big warm hug! Look... teddy stops shivering... the brrrs go quiet... and a tiny smile appears! 'Ahhhh,' says Teddy, 'warm now! Thank you!' Teddy feels SO much better!"
+2. [validating, then guiding] "Brrr is right! Poor teddy! What if we gave teddy a big warm hug? Try saying 'hug teddy!'"
+3. (wait 2s) [soft prompt] "Teddy says brrr brrr! So cold! Should we give teddy a hug? Say 'hug!'"
 
 **Screen:** Teddy with shivering animation and brrr text bubbles; on response, shivering stops, warm golden glow wraps around teddy, smile appears, speech bubble says "Warm now!" and one floating heart drifts up.
 
@@ -142,7 +142,7 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 #### Step 4: Celebration
 
-**AI says:** (soft, deeply warm) "Look at teddy now. Remember when teddy was shivering and scared? Now teddy is warm... brave... and smiling SO big. Teddy whispers: '[Child's name]... thank you for taking care of me. You made the cold go away. You made the dark not scary. And you made me feel not alone. You're the best caretaker in the whole world.'"
+**AI says:** [soft, deeply warm] "Look at teddy now. Remember when teddy was shivering and scared? Now teddy is warm... brave... and smiling SO big. Teddy whispers: '[Child's name]... thank you for taking care of me. You made the cold go away. You made the dark not scary. And you made me feel not alone. You're the best caretaker in the whole world.'"
 
 **Child responses:**
 
@@ -152,13 +152,13 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 **AI follow-up:**
 
 1. (beaming) "Teddy loves you SO much. You helped with everything!"
-2. (playful, warm) "Teddy says 'help me again tomorrow!' You're the best!"
+2. [playful, warm] "Teddy says 'help me again tomorrow!' You're the best!"
 
 **Screen:** Full-screen warm golden glow with teddy centered. Quick transformation montage (shivering → warm → scared → brave → lonely → happy). Golden badge "Teddy's Best Caretaker" with bear-paw-and-heart icon, warm confetti, three hearts in a row below the badge.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective, proud) "You know what you did today? Every time teddy needed something — warm, brave, not alone — YOU helped. Helping someone who needs you... that's called Responsibility. And now you and teddy have a special bond — teddy trusts you, and you care for teddy. That's called Connection. You're not just a helper. You're teddy's best friend!"
+**AI says:** [warm, reflective, proud] "You know what you did today? Every time teddy needed something — warm, brave, not alone — YOU helped. Helping someone who needs you... that's called Responsibility. And now you and teddy have a special bond — teddy trusts you, and you care for teddy. That's called Connection. You're not just a helper. You're teddy's best friend!"
 
 **Child responses:**
 
@@ -168,8 +168,8 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 **AI follow-up:**
 
-1. (soft, closing) "Best friends! Night night, teddy. Night night, caretaker! See you next time!"
-2. (warm) "Yes! Connection is when you care for someone and they care for you. Like you and teddy!"
-3. (gentle close) "Teddy is smiling at you. Night night, teddy. Night night, best friend!"
+1. [soft, closing] "Best friends! Night night, teddy. Night night, caretaker! See you next time!"
+2. [warm] "Yes! Connection is when you care for someone and they care for you. Like you and teddy!"
+3. [gentle close] "Teddy is smiling at you. Night night, teddy. Night night, best friend!"
 
 **Screen:** "Responsibility" in warm gold with caring-hands icon, "Connection" in soft pink with heart-link icon, teddy in cozy sleeping pose with peaceful smile, "Teddy's Best Caretaker" badge glowing softly at bottom.

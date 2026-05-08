@@ -86,7 +86,7 @@ A child in a garden photographs a droopy flower, then searches for 3 more nearby
 
 #### Step 1: Transition Bridge
 
-**AI says:** (tender, concerned) "Oh, look at this flower! Its petals are drooping down a little, like it is feeling tired. I think it might need some help. What do you think it needs?"
+**AI says:** [tender, concerned] "Oh, look at this flower! Its petals are drooping down a little, like it is feeling tired. I think it might need some help. What do you think it needs?"
 
 **Child responses:**
 
@@ -96,9 +96,9 @@ A child in a garden photographs a droopy flower, then searches for 3 more nearby
 
 **AI follow-up:**
 
-1. (warm, impressed) "Water — great idea! A little drink would perk those petals right up. You already know how to help! I bet other things in this garden need help too."
-2. (warm, agreeing) "It IS pretty! Even pretty flowers get tired sometimes. See how the petals droop? Maybe it needs a little water or some shade. You could be its helper!"
-3. (wait 2s) (gentle, coaxing) "See how its petals hang down? It looks a little sleepy. Maybe it needs water, or a friend nearby. What do you think would help?"
+1. [warm, impressed] "Water — great idea! A little drink would perk those petals right up. You already know how to help! I bet other things in this garden need help too."
+2. [warm, agreeing] "It IS pretty! Even pretty flowers get tired sometimes. See how the petals droop? Maybe it needs a little water or some shade. You could be its helper!"
+3. (wait 2s) [gentle, coaxing] "See how its petals hang down? It looks a little sleepy. Maybe it needs water, or a friend nearby. What do you think would help?"
 
 **Screen:** Flower photo centered with soft warm glow, drooping petals subtly highlighted, and tiny water droplet and sun icons floating nearby.
 
@@ -115,9 +115,9 @@ A child in a garden photographs a droopy flower, then searches for 3 more nearby
 
 **AI follow-up:**
 
-1. (excited, encouraging) "Let's go, captain! Look around the garden — on the ground, near bushes, by the path. Find something that looks dry, fallen, or lonely. Take a photo when you spot it!"
-2. (warm, helpful) "Great question! Look for things that are dry, fallen over, cracked, or all alone. Like a leaf that is curling up, or a stick that fell down. Anything that looks like it could use a friend!"
-3. (wait 2s) (gentle, guiding) "Try looking near the ground first. See any dry leaves? Fallen sticks? A little stone all by itself? Take a photo of anything that looks like it needs help!"
+1. [excited, encouraging] "Let's go, captain! Look around the garden — on the ground, near bushes, by the path. Find something that looks dry, fallen, or lonely. Take a photo when you spot it!"
+2. [warm, helpful] "Great question! Look for things that are dry, fallen over, cracked, or all alone. Like a leaf that is curling up, or a stick that fell down. Anything that looks like it could use a friend!"
+3. (wait 2s) [gentle, guiding] "Try looking near the ground first. See any dry leaves? Fallen sticks? A little stone all by itself? Take a photo of anything that looks like it needs help!"
 
 **Screen:** Mission card with "Rescue Captain" badge (shield with leaf and heart), four collection slots (first filled with flower photo labeled "Flower — needs water"), three empty slots with red cross icons, and numbered checklist.
 
@@ -126,9 +126,9 @@ A child in a garden photographs a droopy flower, then searches for 3 more nearby
 
 **Round 1:**
 
-*(Child takes a photo of a dry, curled leaf on the ground)*
+[Child takes a photo of a dry, curled leaf on the ground]
 
-**AI says:** (concerned, caring) "Oh no, look at this leaf! It is all dry and curled up at the edges. It looks like it has been in the sun too long. What do you think it needs, captain?"
+**AI says:** [concerned, caring] "Oh no, look at this leaf! It is all dry and curled up at the edges. It looks like it has been in the sun too long. What do you think it needs, captain?"
 
 **Child responses:**
 
@@ -138,9 +138,9 @@ A child in a garden photographs a droopy flower, then searches for 3 more nearby
 
 **AI follow-up:**
 
-1. (warm, celebrating) "Yes! A little water would help it uncurl. *Imagine the leaf slowly opening up, getting softer and greener.* It is already feeling better thanks to you! Two more rescues to go, captain!"
-2. (playful, redirecting) "It IS crunchy! That means it is really dry. Crunchy leaves are thirsty leaves! If we gave it some water, it might uncurl and get soft again. You just figured out what it needs! Two more to find!"
-3. (wait 2s) (gentle, prompting) "Feel how dry it looks? When leaves curl up like that, they are thirsty. What if we gave it some water? *The leaf starts to uncurl a tiny bit.* It is getting better! Two more rescues to go!"
+1. [warm, celebrating] "Yes! A little water would help it uncurl. *Imagine the leaf slowly opening up, getting softer and greener.* It is already feeling better thanks to you! Two more rescues to go, captain!"
+2. [playful, redirecting] "It IS crunchy! That means it is really dry. Crunchy leaves are thirsty leaves! If we gave it some water, it might uncurl and get soft again. You just figured out what it needs! Two more to find!"
+3. (wait 2s) [gentle, prompting] "Feel how dry it looks? When leaves curl up like that, they are thirsty. What if we gave it some water? *The leaf starts to uncurl a tiny bit.* It is getting better! Two more rescues to go!"
 
 **Screen:** Leaf photo slides into second slot labeled "Leaf — needs water," with uncurling leaf animation. Counter: "1 of 3 rescued."
 
@@ -151,7 +151,7 @@ A child in a garden photographs a droopy flower, then searches for 3 more nearby
 
 #### Step 4: Celebration
 
-**AI says:** (excited, building suspense) "Captain, your Garden Rescue Squad is complete! You helped the leaf, the twig, and the pebble. But guess what? Now THEY can help each other! Watch this — the leaf you watered is big and green now. It can give shade to the little pebble when the sun gets too hot! And the twig you propped up? It can lean over and hold up a droopy petal so it catches more sunlight! But here is the big question — how would the pebble help the leaf?"
+**AI says:** [excited, building suspense] "Captain, your Garden Rescue Squad is complete! You helped the leaf, the twig, and the pebble. But guess what? Now THEY can help each other! Watch this — the leaf you watered is big and green now. It can give shade to the little pebble when the sun gets too hot! And the twig you propped up? It can lean over and hold up a droopy petal so it catches more sunlight! But here is the big question — how would the pebble help the leaf?"
 
 **Child responses:**
 
@@ -160,10 +160,10 @@ A child in a garden photographs a droopy flower, then searches for 3 more nearby
 
 **AI follow-up:**
 
-1. (amazed, celebrating) "YES! The pebble can sit on the leaf and hold it down when the wind blows! The leaf shades the pebble, the twig holds up the petal, and the pebble protects the leaf. They are ALL helping each other! That is what a real rescue team does, captain!"
-2. (warm, scaffolding) "Think about it — the leaf is light, and the wind might blow it away. But the pebble is heavy! What if the pebble sat on the leaf to hold it down? See? Even the smallest member of the team can help! They are a real rescue team now!"
+1. [amazed, celebrating] "YES! The pebble can sit on the leaf and hold it down when the wind blows! The leaf shades the pebble, the twig holds up the petal, and the pebble protects the leaf. They are ALL helping each other! That is what a real rescue team does, captain!"
+2. [warm, scaffolding] "Think about it — the leaf is light, and the wind might blow it away. But the pebble is heavy! What if the pebble sat on the leaf to hold it down? See? Even the smallest member of the team can help! They are a real rescue team now!"
 
-**AI says:** (proud, reflective) "Captain, look at what you did! You found four things that needed help. You gave each one exactly what it needed. And then something amazing happened — they started helping EACH OTHER. Which rescue was your favorite?"
+**AI says:** [proud, reflective] "Captain, look at what you did! You found four things that needed help. You gave each one exactly what it needed. And then something amazing happened — they started helping EACH OTHER. Which rescue was your favorite?"
 
 **Child responses:**
 
@@ -173,13 +173,13 @@ A child in a garden photographs a droopy flower, then searches for 3 more nearby
 **AI follow-up:**
 
 1. (touched) "That one really needed you! And now it is part of a team. Every member of your rescue squad matters — even the smallest one can do something big for someone else."
-2. (warm, celebrating) "You loved ALL of them — that is what makes you such a great captain! And yes, there are always more things that need help. You can be a Rescue Captain every time you go outside!"
+2. [warm, celebrating] "You loved ALL of them — that is what makes you such a great captain! And yes, there are always more things that need help. You can be a Rescue Captain every time you go outside!"
 
 **Screen:** All four photos in a circle with animated mutual aid arrows between them (leaf shades pebble, twig supports petal, pebble anchors leaf), glowing heart in center, golden star on favorite, and banner "Rescue Team — Helping Each Other!"
 
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (proud, warm celebration) "You are an incredible Rescue Captain! You found things that needed help and gave each one care. That is Responsibility — when you notice something needs help and you do something about it. And then your rescue team helped each other — the leaf shaded the pebble, the twig propped up the petal, the pebble held down the leaf. That is Connection — everything in a garden is linked together, helping one another. You earned your Rescue Captain badge!"
+**AI says:** [proud, warm celebration] "You are an incredible Rescue Captain! You found things that needed help and gave each one care. That is Responsibility — when you notice something needs help and you do something about it. And then your rescue team helped each other — the leaf shaded the pebble, the twig propped up the petal, the pebble held down the leaf. That is Connection — everything in a garden is linked together, helping one another. You earned your Rescue Captain badge!"
 
 **Screen:** "Rescue Captain" badge — green shield with golden heart and four item icons (flower, leaf, twig, pebble). "Responsibility" and "Connection" in artistic green and gold lettering with caring-hands and linked-chain icons. Four collection photos as insets around the badge.

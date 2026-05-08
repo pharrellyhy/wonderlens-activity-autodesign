@@ -54,7 +54,7 @@ entity_attributes_covered:
 
 **Context**: Child photographs any object where AI detects a visible texture. Example: a tree with rough bark.
 
-**AI says:** *(amazed, fascinated)* "Whoa -- look at your tree! And look at that BARK! See all those bumps and lines and ridges? It looks SO rough -- like a tiny mountain range covering the whole trunk! That bark looks like it could hold on to ANYTHING! Have you ever noticed how rough tree bark looks?"
+**AI says:** [amazed, fascinated] "Whoa -- look at your tree! And look at that BARK! See all those bumps and lines and ridges? It looks SO rough -- like a tiny mountain range covering the whole trunk! That bark looks like it could hold on to ANYTHING! Have you ever noticed how rough tree bark looks?"
 
 **Child responses:**
 
@@ -64,15 +64,15 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (impressed) "It IS really bumpy! All those ridges and grooves -- that's called TEXTURE! And that rough-looking texture has a secret SUPERPOWER. Its superpower is... GRIP! Things that look rough can hold on tight -- rain, bugs, climbing plants all grab onto those bumps. Rough means GRIPPY!"
-2. (playful) "It IS a big tree! And look at the surface of that bark -- see all those lines and bumps? That rough-looking surface has a secret superpower -- GRIP! Those bumps and ridges help things hold on tight!"
+1. [impressed] "It IS really bumpy! All those ridges and grooves -- that's called TEXTURE! And that rough-looking texture has a secret SUPERPOWER. Its superpower is... GRIP! Things that look rough can hold on tight -- rain, bugs, climbing plants all grab onto those bumps. Rough means GRIPPY!"
+2. [playful] "It IS a big tree! And look at the surface of that bark -- see all those lines and bumps? That rough-looking surface has a secret superpower -- GRIP! Those bumps and ridges help things hold on tight!"
 3. (wait 2s) "Can I tell you something cool about this bark? Look at how rough it looks -- all those bumps and grooves! That rough-looking texture has a superpower. Its superpower is... GRIP! Rough surfaces hold on tight -- nothing slides off!"
 
 **Screen:** Trigger photo centered with bold "GRIP" pulsing in rough-textured block letters, animated grip marks radiating outward, and a small hand-grip icon. "1/4" counter in bottom corner.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** *(scientist-explorer)* "Okay, here's the thing -- EVERY surface out here has a hidden superpower based on what it LOOKS like! Rough-looking things have GRIP. But what about smooth things? Fuzzy things? Bumpy things? You are now a Texture Inventor! Your mission: find 3 more things with DIFFERENT textures. I'll look at each photo and tell you its superpower. Then -- here's the best part -- you'll COMBINE two superpowers to invent something totally new! Ready, Inventor?"
+**AI says:** [scientist-explorer] "Okay, here's the thing -- EVERY surface out here has a hidden superpower based on what it LOOKS like! Rough-looking things have GRIP. But what about smooth things? Fuzzy things? Bumpy things? You are now a Texture Inventor! Your mission: find 3 more things with DIFFERENT textures. I'll look at each photo and tell you its superpower. Then -- here's the best part -- you'll COMBINE two superpowers to invent something totally new! Ready, Inventor?"
 
 **Child responses:**
 
@@ -82,8 +82,8 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (cheering) "The lab is OPEN! Go find something with a different texture -- something that looks smooth, or fuzzy, or bumpy, or shiny! Take a photo and I'll reveal its superpower. Go, Inventor!"
-2. (encouraging) "Texture is how a surface LOOKS -- is it rough with bumps? Or smooth and flat? Or fuzzy with little fibers? Take a photo of something that looks DIFFERENT from your bark, and I'll tell you its superpower!"
+1. [cheering] "The lab is OPEN! Go find something with a different texture -- something that looks smooth, or fuzzy, or bumpy, or shiny! Take a photo and I'll reveal its superpower. Go, Inventor!"
+2. [encouraging] "Texture is how a surface LOOKS -- is it rough with bumps? Or smooth and flat? Or fuzzy with little fibers? Take a photo of something that looks DIFFERENT from your bark, and I'll tell you its superpower!"
 3. (wait 2s) "Try looking around for surfaces that look different from bark. A smooth rock, a fuzzy sweater, a bumpy wall -- anything! Take a photo and I'll tell you its secret superpower!"
 
 **Screen:** Lab-themed mission card with "Texture Inventor" badge, 4 ingredient slots (first filled with trigger photo labeled "GRIP"), 3 glowing question marks, and a 3-step task list: Collect, Discover, Invent.
@@ -92,7 +92,7 @@ entity_attributes_covered:
 
 **Round 1 -- Something Smooth-Looking (e.g., a smooth rock) (full detail):**
 
-**AI says:** *(excited scientist)* "Ooh, ingredient number two! Let me analyze this photo... I can see the surface is flat and even -- no bumps, no ridges. It looks SO smooth -- like it's been polished by a river! Light is bouncing right off it evenly."
+**AI says:** [excited scientist] "Ooh, ingredient number two! Let me analyze this photo... I can see the surface is flat and even -- no bumps, no ridges. It looks SO smooth -- like it's been polished by a river! Light is bouncing right off it evenly."
 
 **Child responses:**
 
@@ -103,7 +103,7 @@ entity_attributes_covered:
 **AI follow-up:**
 
 1. (triumphant) "YES! Look how even and flat that surface looks -- not a bump in sight! This texture's superpower is... SPEED! Things that look smooth let other things slide right off -- whoooosh! Smooth means FAST! SPEED is locked in. Two more textures to find, Inventor!"
-2. (curious, redirecting) "It IS a rock -- and look how EVEN that surface is! No bumps, no ridges, just flat and smooth. Its superpower is SPEED! Smooth surfaces let things slide right off! Two more textures to find!"
+2. [curious, redirecting] "It IS a rock -- and look how EVEN that surface is! No bumps, no ridges, just flat and smooth. Its superpower is SPEED! Smooth surfaces let things slide right off! Two more textures to find!"
 3. (wait 2s) "See how the surface looks flat and even? No bumps anywhere! That smooth-looking texture has a superpower -- SPEED! Things slide right off smooth surfaces! Two more ingredients, Inventor!"
 
 **Screen:** Photo slides into second slot with silvery sparkles. "SPEED" in sleek, streamlined, sliding letters. Counter updates to "2/4."
@@ -114,7 +114,7 @@ entity_attributes_covered:
 
 #### Step 4: Celebration
 
-**AI says:** *(grand, dramatic inventor)* "Inventor -- your lab is LOADED! Look at your four texture superpowers: the GRIP of your rough bark, the SPEED of your smooth rock, the WARMTH of your fuzzy moss, and the ARMOR of your bumpy wall! Now comes the BEST part. Pick any TWO superpowers -- and imagine: if you combined them into ONE thing, what amazing invention would you create? What would you build with... say... the GRIP of rough and the SPEED of smooth?"
+**AI says:** [grand, dramatic inventor] "Inventor -- your lab is LOADED! Look at your four texture superpowers: the GRIP of your rough bark, the SPEED of your smooth rock, the WARMTH of your fuzzy moss, and the ARMOR of your bumpy wall! Now comes the BEST part. Pick any TWO superpowers -- and imagine: if you combined them into ONE thing, what amazing invention would you create? What would you build with... say... the GRIP of rough and the SPEED of smooth?"
 
 **Child responses:**
 
@@ -124,20 +124,20 @@ entity_attributes_covered:
 **AI follow-up:**
 
 1. (mind-blown) "GRIPPY RACING SHOES! Imagine -- shoes that are as FAST as a smooth surface, so you zoom across the ground like lightning -- but the bottoms have the GRIP of rough bark, so you NEVER slip! You could run at super speed around corners, up hills, even on ice! The Grippy Racing Shoes -- invented by YOU, Texture Inventor! What would you use them for?" Then: "That is BRILLIANT! No one in the whole world has ever invented Grippy Racing Shoes before. Only YOU!"
-2. (encouraging) "That's okay -- let me give you a spark! What if something had the GRIP of rough bark... but the SPEED of smooth stone? Maybe grippy roller skates? A fast climbing wall? What do YOU think?" If child asks for different ones: "YES! Pick any two you want! How about WARMTH and ARMOR -- something warm but protected?"
+2. [encouraging] "That's okay -- let me give you a spark! What if something had the GRIP of rough bark... but the SPEED of smooth stone? Maybe grippy roller skates? A fast climbing wall? What do YOU think?" If child asks for different ones: "YES! Pick any two you want! How about WARMTH and ARMOR -- something warm but protected?"
 
-**AI says:** *(proud, reflecting)* "Texture Inventor, look at what you did today! You started with one tree -- just bark! -- and you discovered that its rough-looking texture has the superpower of GRIP. Then you found smooth SPEED, fuzzy WARMTH, and bumpy ARMOR. Every surface you see has a texture with a superpower! Why do you think different things have different textures?"
+**AI says:** [proud, reflecting] "Texture Inventor, look at what you did today! You started with one tree -- just bark! -- and you discovered that its rough-looking texture has the superpower of GRIP. Then you found smooth SPEED, fuzzy WARMTH, and bumpy ARMOR. Every surface you see has a texture with a superpower! Why do you think different things have different textures?"
 
 **AI follow-up:**
 
-1. (delighted) "That's it EXACTLY! Bark is rough so rain sticks and feeds the roots. Pebbles are smooth so water flows over them. Fuzzy caterpillars trap warmth. Bumpy shells protect the animal inside! Every texture has a JOB."
-2. (warmly) "They DO look different! And each texture does something special. Rough bark grips water. Smooth pebbles let water flow. Fuzzy things stay warm. Bumpy things stay protected. Textures aren't just how things look -- they're what things CAN DO!"
+1. [delighted] "That's it EXACTLY! Bark is rough so rain sticks and feeds the roots. Pebbles are smooth so water flows over them. Fuzzy caterpillars trap warmth. Bumpy shells protect the animal inside! Every texture has a JOB."
+2. [warmly] "They DO look different! And each texture does something special. Rough bark grips water. Smooth pebbles let water flow. Fuzzy things stay warm. Bumpy things stay protected. Textures aren't just how things look -- they're what things CAN DO!"
 
 **Screen:** Four ingredient photos in a row with glowing superpower labels. Invention Workshop area below with "+" symbol; chosen superpowers merge with energy arcs and sparkles, invention name appears in bold golden letters with "Created by [child]" stamp. Texture-fact callouts near each ingredient.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** *(warm celebration)* "Congratulations, Texture Inventor! You did something incredible today. You explored the **Form** of surfaces -- what they look like, how rough or smooth or fuzzy or bumpy they are. And you discovered their **Function** -- the special superpower each texture gives them! Then you went even further -- you COMBINED superpowers to invent something totally new. That's the magic of being an inventor -- seeing what textures CAN DO, and imagining what they COULD DO! You earned your Texture Inventor Badge!"
+**AI says:** [warm celebration] "Congratulations, Texture Inventor! You did something incredible today. You explored the **Form** of surfaces -- what they look like, how rough or smooth or fuzzy or bumpy they are. And you discovered their **Function** -- the special superpower each texture gives them! Then you went even further -- you COMBINED superpowers to invent something totally new. That's the magic of being an inventor -- seeing what textures CAN DO, and imagining what they COULD DO! You earned your Texture Inventor Badge!"
 
 **Child responses:**
 
@@ -146,7 +146,7 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (encouraging) "Next time you see ANYTHING -- a leaf, a stone, a sweater, a wall -- look at its texture and ask: what's YOUR superpower? And what could I invent if I combined it with something else? See you in the lab, Inventor!"
-2. (warm) "Your badge is saved! Remember, Inventor -- every surface around you has a texture with a hidden superpower. You just have to look! Bye for now!"
+1. [encouraging] "Next time you see ANYTHING -- a leaf, a stone, a sweater, a wall -- look at its texture and ask: what's YOUR superpower? And what could I invent if I combined it with something else? See you in the lab, Inventor!"
+2. [warm] "Your badge is saved! Remember, Inventor -- every surface around you has a texture with a hidden superpower. You just have to look! Bye for now!"
 
 **Screen:** Golden "Texture Inventor Badge" with beaker-and-texture-swatch silhouette, 4 collection photos with superpower labels, invention name in golden banner. "Form" in textured rough/smooth/fuzzy/bumpy letters, "Function" in bold letters with lightning accents, light bulb icon between them.

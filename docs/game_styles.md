@@ -1,6 +1,8 @@
 # WonderLens Game Style Taxonomy
 
-Twelve interaction patterns for WonderLens activities, organized under six Experience Pillars. Each pillar defines a distinct emotional experience for the child. Use this reference when designing new activities: pick a pillar and style, then follow its structure.
+Twelve interaction patterns for WonderLens activities, organized under six Experience Pillars. Each pillar defines a distinct emotional experience for the child.
+
+Use this reference **after** `program.md` Phase 0 has identified the assignment type, input mode, and canonical mechanic. The activity mechanic is the primary child-action contract; pillar and `game_style` are required scaffold metadata and emotional payoff choices. Do not pick a style first and then force the mechanic to fit.
 
 ---
 
@@ -14,6 +16,28 @@ Twelve interaction patterns for WonderLens activities, organized under six Exper
 | 4 | **Discovery** | "Was I right?!" | Prediction meets reality | Predict → commit → reveal → score | Scientific method |
 | 5 | **Adventure** | "Look how far we went!" | Whole journey visible | Progress → choice → map | Narrative, temporal |
 | 6 | **Nurture** | "I helped!" | Visible transformation | Need → solve → impact | Responsibility, empathy |
+
+---
+
+## Mechanic-First Usage
+
+1. Start from `assignment_type` and `adaptation_brief.input_mode`:
+   - `entity_activity` with mapping usually uses `mapping_informed` grounding.
+   - `activity_concept` and `match_pattern` often use `parameterized` or `concept_only` grounding.
+   - `capability_probe` often blocks until product or template support is declared.
+2. Preserve `canonical_mechanic` from the assignment or Phase 0 brief.
+3. Choose the least misleading pillar and `game_style` that can express that mechanic.
+4. If the scaffold fit is weak but usable, disclose it in `spec.md` `## Adaptation Rationale`.
+5. If no current style can express the mechanic without changing the child's repeated action, stop with `readiness=blocked_until_product_decision`.
+
+Style examples:
+
+| Mechanic | Usually strong styles | Notes |
+|---|---|---|
+| `collect` | `quest_collector`, `mystery_trail`, `field_experiment`, `rescue_team` | Pick based on emotional payoff: mission, clue trail, evidence test, or helping. |
+| `sort` | no perfect dedicated style | Use only if the category scaffold can preserve grouping as the repeated action; otherwise recommend a template extension. |
+| `narrate` | `time_traveler`, sometimes `inventor_workshop` | Use `time_traveler` for sequence/journey; use Creation only when the child is actually inventing. |
+| `build` | `inventor_workshop`, `mix_lab` | Block when the concept requires unsupported drawing UI, physical material workflow, or before/after state tracking. |
 
 ---
 

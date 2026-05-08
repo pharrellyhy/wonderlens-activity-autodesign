@@ -40,7 +40,7 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted surprise) "Ooh! A yellow coat! So bright and shiny! Do you like it?"
+**AI says:** [delighted surprise] "Ooh! A yellow coat! So bright and shiny! Do you like it?"
 
 **Child responses:**
 
@@ -50,16 +50,16 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 **AI follow-up:**
 
-1. (warm) "Me too! Cozy coat! Let's play!"
-2. (impressed) "For rain! So smart! Let's play!"
-3. (wait 2s) (playful whisper) "That coat looks so cozy! Swish-swish!"
+1. [warm] "Me too! Cozy coat! Let's play!"
+2. [impressed] "For rain! So smart! Let's play!"
+3. (wait 2s) [playful whisper] "That coat looks so cozy! Swish-swish!"
 
 **Screen:** Raincoat photo centered with gentle rain-drop animation and a small sunshine icon in the corner.
 
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (excited, conspiratorial whisper) "Guess what? Coat has feelings! Pitter-patter rain. Happy coat! Your turn!"
+**AI says:** [excited, conspiratorial whisper] "Guess what? Coat has feelings! Pitter-patter rain. Happy coat! Your turn!"
 
 **Child responses:**
 
@@ -69,9 +69,9 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 **AI follow-up:**
 
-1. (celebrating) "Yes! Happy coat! You heard it! Let's do more!"
-2. (playful gasp) "What if it could? Let's pretend!"
-3. (wait 2s) (gentle) "Pitter-patter! The coat smiles! What does it feel?"
+1. [celebrating] "Yes! Happy coat! You heard it! Let's do more!"
+2. [playful gasp] "What if it could? Let's pretend!"
+3. (wait 2s) [gentle] "Pitter-patter! The coat smiles! What does it feel?"
 
 **Screen:** Raincoat photo with animated smiley face and tiny blue raindrops with "pitter-patter" text bouncing below.
 
@@ -80,7 +80,7 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 **Round 1 — Splashy Puddle:**
 
-**AI says:** (playful, bouncy) "Splash-splash! Big puddle! How feels coat?"
+**AI says:** [playful, bouncy] "Splash-splash! Big puddle! How feels coat?"
 
 **Child responses:**
 
@@ -90,9 +90,9 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 **AI follow-up:**
 
-1. (cheering) "Splash-splash! Coat loves it!"
-2. (warm, validating) "Yucky puddle! Coat says brrr!"
-3. (wait 2s) (encouraging) "Splash-splash! Wet or dry? How does the coat feel?"
+1. [cheering] "Splash-splash! Coat loves it!"
+2. [warm, validating] "Yucky puddle! Coat says brrr!"
+3. (wait 2s) [encouraging] "Splash-splash! Wet or dry? How does the coat feel?"
 
 **Screen:** Raincoat photo with animated blue puddle splashing and water droplets bouncing upward.
 
@@ -101,7 +101,7 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 #### Step 4: Celebration
 
-**AI says:** (big warm celebration) "Wow! Feelings Friend! You heard coat feelings!"
+**AI says:** [big warm celebration] "Wow! Feelings Friend! You heard coat feelings!"
 
 **Child responses:**
 
@@ -111,16 +111,16 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 **AI follow-up:**
 
-1. (proud) "Best Feelings Friend ever!"
-2. (warm) "More? Coat loves you!"
-3. (gentle cheer) "Coat says thanks!"
+1. [proud] "Best Feelings Friend ever!"
+2. [warm] "More? Coat loves you!"
+3. [gentle cheer] "Coat says thanks!"
 
 **Screen:** Golden "Feelings Friend" badge with a tiny raincoat icon and confetti animation.
 
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, proud) "Same coat, new feelings. That's Perspective! You and coat belong together. That's Connection!"
+**AI says:** [warm, proud] "Same coat, new feelings. That's Perspective! You and coat belong together. That's Connection!"
 
 **Child responses:**
 
@@ -130,8 +130,8 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 **AI follow-up:**
 
-1. (warm) "Bye-bye, Feelings Friend! See you next rainy day!"
-2. (delighted) "Go wear it! Swish-swish!"
-3. (soft, closing) "Bye-bye, coat! Bye-bye, Feelings Friend!"
+1. [warm] "Bye-bye, Feelings Friend! See you next rainy day!"
+2. [delighted] "Go wear it! Swish-swish!"
+3. [soft, closing] "Bye-bye, coat! Bye-bye, Feelings Friend!"
 
 **Screen:** Raincoat photo centered with "Perspective" in a cloud shape and "Connection" in a raindrop shape floating artistically, connected by a soft rainbow arc. "Feelings Friend" badge in the corner.

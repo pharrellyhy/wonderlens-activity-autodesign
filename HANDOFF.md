@@ -20,6 +20,7 @@
 - Defined `MAPPING_ROOT=data/mappings_dev20_0318` across the current authoring docs so future mapping-path moves have a named setting to update.
 - Added `examples/` with concrete examples for each input data source and Phase 0 input mode.
 - Added `GOAL.md` as the Codex `/goal` objective and success criteria contract.
+- Synced `docs/activity_vocabulary.md`, `docs/game_styles.md`, `entity_guidance.md`, and `conversation_bridge.md` to the assignment-type / `concept_only` / mechanic-first workflow.
 
 ## Verification
 
@@ -39,6 +40,8 @@
   - Result: `/goal` command, success criteria, `assignment_type`, `activity_concept`, and all four assignment type names are documented
 - Legacy naming scan for `pm_idea=`, `PM-lightweight`, `pm_only`, and related old terms
   - Result: `pm_idea=` appears only as a documented legacy alias; old `PM-lightweight` / `pm_only` terms are absent from active docs
+- Targeted sync scan for `docs/activity_vocabulary.md`, `docs/game_styles.md`, `entity_guidance.md`, and `conversation_bridge.md`
+  - Result: new assignment-type, input-mode, `MAPPING_ROOT`, and mechanic-first references are present; old PM-lightweight terms are absent
 - Targeted diff review of the changed docs
   - Result: changes are limited to the mechanic-first activity concept adaptation workflow and related documentation state
 

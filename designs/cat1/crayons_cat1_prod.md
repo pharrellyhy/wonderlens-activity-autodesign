@@ -33,7 +33,7 @@
 
 #### Step 1: Transition Bridge
 
-**AI says:** (excited, wonder) "Wooow, crayons! So many colors! Which one is your friend?"
+**AI says:** [excited, wonder] "Wooow, crayons! So many colors! Which one is your friend?"
 
 **Child responses:**
 
@@ -43,15 +43,15 @@
 
 **AI follow-up:**
 
-1. (delighted) "Ooh, green! Cool green friend!"
-2. (warm, validating) "All of them? Wow! Which is silliest?"
-3. (wait 2s) (playful whisper) "Psst! I think that red one is waving at you!"
+1. [delighted] "Ooh, green! Cool green friend!"
+2. [warm, validating] "All of them? Wow! Which is silliest?"
+3. (wait 2s) [playful whisper] "Psst! I think that red one is waving at you!"
 
 **Screen:** Crayon photo centered with rainbow sparkle animation and soft colorful particles floating up.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, magical) "You are Color Wizard! Colors get feelings! Yellow says, 'Hee hee!' Your turn!"
+**AI says:** [playful, magical] "You are Color Wizard! Colors get feelings! Yellow says, 'Hee hee!' Your turn!"
 
 **Child responses:**
 
@@ -61,9 +61,9 @@
 
 **AI follow-up:**
 
-1. (celebrating) "Yes! Color wizard! More feelings!"
-2. (warm, reassuring) "You ARE wizard! Happy? Sleepy? Silly?"
-3. (wait 2s) (encouraging whisper) "Try it! Say 'hee hee' like yellow!"
+1. [celebrating] "Yes! Color wizard! More feelings!"
+2. [warm, reassuring] "You ARE wizard! Happy? Sleepy? Silly?"
+3. (wait 2s) [encouraging whisper] "Try it! Say 'hee hee' like yellow!"
 
 **Screen:** Wizard hat icon above the crayon photo; yellow crayon wiggles with a "Hee hee!" speech bubble and sparkle effects.
 
@@ -71,7 +71,7 @@
 
 **Round 1 — "Red Crayon":**
 
-**AI says:** (curious, pointing) "Look! Red! Pshhh! How feels red?"
+**AI says:** [curious, pointing] "Look! Red! Pshhh! How feels red?"
 
 **Child responses:**
 
@@ -81,9 +81,9 @@
 
 **AI follow-up:**
 
-1. (amazed) "Happy red! Whooo! Great wizard!"
-2. (impressed) "Fire! Yes! Hot red! Excited red?"
-3. (wait 2s) (gentle prompt) "Hmm, is red happy? Or sleepy? Or silly? You pick!"
+1. [amazed] "Happy red! Whooo! Great wizard!"
+2. [impressed] "Fire! Yes! Hot red! Excited red?"
+3. (wait 2s) [gentle prompt] "Hmm, is red happy? Or sleepy? Or silly? You pick!"
 
 **Screen:** Red crayon glows and bounces; matching emoji face appears with sparkle burst when child answers; "Round 1" star in the corner.
 
@@ -91,7 +91,7 @@
 
 #### Step 4: Celebration
 
-**AI says:** (big celebration) "Yaaay! You did it! COLOR WIZARD!"
+**AI says:** [big celebration] "Yaaay! You did it! COLOR WIZARD!"
 
 **Child responses:**
 
@@ -101,15 +101,15 @@
 
 **AI follow-up:**
 
-1. (warm, proud) "The best wizard! Colors love you!"
-2. (delighted) "More? Wow! Lucky colors!"
-3. (warm, gentle) "So great. Colors smile now."
+1. [warm, proud] "The best wizard! Colors love you!"
+2. [delighted] "More? Wow! Lucky colors!"
+3. [warm, gentle] "So great. Colors smile now."
 
 **Screen:** Sparkling "Color Wizard" badge in child-friendly lettering, crayon photo glowing in the background, confetti particles.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "Red felt one way. Blue felt another. That's Perspective! Shape and color matter. That's Form!"
+**AI says:** [warm, reflective] "Red felt one way. Blue felt another. That's Perspective! Shape and color matter. That's Form!"
 
 **Child responses:**
 
@@ -119,8 +119,8 @@
 
 **AI follow-up:**
 
-1. (proud) "Great job, Color Wizard! Bye-bye crayons!"
-2. (warm, simple) "It means your way. So cool!"
-3. (gentle, warm) "You did wonderful today. Bye-bye, Color Wizard!"
+1. [proud] "Great job, Color Wizard! Bye-bye crayons!"
+2. [warm, simple] "It means your way. So cool!"
+3. [gentle, warm] "You did wonderful today. Bye-bye, Color Wizard!"
 
 **Screen:** "Perspective" and "Form" in crayon-style lettering in bright colors, small crayon icons, wizard badge in the corner, rainbow shimmer background.

@@ -1,8 +1,31 @@
 # Entity Mapping Guidance
 
 > **Purpose**: Teaches the Activity Design Agent how to read structured entity mapping YAML files and use them to ground activity designs in entity-specific data.
-> **When to read**: Before designing any activity that has a `mapping=` parameter in its assignment.
+> **When to read**: Before designing any activity that has a `mapping=` parameter, `adaptation_brief.input_mode: mapping_informed`, warm/cold bridge handling, or entity-specific factual / IB claims.
 > **Mapping root**: `MAPPING_ROOT=data/mappings_dev20_0318` (repo-relative). The registry lives at `MAPPING_ROOT/_index.yaml`.
+
+---
+
+## §0 Role in the Current Workflow
+
+Entity mapping is a grounding and matchability layer, not the source of activity intent.
+
+Use mapping data when:
+
+- `assignment_type=entity_activity` includes `mapping=<entity_id>`.
+- `assignment_type=activity_concept` or `match_pattern` is explicitly tied to a mapped entity or entity class.
+- Phase 0 sets `adaptation_brief.input_mode: mapping_informed`.
+- The package makes entity-specific factual claims, mapping-grounded IB choices, matcher-ready routing claims, or warm/cold bridge claims.
+
+Do not require mapping data when:
+
+- Phase 0 sets `input_mode: parameterized` and the package uses runtime placeholders such as `{matched_color}` or `{matched_shape}`.
+- Phase 0 sets `input_mode: concept_only` and the activity concept does not claim entity-specific facts.
+- `assignment_type=capability_probe` is blocked before generation because product or template support is missing.
+
+Missing mapping should not block an `adaptation_brief`. It should block full package generation only when the package would otherwise need entity-specific facts, mapping-grounded Key Concepts, warm/cold bridge prerequisites, or matcher-ready entity routing.
+
+`mapping=` values are entity IDs, not file paths. Resolve them through `MAPPING_ROOT/_index.yaml`.
 
 ---
 

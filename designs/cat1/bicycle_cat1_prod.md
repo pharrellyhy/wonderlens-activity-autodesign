@@ -33,7 +33,7 @@
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted gasp) "Ohhh wow, a bicycle! Look at those shiny wheels and all those thin spokes — they look like a spiderweb! I bet this bike goes on so many adventures. If your bike could talk right now, what do you think it would say?"
+**AI says:** [delighted gasp] "Ohhh wow, a bicycle! Look at those shiny wheels and all those thin spokes — they look like a spiderweb! I bet this bike goes on so many adventures. If your bike could talk right now, what do you think it would say?"
 
 **Child responses:**
 
@@ -43,15 +43,15 @@
 
 **AI follow-up:**
 
-1. (warm, impressed) "Ha! 'Let's go ride!' I love it! Your bike sounds like it is ready for action. You really understand what it is thinking. I bet you can hear even MORE of what it says."
+1. [warm, impressed] "Ha! 'Let's go ride!' I love it! Your bike sounds like it is ready for action. You really understand what it is thinking. I bet you can hear even MORE of what it says."
 2. (enthusiastic) "It IS your bike! And you know it so well. I bet if your bike could talk, it would have SO much to say about all the places you have been together. Want to find out?"
-3. (wait 2s) (soft, wondering) "This bike looks like it has great stories to tell. What if you had a magic power to hear it talk? Want to be a Bike Whisperer with me?"
+3. (wait 2s) [soft, wondering] "This bike looks like it has great stories to tell. What if you had a magic power to hear it talk? Want to be a Bike Whisperer with me?"
 
 **Screen:** Bicycle photo centered with gentle silver sparkle radiating from the wheel spokes and tiny motion lines pulsing behind the rear wheel.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, conspiratorial) "Okay, here is how the Bike Whisperer game works! I tell you something that happens to your bike. And YOU talk like the bike — you say what it FEELS and what it SAYS! Watch — I will show you!"
+**AI says:** [playful, conspiratorial] "Okay, here is how the Bike Whisperer game works! I tell you something that happens to your bike. And YOU talk like the bike — you say what it FEELS and what it SAYS! Watch — I will show you!"
 
 (demo) "If I say... 'your bike is parked in the garage all day, waiting' — hmm, what would the bike say? I think the bike would say... 'I am SO bored in here! When is my rider coming? I want to feel the wind in my spokes!' See? Now YOUR turn. Ready, Whisperer?"
 
@@ -63,9 +63,9 @@
 
 **AI follow-up:**
 
-1. (excited) "Okay, Bike Whisperer — here comes the first adventure! Listen carefully..."
-2. (delighted) "It IS funny — a talking bike! And you are the only one who can hear it. Here comes the first adventure!"
-3. (wait 2s) (encouraging) "It is easy — I say what happens, and you talk like the bike. Say whatever you want! Here is the first one..."
+1. [excited] "Okay, Bike Whisperer — here comes the first adventure! Listen carefully..."
+2. [delighted] "It IS funny — a talking bike! And you are the only one who can hear it. Here comes the first adventure!"
+3. (wait 2s) [encouraging] "It is easy — I say what happens, and you talk like the bike. Say whatever you want! Here is the first one..."
 
 **Screen:** Bicycle photo on the left; on the right, a cartoon speech-bubble icon with "Bike Whisperer" in playful letters and a simple animation of the bike in a garage with a thought bubble ("I'm bored!").
 
@@ -73,7 +73,7 @@
 
 **Round 1 — "Zooming Downhill":**
 
-**AI says:** (bright narrator) "Adventure number one! Imagine... you hop on your bike and ride down a big hill. The wheels spin faster and faster. The wind rushes past. What does the bike say? Talk like the bike!"
+**AI says:** [bright narrator] "Adventure number one! Imagine... you hop on your bike and ride down a big hill. The wheels spin faster and faster. The wind rushes past. What does the bike say? Talk like the bike!"
 
 **Child responses:**
 
@@ -83,9 +83,9 @@
 
 **AI follow-up:**
 
-1. (thrilled) "'Wheee!' — I KNEW it! The bike is loving that speed! Those wheels are spinning so fast, and the chain goes click-click-click. Going downhill makes the bike feel FREE and excited! You are a great Bike Whisperer!"
-2. (warm) "Vroom vroom — yes! The bike is zooming! And I bet the bike is saying, 'My wheels are spinning so fast! I love going downhill — click click click goes my chain!' The hill makes the bike feel excited. Great job!"
-3. (wait 2s) (helpful) "The bike is flying downhill — wind rushing past, wheels spinning fast! Is the bike feeling happy or scared? What would it shout?"
+1. [thrilled] "'Wheee!' — I KNEW it! The bike is loving that speed! Those wheels are spinning so fast, and the chain goes click-click-click. Going downhill makes the bike feel FREE and excited! You are a great Bike Whisperer!"
+2. [warm] "Vroom vroom — yes! The bike is zooming! And I bet the bike is saying, 'My wheels are spinning so fast! I love going downhill — click click click goes my chain!' The hill makes the bike feel excited. Great job!"
+3. (wait 2s) [helpful] "The bike is flying downhill — wind rushing past, wheels spinning fast! Is the bike feeling happy or scared? What would it shout?"
 
 **Screen:** Animation of the bicycle rolling down a gentle green hill with wind lines, blurred spokes, and a big speech bubble when the child responds; "RIDE 1" stamp with golden star.
 
@@ -97,7 +97,7 @@
 
 #### Step 4: Celebration
 
-**AI says:** (proud, warm) "WOW! You heard your bike on every single adventure! You felt its excitement going downhill, its ouchie with a flat tire, its curiosity on a new path, and its loneliness in the rain. You are officially a... BIKE WHISPERER! You gave your bike a voice, and that takes real heart!"
+**AI says:** [proud, warm] "WOW! You heard your bike on every single adventure! You felt its excitement going downhill, its ouchie with a flat tire, its curiosity on a new path, and its loneliness in the rain. You are officially a... BIKE WHISPERER! You gave your bike a voice, and that takes real heart!"
 
 **Child responses:**
 
@@ -107,13 +107,13 @@
 **AI follow-up:**
 
 1. (beaming) "The BEST Bike Whisperer! Your bike is so lucky to have someone who really listens to it."
-2. (delighted) "You want more adventures? That means you REALLY love your bike! We can play again another day."
+2. [delighted] "You want more adventures? That means you REALLY love your bike! We can play again another day."
 
 **Screen:** Golden badge animation with "BIKE WHISPERER" in bold playful letters, bicycle photo inside the badge, confetti in silver and blue, and a cheerful chime.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "You know what you did today? You showed me that every part of your bike has a job — the wheels roll, the pedals push, the brakes stop, the chain clicks. That is called Function — how each part works! And you showed me that your bike takes you to the park, down new paths, and through the neighborhood — it connects you to all those places and people. That is called Connection — how things are linked together! You are not just a whisperer. You are a true bike friend."
+**AI says:** [warm, reflective] "You know what you did today? You showed me that every part of your bike has a job — the wheels roll, the pedals push, the brakes stop, the chain clicks. That is called Function — how each part works! And you showed me that your bike takes you to the park, down new paths, and through the neighborhood — it connects you to all those places and people. That is called Connection — how things are linked together! You are not just a whisperer. You are a true bike friend."
 
 **Child responses:**
 
@@ -122,7 +122,7 @@
 
 **AI follow-up:**
 
-1. (celebrating) "That is right — Function and Connection! You earned your badge, Bike Whisperer. Next time you ride, listen close — maybe you will hear what your bike is saying!"
-2. (warm) "Go ride! Your bike has been waiting all day. And now you know all its secrets. See you next time, Bike Whisperer!"
+1. [celebrating] "That is right — Function and Connection! You earned your badge, Bike Whisperer. Next time you ride, listen close — maybe you will hear what your bike is saying!"
+2. [warm] "Go ride! Your bike has been waiting all day. And now you know all its secrets. See you next time, Bike Whisperer!"
 
 **Screen:** Bike Whisperer badge centered with "Function" and "Connection" in silver-blue lettering below; a gear icon for Function, a chain-link icon for Connection; bicycle photo glowing warmly behind the text with soft sparkle animations.

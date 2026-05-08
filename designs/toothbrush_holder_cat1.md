@@ -39,7 +39,7 @@
 > **Context**: Child has just finished a tier_guidance conversation about the toothbrush holder.
 > **Conversation anchor**: emotions — "Do you like when the toothbrush holder looks tidy?"; function — "keeps brush heads up and away from mess"
 >
-> **AI says**: "*(warm, building on earlier)* You told me you like it when everything looks tidy in there! I think this holder works really hard. What if it had a secret job?"
+> **AI says**: "[warm, building on earlier] You told me you like it when everything looks tidy in there! I think this holder works really hard. What if it had a secret job?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "A secret job? What job?"
@@ -47,9 +47,9 @@
 > 3. (No response) Child is silent or looking around the bathroom.
 >
 > **AI follow-up**:
-> 1. "*(excited, leaning in)* Yes! I think it's the Bathroom Boss. It keeps everything in the right spot!"
-> 2. "*(playful, gently conspiratorial)* That's what it wants you to think! But look — it holds every brush just right. That sounds like a big job to me!"
-> 3. *(wait 2 seconds)* "*(gentle, encouraging)* Hey, look at the holder again. I think it has a secret. Want to hear it?"
+> 1. "[excited, leaning in] Yes! I think it's the Bathroom Boss. It keeps everything in the right spot!"
+> 2. "[playful, gently conspiratorial] That's what it wants you to think! But look — it holds every brush just right. That sounds like a big job to me!"
+> 3. [wait 2 seconds] "[gentle, encouraging] Hey, look at the holder again. I think it has a secret. Want to hear it?"
 >
 > **Screen**: Toothbrush holder photo centered with a soft golden glow around the slots. A small animated sparkle trails along the top edge, hinting at the "secret."
 
@@ -57,7 +57,7 @@
 
 > **Context**: Child photographs the toothbrush holder with no prior conversation.
 >
-> **AI says**: "*(delighted surprise)* Oh wow, look at this helper sitting by the sink! It holds all the brushes so neatly. I think it has a secret job — what do you think it does all day?"
+> **AI says**: "[delighted surprise] Oh wow, look at this helper sitting by the sink! It holds all the brushes so neatly. I think it has a secret job — what do you think it does all day?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It holds the toothbrushes!"
@@ -65,17 +65,17 @@
 > 3. (No response) Child is silent or distracted.
 >
 > **AI follow-up**:
-> 1. "*(impressed tone)* That's right! It keeps them standing up nice and tall. I think it's like a boss for the whole bathroom!"
-> 2. "*(playful, curious)* Boring? But it never lets the brushes fall down! That sounds like a pretty tough job. I think it's a secret Bathroom Boss!"
-> 3. *(wait 2 seconds)* "*(warm, inviting)* See how the brushes all stand up? Someone is keeping them in line. I think this holder is the Bathroom Boss!"
+> 1. "[impressed tone] That's right! It keeps them standing up nice and tall. I think it's like a boss for the whole bathroom!"
+> 2. "[playful, curious] Boring? But it never lets the brushes fall down! That sounds like a pretty tough job. I think it's a secret Bathroom Boss!"
+> 3. [wait 2 seconds] "[warm, inviting] See how the brushes all stand up? Someone is keeping them in line. I think this holder is the Bathroom Boss!"
 >
 > **Screen**: Toothbrush holder photo centered with a gentle bathroom-themed background animation — tiny soap bubbles floating upward around the edges.
 
 **Step 2: Rule Introduction + Demo**
 
-> **AI says**: "*(excited, setting the scene)* Here is how we play! I will tell you about a bathroom problem. Then you tell me what the Bathroom Boss would say to fix it. Ready? I will go first!"
+> **AI says**: "[excited, setting the scene] Here is how we play! I will tell you about a bathroom problem. Then you tell me what the Bathroom Boss would say to fix it. Ready? I will go first!"
 >
-> "*(playful, modeling)* Oh no — a toothbrush fell off the counter onto the floor! The Bathroom Boss would say: 'Come back up here where it's clean!' See? Now you try the next one!"
+> "[playful, modeling] Oh no — a toothbrush fell off the counter onto the floor! The Bathroom Boss would say: 'Come back up here where it's clean!' See? Now you try the next one!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Okay! I'm ready!"
@@ -83,9 +83,9 @@
 > 3. (No response) Child is quiet or unsure.
 >
 > **AI follow-up**:
-> 1. "*(cheering)* Great! Here comes the first bathroom problem!"
-> 2. "*(warm, imaginative)* In our game it can! You get to be the Boss's voice. You say what it would say!"
-> 3. *(wait 2 seconds)* "*(encouraging, gentle)* It is easy! Just say what the Boss would do. Let's try together!"
+> 1. "[cheering] Great! Here comes the first bathroom problem!"
+> 2. "[warm, imaginative] In our game it can! You get to be the Boss's voice. You say what it would say!"
+> 3. [wait 2 seconds] "[encouraging, gentle] It is easy! Just say what the Boss would do. Let's try together!"
 >
 > **Screen**: The toothbrush holder photo with a small cartoon crown appearing on top of it. A speech bubble icon appears beside it to show the "Boss talks" mechanic. A simple toothbrush icon is shown tipping off a counter edge as the demo scenario.
 
@@ -93,7 +93,7 @@
 
 > **Round 1: The Messy Counter** (simple, confidence-building)
 >
-> **AI says**: "*(storytelling tone)* Uh oh! Someone left three toothbrushes lying flat on the wet counter. The bristles are getting all soggy! What does the Bathroom Boss say?"
+> **AI says**: "[storytelling tone] Uh oh! Someone left three toothbrushes lying flat on the wet counter. The bristles are getting all soggy! What does the Bathroom Boss say?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Stand up in your spots right now!"
@@ -101,15 +101,15 @@
 > 3. (No response) Child is thinking or silent.
 >
 > **AI follow-up**:
-> 1. "*(cheering)* Yes! Stand up so you can dry! The Boss knows wet bristles need air. That is so smart!"
-> 2. "*(warm, playful redirect)* Ha, that's relaxed! But the Boss knows that wet bristles get yucky if they stay flat. Maybe the Boss says 'Up you go so you can dry!' What do you think?"
-> 3. *(wait 2 seconds)* "*(helpful whisper)* The bristles are getting soggy on the counter. The Boss might say 'Get up and dry off!' What would you say?"
+> 1. "[cheering] Yes! Stand up so you can dry! The Boss knows wet bristles need air. That is so smart!"
+> 2. "[warm, playful redirect] Ha, that's relaxed! But the Boss knows that wet bristles get yucky if they stay flat. Maybe the Boss says 'Up you go so you can dry!' What do you think?"
+> 3. [wait 2 seconds] "[helpful whisper] The bristles are getting soggy on the counter. The Boss might say 'Get up and dry off!' What would you say?"
 >
 > **Screen**: Animated scene showing three cartoon toothbrushes lying flat on a wet counter. Small water droplets around them. When child responds, brushes animate to stand upright with a happy sparkle.
 
 > **Round 2: The Mixed-Up Brushes** (introduces sharing/identity — slightly more complex)
 >
-> **AI says**: "*(curious, storytelling tone)* Oh no! Dad's big blue brush is in the little kid spot. And your brush is in Mom's spot! Everyone is all mixed up. What does the Bathroom Boss tell them?"
+> **AI says**: "[curious, storytelling tone] Oh no! Dad's big blue brush is in the little kid spot. And your brush is in Mom's spot! Everyone is all mixed up. What does the Bathroom Boss tell them?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Go back to your own spot!"
@@ -117,15 +117,15 @@
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. "*(impressed)* That's right! Everyone gets their own slot. The Boss keeps them apart so the bristles stay clean. Each person has their own spot!"
-> 2. "*(thoughtful, gently extending)* That's a nice idea! But the Boss worries — if brushes touch, germs can hop between them. Maybe each brush needs its own space. What do you think?"
-> 3. *(wait 2 seconds)* "*(gentle prompt)* Each person in your family has a spot, right? The Boss might say 'Back to your own home!' What would you tell them?"
+> 1. "[impressed] That's right! Everyone gets their own slot. The Boss keeps them apart so the bristles stay clean. Each person has their own spot!"
+> 2. "[thoughtful, gently extending] That's a nice idea! But the Boss worries — if brushes touch, germs can hop between them. Maybe each brush needs its own space. What do you think?"
+> 3. [wait 2 seconds] "[gentle prompt] Each person in your family has a spot, right? The Boss might say 'Back to your own home!' What would you tell them?"
 >
 > **Screen**: Animated scene showing three different-colored toothbrushes in wrong slots — a big blue one squeezed into a small slot, a small one in a big slot. Arrows show them swapping to the right places when the child responds.
 
 > **Round 3: The Bedtime Rush** (surprising/funny — peak engagement)
 >
-> **AI says**: "*(dramatic, funny tone)* It is bedtime! Everyone runs in to brush their teeth at once. The bathroom is SO busy! Dad bumps the holder — it wobbles! What does the Bathroom Boss shout?"
+> **AI says**: "[dramatic, funny tone] It is bedtime! Everyone runs in to brush their teeth at once. The bathroom is SO busy! Dad bumps the holder — it wobbles! What does the Bathroom Boss shout?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Careful! Don't knock me over!"
@@ -133,15 +133,15 @@
 > 3. (No response) Child is giggling or distracted.
 >
 > **AI follow-up**:
-> 1. "*(laughing)* Ha! 'Be careful!' That's what a good Boss says. The heavy bottom helps it stay steady, but everyone should be gentle. The Boss keeps things safe!"
-> 2. "*(joining the fun)* Crash! Oh no, that would be a mess! I bet the Boss would say 'One at a time, please!' The Boss keeps everything calm and safe."
-> 3. *(wait 2 seconds)* "*(playful, dramatic)* The holder is wobbling! Quick — what does the Boss yell? Maybe 'Slow down, everyone!'"
+> 1. "[laughing] Ha! 'Be careful!' That's what a good Boss says. The heavy bottom helps it stay steady, but everyone should be gentle. The Boss keeps things safe!"
+> 2. "[joining the fun] Crash! Oh no, that would be a mess! I bet the Boss would say 'One at a time, please!' The Boss keeps everything calm and safe."
+> 3. [wait 2 seconds] "[playful, dramatic] The holder is wobbling! Quick — what does the Boss yell? Maybe 'Slow down, everyone!'"
 >
 > **Screen**: Animated bathroom scene with cartoon family members rushing in. The toothbrush holder wobbles side to side. A small exclamation mark bounces above it. When child responds, the scene calms down and the holder stands firm with a proud little glow.
 
 > **Rounds 4-5 (if child is engaged): Open-ended — child leads**
 >
-> **AI says**: "*(warm, inviting)* You are SO good at this! Can you think of a bathroom problem? Tell me, and then tell me what the Boss would do!"
+> **AI says**: "[warm, inviting] You are SO good at this! Can you think of a bathroom problem? Tell me, and then tell me what the Boss would do!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child invents a scenario (e.g., "The toothpaste fell in the sink!")
@@ -149,15 +149,15 @@
 > 3. (No response) Child seems done.
 >
 > **AI follow-up**:
-> 1. "*(amazed)* Oh that's a great one! And what does the Bathroom Boss say about that? You decide!"
-> 2. "*(warm, flexible)* Ooh, that's interesting! The Boss might handle that too. What would the Boss say?"
-> 3. *(wait 2 seconds)* "*(gentle, wrapping up)* That's okay! You already solved so many problems. The Bathroom Boss is very proud of you!"
+> 1. "[amazed] Oh that's a great one! And what does the Bathroom Boss say about that? You decide!"
+> 2. "[warm, flexible] Ooh, that's interesting! The Boss might handle that too. What would the Boss say?"
+> 3. [wait 2 seconds] "[gentle, wrapping up] That's okay! You already solved so many problems. The Bathroom Boss is very proud of you!"
 >
 > **Screen**: An open "thought bubble" frame where simple icons appear matching whatever the child describes. Playful question mark icons float gently if waiting for input.
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "*(warm celebration, proud)* You just became a Bathroom Boss Helper! You helped keep brushes clean, gave everyone their own spot, and kept things safe. That is amazing!"
+> **AI says**: "[warm celebration, proud] You just became a Bathroom Boss Helper! You helped keep brushes clean, gave everyone their own spot, and kept things safe. That is amazing!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child expresses pride or excitement.
@@ -165,15 +165,15 @@
 > 3. (No response) Child smiles or is quiet.
 >
 > **AI follow-up**:
-> 1. "*(beaming)* You should be so proud! The bathroom is lucky to have you!"
-> 2. "*(delighted)* You loved being the Boss! You can always look at your holder and remember its secret job!"
-> 3. "*(warm, affirming)* You did such a wonderful job today. The Bathroom Boss is very happy!"
+> 1. "[beaming] You should be so proud! The bathroom is lucky to have you!"
+> 2. "[delighted] You loved being the Boss! You can always look at your holder and remember its secret job!"
+> 3. "[warm, affirming] You did such a wonderful job today. The Bathroom Boss is very happy!"
 >
 > **Screen**: A shiny badge animation appears — a small cartoon toothbrush holder wearing a crown with the text "Bathroom Boss Helper" below it. Confetti and star animations burst around the badge. Celebration sound plays.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective)* You know what you discovered today? Every little thing in your bathroom has a job — keeping brushes dry, giving each person a spot, staying strong when someone bumps it. That is what Function means — everything has a purpose! And you helped take care of it all. That is Responsibility — looking after the things and people around you. You are a true Bathroom Boss Helper!"
+> **AI says**: "[warm, reflective] You know what you discovered today? Every little thing in your bathroom has a job — keeping brushes dry, giving each person a spot, staying strong when someone bumps it. That is what Function means — everything has a purpose! And you helped take care of it all. That is Responsibility — looking after the things and people around you. You are a true Bathroom Boss Helper!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child repeats or reacts to the concepts.
@@ -181,9 +181,9 @@
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. "*(proud)* You really get it! Function and Responsibility — you are so smart!"
-> 2. "*(warm, connecting)* Yes! Your bathroom has so many helpers with important jobs. You noticed that all by yourself!"
-> 3. "*(gentle, closing)* Next time you brush your teeth, say hi to the Bathroom Boss! Bye for now!"
+> 1. "[proud] You really get it! Function and Responsibility — you are so smart!"
+> 2. "[warm, connecting] Yes! Your bathroom has so many helpers with important jobs. You noticed that all by yourself!"
+> 3. "[gentle, closing] Next time you brush your teeth, say hi to the Bathroom Boss! Bye for now!"
 >
 > **Screen**: The words "Function" and "Responsibility" appear artistically — "Function" is styled with a small gear icon and toothbrush holder silhouette; "Responsibility" is styled with a caring hand icon. The child's badge ("Bathroom Boss Helper") floats alongside. Soft sparkle animation ties the elements together. The toothbrush holder photo is shown small in the corner as a callback.
 

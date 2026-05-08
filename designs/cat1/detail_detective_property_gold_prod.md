@@ -55,7 +55,7 @@ Child photographs a colorful toy truck → AI detects "red" → "Your truck is S
 
 #### Step 1: Transition Bridge
 
-**AI says:** (amazed, leaning-in gasp) "Whoa, look at your truck! It is SO red — like a fire engine! But wait... I think there are OTHER colors hiding on it. Sneaky little colors! If you could find every secret color on your truck, how many do you think there are?"
+**AI says:** [amazed, leaning-in gasp] "Whoa, look at your truck! It is SO red — like a fire engine! But wait... I think there are OTHER colors hiding on it. Sneaky little colors! If you could find every secret color on your truck, how many do you think there are?"
 
 **Child responses:**
 
@@ -65,15 +65,15 @@ Child photographs a colorful toy truck → AI detects "red" → "Your truck is S
 
 **AI follow-up:**
 
-1. (excited, conspiratorial) "Ooh, you are already spotting them! I bet there are even MORE than you think. Want to play a detective game? I give you clues and YOU find each secret color!"
-2. (warm, delighted) "I can tell you LOVE that truck! And it is FULL of hidden colors — not just red. I bet a truck expert like you can find them all. Want to try a detective game?"
-3. (wait 2s) (playful whisper) "I see at least FOUR secret colors on your truck besides red. I bet you can find them if I give you clues. Want to be a Detail Detective?"
+1. [excited, conspiratorial] "Ooh, you are already spotting them! I bet there are even MORE than you think. Want to play a detective game? I give you clues and YOU find each secret color!"
+2. [warm, delighted] "I can tell you LOVE that truck! And it is FULL of hidden colors — not just red. I bet a truck expert like you can find them all. Want to try a detective game?"
+3. (wait 2s) [playful whisper] "I see at least FOUR secret colors on your truck besides red. I bet you can find them if I give you clues. Want to be a Detail Detective?"
 
 **Screen:** Entity photo centered with magnifying-glass shimmer scanning across; tiny colorful question marks floating around edges; dominant property (red) glows warmly on entity.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, mystery-voice) "Okay, here is how it works! I spy a secret detail on your truck. I give you clues about what it looks like. You look and guess! Watch — I spy something BLACK and round — it touches the ground! Can you guess? The WHEELS! See how that works? Now the REAL game — I will find tricky hidden colors. Ready, Detective?"
+**AI says:** [playful, mystery-voice] "Okay, here is how it works! I spy a secret detail on your truck. I give you clues about what it looks like. You look and guess! Watch — I spy something BLACK and round — it touches the ground! Can you guess? The WHEELS! See how that works? Now the REAL game — I will find tricky hidden colors. Ready, Detective?"
 
 **Child responses:**
 
@@ -83,9 +83,9 @@ Child photographs a colorful toy truck → AI detects "red" → "Your truck is S
 
 **AI follow-up:**
 
-1. (excited countdown) "Alright, Detail Detective — Case One starts NOW! Open your eyes wide and listen..."
-2. (delighted, impressed) "You already knew! You are a natural detective! But the next ones are trickier. Here comes the first REAL clue..."
-3. (wait 2s) (encouraging, gentle) "It is easy — I describe a secret color, you find it! Any guess is a great guess. Here comes the first one..."
+1. [excited countdown] "Alright, Detail Detective — Case One starts NOW! Open your eyes wide and listen..."
+2. [delighted, impressed] "You already knew! You are a natural detective! But the next ones are trickier. Here comes the first REAL clue..."
+3. (wait 2s) [encouraging, gentle] "It is easy — I describe a secret color, you find it! Any guess is a great guess. Here comes the first one..."
 
 **Screen:** Entity photo on left. Magnifying glass icon with "DETAIL DETECTIVE" in bold playful letters on right. Quick demo animation: glowing question mark over entity, clue bubble, wheels flash with "FOUND IT!" stamp. "Case 1" badge glows below. "COLOR CLUES" label with rainbow bar icon.
 
@@ -93,7 +93,7 @@ Child photographs a colorful toy truck → AI detects "red" → "Your truck is S
 
 **Round 1 — "I Spy Something BLACK!"** (simple, high-contrast — build confidence)
 
-**AI says:** (mysterious narrator) "Case number one! I spy something on your truck that is NOT red at all. It is small... round... and BLACK — dark as night! Your truck has more than one of them. Can you find the black things?"
+**AI says:** [mysterious narrator] "Case number one! I spy something on your truck that is NOT red at all. It is small... round... and BLACK — dark as night! Your truck has more than one of them. Can you find the black things?"
 
 **Child responses:**
 
@@ -103,9 +103,9 @@ Child photographs a colorful toy truck → AI detects "red" → "Your truck is S
 
 **AI follow-up:**
 
-1. (thrilled, celebratory) "You GOT it! The WHEELS — those little round black circles that help your truck roll everywhere! You know what they DO? They let the truck zoom across the floor! FIRST secret color — found!"
-2. (warm, encouraging) "Good thinking — but look again! My secret things are round like donuts and they touch the ground. Your truck rolls on them!" If child gets it: "YES! The wheels! First color secret — FOUND!" If still stuck: "Your truck ROLLS on them! They are... the WHEELS!"
-3. (wait 2s) (helpful whisper) "Look at the very BOTTOM of your truck. Something round and black is down there... your truck rolls on them! What are they?"
+1. [thrilled, celebratory] "You GOT it! The WHEELS — those little round black circles that help your truck roll everywhere! You know what they DO? They let the truck zoom across the floor! FIRST secret color — found!"
+2. [warm, encouraging] "Good thinking — but look again! My secret things are round like donuts and they touch the ground. Your truck rolls on them!" If child gets it: "YES! The wheels! First color secret — FOUND!" If still stuck: "Your truck ROLLS on them! They are... the WHEELS!"
+3. (wait 2s) [helpful whisper] "Look at the very BOTTOM of your truck. Something round and black is down there... your truck rolls on them! What are they?"
 
 **Screen:** Soft pulsing glow around lower area. When revealed, wheels get bright spotlight and sparkle burst. "CASE 1 — FOUND IT!" stamp with star. First-clue solves get "SHARP EYES!" banner. BLACK swatch appears in "Colors Found" tracker at bottom.
 
@@ -117,7 +117,7 @@ Child photographs a colorful toy truck → AI detects "red" → "Your truck is S
 
 #### Step 4: Celebration
 
-**AI says:** (building excitement, dramatic pause) "Detail Detective... you did it. You found the BLACK wheels — those round rollers! You uncovered the SILVER windows — shiny and see-through! You spotted the YELLOW headlights — those sneaky night helpers! And you tracked down the TINIEST bit of hidden blue! Every single secret color on your truck — FOUND! (big celebration) You are officially a MASTER Detail Detective!"
+**AI says:** [building excitement, dramatic pause] "Detail Detective... you did it. You found the BLACK wheels — those round rollers! You uncovered the SILVER windows — shiny and see-through! You spotted the YELLOW headlights — those sneaky night helpers! And you tracked down the TINIEST bit of hidden blue! Every single secret color on your truck — FOUND! [big celebration] You are officially a MASTER Detail Detective!"
 
 **Child responses:**
 
@@ -128,14 +128,14 @@ Child photographs a colorful toy truck → AI detects "red" → "Your truck is S
 **AI follow-up:**
 
 1. (beaming with pride) "The BEST Detail Detective I have ever seen! Your truck is full of secrets and you found every single one!"
-2. (delighted) "You want MORE cases? That means you are a TRUE detective — always looking for clues! We can detective again another time. But first, let me tell you something amazing..."
-3. (wait 2s) (warm whisper) "Your truck has been hiding those colors this whole time, and YOU are the first one to find them all. That is incredible."
+2. [delighted] "You want MORE cases? That means you are a TRUE detective — always looking for clues! We can detective again another time. But first, let me tell you something amazing..."
+3. (wait 2s) [warm whisper] "Your truck has been hiding those colors this whole time, and YOU are the first one to find them all. That is incredible."
 
 **Screen:** Golden "MASTER DETAIL DETECTIVE" badge with entity photo as portrait inside. Color swatches orbit — black, silver, yellow, blue — each with checkmark and tiny detail icon. Confetti in the four discovered colors. Magnifying-glass sparkles. "Colors Found" tracker shows all four swatches filled with golden glow.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective pride) "You looked REALLY closely at your truck — not just the big obvious red parts, but the tiny hidden details too. You noticed what each part LOOKS like — its color, its shape, where it hides. That is called Form — understanding what things look like. And you figured out what some parts DO — wheels help it roll, windows let the driver see, headlights shine at night. That is called Function — how each part works! You did not just look at your truck today. You DETECTED it. Master Detail Detective — that is you!"
+**AI says:** [warm, reflective pride] "You looked REALLY closely at your truck — not just the big obvious red parts, but the tiny hidden details too. You noticed what each part LOOKS like — its color, its shape, where it hides. That is called Form — understanding what things look like. And you figured out what some parts DO — wheels help it roll, windows let the driver see, headlights shine at night. That is called Function — how each part works! You did not just look at your truck today. You DETECTED it. Master Detail Detective — that is you!"
 
 **Child responses:**
 
@@ -145,8 +145,8 @@ Child photographs a colorful toy truck → AI detects "red" → "Your truck is S
 
 **AI follow-up:**
 
-1. (celebrating) "That is right — Form and Function! You earned your badge, Master Detail Detective. Next time you look at ANYTHING, I bet you will notice colors and details nobody else sees!"
-2. (warm, laughing) "Another toy? A detective is ALWAYS looking for the next case! See you next time, Master Detail Detective!"
-3. (wait 2s) (gentle closing) "Great job today, Detective. You see things most people miss. That is a superpower. See you next time!"
+1. [celebrating] "That is right — Form and Function! You earned your badge, Master Detail Detective. Next time you look at ANYTHING, I bet you will notice colors and details nobody else sees!"
+2. [warm, laughing] "Another toy? A detective is ALWAYS looking for the next case! See you next time, Master Detail Detective!"
+3. (wait 2s) [gentle closing] "Great job today, Detective. You see things most people miss. That is a superpower. See you next time!"
 
 **Screen:** Detective badge centered. "Form" with magnifying glass icon and "Function" with gear icon in bold metallic gold. Entity photo glows softly behind. Four color swatches as earned trophies below. "The End" ribbon in detective-badge style scrolls across bottom.

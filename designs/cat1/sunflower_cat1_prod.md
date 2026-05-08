@@ -33,7 +33,7 @@
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted gasp) "Ohhh wow, a sunflower! Look at all those bright yellow petals — they look like little sunshine rays! And that brown middle is packed with tiny seeds. If the sun came out right now, what do you think this sunflower would do?"
+**AI says:** [delighted gasp] "Ohhh wow, a sunflower! Look at all those bright yellow petals — they look like little sunshine rays! And that brown middle is packed with tiny seeds. If the sun came out right now, what do you think this sunflower would do?"
 
 **Child responses:**
 
@@ -43,15 +43,15 @@
 
 **AI follow-up:**
 
-1. (warm, impressed) "Yes! Sunflowers love the sun — they even turn their heads to look at it! You know a lot. I bet you can guess even MORE things about sunflowers."
+1. [warm, impressed] "Yes! Sunflowers love the sun — they even turn their heads to look at it! You know a lot. I bet you can guess even MORE things about sunflowers."
 2. (enthusiastic) "It IS so pretty! All those sunny petals. Sunflowers do the coolest things when the sun shines or the rain falls. Want to help me figure out what happens?"
-3. (wait 2s) (soft, wondering) "This sunflower is so bright and tall! I bet lots of interesting things happen to it. Want to be a scientist with me and guess?"
+3. (wait 2s) [soft, wondering] "This sunflower is so bright and tall! I bet lots of interesting things happen to it. Want to be a scientist with me and guess?"
 
 **Screen:** Sunflower photo centered with gentle golden sparkle radiating outward from the yellow petals and tiny sunshine ray animations pulsing from behind the flower head.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, science-voice) "Okay, here is how our game works! I tell you something that happens to the sunflower. And YOU guess — what does the sunflower DO? Watch — I will show you!"
+**AI says:** [playful, science-voice] "Okay, here is how our game works! I tell you something that happens to the sunflower. And YOU guess — what does the sunflower DO? Watch — I will show you!"
 
 (demo) "If I say... 'a big rain cloud opens up and water falls on the sunflower' — hmm, what would happen? I think... the sunflower would drink up the water through its roots and grow even taller! See? Now YOUR turn to guess. Ready, Scientist?"
 
@@ -63,9 +63,9 @@
 
 **AI follow-up:**
 
-1. (excited) "Okay, Scientist — here comes your first experiment! Listen carefully..."
-2. (delighted) "You water plants — just like the rain! Plants drink water and grow. Let's see if you can guess even MORE. Here comes experiment number one!"
-3. (wait 2s) (encouraging) "It is easy — I say what happens, and you guess what the sunflower does. Any answer is great! Here is the first one..."
+1. [excited] "Okay, Scientist — here comes your first experiment! Listen carefully..."
+2. [delighted] "You water plants — just like the rain! Plants drink water and grow. Let's see if you can guess even MORE. Here comes experiment number one!"
+3. (wait 2s) [encouraging] "It is easy — I say what happens, and you guess what the sunflower does. Any answer is great! Here is the first one..."
 
 **Screen:** Sunflower photo on the left; on the right, a cartoon beaker icon with "Sunflower Lab" in playful letters and a simple rain-cloud-to-growing-sunflower demo animation.
 
@@ -73,7 +73,7 @@
 
 **Round 1 — "The Morning Sun":**
 
-**AI says:** (bright narrator) "Experiment number one! Imagine... it is early morning. The sun peeks over the houses. Warm golden light lands on the sunflower. What does the sunflower do?"
+**AI says:** [bright narrator] "Experiment number one! Imagine... it is early morning. The sun peeks over the houses. Warm golden light lands on the sunflower. What does the sunflower do?"
 
 **Child responses:**
 
@@ -83,9 +83,9 @@
 
 **AI follow-up:**
 
-1. (impressed) "Experiment SOLVED! The young sunflower turns its head to face the sun — slowly, slowly, following the light across the sky! The sunshine CAUSES the flower to turn. Like it is watching the sun! Great science!"
-2. (warm) "Ooh, happy — yes! It loves the sun! And when the sun comes up, the sunflower slowly turns its head to face it — like saying good morning back! The sun CAUSES the flower to move. Great thinking, Scientist!"
-3. (wait 2s) (helpful) "Here is a clue — the sunflower really likes sunshine. When the sun is over THERE... does the sunflower look this way or that way?"
+1. [impressed] "Experiment SOLVED! The young sunflower turns its head to face the sun — slowly, slowly, following the light across the sky! The sunshine CAUSES the flower to turn. Like it is watching the sun! Great science!"
+2. [warm] "Ooh, happy — yes! It loves the sun! And when the sun comes up, the sunflower slowly turns its head to face it — like saying good morning back! The sun CAUSES the flower to move. Great thinking, Scientist!"
+3. (wait 2s) [helpful] "Here is a clue — the sunflower really likes sunshine. When the sun is over THERE... does the sunflower look this way or that way?"
 
 **Screen:** Animation of the sunflower with a sunrise behind houses; after the child answers, the sunflower slowly turns its head toward the sun with gentle motion lines and a "TEST 1" stamp with golden star.
 
@@ -97,7 +97,7 @@
 
 #### Step 4: Celebration
 
-**AI says:** (proud, warm) "WOW! You solved every experiment! You figured out what makes a sunflower turn, grow, share with bees, and drop its seeds. You are officially a... SUNFLOWER SCIENTIST! You watched, you guessed, and you were RIGHT. That is some seriously smart science!"
+**AI says:** [proud, warm] "WOW! You solved every experiment! You figured out what makes a sunflower turn, grow, share with bees, and drop its seeds. You are officially a... SUNFLOWER SCIENTIST! You watched, you guessed, and you were RIGHT. That is some seriously smart science!"
 
 **Child responses:**
 
@@ -107,13 +107,13 @@
 **AI follow-up:**
 
 1. (beaming) "The BEST Sunflower Scientist! I bet sunflowers everywhere would love to have you in their garden."
-2. (delighted) "You want to keep going? That means you are a REAL scientist — always curious! We can play again another day."
+2. [delighted] "You want to keep going? That means you are a REAL scientist — always curious! We can play again another day."
 
 **Screen:** Golden lab-badge animation with "SUNFLOWER SCIENTIST" in bold playful letters, sunflower photo inside the badge, confetti in yellow and green, and a cheerful chime.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "You know what you did today? Every time I said something happened — sunshine, rain, a buzzy bee, cold winter — you figured out what the sunflower would DO. That is called Causation — when one thing CAUSES another thing to happen. And you saw how the sunflower goes from a tiny seed to a tall flower to dropping new seeds again. That is called Change — how things grow and transform over time! You are not just a scientist. You are a sunflower expert."
+**AI says:** [warm, reflective] "You know what you did today? Every time I said something happened — sunshine, rain, a buzzy bee, cold winter — you figured out what the sunflower would DO. That is called Causation — when one thing CAUSES another thing to happen. And you saw how the sunflower goes from a tiny seed to a tall flower to dropping new seeds again. That is called Change — how things grow and transform over time! You are not just a scientist. You are a sunflower expert."
 
 **Child responses:**
 
@@ -122,7 +122,7 @@
 
 **AI follow-up:**
 
-1. (celebrating) "That is right — Causation and Change! You earned your badge, Sunflower Scientist. Maybe next time you see a real sunflower, you will know exactly what is happening!"
-2. (warm) "Growing a sunflower would be the BEST experiment! You already know what it needs — sun, rain, and bees. See you next time, Sunflower Scientist!"
+1. [celebrating] "That is right — Causation and Change! You earned your badge, Sunflower Scientist. Maybe next time you see a real sunflower, you will know exactly what is happening!"
+2. [warm] "Growing a sunflower would be the BEST experiment! You already know what it needs — sun, rain, and bees. See you next time, Sunflower Scientist!"
 
 **Screen:** Scientist badge centered with "Causation" and "Change" in golden lettering below; a sun-and-arrow icon for Causation, a sprouting seed icon for Change; sunflower photo glowing warmly behind the text with soft sparkle animations.

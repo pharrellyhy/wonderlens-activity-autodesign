@@ -35,7 +35,7 @@
 > **Context**: Child has just finished a tier_1 conversation about the goldfish.
 > **Conversation anchor**: emotions — "Do goldfish seem calm or wiggly to you?"; function — movement_style ("Glides, stops, then zooms with tail flicks")
 >
-> **AI says**: "*(warm, building on earlier)* You figured out that your goldfish zooms around with little tail flicks — like tiny kicks in a pool! I keep wondering... what MAKES it zoom? What if we played a guessing game about that?"
+> **AI says**: "[warm, building on earlier] You figured out that your goldfish zooms around with little tail flicks — like tiny kicks in a pool! I keep wondering... what MAKES it zoom? What if we played a guessing game about that?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah! Let's guess!" / "It zooms when it's hungry!" / "Okay!"
@@ -43,9 +43,9 @@
 > 3. (No response) Child looks at the screen or at the fish bowl silently.
 >
 > **AI follow-up**:
-> 1. "*(excited, conspiratorial)* Ooh, hungry zooming — that's a great clue! Let's see if you can guess MORE things that make it move. Ready, Detective?"
-> 2. "*(encouraging nod tone)* That's true, it does just swim! But SOMETIMES it swims fast, and sometimes slow. I bet you can guess WHY. Want to try?"
-> 3. *(waits 2 seconds)* "*(gentle, playful whisper)* Hey — I have a fun idea. What if I tell you something that happens... and YOU guess what the goldfish does? Like a detective!"
+> 1. "[excited, conspiratorial] Ooh, hungry zooming — that's a great clue! Let's see if you can guess MORE things that make it move. Ready, Detective?"
+> 2. "[encouraging nod tone] That's true, it does just swim! But SOMETIMES it swims fast, and sometimes slow. I bet you can guess WHY. Want to try?"
+> 3. [waits 2 seconds] "[gentle, playful whisper] Hey — I have a fun idea. What if I tell you something that happens... and YOU guess what the goldfish does? Like a detective!"
 >
 > **Screen**: Goldfish photo centered with a soft golden glow around the tail area, subtle "conversation recap" shimmer highlighting the fins. A small magnifying glass icon fades in at the bottom corner.
 
@@ -53,7 +53,7 @@
 
 > **Context**: Child photographs their goldfish with no prior conversation.
 >
-> **AI says**: "*(delighted gasp)* Ohhh wow, a goldfish! Look at it gliding in there — so smooth and quiet! It's like a little golden submarine. I wonder... does your goldfish have a name?"
+> **AI says**: "[delighted gasp] Ohhh wow, a goldfish! Look at it gliding in there — so smooth and quiet! It's like a little golden submarine. I wonder... does your goldfish have a name?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Goldie!" / "Bubbles!" / "Yes, it's [name]!" / Shares a name.
@@ -61,15 +61,15 @@
 > 3. (No response) Child watches the screen silently.
 >
 > **AI follow-up**:
-> 1. "*(warm, impressed)* [Name] — what a perfect name! [Name] looks like a real adventurer in there, zooming and gliding. I bet you notice a LOT about how [name] moves, huh?"
-> 2. "*(enthusiastic agreement)* Yes! Look at it go — swimming and gliding! Those little fins are working SO hard. You really watch your fish closely, huh?"
-> 3. *(waits 2 seconds)* "*(soft, wondering tone)* This goldfish is so pretty — those floaty fins waving like tiny flags! I bet it has lots of secrets. Want to be a detective with me?"
+> 1. "[warm, impressed] [Name] — what a perfect name! [Name] looks like a real adventurer in there, zooming and gliding. I bet you notice a LOT about how [name] moves, huh?"
+> 2. "[enthusiastic agreement] Yes! Look at it go — swimming and gliding! Those little fins are working SO hard. You really watch your fish closely, huh?"
+> 3. [waits 2 seconds] "[soft, wondering tone] This goldfish is so pretty — those floaty fins waving like tiny flags! I bet it has lots of secrets. Want to be a detective with me?"
 >
 > **Screen**: Goldfish photo fills the center of the screen. Gentle blue water ripple animation radiates outward from behind the fish. Tiny bubble animations float upward along the edges of the bowl.
 
 **Step 2: Rule Introduction + Demo — "The Detective Game"**
 
-> **AI says**: "*(playful, mystery-voice tone)* Okay, here's how our game works! I'll tell you something that happens near the goldfish. And YOU guess — what does the goldfish DO? Watch — I'll show you! If I say... 'Someone drops food flakes into the water' — hmm, what would the goldfish do? I think... it would zoom UP to the top with its tail going swish-swish-swish! See? Now YOUR turn to guess. Ready, Detective?"
+> **AI says**: "[playful, mystery-voice tone] Okay, here's how our game works! I'll tell you something that happens near the goldfish. And YOU guess — what does the goldfish DO? Watch — I'll show you! If I say... 'Someone drops food flakes into the water' — hmm, what would the goldfish do? I think... it would zoom UP to the top with its tail going swish-swish-swish! See? Now YOUR turn to guess. Ready, Detective?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Ready!" / "Yeah!" / "Let's go!"
@@ -77,17 +77,17 @@
 > 3. (No response) Child is quiet, possibly processing.
 >
 > **AI follow-up**:
-> 1. "*(excited countdown)* Okay, Detective — here comes your first case! Listen carefully..."
-> 2. "*(delighted)* Yes! It eats the food — swish swish, right up to the top! You already know a lot. Let's see if you can guess even MORE. Here comes your first case!"
-> 3. *(waits 2 seconds)* "*(encouraging, gentle)* It's easy — I'll say what happens, and you guess what the fish does. Any answer is great! Here's the first one..."
+> 1. "[excited countdown] Okay, Detective — here comes your first case! Listen carefully..."
+> 2. "[delighted] Yes! It eats the food — swish swish, right up to the top! You already know a lot. Let's see if you can guess even MORE. Here comes your first case!"
+> 3. [waits 2 seconds] "[encouraging, gentle] It's easy — I'll say what happens, and you guess what the fish does. Any answer is great! Here's the first one..."
 >
 > **Screen**: The goldfish photo shifts to the left side of the screen. On the right, a cartoon magnifying glass icon appears with the text "Detective Game" in playful letters. A simple animation shows: food flakes falling → goldfish zooming upward, demonstrating the cause-and-effect pattern. A "Round 1" badge glows softly below.
 
 **Step 3: Multi-Round Interaction (3–5 rounds)**
 
-**Round 1: The Food Drop** *(Simple, obvious — build confidence)*
+**Round 1: The Food Drop** [Simple, obvious — build confidence]
 
-> **AI says**: "*(mysterious narrator tone)* Case number one! Imagine... it's feeding time. You sprinkle tiny food flakes on top of the water. They float down slowly. What does the goldfish do?"
+> **AI says**: "[mysterious narrator tone] Case number one! Imagine... it's feeding time. You sprinkle tiny food flakes on top of the water. They float down slowly. What does the goldfish do?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It swims up!" / "It eats the food!" / "It goes to the top!"
@@ -95,15 +95,15 @@
 > 3. (No response) Child is quiet or looking at the fish bowl.
 >
 > **AI follow-up**:
-> 1. "*(impressed detective voice)* Case SOLVED! The goldfish zooms right up to the top — swish goes that fan-shaped tail, pushing it up like a little paddle! The food CAUSES the fish to swim up. Nice detective work!"
-> 2. "*(warm validation)* Ooh, happy — yes! It gets excited! And when it's excited about food, it ZOOMS up with that swishy tail — swish swish! The food makes it move! Great thinking, Detective!"
-> 3. *(waits 2 seconds)* "*(helpful, encouraging)* Here's a clue — the food is floating at the TOP. Where would the goldfish swim to get it? Up... or down?"
+> 1. "[impressed detective voice] Case SOLVED! The goldfish zooms right up to the top — swish goes that fan-shaped tail, pushing it up like a little paddle! The food CAUSES the fish to swim up. Nice detective work!"
+> 2. "[warm validation] Ooh, happy — yes! It gets excited! And when it's excited about food, it ZOOMS up with that swishy tail — swish swish! The food makes it move! Great thinking, Detective!"
+> 3. [waits 2 seconds] "[helpful, encouraging] Here's a clue — the food is floating at the TOP. Where would the goldfish swim to get it? Up... or down?"
 >
 > **Screen**: Animation shows the goldfish bowl with tiny food flakes drifting down from the surface. When the child answers (or after AI follow-up), the goldfish illustration zooms upward with tail-swish motion lines. A small "CASE 1 ✓" stamp appears in the corner. A golden star sparkles beside it.
 
-**Round 2: The Big Tap** *(Contrasting scenario — introduces the "startle" reaction)*
+**Round 2: The Big Tap** [Contrasting scenario — introduces the "startle" reaction]
 
-> **AI says**: "*(slightly dramatic whisper)* Case number two! What if... someone accidentally BUMPS the table near the bowl — THUMP! What does the goldfish do?"
+> **AI says**: "[slightly dramatic whisper] Case number two! What if... someone accidentally BUMPS the table near the bowl — THUMP! What does the goldfish do?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It swims away!" / "It gets scared!" / "It hides!" / "It darts!"
@@ -111,15 +111,15 @@
 > 3. (No response) Child is quiet, possibly unsure.
 >
 > **AI follow-up**:
-> 1. "*(excited reveal)* YES! It darts away super fast — ZOOM! The bump scares it, and those fins help it dart away and hide. The loud thump CAUSES it to zoom to a safe spot. You're a natural detective!"
-> 2. "*(gentle, validating)* That's an interesting guess! Actually, the goldfish gets a little startled — and it DARTS away really fast, like this! The bump makes it feel scared, so its fins go whoosh and it hides. The thump CAUSES a big zoom!"
-> 3. *(waits 2 seconds)* "*(playful hint)* Think about it — a big THUMP near the bowl! Would the goldfish stay still... or zoom away? What do YOU do when something loud happens?"
+> 1. "[excited reveal] YES! It darts away super fast — ZOOM! The bump scares it, and those fins help it dart away and hide. The loud thump CAUSES it to zoom to a safe spot. You're a natural detective!"
+> 2. "[gentle, validating] That's an interesting guess! Actually, the goldfish gets a little startled — and it DARTS away really fast, like this! The bump makes it feel scared, so its fins go whoosh and it hides. The thump CAUSES a big zoom!"
+> 3. [waits 2 seconds] "[playful hint] Think about it — a big THUMP near the bowl! Would the goldfish stay still... or zoom away? What do YOU do when something loud happens?"
 >
 > **Screen**: The bowl illustration is centered. A cartoon hand "bumps" the table edge — a THUMP ripple radiates through the water. The goldfish darts to the opposite side of the bowl with speed lines. "CASE 2 ✓" stamp appears. The contrast between the calm Round 1 fish and the darting Round 2 fish is visually clear.
 
-**Round 3: The New Shiny Pebble** *(Surprising, funny — peak engagement)*
+**Round 3: The New Shiny Pebble** [Surprising, funny — peak engagement]
 
-> **AI says**: "*(curious, playful tone)* Case number three — this one is tricky! What if... you dropped a brand new shiny blue pebble into the bowl? The goldfish has NEVER seen it before. It just sits there, sparkling. What does the goldfish do?"
+> **AI says**: "[curious, playful tone] Case number three — this one is tricky! What if... you dropped a brand new shiny blue pebble into the bowl? The goldfish has NEVER seen it before. It just sits there, sparkling. What does the goldfish do?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It looks at it!" / "It swims to it!" / "It tries to eat it!" / "It nibbles it!"
@@ -127,15 +127,15 @@
 > 3. (No response) Child is thinking or distracted.
 >
 > **AI follow-up**:
-> 1. "*(thrilled)* Amazing guess! The goldfish swims closer... closer... and NIBBLES it with that tiny little mouth! It's checking — is this food? Nope, just a rock! The new thing CAUSES the goldfish to get curious and nibble. Those round shiny eyes are staring right at it!"
-> 2. "*(agreeing warmly)* It IS pretty! And guess what — the goldfish thinks so too! It swims over and nibbles the shiny pebble with its little mouth, like taste-testing it. A new thing in the bowl CAUSES the goldfish to investigate! It's a curious little detective, just like you!"
-> 3. *(waits 2 seconds)* "*(enticing whisper)* The goldfish sees something NEW and sparkly... would it swim toward it or swim away? What would YOU do if you saw something new and shiny?"
+> 1. "[thrilled] Amazing guess! The goldfish swims closer... closer... and NIBBLES it with that tiny little mouth! It's checking — is this food? Nope, just a rock! The new thing CAUSES the goldfish to get curious and nibble. Those round shiny eyes are staring right at it!"
+> 2. "[agreeing warmly] It IS pretty! And guess what — the goldfish thinks so too! It swims over and nibbles the shiny pebble with its little mouth, like taste-testing it. A new thing in the bowl CAUSES the goldfish to investigate! It's a curious little detective, just like you!"
+> 3. [waits 2 seconds] "[enticing whisper] The goldfish sees something NEW and sparkly... would it swim toward it or swim away? What would YOU do if you saw something new and shiny?"
 >
 > **Screen**: Bowl illustration shows a sparkling blue pebble dropping in. The goldfish tilts its head (big round eyes visible), swims over slowly, and does a little "nibble nibble" animation at the pebble. A question mark floats above the fish, then turns into a tiny "!" when it nibbles. "CASE 3 ✓" stamp appears with an extra sparkle effect.
 
-**Round 4 (if child is engaged): The Calm Dark Room** *(Open-ended — child leads)*
+**Round 4 (if child is engaged): The Calm Dark Room** [Open-ended — child leads]
 
-> **AI says**: "*(soft, wondering tone)* Bonus case! What if... it gets dark. Someone turns off the lights in the room. The bowl is quiet and dark. What does the goldfish do now?"
+> **AI says**: "[soft, wondering tone] Bonus case! What if... it gets dark. Someone turns off the lights in the room. The bowl is quiet and dark. What does the goldfish do now?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It goes to sleep!" / "It slows down." / "It stops swimming." / "It rests."
@@ -143,15 +143,15 @@
 > 3. (No response) Child may be getting tired or losing focus.
 >
 > **AI follow-up**:
-> 1. "*(gentle, impressed)* That's exactly right! When it gets dark, the goldfish slows way down... it gets calm and still, almost like resting. The dark CAUSES it to settle. Even goldfish need quiet time! Wow, Detective — you really understand this fish."
-> 2. "*(validating warmly)* Aw, that's a kind thought! It might feel a little different in the dark. But actually, goldfish get really calm and slow when it's dark — they sort of rest in one spot. The darkness CAUSES them to be super still and peaceful. Like bedtime!"
-> 3. *(waits 2 seconds)* "*(cozy whisper)* This is the coziest case. Dark and quiet... the goldfish gets SO calm. It almost stops moving. Like when you get sleepy at night! The dark makes it rest."
+> 1. "[gentle, impressed] That's exactly right! When it gets dark, the goldfish slows way down... it gets calm and still, almost like resting. The dark CAUSES it to settle. Even goldfish need quiet time! Wow, Detective — you really understand this fish."
+> 2. "[validating warmly] Aw, that's a kind thought! It might feel a little different in the dark. But actually, goldfish get really calm and slow when it's dark — they sort of rest in one spot. The darkness CAUSES them to be super still and peaceful. Like bedtime!"
+> 3. [waits 2 seconds] "[cozy whisper] This is the coziest case. Dark and quiet... the goldfish gets SO calm. It almost stops moving. Like when you get sleepy at night! The dark makes it rest."
 >
 > **Screen**: The bowl illustration dims gradually — the background turns to a soft navy blue. The goldfish slows its animation to a gentle hover near the bottom, fins barely waving. Tiny "zzz" bubbles drift upward. "BONUS CASE ✓" stamp glows faintly in gold.
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "*(proud, warm celebration)* WOW! You solved every single case! You figured out what makes a goldfish zoom, dart, nibble, and rest. You are officially a... GOLDFISH DETECTIVE! You watched, you guessed, and you were RIGHT. That's some seriously smart detective work!"
+> **AI says**: "[proud, warm celebration] WOW! You solved every single case! You figured out what makes a goldfish zoom, dart, nibble, and rest. You are officially a... GOLDFISH DETECTIVE! You watched, you guessed, and you were RIGHT. That's some seriously smart detective work!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yay!" / "I'm a detective!" / Giggles or cheers.
@@ -159,15 +159,15 @@
 > 3. (No response) Child smiles or looks pleased.
 >
 > **AI follow-up**:
-> 1. "*(beaming)* The BEST Goldfish Detective! Your goldfish is lucky to have someone who understands it so well."
-> 2. "*(delighted)* You want MORE? That means you're a REAL detective — always curious! We can play again another day. For now, let me tell you something amazing about what you just did..."
-> 3. *(waits 2 seconds)* "*(warm whisper)* You know what? I think your goldfish felt it too — you really paid attention. That's what great detectives do."
+> 1. "[beaming] The BEST Goldfish Detective! Your goldfish is lucky to have someone who understands it so well."
+> 2. "[delighted] You want MORE? That means you're a REAL detective — always curious! We can play again another day. For now, let me tell you something amazing about what you just did..."
+> 3. [waits 2 seconds] "[warm whisper] You know what? I think your goldfish felt it too — you really paid attention. That's what great detectives do."
 >
 > **Screen**: A golden detective badge animation fills the center of the screen with the text "GOLDFISH DETECTIVE" in bold, playful letters. The goldfish photo appears inside the badge like a portrait. Confetti and tiny bubble animations burst outward. A cheerful chime sound plays.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective pride)* You know what you did today? Every time I said something happened — food drops, a bump, a new pebble — you figured out what the goldfish would DO. That's called Causation — when one thing CAUSES another thing to happen. And you noticed that the tail pushes, the fins steer, and the mouth nibbles — every part has its own job. That's called Function — how each part works! You're not just a detective. You're a goldfish scientist."
+> **AI says**: "[warm, reflective pride] You know what you did today? Every time I said something happened — food drops, a bump, a new pebble — you figured out what the goldfish would DO. That's called Causation — when one thing CAUSES another thing to happen. And you noticed that the tail pushes, the fins steer, and the mouth nibbles — every part has its own job. That's called Function — how each part works! You're not just a detective. You're a goldfish scientist."
 >
 > **Possible child responses**:
 > 1. (Ideal) "Causation!" / "I'm a scientist!" / Repeats a word happily.
@@ -175,9 +175,9 @@
 > 3. (No response) Child listens or looks at the screen.
 >
 > **AI follow-up**:
-> 1. "*(celebrating)* That's right — Causation and Function! You earned your badge, Goldfish Detective. Go say hi to your fish — I bet it knows you understand it now!"
-> 2. "*(warm, laughing)* Go ahead — your goldfish is lucky to have such a great detective taking care of it! See you next time, Goldfish Detective!"
-> 3. *(waits 2 seconds)* "*(gentle closing)* Great job today, Detective. Your goldfish has a really smart friend. See you next time!"
+> 1. "[celebrating] That's right — Causation and Function! You earned your badge, Goldfish Detective. Go say hi to your fish — I bet it knows you understand it now!"
+> 2. "[warm, laughing] Go ahead — your goldfish is lucky to have such a great detective taking care of it! See you next time, Goldfish Detective!"
+> 3. [waits 2 seconds] "[gentle closing] Great job today, Detective. Your goldfish has a really smart friend. See you next time!"
 >
 > **Screen**: The detective badge remains centered. Below it, the words **"Causation"** and **"Function"** appear one at a time in elegant, golden lettering — each word accompanied by a small icon (a chain-link for Causation, a gear for Function). The goldfish photo glows warmly behind the text. Soft sparkle animations surround the concept words. After 3 seconds, a gentle "The End" ribbon scrolls across the bottom.
 

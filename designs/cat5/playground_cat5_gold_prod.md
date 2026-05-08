@@ -79,7 +79,7 @@ Child photographs a metal slide, AI notices the shiny metal surface, proposes a 
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted, curious) "Whoa — feel that slide! It's so shiny and hard. That's METAL! Metal is strong and smooth — that's why you zoom down so fast. But wait... I'm looking around this playground and I have a BIG question. Is EVERYTHING here made of metal? Or are some things made of something else? What do you think?"
+**AI says:** [delighted, curious] "Whoa — feel that slide! It's so shiny and hard. That's METAL! Metal is strong and smooth — that's why you zoom down so fast. But wait... I'm looking around this playground and I have a BIG question. Is EVERYTHING here made of metal? Or are some things made of something else? What do you think?"
 
 **Child responses:**
 
@@ -90,15 +90,15 @@ Child photographs a metal slide, AI notices the shiny metal surface, proposes a 
 **AI follow-up:**
 
 1. (intrigued) "Interesting — you already have ideas! This slide is definitely metal — hard and shiny. But I wonder about the OTHER things. Are most of them metal too, or made of something different like plastic or wood? I think we should find out for REAL!"
-2. (warm, explaining) "Metal is the hard, shiny stuff — like this slide! If you knock on it, it goes CLANG. Some things at playgrounds are metal, and some are made of other stuff — like plastic, which is smooth, or wood, which feels rough. I have a fun idea to figure out what THIS playground is made of!"
-3. (wait 2s) (inviting) "This slide is metal — hard, shiny, and cold to touch! But look around. Are ALL the playground things metal? Or are some made of something else? I bet we can find out together!"
+2. [warm, explaining] "Metal is the hard, shiny stuff — like this slide! If you knock on it, it goes CLANG. Some things at playgrounds are metal, and some are made of other stuff — like plastic, which is smooth, or wood, which feels rough. I have a fun idea to figure out what THIS playground is made of!"
+3. (wait 2s) [inviting] "This slide is metal — hard, shiny, and cold to touch! But look around. Are ALL the playground things metal? Or are some made of something else? I bet we can find out together!"
 
 **Screen:** Slide photo centered with metallic sheen highlight and a small "METAL" label with shiny icon near the surface.
 
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (excited scientist) "Okay — here is my big question. Out of ALL the playground things, do you think MOST of them are made of metal... or MOST of them are made of something else — like plastic, wood, or rubber? This is your PREDICTION. What do you think — mostly metal, or mostly NOT metal?"
+**AI says:** [excited scientist] "Okay — here is my big question. Out of ALL the playground things, do you think MOST of them are made of metal... or MOST of them are made of something else — like plastic, wood, or rubber? This is your PREDICTION. What do you think — mostly metal, or mostly NOT metal?"
 
 **Child responses:**
 
@@ -110,7 +110,7 @@ Child photographs a metal slide, AI notices the shiny metal surface, proposes a 
 
 1. (locking it in) "You predict MOSTLY METAL — got it! I'm writing that down. Now here's the deal — you are a Playground Scientist! Your job: find 3 more playground things, take a photo of each one, and tell me what it's made of. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
 2. (locking it in) "You predict MOSTLY NOT METAL — interesting! I'm writing that down. Now here's the deal — you are a Playground Scientist! Your job: find 3 more playground things, take a photo of each one, and tell me what it's made of. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
-3. (encouraging) "A prediction is your BEST GUESS before you check! Like saying 'I think it will rain today' before you look outside. So — take your best guess. Do you think MOST playground things are metal, or mostly something else like plastic or wood? Just pick one!"
+3. [encouraging] "A prediction is your BEST GUESS before you check! Like saying 'I think it will rain today' before you look outside. So — take your best guess. Do you think MOST playground things are metal, or mostly something else like plastic or wood? Just pick one!"
 
 **Screen:** Scientist mission card with "Playground Scientist" badge. Tally board with two columns: "Metal" (shiny icon) and "Not Metal" (plastic/wood/rubber icons). Slide photo under "Metal" with "1" tally. Prediction banner at top: "My prediction: Mostly [Metal / Not Metal]!" Three empty photo slots below.
 
@@ -119,9 +119,9 @@ Child photographs a metal slide, AI notices the shiny metal surface, proposes a 
 
 **Round 1 — First Evidence:**
 
-*(Child photographs something — e.g., the swings)*
+[Child photographs something — e.g., the swings]
 
-**AI says:** (eager scientist) "Evidence number two! Oh, I see the swings! Let me look closely at this photo... (examining) The seat looks dark and soft — not shiny like metal at all. I think that's RUBBER! Rubber is soft so it doesn't hurt when you sit. That goes in the NOT METAL column!"
+**AI says:** [eager scientist] "Evidence number two! Oh, I see the swings! Let me look closely at this photo... (examining) The seat looks dark and soft — not shiny like metal at all. I think that's RUBBER! Rubber is soft so it doesn't hurt when you sit. That goes in the NOT METAL column!"
 
 **Child responses:**
 
@@ -131,8 +131,8 @@ Child photographs a metal slide, AI notices the shiny metal surface, proposes a 
 
 **AI follow-up:**
 
-1. (writing it down excitedly) "Great observation! The tally so far: Metal has 1, Not Metal has 1. It's a TIE right now! Your prediction says mostly [metal/not-metal]... let's see what happens next! Two more to find, Scientist!"
-2. (validating) "Black — yes! And that black, bendy-looking seat is rubber. NOT metal! Tally update: Metal 1, Not Metal 1. It's TIED! Two more, Scientist!"
+1. [writing it down excitedly] "Great observation! The tally so far: Metal has 1, Not Metal has 1. It's a TIE right now! Your prediction says mostly [metal/not-metal]... let's see what happens next! Two more to find, Scientist!"
+2. [validating] "Black — yes! And that black, bendy-looking seat is rubber. NOT metal! Tally update: Metal 1, Not Metal 1. It's TIED! Two more, Scientist!"
 3. (wait 2s) (announcing) "So that's rubber — NOT metal! The tally is tied: Metal 1, Not Metal 1! Two more to go. Find another playground thing and take a photo!"
 
 **Screen:** New photo in slot 2. Tally board updates with animated tally mark. Running score: "Metal: 1 | Not Metal: 1." Prediction banner stays visible at top.
@@ -144,19 +144,19 @@ Child photographs a metal slide, AI notices the shiny metal surface, proposes a 
 
 #### Step 4: Celebration
 
-**AI says:** (drumroll voice) "Okay Playground Scientist — time for the BIG REVEAL! You predicted that most playground things would be... MOSTLY [METAL / NOT METAL]! Let's count the evidence!"
+**AI says:** [drumroll voice] "Okay Playground Scientist — time for the BIG REVEAL! You predicted that most playground things would be... MOSTLY [METAL / NOT METAL]! Let's count the evidence!"
 
-*(AI tallies aloud)*
+[AI tallies aloud]
 
 "The slide — METAL! That's one for metal. The [find 1] — [material]! The [find 2] — [material]! The [find 3] — [material]!"
 
-**If prediction was RIGHT**: (triumphant fanfare) "The final count: Metal [N], Not Metal [M]! Your prediction was... RIGHT! You KNEW it! Most things at this playground really ARE [mostly metal / mostly not-metal]! Playground Scientist, your instincts are amazing!"
+**If prediction was RIGHT**: [triumphant fanfare] "The final count: Metal [N], Not Metal [M]! Your prediction was... RIGHT! You KNEW it! Most things at this playground really ARE [mostly metal / mostly not-metal]! Playground Scientist, your instincts are amazing!"
 
-**If prediction was WRONG**: (gasping with delight) "The final count: Metal [N], Not Metal [M]! Your prediction was mostly [metal/not-metal], but SURPRISE — the playground TRICKED you! More things are actually [metal/not-metal] than you expected! That's what makes science so cool — sometimes you find out something you DIDN'T expect!"
+**If prediction was WRONG**: [gasping with delight] "The final count: Metal [N], Not Metal [M]! Your prediction was mostly [metal/not-metal], but SURPRISE — the playground TRICKED you! More things are actually [metal/not-metal] than you expected! That's what makes science so cool — sometimes you find out something you DIDN'T expect!"
 
-**If it's a TIE**: (amazed) "The final count: Metal 2, Not Metal 2! It's a PERFECT TIE! Nobody could have predicted that — the playground uses BOTH equally! That's a surprise result, Scientist!"
+**If it's a TIE**: [amazed] "The final count: Metal 2, Not Metal 2! It's a PERFECT TIE! Nobody could have predicted that — the playground uses BOTH equally! That's a surprise result, Scientist!"
 
-**AI says:** (warm, wonder-filled) "You know what's really smart about playgrounds? They use DIFFERENT materials on purpose! The slide is metal because metal is smooth — that helps you zoom. The ground under the swings is rubber because rubber is soft — that keeps you safe if you fall. Every material has a REASON! Which material surprised you the most today?"
+**AI says:** [warm, wonder-filled] "You know what's really smart about playgrounds? They use DIFFERENT materials on purpose! The slide is metal because metal is smooth — that helps you zoom. The ground under the swings is rubber because rubber is soft — that keeps you safe if you fall. Every material has a REASON! Which material surprised you the most today?"
 
 **Child responses:**
 
@@ -166,16 +166,16 @@ Child photographs a metal slide, AI notices the shiny metal surface, proposes a 
 
 **AI follow-up:**
 
-1. (delighted) "That's what scientists DO — they guess, then check, and find out for real! Your experiment showed you something new about this playground!"
+1. [delighted] "That's what scientists DO — they guess, then check, and find out for real! Your experiment showed you something new about this playground!"
 2. (enthusiastic) "Great observation! The swing CHAIN is metal, but the SEAT is rubber. One piece of equipment can have DIFFERENT materials — that's a scientist-level discovery!"
-3. (wait 2s) (gentle) "Every material is here for a reason — smooth for speed, soft for safety, strong for climbing. Your experiment helped you see that!"
+3. (wait 2s) [gentle] "Every material is here for a reason — smooth for speed, soft for safety, strong for climbing. Your experiment helped you see that!"
 
 **Screen:** Full tally board with all 4 photos in two columns (Metal vs. Not Metal). Prediction banner lights up green (RIGHT!) or flashes orange with "SURPRISE!" text. Animated tally marks count up one by one. Large final score: "Metal: [N] | Not Metal: [M]." Reason arrows connect each photo to a purpose bubble.
 
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (proud celebration) "Congratulations, Playground Scientist! You did real science today! You looked closely at the Form of every piece — what it's made of, how it feels, what it looks like. And you discovered the Causation — WHY each material is there. Metal for strength. Rubber for safety. Wood for grip. Every material has a reason! You earned your Playground Scientist Badge!"
+**AI says:** [proud celebration] "Congratulations, Playground Scientist! You did real science today! You looked closely at the Form of every piece — what it's made of, how it feels, what it looks like. And you discovered the Causation — WHY each material is there. Metal for strength. Rubber for safety. Wood for grip. Every material has a reason! You earned your Playground Scientist Badge!"
 
 **Child responses:**
 
@@ -185,8 +185,8 @@ Child photographs a metal slide, AI notices the shiny metal surface, proposes a 
 
 **AI follow-up:**
 
-1. (encouraging) "Next time you visit a playground, try the experiment again! Predict first, then count. Every playground might have a different answer. See you on the next experiment, Scientist!"
-2. (warm) "Your badge is saved! You're a real Playground Scientist now. Bye for now, Scientist!"
-3. (wait 2s) (soft) "Your Scientist Badge is glowing. Great experiment today!"
+1. [encouraging] "Next time you visit a playground, try the experiment again! Predict first, then count. Every playground might have a different answer. See you on the next experiment, Scientist!"
+2. [warm] "Your badge is saved! You're a real Playground Scientist now. Bye for now, Scientist!"
+3. (wait 2s) [soft] "Your Scientist Badge is glowing. Great experiment today!"
 
 **Screen:** Golden "Playground Scientist Badge" shaped like a magnifying glass with tally chart inside. Slide photo at center with collection photos as insets. "Form" in crystalline letters with material texture swatches and "Causation" in arrow-shaped dynamic letters float artistically. Final tally result glows beneath.

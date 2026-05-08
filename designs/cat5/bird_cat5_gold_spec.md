@@ -85,7 +85,7 @@ bridged entity.
 
 > **Context**: Child photographs a bird singing on a branch in the park with no prior conversation.
 >
-> **AI says**: "*(delighted, hushed wonder)* Oh! A bird! Listen — it is singing a little song up on that branch. It sounds so beautiful, like a tiny musician! What do you think it is singing about?"
+> **AI says**: "[delighted, hushed wonder] Oh! A bird! Listen — it is singing a little song up on that branch. It sounds so beautiful, like a tiny musician! What do you think it is singing about?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It's singing about the sun!" / "It's happy!"
@@ -93,15 +93,15 @@ bridged entity.
 > 3. (No response) Child watches the bird quietly.
 >
 > **AI follow-up**:
-> 1. "*(warm, inspired)* A song about the sun! What a lovely idea. This bird is like a little performer on a stage. I wonder if we could find MORE performers to join it!"
-> 2. "*(playful, validating)* Chirping IS singing! Every chirp is a tiny note. This bird is like a singer on a stage branch. What if it had a whole band to play with?"
-> 3. *(wait 2 seconds)* "*(gentle, coaxing)* That bird is singing all by itself up there. It sounds a bit lonely! What if we found it some friends to make music with?"
+> 1. "[warm, inspired] A song about the sun! What a lovely idea. This bird is like a little performer on a stage. I wonder if we could find MORE performers to join it!"
+> 2. "[playful, validating] Chirping IS singing! Every chirp is a tiny note. This bird is like a singer on a stage branch. What if it had a whole band to play with?"
+> 3. [wait 2 seconds] "[gentle, coaxing] That bird is singing all by itself up there. It sounds a bit lonely! What if we found it some friends to make music with?"
 >
 > **Screen**: Bird photo centered on screen with soft green leaf-shaped glow around the branch. Tiny animated musical notes drift upward from the bird, fading gently as they rise.
 
 **Step 2: Mission Briefing — Nature Conductor**
 
-> **AI says**: "*(excited, rallying)* You are now a Nature Conductor! Your mission has three parts. First, find three things in nature that could be performers — like a stick, a leaf, or a rock. Second, take a photo of each one. Third, YOU give each one a special sound. Then we put on a Nature Concert! Ready, Conductor?"
+> **AI says**: "[excited, rallying] You are now a Nature Conductor! Your mission has three parts. First, find three things in nature that could be performers — like a stick, a leaf, or a rock. Second, take a photo of each one. Third, YOU give each one a special sound. Then we put on a Nature Concert! Ready, Conductor?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Ready!" / "Let's find performers!"
@@ -109,9 +109,9 @@ bridged entity.
 > 3. (No response) Child looks around, uncertain where to start.
 >
 > **AI follow-up**:
-> 1. "*(pumped up)* Great! A conductor is the boss of the music. YOU tell the performers when to play. Now look around — find a stick, a leaf, or a rock. Take a photo when you spot one!"
-> 2. "*(warm, explaining)* A conductor tells musicians when to play — loud, soft, fast, slow! And the sounds? YOU choose! A stick could go TAP TAP, a leaf could go RUSTLE RUSTLE. You decide! Now go find your first performer!"
-> 3. *(wait 2 seconds)* "*(encouraging, pointing)* Try looking on the ground near trees. A stick would be a great first performer! Or a leaf, or a little rock. Take a photo of whatever you find!"
+> 1. "[pumped up] Great! A conductor is the boss of the music. YOU tell the performers when to play. Now look around — find a stick, a leaf, or a rock. Take a photo when you spot one!"
+> 2. "[warm, explaining] A conductor tells musicians when to play — loud, soft, fast, slow! And the sounds? YOU choose! A stick could go TAP TAP, a leaf could go RUSTLE RUSTLE. You decide! Now go find your first performer!"
+> 3. [wait 2 seconds] "[encouraging, pointing] Try looking on the ground near trees. A stick would be a great first performer! Or a leaf, or a little rock. Take a photo of whatever you find!"
 >
 > **Screen**: A mission card appears with a "Nature Conductor" badge at the top — a small baton with musical notes swirling around it. Five performance slots are shown in a row — the first slot is filled with the bird photo labeled "Lead Singer." Three empty slots glow softly, each marked with a musical note icon. A numbered checklist reads: 1) Find 3 nature performers. 2) Photograph each one. 3) Give each one a sound!
 
@@ -119,9 +119,9 @@ bridged entity.
 
 > **Round 1** (full detail):
 >
-> *(Child takes a photo of a stick on the ground)*
+> [Child takes a photo of a stick on the ground]
 >
-> **AI says**: "*(excited discovery)* Ooh, a stick! Great find, Conductor! Now here is the big question — if this stick could make ONE sound, what would it be? Show me! Say the sound!"
+> **AI says**: "[excited discovery] Ooh, a stick! Great find, Conductor! Now here is the big question — if this stick could make ONE sound, what would it be? Show me! Say the sound!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "TAP TAP TAP!" / "KNOCK KNOCK!" / "BOOM BOOM!"
@@ -129,17 +129,17 @@ bridged entity.
 > 3. (No response) Child is silent, thinking.
 >
 > **AI follow-up**:
-> 1. "*(thrilled, dramatic)* TAP TAP TAP! I love it! Stick is now the DRUMMER of the Nature Orchestra — TAP TAP TAP! What a beat! Two more performers to find, Conductor!"
-> 2. "*(warm, scaffolding)* What if you tapped a stick on the ground? It would go TAP TAP! Or maybe CRACK! You pick the sound you like best. What do you think — TAP or CRACK?"
-> 3. *(wait 2 seconds)* "*(playful, modeling)* Hmm, a stick... I think it could go TAP TAP TAP, like a drum! Or maybe CLICK CLICK. Which one do you like? You choose!"
+> 1. "[thrilled, dramatic] TAP TAP TAP! I love it! Stick is now the DRUMMER of the Nature Orchestra — TAP TAP TAP! What a beat! Two more performers to find, Conductor!"
+> 2. "[warm, scaffolding] What if you tapped a stick on the ground? It would go TAP TAP! Or maybe CRACK! You pick the sound you like best. What do you think — TAP or CRACK?"
+> 3. [wait 2 seconds] "[playful, modeling] Hmm, a stick... I think it could go TAP TAP TAP, like a drum! Or maybe CLICK CLICK. Which one do you like? You choose!"
 >
 > **Screen**: Stick photo slides into the second performance slot with a burst of musical notes. The label below changes to show the child's assigned sound in playful bouncing letters (e.g., "TAP TAP TAP!"). Counter shows "1 of 3 performers found."
 
 > **Round 2** (full detail):
 >
-> *(Child takes a photo of a leaf on the ground or still on a bush)*
+> [Child takes a photo of a leaf on the ground or still on a bush]
 >
-> **AI says**: "*(curious excitement)* A leaf! Ooh, leaves are sneaky sound-makers. If this leaf could make ONE sound for the concert, what would it be? Say it loud!"
+> **AI says**: "[curious excitement] A leaf! Ooh, leaves are sneaky sound-makers. If this leaf could make ONE sound for the concert, what would it be? Say it loud!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "RUSTLE RUSTLE!" / "CRINKLE CRINKLE!" / "SHHHH!"
@@ -147,17 +147,17 @@ bridged entity.
 > 3. (No response) Child holds the leaf, thinking.
 >
 > **AI follow-up**:
-> 1. "*(delighted, dramatic)* RUSTLE RUSTLE! Yes! Leaf is now the WHISPERER of the Nature Orchestra — RUSTLE RUSTLE RUSTLE! So soft and sneaky. One more performer to find!"
-> 2. "*(warm, redirecting)* It IS green! A beautiful green leaf. And green leaves go... RUSTLE RUSTLE when the wind blows! Or maybe CRINKLE CRINKLE if you squish it. Pick a sound for your leaf performer!"
-> 3. *(wait 2 seconds)* "*(gentle, encouraging)* Feel that leaf — it is thin and light. What if the wind blew it? It might go RUSTLE RUSTLE. Or SWOOSH! What sound do you want it to make in the concert?"
+> 1. "[delighted, dramatic] RUSTLE RUSTLE! Yes! Leaf is now the WHISPERER of the Nature Orchestra — RUSTLE RUSTLE RUSTLE! So soft and sneaky. One more performer to find!"
+> 2. "[warm, redirecting] It IS green! A beautiful green leaf. And green leaves go... RUSTLE RUSTLE when the wind blows! Or maybe CRINKLE CRINKLE if you squish it. Pick a sound for your leaf performer!"
+> 3. [wait 2 seconds] "[gentle, encouraging] Feel that leaf — it is thin and light. What if the wind blew it? It might go RUSTLE RUSTLE. Or SWOOSH! What sound do you want it to make in the concert?"
 >
 > **Screen**: Leaf photo slides into the third performance slot with a swirling leaf animation. The label below shows the assigned sound in wavy, airy letters (e.g., "RUSTLE RUSTLE!"). Counter shows "2 of 3 performers found."
 
 > **Round 3** (full detail):
 >
-> *(Child takes a photo of a pebble or small rock)*
+> [Child takes a photo of a pebble or small rock]
 >
-> **AI says**: "*(thrilled)* A pebble! Perfect — our last performer! If this pebble could make ONE sound in the concert, what would it be?"
+> **AI says**: "[thrilled] A pebble! Perfect — our last performer! If this pebble could make ONE sound in the concert, what would it be?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "CLINK CLINK!" / "CLICK CLICK!" / "BONK!"
@@ -165,9 +165,9 @@ bridged entity.
 > 3. (No response) Child looks at the pebble quietly.
 >
 > **AI follow-up**:
-> 1. "*(awed, celebrating)* CLINK CLINK! Pebble is now the BELL-RINGER of the Nature Orchestra — CLINK CLINK CLINK! Your cast is COMPLETE, Conductor! Time for the big show!"
-> 2. "*(warm, building)* A heavy pebble! Heavy things make BIG sounds. Maybe THUD THUD? Or CLINK CLINK, like tiny bells? What sound do you want your pebble to make?"
-> 3. *(wait 2 seconds)* "*(playful, modeling)* This pebble looks like it could go CLINK CLINK, like a little bell! Or CLICK CLICK, like a clock. Pick one — you are the conductor!"
+> 1. "[awed, celebrating] CLINK CLINK! Pebble is now the BELL-RINGER of the Nature Orchestra — CLINK CLINK CLINK! Your cast is COMPLETE, Conductor! Time for the big show!"
+> 2. "[warm, building] A heavy pebble! Heavy things make BIG sounds. Maybe THUD THUD? Or CLINK CLINK, like tiny bells? What sound do you want your pebble to make?"
+> 3. [wait 2 seconds] "[playful, modeling] This pebble looks like it could go CLINK CLINK, like a little bell! Or CLICK CLICK, like a clock. Pick one — you are the conductor!"
 >
 > **Screen**: Pebble photo slides into the fourth performance slot with a sparkle burst. The label below shows the assigned sound in bold, bouncy letters (e.g., "CLINK CLINK!"). A "Cast Complete!" banner flashes across the screen. All four performer slots now filled: Bird (Lead Singer), Stick (sound), Leaf (sound), Pebble (sound).
 
@@ -177,33 +177,33 @@ bridged entity.
 
 > **Stuck Branch** (if child cannot find a performer):
 >
-> **AI says**: "*(helpful, conspiratorial)* Nature performers like to hide! Try looking under a tree — sticks love to wait there. Or check near a flower bed for little rocks. Even a fallen leaf on the path would be a great singer!"
+> **AI says**: "[helpful, conspiratorial] Nature performers like to hide! Try looking under a tree — sticks love to wait there. Or check near a flower bed for little rocks. Even a fallen leaf on the path would be a great singer!"
 >
 > **Screen**: A soft pulsing hint arrow appears pointing toward a tree or garden area. The text "Try: sticks under trees, pebbles near paths, leaves on the ground" appears in a small helpful bubble.
 
 **Step 4: Synthesis — The Nature Orchestra Concert (Magic Moment)**
 
-> **AI says**: "*(grand, theatrical announcer voice)* Ladies and gentlemen, boys and girls — welcome to the Nature Orchestra Concert! Your conductor has assembled FOUR amazing performers. Let the show begin!"
+> **AI says**: "[grand, theatrical announcer voice] Ladies and gentlemen, boys and girls — welcome to the Nature Orchestra Concert! Your conductor has assembled FOUR amazing performers. Let the show begin!"
 >
-> *(brief pause)*
+> [brief pause]
 >
-> "*(dramatic, building)* First up — the Lead Singer, Bird! *TWEET TWEET TWEEEEET!* The crowd goes wild!"
+> "[dramatic, building] First up — the Lead Singer, Bird! *TWEET TWEET TWEEEEET!* The crowd goes wild!"
 >
-> *(brief pause)*
+> [brief pause]
 >
-> "*(building energy)* Next — the Drummer, Stick! *TAP TAP TAP!* What a beat! The audience is clapping along!"
+> "[building energy] Next — the Drummer, Stick! *TAP TAP TAP!* What a beat! The audience is clapping along!"
 >
-> *(brief pause)*
+> [brief pause]
 >
-> "*(mysterious, soft)* Now, the Whisperer, Leaf, sneaks in... *RUSTLE RUSTLE RUSTLE...* Ohhh, so soft and beautiful!"
+> "[mysterious, soft] Now, the Whisperer, Leaf, sneaks in... *RUSTLE RUSTLE RUSTLE...* Ohhh, so soft and beautiful!"
 >
-> *(brief pause)*
+> [brief pause]
 >
-> "*(bright, ringing)* And finally — the Bell-Ringer, Pebble! *CLINK CLINK CLINK!* The crowd is cheering!"
+> "[bright, ringing] And finally — the Bell-Ringer, Pebble! *CLINK CLINK CLINK!* The crowd is cheering!"
 >
-> *(dramatic pause)*
+> [dramatic pause]
 >
-> "*(huge, explosive energy)* And now, Conductor — ALL TOGETHER NOW! Bird sings TWEET TWEET, Stick drums TAP TAP, Leaf whispers RUSTLE RUSTLE, Pebble rings CLINK CLINK — ALL AT ONCE! The audience is ON THEIR FEET! BRAVO! BRAVOOO!"
+> "[huge, explosive energy] And now, Conductor — ALL TOGETHER NOW! Bird sings TWEET TWEET, Stick drums TAP TAP, Leaf whispers RUSTLE RUSTLE, Pebble rings CLINK CLINK — ALL AT ONCE! The audience is ON THEIR FEET! BRAVO! BRAVOOO!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child cheers, laughs, claps, or shouts "AGAIN!" / "LOUDER!"
@@ -211,15 +211,15 @@ bridged entity.
 > 3. (No response) Child listens with a big smile.
 >
 > **AI follow-up**:
-> 1. "*(thrilled, responding to direction)* The conductor says LOUDER! TWEET TWEET! TAP TAP TAP! RUSTLE RUSTLE! CLINK CLINK CLINK! THE CROWD IS GOING CRAAAZY! Standing ovation! Encore, encore!"
-> 2. "*(delighted, following direction)* Just stick and pebble — a duet! TAP TAP... CLINK CLINK... TAP CLINK TAP CLINK! Ohhh, what a cool combo! You are an amazing conductor — you know exactly what sounds good together!"
-> 3. *(wait 2 seconds)* "*(warm, celebrating)* I see that smile, Conductor! Your orchestra was AMAZING. The audience is throwing flowers! Should we do it one more time? You say when!"
+> 1. "[thrilled, responding to direction] The conductor says LOUDER! TWEET TWEET! TAP TAP TAP! RUSTLE RUSTLE! CLINK CLINK CLINK! THE CROWD IS GOING CRAAAZY! Standing ovation! Encore, encore!"
+> 2. "[delighted, following direction] Just stick and pebble — a duet! TAP TAP... CLINK CLINK... TAP CLINK TAP CLINK! Ohhh, what a cool combo! You are an amazing conductor — you know exactly what sounds good together!"
+> 3. [wait 2 seconds] "[warm, celebrating] I see that smile, Conductor! Your orchestra was AMAZING. The audience is throwing flowers! Should we do it one more time? You say when!"
 >
 > **Screen**: All four performer photos are displayed in a semicircle stage layout, like an orchestra on stage. As each performer is introduced, its photo glows and its sound text pulses and bounces in rhythm. During "ALL TOGETHER NOW," all four photos glow simultaneously with musical notes, stars, and confetti bursting across the screen. An animated crowd silhouette at the bottom of the screen cheers and waves. A large "BRAVO!" text flashes with golden sparkles.
 
 **Step 5: Discovery Celebration**
 
-> **AI says**: "*(warm, reflective)* Wow, Conductor! You built a whole orchestra from nature. Four performers, four different sounds, one amazing concert. Which performer was your favorite? Who made the best sound?"
+> **AI says**: "[warm, reflective] Wow, Conductor! You built a whole orchestra from nature. Four performers, four different sounds, one amazing concert. Which performer was your favorite? Who made the best sound?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "The stick because TAP TAP is so cool!" / "The bird because it sings for real!"
@@ -227,15 +227,15 @@ bridged entity.
 > 3. (No response) Child points at one of the photos.
 >
 > **AI follow-up**:
-> 1. "*(impressed, warm)* Great pick! Every performer had its own special sound. That is what makes an orchestra so amazing — everyone is different, but together they make something beautiful!"
-> 2. "*(delighted)* ALL of them! That is what a conductor would say — every performer matters! Together they made something none of them could make alone!"
-> 3. *(wait 2 seconds)* "*(gentle, affirming)* That one! Great choice. I think it had a really special sound too. Every single performer helped make the concert wonderful!"
+> 1. "[impressed, warm] Great pick! Every performer had its own special sound. That is what makes an orchestra so amazing — everyone is different, but together they make something beautiful!"
+> 2. "[delighted] ALL of them! That is what a conductor would say — every performer matters! Together they made something none of them could make alone!"
+> 3. [wait 2 seconds] "[gentle, affirming] That one! Great choice. I think it had a really special sound too. Every single performer helped make the concert wonderful!"
 >
 > **Screen**: Collection photos displayed in the orchestra semicircle layout with a golden star appearing on the child's chosen favorite. Sound-wave lines connect all four performers to a central "Nature Orchestra" emblem. A banner reads: "4 performers, 1 amazing concert!"
 
 **Step 6: Closing + IB Concepts**
 
-> **AI says**: "*(proud, warm celebration)* You are an incredible Nature Conductor! You looked at each thing you found and imagined what sound it could make — you discovered its Form, its own special voice. Then you put them all together and created something beautiful — that is Connection, when different things work as a team. And YOU gave each one a voice — that is Perspective, seeing the world through different eyes and ears. You earned your Nature Conductor badge! Bravo, Conductor!"
+> **AI says**: "[proud, warm celebration] You are an incredible Nature Conductor! You looked at each thing you found and imagined what sound it could make — you discovered its Form, its own special voice. Then you put them all together and created something beautiful — that is Connection, when different things work as a team. And YOU gave each one a voice — that is Perspective, seeing the world through different eyes and ears. You earned your Nature Conductor badge! Bravo, Conductor!"
 >
 > **Screen**: "Nature Conductor" badge — a golden baton with four tiny icons orbiting it (a bird, a stick, a leaf, a pebble). "Form," "Connection," and "Perspective" appear in artistic green, gold, and sky-blue lettering with a musical note icon, a chain-link icon, and an ear icon respectively. Four collection photos as small insets arranged around the badge in an orchestra arc. Confetti gently falls across the screen.
 

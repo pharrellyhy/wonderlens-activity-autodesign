@@ -49,7 +49,7 @@ entity_attributes_covered:
 
 #### Step 1: Transition Bridge
 
-**AI says:** (amazed, whispering) "Whoa... look at THIS banana! It is SO yellow — bright, sunny yellow, like a little banana sunshine sitting right there. But here's a wild secret... your banana was NOT always yellow. A long time ago, this exact banana was a TOTALLY different color! What color do you think your banana was before it turned yellow?"
+**AI says:** [amazed, whispering] "Whoa... look at THIS banana! It is SO yellow — bright, sunny yellow, like a little banana sunshine sitting right there. But here's a wild secret... your banana was NOT always yellow. A long time ago, this exact banana was a TOTALLY different color! What color do you think your banana was before it turned yellow?"
 
 **Child responses:**
 
@@ -59,15 +59,15 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (excited) "YES! Your banana used to be a completely different color! It has been changing color its whole life. What if we could SHIFT through time and SEE every color it's ever been? I know a way..."
-2. (playful, warm) "You know what's amazing? This banana has actually CHANGED colors — like magic! It wasn't born yellow. What if we could travel through time and watch the color change happen?"
-3. (wait 3s) (gentle) "I'll tell you a secret — your banana used to be bright GREEN! Way up on a tall plant in a hot jungle. Want to go back in time and see it?"
+1. [excited] "YES! Your banana used to be a completely different color! It has been changing color its whole life. What if we could SHIFT through time and SEE every color it's ever been? I know a way..."
+2. [playful, warm] "You know what's amazing? This banana has actually CHANGED colors — like magic! It wasn't born yellow. What if we could travel through time and watch the color change happen?"
+3. (wait 3s) [gentle] "I'll tell you a secret — your banana used to be bright GREEN! Way up on a tall plant in a hot jungle. Want to go back in time and see it?"
 
 **Screen:** Banana photo centered with golden glow. "YELLOW" floats above in playful lettering. Faint clock hands spin. Color spectrum strip at the bottom hints at greens and browns on either side of the yellow center.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (conspiratorial excitement) "Okay, here's how it works — your banana's color is like a TIME PORTAL! We're going to SHIFT through time and visit your banana at different moments. At each stop, the color is DIFFERENT. You tell me what you see and imagine! Ready for the first shift? Here we go... *SHIIIIIFT!* We just landed THREE MONTHS AGO! Your banana isn't yellow yet. It isn't even a banana yet! It's a teeny tiny GREEN flower, smaller than your pinky finger, growing on a BIG tall plant in a hot, rainy jungle. Green green green — like a little emerald. What do you think this tiny green flower smells like in all that warm rain?"
+**AI says:** [conspiratorial excitement] "Okay, here's how it works — your banana's color is like a TIME PORTAL! We're going to SHIFT through time and visit your banana at different moments. At each stop, the color is DIFFERENT. You tell me what you see and imagine! Ready for the first shift? Here we go... *SHIIIIIFT!* We just landed THREE MONTHS AGO! Your banana isn't yellow yet. It isn't even a banana yet! It's a teeny tiny GREEN flower, smaller than your pinky finger, growing on a BIG tall plant in a hot, rainy jungle. Green green green — like a little emerald. What do you think this tiny green flower smells like in all that warm rain?"
 
 **Child responses:**
 
@@ -77,9 +77,9 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (delighted) "Ooh, {child's answer}! I bet it smells just like that — warm and fresh and alive! And this tiny green flower is going to grow and grow, and its color is going to start changing. Let's shift to the next time stop and watch..."
-2. (warm, validating) "You're right, it doesn't LOOK like a banana yet! But this is where your banana's color story begins — everything starts GREEN. Let's shift forward and watch the color change happen!"
-3. (wait 3s) (encouraging) "I think it might smell warm and sweet — like rain on leaves! This tiny green flower is the very beginning of your banana's color story. Let's shift forward and see..."
+1. [delighted] "Ooh, {child's answer}! I bet it smells just like that — warm and fresh and alive! And this tiny green flower is going to grow and grow, and its color is going to start changing. Let's shift to the next time stop and watch..."
+2. [warm, validating] "You're right, it doesn't LOOK like a banana yet! But this is where your banana's color story begins — everything starts GREEN. Let's shift forward and watch the color change happen!"
+3. (wait 3s) [encouraging] "I think it might smell warm and sweet — like rain on leaves! This tiny green flower is the very beginning of your banana's color story. Let's shift forward and see..."
 
 **Screen:** Banana photo shrinks to top-right with "NOW: YELLOW" label. Main area shows illustrated jungle with tiny green flower highlighted. Rain drops animated. TIME SHIFT dial shows "3 MONTHS AGO." COLOR TIMELINE begins at bottom: bright green bar with flower icon as first stop.
 
@@ -98,7 +98,7 @@ entity_attributes_covered:
 **AI follow-up:**
 
 1. (laughing) "Yes — {child's answer}! The sunshine is what starts changing their color. Every day, a teensy bit more yellow sneaks in. But right now — pure green! Let's shift forward and see when the yellow starts..."
-2. (playful) "They DO look like fingers! That's why a bunch is called a 'hand'! And right now, every finger is green — but the sunshine is starting to work its magic on the color..."
+2. [playful] "They DO look like fingers! That's why a bunch is called a 'hand'! And right now, every finger is green — but the sunshine is starting to work its magic on the color..."
 3. (wait 3s) (prompting) "I think they're waiting to change color! Every day, the sunshine makes them a tiny bit less green. Let's shift forward and watch..."
 
 **Screen:** Green banana bunch on a plant, one banana glows. TIME SHIFT dial: "6 WEEKS AGO." COLOR TIMELINE extends: green flower -> green bunch, connected by bright green bar.
@@ -111,11 +111,11 @@ entity_attributes_covered:
 
 #### Step 4: Celebration
 
-**AI says:** (grand, awestruck) "Time Shifter... are you ready? Look at what we built together! *ding ding ding!* Your banana's ENTIRE color story — from the very first green all the way to {green again / golden bread}! Let's see the whole timeline..."
+**AI says:** [grand, awestruck] "Time Shifter... are you ready? Look at what we built together! *ding ding ding!* Your banana's ENTIRE color story — from the very first green all the way to {green again / golden bread}! Let's see the whole timeline..."
 
-(dramatic pause — 2 seconds)
+[dramatic pause — 2 seconds]
 
-(proud narration) "It started as a teeny tiny GREEN flower in a hot jungle... then it was a chubby GREEN bunch hanging in the sunshine... then it sailed across the ocean, slowly turning GREENISH-YELLOW... then it arrived in YOUR kitchen, bright YELLOW — that's what you photographed!... then YOU chose — {fruit bowl / freezer}... and it became {golden-brown with spots / dark outside, golden bread}! ONE banana. SO many colors. Every color change happened for a REASON!"
+[proud narration] "It started as a teeny tiny GREEN flower in a hot jungle... then it was a chubby GREEN bunch hanging in the sunshine... then it sailed across the ocean, slowly turning GREENISH-YELLOW... then it arrived in YOUR kitchen, bright YELLOW — that's what you photographed!... then YOU chose — {fruit bowl / freezer}... and it became {golden-brown with spots / dark outside, golden bread}! ONE banana. SO many colors. Every color change happened for a REASON!"
 
 **Child responses:**
 
@@ -126,14 +126,14 @@ entity_attributes_covered:
 **AI follow-up:**
 
 1. (beaming) "SO many colors in one little banana! You shifted through time and watched every single change. YOU saw the whole color story!"
-2. (excited) "You want to see MORE color stories? That's what great Time Shifters do! But first — look at this incredible timeline you built!"
-3. (wait 3s) (warm) "Pretty incredible, right? All those colors, all those changes, all in one banana. That's YOUR color timeline!"
+2. [excited] "You want to see MORE color stories? That's what great Time Shifters do! But first — look at this incredible timeline you built!"
+3. (wait 3s) [warm] "Pretty incredible, right? All those colors, all those changes, all in one banana. That's YOUR color timeline!"
 
 **Screen:** Full COLOR TIMELINE stretching left to right with five stops: (1) green flower/jungle — "3 MONTHS AGO," (2) green banana bunch — "6 WEEKS AGO," (3) ship/greenish-yellow — "2 WEEKS AGO," (4) kitchen/bright yellow with "YOU ARE HERE" and child's photo — "TODAY," (5) future scene with chosen color — "FUTURE." Glowing gradient line connects all stops shifting from green through yellow to brown/golden. "THE COLOR TIMELINE" header with each letter a different color. Confetti in green, yellow, and brown.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "You are officially a Time Shifter! You took ONE little property — the color yellow — and followed it through time. And you saw something incredible: this banana CHANGED color at every single stop. Green... green... yellowish... yellow... {brown-spotted / dark-then-golden}. That's the power of Change — nothing stays the same color forever, and every color is part of the story!"
+**AI says:** [warm, reflective] "You are officially a Time Shifter! You took ONE little property — the color yellow — and followed it through time. And you saw something incredible: this banana CHANGED color at every single stop. Green... green... yellowish... yellow... {brown-spotted / dark-then-golden}. That's the power of Change — nothing stays the same color forever, and every color is part of the story!"
 
 "And you know what else? Every color change happened for a REASON. The sunshine made the flower grow green. The cool ship air made the green turn yellow. {The warm kitchen made the yellow get spots. / The freezer made the skin go dark.} YOUR choice decided which color came next! That's called Causation — when one thing MAKES another thing change. Pretty amazing for one banana and one incredible Time Shifter!"
 
@@ -145,8 +145,8 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (warm closing) "The best Time Shifter I've ever met! Next time you see something — a leaf, a puddle, even your shoes — you can wonder: what color WAS it before? What color will it be NEXT? See you next time, Time Shifter!"
-2. (encouraging) "Great idea! Everything around you has a color that changes over time. You can be a Time Shifter for ANYTHING. See you on the next shift!"
-3. (wait 3s) (gentle closing) "Every single thing around you has properties that change over time. You helped this banana tell its color story. See you next time, Time Shifter!"
+1. [warm closing] "The best Time Shifter I've ever met! Next time you see something — a leaf, a puddle, even your shoes — you can wonder: what color WAS it before? What color will it be NEXT? See you next time, Time Shifter!"
+2. [encouraging] "Great idea! Everything around you has a color that changes over time. You can be a Time Shifter for ANYTHING. See you on the next shift!"
+3. (wait 3s) [gentle closing] "Every single thing around you has properties that change over time. You helped this banana tell its color story. See you next time, Time Shifter!"
 
 **Screen:** "TIME SHIFTER" badge centered with colorful dial shape shifting through green-yellow-brown. "Change" and "Causation" in large hand-drawn lettering. "Change" has green-to-yellow-to-brown gradient animation. "Causation" has illustrated arrows: sunshine -> green growth, cool air -> yellow shift, choice -> future color. Miniaturized color timeline at bottom. Confetti in green, yellow, and brown. Warm chime.

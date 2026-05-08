@@ -47,7 +47,7 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 > **Context**: Child has just finished a tier_guidance conversation about the green apple.
 > **Conversation anchor**: appearance — color ("smooth green skin with pale speckles"); senses — touch_feel ("smooth and shiny")
 >
-> **AI says**: "*(warm, building on earlier)* You noticed how smooth and shiny this green apple is — remember those little speckles? I bet there are more green treasures hiding in the garden. Want to go on a hunt?"
+> **AI says**: "[warm, building on earlier] You noticed how smooth and shiny this green apple is — remember those little speckles? I bet there are more green treasures hiding in the garden. Want to go on a hunt?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah! Let's find green things!" / "I see something green!"
@@ -55,9 +55,9 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 > 3. (No response) Child holds the apple or looks around the garden.
 >
 > **AI follow-up**:
-> 1. "*(excited)* Great! Your eyes already spotted the speckles — now let's see what other green treasures are out here!"
-> 2. "*(warm, playful)* You can eat it later! And red apples are great too. But first — this shiny green apple wants friends. Let's find more green things in the garden!"
-> 3. *(wait 2s)* "*(gentle, coaxing)* This apple is so shiny and smooth. I wonder — is there anything else out here that's green like this? Look around!"
+> 1. "[excited] Great! Your eyes already spotted the speckles — now let's see what other green treasures are out here!"
+> 2. "[warm, playful] You can eat it later! And red apples are great too. But first — this shiny green apple wants friends. Let's find more green things in the garden!"
+> 3. [wait 2s] "[gentle, coaxing] This apple is so shiny and smooth. I wonder — is there anything else out here that's green like this? Look around!"
 >
 > **Screen**: Green apple photo centered with soft green glow highlighting the speckled surface; a small "conversation recap" badge shows a magnifying glass icon over the shiny skin detail.
 
@@ -65,7 +65,7 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 > **Context**: Child photographs a green apple in the garden with no prior conversation.
 >
-> **AI says**: "*(delighted surprise)* Wow, a green apple! Look how shiny and smooth it is. It is like a little green treasure ball. What do you think it feels like?"
+> **AI says**: "[delighted surprise] Wow, a green apple! Look how shiny and smooth it is. It is like a little green treasure ball. What do you think it feels like?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It feels smooth!" / "It's hard!"
@@ -73,15 +73,15 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 > 3. (No response) Child stares at the screen or touches the apple.
 >
 > **AI follow-up**:
-> 1. "*(impressed)* Smooth like a shiny marble! This apple is a real treasure. I wonder if there are more green treasures hiding in the garden."
-> 2. "*(warm, validating)* You found it on the ground — like a hidden treasure! This shiny green apple is so cool. I bet more green treasures are hiding nearby."
-> 3. *(wait 2s)* "*(playful, coaxing)* Feel it — is it smooth or bumpy? This green apple is so shiny! I think the garden has more green treasures for us."
+> 1. "[impressed] Smooth like a shiny marble! This apple is a real treasure. I wonder if there are more green treasures hiding in the garden."
+> 2. "[warm, validating] You found it on the ground — like a hidden treasure! This shiny green apple is so cool. I bet more green treasures are hiding nearby."
+> 3. [wait 2s] "[playful, coaxing] Feel it — is it smooth or bumpy? This green apple is so shiny! I think the garden has more green treasures for us."
 >
 > **Screen**: Green apple photo centered with a soft green glow and tiny sparkle animations around the glossy surface.
 
 **Step 2: Mission Briefing — Green Treasure Hunter**
 
-> **AI says**: "*(adventurous, rallying)* You are now a Green Treasure Hunter! Your mission has three parts. First, find three green things nearby. Second, take a photo of each one. Third, pick which treasure is most like the apple. Ready, hunter?"
+> **AI says**: "[adventurous, rallying] You are now a Green Treasure Hunter! Your mission has three parts. First, find three green things nearby. Second, take a photo of each one. Third, pick which treasure is most like the apple. Ready, hunter?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Ready!" / "Yes!"
@@ -89,9 +89,9 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 > 3. (No response) Child looks uncertain or hesitates.
 >
 > **AI follow-up**:
-> 1. "*(pumped up)* Let's go! Look at leaves, grass, or anything green. Take a photo when you find one!"
-> 2. "*(reassuring, conspiratorial)* Green things love to hide! Try looking at leaves on bushes, grass on the ground, or even green bugs. They are everywhere!"
-> 3. *(wait 2s)* "*(encouraging, pointing)* Try looking down at the grass first. See anything green? Take a photo of it!"
+> 1. "[pumped up] Let's go! Look at leaves, grass, or anything green. Take a photo when you find one!"
+> 2. "[reassuring, conspiratorial] Green things love to hide! Try looking at leaves on bushes, grass on the ground, or even green bugs. They are everywhere!"
+> 3. [wait 2s] "[encouraging, pointing] Try looking down at the grass first. See anything green? Take a photo of it!"
 >
 > **Screen**: Mission card with "Green Treasure Hunter" badge, four collection slots (first filled with green apple photo), and a numbered checklist.
 
@@ -99,9 +99,9 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 **Round 1:**
 
-> *(Child takes a photo of a green leaf)*
+> [Child takes a photo of a green leaf]
 >
-> **AI says**: "*(excited discovery)* Oh, a green leaf! Look at that! Is this leaf smooth and shiny like your apple, or does it feel different?"
+> **AI says**: "[excited discovery] Oh, a green leaf! Look at that! Is this leaf smooth and shiny like your apple, or does it feel different?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It's bumpy!" / "It has lines on it."
@@ -109,17 +109,17 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 > 3. (No response) Child waits silently.
 >
 > **AI follow-up**:
-> 1. "*(delighted)* Bumpy with little lines — that is so different from the smooth apple! Great find, hunter. Two more treasures to go!"
-> 2. "*(warm, extending)* A leaf is a great treasure! Feel it — is it smooth like the apple or a bit rough? Either way, your first green treasure is in the bag! Two more to go!"
-> 3. "*(playful)* I see something green with tiny lines on it! Your leaf looks lighter green than the apple. Nice treasure! Two more to find!"
+> 1. "[delighted] Bumpy with little lines — that is so different from the smooth apple! Great find, hunter. Two more treasures to go!"
+> 2. "[warm, extending] A leaf is a great treasure! Feel it — is it smooth like the apple or a bit rough? Either way, your first green treasure is in the bag! Two more to go!"
+> 3. "[playful] I see something green with tiny lines on it! Your leaf looks lighter green than the apple. Nice treasure! Two more to find!"
 >
 > **Screen**: Leaf photo slides into second collection slot with sparkle animation; counter shows "1 of 3 found."
 
 **Round 2:**
 
-> *(Child photographs green grass or a stem)*
+> [Child photographs green grass or a stem]
 >
-> **AI says**: "*(curious)* Ooh, another green treasure! Is this one smooth and shiny like the apple, or thin and bendy?"
+> **AI says**: "[curious] Ooh, another green treasure! Is this one smooth and shiny like the apple, or thin and bendy?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It's thin!" / "It bends!" / "It's soft."
@@ -127,17 +127,17 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 > 3. (No response) Child is quiet after taking the photo.
 >
 > **AI follow-up**:
-> 1. "*(impressed)* Thin and bendy — the apple is round and hard but this one bends! Same color, totally different shape. Great spotting, hunter! One more to go!"
-> 2. "*(warm, scaffolding)* Green grass — same color as the apple! But feel it — is it hard like the apple or soft and bendy? Same green, different feel! One more treasure!"
-> 3. *(wait 2s)* "*(cheerful)* Look at that green! It matches the apple's color but it is so thin and wispy. Your second treasure is in the bag! One more to find!"
+> 1. "[impressed] Thin and bendy — the apple is round and hard but this one bends! Same color, totally different shape. Great spotting, hunter! One more to go!"
+> 2. "[warm, scaffolding] Green grass — same color as the apple! But feel it — is it hard like the apple or soft and bendy? Same green, different feel! One more treasure!"
+> 3. [wait 2s] "[cheerful] Look at that green! It matches the apple's color but it is so thin and wispy. Your second treasure is in the bag! One more to find!"
 >
 > **Screen**: Photo slides into third collection slot with sparkle animation; counter shows "2 of 3 found."
 
 **Round 3:**
 
-> *(Child photographs a third green item — bug, moss, toy, weed)*
+> [Child photographs a third green item — bug, moss, toy, weed]
 >
-> **AI says**: "*(thrilled)* One more green treasure! Does this one feel the same as the apple or totally different?"
+> **AI says**: "[thrilled] One more green treasure! Does this one feel the same as the apple or totally different?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Totally different!" / "It's fuzzy!" / "It's squishy!"
@@ -145,23 +145,23 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 > 3. (No response) Child waits quietly.
 >
 > **AI follow-up**:
-> 1. "*(awed)* Totally different — but still green! The apple is smooth and hard, and this one is [child's description]. Your collection is complete, hunter!"
-> 2. "*(warm, validating)* Great find! It IS green — just like the apple. But I bet it feels nothing like a smooth shiny apple. Your third treasure is in the bag!"
-> 3. *(wait 2s)* "*(cheerful)* Another green treasure! This one looks so different from the apple even though they share the same color. Collection complete!"
+> 1. "[awed] Totally different — but still green! The apple is smooth and hard, and this one is [child's description]. Your collection is complete, hunter!"
+> 2. "[warm, validating] Great find! It IS green — just like the apple. But I bet it feels nothing like a smooth shiny apple. Your third treasure is in the bag!"
+> 3. [wait 2s] "[cheerful] Another green treasure! This one looks so different from the apple even though they share the same color. Collection complete!"
 >
 > **Screen**: Final photo slides into fourth collection slot with celebration burst. All four slots now filled. A "Collection Complete!" banner flashes briefly.
 
 **Stuck Branch** (if child cannot find a third green item):
 
-> **AI says**: "*(helpful, conspiratorial)* Green things love to hide! Try looking at low bushes, grass near your feet, or tiny green stems. Even a green bug counts!"
+> **AI says**: "[helpful, conspiratorial] Green things love to hide! Try looking at low bushes, grass near your feet, or tiny green stems. Even a green bug counts!"
 >
-> **If still stuck**: "*(gentle, pointing)* Look down at the ground. Any green there? Or check the leaves on the closest bush! Green is everywhere in the garden."
+> **If still stuck**: "[gentle, pointing] Look down at the ground. Any green there? Or check the leaves on the closest bush! Green is everywhere in the garden."
 >
 > **Screen**: Soft directional arrows appear pointing toward ground level and nearby bushes; small icons of a leaf and a blade of grass pulse gently in green.
 
 **Step 4: Collection Complete + Synthesis (Comparison Chart)**
 
-> **AI says**: "*(proud, curious)* Look at all your green treasures together! The apple, and three new friends. Now here is the big question — which treasure looks MOST like the apple? And which one looks the MOST different?"
+> **AI says**: "[proud, curious] Look at all your green treasures together! The apple, and three new friends. Now here is the big question — which treasure looks MOST like the apple? And which one looks the MOST different?"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child picks one as most similar and one as most different, with a reason: "The leaf is most like it because it's shiny."
@@ -169,25 +169,25 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 > 3. (No response) Child stares at the collection.
 >
 > **AI follow-up**:
-> 1. "*(impressed, reflective)* The leaf is shiny like the apple — great thinking! And what about the most different one? You are really good at comparing things!"
-> 2. "*(scaffolding warmly)* Good pick! Is it because they feel the same? Or look the same shape? You choose what matters! Every hunter sees things their own way."
-> 3. *(wait 2s)* "*(gently guiding)* Look at the pictures. Which green treasure is shiny and smooth like the apple? Point to it! And which one looks really different?"
+> 1. "[impressed, reflective] The leaf is shiny like the apple — great thinking! And what about the most different one? You are really good at comparing things!"
+> 2. "[scaffolding warmly] Good pick! Is it because they feel the same? Or look the same shape? You choose what matters! Every hunter sees things their own way."
+> 3. [wait 2s] "[gently guiding] Look at the pictures. Which green treasure is shiny and smooth like the apple? Point to it! And which one looks really different?"
 >
-> **AI says**: "*(warm celebration)* Amazing, Green Treasure Hunter! You found four green things in the garden. They are ALL green, but every single one feels different. The apple is smooth and round. The leaf has tiny lines. Why do you think so many things in the garden are green?"
+> **AI says**: "[warm celebration] Amazing, Green Treasure Hunter! You found four green things in the garden. They are ALL green, but every single one feels different. The apple is smooth and round. The leaf has tiny lines. Why do you think so many things in the garden are green?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Because they grow!" / "The sun makes them green." / Creative answer.
 > 2. (Unexpected) "I don't know." / "Because green is pretty."
 >
 > **AI follow-up**:
-> 1. "*(awed)* Things that grow use green to soak up sunshine! You figured that out from your treasure hunt. That is so smart!"
-> 2. "*(warm, encouraging)* Green IS pretty! And a lot of growing things pick green. Your eyes found so many different kinds. That is what makes you a great hunter!"
+> 1. "[awed] Things that grow use green to soak up sunshine! You figured that out from your treasure hunt. That is so smart!"
+> 2. "[warm, encouraging] Green IS pretty! And a lot of growing things pick green. Your eyes found so many different kinds. That is what makes you a great hunter!"
 >
 > **Screen**: All four photos in a grid with golden crown on apple photo, tap-to-select circles, connection/difference lines, and a center text "All green, all different!" with green sparkle particles. Two labeled zones: "Like the apple" and "Different from the apple" for mental grouping.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(proud, warm celebration)* You are an amazing Green Treasure Hunter! You found green treasures and compared every single one to your apple. You discovered that green things are connected — they share a color but each one is special. And you used your own perspective to choose which one matched the apple best. Nobody else would pick exactly like you! You earned your Green Treasure Hunter badge!"
+> **AI says**: "[proud, warm celebration] You are an amazing Green Treasure Hunter! You found green treasures and compared every single one to your apple. You discovered that green things are connected — they share a color but each one is special. And you used your own perspective to choose which one matched the apple best. Nobody else would pick exactly like you! You earned your Green Treasure Hunter badge!"
 >
 > **Screen**: "Green Treasure Hunter" badge — a golden magnifying glass with a green apple inside and three small green treasure icons orbiting it. "Connection" and "Perspective" appear in artistic green-and-gold lettering with a chain link icon and an eye icon. Four collection photos as small insets around the badge border.
 

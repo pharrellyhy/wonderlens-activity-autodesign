@@ -43,7 +43,7 @@
 > **Context**: Child has just finished a tier_guidance conversation about the piano.
 > **Conversation anchor**: emotions — "What kind of song would you want the piano to play—happy or sleepy?"
 >
-> **AI says**: "*(warm, building on earlier)* You told me you like when the piano sounds happy! I kept thinking about that. What if the piano could pick its OWN song for different moments? Want to find out what it would play?"
+> **AI says**: "[warm, building on earlier] You told me you like when the piano sounds happy! I kept thinking about that. What if the piano could pick its OWN song for different moments? Want to find out what it would play?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah! What would it play?"
@@ -51,9 +51,9 @@
 > 3. (No response) Child is quiet or looking at the piano.
 >
 > **AI follow-up**:
-> 1. "*(excited, leaning in)* Great! I have some fun moments to try. Let's see what songs the piano picks!"
-> 2. "*(validating, warm)* You love playing! The piano is lucky to have you. Before you play, let's imagine together — what song would it choose for a special moment?"
-> 3. *(waits 2 seconds)* "*(gentle, inviting)* Hey, I have a fun idea about your piano. Want to hear it?"
+> 1. "[excited, leaning in] Great! I have some fun moments to try. Let's see what songs the piano picks!"
+> 2. "[validating, warm] You love playing! The piano is lucky to have you. Before you play, let's imagine together — what song would it choose for a special moment?"
+> 3. [waits 2 seconds] "[gentle, inviting] Hey, I have a fun idea about your piano. Want to hear it?"
 >
 > **Screen**: Child's piano photo centered with a soft golden glow around the keys. A small speech bubble icon floats above the piano, hinting it has something to "say."
 
@@ -61,7 +61,7 @@
 
 > **Context**: Child photographs the piano with no prior conversation.
 >
-> **AI says**: "*(delighted surprise)* Wow, look at this piano! All those black and white keys, sitting there so quietly. I bet this piano has a SECRET — it knows a different song for every feeling! Want to help me figure out what songs it knows?"
+> **AI says**: "[delighted surprise] Wow, look at this piano! All those black and white keys, sitting there so quietly. I bet this piano has a SECRET — it knows a different song for every feeling! Want to help me figure out what songs it knows?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yes! What songs?"
@@ -69,15 +69,15 @@
 > 3. (No response) Child is silent, maybe touching the piano.
 >
 > **AI follow-up**:
-> 1. "*(excited, conspiratorial)* Okay, here's what we'll do — I'll tell you a moment, and YOU decide what song the piano would play. Ready?"
-> 2. "*(impressed)* That's so cool! Your piano must know SO many songs then. Let's see — can you guess what song it would pick for a really special moment?"
-> 3. *(waits 2 seconds)* "*(playful whisper)* I think this piano wants to tell us something. Should we listen?"
+> 1. "[excited, conspiratorial] Okay, here's what we'll do — I'll tell you a moment, and YOU decide what song the piano would play. Ready?"
+> 2. "[impressed] That's so cool! Your piano must know SO many songs then. Let's see — can you guess what song it would pick for a really special moment?"
+> 3. [waits 2 seconds] "[playful whisper] I think this piano wants to tell us something. Should we listen?"
 >
 > **Screen**: Child's piano photo centered with gentle musical note animations floating upward from the keys. Soft ambient sparkle effect around the piano.
 
 **Step 2: Rule Introduction + Demo**
 
-> **AI says**: "*(playful, setting up the game)* Here's how it works — I'll describe a moment, like a rainy day or a party. Then YOU tell me: would the piano play something loud or soft? Fast or slow? Happy or calm? For example... imagine it's a quiet night and a baby is sleeping. I think the piano would play something really soft and slow, like a gentle lullaby. Shhh... nice and easy. Your turn next! Ready?"
+> **AI says**: "[playful, setting up the game] Here's how it works — I'll describe a moment, like a rainy day or a party. Then YOU tell me: would the piano play something loud or soft? Fast or slow? Happy or calm? For example... imagine it's a quiet night and a baby is sleeping. I think the piano would play something really soft and slow, like a gentle lullaby. Shhh... nice and easy. Your turn next! Ready?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Ready!" / "Yes!"
@@ -85,9 +85,9 @@
 > 3. (No response) Child is listening quietly.
 >
 > **AI follow-up**:
-> 1. "*(excited)* Here we go! First moment coming up!"
-> 2. "*(warm, explaining)* A lullaby is a soft, gentle song to help someone fall asleep. Like when someone sings to you at bedtime — nice and slow. Okay, now YOUR turn to pick a song!"
-> 3. *(waits 2 seconds)* "*(encouraging)* I'll start the first one — it's a fun one!"
+> 1. "[excited] Here we go! First moment coming up!"
+> 2. "[warm, explaining] A lullaby is a soft, gentle song to help someone fall asleep. Like when someone sings to you at bedtime — nice and slow. Okay, now YOUR turn to pick a song!"
+> 3. [waits 2 seconds] "[encouraging] I'll start the first one — it's a fun one!"
 >
 > **Screen**: Piano photo on the left. On the right, a simple demo card shows: a moon icon + sleeping baby icon, with "soft" and "slow" labels gently glowing. Musical notes drift softly in the background.
 
@@ -95,7 +95,7 @@
 
 > **Round 1 — The Birthday Party** (simple, obvious, confidence-building)
 >
-> **AI says**: "*(excited, scene-setting)* Okay! Imagine — it's your BIRTHDAY! There's cake, balloons everywhere, and all your friends are dancing. What would the piano play? Loud or soft? Fast or slow?"
+> **AI says**: "[excited, scene-setting] Okay! Imagine — it's your BIRTHDAY! There's cake, balloons everywhere, and all your friends are dancing. What would the piano play? Loud or soft? Fast or slow?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Loud! And fast! Happy music!"
@@ -103,15 +103,15 @@
 > 3. (No response) Child is thinking.
 >
 > **AI follow-up**:
-> 1. "*(celebrating)* YES! Loud and fast — like the piano is dancing too! When you press the keys hard, the sound gets big and bouncy. The piano would be SO excited at your party!"
-> 2. "*(warm, connecting back)* Ooh, birthday cake is the BEST! And I bet at your party, the music would be really fun, right? Would the piano play loud party music or quiet party music?"
-> 3. *(waits 2 seconds)* "*(helpful nudge)* At a birthday party, everyone is happy and jumping around. Would the piano play something loud and bouncy, or quiet and slow?"
+> 1. "[celebrating] YES! Loud and fast — like the piano is dancing too! When you press the keys hard, the sound gets big and bouncy. The piano would be SO excited at your party!"
+> 2. "[warm, connecting back] Ooh, birthday cake is the BEST! And I bet at your party, the music would be really fun, right? Would the piano play loud party music or quiet party music?"
+> 3. [waits 2 seconds] "[helpful nudge] At a birthday party, everyone is happy and jumping around. Would the piano play something loud and bouncy, or quiet and slow?"
 >
 > **Screen**: Piano photo with birthday party overlay — confetti, balloons, cake icon. When child says "loud" or "fast," the musical notes on screen grow bigger and bounce rapidly.
 
 > **Round 2 — The Rainy Window** (introduce contrast — calm/quiet)
 >
-> **AI says**: "*(soft, atmospheric)* Now imagine this — it's raining outside. You're sitting by the window, watching the drops slide down. Everything is quiet. What would the piano play now?"
+> **AI says**: "[soft, atmospheric] Now imagine this — it's raining outside. You're sitting by the window, watching the drops slide down. Everything is quiet. What would the piano play now?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Soft! Slow. Like rain sounds."
@@ -119,15 +119,15 @@
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. "*(impressed, gentle)* Soft and slow — like each raindrop is a tiny note. When you press the keys gently, the piano whispers. That's SO different from the birthday song! Same piano, totally different feeling."
-> 2. "*(validating)* Thunder IS loud, you're right! So would the piano play loud thunder sounds or soft raindrop sounds? Or maybe BOTH — soft at first, then BOOM, loud like thunder!"
-> 3. *(waits 2 seconds)* "*(gentle prompt)* Picture the rain going drip... drip... drip. Would the piano play fast and loud, or soft and slow like the raindrops?"
+> 1. "[impressed, gentle] Soft and slow — like each raindrop is a tiny note. When you press the keys gently, the piano whispers. That's SO different from the birthday song! Same piano, totally different feeling."
+> 2. "[validating] Thunder IS loud, you're right! So would the piano play loud thunder sounds or soft raindrop sounds? Or maybe BOTH — soft at first, then BOOM, loud like thunder!"
+> 3. [waits 2 seconds] "[gentle prompt] Picture the rain going drip... drip... drip. Would the piano play fast and loud, or soft and slow like the raindrops?"
 >
 > **Screen**: Piano photo with a rain overlay — soft blue-grey tones, animated raindrops sliding down. Musical notes appear small and gentle, drifting downward like rain.
 
 > **Round 3 — The Sneaky Cat** (surprising/funny — peak engagement)
 >
-> **AI says**: "*(mischievous, whispering)* Okay, THIS one is funny. Imagine a sneaky cat is tiptoeing across the room, trying to steal a treat from the table. What would the piano play for the sneaky cat?"
+> **AI says**: "[mischievous, whispering] Okay, THIS one is funny. Imagine a sneaky cat is tiptoeing across the room, trying to steal a treat from the table. What would the piano play for the sneaky cat?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Quiet! Really quiet and slow, like tiptoe music!"
@@ -135,15 +135,15 @@
 > 3. (No response) Child is thinking or giggling.
 >
 > **AI follow-up**:
-> 1. "*(delighted, whispering back)* Tiptoeing music! Soft little notes, one at a time — like the piano is sneaking too! The keys barely move, just tiny gentle presses. And then — OH NO, the cat knocks something over — LOUD CRASH note! Ha!"
-> 2. "*(laughing)* A running, jumping cat! So the piano would play fast bouncy notes — boing, boing, boing! That's so different from a tiptoeing cat. Your cat sounds like a wild piano song!"
-> 3. *(waits 2 seconds)* "*(playful whisper)* The cat is going shhh, shhh, tiptoe, tiptoe. Would the piano play loud stompy notes or quiet sneaky notes?"
+> 1. "[delighted, whispering back] Tiptoeing music! Soft little notes, one at a time — like the piano is sneaking too! The keys barely move, just tiny gentle presses. And then — OH NO, the cat knocks something over — LOUD CRASH note! Ha!"
+> 2. "[laughing] A running, jumping cat! So the piano would play fast bouncy notes — boing, boing, boing! That's so different from a tiptoeing cat. Your cat sounds like a wild piano song!"
+> 3. [waits 2 seconds] "[playful whisper] The cat is going shhh, shhh, tiptoe, tiptoe. Would the piano play loud stompy notes or quiet sneaky notes?"
 >
 > **Screen**: Piano photo with a cartoon cat silhouette tiptoeing across the top of the keys. Notes appear one by one, small and spaced apart, matching the sneaking rhythm.
 
 > **Round 4–5 (if child is engaged) — Child Leads**
 >
-> **AI says**: "*(impressed, handing over control)* You are SO good at this! Now it's YOUR turn. Think of a moment — anything! — and tell me what the piano would play. What's your moment?"
+> **AI says**: "[impressed, handing over control] You are SO good at this! Now it's YOUR turn. Think of a moment — anything! — and tell me what the piano would play. What's your moment?"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child invents a scenario: "When I'm running really fast!" / "When my dog is sleeping!"
@@ -151,15 +151,15 @@
 > 3. (No response) Child is unsure.
 >
 > **AI follow-up**:
-> 1. "*(thrilled)* Oh wow — [responds to the child's scenario with matching music description]! The piano would play [loud/soft], [fast/slow] — because that moment feels [matching emotion]. You're like a real song storyteller!"
-> 2. "*(warm, scaffolding)* When you're happy — that's a great one! Happy can sound different though. Is it jumping-around happy or cozy-warm happy? That changes the song!"
-> 3. *(waits 2 seconds)* "*(offering a choice)* How about this — a big friendly dog running in the park, or a tiny mouse eating cheese? Which one should the piano play for?"
+> 1. "[thrilled] Oh wow — [responds to the child's scenario with matching music description]! The piano would play [loud/soft], [fast/slow] — because that moment feels [matching emotion]. You're like a real song storyteller!"
+> 2. "[warm, scaffolding] When you're happy — that's a great one! Happy can sound different though. Is it jumping-around happy or cozy-warm happy? That changes the song!"
+> 3. [waits 2 seconds] "[offering a choice] How about this — a big friendly dog running in the park, or a tiny mouse eating cheese? Which one should the piano play for?"
 >
 > **Screen**: A blank "moment card" appears with a sparkle frame, inviting the child's idea. When child describes, the screen illustrates the scene with simple icons and matching musical note animations.
 
 **Step 4: Celebration + Role Title**
 
-> **AI says**: "*(warm, proud celebration)* WOW! You just became a Song Storyteller! You figured out that the piano can play happy bouncy songs, quiet rainy songs, sneaky tiptoe songs — all kinds! You matched every moment to the perfect music."
+> **AI says**: "[warm, proud celebration] WOW! You just became a Song Storyteller! You figured out that the piano can play happy bouncy songs, quiet rainy songs, sneaky tiptoe songs — all kinds! You matched every moment to the perfect music."
 >
 > **Possible child responses**:
 > 1. (Ideal) Child smiles, repeats the title, or says "I did it!"
@@ -167,15 +167,15 @@
 > 3. (No response) Child is listening happily.
 >
 > **AI follow-up**:
-> 1. "*(beaming)* You sure did! The piano is so lucky to have a Song Storyteller like you."
-> 2. "*(encouraging)* Yes! Next time you sit at the piano, try pressing the keys softly for rain music, or hard for party music. You already know how the songs feel!"
-> 3. "*(warm)* You did an amazing job today, Song Storyteller."
+> 1. "[beaming] You sure did! The piano is so lucky to have a Song Storyteller like you."
+> 2. "[encouraging] Yes! Next time you sit at the piano, try pressing the keys softly for rain music, or hard for party music. You already know how the songs feel!"
+> 3. "[warm] You did an amazing job today, Song Storyteller."
 >
 > **Screen**: A golden badge animation appears: a piano icon with a speech bubble, and the text "Song Storyteller" in playful lettering. Confetti and musical notes burst outward. Celebration sound plays.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective)* You know what's amazing? The same piano, with the same keys, played a TOTALLY different song for every moment. A birthday party got loud, bouncy music. The rain got soft, gentle music. That's because music shows how YOU see the world — that's the magic of Perspective! And you figured out that pressing keys in different ways changes the whole sound — that's how the piano's Function works. You're a real Song Storyteller!"
+> **AI says**: "[warm, reflective] You know what's amazing? The same piano, with the same keys, played a TOTALLY different song for every moment. A birthday party got loud, bouncy music. The rain got soft, gentle music. That's because music shows how YOU see the world — that's the magic of Perspective! And you figured out that pressing keys in different ways changes the whole sound — that's how the piano's Function works. You're a real Song Storyteller!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child reflects: "Yeah, the piano can sound different!" / "I like the sneaky cat song!"
@@ -183,9 +183,9 @@
 > 3. (No response) Child is listening.
 >
 > **AI follow-up**:
-> 1. "*(delighted)* Exactly! Same piano, so many feelings. That's what makes music special."
-> 2. "*(warm, simple)* Perspective means everyone hears and feels music in their own way! Your birthday song sounded different from your rainy song, because YOU decided what fit. That's perspective!"
-> 3. "*(gentle, closing)* Every time you hear the piano, remember — it can tell any story you want. Bye, Song Storyteller!"
+> 1. "[delighted] Exactly! Same piano, so many feelings. That's what makes music special."
+> 2. "[warm, simple] Perspective means everyone hears and feels music in their own way! Your birthday song sounded different from your rainy song, because YOU decided what fit. That's perspective!"
+> 3. "[gentle, closing] Every time you hear the piano, remember — it can tell any story you want. Bye, Song Storyteller!"
 >
 > **Screen**: The words "Perspective" and "Function" appear artistically — "Perspective" styled as a prism splitting into colorful musical notes, "Function" styled as a key pressing down with a sound wave emerging. The child's piano photo sits in the center with all the round scenarios (party, rain, cat) orbiting gently around it as small icons.
 

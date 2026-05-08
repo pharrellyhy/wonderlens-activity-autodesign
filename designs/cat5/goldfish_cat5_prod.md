@@ -38,7 +38,7 @@ A child at a park pond or aquarium photographs a goldfish, then hunts for 3 more
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted wonder) "Wow, a goldfish! Look at those shiny scales. It sparkles like a tiny treasure in the water. What do you like best about it?"
+**AI says:** [delighted wonder] "Wow, a goldfish! Look at those shiny scales. It sparkles like a tiny treasure in the water. What do you like best about it?"
 
 **Child responses:**
 
@@ -48,16 +48,16 @@ A child at a park pond or aquarium photographs a goldfish, then hunts for 3 more
 
 **AI follow-up:**
 
-1. (impressed) "So shiny, like little mirrors on its body! This goldfish is a real shimmer star. I wonder what else around here shimmers like that."
-2. (warm, playful) "It IS orange — bright orange with sparkly scales! It looks like a little jewel swimming around. I bet more shimmery things are hiding near this water."
-3. (wait 2s) (playful, coaxing) "Look at it glide! Those fins wave like tiny flags. This goldfish is full of shimmer. Want to find more shimmery things nearby?"
+1. [impressed] "So shiny, like little mirrors on its body! This goldfish is a real shimmer star. I wonder what else around here shimmers like that."
+2. [warm, playful] "It IS orange — bright orange with sparkly scales! It looks like a little jewel swimming around. I bet more shimmery things are hiding near this water."
+3. (wait 2s) [playful, coaxing] "Look at it glide! Those fins wave like tiny flags. This goldfish is full of shimmer. Want to find more shimmery things nearby?"
 
 **Screen:** Goldfish photo centered with a soft aqua-blue glow and tiny sparkle animations highlighting its shiny scales.
 
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (adventurous, rallying) "You are now a Shimmer Spotter! Your mission has three parts. First, find three water creatures or shimmery things nearby. Second, take a photo of each one. Third, we will sort them — like the goldfish or different. Ready, spotter?"
+**AI says:** [adventurous, rallying] "You are now a Shimmer Spotter! Your mission has three parts. First, find three water creatures or shimmery things nearby. Second, take a photo of each one. Third, we will sort them — like the goldfish or different. Ready, spotter?"
 
 **Child responses:**
 
@@ -68,8 +68,8 @@ A child at a park pond or aquarium photographs a goldfish, then hunts for 3 more
 **AI follow-up:**
 
 1. (pumped up) "Let's go! Look near the water for bugs, birds, shiny rocks, or anything that glows. Take a photo when you spot one!"
-2. (warm, explaining) "Shimmery means shiny and sparkly — like the goldfish's scales! Look for wet rocks, water sparkles, or shiny bugs. Anything that catches your eye!"
-3. (wait 2s) (encouraging) "Try looking at the water's edge first. See any bugs or shiny rocks? Take a photo of whatever you spot!"
+2. [warm, explaining] "Shimmery means shiny and sparkly — like the goldfish's scales! Look for wet rocks, water sparkles, or shiny bugs. Anything that catches your eye!"
+3. (wait 2s) [encouraging] "Try looking at the water's edge first. See any bugs or shiny rocks? Take a photo of whatever you spot!"
 
 **Screen:** Mission card with "Shimmer Spotter" badge (magnifying glass with sparkles), four collection slots (first filled with goldfish photo), and a numbered checklist.
 
@@ -78,9 +78,9 @@ A child at a park pond or aquarium photographs a goldfish, then hunts for 3 more
 
 **Round 1:**
 
-*(Child takes a photo of a shiny wet rock near the water)*
+[Child takes a photo of a shiny wet rock near the water]
 
-**AI says:** (excited discovery) "Ooh, a shiny rock! It gleams near the water. Does this rock have scales like the goldfish, or is it smooth?"
+**AI says:** [excited discovery] "Ooh, a shiny rock! It gleams near the water. Does this rock have scales like the goldfish, or is it smooth?"
 
 **Child responses:**
 
@@ -90,9 +90,9 @@ A child at a park pond or aquarium photographs a goldfish, then hunts for 3 more
 
 **AI follow-up:**
 
-1. (delighted) "Smooth and shiny — no scales, but it shimmers just like the goldfish! Great eye, spotter. Two more finds to go!"
-2. (warm, extending) "A rock is a great find! It is shiny like the goldfish but has no fins or tail. Same shimmer, different shape! Two more to go!"
-3. (playful) "I see something shiny and wet! This rock gleams like the goldfish's scales, but it cannot swim. Nice spotting! Two more to find!"
+1. [delighted] "Smooth and shiny — no scales, but it shimmers just like the goldfish! Great eye, spotter. Two more finds to go!"
+2. [warm, extending] "A rock is a great find! It is shiny like the goldfish but has no fins or tail. Same shimmer, different shape! Two more to go!"
+3. [playful] "I see something shiny and wet! This rock gleams like the goldfish's scales, but it cannot swim. Nice spotting! Two more to find!"
 
 **Screen:** Rock photo slides into second collection slot with sparkle animation; counter shows "1 of 3 found."
 
@@ -103,7 +103,7 @@ A child at a park pond or aquarium photographs a goldfish, then hunts for 3 more
 
 #### Step 4: Celebration
 
-**AI says:** (proud, curious) "Look at all your finds together! The goldfish, and three new treasures. Now let's sort them. Which ones shimmer like the goldfish? And which ones are really different? Tell me!"
+**AI says:** [proud, curious] "Look at all your finds together! The goldfish, and three new treasures. Now let's sort them. Which ones shimmer like the goldfish? And which ones are really different? Tell me!"
 
 **Child responses:**
 
@@ -113,11 +113,11 @@ A child at a park pond or aquarium photographs a goldfish, then hunts for 3 more
 
 **AI follow-up:**
 
-1. (impressed, extending) "The rock shimmers but has no fins. The duck swims but has feathers, not scales. Great sorting, spotter! You found what is the same and what is different."
-2. (scaffolding warmly) "Good pick! Now think — does the rock have fins like the goldfish? No! But does it shimmer? Yes! That is one way to sort them. What about your other finds?"
+1. [impressed, extending] "The rock shimmers but has no fins. The duck swims but has feathers, not scales. Great sorting, spotter! You found what is the same and what is different."
+2. [scaffolding warmly] "Good pick! Now think — does the rock have fins like the goldfish? No! But does it shimmer? Yes! That is one way to sort them. What about your other finds?"
 3. (wait 2s) (gently guiding) "Look at the pictures. Which one is shiny like the goldfish? Point to it! And which one looks really different? You decide!"
 
-**AI says:** (warm celebration) "Wow, Shimmer Spotter! You found four things near the water. Some shimmer, some swim, some have scales and some do not. Which one is your favorite find? And why?"
+**AI says:** [warm celebration] "Wow, Shimmer Spotter! You found four things near the water. Some shimmer, some swim, some have scales and some do not. Which one is your favorite find? And why?"
 
 **Child responses:**
 
@@ -127,13 +127,13 @@ A child at a park pond or aquarium photographs a goldfish, then hunts for 3 more
 **AI follow-up:**
 
 1. (awed) "Great choice! Every find has its own special look. That is what makes exploring so fun — everything near the water is different!"
-2. (warm, affirming) "The goldfish started it all! It showed you what shimmer looks like. And then you found so many other treasures. That is amazing!"
+2. [warm, affirming] "The goldfish started it all! It showed you what shimmer looks like. And then you found so many other treasures. That is amazing!"
 
 **Screen:** All four photos in a grid with sorting zones ("Shimmers like goldfish" / "Different from goldfish"), golden star on favorite, animated water ripple effects, and banner "4 treasures found near the water!"
 
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (proud, warm celebration) "You are an amazing Shimmer Spotter! You found shiny things and water creatures and compared every one to the goldfish. You discovered Form — every treasure has its own shape, scales, or shimmer. And you found Connection — things near the water share surprises, like shimmer and movement, even when they look totally different. You earned your Shimmer Spotter badge!"
+**AI says:** [proud, warm celebration] "You are an amazing Shimmer Spotter! You found shiny things and water creatures and compared every one to the goldfish. You discovered Form — every treasure has its own shape, scales, or shimmer. And you found Connection — things near the water share surprises, like shimmer and movement, even when they look totally different. You earned your Shimmer Spotter badge!"
 
 **Screen:** "Shimmer Spotter" badge — golden magnifying glass with goldfish silhouette inside and three treasure icons orbiting it. "Form" and "Connection" in artistic aqua-blue and gold lettering with wave and chain-link icons. Four collection photos as insets around the badge.

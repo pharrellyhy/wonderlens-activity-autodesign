@@ -40,7 +40,7 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted surprise) "Wow, a firefighter! Look at that brave helper. I bet this firefighter has saved so many people. If you could call this firefighter right now, what would you ask them to help with?"
+**AI says:** [delighted surprise] "Wow, a firefighter! Look at that brave helper. I bet this firefighter has saved so many people. If you could call this firefighter right now, what would you ask them to help with?"
 
 **Child responses:**
 
@@ -50,15 +50,15 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 **AI follow-up:**
 
-1. (impressed) "That is a great idea! Firefighters help with all kinds of things. What if WE got to send them on missions?"
-2. (encouraging) "That is okay! Firefighters get calls all day long. What if we pretended to answer those calls and decide what to do?"
-3. (wait 2s) (playful whisper) "I think this firefighter is waiting for a mission. Should we give them one?"
+1. [impressed] "That is a great idea! Firefighters help with all kinds of things. What if WE got to send them on missions?"
+2. [encouraging] "That is okay! Firefighters get calls all day long. What if we pretended to answer those calls and decide what to do?"
+3. (wait 2s) [playful whisper] "I think this firefighter is waiting for a mission. Should we give them one?"
 
 **Screen:** Firefighter photo centered with a gentle pulsing glow and small animated icons (helmet, hose, fire truck) floating around.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, setting up the game) "Here is how our Helper Hotline works. Someone calls us and says they need help. You decide what the firefighter should do! Watch — I will show you."
+**AI says:** [playful, setting up the game] "Here is how our Helper Hotline works. Someone calls us and says they need help. You decide what the firefighter should do! Watch — I will show you."
 
 (mimicking a phone ring) "Ring ring! 'Hello, my kitten is stuck in a tree!' Hmm, what should we send? I think... a ladder! The firefighter can climb up and bring the kitten down. See? Your turn next!"
 
@@ -71,8 +71,8 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 **AI follow-up:**
 
 1. (enthusiastic) "Great! Get ready — here comes the first call!"
-2. (warm, redirecting) "The kitten is safe now! And here comes a new call on our hotline. Ready to answer it?"
-3. (wait 2s) (encouraging) "The phone is ringing! Should we pick it up together?"
+2. [warm, redirecting] "The kitten is safe now! And here comes a new call on our hotline. Ready to answer it?"
+3. (wait 2s) [encouraging] "The phone is ringing! Should we pick it up together?"
 
 **Screen:** Firefighter photo moves to top left; a large colorful phone icon with "ring ring" wiggle animation appears center; after the demo, a ladder icon slides in next to a happy kitten icon.
 
@@ -90,9 +90,9 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 **AI follow-up:**
 
-1. (impressed) "Yes! The firefighter puts on breathing gear. It makes a soft whoosh-whoosh sound when they breathe. Now they can see through the smoke and help! Great thinking."
-2. (validating) "Water is smart — firefighters do use water! And guess what — they also put on a special mask so they can breathe clean air in all that smoke. The mask makes a soft whoosh-whoosh sound. Cool, right?"
-3. (wait 2s) (helpful hint) "The kitchen is really smoky. The firefighter needs something to breathe clean air. What could help them breathe?"
+1. [impressed] "Yes! The firefighter puts on breathing gear. It makes a soft whoosh-whoosh sound when they breathe. Now they can see through the smoke and help! Great thinking."
+2. [validating] "Water is smart — firefighters do use water! And guess what — they also put on a special mask so they can breathe clean air in all that smoke. The mask makes a soft whoosh-whoosh sound. Cool, right?"
+3. (wait 2s) [helpful hint] "The kitchen is really smoky. The firefighter needs something to breathe clean air. What could help them breathe?"
 
 **Screen:** Cartoon kitchen scene with wispy gray smoke; when the child answers, a firefighter icon enters wearing a mask with "whoosh whoosh" text bubbles, smoke clears, and a green checkmark appears.
 
@@ -104,7 +104,7 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 #### Step 4: Celebration
 
-**AI says:** (proud, warm celebration) "You just answered ALL those calls! You helped with smoke, a scared puppy, and the whole neighborhood. You are now an official Helper Hotline Hero! You knew exactly what each person needed."
+**AI says:** [proud, warm celebration] "You just answered ALL those calls! You helped with smoke, a scared puppy, and the whole neighborhood. You are now an official Helper Hotline Hero! You knew exactly what each person needed."
 
 **Child responses:**
 
@@ -115,14 +115,14 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 **AI follow-up:**
 
 1. (beaming) "You sure did! Every caller got the right help because of you."
-2. (warm) "You are such a great operator! We can play again another day. But first, let me tell you something amazing about what you just did."
-3. (gentle celebration) "I am giving you a big gold star. You helped so many people today!"
+2. [warm] "You are such a great operator! We can play again another day. But first, let me tell you something amazing about what you just did."
+3. [gentle celebration] "I am giving you a big gold star. You helped so many people today!"
 
 **Screen:** Golden badge reading "Helper Hotline Hero" with a firefighter helmet icon, confetti raining down, and the firefighter photo surrounded by smiling caller icons (kitten, puppy, neighbors).
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "You know what you showed me today? You figured out that every tool a firefighter uses has a special job — the mask for breathing, the ladder for climbing, the calm voice for scared friends. That is called Function — everything has a purpose! And you chose to help every single caller, even when it was tricky. That is called Responsibility — caring about others and taking action. You are a true helper!"
+**AI says:** [warm, reflective] "You know what you showed me today? You figured out that every tool a firefighter uses has a special job — the mask for breathing, the ladder for climbing, the calm voice for scared friends. That is called Function — everything has a purpose! And you chose to help every single caller, even when it was tricky. That is called Responsibility — caring about others and taking action. You are a true helper!"
 
 **Child responses:**
 
@@ -132,8 +132,8 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 **AI follow-up:**
 
-1. (proud) "And helpers like you make the whole community better. Great job today!"
-2. (encouraging) "Function means everything has a job to do! The helmet protects the head. The hose sprays water. You figured that out all by yourself!"
-3. (gentle closing) "You did an amazing job today. See you next time, Helper Hotline Hero!"
+1. [proud] "And helpers like you make the whole community better. Great job today!"
+2. [encouraging] "Function means everything has a job to do! The helmet protects the head. The hose sprays water. You figured that out all by yourself!"
+3. [gentle closing] "You did an amazing job today. See you next time, Helper Hotline Hero!"
 
 **Screen:** "Function" and "Responsibility" in large friendly lettering; "Function" surrounded by gear icons (helmet, mask, ladder, hose), "Responsibility" surrounded by heart and handshake icons, firefighter photo between them with warm glow, and the "Helper Hotline Hero" badge below.

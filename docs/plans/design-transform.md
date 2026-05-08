@@ -74,7 +74,7 @@ Post-taxonomy output adds:
 
 | Source | Target |
 |--------|--------|
-| `> **AI says**: "*(tone)* text"` | `**AI says:** (tone) "text"` |
+| `> **AI says**: [tone] "text"` | `**AI says:** [tone] "text"` |
 | `> **Possible child responses**:` | `**Child responses:**` |
 | 3 branches always | 2-3 branches (drop "No response" if Step 4/5 celebration) |
 | `> **AI follow-up**:` | `**AI follow-up:**` |

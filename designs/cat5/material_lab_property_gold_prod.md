@@ -55,7 +55,7 @@ Child photographs a metal fork. AI notices the shiny metallic surface, announces
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted, curious) "Ooh, look at that fork! It's so shiny and smooth. That's METAL! Metal is hard and strong — that's why we eat with it. But wait... I'm looking around and I have a BIG question. Is EVERYTHING here made of metal? Or are some things made of something else? What do you think?"
+**AI says:** [delighted, curious] "Ooh, look at that fork! It's so shiny and smooth. That's METAL! Metal is hard and strong — that's why we eat with it. But wait... I'm looking around and I have a BIG question. Is EVERYTHING here made of metal? Or are some things made of something else? What do you think?"
 
 **Child responses:**
 
@@ -66,15 +66,15 @@ Child photographs a metal fork. AI notices the shiny metallic surface, announces
 **AI follow-up:**
 
 1. (intrigued) "Interesting — you already have ideas! This fork is definitely metal — hard and shiny. But I wonder about the OTHER things around you. Are most of them metal too, or made of something different like wood or plastic? I think we should find out for REAL!"
-2. (warm, explaining) "Metal is the hard, shiny stuff — like this fork! If you tap it, it goes CLINK. Some things around you are metal, and some are made of other stuff — like wood, which feels rough, or plastic, which is smooth and light. I have a fun idea to figure out what things around here are REALLY made of!"
-3. (wait 2s) (inviting) "This fork is metal — hard, shiny, and cool to touch! But look around you. Are ALL the things here metal? Or are some made of something else? I bet we can find out together!"
+2. [warm, explaining] "Metal is the hard, shiny stuff — like this fork! If you tap it, it goes CLINK. Some things around you are metal, and some are made of other stuff — like wood, which feels rough, or plastic, which is smooth and light. I have a fun idea to figure out what things around here are REALLY made of!"
+3. (wait 2s) [inviting] "This fork is metal — hard, shiny, and cool to touch! But look around you. Are ALL the things here metal? Or are some made of something else? I bet we can find out together!"
 
 **Screen:** Object photo centered with material-appropriate highlight effect (metallic sheen for metal, warm grain for wood, smooth sheen for plastic). A small material label with icon near the object surface.
 
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (excited scientist) "Okay — here is my big question. Out of ALL the things around you, do you think MOST of them are made of metal... or MOST of them are made of something else — like wood, plastic, or fabric? This is your PREDICTION. What do you think — mostly metal, or mostly NOT metal?"
+**AI says:** [excited scientist] "Okay — here is my big question. Out of ALL the things around you, do you think MOST of them are made of metal... or MOST of them are made of something else — like wood, plastic, or fabric? This is your PREDICTION. What do you think — mostly metal, or mostly NOT metal?"
 
 **Child responses:**
 
@@ -86,7 +86,7 @@ Child photographs a metal fork. AI notices the shiny metallic surface, announces
 
 1. (locking it in) "You predict MOSTLY METAL — got it! I'm writing that down. Now here's the deal — you are a Material Scientist! Your job: find 3 more things around you, take a photo of each one, and I'll figure out what it's made of. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
 2. (locking it in) "You predict MOSTLY NOT METAL — interesting! I'm writing that down. Now here's the deal — you are a Material Scientist! Your job: find 3 more things around you, take a photo of each one, and I'll figure out what it's made of. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
-3. (encouraging) "A prediction is your BEST GUESS before you check! Like saying 'I think it will rain today' before you look outside. So — take your best guess. Do you think MOST things around you are metal, or mostly something else like wood or plastic? Just pick one!"
+3. [encouraging] "A prediction is your BEST GUESS before you check! Like saying 'I think it will rain today' before you look outside. So — take your best guess. Do you think MOST things around you are metal, or mostly something else like wood or plastic? Just pick one!"
 
 **Screen:** Scientist mission card with "Material Scientist" badge. Tally board with two columns: "Metal" (shiny icon) and "Not Metal" (wood/plastic/fabric icons). Object photo under "Metal" with "1" tally. Prediction banner at top: "My prediction: Mostly [Metal / Not Metal]!" Three empty photo slots below.
 
@@ -95,9 +95,9 @@ Child photographs a metal fork. AI notices the shiny metallic surface, announces
 
 **Round 1 — First Evidence:**
 
-*(Child photographs something — e.g., a wooden cutting board)*
+[Child photographs something — e.g., a wooden cutting board]
 
-**AI says:** (eager scientist) "Evidence number two! Oh, let me look closely at this photo... (examining) I can see it's brown with little lines running through it — those are wood grain lines! I think that's WOOD! Wood is warm and natural — it comes from trees. That goes in the NOT METAL column!"
+**AI says:** [eager scientist] "Evidence number two! Oh, let me look closely at this photo... (examining) I can see it's brown with little lines running through it — those are wood grain lines! I think that's WOOD! Wood is warm and natural — it comes from trees. That goes in the NOT METAL column!"
 
 **Child responses:**
 
@@ -107,8 +107,8 @@ Child photographs a metal fork. AI notices the shiny metallic surface, announces
 
 **AI follow-up:**
 
-1. (writing it down excitedly) "Great observation! The tally so far: Metal has 1, Not Metal has 1. It's a TIE right now! Your prediction says mostly [metal/not-metal]... let's see what happens next! Two more to find, Scientist!"
-2. (validating) "Brown — yes! And that brown, grainy surface is wood. NOT metal! Tally update: Metal 1, Not Metal 1. It's TIED! Two more, Scientist!"
+1. [writing it down excitedly] "Great observation! The tally so far: Metal has 1, Not Metal has 1. It's a TIE right now! Your prediction says mostly [metal/not-metal]... let's see what happens next! Two more to find, Scientist!"
+2. [validating] "Brown — yes! And that brown, grainy surface is wood. NOT metal! Tally update: Metal 1, Not Metal 1. It's TIED! Two more, Scientist!"
 3. (wait 2s) (announcing) "So that's wood — NOT metal! The tally is tied: Metal 1, Not Metal 1! Two more to go. Find another thing and take a photo!"
 
 **Screen:** New photo in slot 2. Tally board updates with animated tally mark. Running score: "Metal: 1 | Not Metal: 1." Prediction banner stays visible at top.
@@ -120,19 +120,19 @@ Child photographs a metal fork. AI notices the shiny metallic surface, announces
 
 #### Step 4: Celebration
 
-**AI says:** (drumroll voice) "Okay Material Scientist — time for the BIG REVEAL! You predicted that most things around you would be... MOSTLY [METAL / NOT METAL]! Let's count the evidence!"
+**AI says:** [drumroll voice] "Okay Material Scientist — time for the BIG REVEAL! You predicted that most things around you would be... MOSTLY [METAL / NOT METAL]! Let's count the evidence!"
 
-*(AI tallies aloud)*
+[AI tallies aloud]
 
 "The fork — METAL! That's one for metal. The [find 1] — [material]! The [find 2] — [material]! The [find 3] — [material]!"
 
-**If prediction was RIGHT**: (triumphant fanfare) "The final count: Metal [N], Not Metal [M]! Your prediction was... RIGHT! You KNEW it! Most things around here really ARE [mostly metal / mostly not-metal]! Material Scientist, your instincts are amazing!"
+**If prediction was RIGHT**: [triumphant fanfare] "The final count: Metal [N], Not Metal [M]! Your prediction was... RIGHT! You KNEW it! Most things around here really ARE [mostly metal / mostly not-metal]! Material Scientist, your instincts are amazing!"
 
-**If prediction was WRONG**: (gasping with delight) "The final count: Metal [N], Not Metal [M]! Your prediction was mostly [metal/not-metal], but SURPRISE — you got TRICKED! More things are actually [metal/not-metal] than you expected! That's what makes science so cool — sometimes you find out something you DIDN'T expect!"
+**If prediction was WRONG**: [gasping with delight] "The final count: Metal [N], Not Metal [M]! Your prediction was mostly [metal/not-metal], but SURPRISE — you got TRICKED! More things are actually [metal/not-metal] than you expected! That's what makes science so cool — sometimes you find out something you DIDN'T expect!"
 
-**If it's a TIE**: (amazed) "The final count: Metal 2, Not Metal 2! It's a PERFECT TIE! Nobody could have predicted that — this place uses BOTH equally! That's a surprise result, Scientist!"
+**If it's a TIE**: [amazed] "The final count: Metal 2, Not Metal 2! It's a PERFECT TIE! Nobody could have predicted that — this place uses BOTH equally! That's a surprise result, Scientist!"
 
-**AI says:** (warm, wonder-filled) "You know what's really smart about the things around us? People use DIFFERENT materials on purpose! The fork is metal because metal is strong — it won't break when you poke food. Every material has a REASON! Which material surprised you the most today?"
+**AI says:** [warm, wonder-filled] "You know what's really smart about the things around us? People use DIFFERENT materials on purpose! The fork is metal because metal is strong — it won't break when you poke food. Every material has a REASON! Which material surprised you the most today?"
 
 **Child responses:**
 
@@ -142,16 +142,16 @@ Child photographs a metal fork. AI notices the shiny metallic surface, announces
 
 **AI follow-up:**
 
-1. (delighted) "That's what scientists DO — they guess, then check, and find out for real! Your experiment showed you something new about this place!"
+1. [delighted] "That's what scientists DO — they guess, then check, and find out for real! Your experiment showed you something new about this place!"
 2. (enthusiastic) "Great observation! Some things can LOOK like metal but actually be plastic. That's a scientist-level discovery!"
-3. (wait 2s) (gentle) "Every material is here for a reason — strong for eating, soft for sleeping, smooth for cleaning. Your experiment helped you see that!"
+3. (wait 2s) [gentle] "Every material is here for a reason — strong for eating, soft for sleeping, smooth for cleaning. Your experiment helped you see that!"
 
 **Screen:** Full tally board with all 4 photos in two columns (Metal vs. Not Metal). Prediction banner lights up green (RIGHT!) or flashes orange with "SURPRISE!" text. Animated tally marks count up one by one. Large final score: "Metal: [N] | Not Metal: [M]." Reason arrows connect each photo to a purpose bubble.
 
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (proud celebration) "Congratulations, Material Scientist! You did real science today! You looked closely at the Form of every object — what it's made of, how it looks, how it feels. And you discovered the Causation — WHY each material is used. Metal for strength. Wood for warmth. Plastic for lightness. Every material has a reason! You earned your Material Scientist Badge!"
+**AI says:** [proud celebration] "Congratulations, Material Scientist! You did real science today! You looked closely at the Form of every object — what it's made of, how it looks, how it feels. And you discovered the Causation — WHY each material is used. Metal for strength. Wood for warmth. Plastic for lightness. Every material has a reason! You earned your Material Scientist Badge!"
 
 **Child responses:**
 
@@ -161,8 +161,8 @@ Child photographs a metal fork. AI notices the shiny metallic surface, announces
 
 **AI follow-up:**
 
-1. (encouraging) "Next time you go to a different room, try the experiment again! Predict first, then count. Every room might have a different answer. See you on the next experiment, Scientist!"
-2. (warm) "Your badge is saved! You're a real Material Scientist now. Bye for now, Scientist!"
-3. (wait 2s) (soft) "Your Scientist Badge is glowing. Great experiment today!"
+1. [encouraging] "Next time you go to a different room, try the experiment again! Predict first, then count. Every room might have a different answer. See you on the next experiment, Scientist!"
+2. [warm] "Your badge is saved! You're a real Material Scientist now. Bye for now, Scientist!"
+3. (wait 2s) [soft] "Your Scientist Badge is glowing. Great experiment today!"
 
 **Screen:** Golden "Material Scientist Badge" shaped like a beaker with tally chart inside. Object photo at center with collection photos as insets. "Form" in crystalline letters with material texture swatches and "Causation" in arrow-shaped dynamic letters float artistically. Final tally result glows beneath.

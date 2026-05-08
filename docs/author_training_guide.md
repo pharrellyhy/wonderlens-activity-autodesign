@@ -72,7 +72,7 @@ Every activity, before it is shipped, must PASS all ten dimensions below. These 
 | 3 | Edge Case Coverage | Every AI step has three child-response branches (ideal / unexpected / no response). "Unexpected" validates before redirecting. "No response" names a specific wait time and a gentle prompt. Cat5 designs also need a "can't find the item" branch. |
 | 4 | IB Completeness | 1–2 Key Concepts named; 2–4 Related Concepts listed; full KUD; 2–3 ATL skills with sub-skills; closing speech names the Key Concepts as praise, not as a quiz. |
 | 5 | Tier Appropriateness | T0 = ≤5-word sentences, onomatopoeia, single-step, call-and-response, ≤2 rounds. T1 = 5–8-word sentences, 2–3 step tasks, open-ended questions. T2 = complex sentences, multi-step planning, negotiation. Vocabulary and task complexity match the tier. |
-| 6 | Dialogue Specificity | Every AI line is actual concrete dialogue — no "AI encourages" or "AI guides the child". Every line has a tone/emotion marker in parentheses. |
+| 6 | Dialogue Specificity | Every AI line is actual concrete dialogue — no "AI encourages" or "AI guides the child". Every line has a tone/emotion marker in square brackets. |
 | 7 | Screen & UI Completeness | Every step has a concrete "Screen:" description. Animations and visual effects are specific ("confetti rain with gold glitter"), not generic ("animation plays"). |
 | 8 | Entity Mapping Alignment (mapping-informed designs only) | Key Concepts sourced from mapping's primary/secondary; at least 2 Related Concepts from `candidate_related_concepts`; vocabulary and sensory details traceable to `tier_guidance`; anchor dimensions used in core content. Skip if no mapping. |
 | 9 | Game Feel | The child experiences genuine uncertainty; the outcome is unknown before it's revealed; there is a clear emotional climax (the magic moment); there is at least one moment of surprise, drama, or delight beyond warm encouragement. |
@@ -197,7 +197,7 @@ Now the full program.md-format dialogue (abbreviated to the load-bearing beats):
 
 **Beat 1 — Transition Bridge**
 
-> **AI says:** *(curious, a little hushed)* "Whoa — look at this tiny bug! Red back, little dots, six tiny legs… it looks like it's wearing a costume. What do you notice first?"
+> **AI says:** [curious, a little hushed] "Whoa — look at this tiny bug! Red back, little dots, six tiny legs… it looks like it's wearing a costume. What do you notice first?"
 >
 > **Child responses:**
 > 1. (Ideal) "The spots!" / "It's red!" / "It has legs!"
@@ -205,15 +205,15 @@ Now the full program.md-format dialogue (abbreviated to the load-bearing beats):
 > 3. (No response) Child watches the photo.
 >
 > **AI follow-up:**
-> 1. *(warm, matching)* "Great eye — the spots popped out for me too. I bet this little bug has secrets, and the clues are on its body. Want to be my detective partner?"
-> 2. *(validating)* "They really do move fast! That's another clue to file away. Want to investigate together?"
-> 3. *(wait 2s, gentle)* "Tiny, right? I think there are three or four hidden things on this bug. Want to hunt them with me?"
+> 1. [warm, matching] "Great eye — the spots popped out for me too. I bet this little bug has secrets, and the clues are on its body. Want to be my detective partner?"
+> 2. [validating] "They really do move fast! That's another clue to file away. Want to investigate together?"
+> 3. [wait 2s, gentle] "Tiny, right? I think there are three or four hidden things on this bug. Want to hunt them with me?"
 >
 > **Screen:** Ladybug photo centered on a cream background with a soft magnifying-glass icon hovering in the corner; subtle sparkle animation over the red back.
 
 **Beat 2 — Frame & Role**
 
-> **AI says:** *(playful, conspiratorial)* "Okay, Ladybug Detective — here's the case. This ladybug has three hidden things on its body, and I'm going to give you clues one at a time. Your job: listen to the clue, look at the photo, and tell me what you think it is. Ready?"
+> **AI says:** [playful, conspiratorial] "Okay, Ladybug Detective — here's the case. This ladybug has three hidden things on its body, and I'm going to give you clues one at a time. Your job: listen to the clue, look at the photo, and tell me what you think it is. Ready?"
 >
 > **Child responses:**
 > 1. (Ideal) "Yes!" / "I'm ready, detective!" / "Go!"
@@ -221,9 +221,9 @@ Now the full program.md-format dialogue (abbreviated to the load-bearing beats):
 > 3. (No response) Child looks at the screen.
 >
 > **AI follow-up:**
-> 1. *(excited)* "Detective on the case! Clue one, coming up."
-> 2. *(warm)* "It's a real ladybug! Real bugs have real clues to find. Shall we start with clue one?"
-> 3. *(wait 2s)* *(softer)* "No pressure — I'll give the clue, you look at the photo. Clue one?"
+> 1. [excited] "Detective on the case! Clue one, coming up."
+> 2. [warm] "It's a real ladybug! Real bugs have real clues to find. Shall we start with clue one?"
+> 3. [wait 2s] [softer] "No pressure — I'll give the clue, you look at the photo. Clue one?"
 >
 > **Screen:** "CASE FILE #01" banner in navy serif across the top; ladybug photo framed as evidence; "Ladybug Detective" badge slides in bottom-left.
 
@@ -231,7 +231,7 @@ Now the full program.md-format dialogue (abbreviated to the load-bearing beats):
 
 **Round 1 — visual clue (attribute)**
 
-> **AI says:** *(detective voice)* "Clue one — I'm thinking of a hidden thing, and the clue is… it's a *bright color*, and it covers almost the whole body. What do you think it is?"
+> **AI says:** [detective voice] "Clue one — I'm thinking of a hidden thing, and the clue is… it's a *bright color*, and it covers almost the whole body. What do you think it is?"
 >
 > **Child responses:**
 > 1. (Ideal) "The red back!" / "It's red!"
@@ -239,15 +239,15 @@ Now the full program.md-format dialogue (abbreviated to the load-bearing beats):
 > 3. (No response) Child stays quiet.
 >
 > **AI follow-up:**
-> 1. *(warmer! ding)* "Warmer — *warmest* — YES, the big red back! Case file, clue one solved."
-> 2. *(validating, redirecting)* "Good spotting on the eyes — those are tiny though. The clue said it covers almost the whole body. Can you find a bigger red area?"
-> 3. *(wait 2s, gentle)* "Look at the whole bug — which part is the biggest color?"
+> 1. [warmer! ding] "Warmer — *warmest* — YES, the big red back! Case file, clue one solved."
+> 2. [validating, redirecting] "Good spotting on the eyes — those are tiny though. The clue said it covers almost the whole body. Can you find a bigger red area?"
+> 3. [wait 2s, gentle] "Look at the whole bug — which part is the biggest color?"
 >
 > **Screen:** Zoom-in pulse on the red elytra; "Clue 1: bright color · SOLVED" line slides in with a tiny sparkle.
 
 **Round 2 — functional clue (part-role)**
 
-> **AI says:** *(detective voice)* "Clue two — I'm thinking of something on the ladybug that helps it *walk*. If a ladybug didn't have these, it would be stuck. What do you think it is?"
+> **AI says:** [detective voice] "Clue two — I'm thinking of something on the ladybug that helps it *walk*. If a ladybug didn't have these, it would be stuck. What do you think it is?"
 >
 > **Child responses:**
 > 1. (Ideal) "The legs!" / "Its tiny legs!"
@@ -255,15 +255,15 @@ Now the full program.md-format dialogue (abbreviated to the load-bearing beats):
 > 3. (No response) Child is thinking or silent.
 >
 > **AI follow-up:**
-> 1. *(delighted)* "Warmer — yes! Six tiny legs. You can count them under the red back. Another clue solved."
-> 2. *(validating)* "Wings help with flying, that's true — but this clue is about walking. Look at the bottom of the bug — see the tiny moving parts?"
-> 3. *(wait 2s)* *(softer)* "Let me zoom in on the bottom. See those six little lines sticking out? Those help with walking."
+> 1. [delighted] "Warmer — yes! Six tiny legs. You can count them under the red back. Another clue solved."
+> 2. [validating] "Wings help with flying, that's true — but this clue is about walking. Look at the bottom of the bug — see the tiny moving parts?"
+> 3. [wait 2s] [softer] "Let me zoom in on the bottom. See those six little lines sticking out? Those help with walking."
 >
 > **Screen:** Zoom-in on the legs; six small dots light up one by one with a counting animation; "Clue 2: walking helpers · SOLVED" line.
 
 **Round 3 — imaginative clue (significance)**
 
-> **AI says:** *(detective, warmer still)* "Clue three — this is the *strangest* one. I'm thinking of something that covers the whole back and looks like a *warning sign*. If a bird looked at it, the bird would think 'uh-oh'. What do you think it is?"
+> **AI says:** [detective, warmer still] "Clue three — this is the *strangest* one. I'm thinking of something that covers the whole back and looks like a *warning sign*. If a bird looked at it, the bird would think 'uh-oh'. What do you think it is?"
 >
 > **Child responses:**
 > 1. (Ideal) "The red!" / "The spots!" / "The red AND the spots!"
@@ -271,15 +271,15 @@ Now the full program.md-format dialogue (abbreviated to the load-bearing beats):
 > 3. (No response) Child is stuck.
 >
 > **AI follow-up:**
-> 1. *(warm reveal)* "Warmest! You figured it out — the red *and* the spots. Together they tell the bird 'don't eat me'. That's the hidden message on a ladybug's back."
-> 2. *(cheering)* "Exactly — like a stop sign. Red says stop, spots say I'm different. Together they're a warning sign. You cracked it, Detective!"
-> 3. *(wait 2s, gentle)* "Think about what a bird sees when it looks at a ladybug: *red* and *spots*. Together… they might mean 'danger, skip this one'."
+> 1. [warm reveal] "Warmest! You figured it out — the red *and* the spots. Together they tell the bird 'don't eat me'. That's the hidden message on a ladybug's back."
+> 2. [cheering] "Exactly — like a stop sign. Red says stop, spots say I'm different. Together they're a warning sign. You cracked it, Detective!"
+> 3. [wait 2s, gentle] "Think about what a bird sees when it looks at a ladybug: *red* and *spots*. Together… they might mean 'danger, skip this one'."
 >
 > **Screen:** Full ladybug photo outlined in a glowing red halo; the words "WARNING SIGNAL" fade in over the back; three clue rows below, all checked.
 
 **Beat 4 — Magic Moment (Reveal)**
 
-> **AI says:** *(big reveal voice)* "Case closed, Detective. The three hidden things on this ladybug: a *bright red back*, *six tiny legs*, and a *warning message* made of red + spots together. You figured it out — every single clue. You see the whole bug differently now, don't you?"
+> **AI says:** [big reveal voice] "Case closed, Detective. The three hidden things on this ladybug: a *bright red back*, *six tiny legs*, and a *warning message* made of red + spots together. You figured it out — every single clue. You see the whole bug differently now, don't you?"
 >
 > **Child responses:**
 > 1. (Ideal) "Yeah!" / "I want more clues!" / "I'm a detective!"
@@ -287,15 +287,15 @@ Now the full program.md-format dialogue (abbreviated to the load-bearing beats):
 > 3. (No response) Child smiles or watches.
 >
 > **AI follow-up:**
-> 1. *(celebrating)* "You are the Ladybug Detective of the day."
-> 2. *(curious with them)* "That's an amazing question — most red bugs taste bad, so birds learned to skip them. And if you see a spot I missed, tell me — detectives help each other."
-> 3. *(wait 2s)* *(warm)* "That smile tells me the case really is closed."
+> 1. [celebrating] "You are the Ladybug Detective of the day."
+> 2. [curious with them] "That's an amazing question — most red bugs taste bad, so birds learned to skip them. And if you see a spot I missed, tell me — detectives help each other."
+> 3. [wait 2s] [warm] "That smile tells me the case really is closed."
 >
 > **Screen:** Three solved clue rows lock into a "CASE FILE · SOLVED" banner; a golden "Ladybug Detective" badge lands with a soft chime; sparkle flourish over the red back.
 
 **Beat 5 — Celebration + Concepts**
 
-> **AI says:** *(warm, reflective)* "One bug, three hidden things, and you noticed every single one — the red back, the tiny legs, and the warning message. You looked at the ladybug and really *saw* it. That's called Form — paying attention to what something looks like and what each part is telling us. Ladybug Detective, case closed."
+> **AI says:** [warm, reflective] "One bug, three hidden things, and you noticed every single one — the red back, the tiny legs, and the warning message. You looked at the ladybug and really *saw* it. That's called Form — paying attention to what something looks like and what each part is telling us. Ladybug Detective, case closed."
 >
 > **Child responses:**
 > 1. (Ideal) "Yay! / "Next case!" / "I'm a detective!"
@@ -303,9 +303,9 @@ Now the full program.md-format dialogue (abbreviated to the load-bearing beats):
 > 3. (No response) Child watches the badge animation.
 >
 > **AI follow-up:**
-> 1. *(joyful)* "The jungle has many more cases. Today you solved the ladybug's. Great work, Detective!"
-> 2. *(curious with them)* "Ooh — bees have their own warning message too, black and yellow stripes. That could be our next case."
-> 3. *(wait 2s, warm)* "Badge earned. Ladybug Detective, any time."
+> 1. [joyful] "The jungle has many more cases. Today you solved the ladybug's. Great work, Detective!"
+> 2. [curious with them] "Ooh — bees have their own warning message too, black and yellow stripes. That could be our next case."
+> 3. [wait 2s, warm] "Badge earned. Ladybug Detective, any time."
 >
 > **Screen:** Full-screen celebration — "Ladybug Detective" badge at center, three small chips ("Observation", "Reasoning", "Discovery") arc underneath, ladybug photo in a golden frame.
 
@@ -372,7 +372,7 @@ pillar_payoff: "Child names the hidden warning-signal message after three clue r
 | 3 | Edge Case Coverage | PASS | Every AI step shows ideal / unexpected / no-response branches, each with a specific wait time and a validation-before-redirect for the unexpected branch. |
 | 4 | IB Completeness | PASS | 2 Key Concepts (Form, Causation), 4 Related Concepts, full KUD, 3 ATL skills, closing names Form as praise. |
 | 5 | Tier Appropriateness | PASS | Sentences mostly 5–8 words ("What do you notice first?"); no T0 onomatopoeia; no T2 statistics. Open-ended "what do you think" questions; 2–3 step task (listen → guess → check). |
-| 6 | Dialogue Specificity | PASS | Every AI line is concrete, with a parenthesized tone cue (*curious, detective voice, delighted*). No "AI encourages" instructions. |
+| 6 | Dialogue Specificity | PASS | Every AI line is concrete, with square-bracket tone cues such as `[curious]`, `[detective voice]`, `[delighted]`. No "AI encourages" instructions. |
 | 7 | Screen & UI Completeness | PASS | Every beat has a concrete Screen description — zoom-in pulse, sparkle, counting animation, golden badge. |
 | 8 | Entity Mapping Alignment | N/A | No `mapping=` parameter on this assignment. |
 | 9 | Game Feel | PASS | Genuine uncertainty on each clue; the "warning signal" reveal is an emotional climax; the detective frame gives replay appetite. |
@@ -513,7 +513,7 @@ Dialogue (T0 — short, exclaim, repeat):
 
 **Beat 1 — Transition Bridge**
 
-> **AI says:** *(delighted gasp)* "Whoaaa! Big yellow flower! Sunny sunny! Yellow yellow! So pretty!"
+> **AI says:** [delighted gasp] "Whoaaa! Big yellow flower! Sunny sunny! Yellow yellow! So pretty!"
 >
 > **Child responses:**
 > 1. (Ideal) "Yellow!" / "Sunny!" / "Flower!"
@@ -521,15 +521,15 @@ Dialogue (T0 — short, exclaim, repeat):
 > 3. (No response) Child looks at the flower.
 >
 > **AI follow-up:**
-> 1. *(thrilled)* "Yellow! Yes yes! Big yellow!"
-> 2. *(warm)* "Bee? Bees love yellow! Let's look!"
-> 3. *(wait 2s)* *(soft, inviting)* "So yellow! Let's look more!"
+> 1. [thrilled] "Yellow! Yes yes! Big yellow!"
+> 2. [warm] "Bee? Bees love yellow! Let's look!"
+> 3. [wait 2s] [soft, inviting] "So yellow! Let's look more!"
 >
 > **Screen:** Sunflower photo centered, soft yellow glow, sparkle ring around the petals, cartoon sun peeking in the corner.
 
 **Beat 2 — Mission Briefing**
 
-> **AI says:** *(excited, official)* "You — Flower Scientist! Big mission! Guess first: are MOST flowers out here yellow? Yes or no?"
+> **AI says:** [excited, official] "You — Flower Scientist! Big mission! Guess first: are MOST flowers out here yellow? Yes or no?"
 >
 > **Child responses:**
 > 1. (Ideal) "Yes!" / "All yellow!" / "Yellow yellow!"
@@ -537,9 +537,9 @@ Dialogue (T0 — short, exclaim, repeat):
 > 3. (No response) Child hesitates.
 >
 > **AI follow-up (the child's guess is now the hypothesis):**
-> 1. *(thrilled, recording)* "YES! Guess is YELLOW wins! Let's check! Go go go!"
-> 2. *(warm, recording)* "Pink? Good guess! Let's see — is it yellow or pink more? Go find three!"
-> 3. *(wait 2s)* *(gentle)* "Take a guess — yellow most? Or not yellow most? Say one!"
+> 1. [thrilled, recording] "YES! Guess is YELLOW wins! Let's check! Go go go!"
+> 2. [warm, recording] "Pink? Good guess! Let's see — is it yellow or pink more? Go find three!"
+> 3. [wait 2s] [gentle] "Take a guess — yellow most? Or not yellow most? Say one!"
 >
 > **Screen:** "FLOWER SCIENTIST" mission card, a "my guess: YELLOW WINS" badge in kid-block lettering, a yellow-vs-not-yellow chart that starts empty with 3 slots.
 
@@ -547,7 +547,7 @@ Dialogue (T0 — short, exclaim, repeat):
 
 **Round 1 — first find**
 
-> **AI says:** *(excited)* "Mission on! Find one flower! Any flower! Snap a photo!"
+> **AI says:** [excited] "Mission on! Find one flower! Any flower! Snap a photo!"
 >
 > **Child responses:**
 > 1. (Ideal) Child walks and photographs a flower.
@@ -555,16 +555,16 @@ Dialogue (T0 — short, exclaim, repeat):
 > 3. (Can't find) Child looks around uncertainly.
 >
 > **AI follow-up (assessor rule — AI names the color):**
-> 1a. *(child's photo is yellow)* *(cheering)* "YELLOW! Point one for yellow team! Chart up!"
-> 1b. *(child's photo is not yellow — e.g., pink rose)* *(surprised)* "Ooooh! PINK! Not yellow! Point one for not-yellow team!"
-> 2. *(validating, redirecting)* "Pretty leaf! But we need a *flower* — something with petals. Try again!"
-> 3. *(wait 3s)* *(helpful)* "Look near the ground! Or the fence! Flowers hide!"
+> 1a. [child's photo is yellow] [cheering] "YELLOW! Point one for yellow team! Chart up!"
+> 1b. [child's photo is not yellow — e.g., pink rose] [surprised] "Ooooh! PINK! Not yellow! Point one for not-yellow team!"
+> 2. [validating, redirecting] "Pretty leaf! But we need a *flower* — something with petals. Try again!"
+> 3. [wait 3s] [helpful] "Look near the ground! Or the fence! Flowers hide!"
 >
 > **Screen:** Live photo slot fills with the child's find; a yellow chip (or pink chip) pops onto the chart with a "+1" animation.
 
 **Round 2 — second find**
 
-> **AI says:** *(excited detective)* "Next! Find ANOTHER flower! Different place! Snap!"
+> **AI says:** [excited detective] "Next! Find ANOTHER flower! Different place! Snap!"
 >
 > **Child responses:**
 > 1. (Ideal) Child walks to a new spot and photographs.
@@ -572,16 +572,16 @@ Dialogue (T0 — short, exclaim, repeat):
 > 3. (Can't find) Child stops.
 >
 > **AI follow-up:**
-> 1a. *(if yellow)* "YELLOW again! Two yellows! Zooooom!"
-> 1b. *(if not yellow)* "Purple! Ooooh! Not yellow! Chart grows!"
-> 2. *(warm)* "Same flower? Clever! But let's find a NEW one for this scientist's chart."
-> 3. *(wait 3s)* "Try the other side! Or look up! Flowers in pots too!"
+> 1a. [if yellow] "YELLOW again! Two yellows! Zooooom!"
+> 1b. [if not yellow] "Purple! Ooooh! Not yellow! Chart grows!"
+> 2. [warm] "Same flower? Clever! But let's find a NEW one for this scientist's chart."
+> 3. [wait 3s] "Try the other side! Or look up! Flowers in pots too!"
 >
 > **Screen:** Chart updates with the second chip; tiny cheer animation; "2 of 3" counter ticks.
 
 **Round 3 — last find**
 
-> **AI says:** *(suspense voice)* "Last one! Number three! The BIG one! Snap!"
+> **AI says:** [suspense voice] "Last one! Number three! The BIG one! Snap!"
 >
 > **Child responses:**
 > 1. (Ideal) Child photographs a third flower.
@@ -589,22 +589,22 @@ Dialogue (T0 — short, exclaim, repeat):
 > 3. (Can't find) Child gives up.
 >
 > **AI follow-up:**
-> 1a. *(if yellow)* "YELLOW! Three of three! Wait wait — the chart will tell the whole story!"
-> 1b. *(if not yellow — say blue or red)* "Ohhh! RED! Big surprise coming!"
-> 2. *(delighted)* "TWO at once! Two scientist points! Amazing!"
-> 3. *(wait 3s)* *(gently)* "One more, any flower. Even a dandelion!"
+> 1a. [if yellow] "YELLOW! Three of three! Wait wait — the chart will tell the whole story!"
+> 1b. [if not yellow — say blue or red] "Ohhh! RED! Big surprise coming!"
+> 2. [delighted] "TWO at once! Two scientist points! Amazing!"
+> 3. [wait 3s] [gently] "One more, any flower. Even a dandelion!"
 >
 > **Screen:** Chart now has three chips; a big "WHICH WINS?" question mark pulses at the top.
 
 **Beat 4 — Synthesis / Tally Reveal**
 
-> **AI says:** *(drum roll)* "Okay okay okay — Flower Scientist — big reveal! Your guess: YELLOW WINS! Let's flip the chart! Three… two… one… LOOK!"
+> **AI says:** [drum roll] "Okay okay okay — Flower Scientist — big reveal! Your guess: YELLOW WINS! Let's flip the chart! Three… two… one… LOOK!"
 >
-> **(Screen flips — showing the real counts based on what was photographed.)**
+> *[Screen flips — showing the real counts based on what was photographed.]*
 >
-> *If YELLOW wins (e.g., 2 yellow, 1 pink):* **AI says:** *(cheering)* "Yellow: two! Pink: one! YOU WERE RIGHT! Scientist badge!"
-> *If NOT-YELLOW wins (e.g., 1 yellow, 2 others):* **AI says:** *(amazed)* "Yellow: one! Other colors: two! OOOOH surprise! Guess was wrong! But finding a surprise IS a scientist win!"
-> *If tied (1.5/1.5 — impossible with 3, but just in case of a duplicate photo):* **AI says:** *(delighted)* "Half-and-half! Wow! That's a DRAW!"
+> *If YELLOW wins (e.g., 2 yellow, 1 pink):* **AI says:** [cheering] "Yellow: two! Pink: one! YOU WERE RIGHT! Scientist badge!"
+> *If NOT-YELLOW wins (e.g., 1 yellow, 2 others):* **AI says:** [amazed] "Yellow: one! Other colors: two! OOOOH surprise! Guess was wrong! But finding a surprise IS a scientist win!"
+> *If tied (1.5/1.5 — impossible with 3, but just in case of a duplicate photo):* **AI says:** [delighted] "Half-and-half! Wow! That's a DRAW!"
 >
 > **Child responses:**
 > 1. (Ideal) Cheers, claps, repeats the result.
@@ -612,15 +612,15 @@ Dialogue (T0 — short, exclaim, repeat):
 > 3. (No response) Child stares at the chart.
 >
 > **AI follow-up:**
-> 1. *(pure celebration)* "Big scientist! Chart says WOW!"
-> 2. *(thrilled)* "More? Yes yes! We can hunt again next time!"
-> 3. *(wait 2s, warm)* "Look! Chart is done! You did it!"
+> 1. [pure celebration] "Big scientist! Chart says WOW!"
+> 2. [thrilled] "More? Yes yes! We can hunt again next time!"
+> 3. [wait 2s, warm] "Look! Chart is done! You did it!"
 >
 > **Screen:** Chart flips from question marks to real chips in a big "reveal" animation; confetti if prediction right, "SURPRISE!" starburst if wrong; Flower Scientist badge descends.
 
 **Beat 5 — Closing + Concepts**
 
-> **AI says:** *(warm, proud)* "You — Flower Scientist. You guessed! You hunted! You found! Sometimes yellow wins, sometimes SURPRISE! That's Discovery! You checked if something was TRUE! That's Causation — what IS and what is NOT! Good scientist! Good hunt!"
+> **AI says:** [warm, proud] "You — Flower Scientist. You guessed! You hunted! You found! Sometimes yellow wins, sometimes SURPRISE! That's Discovery! You checked if something was TRUE! That's Causation — what IS and what is NOT! Good scientist! Good hunt!"
 >
 > **Child responses:**
 > 1. (Ideal) "Scientist!" / "Yay!" / "Again!"
@@ -628,9 +628,9 @@ Dialogue (T0 — short, exclaim, repeat):
 > 3. (No response) Child smiles.
 >
 > **AI follow-up:**
-> 1. *(beaming)* "Best scientist! Chart's saved! Badge yours!"
-> 2. *(curious with them)* "Bees love yellow! That's WHY! Another hunt, another day!"
-> 3. *(wait 2s, warm)* "Big smile! Big badge!"
+> 1. [beaming] "Best scientist! Chart's saved! Badge yours!"
+> 2. [curious with them] "Bees love yellow! That's WHY! Another hunt, another day!"
+> 3. [wait 2s, warm] "Big smile! Big badge!"
 >
 > **Screen:** Flower Scientist badge centered, three yellow-sun chips ("Observation", "Prediction", "Discovery") dance underneath, the final flipped chart in the corner.
 
@@ -697,7 +697,7 @@ pillar_payoff: "Child commits to yellow-wins, photographs three flowers outside,
 | 3 | Edge Case Coverage | PASS | Every step has ideal / unexpected / no-response branches, plus a Cat5-specific "can't find" branch with a real-place hint ("near the ground, by the fence, flowers hide"). |
 | 4 | IB Completeness | PASS | 2 Key Concepts (Causation, Form), 4 Related Concepts, full KUD, 3 ATL skills, closing names Discovery + Causation as praise. |
 | 5 | Tier Appropriateness | PASS | Sentences 3–5 words ("YELLOW! Yes yes!"), onomatopoeia ("Zooooom!", "Whoaaa!"), single-step commands ("Snap!"), max 3 rounds. Caregiver as sole scaffold matches T0. |
-| 6 | Dialogue Specificity | PASS | Every AI line has a tone marker (*delighted gasp, excited, drum roll, suspense voice*) and is real dialogue, not instruction. |
+| 6 | Dialogue Specificity | PASS | Every AI line has a tone marker, e.g. `[delighted gasp]`, `[excited]`, `[drum roll]`, `[suspense voice]`, and is real dialogue, not instruction. |
 | 7 | Screen & UI Completeness | PASS | Every beat has a concrete Screen — sparkle ring, chart with 3 slots, "+1" animations, confetti / starburst depending on outcome. |
 | 8 | Entity Mapping Alignment | N/A | No `mapping=` parameter on this assignment. |
 | 9 | Game Feel | PASS | Real uncertainty — the child's guess is genuinely on the line; the tally reveal preserves surprise (AI is the assessor); the flip-the-chart moment is an emotional climax. |
@@ -816,7 +816,7 @@ Creation:
 
 **Beat 1 — Transition Bridge**
 
-> **AI says:** *(warm, genuinely curious)* "So, that's construction paper — the quiet workhorse of every art project you've ever made. Look at that stack. Every piece has a whole history in it — cutting, folding, gluing. Here's a question to hold onto for a minute: if construction paper could choose to be any kind of paper in the world, what would it want to become?"
+> **AI says:** [warm, genuinely curious] "So, that's construction paper — the quiet workhorse of every art project you've ever made. Look at that stack. Every piece has a whole history in it — cutting, folding, gluing. Here's a question to hold onto for a minute: if construction paper could choose to be any kind of paper in the world, what would it want to become?"
 >
 > **Child responses:**
 > 1. (Ideal) "Something that folds itself!" / "Paper that doesn't tear!" / "Shiny paper!"
@@ -824,15 +824,15 @@ Creation:
 > 3. (No response) Child thinks, fiddles with the paper.
 >
 > **AI follow-up:**
-> 1. *(delighted, building)* "Okay, save that thought — because we're literally about to build that. You're going to redesign construction paper from the ground up. Four rounds. Sound good?"
-> 2. *(warm, validating)* "Fair question. Here's the pitch: you're an engineer, and today's project is designing the ultimate construction paper. If you're into it — let's go."
-> 3. *(wait 3s, gentle)* "Take a second. When you're ready, we'll redesign paper together — your ideas, your call."
+> 1. [delighted, building] "Okay, save that thought — because we're literally about to build that. You're going to redesign construction paper from the ground up. Four rounds. Sound good?"
+> 2. [warm, validating] "Fair question. Here's the pitch: you're an engineer, and today's project is designing the ultimate construction paper. If you're into it — let's go."
+> 3. [wait 3s, gentle] "Take a second. When you're ready, we'll redesign paper together — your ideas, your call."
 >
 > **Screen:** Stack of construction paper photo on the left; a "workshop blueprint" template on the right with four empty slots labeled R1–R4; a chrome pencil icon hovers over Slot 1.
 
 **Beat 2 — Frame & Role**
 
-> **AI says:** *(inventor voice, collaborative)* "You're officially Paper Engineer today. The workshop has four design rounds, and each round I'll bring you a what-if — a modification to construction paper. Your job: invent how it works, push it as far as you want, and tell me the details. I'll draft everything. At the end, we combine all four into one thing — Super Construction Paper — and you get to decide its final name. Ready for round one?"
+> **AI says:** [inventor voice, collaborative] "You're officially Paper Engineer today. The workshop has four design rounds, and each round I'll bring you a what-if — a modification to construction paper. Your job: invent how it works, push it as far as you want, and tell me the details. I'll draft everything. At the end, we combine all four into one thing — Super Construction Paper — and you get to decide its final name. Ready for round one?"
 >
 > **Child responses:**
 > 1. (Ideal) "Yes!" / "Let's build!" / "Can I name it 'Mega Paper' already?"
@@ -840,9 +840,9 @@ Creation:
 > 3. (No response) Child is thinking.
 >
 > **AI follow-up:**
-> 1. *(excited)* "Hold the name — save it for the reveal. Round one, coming up."
-> 2. *(collaborative)* "Five works — we have time. And if a round doesn't click, we redesign it together. Your call."
-> 3. *(wait 3s)* *(warm)* "Take your time. When you're ready, round one is ready."
+> 1. [excited] "Hold the name — save it for the reveal. Round one, coming up."
+> 2. [collaborative] "Five works — we have time. And if a round doesn't click, we redesign it together. Your call."
+> 3. [wait 3s] [warm] "Take your time. When you're ready, round one is ready."
 >
 > **Screen:** "Paper Engineer — Workshop Open" banner with blueprint grid; four slot cards labeled R1–R4 with grey pencil icons awaiting fills; bottom toolbar with "draft", "undo", and "combine" buttons (visual only).
 
@@ -850,7 +850,7 @@ Creation:
 
 **Round 1 — transparent paper (plausible · Perspective-L1, attribute a feeling)**
 
-> **AI says:** *(engineer tone)* "Round one, what-if: construction paper becomes *transparent*. You can see through it. What does that change about how it feels to use? And — here's the Perspective part — if the paper could feel, how does it feel about being see-through?"
+> **AI says:** [engineer tone] "Round one, what-if: construction paper becomes *transparent*. You can see through it. What does that change about how it feels to use? And — here's the Perspective part — if the paper could feel, how does it feel about being see-through?"
 >
 > **Child responses:**
 > 1. (Ideal) "It feels shy because everyone can see through it." / "It feels free — no more hiding drawings!"
@@ -858,15 +858,15 @@ Creation:
 > 3. (No response) Child considers.
 >
 > **AI follow-up:**
-> 1. *(engaged)* "Shy — or free — those are real design constraints. Let's draft: transparent paper, with that personality noted. What color would it pick to be transparent in?"
-> 2. *(collaborative)* "Windows are glass — this is transparent *paper*, which is different. You can still color on it; colors layer through. Does that change what feeling it has?"
-> 3. *(wait 3s)* *(gentle)* "No pressure — I'll draft the transparent version and you jump in with how it feels whenever."
+> 1. [engaged] "Shy — or free — those are real design constraints. Let's draft: transparent paper, with that personality noted. What color would it pick to be transparent in?"
+> 2. [collaborative] "Windows are glass — this is transparent *paper*, which is different. You can still color on it; colors layer through. Does that change what feeling it has?"
+> 3. [wait 3s] [gentle] "No pressure — I'll draft the transparent version and you jump in with how it feels whenever."
 >
 > **Screen:** R1 slot fills with a translucent paper sketch, slightly tinted by the child's color choice; a small "Feeling: ___" tag sits next to the sketch, editable.
 
 **Round 2 — self-folding (mechanism · Perspective-L2, imagine its view of you)**
 
-> **AI says:** *(engineer voice, building excitement)* "Round two: construction paper *folds itself*. You tell it 'fold into a crane' and it just does. Design question: how does it decide *when* to fold? And perspective question — if the paper could see *you*, what would it think when you ask it to fold?"
+> **AI says:** [engineer voice, building excitement] "Round two: construction paper *folds itself*. You tell it 'fold into a crane' and it just does. Design question: how does it decide *when* to fold? And perspective question — if the paper could see *you*, what would it think when you ask it to fold?"
 >
 > **Child responses:**
 > 1. (Ideal) "It knows by voice — I say 'crane' and it folds. It thinks I'm a wizard when I tell it!" / "It only folds for its owner, so it feels loyal."
@@ -874,15 +874,15 @@ Creation:
 > 3. (No response) Child thinks.
 >
 > **AI follow-up:**
-> 1. *(delighted)* "Voice-activated. It thinks you're a wizard. Now that's character. Noted — and the paper is starting to have opinions about you. Keep going?"
-> 2. *(collaborative)* "Good edge case — maybe it needs a confirmation word, like 'really fold'. And yes, it can unfold; every fold has an undo. What feeling does the paper get when you undo?"
-> 3. *(wait 3s)* *(gentle)* "Take your time. The paper will wait."
+> 1. [delighted] "Voice-activated. It thinks you're a wizard. Now that's character. Noted — and the paper is starting to have opinions about you. Keep going?"
+> 2. [collaborative] "Good edge case — maybe it needs a confirmation word, like 'really fold'. And yes, it can unfold; every fold has an undo. What feeling does the paper get when you undo?"
+> 3. [wait 3s] [gentle] "Take your time. The paper will wait."
 >
 > **Screen:** R2 slot fills with a sketch of paper mid-fold into a crane, motion lines showing self-motion; a thought bubble next to it labeled "Paper thinks: ___", editable.
 
 **Round 3 — memory-keeper (imaginative · Perspective-L2 extended, toward L3)**
 
-> **AI says:** *(warmer, layering)* "Round three — this one's trickier. The paper *remembers*. Every drawing ever made on it, every hand that touched it — stored inside. Design choice: does the paper share those memories, or keep them private? And what does it feel about holding all those stories?"
+> **AI says:** [warmer, layering] "Round three — this one's trickier. The paper *remembers*. Every drawing ever made on it, every hand that touched it — stored inside. Design choice: does the paper share those memories, or keep them private? And what does it feel about holding all those stories?"
 >
 > **Child responses:**
 > 1. (Ideal) "It keeps them private unless you ask — like a journal." / "It shares when it's happy, keeps them when it's sad." / "Every memory makes it a little stronger."
@@ -890,15 +890,15 @@ Creation:
 > 3. (No response) Child pauses.
 >
 > **AI follow-up:**
-> 1. *(engaged)* "Oh that's great — conditional memory, mood-based. Let me draft: paper with a journal-mode. Does your paper ever want to talk *about* a memory to another paper? Just thinking ahead to round four."
-> 2. *(validating, reframing)* "Creepy is real — let's design that out. Maybe the paper has to be asked. And every drawing counts — even the bad ones were practice. How does the paper feel about practice drawings?"
-> 3. *(wait 3s)* *(curious)* "Maybe just tell me one memory the paper might hold. Anything at all."
+> 1. [engaged] "Oh that's great — conditional memory, mood-based. Let me draft: paper with a journal-mode. Does your paper ever want to talk *about* a memory to another paper? Just thinking ahead to round four."
+> 2. [validating, reframing] "Creepy is real — let's design that out. Maybe the paper has to be asked. And every drawing counts — even the bad ones were practice. How does the paper feel about practice drawings?"
+> 3. [wait 3s] [curious] "Maybe just tell me one memory the paper might hold. Anything at all."
 >
 > **Screen:** R3 slot fills with paper with a faint shimmer of overlapping sketches inside it; a "memory mode: shared / private / conditional" toggle set to the child's choice.
 
 **Round 4 — shape-shifter on command (delightfully absurd · Perspective-L3, voice the paper to a third party)**
 
-> **AI says:** *(building to the finale)* "Last round — this one's the wildest. Paper *shape-shifts* on command. You say 'be a cat', it becomes a cat. 'Be a hat', it becomes a hat. Anything you name. Now — final perspective question, the biggest one — if Super Construction Paper met *Regular Paper* at the end of today's workshop, what would it tell Regular Paper about itself? In Super Paper's voice."
+> **AI says:** [building to the finale] "Last round — this one's the wildest. Paper *shape-shifts* on command. You say 'be a cat', it becomes a cat. 'Be a hat', it becomes a hat. Anything you name. Now — final perspective question, the biggest one — if Super Construction Paper met *Regular Paper* at the end of today's workshop, what would it tell Regular Paper about itself? In Super Paper's voice."
 >
 > **Child responses:**
 > 1. (Ideal) "Super Paper says: 'I used to be like you. Now I can be anything. But I remember what it was like to just sit in a stack.'" / "'I see through, fold alone, remember everything, and turn into anything — but I miss being quiet sometimes.'"
@@ -906,19 +906,19 @@ Creation:
 > 3. (No response) Child is thinking hard.
 >
 > **AI follow-up:**
-> 1. *(genuine admiration)* "You just gave Super Paper an inner life. It's not just features, it's a whole character. Alright — combining everything in one second. Ready for the reveal?"
-> 2. *(collaborative)* "Sure, redesign R3 — we have time. And yes, it's magic, engineered. Engineering magic is what this workshop does."
-> 3. *(wait 4s)* *(warm, inviting)* "Try one line in Super Paper's voice. Even a short one. Then we build the reveal."
+> 1. [genuine admiration] "You just gave Super Paper an inner life. It's not just features, it's a whole character. Alright — combining everything in one second. Ready for the reveal?"
+> 2. [collaborative] "Sure, redesign R3 — we have time. And yes, it's magic, engineered. Engineering magic is what this workshop does."
+> 3. [wait 4s] [warm, inviting] "Try one line in Super Paper's voice. Even a short one. Then we build the reveal."
 >
 > **Screen:** R4 slot fills with paper mid-transform into a rotating cat/hat/crane silhouette; a speech bubble labeled "Super Paper says:" holds the child's full line.
 
 **Beat 4 — Magic Moment (Ta-da! Reveal)**
 
-> **AI says:** *(engineer crescendo)* "Okay. Combining all four. Round one: transparent. Round two: self-folding on voice. Round three: memory-keeper with mood. Round four: shape-shifter on command — and with an inner life, thanks to you. Bringing it all together in three… two… one…"
+> **AI says:** [engineer crescendo] "Okay. Combining all four. Round one: transparent. Round two: self-folding on voice. Round three: memory-keeper with mood. Round four: shape-shifter on command — and with an inner life, thanks to you. Bringing it all together in three… two… one…"
 >
-> **(Screen flourish — all four R-slots collapse into one center-screen artifact.)**
+> *[Screen flourish — all four R-slots collapse into one center-screen artifact.]*
 >
-> **AI says:** *(full reveal voice)* "TA-DA! Super Construction Paper — transparent, voice-folding, memory-keeping, shape-shifting, and *self-aware*. You engineered this. Every feature, every feeling, every line of dialogue — you. Paper Engineer, what do you want to name it? You earned the final word."
+> **AI says:** [full reveal voice] "TA-DA! Super Construction Paper — transparent, voice-folding, memory-keeping, shape-shifting, and *self-aware*. You engineered this. Every feature, every feeling, every line of dialogue — you. Paper Engineer, what do you want to name it? You earned the final word."
 >
 > **Child responses:**
 > 1. (Ideal) "Call it the Everything Sheet." / "Memory Paper." / "Super Construction Paper, keep the name."
@@ -926,15 +926,15 @@ Creation:
 > 3. (No response) Child beams.
 >
 > **AI follow-up:**
-> 1. *(celebration)* "Named: the Everything Sheet. Logging it into the workshop registry. This is your design."
-> 2. *(collaborative)* "One more — go. Flying paper. Adding a wing mode to the shape-shifter spec. Now rename it."
-> 3. *(wait 3s, warm)* "Take it in. Super Paper is yours."
+> 1. [celebration] "Named: the Everything Sheet. Logging it into the workshop registry. This is your design."
+> 2. [collaborative] "One more — go. Flying paper. Adding a wing mode to the shape-shifter spec. Now rename it."
+> 3. [wait 3s, warm] "Take it in. Super Paper is yours."
 >
 > **Screen:** Full "Super Construction Paper" reveal — all four features stacked visually (translucent layer, self-folding crane, memory shimmer, shape-shift silhouette) on one animated hero card; the child's name + chosen final name appear at the bottom as a plaque.
 
 **Beat 5 — Celebration + Concepts**
 
-> **AI says:** *(warm, reflective)* "Four rounds, four inventions, one paper — you redesigned a quiet sheet of construction paper into a whole character with features *and* a point of view. That's Perspective — you didn't just invent what the paper could do, you voiced what it might *feel* about what it does. And Change — every round, the paper became something else, and you tracked each step. Paper Engineer, Everything Sheet registered. If Regular Paper asks, you know what Super Paper would tell it."
+> **AI says:** [warm, reflective] "Four rounds, four inventions, one paper — you redesigned a quiet sheet of construction paper into a whole character with features *and* a point of view. That's Perspective — you didn't just invent what the paper could do, you voiced what it might *feel* about what it does. And Change — every round, the paper became something else, and you tracked each step. Paper Engineer, Everything Sheet registered. If Regular Paper asks, you know what Super Paper would tell it."
 >
 > **Child responses:**
 > 1. (Ideal) "What's the next workshop?" / "Can I redesign scissors?" / "I'm keeping this one."
@@ -942,9 +942,9 @@ Creation:
 > 3. (No response) Child is quiet, satisfied.
 >
 > **AI follow-up:**
-> 1. *(collaborative)* "Scissors workshop is a real follow-up — that could be next week. And of course you're keeping this. It's yours."
-> 2. *(curious with them)* "Perspective means looking at something from another side — including imagining how a thing *you made* sees the world. You did that four times today. Drawing the Everything Sheet is a great next step — real ink version."
-> 3. *(wait 3s)* *(warm)* "You built something real today, with a voice. That matters."
+> 1. [collaborative] "Scissors workshop is a real follow-up — that could be next week. And of course you're keeping this. It's yours."
+> 2. [curious with them] "Perspective means looking at something from another side — including imagining how a thing *you made* sees the world. You did that four times today. Drawing the Everything Sheet is a great next step — real ink version."
+> 3. [wait 3s] [warm] "You built something real today, with a voice. That matters."
 >
 > **Screen:** Paper Engineer badge descends; four chips orbit the badge (Invention · Perspective · Change · Design); the Super Construction Paper hero card sits framed in a workshop blueprint; "Everything Sheet" plaque visible.
 
@@ -1012,7 +1012,7 @@ pillar_payoff: "Child stacks four modifications plus a voice onto construction p
 | 3 | Edge Case Coverage | PASS | Every step has ideal / unexpected / no-response branches. "Unexpected" branches genuinely validate before redirecting (e.g., "Fair question. Here's the pitch…"). |
 | 4 | IB Completeness | PASS | 2 Key Concepts (Perspective, Change), 4 Related Concepts, full KUD, 3 ATL skills, closing names Perspective + Change as praise. |
 | 5 | Tier Appropriateness | PASS | T2 voice — complex sentences with logic markers ("If that works, then what happens when…"), negotiation ("you get to pick the name"), multi-step planning (four stacked rounds). No T0 onomatopoeia; no T1 over-simplification. |
-| 6 | Dialogue Specificity | PASS | Every AI line has a tone marker (*warm, engineer voice, crescendo*) and is actual dialogue. No "AI guides the child" lines. |
+| 6 | Dialogue Specificity | PASS | Every AI line has a tone marker, e.g. `[warm]`, `[engineer voice]`, `[crescendo]`, and is actual dialogue. No "AI guides the child" lines. |
 | 7 | Screen & UI Completeness | PASS | Every beat has a Screen — blueprint grid, four slot cards filling progressively, thought bubbles, memory-shimmer shader, final hero card with plaque. |
 | 8 | Entity Mapping Alignment | N/A | No `mapping=` parameter on this assignment. |
 | 9 | Game Feel | PASS | Real stakes — the child's inventions get stacked and they earn final-name rights; genuine uncertainty in each round's invention; the ta-da reveal is a concrete climax; surprise in Round 4's Perspective-L3 ask. |

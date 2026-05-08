@@ -47,7 +47,7 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 > **Context**: Child has just finished a T0 conversation about the raincoat.
 > **Conversation anchor**: appearance — shape ("long coat with hood"); senses — fabric_feel ("smooth and slippery feel")
 >
-> **AI says**: *(warm, building on earlier)* "Your raincoat has a hood! So smooth! It keeps you dry. What else keeps things dry?"
+> **AI says**: [warm, building on earlier] "Your raincoat has a hood! So smooth! It keeps you dry. What else keeps things dry?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Umbrella!" / "A roof!" / child points at something
@@ -55,9 +55,9 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 > 3. (No response) Child stands in their raincoat quietly.
 >
 > **AI follow-up**:
-> 1. *(excited)* "Yes! That keeps things dry too! Let's find more!"
-> 2. *(playful)* "Swish-swish! So fun! Your coat protects you. Let's find more protectors!"
-> 3. *(wait 2s)* *(gentle, coaxing)* "Your coat covers you up. I wonder — what else covers things from rain?"
+> 1. [excited] "Yes! That keeps things dry too! Let's find more!"
+> 2. [playful] "Swish-swish! So fun! Your coat protects you. Let's find more protectors!"
+> 3. [wait 2s] [gentle, coaxing] "Your coat covers you up. I wonder — what else covers things from rain?"
 >
 > **Screen**: Raincoat photo centered with soft blue raindrop animation falling around it; gentle glow highlighting the hood shape; faint "conversation recap" shimmer on the smooth fabric.
 
@@ -65,7 +65,7 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 > **Context**: Child photographs their raincoat with no prior conversation.
 >
-> **AI says**: *(delighted, playful)* "Swish-swish! A raincoat! It keeps you SO cozy! Do you feel brave in it?"
+> **AI says**: [delighted, playful] "Swish-swish! A raincoat! It keeps you SO cozy! Do you feel brave in it?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah!" / "I'm brave!" / "Swish-swish!" / child swishes
@@ -73,15 +73,15 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 > 3. (No response) Child looks at the screen quietly.
 >
 > **AI follow-up**:
-> 1. *(thrilled)* "So brave! Raincoat protects you! I wonder — what else protects things from rain?"
-> 2. *(warm, validating)* "Yellow and cozy! With a big hood! Your raincoat keeps rain away. What ELSE keeps rain away?"
-> 3. *(wait 2s)* *(soft, playful)* "Swish-swish! Your coat is like a little roof for your body! What else is like a roof?"
+> 1. [thrilled] "So brave! Raincoat protects you! I wonder — what else protects things from rain?"
+> 2. [warm, validating] "Yellow and cozy! With a big hood! Your raincoat keeps rain away. What ELSE keeps rain away?"
+> 3. [wait 2s] [soft, playful] "Swish-swish! Your coat is like a little roof for your body! What else is like a roof?"
 >
 > **Screen**: Raincoat photo centered with animated raindrops bouncing off the coat surface; small "swish" sound-wave icons on either side; cheerful blue and yellow color scheme.
 
 **Step 2: Mission Briefing — Rain Guard**
 
-> **AI says**: *(excited, playful)* "You are a Rain Guard! Find 2 things that protect from rain. How do they protect? Big? Strong? Take a photo! Go!"
+> **AI says**: [excited, playful] "You are a Rain Guard! Find 2 things that protect from rain. How do they protect? Big? Strong? Take a photo! Go!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Okay!" / "I see one!" / child starts looking
@@ -89,9 +89,9 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 > 3. (No response) Child looks around slowly.
 >
 > **AI follow-up**:
-> 1. *(cheering)* "Go go, Rain Guard! Find things that cover and protect!"
-> 2. *(helpful, warm)* "Things that block rain! A big leaf? A roof? Find out HOW it stops rain!"
-> 3. *(wait 2s)* *(encouraging)* "Look up! A roof? Look down! A big leaf? Find something that stops rain!"
+> 1. [cheering] "Go go, Rain Guard! Find things that cover and protect!"
+> 2. [helpful, warm] "Things that block rain! A big leaf? A roof? Find out HOW it stops rain!"
+> 3. [wait 2s] [encouraging] "Look up! A roof? Look down! A big leaf? Find something that stops rain!"
 >
 > **Screen**: Mission card with "Rain Guard" badge (raindrop shield icon), 3 slots (first filled with raincoat photo, 2 empty with raindrop-splash placeholders), and a simple "Find 2!" counter with a raindrop-shield stamp.
 
@@ -99,9 +99,9 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 **Round 1 — First Rain Guard Find:**
 
-> *(Child takes a photo of something that covers or protects — e.g., a big leaf, an umbrella, a tree canopy, a roof overhang)*
+> [Child takes a photo of something that covers or protects — e.g., a big leaf, an umbrella, a tree canopy, a roof overhang]
 >
-> **AI says**: *(excited discovery)* "Ooh! Does it stop rain? Tell me!"
+> **AI says**: [excited discovery] "Ooh! Does it stop rain? Tell me!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "A leaf!" / "Big tree!" / "It covers!"
@@ -109,9 +109,9 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 > 3. (No response) Child is quiet after taking the photo.
 >
 > **AI follow-up**:
-> 1. *(delighted)* "A big leaf! It covers things! How does it protect? Big? Strong? Soft?"
-> 2. *(warm, scaffolding)* "Green and big! It could stop rain! How does it protect? Is it big and flat?"
-> 3. *(wait 2s)* *(warm)* "I see a rain stopper! How does it protect? Is it big? Thick? Strong?"
+> 1. [delighted] "A big leaf! It covers things! How does it protect? Big? Strong? Soft?"
+> 2. [warm, scaffolding] "Green and big! It could stop rain! How does it protect? Is it big and flat?"
+> 3. [wait 2s] [warm] "I see a rain stopper! How does it protect? Is it big? Thick? Strong?"
 >
 > **↳ Detail-harvesting question**: AI asks ONE detail question about HOW it protects.
 >
@@ -121,21 +121,21 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up to detail answer**:
-> 1. *(excited, using child's detail)* "Big and flat! It covers like a hat! Let's name it — how about Big Leafy?"
-> 2. *(warm, harvesting from observation)* "It IS green — and so wide! It spreads out big. How about we call it — Stretchy Green?"
-> 3. *(wait 2s)* *(gentle, AI observes detail)* "I see — it's big and flat! Spreads out wide. Let's call it — Big Cover!"
+> 1. [excited, using child's detail] "Big and flat! It covers like a hat! Let's name it — how about Big Leafy?"
+> 2. [warm, harvesting from observation] "It IS green — and so wide! It spreads out big. How about we call it — Stretchy Green?"
+> 3. [wait 2s] [gentle, AI observes detail] "I see — it's big and flat! Spreads out wide. Let's call it — Big Cover!"
 >
 > **Child accepts or changes name**: "Big Leafy! / Yeah! / No, Leafy Hat!"
 >
-> **AI response to naming**: *(celebrating)* "Hello, [name]! You protect because you're [detail]! 1 more to go!"
+> **AI response to naming**: [celebrating] "Hello, [name]! You protect because you're [detail]! 1 more to go!"
 >
 > **Screen**: Photo slides into slot 2 with a raindrop-shield animation; a small name tag appears below the photo with the character name AND the detail (e.g., "Big Leafy — big and flat"); counter updates to "1 of 2 found"; animated raindrops bounce off the found item.
 
 **Round 2 — Second Rain Guard Find:**
 
-> *(Child takes a photo of another protector — e.g., a bench overhang, a bush, a carport, a hat left on a chair)*
+> [Child takes a photo of another protector — e.g., a bench overhang, a bush, a carport, a hat left on a chair]
 >
-> **AI says**: *(thrilled)* "Another one! What is it?"
+> **AI says**: [thrilled] "Another one! What is it?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "A roof!" / "Big bush!" / "It blocks rain!"
@@ -143,9 +143,9 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 > 3. (No response) Child takes the photo silently.
 >
 > **AI follow-up**:
-> 1. *(celebrating)* "A bush! It blocks rain! How does it protect? Thick? Fluffy? Strong?"
-> 2. *(validating, playful)* "Nice find! Could it stop rain? How? Is it thick? Tall? Hard?"
-> 3. *(wait 2s)* *(happy)* "Look at that! It could block rain! How does it protect? Big? Thick? Soft?"
+> 1. [celebrating] "A bush! It blocks rain! How does it protect? Thick? Fluffy? Strong?"
+> 2. [validating, playful] "Nice find! Could it stop rain? How? Is it thick? Tall? Hard?"
+> 3. [wait 2s] [happy] "Look at that! It could block rain! How does it protect? Big? Thick? Soft?"
 >
 > **↳ Detail-harvesting question**: AI asks ONE detail question about HOW it protects.
 >
@@ -155,37 +155,37 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up to detail answer**:
-> 1. *(excited, using child's detail)* "Thick and bushy! Rain can't get through! Let's call it — Bushy Shield!"
-> 2. *(warm, harvesting from observation)* "Brown and sturdy! It stands so strong. How about — Strong Block?"
-> 3. *(wait 2s)* *(gentle, AI observes detail)* "I see — it's thick and strong! Let's call it — Tough Guard!"
+> 1. [excited, using child's detail] "Thick and bushy! Rain can't get through! Let's call it — Bushy Shield!"
+> 2. [warm, harvesting from observation] "Brown and sturdy! It stands so strong. How about — Strong Block?"
+> 3. [wait 2s] [gentle, AI observes detail] "I see — it's thick and strong! Let's call it — Tough Guard!"
 >
 > **Child accepts or changes name**: "Bushy Shield! / Yeah! / No, Bush Friend!"
 >
-> **AI response to naming**: *(celebrating)* "Hello, [name]! You protect because you're [detail]! Rain Guard team — all together!"
+> **AI response to naming**: [celebrating] "Hello, [name]! You protect because you're [detail]! Rain Guard team — all together!"
 >
 > **Screen**: Photo slides into slot 3 with raindrop-shield burst animation; name tag appears with detail (e.g., "Bushy Shield — thick and bushy"); counter shows "2 of 2 — DONE!" with blue raindrop confetti and a mini shield celebration.
 
 **STUCK BRANCH (if child can't find something that protects):**
 
-> **AI says**: *(helpful, specific)* "Hmm, look up! A roof? A tree? Or look for big leaves! Rain guards hide up high!"
+> **AI says**: [helpful, specific] "Hmm, look up! A roof? A tree? Or look for big leaves! Rain guards hide up high!"
 >
-> **If still stuck**: *(gentle, pointing)* "Try near the door. Or find the biggest leaf you can see! Take a photo!"
+> **If still stuck**: [gentle, pointing] "Try near the door. Or find the biggest leaf you can see! Take a photo!"
 >
 > **Screen**: Soft directional arrows appear pointing upward and toward structures; icons of a leaf and a roof pulse gently with raindrop animations bouncing off them.
 
 **Step 4: Collection Complete + Synthesis (Naming Story)**
 
-> **AI says**: *(proud, storytelling voice)* "Look! Your Rain Guard team! Your raincoat, [Name 1], and [Name 2]. Rain is coming! Drip drop! What happens?"
+> **AI says**: [proud, storytelling voice] "Look! Your Rain Guard team! Your raincoat, [Name 1], and [Name 2]. Rain is coming! Drip drop! What happens?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "They cover!" / "They keep dry!" / "They hide from rain!" / child makes up a tiny story
 > 2. (Unexpected) "I don't know" / "Rain goes splash!" / "Swish-swish!"
 > 3. (No response) Child looks at the photos with a smile.
 >
-> **AI follow-up** *(story uses each character's harvested detail — every line is driven by what the child said about HOW it protects)*:
-> 1. *(amazed, narrating)* "Drip drop! Rain falls! Raincoat goes swish-swish! [Name 1] [detail-driven action — e.g., "spreads out big and flat!"] [Name 2] [detail-driven action — e.g., "stands thick and bushy!"] Everything stays dry! The best Rain Guard team!"
-> 2. *(warm, scaffolding)* "Splash splash! Rain is coming! Raincoat says 'swish-swish, I cover you!' [Name 1] says '[detail-driven action — e.g., "I spread out wide!"]' And [Name 2] says '[detail-driven action — e.g., "I'm so thick, rain can't get through!"]' They each protect their own way!"
-> 3. *(wait 2s)* *(gentle, playful)* "I'll tell the story! Rain falls — drip drop! Raincoat goes swish and covers with its hood! [Name 1] [detail-driven action — e.g., "stretches out flat like a hat!"] And [Name 2] [detail-driven action — e.g., "puffs up thick and strong!"] Every guard protects differently! Do you like that story?"
+> **AI follow-up** [story uses each character's harvested detail — every line is driven by what the child said about HOW it protects]:
+> 1. [amazed, narrating] "Drip drop! Rain falls! Raincoat goes swish-swish! [Name 1] [detail-driven action — e.g., "spreads out big and flat!"] [Name 2] [detail-driven action — e.g., "stands thick and bushy!"] Everything stays dry! The best Rain Guard team!"
+> 2. [warm, scaffolding] "Splash splash! Rain is coming! Raincoat says 'swish-swish, I cover you!' [Name 1] says '[detail-driven action — e.g., "I spread out wide!"]' And [Name 2] says '[detail-driven action — e.g., "I'm so thick, rain can't get through!"]' They each protect their own way!"
+> 3. [wait 2s] [gentle, playful] "I'll tell the story! Rain falls — drip drop! Raincoat goes swish and covers with its hood! [Name 1] [detail-driven action — e.g., "stretches out flat like a hat!"] And [Name 2] [detail-driven action — e.g., "puffs up thick and strong!"] Every guard protects differently! Do you like that story?"
 >
 > **Detail-driven story examples** (to show how different finds produce different stories):
 > - If child found a big flat leaf ("big and flat") + a thick bush ("thick and bushy"): "Big Leafy spreads out flat! Bushy Shield stands thick — rain can't get through!"
@@ -196,7 +196,7 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 **Step 5: Discovery Celebration**
 
-> **AI says**: *(warm, wondering)* "Wow! So many things block rain! Why do things need to stay dry?"
+> **AI says**: [warm, wondering] "Wow! So many things block rain! Why do things need to stay dry?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "So we don't get wet!" / "To stay warm!" / "Rain is cold!"
@@ -204,23 +204,23 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 > 3. (No response) Child smiles at the screen.
 >
 > **AI follow-up**:
-> 1. *(fascinated)* "Yes! Staying dry keeps us warm and cozy! That's why we have raincoats and roofs and leaves!"
-> 2. *(warm, connecting)* "Rain IS fun! But sometimes we need to stay dry. That's what Rain Guards are for — keeping us cozy!"
-> 3. *(wait 2s)* *(gentle)* "Being dry feels warm and cozy! That's why raincoats and big leaves are so helpful!"
+> 1. [fascinated] "Yes! Staying dry keeps us warm and cozy! That's why we have raincoats and roofs and leaves!"
+> 2. [warm, connecting] "Rain IS fun! But sometimes we need to stay dry. That's what Rain Guards are for — keeping us cozy!"
+> 3. [wait 2s] [gentle] "Being dry feels warm and cozy! That's why raincoats and big leaves are so helpful!"
 >
 > **Screen**: Collection photos displayed with animated rain falling and bouncing off each item; small "dry zone" circles glow beneath each protector; warm golden light emanates from the center showing the "protected" area.
 
 **Step 6: Closing + IB Concepts**
 
-> **AI says**: *(warm, proud)* "Rain Guard, great job! You found Connection — raincoat, leaves, and roofs all keep things dry! And you saw their Function — they protect! Swish-swish! You earned your Rain Guard badge!"
+> **AI says**: [warm, proud] "Rain Guard, great job! You found Connection — raincoat, leaves, and roofs all keep things dry! And you saw their Function — they protect! Swish-swish! You earned your Rain Guard badge!"
 >
 > **Possible child responses**:
 > 1. (Engaged) "Swish-swish!" / "Yay!" / "Rain Guard!"
 > 2. (Quiet) Child smiles or waves.
 >
 > **AI follow-up**:
-> 1. *(celebration)* "Swish-swish! Great job! Bye, Rain Guard!"
-> 2. *(gentle)* "You kept everyone dry today. Bye bye, Rain Guard!"
+> 1. [celebration] "Swish-swish! Great job! Bye, Rain Guard!"
+> 2. [gentle] "You kept everyone dry today. Bye bye, Rain Guard!"
 >
 > **Screen**: Badge spinning into center labeled "Rain Guard" with a raindrop-shield and hood motif; collection photos as small insets; "Connection" and "Function" in blue-and-gold lettering with a raindrop icon and a shield icon; blue raindrop confetti drifts down gently.
 

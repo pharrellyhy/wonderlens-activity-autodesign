@@ -33,7 +33,7 @@
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted surprise) "Wow, look at this piano! All those black and white keys, sitting there so quietly. I bet this piano has a SECRET — it knows a different song for every feeling! Want to help me figure out what songs it knows?"
+**AI says:** [delighted surprise] "Wow, look at this piano! All those black and white keys, sitting there so quietly. I bet this piano has a SECRET — it knows a different song for every feeling! Want to help me figure out what songs it knows?"
 
 **Child responses:**
 
@@ -43,15 +43,15 @@
 
 **AI follow-up:**
 
-1. (excited, conspiratorial) "Okay, here's what we'll do — I'll tell you a moment, and YOU decide what song the piano would play. Ready?"
-2. (impressed) "That's so cool! Your piano must know SO many songs then. Let's see — can you guess what song it would pick for a really special moment?"
-3. (wait 2s) (playful whisper) "I think this piano wants to tell us something. Should we listen?"
+1. [excited, conspiratorial] "Okay, here's what we'll do — I'll tell you a moment, and YOU decide what song the piano would play. Ready?"
+2. [impressed] "That's so cool! Your piano must know SO many songs then. Let's see — can you guess what song it would pick for a really special moment?"
+3. (wait 2s) [playful whisper] "I think this piano wants to tell us something. Should we listen?"
 
 **Screen:** Piano photo centered with gentle musical note animations floating upward and soft ambient sparkle.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, setting up) "Here's how it works — I'll describe a moment, like a rainy day or a party. Then YOU tell me: would the piano play something loud or soft? Fast or slow? Happy or calm? For example... imagine it's a quiet night and a baby is sleeping. I think the piano would play something really soft and slow, like a gentle lullaby. Shhh... nice and easy. Your turn next! Ready?"
+**AI says:** [playful, setting up] "Here's how it works — I'll describe a moment, like a rainy day or a party. Then YOU tell me: would the piano play something loud or soft? Fast or slow? Happy or calm? For example... imagine it's a quiet night and a baby is sleeping. I think the piano would play something really soft and slow, like a gentle lullaby. Shhh... nice and easy. Your turn next! Ready?"
 
 **Child responses:**
 
@@ -61,9 +61,9 @@
 
 **AI follow-up:**
 
-1. (excited) "Here we go! First moment coming up!"
-2. (warm, explaining) "A lullaby is a soft, gentle song to help someone fall asleep. Like when someone sings to you at bedtime — nice and slow. Okay, now YOUR turn to pick a song!"
-3. (wait 2s) (encouraging) "I'll start the first one — it's a fun one!"
+1. [excited] "Here we go! First moment coming up!"
+2. [warm, explaining] "A lullaby is a soft, gentle song to help someone fall asleep. Like when someone sings to you at bedtime — nice and slow. Okay, now YOUR turn to pick a song!"
+3. (wait 2s) [encouraging] "I'll start the first one — it's a fun one!"
 
 **Screen:** Piano photo on the left; demo card on the right showing a moon and sleeping baby icon with "soft" and "slow" labels glowing; musical notes drifting softly.
 
@@ -71,7 +71,7 @@
 
 **Round 1 — "The Birthday Party":**
 
-**AI says:** (excited, scene-setting) "Okay! Imagine — it's your BIRTHDAY! There's cake, balloons everywhere, and all your friends are dancing. What would the piano play? Loud or soft? Fast or slow?"
+**AI says:** [excited, scene-setting] "Okay! Imagine — it's your BIRTHDAY! There's cake, balloons everywhere, and all your friends are dancing. What would the piano play? Loud or soft? Fast or slow?"
 
 **Child responses:**
 
@@ -81,9 +81,9 @@
 
 **AI follow-up:**
 
-1. (celebrating) "YES! Loud and fast — like the piano is dancing too! When you press the keys hard, the sound gets big and bouncy. The piano would be SO excited at your party!"
-2. (warm, connecting back) "Ooh, birthday cake is the BEST! And I bet at your party, the music would be really fun, right? Would the piano play loud party music or quiet party music?"
-3. (wait 2s) (helpful nudge) "At a birthday party, everyone is happy and jumping around. Would the piano play something loud and bouncy, or quiet and slow?"
+1. [celebrating] "YES! Loud and fast — like the piano is dancing too! When you press the keys hard, the sound gets big and bouncy. The piano would be SO excited at your party!"
+2. [warm, connecting back] "Ooh, birthday cake is the BEST! And I bet at your party, the music would be really fun, right? Would the piano play loud party music or quiet party music?"
+3. (wait 2s) [helpful nudge] "At a birthday party, everyone is happy and jumping around. Would the piano play something loud and bouncy, or quiet and slow?"
 
 **Screen:** Piano photo with birthday party overlay — confetti, balloons, cake icon; musical notes grow bigger and bounce when the child says "loud" or "fast."
 
@@ -95,7 +95,7 @@
 
 #### Step 4: Celebration
 
-**AI says:** (warm, proud) "WOW! You just became a Song Storyteller! You figured out that the piano can play happy bouncy songs, quiet rainy songs, sneaky tiptoe songs — all kinds! You matched every moment to the perfect music."
+**AI says:** [warm, proud] "WOW! You just became a Song Storyteller! You figured out that the piano can play happy bouncy songs, quiet rainy songs, sneaky tiptoe songs — all kinds! You matched every moment to the perfect music."
 
 **Child responses:**
 
@@ -106,14 +106,14 @@
 **AI follow-up:**
 
 1. (beaming) "You sure did! The piano is so lucky to have a Song Storyteller like you."
-2. (encouraging) "Yes! Next time you sit at the piano, try pressing the keys softly for rain music, or hard for party music. You already know how the songs feel!"
-3. (warm) "You did an amazing job today, Song Storyteller."
+2. [encouraging] "Yes! Next time you sit at the piano, try pressing the keys softly for rain music, or hard for party music. You already know how the songs feel!"
+3. [warm] "You did an amazing job today, Song Storyteller."
 
 **Screen:** Golden badge with piano icon and speech bubble, "Song Storyteller" in playful lettering, confetti and musical notes bursting outward, celebration sound.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "You know what's amazing? The same piano, with the same keys, played a TOTALLY different song for every moment. A birthday party got loud, bouncy music. The rain got soft, gentle music. That's because music shows how YOU see the world — that's the magic of Perspective! And you figured out that pressing keys in different ways changes the whole sound — that's how the piano's Function works. You're a real Song Storyteller!"
+**AI says:** [warm, reflective] "You know what's amazing? The same piano, with the same keys, played a TOTALLY different song for every moment. A birthday party got loud, bouncy music. The rain got soft, gentle music. That's because music shows how YOU see the world — that's the magic of Perspective! And you figured out that pressing keys in different ways changes the whole sound — that's how the piano's Function works. You're a real Song Storyteller!"
 
 **Child responses:**
 
@@ -123,8 +123,8 @@
 
 **AI follow-up:**
 
-1. (delighted) "Exactly! Same piano, so many feelings. That's what makes music special."
-2. (warm, simple) "Perspective means everyone hears and feels music in their own way! Your birthday song sounded different from your rainy song, because YOU decided what fit. That's perspective!"
-3. (gentle, closing) "Every time you hear the piano, remember — it can tell any story you want. Bye, Song Storyteller!"
+1. [delighted] "Exactly! Same piano, so many feelings. That's what makes music special."
+2. [warm, simple] "Perspective means everyone hears and feels music in their own way! Your birthday song sounded different from your rainy song, because YOU decided what fit. That's perspective!"
+3. [gentle, closing] "Every time you hear the piano, remember — it can tell any story you want. Bye, Song Storyteller!"
 
 **Screen:** "Perspective" styled as a prism splitting into colorful musical notes, "Function" styled as a key pressing down with a sound wave; piano photo centered with round scenario icons (party, rain, cat) orbiting gently around it.

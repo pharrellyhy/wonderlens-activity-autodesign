@@ -81,7 +81,7 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted squeal) "Ohhh! A duck! Quack quack! So cute. Is duck splashy today?"
+**AI says:** [delighted squeal] "Ohhh! A duck! Quack quack! So cute. Is duck splashy today?"
 
 **Child responses:**
 
@@ -91,15 +91,15 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 **AI follow-up:**
 
-1. (joyful) "Splash splash! Fun duck! Want to make duck SUPER?"
-2. (warm, playful) "Yellow ducky! So pretty. What if duck could do NEW things?"
-3. (wait 2s) (soft, inviting) "Quack quack! Duck says hi. Want to play?"
+1. [joyful] "Splash splash! Fun duck! Want to make duck SUPER?"
+2. [warm, playful] "Yellow ducky! So pretty. What if duck could do NEW things?"
+3. (wait 2s) [soft, inviting] "Quack quack! Duck says hi. Want to play?"
 
 **Screen:** Rubber duck photo centered with gentle blue water ripple animation and floating bubble particles.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (excited whisper) "You are a Duck Builder! Magic workshop! I say 'what if.' You imagine! Like this — what if duck had a HAT? Ooh! Fancy duck! Your turn now!"
+**AI says:** [excited whisper] "You are a Duck Builder! Magic workshop! I say 'what if.' You imagine! Like this — what if duck had a HAT? Ooh! Fancy duck! Your turn now!"
 
 **Child responses:**
 
@@ -109,9 +109,9 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 **AI follow-up:**
 
-1. (thrilled) "Duck Builder ready! Here we go!"
-2. (playful) "Quack! Duck says yes! Let's build!"
-3. (wait 2s) (gentle, encouraging) "Easy! I ask. You say! Ready? First one!"
+1. [thrilled] "Duck Builder ready! Here we go!"
+2. [playful] "Quack! Duck says yes! Let's build!"
+3. (wait 2s) [gentle, encouraging] "Easy! I ask. You say! Ready? First one!"
 
 **Screen:** Duck photo on the left; "Magic Workshop" banner on the right with floating animated tools (wrench, sparkle wand, paintbrush) and a "Duck Builder" badge at the top.
 
@@ -119,7 +119,7 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 **Round 1 — "Wings!":** (physical modification — simple, high-success)
 
-**AI says:** (amazed) "What if duck had WINGS? Whoooosh! Where duck fly?"
+**AI says:** [amazed] "What if duck had WINGS? Whoooosh! Where duck fly?"
 
 **Child responses:**
 
@@ -129,9 +129,9 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 **AI follow-up:**
 
-1. (thrilled, zooming) "WHOOOOSH! Duck fly [child's answer]! Wings go flap flap flap! Flying duck! So cool!"
-2. (validating, playful) "Quack quack! Duck says yes! And with wings — whoooosh! Duck fly UP! Flap flap! Where duck go?"
-3. (wait 2s) (gentle prompt) "Wings! Flap flap! Duck fly UP! Wheee! To the clouds? Or to the moon?"
+1. [thrilled, zooming] "WHOOOOSH! Duck fly [child's answer]! Wings go flap flap flap! Flying duck! So cool!"
+2. [validating, playful] "Quack quack! Duck says yes! And with wings — whoooosh! Duck fly UP! Flap flap! Where duck go?"
+3. (wait 2s) [gentle prompt] "Wings! Flap flap! Duck fly UP! Wheee! To the clouds? Or to the moon?"
 
 **Screen:** Duck photo with animated wings sprouting from its sides, flapping gently with motion lines showing upward flight.
 
@@ -141,7 +141,7 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 #### Step 4: Celebration
 
-**AI says:** (breathless, building excitement) "Ready? Your duck has... WINGS — whoooosh! AND glow — bzzzzz! AND talks — '[child's phrase]!' It's... SUPER DUCK! Flying, glowing, talking SUPER DUCK! You built it! QUACK QUACK WHOOOOSH!"
+**AI says:** [breathless, building excitement] "Ready? Your duck has... WINGS — whoooosh! AND glow — bzzzzz! AND talks — '[child's phrase]!' It's... SUPER DUCK! Flying, glowing, talking SUPER DUCK! You built it! QUACK QUACK WHOOOOSH!"
 
 **Child responses:**
 
@@ -151,15 +151,15 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 **AI follow-up:**
 
-1. (pure celebration) "YOU made Super Duck! Best Duck Builder EVER! Super Duck goes whoooosh, bzzzzz, quack quack!"
-2. (joyful) "Quack quack! Super Duck says THANK YOU! You are the best builder!"
-3. (wait 2s) (warm, proud) "Look! Super Duck! You built it! Wings, glow, talk! WOW!"
+1. [pure celebration] "YOU made Super Duck! Best Duck Builder EVER! Super Duck goes whoooosh, bzzzzz, quack quack!"
+2. [joyful] "Quack quack! Super Duck says THANK YOU! You are the best builder!"
+3. (wait 2s) [warm, proud] "Look! Super Duck! You built it! Wings, glow, talk! WOW!"
 
 **Screen:** Grand reveal — duck with ALL modifications (wings, glow, speech bubble) center-screen, "SUPER DUCK!" in bouncy rainbow letters, confetti burst and sparkle animations.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, proud) "You are Duck Builder! You changed duck. Wings! Glow! Talk! That's Change! Duck floats and quacks — that's Function! You made duck do NEW things! Super Duck Builder!"
+**AI says:** [warm, proud] "You are Duck Builder! You changed duck. Wings! Glow! Talk! That's Change! Duck floats and quacks — that's Function! You made duck do NEW things! Super Duck Builder!"
 
 **Child responses:**
 
@@ -169,8 +169,8 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 **AI follow-up:**
 
-1. (celebrating) "Best Duck Builder! Super Duck loves you! Quack quack whoooosh! Bye bye!"
-2. (warm) "Duck says bye! Build again soon! Quack!"
-3. (wait 2s) (gentle close) "Super Duck Builder! Great job! Quack quack! See you!"
+1. [celebrating] "Best Duck Builder! Super Duck loves you! Quack quack whoooosh! Bye bye!"
+2. [warm] "Duck says bye! Build again soon! Quack!"
+3. (wait 2s) [gentle close] "Super Duck Builder! Great job! Quack quack! See you!"
 
 **Screen:** "Duck Builder" badge with wrench-and-duck icon; "Change" with transformation arrow and "Function" with gear icon in playful lettering; Super Duck floating behind the badge with soft golden glow.

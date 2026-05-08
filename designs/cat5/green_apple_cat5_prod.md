@@ -40,7 +40,7 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted surprise) "Wow, a green apple! Look how shiny and smooth it is. It is like a little green treasure ball. What do you think it feels like?"
+**AI says:** [delighted surprise] "Wow, a green apple! Look how shiny and smooth it is. It is like a little green treasure ball. What do you think it feels like?"
 
 **Child responses:**
 
@@ -50,16 +50,16 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 **AI follow-up:**
 
-1. (impressed) "Smooth like a shiny marble! This apple is a real treasure. I wonder if there are more green treasures hiding in the garden."
-2. (warm, validating) "You found it on the ground — like a hidden treasure! This shiny green apple is so cool. I bet more green treasures are hiding nearby."
-3. (wait 2s) (playful, coaxing) "Feel it — is it smooth or bumpy? This green apple is so shiny! I think the garden has more green treasures for us."
+1. [impressed] "Smooth like a shiny marble! This apple is a real treasure. I wonder if there are more green treasures hiding in the garden."
+2. [warm, validating] "You found it on the ground — like a hidden treasure! This shiny green apple is so cool. I bet more green treasures are hiding nearby."
+3. (wait 2s) [playful, coaxing] "Feel it — is it smooth or bumpy? This green apple is so shiny! I think the garden has more green treasures for us."
 
 **Screen:** Green apple photo centered with a soft green glow and tiny sparkle animations around the glossy surface.
 
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (adventurous, rallying) "You are now a Green Treasure Hunter! Your mission has three parts. First, find three green things nearby. Second, take a photo of each one. Third, pick which treasure is most like the apple. Ready, hunter?"
+**AI says:** [adventurous, rallying] "You are now a Green Treasure Hunter! Your mission has three parts. First, find three green things nearby. Second, take a photo of each one. Third, pick which treasure is most like the apple. Ready, hunter?"
 
 **Child responses:**
 
@@ -70,8 +70,8 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 **AI follow-up:**
 
 1. (pumped up) "Let's go! Look at leaves, grass, or anything green. Take a photo when you find one!"
-2. (reassuring, conspiratorial) "Green things love to hide! Try looking at leaves on bushes, grass on the ground, or even green bugs. They are everywhere!"
-3. (wait 2s) (encouraging, pointing) "Try looking down at the grass first. See anything green? Take a photo of it!"
+2. [reassuring, conspiratorial] "Green things love to hide! Try looking at leaves on bushes, grass on the ground, or even green bugs. They are everywhere!"
+3. (wait 2s) [encouraging, pointing] "Try looking down at the grass first. See anything green? Take a photo of it!"
 
 **Screen:** Mission card with "Green Treasure Hunter" badge, four collection slots (first filled with green apple photo), and a numbered checklist.
 
@@ -80,9 +80,9 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 **Round 1:**
 
-*(Child takes a photo of a green leaf)*
+[Child takes a photo of a green leaf]
 
-**AI says:** (excited discovery) "Oh, a green leaf! Look at that! Is this leaf smooth and shiny like your apple, or does it feel different?"
+**AI says:** [excited discovery] "Oh, a green leaf! Look at that! Is this leaf smooth and shiny like your apple, or does it feel different?"
 
 **Child responses:**
 
@@ -92,9 +92,9 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 **AI follow-up:**
 
-1. (delighted) "Bumpy with little lines — that is so different from the smooth apple! Great find, hunter. Two more treasures to go!"
-2. (warm, extending) "A leaf is a great treasure! Feel it — is it smooth like the apple or a bit rough? Either way, your first green treasure is in the bag! Two more to go!"
-3. (playful) "I see something green with tiny lines on it! Your leaf looks lighter green than the apple. Nice treasure! Two more to find!"
+1. [delighted] "Bumpy with little lines — that is so different from the smooth apple! Great find, hunter. Two more treasures to go!"
+2. [warm, extending] "A leaf is a great treasure! Feel it — is it smooth like the apple or a bit rough? Either way, your first green treasure is in the bag! Two more to go!"
+3. [playful] "I see something green with tiny lines on it! Your leaf looks lighter green than the apple. Nice treasure! Two more to find!"
 
 **Screen:** Leaf photo slides into second collection slot with sparkle animation; counter shows "1 of 3 found."
 
@@ -105,7 +105,7 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 #### Step 4: Celebration
 
-**AI says:** (proud, curious) "Look at all your green treasures together! The apple, and three new friends. Now here is the big question — which treasure looks MOST like the apple? And which one looks the MOST different?"
+**AI says:** [proud, curious] "Look at all your green treasures together! The apple, and three new friends. Now here is the big question — which treasure looks MOST like the apple? And which one looks the MOST different?"
 
 **Child responses:**
 
@@ -115,11 +115,11 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 **AI follow-up:**
 
-1. (impressed, reflective) "The leaf is shiny like the apple — great thinking! And what about the most different one? You are really good at comparing things!"
-2. (scaffolding warmly) "Good pick! Is it because they feel the same? Or look the same shape? You choose what matters! Every hunter sees things their own way."
+1. [impressed, reflective] "The leaf is shiny like the apple — great thinking! And what about the most different one? You are really good at comparing things!"
+2. [scaffolding warmly] "Good pick! Is it because they feel the same? Or look the same shape? You choose what matters! Every hunter sees things their own way."
 3. (wait 2s) (gently guiding) "Look at the pictures. Which green treasure is shiny and smooth like the apple? Point to it! And which one looks really different?"
 
-**AI says:** (warm celebration) "Amazing, Green Treasure Hunter! You found four green things in the garden. They are ALL green, but every single one feels different. The apple is smooth and round. The leaf has tiny lines. Why do you think so many things in the garden are green?"
+**AI says:** [warm celebration] "Amazing, Green Treasure Hunter! You found four green things in the garden. They are ALL green, but every single one feels different. The apple is smooth and round. The leaf has tiny lines. Why do you think so many things in the garden are green?"
 
 **Child responses:**
 
@@ -129,13 +129,13 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 **AI follow-up:**
 
 1. (awed) "Things that grow use green to soak up sunshine! You figured that out from your treasure hunt. That is so smart!"
-2. (warm, encouraging) "Green IS pretty! And a lot of growing things pick green. Your eyes found so many different kinds. That is what makes you a great hunter!"
+2. [warm, encouraging] "Green IS pretty! And a lot of growing things pick green. Your eyes found so many different kinds. That is what makes you a great hunter!"
 
 **Screen:** All four photos in a grid with golden crown on apple photo, tap-to-select circles, connection/difference lines, and a center text "All green, all different!" with green sparkle particles.
 
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (proud, warm celebration) "You are an amazing Green Treasure Hunter! You found green treasures and compared every single one to your apple. You discovered that green things are connected — they share a color but each one is special. And you used your own perspective to choose which one matched the apple best. Nobody else would pick exactly like you! You earned your Green Treasure Hunter badge!"
+**AI says:** [proud, warm celebration] "You are an amazing Green Treasure Hunter! You found green treasures and compared every single one to your apple. You discovered that green things are connected — they share a color but each one is special. And you used your own perspective to choose which one matched the apple best. Nobody else would pick exactly like you! You earned your Green Treasure Hunter badge!"
 
 **Screen:** "Green Treasure Hunter" badge — a golden magnifying glass with a green apple inside and three small green treasure icons orbiting it. "Connection" and "Perspective" appear in artistic green-and-gold lettering with a chain link icon and an eye icon. Four collection photos as small insets around the badge border.

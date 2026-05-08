@@ -57,7 +57,7 @@ entity_attributes_covered:
 
 > **Context**: Child photographs a rubber ball on the floor or table with no prior conversation.
 >
-> **AI says**: *(delighted gasp)* "Ohhh WOW — look at that ball! It's SO round and smooth and it looks like it could BOUNCE right off the screen! I can tell just by looking — this ball has some serious bouncing power. Have you ever bounced this ball really, really high?"
+> **AI says**: [delighted gasp] "Ohhh WOW — look at that ball! It's SO round and smooth and it looks like it could BOUNCE right off the screen! I can tell just by looking — this ball has some serious bouncing power. Have you ever bounced this ball really, really high?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah, it bounces super high!" / "It goes all the way up!" / "It bounces off the walls!"
@@ -65,19 +65,19 @@ entity_attributes_covered:
 > 3. (No response) Child watches the screen silently.
 >
 > **AI follow-up**:
-> 1. *(warm, impressed)* "Super high! I knew it — this ball is a bouncing CHAMPION. You know a lot about how this ball moves. Hey... want to test how much you REALLY know? Like a scientist?"
-> 2. *(enthusiastic)* "{Child's answer} — that's so cool! This ball looks really special. Those smooth, round curves and that bouncy rubber... I bet this ball does some amazing things. Hey, want to be a SCIENTIST and test what your ball can do?"
-> 3. *(waits 3 sec)* *(soft, wondering)* "This ball is so perfectly round — like a little planet! I bet it does some really cool stuff when it rolls and bounces. Want to do science experiments with me to find out?"
+> 1. [warm, impressed] "Super high! I knew it — this ball is a bouncing CHAMPION. You know a lot about how this ball moves. Hey... want to test how much you REALLY know? Like a scientist?"
+> 2. [enthusiastic] "{Child's answer} — that's so cool! This ball looks really special. Those smooth, round curves and that bouncy rubber... I bet this ball does some amazing things. Hey, want to be a SCIENTIST and test what your ball can do?"
+> 3. [waits 3 sec] [soft, wondering] "This ball is so perfectly round — like a little planet! I bet it does some really cool stuff when it rolls and bounces. Want to do science experiments with me to find out?"
 >
 > **Screen**: Ball photo centered with gentle bouncing animation — the photo subtly pulses up and down. Soft glow outlines the ball's round shape. Tiny sparkle effects on the surface.
 
 **Step 2: Game Setup + Demo — "The Property Predictor Lab"**
 
-> **AI says**: *(playful, scientist voice)* "Okay, here's how our Prediction Lab works! I'm going to describe something that's ABOUT to happen to your ball. But before I tell you what the ball does — YOU have to lock in your prediction! You say: 'I think the ball will...' and then we find out together! You get a FULL point if you're right, and a HALF point if you're close. Let me show you how it works!"
+> **AI says**: [playful, scientist voice] "Okay, here's how our Prediction Lab works! I'm going to describe something that's ABOUT to happen to your ball. But before I tell you what the ball does — YOU have to lock in your prediction! You say: 'I think the ball will...' and then we find out together! You get a FULL point if you're right, and a HALF point if you're close. Let me show you how it works!"
 >
-> *(demo)* "Ready? Here's my example. Something is about to happen: I put the ball on a bumpy gravel path. What will the ball do? I PREDICT... the ball will roll straight ahead! Let me lock that in..."
+> [demo] "Ready? Here's my example. Something is about to happen: I put the ball on a bumpy gravel path. What will the ball do? I PREDICT... the ball will roll straight ahead! Let me lock that in..."
 >
-> *(dramatic pause)* "And the answer is... the ball rolls, but it wobbles and zig-zags all over the place because the bumps push it sideways! Ohhh — I said straight, but it zig-zagged! The round shape MAKES it roll, but the bumps change the direction. That's close! Half point for me! See how it works? Now YOUR turn, Scientist. Ready?"
+> [dramatic pause] "And the answer is... the ball rolls, but it wobbles and zig-zags all over the place because the bumps push it sideways! Ohhh — I said straight, but it zig-zagged! The round shape MAKES it roll, but the bumps change the direction. That's close! Half point for me! See how it works? Now YOUR turn, Scientist. Ready?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Ready!" / "Yeah!" / "Let's go!" — child is eager.
@@ -85,9 +85,9 @@ entity_attributes_covered:
 > 3. (No response) Child is quiet, possibly processing.
 >
 > **AI follow-up**:
-> 1. *(excited countdown)* "Okay, Ball Scientist — Experiment Number One! Listen carefully..."
-> 2. *(delighted)* "You already know what your ball does? Then you're going to be AMAZING at this! A prediction is just a guess you lock in BEFORE you find out. Here comes Experiment Number One!"
-> 3. *(waits 3 sec)* *(encouraging, gentle)* "It's easy — I describe what happens, you guess what the ball does. Any guess is great! Here comes the first one..."
+> 1. [excited countdown] "Okay, Ball Scientist — Experiment Number One! Listen carefully..."
+> 2. [delighted] "You already know what your ball does? Then you're going to be AMAZING at this! A prediction is just a guess you lock in BEFORE you find out. Here comes Experiment Number One!"
+> 3. [waits 3 sec] [encouraging, gentle] "It's easy — I describe what happens, you guess what the ball does. Any guess is great! Here comes the first one..."
 >
 > **Screen**: Ball photo on the left. On the right, a "PREDICTION LAB" clipboard icon appears with a scoring area: a row of empty circles (one per round) and a running score display reading "Score: 0". A brief demo animation shows: ball on gravel, zig-zagging, "1/2" appears with a sparkle. "Experiment 1" badge glows below.
 
@@ -95,7 +95,7 @@ entity_attributes_covered:
 
 **Round 1 — "The Edge of the Table" (Experiment 1)**
 
-> **AI says**: *(mysterious narrator)* "Experiment Number One! Imagine... your ball is sitting right on the edge of a table. Not in the middle — right on the EDGE. You give it one teeny tiny push. BEFORE I tell you what happens — lock in your prediction! Does the ball STAY on the table or FALL off?"
+> **AI says**: [mysterious narrator] "Experiment Number One! Imagine... your ball is sitting right on the edge of a table. Not in the middle — right on the EDGE. You give it one teeny tiny push. BEFORE I tell you what happens — lock in your prediction! Does the ball STAY on the table or FALL off?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It falls off!" / "It rolls off the edge!" / "FALL!" — child predicts the ball will fall.
@@ -103,15 +103,15 @@ entity_attributes_covered:
 > 3. (No response) Child is quiet or looking at their ball.
 >
 > **AI follow-up**:
-> 1. *(confirming lock-in)* "Prediction locked: falls off! Okay, here we go... *(drumroll)* ... and the answer is... the ball rolls right to the edge and — WHOOPS — OFF IT GOES! It FALLS! Round things can't stop at edges because they have no flat side to catch them! The roundness CAUSES it to roll right over! FULL POINT! Score: 1 out of 1!"
-> 2. *(warm, helping lock in)* "Ooh, you want to protect it! So your prediction is... it stays safe? Let me lock that in as 'stays on the table.' Here we go... *(drumroll)* ... and the answer is... the ball rolls right to the edge and — whoops — OFF it goes! Round things can't stop at edges — no flat side to catch them! The roundness makes it keep rolling. Not quite your prediction, but that's what scientists learn! Half point for caring about the ball! Score: half out of 1!"
-> 3. *(waits 3 sec)* *(helpful, encouraging)* "Here's a clue — your ball is SO round, and the table has an edge. If you give a round thing a tiny push near an edge... does it stop? Or does it keep going? Lock in your guess!"
+> 1. [confirming lock-in] "Prediction locked: falls off! Okay, here we go... [drumroll] ... and the answer is... the ball rolls right to the edge and — WHOOPS — OFF IT GOES! It FALLS! Round things can't stop at edges because they have no flat side to catch them! The roundness CAUSES it to roll right over! FULL POINT! Score: 1 out of 1!"
+> 2. [warm, helping lock in] "Ooh, you want to protect it! So your prediction is... it stays safe? Let me lock that in as 'stays on the table.' Here we go... [drumroll] ... and the answer is... the ball rolls right to the edge and — whoops — OFF it goes! Round things can't stop at edges — no flat side to catch them! The roundness makes it keep rolling. Not quite your prediction, but that's what scientists learn! Half point for caring about the ball! Score: half out of 1!"
+> 3. [waits 3 sec] [helpful, encouraging] "Here's a clue — your ball is SO round, and the table has an edge. If you give a round thing a tiny push near an edge... does it stop? Or does it keep going? Lock in your guess!"
 >
 > **Screen**: Illustrated table with the ball perched on the edge. When prediction is locked, a "LOCKED IN" stamp appears on the clipboard. Drumroll animation plays — the ball rolls and tips over the edge with a cartoonish slow-motion fall. Score circle fills: full gold for a full point, half-gold for half. Running score updates: "Score: X / 1". Confetti burst for full point.
 
 **Round 2 — "The Pillow Bounce" (Experiment 2)**
 
-> **AI says**: *(dramatic whisper)* "Experiment Number Two! You take your ball and bounce it on the hard kitchen floor — BANG! It bounces super high! Now... you bounce it on a big soft fluffy PILLOW. Same ball, same bounce. Lock in your prediction, Scientist — does the ball bounce HIGH or LOW off the pillow?"
+> **AI says**: [dramatic whisper] "Experiment Number Two! You take your ball and bounce it on the hard kitchen floor — BANG! It bounces super high! Now... you bounce it on a big soft fluffy PILLOW. Same ball, same bounce. Lock in your prediction, Scientist — does the ball bounce HIGH or LOW off the pillow?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Low!" / "It won't bounce much!" / "Not very high!" — child predicts reduced bounce.
@@ -119,15 +119,15 @@ entity_attributes_covered:
 > 3. (No response) Child is thinking quietly.
 >
 > **AI follow-up**:
-> 1. *(confirming)* "Prediction locked: LOW bounce! Here we go... *(drumroll)* ... BOING... and the ball barely bounces at ALL! It goes up just a teeny bit and drops back down into the pillow! The pillow is so soft that it ABSORBS the bounce — it soaks it up like a sponge! The bounciness needs something HARD to push off of. Soft things steal the bounce! FULL POINT! Score: {X} out of 2! You really know your ball!"
-> 2. *(validating then revealing)* "Ooh, you think HIGH! Prediction locked! Here we go... *(drumroll)* ... BOING... and the ball barely bounces at all! Just a teeny little hop. Whoa — the pillow is so soft that it ABSORBED the bounce! Soft things soak up the energy. The ball NEEDS something hard to bounce high. Not quite your prediction, but now you know something new! Half point for a brave guess! Score: {X} out of 2!"
-> 3. *(waits 3 sec)* *(gentle hint)* "Think about it — the floor is HARD and the ball bounces high off it. The pillow is SOFT and squishy. Would the ball bounce the SAME on something soft? Higher or lower? Lock it in!"
+> 1. [confirming] "Prediction locked: LOW bounce! Here we go... [drumroll] ... BOING... and the ball barely bounces at ALL! It goes up just a teeny bit and drops back down into the pillow! The pillow is so soft that it ABSORBS the bounce — it soaks it up like a sponge! The bounciness needs something HARD to push off of. Soft things steal the bounce! FULL POINT! Score: {X} out of 2! You really know your ball!"
+> 2. [validating then revealing] "Ooh, you think HIGH! Prediction locked! Here we go... [drumroll] ... BOING... and the ball barely bounces at all! Just a teeny little hop. Whoa — the pillow is so soft that it ABSORBED the bounce! Soft things soak up the energy. The ball NEEDS something hard to bounce high. Not quite your prediction, but now you know something new! Half point for a brave guess! Score: {X} out of 2!"
+> 3. [waits 3 sec] [gentle hint] "Think about it — the floor is HARD and the ball bounces high off it. The pillow is SOFT and squishy. Would the ball bounce the SAME on something soft? Higher or lower? Lock it in!"
 >
 > **Screen**: Split view — LEFT: ball bouncing high off a hard floor with big bounce arc and "BANG!" text; RIGHT: ball bouncing on a fluffy pillow with a tiny little arc and "boing..." text. "LOCKED IN" stamp. Drumroll. Score circle 2 updates. Running score refreshes. Star burst if full point.
 
 **Round 3 — "The Water Test" (Experiment 3)**
 
-> **AI says**: *(curious, playful)* "Experiment Number Three! You fill a big bowl with water — splishy-splashy! And you drop your ball right in. PLOP! Lock in your prediction — does the ball FLOAT on top of the water or SINK to the bottom?"
+> **AI says**: [curious, playful] "Experiment Number Three! You fill a big bowl with water — splishy-splashy! And you drop your ball right in. PLOP! Lock in your prediction — does the ball FLOAT on top of the water or SINK to the bottom?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It floats!" / "FLOAT!" / "It stays on top!" — child predicts floating.
@@ -135,15 +135,15 @@ entity_attributes_covered:
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. *(locking in)* "Prediction locked: FLOAT! Here we go... *(drumroll)* ... PLOP! The ball hits the water, dips down a little, and then... POP! It bobs right back up to the top! It FLOATS! Rubber balls are light enough and have air inside — the air CAUSES them to float! The water pushes the light ball up. FULL POINT! Score: {X} out of 3! You are on a ROLL — just like your ball!"
-> 2. *(warm)* "Prediction locked: SINK! Interesting theory! Here we go... *(drumroll)* ... PLOP! The ball hits the water, dips down and then... POP! It bobs right back UP! It FLOATS! Rubber balls are light and have air inside — the air helps them float. Heavier things like rocks would sink, but this ball is light enough to float! Half point — sinking was a smart guess for some objects, just not this one! Score: {X} out of 3!"
-> 3. *(waits 3 sec)* *(encouraging)* "Hmm, this is a good one! Your ball is made of rubber and it's pretty light. When you drop something light into water... does it go down to the bottom, or does it stay up top? Lock in your guess!"
+> 1. [locking in] "Prediction locked: FLOAT! Here we go... [drumroll] ... PLOP! The ball hits the water, dips down a little, and then... POP! It bobs right back up to the top! It FLOATS! Rubber balls are light enough and have air inside — the air CAUSES them to float! The water pushes the light ball up. FULL POINT! Score: {X} out of 3! You are on a ROLL — just like your ball!"
+> 2. [warm] "Prediction locked: SINK! Interesting theory! Here we go... [drumroll] ... PLOP! The ball hits the water, dips down and then... POP! It bobs right back UP! It FLOATS! Rubber balls are light and have air inside — the air helps them float. Heavier things like rocks would sink, but this ball is light enough to float! Half point — sinking was a smart guess for some objects, just not this one! Score: {X} out of 3!"
+> 3. [waits 3 sec] [encouraging] "Hmm, this is a good one! Your ball is made of rubber and it's pretty light. When you drop something light into water... does it go down to the bottom, or does it stay up top? Lock in your guess!"
 >
 > **Screen**: Bowl of water with the ball dropping in — plop animation and ripples. Ball dips below surface then pops up and bobs. "LOCKED IN" stamp. Drumroll. Score circle 3 updates. Running tally displayed prominently. Water-themed celebration for full point.
 
 **Round 4 — "The Tiny Tunnel" (Experiment 4) — Surprise Round**
 
-> **AI says**: *(soft, mysterious)* "Last experiment — and this one's a tricky thinker! There's a tiny tunnel made from a cardboard tube — like from a paper towel roll. Your ball is a little bit BIGGER than the tube opening. You push the ball toward the tunnel anyway. Lock in your prediction — does the ball go THROUGH the tunnel or get STUCK?"
+> **AI says**: [soft, mysterious] "Last experiment — and this one's a tricky thinker! There's a tiny tunnel made from a cardboard tube — like from a paper towel roll. Your ball is a little bit BIGGER than the tube opening. You push the ball toward the tunnel anyway. Lock in your prediction — does the ball go THROUGH the tunnel or get STUCK?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It gets stuck!" / "STUCK!" / "It's too big!" / "It can't fit!" — child predicts the ball won't fit.
@@ -151,17 +151,17 @@ entity_attributes_covered:
 > 3. (No response) Child is unsure — this is a harder scenario.
 >
 > **AI follow-up**:
-> 1. *(locking in)* "Prediction locked: STUCK! Here we go... *(slow, suspenseful drumroll)* ... you push the ball toward the tube... it touches the opening... and... it SQUISHES a tiny bit — remember, rubber is squishy! — but the ball is still too big! It gets STUCK right at the entrance! Even though rubber squishes, the ball is bigger than the hole. Size wins this one! FULL POINT! Score: {X} out of 4! What a FINISH, Scientist!"
-> 2. *(locking in)* "Prediction locked: squeezes through! I like that thinking — rubber IS squishy! Here we go... *(slow drumroll)* ... you push the ball toward the tube... it touches the opening... squishes a teeny bit... but — NOPE! Still too big! It gets stuck! The rubber DID squish a little, so you were right that rubber is flexible. But the ball is just too big for the tube. Half point for knowing rubber squishes! Score: {X} out of 4!"
-> 3. *(waits 3 sec)* *(gentle hint)* "This is the tricky one! The ball is bigger than the tube opening. Rubber CAN squish a little bit. But is the ball small enough to fit? Or too big? Lock it in!"
+> 1. [locking in] "Prediction locked: STUCK! Here we go... [slow, suspenseful drumroll] ... you push the ball toward the tube... it touches the opening... and... it SQUISHES a tiny bit — remember, rubber is squishy! — but the ball is still too big! It gets STUCK right at the entrance! Even though rubber squishes, the ball is bigger than the hole. Size wins this one! FULL POINT! Score: {X} out of 4! What a FINISH, Scientist!"
+> 2. [locking in] "Prediction locked: squeezes through! I like that thinking — rubber IS squishy! Here we go... [slow drumroll] ... you push the ball toward the tube... it touches the opening... squishes a teeny bit... but — NOPE! Still too big! It gets stuck! The rubber DID squish a little, so you were right that rubber is flexible. But the ball is just too big for the tube. Half point for knowing rubber squishes! Score: {X} out of 4!"
+> 3. [waits 3 sec] [gentle hint] "This is the tricky one! The ball is bigger than the tube opening. Rubber CAN squish a little bit. But is the ball small enough to fit? Or too big? Lock it in!"
 >
 > **Screen**: Cardboard tube (paper towel roll) with the ball approaching it. Ball is visibly slightly bigger than the tube opening. "LOCKED IN" stamp. Slow drumroll. Ball pushes against the tube, squishes slightly but won't go through — stuck animation with the ball bouncing back. Score circle 4 updates. Full running tally visible: "Final Score: X out of 4". Extra confetti sparkle for perfect score.
 
 **Step 4: Payoff — The Magic Moment (Final Score Reveal)**
 
-> **AI says**: *(building suspense)* "Okay, Ball Scientist... the experiments are DONE! Time to count your score! You ran four experiments on your ball. You predicted what it does at an edge... on a pillow... in water... and at a tiny tunnel. And your final score is..."
+> **AI says**: [building suspense] "Okay, Ball Scientist... the experiments are DONE! Time to count your score! You ran four experiments on your ball. You predicted what it does at an edge... on a pillow... in water... and at a tiny tunnel. And your final score is..."
 >
-> *(dramatic pause, drumroll)*
+> [dramatic pause, drumroll]
 >
 > "...{X} out of 4! {SCORE-SPECIFIC REACTION}"
 >
@@ -178,15 +178,15 @@ entity_attributes_covered:
 > 3. (No response) Child smiles or looks pleased.
 >
 > **AI follow-up**:
-> 1. *(beaming)* "The BEST Ball Scientist! Your ball is lucky to have someone who understands it so well."
-> 2. *(delighted)* "You want MORE experiments? That's exactly what real scientists say! We can run more another day. But first — let me tell you something amazing about what you just did..."
-> 3. *(waits 3 sec)* *(warm whisper)* "You know what? I think even your ball is impressed. That's what great scientists do — they predict and learn!"
+> 1. [beaming] "The BEST Ball Scientist! Your ball is lucky to have someone who understands it so well."
+> 2. [delighted] "You want MORE experiments? That's exactly what real scientists say! We can run more another day. But first — let me tell you something amazing about what you just did..."
+> 3. [waits 3 sec] [warm whisper] "You know what? I think even your ball is impressed. That's what great scientists do — they predict and learn!"
 >
 > **Screen**: Giant score display in the center — "{X} / 4" in bold golden numbers. Each experiment appears as a mini-icon below (table edge, pillow, water bowl, cardboard tube) with the score circle beside it (full gold, half gold, or empty). If perfect score: massive confetti explosion and star shower. Any score: the ball photo glows with a proud golden frame. "BALL SCIENTIST" title banner appears above the score.
 
 **Step 5: Celebration + IB Concepts**
 
-> **AI says**: *(warm, reflective pride)* "You know what you did today? Every time I described something about to happen to your ball — the edge, the pillow, the water, the tunnel — you PREDICTED what your ball would do before I even told you! You figured out that properties CAUSE things to happen!"
+> **AI says**: [warm, reflective pride] "You know what you did today? Every time I described something about to happen to your ball — the edge, the pillow, the water, the tunnel — you PREDICTED what your ball would do before I even told you! You figured out that properties CAUSE things to happen!"
 >
 > "Round CAUSES the ball to roll off edges. Bouncy works differently on hard and soft — the surface CAUSES the bounce to change. Light and rubbery CAUSES the ball to float. And too-big CAUSES the ball to get stuck. That's called Causation — when a property of your ball CAUSES something to happen!"
 >
@@ -198,9 +198,9 @@ entity_attributes_covered:
 > 3. (No response) Child listens or looks at the screen.
 >
 > **AI follow-up**:
-> 1. *(celebrating)* "That's right — Causation and Function! You earned your badge, Ball Scientist. Go test your ball for real — I bet it does exactly what you predicted!"
-> 2. *(warm, excited)* "YES! You can be a Property Predictor for ANYTHING — a teddy, a shoe, a spoon! Every thing has properties that DO stuff. See you next time, Scientist!"
-> 3. *(waits 3 sec)* *(gentle closing)* "Great job today, Scientist. You and your ball made an awesome team. See you next time!"
+> 1. [celebrating] "That's right — Causation and Function! You earned your badge, Ball Scientist. Go test your ball for real — I bet it does exactly what you predicted!"
+> 2. [warm, excited] "YES! You can be a Property Predictor for ANYTHING — a teddy, a shoe, a spoon! Every thing has properties that DO stuff. See you next time, Scientist!"
+> 3. [waits 3 sec] [gentle closing] "Great job today, Scientist. You and your ball made an awesome team. See you next time!"
 >
 > **Screen**: "BALL SCIENTIST" badge centered with the ball photo as a portrait inside. Below the badge, "Causation" and "Function" appear in golden lettering — "Causation" with a chain-link icon, "Function" with a gear icon. The four experiment icons appear as small trophies around the badge. Soft golden sparkle animations. A gentle "The End" ribbon scrolls across the bottom.
 
@@ -215,7 +215,7 @@ entity_attributes_covered:
 | 3 | Edge Case Coverage | PASS | Every step includes 3 response branches (ideal, unexpected, silence). All unexpected branches validate before redirecting (e.g., "It breaks!" is redirected warmly). All silence branches wait 3 seconds then offer a gentle prompt with a specific clue. Half-points ensure no child feels they "lost." |
 | 4 | IB Completeness | PASS | Causation and Function are explicitly named in closing as praise, not vocabulary lessons. KUD is specific: K lists rolling, bouncing, floating, squishing, shape; U links to Key Concepts; D links to ATL skills. 3 ATL skills with sub-skills. 4 Related Concepts. Closing celebrates first, then naturally names concepts. Concepts are earned — child predicted cause-effect patterns and observed property functions throughout. |
 | 5 | Tier Appropriateness | PASS | T1 target: Sentences predominantly 5-8 words. Open-ended prediction prompts ("Does the ball float or sink?"). Concrete vocabulary: round, bounce, roll, float, sink, stuck, squishy, hard, soft. Tasks are 2-3 step (listen to scenario, commit prediction, hear reveal). Age 4-6 appropriate — scenarios are familiar (tables, pillows, water, tubes). |
-| 6 | Dialogue Specificity | PASS | Every AI line is concrete dialogue with tone/emotion markers (e.g., "*(mysterious narrator)*", "*(drumroll)*"). Zero instances of "AI guides" or "AI encourages." All dialogue is warm, playful, child-appropriate, and uses scientist language playfully. Properties are named specifically in every round. |
+| 6 | Dialogue Specificity | PASS | Every AI line is concrete dialogue with tone/emotion markers (e.g., "[mysterious narrator]", "[drumroll]"). Zero instances of "AI guides" or "AI encourages." All dialogue is warm, playful, child-appropriate, and uses scientist language playfully. Properties are named specifically in every round. |
 | 7 | Screen & UI Completeness | PASS | Every step has specific screen descriptions: bouncing animation and glow (Step 1), clipboard with scoring circles and demo animation (Step 2), per-round scene illustrations with "LOCKED IN" stamp, drumroll animation, score circle updates and running tally (Step 3), giant score display with experiment icons and confetti (Step 4), badge with concept words and icons (Step 5). |
 | 8 | Entity Mapping Alignment | N/A | No mapping source — design is not mapping-informed. |
 | 9 | Game Feel | PASS | **Genuine stakes**: Running score with "X out of Y" creates real tension. **Unknown outcomes**: Child must commit BEFORE reveal — genuine uncertainty every round. **Emotional climax**: Final score reveal with drumroll and score-specific celebration. **Replayability**: Different entities and properties yield entirely different scenario sets. **Surprise/drama**: Drumroll + dramatic reveal each round; half-points add unexpected twists; surprise round 4 tests a different property (size). |

@@ -45,7 +45,7 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 > **Context**: Child has just finished a T0 conversation about the lion.
 > **Conversation anchor**: appearance — body_size ("very big cat"); senses — sound ("loud roaring sound")
 >
-> **AI says**: *(warm, building on earlier)* "You said lion is BIG! Roarrr! Big and strong. Can we find more big things?"
+> **AI says**: [warm, building on earlier] "You said lion is BIG! Roarrr! Big and strong. Can we find more big things?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah!" / "Big things!" / child points around the yard
@@ -53,9 +53,9 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 > 3. (No response) Child looks at the toy lion quietly.
 >
 > **AI follow-up**:
-> 1. *(excited)* "Yes! Let's go look! Big strong things — like lion!"
-> 2. *(playful)* "Roarrr! Lion IS loud! Big loud lion. Let's find big things like lion!"
-> 3. *(wait 2s)* *(gentle, coaxing)* "Lion is sooo big. What else is big here? Let's look!"
+> 1. [excited] "Yes! Let's go look! Big strong things — like lion!"
+> 2. [playful] "Roarrr! Lion IS loud! Big loud lion. Let's find big things like lion!"
+> 3. [wait 2s] [gentle, coaxing] "Lion is sooo big. What else is big here? Let's look!"
 >
 > **Screen**: Lion photo centered with soft golden glow around the lion's body; small animated size-comparison arrows highlighting how big the lion is; faint "conversation recap" sparkle on the body.
 
@@ -63,7 +63,7 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 
 > **Context**: Child photographs a toy lion with no prior conversation.
 >
-> **AI says**: *(amazed, roaring voice)* "ROARRR! A lion! So big and strong! Does it look brave to you?"
+> **AI says**: [amazed, roaring voice] "ROARRR! A lion! So big and strong! Does it look brave to you?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah!" / "It's brave!" / "Roar!" / child roars back
@@ -71,15 +71,15 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 > 3. (No response) Child looks at the screen quietly.
 >
 > **AI follow-up**:
-> 1. *(thrilled)* "So brave! Big brave lion. I bet there are more brave things here!"
-> 2. *(warm, validating)* "Soft AND brave! Yellow like sunshine. Such a strong lion! I wonder what else is big like lion?"
-> 3. *(wait 2s)* *(soft roar)* "Roarrr. This lion looks SO strong. Big paws! Big face! What else is big here?"
+> 1. [thrilled] "So brave! Big brave lion. I bet there are more brave things here!"
+> 2. [warm, validating] "Soft AND brave! Yellow like sunshine. Such a strong lion! I wonder what else is big like lion?"
+> 3. [wait 2s] [soft roar] "Roarrr. This lion looks SO strong. Big paws! Big face! What else is big here?"
 >
 > **Screen**: Lion photo centered with subtle golden shimmer animation around the mane; small paw-print stamps decorating the border; gentle roar sound wave icon.
 
 **Step 2: Mission Briefing — Brave Things Scout**
 
-> **AI says**: *(excited, playful)* "You are a Brave Scout! Find 2 big strong things. Take a photo! Ready? Go!"
+> **AI says**: [excited, playful] "You are a Brave Scout! Find 2 big strong things. Take a photo! Ready? Go!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah!" / "I go find!" / child starts walking
@@ -87,9 +87,9 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 > 3. (No response) Child stands still or looks around slowly.
 >
 > **AI follow-up**:
-> 1. *(cheering)* "Go go go, Brave Scout! Big and strong — like lion!"
-> 2. *(helpful, warm)* "Strong means hard! Big! Like a rock. Or a tree. Go look!"
-> 3. *(wait 2s)* *(encouraging)* "Look around! A big rock? A thick tree? Find something strong!"
+> 1. [cheering] "Go go go, Brave Scout! Big and strong — like lion!"
+> 2. [helpful, warm] "Strong means hard! Big! Like a rock. Or a tree. Go look!"
+> 3. [wait 2s] [encouraging] "Look around! A big rock? A thick tree? Find something strong!"
 >
 > **Screen**: Mission card with "Brave Scout" badge (lion paw icon), 3 slots in a row (first filled with lion photo, 2 empty slots with paw-print placeholders), and a simple "Find 2!" counter with a lion-paw stamp.
 
@@ -97,9 +97,9 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 
 **Round 1 — First Find:**
 
-> *(Child takes a photo of something — e.g., a big rock, a tree trunk, a sturdy post)*
+> [Child takes a photo of something — e.g., a big rock, a tree trunk, a sturdy post]
 >
-> **AI says**: *(excited discovery)* "Ooh! What is it? Is it big?"
+> **AI says**: [excited discovery] "Ooh! What is it? Is it big?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "A rock!" / "Big tree!" / "It's hard!"
@@ -107,17 +107,17 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 > 3. (No response) Child is quiet after taking the photo.
 >
 > **AI follow-up**:
-> 1. *(delighted)* "A big rock! So strong! Like lion. Roarrr! 1 more to go!"
-> 2. *(warm, accepting)* "Ooh, pretty! Is it big or small? Even small things can be strong! That counts. 1 more to go!"
-> 3. *(wait 2s)* *(warm)* "I see it! It looks strong to me. Nice find, Brave Scout! 1 more!"
+> 1. [delighted] "A big rock! So strong! Like lion. Roarrr! 1 more to go!"
+> 2. [warm, accepting] "Ooh, pretty! Is it big or small? Even small things can be strong! That counts. 1 more to go!"
+> 3. [wait 2s] [warm] "I see it! It looks strong to me. Nice find, Brave Scout! 1 more!"
 >
 > **Screen**: Photo slides into slot 2 with a lion-paw stamp animation; counter updates to "1 of 2 found"; small roar sound-wave icon pulses.
 
 **Round 2 — Second Find:**
 
-> *(Child takes a photo of another item — e.g., a fence, a thick branch, a wall)*
+> [Child takes a photo of another item — e.g., a fence, a thick branch, a wall]
 >
-> **AI says**: *(thrilled)* "Another one! Tell me! Is it tough?"
+> **AI says**: [thrilled] "Another one! Tell me! Is it tough?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "A fence!" / "It's hard!" / "Big stick!"
@@ -125,23 +125,23 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 > 3. (No response) Child takes the photo silently.
 >
 > **AI follow-up**:
-> 1. *(celebrating)* "A tough fence! Strong like lion! Roarrr! All done, Brave Scout!"
-> 2. *(validating, playful)* "Ooh, interesting! Is it strong? I think so! Good eye. All done, Brave Scout!"
-> 3. *(wait 2s)* *(happy)* "I see it! Looks tough. Nice job! All done!"
+> 1. [celebrating] "A tough fence! Strong like lion! Roarrr! All done, Brave Scout!"
+> 2. [validating, playful] "Ooh, interesting! Is it strong? I think so! Good eye. All done, Brave Scout!"
+> 3. [wait 2s] [happy] "I see it! Looks tough. Nice job! All done!"
 >
 > **Screen**: Photo slides into slot 3 with paw-stamp burst animation; counter shows "2 of 2 — DONE!" with golden confetti and a mini lion doing a victory roar.
 
 **STUCK BRANCH (if child can't find something):**
 
-> **AI says**: *(helpful, specific)* "Hmm, look down! A big rock? Or look up — a thick tree? Strong things like to hide!"
+> **AI says**: [helpful, specific] "Hmm, look down! A big rock? Or look up — a thick tree? Strong things like to hide!"
 >
-> **If still stuck**: *(gentle, pointing)* "Try near the fence. Or find the biggest thing you can see! Take a photo!"
+> **If still stuck**: [gentle, pointing] "Try near the fence. Or find the biggest thing you can see! Take a photo!"
 >
 > **Screen**: Soft directional arrows appear pointing toward ground-level and upward; icons of a rock and tree trunk pulse gently as suggestions.
 
 **Step 4: Collection Complete + Synthesis (Comparison Chart)**
 
-> **AI says**: *(proud, building)* "Look! Lion and two friends. Which one is biggest?"
+> **AI says**: [proud, building] "Look! Lion and two friends. Which one is biggest?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "The tree!" / "The rock!" / child points at one
@@ -149,13 +149,13 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 > 3. (No response) Child looks at the photos quietly.
 >
 > **AI follow-up**:
-> 1. *(impressed)* "Yes! So big! Now — which is toughest? Which one is really hard?"
-> 2. *(warm, scaffolding)* "Lion IS big! Now look — is the rock bigger? Or the [other find]? Which is the biggest of ALL?"
-> 3. *(wait 2s)* *(gentle, guiding)* "Look at all three. Point to the BIGGEST one!"
+> 1. [impressed] "Yes! So big! Now — which is toughest? Which one is really hard?"
+> 2. [warm, scaffolding] "Lion IS big! Now look — is the rock bigger? Or the [other find]? Which is the biggest of ALL?"
+> 3. [wait 2s] [gentle, guiding] "Look at all three. Point to the BIGGEST one!"
 >
 > **Screen**: All 3 photos displayed side by side in a row; animated size-comparison bars appear beneath each photo; "Biggest?" label floats above with a crown icon ready to land on the child's choice.
 
-> **AI says (after child picks biggest)**: *(curious)* "Now — which is toughest? Really hard?"
+> **AI says (after child picks biggest)**: [curious] "Now — which is toughest? Really hard?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "The rock!" / "The tree!" / child picks one
@@ -163,15 +163,15 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. *(celebrating)* "So tough! Hard like lion's paws. The brave parade is ready!"
-> 2. *(warm)* "Good thinking! Lion has strong paws too. You picked a great brave team!"
-> 3. *(wait 2s)* *(playful)* "Touch one — is it hard? That's the toughest! Lion says roarrr!"
+> 1. [celebrating] "So tough! Hard like lion's paws. The brave parade is ready!"
+> 2. [warm] "Good thinking! Lion has strong paws too. You picked a great brave team!"
+> 3. [wait 2s] [playful] "Touch one — is it hard? That's the toughest! Lion says roarrr!"
 >
 > **Screen**: A small shield icon lands on the "toughest" pick; all 3 photos now show their comparison labels (crown for biggest, shield for toughest); animated parade banner unfurls: "The Brave Parade!"
 
 **Step 5: Discovery Celebration**
 
-> **AI says**: *(warm, celebrating)* "Your brave parade! Lion, and two strong friends. All big! All tough! Why are big things strong?"
+> **AI says**: [warm, celebrating] "Your brave parade! Lion, and two strong friends. All big! All tough! Why are big things strong?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Because they're big!" / "They don't break!" / "Hard!"
@@ -179,23 +179,23 @@ Child photographs toy lion in the yard → AI roars and wonders what else is bra
 > 3. (No response) Child looks at the collection with a smile.
 >
 > **AI follow-up**:
-> 1. *(amazed)* "Yes! Big and hard! That's what makes them strong, just like lion. You are so smart!"
-> 2. *(warm, connecting)* "Lion is the best! And look — lion picked strong friends. Big things are tough! Roarrr!"
-> 3. *(wait 2s)* *(gentle, warm)* "Big things are hard to push. That's why they seem brave — just like lion!"
+> 1. [amazed] "Yes! Big and hard! That's what makes them strong, just like lion. You are so smart!"
+> 2. [warm, connecting] "Lion is the best! And look — lion picked strong friends. Big things are tough! Roarrr!"
+> 3. [wait 2s] [gentle, warm] "Big things are hard to push. That's why they seem brave — just like lion!"
 >
 > **Screen**: Collection displayed as a parade line with the lion photo leading; animated footsteps trail behind each photo; sparkle effects around all three items; "Brave Parade" banner above.
 
 **Step 6: Closing + IB Concepts**
 
-> **AI says**: *(warm, proud)* "Brave Scout! You did it! You found things with strong Form — big, tough, and hard. And you saw their Function — being big helps them stay strong! Lion says ROARRR — thank you! You earned your Brave Scout badge!"
+> **AI says**: [warm, proud] "Brave Scout! You did it! You found things with strong Form — big, tough, and hard. And you saw their Function — being big helps them stay strong! Lion says ROARRR — thank you! You earned your Brave Scout badge!"
 >
 > **Possible child responses**:
 > 1. (Engaged) "Roar!" / "Yay!" / "I did it!"
 > 2. (Quiet) Child smiles or waves at the screen.
 >
 > **AI follow-up**:
-> 1. *(celebration)* "ROARRR! Great job, Brave Scout! Bye bye!"
-> 2. *(gentle)* "You were so brave today. Bye, Brave Scout!"
+> 1. [celebration] "ROARRR! Great job, Brave Scout! Bye bye!"
+> 2. [gentle] "You were so brave today. Bye, Brave Scout!"
 >
 > **Screen**: Golden badge spinning into center labeled "Brave Scout" with a lion paw and crown motif; collection photos as small insets around the badge; "Form" and "Function" in bold golden lettering with lion-paw and strength icons; golden confetti and a roaring lion silhouette.
 

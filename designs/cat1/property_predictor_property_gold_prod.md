@@ -49,7 +49,7 @@ entity_attributes_covered:
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted gasp) "Ohhh WOW — look at that ball! It's SO round and smooth and it looks like it could BOUNCE right off the screen! I can tell just by looking — this ball has some serious bouncing power. Have you ever bounced this ball really, really high?"
+**AI says:** [delighted gasp] "Ohhh WOW — look at that ball! It's SO round and smooth and it looks like it could BOUNCE right off the screen! I can tell just by looking — this ball has some serious bouncing power. Have you ever bounced this ball really, really high?"
 
 **Child responses:**
 
@@ -59,19 +59,19 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (warm, impressed) "Super high! I knew it — this ball is a bouncing CHAMPION. You know a lot about how this ball moves. Hey... want to test how much you REALLY know? Like a scientist?"
+1. [warm, impressed] "Super high! I knew it — this ball is a bouncing CHAMPION. You know a lot about how this ball moves. Hey... want to test how much you REALLY know? Like a scientist?"
 2. (enthusiastic) "{Child's answer} — that's so cool! This ball looks really special. Those smooth, round curves and that bouncy rubber... want to be a SCIENTIST and test what your ball can do?"
-3. (wait 3s) (soft, wondering) "This ball is so perfectly round — like a little planet! I bet it does some really cool stuff when it rolls and bounces. Want to do science experiments with me to find out?"
+3. (wait 3s) [soft, wondering] "This ball is so perfectly round — like a little planet! I bet it does some really cool stuff when it rolls and bounces. Want to do science experiments with me to find out?"
 
 **Screen:** Ball photo centered with gentle bouncing animation — photo subtly pulses up and down. Soft glow outlines the ball's round shape. Tiny sparkle effects on the surface.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, scientist voice) "Okay, here's how our Prediction Lab works! I'm going to describe something that's ABOUT to happen to your ball. But before I tell you what the ball does — YOU have to lock in your prediction! You say: 'I think the ball will...' and then we find out together! Full point if you're right, half point if you're close. Let me show you!"
+**AI says:** [playful, scientist voice] "Okay, here's how our Prediction Lab works! I'm going to describe something that's ABOUT to happen to your ball. But before I tell you what the ball does — YOU have to lock in your prediction! You say: 'I think the ball will...' and then we find out together! Full point if you're right, half point if you're close. Let me show you!"
 
 (demo) "Ready? I put the ball on a bumpy gravel path. What will the ball do? I PREDICT... the ball will roll straight ahead! Locked in..."
 
-(dramatic pause) "And the answer is... the ball rolls, but zig-zags all over the place because the bumps push it sideways! I said straight, but it zig-zagged! The round shape MAKES it roll, but the bumps change the direction. Half point for me! See how it works? YOUR turn, Scientist!"
+[dramatic pause] "And the answer is... the ball rolls, but zig-zags all over the place because the bumps push it sideways! I said straight, but it zig-zagged! The round shape MAKES it roll, but the bumps change the direction. Half point for me! See how it works? YOUR turn, Scientist!"
 
 **Child responses:**
 
@@ -81,9 +81,9 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (excited countdown) "Okay, Ball Scientist — Experiment Number One! Listen carefully..."
-2. (delighted) "You already know what your ball does? Then you're going to be AMAZING at this! A prediction is just a guess you lock in BEFORE you find out. Here comes Experiment Number One!"
-3. (wait 3s) (encouraging) "It's easy — I describe what happens, you guess what the ball does. Any guess is great! Here comes the first one..."
+1. [excited countdown] "Okay, Ball Scientist — Experiment Number One! Listen carefully..."
+2. [delighted] "You already know what your ball does? Then you're going to be AMAZING at this! A prediction is just a guess you lock in BEFORE you find out. Here comes Experiment Number One!"
+3. (wait 3s) [encouraging] "It's easy — I describe what happens, you guess what the ball does. Any guess is great! Here comes the first one..."
 
 **Screen:** Ball photo on left. On right, "PREDICTION LAB" clipboard with scoring circles and running score "Score: 0". Demo animation: ball on gravel zig-zagging, "1/2" sparkle. "Experiment 1" badge glows.
 
@@ -91,7 +91,7 @@ entity_attributes_covered:
 
 **Round 1 — "The Edge of the Table" (Experiment 1):**
 
-**AI says:** (mysterious narrator) "Experiment Number One! Your ball is sitting right on the EDGE of a table. You give it one teeny tiny push. Lock in your prediction — does the ball STAY on the table or FALL off?"
+**AI says:** [mysterious narrator] "Experiment Number One! Your ball is sitting right on the EDGE of a table. You give it one teeny tiny push. Lock in your prediction — does the ball STAY on the table or FALL off?"
 
 **Child responses:**
 
@@ -102,8 +102,8 @@ entity_attributes_covered:
 **AI follow-up:**
 
 1. (confirming lock-in) "Prediction locked: falls off! Here we go... *drumroll*... the ball rolls to the edge and — WHOOPS — OFF IT GOES! Round things can't stop at edges because they have no flat side to catch them! The roundness CAUSES it to roll right over! FULL POINT! Score: 1 out of 1!"
-2. (warm, helping lock in) "Prediction locked as 'stays on the table.' Here we go... *drumroll*... the ball rolls to the edge and — whoops — OFF it goes! Round things can't stop at edges — no flat side to catch them! Not quite your prediction, but now you know! Half point! Score: half out of 1!"
-3. (wait 3s) (helpful) "Here's a clue — your ball is SO round, and the table has an edge. If you give a round thing a tiny push near an edge... does it stop? Or keep going? Lock in your guess!"
+2. [warm, helping lock in] "Prediction locked as 'stays on the table.' Here we go... *drumroll*... the ball rolls to the edge and — whoops — OFF it goes! Round things can't stop at edges — no flat side to catch them! Not quite your prediction, but now you know! Half point! Score: half out of 1!"
+3. (wait 3s) [helpful] "Here's a clue — your ball is SO round, and the table has an edge. If you give a round thing a tiny push near an edge... does it stop? Or keep going? Lock in your guess!"
 
 **Screen:** Table with ball on the edge. "LOCKED IN" stamp. Drumroll. Ball rolls off in slow-motion fall. Score circle fills gold or half-gold. Running score updates.
 
@@ -115,9 +115,9 @@ entity_attributes_covered:
 
 #### Step 4: Celebration
 
-**AI says:** (building suspense) "Okay, Ball Scientist... the experiments are DONE! Time to count your score! You predicted what your ball does at an edge... on a pillow... in water... and at a tiny tunnel. And your final score is..."
+**AI says:** [building suspense] "Okay, Ball Scientist... the experiments are DONE! Time to count your score! You predicted what your ball does at an edge... on a pillow... in water... and at a tiny tunnel. And your final score is..."
 
-(dramatic pause, drumroll)
+[dramatic pause, drumroll]
 
 "...{X} out of 4! {Score-specific reaction — perfect score gets 'FOUR OUT OF FOUR! PERFECT! You are a BALL GENIUS!' / near-perfect gets 'AMAZING — almost every one right!' / any score gets warm celebration of what they learned}"
 
@@ -130,14 +130,14 @@ entity_attributes_covered:
 **AI follow-up:**
 
 1. (beaming) "The BEST Ball Scientist! Your ball is lucky to have someone who understands it so well."
-2. (delighted) "You want MORE experiments? That's exactly what real scientists say! We can run more another day. But first — let me tell you something amazing..."
-3. (wait 3s) (warm whisper) "You know what? I think even your ball is impressed. That's what great scientists do."
+2. [delighted] "You want MORE experiments? That's exactly what real scientists say! We can run more another day. But first — let me tell you something amazing..."
+3. (wait 3s) [warm whisper] "You know what? I think even your ball is impressed. That's what great scientists do."
 
 **Screen:** Giant score "{X} / 4" in bold golden numbers. Mini-icons for each experiment (table edge, pillow, water bowl, cardboard tube) with score circles. "BALL SCIENTIST" title banner. Confetti explosion for perfect score; golden frame around ball photo for any score.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "You know what you did today? Every time I described something about to happen to your ball — the edge, the pillow, the water, the tunnel — you PREDICTED what your ball would do before I even told you! You figured out that properties CAUSE things to happen!"
+**AI says:** [warm, reflective] "You know what you did today? Every time I described something about to happen to your ball — the edge, the pillow, the water, the tunnel — you PREDICTED what your ball would do before I even told you! You figured out that properties CAUSE things to happen!"
 
 "Round CAUSES the ball to roll off edges. Bouncy works differently on hard and soft — the surface CAUSES the bounce to change. Light and rubbery CAUSES the ball to float. And too-big CAUSES the ball to get stuck. That's called Causation — when a property CAUSES something to happen!"
 
@@ -151,8 +151,8 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (celebrating) "That's right — Causation and Function! You earned your badge, Ball Scientist. Go test your ball for real — I bet it does exactly what you predicted!"
-2. (warm, excited) "YES! You can be a Property Predictor for ANYTHING — a teddy, a shoe, a spoon! Every thing has properties that DO stuff. See you next time, Scientist!"
-3. (wait 3s) (gentle closing) "Great job today, Scientist. You and your ball made an awesome team. See you next time!"
+1. [celebrating] "That's right — Causation and Function! You earned your badge, Ball Scientist. Go test your ball for real — I bet it does exactly what you predicted!"
+2. [warm, excited] "YES! You can be a Property Predictor for ANYTHING — a teddy, a shoe, a spoon! Every thing has properties that DO stuff. See you next time, Scientist!"
+3. (wait 3s) [gentle closing] "Great job today, Scientist. You and your ball made an awesome team. See you next time!"
 
 **Screen:** "BALL SCIENTIST" badge centered with ball photo portrait inside. "Causation" and "Function" in golden lettering with chain-link and gear icons. Four experiment icons as small trophies around the badge. Soft golden sparkle animations. "The End" ribbon.

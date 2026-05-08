@@ -55,7 +55,7 @@ entity_attributes_covered:
 
 > **Context**: Child photographs any object (e.g., a wooden spoon) with no prior conversation. AI examines the photo and creatively infers a sound from its visual form.
 >
-> **AI says**: "*(delighted, hushed wonder)* Ooh! A wooden spoon! Look at that — it's long and hard and smooth. I bet if you tapped it on a table, it would go... TAP TAP TAP! Like a little drumstick! I think your spoon is a SECRET instrument. And I bet there are MORE secret instruments hiding around here. What do you think — are there other things nearby that could make cool sounds?"
+> **AI says**: "[delighted, hushed wonder] Ooh! A wooden spoon! Look at that — it's long and hard and smooth. I bet if you tapped it on a table, it would go... TAP TAP TAP! Like a little drumstick! I think your spoon is a SECRET instrument. And I bet there are MORE secret instruments hiding around here. What do you think — are there other things nearby that could make cool sounds?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah! I can find more!" / "The pot makes sounds too!" / "Everything makes sounds!"
@@ -63,15 +63,15 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the spoon or around the room.
 >
 > **AI follow-up**:
-> 1. "*(warm, inspired)* You already know! Secret instruments are EVERYWHERE — you just have to look at their shape and imagine the sound. I think YOU could be the Sound Conductor! Find 3 things that LOOK like they could make interesting sounds!"
-> 2. "*(playful, validating)* Cooking AND music! When you stir a pot, that spoon goes TAP TAP TAP on the sides. That IS music! What if we found more things that LOOK like they could make sounds? I bet this place is full of secret instruments!"
-> 3. *(wait 2 seconds)* "*(gentle, coaxing)* Your spoon is long and hard — that's why it would go TAP TAP TAP, like a drum! I wonder what OTHER shapes are hiding around here. Smooth things? Crinkly things? Each shape makes a different sound!"
+> 1. "[warm, inspired] You already know! Secret instruments are EVERYWHERE — you just have to look at their shape and imagine the sound. I think YOU could be the Sound Conductor! Find 3 things that LOOK like they could make interesting sounds!"
+> 2. "[playful, validating] Cooking AND music! When you stir a pot, that spoon goes TAP TAP TAP on the sides. That IS music! What if we found more things that LOOK like they could make sounds? I bet this place is full of secret instruments!"
+> 3. [wait 2 seconds] "[gentle, coaxing] Your spoon is long and hard — that's why it would go TAP TAP TAP, like a drum! I wonder what OTHER shapes are hiding around here. Smooth things? Crinkly things? Each shape makes a different sound!"
 >
 > **Screen**: Object photo centered on screen with a soft golden glow. Animated sound waves pulse outward from the object. Playful bouncing text shows the imagined sound: "TAP TAP TAP!" in rhythmic letters.
 
 **Step 2: Mission Briefing — Sound Conductor**
 
-> **AI says**: "*(excited, rallying)* You are now the Sound Conductor! Your mission: find 3 things that LOOK like they could make interesting sounds. Take a photo of each one. I'll look at it and imagine what sound it would make — then YOU tell me if you agree or if you hear something different! After that, we put on a BIG concert with ALL the sounds together! Ready, Conductor?"
+> **AI says**: "[excited, rallying] You are now the Sound Conductor! Your mission: find 3 things that LOOK like they could make interesting sounds. Take a photo of each one. I'll look at it and imagine what sound it would make — then YOU tell me if you agree or if you hear something different! After that, we put on a BIG concert with ALL the sounds together! Ready, Conductor?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Ready!" / "Let's find instruments!" / "I know one already!"
@@ -79,9 +79,9 @@ entity_attributes_covered:
 > 3. (No response) Child looks around, uncertain where to start.
 >
 > **AI follow-up**:
-> 1. "*(pumped up)* Excellent! A conductor is the boss of the music — YOU tell the performers when to play, how loud, and how fast. Now look around — find something with an interesting shape. Round things, crinkly things, bendy things — they ALL have hidden sounds! Take a photo when you spot one!"
-> 2. "*(warm, explaining)* A conductor tells musicians when to play — loud, soft, fast, slow! And the sounds? I look at the SHAPE of things. Long hard things go TAP. Round smooth things go CLINK. Crinkly things go CRUNCH. But you might hear something different — and YOUR idea counts too! Now go find your first secret instrument!"
-> 3. *(wait 2 seconds)* "*(encouraging, pointing)* Try looking for something with a cool shape! Something round, something crinkly, something bendy. Take a photo of whatever catches your eye — I'll tell you what sound I think it would make!"
+> 1. "[pumped up] Excellent! A conductor is the boss of the music — YOU tell the performers when to play, how loud, and how fast. Now look around — find something with an interesting shape. Round things, crinkly things, bendy things — they ALL have hidden sounds! Take a photo when you spot one!"
+> 2. "[warm, explaining] A conductor tells musicians when to play — loud, soft, fast, slow! And the sounds? I look at the SHAPE of things. Long hard things go TAP. Round smooth things go CLINK. Crinkly things go CRUNCH. But you might hear something different — and YOUR idea counts too! Now go find your first secret instrument!"
+> 3. [wait 2 seconds] "[encouraging, pointing] Try looking for something with a cool shape! Something round, something crinkly, something bendy. Take a photo of whatever catches your eye — I'll tell you what sound I think it would make!"
 >
 > **Screen**: A mission card appears with a "Sound Conductor" badge at the top — a small baton with sound waves swirling around it. Four performance slots are shown in a row — the first slot is filled with the trigger object photo labeled with its imagined sound. Three empty slots glow softly, each marked with a sound wave icon. A numbered checklist reads: 1) Find 3 secret instruments. 2) Photograph each one. 3) Hear their hidden sounds!
 
@@ -89,9 +89,9 @@ entity_attributes_covered:
 
 > **Round 1** (full detail):
 >
-> *(Child takes a photo of a smooth round pebble)*
+> [Child takes a photo of a smooth round pebble]
 >
-> **AI says**: "*(examining with excitement)* Ooh, let me look at this one... It's smooth and round and hard — like a tiny marble! I think if you tapped it against something, it would go... CLINK CLINK — like tiny bells ringing! What do you think, Conductor? Does that sound right, or do you hear a different sound?"
+> **AI says**: "[examining with excitement] Ooh, let me look at this one... It's smooth and round and hard — like a tiny marble! I think if you tapped it against something, it would go... CLINK CLINK — like tiny bells ringing! What do you think, Conductor? Does that sound right, or do you hear a different sound?"
 >
 > **Possible child responses**:
 > 1. (Ideal — agrees) "Yeah, CLINK CLINK!" / "Like bells!" / "I love that sound!"
@@ -99,17 +99,17 @@ entity_attributes_covered:
 > 3. (No response) Child is silent, thinking.
 >
 > **AI follow-up**:
-> 1. "*(thrilled, dramatic)* CLINK CLINK it is! Pebble is now the BELL-RINGER of the Sound Stage — CLINK CLINK CLINK! What a beautiful sound! Two more secret instruments to find, Conductor!"
-> 2. "*(delighted, accepting)* BONK BONK! Even BETTER! You're the conductor — YOUR ears decide! Pebble is now the BONKER of the Sound Stage — BONK BONK BONK! I love your version! Two more to find!"
-> 3. *(wait 2 seconds)* "*(playful, modeling)* I think CLINK CLINK — but you could also say CLICK or CLACK or BONK! Any sound you want. You're the conductor! Let's call it CLINK CLINK for now — two more instruments to find!"
+> 1. "[thrilled, dramatic] CLINK CLINK it is! Pebble is now the BELL-RINGER of the Sound Stage — CLINK CLINK CLINK! What a beautiful sound! Two more secret instruments to find, Conductor!"
+> 2. "[delighted, accepting] BONK BONK! Even BETTER! You're the conductor — YOUR ears decide! Pebble is now the BONKER of the Sound Stage — BONK BONK BONK! I love your version! Two more to find!"
+> 3. [wait 2 seconds] "[playful, modeling] I think CLINK CLINK — but you could also say CLICK or CLACK or BONK! Any sound you want. You're the conductor! Let's call it CLINK CLINK for now — two more instruments to find!"
 >
 > **Screen**: Pebble photo slides into the second performance slot with a burst of sound waves. The label below changes to show the sound in playful bouncing letters (e.g., "CLINK CLINK!"). Counter shows "1 of 3 secret instruments found."
 
 > **Round 2** (full detail):
 >
-> *(Child takes a photo of a crinkly dry leaf)*
+> [Child takes a photo of a crinkly dry leaf]
 >
-> **AI says**: "*(curious excitement)* A leaf! Let me look... it's thin and dry and crinkly — see those curled-up edges? I think if you squeezed it, it would go... CRUNCH CRUNCH — like a tiny snare drum! What do you say, Conductor?"
+> **AI says**: "[curious excitement] A leaf! Let me look... it's thin and dry and crinkly — see those curled-up edges? I think if you squeezed it, it would go... CRUNCH CRUNCH — like a tiny snare drum! What do you say, Conductor?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "CRUNCH CRUNCH!" / "Yes! Like crunching!" / "Like walking on leaves!"
@@ -117,17 +117,17 @@ entity_attributes_covered:
 > 3. (No response) Child holds the leaf, thinking.
 >
 > **AI follow-up**:
-> 1. "*(delighted, dramatic)* CRUNCH CRUNCH! Yes! Leaf is now the SNARE DRUM of the Sound Stage — CRUNCH CRUNCH CRUNCH! So crispy and rhythmic. One more secret instrument to find!"
-> 2. "*(warm, redirecting)* It IS green — a beautiful green leaf. And green leaves are sneaky — they LOOK quiet, but squeeze them and they go CRUNCH CRUNCH! Or maybe RUSTLE RUSTLE when the wind blows. What sound do you want YOUR leaf to play in the concert?"
-> 3. *(wait 2 seconds)* "*(gentle, encouraging)* Look at those crinkly edges — thin and dry. I hear CRUNCH CRUNCH! Or maybe RUSTLE RUSTLE. What sound do you want it to make in our concert? You decide!"
+> 1. "[delighted, dramatic] CRUNCH CRUNCH! Yes! Leaf is now the SNARE DRUM of the Sound Stage — CRUNCH CRUNCH CRUNCH! So crispy and rhythmic. One more secret instrument to find!"
+> 2. "[warm, redirecting] It IS green — a beautiful green leaf. And green leaves are sneaky — they LOOK quiet, but squeeze them and they go CRUNCH CRUNCH! Or maybe RUSTLE RUSTLE when the wind blows. What sound do you want YOUR leaf to play in the concert?"
+> 3. [wait 2 seconds] "[gentle, encouraging] Look at those crinkly edges — thin and dry. I hear CRUNCH CRUNCH! Or maybe RUSTLE RUSTLE. What sound do you want it to make in our concert? You decide!"
 >
 > **Screen**: Leaf photo slides into the third performance slot with a swirling leaf animation. The label below shows the sound in wavy, airy letters (e.g., "CRUNCH CRUNCH!"). Counter shows "2 of 3 secret instruments found."
 
 > **Round 3** (full detail):
 >
-> *(Child takes a photo of a bendy stick or twig)*
+> [Child takes a photo of a bendy stick or twig]
 >
-> **AI says**: "*(thrilled)* Our last secret instrument! Let me look at this one... It's long and thin and bendy — like a little guitar string! I think if you plucked it, it would go... TWANG — like a tiny guitar! What do you hear, Conductor?"
+> **AI says**: "[thrilled] Our last secret instrument! Let me look at this one... It's long and thin and bendy — like a little guitar string! I think if you plucked it, it would go... TWANG — like a tiny guitar! What do you hear, Conductor?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "TWANG!" / "Like a guitar!" / "BOING BOING!"
@@ -135,9 +135,9 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the stick quietly.
 >
 > **AI follow-up**:
-> 1. "*(awed, celebrating)* TWANG! Stick is now the GUITAR of the Sound Stage — TWAAANG! What a sound! Your cast is COMPLETE, Conductor! Time for the BIG SHOW!"
-> 2. "*(warm, building)* A stick can be LOTS of things! A bendy stick like this could go TWANG like a guitar, or SWISH like a sword, or SNAP like a firecracker! Pick a sound — ANY sound. You're the boss!"
-> 3. *(wait 2 seconds)* "*(playful, modeling)* This bendy stick looks like it could go TWANG, like a guitar string! Or maybe SWISH SWISH, like it's cutting through the air. Pick one — you are the conductor!"
+> 1. "[awed, celebrating] TWANG! Stick is now the GUITAR of the Sound Stage — TWAAANG! What a sound! Your cast is COMPLETE, Conductor! Time for the BIG SHOW!"
+> 2. "[warm, building] A stick can be LOTS of things! A bendy stick like this could go TWANG like a guitar, or SWISH like a sword, or SNAP like a firecracker! Pick a sound — ANY sound. You're the boss!"
+> 3. [wait 2 seconds] "[playful, modeling] This bendy stick looks like it could go TWANG, like a guitar string! Or maybe SWISH SWISH, like it's cutting through the air. Pick one — you are the conductor!"
 >
 > **Screen**: Stick photo slides into the fourth performance slot with a sparkle burst. The label below shows the sound in bold, stretchy letters (e.g., "TWAAANG!"). A "Cast Complete!" banner flashes across the screen. All four performer slots now filled: Trigger object (sound), Pebble (sound), Leaf (sound), Stick (sound).
 
@@ -147,33 +147,33 @@ entity_attributes_covered:
 
 > **Stuck Branch** (if child cannot find a secret instrument):
 >
-> **AI says**: "*(helpful, conspiratorial)* Secret instruments like to hide! Look for something ROUND — round things go CLINK or BONK. Or something CRINKLY — crinkly things go CRUNCH or RUSTLE. Or something LONG — long things go TAP or TWANG. What shapes can you see around you?"
+> **AI says**: "[helpful, conspiratorial] Secret instruments like to hide! Look for something ROUND — round things go CLINK or BONK. Or something CRINKLY — crinkly things go CRUNCH or RUSTLE. Or something LONG — long things go TAP or TWANG. What shapes can you see around you?"
 >
 > **Screen**: A soft pulsing hint bubble appears with three shape icons: a circle (round = CLINK), a zigzag (crinkly = CRUNCH), and a line (long = TAP). Text reads: "Try: round things, crinkly things, long things!"
 
 **Step 4: Synthesis — The Sound Stage Concert (Magic Moment)**
 
-> **AI says**: "*(grand, theatrical announcer voice)* Ladies and gentlemen, boys and girls — welcome to the SOUND STAGE CONCERT! Your conductor has discovered FOUR secret instruments. Let the show begin!"
+> **AI says**: "[grand, theatrical announcer voice] Ladies and gentlemen, boys and girls — welcome to the SOUND STAGE CONCERT! Your conductor has discovered FOUR secret instruments. Let the show begin!"
 >
-> *(brief pause)*
+> [brief pause]
 >
-> "*(dramatic, building)* First up — the Drummer, Wooden Spoon! *TAP TAP TAP!* The crowd is clapping along!"
+> "[dramatic, building] First up — the Drummer, Wooden Spoon! *TAP TAP TAP!* The crowd is clapping along!"
 >
-> *(brief pause)*
+> [brief pause]
 >
-> "*(bright, ringing)* Next — the Bell-Ringer, Pebble! *CLINK CLINK CLINK!* Like tiny bells — the audience is swaying!"
+> "[bright, ringing] Next — the Bell-Ringer, Pebble! *CLINK CLINK CLINK!* Like tiny bells — the audience is swaying!"
 >
-> *(brief pause)*
+> [brief pause]
 >
-> "*(mysterious, crisp)* Now, the Snare Drum, Leaf, crunches in... *CRUNCH CRUNCH CRUNCH...* Ohhh, so crispy and rhythmic!"
+> "[mysterious, crisp] Now, the Snare Drum, Leaf, crunches in... *CRUNCH CRUNCH CRUNCH...* Ohhh, so crispy and rhythmic!"
 >
-> *(brief pause)*
+> [brief pause]
 >
-> "*(stretchy, vibrating)* And finally — the Guitar, Stick! *TWAAANG!* The crowd is cheering!"
+> "[stretchy, vibrating] And finally — the Guitar, Stick! *TWAAANG!* The crowd is cheering!"
 >
-> *(dramatic pause)*
+> [dramatic pause]
 >
-> "*(huge, explosive energy)* And now, Conductor — ALL TOGETHER NOW! Spoon drums TAP TAP, Pebble rings CLINK CLINK, Leaf crunches CRUNCH CRUNCH, Stick twangs TWAAANG — ALL AT ONCE! The audience is ON THEIR FEET! BRAVO! BRAVOOO!"
+> "[huge, explosive energy] And now, Conductor — ALL TOGETHER NOW! Spoon drums TAP TAP, Pebble rings CLINK CLINK, Leaf crunches CRUNCH CRUNCH, Stick twangs TWAAANG — ALL AT ONCE! The audience is ON THEIR FEET! BRAVO! BRAVOOO!"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child cheers, laughs, claps, or shouts "AGAIN!" / "LOUDER!" / "Now just the pebble!"
@@ -181,15 +181,15 @@ entity_attributes_covered:
 > 3. (No response) Child listens with a big smile.
 >
 > **AI follow-up**:
-> 1. "*(thrilled, responding to direction)* The conductor says LOUDER! TAP TAP! CLINK CLINK CLINK! CRUNCH CRUNCH! TWAAANG! THE CROWD IS GOING CRAAAZY! Standing ovation! Encore, encore!"
-> 2. "*(delighted, following direction)* Just leaf and stick — a duet! CRUNCH CRUNCH... TWAAANG... CRUNCH TWANG CRUNCH TWANG! Ohhh, what a cool combo! You are an amazing conductor — you know exactly what sounds good together!"
-> 3. *(wait 2 seconds)* "*(warm, celebrating)* I see that smile, Conductor! Your concert was AMAZING. The audience is throwing flowers! Should we do it one more time? You say when!"
+> 1. "[thrilled, responding to direction] The conductor says LOUDER! TAP TAP! CLINK CLINK CLINK! CRUNCH CRUNCH! TWAAANG! THE CROWD IS GOING CRAAAZY! Standing ovation! Encore, encore!"
+> 2. "[delighted, following direction] Just leaf and stick — a duet! CRUNCH CRUNCH... TWAAANG... CRUNCH TWANG CRUNCH TWANG! Ohhh, what a cool combo! You are an amazing conductor — you know exactly what sounds good together!"
+> 3. [wait 2 seconds] "[warm, celebrating] I see that smile, Conductor! Your concert was AMAZING. The audience is throwing flowers! Should we do it one more time? You say when!"
 >
 > **Screen**: All four performer photos are displayed in a semicircle stage layout, like an orchestra on stage. As each performer is introduced, its photo glows and its sound text pulses and bounces in rhythm. During "ALL TOGETHER NOW," all four photos glow simultaneously with sound waves, stars, and confetti bursting across the screen. An animated crowd silhouette at the bottom of the screen cheers and waves. A large "BRAVO!" text flashes with golden sparkles.
 
 **Step 5: Discovery Celebration**
 
-> **AI says**: "*(warm, reflective)* Wow, Conductor! You turned ordinary things into a whole band. Four secret instruments, four different sounds, one incredible concert. Which performer was your favorite? Which sound did you love the most?"
+> **AI says**: "[warm, reflective] Wow, Conductor! You turned ordinary things into a whole band. Four secret instruments, four different sounds, one incredible concert. Which performer was your favorite? Which sound did you love the most?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "The pebble because CLINK is so pretty!" / "The stick because TWANG is funny!" / "All of them!"
@@ -197,15 +197,15 @@ entity_attributes_covered:
 > 3. (No response) Child points at one of the photos.
 >
 > **AI follow-up**:
-> 1. "*(impressed, warm)* Great pick! Every performer had its own special sound — and that sound came from its SHAPE. Round things clink, crinkly things crunch, long things tap. The way something LOOKS tells you what it might SOUND like!"
-> 2. "*(delighted)* MORE instruments? That's what a real conductor would say! Every new shape is a new sound. You could build the biggest band in the world just by looking at things differently!"
-> 3. *(wait 2 seconds)* "*(gentle, affirming)* That one! Great choice. I think it had a really special sound too. Every single performer helped make the concert wonderful!"
+> 1. "[impressed, warm] Great pick! Every performer had its own special sound — and that sound came from its SHAPE. Round things clink, crinkly things crunch, long things tap. The way something LOOKS tells you what it might SOUND like!"
+> 2. "[delighted] MORE instruments? That's what a real conductor would say! Every new shape is a new sound. You could build the biggest band in the world just by looking at things differently!"
+> 3. [wait 2 seconds] "[gentle, affirming] That one! Great choice. I think it had a really special sound too. Every single performer helped make the concert wonderful!"
 >
 > **Screen**: Collection photos displayed in the orchestra semicircle layout with a golden star appearing on the child's chosen favorite. Sound-wave lines connect all four performers to a central "Sound Stage" emblem. A banner reads: "4 secret instruments, 1 amazing concert!"
 
 **Step 6: Closing + IB Concepts**
 
-> **AI says**: "*(proud, warm celebration)* You are an incredible Sound Conductor! You looked at each thing and imagined what sound it could make just from the way it LOOKS — you discovered its Form, its own special voice. Then you put them all together and created something beautiful — that is Connection, when different things work as a team to make music. And YOU gave voice to things that can't speak — that is Perspective, hearing the world in a brand new way. You earned your Sound Conductor badge! Bravo, Conductor!"
+> **AI says**: "[proud, warm celebration] You are an incredible Sound Conductor! You looked at each thing and imagined what sound it could make just from the way it LOOKS — you discovered its Form, its own special voice. Then you put them all together and created something beautiful — that is Connection, when different things work as a team to make music. And YOU gave voice to things that can't speak — that is Perspective, hearing the world in a brand new way. You earned your Sound Conductor badge! Bravo, Conductor!"
 >
 > **Possible child responses**:
 > 1. (Engaged) Cheers, talks about wanting to find more instruments, or hums the sounds.
@@ -213,9 +213,9 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the screen.
 >
 > **AI follow-up**:
-> 1. "*(encouraging)* Next time you see ANYTHING — a fork, a shoe, a pillow — try imagining its sound! Every shape is hiding a secret instrument inside. See you at the next concert, Conductor!"
-> 2. "*(warm)* Your Sound Conductor badge is glowing! You'll never look at ordinary things the same way again. Bye for now, Conductor!"
-> 3. *(wait 2s)* "*(soft)* Your badge is saved. The Sound Stage is always waiting for its conductor. Bravo!"
+> 1. "[encouraging] Next time you see ANYTHING — a fork, a shoe, a pillow — try imagining its sound! Every shape is hiding a secret instrument inside. See you at the next concert, Conductor!"
+> 2. "[warm] Your Sound Conductor badge is glowing! You'll never look at ordinary things the same way again. Bye for now, Conductor!"
+> 3. [wait 2s] "[soft] Your badge is saved. The Sound Stage is always waiting for its conductor. Bravo!"
 >
 > **Screen**: "Sound Conductor" badge — a golden baton with four tiny icons orbiting it (a spoon, a pebble, a leaf, a stick) and sound waves radiating outward. "Form," "Connection," and "Perspective" appear in artistic green, gold, and sky-blue lettering with a sound wave icon, a chain-link icon, and an ear icon respectively. Four collection photos as small insets arranged around the badge in a stage arc. Confetti gently falls across the screen.
 

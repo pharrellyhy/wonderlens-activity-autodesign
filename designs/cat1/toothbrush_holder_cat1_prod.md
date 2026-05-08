@@ -40,7 +40,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted surprise) "Oh wow, look at this helper sitting by the sink! It holds all the brushes so neatly. I think it has a secret job — what do you think it does all day?"
+**AI says:** [delighted surprise] "Oh wow, look at this helper sitting by the sink! It holds all the brushes so neatly. I think it has a secret job — what do you think it does all day?"
 
 **Child responses:**
 
@@ -50,17 +50,17 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 **AI follow-up:**
 
-1. (impressed) "That's right! It keeps them standing up nice and tall. I think it's like a boss for the whole bathroom!"
-2. (playful, curious) "Boring? But it never lets the brushes fall down! That sounds like a pretty tough job. I think it's a secret Bathroom Boss!"
-3. (wait 2s) (warm, inviting) "See how the brushes all stand up? Someone is keeping them in line. I think this holder is the Bathroom Boss!"
+1. [impressed] "That's right! It keeps them standing up nice and tall. I think it's like a boss for the whole bathroom!"
+2. [playful, curious] "Boring? But it never lets the brushes fall down! That sounds like a pretty tough job. I think it's a secret Bathroom Boss!"
+3. (wait 2s) [warm, inviting] "See how the brushes all stand up? Someone is keeping them in line. I think this holder is the Bathroom Boss!"
 
 **Screen:** Toothbrush holder photo centered with gentle bathroom-themed bubbles floating around the edges.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (excited, setting the scene) "Here is how we play! I will tell you about a bathroom problem. Then you tell me what the Bathroom Boss would say to fix it. Ready? I will go first!"
+**AI says:** [excited, setting the scene] "Here is how we play! I will tell you about a bathroom problem. Then you tell me what the Bathroom Boss would say to fix it. Ready? I will go first!"
 
-(playful, modeling) "Oh no — a toothbrush fell off the counter onto the floor! The Bathroom Boss would say: 'Come back up here where it's clean!' See? Now you try the next one!"
+[playful, modeling] "Oh no — a toothbrush fell off the counter onto the floor! The Bathroom Boss would say: 'Come back up here where it's clean!' See? Now you try the next one!"
 
 **Child responses:**
 
@@ -70,9 +70,9 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 **AI follow-up:**
 
-1. (cheering) "Great! Here comes the first bathroom problem!"
-2. (warm, imaginative) "In our game it can! You get to be the Boss's voice. You say what it would say!"
-3. (wait 2s) (encouraging, gentle) "It is easy! Just say what the Boss would do. Let's try together!"
+1. [cheering] "Great! Here comes the first bathroom problem!"
+2. [warm, imaginative] "In our game it can! You get to be the Boss's voice. You say what it would say!"
+3. (wait 2s) [encouraging, gentle] "It is easy! Just say what the Boss would do. Let's try together!"
 
 **Screen:** Toothbrush holder photo with a small cartoon crown on top, a speech bubble icon beside it, and a toothbrush tipping off a counter edge as the demo scenario.
 
@@ -80,7 +80,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 **Round 1 — "The Messy Counter":** (simple, confidence-building)
 
-**AI says:** (storytelling) "Uh oh! Someone left three toothbrushes lying flat on the wet counter. The bristles are getting all soggy! What does the Bathroom Boss say?"
+**AI says:** [storytelling] "Uh oh! Someone left three toothbrushes lying flat on the wet counter. The bristles are getting all soggy! What does the Bathroom Boss say?"
 
 **Child responses:**
 
@@ -90,9 +90,9 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 **AI follow-up:**
 
-1. (cheering) "Yes! Stand up so you can dry! The Boss knows wet bristles need air. That is so smart!"
-2. (warm, playful redirect) "Ha, that's relaxed! But the Boss knows that wet bristles get yucky if they stay flat. Maybe the Boss says 'Up you go so you can dry!' What do you think?"
-3. (wait 2s) (helpful whisper) "The bristles are getting soggy on the counter. The Boss might say 'Get up and dry off!' What would you say?"
+1. [cheering] "Yes! Stand up so you can dry! The Boss knows wet bristles need air. That is so smart!"
+2. [warm, playful redirect] "Ha, that's relaxed! But the Boss knows that wet bristles get yucky if they stay flat. Maybe the Boss says 'Up you go so you can dry!' What do you think?"
+3. (wait 2s) [helpful whisper] "The bristles are getting soggy on the counter. The Boss might say 'Get up and dry off!' What would you say?"
 
 **Screen:** Three cartoon toothbrushes lying flat on a wet counter with water droplets; when child responds, brushes animate upright with a happy sparkle.
 
@@ -104,7 +104,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 #### Step 4: Celebration
 
-**AI says:** (warm celebration, proud) "You just became a Bathroom Boss Helper! You helped keep brushes clean, gave everyone their own spot, and kept things safe. That is amazing!"
+**AI says:** [warm celebration, proud] "You just became a Bathroom Boss Helper! You helped keep brushes clean, gave everyone their own spot, and kept things safe. That is amazing!"
 
 **Child responses:**
 
@@ -115,14 +115,14 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 **AI follow-up:**
 
 1. (beaming) "You should be so proud! The bathroom is lucky to have you!"
-2. (delighted) "You loved being the Boss! You can always look at your holder and remember its secret job!"
-3. (warm, affirming) "You did such a wonderful job today. The Bathroom Boss is very happy!"
+2. [delighted] "You loved being the Boss! You can always look at your holder and remember its secret job!"
+3. [warm, affirming] "You did such a wonderful job today. The Bathroom Boss is very happy!"
 
 **Screen:** Shiny badge animation with a cartoon toothbrush holder wearing a crown, "Bathroom Boss Helper" text, confetti and star burst around it.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "You know what you discovered today? Every little thing in your bathroom has a job — keeping brushes dry, giving each person a spot, staying strong when someone bumps it. That is what Function means — everything has a purpose! And you helped take care of it all. That is Responsibility — looking after the things and people around you. You are a true Bathroom Boss Helper!"
+**AI says:** [warm, reflective] "You know what you discovered today? Every little thing in your bathroom has a job — keeping brushes dry, giving each person a spot, staying strong when someone bumps it. That is what Function means — everything has a purpose! And you helped take care of it all. That is Responsibility — looking after the things and people around you. You are a true Bathroom Boss Helper!"
 
 **Child responses:**
 
@@ -132,8 +132,8 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 **AI follow-up:**
 
-1. (proud) "You really get it! Function and Responsibility — you are so smart!"
-2. (warm, connecting) "Yes! Your bathroom has so many helpers with important jobs. You noticed that all by yourself!"
-3. (gentle, closing) "Next time you brush your teeth, say hi to the Bathroom Boss! Bye for now!"
+1. [proud] "You really get it! Function and Responsibility — you are so smart!"
+2. [warm, connecting] "Yes! Your bathroom has so many helpers with important jobs. You noticed that all by yourself!"
+3. [gentle, closing] "Next time you brush your teeth, say hi to the Bathroom Boss! Bye for now!"
 
 **Screen:** "Function" styled with a gear icon and toothbrush holder silhouette, "Responsibility" with a caring hand icon, the "Bathroom Boss Helper" badge alongside, and the holder photo in the corner.

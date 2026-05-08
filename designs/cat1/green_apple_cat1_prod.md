@@ -33,7 +33,7 @@
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted surprise) "Ooooh, a green apple! Look how smooth and shiny it is — like a little green ball sitting right there on the counter! I wonder what would happen if we did something to it. What do you think happens if you bite it?"
+**AI says:** [delighted surprise] "Ooooh, a green apple! Look how smooth and shiny it is — like a little green ball sitting right there on the counter! I wonder what would happen if we did something to it. What do you think happens if you bite it?"
 
 **Child responses:**
 
@@ -43,17 +43,17 @@
 
 **AI follow-up:**
 
-1. (impressed) "CRUNCH — yes! That big crunchy sound! And maybe a little sour taste too. You know a lot about this apple! Want to make more predictions — like a scientist?"
-2. (warm, accepting) "That's okay! Not everyone loves the same food — some people love sour, some love sweet. But this apple has some cool secrets. Want to guess what happens to it in different situations?"
-3. (wait 2s) (playful) "I think if you bit it — CRUNCH! Big sound, little sour taste, and you'd see the white part inside. Pretty cool, right? Want to guess more?"
+1. [impressed] "CRUNCH — yes! That big crunchy sound! And maybe a little sour taste too. You know a lot about this apple! Want to make more predictions — like a scientist?"
+2. [warm, accepting] "That's okay! Not everyone loves the same food — some people love sour, some love sweet. But this apple has some cool secrets. Want to guess what happens to it in different situations?"
+3. (wait 2s) [playful] "I think if you bit it — CRUNCH! Big sound, little sour taste, and you'd see the white part inside. Pretty cool, right? Want to guess more?"
 
 **Screen:** Green apple photo centered with gentle sparkle on the shiny skin and soft kitchen-counter ambiance.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, scientist voice) "Okay — you are now an Apple Prediction Scientist! Here's how it works. I tell you something that happens to the apple, and YOU guess what the apple does. Like this..."
+**AI says:** [playful, scientist voice] "Okay — you are now an Apple Prediction Scientist! Here's how it works. I tell you something that happens to the apple, and YOU guess what the apple does. Like this..."
 
-(dramatic demo) "What happens if I put the apple in a bowl of water? Does it sink to the bottom or float on top? Hmm... I predict it FLOATS! Because apples have lots of air inside. See? Easy! Now YOUR turn, Scientist. Ready?"
+[dramatic demo] "What happens if I put the apple in a bowl of water? Does it sink to the bottom or float on top? Hmm... I predict it FLOATS! Because apples have lots of air inside. See? Easy! Now YOUR turn, Scientist. Ready?"
 
 **Child responses:**
 
@@ -63,9 +63,9 @@
 
 **AI follow-up:**
 
-1. (excited) "Great! First prediction coming right up, Scientist!"
-2. (delighted) "Yes, they really do float! Apples are sneaky like that. Now let's see what YOU can predict. First one coming!"
-3. (wait 2s) (encouraging) "It's easy — I say what happens, and you guess what the apple does. Any guess is a great guess! Here goes..."
+1. [excited] "Great! First prediction coming right up, Scientist!"
+2. [delighted] "Yes, they really do float! Apples are sneaky like that. Now let's see what YOU can predict. First one coming!"
+3. (wait 2s) [encouraging] "It's easy — I say what happens, and you guess what the apple does. Any guess is a great guess! Here goes..."
 
 **Screen:** Apple photo on the left; on the right, an "Apple Prediction Scientist" lab coat badge with a magnifying glass icon and a quick demo animation of an apple bobbing in water.
 
@@ -73,7 +73,7 @@
 
 **Round 1 — "The Big Bite":**
 
-**AI says:** (curious scientist narrator) "Prediction number one! You pick up the green apple. You open your mouth really wide. You take a BIG bite. Scientist — what happens? What do you hear, see, and taste?"
+**AI says:** [curious scientist narrator] "Prediction number one! You pick up the green apple. You open your mouth really wide. You take a BIG bite. Scientist — what happens? What do you hear, see, and taste?"
 
 **Child responses:**
 
@@ -83,9 +83,9 @@
 
 **AI follow-up:**
 
-1. (amazed) "CRUNCH! Prediction confirmed! You hear that big crunchy sound because the firm insides snap when you bite. And the pale creamy part inside is so juicy! Some people think it tastes sour, and some think it's sweet. What do YOU think — sour or sweet?"
-2. (warm, building) "Yummy — that's a good prediction! But let me ask you more: when you bite it, is it loud or quiet? I think it goes CRUNCH — a big sound! And the inside is a surprise — it's white, not green! Did you know that?"
-3. (wait 2s) (helpful) "Here are some clues — think about the SOUND. Is it quiet like bread, or loud like a cracker? And what color do you think is INSIDE the green skin? Take your best guess!"
+1. [amazed] "CRUNCH! Prediction confirmed! You hear that big crunchy sound because the firm insides snap when you bite. And the pale creamy part inside is so juicy! Some people think it tastes sour, and some think it's sweet. What do YOU think — sour or sweet?"
+2. [warm, building] "Yummy — that's a good prediction! But let me ask you more: when you bite it, is it loud or quiet? I think it goes CRUNCH — a big sound! And the inside is a surprise — it's white, not green! Did you know that?"
+3. (wait 2s) [helpful] "Here are some clues — think about the SOUND. Is it quiet like bread, or loud like a cracker? And what color do you think is INSIDE the green skin? Take your best guess!"
 
 **Screen:** Apple with a cartoon bite taken out, crunch-wave sound lines, cross-section showing pale flesh, and a "PREDICTION 1" stamp with golden star.
 
@@ -97,7 +97,7 @@
 
 #### Step 4: Celebration
 
-**AI says:** (proud, warm) "WOW! You predicted the crunch, the changes, the hidden seeds, and even the brown trick! You are officially an... Apple Prediction Scientist! You watched, you guessed, and you figured it all out. That's some seriously smart science!"
+**AI says:** [proud, warm] "WOW! You predicted the crunch, the changes, the hidden seeds, and even the brown trick! You are officially an... Apple Prediction Scientist! You watched, you guessed, and you figured it all out. That's some seriously smart science!"
 
 **Child responses:**
 
@@ -107,15 +107,15 @@
 **AI follow-up:**
 
 1. (beaming) "The best Apple Prediction Scientist! This apple is lucky to have someone so smart studying it."
-2. (delighted) "Go for it — you earned that apple, Scientist! And every time you eat one, you'll know all its secrets now."
+2. [delighted] "Go for it — you earned that apple, Scientist! And every time you eat one, you'll know all its secrets now."
 
 **Screen:** Animated "Apple Prediction Scientist" badge with a magnifying glass and apple icon, the child's apple photo inset, golden stars instead of confetti, and a celebration chime; all prediction stamps visible.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "You know what I love about what you did today? You figured out that this little green apple is connected to SO many things — the tree it grew on, the store where your family found it, the crunch when you bite it, the seeds that could grow a whole new tree. One apple, connected to the whole world around you. That's the power of Connection!"
+**AI says:** [warm, reflective] "You know what I love about what you did today? You figured out that this little green apple is connected to SO many things — the tree it grew on, the store where your family found it, the crunch when you bite it, the seeds that could grow a whole new tree. One apple, connected to the whole world around you. That's the power of Connection!"
 
-(building) "And here's something else you discovered — not everyone tastes this apple the same way. Some people love the sour, some want it sweeter. The same apple, but different feelings about it. That's Perspective — everyone experiences things in their own way. Scientist, you didn't just predict what happens to an apple — you discovered how it connects to everything and everyone!"
+[building] "And here's something else you discovered — not everyone tastes this apple the same way. Some people love the sour, some want it sweeter. The same apple, but different feelings about it. That's Perspective — everyone experiences things in their own way. Scientist, you didn't just predict what happens to an apple — you discovered how it connects to everything and everyone!"
 
 **Child responses:**
 
@@ -124,7 +124,7 @@
 
 **AI follow-up:**
 
-1. (celebrating) "They really are! And now you'll see those connections everywhere. See you next time, Scientist!"
-2. (warm, clear) "Perspective means everyone sees things in their own way — like how you and your friend might feel differently about sour taste! And yes, you can be a prediction scientist with ANY food. See you next time!"
+1. [celebrating] "They really are! And now you'll see those connections everywhere. See you next time, Scientist!"
+2. [warm, clear] "Perspective means everyone sees things in their own way — like how you and your friend might feel differently about sour taste! And yes, you can be a prediction scientist with ANY food. See you next time!"
 
 **Screen:** "Connection" and "Perspective" in colorful apple-themed lettering; "Connection" with dotted lines linking tree, apple, store, kitchen, and child; "Perspective" with two cartoon faces — one smiling at sour, one scrunching — both happy in their own way; scientist badge in the corner with apple photo glowing behind.

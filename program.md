@@ -484,7 +484,7 @@ activities/<activity_id>/
 
 #### Step 1: Transition Bridge
 
-**AI says:** (tone/emotion marker) "[standard emotional hook or bridge line]"
+**AI says:** [tone/emotion marker] "[standard emotional hook or bridge line]"
 
 **Child responses:**
 
@@ -494,9 +494,9 @@ activities/<activity_id>/
 
 **AI follow-up:**
 
-1. (tone marker) "[exact response to ideal]"
-2. (tone marker) "[exact response to unexpected — always validate, then redirect]"
-3. (wait 2s) (tone marker) "[exact response to silence — gentle prompt]"
+1. [tone marker] "[exact response to ideal]"
+2. [tone marker] "[exact response to unexpected — always validate, then redirect]"
+3. (wait 2s) [tone marker] "[exact response to silence — gentle prompt]"
 
 **Screen:** [specific description of what the screen shows]
 
@@ -531,7 +531,7 @@ activities/<activity_id>/
 
 ### Format Rules
 
-- **Tone markers** are always in parentheses at the start of AI dialogue: `(excited discovery tone)`, `(mysterious whisper)`, `(warm celebration)`, etc.
+- **Tone markers** are always in square brackets at the start of AI dialogue: `[excited discovery tone]`, `[mysterious whisper]`, `[warm celebration]`, etc.
 - **Every runtime round must be fully expanded** in `prod.md`. Never write "same structure," "AI gives a riddle," "later rounds follow," or any one-line summary for a runtime round.
 - **Round counts** may be specified as ranges in the authoring rationale, but the runtime flow must include the concrete number of rounds the activity actually plays.
 - **Step count** varies by category: In-Device Verbal typically has 5 steps; Out-of-Device Collection may have 5–6 steps

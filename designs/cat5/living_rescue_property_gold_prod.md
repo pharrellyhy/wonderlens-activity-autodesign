@@ -54,7 +54,7 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 #### Step 1: Transition Bridge
 
-**AI says:** (tender, concerned) "Oh, look at this plant! I can see its leaves are drooping down and curling at the edges. That usually means it is feeling really thirsty — it needs a good drink of water! Poor little plant. I bet there are MORE living things around here that need help too. What do you think this plant needs most?"
+**AI says:** [tender, concerned] "Oh, look at this plant! I can see its leaves are drooping down and curling at the edges. That usually means it is feeling really thirsty — it needs a good drink of water! Poor little plant. I bet there are MORE living things around here that need help too. What do you think this plant needs most?"
 
 **Child responses:**
 
@@ -64,9 +64,9 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 **AI follow-up:**
 
-1. (warm, impressed) "Water — great idea! A big drink would perk those droopy leaves right up. You already know how to take care of living things! I bet other living things nearby need help too."
-2. (warm, agreeing) "It IS green — that means it is alive and growing! But see how the leaves droop down? That is a sign it is thirsty. Living things tell us when they need help — we just have to look carefully!"
-3. (wait 2s) (gentle, coaxing) "See how its leaves hang down and curl? That is how plants say 'I am thirsty!' Maybe it needs water, or some shade from the hot sun. What do you think would help?"
+1. [warm, impressed] "Water — great idea! A big drink would perk those droopy leaves right up. You already know how to take care of living things! I bet other living things nearby need help too."
+2. [warm, agreeing] "It IS green — that means it is alive and growing! But see how the leaves droop down? That is a sign it is thirsty. Living things tell us when they need help — we just have to look carefully!"
+3. (wait 2s) [gentle, coaxing] "See how its leaves hang down and curl? That is how plants say 'I am thirsty!' Maybe it needs water, or some shade from the hot sun. What do you think would help?"
 
 **Screen:** Plant photo centered with soft warm glow, drooping leaves subtly highlighted, and tiny water droplet and sun icons floating nearby.
 
@@ -83,9 +83,9 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 **AI follow-up:**
 
-1. (excited, encouraging) "Let's go! Look around — on the ground, near bushes, by the path, up in the branches. Find something alive that looks like it could use some care. Take a photo when you spot it!"
-2. (warm, helpful) "Great question! Alive means it GROWS — like plants, flowers, trees, bugs, and animals. Rocks and plastic are NOT alive. Look for something green, something crawling, something with petals!"
-3. (wait 2s) (gentle, guiding) "Try looking near the ground first. See any plants with droopy leaves? A flower leaning over? A little bug all by itself? Take a photo of anything alive that looks like it needs help!"
+1. [excited, encouraging] "Let's go! Look around — on the ground, near bushes, by the path, up in the branches. Find something alive that looks like it could use some care. Take a photo when you spot it!"
+2. [warm, helpful] "Great question! Alive means it GROWS — like plants, flowers, trees, bugs, and animals. Rocks and plastic are NOT alive. Look for something green, something crawling, something with petals!"
+3. (wait 2s) [gentle, guiding] "Try looking near the ground first. See any plants with droopy leaves? A flower leaning over? A little bug all by itself? Take a photo of anything alive that looks like it needs help!"
 
 **Screen:** Mission card with "Life Rescuer" badge (shield with sprout and heart), four collection slots (first filled with initial photo and need label), three empty slots with green cross icons, and numbered checklist.
 
@@ -94,9 +94,9 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 **Round 1:**
 
-*(Child takes a photo of a flower leaning sideways)*
+[Child takes a photo of a flower leaning sideways]
 
-**AI says:** (examining, then concerned) "Let me look at this photo carefully... I see a flower leaning way over to one side. Its stem looks thin and wobbly — it cannot hold itself up anymore. It needs SUPPORT! What would you do to help it, Life Rescuer?"
+**AI says:** [examining, then concerned] "Let me look at this photo carefully... I see a flower leaning way over to one side. Its stem looks thin and wobbly — it cannot hold itself up anymore. It needs SUPPORT! What would you do to help it, Life Rescuer?"
 
 **Child responses:**
 
@@ -106,9 +106,9 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 **AI follow-up:**
 
-1. (warm, celebrating) "A stick to lean on — perfect! *Imagine the flower slowly straightening up, its petals lifting toward the sun.* It is already feeling stronger! Two more rescues to go!"
-2. (playful, redirecting) "It IS pretty — even pretty flowers need help sometimes! See how it leans? What if we gave it something to lean against? *The flower slowly straightens up.* You helped it stand! Two more to find!"
-3. (wait 2s) (gentle, prompting) "See how it is leaning? Its stem cannot hold it up by itself. What if we put a little stick next to it? *The flower tilts upward.* Two more rescues to go!"
+1. [warm, celebrating] "A stick to lean on — perfect! *Imagine the flower slowly straightening up, its petals lifting toward the sun.* It is already feeling stronger! Two more rescues to go!"
+2. [playful, redirecting] "It IS pretty — even pretty flowers need help sometimes! See how it leans? What if we gave it something to lean against? *The flower slowly straightens up.* You helped it stand! Two more to find!"
+3. (wait 2s) [gentle, prompting] "See how it is leaning? Its stem cannot hold it up by itself. What if we put a little stick next to it? *The flower tilts upward.* Two more rescues to go!"
 
 **Screen:** Flower photo slides into second slot labeled "Flower — needs support," with straightening flower animation. Counter: "1 of 3 rescued."
 
@@ -119,7 +119,7 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 #### Step 4: Celebration
 
-**AI says:** (excited, building suspense) "Life Rescuer, your rescue squad is complete! You helped the flower stand tall, gave the bug some shade, and [cared for the third living thing]. But guess what? Now THEY can help each other! The flower you propped up is standing tall — its big petals can give SHADE to the little bug when the sun gets too hot! And the bug can crawl around and spread pollen to help MORE flowers grow! But here is the big question — how does [the third rescued thing] help the flower?"
+**AI says:** [excited, building suspense] "Life Rescuer, your rescue squad is complete! You helped the flower stand tall, gave the bug some shade, and [cared for the third living thing]. But guess what? Now THEY can help each other! The flower you propped up is standing tall — its big petals can give SHADE to the little bug when the sun gets too hot! And the bug can crawl around and spread pollen to help MORE flowers grow! But here is the big question — how does [the third rescued thing] help the flower?"
 
 **Child responses:**
 
@@ -128,10 +128,10 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 **AI follow-up:**
 
-1. (amazed, celebrating) "YES! [Specific mutual aid explanation]! The flower shades the bug, the bug spreads pollen for the flower, and [third connection]. They are ALL helping each other! That is what a real rescue team does!"
-2. (warm, scaffolding) "Think about it — [specific hint]. What if [mutual aid scenario]? See? Even the smallest member of the team can help! They are a real rescue team now!"
+1. [amazed, celebrating] "YES! [Specific mutual aid explanation]! The flower shades the bug, the bug spreads pollen for the flower, and [third connection]. They are ALL helping each other! That is what a real rescue team does!"
+2. [warm, scaffolding] "Think about it — [specific hint]. What if [mutual aid scenario]? See? Even the smallest member of the team can help! They are a real rescue team now!"
 
-**AI says:** (proud, reflective) "Life Rescuer, look at what you did! You found living things that needed help. You gave each one exactly what it needed. And then something amazing happened — they started helping EACH OTHER. Which rescue was your favorite?"
+**AI says:** [proud, reflective] "Life Rescuer, look at what you did! You found living things that needed help. You gave each one exactly what it needed. And then something amazing happened — they started helping EACH OTHER. Which rescue was your favorite?"
 
 **Child responses:**
 
@@ -141,13 +141,13 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 **AI follow-up:**
 
 1. (touched) "That one really needed you! And now it is part of a team where everyone takes care of everyone else. Even the smallest living thing can do something big for someone else."
-2. (warm, celebrating) "You loved ALL of them — that is what makes you such a great Life Rescuer! There are always more living things that need help. You can be a Life Rescuer every time you go outside!"
+2. [warm, celebrating] "You loved ALL of them — that is what makes you such a great Life Rescuer! There are always more living things that need help. You can be a Life Rescuer every time you go outside!"
 
 **Screen:** All four photos in a circle with animated mutual aid arrows between them (shade icon, pollen icon, moisture icon), glowing heart in center, golden star on favorite, and banner "Rescue Team — Helping Each Other!"
 
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (proud, warm celebration) "You are an incredible Life Rescuer! You noticed living things that needed help and you DID something about it. That is Responsibility — when you see something alive that needs care and you step up to help. And then your rescue team helped each other — the flower shaded the bug, the bug spread pollen for the flower, and [third connection]. That is Connection — every living thing is linked to other living things, giving help and getting help. You earned your Life Rescuer Badge!"
+**AI says:** [proud, warm celebration] "You are an incredible Life Rescuer! You noticed living things that needed help and you DID something about it. That is Responsibility — when you see something alive that needs care and you step up to help. And then your rescue team helped each other — the flower shaded the bug, the bug spread pollen for the flower, and [third connection]. That is Connection — every living thing is linked to other living things, giving help and getting help. You earned your Life Rescuer Badge!"
 
 **Screen:** "Life Rescuer Badge" — green shield with golden sprout and four rescued-item icons. "Responsibility" in warm green lettering with caring-hands icon and "Connection" in golden lettering with linked-vine icon. Four collection photos as insets around the badge.

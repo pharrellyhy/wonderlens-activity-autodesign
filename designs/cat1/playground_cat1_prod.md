@@ -33,7 +33,7 @@
 
 #### Step 1: Transition Bridge
 
-**AI says:** (delighted gasp) "Wow, look at that playground! I see a swing, a slide, and so much more! They look like they're just waiting for someone. I wonder... if the swing could talk, what would it say right now?"
+**AI says:** [delighted gasp] "Wow, look at that playground! I see a swing, a slide, and so much more! They look like they're just waiting for someone. I wonder... if the swing could talk, what would it say right now?"
 
 **Child responses:**
 
@@ -43,15 +43,15 @@
 
 **AI follow-up:**
 
-1. (amazed) "I love that! The swing says, '{child's answer}!' You can hear playground talk! That's amazing!"
-2. (warm, enthusiastic) "That IS a cool playground! And I bet every piece of it has something to say. What if we could hear them?"
-3. (wait 2s) (playful whisper) "I think the swing is saying, 'Is anybody coming today?' Can you hear it?"
+1. [amazed] "I love that! The swing says, '{child's answer}!' You can hear playground talk! That's amazing!"
+2. [warm, enthusiastic] "That IS a cool playground! And I bet every piece of it has something to say. What if we could hear them?"
+3. (wait 2s) [playful whisper] "I think the swing is saying, 'Is anybody coming today?' Can you hear it?"
 
 **Screen:** Playground photo centered with colorful sparkle animations on each piece of equipment and soft outdoor ambiance.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (playful, conspiratorial) "Guess what — you can hear playground talk! That makes you a Playground Feelings Reporter! I tell you a little story, and YOU speak for the equipment. Watch!"
+**AI says:** [playful, conspiratorial] "Guess what — you can hear playground talk! That makes you a Playground Feelings Reporter! I tell you a little story, and YOU speak for the equipment. Watch!"
 
 (modeling) "The swing is swaying in the wind all alone. I think it says... '(lonely sigh) Oooh, I'm so lonely. Nobody is pushing me today.' See? Now YOUR turn! Ready, Reporter?"
 
@@ -63,9 +63,9 @@
 
 **AI follow-up:**
 
-1. (cheering) "Let's go, Reporter! First story coming!"
-2. (warm) "You'd push it! So kind! The swing would love that. Let's hear more feelings. First story!"
-3. (wait 2s) (encouraging) "It's easy — I tell a story and you say what the equipment feels. Any answer is great! Here comes the first one..."
+1. [cheering] "Let's go, Reporter! First story coming!"
+2. [warm] "You'd push it! So kind! The swing would love that. Let's hear more feelings. First story!"
+3. (wait 2s) [encouraging] "It's easy — I tell a story and you say what the equipment feels. Any answer is great! Here comes the first one..."
 
 **Screen:** "Playground Feelings Reporter" badge with microphone icon above the playground photo; the swing sways gently with a speech bubble saying "I'm so lonely..." in playful lettering.
 
@@ -73,7 +73,7 @@
 
 **Round 1 — "The Happy Swing":**
 
-**AI says:** (bright storyteller) "A sunny morning! Warm sun shining! A kid runs over and jumps on the swing. The chains go clink-clink-clink! The swing goes high — then low — then high again! Reporter, what does the swing say? How does it feel?"
+**AI says:** [bright storyteller] "A sunny morning! Warm sun shining! A kid runs over and jumps on the swing. The chains go clink-clink-clink! The swing goes high — then low — then high again! Reporter, what does the swing say? How does it feel?"
 
 **Child responses:**
 
@@ -83,9 +83,9 @@
 
 **AI follow-up:**
 
-1. (celebrating) "'Wheee!' Yes! The swing is SO happy! Going back and forth is its special job. When someone swings on it, it gets to do what it was MADE to do. Great reporting!"
-2. (validating, extending) "The kid IS happy — and I bet the swing is too! When someone swings, the chains go clink-clink and it flies through the air. Maybe the swing says, 'Yay, I'm flying!' What do you think?"
-3. (wait 2s) (gentle prompt) "The swing is going back and forth, back and forth. Is it happy? Excited? Maybe a little dizzy? You decide!"
+1. [celebrating] "'Wheee!' Yes! The swing is SO happy! Going back and forth is its special job. When someone swings on it, it gets to do what it was MADE to do. Great reporting!"
+2. [validating, extending] "The kid IS happy — and I bet the swing is too! When someone swings, the chains go clink-clink and it flies through the air. Maybe the swing says, 'Yay, I'm flying!' What do you think?"
+3. (wait 2s) [gentle prompt] "The swing is going back and forth, back and forth. Is it happy? Excited? Maybe a little dizzy? You decide!"
 
 **Screen:** Playground photo with the swing highlighted, sun animation above, swing rocking back and forth with golden motion lines and musical notes floating up.
 
@@ -97,7 +97,7 @@
 
 #### Step 4: Celebration
 
-**AI says:** (proud, warm) "You did it! You gave feelings to the swing, the slide, and the monkey bars! You heard their voices when nobody else could! You are officially a... Playground Feelings Reporter! You know what every piece of equipment feels — happy, hot, lonely, and brave!"
+**AI says:** [proud, warm] "You did it! You gave feelings to the swing, the slide, and the monkey bars! You heard their voices when nobody else could! You are officially a... Playground Feelings Reporter! You know what every piece of equipment feels — happy, hot, lonely, and brave!"
 
 **Child responses:**
 
@@ -107,15 +107,15 @@
 **AI follow-up:**
 
 1. (beaming) "The BEST reporter! Every playground wishes it had you!"
-2. (delighted) "You want more? That's because you're a REAL reporter — always looking for the next story! Next time you're at a playground, listen carefully..."
+2. [delighted] "You want more? That's because you're a REAL reporter — always looking for the next story! Next time you're at a playground, listen carefully..."
 
 **Screen:** Animated "Playground Feelings Reporter" badge with a microphone and playground silhouette icon, the child's playground photo inset, golden confetti, and a celebration chime.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective) "You know what you discovered today? The same playground feels different at different times. The swing is happy in the sun, the slide is grumpy when it's hot, the monkey bars are lonely in the rain. Everyone feels things in their own way — and that's the magic of Perspective!"
+**AI says:** [warm, reflective] "You know what you discovered today? The same playground feels different at different times. The swing is happy in the sun, the slide is grumpy when it's hot, the monkey bars are lonely in the rain. Everyone feels things in their own way — and that's the magic of Perspective!"
 
-(building) "And you noticed something else — the swing's job is to go back and forth, the slide's job is to help kids zoom down, the monkey bars' job is to help kids climb and hold tight. Every piece has its own special job. That's Function — how each part works! You're not just a reporter — you're a playground expert."
+[building] "And you noticed something else — the swing's job is to go back and forth, the slide's job is to help kids zoom down, the monkey bars' job is to help kids climb and hold tight. Every piece has its own special job. That's Function — how each part works! You're not just a reporter — you're a playground expert."
 
 **Child responses:**
 
@@ -124,7 +124,7 @@
 
 **AI follow-up:**
 
-1. (celebrating) "That's right! Perspective and Function! Next time you're at a playground, you'll hear all the voices. See you, Reporter!"
-2. (warm, simple) "Function means each part has its own job — like the swing's job is swinging! Go play — and listen for their voices. Bye, Reporter!"
+1. [celebrating] "That's right! Perspective and Function! Next time you're at a playground, you'll hear all the voices. See you, Reporter!"
+2. [warm, simple] "Function means each part has its own job — like the swing's job is swinging! Go play — and listen for their voices. Bye, Reporter!"
 
 **Screen:** "Perspective" and "Function" in playful, colorful playground-style lettering; "Perspective" flanked by swing, slide, and bars with different expression faces; "Function" with small icons showing each equipment's motion; reporter badge in the corner with outdoor sunshine glow.

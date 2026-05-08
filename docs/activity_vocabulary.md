@@ -4,7 +4,18 @@
 
 For field ownership and authoring guidance across upstream matcher, runtime presentation, child recap, and parent dashboard, see `docs/activity_tag_block_usage.md`.
 
-**Version:** 1.3 · 2026-04-27
+**Version:** 1.4 · 2026-05-08
+
+## Scope boundary
+
+This file owns the closed runtime `activity_signature` enums. The mechanic-first authoring workflow also uses authoring-only fields that are **not** tag-block enums:
+
+| Field | Current values | Owner |
+|---|---|---|
+| `assignment_type` | `entity_activity`, `activity_concept`, `match_pattern`, `capability_probe` | `GOAL.md`, `program.md`, `run.md` |
+| `adaptation_brief.input_mode` | `mapping_informed`, `parameterized`, `concept_only` | `program.md` Phase 0 |
+
+Do not mirror those authoring-only values into consumer runtime enum code unless a future schema change explicitly promotes them into `tag_block.yaml`.
 
 ---
 
@@ -44,6 +55,8 @@ Recognition/safety-limited candidates:
 
 What the child actually does during the activity. This is intentionally coarser than `game_style`: multiple game styles can share one mechanic, and one game style can still carry pillar-specific flavor in `game_style`.
 
+For concept-led assignments, `mechanic` is the primary classification. If an assignment provides `mechanic=` or Phase 0 infers a high-confidence `canonical_mechanic`, carry that value into `tag_block.yaml` `activity_signature.mechanic`. Select `pillar` and `game_style` afterward as scaffolding; they must not override the child action implied by the mechanic.
+
 | Token | Definition | Example games |
 |---|---|---|
 | `enumerate` | Name parts or list attributes | Detail Detective, Mix Lab |
@@ -60,6 +73,8 @@ What the child actually does during the activity. This is intentionally coarser 
 ### Mechanic to game-style mapping
 
 `mechanic` is the child's primary action. `game_style` remains the richer activity format and emotional payoff.
+
+The table below is guidance, not a reverse lookup. If a concept-led assignment fits the mechanic but only weakly fits the available style scaffold, disclose that in `spec.md` `## Adaptation Rationale` or block generation when the scaffold would distort the requested child action.
 
 | Game style | Pillar | Recommended primary mechanic |
 |---|---|---|
@@ -202,6 +217,7 @@ Drift test compares parsed tables above against enum members; failure = CI block
 
 ## Revnote
 
+- **v1.4 · 2026-05-08** — Clarifies that `assignment_type` and `adaptation_brief.input_mode` are authoring-only workflow fields, not runtime tag-block enums; documents mechanic-first priority for concept-led assignments.
 - **v1.3 · 2026-04-27** — Adds `quantity` and `emotion` to the closed `observation_angle` enum.
 - **v1.2 · 2026-04-27** — Review clarification pass: documents observation-angle scope boundaries, adds game-style-to-mechanic mapping, clarifies entity-role examples, expands bridge-prerequisite uses, and adds the recommended WonderLens `atl_skills` vocabulary.
 - **v1.1 · 2026-04-27** — Adds `deduce` and `care` mechanics.

@@ -83,7 +83,7 @@ entity.
 
 > **Context**: Child photographs their rubber duck with no prior conversation.
 >
-> **AI says**: "*(delighted squeal)* Ohhh! A duck! Quack quack! So cute. Is duck splashy today?"
+> **AI says**: "[delighted squeal] Ohhh! A duck! Quack quack! So cute. Is duck splashy today?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah! Splash splash!" / "Duck goes quack!" / "It's my duck!"
@@ -91,15 +91,15 @@ entity.
 > 3. (No response) Child is silent or looking at the duck.
 >
 > **AI follow-up**:
-> 1. "*(joyful)* Splash splash! Fun duck! Want to make duck SUPER?"
-> 2. "*(warm, playful)* Yellow ducky! So pretty. What if duck could do NEW things?"
-> 3. *(Wait 2 seconds)* "*(soft, inviting)* Quack quack! Duck says hi. Want to play?"
+> 1. "[joyful] Splash splash! Fun duck! Want to make duck SUPER?"
+> 2. "[warm, playful] Yellow ducky! So pretty. What if duck could do NEW things?"
+> 3. [Wait 2 seconds] "[soft, inviting] Quack quack! Duck says hi. Want to play?"
 >
 > **Screen**: Rubber duck photo centered on screen with gentle blue water ripple animation. Tiny animated bubbles float up around the duck. Soft bathroom-tile background pattern.
 
 **Step 2: Game Setup + Demo — "The Magic Workshop"**
 
-> **AI says**: "*(excited whisper)* You are a Duck Builder! Magic workshop! I say 'what if.' You imagine! Like this — what if duck had a HAT? Ooh! Fancy duck! Your turn now!"
+> **AI says**: "[excited whisper] You are a Duck Builder! Magic workshop! I say 'what if.' You imagine! Like this — what if duck had a HAT? Ooh! Fancy duck! Your turn now!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah!" / "Okay!" / "Duck hat!" / giggles
@@ -107,9 +107,9 @@ entity.
 > 3. (No response) Child is quiet, watching.
 >
 > **AI follow-up**:
-> 1. "*(thrilled)* Duck Builder ready! Here we go!"
-> 2. "*(playful)* Quack! Duck says yes! Let's build!"
-> 3. *(Wait 2 seconds)* "*(gentle, encouraging)* Easy! I ask. You say! Ready? First one!"
+> 1. "[thrilled] Duck Builder ready! Here we go!"
+> 2. "[playful] Quack! Duck says yes! Let's build!"
+> 3. [Wait 2 seconds] "[gentle, encouraging] Easy! I ask. You say! Ready? First one!"
 >
 > **Screen**: Duck photo shifts to the left side. On the right, a colorful "Magic Workshop" banner appears with tiny animated tools (wrench, sparkle wand, paintbrush) floating around. A small "Duck Builder" badge glows at the top. An animated example shows a tiny top hat appearing on the duck, then popping off with a sparkle.
 
@@ -117,7 +117,7 @@ entity.
 
 > **Round 1 — "Wings!" (physical modification — simple, high-success)**
 >
-> **AI says**: "*(amazed voice)* What if duck had WINGS? Whoooosh! Where duck fly?"
+> **AI says**: "[amazed voice] What if duck had WINGS? Whoooosh! Where duck fly?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Up!" / "To the sky!" / "Fly high!" / "To the park!" / makes whoosh sound
@@ -125,9 +125,9 @@ entity.
 > 3. (No response) Child is silent or looking at screen.
 >
 > **AI follow-up**:
-> 1. "*(thrilled, zooming voice)* WHOOOOSH! Duck fly [child's answer]! Wings go flap flap flap! Flying duck! So cool!"
-> 2. "*(validating, playful)* Quack quack! Duck says yes! And with wings — whoooosh! Duck fly UP! Flap flap! Where duck go?"
-> 3. *(Wait 2 seconds)* "*(gentle prompt)* Wings! Flap flap! Duck fly UP! Wheee! To the clouds? Or to the moon?"
+> 1. "[thrilled, zooming voice] WHOOOOSH! Duck fly [child's answer]! Wings go flap flap flap! Flying duck! So cool!"
+> 2. "[validating, playful] Quack quack! Duck says yes! And with wings — whoooosh! Duck fly UP! Flap flap! Where duck go?"
+> 3. [Wait 2 seconds] "[gentle prompt] Wings! Flap flap! Duck fly UP! Wheee! To the clouds? Or to the moon?"
 >
 > **Screen**: Duck photo with animated wings sprouting from its sides. Wings flap gently. Tiny motion lines show upward flight. A small cloud drifts by. When child responds, the duck animates flying toward what the child said (generic sky scene with sparkle trail).
 >
@@ -135,7 +135,7 @@ entity.
 >
 > **Round 2 — "Glow!" (sensory modification — visual, escalation)**
 >
-> **AI says**: "*(mysterious, wide-eyed)* Oooh! What if duck GLOW? Bzzzzz! In the dark! What color duck glow?"
+> **AI says**: "[mysterious, wide-eyed] Oooh! What if duck GLOW? Bzzzzz! In the dark! What color duck glow?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Blue!" / "Pink!" / "Yellow!" / "Green!" / names a color
@@ -143,9 +143,9 @@ entity.
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. "*(dazzled)* [Color] glow! Bzzzzz! Duck lights up [color]! So pretty! A flying, [color] glowing duck! WOW!"
-> 2. "*(excited)* Shiny! Yes! Duck shine like a STAR! Bzzzzz! Glowy duck! A flying, glowy duck! Amazing!"
-> 3. *(Wait 2 seconds)* "*(playful whisper)* Bzzzzz! Duck glow... YELLOW? Like the sun? Or PINK? Like a flower? You pick!"
+> 1. "[dazzled] [Color] glow! Bzzzzz! Duck lights up [color]! So pretty! A flying, [color] glowing duck! WOW!"
+> 2. "[excited] Shiny! Yes! Duck shine like a STAR! Bzzzzz! Glowy duck! A flying, glowy duck! Amazing!"
+> 3. [Wait 2 seconds] "[playful whisper] Bzzzzz! Duck glow... YELLOW? Like the sun? Or PINK? Like a flower? You pick!"
 >
 > **Screen**: Background dims to dark blue/night. Duck photo glows with a soft pulsing light (default warm yellow; changes to child's color if stated). Tiny sparkle particles radiate outward. The wings from Round 1 are still visible, also glowing. Stars twinkle in the dark background.
 >
@@ -153,7 +153,7 @@ entity.
 >
 > **Round 3 — "Talk!" (imaginative modification — surprise, peak engagement)**
 >
-> **AI says**: "*(giggling, amazed)* Oh OH! What if duck could TALK? Not just quack — TALK! What duck say?"
+> **AI says**: "[giggling, amazed] Oh OH! What if duck could TALK? Not just quack — TALK! What duck say?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Hello!" / "I'm a duck!" / "Quack quack hello!" / "I love you!" / "Splash time!"
@@ -161,15 +161,15 @@ entity.
 > 3. (No response) Child is quiet.
 >
 > **AI follow-up**:
-> 1. "*(delighted, mimicking duck voice)* Duck says '[child's words]!' Ha ha! Talking duck! A flying, glowing, TALKING duck! Duck says '[child's words]' while flying! So silly!"
-> 2. "*(validating, giggling)* Quack! Yes! That's duck talk! What if duck also say 'HELLO, I'M A DUCK!'? Ha ha! A flying, glowing, quacky-talky duck!"
-> 3. *(Wait 2 seconds)* "*(playful duck voice)* Duck says... 'HI! I'M DUCK!' Ha ha! Or maybe duck says... 'SPLASH TIME!' What you think?"
+> 1. "[delighted, mimicking duck voice] Duck says '[child's words]!' Ha ha! Talking duck! A flying, glowing, TALKING duck! Duck says '[child's words]' while flying! So silly!"
+> 2. "[validating, giggling] Quack! Yes! That's duck talk! What if duck also say 'HELLO, I'M A DUCK!'? Ha ha! A flying, glowing, quacky-talky duck!"
+> 3. [Wait 2 seconds] "[playful duck voice] Duck says... 'HI! I'M DUCK!' Ha ha! Or maybe duck says... 'SPLASH TIME!' What you think?"
 >
 > **Screen**: A speech bubble appears above the duck with the child's words (or "QUACK HELLO!" as default). Duck photo now has wings (from R1), glow (from R2), and the speech bubble. The duck gently bobs as if talking. Tiny sound wave lines emanate from the duck's beak.
 
 **Step 4: Payoff — The Super Duck Reveal**
 
-> **AI says**: "*(breathless, building excitement)* Ready? Your duck has... WINGS — whoooosh! AND glow — bzzzzz! AND talks — '[child's phrase or quack hello]!' It's... SUPER DUCK! Flying, glowing, talking SUPER DUCK! You built it! QUACK QUACK WHOOOOSH!"
+> **AI says**: "[breathless, building excitement] Ready? Your duck has... WINGS — whoooosh! AND glow — bzzzzz! AND talks — '[child's phrase or quack hello]!' It's... SUPER DUCK! Flying, glowing, talking SUPER DUCK! You built it! QUACK QUACK WHOOOOSH!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Super Duck!" / "WHOOOOSH!" / giggles and cheers / "Yay!" / "I made it!"
@@ -177,15 +177,15 @@ entity.
 > 3. (No response) Child watches with wide eyes or smiles.
 >
 > **AI follow-up**:
-> 1. "*(pure celebration)* YOU made Super Duck! Best Duck Builder EVER! Super Duck goes whoooosh, bzzzzz, quack quack!"
-> 2. "*(joyful)* Quack quack! Super Duck says THANK YOU! You are the best builder! What a duck!"
-> 3. *(Wait 2 seconds)* "*(warm, proud)* Look! Super Duck! You built it! Wings, glow, talk! WOW!"
+> 1. "[pure celebration] YOU made Super Duck! Best Duck Builder EVER! Super Duck goes whoooosh, bzzzzz, quack quack!"
+> 2. "[joyful] Quack quack! Super Duck says THANK YOU! You are the best builder! What a duck!"
+> 3. [Wait 2 seconds] "[warm, proud] Look! Super Duck! You built it! Wings, glow, talk! WOW!"
 >
 > **Screen**: Grand reveal animation — duck photo transforms center-screen with ALL modifications visible simultaneously: animated flapping wings, pulsing glow in the child's chosen color, speech bubble with child's phrase. Confetti and sparkles burst from behind. "SUPER DUCK!" text appears in bold, bouncy rainbow letters above. Celebration sound effects (whoosh + sparkle chime). The entire screen pulses with warm golden light.
 
 **Step 5: Celebration + IB Concepts**
 
-> **AI says**: "*(warm, proud, reflective)* You are Duck Builder! You changed duck. Wings! Glow! Talk! That's Change! Duck floats and quacks — that's Function! You made duck do NEW things! Super Duck Builder!"
+> **AI says**: "[warm, proud, reflective] You are Duck Builder! You changed duck. Wings! Glow! Talk! That's Change! Duck floats and quacks — that's Function! You made duck do NEW things! Super Duck Builder!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Super Duck!" / "I'm Duck Builder!" / "Quack!" / smiles and giggles
@@ -193,9 +193,9 @@ entity.
 > 3. (No response) Child is quiet or smiling.
 >
 > **AI follow-up**:
-> 1. "*(celebrating)* Best Duck Builder! Super Duck loves you! Quack quack whoooosh! Bye bye!"
-> 2. "*(warm)* Duck says bye! Build again soon! Quack!"
-> 3. *(Wait 2 seconds)* "*(gentle close)* Super Duck Builder! Great job! Quack quack! See you!"
+> 1. "[celebrating] Best Duck Builder! Super Duck loves you! Quack quack whoooosh! Bye bye!"
+> 2. "[warm] Duck says bye! Build again soon! Quack!"
+> 3. [Wait 2 seconds] "[gentle close] Super Duck Builder! Great job! Quack quack! See you!"
 >
 > **Screen**: "Duck Builder" badge centered with a golden wrench-and-duck icon. Below, "Change" appears with a transformation arrow icon and "Function" appears with a small gear icon — both styled in playful, colorful lettering. The Super Duck (with all modifications) floats behind the badge. Soft golden glow and a final burst of tiny sparkles.
 

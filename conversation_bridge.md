@@ -1,6 +1,16 @@
 # Conversation Bridge Guide
 
-> **Purpose**: Defines how the activity Transition Bridge (Step 1) connects to the preceding conversation phase. Every mapping-informed design must include both a **warm start** (post-conversation) and **cold start** (standalone) bridge variant.
+> **Purpose**: Defines how the activity Transition Bridge (Step 1) connects to the preceding conversation phase.
+> **When to read**: Read this for `mapping_informed` assignments, any assignment with `start=warm+cold`, or any package that claims a warm/cold bridge.
+
+Every mapping-informed design must include both a **warm start** (post-conversation) and **cold start** (standalone) bridge variant. Parameterized and concept-only briefs do not require a dual bridge unless the assignment explicitly asks for `start=warm+cold` and the bridge can be written without inventing mapping-specific conversation history.
+
+Assignment-type relationship:
+
+- `entity_activity` + `mapping=`: dual bridge is required when `start=warm+cold`.
+- `activity_concept` or `match_pattern` + `input_mode: mapping_informed`: dual bridge is required if the concept claims continuity from a mapped entity conversation.
+- `parameterized`: use runtime placeholder triggers; do not write a mapping-specific warm bridge unless mapping is supplied.
+- `concept_only`: use a mode-selected or parent-selected start; do not imply a prior entity conversation.
 
 ---
 
@@ -43,7 +53,7 @@ References something the child explored during conversation, creating a sense of
 "Remember when we looked at {entity}'s {specific_attribute}? {observation_from_mapping_value}..."
 ```
 
-**Example** (banana, T1): *"(warm, conspiratorial tone) Remember how we talked about those little brown freckles on the banana? You said they looked like tiny polka dots..."*
+**Example** (banana, T1): *[warm, conspiratorial tone] "Remember how we talked about those little brown freckles on the banana? You said they looked like tiny polka dots..."*
 
 **Source requirement**: `{specific_attribute}` must be a real attribute name from the mapping. `{observation_from_mapping_value}` must reference or paraphrase a `value` field.
 
@@ -54,7 +64,7 @@ Celebrates something the child figured out, positioning them as capable.
 "You figured out that {entity} has {attribute_the_child_explored}! {build_on_that_discovery}..."
 ```
 
-**Example** (goldfish, T1): *"(impressed tone) You figured out that the goldfish uses its tail like a paddle to zoom around! I wonder what else moves like that..."*
+**Example** (goldfish, T1): *[impressed tone] "You figured out that the goldfish uses its tail like a paddle to zoom around! I wonder what else moves like that..."*
 
 **Source requirement**: The discovery must reference a specific `topics` entry or `value` from the mapping.
 
@@ -65,7 +75,7 @@ Builds on a question or wonder the child expressed, honoring their natural inqui
 "You were so curious about {dimension_topic}... let's go deeper!"
 ```
 
-**Example** (banana, T1): *"(excited, leaning-in tone) You were so curious about why the banana gets softer as it sits on the counter... what if we explored more things that change like that?"*
+**Example** (banana, T1): *[excited, leaning-in tone] "You were so curious about why the banana gets softer as it sits on the counter... what if we explored more things that change like that?"*
 
 **Source requirement**: The curiosity topic must come from a `topics` list in the mapping.
 
@@ -76,7 +86,7 @@ Positions the next activity as an extension of something the child noticed — a
 "You noticed {attribute} — I bet there are more hiding nearby..."
 ```
 
-**Example** (goldfish, T1): *"(playful challenge tone) You noticed the goldfish's scales look like tiny shiny roof tiles... I bet if we look around, we'll find other things with that same pattern!"*
+**Example** (goldfish, T1): *[playful challenge tone] "You noticed the goldfish's scales look like tiny shiny roof tiles... I bet if we look around, we'll find other things with that same pattern!"*
 
 **Source requirement**: `{attribute}` must reference a specific mapping `value` or `attribute` name.
 
@@ -85,7 +95,7 @@ Positions the next activity as an extension of something the child noticed — a
 1. **Must reference a specific dimension topic from the entity mapping** — not a generic "we talked about it"
 2. **Must use 1–2 of the opener flavors above** — don't invent new patterns
 3. **Opens with emotional resonance** — recognition of shared experience, NOT first-encounter wonder
-4. The tone marker should reflect warmth and continuity: "(warm, building on earlier)", "(excited, connecting back)", "(conspiratorial, like sharing a secret)"
+4. The tone marker should reflect warmth and continuity: `[warm, building on earlier]`, `[excited, connecting back]`, `[conspiratorial, like sharing a secret]`
 5. **Must flow into the same Step 2 as the cold start** — the warm bridge is an alternative entry point, not a different activity
 
 ---
@@ -104,10 +114,10 @@ A **cold start** bridge is the current default behavior: the child photographs t
 ### Cold Start Template (unchanged)
 
 ```
-"(tone/emotion marker) {emotional_reaction_to_entity}! {imaginative_observation}. {open_question}?"
+[tone/emotion marker] "{emotional_reaction_to_entity}! {imaginative_observation}. {open_question}?"
 ```
 
-**Example** (banana, T1): *"(delighted surprise) Wow, look at this banana! It's all curvy like a big yellow smile. If this banana could talk, what do you think it would say?"*
+**Example** (banana, T1): *[delighted surprise] "Wow, look at this banana! It's all curvy like a big yellow smile. If this banana could talk, what do you think it would say?"*
 
 ---
 
@@ -123,7 +133,7 @@ Every mapping-informed activity design MUST include both bridge variants in Step
 > **Context**: Child has just finished a tier_guidance conversation about {entity}.
 > **Conversation anchor**: {dimension} — {specific attribute or topic referenced}
 >
-> **AI says**: "(tone marker) {warm start dialogue using §2 patterns}..."
+> **AI says**: [tone marker] "{warm start dialogue using §2 patterns}..."
 >
 > [standard response branches + screen description]
 
@@ -131,7 +141,7 @@ Every mapping-informed activity design MUST include both bridge variants in Step
 
 > **Context**: Child photographs {entity} with no prior conversation.
 >
-> **AI says**: "(tone marker) {cold start dialogue using §3 pattern}..."
+> **AI says**: [tone marker] "{cold start dialogue using §3 pattern}..."
 >
 > [standard response branches + screen description]
 

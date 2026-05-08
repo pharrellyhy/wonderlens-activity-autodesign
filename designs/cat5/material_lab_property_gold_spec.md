@@ -55,7 +55,7 @@ entity_attributes_covered:
 
 > **Context**: Child photographs any object (e.g., a metal fork in the kitchen) with no prior conversation. AI detects the material from the photo.
 >
-> **AI says**: "*(delighted, curious tone)* Ooh, look at that fork! It's so shiny and smooth. That's METAL! Metal is hard and strong — that's why we eat with it. But wait... I'm looking around and I have a BIG question. Is EVERYTHING here made of metal? Or are some things made of something else? What do you think?"
+> **AI says**: "[delighted, curious tone] Ooh, look at that fork! It's so shiny and smooth. That's METAL! Metal is hard and strong — that's why we eat with it. But wait... I'm looking around and I have a BIG question. Is EVERYTHING here made of metal? Or are some things made of something else? What do you think?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Some things are different!" / "The table is wood!" / "I think most are metal!"
@@ -63,15 +63,15 @@ entity_attributes_covered:
 > 3. (No response) Child looks around the room or at the screen.
 >
 > **AI follow-up**:
-> 1. "*(intrigued)* Interesting — you already have ideas! This fork is definitely metal — hard and shiny. But I wonder about the OTHER things around you. Are most of them metal too, or made of something different like wood or plastic? I think we should find out for REAL!"
-> 2. "*(warm, explaining)* Metal is the hard, shiny stuff — like this fork! If you tap it, it goes CLINK. Some things around you are metal, and some are made of other stuff — like wood, which feels rough, or plastic, which is smooth and light. I have a fun idea to figure out what things around here are REALLY made of!"
-> 3. *(wait 2s)* "*(inviting)* This fork is metal — hard, shiny, and cool to touch! But look around you. Are ALL the things here metal? Or are some made of something else? I bet we can find out together!"
+> 1. "[intrigued] Interesting — you already have ideas! This fork is definitely metal — hard and shiny. But I wonder about the OTHER things around you. Are most of them metal too, or made of something different like wood or plastic? I think we should find out for REAL!"
+> 2. "[warm, explaining] Metal is the hard, shiny stuff — like this fork! If you tap it, it goes CLINK. Some things around you are metal, and some are made of other stuff — like wood, which feels rough, or plastic, which is smooth and light. I have a fun idea to figure out what things around here are REALLY made of!"
+> 3. [wait 2s] "[inviting] This fork is metal — hard, shiny, and cool to touch! But look around you. Are ALL the things here metal? Or are some made of something else? I bet we can find out together!"
 >
 > **Screen**: Child's object photo centered with a subtle material-appropriate highlight effect (metallic sheen for metal, warm grain for wood, smooth sheen for plastic). A small material label with an icon appears near the object surface (e.g., "METAL" with a shiny icon).
 
 **Step 2: Mission Briefing — Hypothesis + Setup**
 
-> **AI says**: "*(excited scientist tone)* Okay — here is my big question. Out of ALL the things around you, do you think MOST of them are made of metal... or MOST of them are made of something else — like wood, plastic, or fabric? This is your PREDICTION. What do you think — mostly metal, or mostly NOT metal?"
+> **AI says**: "[excited scientist tone] Okay — here is my big question. Out of ALL the things around you, do you think MOST of them are made of metal... or MOST of them are made of something else — like wood, plastic, or fabric? This is your PREDICTION. What do you think — mostly metal, or mostly NOT metal?"
 >
 > **Possible child responses**:
 > 1. (Ideal — picks the detected material) "Metal!" / "I think most are metal!" / "Everything is shiny!"
@@ -79,9 +79,9 @@ entity_attributes_covered:
 > 3. (Uncertain) "I don't know!" / "Maybe both?" / "What's a prediction?"
 >
 > **AI follow-up**:
-> 1. "*(locking it in)* You predict MOSTLY METAL — got it! I'm writing that down. Now here's the deal — you are a Material Scientist! Your job: find 3 more things around you, take a photo of each one, and I'll figure out what it's made of. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
-> 2. "*(locking it in)* You predict MOSTLY NOT METAL — interesting! I'm writing that down. Now here's the deal — you are a Material Scientist! Your job: find 3 more things around you, take a photo of each one, and I'll figure out what it's made of. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
-> 3. "*(encouraging)* A prediction is your BEST GUESS before you check! Like saying 'I think it will rain today' before you look outside. So — take your best guess. Do you think MOST things around you are metal, or mostly something else like wood or plastic? Just pick one!"
+> 1. "[locking it in] You predict MOSTLY METAL — got it! I'm writing that down. Now here's the deal — you are a Material Scientist! Your job: find 3 more things around you, take a photo of each one, and I'll figure out what it's made of. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
+> 2. "[locking it in] You predict MOSTLY NOT METAL — interesting! I'm writing that down. Now here's the deal — you are a Material Scientist! Your job: find 3 more things around you, take a photo of each one, and I'll figure out what it's made of. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
+> 3. "[encouraging] A prediction is your BEST GUESS before you check! Like saying 'I think it will rain today' before you look outside. So — take your best guess. Do you think MOST things around you are metal, or mostly something else like wood or plastic? Just pick one!"
 >
 > **Screen**: Scientist-themed mission card with "Material Scientist" badge. A tally board appears with two columns: "Metal" (with a shiny metallic icon) and "Not Metal" (with icons for wood, plastic, fabric). The original object photo is already placed under "Metal" with a "1" tally. The child's prediction is stamped at the top in a speech bubble: "My prediction: Mostly [Metal / Not Metal]!" Three empty photo slots wait below.
 
@@ -89,9 +89,9 @@ entity_attributes_covered:
 
 > **Round 1 — First Evidence:**
 >
-> *(Child photographs something — e.g., a wooden cutting board)*
+> [Child photographs something — e.g., a wooden cutting board]
 >
-> **AI says**: "*(eager scientist voice)* Evidence number two! Oh, let me look closely at this photo... *(examining)* I can see it's brown with little lines running through it — those are wood grain lines! I think that's WOOD! Wood is warm and natural — it comes from trees. That goes in the NOT METAL column!"
+> **AI says**: "[eager scientist voice] Evidence number two! Oh, let me look closely at this photo... [examining] I can see it's brown with little lines running through it — those are wood grain lines! I think that's WOOD! Wood is warm and natural — it comes from trees. That goes in the NOT METAL column!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah, it IS wood!" / "I thought it was plastic!" / "The handle is metal though!"
@@ -99,17 +99,17 @@ entity_attributes_covered:
 > 3. (No response) Looks at the tally.
 >
 > **AI follow-up**:
-> 1. "*(writing it down excitedly)* Great observation! The tally so far: Metal has 1, Not Metal has 1. It's a TIE right now! Your prediction says mostly [metal/not-metal]... let's see what happens next! Two more to find, Scientist!"
-> 2. "*(validating)* Brown — yes! And that brown, grainy surface is wood. NOT metal! Tally update: Metal 1, Not Metal 1. It's TIED! Two more, Scientist!"
-> 3. *(wait 2s)* "*(announcing)* So that's wood — NOT metal! The tally is tied: Metal 1, Not Metal 1! Two more to go. Find another thing and take a photo!"
+> 1. "[writing it down excitedly] Great observation! The tally so far: Metal has 1, Not Metal has 1. It's a TIE right now! Your prediction says mostly [metal/not-metal]... let's see what happens next! Two more to find, Scientist!"
+> 2. "[validating] Brown — yes! And that brown, grainy surface is wood. NOT metal! Tally update: Metal 1, Not Metal 1. It's TIED! Two more, Scientist!"
+> 3. [wait 2s] "[announcing] So that's wood — NOT metal! The tally is tied: Metal 1, Not Metal 1! Two more to go. Find another thing and take a photo!"
 >
 > **Screen**: New photo slides into slot 2. The tally board updates with an animation: a tally mark appears in the appropriate column. Running score displays: "Metal: 1 | Not Metal: 1." The child's prediction banner stays visible at the top.
 
 > **Round 2 — Second Evidence:**
 >
-> *(Child photographs something — e.g., a plastic container or a glass cup)*
+> [Child photographs something — e.g., a plastic container or a glass cup]
 >
-> **AI says**: "*(curious, building suspense)* Evidence number three! Let me examine this one... *(looking closely)* I can see it's [smooth and colorful / clear and see-through / soft and bendy]. That looks like [PLASTIC / GLASS / FABRIC] to me! [Plastic is smooth and comes in bright colors / Glass is clear and you can see right through it / Fabric is soft and you can fold it]!"
+> **AI says**: "[curious, building suspense] Evidence number three! Let me examine this one... [looking closely] I can see it's [smooth and colorful / clear and see-through / soft and bendy]. That looks like [PLASTIC / GLASS / FABRIC] to me! [Plastic is smooth and comes in bright colors / Glass is clear and you can see right through it / Fabric is soft and you can fold it]!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah, it's plastic!" / "I think you're right!" / "I thought it was something else!"
@@ -117,21 +117,21 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the tally.
 >
 > **AI follow-up**:
-> 1. "*(dramatic tally update)* [Material] — that's [METAL / NOT METAL]! Tally update: Metal [N], Not Metal [M]. [Metal is catching up! / Not Metal is WINNING!] If your prediction was mostly [metal/not-metal]... it's getting [exciting / tricky]! One more piece of evidence, Scientist!"
-> 2. "*(playful)* A cup — great find! Cups count too! And from the photo, I can see it's [material]. Tally: Metal [N], Not Metal [M]. One more, Scientist!"
-> 3. *(wait 2s)* "*(announcing result)* I'm calling it — that's [material]! Tally: Metal [N], Not Metal [M]. One more to go! Find one last thing around you!"
+> 1. "[dramatic tally update] [Material] — that's [METAL / NOT METAL]! Tally update: Metal [N], Not Metal [M]. [Metal is catching up! / Not Metal is WINNING!] If your prediction was mostly [metal/not-metal]... it's getting [exciting / tricky]! One more piece of evidence, Scientist!"
+> 2. "[playful] A cup — great find! Cups count too! And from the photo, I can see it's [material]. Tally: Metal [N], Not Metal [M]. One more, Scientist!"
+> 3. [wait 2s] "[announcing result] I'm calling it — that's [material]! Tally: Metal [N], Not Metal [M]. One more to go! Find one last thing around you!"
 >
 > **Screen**: Third photo slides into slot 3. Tally board updates with animation. Running score: "Metal: [N] | Not Metal: [M]." A small suspense meter or "Prediction Check" indicator shows whether the tally currently matches or contradicts the child's prediction.
 >
 > **STUCK BRANCH** (if child can't find something):
 >
-> **AI says**: "*(helpful, specific)* Look for something you can hold, sit on, or put things in! Try looking at what's on the table, what's under your feet, or what you're wearing. Everything around you is made of SOMETHING!"
+> **AI says**: "[helpful, specific] Look for something you can hold, sit on, or put things in! Try looking at what's on the table, what's under your feet, or what you're wearing. Everything around you is made of SOMETHING!"
 
 > **Round 3 — Third Evidence (Final Piece):**
 >
-> *(Child photographs a final object — e.g., a fabric towel, a plastic toy, a stone countertop)*
+> [Child photographs a final object — e.g., a fabric towel, a plastic toy, a stone countertop]
 >
-> **AI says**: "*(building to the climax)* Evidence number four — the LAST piece! Let me look very carefully... *(dramatic pause)* I see [description of visual material cues]. I think this is... [MATERIAL]! This is the one that might decide everything!"
+> **AI says**: "[building to the climax] Evidence number four — the LAST piece! Let me look very carefully... [dramatic pause] I see [description of visual material cues]. I think this is... [MATERIAL]! This is the one that might decide everything!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah!" / "I knew it!" / "I thought it was something else!"
@@ -139,28 +139,28 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the tally.
 >
 > **AI follow-up**:
-> 1. "*(dramatic intake of breath)* [Material]! Okay, Scientist... I'm adding it to the tally. Let me count everything up... are you ready for the BIG RESULT?"
-> 2. "*(warm)* Red, yes! And from looking at the photo, I can see it's [material] — [smooth and colorful like plastic / soft and bendy like fabric / hard and shiny like metal]! Adding it to the tally. Are you READY for the final count?"
-> 3. *(wait 2s)* "*(excited)* That's [material]! Adding it to the board... the final tally is coming, Scientist! Ready?"
+> 1. "[dramatic intake of breath] [Material]! Okay, Scientist... I'm adding it to the tally. Let me count everything up... are you ready for the BIG RESULT?"
+> 2. "[warm] Red, yes! And from looking at the photo, I can see it's [material] — [smooth and colorful like plastic / soft and bendy like fabric / hard and shiny like metal]! Adding it to the tally. Are you READY for the final count?"
+> 3. [wait 2s] "[excited] That's [material]! Adding it to the board... the final tally is coming, Scientist! Ready?"
 >
 > **Screen**: Final photo slides into slot 4 with a bigger celebration animation. All 4 photos now fill the tally board. A "CALCULATING..." animation plays briefly, building suspense before the reveal in Step 4.
 
 **Step 4: Synthesis — The Magic Moment (Hypothesis Result Reveal)**
 
-> **AI says**: "*(drumroll voice)* Okay Material Scientist — time for the BIG REVEAL! You predicted that most things around you would be... MOSTLY [METAL / NOT METAL]! Let's count the evidence!"
+> **AI says**: "[drumroll voice] Okay Material Scientist — time for the BIG REVEAL! You predicted that most things around you would be... MOSTLY [METAL / NOT METAL]! Let's count the evidence!"
 >
-> *(AI tallies aloud)*
+> [AI tallies aloud]
 >
 > "The fork — METAL! That's one for metal. The [find 1] — [material]! The [find 2] — [material]! The [find 3] — [material]!"
 >
 > **If prediction was RIGHT**:
-> "*(triumphant fanfare voice)* The final count: Metal [N], Not Metal [M]! Your prediction was... RIGHT! You KNEW it! Most things around here really ARE [mostly metal / mostly not-metal]! Material Scientist, your instincts are amazing!"
+> "[triumphant fanfare voice] The final count: Metal [N], Not Metal [M]! Your prediction was... RIGHT! You KNEW it! Most things around here really ARE [mostly metal / mostly not-metal]! Material Scientist, your instincts are amazing!"
 >
 > **If prediction was WRONG (the surprise)**:
-> "*(gasping with delight)* The final count: Metal [N], Not Metal [M]! Your prediction was mostly [metal/not-metal], but SURPRISE — you got TRICKED! More things are actually [metal/not-metal] than you expected! That's what makes science so cool — sometimes you find out something you DIDN'T expect!"
+> "[gasping with delight] The final count: Metal [N], Not Metal [M]! Your prediction was mostly [metal/not-metal], but SURPRISE — you got TRICKED! More things are actually [metal/not-metal] than you expected! That's what makes science so cool — sometimes you find out something you DIDN'T expect!"
 >
 > **If it's a TIE (2 and 2)**:
-> "*(amazed)* The final count: Metal 2, Not Metal 2! It's a PERFECT TIE! Nobody could have predicted that — this place uses BOTH equally! That's a surprise result, Scientist!"
+> "[amazed] The final count: Metal 2, Not Metal 2! It's a PERFECT TIE! Nobody could have predicted that — this place uses BOTH equally! That's a surprise result, Scientist!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "I was right!" / "I was wrong!" / "I didn't know there was so much [material]!" / Cheers or laughs
@@ -168,15 +168,15 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the tally screen.
 >
 > **AI follow-up**:
-> 1. "*(celebrating)* That's what scientists DO — they guess, then check, and find out for real! You collected the evidence all by yourself. Now here's a cool question — WHY do you think people use [the winning material] so much around here? Why not just make everything out of one material?"
-> 2. "*(enthusiastic)* You want MORE evidence? That's what real scientists say! The more you collect, the better your answer gets. But think about this — why do people use different materials? Why not make EVERYTHING out of metal?"
-> 3. *(wait 2s)* "*(warm prompt)* Look at all that data! You tested a real question with real evidence. Here's one more thing to think about — why do you think people use DIFFERENT materials for different things? Why not just one?"
+> 1. "[celebrating] That's what scientists DO — they guess, then check, and find out for real! You collected the evidence all by yourself. Now here's a cool question — WHY do you think people use [the winning material] so much around here? Why not just make everything out of one material?"
+> 2. "[enthusiastic] You want MORE evidence? That's what real scientists say! The more you collect, the better your answer gets. But think about this — why do people use different materials? Why not make EVERYTHING out of metal?"
+> 3. [wait 2s] "[warm prompt] Look at all that data! You tested a real question with real evidence. Here's one more thing to think about — why do you think people use DIFFERENT materials for different things? Why not just one?"
 >
 > **Screen**: Full tally board with all 4 photos displayed in two columns (Metal vs. Not Metal). The prediction banner at top lights up green (RIGHT!) or flashes orange with "SURPRISE!" text. Animated tally marks count up one by one with sound effects. A large final score displays: "Metal: [N] | Not Metal: [M]."
 
 **Step 5: Discovery Celebration — The "Why" Reflection**
 
-> **AI says**: "*(warm, wonder-filled)* You know what's really smart about the things around us? People use DIFFERENT materials on purpose! The fork is metal because metal is strong — it won't break when you poke food. The [example from finds] is [material] because [material reason]. Every material has a REASON! Which material surprised you the most today?"
+> **AI says**: "[warm, wonder-filled] You know what's really smart about the things around us? People use DIFFERENT materials on purpose! The fork is metal because metal is strong — it won't break when you poke food. The [example from finds] is [material] because [material reason]. Every material has a REASON! Which material surprised you the most today?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Wood! I didn't know that was wood!" / "Plastic — there's so much plastic!" / "Metal! There's less than I thought!"
@@ -184,15 +184,15 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the collection.
 >
 > **AI follow-up**:
-> 1. "*(delighted)* [Material] surprised you — and now you KNOW! That's what happens when you test things for real instead of just guessing. Your experiment showed you something new about this place!"
-> 2. "*(encouraging)* Another room — yes! Every room might have a DIFFERENT answer. The kitchen might be mostly metal, but the bedroom might be mostly fabric. You could test them all!"
-> 3. *(wait 2s)* "*(gentle)* Every material is here for a reason — strong for eating, soft for sleeping, smooth for cleaning. Your experiment helped you see that!"
+> 1. "[delighted] [Material] surprised you — and now you KNOW! That's what happens when you test things for real instead of just guessing. Your experiment showed you something new about this place!"
+> 2. "[encouraging] Another room — yes! Every room might have a DIFFERENT answer. The kitchen might be mostly metal, but the bedroom might be mostly fabric. You could test them all!"
+> 3. [wait 2s] "[gentle] Every material is here for a reason — strong for eating, soft for sleeping, smooth for cleaning. Your experiment helped you see that!"
 >
 > **Screen**: All 4 photos displayed with material labels. Animated arrows connect each photo to a "reason" bubble: "strong = won't break," "soft = comfortable," "smooth = easy to clean," "light = easy to carry." The collection feels like a science poster.
 
 **Step 6: Closing + IB Concepts**
 
-> **AI says**: "*(proud celebration)* Congratulations, Material Scientist! You did real science today! You looked closely at the Form of every object — what it's made of, how it looks, how it feels. And you discovered the Causation — WHY each material is used. Metal for strength. Wood for warmth. Plastic for lightness. Every material has a reason! You earned your Material Scientist Badge!"
+> **AI says**: "[proud celebration] Congratulations, Material Scientist! You did real science today! You looked closely at the Form of every object — what it's made of, how it looks, how it feels. And you discovered the Causation — WHY each material is used. Metal for strength. Wood for warmth. Plastic for lightness. Every material has a reason! You earned your Material Scientist Badge!"
 >
 > **Possible child responses**:
 > 1. (Engaged) Cheers, talks about wanting to test more rooms, or asks about the badge.
@@ -200,9 +200,9 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the screen.
 >
 > **AI follow-up**:
-> 1. "*(encouraging)* Next time you go to a different room, try the experiment again! Predict first, then count. Every room might have a different answer. See you on the next experiment, Scientist!"
-> 2. "*(warm)* Your badge is saved! You're a real Material Scientist now. Bye for now, Scientist!"
-> 3. *(wait 2s)* "*(soft)* Your Scientist Badge is glowing. Great experiment today!"
+> 1. "[encouraging] Next time you go to a different room, try the experiment again! Predict first, then count. Every room might have a different answer. See you on the next experiment, Scientist!"
+> 2. "[warm] Your badge is saved! You're a real Material Scientist now. Bye for now, Scientist!"
+> 3. [wait 2s] "[soft] Your Scientist Badge is glowing. Great experiment today!"
 >
 > **Screen**: Golden "Material Scientist Badge" shaped like a beaker with a tally chart inside. The original object photo sits at center with collection photos as insets. "Form" in bold crystalline letters with material texture swatches and "Causation" in arrow-shaped dynamic letters float artistically. The final tally result ("Metal: [N] | Not Metal: [M]") glows beneath.
 

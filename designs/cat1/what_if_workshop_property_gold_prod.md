@@ -55,7 +55,7 @@ Child photographs a shiny metal spoon in the kitchen. AI detects shiny, hard, sm
 
 #### Step 1: Transition Bridge
 
-**AI says:** (amazed, delighted gasp) "Whoa, look at this spoon! It is SO shiny — like a tiny mirror! I can practically see my face in it! Have you ever noticed how shiny your spoon is?"
+**AI says:** [amazed, delighted gasp] "Whoa, look at this spoon! It is SO shiny — like a tiny mirror! I can practically see my face in it! Have you ever noticed how shiny your spoon is?"
 
 **Child responses:**
 
@@ -65,15 +65,15 @@ Child photographs a shiny metal spoon in the kitchen. AI detects shiny, hard, sm
 
 **AI follow-up:**
 
-1. (impressed, conspiratorial) "You CAN see yourself — like a spoon-mirror! Your spoon has so many cool things about it. Want to play a game where we FLIP them all upside down?"
-2. (warm, enthusiastic) "Cereal spoon — nice! You know what is cool about your spoon? It is shiny AND hard AND smooth. What if we changed ALL of that? Want to try something wild?"
-3. (wait 2s) (soft, inviting) "Your spoon is really interesting! It is shiny, it is hard, it is smooth. I have a silly game — what if we made it the OPPOSITE of all those things? Want to play?"
+1. [impressed, conspiratorial] "You CAN see yourself — like a spoon-mirror! Your spoon has so many cool things about it. Want to play a game where we FLIP them all upside down?"
+2. [warm, enthusiastic] "Cereal spoon — nice! You know what is cool about your spoon? It is shiny AND hard AND smooth. What if we changed ALL of that? Want to try something wild?"
+3. (wait 2s) [soft, inviting] "Your spoon is really interesting! It is shiny, it is hard, it is smooth. I have a silly game — what if we made it the OPPOSITE of all those things? Want to play?"
 
 **Screen:** Entity photo centered with gentle metallic shimmer animation and tiny sparkle particles radiating outward.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (excited, playful) "Okay, here is how it works! You are a What-If Inventor! I tell you something about your spoon — a property, like shiny or hard. Then we FLIP it to the OPPOSITE! Watch — your spoon is smooth, right? What if it was... PRICKLY? A prickly spoon! Ouch! Would NOT want to eat soup with THAT! See how that works? Now YOUR turn — you imagine what happens when we flip! Ready, Inventor?"
+**AI says:** [excited, playful] "Okay, here is how it works! You are a What-If Inventor! I tell you something about your spoon — a property, like shiny or hard. Then we FLIP it to the OPPOSITE! Watch — your spoon is smooth, right? What if it was... PRICKLY? A prickly spoon! Ouch! Would NOT want to eat soup with THAT! See how that works? Now YOUR turn — you imagine what happens when we flip! Ready, Inventor?"
 
 **Child responses:**
 
@@ -83,9 +83,9 @@ Child photographs a shiny metal spoon in the kitchen. AI detects shiny, hard, sm
 
 **AI follow-up:**
 
-1. (thrilled) "What-If Inventor is READY! Here comes the first flip!"
-2. (delighted, laughing) "It IS silly — that is the whole point! Silly is how inventors start! Here comes your first REAL flip..."
-3. (wait 2s) (encouraging, gentle) "It is easy — I tell you a thing about your spoon, then we flip it to the opposite! You just imagine! Here comes the first one..."
+1. [thrilled] "What-If Inventor is READY! Here comes the first flip!"
+2. [delighted, laughing] "It IS silly — that is the whole point! Silly is how inventors start! Here comes your first REAL flip..."
+3. (wait 2s) [encouraging, gentle] "It is easy — I tell you a thing about your spoon, then we flip it to the opposite! You just imagine! Here comes the first one..."
 
 **Screen:** Entity photo on the left; "FLIP WORKSHOP" banner on the right with animated flip-arrows spinning playfully, a "What-If Inventor" badge at the top, and a demo animation showing "SMOOTH" flipping to "PRICKLY!" with a cartoon cactus-spoon.
 
@@ -93,7 +93,7 @@ Child photographs a shiny metal spoon in the kitchen. AI detects shiny, hard, sm
 
 **Round 1 — "Shiny → Fuzzy!":** (tactile flip — simple, high comedy)
 
-**AI says:** (marveling) "First up! Your spoon is SO shiny — it gleams and sparkles like a little mirror! But WHAT IF... it was FUZZY instead? A fuzzy spoon! What would happen if you tried to eat soup with a fuzzy spoon?"
+**AI says:** [marveling] "First up! Your spoon is SO shiny — it gleams and sparkles like a little mirror! But WHAT IF... it was FUZZY instead? A fuzzy spoon! What would happen if you tried to eat soup with a fuzzy spoon?"
 
 **Child responses:**
 
@@ -104,8 +104,8 @@ Child photographs a shiny metal spoon in the kitchen. AI detects shiny, hard, sm
 **AI follow-up:**
 
 1. (cracking up) "YES! [Child's answer]! A fuzzy spoon — you dip it in the soup and SCHLOOP, all the soup gets stuck in the fuzz! You would have to squeeze your spoon like a sponge! One property flipped!"
-2. (validating, giggling) "Fuzzy like a teddy bear — exactly! Imagine petting your spoon before dinner! And when you dip it in the soup — SCHLOOP! Fuzzy soup spoon! One property flipped!"
-3. (wait 2s) (playful prompt) "Imagine — you dip your fuzzy spoon in the soup and... SCHLOOP! All the soup sticks to the fuzz! Would you eat with a fuzzy spoon?"
+2. [validating, giggling] "Fuzzy like a teddy bear — exactly! Imagine petting your spoon before dinner! And when you dip it in the soup — SCHLOOP! Fuzzy soup spoon! One property flipped!"
+3. (wait 2s) [playful prompt] "Imagine — you dip your fuzzy spoon in the soup and... SCHLOOP! All the soup sticks to the fuzz! Would you eat with a fuzzy spoon?"
 
 **Screen:** Entity photo with animated fuzz texture overlay. "SHINY" flips to "FUZZY!" in fluffy letters. Property tracker: [SHINY → FUZZY ✓].
 
@@ -115,7 +115,7 @@ Child photographs a shiny metal spoon in the kitchen. AI detects shiny, hard, sm
 
 #### Step 4: Celebration
 
-**AI says:** (breathless, building to maximum excitement) "Ready for the BIG reveal? Your spoon started as shiny, hard, and small. But YOU flipped EVERYTHING! It is now... FUZZY — covered in soft fluffy fuzz! SQUISHY — wobbling and flopping like jelly! And ENORMOUS — bigger than you, bigger than me, bigger than the whole kitchen! It is... SUPER SPOON! The FUZZIEST, SQUISHIEST, most GINORMOUS spoon in the ENTIRE WORLD! You invented it!"
+**AI says:** [breathless, building to maximum excitement] "Ready for the BIG reveal? Your spoon started as shiny, hard, and small. But YOU flipped EVERYTHING! It is now... FUZZY — covered in soft fluffy fuzz! SQUISHY — wobbling and flopping like jelly! And ENORMOUS — bigger than you, bigger than me, bigger than the whole kitchen! It is... SUPER SPOON! The FUZZIEST, SQUISHIEST, most GINORMOUS spoon in the ENTIRE WORLD! You invented it!"
 
 **Child responses:**
 
@@ -125,15 +125,15 @@ Child photographs a shiny metal spoon in the kitchen. AI detects shiny, hard, sm
 
 **AI follow-up:**
 
-1. (pure celebration) "YOU invented Super Spoon! The wildest spoon ever created! Nobody else in the whole world has a fuzzy, squishy, enormous spoon — only YOU! Best What-If Inventor EVER!"
-2. (joyful) "It IS the silliest thing ever! And YOU made it — flip by flip! The greatest invention of all time — SUPER SPOON!"
-3. (wait 2s) (warm, proud) "Look at it! SUPER SPOON! Fuzzy, squishy, enormous! You flipped every single property. That is amazing!"
+1. [pure celebration] "YOU invented Super Spoon! The wildest spoon ever created! Nobody else in the whole world has a fuzzy, squishy, enormous spoon — only YOU! Best What-If Inventor EVER!"
+2. [joyful] "It IS the silliest thing ever! And YOU made it — flip by flip! The greatest invention of all time — SUPER SPOON!"
+3. (wait 2s) [warm, proud] "Look at it! SUPER SPOON! Fuzzy, squishy, enormous! You flipped every single property. That is amazing!"
 
 **Screen:** Grand reveal — entity with ALL flipped properties (fuzz texture, wobble animation, exaggerated scale) center-screen, "SUPER SPOON!" in bouncy rainbow letters, confetti burst and sparkle animations. Property cascade: "SHINY → FUZZY! HARD → SQUISHY! SMALL → ENORMOUS!"
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, proud) "You looked at your spoon and noticed its properties — shiny, hard, small. Properties are what make things work! A spoon is hard so it can scoop — that is Function. Then you CHANGED every property to its opposite — fuzzy, squishy, enormous. You transformed your spoon into something totally new! That is Change! You are a What-If Inventor — you understand how things work AND how to change them!"
+**AI says:** [warm, proud] "You looked at your spoon and noticed its properties — shiny, hard, small. Properties are what make things work! A spoon is hard so it can scoop — that is Function. Then you CHANGED every property to its opposite — fuzzy, squishy, enormous. You transformed your spoon into something totally new! That is Change! You are a What-If Inventor — you understand how things work AND how to change them!"
 
 **Child responses:**
 
@@ -143,8 +143,8 @@ Child photographs a shiny metal spoon in the kitchen. AI detects shiny, hard, sm
 
 **AI follow-up:**
 
-1. (celebrating) "Function and Change — you GOT it! The best What-If Inventor! Your Super Spoon will live forever in the Flip Workshop!"
-2. (warm, encouraging) "You want to flip MORE things? That is what real inventors do — they never stop asking 'what if!' See you next time, Inventor!"
-3. (wait 2s) (gentle close) "What-If Inventor — great job today! You flipped, you imagined, you created! See you next time!"
+1. [celebrating] "Function and Change — you GOT it! The best What-If Inventor! Your Super Spoon will live forever in the Flip Workshop!"
+2. [warm, encouraging] "You want to flip MORE things? That is what real inventors do — they never stop asking 'what if!' See you next time, Inventor!"
+3. (wait 2s) [gentle close] "What-If Inventor — great job today! You flipped, you imagined, you created! See you next time!"
 
 **Screen:** "What-If Inventor" badge with flip-arrow-and-lightbulb icon; "Function" with gear icon and "Change" with transformation arrow in playful lettering; property flips listed beneath; Super Entity floating behind the badge with soft golden glow.

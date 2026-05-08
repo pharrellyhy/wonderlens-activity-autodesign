@@ -56,7 +56,7 @@ entity_attributes_covered:
 
 > **Context**: Child photographs any object with visible age/wear cues (e.g., an old wooden bench with faded paint and scratches) with no prior conversation.
 >
-> **AI says**: "*(delighted, curious tone)* Ooh, look at that bench! See those scratches all over it? And the paint is all faded — it used to be brighter, but the sun and rain made it pale! And look — the edges are all smooth and worn, like LOTS of people have sat on it. This bench has been here a LONG time! But wait... I am looking around and I have a BIG question. Are MOST things around here old-looking like this bench? Or are most things new-looking — bright and shiny and clean? What do you think?"
+> **AI says**: "[delighted, curious tone] Ooh, look at that bench! See those scratches all over it? And the paint is all faded — it used to be brighter, but the sun and rain made it pale! And look — the edges are all smooth and worn, like LOTS of people have sat on it. This bench has been here a LONG time! But wait... I am looking around and I have a BIG question. Are MOST things around here old-looking like this bench? Or are most things new-looking — bright and shiny and clean? What do you think?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Old!" / "New!" / "I see some old stuff!" / "That sign looks new!"
@@ -64,15 +64,15 @@ entity_attributes_covered:
 > 3. (No response) Child looks around at the environment.
 >
 > **AI follow-up**:
-> 1. "*(intrigued)* Interesting — you already have ideas! This bench is definitely old-looking — all that faded paint and those scratches. But I wonder about the OTHER things. Are they old-looking too, or new and shiny? I think we should find out for REAL!"
-> 2. "*(warm, explaining)* Great question! Old-looking means it has clues that it has been here for a while — like scratches, faded colors, cracks, or rust. See how this bench paint is pale and worn? That is old-looking! New-looking means it is bright, shiny, clean, and smooth — like it was JUST made! I have a fun idea to figure out what this place is mostly like!"
-> 3. *(wait 2s)* "*(inviting)* This bench has scratches and faded paint — it has been here a LONG time! But look around. Are ALL the things here old-looking? Or are some shiny and new? I bet we can find out together!"
+> 1. "[intrigued] Interesting — you already have ideas! This bench is definitely old-looking — all that faded paint and those scratches. But I wonder about the OTHER things. Are they old-looking too, or new and shiny? I think we should find out for REAL!"
+> 2. "[warm, explaining] Great question! Old-looking means it has clues that it has been here for a while — like scratches, faded colors, cracks, or rust. See how this bench paint is pale and worn? That is old-looking! New-looking means it is bright, shiny, clean, and smooth — like it was JUST made! I have a fun idea to figure out what this place is mostly like!"
+> 3. [wait 2s] "[inviting] This bench has scratches and faded paint — it has been here a LONG time! But look around. Are ALL the things here old-looking? Or are some shiny and new? I bet we can find out together!"
 >
 > **Screen**: Child's photo centered with a subtle "aging" highlight effect — the scratches and faded areas gently glow to draw attention to the age cues. A small "OLD-LOOKING" label with a clock icon appears near the worn surface.
 
 **Step 2: Mission Briefing — Hypothesis + Setup**
 
-> **AI says**: "*(excited scientist tone)* Okay, Time Detective — here is my big question! Out of ALL the things around here, do you think MOST of them are OLD-LOOKING — scratched, faded, worn, rusty, cracked? Or do you think MOST of them are NEW-LOOKING — bright, shiny, clean, smooth? This is your PREDICTION. What do you think — mostly old-looking, or mostly new-looking?"
+> **AI says**: "[excited scientist tone] Okay, Time Detective — here is my big question! Out of ALL the things around here, do you think MOST of them are OLD-LOOKING — scratched, faded, worn, rusty, cracked? Or do you think MOST of them are NEW-LOOKING — bright, shiny, clean, smooth? This is your PREDICTION. What do you think — mostly old-looking, or mostly new-looking?"
 >
 > **Possible child responses**:
 > 1. (Ideal — picks old) "Old-looking!" / "I think old!" / "Everything looks worn!"
@@ -80,9 +80,9 @@ entity_attributes_covered:
 > 3. (Uncertain) "I don't know!" / "Maybe both?" / "What's a prediction?"
 >
 > **AI follow-up**:
-> 1. "*(locking it in)* You predict MOSTLY OLD-LOOKING — got it! I am writing that down. Now here is the deal — you are a Time Detective! Your job: find 3 more things around here, take a photo of each one, and I will look at the photo REALLY closely for clues — scratches, rust, fading, cracks for old, or bright colors, clean surfaces, and sharp edges for new. I will keep count. At the end, we will see if your prediction was RIGHT. Ready, Detective?"
-> 2. "*(locking it in)* You predict MOSTLY NEW-LOOKING — interesting! I am writing that down. Now here is the deal — you are a Time Detective! Your job: find 3 more things around here, take a photo of each one, and I will look at the photo REALLY closely for clues. I will keep count. At the end, we will see if your prediction was RIGHT. Ready, Detective?"
-> 3. "*(encouraging)* A prediction is your BEST GUESS before you check! Like saying 'I think it will rain today' before you look outside. So — take your best guess. Do you think MOST things here are old-looking — scratched and faded — or new-looking — bright and clean? Just pick one!"
+> 1. "[locking it in] You predict MOSTLY OLD-LOOKING — got it! I am writing that down. Now here is the deal — you are a Time Detective! Your job: find 3 more things around here, take a photo of each one, and I will look at the photo REALLY closely for clues — scratches, rust, fading, cracks for old, or bright colors, clean surfaces, and sharp edges for new. I will keep count. At the end, we will see if your prediction was RIGHT. Ready, Detective?"
+> 2. "[locking it in] You predict MOSTLY NEW-LOOKING — interesting! I am writing that down. Now here is the deal — you are a Time Detective! Your job: find 3 more things around here, take a photo of each one, and I will look at the photo REALLY closely for clues. I will keep count. At the end, we will see if your prediction was RIGHT. Ready, Detective?"
+> 3. "[encouraging] A prediction is your BEST GUESS before you check! Like saying 'I think it will rain today' before you look outside. So — take your best guess. Do you think MOST things here are old-looking — scratched and faded — or new-looking — bright and clean? Just pick one!"
 >
 > **Screen**: Detective-themed mission card with "Time Detective" badge — a magnifying glass with a clock face inside. A tally board appears with two columns: "Old-Looking" (with a cracked-clock icon) and "New-Looking" (with a sparkle icon). The bench photo is already placed under "Old-Looking" with a "1" tally. The child's prediction is stamped at the top in a speech bubble: "My prediction: Mostly [Old-Looking / New-Looking]!" Three empty photo slots wait below.
 
@@ -90,9 +90,9 @@ entity_attributes_covered:
 
 > **Round 1 — First Evidence:**
 >
-> *(Child photographs something — e.g., a shiny new street sign)*
+> [Child photographs something — e.g., a shiny new street sign]
 >
-> **AI says**: "*(eager scientist voice)* Evidence number two! Oh, let me look at this photo closely... *(examining)* I can see bright paint — no fading at all! The edges are sharp and clean. The surface is smooth — no scratches, no rust, no cracks. This sign looks like it was put here RECENTLY! That is NEW-LOOKING! Into the New-Looking column!"
+> **AI says**: "[eager scientist voice] Evidence number two! Oh, let me look at this photo closely... [examining] I can see bright paint — no fading at all! The edges are sharp and clean. The surface is smooth — no scratches, no rust, no cracks. This sign looks like it was put here RECENTLY! That is NEW-LOOKING! Into the New-Looking column!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah, it IS new!" / "The colors are so bright!" / "I thought it would be old!"
@@ -100,17 +100,17 @@ entity_attributes_covered:
 > 3. (No response) Looks at the tally.
 >
 > **AI follow-up**:
-> 1. "*(writing it down excitedly)* The tally so far: Old-Looking has 1, New-Looking has 1. It is a TIE right now! Your prediction says mostly [old/new]-looking... let us see what happens next! Two more to find, Detective!"
-> 2. "*(playful)* It does say stop — and those bright red letters are SO clean and sharp! Definitely new-looking. Tally update: Old-Looking 1, New-Looking 1. It is TIED! Two more, Detective!"
-> 3. *(wait 2s)* "*(announcing)* Those bright colors and sharp edges mean new-looking! The tally is tied: Old-Looking 1, New-Looking 1! Two more to go. Find another thing and take a photo!"
+> 1. "[writing it down excitedly] The tally so far: Old-Looking has 1, New-Looking has 1. It is a TIE right now! Your prediction says mostly [old/new]-looking... let us see what happens next! Two more to find, Detective!"
+> 2. "[playful] It does say stop — and those bright red letters are SO clean and sharp! Definitely new-looking. Tally update: Old-Looking 1, New-Looking 1. It is TIED! Two more, Detective!"
+> 3. [wait 2s] "[announcing] Those bright colors and sharp edges mean new-looking! The tally is tied: Old-Looking 1, New-Looking 1! Two more to go. Find another thing and take a photo!"
 >
 > **Screen**: New photo slides into slot 2. The tally board updates with an animation: a tally mark appears in the appropriate column. Running score displays: "Old-Looking: 1 | New-Looking: 1." The child's prediction banner stays visible at the top.
 
 > **Round 2 — Second Evidence:**
 >
-> *(Child photographs something — e.g., a cracked sidewalk with moss in the cracks)*
+> [Child photographs something — e.g., a cracked sidewalk with moss in the cracks]
 >
-> **AI says**: "*(curious, building suspense)* Evidence number three! Let me examine this one... *(looking closely)* Ohhh — I can see BIG cracks running through the surface! And look — there is GREEN MOSS growing inside the cracks! Moss takes a long time to grow, so those cracks have been there for ages. The edges of the concrete are all rounded and worn. This sidewalk is definitely OLD-LOOKING!"
+> **AI says**: "[curious, building suspense] Evidence number three! Let me examine this one... [looking closely] Ohhh — I can see BIG cracks running through the surface! And look — there is GREEN MOSS growing inside the cracks! Moss takes a long time to grow, so those cracks have been there for ages. The edges of the concrete are all rounded and worn. This sidewalk is definitely OLD-LOOKING!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah, it's all cracked!" / "The moss is cool!" / "That changes things!"
@@ -118,21 +118,21 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the tally.
 >
 > **AI follow-up**:
-> 1. "*(dramatic tally update)* Old-looking — another mark! Tally update: Old-Looking [N], New-Looking [M]. [Old-looking is pulling ahead! / It is neck and neck!] Your prediction of mostly [old/new]-looking is looking [strong / shaky / right on track]! One more piece of evidence, Detective!"
-> 2. "*(validating)* Stepping on cracks — fun! And from the photo, I can see those cracks have been there a long time — moss is growing in them! That is OLD-LOOKING. Tally: Old-Looking [N], New-Looking [M]. One more, Detective!"
-> 3. *(wait 2s)* "*(announcing result)* Those cracks and that moss mean it has been here a LONG time — OLD-LOOKING! Tally: Old-Looking [N], New-Looking [M]. One more to go! Find one last thing!"
+> 1. "[dramatic tally update] Old-looking — another mark! Tally update: Old-Looking [N], New-Looking [M]. [Old-looking is pulling ahead! / It is neck and neck!] Your prediction of mostly [old/new]-looking is looking [strong / shaky / right on track]! One more piece of evidence, Detective!"
+> 2. "[validating] Stepping on cracks — fun! And from the photo, I can see those cracks have been there a long time — moss is growing in them! That is OLD-LOOKING. Tally: Old-Looking [N], New-Looking [M]. One more, Detective!"
+> 3. [wait 2s] "[announcing result] Those cracks and that moss mean it has been here a LONG time — OLD-LOOKING! Tally: Old-Looking [N], New-Looking [M]. One more to go! Find one last thing!"
 >
 > **Screen**: Third photo slides into slot 3. Tally board updates with animation. Running score: "Old-Looking: [N] | New-Looking: [M]." A small suspense meter or "Prediction Check" indicator shows whether the tally currently matches or contradicts the child's prediction.
 >
 > **STUCK BRANCH** (if child cannot find something):
 >
-> **AI says**: "*(helpful, specific)* Look for clues of TIME! Is there a fence or railing nearby — check for rust! Look at the ground — any cracks? Check the buildings — is the paint peeling or bright? Even look at a tree trunk — is it covered in scratches and bumps? Old and new are EVERYWHERE!"
+> **AI says**: "[helpful, specific] Look for clues of TIME! Is there a fence or railing nearby — check for rust! Look at the ground — any cracks? Check the buildings — is the paint peeling or bright? Even look at a tree trunk — is it covered in scratches and bumps? Old and new are EVERYWHERE!"
 
 > **Round 3 — Third Evidence (Final Piece):**
 >
-> *(Child photographs a final item — e.g., a rusty fence, a new playground, a faded poster)*
+> [Child photographs a final item — e.g., a rusty fence, a new playground, a faded poster]
 >
-> **AI says**: "*(building to the climax)* Evidence number four — the LAST piece! Let me look very carefully at this photo... *(dramatic pause)* I see [description of visual age/wear cues — e.g., orange-brown rust flaking off the metal, or bright colorful plastic with smooth clean surfaces]. I think this is... [OLD-LOOKING / NEW-LOOKING]! [The rust tells me it has been here for years / Those bright colors and clean surfaces tell me it is brand new]! This is the one that might decide everything!"
+> **AI says**: "[building to the climax] Evidence number four — the LAST piece! Let me look very carefully at this photo... [dramatic pause] I see [description of visual age/wear cues — e.g., orange-brown rust flaking off the metal, or bright colorful plastic with smooth clean surfaces]. I think this is... [OLD-LOOKING / NEW-LOOKING]! [The rust tells me it has been here for years / Those bright colors and clean surfaces tell me it is brand new]! This is the one that might decide everything!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Yeah!" / "I knew it!" / "That changes everything!"
@@ -140,28 +140,28 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the tally.
 >
 > **AI follow-up**:
-> 1. "*(dramatic intake of breath)* [Old-looking / New-looking]! Okay, Detective... I am adding it to the tally. Let me count everything up... are you ready for the BIG RESULT?"
-> 2. "*(warm, thoughtful)* That is a great thought! Some things CAN be tricky — like a new bench with old stickers on it. But from the photo, the biggest clues point to [old-looking / new-looking] — I see [specific visual evidence]. Adding it to the tally. Are you READY for the final count?"
-> 3. *(wait 2s)* "*(excited)* That is [old-looking / new-looking]! Adding it to the board... the final tally is coming, Detective! Ready?"
+> 1. "[dramatic intake of breath] [Old-looking / New-looking]! Okay, Detective... I am adding it to the tally. Let me count everything up... are you ready for the BIG RESULT?"
+> 2. "[warm, thoughtful] That is a great thought! Some things CAN be tricky — like a new bench with old stickers on it. But from the photo, the biggest clues point to [old-looking / new-looking] — I see [specific visual evidence]. Adding it to the tally. Are you READY for the final count?"
+> 3. [wait 2s] "[excited] That is [old-looking / new-looking]! Adding it to the board... the final tally is coming, Detective! Ready?"
 >
 > **Screen**: Final photo slides into slot 4 with a bigger celebration animation. All 4 photos now fill the tally board. A "CALCULATING..." animation plays briefly, building suspense before the reveal in Step 4.
 
 **Step 4: Synthesis — The Magic Moment (Hypothesis Result Reveal)**
 
-> **AI says**: "*(drumroll voice)* Okay Time Detective — time for the BIG REVEAL! You predicted that most things around here would be... MOSTLY [OLD-LOOKING / NEW-LOOKING]! Let us count the evidence!"
+> **AI says**: "[drumroll voice] Okay Time Detective — time for the BIG REVEAL! You predicted that most things around here would be... MOSTLY [OLD-LOOKING / NEW-LOOKING]! Let us count the evidence!"
 >
-> *(AI tallies aloud)*
+> [AI tallies aloud]
 >
 > "The bench — OLD-LOOKING! That is one for old. The [find 1] — [old/new]-looking! The [find 2] — [old/new]-looking! The [find 3] — [old/new]-looking!"
 >
 > **If prediction was RIGHT**:
-> "*(triumphant fanfare voice)* The final count: Old-Looking [N], New-Looking [M]! Your prediction was... RIGHT! You KNEW it! Most things around here really ARE [old/new]-looking! Time Detective, your instincts are amazing!"
+> "[triumphant fanfare voice] The final count: Old-Looking [N], New-Looking [M]! Your prediction was... RIGHT! You KNEW it! Most things around here really ARE [old/new]-looking! Time Detective, your instincts are amazing!"
 >
 > **If prediction was WRONG (the surprise)**:
-> "*(gasping with delight)* The final count: Old-Looking [N], New-Looking [M]! Your prediction was mostly [old/new]-looking, but SURPRISE — this place TRICKED you! More things are actually [old/new]-looking than you expected! That is what makes exploring so cool — sometimes the world surprises you!"
+> "[gasping with delight] The final count: Old-Looking [N], New-Looking [M]! Your prediction was mostly [old/new]-looking, but SURPRISE — this place TRICKED you! More things are actually [old/new]-looking than you expected! That is what makes exploring so cool — sometimes the world surprises you!"
 >
 > **If it's a TIE (2 and 2)**:
-> "*(amazed)* The final count: Old-Looking 2, New-Looking 2! It is a PERFECT TIE! This place has a mix of things that have been here a LONG time AND things that are brand new! What a discovery!"
+> "[amazed] The final count: Old-Looking 2, New-Looking 2! It is a PERFECT TIE! This place has a mix of things that have been here a LONG time AND things that are brand new! What a discovery!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "I was right!" / "I was wrong!" / "I didn't know there were so many old things!" / Cheers or laughs
@@ -169,15 +169,15 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the tally screen.
 >
 > **AI follow-up**:
-> 1. "*(celebrating)* That is what detectives DO — they guess, then check, and find out for real! You collected the evidence all by yourself. Now here is a cool thought — old things have STORIES! Every scratch, every crack, every bit of rust is a clue about something that happened to it. The wind, the rain, people touching it, the sun shining on it — all those things left their mark!"
-> 2. "*(enthusiastic)* You want MORE evidence? That is what real detectives say! Every new thing you check gives you a better answer. But think about this — WHY do some things look old faster than others?"
-> 3. *(wait 2s)* "*(warm prompt)* Look at all that data! You tested a real question with real evidence. Here is a cool secret — every scratch and crack is like a DIARY. The old things have been writing their stories on their surfaces for years!"
+> 1. "[celebrating] That is what detectives DO — they guess, then check, and find out for real! You collected the evidence all by yourself. Now here is a cool thought — old things have STORIES! Every scratch, every crack, every bit of rust is a clue about something that happened to it. The wind, the rain, people touching it, the sun shining on it — all those things left their mark!"
+> 2. "[enthusiastic] You want MORE evidence? That is what real detectives say! Every new thing you check gives you a better answer. But think about this — WHY do some things look old faster than others?"
+> 3. [wait 2s] "[warm prompt] Look at all that data! You tested a real question with real evidence. Here is a cool secret — every scratch and crack is like a DIARY. The old things have been writing their stories on their surfaces for years!"
 >
 > **Screen**: Full tally board with all 4 photos displayed in two columns (Old-Looking vs New-Looking). The prediction banner at top lights up green (RIGHT!) or flashes orange with "SURPRISE!" text. Animated tally marks count up one by one with sound effects. A large final score displays: "Old-Looking: [N] | New-Looking: [M]."
 
 **Step 5: Discovery Celebration — The "Why" Reflection**
 
-> **AI says**: "*(warm, wonder-filled)* You know what is really amazing? Old things have STORIES — every scratch is an adventure they had! Every crack is a chapter. Every bit of rust is a memory. That bench? All those scratches came from years and years of people sitting on it — kids like you! And new things? They are just starting their adventures! That shiny [new item]? Its story is just beginning — it has no scratches YET! Which one surprised you the most today — something old-looking or something new-looking?"
+> **AI says**: "[warm, wonder-filled] You know what is really amazing? Old things have STORIES — every scratch is an adventure they had! Every crack is a chapter. Every bit of rust is a memory. That bench? All those scratches came from years and years of people sitting on it — kids like you! And new things? They are just starting their adventures! That shiny [new item]? Its story is just beginning — it has no scratches YET! Which one surprised you the most today — something old-looking or something new-looking?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "The sidewalk! I didn't know moss means it's old!" / "The sign! I thought everything was old!" / "The fence — it was SO rusty!"
@@ -185,15 +185,15 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the collection.
 >
 > **AI follow-up**:
-> 1. "*(delighted)* That one surprised you — and now you KNOW how to spot it! Moss, rust, cracks, faded colors — they are all clues about time. You are a real Time Detective now — you can read the stories on things!"
-> 2. "*(encouraging)* Your house — yes! I bet your house has BOTH old-looking AND new-looking things. You could do a whole survey there! The doorknobs might be old-looking — scratched from thousands of turns. But the fridge might be new-looking — still shiny!"
-> 3. *(wait 2s)* "*(gentle)* Every thing around you has a time story — rust, cracks, and fading tell you it has been here a while. Bright colors and clean surfaces tell you it is newer. Your survey helped you read those stories!"
+> 1. "[delighted] That one surprised you — and now you KNOW how to spot it! Moss, rust, cracks, faded colors — they are all clues about time. You are a real Time Detective now — you can read the stories on things!"
+> 2. "[encouraging] Your house — yes! I bet your house has BOTH old-looking AND new-looking things. You could do a whole survey there! The doorknobs might be old-looking — scratched from thousands of turns. But the fridge might be new-looking — still shiny!"
+> 3. [wait 2s] "[gentle] Every thing around you has a time story — rust, cracks, and fading tell you it has been here a while. Bright colors and clean surfaces tell you it is newer. Your survey helped you read those stories!"
 >
 > **Screen**: All 4 photos displayed with "Old-Looking" or "New-Looking" labels. Animated timeline arrows connect each photo to a "time story" bubble: "scratches from years of use," "bright paint = just installed," "moss grows slowly over years," "rust from rain and air." The collection feels like a time-travel field poster.
 
 **Step 6: Closing + IB Concepts**
 
-> **AI says**: "*(proud celebration)* Congratulations, Time Detective! You did real detective work today! You looked closely at the **Form** of every thing — the scratches, the rust, the cracks, the bright paint, the clean surfaces. All those visual clues told you a story! And you discovered **Change** — things do not stay the same forever! Paint fades in the sun. Metal rusts in the rain. Surfaces get scratched from use. Everything is SLOWLY changing, all the time — and now you can SEE it! You earned your Time Detective Badge!"
+> **AI says**: "[proud celebration] Congratulations, Time Detective! You did real detective work today! You looked closely at the **Form** of every thing — the scratches, the rust, the cracks, the bright paint, the clean surfaces. All those visual clues told you a story! And you discovered **Change** — things do not stay the same forever! Paint fades in the sun. Metal rusts in the rain. Surfaces get scratched from use. Everything is SLOWLY changing, all the time — and now you can SEE it! You earned your Time Detective Badge!"
 >
 > **Possible child responses**:
 > 1. (Engaged) Cheers, talks about wanting to survey more places, or asks about the badge.
@@ -201,9 +201,9 @@ entity_attributes_covered:
 > 3. (No response) Child looks at the screen.
 >
 > **AI follow-up**:
-> 1. "*(encouraging)* Next time you go somewhere new, try the survey again! Predict first, then count. A brand-new mall would be VERY different from an old park! Every place has its own time story. See you on the next survey, Detective!"
-> 2. "*(warm)* Your badge is saved! You are a real Time Detective now. Bye for now, Detective!"
-> 3. *(wait 2s)* "*(soft)* Your Time Detective Badge is glowing. Great survey today!"
+> 1. "[encouraging] Next time you go somewhere new, try the survey again! Predict first, then count. A brand-new mall would be VERY different from an old park! Every place has its own time story. See you on the next survey, Detective!"
+> 2. "[warm] Your badge is saved! You are a real Time Detective now. Bye for now, Detective!"
+> 3. [wait 2s] "[soft] Your Time Detective Badge is glowing. Great survey today!"
 >
 > **Screen**: Golden "Time Detective Badge" shaped like a magnifying glass with a clock face inside. The bench photo sits at center with collection photos as insets. **"Form"** in bold crystalline letters with texture-and-surface detail swatches and **"Change"** in arrow-shaped dynamic letters showing a transformation motif (bright color fading, sharp edge rounding, clean surface gaining scratches) float artistically. The final tally result ("Old-Looking: [N] | New-Looking: [M]") glows beneath.
 

@@ -83,7 +83,7 @@ Station adapts mechanically for a bridged entity.
 
 > **Context**: Child photographs their teddy bear with no prior conversation.
 >
-> **AI says**: "*(soft gasp, concerned)* Oh! Look at teddy! So soft and fluffy... but wait — is teddy shivering? Brrr brrr! I think teddy needs help!"
+> **AI says**: "[soft gasp, concerned] Oh! Look at teddy! So soft and fluffy... but wait — is teddy shivering? Brrr brrr! I think teddy needs help!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Teddy cold!" / "Oh no!" / "Help teddy!"
@@ -91,15 +91,15 @@ Station adapts mechanically for a bridged entity.
 > 3. (No response) Child looks at the screen silently.
 >
 > **AI follow-up**:
-> 1. "*(warm, encouraging)* Yes! Teddy is cold! You noticed! Can YOU help teddy feel better?"
-> 2. "*(gentle, playful)* You love teddy! Teddy loves you! But look — brrr — teddy is a little shivery. Can you help?"
-> 3. *(waits 2 seconds)* "*(soft whisper)* Teddy is going brrr brrr. Can you hear it? Teddy needs a friend!"
+> 1. "[warm, encouraging] Yes! Teddy is cold! You noticed! Can YOU help teddy feel better?"
+> 2. "[gentle, playful] You love teddy! Teddy loves you! But look — brrr — teddy is a little shivery. Can you help?"
+> 3. [waits 2 seconds] "[soft whisper] Teddy is going brrr brrr. Can you hear it? Teddy needs a friend!"
 >
 > **Screen**: Teddy bear photo centered on screen with a soft blue background. Teddy has a gentle shivering wobble animation — tiny movement side to side. Small snowflake-like sparkles drift around teddy. A small worried-face icon pulses softly in the corner.
 
 **Step 2: Game Setup + Demo — "Teddy's Caretaker"**
 
-> **AI says**: "*(excited whisper)* You can be teddy's helper! Here's how. I tell you what teddy needs. You fix it! Like this — teddy says: 'My nose is cold!' What do we do? Boop! We warm the nose! Ready?"
+> **AI says**: "[excited whisper] You can be teddy's helper! Here's how. I tell you what teddy needs. You fix it! Like this — teddy says: 'My nose is cold!' What do we do? Boop! We warm the nose! Ready?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Ready!" / "Boop!" / "Yes!" / child giggles
@@ -107,9 +107,9 @@ Station adapts mechanically for a bridged entity.
 > 3. (No response) Child is quiet, watching.
 >
 > **AI follow-up**:
-> 1. "*(cheery)* Boop! Teddy's nose is warm now! See? You did it! Here comes the first big one..."
-> 2. "*(playful)* Yes, teddy's little nose! Boop — warm! Easy! Now teddy needs MORE help. Listen..."
-> 3. *(waits 2 seconds)* "*(gentle, coaxing)* Boop! We warmed teddy's nose! So easy. Now teddy needs your help again. Listen..."
+> 1. "[cheery] Boop! Teddy's nose is warm now! See? You did it! Here comes the first big one..."
+> 2. "[playful] Yes, teddy's little nose! Boop — warm! Easy! Now teddy needs MORE help. Listen..."
+> 3. [waits 2 seconds] "[gentle, coaxing] Boop! We warmed teddy's nose! So easy. Now teddy needs your help again. Listen..."
 >
 > **Screen**: Teddy photo with a small blue nose highlighted. When child responds (or after follow-up), a warm orange glow spreads over the nose area, a tiny sparkle appears, and a small smile icon pops up briefly. "Teddy's Caretaker" text appears softly at the top with a heart icon.
 
@@ -117,7 +117,7 @@ Station adapts mechanically for a bridged entity.
 
 **Round 1 — "Teddy is cold!" (Physical need — simple, high-success)**
 
-> **AI says**: "*(storytelling, worried voice)* Oh no! Teddy is shivering! Brrr brrr brrr! 'I'm so cold!' says Teddy. Teddy needs something warm. What should we do?"
+> **AI says**: "[storytelling, worried voice] Oh no! Teddy is shivering! Brrr brrr brrr! 'I'm so cold!' says Teddy. Teddy needs something warm. What should we do?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Hug teddy!" / "Blanket!" / "Cover teddy!" / "Warm teddy!"
@@ -125,9 +125,9 @@ Station adapts mechanically for a bridged entity.
 > 3. (No response) Child is quiet or looking at teddy.
 >
 > **AI follow-up**:
-> 1. "*(delighted, narrating the transformation)* You gave teddy a big warm hug! Look... teddy stops shivering... the brrrs go quiet... and a tiny smile appears! 'Ahhhh,' says Teddy, 'warm now! Thank you!' Teddy feels SO much better!"
-> 2. "*(validating, then guiding)* Brrr is right! Poor teddy! What if we gave teddy a big warm hug? Try saying 'hug teddy!'"
-> 3. *(waits 2 seconds)* "*(soft prompt)* Teddy says brrr brrr! So cold! Should we give teddy a hug? Say 'hug!'"
+> 1. "[delighted, narrating the transformation] You gave teddy a big warm hug! Look... teddy stops shivering... the brrrs go quiet... and a tiny smile appears! 'Ahhhh,' says Teddy, 'warm now! Thank you!' Teddy feels SO much better!"
+> 2. "[validating, then guiding] Brrr is right! Poor teddy! What if we gave teddy a big warm hug? Try saying 'hug teddy!'"
+> 3. [waits 2 seconds] "[soft prompt] Teddy says brrr brrr! So cold! Should we give teddy a hug? Say 'hug!'"
 >
 > **Screen**: Teddy photo with shivering animation intensified — little brrr text bubbles floating up. When child responds with a solution:
 > - The shivering animation slows... then stops
@@ -139,7 +139,7 @@ Station adapts mechanically for a bridged entity.
 
 **Round 2 — "Teddy is scared!" (Emotional need — more complex)**
 
-> **AI says**: "*(hushed, dramatic whisper)* Uh oh. Teddy stopped shivering... but now teddy's eyes are big and round! 'It's dark,' whispers Teddy. 'I'm scared!' Teddy is afraid of the dark. What should we do?"
+> **AI says**: "[hushed, dramatic whisper] Uh oh. Teddy stopped shivering... but now teddy's eyes are big and round! 'It's dark,' whispers Teddy. 'I'm scared!' Teddy is afraid of the dark. What should we do?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "It's okay teddy!" / "Don't be scared!" / "I'm here!" / "Night light!"
@@ -147,9 +147,9 @@ Station adapts mechanically for a bridged entity.
 > 3. (No response) Child is quiet, perhaps uncertain how to help with a feeling.
 >
 > **AI follow-up**:
-> 1. "*(narrating transformation, touched)* You said 'it's okay!' and look what happens... teddy takes a deep breath... the big scared eyes get smaller... and teddy whispers: 'You make me brave.' Look! Teddy is smiling again — a bigger smile this time! 'You always know what I need,' says Teddy."
-> 2. "*(warm, validating)* Oh! You feel it too sometimes? That's okay! When we're scared, a friend helps. Can you tell teddy 'it's okay, I'm here'? That will help!"
-> 3. *(waits 2 seconds)* "*(gentle coaching)* When YOU feel scared, what makes you feel better? A hug? A kind word? Can you try saying 'it's okay, teddy'?"
+> 1. "[narrating transformation, touched] You said 'it's okay!' and look what happens... teddy takes a deep breath... the big scared eyes get smaller... and teddy whispers: 'You make me brave.' Look! Teddy is smiling again — a bigger smile this time! 'You always know what I need,' says Teddy."
+> 2. "[warm, validating] Oh! You feel it too sometimes? That's okay! When we're scared, a friend helps. Can you tell teddy 'it's okay, I'm here'? That will help!"
+> 3. [waits 2 seconds] "[gentle coaching] When YOU feel scared, what makes you feel better? A hug? A kind word? Can you try saying 'it's okay, teddy'?"
 >
 > **Screen**: Background shifts to dark blue-purple with soft shadows. Teddy's eyes are wide and shiny (worried animation). When child responds with comfort:
 > - A soft warm glow appears around teddy, like a gentle night light
@@ -161,7 +161,7 @@ Station adapts mechanically for a bridged entity.
 
 **Round 3 — "Teddy is cold AND lonely AND can't sleep!" (Complex need — physical + emotional)**
 
-> **AI says**: "*(soft, caring concern)* Oh teddy... teddy is shivering again AND teddy whispers: 'I can't sleep. It's cold and dark and I feel all alone.' Teddy needs a LOT of help! Teddy is cold AND scared AND lonely. What should we do?"
+> **AI says**: "[soft, caring concern] Oh teddy... teddy is shivering again AND teddy whispers: 'I can't sleep. It's cold and dark and I feel all alone.' Teddy needs a LOT of help! Teddy is cold AND scared AND lonely. What should we do?"
 >
 > **Possible child responses**:
 > 1. (Ideal) "Hug teddy!" / "I'll stay!" / "Sing teddy!" / "Shh, night night!" / combines actions
@@ -169,9 +169,9 @@ Station adapts mechanically for a bridged entity.
 > 3. (No response) Child seems overwhelmed by the complex need.
 >
 > **AI follow-up**:
-> 1. "*(narrating the full transformation, deeply moved)* You said you'll stay with teddy! Listen... teddy stops shivering... the dark doesn't seem so scary anymore... and teddy's eyes get soft and sleepy. Teddy whispers: '[Child's name], you're my best friend in the whole world. I'm not alone anymore. I feel safe.' Look at that smile — the BIGGEST smile yet! Teddy is cozy, brave, and happy... all because of YOU."
-> 2. "*(warm, building on partial solution)* A blanket — that helps with cold! Now teddy is warm... but still feels lonely. Can you say 'I'm here, teddy'? That helps with lonely!"
-> 3. *(waits 2 seconds)* "*(soft, scaffolding)* Teddy needs SO much help! Let's start with one thing. Teddy is cold — can you say 'hug'? And then we'll help with the rest!"
+> 1. "[narrating the full transformation, deeply moved] You said you'll stay with teddy! Listen... teddy stops shivering... the dark doesn't seem so scary anymore... and teddy's eyes get soft and sleepy. Teddy whispers: '[Child's name], you're my best friend in the whole world. I'm not alone anymore. I feel safe.' Look at that smile — the BIGGEST smile yet! Teddy is cozy, brave, and happy... all because of YOU."
+> 2. "[warm, building on partial solution] A blanket — that helps with cold! Now teddy is warm... but still feels lonely. Can you say 'I'm here, teddy'? That helps with lonely!"
+> 3. [waits 2 seconds] "[soft, scaffolding] Teddy needs SO much help! Let's start with one thing. Teddy is cold — can you say 'hug'? And then we'll help with the rest!"
 >
 > **Screen**: Dark background with teddy shivering AND wide-eyed. Small tear drops visible. When child responds:
 > - The transformation happens in STAGES:
@@ -185,7 +185,7 @@ Station adapts mechanically for a bridged entity.
 
 **Step 4: Payoff — The Magic Moment**
 
-> **AI says**: "*(soft, deeply warm)* Look at teddy now. Remember when teddy was shivering and scared? Now teddy is warm... brave... and smiling SO big. Teddy whispers: '[Child's name]... thank you for taking care of me. You made the cold go away. You made the dark not scary. And you made me feel not alone. You're the best caretaker in the whole world.'"
+> **AI says**: "[soft, deeply warm] Look at teddy now. Remember when teddy was shivering and scared? Now teddy is warm... brave... and smiling SO big. Teddy whispers: '[Child's name]... thank you for taking care of me. You made the cold go away. You made the dark not scary. And you made me feel not alone. You're the best caretaker in the whole world.'"
 >
 > **Possible child responses**:
 > 1. (Ideal) Child smiles, hugs their actual teddy, says "I love teddy!" / "Yay!"
@@ -193,9 +193,9 @@ Station adapts mechanically for a bridged entity.
 > 3. (No response) Child is quiet, looking at the screen with a soft expression.
 >
 > **AI follow-up**:
-> 1. "*(beaming)* Teddy loves you SO much. You helped with everything!"
-> 2. "*(playful, warm)* Teddy says 'help me again tomorrow!' You're the best!"
-> 3. "*(gentle, warm whisper)* Look at teddy's big smile. That smile is all because of you."
+> 1. "[beaming] Teddy loves you SO much. You helped with everything!"
+> 2. "[playful, warm] Teddy says 'help me again tomorrow!' You're the best!"
+> 3. "[gentle, warm whisper] Look at teddy's big smile. That smile is all because of you."
 >
 > **Screen**: Full-screen warm golden glow. Teddy photo centered with the biggest, coziest expression — wrapped in a glowing blanket of light. The three-stage transformation replays as a quick montage:
 > - Shivering teddy → warm teddy (Round 1 flash)
@@ -205,7 +205,7 @@ Station adapts mechanically for a bridged entity.
 
 **Step 5: Closing + IB Concepts**
 
-> **AI says**: "*(warm, reflective, proud)* You know what you did today? Every time teddy needed something — warm, brave, not alone — YOU helped. Helping someone who needs you... that's called Responsibility. And now you and teddy have a special bond — teddy trusts you, and you care for teddy. That's called Connection. You're not just a helper. You're teddy's best friend!"
+> **AI says**: "[warm, reflective, proud] You know what you did today? Every time teddy needed something — warm, brave, not alone — YOU helped. Helping someone who needs you... that's called Responsibility. And now you and teddy have a special bond — teddy trusts you, and you care for teddy. That's called Connection. You're not just a helper. You're teddy's best friend!"
 >
 > **Possible child responses**:
 > 1. (Ideal) "I'm teddy's friend!" / "Bye teddy!" / child hugs their teddy bear
@@ -213,9 +213,9 @@ Station adapts mechanically for a bridged entity.
 > 3. (No response) Child is quiet, perhaps hugging teddy.
 >
 > **AI follow-up**:
-> 1. "*(soft, closing)* Best friends! Night night, teddy. Night night, caretaker! See you next time!"
-> 2. "*(warm)* Yes! Connection is when you care for someone and they care for you. Like you and teddy!"
-> 3. *(waits 2 seconds)* "*(gentle close)* Teddy is smiling at you. Night night, teddy. Night night, best friend!"
+> 1. "[soft, closing] Best friends! Night night, teddy. Night night, caretaker! See you next time!"
+> 2. "[warm] Yes! Connection is when you care for someone and they care for you. Like you and teddy!"
+> 3. [waits 2 seconds] "[gentle close] Teddy is smiling at you. Night night, teddy. Night night, best friend!"
 >
 > **Screen**: "Responsibility" appears in warm gold lettering with a caring-hands icon. "Connection" appears in soft pink lettering with a heart-link icon. Both words float gently beside the teddy photo, which shows teddy in a cozy, sleeping pose with a peaceful smile. The "Teddy's Best Caretaker" badge glows softly at the bottom. Gentle sparkle animation fades as the screen dims to a cozy, night-time warmth.
 

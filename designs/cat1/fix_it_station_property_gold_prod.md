@@ -56,7 +56,7 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 #### Step 1: Transition Bridge
 
-**AI says:** (soft gasp, noticing) "Oh! Look at your friend! They've had SO many adventures — I can tell! See how the color looks a little faded here? And is that a tiny loose thread? I think your friend might need some help. Even brave adventurers need a fix-it station!"
+**AI says:** [soft gasp, noticing] "Oh! Look at your friend! They've had SO many adventures — I can tell! See how the color looks a little faded here? And is that a tiny loose thread? I think your friend might need some help. Even brave adventurers need a fix-it station!"
 
 **Child responses:**
 
@@ -66,15 +66,15 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 **AI follow-up:**
 
-1. (warm) "Yes! You can see it too! You have such good eyes. I bet YOU could be the perfect fix-it helper. Want to try?"
-2. (gentle, validating) "Of COURSE you love them — that's why the color is a little faded — from all the hugs! But even the most loved friends need a little care sometimes. Want to help?"
-3. (wait 3s) (soft) "See how the color is a little lighter here? That means your friend has been loved A LOT. But they could use a little help. Can you be their fix-it helper?"
+1. [warm] "Yes! You can see it too! You have such good eyes. I bet YOU could be the perfect fix-it helper. Want to try?"
+2. [gentle, validating] "Of COURSE you love them — that's why the color is a little faded — from all the hugs! But even the most loved friends need a little care sometimes. Want to help?"
+3. (wait 3s) [soft] "See how the color is a little lighter here? That means your friend has been loved A LOT. But they could use a little help. Can you be their fix-it helper?"
 
 **Screen:** Entity photo centered with warm workshop background — wooden bench illustration, tiny tools (paintbrush, needle, cloth) around the edges; pulsing highlight on detected property; heart-shaped "needs help" indicator in the corner.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** (excited, warm) "Welcome to the Fix-It Station! I tell you what your friend needs. You tell me how to fix it! Like this — see this faded spot? Your friend says: 'My color is fading!' What do we do? Paint it! Swoosh! Color comes back! Easy! Ready for the real thing?"
+**AI says:** [excited, warm] "Welcome to the Fix-It Station! I tell you what your friend needs. You tell me how to fix it! Like this — see this faded spot? Your friend says: 'My color is fading!' What do we do? Paint it! Swoosh! Color comes back! Easy! Ready for the real thing?"
 
 **Child responses:**
 
@@ -84,9 +84,9 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 **AI follow-up:**
 
-1. (cheery) "Swoosh! Color is already brighter! You're a natural! Now here comes the FIRST big fix..."
-2. (playful) "Great question! Whatever color YOUR friend wants to be! Swoosh — beautiful! Now let's do the real fixing..."
-3. (wait 3s) (gentle) "Swoosh! We painted it! So easy. Your friend already looks a little happier. Now they need MORE help..."
+1. [cheery] "Swoosh! Color is already brighter! You're a natural! Now here comes the FIRST big fix..."
+2. [playful] "Great question! Whatever color YOUR friend wants to be! Swoosh — beautiful! Now let's do the real fixing..."
+3. (wait 3s) [gentle] "Swoosh! We painted it! So easy. Your friend already looks a little happier. Now they need MORE help..."
 
 **Screen:** Entity photo with faded area highlighted; on response, paint-swoosh animation brightens the spot, sparkle appears; "[Entity]'s Fix-It Station" text with wrench-and-heart icon at top.
 
@@ -94,7 +94,7 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 **Round 1 — "The color is fading!"** (Physical need — property-seeded, high-success)
 
-**AI says:** (storytelling, concerned) "Okay, fix-it helper — look closely! Your friend's color is fading. It used to be SO bright, but now it's getting pale. 'I used to be so colorful,' your friend says sadly. 'Can you bring my color back?' What should we do?"
+**AI says:** [storytelling, concerned] "Okay, fix-it helper — look closely! Your friend's color is fading. It used to be SO bright, but now it's getting pale. 'I used to be so colorful,' your friend says sadly. 'Can you bring my color back?' What should we do?"
 
 **Child responses:**
 
@@ -104,9 +104,9 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 **AI follow-up:**
 
-1. (delighted, narrating transformation) "You're painting the color back! Look... swoooosh... the faded parts are filling in... brighter... brighter... 'Oh!' says your friend, 'I can feel it! I'm getting brighter! Thank you, fix-it helper!' Look — you can SEE the difference!"
-2. (warm, guiding) "You're looking so carefully — that's a good fix-it helper! What if we tried painting the color back? Want to try saying 'paint it!'?"
-3. (wait 3s) (soft prompt) "Your friend's color is fading — they look so pale! What if we painted some color back? Say 'paint!' and watch what happens!"
+1. [delighted, narrating transformation] "You're painting the color back! Look... swoooosh... the faded parts are filling in... brighter... brighter... 'Oh!' says your friend, 'I can feel it! I'm getting brighter! Thank you, fix-it helper!' Look — you can SEE the difference!"
+2. [warm, guiding] "You're looking so carefully — that's a good fix-it helper! What if we tried painting the color back? Want to try saying 'paint it!'?"
+3. (wait 3s) [soft prompt] "Your friend's color is fading — they look so pale! What if we painted some color back? Say 'paint!' and watch what happens!"
 
 **Screen:** Entity with faded/desaturated filter; on response, paint-swoosh washes across, color saturates, expression shifts to relieved smile, speech bubble "I'm getting brighter!" and one floating star drifts up. Round 1 indicator with green wrench-checkmark.
 
@@ -116,7 +116,7 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 #### Step 4: Celebration
 
-**AI says:** (soft, deeply warm) "Look at your friend now. Remember when they were faded and tired and lonely? Now — the color is SO bright! They look rested and strong! And that smile... Your friend whispers: '[Child's name]... you fixed everything. You brought my color back. You let me rest. And you made sure I'll never feel alone. I'm not just fixed — I'm BETTER than ever. Because of you.'"
+**AI says:** [soft, deeply warm] "Look at your friend now. Remember when they were faded and tired and lonely? Now — the color is SO bright! They look rested and strong! And that smile... Your friend whispers: '[Child's name]... you fixed everything. You brought my color back. You let me rest. And you made sure I'll never feel alone. I'm not just fixed — I'm BETTER than ever. Because of you.'"
 
 **Child responses:**
 
@@ -126,13 +126,13 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 **AI follow-up:**
 
 1. (beaming) "ALL FIXED! And your friend looks better than ever. That's what a great fix-it helper does!"
-2. (playful, warm) "Your friend says 'Come fix me up again tomorrow!' The Fix-It Station is always open for you!"
+2. [playful, warm] "Your friend says 'Come fix me up again tomorrow!' The Fix-It Station is always open for you!"
 
 **Screen:** Full-screen warm golden workshop glow with entity centered in vibrant, restored color. Quick transformation montage (faded → colorful → tired → rested → lonely → happy). Golden badge "[Entity]'s Best Fix-It Helper" with wrench-and-heart icon, warm confetti, three stars in a row below the badge.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** (warm, reflective, proud) "Every time your friend needed something — color, rest, a friend who won't forget — YOU figured out what to do. Noticing what someone needs and doing something about it... that's Responsibility. And look at you two now — that special bond? That's Connection. You're not just a fix-it helper. You're the best friend anyone could ever have."
+**AI says:** [warm, reflective, proud] "Every time your friend needed something — color, rest, a friend who won't forget — YOU figured out what to do. Noticing what someone needs and doing something about it... that's Responsibility. And look at you two now — that special bond? That's Connection. You're not just a fix-it helper. You're the best friend anyone could ever have."
 
 **Child responses:**
 
@@ -142,8 +142,8 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 **AI follow-up:**
 
-1. (soft, closing) "The best fixer AND the best friend! The Fix-It Station is closing for today. See you next time, fix-it helper!"
-2. (warm) "Responsibility is when you notice someone needs help and you DO something! That's exactly what you did!"
-3. (gentle close) "Your friend is smiling at you. The Fix-It Station is closing... but that friendship? That stays open forever."
+1. [soft, closing] "The best fixer AND the best friend! The Fix-It Station is closing for today. See you next time, fix-it helper!"
+2. [warm] "Responsibility is when you notice someone needs help and you DO something! That's exactly what you did!"
+3. [gentle close] "Your friend is smiling at you. The Fix-It Station is closing... but that friendship? That stays open forever."
 
 **Screen:** "Responsibility" in warm copper with wrench-and-caring-hands icon, "Connection" in soft gold with heart-link icon, entity in bright restored state, "[Entity]'s Best Fix-It Helper" badge glowing softly at bottom.
