@@ -47,7 +47,7 @@
 
 1. [delighted] "Yes! This banana came from SO far away. It had a big adventure before it got to your table!"
 2. [playful, validating] "That's true, someone did bring it home! But before that, this banana went on a really long trip. A big adventure!"
-3. (wait 3s) [gentle, coaxing] "This banana is pretty quiet too. But I think it has a secret — it went on a big adventure!"
+3. [wait 3s] [gentle, coaxing] "This banana is pretty quiet too. But I think it has a secret — it went on a big adventure!"
 
 **Screen:** Banana photo centered with golden glow, sparkle animations, and a faint journey-path dotted line.
 
@@ -63,9 +63,9 @@
 
 **AI follow-up:**
 
-1. (enthusiastic) "Ha, I love that! The little banana bud, looking around at the big sunny world. Great reporting! Let's keep going with the next chapters."
+1. [enthusiastic] "Ha, I love that! The little banana bud, looking around at the big sunny world. Great reporting! Let's keep going with the next chapters."
 2. [playful, warm] "You're right, bananas are pretty quiet! But that's why they need a reporter — someone to imagine their story. You'd be great at it. Let's try!"
-3. (wait 3s) [encouraging] "Maybe the little banana said 'Hello, sunshine!' What do you think? You can say anything!"
+3. [wait 3s] [encouraging] "Maybe the little banana said 'Hello, sunshine!' What do you think? You can say anything!"
 
 **Screen:** Banana photo in top-right corner; illustrated "passport" book open to Page 1 showing a green banana bud on a tall plant, "Chapter 1" stamp, and a "Travel Reporter" press badge at the bottom.
 
@@ -85,7 +85,7 @@
 
 1. [excited] "Ooh, yes! The banana looks down and sees {child's answer}. That's amazing reporting! Did you know bananas grow in bunches called 'hands'? This banana had lots of friends up there."
 2. [delighted] "Whoa, {child's answer}! This banana has a wild imagination — just like you! It's hanging way up high with all its banana friends, looking at everything below."
-3. (wait 3s) [helpful] "Hmm, I think from way up there, the banana might see big green leaves and colorful birds. What else could be down there?"
+3. [wait 3s] [helpful] "Hmm, I think from way up there, the banana might see big green leaves and colorful birds. What else could be down there?"
 
 **Screen:** Passport Page 2 with green bananas on a plant, swaying leaves, pop-up icons matching the child's response, and a "Chapter 2" stamp.
 
@@ -107,9 +107,9 @@
 
 **AI follow-up:**
 
-1. (beaming) "The best Travel Reporter I know! That banana is lucky to have you."
+1. [beaming] "The best Travel Reporter I know! That banana is lucky to have you."
 2. [playful] "Yes! And now you know the amazing story of what you're eating. Every banana has a journey! You're an awesome Travel Reporter."
-3. (wait 3s) [warm] "Look at that badge — Travel Reporter! The banana says thank you for telling its story."
+3. [wait 3s] [warm] "Look at that badge — Travel Reporter! The banana says thank you for telling its story."
 
 **Screen:** Animated "Travel Reporter" badge with banana and passport icon, gold confetti, chime sound, and the child's banana photo inset.
 
@@ -127,7 +127,7 @@
 
 1. [warm closing] "It really is! Next time you see a piece of fruit, you can be its Travel Reporter too. Bye for now, Reporter!"
 2. [encouraging] "Great idea! Every piece of food has its own adventure. You can be a Travel Reporter for anything. See you next time!"
-3. (wait 3s) [gentle closing] "Every banana — every piece of fruit — has a story like this. You helped this one share it. See you next time, Travel Reporter!"
+3. [wait 3s] [gentle closing] "Every banana — every piece of fruit — has a story like this. You helped this one share it. See you next time, Travel Reporter!"
 
 **Screen:** "Change" and "Connection" in large hand-drawn lettering with a green-to-yellow banana animation and a dotted-line path connecting sun, plant, boat, store, and table icons. Passport with all stamps below, then a "See you next time, Travel Reporter!" fade-in.
 
@@ -177,8 +177,8 @@
 **AI follow-up:**
 
 1. [warm, impressed] "[Name] — what a perfect name! [Name] looks like a real adventurer in there, zooming and gliding. I bet you notice a LOT about how [name] moves, huh?"
-2. (enthusiastic) "Yes! Look at it go — swimming and gliding! Those little fins are working SO hard. You really watch your fish closely, huh?"
-3. (wait 2s) [soft, wondering] "This goldfish is so pretty — those floaty fins waving like tiny flags! I bet it has lots of secrets. Want to be a detective with me?"
+2. [enthusiastic] "Yes! Look at it go — swimming and gliding! Those little fins are working SO hard. You really watch your fish closely, huh?"
+3. [wait 2s] [soft, wondering] "This goldfish is so pretty — those floaty fins waving like tiny flags! I bet it has lots of secrets. Want to be a detective with me?"
 
 **Screen:** Goldfish photo centered with gentle blue water ripple animation and tiny bubble animations floating upward.
 
@@ -196,7 +196,7 @@
 
 1. [excited countdown] "Okay, Detective — here comes your first case! Listen carefully..."
 2. [delighted] "Yes! It eats the food — swish swish, right up to the top! You already know a lot. Let's see if you can guess even MORE. Here comes your first case!"
-3. (wait 2s) [encouraging, gentle] "It's easy — I'll say what happens, and you guess what the fish does. Any answer is great! Here's the first one..."
+3. [wait 2s] [encouraging, gentle] "It's easy — I'll say what happens, and you guess what the fish does. Any answer is great! Here's the first one..."
 
 **Screen:** Goldfish photo on the left; on the right, a "Detective Game" magnifying glass icon with a cause-and-effect demo animation (food flakes falling, goldfish zooming up) and a "Round 1" badge.
 
@@ -216,7 +216,7 @@
 
 1. [impressed detective voice] "Case SOLVED! The goldfish zooms right up to the top — swish goes that fan-shaped tail, pushing it up like a little paddle! The food CAUSES the fish to swim up. Nice detective work!"
 2. [warm validation] "Ooh, happy — yes! It gets excited! And when it's excited about food, it ZOOMS up with that swishy tail — swish swish! The food makes it move! Great thinking, Detective!"
-3. (wait 2s) [helpful, encouraging] "Here's a clue — the food is floating at the TOP. Where would the goldfish swim to get it? Up... or down?"
+3. [wait 2s] [helpful, encouraging] "Here's a clue — the food is floating at the TOP. Where would the goldfish swim to get it? Up... or down?"
 
 **Screen:** Goldfish bowl with food flakes drifting down; goldfish zooms upward with tail-swish motion lines; "CASE 1" stamp and golden star in the corner.
 
@@ -238,9 +238,9 @@
 
 **AI follow-up:**
 
-1. (beaming) "The BEST Goldfish Detective! Your goldfish is lucky to have someone who understands it so well."
+1. [beaming] "The BEST Goldfish Detective! Your goldfish is lucky to have someone who understands it so well."
 2. [delighted] "You want MORE? That means you're a REAL detective — always curious! We can play again another day. For now, let me tell you something amazing about what you just did..."
-3. (wait 2s) [warm whisper] "You know what? I think your goldfish felt it too — you really paid attention. That's what great detectives do."
+3. [wait 2s] [warm whisper] "You know what? I think your goldfish felt it too — you really paid attention. That's what great detectives do."
 
 **Screen:** Golden "GOLDFISH DETECTIVE" badge with the goldfish photo as a portrait inside, confetti and bubble animations, and a cheerful chime.
 
@@ -258,7 +258,7 @@
 
 1. [celebrating] "That's right — Causation and Function! You earned your badge, Goldfish Detective. Go say hi to your fish — I bet it knows you understand it now!"
 2. [warm, laughing] "Go ahead — your goldfish is lucky to have such a great detective taking care of it! See you next time, Goldfish Detective!"
-3. (wait 2s) [gentle closing] "Great job today, Detective. Your goldfish has a really smart friend. See you next time!"
+3. [wait 2s] [gentle closing] "Great job today, Detective. Your goldfish has a really smart friend. See you next time!"
 
 **Screen:** Detective badge centered with "Causation" and "Function" in golden lettering, each with a small icon (chain-link for Causation, gear for Function), goldfish photo glowing behind, and a gentle "The End" ribbon.
 
@@ -309,7 +309,7 @@
 
 1. [amazed] "WOW! So loud! Real lion roar!"
 2. [warm, delighted] "Your lion! Big roar inside!"
-3. (wait 2s) [playful whisper] "Psst... can you say RRRR?"
+3. [wait 2s] [playful whisper] "Psst... can you say RRRR?"
 
 **Screen:** Lion photo centered with warm golden sparkles and soft savanna-grass illustration framing the edges.
 
@@ -328,8 +328,8 @@
 **AI follow-up:**
 
 1. [cheering] "Let's go! First story!"
-2. (laughing) "Ha! Great roar! First story now!"
-3. (wait 2s) [encouraging] "Ready? Here comes a story for lion!"
+2. [laughing] "Ha! Great roar! First story now!"
+3. [wait 2s] [encouraging] "Ready? Here comes a story for lion!"
 
 **Screen:** "Roar Reporter" badge and microphone icon above the lion photo with a speech-bubble animation near the lion's mouth.
 
@@ -349,7 +349,7 @@
 
 1. [celebrating] "Yes! Happy RRRR! Warm sun makes soft roar!"
 2. [validating] "Sleepy lion! Tiny purr. Warm sun feels cozy."
-3. (wait 2s) [gentle prompt] "Maybe a little roar? Rrrr? The sun feels warm and fuzzy!"
+3. [wait 2s] [gentle prompt] "Maybe a little roar? Rrrr? The sun feels warm and fuzzy!"
 
 **Screen:** Lion photo with bright yellow sun animation above; warm rays pulse gently; golden musical notes float up when the child responds.
 
@@ -367,7 +367,7 @@
 
 **AI follow-up:**
 
-1. (beaming) "Best reporter! Every roar talked!"
+1. [beaming] "Best reporter! Every roar talked!"
 2. [warm] "Love roaring? Roar again later!"
 3. [gentle celebration] "Look at your badge! Roar Reporter — that's you!"
 
@@ -438,7 +438,7 @@
 
 1. [delighted] "Ooh, green! Cool green friend!"
 2. [warm, validating] "All of them? Wow! Which is silliest?"
-3. (wait 2s) [playful whisper] "Psst! I think that red one is waving at you!"
+3. [wait 2s] [playful whisper] "Psst! I think that red one is waving at you!"
 
 **Screen:** Crayon photo centered with rainbow sparkle animation and soft colorful particles floating up.
 
@@ -456,7 +456,7 @@
 
 1. [celebrating] "Yes! Color wizard! More feelings!"
 2. [warm, reassuring] "You ARE wizard! Happy? Sleepy? Silly?"
-3. (wait 2s) [encouraging whisper] "Try it! Say 'hee hee' like yellow!"
+3. [wait 2s] [encouraging whisper] "Try it! Say 'hee hee' like yellow!"
 
 **Screen:** Wizard hat icon above the crayon photo; yellow crayon wiggles with a "Hee hee!" speech bubble and sparkle effects.
 
@@ -476,7 +476,7 @@
 
 1. [amazed] "Happy red! Whooo! Great wizard!"
 2. [impressed] "Fire! Yes! Hot red! Excited red?"
-3. (wait 2s) [gentle prompt] "Hmm, is red happy? Or sleepy? Or silly? You pick!"
+3. [wait 2s] [gentle prompt] "Hmm, is red happy? Or sleepy? Or silly? You pick!"
 
 **Screen:** Red crayon glows and bounces; matching emoji face appears with sparkle burst when child answers; "Round 1" star in the corner.
 
@@ -565,7 +565,7 @@
 
 1. [excited, conspiratorial] "Okay, here's what we'll do — I'll tell you a moment, and YOU decide what song the piano would play. Ready?"
 2. [impressed] "That's so cool! Your piano must know SO many songs then. Let's see — can you guess what song it would pick for a really special moment?"
-3. (wait 2s) [playful whisper] "I think this piano wants to tell us something. Should we listen?"
+3. [wait 2s] [playful whisper] "I think this piano wants to tell us something. Should we listen?"
 
 **Screen:** Piano photo centered with gentle musical note animations floating upward and soft ambient sparkle.
 
@@ -583,7 +583,7 @@
 
 1. [excited] "Here we go! First moment coming up!"
 2. [warm, explaining] "A lullaby is a soft, gentle song to help someone fall asleep. Like when someone sings to you at bedtime — nice and slow. Okay, now YOUR turn to pick a song!"
-3. (wait 2s) [encouraging] "I'll start the first one — it's a fun one!"
+3. [wait 2s] [encouraging] "I'll start the first one — it's a fun one!"
 
 **Screen:** Piano photo on the left; demo card on the right showing a moon and sleeping baby icon with "soft" and "slow" labels glowing; musical notes drifting softly.
 
@@ -603,7 +603,7 @@
 
 1. [celebrating] "YES! Loud and fast — like the piano is dancing too! When you press the keys hard, the sound gets big and bouncy. The piano would be SO excited at your party!"
 2. [warm, connecting back] "Ooh, birthday cake is the BEST! And I bet at your party, the music would be really fun, right? Would the piano play loud party music or quiet party music?"
-3. (wait 2s) [helpful nudge] "At a birthday party, everyone is happy and jumping around. Would the piano play something loud and bouncy, or quiet and slow?"
+3. [wait 2s] [helpful nudge] "At a birthday party, everyone is happy and jumping around. Would the piano play something loud and bouncy, or quiet and slow?"
 
 **Screen:** Piano photo with birthday party overlay — confetti, balloons, cake icon; musical notes grow bigger and bounce when the child says "loud" or "fast."
 
@@ -625,7 +625,7 @@
 
 **AI follow-up:**
 
-1. (beaming) "You sure did! The piano is so lucky to have a Song Storyteller like you."
+1. [beaming] "You sure did! The piano is so lucky to have a Song Storyteller like you."
 2. [encouraging] "Yes! Next time you sit at the piano, try pressing the keys softly for rain music, or hard for party music. You already know how the songs feel!"
 3. [warm] "You did an amazing job today, Song Storyteller."
 
@@ -702,8 +702,8 @@ Child photographs their teddy bear on the bed → AI notices teddy looks sleepy 
 **AI follow-up:**
 
 1. [cozy whisper] "Aww! Sleepy teddy! Help teddy sleep?"
-2. (giggly) "Happy teddy! Bedtime soon. Get cozy?"
-3. (wait 2s) [soft, inviting] "Look at teddy! So fluffy. Can you say hi?"
+2. [giggly] "Happy teddy! Bedtime soon. Get cozy?"
+3. [wait 2s] [soft, inviting] "Look at teddy! So fluffy. Can you say hi?"
 
 **Screen:** Teddy bear photo centered with soft blue-purple night sky background, twinkling stars, and a small moon peeking from the corner.
 
@@ -721,7 +721,7 @@ Child photographs their teddy bear on the bed → AI notices teddy looks sleepy 
 
 1. [warm celebration] "Yes! Big hug! Teddy feels warm."
 2. [encouraging] "Teddy! Yes! Give teddy a hug! Squeeeeze!"
-3. (wait 2s) [playful prompt] "Teddy says brrr! What do we do? Hug!"
+3. [wait 2s] [playful prompt] "Teddy says brrr! What do we do? Hug!"
 
 **Screen:** Teddy bear photo with a shivering wobble animation; when child responds, a warm orange glow wraps around teddy with a small floating heart.
 
@@ -741,7 +741,7 @@ Child photographs their teddy bear on the bed → AI notices teddy looks sleepy 
 
 1. [proud whisper] "Pat pat. Teddy better. So kind."
 2. [validating] "Bonk! Poor teddy. Say, 'It's okay.'"
-3. (wait 2s) [soft prompt] "Teddy is sad. Can you say 'pat pat'?"
+3. [wait 2s] [soft prompt] "Teddy is sad. Can you say 'pat pat'?"
 
 **Screen:** Teddy photo with a tiny red bump overlay and tear drop; when child responds, a bandage sticker appears and teddy smiles with small sparkles.
 
@@ -759,7 +759,7 @@ Child photographs their teddy bear on the bed → AI notices teddy looks sleepy 
 
 **AI follow-up:**
 
-1. (beaming) "The best helper ever! Teddy loves you."
+1. [beaming] "The best helper ever! Teddy loves you."
 2. [playful] "Teddy says thanks! Help again tomorrow!"
 3. [gentle, warm] "Teddy is smiling at you. You did it!"
 
@@ -837,7 +837,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 1. [impressed] "That's right! It keeps them standing up nice and tall. I think it's like a boss for the whole bathroom!"
 2. [playful, curious] "Boring? But it never lets the brushes fall down! That sounds like a pretty tough job. I think it's a secret Bathroom Boss!"
-3. (wait 2s) [warm, inviting] "See how the brushes all stand up? Someone is keeping them in line. I think this holder is the Bathroom Boss!"
+3. [wait 2s] [warm, inviting] "See how the brushes all stand up? Someone is keeping them in line. I think this holder is the Bathroom Boss!"
 
 **Screen:** Toothbrush holder photo centered with gentle bathroom-themed bubbles floating around the edges.
 
@@ -857,7 +857,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 1. [cheering] "Great! Here comes the first bathroom problem!"
 2. [warm, imaginative] "In our game it can! You get to be the Boss's voice. You say what it would say!"
-3. (wait 2s) [encouraging, gentle] "It is easy! Just say what the Boss would do. Let's try together!"
+3. [wait 2s] [encouraging, gentle] "It is easy! Just say what the Boss would do. Let's try together!"
 
 **Screen:** Toothbrush holder photo with a small cartoon crown on top, a speech bubble icon beside it, and a toothbrush tipping off a counter edge as the demo scenario.
 
@@ -877,7 +877,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 1. [cheering] "Yes! Stand up so you can dry! The Boss knows wet bristles need air. That is so smart!"
 2. [warm, playful redirect] "Ha, that's relaxed! But the Boss knows that wet bristles get yucky if they stay flat. Maybe the Boss says 'Up you go so you can dry!' What do you think?"
-3. (wait 2s) [helpful whisper] "The bristles are getting soggy on the counter. The Boss might say 'Get up and dry off!' What would you say?"
+3. [wait 2s] [helpful whisper] "The bristles are getting soggy on the counter. The Boss might say 'Get up and dry off!' What would you say?"
 
 **Screen:** Three cartoon toothbrushes lying flat on a wet counter with water droplets; when child responds, brushes animate upright with a happy sparkle.
 
@@ -899,7 +899,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 **AI follow-up:**
 
-1. (beaming) "You should be so proud! The bathroom is lucky to have you!"
+1. [beaming] "You should be so proud! The bathroom is lucky to have you!"
 2. [delighted] "You loved being the Boss! You can always look at your holder and remember its secret job!"
 3. [warm, affirming] "You did such a wonderful job today. The Bathroom Boss is very happy!"
 
@@ -987,7 +987,7 @@ A 6–8-year-old photographs their own eye in a mirror, marvels at the detail, a
 
 1. [delighted] "Yes! That black dot is called your pupil, and the colorful part is your iris — and they both have secret jobs! What if we investigated those secrets like detectives?"
 2. [playful, validating] "It DOES look a little weird up close, doesn't it? Most things look surprising when you zoom in that much! But here's the cool part — your eye is actually doing amazing things right now that you can't even see. Want to be a detective and figure out what those secret things are?"
-3. (wait 2s) [warm, curious] "Take a good look — do you see that dark circle in the middle? That little circle is actually changing size RIGHT NOW while you look at it. Pretty mysterious, right?"
+3. [wait 2s] [warm, curious] "Take a good look — do you see that dark circle in the middle? That little circle is actually changing size RIGHT NOW while you look at it. Pretty mysterious, right?"
 
 **Screen:** Child's eye photo centered with a gentle zoom-in animation, soft sparkle particles drifting across the iris, and warm ambient lighting.
 
@@ -1009,7 +1009,7 @@ A 6–8-year-old photographs their own eye in a mirror, marvels at the detail, a
 
 1. [impressed] "Exactly right, detective! Your pupil gets bigger in the dark to let in more light, and when morning comes, it needs a second to shrink back down. That's your first clue about how the eye works! Ready for your first real case?"
 2. [curious, accepting] "That's interesting — maybe your room has curtains that let light in slowly, so your eyes have time to adjust! Either way, your pupil IS changing size all the time depending on the light. Now you know the trick — ready to solve your first real case?"
-3. (wait 2s) [encouraging] "No rush, detective! Here's a hint — think about what the dark circle in the middle of your eye might be doing while you sleep. It gets bigger! And then morning light is a surprise. Make sense? Let's try a real case now!"
+3. [wait 2s] [encouraging] "No rush, detective! Here's a hint — think about what the dark circle in the middle of your eye might be doing while you sleep. It gets bigger! And then morning light is a surprise. Make sense? Let's try a real case now!"
 
 **Screen:** A playful "detective case file" card beside the eye photo with "CASE ZERO" stamped on top; a simple pupil animation expands and contracts with sun/moon icons.
 
@@ -1029,7 +1029,7 @@ A 6–8-year-old photographs their own eye in a mirror, marvels at the detail, a
 
 1. [amazed] "Brilliant theory, detective! That's exactly it — your eye has a thin wet layer on its surface, and wind can dry it out. So your eye makes extra tears to protect that layer! It's like your eye has its own sprinkler system that turns on automatically. Case One: SOLVED!"
 2. [validating, building] "Oh, that's a great theory too! Dust AND dryness — you actually got TWO reasons! Wind can blow tiny particles toward your eyes, and it also dries the surface out. Either way, your eyes make extra tears to wash and protect themselves. Double solve, detective!"
-3. (wait 2s) [helpful hint] "Here's a clue — think about what wind does to a puddle of water on the sidewalk. It dries it up, right? Now imagine a tiny layer of water sitting on your eyeball..."
+3. [wait 2s] [helpful hint] "Here's a clue — think about what wind does to a puddle of water on the sidewalk. It dries it up, right? Now imagine a tiny layer of water sitting on your eyeball..."
 
 **Screen:** Case file card "CASE ONE: THE WATERY WIND MYSTERY" with a cartoon eye, wind lines, and tear drops; green "SOLVED" stamp appears when resolved.
 
@@ -1053,7 +1053,7 @@ A 6–8-year-old photographs their own eye in a mirror, marvels at the detail, a
 
 1. [celebratory] "The best Eye Mystery Investigator I've ever worked with! Every time you blink, squint, or notice your eyes watering — you'll know exactly why."
 2. [delighted] "I love that you want more! Keep watching your eyes in the mirror and noticing what they do in different situations — you're building new cases all the time, detective!"
-3. (wait 2s) [warm] "That badge looks good on you, detective. You earned every bit of it."
+3. [wait 2s] [warm] "That badge looks good on you, detective. You earned every bit of it."
 
 **Screen:** Golden detective badge with "EYE MYSTERY INVESTIGATOR" engraved, child's eye photo inset in the badge center, confetti particles and subtle fanfare.
 
@@ -1073,7 +1073,7 @@ A 6–8-year-old photographs their own eye in a mirror, marvels at the detail, a
 
 1. [proud, closing] "They really are. And now you'll notice your eyes doing amazing things every single day. Case files closed, detective — until next time!"
 2. [patient, clear] "Perspective means that what you see depends on where you are and how you look. Like how the same room looks bright or dark depending on when you walk in! Your eyes showed you that today. Case closed, detective!"
-3. (wait 2s) [gentle closing] "Case files closed, detective. Your eyes will keep solving mysteries for you every day — now you just know how to notice them. Until next time!"
+3. [wait 2s] [gentle closing] "Case files closed, detective. Your eyes will keep solving mysteries for you every day — now you just know how to notice them. Until next time!"
 
 **Screen:** "PERSPECTIVE" and "FUNCTION" in elegant bold typography; "PERSPECTIVE" framed by two eyes with light beams, "FUNCTION" surrounded by labeled icons (pupil, lens, tear drop, color cell), detective badge below with eye photo inset.
 
@@ -1131,7 +1131,7 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 1. [impressed] "That is a great idea! Firefighters help with all kinds of things. What if WE got to send them on missions?"
 2. [encouraging] "That is okay! Firefighters get calls all day long. What if we pretended to answer those calls and decide what to do?"
-3. (wait 2s) [playful whisper] "I think this firefighter is waiting for a mission. Should we give them one?"
+3. [wait 2s] [playful whisper] "I think this firefighter is waiting for a mission. Should we give them one?"
 
 **Screen:** Firefighter photo centered with a gentle pulsing glow and small animated icons (helmet, hose, fire truck) floating around.
 
@@ -1149,9 +1149,9 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 **AI follow-up:**
 
-1. (enthusiastic) "Great! Get ready — here comes the first call!"
+1. [enthusiastic] "Great! Get ready — here comes the first call!"
 2. [warm, redirecting] "The kitten is safe now! And here comes a new call on our hotline. Ready to answer it?"
-3. (wait 2s) [encouraging] "The phone is ringing! Should we pick it up together?"
+3. [wait 2s] [encouraging] "The phone is ringing! Should we pick it up together?"
 
 **Screen:** Firefighter photo moves to top left; a large colorful phone icon with "ring ring" wiggle animation appears center; after the demo, a ladder icon slides in next to a happy kitten icon.
 
@@ -1171,7 +1171,7 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 1. [impressed] "Yes! The firefighter puts on breathing gear. It makes a soft whoosh-whoosh sound when they breathe. Now they can see through the smoke and help! Great thinking."
 2. [validating] "Water is smart — firefighters do use water! And guess what — they also put on a special mask so they can breathe clean air in all that smoke. The mask makes a soft whoosh-whoosh sound. Cool, right?"
-3. (wait 2s) [helpful hint] "The kitchen is really smoky. The firefighter needs something to breathe clean air. What could help them breathe?"
+3. [wait 2s] [helpful hint] "The kitchen is really smoky. The firefighter needs something to breathe clean air. What could help them breathe?"
 
 **Screen:** Cartoon kitchen scene with wispy gray smoke; when the child answers, a firefighter icon enters wearing a mask with "whoosh whoosh" text bubbles, smoke clears, and a green checkmark appears.
 
@@ -1193,7 +1193,7 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 **AI follow-up:**
 
-1. (beaming) "You sure did! Every caller got the right help because of you."
+1. [beaming] "You sure did! Every caller got the right help because of you."
 2. [warm] "You are such a great operator! We can play again another day. But first, let me tell you something amazing about what you just did."
 3. [gentle celebration] "I am giving you a big gold star. You helped so many people today!"
 
@@ -1271,7 +1271,7 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 1. [warm] "Me too! Cozy coat! Let's play!"
 2. [impressed] "For rain! So smart! Let's play!"
-3. (wait 2s) [playful whisper] "That coat looks so cozy! Swish-swish!"
+3. [wait 2s] [playful whisper] "That coat looks so cozy! Swish-swish!"
 
 **Screen:** Raincoat photo centered with gentle rain-drop animation and a small sunshine icon in the corner.
 
@@ -1290,7 +1290,7 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 1. [celebrating] "Yes! Happy coat! You heard it! Let's do more!"
 2. [playful gasp] "What if it could? Let's pretend!"
-3. (wait 2s) [gentle] "Pitter-patter! The coat smiles! What does it feel?"
+3. [wait 2s] [gentle] "Pitter-patter! The coat smiles! What does it feel?"
 
 **Screen:** Raincoat photo with animated smiley face and tiny blue raindrops with "pitter-patter" text bouncing below.
 
@@ -1311,7 +1311,7 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 1. [cheering] "Splash-splash! Coat loves it!"
 2. [warm, validating] "Yucky puddle! Coat says brrr!"
-3. (wait 2s) [encouraging] "Splash-splash! Wet or dry? How does the coat feel?"
+3. [wait 2s] [encouraging] "Splash-splash! Wet or dry? How does the coat feel?"
 
 **Screen:** Raincoat photo with animated blue puddle splashing and water droplets bouncing upward.
 
@@ -1409,7 +1409,7 @@ Child photographs the slide, AI notices it is smooth and shiny, launches a "Play
 
 1. [impressed] "Really fast — whoooosh! You know why? The slide is smooth on purpose. That's its JOB — to help you zoom! I wonder what jobs the OTHER playground things have. Want to find out?"
 2. [validating warmly] "Oh, it can get warm in the sun! Metal heats up faster than plastic — the sun is like a little toaster for the slide. But you know what? Being smooth and warm is part of the slide's special job — helping you go FAST. I wonder what other jobs are hiding at this playground..."
-3. (wait 2s) [inviting] "This slide is so smooth — feel how shiny it looks! That smoothness has a purpose. It helps you zoom down super fast! That's the slide's special JOB. Should we find out what jobs the other playground things do?"
+3. [wait 2s] [inviting] "This slide is so smooth — feel how shiny it looks! That smoothness has a purpose. It helps you zoom down super fast! That's the slide's special JOB. Should we find out what jobs the other playground things do?"
 
 **Screen:** Child's slide photo centered with shiny surface highlighted by a soft glow and tiny sparkle dots drifting along the surface.
 
@@ -1428,7 +1428,7 @@ Child photographs the slide, AI notices it is smooth and shiny, launches a "Play
 
 1. [cheering] "Reporter is ON the case! Go find a piece of playground equipment, take a photo, and tell me what it does. I'll be right here, Reporter!"
 2. [explaining warmly] "A job means what it DOES for you! The slide's job is zoom — it makes you go fast. A ladder's job might be climb — it helps you go up. Every piece has a job! Go find one and take a photo, and we'll figure out its job together."
-3. (wait 2s) [gently encouraging] "Here is a tip — look for something you can climb, swing on, or balance on. Take a photo of it and we will figure out its job together!"
+3. [wait 2s] [gently encouraging] "Here is a tip — look for something you can climb, swing on, or balance on. Take a photo of it and we will figure out its job together!"
 
 **Screen:** Reporter-themed mission card with "Playground Reporter" badge, four collection slots (first filled with slide photo labeled "Job: Speed!"), and a three-step task list.
 
@@ -1451,7 +1451,7 @@ Child photographs the slide, AI notices it is smooth and shiny, launches a "Play
 
 1. [impressed] "Climbing — YES! That's its job! Those bars are at different heights so smaller kids and bigger kids can all practice. It helps your arms get strong and teaches you to balance. Reporter Log: 'Climbing Frame — Job: Muscle Builder!' Two more to find, Reporter!"
 2. [warm and understanding] "A little scary? That makes sense — it's tall! Some kids feel brave on it and some feel a little nervous. That's totally okay. Its job is still to help kids practice climbing and holding on tight. Different kids feel different ways about the same thing! Reporter Log: 'Climbing Frame — Job: Brave Builder!' Two more, Reporter!"
-3. (wait 2s) [curious] "Look at all those bars — some low, some high! I think this one's job is climbing. It helps your body practice holding on tight and going up. What do YOU think — is climbing its job, or something else?"
+3. [wait 2s] [curious] "Look at all those bars — some low, some high! I think this one's job is climbing. It helps your body practice holding on tight and going up. What do YOU think — is climbing its job, or something else?"
 
 **Screen:** New photo slides into second slot with sparkle animation; slot label updates with job name; counter reads "2 of 4."
 
@@ -1474,7 +1474,7 @@ Child photographs the slide, AI notices it is smooth and shiny, launches a "Play
 
 1. [celebrating] "[Child's team name] — I LOVE that! Every member has a different job but they all work together to help kids play, move, and grow strong. Which team member is YOUR favorite? The one that feels the most fun to you?"
 2. [playfully helping] "How about this — they all help your body do something. Speed, climbing, flying, [third job]. They could be 'The Body Helpers' or 'The Fun Crew!' Pick one, or make up your own!"
-3. (wait 2s) (gently) "What if we called them by what they do? They help kids zoom, climb, swing, and [verb]. I think they could be 'The Adventure Crew!' Or would you pick a different name?"
+3. [wait 2s] [gently] "What if we called them by what they do? They help kids zoom, climb, swing, and [verb]. I think they could be 'The Adventure Crew!' Or would you pick a different name?"
 
 **AI says:** [amazed and warm] "Reporter, you discovered something really cool. Every single piece of this playground has a DIFFERENT job — but not everyone feels the same way about each one! Some kids love the tall climbing frame because it feels brave. Other kids love the swings because flying feels free. Which one did YOU like best, and why?"
 
@@ -1488,7 +1488,7 @@ Child photographs the slide, AI notices it is smooth and shiny, launches a "Play
 
 1. [delighted] "That tells me something special about YOU! You picked [choice] because of how it makes you FEEL. Another kid might pick a totally different one — and that's what's cool. The same playground feels different to every kid who plays here!"
 2. [warmly] "All of them — you love the whole team! That makes you an all-around playground fan. And you know what? If your friend was here, they might pick a different favorite. Everyone sees the playground a little differently!"
-3. (wait 2s) [gentle, prompting] "Think about which one makes your body feel the happiest — zooming, climbing, swinging, or balancing. Which one would you run to first?"
+3. [wait 2s] [gentle, prompting] "Think about which one makes your body feel the happiest — zooming, climbing, swinging, or balancing. Which one would you run to first?"
 
 **Screen:** All 4 photos in a grid with job labels, team name banner, and emoji-style feeling faces below each photo with sparkle connections.
 
@@ -1507,7 +1507,7 @@ Child photographs the slide, AI notices it is smooth and shiny, launches a "Play
 
 1. [encouraging] "Next time you visit ANY playground, try being a reporter again — every playground has different equipment with different jobs! See you on the next report, Reporter!"
 2. [warm] "Your badge is saved! Whenever you see playground equipment, think about its job. Bye for now, Reporter!"
-3. (wait 2s) [soft] "Your Reporter Badge is glowing. Great job today, Reporter!"
+3. [wait 2s] [soft] "Your Reporter Badge is glowing. Great job today, Reporter!"
 
 **Screen:** Golden "Playground Reporter Badge" shaped like a notepad with slide photo at center and 3 collection photos as insets. "Function" in bold mechanical letters with gear icons and "Perspective" in multi-colored angled letters float artistically. Team name banner glows above.
 
@@ -1565,7 +1565,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 
 1. [delighted] "A library — exactly right! And those big windows let sunshine in so people can read more easily. Everything about this building was designed to help readers. I wonder if other buildings nearby were designed just as cleverly for THEIR purpose."
 2. [warm, encouraging] "That is actually a great observation — it IS big! Big buildings usually have a big job to do. This one is a library, and its job is to help people find and read books. Those wide windows let in light so readers can see the pages. Pretty clever, right?"
-3. (wait 2s) [gentle, curious] "I think this might be one of the most important buildings in the neighborhood. See those big windows? They let sunshine in so people can read. It is a library! What do you think happens inside?"
+3. [wait 2s] [gentle, curious] "I think this might be one of the most important buildings in the neighborhood. See those big windows? They let sunshine in so people can read. It is a library! What do you think happens inside?"
 
 **Screen:** Child's library photo centered with soft highlight circles around the windows and entrance.
 
@@ -1590,7 +1590,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 
 1. [eager] "Go for it — show me what you found and I will help you crack the case!"
 2. [helpful, specific] "Great question, Detective! Look for anything that was built or placed here for people to use — a shop front, a bench area, a mailbox, a bus stop sign. Anything that has a job to do in the neighborhood counts!"
-3. (wait 2s) [warm, guiding] "Here is a detective tip — look around from where you are standing for anything people walk toward or stop at. A shop? A bench? A sign? Those are all structures with a job. Take a photo of what you can see safely."
+3. [wait 2s] [warm, guiding] "Here is a detective tip — look around from where you are standing for anything people walk toward or stop at. A shop? A bench? A sign? Those are all structures with a job. Take a photo of what you can see safely."
 
 **Screen:** Mission card with "Building Detective" badge, four collection slots (first filled with library photo labeled "Books & Reading"), and three numbered mission steps with icons.
 
@@ -1613,7 +1613,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 
 1. [impressed] "Brilliant detective work! A display window — that is a huge clue! The shop was designed so people walking by can see the things for sale without even going inside. That is totally different from the library, which uses windows for reading light instead of showing off products. First find logged! Two more to go."
 2. [validating, then guiding] "A building with stuff in it — good eye! That actually IS the clue. If you can see stuff through the window, that means it is showing things to people passing by. It is probably a shop, and its job is selling things. The window helps customers decide to come in! One down, two more detective finds to go."
-3. (wait 2s) [friendly, scaffolding] "Let me take a look at your photo! I can see a wide front with things displayed near the window. That usually means this place wants people to SEE what is inside — maybe it is a shop! Its job might be selling things to neighbors. What do you think?"
+3. [wait 2s] [friendly, scaffolding] "Let me take a look at your photo! I can see a wide front with things displayed near the window. That usually means this place wants people to SEE what is inside — maybe it is a shop! Its job might be selling things to neighbors. What do you think?"
 
 **Screen:** New photo slides into second slot with sparkle animation; label updates to show description; counter shows "1 of 3 found!"
 
@@ -1636,7 +1636,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 
 1. [impressed, analytical] "Excellent classification, Detective! You noticed that quiet places need things like wide windows for light and organized spaces. Busy places need display windows and open doors. And helper stations do one specific job, like sending letters or providing a place to rest. Each building was designed to match its function perfectly!"
 2. [validating, then deepening] "You are right — they ARE all for people! That is a connection worth noticing. But here is the next layer: even though they all help people, they help in different WAYS. The library helps people read by being quiet. The shop helps people find things by displaying them. Can you think about what makes them different even though they all help?"
-3. (wait 2s) [warm, scaffolding] "Let me help you start! The library is pretty quiet inside — its job needs calm and focus. Now look at the shop — is that a quiet place or a busier place? And the mailbox — does a lot happen there or does it do one small job? Try sorting them that way!"
+3. [wait 2s] [warm, scaffolding] "Let me help you start! The library is pretty quiet inside — its job needs calm and focus. Now look at the shop — is that a quiet place or a busier place? And the mailbox — does a lot happen there or does it do one small job? Try sorting them that way!"
 
 **AI says:** [celebratory, reflective] "Detective, you did something incredible — you proved that the whole neighborhood is a system designed to work together! The library lends books, the shop displays things for sale, the bench gives people a rest, and the mailbox carries messages. Four different structures, four different jobs, one neighborhood where everything works because each part does what it was designed to do. Here is a big detective question — why do you think it matters that each building has its OWN job instead of one giant building that does everything?"
 
@@ -1650,7 +1650,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 
 1. [warm, deeply impressed] "That is exactly what real city planners think about! When each building focuses on one job, it can do that job really well — the library can be perfectly quiet, the shop can show off its products, and the bench can be in just the right spot. You think like a real architect, Detective!"
 2. [delighted, playful] "That IS a fun idea! But imagine if everyone trying to read books was right next to everyone buying groceries and mailing letters — it would be so noisy and busy! Having separate buildings means each one can be designed perfectly for its purpose. The library can stay quiet, and the shop can stay lively."
-3. (wait 2s) [gentle, prompting] "Think about it this way — what would happen if the library was also a noisy shop? Could you still read quietly? Having different buildings for different jobs means each one can be designed exactly right for the people who use it."
+3. [wait 2s] [gentle, prompting] "Think about it this way — what would happen if the library was also a noisy shop? Could you still read quietly? Having different buildings for different jobs means each one can be designed exactly right for the people who use it."
 
 **Screen:** All four photos displayed with category zones ("Quiet Places," "Busy Places," "Helper Stations") and a connected neighborhood map illustration with animated system lines and stars.
 
@@ -1668,8 +1668,8 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 **AI follow-up:**
 
 1. [proud] "Once a detective, always a detective! Wherever you go now, you will notice how every building was designed for a reason. Keep those detective eyes open!"
-2. (enthusiastic) "Absolutely — a detective never stops investigating! Next time you walk through a new neighborhood, see how many different building functions you can spot."
-3. (wait 2s) [warm] "You did amazing work today, Detective. Remember — every building you see from now on has a secret purpose waiting to be discovered!"
+2. [enthusiastic] "Absolutely — a detective never stops investigating! Next time you walk through a new neighborhood, see how many different building functions you can spot."
+3. [wait 2s] [warm] "You did amazing work today, Detective. Remember — every building you see from now on has a secret purpose waiting to be discovered!"
 
 **Screen:** "Neighborhood Function Detective" badge with all four collection photos as insets around a magnifying glass icon. "Function" styled with architectural blueprint lines and "Responsibility" styled with interlocking hands appear below. Soft golden confetti.
 
@@ -1727,7 +1727,7 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 1. [impressed] "Smooth like a shiny marble! This apple is a real treasure. I wonder if there are more green treasures hiding in the garden."
 2. [warm, validating] "You found it on the ground — like a hidden treasure! This shiny green apple is so cool. I bet more green treasures are hiding nearby."
-3. (wait 2s) [playful, coaxing] "Feel it — is it smooth or bumpy? This green apple is so shiny! I think the garden has more green treasures for us."
+3. [wait 2s] [playful, coaxing] "Feel it — is it smooth or bumpy? This green apple is so shiny! I think the garden has more green treasures for us."
 
 **Screen:** Green apple photo centered with a soft green glow and tiny sparkle animations around the glossy surface.
 
@@ -1744,9 +1744,9 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 **AI follow-up:**
 
-1. (pumped up) "Let's go! Look at leaves, grass, or anything green. Take a photo when you find one!"
+1. [pumped up] "Let's go! Look at leaves, grass, or anything green. Take a photo when you find one!"
 2. [reassuring, conspiratorial] "Green things love to hide! Try looking at leaves on bushes, grass on the ground, or even green bugs. They are everywhere!"
-3. (wait 2s) [encouraging, pointing] "Try looking down at the grass first. See anything green? Take a photo of it!"
+3. [wait 2s] [encouraging, pointing] "Try looking down at the grass first. See anything green? Take a photo of it!"
 
 **Screen:** Mission card with "Green Treasure Hunter" badge, four collection slots (first filled with green apple photo), and a numbered checklist.
 
@@ -1792,7 +1792,7 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 1. [impressed, reflective] "The leaf is shiny like the apple — great thinking! And what about the most different one? You are really good at comparing things!"
 2. [scaffolding warmly] "Good pick! Is it because they feel the same? Or look the same shape? You choose what matters! Every hunter sees things their own way."
-3. (wait 2s) (gently guiding) "Look at the pictures. Which green treasure is shiny and smooth like the apple? Point to it! And which one looks really different?"
+3. [wait 2s] [gently guiding] "Look at the pictures. Which green treasure is shiny and smooth like the apple? Point to it! And which one looks really different?"
 
 **AI says:** [warm celebration] "Amazing, Green Treasure Hunter! You found four green things in the garden. They are ALL green, but every single one feels different. The apple is smooth and round. The leaf has tiny lines. Why do you think so many things in the garden are green?"
 
@@ -1803,7 +1803,7 @@ A child in the garden photographs a green apple under a tree, then hunts for 3 m
 
 **AI follow-up:**
 
-1. (awed) "Things that grow use green to soak up sunshine! You figured that out from your treasure hunt. That is so smart!"
+1. [awed] "Things that grow use green to soak up sunshine! You figured that out from your treasure hunt. That is so smart!"
 2. [warm, encouraging] "Green IS pretty! And a lot of growing things pick green. Your eyes found so many different kinds. That is what makes you a great hunter!"
 
 **Screen:** All four photos in a grid with golden crown on apple photo, tap-to-select circles, connection/difference lines, and a center text "All green, all different!" with green sparkle particles.
@@ -1869,7 +1869,7 @@ Child photographs a double rainbow after a rain shower → AI reacts with wonder
 
 1. [warm, delighted] "Me too! Rainbows always make me feel sparkly inside. I wonder — those beautiful colors are way up in the sky. Can we find them down here too?"
 2. [curious, warm] "Great eyes — red and blue are up there! You can't quite touch a rainbow, but you CAN find its colors right here on the ground. Want to try?"
-3. (wait 2s) [soft wonder] "It's so beautiful, isn't it? Two rainbow smiles in the sky. I wonder if we can find those same colors hiding around us..."
+3. [wait 2s] [soft wonder] "It's so beautiful, isn't it? Two rainbow smiles in the sky. I wonder if we can find those same colors hiding around us..."
 
 **Screen:** Double rainbow photo with sparkling animation along both arcs and a tiny animated raindrop splitting into color through a beam of light.
 
@@ -1887,7 +1887,7 @@ Child photographs a double rainbow after a rain shower → AI reacts with wonder
 
 1. [cheering] "Go, Color Scout! Find anything colorful and take a photo. Red, orange, yellow, green, blue — any rainbow color counts!"
 2. [helpful, upbeat] "Any rainbow color works! Red, orange, yellow, green, blue — pick your favorites. Look near flowers, leaves, or even puddles!"
-3. (wait 2s) [encouraging] "Look near the ground. Flowers, leaves, even wet rocks can be colorful. Find something bright and take a photo!"
+3. [wait 2s] [encouraging] "Look near the ground. Flowers, leaves, even wet rocks can be colorful. Find something bright and take a photo!"
 
 **Screen:** Mission card with "Rainbow Color Scout" in gradient-colored lettering, four arc-shaped collection slots (first holding the rainbow photo, three empty), and three numbered task icons.
 
@@ -1909,7 +1909,7 @@ Child photographs a double rainbow after a rain shower → AI reacts with wonder
 
 1. [delighted] "Red — just like the top of the rainbow! Great find, Color Scout! That's 1 down. 2 more to go!"
 2. [validating, then guiding] "Nice find! And look at the color on it — I see some warm tones there. That matches the rainbow! 2 more to go!"
-3. (wait 2s) [warm] "Let me look... I can see color in there! That could match the rainbow. Nice work, Color Scout! 2 more to go!"
+3. [wait 2s] [warm] "Let me look... I can see color in there! That could match the rainbow. Nice work, Color Scout! 2 more to go!"
 
 **Screen:** New photo slides into slot with a color-burst animation; counter updates to "2/4."
 
@@ -1933,7 +1933,7 @@ Child photographs a double rainbow after a rain shower → AI reacts with wonder
 
 1. [encouraging] "Yes! Red goes first, just like in the rainbow up there! Then the next warmest color... You're building your very own ground rainbow!"
 2. [scaffolding gently] "Let's try together! Think of the rainbow in the sky — red is on top, then orange, yellow, green, blue. Which of your finds looks most red? That one goes first!"
-3. (wait 2s) [warm, guiding] "Here's a trick — look at the rainbow in your first photo. See how red is on top? Find your reddest treasure and put it first!"
+3. [wait 2s] [warm, guiding] "Here's a trick — look at the rainbow in your first photo. See how red is on top? Find your reddest treasure and put it first!"
 
 **Screen:** Four photos in a curved arc at screen center; verbal sorting reflected by photos sliding into position with a reference rainbow arc above as guide.
 
@@ -1947,9 +1947,9 @@ Child photographs a double rainbow after a rain shower → AI reacts with wonder
 
 **AI follow-up:**
 
-1. (fascinated) "That's a wonderful idea! The sun IS shining after the rain — and sunlight has all the rainbow colors hiding inside it. When light hits raindrops, the colors come out! That's what CAUSED the rainbow up there!"
+1. [fascinated] "That's a wonderful idea! The sun IS shining after the rain — and sunlight has all the rainbow colors hiding inside it. When light hits raindrops, the colors come out! That's what CAUSED the rainbow up there!"
 2. [validating] "Flowers ARE full of beautiful color! And you know what? The sun's light has all those colors inside it. When the light goes through raindrops, the colors spread out — and THAT is what makes the rainbow appear!"
-3. (wait 2s) [gentle, guiding] "Think about what happened first — rain fell, then the sun came out, and then you saw all those colors. What do rain and sunshine do together?"
+3. [wait 2s] [gentle, guiding] "Think about what happened first — rain fell, then the sun came out, and then you saw all those colors. What do rain and sunshine do together?"
 
 **Screen:** Four photos in arc order with animated lines connecting them; original rainbow photo shown smaller above for visual parallel; animated light beams pass through a raindrop icon and split into colors.
 
@@ -2023,7 +2023,7 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 1. [impressed] "Great eyes! Those shells did not just appear. The ocean waves washed them right onto the sand. I wonder what else the ocean left here!"
 2. [warm, curious] "Sand is pretty cool, right? But look really close. Wet sand looks darker than dry sand. And there are tiny pieces mixed in. The ocean hides its gifts well!"
-3. (wait 2s) [playful whisper] "Psst — look really close at the sand. See any tiny bits that are not just sand grains?"
+3. [wait 2s] [playful whisper] "Psst — look really close at the sand. See any tiny bits that are not just sand grains?"
 
 **Screen:** Child's beach photo centered with gentle wave animation along the bottom edge and small sparkle effects on sand highlights.
 
@@ -2041,9 +2041,9 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 **AI follow-up:**
 
-1. (pumped up) "Let us go, Detective! Walk along the sand and look for shells, seaweed, smooth stones, or driftwood. When you spot a clue, take a photo!"
+1. [pumped up] "Let us go, Detective! Walk along the sand and look for shells, seaweed, smooth stones, or driftwood. When you spot a clue, take a photo!"
 2. [helpful, warm] "Great question! Look for things that do not look like plain sand. Shells, seaweed, little sticks, or smooth pebbles. They are all ocean clues! Go explore!"
-3. (wait 2s) [gentle, encouraging] "Try walking along the wet sand near the water. That is where the waves drop the best clues. You will find something!"
+3. [wait 2s] [gentle, encouraging] "Try walking along the wet sand near the water. That is where the waves drop the best clues. You will find something!"
 
 **Screen:** Mission card with a detective badge labeled "Shore Detective," four slots (first filled with beach photo, three empty with question marks and magnifying glass icons), and a numbered task list.
 
@@ -2091,7 +2091,7 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 1. [deeply impressed] "That is exactly right! The waves pick things up from the ocean floor, carry them in, and drop them on the sand when the tide goes out. Every single thing on this beach has a journey story!"
 2. [warm, building] "I love that idea! Here is something cool — the waves are like delivery trucks. They pick up shells, seaweed, and stones from the ocean and push them onto the sand. The tide goes in and out, leaving presents behind every time!"
-3. (wait 2s) [gentle, guiding] "Think about the waves. They come in and go out, right? Each time, they can carry something and leave it on the sand. That is how your clues got here — the ocean delivered them!"
+3. [wait 2s] [gentle, guiding] "Think about the waves. They come in and go out, right? Each time, they can carry something and leave it on the sand. That is how your clues got here — the ocean delivered them!"
 
 **Screen:** All four photos in a connected timeline layout with animated wave lines flowing left to right and "delivery" arrows connecting each item.
 
@@ -2107,7 +2107,7 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 1. [amazed] "You figured it out! Bigger waves push things farther up. And when the tide is high, water reaches way up the beach and leaves things there. You really think like a detective!"
 2. [warm, encouraging] "That is a fun guess! The answer is the waves — sometimes they are big and strong and push things way up the sand. Sometimes they are small and only leave things near the water. The beach is always changing!"
-3. (wait 2s) [gentle, guiding] "Look at the waterline. Some waves stop close to the water, and some reach much farther up the sand. That is why clues land in different places."
+3. [wait 2s] [gentle, guiding] "Look at the waterline. Some waves stop close to the water, and some reach much farther up the sand. That is why clues land in different places."
 
 **Screen:** Collection displayed as a beach scene with items at different distances from an animated waterline, with dotted arrows showing wave paths.
 
@@ -2127,7 +2127,7 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 1. [proud, warm] "You sure did! Every time you visit a beach, you can be a detective again and look for new ocean stories."
 2. [gentle, connecting] "Those are great ideas! Beaches are full of clues and adventures. Now you know how to spot them and wonder where they came from."
-3. (wait 2s) [soft closing] "Your Shore Detective badge is shining. Great detective work today."
+3. [wait 2s] [soft closing] "Your Shore Detective badge is shining. Great detective work today."
 
 **Screen:** Detective badge spinning into center labeled "Shore Detective" with collection photos as insets; "Causation" and "Connection" in ocean-blue lettering with shell and wave icons; celebration sparkles.
 
@@ -2185,7 +2185,7 @@ Child photographs a sunflower in the garden → AI points out how many parts it 
 
 1. [delighted] "Yes! The petals wave at bees to come visit. And you know what? The stem holds the big heavy head up high! Every part has a job. I bet there are MORE things out here with parts that have special jobs..."
 2. [warm, validating] "It IS so bright and yellow! Those yellow petals have a job — they tell the bees 'come get some nectar here!' Every part does something. I wonder what other things have parts with jobs..."
-3. (wait 2s) [soft, inviting] "See those long petals? They wave at bees! And the thick stem? It holds up the heavy head. Every part has a job! What if we found more things like that?"
+3. [wait 2s] [soft, inviting] "See those long petals? They wave at bees! And the thick stem? It holds up the heavy head. Every part has a job! What if we found more things like that?"
 
 **Screen:** Close-up of sunflower photo with soft glow and gentle animated sparkles tracing along petals, stem, and seed center, each briefly labeled with a tiny icon.
 
@@ -2203,7 +2203,7 @@ Child photographs a sunflower in the garden → AI points out how many parts it 
 
 1. [cheering] "Patrol is GO! Find something with a part that does a job, snap a photo, and report back!"
 2. [encouraging] "A special job means the part DOES something for the thing it belongs to. Like a flower petal waves at bees. Or a thorn keeps animals away. Look at plants, bugs, even rocks with moss — what part stands out?"
-3. (wait 2s) (gently) "Here is your first clue — look at any plant near you. See any leaves, thorns, or berries? Each one does something special! Take a photo when you spot one."
+3. [wait 2s] [gently] "Here is your first clue — look at any plant near you. See any leaves, thorns, or berries? Each one does something special! Take a photo when you spot one."
 
 **Screen:** Mission card with an "Inspector" badge (magnifying glass over a leaf), 3 empty collection slots plus sunflower photo with golden check, and a numbered task list with icons.
 
@@ -2224,8 +2224,8 @@ Child photographs a sunflower in the garden → AI points out how many parts it 
 **AI follow-up:**
 
 1. [thrilled] "A leaf that catches sunlight — YES! That is exactly its job. The leaf soaks up sun and helps the plant make food. Patrol Log: 'Green Leaf — job: catching sunshine!' Great first find, Inspector. Two more to go!"
-2. (looking closely) "A green thing! Look at how flat and wide it is. That flat shape helps it catch as much sunlight as possible — that is its job! Patrol Log: 'Flat Green Catcher — job: soaking up sun!' Two more, Inspector!"
-3. (wait 2s) (enthusiastic) "Oooh, let me see! I see something flat and green. That flat shape has a job — it catches sunlight to help the plant grow. What do YOU think this part does?"
+2. [looking closely] "A green thing! Look at how flat and wide it is. That flat shape helps it catch as much sunlight as possible — that is its job! Patrol Log: 'Flat Green Catcher — job: soaking up sun!' Two more, Inspector!"
+3. [wait 2s] [enthusiastic] "Oooh, let me see! I see something flat and green. That flat shape has a job — it catches sunlight to help the plant grow. What do YOU think this part does?"
 
 **Screen:** New photo slides into the first empty slot with a sparkle burst; label appears below: "Part: ? Job: ?" filling in based on conversation. Counter: "2 of 4."
 
@@ -2247,9 +2247,9 @@ Child photographs a sunflower in the garden → AI points out how many parts it 
 
 **AI follow-up:**
 
-1. (mind-blown) "YES! The sunflower started as a tiny seed, grew into a tall stem, and opened into this giant flower — and now the seeds in the middle will fall out and grow into NEW sunflowers! That is so much change from one little seed!"
+1. [mind-blown] "YES! The sunflower started as a tiny seed, grew into a tall stem, and opened into this giant flower — and now the seeds in the middle will fall out and grow into NEW sunflowers! That is so much change from one little seed!"
 2. [playfully] "You know what? You are RIGHT — they ALL change! The leaf grows bigger, the berry gets ripe, the bark gets thicker. But the sunflower might change the MOST — from a tiny seed to this giant flower with hundreds of new seeds inside. One little seed becomes a whole sun!"
-3. (wait 2s) (guiding gently) "Here is a clue — think about the sunflower. It started as a teeny tiny seed in the dirt. Then it grew a stem, then leaves, then this BIG flower full of new seeds. Does anything else change that much?"
+3. [wait 2s] [guiding gently] "Here is a clue — think about the sunflower. It started as a teeny tiny seed in the dirt. Then it grew a stem, then leaves, then this BIG flower full of new seeds. Does anything else change that much?"
 
 **Screen:** All 4 photos in a row at top; below, a timeline arrow labeled "Tiny Seed → Sprout → Tall Stem → Big Flower → New Seeds" with animated growth lines connecting stages.
 
@@ -2265,7 +2265,7 @@ Child photographs a sunflower in the garden → AI points out how many parts it 
 
 1. [delighted] "That is such a smart thought! Every part helps the whole plant stay alive and grow. The petals bring bees, the stem stands tall, the seeds make new flowers. When every part does its job, the whole plant works!"
 2. [warmly] "It IS a big wonder! If the stem did not hold the flower up, bees could not find it. If the petals were not bright, bees would fly past. Every part helps, and together they keep the plant going and growing!"
-3. (wait 2s) [gentle, guiding] "Think about the stem, the petals, and the seeds. They all do something different, but they all help the sunflower live. That is why each part needs its own job."
+3. [wait 2s] [gentle, guiding] "Think about the stem, the petals, and the seeds. They all do something different, but they all help the sunflower live. That is why each part needs its own job."
 
 **Screen:** Collection displayed with each photo labeled "Part: Job," gentle animated lines connecting parts to jobs, soft sun animation, and tiny animated bees visiting the sunflower photo.
 
@@ -2339,7 +2339,7 @@ Child spots a stop sign on a walk, photographs it from a safe sidewalk spot, the
 
 1. [impressed] "Yes! It helps cars stop so people can cross safely. This sign is like a helper for the whole neighborhood!"
 2. [validating] "You are right, it IS red! That bright red color means 'pay attention.' This sign helps everyone stay safe at the corner."
-3. (wait 2s) [warm, leaning in] "This sign stands here every day, helping cars and people. It is like a quiet helper!"
+3. [wait 2s] [warm, leaning in] "This sign stands here every day, helping cars and people. It is like a quiet helper!"
 
 **Screen:** Stop sign photo centered with a soft red glow and gentle shield-like outline animation pulsing around the octagon shape.
 
@@ -2355,9 +2355,9 @@ Child spots a stop sign on a walk, photographs it from a safe sidewalk spot, the
 
 **AI follow-up:**
 
-1. (pumped up) "Let's go! Stay on the sidewalk or another safe spot and look for any sign or symbol you can see. When you find one, take a photo!"
+1. [pumped up] "Let's go! Stay on the sidewalk or another safe spot and look for any sign or symbol you can see. When you find one, take a photo!"
 2. [friendly, explaining] "A Sign Spotter finds signs that help people! Signs can be on poles, on walls, or at the edge of a parking area. Look from your safe spot — I bet you will spot one soon!"
-3. (wait 2s) [encouraging] "Try looking up, down, and to the sides from where you are standing. Signs can be anywhere!"
+3. [wait 2s] [encouraging] "Try looking up, down, and to the sides from where you are standing. Signs can be anywhere!"
 
 **Screen:** Mission card with "Sign Spotter" badge (binoculars icon over a shield), four collection slots (first filled with stop sign photo, three empty with question marks), and a numbered task list.
 
@@ -2379,7 +2379,7 @@ Child spots a stop sign on a walk, photographs it from a safe sidewalk spot, the
 
 1. [impressed] "Nice spotting! That sign helps people know what to do here. One sign in the collection! Two more to go, Sign Spotter!"
 2. [warm, scaffolding] "That is okay! Look at its shape and color. Big and bright means it wants people to notice it. I think this sign is a helper too! One down, two to go!"
-3. (wait 2s) [friendly] "I see something in your photo! It looks like a sign that helps people. One collected — two more to find!"
+3. [wait 2s] [friendly] "I see something in your photo! It looks like a sign that helps people. One collected — two more to find!"
 
 **Screen:** New photo slides into second slot with a star animation burst; counter: "1 of 3 found!"
 
@@ -2403,7 +2403,7 @@ Child spots a stop sign on a walk, photographs it from a safe sidewalk spot, the
 
 1. [delighted] "Great sorting! Some signs say stop, some say go, and some say be careful. They each have a different job — but they all work together!"
 2. [validating, scaffolding] "You are right — they ALL help people! Let's try this: point to the one that says 'stop.' Now which one helps people walk safely? See — they have different jobs!"
-3. (wait 2s) [warm, guiding] "Let's start with the stop sign. It says 'stop,' right? Now look at the others — does any one say 'go' or 'be careful'?"
+3. [wait 2s] [warm, guiding] "Let's start with the stop sign. It says 'stop,' right? Now look at the others — does any one say 'go' or 'be careful'?"
 
 **Screen:** All four photos in a row with three sorting labels below: "STOP" (red), "GO" (green), "STAY SAFE" (yellow); photos slide under matching labels as child sorts verbally.
 
@@ -2419,7 +2419,7 @@ Child spots a stop sign on a walk, photographs it from a safe sidewalk spot, the
 
 1. [impressed] "Exactly! Each sign has its own job. Just like people work together, signs work together to keep everyone safe."
 2. [warm, extending] "That is a great thought! There ARE a lot of cars and people. So we need lots of helpers — each sign has its own special job to do!"
-3. (wait 2s) [warm, prompting] "Think about the stop sign and the walking sign. They do not say the same thing, right? That is why streets need different helpers."
+3. [wait 2s] [warm, prompting] "Think about the stop sign and the walking sign. They do not say the same thing, right? That is why streets need different helpers."
 
 **Screen:** Collection displayed in a diamond pattern with animated dotted lines connecting them as a "helper network" over a small neighborhood illustration.
 
@@ -2434,7 +2434,7 @@ Child spots a stop sign on a walk, photographs it from a safe sidewalk spot, the
 
 **AI follow-up:**
 
-1. (beaming) "The best Sign Spotter on this street! Keep your eyes open — signs are everywhere!"
+1. [beaming] "The best Sign Spotter on this street! Keep your eyes open — signs are everywhere!"
 2. [warm] "You can ALWAYS spot more signs! Now you know what to look for. And the stop sign is a great favorite — it has a very important job!"
 
 **Screen:** Shield-shaped "Sign Spotter Safari" badge with collection photos as corner insets; "Function" in a blue rectangle and "Responsibility" in a green circle, road-sign style; gentle confetti and star animations.

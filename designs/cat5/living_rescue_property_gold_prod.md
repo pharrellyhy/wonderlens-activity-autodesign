@@ -66,7 +66,7 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 1. [warm, impressed] "Water — great idea! A big drink would perk those droopy leaves right up. You already know how to take care of living things! I bet other living things nearby need help too."
 2. [warm, agreeing] "It IS green — that means it is alive and growing! But see how the leaves droop down? That is a sign it is thirsty. Living things tell us when they need help — we just have to look carefully!"
-3. (wait 2s) [gentle, coaxing] "See how its leaves hang down and curl? That is how plants say 'I am thirsty!' Maybe it needs water, or some shade from the hot sun. What do you think would help?"
+3. [wait 2s] [gentle, coaxing] "See how its leaves hang down and curl? That is how plants say 'I am thirsty!' Maybe it needs water, or some shade from the hot sun. What do you think would help?"
 
 **Screen:** Plant photo centered with soft warm glow, drooping leaves subtly highlighted, and tiny water droplet and sun icons floating nearby.
 
@@ -85,7 +85,7 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 1. [excited, encouraging] "Let's go! Look around — on the ground, near bushes, by the path, up in the branches. Find something alive that looks like it could use some care. Take a photo when you spot it!"
 2. [warm, helpful] "Great question! Alive means it GROWS — like plants, flowers, trees, bugs, and animals. Rocks and plastic are NOT alive. Look for something green, something crawling, something with petals!"
-3. (wait 2s) [gentle, guiding] "Try looking near the ground first. See any plants with droopy leaves? A flower leaning over? A little bug all by itself? Take a photo of anything alive that looks like it needs help!"
+3. [wait 2s] [gentle, guiding] "Try looking near the ground first. See any plants with droopy leaves? A flower leaning over? A little bug all by itself? Take a photo of anything alive that looks like it needs help!"
 
 **Screen:** Mission card with "Life Rescuer" badge (shield with sprout and heart), four collection slots (first filled with initial photo and need label), three empty slots with green cross icons, and numbered checklist.
 
@@ -108,7 +108,7 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 1. [warm, celebrating] "A stick to lean on — perfect! *Imagine the flower slowly straightening up, its petals lifting toward the sun.* It is already feeling stronger! Two more rescues to go!"
 2. [playful, redirecting] "It IS pretty — even pretty flowers need help sometimes! See how it leans? What if we gave it something to lean against? *The flower slowly straightens up.* You helped it stand! Two more to find!"
-3. (wait 2s) [gentle, prompting] "See how it is leaning? Its stem cannot hold it up by itself. What if we put a little stick next to it? *The flower tilts upward.* Two more rescues to go!"
+3. [wait 2s] [gentle, prompting] "See how it is leaning? Its stem cannot hold it up by itself. What if we put a little stick next to it? *The flower tilts upward.* Two more rescues to go!"
 
 **Screen:** Flower photo slides into second slot labeled "Flower — needs support," with straightening flower animation. Counter: "1 of 3 rescued."
 
@@ -140,7 +140,7 @@ A child in a garden photographs a droopy plant, AI notices it looks thirsty, chi
 
 **AI follow-up:**
 
-1. (touched) "That one really needed you! And now it is part of a team where everyone takes care of everyone else. Even the smallest living thing can do something big for someone else."
+1. [touched] "That one really needed you! And now it is part of a team where everyone takes care of everyone else. Even the smallest living thing can do something big for someone else."
 2. [warm, celebrating] "You loved ALL of them — that is what makes you such a great Life Rescuer! There are always more living things that need help. You can be a Life Rescuer every time you go outside!"
 
 **Screen:** All four photos in a circle with animated mutual aid arrows between them (shade icon, pollen icon, moisture icon), glowing heart in center, golden star on favorite, and banner "Rescue Team — Helping Each Other!"

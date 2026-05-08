@@ -52,7 +52,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 
 1. [delighted] "A library — exactly right! And those big windows let sunshine in so people can read more easily. Everything about this building was designed to help readers. I wonder if other buildings nearby were designed just as cleverly for THEIR purpose."
 2. [warm, encouraging] "That is actually a great observation — it IS big! Big buildings usually have a big job to do. This one is a library, and its job is to help people find and read books. Those wide windows let in light so readers can see the pages. Pretty clever, right?"
-3. (wait 2s) [gentle, curious] "I think this might be one of the most important buildings in the neighborhood. See those big windows? They let sunshine in so people can read. It is a library! What do you think happens inside?"
+3. [wait 2s] [gentle, curious] "I think this might be one of the most important buildings in the neighborhood. See those big windows? They let sunshine in so people can read. It is a library! What do you think happens inside?"
 
 **Screen:** Child's library photo centered with soft highlight circles around the windows and entrance.
 
@@ -77,7 +77,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 
 1. [eager] "Go for it — show me what you found and I will help you crack the case!"
 2. [helpful, specific] "Great question, Detective! Look for anything that was built or placed here for people to use — a shop front, a bench area, a mailbox, a bus stop sign. Anything that has a job to do in the neighborhood counts!"
-3. (wait 2s) [warm, guiding] "Here is a detective tip — look around from where you are standing for anything people walk toward or stop at. A shop? A bench? A sign? Those are all structures with a job. Take a photo of what you can see safely."
+3. [wait 2s] [warm, guiding] "Here is a detective tip — look around from where you are standing for anything people walk toward or stop at. A shop? A bench? A sign? Those are all structures with a job. Take a photo of what you can see safely."
 
 **Screen:** Mission card with "Building Detective" badge, four collection slots (first filled with library photo labeled "Books & Reading"), and three numbered mission steps with icons.
 
@@ -100,7 +100,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 
 1. [impressed] "Brilliant detective work! A display window — that is a huge clue! The shop was designed so people walking by can see the things for sale without even going inside. That is totally different from the library, which uses windows for reading light instead of showing off products. First find logged! Two more to go."
 2. [validating, then guiding] "A building with stuff in it — good eye! That actually IS the clue. If you can see stuff through the window, that means it is showing things to people passing by. It is probably a shop, and its job is selling things. The window helps customers decide to come in! One down, two more detective finds to go."
-3. (wait 2s) [friendly, scaffolding] "Let me take a look at your photo! I can see a wide front with things displayed near the window. That usually means this place wants people to SEE what is inside — maybe it is a shop! Its job might be selling things to neighbors. What do you think?"
+3. [wait 2s] [friendly, scaffolding] "Let me take a look at your photo! I can see a wide front with things displayed near the window. That usually means this place wants people to SEE what is inside — maybe it is a shop! Its job might be selling things to neighbors. What do you think?"
 
 **Screen:** New photo slides into second slot with sparkle animation; label updates to show description; counter shows "1 of 3 found!"
 
@@ -123,7 +123,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 
 1. [impressed, analytical] "Excellent classification, Detective! You noticed that quiet places need things like wide windows for light and organized spaces. Busy places need display windows and open doors. And helper stations do one specific job, like sending letters or providing a place to rest. Each building was designed to match its function perfectly!"
 2. [validating, then deepening] "You are right — they ARE all for people! That is a connection worth noticing. But here is the next layer: even though they all help people, they help in different WAYS. The library helps people read by being quiet. The shop helps people find things by displaying them. Can you think about what makes them different even though they all help?"
-3. (wait 2s) [warm, scaffolding] "Let me help you start! The library is pretty quiet inside — its job needs calm and focus. Now look at the shop — is that a quiet place or a busier place? And the mailbox — does a lot happen there or does it do one small job? Try sorting them that way!"
+3. [wait 2s] [warm, scaffolding] "Let me help you start! The library is pretty quiet inside — its job needs calm and focus. Now look at the shop — is that a quiet place or a busier place? And the mailbox — does a lot happen there or does it do one small job? Try sorting them that way!"
 
 **AI says:** [celebratory, reflective] "Detective, you did something incredible — you proved that the whole neighborhood is a system designed to work together! The library lends books, the shop displays things for sale, the bench gives people a rest, and the mailbox carries messages. Four different structures, four different jobs, one neighborhood where everything works because each part does what it was designed to do. Here is a big detective question — why do you think it matters that each building has its OWN job instead of one giant building that does everything?"
 
@@ -137,7 +137,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 
 1. [warm, deeply impressed] "That is exactly what real city planners think about! When each building focuses on one job, it can do that job really well — the library can be perfectly quiet, the shop can show off its products, and the bench can be in just the right spot. You think like a real architect, Detective!"
 2. [delighted, playful] "That IS a fun idea! But imagine if everyone trying to read books was right next to everyone buying groceries and mailing letters — it would be so noisy and busy! Having separate buildings means each one can be designed perfectly for its purpose. The library can stay quiet, and the shop can stay lively."
-3. (wait 2s) [gentle, prompting] "Think about it this way — what would happen if the library was also a noisy shop? Could you still read quietly? Having different buildings for different jobs means each one can be designed exactly right for the people who use it."
+3. [wait 2s] [gentle, prompting] "Think about it this way — what would happen if the library was also a noisy shop? Could you still read quietly? Having different buildings for different jobs means each one can be designed exactly right for the people who use it."
 
 **Screen:** All four photos displayed with category zones ("Quiet Places," "Busy Places," "Helper Stations") and a connected neighborhood map illustration with animated system lines and stars.
 
@@ -155,7 +155,7 @@ A six-year-old photographs the city library from a safe sidewalk spot, notices t
 **AI follow-up:**
 
 1. [proud] "Once a detective, always a detective! Wherever you go now, you will notice how every building was designed for a reason. Keep those detective eyes open!"
-2. (enthusiastic) "Absolutely — a detective never stops investigating! Next time you walk through a new neighborhood, see how many different building functions you can spot."
-3. (wait 2s) [warm] "You did amazing work today, Detective. Remember — every building you see from now on has a secret purpose waiting to be discovered!"
+2. [enthusiastic] "Absolutely — a detective never stops investigating! Next time you walk through a new neighborhood, see how many different building functions you can spot."
+3. [wait 2s] [warm] "You did amazing work today, Detective. Remember — every building you see from now on has a secret purpose waiting to be discovered!"
 
 **Screen:** "Neighborhood Function Detective" badge with all four collection photos as insets around a magnifying glass icon. "Function" styled with architectural blueprint lines and "Responsibility" styled with interlocking hands appear below. Soft golden confetti.

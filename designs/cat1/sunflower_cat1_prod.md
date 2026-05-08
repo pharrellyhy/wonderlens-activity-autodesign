@@ -44,8 +44,8 @@
 **AI follow-up:**
 
 1. [warm, impressed] "Yes! Sunflowers love the sun — they even turn their heads to look at it! You know a lot. I bet you can guess even MORE things about sunflowers."
-2. (enthusiastic) "It IS so pretty! All those sunny petals. Sunflowers do the coolest things when the sun shines or the rain falls. Want to help me figure out what happens?"
-3. (wait 2s) [soft, wondering] "This sunflower is so bright and tall! I bet lots of interesting things happen to it. Want to be a scientist with me and guess?"
+2. [enthusiastic] "It IS so pretty! All those sunny petals. Sunflowers do the coolest things when the sun shines or the rain falls. Want to help me figure out what happens?"
+3. [wait 2s] [soft, wondering] "This sunflower is so bright and tall! I bet lots of interesting things happen to it. Want to be a scientist with me and guess?"
 
 **Screen:** Sunflower photo centered with gentle golden sparkle radiating outward from the yellow petals and tiny sunshine ray animations pulsing from behind the flower head.
 
@@ -65,7 +65,7 @@
 
 1. [excited] "Okay, Scientist — here comes your first experiment! Listen carefully..."
 2. [delighted] "You water plants — just like the rain! Plants drink water and grow. Let's see if you can guess even MORE. Here comes experiment number one!"
-3. (wait 2s) [encouraging] "It is easy — I say what happens, and you guess what the sunflower does. Any answer is great! Here is the first one..."
+3. [wait 2s] [encouraging] "It is easy — I say what happens, and you guess what the sunflower does. Any answer is great! Here is the first one..."
 
 **Screen:** Sunflower photo on the left; on the right, a cartoon beaker icon with "Sunflower Lab" in playful letters and a simple rain-cloud-to-growing-sunflower demo animation.
 
@@ -85,7 +85,7 @@
 
 1. [impressed] "Experiment SOLVED! The young sunflower turns its head to face the sun — slowly, slowly, following the light across the sky! The sunshine CAUSES the flower to turn. Like it is watching the sun! Great science!"
 2. [warm] "Ooh, happy — yes! It loves the sun! And when the sun comes up, the sunflower slowly turns its head to face it — like saying good morning back! The sun CAUSES the flower to move. Great thinking, Scientist!"
-3. (wait 2s) [helpful] "Here is a clue — the sunflower really likes sunshine. When the sun is over THERE... does the sunflower look this way or that way?"
+3. [wait 2s] [helpful] "Here is a clue — the sunflower really likes sunshine. When the sun is over THERE... does the sunflower look this way or that way?"
 
 **Screen:** Animation of the sunflower with a sunrise behind houses; after the child answers, the sunflower slowly turns its head toward the sun with gentle motion lines and a "TEST 1" stamp with golden star.
 
@@ -106,7 +106,7 @@
 
 **AI follow-up:**
 
-1. (beaming) "The BEST Sunflower Scientist! I bet sunflowers everywhere would love to have you in their garden."
+1. [beaming] "The BEST Sunflower Scientist! I bet sunflowers everywhere would love to have you in their garden."
 2. [delighted] "You want to keep going? That means you are a REAL scientist — always curious! We can play again another day."
 
 **Screen:** Golden lab-badge animation with "SUNFLOWER SCIENTIST" in bold playful letters, sunflower photo inside the badge, confetti in yellow and green, and a cheerful chime.

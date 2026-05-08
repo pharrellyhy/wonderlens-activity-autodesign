@@ -52,7 +52,7 @@ Child photographs crayons outside → AI admires the bright colors → child pic
 
 1. [thrilled] "I love red too! Red is so bright. I wonder — is red hiding out here?"
 2. [warm, accepting] "All the colors! So pretty! Pick ONE. Which one is your favorite today?"
-3. (wait 2s) [soft, playful] "Look at all those colors. Point to your favorite! Which one makes you smile?"
+3. [wait 2s] [soft, playful] "Look at all those colors. Point to your favorite! Which one makes you smile?"
 
 **Screen:** Crayon photo centered with each crayon gently pulsing in its own color glow; warm sparkle animation and playful color dots floating upward like bubbles.
 
@@ -70,7 +70,7 @@ Child photographs crayons outside → AI admires the bright colors → child pic
 
 1. [cheering] "Go go, Color Scout! Find your color!"
 2. [helpful, warm] "Your favorite color! Look at flowers. Look at leaves. Find that color!"
-3. (wait 2s) [encouraging] "Look around! Is something that color? A flower? A leaf? Go find it!"
+3. [wait 2s] [encouraging] "Look around! Is something that color? A flower? A leaf? Go find it!"
 
 **Screen:** Mission card with "Color Scout" badge (crayon icon with magnifying glass), 3 slots (first filled with crayon photo, 2 empty with color-splash placeholders), and a "Find 2!" counter.
 
@@ -92,7 +92,7 @@ Child photographs crayons outside → AI admires the bright colors → child pic
 
 1. [delighted] "A red flower! Same as your crayon! What does it look like? Tall? Round? Tiny?"
 2. [warm, scaffolding] "So pretty! It matches your crayon! What does it look like? Big? Small? Sparkly?"
-3. (wait 2s) [warm] "I see it! Same color! Is it big or small?"
+3. [wait 2s] [warm] "I see it! Same color! Is it big or small?"
 
 **Child responses (detail-harvesting):**
 
@@ -104,7 +104,7 @@ Child photographs crayons outside → AI admires the bright colors → child pic
 
 1. [thrilled, naming] "[Uses child's detail to build name] Round like a ball? It's Rolly Rosie! Hello, Rolly Rosie! 1 more to go!"
 2. [warm, using whatever detail child gave] "[Uses child's detail] Pretty? It's Pretty Petal! Hello, Pretty Petal! 1 more to go!"
-3. (wait 2s) [gentle, offering] "I think it looks round! Let's call it Rolly Rosie! Hello, Rolly Rosie! 1 more to go!"
+3. [wait 2s] [gentle, offering] "I think it looks round! Let's call it Rolly Rosie! Hello, Rolly Rosie! 1 more to go!"
 
 **Screen:** Photo slides into slot 2 with a color-burst animation; a small name tag appears below showing the detail-driven name; counter updates to "1 of 2 found."
 
@@ -124,7 +124,7 @@ Child photographs crayons outside → AI admires the bright colors → child pic
 
 1. [delighted] "A bucket! Same color! What does it look like? Big? Tall? Bumpy?"
 2. [warm, scaffolding] "Ooh! It matches! Is it big or small? Smooth or rough?"
-3. (wait 2s) [warm] "I see it! Same color! Is it big or small?"
+3. [wait 2s] [warm] "I see it! Same color! Is it big or small?"
 
 **Child responses (detail-harvesting):**
 
@@ -136,7 +136,7 @@ Child photographs crayons outside → AI admires the bright colors → child pic
 
 1. [thrilled, naming] "[Uses child's detail] Really big? It's Big Red! Hello, Big Red! Team complete!"
 2. [warm, using whatever detail child gave] "[Uses child's detail] Shiny? It's Shiny Star! Hello, Shiny Star! Team complete!"
-3. (wait 2s) [gentle, offering] "I think it looks big! Let's call it Big Red! Hello, Big Red! Team complete!"
+3. [wait 2s] [gentle, offering] "I think it looks big! Let's call it Big Red! Hello, Big Red! Team complete!"
 
 **Screen:** Photo slides into slot 3 with color-burst animation; detail-driven name tag appears below; counter updates to "2 of 2 found — Team complete!" All 3 slots glow.
 
@@ -154,9 +154,9 @@ Child photographs crayons outside → AI admires the bright colors → child pic
 
 **AI follow-up (detail-driven story — each character's action comes from their specific detail):**
 
-1. (narrating, using details from both finds) "[Name 1] [action from child's detail — e.g., 'rolls around and bumps into [Name 2]!'] [Name 2] says 'I'm so [child's detail — e.g., big]! [detail-driven action — e.g., hop inside!']' What happens next?"
+1. [narrating, using details from both finds] "[Name 1] [action from child's detail — e.g., 'rolls around and bumps into [Name 2]!'] [Name 2] says 'I'm so [child's detail — e.g., big]! [detail-driven action — e.g., hop inside!']' What happens next?"
 2. [warm, scaffolding with details] "[Name 1] says 'I'm [child's detail]! Watch me [detail-driven action]!' And [Name 2] says 'I'm [child's detail]! Let me [detail-driven action] too!' They are color friends!"
-3. (wait 2s) [gentle, using details] "[Name 1] goes [detail-driven action — e.g., roll roll roll]! [Name 2] goes [detail-driven action — e.g., stomp stomp stomp]! They bump into each other! Do you like that story?"
+3. [wait 2s] [gentle, using details] "[Name 1] goes [detail-driven action — e.g., roll roll roll]! [Name 2] goes [detail-driven action — e.g., stomp stomp stomp]! They bump into each other! Do you like that story?"
 
 **Screen:** All 3 photos displayed in a circle with animated color lines connecting them; each character performs its detail-driven action (e.g., flower rolls, bucket stands tall); character name tags beneath each; a story-book frame with sparkle effects and "Color Friends" banner.
 
@@ -170,9 +170,9 @@ Child photographs crayons outside → AI admires the bright colors → child pic
 
 **AI follow-up:**
 
-1. (fascinated) "Yes! Colors are everywhere! Flowers, leaves, even buckets. Your crayon matches the whole world!"
+1. [fascinated] "Yes! Colors are everywhere! Flowers, leaves, even buckets. Your crayon matches the whole world!"
 2. [warm, connecting] "Crayons ARE fun! And look — the world has the same colors. Crayon and flower — color friends!"
-3. (wait 2s) [gentle] "Colors are hiding everywhere! Your crayon and the world share the same bright colors!"
+3. [wait 2s] [gentle] "Colors are hiding everywhere! Your crayon and the world share the same bright colors!"
 
 **Screen:** Collection photos with color-match lines radiating outward; the crayon photo glows as the "source" color; animated color dots float between the finds.
 

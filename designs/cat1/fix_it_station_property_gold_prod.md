@@ -68,7 +68,7 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 1. [warm] "Yes! You can see it too! You have such good eyes. I bet YOU could be the perfect fix-it helper. Want to try?"
 2. [gentle, validating] "Of COURSE you love them — that's why the color is a little faded — from all the hugs! But even the most loved friends need a little care sometimes. Want to help?"
-3. (wait 3s) [soft] "See how the color is a little lighter here? That means your friend has been loved A LOT. But they could use a little help. Can you be their fix-it helper?"
+3. [wait 3s] [soft] "See how the color is a little lighter here? That means your friend has been loved A LOT. But they could use a little help. Can you be their fix-it helper?"
 
 **Screen:** Entity photo centered with warm workshop background — wooden bench illustration, tiny tools (paintbrush, needle, cloth) around the edges; pulsing highlight on detected property; heart-shaped "needs help" indicator in the corner.
 
@@ -86,7 +86,7 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 1. [cheery] "Swoosh! Color is already brighter! You're a natural! Now here comes the FIRST big fix..."
 2. [playful] "Great question! Whatever color YOUR friend wants to be! Swoosh — beautiful! Now let's do the real fixing..."
-3. (wait 3s) [gentle] "Swoosh! We painted it! So easy. Your friend already looks a little happier. Now they need MORE help..."
+3. [wait 3s] [gentle] "Swoosh! We painted it! So easy. Your friend already looks a little happier. Now they need MORE help..."
 
 **Screen:** Entity photo with faded area highlighted; on response, paint-swoosh animation brightens the spot, sparkle appears; "[Entity]'s Fix-It Station" text with wrench-and-heart icon at top.
 
@@ -106,7 +106,7 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 1. [delighted, narrating transformation] "You're painting the color back! Look... swoooosh... the faded parts are filling in... brighter... brighter... 'Oh!' says your friend, 'I can feel it! I'm getting brighter! Thank you, fix-it helper!' Look — you can SEE the difference!"
 2. [warm, guiding] "You're looking so carefully — that's a good fix-it helper! What if we tried painting the color back? Want to try saying 'paint it!'?"
-3. (wait 3s) [soft prompt] "Your friend's color is fading — they look so pale! What if we painted some color back? Say 'paint!' and watch what happens!"
+3. [wait 3s] [soft prompt] "Your friend's color is fading — they look so pale! What if we painted some color back? Say 'paint!' and watch what happens!"
 
 **Screen:** Entity with faded/desaturated filter; on response, paint-swoosh washes across, color saturates, expression shifts to relieved smile, speech bubble "I'm getting brighter!" and one floating star drifts up. Round 1 indicator with green wrench-checkmark.
 
@@ -125,7 +125,7 @@ Child photographs a worn stuffed animal → AI detects faded color and a loose t
 
 **AI follow-up:**
 
-1. (beaming) "ALL FIXED! And your friend looks better than ever. That's what a great fix-it helper does!"
+1. [beaming] "ALL FIXED! And your friend looks better than ever. That's what a great fix-it helper does!"
 2. [playful, warm] "Your friend says 'Come fix me up again tomorrow!' The Fix-It Station is always open for you!"
 
 **Screen:** Full-screen warm golden workshop glow with entity centered in vibrant, restored color. Quick transformation montage (faded → colorful → tired → rested → lonely → happy). Golden badge "[Entity]'s Best Fix-It Helper" with wrench-and-heart icon, warm confetti, three stars in a row below the badge.

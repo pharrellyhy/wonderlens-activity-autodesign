@@ -44,8 +44,8 @@
 **AI follow-up:**
 
 1. [warm, impressed] "Ha! 'Let's go ride!' I love it! Your bike sounds like it is ready for action. You really understand what it is thinking. I bet you can hear even MORE of what it says."
-2. (enthusiastic) "It IS your bike! And you know it so well. I bet if your bike could talk, it would have SO much to say about all the places you have been together. Want to find out?"
-3. (wait 2s) [soft, wondering] "This bike looks like it has great stories to tell. What if you had a magic power to hear it talk? Want to be a Bike Whisperer with me?"
+2. [enthusiastic] "It IS your bike! And you know it so well. I bet if your bike could talk, it would have SO much to say about all the places you have been together. Want to find out?"
+3. [wait 2s] [soft, wondering] "This bike looks like it has great stories to tell. What if you had a magic power to hear it talk? Want to be a Bike Whisperer with me?"
 
 **Screen:** Bicycle photo centered with gentle silver sparkle radiating from the wheel spokes and tiny motion lines pulsing behind the rear wheel.
 
@@ -65,7 +65,7 @@
 
 1. [excited] "Okay, Bike Whisperer — here comes the first adventure! Listen carefully..."
 2. [delighted] "It IS funny — a talking bike! And you are the only one who can hear it. Here comes the first adventure!"
-3. (wait 2s) [encouraging] "It is easy — I say what happens, and you talk like the bike. Say whatever you want! Here is the first one..."
+3. [wait 2s] [encouraging] "It is easy — I say what happens, and you talk like the bike. Say whatever you want! Here is the first one..."
 
 **Screen:** Bicycle photo on the left; on the right, a cartoon speech-bubble icon with "Bike Whisperer" in playful letters and a simple animation of the bike in a garage with a thought bubble ("I'm bored!").
 
@@ -85,7 +85,7 @@
 
 1. [thrilled] "'Wheee!' — I KNEW it! The bike is loving that speed! Those wheels are spinning so fast, and the chain goes click-click-click. Going downhill makes the bike feel FREE and excited! You are a great Bike Whisperer!"
 2. [warm] "Vroom vroom — yes! The bike is zooming! And I bet the bike is saying, 'My wheels are spinning so fast! I love going downhill — click click click goes my chain!' The hill makes the bike feel excited. Great job!"
-3. (wait 2s) [helpful] "The bike is flying downhill — wind rushing past, wheels spinning fast! Is the bike feeling happy or scared? What would it shout?"
+3. [wait 2s] [helpful] "The bike is flying downhill — wind rushing past, wheels spinning fast! Is the bike feeling happy or scared? What would it shout?"
 
 **Screen:** Animation of the bicycle rolling down a gentle green hill with wind lines, blurred spokes, and a big speech bubble when the child responds; "RIDE 1" stamp with golden star.
 
@@ -106,7 +106,7 @@
 
 **AI follow-up:**
 
-1. (beaming) "The BEST Bike Whisperer! Your bike is so lucky to have someone who really listens to it."
+1. [beaming] "The BEST Bike Whisperer! Your bike is so lucky to have someone who really listens to it."
 2. [delighted] "You want more adventures? That means you REALLY love your bike! We can play again another day."
 
 **Screen:** Golden badge animation with "BIKE WHISPERER" in bold playful letters, bicycle photo inside the badge, confetti in silver and blue, and a cheerful chime.

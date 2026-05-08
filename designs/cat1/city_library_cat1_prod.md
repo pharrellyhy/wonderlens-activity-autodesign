@@ -45,7 +45,7 @@
 
 1. [impressed] "That's right — librarians, other readers, maybe someone who shelved it back! This book has had a whole secret life before it reached you. What if we told that story?"
 2. [playful, validating] "Ha — you're right, books definitely don't walk! But they DO travel — from shelves to desks to bags to YOUR hands. Somebody brought this book through a whole system of people and places. That's an adventure worth telling!"
-3. (wait 2s) [warm, wondering] "You know what I think? I think this book has been through at least five different adventures before it landed right here with you. Want to figure out what those adventures were?"
+3. [wait 2s] [warm, wondering] "You know what I think? I think this book has been through at least five different adventures before it landed right here with you. Want to figure out what those adventures were?"
 
 **Screen:** Library book photo centered with gentle sparkle particles and a faint bookshelf silhouette framing the edges.
 
@@ -65,7 +65,7 @@
 
 1. [impressed] "Great thinking! Yes — the librarian probably checks it in, maybe puts a label on its spine so everyone knows where it belongs. You already know how the system works! Ready for the next chapter?"
 2. [warm, encouraging] "That's totally okay — this is YOUR story, so you can make things up! Maybe the librarian gives the book a little welcome tour, or maybe it goes straight to a cozy corner. Whatever you think! Let's keep going."
-3. (wait 2s) [helpful] "Here's a thought — the librarian might need to stamp it or put a label on it so it finds its place. What do you think the book would feel about its very first home on a shelf?"
+3. [wait 2s] [helpful] "Here's a thought — the librarian might need to stamp it or put a label on it so it finds its place. What do you think the book would feel about its very first home on a shelf?"
 
 **Screen:** Book photo in top-right corner; illustrated journey log notebook open to Chapter 1 showing a book arriving in a box, a librarian holding it up, tall shelves in the background, and a "Book Journey Narrator" press badge at bottom.
 
@@ -85,7 +85,7 @@
 
 1. [delighted, building] "Yes! They flip it open and their eyes get big — the pictures are amazing, or the first line grabs them. And just like that, the book is about to go on its next adventure. Did you know librarians are like community helpers who organized that whole shelf so this exact reader could find this exact book? That's the system working!"
 2. [charmed, validating] "Ha! They put it back? Oh no — a rejection! OR maybe they smelled it — some people love the smell of books, you know. Either way, let's say someone DOES pick our book. What happens when they take it to the front desk?"
-3. (wait 2s) [encouraging] "Imagine it — they've been looking for something good to read, and they found OUR book. Maybe they flip through the pages, or check out the cover. What do you think they'd notice first?"
+3. [wait 2s] [encouraging] "Imagine it — they've been looking for something good to read, and they found OUR book. Maybe they flip through the pages, or check out the cover. What do you think they'd notice first?"
 
 **Screen:** Journey log Chapter 2 with a bookshelf scene, a hand reaching for the book, warm lamplight from the reading corner in the background, and a "Chapter 2" stamp animation.
 
@@ -106,7 +106,7 @@
 
 **AI follow-up:**
 
-1. (beaming) "The best narrator a book could ask for! Every library book has a journey like this — and now you know the whole story."
+1. [beaming] "The best narrator a book could ask for! Every library book has a journey like this — and now you know the whole story."
 2. [delighted] "Yes! Every book has its own journey, and you can narrate any of them. And returning YOUR book? That's the best way to keep the adventure going for someone else!"
 
 **Screen:** Animated "Book Journey Narrator" badge with a book-and-path icon, the child's book photo inset, golden confetti, and a celebratory chime; the journey log shows all five chapter stamps.

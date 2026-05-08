@@ -59,7 +59,7 @@ Child photographs a firefighter figure, AI notices the bright stripes and helmet
 
 1. [excited] "Stop signs and hydrants — yes! Those are safety helpers too! The firefighter is not the only one. Let's go outside and see how many safety helpers we can spot in the neighborhood!"
 2. [warm, validating] "Firefighters ARE so brave! They help keep everyone safe. But they are not alone — there are LOTS of safety helpers around. Signs, bright paint, special posts. Want to go find them like a Safety Inspector?"
-3. (wait 2s) [inviting] "The firefighter keeps people safe with bright stripes and strong gear. But the whole neighborhood has helpers too! Should we go outside and find them?"
+3. [wait 2s] [inviting] "The firefighter keeps people safe with bright stripes and strong gear. But the whole neighborhood has helpers too! Should we go outside and find them?"
 
 **Screen:** Firefighter photo centered with a soft glow around the reflective stripes and helmet; a "conversation recap" shimmer on the stripes. Dotted arrows pointing outward toward illustrated neighborhood elements.
 
@@ -79,7 +79,7 @@ Child photographs a firefighter figure, AI notices the bright stripes and helmet
 
 1. [impressed] "Yes! So many helpers! But you know what? It is not just people. Signs, hydrants, crosswalk paint — they ALL have safety jobs too! What if we went outside and found as many safety helpers as we can?"
 2. [warm, connecting] "A firefighter toy — how cool! Real firefighters wear gear like this to stay safe. And guess what? The neighborhood is full of other safety helpers too — not just people, but things like signs and bright paint. Want to go on a safety hunt?"
-3. (wait 2s) [playful] "This firefighter works hard to keep people safe. But the firefighter has a whole TEAM of helpers around the neighborhood — bright signs, painted lines, special posts. Should we go find them?"
+3. [wait 2s] [playful] "This firefighter works hard to keep people safe. But the firefighter has a whole TEAM of helpers around the neighborhood — bright signs, painted lines, special posts. Should we go find them?"
 
 **Screen:** Firefighter photo centered with reflective stripes glowing with animated shimmer; helmet highlighted with a protective shield icon overlay.
 
@@ -97,7 +97,7 @@ Child photographs a firefighter figure, AI notices the bright stripes and helmet
 
 1. [cheering] "Inspector is on patrol! Look for signs, posts, bright paint, fences, or anything that helps people stay safe. Take a photo when you find one!"
 2. [explaining warmly] "A safety helper is anything that keeps people safe! A stop sign tells cars to stop. A crosswalk shows you where to walk. A fire hydrant holds water for firefighters. Look around — they are everywhere!"
-3. (wait 2s) [gently encouraging] "Here is your first clue — look near the street for signs or painted lines. Look for anything bright or colorful. Safety helpers are often easy to see!"
+3. [wait 2s] [gently encouraging] "Here is your first clue — look near the street for signs or painted lines. Look for anything bright or colorful. Safety helpers are often easy to see!"
 
 **Screen:** Mission card with "Safety Inspector" badge (shield with a check mark), 4 collection slots (first filled with firefighter photo labeled "Job: Keeps People Safe!"), and a three-step task list with icons.
 
@@ -119,7 +119,7 @@ Child photographs a firefighter figure, AI notices the bright stripes and helmet
 
 1. [thrilled] "That is exactly right! [Specific validation — e.g., 'The fire hydrant holds water underground so firefighters can spray it through their hoses. That is its safety job!'] Inspector Log: '[Item] — Safety Job: [Warn/Protect/Guide]!' Two more to find, Inspector!"
 2. [warm, scaffolding] "It IS [color]! And that bright color is there ON PURPOSE — to help people notice it. Think about what it DOES. Does it tell people to stop, go, or be careful? That is its safety job! Two more, Inspector!"
-3. (wait 2s) [curious] "I see your find! It is [brief description]. I think this one helps keep people safe by [specific function]. What do YOU think its job is — does it warn, protect, or guide?"
+3. [wait 2s] [curious] "I see your find! It is [brief description]. I think this one helps keep people safe by [specific function]. What do YOU think its job is — does it warn, protect, or guide?"
 
 **Screen:** New photo slides into second slot with sparkle animation; label appears: "Safety Job: ?" filling in based on conversation. Counter: "2 of 4."
 
@@ -139,7 +139,7 @@ Child photographs a firefighter figure, AI notices the bright stripes and helmet
 
 1. [connecting] "Smart thinking! [Specific validation.] This one is different from your first find — one [warns/protects/guides] and this one [warns/protects/guides]. They have different safety jobs! Inspector Log: '[Item] — Safety Job: [category]!' One more to go, Inspector!"
 2. [warm, guiding] "Good eye spotting it! Think about where it is — is it near the road? Near a walkway? Things placed near roads usually help drivers or walkers stay safe. I think this one's job is to [specific function]. What do you think?"
-3. (wait 2s) [enthusiastic] "Ooh, good find! This looks like it is [brief description]. I think it keeps people safe by [specific function]. Does that sound right to you?"
+3. [wait 2s] [enthusiastic] "Ooh, good find! This looks like it is [brief description]. I think it keeps people safe by [specific function]. Does that sound right to you?"
 
 **Screen:** New photo slides into third slot with sparkle animation. Counter: "3 of 4."
 
@@ -159,7 +159,7 @@ Child photographs a firefighter figure, AI notices the bright stripes and helmet
 
 1. [amazed] "You are SO good at this! [Specific validation.] This helper does a different job from the others. You now have a whole collection of safety helpers — each one doing something different! Inspector Log: '[Item] — Safety Job: [category]!' Collection COMPLETE!"
 2. [encouraging] "You DO see them everywhere — and that is the point! Safety helpers are all around us, we just have to NOTICE them. This one's job is [specific function]. Collection COMPLETE, Inspector!"
-3. (wait 2s) [gentle] "I see your last find! This one looks like it helps people by [specific function]. Every safety helper has its own job. Collection COMPLETE!"
+3. [wait 2s] [gentle] "I see your last find! This one looks like it helps people by [specific function]. Every safety helper has its own job. Collection COMPLETE!"
 
 **Screen:** Final photo slides into last slot with a big sparkle burst. All 4 slots filled. "Collection Complete!" banner.
 
@@ -183,7 +183,7 @@ Child photographs a firefighter figure, AI notices the bright stripes and helmet
 
 1. [delighted] "Great sorting! See how each helper has a DIFFERENT safety job? Some warn by using bright colors and words. Some protect by blocking danger. Some guide by showing the safe path. They all work as a team — just like firefighters work as a team!"
 2. [playfully scaffolding] "You are right — they ALL keep people safe! But let's look closer. The stop sign — does it block something or does it TELL you something? I think it WARNS you. Now the guardrail — does it tell you something or does it BLOCK something? See — different jobs!"
-3. (wait 2s) [warm, guiding] "Let's start with an easy one. The [most obvious item] — does it warn, protect, or guide? Now think about the [next item]. Are they the same or different? See — every helper has its own safety job!"
+3. [wait 2s] [warm, guiding] "Let's start with an easy one. The [most obvious item] — does it warn, protect, or guide? Now think about the [next item]. Are they the same or different? See — every helper has its own safety job!"
 
 **Screen:** All 4 photos displayed in a row; three sorting labels below: "WARN" (orange with exclamation triangle), "PROTECT" (blue with shield), "GUIDE" (green with arrow). Photos shift under matching labels as child sorts.
 
@@ -199,7 +199,7 @@ Child photographs a firefighter figure, AI notices the bright stripes and helmet
 
 1. [impressed] "Exactly! There are different kinds of dangers — fire, cars, dark streets — so we need different kinds of helpers. Each one is an expert at its own job! And together they are a safety team for the whole neighborhood."
 2. [warm, extending] "The neighborhood IS big! And big places need lots of helpers. A stop sign can't spray water on a fire, and a fire hydrant can't tell cars to stop. Each helper has its own special skill!"
-3. (wait 2s) [gentle, prompting] "Think about the firefighter and the stop sign. Can the firefighter stand on the corner all day? Can the stop sign spray water? They need EACH OTHER. Every helper does the job the others cannot!"
+3. [wait 2s] [gentle, prompting] "Think about the firefighter and the stop sign. Can the firefighter stand on the corner all day? Can the stop sign spray water? They need EACH OTHER. Every helper does the job the others cannot!"
 
 **Screen:** Collection displayed in a diamond pattern with animated dotted lines connecting them as a "safety network" over a small neighborhood map illustration. Each photo has its sorting label below.
 
@@ -217,7 +217,7 @@ Child photographs a firefighter figure, AI notices the bright stripes and helmet
 
 1. [encouraging] "Keep your inspector eyes open! Every time you walk through the neighborhood, see how many safety helpers you can spot. You are part of the safety team now! See you on the next patrol, Inspector!"
 2. [warm] "Your badge is saved! Remember — noticing safety helpers is a safety skill too. Bye for now, Inspector!"
-3. (wait 2s) [soft] "Your Safety Inspector Badge is glowing. Great patrol today, Inspector!"
+3. [wait 2s] [soft] "Your Safety Inspector Badge is glowing. Great patrol today, Inspector!"
 
 **Screen:** Golden "Safety Inspector Badge" shaped like a shield with a check mark at center; firefighter photo in the middle surrounded by 3 collection photo insets. "Function" in bold gear-shaped letters with tool icons, "Responsibility" in strong block letters with a handshake icon. Gentle chime and animated safety net lines connecting all photos.
 

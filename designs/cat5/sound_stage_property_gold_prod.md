@@ -67,7 +67,7 @@ Child photographs a wooden spoon. AI notices the long, hard shape and imagines "
 
 1. [warm, inspired] "You already know! Secret instruments are EVERYWHERE — you just have to look at their shape and imagine the sound. I think YOU could be the Sound Conductor! Find 3 things that LOOK like they could make interesting sounds!"
 2. [playful, validating] "Cooking AND music! When you stir a pot, that spoon goes TAP TAP TAP on the sides. That IS music! What if we found more things that LOOK like they could make sounds?"
-3. (wait 2s) [gentle, coaxing] "Your spoon is long and hard — that's why it would go TAP TAP TAP, like a drum! I wonder what OTHER shapes are hiding around here. Smooth things? Crinkly things? Each shape makes a different sound!"
+3. [wait 2s] [gentle, coaxing] "Your spoon is long and hard — that's why it would go TAP TAP TAP, like a drum! I wonder what OTHER shapes are hiding around here. Smooth things? Crinkly things? Each shape makes a different sound!"
 
 **Screen:** Object photo centered with golden glow, animated sound waves pulsing outward, bouncing text showing imagined sound: "TAP TAP TAP!"
 
@@ -84,9 +84,9 @@ Child photographs a wooden spoon. AI notices the long, hard shape and imagines "
 
 **AI follow-up:**
 
-1. (pumped up) "Excellent! A conductor is the boss of the music — YOU tell the performers when to play, how loud, and how fast. Now look around — find something with an interesting shape. Round things, crinkly things, bendy things — they ALL have hidden sounds!"
+1. [pumped up] "Excellent! A conductor is the boss of the music — YOU tell the performers when to play, how loud, and how fast. Now look around — find something with an interesting shape. Round things, crinkly things, bendy things — they ALL have hidden sounds!"
 2. [warm, explaining] "A conductor tells musicians when to play! And the sounds? I look at the SHAPE. Long hard things go TAP. Round smooth things go CLINK. Crinkly things go CRUNCH. But YOUR idea counts too! Now go find your first secret instrument!"
-3. (wait 2s) [encouraging] "Try looking for something with a cool shape! Something round, something crinkly, something bendy. Take a photo — I'll tell you what sound I think it would make!"
+3. [wait 2s] [encouraging] "Try looking for something with a cool shape! Something round, something crinkly, something bendy. Take a photo — I'll tell you what sound I think it would make!"
 
 **Screen:** Mission card with "Sound Conductor" badge (baton with sound waves), four performance slots (first filled with trigger object photo and its sound), three empty slots with sound wave icons, and numbered checklist.
 
@@ -109,7 +109,7 @@ Child photographs a wooden spoon. AI notices the long, hard shape and imagines "
 
 1. [thrilled, dramatic] "CLINK CLINK it is! Pebble is now the BELL-RINGER of the Sound Stage — CLINK CLINK CLINK! Two more secret instruments to find, Conductor!"
 2. [delighted, accepting] "BONK BONK! Even BETTER! You're the conductor — YOUR ears decide! Pebble is now the BONKER — BONK BONK BONK! Two more to find!"
-3. (wait 2s) [playful] "I think CLINK CLINK — but you could also say CLICK or CLACK or BONK! Let's call it CLINK CLINK for now — two more instruments to find!"
+3. [wait 2s] [playful] "I think CLINK CLINK — but you could also say CLICK or CLACK or BONK! Let's call it CLINK CLINK for now — two more instruments to find!"
 
 **Screen:** Pebble photo in slot 2 with sound wave burst; label shows sound in bouncy letters; counter "1 of 3 secret instruments found."
 
@@ -171,6 +171,6 @@ Child photographs a wooden spoon. AI notices the long, hard shape and imagines "
 
 1. [encouraging] "Next time you see ANYTHING — a fork, a shoe, a pillow — try imagining its sound! Every shape is hiding a secret instrument inside. See you at the next concert, Conductor!"
 2. [warm] "Your Sound Conductor badge is glowing! You'll never look at ordinary things the same way again. Bye for now, Conductor!"
-3. (wait 2s) [soft] "Your badge is saved. The Sound Stage is always waiting for its conductor. Bravo!"
+3. [wait 2s] [soft] "Your badge is saved. The Sound Stage is always waiting for its conductor. Bravo!"
 
 **Screen:** "Sound Conductor" badge — golden baton with four tiny icons (spoon, pebble, leaf, stick) orbiting it and sound waves radiating outward. "Form," "Connection," and "Perspective" in artistic green, gold, and sky-blue lettering with sound wave, chain-link, and ear icons. Four collection photos as insets in stage arc. Gentle confetti falling.

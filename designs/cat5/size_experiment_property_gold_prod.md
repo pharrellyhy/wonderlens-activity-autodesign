@@ -64,9 +64,9 @@ Child photographs a pinecone. AI notices it fits in a hand, announces the size o
 
 **AI follow-up:**
 
-1. (intrigued) "Interesting — you already have a feeling about it! This pinecone fits in your hand, so it's about the same size. But are the OTHER things around you bigger or smaller than your hand? I think we should find out for REAL!"
+1. [intrigued] "Interesting — you already have a feeling about it! This pinecone fits in your hand, so it's about the same size. But are the OTHER things around you bigger or smaller than your hand? I think we should find out for REAL!"
 2. [warm, redirecting] "It IS prickly — and it's the perfect size to hold! Look at your hand next to it — almost the same size! That makes me wonder about the OTHER things around you. Are they bigger or smaller than your hand? I have a fun way to find out!"
-3. (wait 2s) [inviting] "This pinecone fits right in your hand! But look around you — are the other things bigger than your hand, or smaller? I bet we can measure and find out together!"
+3. [wait 2s] [inviting] "This pinecone fits right in your hand! But look around you — are the other things bigger than your hand, or smaller? I bet we can measure and find out together!"
 
 **Screen:** Object photo centered with translucent hand-outline overlay showing size comparison. A small size label: "About the size of your hand!" with a hand icon.
 
@@ -83,8 +83,8 @@ Child photographs a pinecone. AI notices it fits in a hand, announces the size o
 
 **AI follow-up:**
 
-1. (locking it in) "You predict MOSTLY BIGGER — got it! I'm writing that down. Now here's the deal — you are a Size Scientist! Your job: find 3 more things around you, take a photo of each one, and I'll figure out if it's bigger or smaller than your hand. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
-2. (locking it in) "You predict MOSTLY SMALLER — bold guess! I'm writing that down. Now here's the deal — you are a Size Scientist! Your job: find 3 more things around you, take a photo of each one, and I'll figure out if it's bigger or smaller than your hand. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
+1. [locking it in] "You predict MOSTLY BIGGER — got it! I'm writing that down. Now here's the deal — you are a Size Scientist! Your job: find 3 more things around you, take a photo of each one, and I'll figure out if it's bigger or smaller than your hand. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
+2. [locking it in] "You predict MOSTLY SMALLER — bold guess! I'm writing that down. Now here's the deal — you are a Size Scientist! Your job: find 3 more things around you, take a photo of each one, and I'll figure out if it's bigger or smaller than your hand. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
 3. [encouraging] "Great question! If something is about the same size as your hand, we'll call it a WILDCARD — it doesn't count for either side! A prediction is your BEST GUESS before you check. So — do you think MOST things around you are bigger than your hand, or smaller? Just pick one!"
 
 **Screen:** Scientist mission card with "Size Scientist" badge. Tally board with two columns: "Bigger" (arrow-up icon) and "Smaller" (arrow-down icon). Original object photo centered as reference with "≈ your hand" label. Prediction banner at top: "My prediction: Mostly [Bigger / Smaller]!" Three empty photo slots below.
@@ -108,7 +108,7 @@ Child photographs a pinecone. AI notices it fits in a hand, announces the size o
 
 1. [writing it down excitedly] "Huge is right! The tally so far: Bigger has 1, Smaller has 0. Your prediction says mostly [bigger/smaller]... let's see what happens next! Two more to find, Scientist!"
 2. [validating] "Brown and BIG! Way bigger than your hand. Tally update: Bigger 1, Smaller 0. Two more, Scientist!"
-3. (wait 2s) (announcing) "That's a big one — BIGGER than your hand! Tally: Bigger 1, Smaller 0. Two more to go. Find another thing and take a photo!"
+3. [wait 2s] [announcing] "That's a big one — BIGGER than your hand! Tally: Bigger 1, Smaller 0. Two more to go. Find another thing and take a photo!"
 
 **Screen:** New photo in slot 1. Tally board updates with animated tally mark. Running score: "Bigger: 1 | Smaller: 0." Prediction banner stays visible at top.
 
@@ -142,8 +142,8 @@ Child photographs a pinecone. AI notices it fits in a hand, announces the size o
 **AI follow-up:**
 
 1. [delighted] "That's what scientists DO — they guess, then check, and find out for real! You measured the world with your own hand! Your experiment showed you something new!"
-2. (enthusiastic, laughing) "Bigger hands would change EVERYTHING! Then things that were bigger might become smaller than your hand. That's what's cool about comparing — it depends on what you use to measure!"
-3. (wait 2s) [gentle] "Big things and small things, all around you — and every size has a reason. Your experiment helped you see that!"
+2. [enthusiastic, laughing] "Bigger hands would change EVERYTHING! Then things that were bigger might become smaller than your hand. That's what's cool about comparing — it depends on what you use to measure!"
+3. [wait 2s] [gentle] "Big things and small things, all around you — and every size has a reason. Your experiment helped you see that!"
 
 **Screen:** Full tally board with all photos in two columns (Bigger vs. Smaller). Prediction banner lights up green (RIGHT!) or flashes orange with "SURPRISE!" text. Animated tally marks count up one by one. Large final score: "Bigger: [N] | Smaller: [M]." Hand-outline icon centered as reference anchor. Reason arrows connect each photo to a purpose bubble.
 
@@ -162,6 +162,6 @@ Child photographs a pinecone. AI notices it fits in a hand, announces the size o
 
 1. [encouraging] "Next time you're somewhere new, try the experiment again! Hold up your hand and predict — mostly bigger or mostly smaller? Every place is different. See you on the next experiment, Scientist!"
 2. [warm] "Your badge is saved! You're a real Size Scientist now. Bye for now, Scientist!"
-3. (wait 2s) [soft] "Your Scientist Badge is glowing. Great experiment today!"
+3. [wait 2s] [soft] "Your Scientist Badge is glowing. Great experiment today!"
 
 **Screen:** Golden "Size Scientist Badge" shaped like a ruler with tally chart inside. Object photo at center with collection photos as insets. "Form" in crystalline letters with size-comparison graphics and "Causation" in arrow-shaped dynamic letters float artistically. Final tally result glows beneath. Hand-outline watermark behind the badge.

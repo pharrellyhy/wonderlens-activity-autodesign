@@ -45,7 +45,7 @@
 
 1. [excited, conspiratorial] "Okay, here's what we'll do — I'll tell you a moment, and YOU decide what song the piano would play. Ready?"
 2. [impressed] "That's so cool! Your piano must know SO many songs then. Let's see — can you guess what song it would pick for a really special moment?"
-3. (wait 2s) [playful whisper] "I think this piano wants to tell us something. Should we listen?"
+3. [wait 2s] [playful whisper] "I think this piano wants to tell us something. Should we listen?"
 
 **Screen:** Piano photo centered with gentle musical note animations floating upward and soft ambient sparkle.
 
@@ -63,7 +63,7 @@
 
 1. [excited] "Here we go! First moment coming up!"
 2. [warm, explaining] "A lullaby is a soft, gentle song to help someone fall asleep. Like when someone sings to you at bedtime — nice and slow. Okay, now YOUR turn to pick a song!"
-3. (wait 2s) [encouraging] "I'll start the first one — it's a fun one!"
+3. [wait 2s] [encouraging] "I'll start the first one — it's a fun one!"
 
 **Screen:** Piano photo on the left; demo card on the right showing a moon and sleeping baby icon with "soft" and "slow" labels glowing; musical notes drifting softly.
 
@@ -83,7 +83,7 @@
 
 1. [celebrating] "YES! Loud and fast — like the piano is dancing too! When you press the keys hard, the sound gets big and bouncy. The piano would be SO excited at your party!"
 2. [warm, connecting back] "Ooh, birthday cake is the BEST! And I bet at your party, the music would be really fun, right? Would the piano play loud party music or quiet party music?"
-3. (wait 2s) [helpful nudge] "At a birthday party, everyone is happy and jumping around. Would the piano play something loud and bouncy, or quiet and slow?"
+3. [wait 2s] [helpful nudge] "At a birthday party, everyone is happy and jumping around. Would the piano play something loud and bouncy, or quiet and slow?"
 
 **Screen:** Piano photo with birthday party overlay — confetti, balloons, cake icon; musical notes grow bigger and bounce when the child says "loud" or "fast."
 
@@ -105,7 +105,7 @@
 
 **AI follow-up:**
 
-1. (beaming) "You sure did! The piano is so lucky to have a Song Storyteller like you."
+1. [beaming] "You sure did! The piano is so lucky to have a Song Storyteller like you."
 2. [encouraging] "Yes! Next time you sit at the piano, try pressing the keys softly for rain music, or hard for party music. You already know how the songs feel!"
 3. [warm] "You did an amazing job today, Song Storyteller."
 

@@ -127,7 +127,7 @@ Source:
 > **AI follow-up**:
 > 1. [delighted tone] "Yes! This banana came from SO far away."
 > 2. [playful tone] "That's true, someone did bring it home!"
-> 3. *(Wait 3 seconds)* [gentle tone] "This banana is pretty quiet too."
+> 3. [Wait 3 seconds] [gentle tone] "This banana is pretty quiet too."
 ```
 
 Target:
@@ -144,7 +144,7 @@ Target:
 
 1. [delighted] "Yes! This banana came from SO far away."
 2. [playful] "That's true, someone did bring it home!"
-3. (wait 3s) [gentle] "This banana is pretty quiet too."
+3. [wait 3s] [gentle] "This banana is pretty quiet too."
 ```
 
 **Tone format**: Simplify tone markers — `[warm, surprised tone]` → `[warm, surprised]`. Drop the word "tone" unless it reads awkwardly without it.

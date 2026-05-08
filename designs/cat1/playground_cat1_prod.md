@@ -45,7 +45,7 @@
 
 1. [amazed] "I love that! The swing says, '{child's answer}!' You can hear playground talk! That's amazing!"
 2. [warm, enthusiastic] "That IS a cool playground! And I bet every piece of it has something to say. What if we could hear them?"
-3. (wait 2s) [playful whisper] "I think the swing is saying, 'Is anybody coming today?' Can you hear it?"
+3. [wait 2s] [playful whisper] "I think the swing is saying, 'Is anybody coming today?' Can you hear it?"
 
 **Screen:** Playground photo centered with colorful sparkle animations on each piece of equipment and soft outdoor ambiance.
 
@@ -65,7 +65,7 @@
 
 1. [cheering] "Let's go, Reporter! First story coming!"
 2. [warm] "You'd push it! So kind! The swing would love that. Let's hear more feelings. First story!"
-3. (wait 2s) [encouraging] "It's easy — I tell a story and you say what the equipment feels. Any answer is great! Here comes the first one..."
+3. [wait 2s] [encouraging] "It's easy — I tell a story and you say what the equipment feels. Any answer is great! Here comes the first one..."
 
 **Screen:** "Playground Feelings Reporter" badge with microphone icon above the playground photo; the swing sways gently with a speech bubble saying "I'm so lonely..." in playful lettering.
 
@@ -85,7 +85,7 @@
 
 1. [celebrating] "'Wheee!' Yes! The swing is SO happy! Going back and forth is its special job. When someone swings on it, it gets to do what it was MADE to do. Great reporting!"
 2. [validating, extending] "The kid IS happy — and I bet the swing is too! When someone swings, the chains go clink-clink and it flies through the air. Maybe the swing says, 'Yay, I'm flying!' What do you think?"
-3. (wait 2s) [gentle prompt] "The swing is going back and forth, back and forth. Is it happy? Excited? Maybe a little dizzy? You decide!"
+3. [wait 2s] [gentle prompt] "The swing is going back and forth, back and forth. Is it happy? Excited? Maybe a little dizzy? You decide!"
 
 **Screen:** Playground photo with the swing highlighted, sun animation above, swing rocking back and forth with golden motion lines and musical notes floating up.
 
@@ -106,7 +106,7 @@
 
 **AI follow-up:**
 
-1. (beaming) "The BEST reporter! Every playground wishes it had you!"
+1. [beaming] "The BEST reporter! Every playground wishes it had you!"
 2. [delighted] "You want more? That's because you're a REAL reporter — always looking for the next story! Next time you're at a playground, listen carefully..."
 
 **Screen:** Animated "Playground Feelings Reporter" badge with a microphone and playground silhouette icon, the child's playground photo inset, golden confetti, and a celebration chime.

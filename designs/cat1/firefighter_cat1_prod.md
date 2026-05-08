@@ -52,7 +52,7 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 1. [impressed] "That is a great idea! Firefighters help with all kinds of things. What if WE got to send them on missions?"
 2. [encouraging] "That is okay! Firefighters get calls all day long. What if we pretended to answer those calls and decide what to do?"
-3. (wait 2s) [playful whisper] "I think this firefighter is waiting for a mission. Should we give them one?"
+3. [wait 2s] [playful whisper] "I think this firefighter is waiting for a mission. Should we give them one?"
 
 **Screen:** Firefighter photo centered with a gentle pulsing glow and small animated icons (helmet, hose, fire truck) floating around.
 
@@ -70,9 +70,9 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 **AI follow-up:**
 
-1. (enthusiastic) "Great! Get ready — here comes the first call!"
+1. [enthusiastic] "Great! Get ready — here comes the first call!"
 2. [warm, redirecting] "The kitten is safe now! And here comes a new call on our hotline. Ready to answer it?"
-3. (wait 2s) [encouraging] "The phone is ringing! Should we pick it up together?"
+3. [wait 2s] [encouraging] "The phone is ringing! Should we pick it up together?"
 
 **Screen:** Firefighter photo moves to top left; a large colorful phone icon with "ring ring" wiggle animation appears center; after the demo, a ladder icon slides in next to a happy kitten icon.
 
@@ -92,7 +92,7 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 1. [impressed] "Yes! The firefighter puts on breathing gear. It makes a soft whoosh-whoosh sound when they breathe. Now they can see through the smoke and help! Great thinking."
 2. [validating] "Water is smart — firefighters do use water! And guess what — they also put on a special mask so they can breathe clean air in all that smoke. The mask makes a soft whoosh-whoosh sound. Cool, right?"
-3. (wait 2s) [helpful hint] "The kitchen is really smoky. The firefighter needs something to breathe clean air. What could help them breathe?"
+3. [wait 2s] [helpful hint] "The kitchen is really smoky. The firefighter needs something to breathe clean air. What could help them breathe?"
 
 **Screen:** Cartoon kitchen scene with wispy gray smoke; when the child answers, a firefighter icon enters wearing a mask with "whoosh whoosh" text bubbles, smoke clears, and a green checkmark appears.
 
@@ -114,7 +114,7 @@ Child photographs a firefighter figure on the fridge, then plays a pretend dispa
 
 **AI follow-up:**
 
-1. (beaming) "You sure did! Every caller got the right help because of you."
+1. [beaming] "You sure did! Every caller got the right help because of you."
 2. [warm] "You are such a great operator! We can play again another day. But first, let me tell you something amazing about what you just did."
 3. [gentle celebration] "I am giving you a big gold star. You helped so many people today!"
 

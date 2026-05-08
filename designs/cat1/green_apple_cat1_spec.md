@@ -50,7 +50,7 @@
 > **AI follow-up**:
 > 1. [excited] "YES! A big CRUNCH and you see the pale, creamy inside! You already know a lot about this apple. What if we tested more predictions? I need a scientist!"
 > 2. [playful, redirecting] "You want to eat it? After our game, you can! And red apples are great too — everyone likes different tastes, and that's totally okay. But first, let's be scientists with this green one!"
-> 3. (wait 2s) [gentle, curious] "I think if you took a big bite — CRUNCH! — you'd see the white inside and taste something a little sour. Does that sound right? Want to be a scientist and guess more things?"
+> 3. [wait 2s] [gentle, curious] "I think if you took a big bite — CRUNCH! — you'd see the white inside and taste something a little sour. Does that sound right? Want to be a scientist and guess more things?"
 >
 > **Screen**: Green apple photo centered with a soft "conversation recap" glow; a small crunch-wave animation near the apple.
 
@@ -68,7 +68,7 @@
 > **AI follow-up**:
 > 1. [impressed] "CRUNCH — yes! That big crunchy sound! And maybe a little sour taste too. You know a lot about this apple! Want to make more predictions — like a scientist?"
 > 2. [warm, accepting] "That's okay! Not everyone loves the same food — some people love sour, some love sweet. But this apple has some cool secrets. Want to guess what happens to it in different situations?"
-> 3. (wait 2s) [playful] "I think if you bit it — CRUNCH! Big sound, little sour taste, and you'd see the white part inside. Pretty cool, right? Want to guess more?"
+> 3. [wait 2s] [playful] "I think if you bit it — CRUNCH! Big sound, little sour taste, and you'd see the white part inside. Pretty cool, right? Want to guess more?"
 >
 > **Screen**: Green apple photo centered with gentle sparkle on the shiny skin; soft kitchen-counter ambiance.
 
@@ -86,7 +86,7 @@
 > **AI follow-up**:
 > 1. [excited] "Great! First prediction coming right up, Scientist!"
 > 2. [delighted] "Yes, they really do float! Apples are sneaky like that. Now let's see what YOU can predict. First one coming!"
-> 3. (wait 2s) [encouraging] "It's easy — I say what happens, and you guess what the apple does. Any guess is a great guess! Here goes..."
+> 3. [wait 2s] [encouraging] "It's easy — I say what happens, and you guess what the apple does. Any guess is a great guess! Here goes..."
 >
 > **Screen**: Apple photo on the left; on the right, an "Apple Prediction Scientist" lab coat badge with a magnifying glass icon; a quick demo animation of an apple bobbing in water. "Prediction 1" badge ready.
 
@@ -104,7 +104,7 @@
 > **AI follow-up**:
 > 1. [amazed] "CRUNCH! Prediction confirmed! You hear that big crunchy sound because the firm insides snap when you bite. And the pale creamy part inside is so juicy! Some people think it tastes sour, and some think it's sweet. What do YOU think — sour or sweet?"
 > 2. [warm, building] "Yummy — that's a good prediction! But let me ask you more: when you bite it, is it loud or quiet? I think it goes CRUNCH — a big sound! And the inside is a surprise — it's white, not green! Did you know that?"
-> 3. (wait 2s) [helpful] "Here are some clues — think about the SOUND. Is it quiet like bread, or loud like a cracker? And what color do you think is INSIDE the green skin? Take your best guess!"
+> 3. [wait 2s] [helpful] "Here are some clues — think about the SOUND. Is it quiet like bread, or loud like a cracker? And what color do you think is INSIDE the green skin? Take your best guess!"
 >
 > **Screen**: Apple with a cartoon bite taken out; crunch-wave sound lines; cross-section showing pale flesh; "PREDICTION 1" stamp. A golden star appears when the child responds.
 
@@ -120,7 +120,7 @@
 > **AI follow-up**:
 > 1. [impressed] "Great prediction, Scientist! The apple slowly gets softer because its insides change over time. The shiny smooth skin might even get a little wrinkly — like the apple is getting sleepy! The green color might look duller too. Everything changes if you wait long enough. Time is the cause, and the soft wrinkly apple is the effect!"
 > 2. [playful, guiding] "Your mom is smart — eat it before it changes! Because here's the secret: if nobody eats it, the apple slowly gets softer. Its smooth shiny skin gets a little less shiny. The crunch disappears! Time changes the apple."
-> 3. (wait 2s) [encouraging] "Think about this — is the apple still crunchy after a whole week? Or does something happen to it? Imagine poking it with your finger after seven days. Is it hard or soft?"
+> 3. [wait 2s] [encouraging] "Think about this — is the apple still crunchy after a whole week? Or does something happen to it? Imagine poking it with your finger after seven days. Is it hard or soft?"
 >
 > **Screen**: Split-screen showing apple now (shiny, green) and apple after one week (duller, slightly wrinkled) as a gentle transition animation. "PREDICTION 2" stamp and golden star.
 
@@ -136,7 +136,7 @@
 > **AI follow-up**:
 > 1. [thrilled] "Double prediction! YES — tiny teardrop seeds hiding in little pockets in the core! And the white part slowly turns brown when air touches it — like the apple is blushing! The air CAUSES the brown color. You're making connections between what happens and why. Amazing scientist work!"
 > 2. [warm, building] "You COULD eat it — good point! But before you do, look closely — there are small dark seeds in the middle, snug in little pockets. And if you wait a few minutes before eating, the white part starts turning a little brown where the air touches it. Isn't that surprising?"
-> 3. (wait 2s) [helpful] "Here's a clue — think about what a plant needs to grow a new tree. Could there be something hiding inside the apple that helps with that? And for the second part, think about what happens when air touches the juicy inside..."
+> 3. [wait 2s] [helpful] "Here's a clue — think about what a plant needs to grow a new tree. Could there be something hiding inside the apple that helps with that? And for the second part, think about what happens when air touches the juicy inside..."
 >
 > **Screen**: Apple cross-section showing seeds in the core pocket; a gentle time-lapse animation of the white flesh gradually tinting brown around the edges. "PREDICTION 3" stamp and golden star.
 
@@ -156,9 +156,9 @@
 > 3. (No response) Child smiles or looks at the badge.
 >
 > **AI follow-up**:
-> 1. "(beaming) The best Apple Prediction Scientist! This apple is lucky to have someone so smart studying it."
+> 1. [beaming] "The best Apple Prediction Scientist! This apple is lucky to have someone so smart studying it."
 > 2. [delighted] "Go for it — you earned that apple, Scientist! And every time you eat one, you'll know all its secrets now."
-> 3. (wait 2s) [warm] "That badge looks great on you, Scientist. You earned every star."
+> 3. [wait 2s] [warm] "That badge looks great on you, Scientist. You earned every star."
 >
 > **Screen**: Animated "Apple Prediction Scientist" badge with a magnifying glass and apple icon, the child's apple photo inset, golden stars instead of confetti, and a celebration chime. All prediction stamps visible.
 
@@ -176,7 +176,7 @@
 > **AI follow-up**:
 > 1. [celebrating] "They really are! And now you'll see those connections everywhere. See you next time, Scientist!"
 > 2. [warm, clear] "Perspective means everyone sees things in their own way — like how you and your friend might feel differently about sour taste! And yes, you can be a prediction scientist with ANY food. See you next time!"
-> 3. (wait 2s) [gentle closing] "Great job today, Scientist. Next time you see any fruit, you'll already know its secrets. Until next time, Apple Prediction Scientist!"
+> 3. [wait 2s] [gentle closing] "Great job today, Scientist. Next time you see any fruit, you'll already know its secrets. Until next time, Apple Prediction Scientist!"
 >
 > **Screen**: "Connection" and "Perspective" in colorful apple-themed lettering; "Connection" with dotted lines linking tree → apple → store → kitchen → child; "Perspective" with two cartoon faces — one smiling at sour, one scrunching — both happy in their own way. Scientist badge in the corner, apple photo glowing behind.
 

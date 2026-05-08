@@ -52,7 +52,7 @@ Child photographs a sunflower in the garden → AI points out how many parts it 
 
 1. [delighted] "Yes! The petals wave at bees to come visit. And you know what? The stem holds the big heavy head up high! Every part has a job. I bet there are MORE things out here with parts that have special jobs..."
 2. [warm, validating] "It IS so bright and yellow! Those yellow petals have a job — they tell the bees 'come get some nectar here!' Every part does something. I wonder what other things have parts with jobs..."
-3. (wait 2s) [soft, inviting] "See those long petals? They wave at bees! And the thick stem? It holds up the heavy head. Every part has a job! What if we found more things like that?"
+3. [wait 2s] [soft, inviting] "See those long petals? They wave at bees! And the thick stem? It holds up the heavy head. Every part has a job! What if we found more things like that?"
 
 **Screen:** Close-up of sunflower photo with soft glow and gentle animated sparkles tracing along petals, stem, and seed center, each briefly labeled with a tiny icon.
 
@@ -70,7 +70,7 @@ Child photographs a sunflower in the garden → AI points out how many parts it 
 
 1. [cheering] "Patrol is GO! Find something with a part that does a job, snap a photo, and report back!"
 2. [encouraging] "A special job means the part DOES something for the thing it belongs to. Like a flower petal waves at bees. Or a thorn keeps animals away. Look at plants, bugs, even rocks with moss — what part stands out?"
-3. (wait 2s) (gently) "Here is your first clue — look at any plant near you. See any leaves, thorns, or berries? Each one does something special! Take a photo when you spot one."
+3. [wait 2s] [gently] "Here is your first clue — look at any plant near you. See any leaves, thorns, or berries? Each one does something special! Take a photo when you spot one."
 
 **Screen:** Mission card with an "Inspector" badge (magnifying glass over a leaf), 3 empty collection slots plus sunflower photo with golden check, and a numbered task list with icons.
 
@@ -91,8 +91,8 @@ Child photographs a sunflower in the garden → AI points out how many parts it 
 **AI follow-up:**
 
 1. [thrilled] "A leaf that catches sunlight — YES! That is exactly its job. The leaf soaks up sun and helps the plant make food. Patrol Log: 'Green Leaf — job: catching sunshine!' Great first find, Inspector. Two more to go!"
-2. (looking closely) "A green thing! Look at how flat and wide it is. That flat shape helps it catch as much sunlight as possible — that is its job! Patrol Log: 'Flat Green Catcher — job: soaking up sun!' Two more, Inspector!"
-3. (wait 2s) (enthusiastic) "Oooh, let me see! I see something flat and green. That flat shape has a job — it catches sunlight to help the plant grow. What do YOU think this part does?"
+2. [looking closely] "A green thing! Look at how flat and wide it is. That flat shape helps it catch as much sunlight as possible — that is its job! Patrol Log: 'Flat Green Catcher — job: soaking up sun!' Two more, Inspector!"
+3. [wait 2s] [enthusiastic] "Oooh, let me see! I see something flat and green. That flat shape has a job — it catches sunlight to help the plant grow. What do YOU think this part does?"
 
 **Screen:** New photo slides into the first empty slot with a sparkle burst; label appears below: "Part: ? Job: ?" filling in based on conversation. Counter: "2 of 4."
 
@@ -114,9 +114,9 @@ Child photographs a sunflower in the garden → AI points out how many parts it 
 
 **AI follow-up:**
 
-1. (mind-blown) "YES! The sunflower started as a tiny seed, grew into a tall stem, and opened into this giant flower — and now the seeds in the middle will fall out and grow into NEW sunflowers! That is so much change from one little seed!"
+1. [mind-blown] "YES! The sunflower started as a tiny seed, grew into a tall stem, and opened into this giant flower — and now the seeds in the middle will fall out and grow into NEW sunflowers! That is so much change from one little seed!"
 2. [playfully] "You know what? You are RIGHT — they ALL change! The leaf grows bigger, the berry gets ripe, the bark gets thicker. But the sunflower might change the MOST — from a tiny seed to this giant flower with hundreds of new seeds inside. One little seed becomes a whole sun!"
-3. (wait 2s) (guiding gently) "Here is a clue — think about the sunflower. It started as a teeny tiny seed in the dirt. Then it grew a stem, then leaves, then this BIG flower full of new seeds. Does anything else change that much?"
+3. [wait 2s] [guiding gently] "Here is a clue — think about the sunflower. It started as a teeny tiny seed in the dirt. Then it grew a stem, then leaves, then this BIG flower full of new seeds. Does anything else change that much?"
 
 **Screen:** All 4 photos in a row at top; below, a timeline arrow labeled "Tiny Seed → Sprout → Tall Stem → Big Flower → New Seeds" with animated growth lines connecting stages.
 
@@ -132,7 +132,7 @@ Child photographs a sunflower in the garden → AI points out how many parts it 
 
 1. [delighted] "That is such a smart thought! Every part helps the whole plant stay alive and grow. The petals bring bees, the stem stands tall, the seeds make new flowers. When every part does its job, the whole plant works!"
 2. [warmly] "It IS a big wonder! If the stem did not hold the flower up, bees could not find it. If the petals were not bright, bees would fly past. Every part helps, and together they keep the plant going and growing!"
-3. (wait 2s) [gentle, guiding] "Think about the stem, the petals, and the seeds. They all do something different, but they all help the sunflower live. That is why each part needs its own job."
+3. [wait 2s] [gentle, guiding] "Think about the stem, the petals, and the seeds. They all do something different, but they all help the sunflower live. That is why each part needs its own job."
 
 **Screen:** Collection displayed with each photo labeled "Part: Job," gentle animated lines connecting parts to jobs, soft sun animation, and tiny animated bees visiting the sunflower photo.
 

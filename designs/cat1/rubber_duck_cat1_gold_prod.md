@@ -93,7 +93,7 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 1. [joyful] "Splash splash! Fun duck! Want to make duck SUPER?"
 2. [warm, playful] "Yellow ducky! So pretty. What if duck could do NEW things?"
-3. (wait 2s) [soft, inviting] "Quack quack! Duck says hi. Want to play?"
+3. [wait 2s] [soft, inviting] "Quack quack! Duck says hi. Want to play?"
 
 **Screen:** Rubber duck photo centered with gentle blue water ripple animation and floating bubble particles.
 
@@ -111,7 +111,7 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 1. [thrilled] "Duck Builder ready! Here we go!"
 2. [playful] "Quack! Duck says yes! Let's build!"
-3. (wait 2s) [gentle, encouraging] "Easy! I ask. You say! Ready? First one!"
+3. [wait 2s] [gentle, encouraging] "Easy! I ask. You say! Ready? First one!"
 
 **Screen:** Duck photo on the left; "Magic Workshop" banner on the right with floating animated tools (wrench, sparkle wand, paintbrush) and a "Duck Builder" badge at the top.
 
@@ -131,7 +131,7 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 1. [thrilled, zooming] "WHOOOOSH! Duck fly [child's answer]! Wings go flap flap flap! Flying duck! So cool!"
 2. [validating, playful] "Quack quack! Duck says yes! And with wings — whoooosh! Duck fly UP! Flap flap! Where duck go?"
-3. (wait 2s) [gentle prompt] "Wings! Flap flap! Duck fly UP! Wheee! To the clouds? Or to the moon?"
+3. [wait 2s] [gentle prompt] "Wings! Flap flap! Duck fly UP! Wheee! To the clouds? Or to the moon?"
 
 **Screen:** Duck photo with animated wings sprouting from its sides, flapping gently with motion lines showing upward flight.
 
@@ -153,7 +153,7 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 1. [pure celebration] "YOU made Super Duck! Best Duck Builder EVER! Super Duck goes whoooosh, bzzzzz, quack quack!"
 2. [joyful] "Quack quack! Super Duck says THANK YOU! You are the best builder!"
-3. (wait 2s) [warm, proud] "Look! Super Duck! You built it! Wings, glow, talk! WOW!"
+3. [wait 2s] [warm, proud] "Look! Super Duck! You built it! Wings, glow, talk! WOW!"
 
 **Screen:** Grand reveal — duck with ALL modifications (wings, glow, speech bubble) center-screen, "SUPER DUCK!" in bouncy rainbow letters, confetti burst and sparkle animations.
 
@@ -171,6 +171,6 @@ Child photographs their yellow rubber duck in the bathroom. AI notices how cute 
 
 1. [celebrating] "Best Duck Builder! Super Duck loves you! Quack quack whoooosh! Bye bye!"
 2. [warm] "Duck says bye! Build again soon! Quack!"
-3. (wait 2s) [gentle close] "Super Duck Builder! Great job! Quack quack! See you!"
+3. [wait 2s] [gentle close] "Super Duck Builder! Great job! Quack quack! See you!"
 
 **Screen:** "Duck Builder" badge with wrench-and-duck icon; "Change" with transformation arrow and "Function" with gear icon in playful lettering; Super Duck floating behind the badge with soft golden glow.

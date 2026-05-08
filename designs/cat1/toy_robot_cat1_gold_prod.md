@@ -97,8 +97,8 @@ Child photographs their toy robot on the playroom floor. AI notices all the cool
 **AI follow-up:**
 
 1. [warm, impressed] "Beep boop — I love that! Your robot sounds so friendly. I bet you know ALL its parts really well. Want to play a detective game about them?"
-2. (enthusiastic) "Ooh, tell me more! Your robot sounds really special. Look at all those parts it has — buttons, wheels, everything! I bet you know your robot better than anyone. Want to test those skills?"
-3. (wait 2s) [soft, conspiratorial whisper] "Your robot has a LOT of secret parts. I bet there are some you never even noticed! Want to be a detective and find them with me?"
+2. [enthusiastic] "Ooh, tell me more! Your robot sounds really special. Look at all those parts it has — buttons, wheels, everything! I bet you know your robot better than anyone. Want to test those skills?"
+3. [wait 2s] [soft, conspiratorial whisper] "Your robot has a LOT of secret parts. I bet there are some you never even noticed! Want to be a detective and find them with me?"
 
 **Screen:** Toy robot photo centered with gentle glowing pulse animation. Tiny gear-shaped sparkles around edges. Soft mechanical whirring ambient animation.
 
@@ -117,7 +117,7 @@ Child photographs their toy robot on the playroom floor. AI notices all the cool
 
 1. [excited countdown] "Alright, Chief Inspector — your first case starts NOW! Listen to my clue very carefully..."
 2. [delighted, impressed] "You knew it! You are already thinking like an inspector! But the REAL cases are going to be trickier. Here comes number one..."
-3. (wait 2s) [encouraging, gentle] "It is easy — I give clues, you guess! Any guess is a good guess. Here comes the first one... listen carefully!"
+3. [wait 2s] [encouraging, gentle] "It is easy — I give clues, you guess! Any guess is a good guess. Here comes the first one... listen carefully!"
 
 **Screen:** Robot photo on left. Magnifying glass icon with "ROBOT INSPECTOR" in bold playful letters on right. Quick demo animation: glowing question mark over robot, clue bubbles appear, wheels flash with "FOUND IT!" stamp. "Case 1" badge glows below.
 
@@ -138,7 +138,7 @@ Child photographs their toy robot on the playroom floor. AI notices all the cool
 
 1. [thrilled, celebratory] "You GOT it on the FIRST clue! The antenna — yes! That thin pointy part sticking up from its head. You know what it does? It helps the robot pick up signals — like a tiny ear listening to the sky! AMAZING inspector work!"
 2. [warm, encouraging] "Ooh, good guess — but not quite! Here is clue number two — it sticks UP from the very top of the robot's head. Like a flag pole! Now look again... what is up there?" If child gets it: "YES! The antenna! Right on top — you found it!" If still stuck, clue 3: "It helps the robot hear signals from far away, like a tiny ear! It is... the ANTENNA!"
-3. (wait 2s) [helpful whisper] "Look at the very TIP TOP of your robot. Something thin is sticking up... do you see it? What could it be?"
+3. [wait 2s] [helpful whisper] "Look at the very TIP TOP of your robot. Something thin is sticking up... do you see it? What could it be?"
 
 **Screen:** Robot photo with soft pulsing glow around top area. When revealed, antenna gets bright spotlight and sparkle burst. "CASE 1" stamp with star. First-clue solves get "FIRST CLUE SOLVE!" bonus banner.
 
@@ -161,9 +161,9 @@ Child photographs their toy robot on the playroom floor. AI notices all the cool
 
 **AI follow-up:**
 
-1. (beaming with pride) "The BEST Robot Inspector I have ever seen! Your robot is lucky to have someone who knows ALL its secrets."
+1. [beaming with pride] "The BEST Robot Inspector I have ever seen! Your robot is lucky to have someone who knows ALL its secrets."
 2. [delighted] "You want MORE cases? That means you are a TRUE inspector — always looking for clues! We can inspect again another time. But first, let me tell you something amazing about what you just did..."
-3. (wait 2s) [warm whisper] "You know what? I think your robot is impressed too. You found every single one of its secrets. That is incredible."
+3. [wait 2s] [warm whisper] "You know what? I think your robot is impressed too. You found every single one of its secrets. That is incredible."
 
 **Screen:** Golden "CHIEF ROBOT INSPECTOR" badge with toy robot photo as portrait inside. Small icons of each solved part orbit — antenna, button, joint, eyes — each with checkmark. Confetti in metallic silver and blue. Gear-shaped sparkles spin outward.
 
@@ -182,6 +182,6 @@ Child photographs their toy robot on the playroom floor. AI notices all the cool
 
 1. [celebrating] "That is right — Form and Function! You earned your badge, Chief Robot Inspector. Next time you look at ANY toy, I bet you will notice all its hidden parts!"
 2. [warm, laughing] "Your robot would love that! You are the best inspector it has ever had. See you next time, Chief Robot Inspector!"
-3. (wait 2s) [gentle closing] "Great job today, Inspector. Your robot has a really smart friend. See you next time!"
+3. [wait 2s] [gentle closing] "Great job today, Inspector. Your robot has a really smart friend. See you next time!"
 
 **Screen:** Inspector badge centered. "Form" with magnifying glass icon and "Function" with gear icon in bold metallic silver lettering. Toy robot photo glows softly behind. "The End" ribbon in robot-metallic style scrolls across bottom.

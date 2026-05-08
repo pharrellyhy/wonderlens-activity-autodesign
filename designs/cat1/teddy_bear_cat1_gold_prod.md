@@ -94,7 +94,7 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 1. [warm, encouraging] "Yes! Teddy is cold! You noticed! Can YOU help teddy feel better?"
 2. [gentle, playful] "You love teddy! Teddy loves you! But look — brrr — teddy is a little shivery. Can you help?"
-3. (wait 2s) [soft whisper] "Teddy is going brrr brrr. Can you hear it? Teddy needs a friend!"
+3. [wait 2s] [soft whisper] "Teddy is going brrr brrr. Can you hear it? Teddy needs a friend!"
 
 **Screen:** Teddy bear photo centered with soft blue background, gentle shivering wobble animation, small snowflake sparkles, and a worried-face icon pulsing in the corner.
 
@@ -112,7 +112,7 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 1. [cheery] "Boop! Teddy's nose is warm now! See? You did it! Here comes the first big one..."
 2. [playful] "Yes, teddy's little nose! Boop — warm! Easy! Now teddy needs MORE help. Listen..."
-3. (wait 2s) [gentle, coaxing] "Boop! We warmed teddy's nose! So easy. Now teddy needs your help again. Listen..."
+3. [wait 2s] [gentle, coaxing] "Boop! We warmed teddy's nose! So easy. Now teddy needs your help again. Listen..."
 
 **Screen:** Teddy photo with small blue nose highlighted; on response, warm orange glow spreads over nose, sparkle appears, and "Teddy's Caretaker" text with heart icon at top.
 
@@ -132,7 +132,7 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 1. [delighted, narrating transformation] "You gave teddy a big warm hug! Look... teddy stops shivering... the brrrs go quiet... and a tiny smile appears! 'Ahhhh,' says Teddy, 'warm now! Thank you!' Teddy feels SO much better!"
 2. [validating, then guiding] "Brrr is right! Poor teddy! What if we gave teddy a big warm hug? Try saying 'hug teddy!'"
-3. (wait 2s) [soft prompt] "Teddy says brrr brrr! So cold! Should we give teddy a hug? Say 'hug!'"
+3. [wait 2s] [soft prompt] "Teddy says brrr brrr! So cold! Should we give teddy a hug? Say 'hug!'"
 
 **Screen:** Teddy with shivering animation and brrr text bubbles; on response, shivering stops, warm golden glow wraps around teddy, smile appears, speech bubble says "Warm now!" and one floating heart drifts up.
 
@@ -151,7 +151,7 @@ Child photographs their teddy bear on the bed → AI notices teddy is shivering 
 
 **AI follow-up:**
 
-1. (beaming) "Teddy loves you SO much. You helped with everything!"
+1. [beaming] "Teddy loves you SO much. You helped with everything!"
 2. [playful, warm] "Teddy says 'help me again tomorrow!' You're the best!"
 
 **Screen:** Full-screen warm golden glow with teddy centered. Quick transformation montage (shivering → warm → scared → brave → lonely → happy). Golden badge "Teddy's Best Caretaker" with bear-paw-and-heart icon, warm confetti, three hearts in a row below the badge.

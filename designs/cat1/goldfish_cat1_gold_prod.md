@@ -87,8 +87,8 @@ describes how Goldfish Guess-What Lab adapts mechanically for a bridged entity.
 **AI follow-up:**
 
 1. [warm, impressed] "[Name] — what a perfect name! [Name] looks like a real adventurer in there, zooming and gliding. I bet you know a LOT about how [name] moves. Hey... want to test how much you know? Like a scientist?"
-2. (enthusiastic) "Yes! Look at it go — swimming and gliding! Those little fins are working SO hard. You really watch your fish closely. Hey... want to be a scientist and TEST what your goldfish does?"
-3. (wait 2s) [soft, wondering] "This goldfish is so pretty — those floaty fins waving like tiny flags! I bet it has lots of secrets. Want to do science experiments with me to find out?"
+2. [enthusiastic] "Yes! Look at it go — swimming and gliding! Those little fins are working SO hard. You really watch your fish closely. Hey... want to be a scientist and TEST what your goldfish does?"
+3. [wait 2s] [soft, wondering] "This goldfish is so pretty — those floaty fins waving like tiny flags! I bet it has lots of secrets. Want to do science experiments with me to find out?"
 
 **Screen:** Goldfish photo centered with gentle blue water-ripple animation, tiny bubble animations floating upward, and soft golden shimmer outlining the fish.
 
@@ -110,7 +110,7 @@ describes how Goldfish Guess-What Lab adapts mechanically for a bridged entity.
 
 1. [excited countdown] "Okay, Scientist — Experiment Number One! Listen carefully..."
 2. [delighted] "You already know what your fish does? Then you are going to be AMAZING at this! A prediction is just a guess you lock in BEFORE you find out. Here comes Experiment Number One!"
-3. (wait 2s) [encouraging, gentle] "It is easy — I say what happens, you guess what the goldfish does. Any guess is great! Here comes the first one..."
+3. [wait 2s] [encouraging, gentle] "It is easy — I say what happens, you guess what the goldfish does. Any guess is great! Here comes the first one..."
 
 **Screen:** Goldfish photo on left; on the right, a "Prediction Lab" clipboard icon with scoring circles and running score display reading "Score: 0". Demo animation shows shadow passing, goldfish darting, and "½" appearing with a sparkle. "Experiment 1" badge glows below.
 
@@ -128,9 +128,9 @@ describes how Goldfish Guess-What Lab adapts mechanically for a bridged entity.
 
 **AI follow-up:**
 
-1. (confirming lock-in) "Prediction locked: swim up to the top! Okay, here we go... *drumroll*... and the answer is... the goldfish ZOOMS right up to the surface — swish goes that fan-shaped tail, pushing it up like a paddle! YES! You got it! The food CAUSES the fish to swim up — tail swishing all the way! FULL POINT! Score: 1 out of 1!"
+1. [confirming lock-in] "Prediction locked: swim up to the top! Okay, here we go... *drumroll*... and the answer is... the goldfish ZOOMS right up to the surface — swish goes that fan-shaped tail, pushing it up like a paddle! YES! You got it! The food CAUSES the fish to swim up — tail swishing all the way! FULL POINT! Score: 1 out of 1!"
 2. [warm, helping lock in] "Ooh happy — so you predict the fish gets excited and wiggles? Locked in! Here we go... *drumroll*... the goldfish ZOOMS to the surface, tail swishing! Getting excited — yes! But it also zooms UP. Half point — you got the feeling right! Score: half out of 1!"
-3. (wait 2s) [helpful] "Here is a clue — the food is floating at the TOP of the water. Where would the goldfish swim? Up or down? Lock in your guess!"
+3. [wait 2s] [helpful] "Here is a clue — the food is floating at the TOP of the water. Where would the goldfish swim? Up or down? Lock in your guess!"
 
 **Screen:** Bowl scene with food flakes drifting down. "LOCKED IN" stamp on clipboard, drumroll animation, goldfish zooms upward with tail-swish motion lines. Score circle fills gold or half-gold. Running score updates.
 
@@ -156,9 +156,9 @@ describes how Goldfish Guess-What Lab adapts mechanically for a bridged entity.
 
 **AI follow-up:**
 
-1. (beaming) "The BEST Goldfish Scientist! Your goldfish is lucky to have someone who understands it so well."
+1. [beaming] "The BEST Goldfish Scientist! Your goldfish is lucky to have someone who understands it so well."
 2. [delighted] "You want MORE experiments? That is exactly what real scientists say! We can run more another day. But first — let me tell you something amazing about what you just did..."
-3. (wait 2s) [warm whisper] "You know what? I think your goldfish can tell you have been paying attention. That is what great scientists do."
+3. [wait 2s] [warm whisper] "You know what? I think your goldfish can tell you have been paying attention. That is what great scientists do."
 
 **Screen:** Giant score display "[X] / 4" in bold golden numbers. Mini-icons for each experiment (food flakes, tapping hand, blue pebble, moon) with score circles beside them. "GOLDFISH SCIENTIST" title banner above. Confetti explosion for perfect score; golden frame around goldfish photo for any score.
 
@@ -178,6 +178,6 @@ describes how Goldfish Guess-What Lab adapts mechanically for a bridged entity.
 
 1. [celebrating] "That is right — Causation and Function! You earned your badge, Goldfish Scientist. Go say hi to your fish — I bet it knows you understand it now!"
 2. [warm, laughing] "Go ahead — your goldfish is so lucky to have such a smart scientist! See you next time, Goldfish Scientist!"
-3. (wait 2s) [gentle closing] "Great job today, Scientist. Your goldfish has a really smart friend. See you next time!"
+3. [wait 2s] [gentle closing] "Great job today, Scientist. Your goldfish has a really smart friend. See you next time!"
 
 **Screen:** "GOLDFISH SCIENTIST" badge centered with goldfish photo portrait inside. "Causation" and "Function" in golden lettering with chain-link and gear icons. Four experiment icons as small trophies around the badge. Soft golden sparkle animations and a gentle "The End" ribbon.

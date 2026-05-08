@@ -66,7 +66,7 @@ entity_attributes_covered:
 
 1. [impressed] "It IS really bumpy! All those ridges and grooves -- that's called TEXTURE! And that rough-looking texture has a secret SUPERPOWER. Its superpower is... GRIP! Things that look rough can hold on tight -- rain, bugs, climbing plants all grab onto those bumps. Rough means GRIPPY!"
 2. [playful] "It IS a big tree! And look at the surface of that bark -- see all those lines and bumps? That rough-looking surface has a secret superpower -- GRIP! Those bumps and ridges help things hold on tight!"
-3. (wait 2s) "Can I tell you something cool about this bark? Look at how rough it looks -- all those bumps and grooves! That rough-looking texture has a superpower. Its superpower is... GRIP! Rough surfaces hold on tight -- nothing slides off!"
+3. [wait 2s] "Can I tell you something cool about this bark? Look at how rough it looks -- all those bumps and grooves! That rough-looking texture has a superpower. Its superpower is... GRIP! Rough surfaces hold on tight -- nothing slides off!"
 
 **Screen:** Trigger photo centered with bold "GRIP" pulsing in rough-textured block letters, animated grip marks radiating outward, and a small hand-grip icon. "1/4" counter in bottom corner.
 
@@ -84,7 +84,7 @@ entity_attributes_covered:
 
 1. [cheering] "The lab is OPEN! Go find something with a different texture -- something that looks smooth, or fuzzy, or bumpy, or shiny! Take a photo and I'll reveal its superpower. Go, Inventor!"
 2. [encouraging] "Texture is how a surface LOOKS -- is it rough with bumps? Or smooth and flat? Or fuzzy with little fibers? Take a photo of something that looks DIFFERENT from your bark, and I'll tell you its superpower!"
-3. (wait 2s) "Try looking around for surfaces that look different from bark. A smooth rock, a fuzzy sweater, a bumpy wall -- anything! Take a photo and I'll tell you its secret superpower!"
+3. [wait 2s] "Try looking around for surfaces that look different from bark. A smooth rock, a fuzzy sweater, a bumpy wall -- anything! Take a photo and I'll tell you its secret superpower!"
 
 **Screen:** Lab-themed mission card with "Texture Inventor" badge, 4 ingredient slots (first filled with trigger photo labeled "GRIP"), 3 glowing question marks, and a 3-step task list: Collect, Discover, Invent.
 
@@ -102,9 +102,9 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (triumphant) "YES! Look how even and flat that surface looks -- not a bump in sight! This texture's superpower is... SPEED! Things that look smooth let other things slide right off -- whoooosh! Smooth means FAST! SPEED is locked in. Two more textures to find, Inventor!"
+1. [triumphant] "YES! Look how even and flat that surface looks -- not a bump in sight! This texture's superpower is... SPEED! Things that look smooth let other things slide right off -- whoooosh! Smooth means FAST! SPEED is locked in. Two more textures to find, Inventor!"
 2. [curious, redirecting] "It IS a rock -- and look how EVEN that surface is! No bumps, no ridges, just flat and smooth. Its superpower is SPEED! Smooth surfaces let things slide right off! Two more textures to find!"
-3. (wait 2s) "See how the surface looks flat and even? No bumps anywhere! That smooth-looking texture has a superpower -- SPEED! Things slide right off smooth surfaces! Two more ingredients, Inventor!"
+3. [wait 2s] "See how the surface looks flat and even? No bumps anywhere! That smooth-looking texture has a superpower -- SPEED! Things slide right off smooth surfaces! Two more ingredients, Inventor!"
 
 **Screen:** Photo slides into second slot with silvery sparkles. "SPEED" in sleek, streamlined, sliding letters. Counter updates to "2/4."
 
@@ -123,7 +123,7 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (mind-blown) "GRIPPY RACING SHOES! Imagine -- shoes that are as FAST as a smooth surface, so you zoom across the ground like lightning -- but the bottoms have the GRIP of rough bark, so you NEVER slip! You could run at super speed around corners, up hills, even on ice! The Grippy Racing Shoes -- invented by YOU, Texture Inventor! What would you use them for?" Then: "That is BRILLIANT! No one in the whole world has ever invented Grippy Racing Shoes before. Only YOU!"
+1. [mind-blown] "GRIPPY RACING SHOES! Imagine -- shoes that are as FAST as a smooth surface, so you zoom across the ground like lightning -- but the bottoms have the GRIP of rough bark, so you NEVER slip! You could run at super speed around corners, up hills, even on ice! The Grippy Racing Shoes -- invented by YOU, Texture Inventor! What would you use them for?" Then: "That is BRILLIANT! No one in the whole world has ever invented Grippy Racing Shoes before. Only YOU!"
 2. [encouraging] "That's okay -- let me give you a spark! What if something had the GRIP of rough bark... but the SPEED of smooth stone? Maybe grippy roller skates? A fast climbing wall? What do YOU think?" If child asks for different ones: "YES! Pick any two you want! How about WARMTH and ARMOR -- something warm but protected?"
 
 **AI says:** [proud, reflecting] "Texture Inventor, look at what you did today! You started with one tree -- just bark! -- and you discovered that its rough-looking texture has the superpower of GRIP. Then you found smooth SPEED, fuzzy WARMTH, and bumpy ARMOR. Every surface you see has a texture with a superpower! Why do you think different things have different textures?"

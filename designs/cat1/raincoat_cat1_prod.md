@@ -52,7 +52,7 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 1. [warm] "Me too! Cozy coat! Let's play!"
 2. [impressed] "For rain! So smart! Let's play!"
-3. (wait 2s) [playful whisper] "That coat looks so cozy! Swish-swish!"
+3. [wait 2s] [playful whisper] "That coat looks so cozy! Swish-swish!"
 
 **Screen:** Raincoat photo centered with gentle rain-drop animation and a small sunshine icon in the corner.
 
@@ -71,7 +71,7 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 1. [celebrating] "Yes! Happy coat! You heard it! Let's do more!"
 2. [playful gasp] "What if it could? Let's pretend!"
-3. (wait 2s) [gentle] "Pitter-patter! The coat smiles! What does it feel?"
+3. [wait 2s] [gentle] "Pitter-patter! The coat smiles! What does it feel?"
 
 **Screen:** Raincoat photo with animated smiley face and tiny blue raindrops with "pitter-patter" text bouncing below.
 
@@ -92,7 +92,7 @@ A 2–4 year old photographs their yellow raincoat by the door. AI reacts with d
 
 1. [cheering] "Splash-splash! Coat loves it!"
 2. [warm, validating] "Yucky puddle! Coat says brrr!"
-3. (wait 2s) [encouraging] "Splash-splash! Wet or dry? How does the coat feel?"
+3. [wait 2s] [encouraging] "Splash-splash! Wet or dry? How does the coat feel?"
 
 **Screen:** Raincoat photo with animated blue puddle splashing and water droplets bouncing upward.
 

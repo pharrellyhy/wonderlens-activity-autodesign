@@ -52,7 +52,7 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 1. [thrilled] "So brave! Raincoat protects you! I wonder — what else protects things from rain?"
 2. [warm, validating] "Yellow and cozy! With a big hood! Your raincoat keeps rain away. What ELSE keeps rain away?"
-3. (wait 2s) [soft, playful] "Swish-swish! Your coat is like a little roof for your body! What else is like a roof?"
+3. [wait 2s] [soft, playful] "Swish-swish! Your coat is like a little roof for your body! What else is like a roof?"
 
 **Screen:** Raincoat photo centered with animated raindrops bouncing off the coat surface; small "swish" sound-wave icons on either side.
 
@@ -70,7 +70,7 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 1. [cheering] "Go go, Rain Guard! Find things that cover and protect!"
 2. [helpful, warm] "Things that block rain! A big leaf? A roof? An umbrella? Go look!"
-3. (wait 2s) [encouraging] "Look up! A roof? Look down! A big leaf? Find something that stops rain!"
+3. [wait 2s] [encouraging] "Look up! A roof? Look down! A big leaf? Find something that stops rain!"
 
 **Screen:** Mission card with "Rain Guard" badge (raindrop shield icon), 3 slots (first filled with raincoat photo, 2 empty with raindrop-splash placeholders), and a "Find 2!" counter.
 
@@ -92,7 +92,7 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 1. [delighted] "A leaf! It covers things! HOW does it protect? Is it big or small?"
 2. [warm, scaffolding] "Green and big! It could block rain! HOW does it protect? Is it big or small?"
-3. (wait 2s) [warm] "I see a rain blocker! Is it big or small?"
+3. [wait 2s] [warm] "I see a rain blocker! Is it big or small?"
 
 **Child responses (detail-harvesting):**
 
@@ -104,7 +104,7 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 1. [thrilled, naming] "[Uses child's detail to build name] Big and flat? It's Big Leafy the cover-upper! Hello, Big Leafy!"
 2. [warm, using whatever detail child gave] "[Uses child's detail] Soft? It's Softy Shield! Hello, Softy Shield! 1 more to go!"
-3. (wait 2s) [gentle, offering] "I think it looks big! Let's call it Big Cover! Hello, Big Cover! 1 more to go!"
+3. [wait 2s] [gentle, offering] "I think it looks big! Let's call it Big Cover! Hello, Big Cover! 1 more to go!"
 
 **Screen:** Photo slides into slot 2 with a raindrop-shield animation; a small name tag appears below showing the detail-driven name; counter updates to "1 of 2 found."
 
@@ -124,7 +124,7 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 1. [delighted] "A bush! HOW does it protect? Is it thick or thin?"
 2. [warm, scaffolding] "Ooh! It could stop rain! Is it thick or thin? Big or small?"
-3. (wait 2s) [warm] "I see it! Is it big or small?"
+3. [wait 2s] [warm] "I see it! Is it big or small?"
 
 **Child responses (detail-harvesting):**
 
@@ -136,7 +136,7 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 1. [thrilled, naming] "[Uses child's detail] Thick and bushy? It's Bushy Shield! Hello, Bushy Shield! Team complete!"
 2. [warm, using whatever detail child gave] "[Uses child's detail] Scratchy? It's Scratchy Guard! Hello, Scratchy Guard! Team complete!"
-3. (wait 2s) [gentle, offering] "I think it looks strong! Let's call it Strong Blocker! Team complete!"
+3. [wait 2s] [gentle, offering] "I think it looks strong! Let's call it Strong Blocker! Team complete!"
 
 **Screen:** Photo slides into slot 3 with shield animation; detail-driven name tag appears below; counter updates to "2 of 2 found — Team complete!" All 3 slots glow.
 
@@ -154,9 +154,9 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 **AI follow-up (detail-driven story — each character's action comes from their specific detail):**
 
-1. (narrating, using details from both finds) "Drip drop! Rain is coming! Raincoat goes swish-swish and wraps around YOU! [Name 1] [action from child's detail — e.g., 'spreads out flat and covers a tiny bug!'] And [Name 2] [action from child's detail — e.g., 'stands thick and keeps the flowers dry!'] The Rain Guard team saves the day!"
+1. [narrating, using details from both finds] "Drip drop! Rain is coming! Raincoat goes swish-swish and wraps around YOU! [Name 1] [action from child's detail — e.g., 'spreads out flat and covers a tiny bug!'] And [Name 2] [action from child's detail — e.g., 'stands thick and keeps the flowers dry!'] The Rain Guard team saves the day!"
 2. [warm, scaffolding with details] "Splash splash! Rain falls down! But raincoat says swish-swish! And [Name 1] says 'I'm [child's detail]! I'll [detail-driven action]!' And [Name 2] says 'I'm [child's detail]! I'll [detail-driven action] too!' Hooray, Rain Guards!"
-3. (wait 2s) [gentle, using details] "Here comes rain! Drip drop! Raincoat goes swish-swish! [Name 1] goes [detail-driven action]! [Name 2] goes [detail-driven action]! Everyone stays dry! Do you like that story?"
+3. [wait 2s] [gentle, using details] "Here comes rain! Drip drop! Raincoat goes swish-swish! [Name 1] goes [detail-driven action]! [Name 2] goes [detail-driven action]! Everyone stays dry! Do you like that story?"
 
 **Screen:** All 3 photos in a triangle formation with animated rain falling from above; each character performs its detail-driven action (e.g., leaf spreads wide, bush puffs up thick); character name tags beneath each; "Rain Guard Team" banner.
 
@@ -170,9 +170,9 @@ Child photographs their raincoat outside → AI goes "swish-swish!" and notices 
 
 **AI follow-up:**
 
-1. (fascinated) "Yes! Staying dry keeps us warm and cozy! That's why we have raincoats and roofs and leaves!"
+1. [fascinated] "Yes! Staying dry keeps us warm and cozy! That's why we have raincoats and roofs and leaves!"
 2. [warm, connecting] "Rain IS fun! But sometimes we need to stay dry. That's what Rain Guards are for — keeping us cozy!"
-3. (wait 2s) [gentle] "Being dry feels warm and cozy! That's why raincoats and big leaves are so helpful!"
+3. [wait 2s] [gentle] "Being dry feels warm and cozy! That's why raincoats and big leaves are so helpful!"
 
 **Screen:** Collection photos with animated rain bouncing off each item; small "dry zone" circles glow beneath each protector; warm golden light from the center.
 

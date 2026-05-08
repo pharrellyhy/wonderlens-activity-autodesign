@@ -64,9 +64,9 @@ Child photographs a shiny doorknob. AI notices the reflection, announces "SO shi
 
 **AI follow-up:**
 
-1. (intrigued) "Interesting — you already noticed! This doorknob is definitely SHINY — smooth and reflective. But I wonder about the OTHER things around you. Are most of them shiny too, or more dull and rough? I think we should find out for REAL!"
+1. [intrigued] "Interesting — you already noticed! This doorknob is definitely SHINY — smooth and reflective. But I wonder about the OTHER things around you. Are most of them shiny too, or more dull and rough? I think we should find out for REAL!"
 2. [warm, explaining] "Shiny means it SPARKLES — it bounces light back at you! Like this doorknob. Some things are shiny, and some are DULL — they don't sparkle at all, like a towel or a book. I have a fun idea to figure out which ones are around here!"
-3. (wait 2s) [inviting] "This doorknob is super shiny — smooth and glowing! But look around you. Are ALL things here shiny? Or are some dull and rough? I bet we can find out together!"
+3. [wait 2s] [inviting] "This doorknob is super shiny — smooth and glowing! But look around you. Are ALL things here shiny? Or are some dull and rough? I bet we can find out together!"
 
 **Screen:** Object photo centered with sparkle highlight on reflective surface. Small "SHINY!" label with star icon near the object.
 
@@ -83,8 +83,8 @@ Child photographs a shiny doorknob. AI notices the reflection, announces "SO shi
 
 **AI follow-up:**
 
-1. (locking it in) "You predict MOSTLY SHINY — got it! I'm writing that down. Now here's the deal — you are a Shine Scientist! Your job: find 3 more things, take a photo of each one, and I'll look really closely to see if it's SHINY or DULL. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
-2. (locking it in) "You predict MOSTLY DULL — interesting! I'm writing that down. Now here's the deal — you are a Shine Scientist! Your job: find 3 more things, take a photo, and I'll check if they're SHINY or DULL. I'll keep count. Ready, Scientist?"
+1. [locking it in] "You predict MOSTLY SHINY — got it! I'm writing that down. Now here's the deal — you are a Shine Scientist! Your job: find 3 more things, take a photo of each one, and I'll look really closely to see if it's SHINY or DULL. I'll keep count. At the end, we'll see if your prediction was RIGHT. Ready, Scientist?"
+2. [locking it in] "You predict MOSTLY DULL — interesting! I'm writing that down. Now here's the deal — you are a Shine Scientist! Your job: find 3 more things, take a photo, and I'll check if they're SHINY or DULL. I'll keep count. Ready, Scientist?"
 3. [encouraging] "A prediction is your BEST GUESS before you check! Like saying 'I think it will rain today' before you look outside. So — do you think MOST things around you are SHINY and sparkly, or DULL and rough? Just pick one!"
 
 **Screen:** Scientist mission card with "Shine Scientist" badge (magnifying glass with sparkle). Tally board with two columns: "Shiny" (sparkle icon) and "Dull" (matte circle icon). Object photo under "Shiny" with "1" tally. Prediction banner: "My prediction: Mostly [Shiny / Dull]!" Three empty photo slots below.
@@ -106,9 +106,9 @@ Child photographs a shiny doorknob. AI notices the reflection, announces "SO shi
 
 **AI follow-up:**
 
-1. (writing it down) "Great observation! Soft and not shiny — DULL! The tally so far: Shiny 1, Dull 1. It's a TIE! Your prediction says mostly [shiny/dull]... two more to find, Scientist!"
+1. [writing it down] "Great observation! Soft and not shiny — DULL! The tally so far: Shiny 1, Dull 1. It's a TIE! Your prediction says mostly [shiny/dull]... two more to find, Scientist!"
 2. [validating] "Blue — yes! But even bright blue can be DULL — no sparkle, no reflection. Color doesn't mean shiny! Tally: Shiny 1, Dull 1. TIED! Two more!"
-3. (wait 2s) (announcing) "That's DULL — no shine! Tally tied: Shiny 1, Dull 1! Two more to go!"
+3. [wait 2s] [announcing] "That's DULL — no shine! Tally tied: Shiny 1, Dull 1! Two more to go!"
 
 **Screen:** New photo in slot 2. Tally board updates with animated tally mark. Running score: "Shiny: 1 | Dull: 1." Prediction banner stays visible.
 
@@ -142,8 +142,8 @@ Child photographs a shiny doorknob. AI notices the reflection, announces "SO shi
 **AI follow-up:**
 
 1. [delighted] "That's what scientists DO — guess, check, and discover for real! Color doesn't make things shiny — the SURFACE does. Your experiment showed you something new!"
-2. (enthusiastic) "Great observation! Some things can LOOK like they might be shiny but actually be dull. That's a scientist-level discovery!"
-3. (wait 2s) [gentle] "Smooth surfaces bounce light — shiny. Rough surfaces scatter light — dull. Your experiment helped you see the difference!"
+2. [enthusiastic] "Great observation! Some things can LOOK like they might be shiny but actually be dull. That's a scientist-level discovery!"
+3. [wait 2s] [gentle] "Smooth surfaces bounce light — shiny. Rough surfaces scatter light — dull. Your experiment helped you see the difference!"
 
 **Screen:** Full tally board with all 4 photos in two columns (Shiny vs. Dull). Prediction banner lights up green (RIGHT!) or flashes orange ("SURPRISE!"). Animated tally marks count up with sparkle effects. Large final score: "Shiny: [N] | Dull: [M]." Reason arrows connect each photo to a "why" bubble.
 
@@ -162,6 +162,6 @@ Child photographs a shiny doorknob. AI notices the reflection, announces "SO shi
 
 1. [encouraging] "Next time you're in a different room, try the experiment again! Bathrooms, kitchens, classrooms — every place has a different shiny-to-dull mix. Predict first, then count. See you on the next experiment, Scientist!"
 2. [warm] "Your badge is saved! You're a real Shine Scientist now. Bye for now, Scientist!"
-3. (wait 2s) [soft] "Your Scientist Badge is glowing — how shiny! Great experiment today!"
+3. [wait 2s] [soft] "Your Scientist Badge is glowing — how shiny! Great experiment today!"
 
 **Screen:** Golden "Shine Scientist Badge" shaped like a magnifying glass with a sparkle inside and tally chart reflected in its lens. Object photo at center with collection photos as insets. "Form" in crystalline letters with surface texture swatches (smooth mirror vs. rough fabric) and "Causation" in arrow-shaped dynamic letters float artistically. Final tally result glows beneath.

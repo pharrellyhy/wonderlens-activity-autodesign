@@ -50,7 +50,7 @@
 > **AI follow-up**:
 > 1. [excited] "I think so too! The swing is SO happy! What if we found out what ALL the equipment feels? I need a reporter who speaks playground!"
 > 2. [playful, validating] "That's true — real swings don't talk! But what if we PRETEND they could? I bet the slide would say something funny. Want to try?"
-> 3. (wait 2s) [gentle, inviting] "I think that swing might say, 'Yay, someone's here!' What about the slide? Want to guess what IT would say?"
+> 3. [wait 2s] [gentle, inviting] "I think that swing might say, 'Yay, someone's here!' What about the slide? Want to guess what IT would say?"
 >
 > **Screen**: Playground photo centered with soft "conversation recap" glow around the swing area; gentle sparkle on equipment pieces.
 
@@ -68,7 +68,7 @@
 > **AI follow-up**:
 > 1. [amazed] "I love that! The swing says, '{child's answer}!' You can hear playground talk! That's amazing!"
 > 2. [warm, enthusiastic] "That IS a cool playground! And I bet every piece of it has something to say. What if we could hear them?"
-> 3. (wait 2s) [playful whisper] "I think the swing is saying, 'Is anybody coming today?' Can you hear it?"
+> 3. [wait 2s] [playful whisper] "I think the swing is saying, 'Is anybody coming today?' Can you hear it?"
 >
 > **Screen**: Playground photo centered with colorful sparkle animations on each piece of equipment; soft outdoor ambiance.
 
@@ -86,7 +86,7 @@
 > **AI follow-up**:
 > 1. [cheering] "Let's go, Reporter! First story coming!"
 > 2. [warm] "You'd push it! So kind! The swing would love that. Let's hear more feelings. First story!"
-> 3. (wait 2s) [encouraging] "It's easy — I tell a story and you say what the equipment feels. Any answer is great! Here comes the first one..."
+> 3. [wait 2s] [encouraging] "It's easy — I tell a story and you say what the equipment feels. Any answer is great! Here comes the first one..."
 >
 > **Screen**: "Playground Feelings Reporter" badge with microphone icon above the playground photo; the swing sways gently with a speech bubble saying "I'm so lonely..." in playful lettering.
 
@@ -104,7 +104,7 @@
 > **AI follow-up**:
 > 1. [celebrating] "'Wheee!' Yes! The swing is SO happy! Going back and forth is its special job. When someone swings on it, it gets to do what it was MADE to do. Great reporting!"
 > 2. [validating, extending] "The kid IS happy — and I bet the swing is too! When someone swings, the chains go clink-clink and it flies through the air. Maybe the swing says, 'Yay, I'm flying!' What do you think?"
-> 3. (wait 2s) [gentle prompt] "The swing is going back and forth, back and forth. Is it happy? Excited? Maybe a little dizzy? You decide!"
+> 3. [wait 2s] [gentle prompt] "The swing is going back and forth, back and forth. Is it happy? Excited? Maybe a little dizzy? You decide!"
 >
 > **Screen**: Playground photo with the swing highlighted; sun animation above; swing rocks back and forth with golden motion lines and musical notes floating up when the child responds. "Round 1" star in the corner.
 
@@ -120,7 +120,7 @@
 > **AI follow-up**:
 > 1. [impressed] "'I'm too hot!' Ha! The slide is warning everyone! Did you know metal parts feel hotter than plastic on sunny days? The sunshine warms them up fast. The slide is saying, 'Wait for a cloud, please!' Great feelings report!"
 > 2. [warm, redirecting] "The kid WOULD say ow if the slide is super hot! But what about the slide? How does IT feel? Maybe it says, 'Sorry, I can't help being so warm!' What do you think?"
-> 3. (wait 2s) [helpful] "The slide has been sitting in the hot sun ALL day. Its smooth surface is sizzling! Is it happy about that? Or maybe it wishes for some shade? You tell me!"
+> 3. [wait 2s] [helpful] "The slide has been sitting in the hot sun ALL day. Its smooth surface is sizzling! Is it happy about that? Or maybe it wishes for some shade? You tell me!"
 >
 > **Screen**: Playground photo with the slide highlighted; wavy heat lines rising from the slide surface; sun blazing overhead; the slide has a cartoon frown that turns to a smile when the child responds. "Round 2" star.
 
@@ -136,7 +136,7 @@
 > **AI follow-up**:
 > 1. [soft, moved] "Aww, 'I miss the kids.' That's so sweet! The monkey bars LOVE when kids climb and hold tight — bars at different heights so everyone can try. When nobody comes, they must really miss those hands. Maybe they whisper to each other, 'Tomorrow will be better.' Beautiful reporting!"
 > 2. [validating, extending] "Monkey bars ARE hard — and right now they're also lonely! 'Drip drip' — that's the rain on the bars. I wonder if the bars say, 'I wish someone was holding me instead of raindrops!' What do you think?"
-> 3. (wait 2s) "(painting the scene) The rain goes drip-drip on the bars. No kids, no laughing, no grabbing. Is the monkey bar sad? Lonely? Or maybe it says, 'I'll wait. They'll come back!' You decide, Reporter."
+> 3. [wait 2s] [painting the scene] "The rain goes drip-drip on the bars. No kids, no laughing, no grabbing. Is the monkey bar sad? Lonely? Or maybe it says, 'I'll wait. They'll come back!' You decide, Reporter."
 >
 > **Screen**: Playground photo with monkey bars highlighted; rain droplet animation falling; the bars glisten with water droplets; a soft blue mood tint. "Round 3" star.
 
@@ -156,9 +156,9 @@
 > 3. (No response) Child smiles or looks at the badge.
 >
 > **AI follow-up**:
-> 1. "(beaming) The BEST reporter! Every playground wishes it had you!"
+> 1. [beaming] "The BEST reporter! Every playground wishes it had you!"
 > 2. [delighted] "You want more? That's because you're a REAL reporter — always looking for the next story! Next time you're at a playground, listen carefully..."
-> 3. (wait 2s) [warm] "Look at that badge — Playground Feelings Reporter! The whole playground says thank you."
+> 3. [wait 2s] [warm] "Look at that badge — Playground Feelings Reporter! The whole playground says thank you."
 >
 > **Screen**: Animated "Playground Feelings Reporter" badge with a microphone and playground silhouette icon, the child's playground photo inset, golden confetti, and a celebration chime.
 
@@ -176,7 +176,7 @@
 > **AI follow-up**:
 > 1. [celebrating] "That's right! Perspective and Function! Next time you're at a playground, you'll hear all the voices. See you, Reporter!"
 > 2. [warm, simple] "Function means each part has its own job — like the swing's job is swinging! Go play — and listen for their voices. Bye, Reporter!"
-> 3. (wait 2s) [gentle closing] "Great job today, Reporter. The playground is lucky to have someone who understands it so well. See you next time!"
+> 3. [wait 2s] [gentle closing] "Great job today, Reporter. The playground is lucky to have someone who understands it so well. See you next time!"
 >
 > **Screen**: "Perspective" and "Function" in playful, colorful playground-style lettering; "Perspective" flanked by swing, slide, and bars with different expression faces; "Function" with small icons showing each equipment's motion (back-and-forth, zoom-down, climb-up); reporter badge in the corner; outdoor sunshine glow.
 

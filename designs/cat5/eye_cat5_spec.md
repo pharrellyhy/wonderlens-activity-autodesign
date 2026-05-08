@@ -59,7 +59,7 @@ Child photographs their eye in a mirror, AI notices the concentric circles and l
 
 1. [thrilled] "YES! Flowers have a round center inside a ring of petals — just like your pupil inside your iris! Let's go outside and see how many circle patterns we can find. I bet they are EVERYWHERE once you start looking!"
 2. [validating, building] "You are right — your eye is way more amazing than a marble because it can change and see! But they DO share that round shape. What if we went outside and found more things with round-inside-round patterns? Then we can figure out what makes them alike AND different."
-3. (wait 2s) [inviting] "Think about your pupil — that dark dot inside the colored ring. That is circles inside circles! What if we went outside and hunted for more things with that same pattern? I bet we will find some surprises."
+3. [wait 2s] [inviting] "Think about your pupil — that dark dot inside the colored ring. That is circles inside circles! What if we went outside and hunted for more things with that same pattern? I bet we will find some surprises."
 
 **Screen:** Eye photo centered with a soft animated glow tracing the concentric circles — pupil, iris, white — and a "conversation recap" shimmer highlighting the pupil. Dotted arrow suggesting outward exploration.
 
@@ -79,7 +79,7 @@ Child photographs their eye in a mirror, AI notices the concentric circles and l
 
 1. [delighted] "Circles everywhere in there! Your iris color is like a beautiful ring around the pupil. And here is something wild — that pattern of circles inside circles shows up in SO many other things too. What if we went outside and became Circle Pattern Reporters?"
 2. [warm, validating] "Up close, everything looks a little different, right? That shininess is actually a thin wet layer that keeps your eye healthy! And all those circles packed together — I wonder if other things outside have the same kind of pattern. Want to go find out?"
-3. (wait 2s) [playful, leaning in] "Your eye has this amazing design — a dark dot, a colored ring, and a white frame. I call that circles inside circles! What if we went outside to see if ANYTHING else has that same circle pattern?"
+3. [wait 2s] [playful, leaning in] "Your eye has this amazing design — a dark dot, a colored ring, and a white frame. I call that circles inside circles! What if we went outside to see if ANYTHING else has that same circle pattern?"
 
 **Screen:** Eye photo centered with subtle animated rings pulsing outward from the pupil, highlighting the concentric circle structure. Gentle sparkle on the iris.
 
@@ -97,7 +97,7 @@ Child photographs their eye in a mirror, AI notices the concentric circles and l
 
 1. [pumped up] "Reporter is ON the case! Go find something round, ringed, dotted, or spiral-shaped, snap a photo, and bring it back to me. Let's build our pattern collection!"
 2. [helpful, clarifying] "Great question! It does not have to look exactly like an eye. Anything with a round shape counts — a flower center, a wheel hub, a puddle ripple, a round rock, even a knot in wood. If it has circles or rings, it is a pattern match! Go find one."
-3. (wait 2s) [encouraging] "Here is a clue — look at flowers, look at the ground, look at anything with wheels or rings. Circles are hiding everywhere once you start searching. Go snap one!"
+3. [wait 2s] [encouraging] "Here is a clue — look at flowers, look at the ground, look at anything with wheels or rings. Circles are hiding everywhere once you start searching. Go snap one!"
 
 **Screen:** Mission card with "Circle Pattern Reporter" badge (magnifying glass with concentric circles), 4 collection slots (first filled with eye photo labeled "Pattern: Circle in Circle"), and a three-step task list with icons.
 
@@ -119,7 +119,7 @@ Child photographs their eye in a mirror, AI notices the concentric circles and l
 
 1. [impressed] "Excellent observation! The flower's center IS round like your pupil, and the petals fan out like a ring around it. But here is a cool difference — your eye uses circles to SEE, but the flower uses circles to ATTRACT bees. Same pattern, different purpose! Reporter Log: 'Flower — Pattern: Round center + petal ring. Purpose: Attraction!' Two more to find, Reporter!"
 2. [warm, scaffolding] "It IS a flower, and look closely at the center — see that round part? It looks a lot like the dark pupil in your eye, with petals around it like a colorful iris. The flower uses that round shape to attract bees and butterflies. Reporter Log: 'Flower — Purpose: Attraction!' Two more, Reporter!"
-3. (wait 2s) [curious] "Look at the center of the flower — see how round it is? Now think about your eye photo. The flower has a round center with a ring of petals, and your eye has a round pupil with a ring of color. Pretty similar, right? What do YOU think — why does the flower have that shape?"
+3. [wait 2s] [curious] "Look at the center of the flower — see how round it is? Now think about your eye photo. The flower has a round center with a ring of petals, and your eye has a round pupil with a ring of color. Pretty similar, right? What do YOU think — why does the flower have that shape?"
 
 **Screen:** New photo slides into second slot with sparkle animation; a split-comparison view briefly shows eye photo and flower photo side by side with circle overlays. Counter: "2 of 4."
 
@@ -139,7 +139,7 @@ Child photographs their eye in a mirror, AI notices the concentric circles and l
 
 1. [connecting ideas] "That is smart thinking! This circle has a totally different JOB from the flower or your eye. Your eye's circles help you see, the flower's circles attract bees, and this one [rolls/covers/protects]. Same round shape — completely different reasons! Reporter Log: '[Item] — Purpose: [Movement/Protection/Function]!' One more to find!"
 2. [warm, probing deeper] "Everything IS made in a certain shape — but usually there is a REASON. Think about it: if a wheel were square, could it roll? If a manhole cover were square, could it fall through? Round shapes do special things! What job does this round shape do?"
-3. (wait 2s) [guiding] "This has a round shape just like your eye and the flower, but I bet the reason is different. Your eye is round to see. The flower is round to attract bees. Why do you think THIS thing is round?"
+3. [wait 2s] [guiding] "This has a round shape just like your eye and the flower, but I bet the reason is different. Your eye is round to see. The flower is round to attract bees. Why do you think THIS thing is round?"
 
 **Screen:** Photo slides into third slot. Brief comparison animation showing all three circle patterns (eye, flower, new find) with small purpose labels. Counter: "3 of 4."
 
@@ -159,7 +159,7 @@ Child photographs their eye in a mirror, AI notices the concentric circles and l
 
 1. [mind-blown] "You are making amazing connections! Ripples spread out from the center, tree rings grow one layer at a time, and your iris has layers of color. They all have circles that build from the inside out — but each one does it for a completely different reason! Reporter Log: '[Item] — Purpose: [Growth/Spreading/Layering]!' Collection COMPLETE!"
 2. [celebrating the effort] "You found three! And every single one has round shapes, just like your eye. Now we have a whole collection of circle patterns. Let's see what they tell us! Collection complete, Reporter!"
-3. (wait 2s) [gentle, prompting] "Look at all the round shapes in your last find. Now think about your whole collection — your eye, the flower, [second find], and this one. They ALL have circles, but each one uses circles for a different reason. Collection complete!"
+3. [wait 2s] [gentle, prompting] "Look at all the round shapes in your last find. Now think about your whole collection — your eye, the flower, [second find], and this one. They ALL have circles, but each one uses circles for a different reason. Collection complete!"
 
 **Screen:** Final photo slides into last slot with a big sparkle burst. All 4 slots filled. "Collection Complete!" banner with confetti.
 
@@ -183,7 +183,7 @@ Child photographs their eye in a mirror, AI notices the concentric circles and l
 
 1. [delighted, building] "Brilliant sorting! The flower uses circles to attract bees, the wheel uses circles to roll, and your eye — well, your eye uses circles to FOCUS light so you can see. That could be its own category: 'seeing!' Same shape, so many different purposes. That is a real pattern reporter discovery."
 2. [warm, probing] "That is actually a really interesting thought! Your eye IS special — it uses circles to focus light and let you see, which is kind of its own category. And you are right that they are all round — but the REASON is what makes them different. The flower attracts, the wheel moves, the ripple spreads. What about your eye?"
-3. (wait 2s) [guiding step by step] "Let's take it one at a time. The flower — is it round for protection, attraction, movement, or growth? Now the wheel — which category? See, each one has a different reason for being round. What about your eye — why is it round?"
+3. [wait 2s] [guiding step by step] "Let's take it one at a time. The flower — is it round for protection, attraction, movement, or growth? Now the wheel — which category? See, each one has a different reason for being round. What about your eye — why is it round?"
 
 **Screen:** All 4 photos displayed in a grid; four sorting labels: "Protection" (shield icon), "Attraction" (bee icon), "Movement" (arrow icon), "Growth" (sprout icon). Photos shift under matching labels as child sorts. A fifth label "Seeing" may appear for the eye if child creates a new category.
 
@@ -201,7 +201,7 @@ Child photographs their eye in a mirror, AI notices the concentric circles and l
 
 1. [impressed] "What a thoughtful answer! You are onto something — circles DO work really well. They spread evenly, they roll smoothly, they focus light, and they look beautiful. Maybe that is why circles keep showing up everywhere — they are one of nature's favorite shapes!"
 2. [warm, validating the wonder] "It IS cool, and wondering 'why' is exactly what a great reporter does! Scientists wonder the same thing. Circles are special because they spread evenly in all directions — that is why puddles ripple in circles and pupils are round. The shape just works!"
-3. (wait 2s) [gentle, inviting] "Think about a puddle — when a drop falls in, the ripples go out evenly in ALL directions. That even spreading is why circles show up in so many places. Your eye, the flower, the wheel — they all use that even, round shape for something important."
+3. [wait 2s] [gentle, inviting] "Think about a puddle — when a drop falls in, the ripples go out evenly in ALL directions. That even spreading is why circles show up in so many places. Your eye, the flower, the wheel — they all use that even, round shape for something important."
 
 **Screen:** Collection displayed with animated concentric ripple effects emanating from each photo; a central "Circle Pattern Map" connects all four photos with dotted arcs. Animated "why" labels pulse beside each photo.
 
@@ -219,7 +219,7 @@ Child photographs their eye in a mirror, AI notices the concentric circles and l
 
 1. [encouraging] "Circles are just the beginning! Next time, try looking for triangles, spirals, or branching patterns — they are everywhere too. Every shape tells a story. See you on the next investigation, Reporter!"
 2. [warm] "Your badge is saved! Keep those reporter eyes sharp — patterns are hiding in every direction you look. Bye for now, Reporter!"
-3. (wait 2s) [soft] "Your Circle Pattern Reporter Badge is shining. What an incredible eye you have — both the one in the photo and the one doing the looking! Great work today."
+3. [wait 2s] [soft] "Your Circle Pattern Reporter Badge is shining. What an incredible eye you have — both the one in the photo and the one doing the looking! Great work today."
 
 **Screen:** Golden "Circle Pattern Reporter Badge" shaped like a magnifying glass with concentric circle pattern at center; eye photo in the middle surrounded by 3 collection photo insets arranged in a ring. "Connection" in flowing linked-chain letters with dotted lines, "Perspective" in multi-angled colorful letters as if seen from different viewpoints. Gentle chime and animated ripple expanding outward.
 

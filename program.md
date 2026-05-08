@@ -496,7 +496,7 @@ activities/<activity_id>/
 
 1. [tone marker] "[exact response to ideal]"
 2. [tone marker] "[exact response to unexpected — always validate, then redirect]"
-3. (wait 2s) [tone marker] "[exact response to silence — gentle prompt]"
+3. [wait 2s] [tone marker] "[exact response to silence — gentle prompt]"
 
 **Screen:** [specific description of what the screen shows]
 

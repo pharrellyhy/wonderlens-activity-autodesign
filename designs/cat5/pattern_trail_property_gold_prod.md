@@ -65,7 +65,7 @@ entity_attributes_covered:
 
 1. [excited, conspiratorial] "YES! Zebras have stripes, socks have stripes -- stripes are sneaky, they show up EVERYWHERE! But here's the thing -- stripes aren't the ONLY pattern out there. There are spots, zigzags, wavy lines... I bet there are MORE patterns hiding all around you RIGHT NOW. What if we could find them?"
 2. [warm, curious] "It IS a great shirt! And those blue and white lines? That's a PATTERN called stripes! But here's a secret -- your shirt isn't the only thing with a pattern. There are spots, zigzags, all kinds of patterns hiding nearby. Want to find them?"
-3. (wait 2s) [gentle, wondering] "See those lines on your shirt? They repeat -- over and over -- side by side. That's a pattern called stripes! And I bet there are MORE patterns hiding all around you. I have an idea -- want to be a detective and find them?"
+3. [wait 2s] [gentle, wondering] "See those lines on your shirt? They repeat -- over and over -- side by side. That's a pattern called stripes! And I bet there are MORE patterns hiding all around you. I have an idea -- want to be a detective and find them?"
 
 **Screen:** Trigger photo centered with animated highlight lines tracing the detected pattern. "STRIPES" in bold, striped-textured letters. Pulsing magnifying glass icon with "?" in the corner.
 
@@ -83,7 +83,7 @@ entity_attributes_covered:
 
 1. [thrilled] "Here comes your first riddle-clue! Listen carefully, Detective..."
 2. [encouraging] "A pattern is when something REPEATS -- like the stripes on your shirt, the same lines over and over! I'll give you riddle-clues and you just listen, look, and search. Here comes the first one..."
-3. (wait 2s) [playful whisper] "Okay Detective, here's how it works -- I describe something with a pattern, you find it! Easy! Let's start with your very first riddle-clue..."
+3. [wait 2s] [playful whisper] "Okay Detective, here's how it works -- I describe something with a pattern, you find it! Easy! Let's start with your very first riddle-clue..."
 
 **Screen:** Detective-themed mission card with "Pattern Detective" badge, magnifying glass over pattern mosaic, 3 empty circle slots, trigger photo above with golden star, pulsing "CLUE #1" banner.
 
@@ -101,9 +101,9 @@ entity_attributes_covered:
 
 **AI follow-up:**
 
-1. (triumphant) "YES, Detective! Look at those SPOTS -- little dots sprinkled all over! Each dot is like a tiny circle, and they repeat across the whole thing. That's a pattern called SPOTS! Different from your stripes -- stripes are lines, but spots are DOTS! First clue -- SOLVED! Two more to go!"
+1. [triumphant] "YES, Detective! Look at those SPOTS -- little dots sprinkled all over! Each dot is like a tiny circle, and they repeat across the whole thing. That's a pattern called SPOTS! Different from your stripes -- stripes are lines, but spots are DOTS! First clue -- SOLVED! Two more to go!"
 2. [thoughtful, encouraging] "Ooh, interesting find! My riddle is about something with SPOTS -- tiny dots or circles repeated across it. Think of a ladybug's back, or a shirt with polka dots, or even a leaf with little bumps. Can you find something with dots on it?"
-3. (wait 2s) [helpful whisper] "Detective hint! Spots are tiny dots or circles that repeat. Look at the ground -- do you see a stone with speckles? Or check your clothes -- any polka dots? Even a bumpy rock with different-colored flecks counts!"
+3. [wait 2s] [helpful whisper] "Detective hint! Spots are tiny dots or circles that repeat. Look at the ground -- do you see a stone with speckles? Or check your clothes -- any polka dots? Even a bumpy rock with different-colored flecks counts!"
 
 **Screen:** Photo slides into first slot with spotted sparkles and "SOLVED!" animation. Spots icon appears. Counter: "Clue 1 of 3 -- SOLVED!" and "CLUE #2" pulses.
 

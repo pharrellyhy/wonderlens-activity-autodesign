@@ -45,7 +45,7 @@
 
 1. [delighted] "Ooh, green! Cool green friend!"
 2. [warm, validating] "All of them? Wow! Which is silliest?"
-3. (wait 2s) [playful whisper] "Psst! I think that red one is waving at you!"
+3. [wait 2s] [playful whisper] "Psst! I think that red one is waving at you!"
 
 **Screen:** Crayon photo centered with rainbow sparkle animation and soft colorful particles floating up.
 
@@ -63,7 +63,7 @@
 
 1. [celebrating] "Yes! Color wizard! More feelings!"
 2. [warm, reassuring] "You ARE wizard! Happy? Sleepy? Silly?"
-3. (wait 2s) [encouraging whisper] "Try it! Say 'hee hee' like yellow!"
+3. [wait 2s] [encouraging whisper] "Try it! Say 'hee hee' like yellow!"
 
 **Screen:** Wizard hat icon above the crayon photo; yellow crayon wiggles with a "Hee hee!" speech bubble and sparkle effects.
 
@@ -83,7 +83,7 @@
 
 1. [amazed] "Happy red! Whooo! Great wizard!"
 2. [impressed] "Fire! Yes! Hot red! Excited red?"
-3. (wait 2s) [gentle prompt] "Hmm, is red happy? Or sleepy? Or silly? You pick!"
+3. [wait 2s] [gentle prompt] "Hmm, is red happy? Or sleepy? Or silly? You pick!"
 
 **Screen:** Red crayon glows and bounces; matching emoji face appears with sparkle burst when child answers; "Round 1" star in the corner.
 

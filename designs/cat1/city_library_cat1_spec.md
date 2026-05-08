@@ -50,7 +50,7 @@
 > **AI follow-up**:
 > 1. [excited, building] "Perfect! You're going to be this book's Journey Narrator — the only person who can tell the world where it's been and what it's experienced. Let's start from the very beginning!"
 > 2. [playful, redirecting] "You read the story INSIDE the book — but what about the story OF the book? Think about it — before it reached your hands, this book traveled through an entire library system. That journey is a story nobody ever tells. Until now!"
-> 3. (wait 2s) [gentle, curious] "This book has been on quite a trip. It sat on a tall shelf, waited for someone to pick it, got scanned at the checkout desk, rode home in a bag... every step is a chapter. Want to help me tell that story?"
+> 3. [wait 2s] [gentle, curious] "This book has been on quite a trip. It sat on a tall shelf, waited for someone to pick it, got scanned at the checkout desk, rode home in a bag... every step is a chapter. Want to help me tell that story?"
 >
 > **Screen**: Library book photo centered with a soft golden "conversation recap" glow; faint dotted journey line begins to trace from a bookshelf icon at the bottom.
 
@@ -68,7 +68,7 @@
 > **AI follow-up**:
 > 1. [impressed] "That's right — librarians, other readers, maybe someone who shelved it back! This book has had a whole secret life before it reached you. What if we told that story?"
 > 2. [playful, validating] "Ha — you're right, books definitely don't walk! But they DO travel — from shelves to desks to bags to YOUR hands. Somebody brought this book through a whole system of people and places. That's an adventure worth telling!"
-> 3. (wait 2s) [warm, wondering] "You know what I think? I think this book has been through at least five different adventures before it landed right here with you. Want to figure out what those adventures were?"
+> 3. [wait 2s] [warm, wondering] "You know what I think? I think this book has been through at least five different adventures before it landed right here with you. Want to figure out what those adventures were?"
 >
 > **Screen**: Library book photo centered with gentle sparkle particles and a faint bookshelf silhouette framing the edges.
 
@@ -86,7 +86,7 @@
 > **AI follow-up**:
 > 1. [impressed] "Great thinking! Yes — the librarian probably checks it in, maybe puts a label on its spine so everyone knows where it belongs. You already know how the system works! Ready for the next chapter?"
 > 2. [warm, encouraging] "That's totally okay — this is YOUR story, so you can make things up! Maybe the librarian gives the book a little welcome tour, or maybe it goes straight to a cozy corner. Whatever you think! Let's keep going."
-> 3. (wait 2s) [helpful] "Here's a thought — the librarian might need to stamp it or put a label on it so it finds its place. What do you think the book would feel about its very first home on a shelf?"
+> 3. [wait 2s] [helpful] "Here's a thought — the librarian might need to stamp it or put a label on it so it finds its place. What do you think the book would feel about its very first home on a shelf?"
 >
 > **Screen**: Book photo in top-right corner; illustrated "journey log" notebook opens to Chapter 1 showing a book arriving in a box, a librarian holding it up, tall shelves in the background. "Book Journey Narrator" press badge at bottom.
 
@@ -104,7 +104,7 @@
 > **AI follow-up**:
 > 1. [delighted, building] "Yes! They flip it open and their eyes get big — the pictures are amazing, or the first line grabs them. And just like that, the book is about to go on its next adventure. Did you know librarians are like community helpers who organized that whole shelf so this exact reader could find this exact book? That's the system working!"
 > 2. [charmed, validating] "Ha! They put it back? Oh no — a rejection! OR maybe they smelled it — some people love the smell of books, you know. Old books smell stronger because the paper releases tiny molecules over time. Either way, let's say someone DOES pick our book. What happens when they take it to the front desk?"
-> 3. (wait 2s) [encouraging] "Imagine it — they've been looking for something good to read, and they found OUR book. Maybe they flip through the pages, or check out the cover. What do you think they'd notice first?"
+> 3. [wait 2s] [encouraging] "Imagine it — they've been looking for something good to read, and they found OUR book. Maybe they flip through the pages, or check out the cover. What do you think they'd notice first?"
 >
 > **Screen**: Journey log Chapter 2: bookshelf scene with a hand reaching for the book; warm lamplight from the reading corner glows in the background. "Chapter 2" stamp animates on.
 
@@ -120,7 +120,7 @@
 > **AI follow-up**:
 > 1. [impressed, extending] "Exactly — beep! The librarian scans the book, and the computer remembers: this book is out, and it needs to come back by a certain date. That way, the next person who wants it knows when it'll be available. Everything is connected — the scanner, the computer, the due date, and the next reader in line. Pretty clever system, right?"
 > 2. [validating, building] "Writing it down is actually how libraries used to do it — with little cards inside each book! Now most libraries use scanners and computers, but the idea is the same: keep track so the book can find its way back. Your instinct was spot on!"
-> 3. (wait 2s) [helpful] "Think about it like this — if you lent a toy to a friend, how would you remember who has it? Libraries do something similar, but for thousands of books! Maybe a scanner goes beep, or a librarian types something into a computer..."
+> 3. [wait 2s] [helpful] "Think about it like this — if you lent a toy to a friend, how would you remember who has it? Libraries do something similar, but for thousands of books! Maybe a scanner goes beep, or a librarian types something into a computer..."
 >
 > **Screen**: Journey log Chapter 3: checkout desk with librarian, scanner, computer screen. The book moves from hand to desk with a "BEEP" animation. "Chapter 3" stamp.
 
@@ -136,7 +136,7 @@
 > **AI follow-up**:
 > 1. [thrilled storyteller] "Oh WOW — I can SEE it! Reading at night with a flashlight, heart pounding at the scary parts. That's the kind of reading where the book becomes more than paper — it becomes an EXPERIENCE. And the amazing thing is, this same book might make a DIFFERENT reader feel totally different! One person laughs, another gasps. The book connects all these different readers through one story."
 > 2. [playful, rolling with it] "They forgot about it?! Oh no — the poor book, sitting on a nightstand, waiting to be opened again! That actually happens a lot. But then one rainy day, the reader picks it back up and — what do you think happens?"
-> 3. (wait 2s) "(painting a picture) Close your eyes for a second — imagine someone reading this book right before bed, under a cozy blanket. Maybe it's raining outside. What kind of story would make that moment perfect — funny, adventurous, or mysterious?"
+> 3. [wait 2s] [painting a picture] "Close your eyes for a second — imagine someone reading this book right before bed, under a cozy blanket. Maybe it's raining outside. What kind of story would make that moment perfect — funny, adventurous, or mysterious?"
 >
 > **Screen**: Journey log Chapter 4: cozy home reading scene — bed, lamp, child reading. The scene shifts warmth tones based on the child's described scenario. "Chapter 4" stamp.
 
@@ -152,7 +152,7 @@
 > **AI follow-up**:
 > 1. [deeply impressed] "You just described the ENTIRE cycle! The book goes back, the librarian checks it in, and it goes right back on that shelf — ready for its NEXT reader. And that next reader might be someone who's been waiting for this exact book. Returning on time keeps the whole community connected. Every person who borrows and returns is part of this system. You understand how it all fits together!"
 > 2. [playful, extending] "Keep it forever! The book might like that — but what about the NEXT kid who wants to read it? If everyone kept their books, the library shelves would be empty! That's why returning matters — it keeps the whole system going for everyone. What if they DID bring it back — how would that work?"
-> 3. (wait 2s) "(guiding) Think about it this way — there might be another kid RIGHT NOW hoping this book is on the shelf. What happens to that kid if our reader returns it on time? And what happens if they don't?"
+> 3. [wait 2s] [guiding] "Think about it this way — there might be another kid RIGHT NOW hoping this book is on the shelf. What happens to that kid if our reader returns it on time? And what happens if they don't?"
 >
 > **Screen**: Journey log Chapter 5: split scene — book going into return slot on one side, librarian reshelving it on the other; a new reader reaches for it. "Chapter 5" stamp, and a golden "JOURNEY COMPLETE" banner unfurls.
 
@@ -166,9 +166,9 @@
 > 3. (No response) Child looks at the badge proudly.
 >
 > **AI follow-up**:
-> 1. "(beaming) The best narrator a book could ask for! Every library book has a journey like this — and now you know the whole story."
+> 1. [beaming] "The best narrator a book could ask for! Every library book has a journey like this — and now you know the whole story."
 > 2. [delighted] "Yes! Every book has its own journey, and you can narrate any of them. And returning YOUR book? That's the best way to keep the adventure going for someone else!"
-> 3. (wait 2s) [warm] "That badge suits you, Narrator. This book is lucky someone finally told its whole story."
+> 3. [wait 2s] [warm] "That badge suits you, Narrator. This book is lucky someone finally told its whole story."
 >
 > **Screen**: Animated "Book Journey Narrator" badge with a book-and-path icon, the child's book photo inset, golden confetti, and a celebratory chime. The journey log shows all five chapter stamps.
 
@@ -186,7 +186,7 @@
 > **AI follow-up**:
 > 1. [proud closing] "They really are. And now, every time you borrow a book, you'll think about its whole journey — and all the people and systems that made it possible. See you next time, Narrator!"
 > 2. [warm, clear] "Function means each part has its own special job — like the checkout desk's job is tracking books, and the shelf's job is keeping them organized. And being a librarian? That would be amazing — you already understand how the whole system works! See you next time!"
-> 3. (wait 2s) [gentle closing] "Every book in every library is on a journey just like this one. And now you're the person who knows the whole story. Until next time, Book Journey Narrator!"
+> 3. [wait 2s] [gentle closing] "Every book in every library is on a journey just like this one. And now you're the person who knows the whole story. Until next time, Book Journey Narrator!"
 >
 > **Screen**: "Function" and "Connection" in elegant hand-drawn book-style typography. "Function" surrounded by small icons: shelf, scanner, book return slot. "Connection" linked by a dotted journey line connecting reader → librarian → shelf → next reader. Journey log with all stamps below, then "See you next time, Book Journey Narrator!" fade-in.
 

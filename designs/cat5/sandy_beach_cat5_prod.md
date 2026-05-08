@@ -52,7 +52,7 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 1. [impressed] "Great eyes! Those shells did not just appear. The ocean waves washed them right onto the sand. I wonder what else the ocean left here!"
 2. [warm, curious] "Sand is pretty cool, right? But look really close. Wet sand looks darker than dry sand. And there are tiny pieces mixed in. The ocean hides its gifts well!"
-3. (wait 2s) [playful whisper] "Psst — look really close at the sand. See any tiny bits that are not just sand grains?"
+3. [wait 2s] [playful whisper] "Psst — look really close at the sand. See any tiny bits that are not just sand grains?"
 
 **Screen:** Child's beach photo centered with gentle wave animation along the bottom edge and small sparkle effects on sand highlights.
 
@@ -70,9 +70,9 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 **AI follow-up:**
 
-1. (pumped up) "Let us go, Detective! Walk along the sand and look for shells, seaweed, smooth stones, or driftwood. When you spot a treasure, take a photo!"
+1. [pumped up] "Let us go, Detective! Walk along the sand and look for shells, seaweed, smooth stones, or driftwood. When you spot a treasure, take a photo!"
 2. [helpful, warm] "Great question! Look for things that do not look like plain sand. Shells, seaweed, little sticks, or smooth pebbles. They are all ocean treasures! Go explore!"
-3. (wait 2s) [gentle, encouraging] "Try walking along the wet sand near the water. That is where the waves drop the best treasures. You will find something!"
+3. [wait 2s] [gentle, encouraging] "Try walking along the wet sand near the water. That is where the waves drop the best treasures. You will find something!"
 
 **Screen:** Mission card with a detective badge labeled "Shore Detective," four slots (first filled with beach photo, three empty with question marks and magnifying glass icons), and a numbered task list showing "Find → Describe → Name → Story!"
 
@@ -118,7 +118,7 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 1. [delighted, naming moment] "Slimy and wiggly! I love it! This treasure needs a name too. Wiggly Slime? Slimy Green? What is this character's name?"
 2. [warm, prompting] "Seaweed, yes! But what does seaweed FEEL like? Squeeze it gently. Is it squishy? Slippery? What does it remind you of?"
-3. (wait 2s) [gentle, guiding] "This one looks wet and wavy. If you touch it, is it smooth like [Name 1] or totally different?"
+3. [wait 2s] [gentle, guiding] "This one looks wet and wavy. If you touch it, is it smooth like [Name 1] or totally different?"
 
 **Child names the find:** "Wiggly Slime! / Squishy! / Green Wiggle!"
 
@@ -142,7 +142,7 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 1. [amazed, naming moment] "Smooth and round like an egg! Perfect. What is this character's name? Egg Stone? Rolly? You pick!"
 2. [warm, drawing out] "A rock — but not just any rock! The ocean made this one special. Feel it. Is it smooth or rough? Round or flat? What makes it different from a regular rock?"
-3. (wait 2s) [encouraging] "I see something the ocean shaped. Touch it, Detective! Is it smooth? That means the waves tumbled it for a long time. What does it remind you of?"
+3. [wait 2s] [encouraging] "I see something the ocean shaped. Touch it, Detective! Is it smooth? That means the waves tumbled it for a long time. What does it remind you of?"
 
 **Child names the find:** "Rolly! / Smooth Sam! / Egg Stone!"
 
@@ -168,7 +168,7 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 1. [amazed, narrating and weaving in details] "What a story! Captain Curvy was riding a big wave — curving through the water like a bowl scooping the sea! Then Captain Curvy bumped into Wiggly Slime, who was wiggling along. They held on tight and the wave pushed them onto the sand. And look — [Name 3] was already here, waiting! What an adventure!"
 2. [warm, building from their details] "The waves — yes! Let me help you tell it. [Name 1] — the [child's description] one — was floating in the ocean. A big wave picked up [Name 2] — the [child's description] one — and they tumbled together! Then they landed right next to [Name 3] on the sand. The ocean brought your whole team together!"
-3. (wait 2s) [gentle, guiding] "I will start! One day, [Name 1] was floating in the ocean, smooth and [child's detail]. A wave came and WHOOSH — [Name 2], all [child's detail], got swept up too! They landed on the beach and met [Name 3]. What happened next?"
+3. [wait 2s] [gentle, guiding] "I will start! One day, [Name 1] was floating in the ocean, smooth and [child's detail]. A wave came and WHOOSH — [Name 2], all [child's detail], got swept up too! They landed on the beach and met [Name 3]. What happened next?"
 
 **Screen:** All four photos (beach + 3 treasures) in a storybook layout with character name tags, animated wave carrying the characters from left to right onto the beach; speech bubbles with character names.
 
@@ -186,7 +186,7 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 1. [amazed] "Yes! Every day the ocean delivers new treasures. And every treasure has its own shape and feel, so it would get its own special name! Captain Curvy is one of a kind — just like your story!"
 2. [warm, encouraging] "These characters are yours forever! And next time, you might find a smooth flat stone and call it Pancake, or a spiky shell and call it Pokey! Every beach visit is a new story!"
-3. (wait 2s) [gentle, guiding] "The ocean is always delivering new treasures. Each one would look and feel different — so each one would get a brand new name and a brand new story!"
+3. [wait 2s] [gentle, guiding] "The ocean is always delivering new treasures. Each one would look and feel different — so each one would get a brand new name and a brand new story!"
 
 **Screen:** Collection displayed as a beach storybook page with characters at different spots on the sand, name tags visible, and a "To be continued..." banner with a wave icon.
 
@@ -206,6 +206,6 @@ Child photographs the sandy shore → AI spots tiny treasures in the sand → ch
 
 1. [proud, warm] "You sure did! Every time you visit a beach, you can be a detective again and meet new ocean characters with new stories."
 2. [gentle, connecting] "Those are great ideas! Beaches are full of treasures and stories. Now you know how to find them, name them, and tell their tales."
-3. (wait 2s) [soft closing] "Your Shore Detective badge is shining. Great detective work today, and what a story!"
+3. [wait 2s] [soft closing] "Your Shore Detective badge is shining. Great detective work today, and what a story!"
 
 **Screen:** Detective badge spinning into center labeled "Shore Detective" with collection photos as insets showing character name tags; "Causation" and "Connection" in ocean-blue lettering with shell and wave icons; storybook sparkles.

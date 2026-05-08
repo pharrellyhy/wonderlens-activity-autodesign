@@ -52,7 +52,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 1. [impressed] "That's right! It keeps them standing up nice and tall. I think it's like a boss for the whole bathroom!"
 2. [playful, curious] "Boring? But it never lets the brushes fall down! That sounds like a pretty tough job. I think it's a secret Bathroom Boss!"
-3. (wait 2s) [warm, inviting] "See how the brushes all stand up? Someone is keeping them in line. I think this holder is the Bathroom Boss!"
+3. [wait 2s] [warm, inviting] "See how the brushes all stand up? Someone is keeping them in line. I think this holder is the Bathroom Boss!"
 
 **Screen:** Toothbrush holder photo centered with gentle bathroom-themed bubbles floating around the edges.
 
@@ -72,7 +72,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 1. [cheering] "Great! Here comes the first bathroom problem!"
 2. [warm, imaginative] "In our game it can! You get to be the Boss's voice. You say what it would say!"
-3. (wait 2s) [encouraging, gentle] "It is easy! Just say what the Boss would do. Let's try together!"
+3. [wait 2s] [encouraging, gentle] "It is easy! Just say what the Boss would do. Let's try together!"
 
 **Screen:** Toothbrush holder photo with a small cartoon crown on top, a speech bubble icon beside it, and a toothbrush tipping off a counter edge as the demo scenario.
 
@@ -92,7 +92,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 1. [cheering] "Yes! Stand up so you can dry! The Boss knows wet bristles need air. That is so smart!"
 2. [warm, playful redirect] "Ha, that's relaxed! But the Boss knows that wet bristles get yucky if they stay flat. Maybe the Boss says 'Up you go so you can dry!' What do you think?"
-3. (wait 2s) [helpful whisper] "The bristles are getting soggy on the counter. The Boss might say 'Get up and dry off!' What would you say?"
+3. [wait 2s] [helpful whisper] "The bristles are getting soggy on the counter. The Boss might say 'Get up and dry off!' What would you say?"
 
 **Screen:** Three cartoon toothbrushes lying flat on a wet counter with water droplets; when child responds, brushes animate upright with a happy sparkle.
 
@@ -114,7 +114,7 @@ Child photographs the family toothbrush holder on the bathroom counter and disco
 
 **AI follow-up:**
 
-1. (beaming) "You should be so proud! The bathroom is lucky to have you!"
+1. [beaming] "You should be so proud! The bathroom is lucky to have you!"
 2. [delighted] "You loved being the Boss! You can always look at your holder and remember its secret job!"
 3. [warm, affirming] "You did such a wonderful job today. The Bathroom Boss is very happy!"
 

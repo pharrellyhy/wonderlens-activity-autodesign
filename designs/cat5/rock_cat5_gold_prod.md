@@ -86,7 +86,7 @@ for a bridged entity.
 
 1. [impressed] "It IS super hard! You know what? This rock has a secret SUPERPOWER. Want to know what it is? Its superpower is... STRENGTH! It's tough, solid, and nothing can squish it. This rock is the strongest thing around here!"
 2. [playful] "Ooh, shiny rocks are the best! And you know what makes ALL rocks amazing? They're SO hard and SO tough. This one has a secret superpower — want to hear it? Its superpower is... STRENGTH! Nothing can squish this rock!"
-3. (wait 2s) "Can I tell you something cool about this rock? Feel how hard it is — go on, give it a squeeze. It won't budge! That's because this rock has a superpower. Its superpower is... STRENGTH!"
+3. [wait 2s] "Can I tell you something cool about this rock? Feel how hard it is — go on, give it a squeeze. It won't budge! That's because this rock has a superpower. Its superpower is... STRENGTH!"
 
 **Screen:** Rock photo centered with bold "STRENGTH" pulsing in block letters, animated cracks radiating outward, and a small shield icon.
 
@@ -104,7 +104,7 @@ for a bridged entity.
 
 1. [cheering] "The lab is OPEN! Go find something from nature — a leaf, a feather, a stick, a flower petal, anything! Take a photo and I'll reveal its superpower. Go, Inventor!"
 2. [encouraging] "A superpower is the special thing each object can DO because of what it's made of! Like your rock is super strong because it's so hard. Go find something else from nature — a leaf, a stick, anything! Take a photo and I'll show you its superpower!"
-3. (wait 2s) "Try looking near the ground — there are leaves, sticks, feathers, and all kinds of things hiding in the grass! Pick up something interesting, take a photo, and I'll tell you its secret superpower!"
+3. [wait 2s] "Try looking near the ground — there are leaves, sticks, feathers, and all kinds of things hiding in the grass! Pick up something interesting, take a photo, and I'll tell you its secret superpower!"
 
 **Screen:** Lab-themed mission card with "Nature Inventor" badge, 4 ingredient slots (first filled with rock photo labeled "STRENGTH"), 3 glowing question marks, and a 3-step task list: Collect, Discover, Invent.
 
@@ -122,9 +122,9 @@ for a bridged entity.
 
 **AI follow-up:**
 
-1. (triumphant) "YES! This leaf's superpower is... FLEXIBILITY! It can bend and twist and curve without breaking! Imagine if YOU could bend like that — you'd be like a rubber band! FLEXIBILITY is locked in. Two more ingredients to go, Inventor!"
+1. [triumphant] "YES! This leaf's superpower is... FLEXIBILITY! It can bend and twist and curve without breaking! Imagine if YOU could bend like that — you'd be like a rubber band! FLEXIBILITY is locked in. Two more ingredients to go, Inventor!"
 2. [curious, redirecting] "It IS green — and look how thin it is! Give it a little bend — does it curl? Does it snap, or does it stay in one piece? I think this leaf can bend without breaking — its superpower is FLEXIBILITY! Two more to find!"
-3. (wait 2s) "Let me check this one out. See how thin it is? I bet it can bend and twist without snapping. You know what that means? Its superpower is... FLEXIBILITY! It can bend any way it wants! Two more ingredients, Inventor!"
+3. [wait 2s] "Let me check this one out. See how thin it is? I bet it can bend and twist without snapping. You know what that means? Its superpower is... FLEXIBILITY! It can bend any way it wants! Two more ingredients, Inventor!"
 
 **Screen:** Leaf photo slides into second slot with green sparkles. "FLEXIBILITY" in curvy, wiggling letters. Counter updates to "2/4."
 
@@ -143,7 +143,7 @@ for a bridged entity.
 
 **AI follow-up:**
 
-1. (mind-blown) "A BENDY SHIELD! Imagine this — a shield that's as STRONG as a rock, so nothing can break through it — but it can BEND and CURVE around corners because it has the flexibility of a leaf! You could wrap it around yourself like a blanket, but it's as tough as stone! The Bendy Shield — invented by YOU, Nature Inventor! What would you use it for?" Then: "That is BRILLIANT! No one in the whole world has ever invented a Bendy Shield before. Only YOU!"
+1. [mind-blown] "A BENDY SHIELD! Imagine this — a shield that's as STRONG as a rock, so nothing can break through it — but it can BEND and CURVE around corners because it has the flexibility of a leaf! You could wrap it around yourself like a blanket, but it's as tough as stone! The Bendy Shield — invented by YOU, Nature Inventor! What would you use it for?" Then: "That is BRILLIANT! No one in the whole world has ever invented a Bendy Shield before. Only YOU!"
 2. [encouraging] "That's okay — let me give you a spark! What if something was as STRONG as your rock... but could BEND like your leaf? What would that be? A bendy wall? A curvy sword? A twisty shield? What do YOU think it could be?" If child asks for different ones: "YES! Pick any two you want! How about LIGHTNESS and LENGTH — something super light but super long?"
 
 **AI says:** [proud, reflecting] "Nature Inventor, look at what you did today! You started with one rock — just a rock! — and you discovered that it has the superpower of STRENGTH. Then you found a leaf with FLEXIBILITY, a feather with LIGHTNESS, and a stick with LENGTH. Every single thing out here has its own special power! Why do you think different things in nature have different superpowers?"

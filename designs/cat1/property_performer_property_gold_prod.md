@@ -68,7 +68,7 @@ Child photographs a bouncy rubber ball → AI detects "bouncy" → "Your ball is
 
 1. [amazed] "BOING BOING! WOW! Bounciest sound EVER! Some silly judges heard that bounce. They want MORE! Want to put on a BIG bouncy show?"
 2. [warm, excited] "Your ball! So round and bouncy! I bet it has the best bounce inside. Want to do a BIG show? Some silly judges want to see it!"
-3. (wait 2s) [playful whisper] "Psst... I think your ball wants to go BOING! Can you help? Some silly judges are waiting!"
+3. [wait 2s] [playful whisper] "Psst... I think your ball wants to go BOING! Can you help? Some silly judges are waiting!"
 
 **Screen:** Ball photo centered with bright stage background — spotlight beams, curtain edges; gentle bounce animation on ball photo; three shadowed character silhouettes (penguin with scorecard, hamster with popcorn, giraffe with big grin) peek in from the right.
 
@@ -86,7 +86,7 @@ Child photographs a bouncy rubber ball → AI detects "bouncy" → "Your ball is
 
 1. [cheering] "YES! Round One! Judges ready! Penguin has his scorecard. Hamster has popcorn. Giraffe is stretching to see! Let's GO!"
 2. [warm, playful] "Judges are silly friends watching! Hamster loves bouncing! Ready? You bounce, judges go WOW! Round One!"
-3. (wait 2s) [encouraging] "Easy! Just bounce when I say! Judges love EVERY bounce! Here comes the first one!"
+3. [wait 2s] [encouraging] "Easy! Just bounce when I say! Judges love EVERY bounce! Here comes the first one!"
 
 **Screen:** "BOUNCY TALENT SHOW" banner in bouncy lettering; ball photo on small stage at center-left; three cartoon judge characters (tuxedoed penguin with scorecard, hamster with popcorn, giraffe poking in from above) on the right; "Round 1" star badge in corner.
 
@@ -104,9 +104,9 @@ Child photographs a bouncy rubber ball → AI detects "bouncy" → "Your ball is
 
 **AI follow-up:**
 
-1. (audience goes wild) "OHHH! Penguin DROPPED his scorecard — it says TEN! Hamster is jumping up and down — popcorn flying EVERYWHERE! Giraffe's neck is wobbling like jelly! They LOVED it! BIG gold star!"
+1. [audience goes wild] "OHHH! Penguin DROPPED his scorecard — it says TEN! Hamster is jumping up and down — popcorn flying EVERYWHERE! Giraffe's neck is wobbling like jelly! They LOVED it! BIG gold star!"
 2. [delighted, laughing] "Wheee?! Ha! Judges LOVE surprises! Penguin wrote 'WOW' on his scorecard! Hamster fell over giggling! Gold star for the surprise sound!"
-3. (wait 2s) [gentle] "Even a tiny boing counts! Try a little one... boing? The judges are leaning forward with big silly faces!"
+3. [wait 2s] [gentle] "Even a tiny boing counts! Try a little one... boing? The judges are leaning forward with big silly faces!"
 
 **Screen:** Stage spotlight on ball photo with bright bounce-lines; penguin fumbles scorecard showing "10!", hamster bounces with popcorn flying, giraffe's neck wobbles; gold star stamps in score area.
 
@@ -128,7 +128,7 @@ Child photographs a bouncy rubber ball → AI detects "bouncy" → "Your ball is
 
 1. [overjoyed] "The BEST Bounce Star EVER! Every judge says you win! Penguin wants your autograph!"
 2. [thrilled] "ENCORE? Judges are SO happy! 'Come back anytime!' You can bounce for them again another day, Bounce Star!"
-3. (wait 2s) [warm] "Look at that big smile! Penguin says 'That smile bounces right off the page!' You are a REAL Bounce Star!"
+3. [wait 2s] [warm] "Look at that big smile! Penguin says 'That smile bounces right off the page!' You are a REAL Bounce Star!"
 
 **Screen:** Full celebration — confetti in bouncy rainbow colors, penguin holds "PERFECT" scorecard with sparkles, hamster throws popcorn confetti, giraffe claps at top of screen; large golden "BOUNCE STAR" badge descends with ball photo framed inside, three gold stars underneath.
 
@@ -146,6 +146,6 @@ Child photographs a bouncy rubber ball → AI detects "bouncy" → "Your ball is
 
 1. [warm, proud] "BOING! That's ball saying 'Thank you, Bounce Star!' Bye bye! Judges are waving!"
 2. [warm, simple] "Perspective means same ball, different bounces — that's what YOU showed! Hamsters are fun too — maybe next time! Bye, Bounce Star!"
-3. (wait 2s) [soft, closing] "Judges waving goodbye. Penguin says 'See you next show!' Bye bye, Bounce Star. BOING!"
+3. [wait 2s] [soft, closing] "Judges waving goodbye. Penguin says 'See you next show!' Bye bye, Bounce Star. BOING!"
 
 **Screen:** Ball photo at center with "Perspective" (speech-bubble icon with multiple bounce styles) and "Form" (ball-silhouette icon) in bright playful lettering; "BOUNCE STAR" badge with three gold stars in the corner; three judges waving; warm spotlight glow fades to cheerful close.

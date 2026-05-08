@@ -66,9 +66,9 @@ A child in a park photographs a wooden bench, AI notices it is man-made, propose
 
 **AI follow-up:**
 
-1. (intrigued) "Interesting — you already have ideas! The bench is definitely man-made. But all those trees and rocks? Nature made those all by itself! I think we should find out what MOST things around here really are!"
+1. [intrigued] "Interesting — you already have ideas! The bench is definitely man-made. But all those trees and rocks? Nature made those all by itself! I think we should find out what MOST things around here really are!"
 2. [warm, explaining] "Great question! Man-made means a person BUILT it — like this bench! Natural means nature made it all by itself — like a tree growing from a seed. Nobody built the tree — it just grew! I have a fun idea to figure out what this place is mostly made of!"
-3. (wait 2s) [inviting] "This bench is man-made — a person built it! But see those trees? Nobody built those — they grew by themselves! That is natural. I wonder which kind there is MORE of around here. Want to find out?"
+3. [wait 2s] [inviting] "This bench is man-made — a person built it! But see those trees? Nobody built those — they grew by themselves! That is natural. I wonder which kind there is MORE of around here. Want to find out?"
 
 **Screen:** Photo centered with "MAN-MADE" or "NATURAL" label and appropriate icon (hammer or leaf).
 
@@ -85,8 +85,8 @@ A child in a park photographs a wooden bench, AI notices it is man-made, propose
 
 **AI follow-up:**
 
-1. (locking it in) "You predict MOSTLY NATURAL — got it! I am writing that down. You are a Nature Detective! Find 3 more things, take a photo of each, and I will tell you if it is natural or man-made. At the end, we will see if your prediction was RIGHT. Ready, Detective?"
-2. (locking it in) "You predict MOSTLY MAN-MADE — interesting! I am writing that down. You are a Nature Detective! Find 3 more things, take a photo of each, and I will tell you if it is natural or man-made. At the end, we will see if your prediction was RIGHT. Ready, Detective?"
+1. [locking it in] "You predict MOSTLY NATURAL — got it! I am writing that down. You are a Nature Detective! Find 3 more things, take a photo of each, and I will tell you if it is natural or man-made. At the end, we will see if your prediction was RIGHT. Ready, Detective?"
+2. [locking it in] "You predict MOSTLY MAN-MADE — interesting! I am writing that down. You are a Nature Detective! Find 3 more things, take a photo of each, and I will tell you if it is natural or man-made. At the end, we will see if your prediction was RIGHT. Ready, Detective?"
 3. [encouraging] "A prediction is your BEST GUESS before you check! Do you think MOST things here are natural — like trees and rocks — or man-made — like benches and signs? Just pick one!"
 
 **Screen:** "Nature Detective" badge with magnifying glass (leaf/gear split). Tally board with "Natural" and "Man-Made" columns. First photo placed in correct column with "1" tally. Prediction stamped at top. Three empty slots below.
@@ -110,7 +110,7 @@ A child in a park photographs a wooden bench, AI notices it is man-made, propose
 
 1. [excited] "The tally so far: Natural [N], Man-Made [M]. [Natural is winning! / They are tied! / Man-Made is still ahead!] Two more to find, Detective!"
 2. [playful] "It IS big — nature made it grow tall! And that big tree is definitely NATURAL. Tally update: Natural [N], Man-Made [M]. Two more, Detective!"
-3. (wait 2s) (announcing) "That tree is NATURAL! Tally: Natural [N], Man-Made [M]! Two more to go — find another thing and take a photo!"
+3. [wait 2s] [announcing] "That tree is NATURAL! Tally: Natural [N], Man-Made [M]! Two more to go — find another thing and take a photo!"
 
 **Screen:** Photo slides into slot 2, tally updates with animation. Running score: "Natural: [N] | Man-Made: [M]." Prediction banner stays visible.
 

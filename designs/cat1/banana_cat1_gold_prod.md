@@ -88,7 +88,7 @@ describes how The Banana Time Machine adapts mechanically for a bridged entity.
 
 1. [excited] "Yes! This banana used to be SO different! It's changed a lot to get here. What if we could go back in time and SEE it? I know a way..."
 2. [playful, warm] "You know what's funny? This banana actually WAS different before! It had a whole secret life. What if we could travel back in time and find out?"
-3. (wait 3s) [gentle] "I'll tell you a secret — this banana used to be tiny and green, way up on a tall plant in a hot, rainy jungle! Want to go see it?"
+3. [wait 3s] [gentle] "I'll tell you a secret — this banana used to be tiny and green, way up on a tall plant in a hot, rainy jungle! Want to go see it?"
 
 **Screen:** Banana photo centered with golden glow pulsing around it. Faint clock hands spin in background. Tiny sparkles drift across the image.
 
@@ -106,7 +106,7 @@ describes how The Banana Time Machine adapts mechanically for a bridged entity.
 
 1. [delighted] "Yes! The little flower is {child's answer}! It's SO tiny but it's growing every single day because of all that rain and sunshine. That's where YOUR banana started! Now let's spin the time dial again and see what happens next..."
 2. [warm, validating] "You're right, it doesn't LOOK like a banana yet! That's the wild thing about time — things change SO much. This tiny flower is going to slowly, slowly turn into the banana on your table. Let's spin the time dial and watch!"
-3. (wait 3s) [encouraging] "I think the flower might say, 'Ooh, the rain tickles!' It's warm and wet in the jungle. This tiny flower is going to grow into YOUR banana! Let's spin the time dial and see..."
+3. [wait 3s] [encouraging] "I think the flower might say, 'Ooh, the rain tickles!' It's warm and wet in the jungle. This tiny flower is going to grow into YOUR banana! Let's spin the time dial and see..."
 
 **Screen:** Banana photo shrinks to top-right corner. Main area shows illustrated jungle with a tiny green flower highlighted on a tall banana plant. Rain drops animated. TIME DIAL spinner shows "3 MONTHS AGO." Dotted timeline begins forming at bottom with first stop marked.
 
@@ -124,9 +124,9 @@ describes how The Banana Time Machine adapts mechanically for a bridged entity.
 
 **AI follow-up:**
 
-1. (laughing) "Ha! I love that — '{child's answer}!' The green banana gang, all hanging together, chattering away. Did you know they're called a 'hand' of bananas? Your banana is one finger of that hand! But something big is about to happen — someone is coming to pick them..."
+1. [laughing] "Ha! I love that — '{child's answer}!' The green banana gang, all hanging together, chattering away. Did you know they're called a 'hand' of bananas? Your banana is one finger of that hand! But something big is about to happen — someone is coming to pick them..."
 2. [playful, connecting] "That's so cool that you have a brother! Just like the banana has banana brothers! They all hang together in a bunch called a 'hand.' But soon, someone is going to come and pick the whole hand..."
-3. (wait 3s) (prompting) "Maybe they're saying, 'I wonder what it's like to be yellow!' or 'Don't let go!' They're all holding on tight. But guess what — someone is about to pick the whole bunch..."
+3. [wait 3s] [prompting] "Maybe they're saying, 'I wonder what it's like to be yellow!' or 'Don't let go!' They're all holding on tight. But guess what — someone is about to pick the whole bunch..."
 
 **Screen:** Illustrated bunch of green bananas on a plant, drawn like cartoon friends. One banana (the child's) has a subtle glow. TIME DIAL shows "6 WEEKS AGO." Timeline at bottom has two stops: flower → green bunch, connected by dotted line.
 
@@ -152,9 +152,9 @@ describes how The Banana Time Machine adapts mechanically for a bridged entity.
 
 **AI follow-up:**
 
-1. (beaming) "We traveled through time together! From the past all the way to tomorrow! And YOU were the pilot. You decided where the banana's story went!"
+1. [beaming] "We traveled through time together! From the past all the way to tomorrow! And YOU were the pilot. You decided where the banana's story went!"
 2. [excited] "You want to go FURTHER in time? I love it! That's what great Time Pilots do — they always wonder what's next. But for now — look at this incredible timeline you built!"
-3. (wait 3s) [warm] "Pretty amazing, right? All those stops, all those changes. You flew through time and made it happen. That's your banana's timeline — and YOU built it!"
+3. [wait 3s] [warm] "Pretty amazing, right? All those stops, all those changes. You flew through time and made it happen. That's your banana's timeline — and YOU built it!"
 
 **Screen:** Full TIMELINE MAP stretching left to right with five stops: (1) tiny green flower/jungle — "3 MONTHS AGO," (2) green banana bunch — "6 WEEKS AGO," (3) ship on ocean — "2 WEEKS AGO," (4) store/kitchen with chosen path icon — "YESTERDAY," (5) tomorrow scene — "TOMORROW." Golden line connects all stops with an animated banana character flying along it. Child's original photo inset at center with "YOU ARE HERE" marker. Stars, confetti, and chime.
 
@@ -172,6 +172,6 @@ describes how The Banana Time Machine adapts mechanically for a bridged entity.
 
 1. [warm closing] "The best Time Pilot I've ever flown with! Next time you see something — an apple, a flower, even a rock — you can wonder: what was its journey through time? See you next time, Time Pilot!"
 2. [encouraging] "Great idea! Everything around you has a timeline — a journey through time. You can be a Time Pilot for ANYTHING. See you on the next flight!"
-3. (wait 3s) [gentle closing] "Every single thing around you has a timeline — a story of how it changed. You helped this banana tell its story. See you next time, Time Pilot!"
+3. [wait 3s] [gentle closing] "Every single thing around you has a timeline — a story of how it changed. You helped this banana tell its story. See you next time, Time Pilot!"
 
 **Screen:** "TIME PILOT" badge centered with golden banana-shaped compass rose. "Change" and "Causation" in large hand-drawn lettering below. "Change" has green-to-yellow gradient animation. "Causation" has small illustrated arrows connecting icons: rain → growth, ship → ripening, choice → destiny. Miniaturized timeline map at bottom. Gold confetti and warm chime.

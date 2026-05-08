@@ -50,7 +50,7 @@ Child photographs a piano, AI notices the rows of keys and wonders what else mak
 
 1. [impressed] "Yes! Some keys go ding ding up high, and some go boooom down low. The big keys and little keys all sound different! I wonder if OTHER things make cool sounds too. What if we went outside to find out?"
 2. [warm, connecting] "Your grandma has a piano — how cool! A piano makes so many sounds from all those keys. You know what? The world outside has lots of sounds too. Want to go on a sound hunt?"
-3. (wait 2s) [playful] "Listen — a piano has keys that go high and keys that go low. Every one sounds different! What if we went outside and found MORE things that make interesting sounds?"
+3. [wait 2s] [playful] "Listen — a piano has keys that go high and keys that go low. Every one sounds different! What if we went outside and found MORE things that make interesting sounds?"
 
 **Screen:** Piano photo centered with the key pattern highlighted by a soft glow; animated musical notes of different sizes float upward from the keys.
 
@@ -68,7 +68,7 @@ Child photographs a piano, AI notices the rows of keys and wonders what else mak
 
 1. [cheering] "Detective is on the case! Go outside, find something you can tap, shake, or blow on, and take a photo. Report back to me!"
 2. [explaining warmly] "Anything that makes a noise when you tap it, shake it, or blow on it! A metal fence goes CLANG. A stick on the ground goes tap tap. Even a leaf can whoosh! Go find one and take a photo!"
-3. (wait 2s) [gently encouraging] "Here is your first clue — look for something metal, something wooden, or something that moves in the wind. Tap it and listen! Then take a photo."
+3. [wait 2s] [gently encouraging] "Here is your first clue — look for something metal, something wooden, or something that moves in the wind. Tap it and listen! Then take a photo."
 
 **Screen:** Mission card with "Sound Detective" badge (magnifying glass with a musical note), 4 collection slots (first filled with piano photo labeled "Sound: High + Low!"), and a three-step task list.
 
@@ -90,7 +90,7 @@ Child photographs a piano, AI notices the rows of keys and wonders what else mak
 
 1. [thrilled] "Clang clang — a METAL sound! Metal things make loud, ringing sounds because they are hard and thin. That is like the piano strings — they ring when the hammers tap them! Detective Log: 'Metal Fence — Sound: Loud Clang!' Two more to find, Detective!"
 2. [curious, scaffolding] "Great photo! Now try giving it a little tap with your hand. Does it go clang? Or thud? Or tap tap? Tell me what you hear!"
-3. (wait 2s) (enthusiastic) "I see something in your photo! It looks hard and shiny. If you tapped it, I bet it would go CLANG — like a loud bell. What do YOU think it sounds like?"
+3. [wait 2s] [enthusiastic] "I see something in your photo! It looks hard and shiny. If you tapped it, I bet it would go CLANG — like a loud bell. What do YOU think it sounds like?"
 
 **Screen:** New photo slides into second slot with sparkle animation; label appears: "Sound: ?" filling in based on conversation. Counter: "2 of 4."
 
@@ -114,7 +114,7 @@ Child photographs a piano, AI notices the rows of keys and wonders what else mak
 
 1. [delighted] "Great sorting! See how each thing has a DIFFERENT sound? The shape and size change everything — thin metal goes high, thick wood goes low, big things go loud! Just like on the piano!"
 2. [playfully scaffolding] "They DO all sound different! Let's start easy — which one was the LOUDEST? Point to it! Now which one was the softest? See — you just started sorting!"
-3. (wait 2s) [warm, guiding] "Let's try this — think about the fence. Was it high, low, or loud? Now think about the wood. Was THAT high, low, or loud? See — they go in different groups!"
+3. [wait 2s] [warm, guiding] "Let's try this — think about the fence. Was it high, low, or loud? Now think about the wood. Was THAT high, low, or loud? See — they go in different groups!"
 
 **Screen:** All 4 photos in a row; three sorting labels below: "HIGH" (light blue, high note), "LOW" (deep purple, low note), "LOUD" (red, exclamation mark). Photos shift under matching labels as child sorts.
 
@@ -130,7 +130,7 @@ Child photographs a piano, AI notices the rows of keys and wonders what else mak
 
 1. [impressed] "That is exactly right! The SHAPE and what it is MADE OF change the sound. Thin, hard things ring high. Thick, soft things sound deep. The piano works the same way — short strings sound high and long strings sound low!"
 2. [warm, extending] "That is a great wonder! Here is a clue — the fence is thin and metal, so it rings high. The bench is thick and wooden, so it sounds deeper. The stuff things are made of changes everything about their sound!"
-3. (wait 2s) [gentle, prompting] "Think about the fence and the bench. One is thin metal, one is thick wood. They sound SO different! What is different about them that might change the sound?"
+3. [wait 2s] [gentle, prompting] "Think about the fence and the bench. One is thin metal, one is thick wood. They sound SO different! What is different about them that might change the sound?"
 
 **Screen:** Collection displayed with each photo labeled with its sound; gentle animated sound waves in different colors (high = light blue, low = purple, loud = red); dotted connection lines link to the piano photo.
 
@@ -148,6 +148,6 @@ Child photographs a piano, AI notices the rows of keys and wonders what else mak
 
 1. [encouraging] "Keep those detective ears open! Next time you are outside, try tapping, shaking, and listening. Every thing has a sound waiting to be discovered! See you on the next case, Detective!"
 2. [warm] "Your badge is saved! Remember — every shape has its own voice. Bye for now, Detective!"
-3. (wait 2s) [soft] "Your Sound Detective Badge is glowing. Great ears today, Detective!"
+3. [wait 2s] [soft] "Your Sound Detective Badge is glowing. Great ears today, Detective!"
 
 **Screen:** Golden "Sound Detective Badge" shaped like a magnifying glass with a musical note at center; piano photo in the middle surrounded by 3 collection photo insets. "Form" in bold blocky letters with shape icons, "Connection" in flowing script with dotted lines. Gentle chime and animated sound waves.

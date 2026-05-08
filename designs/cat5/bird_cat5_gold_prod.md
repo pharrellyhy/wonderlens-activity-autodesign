@@ -95,7 +95,7 @@ A child in the park photographs a bird singing on a branch, then hunts for 3 nat
 
 1. [warm, inspired] "A song about the sun! What a lovely idea. This bird is like a little performer on a stage. I wonder if we could find MORE performers to join it!"
 2. [playful, validating] "Chirping IS singing! Every chirp is a tiny note. This bird is like a singer on a stage branch. What if it had a whole band to play with?"
-3. (wait 2s) [gentle, coaxing] "That bird is singing all by itself up there. It sounds a bit lonely! What if we found it some friends to make music with?"
+3. [wait 2s] [gentle, coaxing] "That bird is singing all by itself up there. It sounds a bit lonely! What if we found it some friends to make music with?"
 
 **Screen:** Bird photo centered with soft green glow, tiny animated musical notes drifting upward from the bird.
 
@@ -112,9 +112,9 @@ A child in the park photographs a bird singing on a branch, then hunts for 3 nat
 
 **AI follow-up:**
 
-1. (pumped up) "Great! A conductor is the boss of the music. YOU tell the performers when to play. Now look around — find a stick, a leaf, or a rock. Take a photo when you spot one!"
+1. [pumped up] "Great! A conductor is the boss of the music. YOU tell the performers when to play. Now look around — find a stick, a leaf, or a rock. Take a photo when you spot one!"
 2. [warm, explaining] "A conductor tells musicians when to play — loud, soft, fast, slow! And the sounds? YOU choose! A stick could go TAP TAP, a leaf could go RUSTLE RUSTLE. You decide! Now go find your first performer!"
-3. (wait 2s) [encouraging] "Try looking on the ground near trees. A stick would be a great first performer! Or a leaf, or a little rock. Take a photo of whatever you find!"
+3. [wait 2s] [encouraging] "Try looking on the ground near trees. A stick would be a great first performer! Or a leaf, or a little rock. Take a photo of whatever you find!"
 
 **Screen:** Mission card with "Nature Conductor" badge (baton with musical notes), five performance slots (first filled with bird photo labeled "Lead Singer"), and numbered checklist.
 
@@ -137,7 +137,7 @@ A child in the park photographs a bird singing on a branch, then hunts for 3 nat
 
 1. [thrilled, dramatic] "TAP TAP TAP! I love it! Stick is now the DRUMMER of the Nature Orchestra — TAP TAP TAP! What a beat! Two more performers to find, Conductor!"
 2. [warm, scaffolding] "What if you tapped a stick on the ground? It would go TAP TAP! Or maybe CRACK! You pick the sound you like best. What do you think — TAP or CRACK?"
-3. (wait 2s) [playful, modeling] "Hmm, a stick... I think it could go TAP TAP TAP, like a drum! Or maybe CLICK CLICK. Which one do you like? You choose!"
+3. [wait 2s] [playful, modeling] "Hmm, a stick... I think it could go TAP TAP TAP, like a drum! Or maybe CLICK CLICK. Which one do you like? You choose!"
 
 **Screen:** Stick photo slides into second performance slot with musical note burst; label shows child's assigned sound in bouncy letters; counter "1 of 3 performers found."
 

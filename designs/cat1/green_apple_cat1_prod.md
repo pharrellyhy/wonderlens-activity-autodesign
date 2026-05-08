@@ -45,7 +45,7 @@
 
 1. [impressed] "CRUNCH — yes! That big crunchy sound! And maybe a little sour taste too. You know a lot about this apple! Want to make more predictions — like a scientist?"
 2. [warm, accepting] "That's okay! Not everyone loves the same food — some people love sour, some love sweet. But this apple has some cool secrets. Want to guess what happens to it in different situations?"
-3. (wait 2s) [playful] "I think if you bit it — CRUNCH! Big sound, little sour taste, and you'd see the white part inside. Pretty cool, right? Want to guess more?"
+3. [wait 2s] [playful] "I think if you bit it — CRUNCH! Big sound, little sour taste, and you'd see the white part inside. Pretty cool, right? Want to guess more?"
 
 **Screen:** Green apple photo centered with gentle sparkle on the shiny skin and soft kitchen-counter ambiance.
 
@@ -65,7 +65,7 @@
 
 1. [excited] "Great! First prediction coming right up, Scientist!"
 2. [delighted] "Yes, they really do float! Apples are sneaky like that. Now let's see what YOU can predict. First one coming!"
-3. (wait 2s) [encouraging] "It's easy — I say what happens, and you guess what the apple does. Any guess is a great guess! Here goes..."
+3. [wait 2s] [encouraging] "It's easy — I say what happens, and you guess what the apple does. Any guess is a great guess! Here goes..."
 
 **Screen:** Apple photo on the left; on the right, an "Apple Prediction Scientist" lab coat badge with a magnifying glass icon and a quick demo animation of an apple bobbing in water.
 
@@ -85,7 +85,7 @@
 
 1. [amazed] "CRUNCH! Prediction confirmed! You hear that big crunchy sound because the firm insides snap when you bite. And the pale creamy part inside is so juicy! Some people think it tastes sour, and some think it's sweet. What do YOU think — sour or sweet?"
 2. [warm, building] "Yummy — that's a good prediction! But let me ask you more: when you bite it, is it loud or quiet? I think it goes CRUNCH — a big sound! And the inside is a surprise — it's white, not green! Did you know that?"
-3. (wait 2s) [helpful] "Here are some clues — think about the SOUND. Is it quiet like bread, or loud like a cracker? And what color do you think is INSIDE the green skin? Take your best guess!"
+3. [wait 2s] [helpful] "Here are some clues — think about the SOUND. Is it quiet like bread, or loud like a cracker? And what color do you think is INSIDE the green skin? Take your best guess!"
 
 **Screen:** Apple with a cartoon bite taken out, crunch-wave sound lines, cross-section showing pale flesh, and a "PREDICTION 1" stamp with golden star.
 
@@ -106,7 +106,7 @@
 
 **AI follow-up:**
 
-1. (beaming) "The best Apple Prediction Scientist! This apple is lucky to have someone so smart studying it."
+1. [beaming] "The best Apple Prediction Scientist! This apple is lucky to have someone so smart studying it."
 2. [delighted] "Go for it — you earned that apple, Scientist! And every time you eat one, you'll know all its secrets now."
 
 **Screen:** Animated "Apple Prediction Scientist" badge with a magnifying glass and apple icon, the child's apple photo inset, golden stars instead of confetti, and a celebration chime; all prediction stamps visible.
