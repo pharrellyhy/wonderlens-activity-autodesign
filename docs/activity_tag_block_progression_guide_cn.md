@@ -1,11 +1,13 @@
 # Activity Tag Block 与 Progression Guide
 
-**Version:** 0.1 - 2026-04-30
+**Version:** 0.2 - 2026-05-08
 **Status:** Supplement reference
 **English version:** `docs/activity_tag_block_progression_guide.md`
 **主要参考:** `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, `docs/progression_axes.md`, `docs/activity_tag_block_usage.md`, `docs/superpowers/specs/2026-04-24-progression-algorithm-design.md`
 
 这份文档是给中文读者看的 tag block 总览。它不是英文版的逐字翻译，而是按中文阅读习惯重新组织说明。字段名、enum、runtime action、系统模块名保留 English，例如 `activity_signature`, `matchability`, `progression`, `axis_state`, `promote`, `hold`。
+
+选择优先级说明：`activity_signature.mechanic` 是 matcher 和 analytics 使用的主要 child-action 信号。`game_style` 仍然是必填 catalog metadata，但它描述的是 mechanic 已确定后的 package flavor 和 pillar format；不能用它代替 mechanic fit。
 
 ---
 
@@ -25,7 +27,7 @@
 | Layer | 它回答的问题 | 主要字段 |
 |---|---|---|
 | Upstream eligibility | 这个 activity 能不能用于当前 photo 和 child tier? | `entity`, `entity_class`, `entity_binding`, `tier_range`, `matchability.*` |
-| Upstream coherence | 如果能用，它是不是 conversation 的好延续? | `activity_signature.observation_angle`, `bridge_prerequisites`, `entity_role`, progression target |
+| Upstream coherence | 如果能用，它是不是 conversation 的好延续? | `activity_signature.mechanic`, `activity_signature.observation_angle`, `bridge_prerequisites`, `entity_role`, progression target |
 | Runtime presentation | 开始活动时要展示什么文案? | `activity_signature.focal_attribute`, `intro`, `preview_label`, `preview_prompt` |
 | Progression | 这个 activity 正式练的是哪条 axis / 哪个 rung? 结束后如何更新? | `progression.*`, evidence vector, `axis_state`, `progression_event` |
 | Downstream child | 孩子刚才做了什么? | resolved `entity`, `activity_signature.*`, recap template output |
@@ -105,8 +107,8 @@ matchability:
 | `activity_id` | yes | lowercase snake_case，并且必须和 package directory 名一致。 |
 | `version` | yes | activity package 的整数版本。package contract 变化时递增。 |
 | `template_type` | yes | `cat1` 或 `cat5`。runtime/template 会读取。 |
-| `pillar` | yes | 活动的情感和体验 pillar：`Discovery`, `Performance`, `Mystery`, `Creation`, `Adventure`, `Connection`。 |
-| `game_style` | yes | 更具体的活动形式，例如 `field_experiment`, `voice_stage`, `mystery_trail`。 |
+| `pillar` | yes | 活动的情感和体验 pillar：`Discovery`, `Performance`, `Mystery`, `Creation`, `Adventure`, `Nurture`。 |
+| `game_style` | yes | 更具体的活动形式，例如 `field_experiment`, `voice_stage`, `mystery_trail`。它是 secondary selector signal；child-action fit 优先看 `activity_signature.mechanic`。 |
 | `entity` | yes | bound activity 写具体 entity；parameterized activity 可以写 placeholder。 |
 | `entity_binding` | yes | `bound`, `parameterized`, `agnostic`。说明 activity 和 entity 绑定得有多紧。 |
 | `tier_range` | yes | 作者设计时的目标 tier，以及可以安全支持的 tier 范围。 |
@@ -260,10 +262,13 @@ Not eligible for: unsafe/unclear photos，或者脚本其实偷偷依赖具体 p
 
 ### 3.2 Coherence: Should It Follow?
 
-coherence 字段主要在 `activity_signature` 里。它们帮助 selector 在 eligible candidates 里排序。
+coherence 字段主要在 `activity_signature` 里。它们帮助 selector 根据 conversation signature、progression target 和 desired child action，在 eligible candidates 里排序。
+
+hard eligibility 通过之后，第一个 coherence 问题应该是 mechanic fit。如果 runtime request、assignment、child intent 或 product policy 偏好 collect、compare、deduce、voice、predict、build、care 这类 action，selector 应先用 `activity_signature.mechanic` 打分，再考虑 `game_style`。`game_style` 可以在 mechanic 匹配相近时做 tiebreaker，但它不是 primary action selector。
 
 | Field | 用法 | 例子 |
 |---|---|---|
+| `activity_signature.mechanic` | 孩子的 action pattern；用于 matching、runtime recap phrasing 和 parent analytics。 | `collect`, `compare`, `deduce`, `voice` |
 | `activity_signature.observation_angle` | activity 关注的主要 attribute/dimension。 | `color`, `quantity`, `emotion` |
 | `activity_signature.bridge_prerequisites.primary` | 1-3 个最自然衔接的 conversation angles。 | `[color]`, `[behavior, function]` |
 | `activity_signature.bridge_prerequisites.secondary` | 辅助 angles 或 editorial descriptors。优先用 enum。 | `[pattern, visibility]` |
@@ -274,20 +279,26 @@ selector scoring 的基本思路：
 
 | Match | Selector effect |
 |---|---|
+| candidate `mechanic` 等于 explicit `mechanic_preference` 或 inferred desired child action | strongest child-action bonus |
+| candidate `mechanic` 是 desired action 的 compatible fallback | medium child-action bonus |
 | candidate `observation_angle` 等于 conversation `dominant_angle` | strong bonus |
 | candidate `observation_angle` 出现在 conversation `secondary_angles` | smaller bonus |
 | candidate `bridge_prerequisites.primary` 和 conversation angles 有 overlap | continuity bonus |
 | candidate 匹配 progression state 的 target axis/rung | progression bonus |
+| candidate `game_style` 匹配 explicit style request | 只作为 tiebreaker 或 editorial bonus |
 
 progression target 是强偏好，不是 hard promise。photo context、catalog coverage、safety、tier、entity eligibility 都可能让 selector 选择别的 activity。
 
-### 3.3 `conversation_signature` 和 `progression_target` 从哪里来
+如果没有 explicit mechanic preference，先从当前 intent 推断 mechanic，再 fallback 到 style：孩子想 find/gather -> `collect`；孩子比较两个东西 -> `compare`；孩子问 why -> `deduce` 或 `predict`；孩子想 pretend speech -> `voice`；孩子想 make/arrange -> `build`；孩子注意到 care/help needs -> `care`。
 
-upstream selector 在打分前会收到两个不同的 runtime inputs：
+### 3.3 Runtime Selector Inputs 从哪里来
+
+upstream selector 在打分前会收到这些 runtime inputs：
 
 | Runtime input | Owner | 如何产生 | 用途 |
 |---|---|---|---|
 | `conversation_signature` | Conversation/photo understanding layer | 来自当前 photo、detected entity/properties 和最近几轮 chat。V1 用 keyword/attribute heuristics：统计 angle hits，例如 red/blue → `color`，round/square → `shape`，more/three → `quantity`；命中最多的是 `dominant_angle`，其他明显命中进入 `secondary_angles`。 | 和 `activity_signature.observation_angle`、`bridge_prerequisites` 做 coherence scoring。 |
+| `mechanic_preference` | Assignment author、selector policy 或 conversation layer | 如果 assignment 明确写了 `mechanic=`，直接读取；否则从 child intent、previous-session balance、runtime constraints 和 product policy 推断。 | 作为 primary child-action signal，和 `activity_signature.mechanic` 打分。 |
 | `progression_target` | Progression service | 从 child 已存的 per-axis `axis_state`，加上最近的 `progression_event` / policy output 推出。通常包含 preferred next `target_axis` 和 `target_rung`；如果到 L3 ceiling 或持续 overload，可能指向 sibling axis。 | 给 activity ranking 加 progression bonus。 |
 
 最小 runtime flow：
@@ -299,11 +310,14 @@ photo + recent chat
 child_id + stored axis_state + latest progression_event
   -> progression_target
 
-conversation_signature + progression_target + active tag blocks
+assignment/runtime policy + child intent
+  -> mechanic_preference
+
+conversation_signature + mechanic_preference + progression_target + active tag blocks
   -> activity selector
 ```
 
-这两个 input 都可能为空。`conversation_signature` 为 null 时，selector 不加 conversation-angle bonus。`progression_target` 为 null 时，selector 不加 progression bonus，退回 eligibility、coherence、freshness、product policy 等信号。
+这些 input 都可能为空。`conversation_signature` 为 null 时，selector 不加 conversation-angle bonus。`mechanic_preference` 为 null 时，selector 从 context 推断 desired action，或者使用 catalog/product policy。`progression_target` 为 null 时，selector 不加 progression bonus，退回 eligibility、mechanic fit、coherence、freshness、product policy 等信号。
 
 ### 3.4 Upstream Example
 
@@ -318,6 +332,7 @@ conversation_signature:
 progression_target:
   axis: form
   rung: 2
+mechanic_preference: collect
 ```
 
 `color_scout_property` 会是强匹配：
@@ -328,6 +343,7 @@ matchability:
   entity_class_filter: []
   tier_support: {T0: true, T1: true, T2: true}
 activity_signature:
+  mechanic: collect
   observation_angle: color
   bridge_prerequisites:
     primary: [color]
@@ -340,6 +356,7 @@ progression:
 为什么它成立：
 
 - eligibility passes，因为它是 wide parameterized activity。
+- mechanic fit passes，因为 desired child action 是 `collect`。
 - conversation coherence passes，因为 dominant angle 是 `color`。
 - progression fit passes，因为 target 是 `form` L2。
 - `entity_role: exemplar`，pen 不是整个活动的 subject，而是 red 这个 property 的一个例子。
@@ -606,13 +623,13 @@ Next activity: chosen from catalog using updated Form state
 
 #### 6.7.2 避免 Activity Explosion
 
-最粗暴的 catalog 设计会要求 `7 axes x 3 rungs = 21` 个 activity types，再乘上 entities、pillars、age tiers。这个内容成本太高。
+最粗暴的 catalog 设计会要求 `7 axes x 3 rungs = 21` 个 activity types，再乘上 mechanics、entities、pillars、age tiers。这个内容成本太高。
 
 推荐的 catalog model 是 **activity families with elastic rung variants**，而不是每个 cell 都写一个 bespoke activity。
 
 | Catalog layer | 作者准备什么 | Example |
 |---|---|---|
-| Activity family | 可复用的 game mechanic 和 entity/pillar structure | "Color Scout" 或 "Part Detective" |
+| Activity family | 可复用的 mechanic 加 entity/pillar flavor | "Color Scout" 或 "Part Detective" |
 | Primary axis | 这个 activity 正式更新的唯一 axis | `form` |
 | Rung variant pack | 同一个 family 内的 L1/L2/L3 prompt patterns | L1 name color; L2 name and locate features; L3 explain why feature exists |
 | Runtime selector | 根据孩子当前 axis state 选择最合适的 family/rung | 有 Form L2 就选；没有就用 elastic Form L1 加 L2 micro-challenge |
@@ -627,12 +644,14 @@ Next activity: chosen from catalog using updated Form state
 
 promotion 不要求团队立刻为每个 L1 activity 都写一个全新的 L2 activity。selector 应该 availability-aware：
 
-1. 优先 exact match：same axis、recommended rung、suitable tier、fresh entity/pillar。
-2. 如果没有 exact match，用同一个 activity family 的 higher-rung prompt variant。
+1. 优先 exact match：same axis、recommended rung、preferred mechanic、suitable tier、fresh entity/pillar。
+2. 如果没有 exact match，用同一个 mechanic family 的 higher-rung prompt variant。
 3. 如果连 higher-rung variant 都没有，hold rung，但加一个 richer micro-challenge。
 4. 如果 axis 已经 saturated 或到 ceiling，用 sibling-axis routing。
 
 catalog coverage 最终应向 strong axis/rung families 的矩阵靠近。但 V1 可以从较少的高质量 families 开始，只要每个 family 有 elastic prompt variants，并且 selector 记录 fallback reason。
+
+`game_style` 帮助作者保持 family 的情绪和结构一致，但 catalog coverage 应先按 mechanic 评估。例如一个 `collect` family 可以表现为 `quest_collector`，未来也可以有别的 style；selector 仍应该把可复用 action pattern 识别为 `collect`。
 
 #### 6.7.3 超过 L3 后怎么办
 
@@ -761,6 +780,8 @@ parent view 是 windowed aggregate。一个 completed activity append 一个 eve
 | `activity_signature.entity_role` | photo 在 activity 中的角色。 | 追踪 subject/exemplar/catalyst/reference patterns。 | timeline explanation 和 pivot clarity。 |
 | `caregiver_role` | adult support expectation/usage。 | support mix。 | parent guidance 和 support gauges。 |
 
+parent aggregation 应把 `activity_signature.mechanic` 当成 primary action grouping。`game_style` 可以用于 editorial drill-down 或 catalog QA，但不应该替代 growth path 里的 mechanic dimension。
+
 如果周一是 `topic_axis: form` L2，周二的新照片触发了 `topic_axis: connection` L1，Form row 仍然保留在这个 window 的 history 里，Connection 获得自己的 event。selector 应尽量延续方向，但 dashboard 必须保留孩子真实走过的 path。
 
 ---
@@ -831,7 +852,7 @@ activity_signature:
   entity_role: subject
   focal_attribute: lion_voice
 progression:
-  topic_axis: connection
+  topic_axis: perspective
   difficulty_level: 2
 ```
 
@@ -839,7 +860,7 @@ Interpretation:
 
 - eligibility 比 Color Scout 更窄，因为 `entity_class_filter: [big_cat]`。
 - lion 仍然是 `subject`，不需要 pivot。
-- 孩子通过 behavior/voice evidence 练 Connection。
+- 孩子通过 behavior/voice evidence 练 Perspective。
 - parent dashboard 可以说孩子使用了 expressive / communication skills，但不展示 matcher fields。
 
 ---
@@ -853,7 +874,7 @@ Interpretation:
 - `matchability.tier_support` 和 `tier_range.span` 一致。
 - `activity_signature.observation_angle` 是 `docs/activity_vocabulary.md` 里的 closed enum。
 - `activity_signature.bridge_prerequisites.primary` 使用 1-3 个 closed observation-angle values。
-- `activity_signature.mechanic` 描述孩子实际做什么，而不只是 `game_style`。
+- `activity_signature.mechanic` 描述孩子实际做什么，并可作为 primary selector/analytics action；不能用 `game_style` 代替。
 - `activity_signature.entity_role` 能解释 photo 是 subject、exemplar、catalyst 还是 reference。
 - `progression.topic_axis` 只有一条 axis，并且没有被当成 `observation_angle` 的同义词。
 - `progression.difficulty_level` 是 integer `1`, `2`, `3`。

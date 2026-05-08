@@ -1,11 +1,13 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.5 | **Date**: 2026-04-21
+> **Version**: 1.7 | **Date**: 2026-05-08
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
-> **v1.5 — 2026-04-21**: Extend `entity_attributes_covered` with dual matcher semantics keyed on `entity_binding` — `bound` games use strict overlap (every listed ID must resolve in the specific entity YAML); `parameterized` property-bridge templates use loose overlap (any one ID matching an entity's `tier_guidance` qualifies, and the matched attribute's value substitutes the template parameter). See new "Matcher semantics" subsection under §1.9.
-> **v1.4 — 2026-04-20**: Introduce `entity_attributes_covered` as a required tag-block field — a flat list of dotted-path attribute IDs (`tier_{0,1,2}.{dimension}.{attribute}`) that the activity exercises from its entity's `tier_guidance`. Consumed by the upstream matcher; validated against the entity YAML.
+> **v1.7 — 2026-05-08**: Require a separate reviewer agent to independently check the 10-dimension `spec.md` scorecard against the actual package files before the scorecard is finalized, results are logged, or an assignment is marked complete.
+> **v1.6 — 2026-05-08**: Make the migrated `activities/<activity_id>/` five-file package the default output target. `prod.md` must keep every runtime round fully expanded; only `spec.md` carries the author-editorial `## Self-Evaluation Scorecard`; `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` are separate package files aligned to `activities/_schema/tag_block.schema.json`.
+> **v1.5 — 2026-04-21**: Legacy inline-design tag block revision: extended `entity_attributes_covered` with dual matcher semantics keyed on `entity_binding`. Superseded for migrated packages by v1.6 and `activities/_schema/tag_block.schema.json`.
+> **v1.4 — 2026-04-20**: Legacy inline-design tag block revision: introduced `entity_attributes_covered` as a required field. Superseded for migrated packages by v1.6.
 > **v1.3 — 2026-04-20**: Align `progression.difficulty_level` wire format to the Template 0 authority (`docs/template_0_preview.html` §04) and `docs/progression_axes.md`: bare integer `1|2|3`, not `L1|L2|L3`. The `L1/L2/L3` forms remain the human-readable rung labels in prose and UI copy.
 > **v1.2 — 2026-04-20**: Sync template-reading flow to the new `templates.md` v1.0 structure (Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix). Replaces the "Template A for Cat1 / Template B for Cat5" split with three-layer composition (Template 0 + pillar overlay + category modifier).
 > **v1.1 — 2026-04-20**: Introduce `## Tag block — the central contract` section (new Phase 1.9) as the structured output artifact every activity emits for downstream child-recap and parent-dashboard surfaces. Add pre-output self-check step to the generation loop.
@@ -20,12 +22,13 @@ You are an **Activity Design Agent** for WonderLens (奇朵), an AI-powered educ
 1. Receive input: `entity + category` (e.g., "butterfly + out-of-device collection")
 2. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the assigned pillar overlay, then apply the category modifier (Cat1 or Cat5) from the appendix
 3. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity
-4. Generate a complete activity design following the exact output format
-5. Self-evaluate against the rubric (10 dimensions)
+4. Generate a complete migrated activity package following the exact output format
+5. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking
 6. If any dimension FAILS → identify the issue, fix it, re-evaluate
 7. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
-8. Only present the final design after ALL dimensions pass AND the tag-block self-check passes
-9. Append a brief rubric scorecard at the end
+8. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
+9. Only present the final package after ALL dimensions pass AND the package self-check passes.
+10. Put the rubric scorecard in `activities/<activity_id>/spec.md`; do not put a scorecard in `prod.md`.
 
 **You never show intermediate drafts. You only present the final, self-evaluated design.**
 
@@ -120,9 +123,11 @@ Assign 2–4 related concepts per activity. These populate the `related_concepts
 
 **Critical Design Principle**: If the activity requires verification that V1 hardware cannot provide, **replace the verification with dialogue**. The child self-reports, and AI always responds positively. Never design a step where the system MUST detect something it cannot detect.
 
-### 1.6 Game Styles (12 Interaction Patterns under 6 Experience Pillars)
+### 1.6 Mechanics and Game Styles
 
-Every activity must be assigned one of 12 game styles, organized under 6 Experience Pillars. Each pillar defines a distinct emotional experience. The style determines the child's role, the game mechanic, and the emotional arc. Read `docs/game_styles.md` for the full reference.
+Every activity must be assigned one of 12 game styles, organized under 6 Experience Pillars. Each pillar defines a distinct emotional experience. The style frames the child's role, package structure, and emotional arc; the activity mechanic declares what the child actually does. Read `docs/game_styles.md` for the full reference.
+
+**Mechanic-first assignment rule:** If an assignment provides `mechanic=`, treat it as the primary child-action requirement and choose a pillar/style that expresses that mechanic well. Do not pick a game style first and then force the mechanic to fit. `game_style` is still required in the output package, but `activity_signature.mechanic` is the selector and analytics action signal.
 
 **The 6 Experience Pillars:**
 
@@ -160,10 +165,11 @@ Every activity must be assigned one of 12 game styles, organized under 6 Experie
 **How styles constrain design:**
 - The pillar determines the emotional arc and magic moment
 - The style narrows the creative variables to a proven pattern
-- The style is specified in the assignment (`pillar=Discovery, style=prediction_lab`) or inferred
+- The mechanic may be specified in the assignment (`mechanic=collect`); honor it before choosing or inferring style
+- The style is specified in the assignment (`pillar=Discovery, style=prediction_lab`) or inferred from the mechanic, entity affordances, category, and pillar fit
 - Record the pillar AND style in Basic Info as `Experience Pillar` and `Game Style`
 
-**If pillar/style is not specified**, infer using the "When to use" columns above. When ambiguous, prefer the pillar whose cognitive domain best matches the entity's natural affordances.
+**If pillar/style is not specified**, infer using the requested mechanic first, then the "When to use" columns above. When ambiguous, prefer the pillar whose cognitive domain best matches the entity's natural affordances.
 
 ### 1.7 Core Design Principles (NON-NEGOTIABLE)
 
@@ -213,131 +219,111 @@ Read `conversation_bridge.md` for warm/cold start bridge requirements.
 
 ### 1.9 Tag block — the central contract
 
-The **tag block** is the single structured output artifact that every activity design must emit. It is the contract between this design file and the two downstream surfaces that consume it: the **child recap screen** (post-activity celebration) and the **parent growth-path dashboard** (weekly legibility of growth). The canonical schema lives in `docs/template_0_preview.html` §04; this section is the author-facing version of that contract — the fields you must fill, what values are valid, and which consumer reads each one.
+The **tag block** is the structured metadata file every migrated activity package must emit as `activities/<activity_id>/tag_block.yaml`. It is the contract between the activity package and the downstream surfaces that consume it: the **child recap screen** (post-activity celebration), the **parent growth-path dashboard** (weekly legibility of growth), and the activity matcher/selector. The canonical schema lives in `activities/_schema/tag_block.schema.json`; canonical enum vocabulary lives in `docs/activity_vocabulary.md`.
 
 **Why this matters.** Without a well-formed tag block, the child recap cannot name the moment the child just made, and the parent dashboard cannot place the activity on a progression axis. Empty, placeholder, or drifted fields are runtime bugs — the recap falls back to generic copy and the dashboard collapses to an onboarding state. Treat the tag block as load-bearing output, not as metadata trim.
 
-#### Schema
+#### Migrated package schema
 
-Emit the tag block as a YAML-style section at the top of every completed design (above or immediately below the Basic Info block; both placements are acceptable). Use the exact field names and nesting shown below — downstream readers key on literal strings.
+For new-structure activity packages, write the tag block as a standalone YAML file at `activities/<activity_id>/tag_block.yaml`. Do **not** embed this YAML inside `spec.md` or `prod.md`. Use the exact field names and nesting shown below — downstream readers key on literal strings.
 
 ```yaml
-# Tag block — required on every activity design
-activity_id: <entity>_<category>_<pillar>_<tier>   # e.g., ladybug_cat1_mystery_t1
-entity: <entity_name>                              # required — the photographed object
-entity_type: <animal|plant|artifact|scene|...>     # optional but recommended — taxonomy bucket
-category: <cat1|cat2|cat3|cat4|cat5|cat6>          # required — matches §1.3 category numbering
-pillar: <mystery|creation|performance|discovery|adventure|nurture>   # required — lowercase; rendered capitalized
-style: <mystery_lens|mystery_trail|...>            # required — one of the 12 game styles (§1.6)
-tier: <T0|T1|T2>                                   # required
-tier_variants: [<T0|T1|T2>, ...]                   # optional — neighbor tiers the design flexes to
-role_title: "<verb-forward child role>"            # required — e.g., "Ladybug Detective"
-highlight_moment: "<6–12 word runtime one-liner>"  # required — design-time template, runtime fills specifics
+activity_id: <lower_snake_case_id>        # must equal the parent directory name
+version: 1
+source_entity_exemplar: <entity_or_property_exemplar>
+template_type: <cat1|cat5>
+pillar: <Discovery|Performance|Mystery|Creation|Adventure|Nurture>
+game_style: <mystery_lens|mystery_trail|inventor_workshop|mix_lab|voice_stage|ensemble_show|prediction_lab|field_experiment|time_traveler|quest_collector|care_station|rescue_team>
 
-# — child-facing tags —
-attributes: [<observable>, ...]                    # required — visual/sensory properties the game invoked
-related_concepts: [<Concept>, <Concept>, ...]      # required — 2–4 discipline/child-friendly words (§1.4)
+entity: <entity_name_or_{parameterized_by_matched_property}>
+entity_class: [<class>, ...]              # [] for wide/property templates
+entity_binding: <bound|parameterized|agnostic>
+tier_range:
+  primary: <T0|T1|T2>
+  span: [<T0|T1|T2>, ...]
+  elasticity: "±1"
 
-# — parent-facing tags (IB + cross-subject) —
-key_concepts: [<Form|Function|Causation|Change|Connection|Perspective|Responsibility>, ...]  # required — 1–2 of 7
-atl_skills: [<critical_thinking|creative_thinking|observation|information_literacy|listening|expressing|collaboration|empathy|focus|...>, ...]   # required — 2–3 IB ATL sub-skills
-transdisciplinary_theme: "<one of 6 IB themes>"    # required
-subject_tags: [<science|language|art|math|social_emotional|...>, ...]   # required — cross-subject classification
+category: <objects|animals|plants|scenes|...>
+attributes: [<observable_attribute>, ...]
+key_concepts: [<Form|Function|Causation|Change|Connection|Perspective|Responsibility>, ...]
+related_concepts: [<concept>, ...]
+atl_skills: [<recommended token from docs/activity_vocabulary.md>, ...]
+transdisciplinary_theme: <IB_theme_token>
 
 kud:
-  know: [<fact>, ...]           # required — 2–5 items
-  understand: [<concept>, ...]  # required — 1–2 items
-  do: [<skill>, ...]            # required — 2–3 items
+  know: [<fact>, ...]
+  understand: [<conceptual_understanding>, ...]
+  do: [<skill>, ...]
 
 progression:
-  topic_axis: <one-of-7-axes>            # required — see docs/progression_axes.md for enum
-  difficulty_level: <1|2|3>              # required — bare integer; three cognitive rungs (1 notice · 2 extend · 3 reason). L1/L2/L3 are human-readable labels only.
-  next_step_hint: "<one-sentence>"       # required — where this activity points next
-  reward_hook: "<badge/chip label>"      # optional — drives recap chip copy
+  topic_axis: <form|function|causation|change|connection|perspective|responsibility>
+  difficulty_level: <1|2|3>
+  next_step_hint: "<concrete adjacent next step>"
+  reward_hook: "<badge/chip label>"
 
-# — upstream matcher tags —
-entity_attributes_covered:               # required — flat list of dotted-path attribute IDs from the entity's tier_guidance
-  - tier_0.<dimension>.<attribute>       # e.g., tier_0.appearance.petals
-  - tier_1.<dimension>.<attribute>       # e.g., tier_1.function.attract_pollinators
-  - tier_2.<dimension>.<attribute>       # every ID must resolve to an `attribute:` entry in data/mappings_dev20_0318/.../<yaml>
+caregiver_role: [<scaffold|co-explorer|observer>, ...]
 
-caregiver_role: [<scaffold|co-explorer|observer>, ...]   # required — T0 default [scaffold]; T1 adds co-explorer; T2 may include all three (cumulative)
-pillar_payoff: "<one-sentence magic-moment recap>"        # optional — author note that the pillar's emotional arc landed
+activity_signature:
+  observation_angle: <color|shape|size|quantity|texture|material|pattern|function|origin|behavior|emotion|state>
+  mechanic: <enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care>
+  entity_role: <subject|exemplar|catalyst|reference>
+  bridge_prerequisites:
+    primary: [<observation_angle>, ...]   # 1-3 closed enum values
+    secondary: [<angle_or_editorial_note>, ...]
+  focal_attribute: "<stable token or runtime placeholder>"
+  intro: "<one-sentence third-person presentation>"
+  preview_label: "<short activity card label>"
+  preview_prompt: "<bridge prompt shown at activity start>"
+  role_pivot_note: "<empty string or pivot explanation>"
+
+matchability:
+  entity_class_filter: [<class>, ...]     # [] = wide match
+  tier_support: {T0: yes, T1: yes, T2: yes}
 ```
 
-#### Field-by-field spec
+#### Field groups and consumers
 
-Each row: field · required/optional · valid values · consumer(s) · purpose.
+Use `activities/_schema/tag_block.schema.json` for exact required fields and enum validation. Author-facing ownership is:
 
-| Field | Req? | Valid values | Consumer | Purpose |
-|---|---|---|---|---|
-| `activity_id` | required | `<entity>_<category>_<pillar>_<tier>` snake-case | pipeline | Stable key for gold-standard lookup and mapping runs. |
-| `entity` | required | free-form entity name | both | What the child photographed. |
-| `entity_type` | optional | `animal`, `plant`, `artifact`, `scene`, `food`, `toy`, `vehicle`, other | pipeline / Tier B | Taxonomy bucket for constellation matching. |
-| `category` | required | `cat1`–`cat6` (see §1.3) | pipeline / parent dashboard | Which of the 6 activity categories. |
-| `pillar` | required | lowercase: `mystery`, `creation`, `performance`, `discovery`, `adventure`, `nurture` (rendered capitalized by consumers) | both | Child recap: subtitle ("Mystery · solved"). Parent: curiosity profile. |
-| `style` | required | 12 styles in §1.6 | pipeline | Game mechanic — narrows the creative variables. |
-| `tier` | required | `T0`, `T1`, `T2` | parent dashboard / pipeline | Age register audit trail + language flex. |
-| `tier_variants` | optional | subset of `{T0, T1, T2}` | pipeline | Neighbor tiers this design flexes into. |
-| `role_title` | required | verb-forward noun phrase ("Ladybug Detective") | child recap | The badge title on the recap screen (serif hero). |
-| `highlight_moment` | required | 6–12 word one-liner, design-time template | both | Child recap: large serif pull-quote. Parent: "In their words" list. See child_recap §05 for generation rules. |
-| `attributes` | required | observable properties list (`red`, `round`, `spots`) | child recap (feeds `highlight_moment`) / Tier P | Properties the game actually invoked. Feeds the one-liner at runtime. |
-| `related_concepts` | required | 2–4 capitalised concept words (§1.4 list) | child recap | "You earned" chip row. Child-friendly, not IB jargon. |
-| `key_concepts` | required | 1–2 of the 7 IB Key Concepts | parent dashboard | IB framework chips + curiosity profile. Distinct tree from `related_concepts`. |
-| `atl_skills` | required | 2–3 snake_case IB ATL sub-skills (`critical_thinking`, `creative_thinking`, `observation`, `information_literacy`, `listening`, `expressing`, `collaboration`, `empathy`, `focus`, …) — sourced from the 5 ATL categories in §1.4 | both | Child recap: "You practiced" chips (child-friendly wording). Parent: IB framework chips. |
-| `transdisciplinary_theme` | required | one of the 6 IB themes (§1.4) | parent dashboard | Which TD theme the activity lives under. |
-| `subject_tags` | required | `science`, `language`, `art`, `math`, `social_emotional`, others | parent dashboard | Cross-subject classification — lets parents filter against school subjects. |
-| `kud.know` | required | 2–5 specific facts | parent dashboard (IB frame) | K of KUD — see §1.4. |
-| `kud.understand` | required | 1–2 conceptual understandings | parent dashboard | U of KUD — maps to `key_concepts`. |
-| `kud.do` | required | 2–3 skills | parent dashboard | D of KUD — maps to `atl_skills`. |
-| `progression.topic_axis` | required | one of 7 axis enum values (see `docs/progression_axes.md`) | parent dashboard | Drives the L×T ladder "where on the growth path" visual. |
-| `progression.difficulty_level` | required | `1`, `2`, `3` (bare integer) | parent dashboard | Cognitive rung on the axis (three per axis). The L1/L2/L3 forms are human-readable labels used in prose and UI only. |
-| `progression.next_step_hint` | required | one-sentence pointer | parent dashboard ("Try at home") | Where this activity points the child next. |
-| `progression.reward_hook` | optional | badge/chip label | child recap (chip copy) | Ties recap chip wording to the progression step. |
-| `caregiver_role` | required | list from `{scaffold, co-explorer, observer}`; T0 defaults to `[scaffold]`, T1 adds `co-explorer`, T2 may include all three (cumulative) | parent dashboard (gauges) | Tier-dependent default; authors may override with justification. |
-| `entity_attributes_covered` | required | list of dotted-path attribute IDs (`tier_{0,1,2}.{dimension}.{attribute}`) | upstream matcher | Enumerates the tier_guidance attributes this activity exercises. Used by the matcher to route photographed entities to this activity. The overlap rule depends on `entity_binding`: `bound` → strict (every ID must resolve in the specific entity YAML); `parameterized` → loose (any one ID matching qualifies; the matched attribute's value fills the template parameter); `agnostic` → required but matcher may treat differently at runtime. See "Matcher semantics" below. |
-| `pillar_payoff` | optional | one-sentence magic-moment recap | author/review | Internal note that the pillar's emotional arc landed. Not rendered. |
+| Group | Required fields | Primary consumer |
+|---|---|---|
+| Identity | `activity_id`, `version`, `template_type`, `pillar`, `game_style` | loader, matcher, author review |
+| IB frame | `entity`, `entity_binding`, `tier_range`, `key_concepts`, `progression`, `caregiver_role`, `kud` | parent dashboard and progression surfaces |
+| Activity signature | `observation_angle`, `mechanic`, `entity_role`, `focal_attribute`, `intro`, `bridge_prerequisites`, `preview_label`, `preview_prompt` | matcher, selector, runtime preview, dashboard |
+| Matchability | `entity_class_filter`, `tier_support` | matcher and selector |
 
-#### Matcher semantics
+The three closed enums under `activity_signature` are owned by `docs/activity_vocabulary.md`:
 
-`entity_attributes_covered` is consumed via two different overlap rules, selected by the activity's `entity_binding`. The full routing pipeline lives in `docs/template_0_preview.html` §05.
+- `observation_angle`: `color`, `shape`, `size`, `quantity`, `texture`, `material`, `pattern`, `function`, `origin`, `behavior`, `emotion`, `state`
+- `mechanic`: `enumerate`, `compare`, `collect`, `sort`, `deduce`, `voice`, `build`, `predict`, `narrate`, `care`
+- `entity_role`: `subject`, `exemplar`, `catalyst`, `reference`
 
-- **`entity_binding: bound`** — entity-coupled gold design (e.g., `banana_cat1_gold`, `butterfly_cat5_gold`). **Strict overlap.** Every ID in `entity_attributes_covered` must resolve to an `attribute:` entry under the specific entity's `tier_guidance` YAML (`data/mappings_dev20_0318/.../{yaml}`). IDs that fail to resolve are lint errors, not soft mismatches.
-- **`entity_binding: parameterized`** — property-bridge template (e.g., `color_scout_property_gold`, `material_lab_property_gold`). **Loose overlap.** The template declares 2–4 abstract attribute paths that a candidate entity *could* expose. A photographed entity qualifies if **at least one** listed ID appears in its `tier_guidance`. At runtime, the matched attribute's `value` is then extracted and substituted for the template parameter (`{color}`, `{material}`, `{shape}`, etc.). The list is a catch-net, not a contract.
-- **`entity_binding: agnostic`** — field still required; the matcher may apply either rule or a category-specific one (runtime decides based on `style` and `pillar`).
+#### Package-level consumer contracts
 
-Authors do not need to encode `entity_binding` manually when it can be inferred from the design's top-matter (`Mapping Source: property-bridge` → `parameterized`; a single `Trigger Entity: {entity_name}` → `bound`). Downstream tooling derives it; design authors only have to pick the right overlap semantics when choosing which attribute IDs to list.
-
-#### Consumer contracts (reference)
-
-- **Child recap** (`docs/child_recap_preview.html` §04) reads: `role_title`, `pillar`, `highlight_moment`, `related_concepts`, `atl_skills`, `attributes` (feeds `highlight_moment`). Everything else is explicitly not surfaced to the child.
-- **Parent growth-path dashboard** (`docs/parent_growth_path_preview.html` §07) reads: `progression.topic_axis`, `progression.difficulty_level`, `progression.next_step_hint`, `tier`, `key_concepts`, `atl_skills`, `transdisciplinary_theme`, `subject_tags`, `pillar`, `highlight_moment` (list), `caregiver_role`, recent `entity`. Explicitly **not** read: `role_title` (child-facing only).
-- **Template 0 canonical spec** (`docs/template_0_preview.html` §04) is the source of truth if this section ever drifts. When in doubt, match §04.
-- **Upstream selection pipeline** (`docs/template_0_preview.html` §05) reads `entity`, `entity_type`, `category`, `tier`, `pillar`, `style`, `key_concepts`, `attributes` to rank Tier A / B / P / conversation-only matches.
+- **Runtime prompt composer** reads `prod.md`; it must contain complete beat-level dialogue and screen guidance with no scorecard and no one-line later-round summaries.
+- **Author/reviewer reference** reads `spec.md`; it must contain premise, target, rationale, selection trigger, pillar/game style, and the `## Self-Evaluation Scorecard`.
+- **Matcher/selector** reads `tag_block.yaml`; values must validate against `activities/_schema/tag_block.schema.json`.
+- **Child recap renderer** reads `recap.template.yaml`; the focal attribute token and reward language must match the runtime activity.
+- **Parent dashboard renderer** reads `dashboard.template.yaml`; `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.activity_signature.focal_attribute`.
 
 #### Pre-output self-check
 
-Before emitting a completed activity design, verify:
+Before emitting a completed migrated package, verify:
 
-- [ ] All **required** tag-block fields are present with non-placeholder values (no `TBD`, `TODO`, `<...>`, empty strings, empty lists).
-- [ ] `entity`, `category`, `pillar`, `style`, `tier` agree with the assignment input and with Basic Info.
-- [ ] `pillar` is one of the 6 overlays; `style` is one of the 12 styles listed in §1.6 and matches the chosen pillar's row.
-- [ ] `role_title` is a verb-forward noun phrase (names what the child did, not a generic label).
-- [ ] `highlight_moment` is 6–12 words and references a concrete child action (not a topic summary).
-- [ ] `related_concepts` has 2–4 items; `key_concepts` has 1–2 items; `atl_skills` has 2–3 items.
-- [ ] `progression.topic_axis` is one of the 7 enum values defined in `docs/progression_axes.md`.
-- [ ] `progression.difficulty_level` is the bare integer `1`, `2`, or `3` (not `L1`/`L2`/`L3` — those are prose labels only).
-- [ ] `progression.next_step_hint` is concrete (names an axis, a level, or an adjacent entity — not "keep exploring").
-- [ ] `transdisciplinary_theme` is one of the 6 IB themes listed in §1.4.
-- [ ] `caregiver_role` list matches tier default unless the design justifies the override.
-- [ ] `entity_attributes_covered` follows the overlap rule for the design's `entity_binding`:
-  - **bound** (entity-coupled gold) → lists at least 4 attribute IDs, and **every** ID resolves to an `attribute:` entry in that entity's `data/mappings_dev20_0318/.../{yaml}` `tier_guidance` (strict overlap).
-  - **parameterized** (property-bridge template) → lists 2–4 abstract attribute paths a candidate entity could plausibly expose under `tier_guidance`. The matcher uses loose overlap at runtime (any one hit qualifies), and the matched attribute's value fills the template parameter.
-  - See §1.9 "Matcher semantics" for the full rule.
-- [ ] `kud.know` / `kud.understand` / `kud.do` are populated with the same content used in Basic Info §B.② (no drift between the two).
+- [ ] The package has exactly these five files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, `dashboard.template.yaml`.
+- [ ] Directory name equals `tag_block.yaml` `activity_id`.
+- [ ] `tag_block.yaml` validates against `activities/_schema/tag_block.schema.json`.
+- [ ] `tag_block.yaml` uses current field names: `game_style` (not `style`), `tier_range` (not `tier` / `tier_variants`), and `activity_signature.focal_attribute`.
+- [ ] `pillar`, `game_style`, `template_type`, `tier_range.primary`, `key_concepts`, `progression.topic_axis`, `activity_signature.observation_angle`, `activity_signature.mechanic`, and `activity_signature.entity_role` use the current enum vocabulary.
+- [ ] `prod.md` contains Basic Info, Activity Overview, and Interaction Flow sections, with every runtime step represented.
+- [ ] `prod.md` Step 3 keeps **every round in full detail**: AI says, child response branches, AI follow-up branches, and screen state. No "same structure," "AI gives...", or one-line summaries.
+- [ ] `prod.md` has no `## Self-Evaluation Scorecard`.
+- [ ] `spec.md` has exactly one `## Self-Evaluation Scorecard`, and the notes are truthful against `prod.md`, `tag_block.yaml`, `program.md`, and `templates.md`.
+- [ ] `recap.template.yaml` and `dashboard.template.yaml` use the same focal attribute / badge / activity identity as `tag_block.yaml` and `prod.md`.
+- [ ] `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` exactly equals `tag_block.yaml` `activity_signature.focal_attribute`.
 - [ ] No field value is a placeholder, ellipsis, or instruction-shaped string ("pick one of...", "see mapping", etc.).
 
-If any box fails, fix the design and re-run both the 10-dimension rubric and this self-check. Do **not** emit a design with an incomplete tag block — downstream surfaces will silently fall back to generic copy.
+If any box fails, fix the package and re-run both the 10-dimension rubric and this self-check. Do **not** emit a package with incomplete metadata or condensed runtime steps — downstream surfaces will silently fall back to generic copy or lose runtime behavior.
 
 > **Cross-reference:** see `docs/progression_axes.md` for the 7-axis enum and L1/L2/L3 rung definitions. If that file is not yet merged when you read this, the same axes are listed in `docs/template_0_preview.html` §07; `docs/progression_axes.md` becomes the sole source of truth once it lands.
 
@@ -345,109 +331,126 @@ If any box fails, fix the design and re-run both the 10-dimension rubric and thi
 
 ## Phase 2: Output Format — Exact Structure Required
 
-Generate the activity design in this EXACT structure. Do not skip sections, do not reorder, do not abbreviate.
+Generate the migrated activity package in this EXACT structure. Do not skip files, do not reorder sections, and do not abbreviate runtime rounds.
+
+The five files are:
+
+```text
+activities/<activity_id>/
+├── spec.md
+├── prod.md
+├── tag_block.yaml
+├── recap.template.yaml
+└── dashboard.template.yaml
+```
+
+`prod.md` is the runtime prompt source and must use this structure:
 
 ```
-## Activity: [Creative Activity Name]
+## [Creative Activity Name]
 
 ### A. Basic Info
 
-- **Activity Name**: [name]
-- **Activity Category**: [one of the 6 categories, with number]
-- **Recommended Tier**: [T0/T1/T2] with age range
-- **Core IB Key Concepts**: [1–2 from the 7]
-- **Related Concepts (Discipline)**: [2–4 specific concept tags] (these populate `related_concepts` in the tag block — see §1.9)
-- **ATL Skills Focus**: [2–3 with sub-skills in parentheses]
-- **Experience Pillar**: [one of: Mystery, Creation, Performance, Discovery, Adventure, Nurture]
-- **Game Style**: [one of: mystery_lens, inventor_workshop, voice_stage, prediction_lab, time_traveler, care_station, mystery_trail, mix_lab, ensemble_show, field_experiment, quest_collector, rescue_team]
-- **Trigger Entity**: [the object the child photographed]
-- **Trigger Scene**: [brief scenario, e.g., "Child photographs a butterfly resting on a flower in the park"]
-- **Mapping Source**: [entity_id from mapping, or "none" if no mapping] (if mapping-informed)
-- **IB Theme**: [theme name] (add `(mapping: primary/secondary, weight=X.XX)` if mapping-informed)
-- **Dimension Anchors**: [2–3 dimensions from mapping, labeled engagement/physical] (if mapping-informed)
-- **Conversation Anchor Dimensions**: [dimensions that bridge from conversation to activity] (if mapping-informed)
+| Field | Value |
+|-------|-------|
+| Activity Name | [name] |
+| Activity Category | [category label] |
+| Recommended Tier | [T0/T1/T2] with age range |
+| Core IB Key Concepts | [1–2 from the 7] |
+| Related Concepts | [2–4 specific concept tags] |
+| ATL Skills Focus | [2–3 with sub-skills in parentheses] |
+| Experience Pillar | [Mystery / Creation / Performance / Discovery / Adventure / Nurture] |
+| Game Style | [one of the approved game styles] |
 
 ### B. Activity Overview
 
-- **① Brief Description**: [2–3 sentences describing what happens]
-- **② Educational Purpose (KUD)**:
-  - **K (Know)**: [2–5 specific vocabulary/facts]
-  - **U (Understand)**: [1–2 conceptual understandings, linking to Key Concepts]
-  - **D (Do)**: [2–3 skills, linking to ATL skills]
-- **③ Design Highlight**: [What makes this activity special — the creative "hook" or metaphor]
-- **④ Typical Scenario**: [One-line scenario description]
+**① Brief Description**
 
-### C. Interaction Flow — Detailed Design [Target Tier: TX]
+[2–3 sentences describing what happens]
 
-**Step 1a: Transition Bridge — Warm Start** (if mapping-informed)
+**② Educational Purpose (KUD)**
 
-> **Context**: Child has just finished a tier_guidance conversation about [entity].
-> **Conversation anchor**: [dimension] — [specific attribute or topic referenced]
->
-> **AI says**: "(tone/emotion marker) [warm start dialogue referencing conversation — see conversation_bridge.md §2]"
->
-> **Possible child responses**:
-> 1. (Ideal) "[specific response]"
-> 2. (Unexpected) "[specific alternative response]"
-> 3. (No response) [description of behavior]
->
-> **AI follow-up**:
-> 1. "[exact response to ideal]"
-> 2. "[exact response to unexpected — always validate, then redirect]"
-> 3. "[exact response to silence — wait 2 sec, then gentle prompt]"
->
-> **Screen**: [specific description — may include conversation recap visual element]
+- **K (Know):** [2–5 specific vocabulary/facts]
+- **U (Understand):** [1–2 conceptual understandings, linking to Key Concepts]
+- **D (Do):** [2–3 skills, linking to ATL skills]
 
-**Step 1b: Transition Bridge — Cold Start**
+**③ Design Highlight**
 
-> **Context**: Child photographs [entity] with no prior conversation.
->
-> **AI says**: "(tone/emotion marker) [standard emotional hook — see conversation_bridge.md §3]"
->
-> **Possible child responses**:
-> 1. (Ideal) "[specific response]"
-> 2. (Unexpected) "[specific alternative response]"
-> 3. (No response) [description of behavior]
->
-> **AI follow-up**:
-> 1. "[exact response to ideal]"
-> 2. "[exact response to unexpected — always validate, then redirect]"
-> 3. "[exact response to silence — wait 2 sec, then gentle prompt]"
->
-> **Screen**: [specific description of what the screen shows]
+[What makes this activity special — the creative hook, game mechanic, and magic moment]
 
-**Step 2: [Step Name]**
+**④ Typical Scenario**
 
-> [same format as Step 1]
+[One-line scenario description]
 
-**Step 3: Multi-Round Interaction (N–M rounds)**
+### C. Interaction Flow
 
-> [First round in full detail, then 2–3 subsequent round examples with target goals noted]
+> Recommended Tier: [TX] (ages X–Y)
 
-**Step 4: [Celebration/Collection Complete/etc.]**
+#### Step 1: Transition Bridge
 
-> [same format]
+**AI says:** (tone/emotion marker) "[standard emotional hook or bridge line]"
 
-**Step 5: Closing + IB Concepts**
+**Child responses:**
 
-> **AI says**: "[celebration first, then naturally names the Key Concepts the child explored]"
->
-> **Screen**: [concept words appear artistically with relevant icons/imagery]
+1. (Ideal) "[specific response]"
+2. (Unexpected) "[specific alternative response]"
+3. (No response) [description of behavior]
+
+**AI follow-up:**
+
+1. (tone marker) "[exact response to ideal]"
+2. (tone marker) "[exact response to unexpected — always validate, then redirect]"
+3. (wait 2s) (tone marker) "[exact response to silence — gentle prompt]"
+
+**Screen:** [specific description of what the screen shows]
+
+#### Step 2: [Frame / Rule Introduction / Demo]
+
+[same full format as Step 1]
+
+#### Step 3: Multi-Round Interaction
+
+**Round 1 — [round name]:**
+
+[full AI says / child responses / AI follow-up / Screen]
+
+**Round 2 — [round name]:**
+
+[full AI says / child responses / AI follow-up / Screen]
+
+**Round 3 — [round name]:**
+
+[full AI says / child responses / AI follow-up / Screen]
+
+#### Step 4: [Magic Moment / Celebration / Synthesis]
+
+[same full format as Step 1]
+
+#### Step 5: Closing + IB Concepts
+
+[celebration first, then naturally names the Key Concepts the child explored; include child responses, AI follow-up, and Screen]
 ```
+
+`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`.
 
 ### Format Rules
 
-- **Tone markers** are always in parentheses and italicized at the start of AI dialogue: "(excited discovery tone)", "(mysterious whisper)", "(warm celebration)", etc.
-- **Round counts** should be specified as ranges: "3–5 rounds" not "4 rounds"
+- **Tone markers** are always in parentheses at the start of AI dialogue: `(excited discovery tone)`, `(mysterious whisper)`, `(warm celebration)`, etc.
+- **Every runtime round must be fully expanded** in `prod.md`. Never write "same structure," "AI gives a riddle," "later rounds follow," or any one-line summary for a runtime round.
+- **Round counts** may be specified as ranges in the authoring rationale, but the runtime flow must include the concrete number of rounds the activity actually plays.
 - **Step count** varies by category: In-Device Verbal typically has 5 steps; Out-of-Device Collection may have 5–6 steps
 - **Closing speech** must celebrate FIRST, then naturally name Key Concepts. Concepts feel like praise, not vocabulary lessons.
 - **All AI dialogue is in English.** Use age-appropriate, warm, playful language.
+- **Scorecard placement**: `spec.md` includes the scorecard; `prod.md` does not.
+- **Package alignment**: `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` must describe the same pillar, game style, focal attribute, badge, and next-step direction as `spec.md` and `prod.md`.
 
 ---
 
 ## Phase 3: Self-Evaluation Rubric
 
 After generating the activity design, evaluate it against ALL 10 dimensions below. Each dimension is scored PASS or FAIL. If ANY dimension fails, identify the specific issue, fix the design, then re-evaluate. Repeat until all applicable dimensions pass.
+
+Before finalizing the `## Self-Evaluation Scorecard`, spawn a separate reviewer agent to check the same 10 dimensions independently against the actual package files. The reviewer must read `program.md` Phase 3 and the generated `activities/<activity_id>/` package directly, plus `templates.md`, `activities/README.md`, `activities/_schema/tag_block.schema.json`, and `docs/activity_vocabulary.md`; for mapping-informed assignments, it must also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`. Treat any reviewer FAIL or credible uncertainty as a required repair: fix the package, rerun the author self-evaluation, and request a fresh independent review before writing the final scorecard, logging `results.tsv`, or marking the assignment complete.
 
 ### Dimension 1: V1 Technical Compliance (PASS/FAIL)
 
@@ -536,7 +539,7 @@ Does the design deliver the emotional experience promised by its Experience Pill
 - Is the child's emotional arc consistent with the pillar's "child feels..." definition? → Must be YES
 - Could this design be re-labeled to a different pillar without feeling wrong? → Must be NO
 
-### Rubric Scorecard (append at end of every design)
+### Rubric Scorecard (append at end of every `spec.md`)
 
 ```
 ## Self-Evaluation Scorecard
@@ -622,15 +625,15 @@ When the human gives you an assignment, it will look like:
 
 ```
 Design an activity for: [entity] + [category number or name]
-Optional: tier=[T0/T1/T2], style=[game_style], scene=[brief scenario]
+Optional: tier=[T0/T1/T2], mechanic=[mechanic], pillar=[pillar], style=[game_style], scene=[brief scenario]
 ```
 
 Examples:
-- `Design an activity for: butterfly + category 5 (collection/tracking), style=field_experiment`
-- `Design an activity for: toy car + category 1 (sustained verbal), tier=T0, style=voice_stage`
+- `Design an activity for: butterfly + category 5 (collection/tracking), mechanic=deduce`
+- `Design an activity for: toy car + category 1 (sustained verbal), tier=T0, mechanic=voice, style=voice_stage`
 - `Design an activity for: kitchen vegetables + category 3 (material exploration), tier=T1, scene=child photographs broccoli on kitchen counter`
 
-If `style=` is omitted, infer it per §1.6 rules.
+If `mechanic=` is provided, honor it when setting `activity_signature.mechanic`. If `style=` is omitted, infer it per §1.6 rules from mechanic, entity affordances, category, and pillar fit.
 
 ### If tier is not specified
 
@@ -651,8 +654,9 @@ If the human gives multiple assignments at once, design each one fully before mo
 ### After Generating
 
 Always end with:
-1. The self-evaluation scorecard
-2. A one-line summary: "Ready for 教研 review" or "N issues found and fixed during self-evaluation"
+1. A complete `activities/<activity_id>/` package with five files.
+2. The self-evaluation scorecard at the end of `spec.md` only.
+3. A one-line summary: "Ready for 教研 review" or "N issues found and fixed during self-evaluation"
 
 ---
 

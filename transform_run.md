@@ -1,5 +1,7 @@
 # Transform Execution Loop
 
+> Legacy workflow only. Use this loop only for old `designs/*_spec.md` -> `designs/*_prod.md` transformations. Do **not** run it for migrated `activities/*/prod.md`, where later rounds must remain fully expanded.
+
 ## Setup
 
 1. Read `transform.md` for all transformation rules

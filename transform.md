@@ -1,5 +1,7 @@
 # Transform Rules: Engineering Spec → Production Format
 
+> Legacy workflow only. These rules apply to old `designs/*_spec.md` -> `designs/*_prod.md` files and the aggregated `docs/WonderLens_Game_Designs_prod.md`. Do **not** use this file for migrated `activities/*/prod.md`; migrated runtime prods must keep every Step 3 round fully expanded and must not use one-line later-round summaries.
+
 ## Reference
 
 Match the style of `docs/WonderLens_Game_Designs.md` (Chinese reference). Output is **English only** — do NOT translate to Chinese.

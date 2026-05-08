@@ -3,9 +3,12 @@
 > Each line is one assignment. The agent works through them top to bottom.
 > Mark completed assignments with [x]. The agent skips completed ones.
 >
-> Format: `- [ ] entity + category (number/name), tier=TX, style=game_style, scene=optional`
-> Game styles: `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline` (Cat 1) | `comparison_chart`, `naming_story` (Cat 5)
-> If `style=` is omitted, the agent infers it per program.md §1.6.
+> Current format: `- [ ] entity + category (number/name), tier=TX, mechanic=mechanic, pillar=Pillar, style=game_style, mapping=entity_id, start=warm+cold, activity_id=optional_slug, scene=...`
+> Required: entity + category. Recommended: `tier=`, `mechanic=`, and a concrete `scene=`.
+> Mechanics are the primary action hint: `enumerate`, `compare`, `collect`, `sort`, `deduce`, `voice`, `build`, `predict`, `narrate`, `care`.
+> Game styles are optional secondary format hints: `mystery_lens`, `mystery_trail`, `inventor_workshop`, `mix_lab`, `voice_stage`, `ensemble_show`, `prediction_lab`, `field_experiment`, `time_traveler`, `quest_collector`, `care_station`, `rescue_team`.
+> If `mechanic=` is provided but `style=` is omitted, the agent infers pillar/style from the mechanic, entity affordances, category, and program.md §1.6.
+> Completed legacy rows may contain retired style tokens; do not copy them for new assignments.
 
 ## Batch 1: Proof of Concept (10 activities)
 

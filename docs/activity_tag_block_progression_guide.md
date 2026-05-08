@@ -1,11 +1,13 @@
 # Activity Tag Block and Progression Guide
 
-**Version:** 0.1 - 2026-04-30
+**Version:** 0.2 - 2026-05-08
 **Status:** Supplement reference
 **Chinese version:** `docs/activity_tag_block_progression_guide_cn.md`
 **Primary sources:** `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, `docs/progression_axes.md`, `docs/activity_tag_block_usage.md`, `docs/superpowers/specs/2026-04-24-progression-algorithm-design.md`
 
 This guide is a consolidated map of the full activity tag block and the progression algorithm. It does not introduce new fields. It explains how the same `tag_block.yaml` is read by upstream matching, runtime rendering, downstream recap/dashboard surfaces, and the progression engine.
+
+Selection priority note: `activity_signature.mechanic` is the primary child-action signal for matching and analytics. `game_style` is still required catalog metadata, but it describes package flavor and pillar format after the mechanic is known; it should not substitute for mechanic fit.
 
 ---
 
@@ -25,7 +27,7 @@ The important split:
 | Layer | Main question | Main fields |
 |---|---|---|
 | Upstream eligibility | Can this activity run for this photo and child tier? | `entity`, `entity_class`, `entity_binding`, `tier_range`, `matchability.*` |
-| Upstream coherence | Should this activity follow this conversation? | `activity_signature.observation_angle`, `bridge_prerequisites`, `entity_role`, progression target |
+| Upstream coherence | Should this activity follow this conversation? | `activity_signature.mechanic`, `activity_signature.observation_angle`, `bridge_prerequisites`, `entity_role`, progression target |
 | Runtime presentation | What should the child/observer see at activity start? | `activity_signature.focal_attribute`, `intro`, `preview_label`, `preview_prompt` |
 | Progression | Which axis/rung did this activity exercise, and what changes after the session? | `progression.*`, evidence vector, axis state, progression event |
 | Downstream child | What did the child do? | resolved `entity`, `activity_signature.*`, recap template output |
@@ -105,8 +107,8 @@ matchability:
 | `activity_id` | yes | Lowercase snake_case. Must match the package directory name. |
 | `version` | yes | Integer package version. Bump when the package contract changes. |
 | `template_type` | yes | `cat1` or `cat5`. Used by activity generation/runtime templates. |
-| `pillar` | yes | Emotional/activity pillar: `Discovery`, `Performance`, `Mystery`, `Creation`, `Adventure`, `Connection`. |
-| `game_style` | yes | Specific activity format, such as `field_experiment`, `voice_stage`, `mystery_trail`. |
+| `pillar` | yes | Emotional/activity pillar: `Discovery`, `Performance`, `Mystery`, `Creation`, `Adventure`, `Nurture`. |
+| `game_style` | yes | Specific activity format, such as `field_experiment`, `voice_stage`, `mystery_trail`. Secondary selector signal; prefer `activity_signature.mechanic` for child-action fit. |
 | `entity` | yes | Bound entity name, or a placeholder for parameterized activities. |
 | `entity_binding` | yes | `bound`, `parameterized`, or `agnostic`. Controls swap-ability. |
 | `tier_range` | yes | Authoring tier intent and supported tier span. |
@@ -260,10 +262,13 @@ Not eligible for: unsafe/unclear photos, or activities that secretly rely on a s
 
 ### 3.2 Coherence: Should It Follow?
 
-Coherence fields live mostly inside `activity_signature`. They help the selector rank eligible activities against the conversation signature.
+Coherence fields live mostly inside `activity_signature`. They help the selector rank eligible activities against the conversation signature, progression target, and desired child action.
+
+Mechanic fit is the first coherence question after hard eligibility. If a runtime request, assignment, child intent, or product policy prefers an action such as collect, compare, deduce, voice, predict, build, or care, the selector should score against `activity_signature.mechanic` before considering `game_style`. `game_style` can break ties among otherwise good mechanic matches, but it is not the primary action selector.
 
 | Field | Usage | Example |
 |---|---|---|
+| `activity_signature.mechanic` | Child action pattern that drives matching, runtime recap phrasing, and parent analytics. | `collect`, `compare`, `deduce`, `voice` |
 | `activity_signature.observation_angle` | Primary attribute/dimension the activity attends to. | `color`, `quantity`, `emotion` |
 | `activity_signature.bridge_prerequisites.primary` | 1-3 strong conversation angles that make this activity a natural next step. | `[color]`, `[behavior, function]` |
 | `activity_signature.bridge_prerequisites.secondary` | Supporting angles or editorial descriptors. Enum values are preferred. | `[pattern, visibility]` |
@@ -274,20 +279,26 @@ Scoring pattern from the activity-signature design:
 
 | Match | Selector effect |
 |---|---|
+| Candidate `mechanic` equals explicit `mechanic_preference` or inferred desired child action | Strongest child-action bonus |
+| Candidate `mechanic` is a compatible fallback for the desired action | Medium child-action bonus |
 | Candidate `observation_angle` equals conversation `dominant_angle` | Strong bonus |
 | Candidate `observation_angle` appears in conversation `secondary_angles` | Smaller bonus |
 | Candidate `bridge_prerequisites.primary` overlaps conversation angles | Continuity bonus |
 | Candidate matches target axis/rung from progression state | Progression bonus |
+| Candidate `game_style` matches an explicit style request | Tiebreaker or editorial bonus only |
 
 Progression targeting is best-effort. The selector should prefer the target axis/rung when photo context and catalog coverage allow it, but hard eligibility still wins.
 
-### 3.3 Where `conversation_signature` and `progression_target` Come From
+If no explicit mechanic preference is available, infer one from the current intent before falling back to style: child wants to find or gather -> `collect`; child compares two things -> `compare`; child asks why -> `deduce` or `predict`; child wants pretend speech -> `voice`; child wants to make or arrange -> `build`; child notices care/help needs -> `care`.
 
-The upstream selector receives two different runtime inputs before it scores activities:
+### 3.3 Where Runtime Selector Inputs Come From
+
+The upstream selector receives these runtime inputs before it scores activities:
 
 | Runtime input | Owner | How it is produced | Used for |
 |---|---|---|---|
 | `conversation_signature` | Conversation/photo understanding layer | Built from the current photo, detected entity/properties, and recent chat turns. V1 uses keyword/attribute heuristics: count angle hits such as red/blue → `color`, round/square → `shape`, more/three → `quantity`; choose the top hit as `dominant_angle` and keep secondary hits as `secondary_angles`. | Conversation coherence scoring against `activity_signature.observation_angle` and `bridge_prerequisites`. |
+| `mechanic_preference` | Assignment author, selector policy, or conversation layer | Read from an explicit `mechanic=` assignment token when present; otherwise inferred from child intent, previous-session balance, runtime constraints, and product policy. | Primary child-action scoring against `activity_signature.mechanic`. |
 | `progression_target` | Progression service | Read from the child's stored per-axis `axis_state` plus the latest `progression_event` / policy output. It usually contains the preferred next `target_axis` and `target_rung`; at L3 ceiling or persistent overload it may point to a sibling axis. | Progression bonus in activity ranking. |
 
 Minimal runtime flow:
@@ -299,11 +310,14 @@ photo + recent chat
 child_id + stored axis_state + latest progression_event
   -> progression_target
 
-conversation_signature + progression_target + active tag blocks
+assignment/runtime policy + child intent
+  -> mechanic_preference
+
+conversation_signature + mechanic_preference + progression_target + active tag blocks
   -> activity selector
 ```
 
-Both inputs can be missing. If `conversation_signature` is null, the selector skips conversation-angle bonuses. If `progression_target` is null, the selector skips progression bonuses and falls back to eligibility, coherence, freshness, and product policy.
+Any input can be missing. If `conversation_signature` is null, the selector skips conversation-angle bonuses. If `mechanic_preference` is null, it infers a desired action from context or uses catalog/product policy. If `progression_target` is null, the selector skips progression bonuses and falls back to eligibility, mechanic fit, coherence, freshness, and product policy.
 
 ### 3.4 Upstream Example
 
@@ -318,6 +332,7 @@ conversation_signature:
 progression_target:
   axis: form
   rung: 2
+mechanic_preference: collect
 ```
 
 `color_scout_property` is a strong match:
@@ -328,6 +343,7 @@ matchability:
   entity_class_filter: []
   tier_support: {T0: true, T1: true, T2: true}
 activity_signature:
+  mechanic: collect
   observation_angle: color
   bridge_prerequisites:
     primary: [color]
@@ -340,6 +356,7 @@ progression:
 Why it works:
 
 - Eligibility passes because the activity is parameterized and wide.
+- Mechanic fit passes because the desired child action is `collect`.
 - Conversation coherence passes because the dominant angle is `color`.
 - Progression fit passes because the target axis/rung is `form` L2.
 - Entity role is `exemplar`: the pen is not the whole subject; it becomes one example of red.
@@ -606,13 +623,13 @@ Next activity: chosen from catalog using updated Form state
 
 #### 6.7.2 Avoiding Activity Explosion
 
-A naive catalog model would require `7 axes x 3 rungs = 21` separate activity types, multiplied by entities, pillars, and age tiers. That is too much content work.
+A naive catalog model would require `7 axes x 3 rungs = 21` separate activity types, multiplied by mechanics, entities, pillars, and age tiers. That is too much content work.
 
 The recommended catalog model is **activity families with elastic rung variants**, not one bespoke activity per cell.
 
 | Catalog layer | What authors prepare | Example |
 |---|---|---|
-| Activity family | Reusable game mechanic and entity/pillar structure | "Color Scout" or "Part Detective" |
+| Activity family | Reusable mechanic plus entity/pillar flavor | "Color Scout" or "Part Detective" |
 | Primary axis | The one axis this activity formally updates | `form` |
 | Rung variant pack | L1/L2/L3 prompt patterns inside the same family | L1 name color; L2 name and locate features; L3 explain why feature exists |
 | Runtime selector | Best available family/rung for the child's current axis state | Pick Form L2 if available; otherwise use elastic Form L1 with L2 micro-challenge |
@@ -627,12 +644,14 @@ For a Form activity, one family can cover three rungs:
 
 Promotion does not require the team to author a separate L2 activity for every L1 activity. The selector should be availability-aware:
 
-1. Prefer exact match: same axis, recommended rung, suitable tier, fresh entity/pillar.
-2. If no exact match exists, use the same activity family with a higher-rung prompt variant.
+1. Prefer exact match: same axis, recommended rung, preferred mechanic, suitable tier, fresh entity/pillar.
+2. If no exact match exists, use the same mechanic family with a higher-rung prompt variant.
 3. If no higher-rung variant exists, hold the rung but add a richer micro-challenge.
 4. If the axis is saturated or at ceiling, use sibling-axis routing.
 
 Catalog coverage should grow toward a matrix of strong axis/rung families. V1 can start with fewer well-designed families as long as each has elastic prompt variants and the selector records when it had to fall back.
+
+`game_style` helps authors keep families emotionally and structurally coherent, but catalog coverage should be evaluated first by mechanic. For example, a `collect` family can appear as `quest_collector` or another future style; the selector should still recognize the reusable action pattern as `collect`.
 
 #### 6.7.3 What Happens Beyond L3
 
@@ -761,6 +780,8 @@ Parent view is a windowed aggregate. One completed activity appends one event; t
 | `activity_signature.entity_role` | How the photo participated. | Track subject/exemplar/catalyst/reference patterns. | Timeline explanation and pivot clarity. |
 | `caregiver_role` | Adult support expected/used. | Count support mix. | Parent guidance and support gauges. |
 
+Parent aggregation should treat `activity_signature.mechanic` as the primary action grouping. `game_style` may be useful for editorial drill-down or catalog QA, but it should not replace the mechanic dimension in the growth path.
+
 If Monday is `topic_axis: form` L2 and Tuesday's photo triggers `topic_axis: connection` L1, the Form row remains in the window history and Connection gets its own event. The selector should prefer continuity when possible, but the dashboard must preserve the child's actual path.
 
 ---
@@ -831,7 +852,7 @@ activity_signature:
   entity_role: subject
   focal_attribute: lion_voice
 progression:
-  topic_axis: connection
+  topic_axis: perspective
   difficulty_level: 2
 ```
 
@@ -839,7 +860,7 @@ Interpretation:
 
 - Eligibility is narrower than Color Scout because `entity_class_filter: [big_cat]`.
 - The lion remains the `subject`; no pivot is needed.
-- The child practices Connection through behavior/voice evidence.
+- The child practices Perspective through behavior/voice evidence.
 - Parent dashboard can later say the child used expressive/communication skills without exposing matcher fields.
 
 ---
@@ -853,7 +874,7 @@ Before accepting a `tag_block.yaml`:
 - `matchability.tier_support` agrees with `tier_range.span`.
 - `activity_signature.observation_angle` is one closed enum value from `docs/activity_vocabulary.md`.
 - `activity_signature.bridge_prerequisites.primary` uses 1-3 closed observation-angle values.
-- `activity_signature.mechanic` describes what the child actually does, not just the game style.
+- `activity_signature.mechanic` describes what the child actually does and is suitable as the primary selector/analytics action; `game_style` is not used in its place.
 - `activity_signature.entity_role` explains whether the photo is subject, exemplar, catalyst, or reference.
 - `progression.topic_axis` is exactly one axis and is not treated as the same thing as `observation_angle`.
 - `progression.difficulty_level` is an integer `1`, `2`, or `3`.

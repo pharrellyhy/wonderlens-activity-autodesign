@@ -1,9 +1,9 @@
 # Templates
 
-> **Version**: 1.1 | **Date**: 2026-04-20
+> **Version**: 1.2 | **Date**: 2026-05-08
 > **Owns**: the pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture) and the Cat1 / Cat5 category modifier appendix.
-> **Does NOT own**: the 5-beat spine, the tag block schema, or the tier defaults — those live in `docs/template_0_preview.html` §03 / §04 / §06 and are the single source of truth for the category-agnostic skeleton.
-> **Consumed by**: `program.md` Phase 5 (template-reading flow), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), `designs/cat{1,5}/*.md` (gold-standard outputs).
+> **Does NOT own**: the migrated five-file package layout, the tag block schema, or the tier defaults — those live in `activities/README.md`, `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` §1.9.
+> **Consumed by**: `program.md` Phase 5 (template-reading flow), `run.md` (activity package loop), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), `activities/*/prod.md` (runtime outputs), and legacy `designs/cat{1,5}/*.md` references.
 
 ---
 
@@ -11,7 +11,7 @@
 
 An activity design is built by composing three layers:
 
-1. **Template 0** — the category-agnostic skeleton. It defines the 5-beat spine (Transition Bridge → Frame & Role → Core Loop → Magic Moment → Celebration), the tag-block contract, the universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the three tier dials (T0 / T1 / T2). Full skeleton lives in `docs/template_0_preview.html` §03; tag block in §04; tier defaults in §06.
+1. **Template 0** — the category-agnostic skeleton. It defines the 5-beat spine (Transition Bridge → Frame & Role → Core Loop → Magic Moment → Celebration), the universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the three tier dials (T0 / T1 / T2). The migrated output contract lives in `program.md` §1.9 and `activities/README.md`.
 2. **Pillar overlay** — one of the six overlays below (Mystery / Creation / Performance / Discovery / Adventure / Nurture). It specializes beats 2, 3, and 4: the framing metaphor, the per-round interaction mechanic, the magic-moment shape. It also declares a small set of pillar-specific creative variables (e.g. `{hidden_details}` for Mystery, `{modifications}` for Creation) that stack on top of the universal four.
 3. **Category modifier** — Cat1 (in-device, sustained verbal) or Cat5 (out-of-device, collection/tracking), drawn from the appendix at the bottom of this file. Category modifiers are small — 8 fields (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras). They do not reshape the pillar; they only set the physical frame the pillar plays inside.
 
@@ -48,9 +48,9 @@ The overlay hooks the pillar overlays specialize are exactly **beats 2, 3, and 4
 
 Every pillar overlay layers 2–3 pillar-specific variables on top of these four (see each overlay below).
 
-**Tag block.** Every design emits the §04 tag block (activity_id, entity, category, pillar, style, tier, tier_variants, tags, kud, progression, caregiver_role). The authoritative shape + field semantics live in `docs/template_0_preview.html` §04 and are re-stated in `program.md` §1.9. This file does not duplicate the tag-block schema.
+**Tag block.** Every migrated activity package emits `activities/<activity_id>/tag_block.yaml`. The authoritative shape and field semantics live in `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` §1.9. This file does not duplicate the tag-block schema.
 
-**Attribute coverage.** Every activity must populate `entity_attributes_covered` in its tag block — a flat list of dotted-path IDs (`tier_{0,1,2}.{dimension}.{attribute}`) that the activity exercises from its entity's `tier_guidance`. The matcher uses this list to route photographed entities to activities, so every ID must resolve to a real `attribute:` entry under `data/mappings_dev20_0318/.../{yaml}`. See `program.md` §1.9 for the full contract and the entity YAML's `tier_guidance` section for the source of valid IDs.
+**Package output.** Templates provide the creative scaffold only. The agent must still expand the scaffold into the five migrated files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`. `prod.md` keeps all runtime rounds fully expanded; `spec.md` carries the self-evaluation scorecard; the YAML files carry machine-readable metadata and recap/dashboard payloads.
 
 **Tier dials.** T0 / T1 / T2 set language register, task depth, concept focus, AI role, and cumulative caregiver role. Authoritative table in `docs/template_0_preview.html` §06. Tier-guidance detail lives in `entity_guidance.md`.
 
@@ -259,11 +259,11 @@ Category modifiers are small overrides on top of Template 0. Each modifier fills
 
 **How the three layers compose.** A concrete example: `lion + Cat1 + Performance + T0`.
 
-1. **Template 0 supplies** the 5-beat spine, the 4 universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), the tag-block shape, and the T0 tier dial (onomatopoeia, 3–5 word sentences, `caregiver_role: [scaffold]`).
+1. **Template 0 supplies** the 5-beat spine, the 4 universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the T0 tier dial (onomatopoeia, 3–5 word sentences, `caregiver_role: [scaffold]`).
 2. **Performance overlay supplies** the stage framing for beat 2, the challenge-perform-react loop for beat 3, the standing-ovation magic moment for beat 4, and the three pillar-specific variables (`{challenges}`, `{audience_character}`, `{twist_challenge}`).
 3. **Cat1 modifier supplies** `verbal_dialogue` medium, 3–5 rounds, initial-photo-only, indoor quiet setting, 5 steps, `scenario → verbal → validate` mechanic, engagement-first anchoring, and the Cat1 checklist extras.
 
-The agent then fills `{role_title}` (e.g. "Roar Reporter"), `{metaphor}` (e.g. "jungle talent show"), the three Performance-specific slots, expands each beat to full program.md dialogue, and emits the tag block.
+The agent then fills `{role_title}` (e.g. "Roar Reporter"), `{metaphor}` (e.g. "jungle talent show"), the three Performance-specific slots, expands each beat to full `program.md` dialogue, and emits the five-file activity package.
 
 ---
 
@@ -274,9 +274,10 @@ The agent then fills `{role_title}` (e.g. "Roar Reporter"), `{metaphor}` (e.g. "
 3. **Apply the pillar overlay** — the relevant `## Overlay: {Pillar}` section above. It defines beats 2, 3, and 4, plus the pillar-specific creative variables.
 4. **Apply the category modifier** from the appendix — pull the 8 fields that specialize for Cat1 or Cat5 (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras).
 5. **Fill all `{slots}`** with entity-specific content. Universal variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`) first, then pillar-specific (`{hidden_details}`, `{modifications}`, `{quest_criterion}`, etc.).
-6. **Expand each beat to full dialogue** — complete AI lines, 3 child response branches (ideal / unexpected / silence), screen descriptions — per `program.md` format.
-7. **Emit the tag block** per `program.md` §1.9 — run the self-check before output.
-8. **Run the 10-dimension rubric** (D1–D10) as normal, and the pillar-specific and category-specific adaptation checks from the appendix's `checklist_extras`.
+6. **Expand each beat to full dialogue** — complete AI lines, 3 child response branches (ideal / unexpected / silence), follow-up branches, and screen descriptions — per `program.md` format.
+7. **Do not condense runtime rounds** — every round in `activities/*/prod.md` must be executable on its own, not a summary of a pattern.
+8. **Emit the five-file package** per `program.md` §1.9 and `activities/README.md` — run the package self-check before output.
+9. **Run the 10-dimension rubric** (D1–D10) as normal, and the pillar-specific and category-specific adaptation checks from the appendix's `checklist_extras`.
 
 ---
 
@@ -313,5 +314,6 @@ The same entity can be designed under different pillars — the pillar determine
 
 ## Revnote
 
-- **v1.1 · 2026-04-20** · Note the new required tag-block field `entity_attributes_covered` in the Template 0 reference section. Authors must populate it in every activity; valid IDs are sourced from the entity YAML's `tier_guidance`. Full contract lives in `program.md` §1.9 and `docs/template_0_preview.html` §04.
+- **v1.2 · 2026-05-08** · Align template consumption with the migrated `activities/<activity_id>/` five-file package. Templates now explicitly forbid condensed runtime rounds and defer tag-block shape to `activities/_schema/tag_block.schema.json`.
+- **v1.1 · 2026-04-20** · Legacy inline-design note for `entity_attributes_covered`; superseded for migrated packages by v1.2 and `activities/_schema/tag_block.schema.json`.
 - **v1.0 · 2026-04-20** · Refactor to Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix (Option B, single file). Replaces the v0.x Template A / Template B dual-template structure. Template 0 skeleton authority now lives in `docs/template_0_preview.html` §03 / §04 / §06; this file owns the pillar overlays and the category modifiers. Creative variables stay per-overlay because they are genuinely pillar-specific (`{hidden_details}` is Mystery-only, `{modifications}` is Creation-only, etc.).

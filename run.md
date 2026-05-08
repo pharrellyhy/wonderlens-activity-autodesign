@@ -1,24 +1,25 @@
-# Run Instructions — Autonomous Design Loop
+# Run Instructions - Autonomous Activity Package Loop
 
 > This file tells the agent how to execute. Read this AFTER reading `program.md`.
 
 ## Setup (one-time, do this first)
 
-1. Read `program.md` fully — this is your skill file containing all constraints, format, rubric, and seed exemplars.
-2. Read `templates.md` fully — this contains the structural skeletons for each activity category, including game style sub-patterns.
-3. Read `docs/game_styles.md` — this is the game style taxonomy reference (12 styles under 6 Experience Pillars).
-4. Read `entity_guidance.md` fully — this teaches you how to read and use entity mapping YAML files.
-5. Read `conversation_bridge.md` fully — this defines warm/cold start bridge patterns.
-6. Read `transform.md` — these are the rules for converting engineering specs to production format.
-7. Read `assignments.md` — this is your work queue.
-8. Verify `designs/` directory exists. Create it if not.
-9. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
+1. Read `program.md` fully - constraints, migrated package format, rubric, and seed exemplars.
+2. Read `templates.md` fully - Template 0 reference, pillar overlays, and Cat1/Cat5 category modifiers.
+3. Read `docs/game_styles.md` - game style taxonomy reference.
+4. Read `activities/README.md` - required five-file package layout.
+5. Read `activities/_schema/tag_block.schema.json` and `docs/activity_vocabulary.md` - tag-block schema and current enum vocabulary.
+6. Read `docs/activity_tag_block_usage.md` and `docs/activity_tag_block_progression_guide.md` - field ownership, recap/dashboard usage, and progression guidance.
+7. Read `entity_guidance.md` and `conversation_bridge.md` when an assignment is mapping-informed or requests warm/cold bridge handling.
+8. Read `assignments.md` - work queue.
+9. Verify `activities/` exists with `_schema/tag_block.schema.json`.
+10. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
 
 ```
 assignment	entity	category	tier	pillar	style	status	d1_tech	d2_hook_transition	d3_edge	d4_ib	d5_tier	d6_dialogue	d7_screen	d8_mapping	d9_game_feel	d10_pillar_fidelity	filename	timestamp
 ```
 
-10. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting design loop."
+11. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting activity package loop."
 
 ## The Loop (repeat for every uncompleted assignment)
 
@@ -26,83 +27,110 @@ For each assignment in `assignments.md` that is marked `- [ ]` (not yet complete
 
 ### Step 1: Parse the assignment
 
-Extract: entity, category, tier, pillar (if provided), style (if provided), scene (if provided), mapping (if provided), start type (if provided). If tier is not specified, infer it per program.md rules. If pillar/style is not specified, infer per program.md §1.6 rules. If scene is not specified, invent one.
+Extract: entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), mapping (if provided), start type (if provided), output activity_id (if provided). If tier is not specified, infer it per `program.md` rules. If mechanic is specified, treat it as the primary child-action requirement and carry it into `activity_signature.mechanic`. If pillar/style is not specified, infer per `program.md` section 1.6 using mechanic first, then entity affordances, category, and pillar fit. If scene is not specified, invent one.
 
 ### Step 1.5: Load entity mapping (if `mapping=` is specified)
 
-1. Read `data/mappings_dev20_0318/_index.yaml` → find the entity_id → get the YAML file path
-2. Read the YAML file → locate the entity block matching the entity_id
-3. Extract for the target tier:
-   - `primary_theme` and `secondary_themes` (with weights)
-   - `primary_key_concepts` and `secondary_key_concepts` (with relevance scores)
+1. Read `data/mappings_dev20_0318/_index.yaml` and find the entity_id.
+2. Read the mapped YAML file and locate the entity block.
+3. Extract:
+   - target-tier `primary_theme` and `secondary_themes`
+   - target-tier `primary_key_concepts` and `secondary_key_concepts`
    - `candidate_related_concepts`
-   - `tier_guidance.[target_tier].dimensions` — all available dimensions
-4. Select 2–3 **anchor dimensions** per entity_guidance.md §6:
-   - Cat 1: engagement-first (emotions/imagination/narrative/reasoning + 1 physical)
-   - Cat 5: physical-first (appearance/structure/senses + 1 engagement)
-5. Select Key Concepts per entity_guidance.md §2 (primary first, anti-repetition guard)
-6. Select IB theme per entity_guidance.md §3 (from mapping themes)
-7. Select Related Concepts per entity_guidance.md §4 (at least 2 from mapping)
+   - `tier_guidance.[target_tier].dimensions`
+4. Select 2-3 anchor dimensions per `entity_guidance.md` section 6:
+   - Cat1: engagement-first plus one physical anchor.
+   - Cat5: physical-first plus one engagement anchor.
+5. Select Key Concepts, IB theme, and Related Concepts per `entity_guidance.md`.
+6. If no `mapping=` parameter is present, skip this step.
 
-If no `mapping=` parameter, skip this step entirely and proceed as before.
+### Step 2: Compose the scaffold
 
-### Step 2: Load the category template + game style + dimension anchoring
+Read `templates.md` in layered order:
 
-Read the matching base template from `templates.md` (Template A for Category 1, Template B for Category 5). Use the step skeleton as scaffolding. Also read the **Pillar Overlay** for the assigned Experience Pillar — this constrains the game mechanic, magic moment, escalation pattern, and synthesis type for both the core loop and the payoff step.
+1. Template 0 reference.
+2. Assigned pillar overlay.
+3. Cat1 or Cat5 category modifier.
 
-**If mapping-informed**: Use the Dimension Anchoring section in the template to connect your anchor dimensions to creative variables. Brainstorm creative variables (universal + pillar-specific) that are grounded in the mapping data — metaphor and role are still your invention, but vocabulary, facts, and sensory details must trace to mapping attributes. The pillar overlay further constrains which creative variables and game mechanics are appropriate.
+Use the composed scaffold as the activity's beat structure. Do not use the retired "Template A / Template B" split. If mapping-informed, ground creative variables in the selected dimensions and mapping attributes. If not mapping-informed, brainstorm fresh variables constrained by the pillar overlay.
 
-**If not mapping-informed**: Brainstorm fresh creative variables (universal + pillar-specific) using the Quick Entity Brainstorm Guide as inspiration, constrained by the pillar overlay.
+If the assignment provided `mechanic=`, adapt the scaffold so the child's actual repeated action matches that mechanic. Keep the selected `game_style` coherent with the mechanic, but do not let style override the requested action.
 
-### Step 3: Generate the activity design
+### Step 3: Generate the migrated activity package
 
-Follow the EXACT output format from program.md Phase 2. Be thorough. Do not abbreviate. Every step needs full dialogue, 3 response branches, and screen descriptions.
+Create a complete `activities/<activity_id>/` package with exactly five files:
 
-**If mapping-informed and `start=warm+cold`**: Generate BOTH Step 1a (warm start) and Step 1b (cold start) per conversation_bridge.md §4. Steps 2+ are shared and must work for both entry paths. Verify convergence: both bridges lead naturally into Step 2.
+```
+activities/<activity_id>/
+├── spec.md
+├── prod.md
+├── tag_block.yaml
+├── recap.template.yaml
+└── dashboard.template.yaml
+```
 
-**If not mapping-informed**: Generate Step 1 as before (cold start only).
+Rules:
 
-### Step 4: Self-evaluate
+- `spec.md`: author/reviewer reference with premise, target, rationale, selection trigger, pillar/game style, and `## Self-Evaluation Scorecard`.
+- `prod.md`: runtime prompt guidance with Basic Info, Activity Overview, and full Interaction Flow. It must not contain a scorecard.
+- `tag_block.yaml`: structured metadata matching `activities/_schema/tag_block.schema.json`.
+- `recap.template.yaml`: child recap payload using the same focal attribute, role/badge, and next-step direction.
+- `dashboard.template.yaml`: parent dashboard fragment using the same focal attribute and progression axis.
 
-Run through all 10 rubric dimensions from program.md Phase 3. If any dimension FAILS:
-- Identify the specific issue
-- Fix it in the design
-- Re-evaluate
-- Repeat until all dimensions PASS
+Runtime completeness rule:
 
-**Note**: Dimension 8 (Entity Mapping Alignment) only applies to mapping-informed designs. Score as N/A if no mapping. Dimensions 9 (Game Feel) and 10 (Pillar Fidelity) apply to ALL designs.
+- Every Step 3 round in `prod.md` must be fully expanded with AI dialogue, child response branches, AI follow-up branches, and screen state.
+- Never write "same structure," "later rounds follow," "AI gives a riddle," or one-line summaries in `activities/*/prod.md`.
+- If `start=warm+cold`, document the bridge logic in `spec.md`; the runtime `prod.md` should still have a single converged Step 1 unless the assignment explicitly asks for both starts at runtime.
 
-### Step 5: Save the engineering spec
+### Step 4: Self-evaluate and repair
 
-Save the completed design (full engineering spec) to `designs/[entity]_cat[N]_spec.md`
+Run through all 10 rubric dimensions from `program.md` Phase 3 against the actual package files. If any dimension FAILS:
 
-Example filenames: `designs/toy_dinosaur_cat1_spec.md`, `designs/dandelion_cat5_spec.md`
+1. Identify the specific issue.
+2. Fix the relevant package file(s).
+3. Re-evaluate.
+4. Repeat until all dimensions PASS.
 
-### Step 5.5: Transform to production format
+Dimension 8 only applies to mapping-informed designs. Score as N/A if no mapping. Dimensions 9 and 10 always apply.
 
-Apply the rules from `transform.md` to produce a condensed production-format version:
-1. Read the spec you just saved
-2. Apply all transform rules (A–G): 7-row Basic Info table, drop warm start, condense rounds, compress screens, strip scorecard
-3. Run the self-check from `transform_run.md` §3
-4. Save to `designs/[entity]_cat[N]_prod.md`
+### Step 4.5: Independent scorecard review
 
-This ensures every design ships with both formats:
-- `*_spec.md` — full engineering spec (warm+cold starts, all rounds, scorecard, mapping metadata)
-- `*_prod.md` — production format (condensed, demo-ready, single entry point)
+Spawn a separate reviewer agent to independently check the same 10 dimensions against the completed package files before finalizing `spec.md`.
+
+Reviewer instructions:
+
+- Read `program.md` Phase 3 and the generated `activities/<activity_id>/` package.
+- Read `templates.md`, `activities/README.md`, `activities/_schema/tag_block.schema.json`, and `docs/activity_vocabulary.md`.
+- If the assignment has `mapping=`, also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`.
+- Evaluate the package files directly, not the authoring agent's claimed scorecard.
+- Return PASS/FAIL/N/A for each dimension with brief evidence and concrete file/section references for any issue.
+
+If the reviewer flags any FAIL or credible uncertainty, fix the package, rerun the author self-evaluation, and spawn a fresh independent review. Only finalize the `## Self-Evaluation Scorecard`, append `results.tsv`, and mark the assignment complete after both the author check and independent reviewer check pass.
+
+### Step 5: Package checks
+
+Before logging or committing, verify:
+
+- `activities/<activity_id>/` contains exactly the five required files.
+- Directory name equals `tag_block.yaml` `activity_id`.
+- `tag_block.yaml` validates against `activities/_schema/tag_block.schema.json`.
+- `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` equals `tag_block.yaml` `activity_signature.focal_attribute`.
+- Every `prod.md` Step 3 round is fully expanded; no condensed-round placeholders remain.
+- `spec.md` contains exactly one `## Self-Evaluation Scorecard`.
+- `prod.md` contains zero `## Self-Evaluation Scorecard` sections.
 
 ### Step 6: Log the result
 
 Append a row to `results.tsv`:
 
 ```
-[assignment]\t[entity]\t[category]\t[tier]\t[pillar]\t[style]\t[PASS/FAIL]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F/N]\t[P/F]\t[P/F]\t[filename]\t[ISO timestamp]
+[assignment]\t[entity]\t[category]\t[tier]\t[pillar]\t[style]\t[PASS/FAIL]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F/N]\t[P/F]\t[P/F]\t[activity_id]\t[ISO timestamp]
 ```
 
 Column order: assignment, entity, category, tier, pillar, style, status, d1_tech, d2_hook_transition, d3_edge, d4_ib, d5_tier, d6_dialogue, d7_screen, d8_mapping, d9_game_feel, d10_pillar_fidelity, filename, timestamp.
 
-For d8_mapping: use P (pass), F (fail), or N (N/A — no mapping). d9_game_feel and d10_pillar_fidelity: always P or F.
-
-If you upgraded an older `results.tsv`, first update the header to include all columns (pillar, style, d9_game_feel, d10_pillar_fidelity) and backfill appropriately before appending new results.
+For `d8_mapping`: use P, F, or N. `d9_game_feel` and `d10_pillar_fidelity` are always P or F.
 
 ### Step 7: Mark assignment complete
 
@@ -111,18 +139,24 @@ In `assignments.md`, change `- [ ]` to `- [x]` for this assignment.
 ### Step 8: Commit
 
 ```bash
-git add designs/[entity]_cat[N]_spec.md designs/[entity]_cat[N]_prod.md results.tsv assignments.md
-git commit -m "Design: [entity] + cat[N] + [pillar] — ALL PASS (spec + prod)"
+git add activities/<activity_id>/ results.tsv assignments.md
+git commit -m "Design: <activity_id> - ALL PASS"
 ```
 
 ### Step 9: Next assignment
 
-Move to the next `- [ ]` assignment. If none remain, say: "All assignments complete. [N] designs generated. See results.tsv for summary."
+Move to the next `- [ ]` assignment. If none remain, say: "All assignments complete. [N] activity packages generated. See results.tsv for summary."
+
+## Legacy transform workflow
+
+`transform.md` and `transform_run.md` are retained only for the old `designs/*_spec.md` to `designs/*_prod.md` workflow. Do not use them for migrated `activities/*/prod.md` files.
 
 ## Important Rules
 
-- **Never skip steps.** Every design must be complete before saving.
-- **Never abbreviate later designs** because "they follow the same pattern." Each design is fully independent.
-- **If you encounter an error** (e.g., can't write a file), report it and continue with the next assignment.
-- **Commit after EVERY completed design**, not in batches. This is the ratchet — work is never lost.
-- **Quality over speed.** Take as many self-evaluation rounds as needed. A design that passes all 10 dimensions on the second try is better than a design that was rushed and would fail review.
+- Never skip steps. Every activity package must be complete before saving.
+- Never abbreviate later rounds because "they follow the same pattern." Each runtime round is fully independent.
+- Never put a scorecard in `prod.md`.
+- Always put the scorecard in `spec.md`.
+- Keep `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` aligned with the runtime flow.
+- Commit after every completed package unless the user explicitly asks to batch commits.
+- Quality over speed. Take as many self-evaluation rounds as needed.
