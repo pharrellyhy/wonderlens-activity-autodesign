@@ -122,7 +122,7 @@ The two implementations use different styles (Pydantic vs dataclasses, `Database
 - **The drift story is visible.** "Your child has climbed to L3 on Form over 6 sessions, held steady at L2 on Causation, and only just began exploring Responsibility" — this is what the radial shows, month over month.
 - **Demotes are never surfaced to parents as setbacks.** The dashboard shows current state + direction of travel; individual session-level demotes appear as pivots, not regressions. Parity with how the child experiences them.
 
-### 3.4 For PM / eng
+### 3.4 For product / engineering
 
 - **A measurable signal.** Every session produces a `SessionOutcome` record: axis, entry rung, exit rung, final result, whether dignity fired, whether sibling jump applied. This is the substrate for every progression-related metric we'll want to compute.
 - **Policy variants are trivial to swap.** Changing a threshold means editing one YAML field, not chasing through the codebase. The per-child pace model slots in behind the same `ProgressionPolicy` interface.

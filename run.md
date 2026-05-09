@@ -23,7 +23,49 @@ Entity mapping root: `MAPPING_ROOT=data/mappings_dev20_0318` (repo-relative). Us
 assignment	entity	category	tier	pillar	style	status	d1_tech	d2_hook_transition	d3_edge	d4_ib	d5_tier	d6_dialogue	d7_screen	d8_mapping	d9_game_feel	d10_pillar_fidelity	filename	timestamp
 ```
 
-12. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Starting activity package loop."
+12. Create a run provenance directory before processing the first assignment:
+
+```
+runs/<run_id>/
+├── run_manifest.yaml
+├── assignment_snapshot.md
+├── generated_activity_ids.txt
+├── adaptation_briefs/
+├── blocked_briefs/
+└── review_notes.md
+```
+
+Use `run_id=YYYYMMDD_HHMMSS_<short_label>`, for example `20260509_113000_activity_concepts`. If the user supplies a run label, slugify it for `<short_label>`; otherwise infer a short label from the assignment batch, such as `activity_concepts`, `mapping_batch`, or `mixed_assignments`.
+
+13. Write `assignment_snapshot.md` with the unchecked `- [ ]` rows that are pending at run start, preserving their original order and section headings where practical.
+
+14. Initialize `run_manifest.yaml`:
+
+```yaml
+run_id: <run_id>
+status: in_progress
+started_at: "<ISO 8601 timestamp>"
+completed_at:
+source:
+  goal_file: GOAL.md
+  runbook: run.md
+  assignments_file: assignments.md
+  assignment_snapshot: runs/<run_id>/assignment_snapshot.md
+  mapping_root: data/mappings_dev20_0318
+summary:
+  pending_at_start: <N>
+  generated_count: 0
+  blocked_count: 0
+  failed_count: 0
+outputs:
+  generated_activities: []
+  blocked_assignments: []
+checks: []
+notes:
+  - "Canonical packages remain under activities/<activity_id>/."
+```
+
+15. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Run id: <run_id>. Starting activity package loop."
 
 ## The Loop (repeat for every uncompleted assignment)
 
@@ -31,12 +73,16 @@ For each assignment in `assignments.md` that is marked `- [ ]` (not yet complete
 
 ### Step 1: Parse the assignment
 
-Extract: assignment_type (if provided), activity_concept (if provided), legacy pm_idea (if provided), description/notes (if provided), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), start type (if provided), and output activity_id (if provided). Treat legacy `pm_idea=` as `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared.
+Extract: assignment_type (if provided), activity_concept (if provided), legacy concept alias (if provided), concept_source (if provided), description/notes (if provided), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), start type (if provided), and output activity_id (if provided). Normalize any legacy concept alias to `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared.
+
+If `concept_source=` points to `file#concept_id`, read that repo-relative file and load the matching concept section before Phase 0. If `asset_requirements=` points to `file#asset_id`, read the same or referenced file and load the matching asset requirement section. Use the assignment row as the execution source of truth, and use the companion file as richer source / asset context.
+
+Source concepts may arrive in Chinese or mixed language. Before writing an adaptation brief or package, normalize the concept name, description, trigger, assumptions, asset rows, and generated copy to English. Do not copy Chinese source prose into generated activity artifacts.
 
 If `assignment_type` is not specified, infer it:
 
 - `entity + category` with no concept field -> `entity_activity`
-- `activity_concept=` or legacy `pm_idea=` -> `activity_concept`
+- `activity_concept=` or a legacy concept alias -> `activity_concept`
 - property/category-driven concept with runtime placeholders -> `match_pattern`
 - declared product dependency flags or unsupported category risk -> `capability_probe`
 
@@ -44,16 +90,17 @@ If tier is not specified, infer it per `program.md` rules. If scene is not speci
 
 ### Step 1.1: Create adaptation brief
 
-Run `program.md` Phase 0 before scaffold composition. This is required for `activity_concept`, `match_pattern`, `capability_probe`, legacy `pm_idea`, and underspecified rows; it is allowed for normal `entity_activity` rows.
+Run `program.md` Phase 0 before scaffold composition. This is required for `activity_concept`, `match_pattern`, `capability_probe`, legacy concept aliases, and underspecified rows; it is allowed for normal `entity_activity` rows.
 
 1. Classify `input_mode` as `mapping_informed`, `parameterized`, or `concept_only`.
 2. Identify `canonical_mechanic` and `mechanic_confidence`. If `mechanic=` is specified, it wins unless it is outside the current enum.
 3. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
 4. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
-5. If `readiness=blocked_until_product_decision`, stop. Output the adaptation brief and missing capability/template/asset decision. Do not create package files, append `results.tsv`, mark the assignment complete, or commit.
-6. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
-7. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
-8. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
+5. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
+6. If `readiness=blocked_until_product_decision`, stop. Output the adaptation brief and missing capability/template/asset decision. Update `run_manifest.yaml` with a `blocked_assignments` entry and `status: blocked`; do not create package files, append `results.tsv`, mark the assignment complete, or commit.
+7. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
+8. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
+9. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
 
 ### Step 1.5: Load entity mapping (when required or available)
 
@@ -170,6 +217,28 @@ Column order: assignment, entity, category, tier, pillar, style, status, d1_tech
 
 For `d8_mapping`: use P, F, or N. `d9_game_feel` and `d10_pillar_fidelity` are always P or F. The `d10_pillar_fidelity` column is retained for log compatibility and now records Dimension 10 Mechanic Fidelity + Scaffold Honesty.
 
+### Step 6.5: Update run provenance
+
+For every generated package:
+
+1. Append the `activity_id` to `runs/<run_id>/generated_activity_ids.txt`.
+2. Add or update a `generated_activities` entry in `runs/<run_id>/run_manifest.yaml`:
+
+```yaml
+- assignment_index: <ordinal from assignment_snapshot.md>
+  assignment: "<original assignment row>"
+  activity_id: <activity_id>
+  activity_path: activities/<activity_id>
+  adaptation_brief: runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml # omit when no Phase 0 brief was produced
+  results_tsv_row: true
+  status: PASS
+```
+
+3. Add reviewer evidence, repair notes, or residual risks to `runs/<run_id>/review_notes.md` when useful.
+4. Verify `runs/<run_id>/run_manifest.yaml` has an entry for the generated activity and `runs/<run_id>/generated_activity_ids.txt` includes the generated `activity_id`.
+
+For blocked assignments, keep the entry under `blocked_assignments` and do not append `results.tsv`.
+
 ### Step 7: Mark assignment complete
 
 In `assignments.md`, change `- [ ]` to `- [x]` for this assignment.
@@ -177,13 +246,13 @@ In `assignments.md`, change `- [ ]` to `- [x]` for this assignment.
 ### Step 8: Commit
 
 ```bash
-git add activities/<activity_id>/ results.tsv assignments.md
+git add activities/<activity_id>/ runs/<run_id>/ results.tsv assignments.md
 git commit -m "Design: <activity_id> - ALL PASS"
 ```
 
 ### Step 9: Next assignment
 
-Move to the next `- [ ]` assignment. If none remain, say: "All assignments complete. [N] activity packages generated. See results.tsv for summary."
+Move to the next `- [ ]` assignment. If none remain, set `run_manifest.yaml status: completed`, fill `completed_at`, update the summary counts, and say: "All assignments complete. [N] activity packages generated. See results.tsv and runs/<run_id>/run_manifest.yaml for summary."
 
 ## Legacy transform workflow
 

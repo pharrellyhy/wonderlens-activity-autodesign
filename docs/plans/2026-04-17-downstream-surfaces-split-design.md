@@ -15,9 +15,9 @@ Template 0's preview doc currently conflates three things:
 2. **A reference to the existing upstream pipeline** — §05 Tier A/B/P selection (already specced in `game_design_playbook.md` §7)
 3. **Illustrative mockups for two downstream surfaces that haven't been designed yet** — §05 child recap, §05 parent growth path
 
-PM feedback in the v0.2 review round was largely about (3) — the child-vs-parent split of the tag system. Since those surfaces are now scheduled for real design work in the next 1–2 sprints, they warrant their own design docs rather than living as half-specced sidebars in Template 0.
+Product feedback in the v0.2 review round was largely about (3) — the child-vs-parent split of the tag system. Since those surfaces are now scheduled for real design work in the next 1–2 sprints, they warrant their own design docs rather than living as half-specced sidebars in Template 0.
 
-**Goal of this spec**: cleanly extract the two downstream surfaces into their own design docs, leaving Template 0 as a focused contract document. Add the design depth the PM's feedback pushed for — anti-addiction principles for the child recap, and four new parent-facing modules beyond the L×T ladder.
+**Goal of this spec**: cleanly extract the two downstream surfaces into their own design docs, leaving Template 0 as a focused contract document. Add the design depth the product feedback pushed for — anti-addiction principles for the child recap, and four new parent-facing modules beyond the L×T ladder.
 
 ---
 

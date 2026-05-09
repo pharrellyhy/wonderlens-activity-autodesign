@@ -21,23 +21,23 @@ Expected handling:
 
 ## 2. Activity Concept Row
 
-Use this when PM, curriculum, or design provides an activity concept before a full entity package is specified.
+Use this when a source, curriculum, or design owner provides an activity concept before a full entity package is specified.
 
 Source row:
 
 | Column | Example value |
 |---|---|
-| activity_concept | 颜色寻宝 |
-| description | 孩子拍到一个有明显颜色的物体后，去找三个同色物品。 |
+| activity_concept | Color Hunt |
+| description | Child photographs an object with a clear color, then finds three things with the same color. |
 | mechanic | collect |
 | category_hint | cat5 |
 | asset_policy | no_assets |
-| product_notes | 不需要额外素材；只需要拍照和颜色匹配。 |
+| product_notes | No extra visual assets are needed; the activity only needs photo capture and color matching. |
 
 Assignment row:
 
 ```text
-- [ ] assignment_type=activity_concept, activity_concept=颜色寻宝, description=孩子拍到一个有明显颜色的物体后，去找三个同色物品, mechanic=collect, category=cat5, asset_policy=no_assets
+- [ ] assignment_type=activity_concept, activity_concept=Color Hunt, description=Child photographs an object with a clear color, then finds three things with the same color, mechanic=collect, category=cat5, asset_policy=no_assets
 ```
 
 Expected handling:
@@ -58,37 +58,37 @@ Concept table row:
 
 | Column | Example value |
 |---|---|
-| activity_concept | 动物影子猜猜看 |
-| description | 屏幕展示动物剪影，孩子根据AI线索猜动物，并说出自己看到的证据。 |
+| activity_concept | Animal Shadow Guess |
+| description | Screen shows an animal silhouette. The child uses AI clues to guess the animal and explain the visible evidence. |
 | mechanic | deduce |
 | category_hint | cat1 |
-| trigger_condition | 孩子拍到动物玩具、动物图片，或主动进入动物主题模式。 |
+| trigger_condition | Child photographs an animal toy, an animal picture, or enters animal theme mode. |
 | entity_scope | animal_class |
 | asset_policy | required_prebuilt |
 | asset_requirements | shadow_card_set_01 |
-| product_notes | 需要屏幕展示预制动物剪影图；不需要运行时生成。 |
+| product_notes | Requires prebuilt animal silhouette display; runtime image generation is not needed. |
 
 Asset requirements row:
 
 | Column | Example value |
 |---|---|
 | asset_id | shadow_card_set_01 |
-| concept_ref | 动物影子猜猜看 |
+| concept_ref | Animal Shadow Guess |
 | asset_type | card_set |
 | requiredness | required |
 | generation_timing | pre_generated |
 | use_step | prod.step_2; prod.step_3.round_1-3 |
-| purpose | 给孩子可观察的动物轮廓证据。 |
+| purpose | Give the child visible animal outline evidence to inspect. |
 | prompt_en | Create a set of animal silhouette cards for children ages 4-6. Use a plain white background, clear black silhouettes, recognizable outlines for common animals such as a cat, bird, and fish, no text, and a non-scary style. |
 | source | new_ai_generated_asset |
-| display_behavior | 每轮全屏展示一张剪影卡；AI语音给一条线索。 |
-| fallback_behavior | 如果没有剪影卡，改为纯语音动物谜语；不要声称屏幕正在显示图片。 |
-| safety_constraints | 不使用真实儿童照片；不含攻击性画面；不含文字。 |
+| display_behavior | Show one silhouette card full screen each round while the AI gives one voice clue. |
+| fallback_behavior | If cards are unavailable, switch to a voice-only animal riddle and do not claim the screen is showing a picture. |
+| safety_constraints | No real child photos, no attack scenes, and no text in the image. |
 
 Assignment row:
 
 ```text
-- [ ] assignment_type=activity_concept, activity_concept=动物影子猜猜看, description=屏幕展示动物剪影，孩子根据AI线索猜动物并说出依据, mechanic=deduce, category=cat1, asset_policy=required_prebuilt, asset_requirements=shadow_card_set_01, product_capabilities=requires_asset_display
+- [ ] assignment_type=activity_concept, activity_concept=Animal Shadow Guess, description=Screen shows an animal silhouette and the child uses AI clues to guess the animal and explain the evidence, mechanic=deduce, category=cat1, asset_policy=required_prebuilt, asset_requirements=shadow_card_set_01, product_capabilities=requires_asset_display
 ```
 
 Expected handling:
@@ -150,7 +150,7 @@ Use this when the activity should match many future entities rather than one map
 Assignment row:
 
 ```text
-- [ ] assignment_type=match_pattern, activity_concept=形状分类, description=孩子拍到一个形状明显的物体后，把附近物品按相同形状和不同形状分组, mechanic=sort, category=cat5
+- [ ] assignment_type=match_pattern, activity_concept=Shape Sort, description=Child photographs an object with a clear shape, then groups nearby objects by same shape and different shape, mechanic=sort, category=cat5
 ```
 
 Expected placeholder values:
@@ -179,7 +179,7 @@ Use this when the activity concept depends on product support outside the curren
 Assignment row:
 
 ```text
-- [ ] assignment_type=capability_probe, activity_concept=涂色游戏, description=孩子拍一张物体照片，AI生成线稿并让孩子在屏幕上涂色, mechanic=build, category=cat5, asset_policy=runtime_generated, asset_requirements=line_art_from_photo, product_capabilities=requires_generated_image,requires_line_art,requires_ui_state
+- [ ] assignment_type=capability_probe, activity_concept=Coloring Game, description=Child photographs an object, AI generates line art, and the child colors it on screen, mechanic=build, category=cat5, asset_policy=runtime_generated, asset_requirements=line_art_from_photo, product_capabilities=requires_generated_image,requires_line_art,requires_ui_state
 ```
 
 Expected handling:

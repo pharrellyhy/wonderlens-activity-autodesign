@@ -12,7 +12,7 @@
 An activity design is built by composing four activity layers, plus an optional asset dependency layer supplied by Phase 0:
 
 1. **Template 0** — the category-agnostic skeleton. It defines the 5-beat spine (Transition Bridge → Frame & Role → Core Loop → Magic Moment → Celebration), the universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the three tier dials (T0 / T1 / T2). The migrated output contract lives in `program.md` §1.9 and `activities/README.md`.
-2. **Mechanic adapter** — one of the ten `activity_signature.mechanic` adapters below. It defines what the child actually does in the repeated loop. This is the primary PM/product intent layer and must not be overwritten by pillar or style.
+2. **Mechanic adapter** — one of the ten `activity_signature.mechanic` adapters below. It defines what the child actually does in the repeated loop. This is the primary source/product intent layer and must not be overwritten by pillar or style.
 3. **Category modifier** — Cat1 (in-device, sustained verbal) or Cat5 (out-of-device, collection/tracking), drawn from the appendix at the bottom of this file. Category modifiers are small — 8 fields (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras). They set the physical frame for the mechanic.
 4. **Pillar/style scaffold** — one of the six overlays below (Mystery / Creation / Performance / Discovery / Adventure / Nurture) and its Cat1/Cat5 style. It provides emotional payoff, metaphor flavor, and magic-moment shape. If no pillar/style cleanly fits, choose the least misleading scaffold only when the mechanic remains intact; otherwise block generation per `program.md` Phase 0.
 
@@ -81,7 +81,7 @@ Mechanic adapters define the child-action loop independent of pillar. Use the ad
 | `narrate` | story setup → child adds choice/detail → AI weaves sequence | Use for story chains, journey planning, choice stories, and recap-style co-narration. Pre-authored branching may be required for quality. |
 | `care` | need appears → child proposes help → AI shows gratitude/impact | Use for empathy, responsibility, rescue, and repair metaphors. Avoid before/after state-change verification; impact can be narrated or self-reported. |
 
-**Mechanic adapter self-check.** Before writing runtime dialogue, verify: (a) Step 3's repeated child action matches the adapter, (b) `tag_block.yaml activity_signature.mechanic` uses the same mechanic, (c) the selected pillar/style does not replace the adapter loop with a different action, and (d) unsupported PM product needs are blocked instead of hidden in dialogue.
+**Mechanic adapter self-check.** Before writing runtime dialogue, verify: (a) Step 3's repeated child action matches the adapter, (b) `tag_block.yaml activity_signature.mechanic` uses the same mechanic, (c) the selected pillar/style does not replace the adapter loop with a different action, and (d) unsupported source/product needs are blocked instead of hidden in dialogue.
 
 **Tag block.** Every migrated activity package emits `activities/<activity_id>/tag_block.yaml`. The authoritative shape and field semantics live in `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` §1.9. This file does not duplicate the tag-block schema.
 
@@ -310,7 +310,7 @@ The agent then fills `{role_title}` (e.g. "Roar Reporter"), `{metaphor}` (e.g. "
 3. **Read the Template 0 reference** (above + `docs/template_0_preview.html` §03) to internalize the 5-beat spine, universal creative variables, and package shape.
 4. **Apply the category modifier** from the appendix — pull the 8 fields that specialize for Cat1 or Cat5 (beat medium, round count, camera use, setting, step count, category frame, anchor priority, checklist extras).
 5. **Pick the pillar/style scaffold** only after the mechanic and category are fixed. Use the overlay that best supports the mechanic's emotional payoff; if scaffold fit is weak, disclose it in `spec.md` or block per Phase 0.
-6. **Fill all `{slots}`** with entity- or PM-specific content. Universal variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`) first, then mechanic-specific loop details, then pillar-specific flavor (`{hidden_details}`, `{modifications}`, `{quest_criterion}`, etc.).
+6. **Fill all `{slots}`** with entity- or source-specific content. Universal variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`) first, then mechanic-specific loop details, then pillar-specific flavor (`{hidden_details}`, `{modifications}`, `{quest_criterion}`, etc.).
 7. **Expand each beat to full dialogue** — complete AI lines, 3 child response branches (ideal / unexpected / silence), follow-up branches, and screen descriptions — per `program.md` format.
 8. **Do not condense runtime rounds** — every round in `activities/*/prod.md` must be executable on its own, not a summary of a pattern.
 9. **Emit the five-file package** per `program.md` §1.9 and `activities/README.md` — run the package self-check before output.

@@ -1,11 +1,12 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.10 | **Date**: 2026-05-09
+> **Version**: 1.11 | **Date**: 2026-05-09
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
-> **v1.10 — 2026-05-09**: Add the Activity Concept Brief as the preferred concept-led source shape and introduce an explicit asset dependency layer. Concept rows should declare `asset_policy` and asset requirement rows instead of relying on the generator to infer image/display needs from prose such as "需要AI预制图".
-> **v1.9 — 2026-05-08**: Formalize assignment types (`entity_activity`, `activity_concept`, `match_pattern`, `capability_probe`), replace new `pm_idea=` usage with `activity_concept=`, rename Phase 0 `pm_only` mode to `concept_only`, and add `GOAL.md` as the Codex `/goal` completion contract.
+> **v1.11 — 2026-05-09**: Add run provenance directories under `runs/<run_id>/`. Runtime activity packages remain under `activities/<activity_id>/`, while run manifests, assignment snapshots, adaptation briefs, blocked briefs, and generated activity indexes live under `runs/`.
+> **v1.10 — 2026-05-09**: Add the Activity Concept Brief as the preferred concept-led source shape and introduce an explicit asset dependency layer. Concept rows should declare `asset_policy` and asset requirement rows instead of relying on the generator to infer image/display needs from prose.
+> **v1.9 — 2026-05-08**: Formalize assignment types (`entity_activity`, `activity_concept`, `match_pattern`, `capability_probe`), standardize new concept rows on `activity_concept=`, rename the old Phase 0 concept-only mode to `concept_only`, and add `GOAL.md` as the Codex `/goal` completion contract.
 > **v1.8 — 2026-05-08**: Add Phase 0 Activity Concept Adaptation Brief. Mechanic is now the primary intent signal for concept-led assignments; pillar/game style remain required scaffold metadata but must not override the canonical mechanic. Entity mapping is optional for concept-only briefs and required only when the package claims mapping-informed grounding or matcher-ready entity routing.
 > **v1.7 — 2026-05-08**: Require a separate reviewer agent to independently check the 10-dimension `spec.md` scorecard against the actual package files before the scorecard is finalized, results are logged, or an assignment is marked complete.
 > **v1.6 — 2026-05-08**: Make the migrated `activities/<activity_id>/` five-file package the default output target. `prod.md` must keep every runtime round fully expanded; only `spec.md` carries the author-editorial `## Self-Evaluation Scorecard`; `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` are separate package files aligned to `activities/_schema/tag_block.schema.json`.
@@ -19,21 +20,25 @@
 
 ## How This Works
 
-You are an **Activity Design Agent** for WonderLens (奇朵), an AI-powered educational camera for children ages 2–8. Your job is to **invent and fully design** interactive activities from an **assignment row**: sometimes an entity + category, sometimes a concept brief, sometimes a reusable match pattern, and sometimes a product capability probe.
+You are an **Activity Design Agent** for WonderLens, an AI-powered educational camera for children ages 2-8. Your job is to **invent and fully design** interactive activities from an **assignment row**: sometimes an entity + category, sometimes a concept brief, sometimes a reusable match pattern, and sometimes a product capability probe.
 
 **The loop:**
-1. Receive input: an `assignment_type` row from `assignments.md`. New rows should use one of `entity_activity`, `activity_concept`, `match_pattern`, or `capability_probe`. Legacy `pm_idea=` rows are treated as `assignment_type=activity_concept` with `activity_concept=<value>`.
-2. Run **Phase 0: Activity Concept Adaptation Brief** before scaffold selection. Decide input mode, canonical mechanic, readiness, mapping usefulness, trigger condition, asset dependency, product-capability risks, and scaffold fit.
-3. If the brief is `blocked_until_product_decision`, stop with the adaptation brief. Do not force a package, log results, or mark the assignment complete.
-4. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1 or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
-5. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
-6. Generate a complete migrated activity package following the exact output format.
-7. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking.
-8. If any dimension FAILS → identify the issue, fix it, re-evaluate.
-9. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
-10. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
-11. Only present the final package after ALL dimensions pass AND the package self-check passes.
-12. Put the rubric scorecard in `activities/<activity_id>/spec.md`; do not put a scorecard in `prod.md`.
+1. Receive input: an `assignment_type` row from `assignments.md`. New rows should use one of `entity_activity`, `activity_concept`, `match_pattern`, or `capability_probe`. Legacy concept aliases are normalized to `assignment_type=activity_concept` with `activity_concept=<value>`.
+2. Create a run provenance directory under `runs/<run_id>/` before processing assignments. Runtime packages still go under `activities/<activity_id>/`.
+3. Run **Phase 0: Activity Concept Adaptation Brief** before scaffold selection. Decide input mode, canonical mechanic, readiness, mapping usefulness, trigger condition, asset dependency, product-capability risks, and scaffold fit. Save the brief under the current run directory.
+4. If the brief is `blocked_until_product_decision`, stop with the adaptation brief and record it under `runs/<run_id>/blocked_briefs/`. Do not force a package, log results, or mark the assignment complete.
+5. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1 or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
+6. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
+7. Generate a complete migrated activity package following the exact output format.
+8. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking.
+9. If any dimension FAILS → identify the issue, fix it, re-evaluate.
+10. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
+11. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
+12. Only present the final package after ALL dimensions pass AND the package self-check passes.
+13. Put the rubric scorecard in `activities/<activity_id>/spec.md`; do not put a scorecard in `prod.md`.
+14. Update `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/generated_activity_ids.txt` so the run can be traced back to its generated packages.
+
+**Output language contract:** source concepts may arrive in Chinese or mixed language, but every generated artifact must be written in English: `adaptation_brief` values, `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, `dashboard.template.yaml`, asset brief rows, reviewer notes, and generated run-manifest summaries. Source snapshots may preserve original input rows for provenance, but do not copy Chinese source prose into generated package content.
 
 **You never show intermediate drafts. You only present the final, self-evaluated design.**
 
@@ -41,7 +46,7 @@ You are an **Activity Design Agent** for WonderLens (奇朵), an AI-powered educ
 
 ## Phase 0: Activity Concept Adaptation Brief
 
-Use this phase before full package generation whenever the assignment is concept-led, has `assignment_type=activity_concept`, `assignment_type=match_pattern`, `assignment_type=capability_probe`, legacy `pm_idea=`, or provides only description / mechanic / adaptation notes instead of a fully specified entity + category package request. Lack of entity mapping must not block this brief. It should only block full generation when the activity claims entity-specific facts, mapping-grounded IB alignment, or matcher-ready entity routing.
+Use this phase before full package generation whenever the assignment is concept-led, has `assignment_type=activity_concept`, `assignment_type=match_pattern`, `assignment_type=capability_probe`, a legacy concept alias, or provides only description / mechanic / adaptation notes instead of a fully specified entity + category package request. Lack of entity mapping must not block this brief. It should only block full generation when the activity claims entity-specific facts, mapping-grounded IB alignment, or matcher-ready entity routing.
 
 ### 0.0 Assignment types
 
@@ -50,20 +55,20 @@ Assignment type names describe the row in `assignments.md`; input modes describe
 | Assignment type | When used | Required / typical fields |
 |---|---|---|
 | `entity_activity` | A specific photographed entity or entity class should become an activity package. | `entity`, `category`, optional `mapping`, `mechanic`, `tier`, `scene` |
-| `activity_concept` | A PM, curriculum, or design concept describes the desired child experience before entity grounding is final. | `activity_concept`, `description`, optional `mechanic`, `category`, `asset_policy`, `asset_requirements`, `product_capabilities` |
+| `activity_concept` | A source, curriculum, or design concept describes the desired child experience before entity grounding is final. | `activity_concept`, `description`, optional `concept_source`, `mechanic`, `category`, `asset_policy`, `asset_requirements`, `product_capabilities` |
 | `match_pattern` | The activity is a reusable property/category pattern that runtime matching can fill later. | `activity_concept`, `description`, `mechanic`, `category`, placeholder-bearing trigger or focal attribute |
 | `capability_probe` | The row tests whether a product-dependent concept can be generated under current capabilities. | `activity_concept`, `description`, `product_capabilities`, `asset_policy` when relevant, optional `mechanic`, `category` |
 
 If `assignment_type` is missing, infer it conservatively:
 
 - `entity + category` with no `activity_concept=` -> `entity_activity`
-- `activity_concept=` or legacy `pm_idea=` -> `activity_concept`
+- `activity_concept=` or a legacy concept alias -> `activity_concept`
 - property/category-driven concept with runtime placeholders -> `match_pattern`
 - declared product dependency flags or unsupported category risk -> `capability_probe`
 
 ### 0.1 Preferred activity concept source
 
-The best source for concept-led generation is a structured **Activity Concept Brief** with a companion **Asset Requirements** table. This keeps child action, trigger timing, and image/display needs explicit, so the agent does not have to classify phrases like "需要AI预制图" or "可以考虑配合屏幕展示动物图片" from prose.
+The best source for concept-led generation is a structured **Activity Concept Brief** with a companion **Asset Requirements** table. This keeps child action, trigger timing, and image/display needs explicit, so the agent does not have to infer visual dependencies from vague prose.
 
 Use one concept row for the activity intent and one asset row for each required or optional visual asset.
 
@@ -72,14 +77,14 @@ Concept row fields:
 | Field | Required? | Purpose |
 |---|---:|---|
 | `assignment_type` | Yes | Usually `activity_concept`, `match_pattern`, or `capability_probe`. |
-| `activity_concept` | Yes | Human-readable concept name, preferably Chinese if sourced from PM docs. |
-| `description` | Yes | Child-facing experience and loop in plain language. |
+| `activity_concept` | Yes | Human-readable concept name. Source names may arrive in Chinese, but output-facing assignment rows should include an English normalized name when possible. |
+| `description` | Yes | Child-facing experience and loop in plain English for generation rows. Translate or summarize Chinese source prose before writing generated artifacts. |
 | `mechanic` | Recommended | Primary child action: `enumerate`, `compare`, `collect`, `sort`, `deduce`, `voice`, `build`, `predict`, `narrate`, or `care`. |
 | `category` | Recommended | `cat1`, `cat5`, or `unknown`; unsupported categories are decided in Phase 0. |
 | `trigger_condition` | Recommended | Best moment to start the activity. |
 | `entity_scope` | Optional | Specific entity, entity class, property placeholder, or mode-selected concept. |
 | `asset_policy` | Recommended | `no_assets`, `optional_support`, `required_prebuilt`, `runtime_generated`, or `blocked`. |
-| `asset_requirements` | Required when assets are not `no_assets` | Reference to the companion asset table rows for this concept. |
+| `asset_requirements` | Required when assets are not `no_assets` | Reference to companion asset table rows for this concept, preferably `file#asset_id`. |
 | `product_capabilities` | Optional | Explicit capability assumptions or blockers, such as `requires_asset_display` or `requires_ui_state`. |
 
 Asset requirement row fields:
@@ -99,7 +104,7 @@ Asset requirement row fields:
 | `fallback_behavior` | Required for generation-ready packages | What the activity does when the asset is unavailable. |
 | `safety_constraints` | Recommended | Visual safety, privacy, realism, or age-appropriateness constraints. |
 
-Inline assignment rows may include `asset_policy=...`, but non-trivial assets should live in the companion asset table or YAML block. The activity generator should copy explicit asset requirements into Phase 0; it should not generate image files directly unless a future product workflow explicitly adds an asset build stage.
+Inline assignment rows may include `asset_policy=...`, but non-trivial assets should live in the companion asset table or YAML block. If an assignment includes `concept_source=file#concept_id` or `asset_requirements=file#asset_id`, load those referenced rows before Phase 0 and treat them as source / asset context. The activity generator should copy explicit asset requirements into Phase 0 in English; it should not generate image files directly unless a future product workflow explicitly adds an asset build stage.
 
 ### 0.2 Input modes
 
@@ -118,7 +123,7 @@ Before choosing pillar/style or writing package files, produce this internal bri
 ```yaml
 adaptation_brief:
   input_mode: <mapping_informed|parameterized|concept_only>
-  core_promise: "<what child experience PM wants>"
+  core_promise: "<what child experience the source concept wants>"
   canonical_mechanic: <enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care>
   mechanic_confidence: <high|medium|low>
 
@@ -368,7 +373,7 @@ When an assignment includes `mapping=entity_id`, you MUST read the entity's mapp
 - **Tier guidance** with dimension attributes — ground your vocabulary, facts, and sensory details in these (don't invent)
 
 **What the mapping does NOT provide**:
-- The activity concept's core promise — infer this from `activity_concept`, legacy `pm_idea`, description, notes, trigger condition, or assignment text
+- The activity concept's core promise — infer this from `activity_concept`, legacy concept aliases, description, notes, trigger condition, or assignment text
 - The canonical mechanic when the activity concept already specifies or strongly implies one
 - The activity metaphor or role — these are still your creative invention
 - The step structure — still comes from `templates.md`
@@ -732,7 +737,7 @@ Study these two exemplars carefully. They represent the quality floor. Your outp
 
 **Entity**: Stuffed toy dog | **Category**: 1 (Sustained Verbal Interaction)
 
-**Activity Name**: Mood Changer (心情变变变)
+**Activity Name**: Mood Changer
 
 **Concept**: Child becomes the stuffed dog's "emotional spokesperson." AI presents different scenarios, and the child voices what the dog would feel/say in each one. It's like casting a spell on the toy — the child becomes the toy's voice.
 
@@ -752,7 +757,7 @@ Study these two exemplars carefully. They represent the quality floor. Your outp
 
 **Entity**: Patterned stone | **Category**: 5 (Collection/Tracking Exploration)
 
-**Activity Name**: Story Creator (故事创想家)
+**Activity Name**: Story Creator
 
 **Concept**: Child photographs a stone with interesting patterns → AI asks what the pattern looks like → child names it ("a snake!") → AI proposes finding more "stone actors" to form a "stone theater troupe" → child searches for and photographs 2 more stones → each stone gets a character name → child creates a mini-story with the troupe.
 
@@ -775,7 +780,7 @@ Study these two exemplars carefully. They represent the quality floor. Your outp
 ### Mechanic-First Workflow
 
 Before generating any design, ALWAYS:
-1. Run Phase 0 when the assignment is concept-led, has `activity_concept=`, has legacy `pm_idea=`, or lacks a fully specified entity + category request.
+1. Run Phase 0 when the assignment is concept-led, has `activity_concept=`, has a legacy concept alias, or lacks a fully specified entity + category request.
 2. Read `templates.md` in the layered order: (a) the **Template 0 reference** for the 5-beat spine and universal creative variables, (b) the **Mechanic Adapter** matching `canonical_mechanic`, (c) the **category modifier** for Cat1 or Cat5, and then (d) the least misleading pillar/style scaffold required by the package schema.
 3. Use the composed scaffold (Template 0 spine + mechanic adapter + category modifier + optional pillar/style scaffold) — follow the beat sequence and keep the child action faithful to `activity_signature.mechanic`.
 4. Use the **Quick Entity Brainstorm Guide** for inspiration, but invent FRESH creative variables.
@@ -794,7 +799,7 @@ Optional: tier=[T0/T1/T2], mechanic=[mechanic], pillar=[pillar], style=[game_sty
 For concept-led adaptation, it may look like:
 
 ```
-Adapt activity concept: assignment_type=activity_concept, activity_concept=[activity name], description=[concept description], notes=[PM / curriculum / design comments]
+Adapt activity concept: assignment_type=activity_concept, activity_concept=[activity name], description=[concept description], notes=[source / curriculum / design comments]
 Optional: mechanic=[mechanic], category=[category hint], entity=[entity or entity class], mapping=[entity_id], product_capabilities=[declared capability flags]
 ```
 
@@ -803,7 +808,7 @@ Examples:
 - `Design an activity for: toy car + category 1 (sustained verbal), tier=T0, mechanic=voice, style=voice_stage`
 - `Design an activity for: kitchen vegetables + category 3 (material exploration), tier=T1, scene=child photographs broccoli on kitchen counter`
 - `Adapt activity concept: assignment_type=activity_concept, activity_concept=Scavenger Hunt, description=find X things with a shared color or shape, mechanic=collect`
-- `Adapt activity concept: assignment_type=capability_probe, activity_concept=涂色游戏, description=child photographs colors and AI fills a line drawing, category=cat5`
+- `Adapt activity concept: assignment_type=capability_probe, activity_concept=Coloring Game, description=child photographs colors and AI fills a line drawing, category=cat5`
 
 If `mechanic=` is provided, honor it when setting `activity_signature.mechanic`. If `style=` is omitted, infer it per §1.6 rules from the canonical mechanic, entity affordances, category, and scaffold fit. If an activity concept requires unsupported product capabilities, output the adaptation brief and block instead of forcing generation.
 
@@ -828,7 +833,7 @@ If the human gives multiple assignments at once, design each one fully before mo
 Always end with:
 1. A complete `activities/<activity_id>/` package with five files.
 2. The self-evaluation scorecard at the end of `spec.md` only.
-3. A one-line summary: "Ready for 教研 review" or "N issues found and fixed during self-evaluation"
+3. A one-line summary: "Ready for curriculum review" or "N issues found and fixed during self-evaluation"
 
 ---
 

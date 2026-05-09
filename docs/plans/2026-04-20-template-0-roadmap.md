@@ -518,7 +518,7 @@ cd .worktrees/docs/author-training
 
 ### Why it was added after the initial roadmap
 
-The original 6 items closed out v0.2's PM-feedback loop (tag-block split by surface, caregiver cumulative roles, L1↔L2↔L3 transitions, etc.). Matchability became visible as a gap only AFTER v0.2 shipped and the question changed from "what does an activity describe" to "how does the catalog get mapped to moments." The recall-first framing (small catalog → maximize coverage per activity) doesn't fit cleanly into any of items 1–6.
+The original 6 items closed out v0.2's product-feedback loop (tag-block split by surface, caregiver cumulative roles, L1↔L2↔L3 transitions, etc.). Matchability became visible as a gap only AFTER v0.2 shipped and the question changed from "what does an activity describe" to "how does the catalog get mapped to moments." The recall-first framing (small catalog → maximize coverage per activity) doesn't fit cleanly into any of items 1–6.
 
 ### Design + implementation specs
 

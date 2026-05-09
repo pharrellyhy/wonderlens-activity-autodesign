@@ -8,6 +8,7 @@ These files are reference inputs and expected brief shapes. They are not generat
 
 - `data_sources.md` shows one concrete example for each input data source described in `README.md`, including the Activity Concept Brief + Asset Requirements shape.
 - `input_modes.md` shows one concrete Phase 0 example for each input mode: `mapping_informed`, `parameterized`, and `concept_only`, plus an asset-dependent concept-only example.
+- `source_activity_concept_briefs.md` contains selected source-provided concepts and asset requirement rows referenced by `assignments.md` Batch 4.
 
 ## How to use
 

@@ -65,6 +65,9 @@ Key files and locations:
 3. Make the smallest change that satisfies the request.
 4. Validate immediately with the narrowest useful check.
 5. Stop on failing checks, summarize the root cause, then fix incrementally.
+6. Use a git worktree for code changes by default, and switch into that worktree before editing files or running implementation commands. The exception is doc-only or config-only edits, which may be made in the current checkout when appropriate.
+7. When creating a git worktree, place it under `.worktrees/` at the project root using the convention `.worktrees/{feat,docs,fix,refactor,style,test,chore}/<worktree-name>`.
+8. When working in plan mode or discussing design / implementation plans, write the plan to `docs/plans/` before making code changes. Use the project plan naming convention and make the plan detailed enough for a fresh session to execute.
 
 ## 6) Canonical Commands
 

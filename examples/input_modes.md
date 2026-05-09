@@ -64,7 +64,7 @@ Use when the activity concept is about a reusable property or category and runti
 Assignment row:
 
 ```text
-- [ ] assignment_type=match_pattern, activity_concept=同色收集, description=孩子拍到一个颜色明显的物体后，去找三个同色物品并拍下来, mechanic=collect, category=cat5
+- [ ] assignment_type=match_pattern, activity_concept=Same-Color Collection, description=Child photographs an object with a clear color, then finds and photographs three things with the same color, mechanic=collect, category=cat5
 ```
 
 Expected brief:
@@ -119,7 +119,7 @@ Use when the activity concept describes a broad mechanic or product concept with
 Assignment row:
 
 ```text
-- [ ] assignment_type=activity_concept, activity_concept=选择路径故事, description=孩子每轮选择故事下一步，AI把选择串成一个连续故事, mechanic=narrate, category=cat1
+- [ ] assignment_type=activity_concept, activity_concept=Branching Choice Story, description=Each round, the child chooses what happens next and the AI weaves those choices into one continuous story, mechanic=narrate, category=cat1
 ```
 
 Expected brief:
@@ -175,7 +175,7 @@ Some concept-only assignments should stop at the brief.
 Assignment row:
 
 ```text
-- [ ] assignment_type=capability_probe, activity_concept=画画, description=孩子根据照片拿纸笔画一个新东西，AI根据孩子的线下作品继续引导, mechanic=build, category=cat3, product_capabilities=requires_materials,before_after_risk
+- [ ] assignment_type=capability_probe, activity_concept=Guided Drawing, description=Child uses paper and pencil to draw something inspired by the photo, then AI continues from the offline work, mechanic=build, category=cat3, product_capabilities=requires_materials,before_after_risk
 ```
 
 Expected brief result:
@@ -205,7 +205,7 @@ Use when the concept is not entity-grounded but does require prebuilt or generat
 Assignment row:
 
 ```text
-- [ ] assignment_type=activity_concept, activity_concept=动物图片配对, description=屏幕展示两张动物图片，孩子说出相同点和不同点, mechanic=compare, category=cat1, asset_policy=required_prebuilt, asset_requirements=animal_pair_cards_01, product_capabilities=requires_asset_display
+- [ ] assignment_type=activity_concept, activity_concept=Animal Picture Pair, description=Screen shows two animal pictures and the child names one similarity and one difference, mechanic=compare, category=cat1, asset_policy=required_prebuilt, asset_requirements=animal_pair_cards_01, product_capabilities=requires_asset_display
 ```
 
 Expected brief excerpt:
