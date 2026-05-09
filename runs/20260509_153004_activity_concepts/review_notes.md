@@ -32,3 +32,11 @@ Independent review notes, repair notes, and residual risks will be appended afte
 - Fresh independent review passed all 10 dimensions and package invariants.
 - Asset handling verified: `guess_reference_cards_01` is optional, defined in `spec.md` `## Asset Brief`, referenced by ID in `prod.md`, and has a voice-only fallback.
 - Residual risk: the runtime version uses three clue rounds rather than ten to keep the T1 package concise.
+
+## 005 -- concept_animal_sound_motion_voice
+
+- Initial independent review found two blocking issues: Dimension 9 Game Feel lacked a surprise/stakes moment, and Step 3 asset references did not consistently name `animal_sound_cards_01`.
+- Repair: revised Step 3 so each sound wakes a hidden animal and the encore reveals a tiny audience; Step 3 screen descriptions now reference `animal_sound_cards_01` when optional cards are used.
+- Fresh independent review passed all 10 dimensions and package invariants.
+- Asset handling verified: `animal_sound_cards_01` is optional, defined in `spec.md` `## Asset Brief`, referenced by ID in `prod.md`, and has voice-only fallback.
+- Residual risk: T0 package uses two rounds and accepts all vocal/role-play attempts without verifying sound quality.

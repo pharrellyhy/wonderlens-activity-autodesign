@@ -1,0 +1,63 @@
+activity_id: concept_animal_sound_motion_voice
+version: 1
+source_entity_exemplar: cat
+template_type: cat1
+pillar: Performance
+game_style: voice_stage
+
+entity: familiar_animal
+entity_class: [animal]
+entity_binding: agnostic
+tier_range:
+  primary: T0
+  span: [T0, T1]
+  elasticity: "neighbor"
+
+category: animal_sound_play
+attributes: [animal_voice, familiar_sound, pretend_role]
+key_concepts: [Perspective, Form]
+related_concepts: [voice, imitation, animal, audience]
+atl_skills: [language_expression, perspective_taking, creative_thinking]
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags: [language, social_emotional]
+
+kud:
+  know:
+    - "familiar animals can have sounds"
+    - "a sound can stand for an animal role"
+    - "a stage turn has a start and finish"
+  understand:
+    - "Perspective means pretending to be another animal"
+    - "Form includes the sound or shape we notice"
+  do:
+    - "copy two animal sounds"
+    - "take a short performance turn"
+    - "respond to a simple encore prompt"
+
+progression:
+  topic_axis: perspective
+  difficulty_level: 1
+  next_step_hint: "Next time, add one feeling to the animal voice."
+  reward_hook: "Earned the Echo Star badge"
+
+caregiver_role: [scaffold]
+
+activity_signature:
+  observation_angle: behavior
+  mechanic: motion_voice
+  entity_role: catalyst
+  bridge_prerequisites:
+    primary: [behavior]
+    secondary: [emotion, sound]
+  focal_attribute: "animal_voice"
+  intro: "The child imitates two friendly animal voices on a tiny stage."
+  preview_label: "Echo animal sounds"
+  preview_prompt: "Let's make tiny animal sounds on the stage."
+  role_pivot_note: "The starting animal toy or mode launches a general animal-voice performance."
+
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: false

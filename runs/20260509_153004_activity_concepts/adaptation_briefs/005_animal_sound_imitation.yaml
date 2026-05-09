@@ -1,0 +1,48 @@
+adaptation_brief:
+  assignment_index: 5
+  assignment_type: activity_concept
+  activity_concept: Animal Sound Imitation
+  source:
+    concept_source: examples/source_activity_concept_briefs.md#source_animal_sound_imitation
+    asset_requirements: examples/source_activity_concept_briefs.md#animal_sound_cards_01
+    assignment_row: "assignment_type=activity_concept, activity_concept=Animal Sound Imitation, concept_source=examples/source_activity_concept_briefs.md#source_animal_sound_imitation, description=AI prompts a familiar animal and the child imitates its sound or speaks in that animal role, mechanic=motion_voice, category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=examples/source_activity_concept_briefs.md#animal_sound_cards_01, activity_id=concept_animal_sound_motion_voice, trigger_condition=Child photographs an animal toy, animal picture, or enters animal-sound mode"
+  input_mode: concept_only
+  core_promise: "The child hears or sees familiar animals and imitates their sounds or speaks in a simple animal role."
+  canonical_mechanic: motion_voice
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: "Child photographs an animal toy, animal picture, or enters animal-sound mode."
+  entity_role: catalyst
+  observation_angle: behavior
+  focal_attribute: "animal_voice"
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+    - requires_assets
+  asset_dependency:
+    policy: optional_support
+    assets:
+      - asset_id: animal_sound_cards_01
+        asset_type: card_set
+        requiredness: optional
+        generation_timing: pre_generated
+        use_step: "prod.step_2; prod.step_3.round_1-2"
+        purpose: "Help the child recognize the animal they are about to imitate."
+        prompt_en: "Create a set of friendly animal picture cards for toddlers and preschoolers. Include common animals such as cat, dog, cow, duck, sheep, and lion. Use a plain bright background, simple expressive illustrations, one animal per card, no text, no scary poses."
+        source: new_ai_generated_asset
+        display_behavior: "Show one animal card each round while the AI invites the child to imitate its sound."
+        fallback_behavior: "If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture."
+        safety_constraints: "No real child photos, no attack or predation scenes, and friendly animal poses only."
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Performance
+    game_style: voice_stage
+    scaffold_fit: strong
+  assumptions:
+    - "T0 runtime uses two performance rounds, not three, to preserve short call-and-response and avoid overlong turns."
+    - "The source asset row can support more animal cards, but this package references two runtime rounds plus a setup card."
+    - "The AI does not verify sound quality or non-speech audio; it responds positively to any spoken, sounded, or role-play attempt."
