@@ -40,3 +40,10 @@ Independent review notes, repair notes, and residual risks will be appended afte
 - Fresh independent review passed all 10 dimensions and package invariants.
 - Asset handling verified: `animal_sound_cards_01` is optional, defined in `spec.md` `## Asset Brief`, referenced by ID in `prod.md`, and has voice-only fallback.
 - Residual risk: T0 package uses two rounds and accepts all vocal/role-play attempts without verifying sound quality.
+
+## 006 -- concept_tiny_curator_sort
+
+- Independent review passed all 10 dimensions and package invariants.
+- Scaffold fit verified: `sort` has no perfect dedicated game style, so Adventure / `quest_collector` is disclosed as weak-but-usable and constrained to progress framing.
+- Asset handling verified: `asset_policy=no_assets`; no `## Asset Brief` is present or needed.
+- Residual risk: the runtime accepts the child's spoken grouping rule and does not use computer vision to prove object membership across the group.

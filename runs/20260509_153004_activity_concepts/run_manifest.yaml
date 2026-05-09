@@ -26,7 +26,7 @@ source:
     - conversation_bridge.md
 summary:
   pending_at_start: 9
-  generated_count: 5
+  generated_count: 6
   blocked_count: 0
   failed_count: 0
 outputs:
@@ -71,6 +71,14 @@ outputs:
       results_tsv_row: true
       status: PASS
       reviewer: PASS after Game Feel and asset-reference repair
+    - assignment_index: 6
+      assignment: "assignment_type=match_pattern, activity_concept=Tiny Curator, concept_source=examples/source_activity_concept_briefs.md#source_tiny_curator, description=Child finds three or four objects that they think belong together, arranges a tiny exhibition, then explains their grouping rule, mechanic=sort, category=cat5, tier=T2, asset_policy=no_assets, activity_id=concept_tiny_curator_sort, trigger_condition=Child is at home or outdoors with several objects that can be grouped or compared"
+      activity_id: concept_tiny_curator_sort
+      activity_path: activities/concept_tiny_curator_sort
+      adaptation_brief: runs/20260509_153004_activity_concepts/adaptation_briefs/006_tiny_curator.yaml
+      results_tsv_row: true
+      status: PASS
+      reviewer: PASS
   blocked_assignments: []
 checks:
   - command: "python3 -c \"import json, yaml, pathlib, sys; from jsonschema import Draft202012Validator; schema=json.loads(pathlib.Path('activities/_schema/tag_block.schema.json').read_text()); p=pathlib.Path('activities/concept_scavenger_hunt_collect/tag_block.yaml'); errs=list(Draft202012Validator(schema).iter_errors(yaml.safe_load(p.read_text()))); sys.exit(1 if errs else 0)\""
@@ -94,6 +102,10 @@ checks:
   - command: "python3 focused package invariants for activities/concept_animal_sound_motion_voice"
     result: PASS
   - command: "independent reviewer pass for activities/concept_animal_sound_motion_voice"
+    result: PASS
+  - command: "python3 focused package invariants for activities/concept_tiny_curator_sort"
+    result: PASS
+  - command: "independent reviewer pass for activities/concept_tiny_curator_sort"
     result: PASS
 notes:
   - "Canonical packages remain under activities/<activity_id>/."
