@@ -26,7 +26,7 @@ source:
     - conversation_bridge.md
 summary:
   pending_at_start: 9
-  generated_count: 6
+  generated_count: 7
   blocked_count: 0
   failed_count: 0
 outputs:
@@ -79,6 +79,14 @@ outputs:
       results_tsv_row: true
       status: PASS
       reviewer: PASS
+    - assignment_index: 7
+      assignment: "assignment_type=activity_concept, activity_concept=Partial Reveal Guess, concept_source=examples/source_activity_concept_briefs.md#source_partial_reveal_guess, description=Screen shows part of an animal or object; the child guesses the whole thing from visible clues and explains the evidence, mechanic=deduce, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=examples/source_activity_concept_briefs.md#partial_reveal_cards_01, product_capabilities=requires_asset_display, activity_id=concept_partial_reveal_deduce, trigger_condition=Child photographs an animal toy, animal picture, or enters partial-reveal guessing mode"
+      activity_id: concept_partial_reveal_deduce
+      activity_path: activities/concept_partial_reveal_deduce
+      adaptation_brief: runs/20260509_153004_activity_concepts/adaptation_briefs/007_partial_reveal_guess.yaml
+      results_tsv_row: true
+      status: PASS
+      reviewer: PASS after Mechanic Fidelity repair
   blocked_assignments: []
 checks:
   - command: "python3 -c \"import json, yaml, pathlib, sys; from jsonschema import Draft202012Validator; schema=json.loads(pathlib.Path('activities/_schema/tag_block.schema.json').read_text()); p=pathlib.Path('activities/concept_scavenger_hunt_collect/tag_block.yaml'); errs=list(Draft202012Validator(schema).iter_errors(yaml.safe_load(p.read_text()))); sys.exit(1 if errs else 0)\""
@@ -106,6 +114,10 @@ checks:
   - command: "python3 focused package invariants for activities/concept_tiny_curator_sort"
     result: PASS
   - command: "independent reviewer pass for activities/concept_tiny_curator_sort"
+    result: PASS
+  - command: "python3 focused package invariants for activities/concept_partial_reveal_deduce"
+    result: PASS
+  - command: "independent reviewer pass for activities/concept_partial_reveal_deduce"
     result: PASS
 notes:
   - "Canonical packages remain under activities/<activity_id>/."

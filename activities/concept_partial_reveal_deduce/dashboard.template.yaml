@@ -1,0 +1,26 @@
+dashboard_fragment:
+  session:
+    axis: form
+    angle: shape
+    mechanic: deduce
+    entity_role: reference
+    focal_attribute: "partial_visual_clue"
+    entry_rung: "{runtime_entry_rung}"
+    exit_rung: "{runtime_exit_rung}"
+    outcome: "{runtime_outcome}"
+
+  contributes_to:
+    curiosity_radial:
+      axis: form
+      angle: shape
+    exploration_matrix:
+      cell: "deduce by partial visual clue"
+    key_concepts_exposure:
+      Form:
+        angle: shape
+      Connection:
+        angle: shape
+    atl_skills_trail:
+      - observation
+      - logical_reasoning
+      - language_expression

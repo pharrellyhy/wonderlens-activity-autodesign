@@ -4,3 +4,4 @@ concept_branching_story_decide
 concept_guess_in_10_deduce
 concept_animal_sound_motion_voice
 concept_tiny_curator_sort
+concept_partial_reveal_deduce

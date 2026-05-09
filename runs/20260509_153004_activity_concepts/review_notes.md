@@ -47,3 +47,11 @@ Independent review notes, repair notes, and residual risks will be appended afte
 - Scaffold fit verified: `sort` has no perfect dedicated game style, so Adventure / `quest_collector` is disclosed as weak-but-usable and constrained to progress framing.
 - Asset handling verified: `asset_policy=no_assets`; no `## Asset Brief` is present or needed.
 - Residual risk: the runtime accepts the child's spoken grouping rule and does not use computer vision to prove object membership across the group.
+
+## 007 -- concept_partial_reveal_deduce
+
+- Initial independent review found one blocking issue: Step 3 asked for guesses but did not consistently ask the child to explain evidence.
+- Repair: revised all three Step 3 prompts to request guess plus clue evidence; ideal responses and follow-ups now validate the child's evidence.
+- Fresh independent review passed all 10 dimensions and package invariants.
+- Asset handling verified: `partial_reveal_cards_01` is required, defined in `spec.md` `## Asset Brief`, referenced by ID in `prod.md`, and has voice-only fallback language that does not claim a picture is displayed when unavailable.
+- Residual risk: full visual experience depends on product support for prebuilt card display; voice-only fallback preserves the mechanic if cards are unavailable.

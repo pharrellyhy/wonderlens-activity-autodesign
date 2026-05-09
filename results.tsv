@@ -50,3 +50,4 @@ Branching Choice Story	story_starter	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	activities/c
 Guess in 10	common_mystery_answer	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	activities/concept_guess_in_10_deduce	2026-05-09T16:15:12+08:00
 Animal Sound Imitation	familiar_animal_voice	cat1	T0	PASS	P	P	P	P	P	P	P	P	N	activities/concept_animal_sound_motion_voice	2026-05-09T16:28:09+08:00
 Tiny Curator	child_made_grouping_rule	cat5	T2	PASS	P	P	P	P	P	P	P	P	N	activities/concept_tiny_curator_sort	2026-05-09T16:38:29+08:00
+Partial Reveal Guess	partial_visual_clue	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	activities/concept_partial_reveal_deduce	2026-05-09T16:50:49+08:00
