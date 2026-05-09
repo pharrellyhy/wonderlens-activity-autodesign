@@ -12,6 +12,11 @@ Assignment-type relationship:
 - `parameterized`: use runtime placeholder triggers; do not write a mapping-specific warm bridge unless mapping is supplied.
 - `concept_only`: use a mode-selected or parent-selected start; do not imply a prior entity conversation.
 
+Asset relationship:
+
+- Screen-displayed images, prebuilt card sets, line art, icons, or generated visuals are not bridge evidence by themselves. They belong in `adaptation_brief.asset_dependency` and `spec.md` `## Asset Brief`.
+- A bridge may mention an on-screen asset only when the asset row declares the exact `use_step` and fallback behavior. If the asset is unavailable, the bridge must still be honest and avoid saying the child can see an image.
+
 ---
 
 ## §1 Conversation → Activity Dimension Mapping

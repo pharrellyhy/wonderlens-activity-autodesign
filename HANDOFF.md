@@ -2,8 +2,8 @@
 
 ## Current Status
 
-- Status: mechanic-first activity concept adaptation workflow implemented in authoring docs
-- Date: 2026-05-08
+- Status: mechanic-first activity concept adaptation workflow with explicit asset dependency layer implemented in authoring docs
+- Date: 2026-05-09
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
@@ -17,6 +17,10 @@
 - Updated `run.md` to stop on `blocked_until_product_decision` instead of forcing package generation.
 - Marked `transform.md` and `transform_run.md` as legacy-only and not applicable to activity concept adaptation.
 - Updated `README.md` to reflect concept-led assignment shape, adaptation brief behavior, and the detailed input data source model.
+- Added the Activity Concept Brief + Asset Requirements source shape so PM / 教研 can declare visual assets, generation timing, use steps, prompts, display behavior, and fallbacks explicitly.
+- Added `asset_policy` values: `no_assets`, `optional_support`, `required_prebuilt`, `runtime_generated`, and `blocked`.
+- Wired `adaptation_brief.asset_dependency` through `program.md`, `run.md`, `GOAL.md`, `assignments.md`, `templates.md`, `activities/README.md`, `docs/activity_tag_block_usage.md`, and the examples.
+- Documented that package generation writes asset briefs and direct English image prompts, but does not generate or store image files.
 - Defined `MAPPING_ROOT=data/mappings_dev20_0318` across the current authoring docs so future mapping-path moves have a named setting to update.
 - Added `examples/` with concrete examples for each input data source and Phase 0 input mode.
 - Added `GOAL.md` as the Codex `/goal` objective and success criteria contract.
@@ -42,6 +46,8 @@
   - Result: `pm_idea=` appears only as a documented legacy alias; old `PM-lightweight` / `pm_only` terms are absent from active docs
 - Targeted sync scan for `docs/activity_vocabulary.md`, `docs/game_styles.md`, `entity_guidance.md`, and `conversation_bridge.md`
   - Result: new assignment-type, input-mode, `MAPPING_ROOT`, and mechanic-first references are present; old PM-lightweight terms are absent
+- Targeted asset-layer scan across active workflow docs and examples
+  - Result: `asset_policy`, `asset_dependency`, `Asset Brief`, `prompt_en`, and asset requirement examples are present in the generation contract; stale `prompt_zh` references are absent
 - Targeted diff review of the changed docs
   - Result: changes are limited to the mechanic-first activity concept adaptation workflow and related documentation state
 
@@ -50,8 +56,10 @@
 - The existing `results.tsv` header predates the migrated package loop and is not changed in this pass.
 - `d10_pillar_fidelity` remains the documented log column name for compatibility, but it now records Dimension 10 Mechanic Fidelity + Scaffold Honesty.
 - No schema enum changes were made; unsupported mechanics still need future schema/template work.
+- Asset requirements are authoring-only in this pass; no runtime asset manifest file or tag-block schema field was added.
+- Runtime image generation remains blocked unless a future product decision declares support.
 
 ## Next Immediate Actions
 
-- Review the mechanic-first workflow wording with PM / 教研.
-- If accepted, use concept rows as `assignment_type=activity_concept, activity_concept=...` assignments and let Phase 0 decide whether to generate, assume, or block.
+- Review the Activity Concept Brief + Asset Requirements fields with PM / 教研.
+- For new concept rows, ask PM / 教研 to provide `asset_policy` and companion asset rows when they want AI pre-made images or screen-displayed visuals.

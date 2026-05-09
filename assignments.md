@@ -5,10 +5,11 @@
 >
 > Current format: include `assignment_type=` on new rows.
 > Entity package format: `- [ ] assignment_type=entity_activity, entity=<entity>, category=<cat1|cat5>, tier=TX, mechanic=mechanic, pillar=Pillar, style=game_style, mapping=entity_id, start=warm+cold, activity_id=optional_slug, scene=...`
-> Concept format: `- [ ] assignment_type=activity_concept, activity_concept=<concept name>, description=<concept description>, mechanic=mechanic, category=<cat1|cat5|unknown>, product_capabilities=optional_flags`
+> Concept format: `- [ ] assignment_type=activity_concept, activity_concept=<concept name>, description=<concept description>, mechanic=mechanic, category=<cat1|cat5|unknown>, asset_policy=<no_assets|optional_support|required_prebuilt|runtime_generated|blocked>, product_capabilities=optional_flags`
 > Pattern format: `- [ ] assignment_type=match_pattern, activity_concept=<pattern name>, description=<runtime-match pattern>, mechanic=mechanic, category=<cat1|cat5>`
-> Capability probe format: `- [ ] assignment_type=capability_probe, activity_concept=<concept name>, description=<product-dependent concept>, mechanic=mechanic, category=<hint>, product_capabilities=required_flags`
+> Capability probe format: `- [ ] assignment_type=capability_probe, activity_concept=<concept name>, description=<product-dependent concept>, mechanic=mechanic, category=<hint>, asset_policy=<policy>, product_capabilities=required_flags`
 > Required: either `entity + category` or `activity_concept + description/mechanic`. Recommended: `tier=`, `mechanic=`, and a concrete `scene=` when entity-grounded.
+> Asset dependencies: use `asset_policy=` on the assignment row and put non-trivial asset details in a companion Activity Concept Brief / Asset Requirements table referenced by `asset_requirements=<source_or_asset_id>`.
 > Mechanics are the primary action hint: `enumerate`, `compare`, `collect`, `sort`, `deduce`, `voice`, `build`, `predict`, `narrate`, `care`.
 > Game styles are optional secondary format hints: `mystery_lens`, `mystery_trail`, `inventor_workshop`, `mix_lab`, `voice_stage`, `ensemble_show`, `prediction_lab`, `field_experiment`, `time_traveler`, `quest_collector`, `care_station`, `rescue_team`.
 > If `mechanic=` is provided but `style=` is omitted, the agent infers pillar/style from the mechanic, entity affordances, category, and program.md §1.6.

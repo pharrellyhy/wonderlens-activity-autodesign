@@ -10,7 +10,7 @@ activities/
 │   └── tag_block.schema.json        # JSON Schema for tag_block.yaml
 ├── README.md                         # this file
 └── <activity_id>/
-    ├── spec.md                       # authoring intent: premise, target, rationale, selection trigger
+    ├── spec.md                       # authoring intent: premise, target, rationale, selection trigger, optional asset brief
     ├── prod.md                       # runtime dialogue + step instructions
     ├── tag_block.yaml                # structured metadata (validated against _schema/tag_block.schema.json)
     ├── recap.template.yaml           # child recap payload shape (runtime-rendered)
@@ -23,8 +23,8 @@ The directory name MUST equal the `activity_id` inside that dir's `tag_block.yam
 
 | File | Audience | Format | Runtime role |
 |---|---|---|---|
-| `spec.md` | authors, reviewers | Markdown prose | design reference; not loaded by runtime; owns the self-evaluation scorecard |
-| `prod.md` | authors, LLM prompt composer | Markdown prose | quoted into prompts; beat-level guidance; all runtime rounds fully expanded |
+| `spec.md` | authors, reviewers | Markdown prose | design reference; not loaded by runtime; owns the self-evaluation scorecard and optional `## Asset Brief` |
+| `prod.md` | authors, LLM prompt composer | Markdown prose | quoted into prompts; beat-level guidance; all runtime rounds fully expanded; references asset IDs only |
 | `tag_block.yaml` | matcher, selector | YAML | machine-readable metadata; schema-validated |
 | `recap.template.yaml` | recap renderer | YAML with `{placeholders}` | per-session payload emitted at activity end |
 | `dashboard.template.yaml` | parent dashboard roller | YAML with `{placeholders}` | per-session fragment merged into device rollup |
@@ -33,9 +33,30 @@ The directory name MUST equal the `activity_id` inside that dir's `tag_block.yam
 
 - `prod.md` must not contain `## Self-Evaluation Scorecard`.
 - `spec.md` must contain exactly one `## Self-Evaluation Scorecard`.
+- If an activity references AI-generated images, prebuilt card sets, line art, icons, overlays, or displayed reference images, `spec.md` must include `## Asset Brief` before the scorecard.
+- `prod.md` may reference stable `asset_id` values and fallback behavior, but must not include raw image-generation prompts.
 - Every Step 3 round in `prod.md` must be fully executable: AI dialogue, child response branches, AI follow-up branches, and screen state.
 - Do not use condensed placeholders such as "same structure," "AI gives a riddle," "later rounds follow," or one-line summaries in migrated `prod.md` files.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.yaml` `activity_signature.focal_attribute`.
+
+## Asset brief invariant
+
+`## Asset Brief` is an authoring dependency record, not a sixth package file. Each asset row should define:
+
+| Field | Purpose |
+|---|---|
+| `asset_id` | Stable ID used by `prod.md` screen descriptions. |
+| `asset_type` | `reference_image`, `character_image`, `scene_background`, `line_art`, `card_set`, `icon`, or `ui_overlay`. |
+| `requiredness` | `required`, `optional`, or `fallback`. |
+| `generation_timing` | `pre_generated`, `runtime_generated`, `display_existing`, or `none`. |
+| `use_step` | Exact step/round where the asset appears. |
+| `prompt_en` | Direct English generation prompt for generated assets. |
+| `source` | Existing asset library, approved reference set, or source description when no generation prompt is needed. |
+| `display_behavior` | How the runtime should present it. |
+| `fallback_behavior` | What runtime does if it is missing. |
+| `safety_constraints` | Visual safety and content constraints. |
+
+Current package generation does not create image files. A separate asset pipeline may later consume the prompts or source descriptions.
 
 ## Canonical vocabulary
 

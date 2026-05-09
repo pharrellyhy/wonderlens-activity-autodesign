@@ -37,6 +37,11 @@ adaptation_brief:
 
   product_capability_flags: []
 
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+
   scaffold_choice:
     pillar: Performance
     game_style: voice_stage
@@ -86,6 +91,11 @@ adaptation_brief:
     missing_mapping_risk: low
 
   product_capability_flags: []
+
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
 
   scaffold_choice:
     pillar: Adventure
@@ -137,6 +147,11 @@ adaptation_brief:
 
   product_capability_flags: []
 
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+
   scaffold_choice:
     pillar: Creation
     game_style: inventor_workshop
@@ -171,6 +186,10 @@ category_decision: unsupported_cat3
 product_capability_flags:
   - requires_materials
   - before_after_risk
+asset_dependency:
+  policy: no_assets
+  assets: []
+  missing_asset_risk: none
 ```
 
 Why it blocks:
@@ -178,3 +197,61 @@ Why it blocks:
 - The current migrated package workflow supports Cat1/Cat5 generation, not a Cat3 material workflow.
 - The activity depends on tracking an offline before/after drawing state.
 - The agent should output the brief only and avoid forcing a production package.
+
+## 5. `concept_only` with required visual assets
+
+Use when the concept is not entity-grounded but does require prebuilt or generated visuals.
+
+Assignment row:
+
+```text
+- [ ] assignment_type=activity_concept, activity_concept=动物图片配对, description=屏幕展示两张动物图片，孩子说出相同点和不同点, mechanic=compare, category=cat1, asset_policy=required_prebuilt, asset_requirements=animal_pair_cards_01, product_capabilities=requires_asset_display
+```
+
+Expected brief excerpt:
+
+```yaml
+adaptation_brief:
+  input_mode: concept_only
+  core_promise: "Child compares animal pictures by naming same/different visible features."
+  canonical_mechanic: compare
+  mechanic_confidence: high
+
+  category_decision: cat1
+  readiness: generate_with_assumptions
+
+  trigger_condition: "Parent or child starts animal picture compare mode, or a photographed animal toy acts as a topic spark."
+  entity_role: reference
+  observation_angle: pattern
+  focal_attribute: "animal visual features"
+
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: ["tier language", "matchability"]
+    missing_mapping_risk: low
+
+  product_capability_flags:
+    - requires_assets
+    - requires_asset_display
+
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+      - asset_id: animal_pair_cards_01
+        asset_type: card_set
+        requiredness: required
+        generation_timing: pre_generated
+        use_step: "prod.step_2 and prod.step_3"
+        prompt_en: "Create animal picture-pair cards for children ages 4-6. Each pair should show two animals side by side with simple backgrounds, clear poses, visible features for comparison, and no text."
+        source: "new_ai_generated_asset"
+        display_behavior: "Each round displays two cards side by side while AI asks for one similarity or difference."
+        fallback_behavior: "If cards are unavailable, switch to verbal comparison of two named animals and do not reference on-screen pictures."
+    missing_asset_risk: medium
+```
+
+Why this mode fits:
+
+- The activity depends on visual assets, but the concept is not tied to a specific mapped entity.
+- The asset requirement is explicit, so the generator does not need to infer image needs from prose.
+- `prod.md` can reference `asset_id=animal_pair_cards_01`; `spec.md` owns the image prompt.

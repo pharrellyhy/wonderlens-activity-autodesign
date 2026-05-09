@@ -1,20 +1,22 @@
 # Templates
 
-> **Version**: 1.3 | **Date**: 2026-05-08
+> **Version**: 1.4 | **Date**: 2026-05-09
 > **Owns**: the mechanic adapters, pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture), and the Cat1 / Cat5 category modifier appendix.
-> **Does NOT own**: the migrated five-file package layout, the tag block schema, or the tier defaults — those live in `activities/README.md`, `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` §1.9.
+> **Does NOT own**: the migrated five-file package layout, the tag block schema, asset requirement rows, or the tier defaults — those live in `activities/README.md`, `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` Phase 0 / §1.9.
 > **Consumed by**: `program.md` Phase 5 (template-reading flow), `run.md` (activity package loop), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), `activities/*/prod.md` (runtime outputs), and legacy `designs/cat{1,5}/*.md` references.
 
 ---
 
 ## How templates work
 
-An activity design is built by composing four layers:
+An activity design is built by composing four activity layers, plus an optional asset dependency layer supplied by Phase 0:
 
 1. **Template 0** — the category-agnostic skeleton. It defines the 5-beat spine (Transition Bridge → Frame & Role → Core Loop → Magic Moment → Celebration), the universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the three tier dials (T0 / T1 / T2). The migrated output contract lives in `program.md` §1.9 and `activities/README.md`.
 2. **Mechanic adapter** — one of the ten `activity_signature.mechanic` adapters below. It defines what the child actually does in the repeated loop. This is the primary PM/product intent layer and must not be overwritten by pillar or style.
 3. **Category modifier** — Cat1 (in-device, sustained verbal) or Cat5 (out-of-device, collection/tracking), drawn from the appendix at the bottom of this file. Category modifiers are small — 8 fields (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras). They set the physical frame for the mechanic.
 4. **Pillar/style scaffold** — one of the six overlays below (Mystery / Creation / Performance / Discovery / Adventure / Nurture) and its Cat1/Cat5 style. It provides emotional payoff, metaphor flavor, and magic-moment shape. If no pillar/style cleanly fits, choose the least misleading scaffold only when the mechanic remains intact; otherwise block generation per `program.md` Phase 0.
+
+The optional **asset dependency layer** is not a template layer and must not change the mechanic. It declares whether the scaffold may reference prebuilt cards, AI-generated images, line art, icons, overlays, or reference pictures. Asset requirements come from `adaptation_brief.asset_dependency` and are documented in `spec.md` `## Asset Brief`; `prod.md` references asset IDs and fallback behavior only.
 
 The layers compose like this:
 
@@ -23,6 +25,7 @@ Template 0 spine
 + Mechanic Adapter
 + Category Modifier
 + Optional Pillar/Style scaffold
++ Optional Asset Dependency references
 = activity scaffold
 ```
 
@@ -82,7 +85,7 @@ Mechanic adapters define the child-action loop independent of pillar. Use the ad
 
 **Tag block.** Every migrated activity package emits `activities/<activity_id>/tag_block.yaml`. The authoritative shape and field semantics live in `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` §1.9. This file does not duplicate the tag-block schema.
 
-**Package output.** Templates provide the creative scaffold only. The agent must still expand the scaffold into the five migrated files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`. `prod.md` keeps all runtime rounds fully expanded; `spec.md` carries the self-evaluation scorecard; the YAML files carry machine-readable metadata and recap/dashboard payloads.
+**Package output.** Templates provide the creative scaffold only. The agent must still expand the scaffold into the five migrated files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`. `prod.md` keeps all runtime rounds fully expanded; `spec.md` carries the self-evaluation scorecard and, when applicable, `## Asset Brief`; the YAML files carry machine-readable metadata and recap/dashboard payloads.
 
 **Tier dials.** T0 / T1 / T2 set language register, task depth, concept focus, AI role, and cumulative caregiver role. Authoritative table in `docs/template_0_preview.html` §06. Tier-guidance detail lives in `entity_guidance.md`.
 

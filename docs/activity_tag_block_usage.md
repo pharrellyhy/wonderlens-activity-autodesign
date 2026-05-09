@@ -2,7 +2,7 @@
 
 > Supplement to `docs/plans/2026-04-23-activity-signature-design.md` and `docs/activity_vocabulary.md`. Use this when authoring or reviewing `activities/<activity_id>/tag_block.yaml`. For the complete tag block plus progression-algorithm map, see `docs/activity_tag_block_progression_guide.md`.
 
-**Version:** 0.1 · 2026-04-29
+**Version:** 0.2 · 2026-05-09
 
 ---
 
@@ -28,7 +28,7 @@ Those jobs should not be mentally mixed. A field can be stored in one YAML block
 | Runtime presentation | Activity start, script agent, recap copy | `activity_signature.focal_attribute`, `activity_signature.intro`, `activity_signature.preview_label`, `activity_signature.preview_prompt`, `activity_signature.mechanic` |
 | Parent dashboard | Parent dashboard, growth path, curriculum analytics | `key_concepts`, `atl_skills`, `transdisciplinary_theme`, `subject_tags` when present, `progression.*`, `activity_signature.observation_angle`, `activity_signature.mechanic`, `activity_signature.entity_role`, `caregiver_role` |
 | Child recap | Recap renderer, child-facing recap template | `entity`, `pillar`, `related_concepts`, `atl_skills`, `activity_signature.observation_angle`, `activity_signature.mechanic`, `activity_signature.entity_role`, `activity_signature.focal_attribute`; game-specific recap copy lives in `recap.template.yaml` |
-| Authoring audit | Reviewers, prompt authors | `attributes`, `kud.*`, `category`, `related_concepts`, `spec.md` rationale |
+| Authoring audit | Reviewers, prompt authors | `attributes`, `kud.*`, `category`, `related_concepts`, `spec.md` rationale, `spec.md` `## Asset Brief` when assets are used |
 
 Rule of thumb: if a field changes which activity is selected, it is upstream. If it changes what the parent sees over time, it is downstream. If it only explains author intent, keep it out of matching logic.
 
@@ -197,7 +197,7 @@ These fields help humans and generation prompts review the design, but should no
 | `kud.understand` | 1-2 conceptual understandings. | Checks alignment with `key_concepts`. |
 | `kud.do` | 2-3 child actions. | Checks alignment with `mechanic` and `atl_skills`. |
 
-If a value only explains why the activity exists, it probably belongs in `spec.md`, not `tag_block.yaml`.
+If a value only explains why the activity exists, it probably belongs in `spec.md`, not `tag_block.yaml`. Asset requirements follow this rule: prebuilt/generated image prompts, `asset_id` tables, display behavior, and fallback behavior live in `spec.md` `## Asset Brief` and `prod.md` screen guidance, not in `tag_block.yaml`, unless a future schema explicitly adds asset fields.
 
 ---
 

@@ -10,6 +10,8 @@
 
 Entity mapping is a grounding and matchability layer, not the source of activity intent.
 
+Asset requirements are a separate authoring layer. Do not use entity mapping as a substitute for missing asset instructions. If an activity concept needs AI-generated images, prebuilt reference cards, line art, or screen-displayed visual supports, those requirements should come from `asset_policy` and the companion Asset Requirements table described in `program.md` Phase 0 / `README.md`, while mapping data only grounds which entity facts or visible attributes are appropriate.
+
 Use mapping data when:
 
 - `assignment_type=entity_activity` includes `mapping=<entity_id>`.
@@ -22,6 +24,7 @@ Do not require mapping data when:
 - Phase 0 sets `input_mode: parameterized` and the package uses runtime placeholders such as `{matched_color}` or `{matched_shape}`.
 - Phase 0 sets `input_mode: concept_only` and the activity concept does not claim entity-specific facts.
 - `assignment_type=capability_probe` is blocked before generation because product or template support is missing.
+- The concept uses a visual asset only as a generic reference image or card set and does not make claims about a specific photographed entity.
 
 Missing mapping should not block an `adaptation_brief`. It should block full package generation only when the package would otherwise need entity-specific facts, mapping-grounded Key Concepts, warm/cold bridge prerequisites, or matcher-ready entity routing.
 

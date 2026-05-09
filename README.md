@@ -6,7 +6,7 @@ The current runtime format is the migrated `activities/<activity_id>/` package. 
 
 ## How It Works
 
-The agent reads the authoring contract, runs a mechanic-first adaptation brief when the input is a concept-led assignment, composes a Template 0 spine with a mechanic adapter, Cat1/Cat5 category modifier, and pillar/style scaffold, then writes a complete five-file activity package:
+The agent reads the authoring contract, runs a mechanic-first adaptation brief when the input is a concept-led assignment, carries any explicit asset dependency into the brief, composes a Template 0 spine with a mechanic adapter, Cat1/Cat5 category modifier, and pillar/style scaffold, then writes a complete five-file activity package:
 
 ```text
 activities/<activity_id>/
@@ -42,6 +42,7 @@ results.tsv                        Assignment and rubric log
 - `prod.md` is runtime prompt guidance. It must not contain a scorecard.
 - Every Step 3 round in `prod.md` must be fully expanded with AI dialogue, child response branches, AI follow-up branches, and screen state.
 - Do not use condensed runtime placeholders such as "same structure," "AI gives a riddle," or one-line later-round summaries in migrated `prod.md` files.
+- If an activity uses pre-generated or displayed images, `spec.md` owns `## Asset Brief` with asset IDs, use timing, prompts/sources, display behavior, and fallback behavior. `prod.md` references asset IDs and fallback behavior only.
 - `tag_block.yaml` must validate against `activities/_schema/tag_block.schema.json`.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` must equal `tag_block.yaml` `activity_signature.focal_attribute`.
 - `recap.template.yaml`, `dashboard.template.yaml`, `tag_block.yaml`, `spec.md`, and `prod.md` must describe the same mechanic, pillar, game style, focal attribute, badge/reward, and next-step direction.
@@ -62,7 +63,7 @@ For generation-ready assignments, the loop creates one complete `activities/<act
 
 ## Input Data Sources
 
-The generation loop now separates **activity intent** from **entity grounding**. A request can start from a photographed entity, an activity concept row, a reusable property/category pattern, or a mix of those sources.
+The generation loop now separates **activity intent**, **asset dependency**, and **entity grounding**. A request can start from a photographed entity, an activity concept brief, a reusable property/category pattern, explicit visual assets, or a mix of those sources.
 
 Current entity mapping root:
 
@@ -74,11 +75,60 @@ MAPPING_ROOT=data/mappings_dev20_0318
 
 | Source | Typical fields | Required when | How the agent uses it |
 |---|---|---|---|
-| `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `product_capabilities` | Always. This is the execution queue the loop reads. | Normalizes the request, runs Phase 0 when needed, then either generates a package or stops with an adaptation brief. |
-| Activity concept row | `assignment_type=activity_concept`, `activity_concept`, `description`, concept notes, desired mechanic, product assumptions | The starting point is a lightweight activity concept rather than a full entity package request. | Produces an `adaptation_brief` first. The brief decides whether the idea is `concept_only`, `parameterized`, or `mapping_informed`, and whether generation is ready, assumption-based, or blocked. |
+| `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `asset_policy`, `asset_requirements`, `product_capabilities` | Always. This is the execution queue the loop reads. | Normalizes the request, runs Phase 0 when needed, then either generates a package or stops with an adaptation brief. |
+| Activity Concept Brief | concept row plus optional companion asset requirement rows | The starting point is a PM/curriculum/design concept rather than a full entity package request. This is the preferred source for concept-led work. | Produces an `adaptation_brief` first. The brief decides input mode, readiness, trigger fit, asset dependency, mapping use, and scaffold fit. |
+| Asset Requirements table | `asset_id`, `concept_ref`, `asset_type`, `requiredness`, `generation_timing`, `use_step`, `purpose`, `prompt_en`, `source`, `display_behavior`, `fallback_behavior`, `safety_constraints` | The idea mentions or requires AI-generated images, screen-displayed reference images, line art, cards, icons, overlays, or visual supports. | Avoids asset inference from prose. Phase 0 copies the rows into `asset_dependency`; `spec.md` records an `## Asset Brief`; `prod.md` references stable asset IDs. |
 | Entity mapping YAML | `mapping=<entity_id>` resolved through `MAPPING_ROOT/_index.yaml` | Required only for mapping-informed packages, entity-specific factual claims, warm/cold bridge grounding, mapping-grounded Key Concepts, or matcher-ready entity routing. | Grounds visible attributes, tier language, IB concepts, related concepts, bridge prerequisites, trigger fit, and matchability. |
 | Runtime matcher placeholders | `{matched_color}`, `{matched_shape}`, `{entity_class}`, or similar placeholders | Activity concept is property/category driven but no specific photographed entity is supplied. | Supports `parameterized` briefs and packages that can be matched later across many entities without inventing entity-specific facts. |
-| Product capability notes | `product_capabilities=...`, concept comments, or explicit UI/asset/material assumptions | The idea depends on assets, UI state, materials, motion safety, OCR, pose detection, or before/after state. | Sets `product_capability_flags`; unsupported dependencies should produce `readiness=blocked_until_product_decision` instead of a forced package. |
+| Product capability notes | `product_capabilities=...`, concept comments, or explicit UI/material/runtime-generation assumptions | The idea depends on UI state, runtime image generation, materials, motion safety, OCR, pose detection, or before/after state. | Sets `product_capability_flags`; unsupported dependencies should produce `readiness=blocked_until_product_decision` instead of a forced package. |
+
+### Preferred Concept Source
+
+Ask PM / 教研 to provide concept-led ideas as two linked tables. This is better than a prose-only document because asset needs become explicit dependencies instead of things the generator must detect.
+
+Concept table:
+
+| Field | Example |
+|---|---|
+| `assignment_type` | `activity_concept` |
+| `activity_concept` | `动物影子猜猜看` |
+| `description` | `屏幕展示动物剪影，孩子根据线索猜动物，再说出依据。` |
+| `mechanic` | `deduce` |
+| `category` | `cat1` |
+| `trigger_condition` | `孩子拍到动物玩具、动物图片，或主动进入动物主题模式。` |
+| `entity_scope` | `animal_class` |
+| `asset_policy` | `required_prebuilt` |
+| `asset_requirements` | `shadow_card_set_01` |
+| `product_capabilities` | `requires_asset_display` |
+
+Asset requirements table:
+
+| Field | Example |
+|---|---|
+| `asset_id` | `shadow_card_set_01` |
+| `concept_ref` | `动物影子猜猜看` |
+| `asset_type` | `card_set` |
+| `requiredness` | `required` |
+| `generation_timing` | `pre_generated` |
+| `use_step` | `prod.step_2`, `prod.step_3.round_1-3` |
+| `purpose` | `给孩子可观察的动物剪影证据。` |
+| `prompt_en` | `Create a set of animal silhouette cards for children ages 4-6. Use a plain white background, clear black silhouettes, recognizable animal outlines, no text, and a non-scary style.` |
+| `source` | `new_ai_generated_asset` |
+| `display_behavior` | `每轮全屏展示一张剪影卡，AI用语音给一条线索。` |
+| `fallback_behavior` | `如果没有卡片，改为纯语音谜语；不要声称屏幕正在显示图片。` |
+| `safety_constraints` | `无恐怖氛围；不使用真实儿童照片；不含文字。` |
+
+`asset_policy` values:
+
+| Value | Meaning | Generation behavior |
+|---|---|---|
+| `no_assets` | Activity does not need visual assets beyond normal camera/photo UI. | Proceed without `## Asset Brief`. |
+| `optional_support` | Visuals improve the activity but are not required. | Proceed only with explicit fallback behavior. |
+| `required_prebuilt` | Activity depends on assets that can be generated or sourced before runtime. | Proceed with assumptions only if every asset row is complete; otherwise block. |
+| `runtime_generated` | Activity depends on image generation during the session. | Block unless product support is explicitly declared. |
+| `blocked` | PM/design knows the idea needs unresolved asset/product work. | Stop at the adaptation brief. |
+
+The activity package loop does **not** generate image files. It writes directly usable English prompts into `spec.md` `## Asset Brief` so a separate asset pipeline can create or approve visuals later.
 
 Use these assignment types in new rows:
 
@@ -117,6 +167,12 @@ For concept-led activity ideas, use:
 - [ ] assignment_type=activity_concept, activity_concept=Scavenger Hunt, description=find X things with a shared color or shape, mechanic=collect, category=cat5
 ```
 
+For asset-dependent concepts, keep the assignment row compact and put the full asset details in the companion concept brief:
+
+```text
+- [ ] assignment_type=activity_concept, activity_concept=动物影子猜猜看, description=屏幕展示动物剪影，孩子根据线索猜动物, mechanic=deduce, category=cat1, asset_policy=required_prebuilt, asset_requirements=shadow_card_set_01, product_capabilities=requires_asset_display
+```
+
 Required:
 
 - Either `entity + category`, such as `lion + category 1 (sustained verbal)`, or `activity_concept + description/mechanic` for a concept-led assignment.
@@ -129,13 +185,15 @@ Recommended:
 - `scene=` with concrete photo context.
 - `assignment_type=` for new rows. Valid values are `entity_activity`, `activity_concept`, `match_pattern`, and `capability_probe`.
 - `description=` for concept-led rows so the adaptation brief can preserve the intended child experience.
+- `asset_policy=` when the concept has any screen-displayed or AI-generated visual dependency. Use `no_assets`, `optional_support`, `required_prebuilt`, `runtime_generated`, or `blocked`.
 
 Optional:
 
 - `pillar=` and `style=` when you want to force a specific experience format.
 - `mapping=` when the entity should be grounded in `MAPPING_ROOT`; pair it with `start=warm+cold` for dual bridge handling.
 - `activity_id=` when you need a specific package directory name.
-- `product_capabilities=` when an idea depends on assets, UI state, material workflows, motion safety, OCR, pose detection, or before/after state.
+- `asset_requirements=` when an assignment row points to a companion asset table/YAML block.
+- `product_capabilities=` when an idea depends on asset display, runtime image generation, UI state, material workflows, motion safety, OCR, pose detection, or before/after state.
 
 Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas stop at the brief instead of forcing package generation. `pm_idea=` is a legacy alias for `activity_concept=` and should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
 

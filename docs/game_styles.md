@@ -28,7 +28,8 @@ Use this reference **after** `program.md` Phase 0 has identified the assignment 
 2. Preserve `canonical_mechanic` from the assignment or Phase 0 brief.
 3. Choose the least misleading pillar and `game_style` that can express that mechanic.
 4. If the scaffold fit is weak but usable, disclose it in `spec.md` `## Adaptation Rationale`.
-5. If no current style can express the mechanic without changing the child's repeated action, stop with `readiness=blocked_until_product_decision`.
+5. Check `adaptation_brief.asset_dependency` before relying on screen images, cards, line art, or generated visuals. A style can use visual support only when the concept source declares `asset_policy` and complete asset requirements.
+6. If no current style can express the mechanic without changing the child's repeated action, or if required assets/UI support are unresolved, stop with `readiness=blocked_until_product_decision`.
 
 Style examples:
 
@@ -38,6 +39,8 @@ Style examples:
 | `sort` | no perfect dedicated style | Use only if the category scaffold can preserve grouping as the repeated action; otherwise recommend a template extension. |
 | `narrate` | `time_traveler`, sometimes `inventor_workshop` | Use `time_traveler` for sequence/journey; use Creation only when the child is actually inventing. |
 | `build` | `inventor_workshop`, `mix_lab` | Block when the concept requires unsupported drawing UI, physical material workflow, or before/after state tracking. |
+
+Visual assets are presentation/dependency scaffolding, not a separate game style. For example, a `deduce` activity may display prebuilt animal cards, but the child action remains deduction; a `build` activity may require line art, but if coloring/drawing UI is required and unsupported, block rather than reclassifying it as a verbal Creation activity.
 
 ---
 

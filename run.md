@@ -31,7 +31,7 @@ For each assignment in `assignments.md` that is marked `- [ ]` (not yet complete
 
 ### Step 1: Parse the assignment
 
-Extract: assignment_type (if provided), activity_concept (if provided), legacy pm_idea (if provided), description/notes (if provided), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), mapping (if provided), product_capabilities (if provided), start type (if provided), and output activity_id (if provided). Treat legacy `pm_idea=` as `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared.
+Extract: assignment_type (if provided), activity_concept (if provided), legacy pm_idea (if provided), description/notes (if provided), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), start type (if provided), and output activity_id (if provided). Treat legacy `pm_idea=` as `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared.
 
 If `assignment_type` is not specified, infer it:
 
@@ -48,10 +48,12 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
 
 1. Classify `input_mode` as `mapping_informed`, `parameterized`, or `concept_only`.
 2. Identify `canonical_mechanic` and `mechanic_confidence`. If `mechanic=` is specified, it wins unless it is outside the current enum.
-3. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, product capability flags, and scaffold fit.
-4. If `readiness=blocked_until_product_decision`, stop. Output the adaptation brief and missing capability/template decision. Do not create package files, append `results.tsv`, mark the assignment complete, or commit.
-5. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
-6. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
+3. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
+4. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
+5. If `readiness=blocked_until_product_decision`, stop. Output the adaptation brief and missing capability/template/asset decision. Do not create package files, append `results.tsv`, mark the assignment complete, or commit.
+6. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
+7. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
+8. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
 
 ### Step 1.5: Load entity mapping (when required or available)
 
@@ -101,7 +103,7 @@ activities/<activity_id>/
 
 Rules:
 
-- `spec.md`: author/reviewer reference with premise, target, rationale, selection trigger, pillar/game style, optional `## Adaptation Rationale`, and `## Self-Evaluation Scorecard`.
+- `spec.md`: author/reviewer reference with premise, target, rationale, selection trigger, pillar/game style, optional `## Adaptation Rationale`, optional `## Asset Brief`, and `## Self-Evaluation Scorecard`.
 - `prod.md`: runtime prompt guidance with Basic Info, Activity Overview, and full Interaction Flow. It must not contain a scorecard.
 - `tag_block.yaml`: structured metadata matching `activities/_schema/tag_block.schema.json`.
 - `recap.template.yaml`: child recap payload using the same focal attribute, role/badge, and next-step direction.
@@ -112,6 +114,7 @@ Runtime completeness rule:
 - Every Step 3 round in `prod.md` must be fully expanded with AI dialogue, child response branches, AI follow-up branches, and screen state.
 - Never write "same structure," "later rounds follow," "AI gives a riddle," or one-line summaries in `activities/*/prod.md`.
 - If `start=warm+cold`, document the bridge logic in `spec.md`; the runtime `prod.md` should still have a single converged Step 1 unless the assignment explicitly asks for both starts at runtime.
+- Do not generate image files as part of this loop. When an activity uses AI-generated or displayed images, author the dependency in `spec.md` `## Asset Brief` and reference the stable `asset_id` from the relevant screen description in `prod.md`.
 
 ### Step 4: Self-evaluate and repair
 
@@ -134,7 +137,7 @@ Reviewer instructions:
 - Read `templates.md`, `activities/README.md`, `activities/_schema/tag_block.schema.json`, and `docs/activity_vocabulary.md`.
 - If the assignment has `mapping=`, also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`.
 - Evaluate the package files directly, not the authoring agent's claimed scorecard.
-- Return PASS/FAIL/N/A for each dimension with brief evidence and concrete file/section references for any issue. For Dimension 10, explicitly confirm that Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic` and the adaptation brief's `canonical_mechanic` when present.
+- Return PASS/FAIL/N/A for each dimension with brief evidence and concrete file/section references for any issue. For Dimension 10, explicitly confirm that Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic` and the adaptation brief's `canonical_mechanic` when present. When assets are referenced, also confirm the package contains a coherent `## Asset Brief`, that every referenced `asset_id` is defined, and that required assets have prompts/source, use steps, display behavior, and fallback behavior.
 
 If the reviewer flags any FAIL or credible uncertainty, fix the package, rerun the author self-evaluation, and spawn a fresh independent review. Only finalize the `## Self-Evaluation Scorecard`, append `results.tsv`, and mark the assignment complete after both the author check and independent reviewer check pass.
 
@@ -149,6 +152,9 @@ Before logging or committing, verify:
 - Every `prod.md` Step 3 round is fully expanded; no condensed-round placeholders remain.
 - `spec.md` contains exactly one `## Self-Evaluation Scorecard`.
 - Concept-led packages with `generate_with_assumptions` include `spec.md` `## Adaptation Rationale`.
+- Packages whose adaptation brief has `asset_dependency.policy` other than `no_assets` include `spec.md` `## Asset Brief`.
+- Every `asset_id` referenced in `prod.md` is defined in `spec.md` `## Asset Brief`.
+- Required or optional asset rows include `asset_type`, requiredness, generation timing, use step, display behavior, and fallback behavior; generated assets also include a directly usable `prompt_en`, while existing/displayed assets include a `source` or approved source description.
 - `prod.md` Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic`.
 - `prod.md` contains zero `## Self-Evaluation Scorecard` sections.
 

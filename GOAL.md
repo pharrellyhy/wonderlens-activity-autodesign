@@ -36,14 +36,15 @@ The goal is complete only when all of the applicable criteria below are met.
 3. Phase 0 adaptation is completed when required:
    - `activity_concept`, `match_pattern`, and `capability_probe` rows always receive an `adaptation_brief`.
    - `entity_activity` rows receive an `adaptation_brief` when mapping, category, mechanic, trigger, or scaffold fit needs resolution.
-   - The brief records `input_mode`, `canonical_mechanic`, readiness, trigger condition, mapping use, product capability flags, scaffold choice, and assumptions.
+   - The brief records `input_mode`, `canonical_mechanic`, readiness, trigger condition, mapping use, asset dependency, product capability flags, scaffold choice, and assumptions.
+   - If `asset_policy` or companion asset rows are present, the brief copies them into `asset_dependency` instead of inferring image needs from prose.
 
 4. Blocked assignments stop safely:
    - If `readiness=blocked_until_product_decision`, output the adaptation brief and stop on that assignment.
    - Do not create package files.
    - Do not append `results.tsv`.
    - Do not mark the assignment complete.
-   - Report the missing product decision, capability, schema, category, or template extension.
+   - Report the missing product decision, capability, schema, category, template extension, or asset pipeline decision.
 
 5. Generation-ready assignments produce a complete package:
    - Exactly five files exist under `activities/<activity_id>/`:
@@ -68,18 +69,26 @@ The goal is complete only when all of the applicable criteria below are met.
    - Weak scaffold fit or generation assumptions are disclosed in `spec.md` `## Adaptation Rationale`.
    - Pillar and `game_style` support the mechanic; they do not override it.
 
-8. Mapping checks pass when mapping is required:
+8. Asset dependency checks pass when assets are present:
+   - `spec.md` includes `## Asset Brief` when `asset_dependency.policy` is not `no_assets`.
+   - Every `asset_id` referenced in `prod.md` is defined in `spec.md` `## Asset Brief`.
+   - Required assets declare `asset_type`, requiredness, generation timing, use step, purpose, display behavior, and fallback behavior.
+   - Generated assets include a directly usable English `prompt_en`; existing/displayed assets include a `source` or approved source description.
+   - `prod.md` references asset IDs and fallback behavior, not raw generation prompts.
+   - The loop does not generate or store image files unless a future asset pipeline explicitly changes this contract.
+
+9. Mapping checks pass when mapping is required:
    - `mapping=` resolves through `MAPPING_ROOT/_index.yaml`.
    - Entity-specific facts, IB concepts, related concepts, bridge prerequisites, and tier language are grounded in the mapped YAML.
    - Parameterized rows use placeholders instead of inventing entity-specific claims.
 
-9. Review and logging are complete for generated packages:
+10. Review and logging are complete for generated packages:
    - The package passes the 10-dimension rubric in `program.md`.
    - Independent reviewer checks pass when the run workflow requires them.
    - `results.tsv` receives one row for each generated package.
    - The processed assignment row is changed from `- [ ]` to `- [x]`.
 
-10. Final report is clear:
+11. Final report is clear:
    - State how many packages were generated.
    - List any blocked assignments and the exact reason.
    - List verification commands run and their results.
