@@ -139,13 +139,15 @@
             "collect",
             "sort",
             "deduce",
-            "voice",
             "build",
             "predict",
-            "narrate",
-            "care"
+            "decide",
+            "remember",
+            "imagine",
+            "care",
+            "motion_voice"
           ],
-          "description": "Closed enum — mirrors docs/activity_vocabulary.md mechanic (10 values)."
+          "description": "Closed enum — mirrors docs/activity_vocabulary.md mechanic (12 values)."
         },
         "entity_role": {
           "enum": ["subject", "exemplar", "catalyst", "reference"],

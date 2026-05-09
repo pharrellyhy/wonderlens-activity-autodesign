@@ -37,7 +37,7 @@ Constellation neighbors (cat, kitten, tiger, leopard, stuffed lion) can substitu
 
 - **Pillar:** Performance
 - **Game style:** `voice_stage` (voice-driven, audience-reactive, 3-round escalation with surprise twist)
-- **Mechanic:** `voice`
+- **Mechanic:** `motion_voice`
 - **Observation angle:** `behavior` (how the lion sounds, how the voice varies)
 - **Entity role:** `subject` (the lion IS the star — no role pivot)
 

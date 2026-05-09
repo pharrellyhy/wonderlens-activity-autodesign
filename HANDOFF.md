@@ -35,6 +35,10 @@
 - Replaced direct source-team naming with neutral source-concept terminology and documented the English-only generated-output contract.
 - Renamed Batch 4 activity IDs, concept source anchors, and companion file references away from direct source-team shorthand.
 - Normalized Batch 4 assignment rows and source concept briefs to English so generated briefs and packages do not inherit Chinese source prose.
+- Added `examples/source_activity_concept_template.md` as a blank fillable source-concept and asset-requirements template.
+- Updated `README.md` and `examples/README.md` to point concept owners to the fillable template.
+- Expanded the canonical `activity_signature.mechanic` enum from 10 to 12 values across `docs/activity_vocabulary.md`, `activities/_schema/tag_block.schema.json`, `program.md`, `templates.md`, `README.md`, examples, assignments, and migrated activity metadata.
+- Retired `voice` in favor of `motion_voice`, retired `narrate` in favor of `imagine`, and added `decide` plus `remember`.
 
 ## Verification
 
@@ -50,6 +54,16 @@
   - Result: no direct shorthand source-team terms remain
 - English-only generation source scan across active assignment/example/generator docs
   - Result: no Chinese text remains in `assignments.md`, active source concept examples, `README.md`, `program.md`, `run.md`, `GOAL.md`, or `templates.md`
+- Template reference scan
+  - Result: `examples/source_activity_concept_template.md` is referenced from `README.md` and `examples/README.md`
+- Mechanic enum drift check between `docs/activity_vocabulary.md` and `activities/_schema/tag_block.schema.json`
+  - Result: the 12 mechanic tokens match exactly
+- Migrated package tag-block schema validation
+  - Result: all five migrated `activities/*/tag_block.yaml` files validate, including the `motion_voice` migration for `voice_stage_lion`
+- Assignment/example mechanic validation
+  - Result: checked 35 assignment, source-brief, and example mechanic values; all use the current enum
+- Retired mechanic token scan
+  - Result: no active assignment or tag-block use of retired `voice` / `narrate` mechanic values remains; old 10-value enum snippets are absent outside explicit migration notes
 - Targeted consistency scan across `program.md`, `templates.md`, `run.md`, `transform.md`, `transform_run.md`, `README.md`, and `HANDOFF.md`
   - Result: no stale Dimension 10 rubric name or template-first guidance outside expected historical changelog text and runtime-placeholder warnings
 - Targeted README scan for input-source terms: `Input Data Sources`, `assignment_type`, `activity_concept`, `mapping_informed`, `parameterized`, `concept_only`, `product_capabilities`, and `mappings_dev20_0318`
@@ -75,7 +89,7 @@
 
 - The existing `results.tsv` header predates the migrated package loop and is not changed in this pass.
 - `d10_pillar_fidelity` remains the documented log column name for compatibility, but it now records Dimension 10 Mechanic Fidelity + Scaffold Honesty.
-- No schema enum changes were made; unsupported mechanics still need future schema/template work.
+- Mechanic enum changes require matching updates in downstream consumer enum mirrors before new packages using `decide`, `remember`, `imagine`, or `motion_voice` can be consumed safely.
 - Asset requirements are authoring-only in this pass; no runtime asset manifest file or tag-block schema field was added.
 - Runtime image generation remains blocked unless a future product decision declares support.
 - Run manifests are maintained by the agent workflow in this pass; there is no schema validator for `runs/<run_id>/run_manifest.yaml` yet.

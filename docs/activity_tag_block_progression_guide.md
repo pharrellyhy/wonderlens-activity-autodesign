@@ -264,11 +264,11 @@ Not eligible for: unsafe/unclear photos, or activities that secretly rely on a s
 
 Coherence fields live mostly inside `activity_signature`. They help the selector rank eligible activities against the conversation signature, progression target, and desired child action.
 
-Mechanic fit is the first coherence question after hard eligibility. If a runtime request, assignment, child intent, or product policy prefers an action such as collect, compare, deduce, voice, predict, build, or care, the selector should score against `activity_signature.mechanic` before considering `game_style`. `game_style` can break ties among otherwise good mechanic matches, but it is not the primary action selector.
+Mechanic fit is the first coherence question after hard eligibility. If a runtime request, assignment, child intent, or product policy prefers an action such as collect, compare, deduce, build, predict, decide, remember, imagine, care, or motion/voice, the selector should score against `activity_signature.mechanic` before considering `game_style`. `game_style` can break ties among otherwise good mechanic matches, but it is not the primary action selector.
 
 | Field | Usage | Example |
 |---|---|---|
-| `activity_signature.mechanic` | Child action pattern that drives matching, runtime recap phrasing, and parent analytics. | `collect`, `compare`, `deduce`, `voice` |
+| `activity_signature.mechanic` | Child action pattern that drives matching, runtime recap phrasing, and parent analytics. | `collect`, `compare`, `deduce`, `motion_voice` |
 | `activity_signature.observation_angle` | Primary attribute/dimension the activity attends to. | `color`, `quantity`, `emotion` |
 | `activity_signature.bridge_prerequisites.primary` | 1-3 strong conversation angles that make this activity a natural next step. | `[color]`, `[behavior, function]` |
 | `activity_signature.bridge_prerequisites.secondary` | Supporting angles or editorial descriptors. Enum values are preferred. | `[pattern, visibility]` |
@@ -289,7 +289,7 @@ Scoring pattern from the activity-signature design:
 
 Progression targeting is best-effort. The selector should prefer the target axis/rung when photo context and catalog coverage allow it, but hard eligibility still wins.
 
-If no explicit mechanic preference is available, infer one from the current intent before falling back to style: child wants to find or gather -> `collect`; child compares two things -> `compare`; child asks why -> `deduce` or `predict`; child wants pretend speech -> `voice`; child wants to make or arrange -> `build`; child notices care/help needs -> `care`.
+If no explicit mechanic preference is available, infer one from the current intent before falling back to style: child wants to find or gather -> `collect`; child compares two things -> `compare`; child asks why -> `deduce` or `predict`; child chooses between options -> `decide`; child recalls or repeats -> `remember`; child wants pretend speech, sound imitation, or movement -> `motion_voice`; child wants to make or arrange -> `build` or `sort`; child wants to tell/retell a story -> `imagine`; child notices care/help needs -> `care`.
 
 ### 3.3 Where Runtime Selector Inputs Come From
 
@@ -848,7 +848,7 @@ matchability:
   tier_support: {T0: true, T1: true, T2: true}
 activity_signature:
   observation_angle: behavior
-  mechanic: voice
+  mechanic: motion_voice
   entity_role: subject
   focal_attribute: lion_voice
 progression:

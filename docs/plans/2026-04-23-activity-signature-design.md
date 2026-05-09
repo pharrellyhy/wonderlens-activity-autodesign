@@ -37,7 +37,7 @@ Current tag block fields (§04, as of v0.3):
 
 What's missing:
 1. **What the activity attends to** — the attribute-level focus (color, shape, texture, function, origin, …). `topic_axis` is the IB axis (Form/Function/…); the sub-dimension inside Form is unspecified.
-2. **What the child will do** — the mechanic (enumerate, collect, compare, voice, …). `game_style` hints at this but conflates it with pillar styling.
+2. **What the child will do** — the mechanic (enumerate, collect, compare, motion_voice, …). `game_style` hints at this but conflates it with pillar styling.
 3. **How the photographed entity participates** — subject vs exemplar vs catalyst vs reference. Currently implicit; when it shifts (photo was the topic, activity uses photo as an example of a category), the runtime has no way to surface the pivot.
 4. **What conversation themes the activity naturally extends** — no bridge signal for the upstream matcher to prefer coherent continuations.
 
@@ -119,7 +119,7 @@ header:
 
   activity_signature:                       # answers "should this activity follow this conversation?"
     observation_angle: {color|shape|size|quantity|texture|material|pattern|function|origin|behavior|emotion|state}
-    mechanic:          {enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care}
+    mechanic:          {enumerate|compare|collect|sort|deduce|build|predict|decide|remember|imagine|care|motion_voice}
     entity_role:       {subject|exemplar|catalyst|reference}
     focal_attribute:   "..."                # the parameterized attribute
     bridge_prerequisites:
@@ -243,7 +243,7 @@ mechanic:
   - care        # "what does this need, and how can we help?"
 ```
 
-**Rationale:** each maps to the child's primary action, not necessarily 1:1 to a game style. `deduce` covers Mystery clue-solving; `care` covers Nurture help/rescue loops; `collect` covers many Cat5 missions; `voice` maps to voice_stage/ensemble_show; `predict` maps to prediction_lab/field_experiment. Authors already think in these buckets; the tag makes the primary action explicit while `game_style` preserves the richer pillar-specific structure.
+**Rationale:** each maps to the child's primary action, not necessarily 1:1 to a game style. `deduce` covers Mystery clue-solving; `care` covers Nurture help/rescue loops; `collect` covers many Cat5 missions; `motion_voice` maps to voice_stage/ensemble_show; `predict` maps to prediction_lab/field_experiment. Authors already think in these buckets; the tag makes the primary action explicit while `game_style` preserves the richer pillar-specific structure.
 
 Mechanic-to-style guidance:
 
@@ -253,11 +253,11 @@ Mechanic-to-style guidance:
 | `mystery_trail` | Mystery | `deduce` or `collect` depending on whether clue-solving or physical search is primary |
 | `inventor_workshop` | Creation | `build` |
 | `mix_lab` | Creation | `build` |
-| `voice_stage` | Performance | `voice` |
-| `ensemble_show` | Performance | `voice` |
+| `voice_stage` | Performance | `motion_voice` |
+| `ensemble_show` | Performance | `motion_voice` |
 | `prediction_lab` | Discovery | `predict` |
 | `field_experiment` | Discovery | `predict` for hypothesis-led experiments; `collect` for simple property hunts |
-| `time_traveler` | Adventure | `narrate` |
+| `time_traveler` | Adventure | `imagine` or `decide` depending on whether story-weaving or choice-making is primary |
 | `quest_collector` | Adventure | `collect` |
 | `care_station` | Nurture | `care` |
 | `rescue_team` | Nurture | `care` or `collect` depending on whether helping or finding is primary |
@@ -296,7 +296,7 @@ A single sentence, third-person, describing what the child does. Serves parent-d
 - Third-person observer framing — *"The child walks around to find..."*, not *"You walk around..."* (that's preview_prompt's job) and not *"The activity tests..."* (too abstract)
 - Rendered length target ≤ 120 chars; cap 160 for dashboard card fit
 - Template-layer: authored with `{placeholders}`, rendered at session start
-- Mentions the mechanic implicitly via verb — *"walks around to find"* → collect, *"gives the entity a voice"* → voice, *"makes up a story about"* → narrate
+- Mentions the mechanic implicitly via verb — *"walks around to find"* → collect, *"gives the entity a voice"* → motion_voice, *"makes up a story about"* → imagine
 - Tier-agnostic — same intro for T0/T1/T2
 
 **Example templates (authored) → rendered (at session start with cat food photo):**
@@ -611,7 +611,7 @@ A tag block is a per-activity record. Parent-facing growth path views aggregate 
 
 New fields:
 - **Curiosity radial angle split** — each axis now has `by_angle: {color: {sessions: N, rungs_reached: [...]}}` etc. Existing `current_rung_overall` per axis preserved for back-compat.
-- **Exploration matrix** — 2D: mechanic × angle, values = session counts. Surfaces imbalance (e.g., "lots of collect, no voice").
+- **Exploration matrix** — 2D: mechanic x angle, values = session counts. Surfaces imbalance (e.g., "lots of collect, no motion_voice").
 - **Per-session fields** — `axis`, `angle`, `mechanic`, `entity_role` on each session in the timeline.
 
 These are computed from `activity_session_outcomes` + the game's `tag_block.yaml`; no new persistence needed beyond adding the four activity-signature snapshot columns in §7 to `activity_session_outcomes` (both repos).

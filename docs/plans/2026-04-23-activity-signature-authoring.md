@@ -153,22 +153,24 @@ What attribute/dimension the activity centers on. **Orthogonal to `progression.t
 | `emotion` | Perceived feeling, expression, or tone | Voice Stage, Feelings Detective | happy, worried, excited |
 | `state` | Condition | Fix-It Station, Old vs New | worn, fresh, alive |
 
-## mechanic (10 values)
+## mechanic (12 values)
 
 What the child actually does during the activity.
 
 | Token | Definition | Example games |
 |---|---|---|
-| `enumerate` | Name parts or list attributes | Detail Detective, Mix Lab |
-| `compare` | Contrast two+ items | Material Detective, comparison-chart games |
-| `collect` | Find N things matching a criterion | Color Scout, Shape Quest, most property bridges |
-| `sort` | Categorize into groups | Nature vs Made |
-| `deduce` | Infer an answer from clues or evidence | Mystery Lens, Mystery Trail |
-| `voice` | Give the entity a voice | Voice Stage Lion, Playground Voices |
-| `build` | Make/invent something | What-If Workshop, Inventor Workshop |
-| `predict` | "What happens next?" | Apple What Happens Next, Prediction Lab |
-| `narrate` | Tell a story | Library Book's Journey, storytelling_chain games |
-| `care` | Notice a need and propose help | Care Station, Rescue Team |
+| `enumerate` | Notice, identify, count, measure, or name visible parts and attributes | Detail Detective, Counting Hunt |
+| `compare` | Contrast two or more items | Material Detective, animal picture comparisons |
+| `collect` | Find, match, pair, or associate items that satisfy a criterion | Color Scout, Shape Quest |
+| `sort` | Categorize, rank, sequence, or organize items | Nature vs Made, Tiny Curator |
+| `deduce` | Infer an answer from clues or evidence and justify it | Mystery Lens, Mystery Trail |
+| `build` | Create, assemble, transform, experiment, or invent | What-If Workshop, Inventor Workshop |
+| `predict` | Commit to a prediction, hypothesis, or plan | Prediction Lab |
+| `decide` | Choose between options or correct an error | Branching Choice Story |
+| `remember` | Recall, repeat, retell, or recognize something seen earlier | Memory Trail |
+| `imagine` | Pretend, roleplay, narrate, retell, or summarize | Time Traveler |
+| `care` | Notice a need or feeling and propose help | Care Station, Rescue Team |
+| `motion_voice` | Move, gesture, imitate a sound, or speak in role | Voice Stage Lion, animal sound imitation |
 
 ## entity_role (4 values)
 
@@ -231,7 +233,7 @@ Find the text (around the existing `caregiver_role:` line) and add a new block b
 
   <span class="hl"><span class="key">activity_signature</span>:                       <span class="cmt"># answers "should this activity follow this conversation?"</span>
     <span class="key">observation_angle</span>: <span class="str">{color|shape|size|quantity|texture|material|pattern|function|origin|behavior|emotion|state}</span>
-    <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care}</span>
+    <span class="key">mechanic</span>:          <span class="str">{enumerate|compare|collect|sort|deduce|build|predict|decide|remember|imagine|care|motion_voice}</span>
     <span class="key">entity_role</span>:       <span class="str">{subject|exemplar|catalyst|reference}</span>
     <span class="key">focal_attribute</span>:   <span class="str">"..."</span>                <span class="cmt"># the parameterized attribute</span>
     <span class="key">bridge_prerequisites</span>:
@@ -483,7 +485,7 @@ Same recipe. Differences:
 
 Cat1 gold standard. Differences:
 - `template_type: cat1`, `pillar: Performance`, `game_style: voice_stage`
-- `activity_signature.observation_angle: behavior`, `mechanic: voice`, `entity_role: subject` (no pivot — the lion IS the subject of the voice)
+- `activity_signature.observation_angle: behavior`, `mechanic: motion_voice`, `entity_role: subject` (no pivot — the lion IS the subject of the voice)
 - `focal_attribute: "lion_voice"` (or similar; the voice-stage game voices the entity itself, not an attribute)
 - `bridge_prerequisites.primary: [behavior, function]`
 - ◆ 2026-04-24 NEW — `activity_signature.intro: "The child gives the {entity} a voice and personality to match its presence."`

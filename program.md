@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.11 | **Date**: 2026-05-09
+> **Version**: 1.12 | **Date**: 2026-05-09
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.12 — 2026-05-09**: Expand the canonical `activity_signature.mechanic` enum to 12 values. Retire `voice` in favor of `motion_voice`, retire `narrate` in favor of `imagine`, and add `decide` plus `remember`.
 > **v1.11 — 2026-05-09**: Add run provenance directories under `runs/<run_id>/`. Runtime activity packages remain under `activities/<activity_id>/`, while run manifests, assignment snapshots, adaptation briefs, blocked briefs, and generated activity indexes live under `runs/`.
 > **v1.10 — 2026-05-09**: Add the Activity Concept Brief as the preferred concept-led source shape and introduce an explicit asset dependency layer. Concept rows should declare `asset_policy` and asset requirement rows instead of relying on the generator to infer image/display needs from prose.
 > **v1.9 — 2026-05-08**: Formalize assignment types (`entity_activity`, `activity_concept`, `match_pattern`, `capability_probe`), standardize new concept rows on `activity_concept=`, rename the old Phase 0 concept-only mode to `concept_only`, and add `GOAL.md` as the Codex `/goal` completion contract.
@@ -79,7 +80,7 @@ Concept row fields:
 | `assignment_type` | Yes | Usually `activity_concept`, `match_pattern`, or `capability_probe`. |
 | `activity_concept` | Yes | Human-readable concept name. Source names may arrive in Chinese, but output-facing assignment rows should include an English normalized name when possible. |
 | `description` | Yes | Child-facing experience and loop in plain English for generation rows. Translate or summarize Chinese source prose before writing generated artifacts. |
-| `mechanic` | Recommended | Primary child action: `enumerate`, `compare`, `collect`, `sort`, `deduce`, `voice`, `build`, `predict`, `narrate`, or `care`. |
+| `mechanic` | Recommended | Primary child action: `enumerate`, `compare`, `collect`, `sort`, `deduce`, `build`, `predict`, `decide`, `remember`, `imagine`, `care`, or `motion_voice`. |
 | `category` | Recommended | `cat1`, `cat5`, or `unknown`; unsupported categories are decided in Phase 0. |
 | `trigger_condition` | Recommended | Best moment to start the activity. |
 | `entity_scope` | Optional | Specific entity, entity class, property placeholder, or mode-selected concept. |
@@ -124,7 +125,7 @@ Before choosing pillar/style or writing package files, produce this internal bri
 adaptation_brief:
   input_mode: <mapping_informed|parameterized|concept_only>
   core_promise: "<what child experience the source concept wants>"
-  canonical_mechanic: <enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care>
+  canonical_mechanic: <enumerate|compare|collect|sort|deduce|build|predict|decide|remember|imagine|care|motion_voice>
   mechanic_confidence: <high|medium|low>
 
   category_decision: <cat1|cat5|unsupported_cat2|unsupported_cat3|unsupported_cat4|unsupported_cat6>
@@ -431,7 +432,7 @@ caregiver_role: [<scaffold|co-explorer|observer>, ...]
 
 activity_signature:
   observation_angle: <color|shape|size|quantity|texture|material|pattern|function|origin|behavior|emotion|state>
-  mechanic: <enumerate|compare|collect|sort|deduce|voice|build|predict|narrate|care>
+  mechanic: <enumerate|compare|collect|sort|deduce|build|predict|decide|remember|imagine|care|motion_voice>
   entity_role: <subject|exemplar|catalyst|reference>
   bridge_prerequisites:
     primary: [<observation_angle>, ...]   # 1-3 closed enum values
@@ -461,7 +462,7 @@ Use `activities/_schema/tag_block.schema.json` for exact required fields and enu
 The three closed enums under `activity_signature` are owned by `docs/activity_vocabulary.md`:
 
 - `observation_angle`: `color`, `shape`, `size`, `quantity`, `texture`, `material`, `pattern`, `function`, `origin`, `behavior`, `emotion`, `state`
-- `mechanic`: `enumerate`, `compare`, `collect`, `sort`, `deduce`, `voice`, `build`, `predict`, `narrate`, `care`
+- `mechanic`: `enumerate`, `compare`, `collect`, `sort`, `deduce`, `build`, `predict`, `decide`, `remember`, `imagine`, `care`, `motion_voice`
 - `entity_role`: `subject`, `exemplar`, `catalyst`, `reference`
 
 #### Package-level consumer contracts
@@ -805,7 +806,7 @@ Optional: mechanic=[mechanic], category=[category hint], entity=[entity or entit
 
 Examples:
 - `Design an activity for: butterfly + category 5 (collection/tracking), mechanic=deduce`
-- `Design an activity for: toy car + category 1 (sustained verbal), tier=T0, mechanic=voice, style=voice_stage`
+- `Design an activity for: toy car + category 1 (sustained verbal), tier=T0, mechanic=motion_voice, style=voice_stage`
 - `Design an activity for: kitchen vegetables + category 3 (material exploration), tier=T1, scene=child photographs broccoli on kitchen counter`
 - `Adapt activity concept: assignment_type=activity_concept, activity_concept=Scavenger Hunt, description=find X things with a shared color or shape, mechanic=collect`
 - `Adapt activity concept: assignment_type=capability_probe, activity_concept=Coloring Game, description=child photographs colors and AI fills a line drawing, category=cat5`

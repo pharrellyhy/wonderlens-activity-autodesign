@@ -256,7 +256,7 @@ progression:
   difficulty_level: 2
 activity_signature:
   observation_angle: emotion
-  mechanic: voice
+  mechanic: motion_voice
   entity_role: subject
   focal_attribute: happy_sleepy_worried
   bridge_prerequisites:

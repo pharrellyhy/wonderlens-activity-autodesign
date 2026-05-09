@@ -35,10 +35,18 @@ Style examples:
 
 | Mechanic | Usually strong styles | Notes |
 |---|---|---|
+| `enumerate` | `mystery_lens`, `field_experiment` | Use when naming, identifying, counting, or measuring is the repeated action; do not turn it into a quiz without observation. |
+| `compare` | `field_experiment`, `mystery_lens` | Works when same/different evidence is visible or supplied by assets. |
 | `collect` | `quest_collector`, `mystery_trail`, `field_experiment`, `rescue_team` | Pick based on emotional payoff: mission, clue trail, evidence test, or helping. |
 | `sort` | no perfect dedicated style | Use only if the category scaffold can preserve grouping as the repeated action; otherwise recommend a template extension. |
-| `narrate` | `time_traveler`, sometimes `inventor_workshop` | Use `time_traveler` for sequence/journey; use Creation only when the child is actually inventing. |
+| `deduce` | `mystery_lens`, `mystery_trail` | Preserve clue/evidence before answer; optional assets can support but do not replace inference. |
 | `build` | `inventor_workshop`, `mix_lab` | Block when the concept requires unsupported drawing UI, physical material workflow, or before/after state tracking. |
+| `predict` | `prediction_lab`, `field_experiment` | Preserve commit-before-reveal and visible or declared outcome evidence. |
+| `decide` | `time_traveler`, sometimes `care_station` | Use for choice points and corrections; disclose weak fit if the style mostly narrates rather than repeatedly asks the child to decide. |
+| `remember` | no perfect dedicated style | Use only for low-pressure recall/repeat loops; recommend a template extension if memory is the core product mode. |
+| `imagine` | `time_traveler`, sometimes `inventor_workshop` or `voice_stage` | Use `time_traveler` for sequence/journey; use Creation only when the child is actually inventing. |
+| `care` | `care_station`, `rescue_team` | Preserve need -> proposed help -> gratitude/impact. |
+| `motion_voice` | `voice_stage`, `ensemble_show` | Use for speaking in role, sound imitation, gesture, or simple movement; do not claim motion/audio-quality verification. |
 
 Visual assets are presentation/dependency scaffolding, not a separate game style. For example, a `deduce` activity may display prebuilt animal cards, but the child action remains deduction; a `build` activity may require line art, but if coloring/drawing UI is required and unsupported, block rather than reclassifying it as a verbal Creation activity.
 

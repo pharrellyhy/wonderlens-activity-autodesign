@@ -116,6 +116,8 @@ Ask concept owners / curriculum authors to provide concept-led ideas as two link
 
 Source concept names and comments may arrive in Chinese, but generated artifacts must be English-only. Normalize assignment `description=`, `trigger_condition=`, adaptation brief fields, package files, asset brief rows, and runtime dialogue to English before generation.
 
+Use `examples/source_activity_concept_template.md` as the blank fillable template. Filled source concept files should follow the same field names so assignment rows can reference `concept_source=file#source_id` and `asset_requirements=file#asset_id` directly.
+
 Concept table:
 
 | Field | Example |
@@ -179,7 +181,7 @@ Use these Phase 0 input modes:
 
 Default to `parameterized` for activity concepts driven by properties, categories, or reusable match rules. Use `mapping_informed` only when a concrete mapping source is supplied. Lack of mapping should not block an adaptation brief, but it should block full generation when the package would otherwise need mapping-grounded facts or routing.
 
-See `examples/data_sources.md`, `examples/input_modes.md`, and `examples/source_activity_concept_briefs.md` for concrete assignment rows, selected source concepts, asset rows, and expected adaptation brief snippets.
+See `examples/source_activity_concept_template.md` for the fillable template. See `examples/data_sources.md`, `examples/input_modes.md`, and `examples/source_activity_concept_briefs.md` for concrete assignment rows, selected source concepts, asset rows, and expected adaptation brief snippets.
 
 ## Working With `assignments.md`
 
@@ -211,7 +213,7 @@ Required:
 Recommended:
 
 - `tier=` when the target tier is known.
-- `mechanic=` as the primary child-action hint. Valid values are `enumerate`, `compare`, `collect`, `sort`, `deduce`, `voice`, `build`, `predict`, `narrate`, and `care`.
+- `mechanic=` as the primary child-action hint. Valid values are `enumerate`, `compare`, `collect`, `sort`, `deduce`, `build`, `predict`, `decide`, `remember`, `imagine`, `care`, and `motion_voice`.
 - `scene=` with concrete photo context.
 - `assignment_type=` for new rows. Valid values are `entity_activity`, `activity_concept`, `match_pattern`, and `capability_probe`.
 - `description=` for concept-led rows so the adaptation brief can preserve the intended child experience.

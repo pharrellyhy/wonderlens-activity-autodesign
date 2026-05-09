@@ -40,7 +40,7 @@ caregiver_role: [scaffold]
 activity_signature:
   # ── Layer 1: editorial identity (fixed; matcher reads these) ──
   observation_angle: behavior
-  mechanic: voice
+  mechanic: motion_voice
   entity_role: subject
   bridge_prerequisites:
     primary:   [behavior, function]

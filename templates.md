@@ -1,6 +1,6 @@
 # Templates
 
-> **Version**: 1.4 | **Date**: 2026-05-09
+> **Version**: 1.5 | **Date**: 2026-05-09
 > **Owns**: the mechanic adapters, pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture), and the Cat1 / Cat5 category modifier appendix.
 > **Does NOT own**: the migrated five-file package layout, the tag block schema, asset requirement rows, or the tier defaults — those live in `activities/README.md`, `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` Phase 0 / §1.9.
 > **Consumed by**: `program.md` Phase 5 (template-reading flow), `run.md` (activity package loop), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), `activities/*/prod.md` (runtime outputs), and legacy `designs/cat{1,5}/*.md` references.
@@ -12,7 +12,7 @@
 An activity design is built by composing four activity layers, plus an optional asset dependency layer supplied by Phase 0:
 
 1. **Template 0** — the category-agnostic skeleton. It defines the 5-beat spine (Transition Bridge → Frame & Role → Core Loop → Magic Moment → Celebration), the universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the three tier dials (T0 / T1 / T2). The migrated output contract lives in `program.md` §1.9 and `activities/README.md`.
-2. **Mechanic adapter** — one of the ten `activity_signature.mechanic` adapters below. It defines what the child actually does in the repeated loop. This is the primary source/product intent layer and must not be overwritten by pillar or style.
+2. **Mechanic adapter** — one of the twelve `activity_signature.mechanic` adapters below. It defines what the child actually does in the repeated loop. This is the primary source/product intent layer and must not be overwritten by pillar or style.
 3. **Category modifier** — Cat1 (in-device, sustained verbal) or Cat5 (out-of-device, collection/tracking), drawn from the appendix at the bottom of this file. Category modifiers are small — 8 fields (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras). They set the physical frame for the mechanic.
 4. **Pillar/style scaffold** — one of the six overlays below (Mystery / Creation / Performance / Discovery / Adventure / Nurture) and its Cat1/Cat5 style. It provides emotional payoff, metaphor flavor, and magic-moment shape. If no pillar/style cleanly fits, choose the least misleading scaffold only when the mechanic remains intact; otherwise block generation per `program.md` Phase 0.
 
@@ -70,16 +70,18 @@ Mechanic adapters define the child-action loop independent of pillar. Use the ad
 
 | Mechanic | Core loop | Notes |
 | --- | --- | --- |
-| `enumerate` | notice/name → AI confirms/extends → next attribute/part | Use for naming visible parts, counting obvious features, or listing attributes. Avoid OCR/text-reading and unreliable photo counting. |
-| `compare` | inspect A/B → child states same/different/preference → AI names contrast | The compared angle must still be a concrete `observation_angle` such as color, size, material, quantity, or state. |
-| `collect` | mission criterion → child finds/photos → AI reacts → collection synthesis | Best for Cat5 and parameterized property bridges. Criterion must be broad enough for 3+ finds and V1-visible when AI assesses photos. |
-| `sort` | rule or child-made rule → group items → explain grouping | Use when the child's action is categorizing. If the rule is child-invented, AI validates and helps name it rather than correcting. |
-| `deduce` | clue/evidence → child guesses → AI reveals or gives next clue | Use for mystery, Guess-in-10, hidden detail, and evidence-based inference. Always include soft hints when the child is stuck. |
-| `voice` | role prompt → child speaks as entity/item → AI reacts as audience/partner | ASR captures words only. Do not require sound-quality, volume, rhythm, or emotion detection. |
-| `build` | material/idea prompt → child creates or imagines → AI adds/combines | In Cat1/Cat5 this is imaginative or collection-combination build. Physical material builds are unsupported Cat3 unless a Cat3 workflow exists. |
-| `predict` | commit guess → reveal/result → tally or consequence | Preserve commit-before-reveal. Out-of-device hypotheses must use V1-visible properties. |
-| `narrate` | story setup → child adds choice/detail → AI weaves sequence | Use for story chains, journey planning, choice stories, and recap-style co-narration. Pre-authored branching may be required for quality. |
-| `care` | need appears → child proposes help → AI shows gratitude/impact | Use for empathy, responsibility, rescue, and repair metaphors. Avoid before/after state-change verification; impact can be narrated or self-reported. |
+| `enumerate` | notice/identify/count/measure → AI confirms/extends → next attribute/part | Use for naming visible parts, counting obvious features, measuring relative quantity/size, or listing attributes. Avoid OCR/text-reading and unreliable photo counting. |
+| `compare` | inspect A/B → child states same/different/preference/evidence → AI names contrast | The compared angle must still be a concrete `observation_angle` such as color, size, material, quantity, or state. |
+| `collect` | criterion → child finds/matches/pairs/photos → AI reacts → set synthesis | Best for Cat5 and parameterized property bridges. Criterion must be broad enough for 3+ finds and V1-visible when AI assesses photos. |
+| `sort` | rule or child-made rule → group/rank/sequence items → explain organizing logic | Use when the child's action is categorizing, sequencing, ranking, or arranging. If the rule is child-invented, AI validates and helps name it rather than correcting. |
+| `deduce` | clue/evidence → child infers/guesses → child justifies → AI reveals or gives next clue | Use for mystery, Guess-in-10, hidden detail, and evidence-based inference. Always include soft hints when the child is stuck. |
+| `build` | material/idea prompt → child creates/assembles/transforms/experiments → AI adds/combines | In Cat1/Cat5 this is imaginative or collection-combination build. Physical material builds are unsupported Cat3 unless a Cat3 workflow exists. |
+| `predict` | commit guess/hypothesis/plan → reveal/result/action → tally or consequence | Preserve commit-before-reveal. Out-of-device hypotheses must use V1-visible properties. Planning is valid only when the later action/result can be represented honestly. |
+| `decide` | options appear → child chooses/corrects → AI applies consequence or explains correction | Use for branching choices, decision points, correction games, or "which one should we use?" loops. If the decision requires a complex UI state, declare the product dependency. |
+| `remember` | encode/show/hear → delay or distract → child recalls/repeats/retells → AI confirms and extends | Use for memory, recall, repetition, retell, and "what did we see before?" loops. Keep recall age-appropriate and avoid testing pressure. |
+| `imagine` | story/pretend setup → child adds choice/detail/roleplay/retell → AI weaves or summarizes | Use for story chains, journey planning, pretend play, roleplay, retelling, and recap-style co-narration. Pre-authored branching may be required for quality. |
+| `care` | need or feeling appears → child proposes help → AI shows gratitude/impact | Use for empathy, responsibility, rescue, and repair metaphors. Avoid before/after state-change verification; impact can be narrated or self-reported. |
+| `motion_voice` | motion/sound/role prompt → child moves, imitates, or speaks in role → AI reacts as audience/partner | ASR captures words only and cannot verify motion/audio quality. For motion-heavy prompts, use caregiver-safe, low-risk actions and do not claim sensor verification. |
 
 **Mechanic adapter self-check.** Before writing runtime dialogue, verify: (a) Step 3's repeated child action matches the adapter, (b) `tag_block.yaml activity_signature.mechanic` uses the same mechanic, (c) the selected pillar/style does not replace the adapter loop with a different action, and (d) unsupported source/product needs are blocked instead of hidden in dialogue.
 
@@ -295,9 +297,9 @@ Category modifiers are small overrides on top of Template 0. Each modifier fills
 **How the layers compose.** A concrete example: `lion + Cat1 + Performance + T0`.
 
 1. **Template 0 supplies** the 5-beat spine, the 4 universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the T0 tier dial (onomatopoeia, 3–5 word sentences, `caregiver_role: [scaffold]`).
-2. **Voice mechanic adapter supplies** the repeated child action: role prompt → child speaks as the entity → AI reacts as audience/partner.
+2. **`motion_voice` mechanic adapter supplies** the repeated child action: role or motion prompt → child speaks, imitates, or moves as the entity → AI reacts as audience/partner.
 3. **Cat1 modifier supplies** `verbal_dialogue` medium, 3–5 rounds, initial-photo-only, indoor quiet setting, 5 steps, engagement-first anchoring, and the Cat1 checklist extras.
-4. **Performance / `voice_stage` scaffold supplies** the stage framing for beat 2, audience flavor around the voice loop, standing-ovation magic moment for beat 4, and the three pillar-specific variables (`{challenges}`, `{audience_character}`, `{twist_challenge}`).
+4. **Performance / `voice_stage` scaffold supplies** the stage framing for beat 2, audience flavor around the `motion_voice` loop, standing-ovation magic moment for beat 4, and the three pillar-specific variables (`{challenges}`, `{audience_character}`, `{twist_challenge}`).
 
 The agent then fills `{role_title}` (e.g. "Roar Reporter"), `{metaphor}` (e.g. "jungle talent show"), the three Performance-specific slots, expands each beat to full `program.md` dialogue, and emits the five-file activity package.
 

@@ -60,7 +60,7 @@ Current package generation does not create image files. A separate asset pipelin
 
 ## Canonical vocabulary
 
-The three closed enums in `tag_block.yaml activity_signature` — `observation_angle` (12), `mechanic` (10), `entity_role` (4) — are defined in [`docs/activity_vocabulary.md`](../docs/activity_vocabulary.md). The schema's enum lists must stay in sync with that doc; drift is CI-blocked.
+The three closed enums in `tag_block.yaml activity_signature` — `observation_angle` (12), `mechanic` (12), `entity_role` (4) — are defined in [`docs/activity_vocabulary.md`](../docs/activity_vocabulary.md). The schema's enum lists must stay in sync with that doc; drift is CI-blocked.
 
 For field ownership and authoring guidance, use [`docs/activity_tag_block_usage.md`](../docs/activity_tag_block_usage.md). It separates matcher-facing, runtime-presentation, child-recap, and parent-dashboard fields.
 

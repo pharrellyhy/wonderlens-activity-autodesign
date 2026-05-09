@@ -4,7 +4,7 @@ dashboard_fragment:
   session:
     axis: perspective
     angle: behavior
-    mechanic: voice
+    mechanic: motion_voice
     entity_role: subject
     focal_attribute: "lion_voice"
     entry_rung: "{runtime_entry_rung}"
@@ -16,7 +16,7 @@ dashboard_fragment:
       axis: perspective
       angle: behavior                        # bumps perspective.by_angle.behavior.sessions
     exploration_matrix:
-      cell: "voice × behavior"               # bumps this cell's count
+      cell: "motion_voice × behavior"        # bumps this cell's count
     key_concepts_exposure:
       Perspective:
         angle: behavior

@@ -7,7 +7,7 @@ This file gives concrete examples for each input data source used by the current
 Use this when the request is already close to a full package assignment.
 
 ```text
-- [ ] assignment_type=entity_activity, entity=lion, category=cat1, tier=T0, mechanic=voice, pillar=Performance, style=voice_stage, mapping=animals_lion, start=warm+cold, activity_id=voice_stage_lion_example, scene=child photographs a toy lion on the playroom rug
+- [ ] assignment_type=entity_activity, entity=lion, category=cat1, tier=T0, mechanic=motion_voice, pillar=Performance, style=voice_stage, mapping=animals_lion, start=warm+cold, activity_id=voice_stage_lion_example, scene=child photographs a toy lion on the playroom rug
 ```
 
 Expected handling:
@@ -15,7 +15,7 @@ Expected handling:
 - Source of execution truth: `assignments.md`
 - Input mode: `mapping_informed`
 - Mapping lookup: `mapping=animals_lion` -> `MAPPING_ROOT/_index.yaml` -> `animals/big_cats.yaml`
-- Canonical mechanic: `voice`
+- Canonical mechanic: `motion_voice`
 - Category decision: `cat1`
 - Generation readiness: `ready_to_generate`
 

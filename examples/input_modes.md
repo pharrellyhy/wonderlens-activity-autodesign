@@ -9,7 +9,7 @@ Use when the activity concept or assignment is tied to a specific mapped entity.
 Assignment row:
 
 ```text
-- [ ] assignment_type=entity_activity, entity=lion, category=cat1, tier=T0, mechanic=voice, pillar=Performance, style=voice_stage, mapping=animals_lion, start=warm+cold, scene=child photographs a toy lion on the playroom rug
+- [ ] assignment_type=entity_activity, entity=lion, category=cat1, tier=T0, mechanic=motion_voice, pillar=Performance, style=voice_stage, mapping=animals_lion, start=warm+cold, scene=child photographs a toy lion on the playroom rug
 ```
 
 Expected brief:
@@ -18,7 +18,7 @@ Expected brief:
 adaptation_brief:
   input_mode: mapping_informed
   core_promise: "Child speaks as a lion and explores what lion body features and sounds communicate."
-  canonical_mechanic: voice
+  canonical_mechanic: motion_voice
   mechanic_confidence: high
 
   category_decision: cat1
@@ -119,7 +119,7 @@ Use when the activity concept describes a broad mechanic or product concept with
 Assignment row:
 
 ```text
-- [ ] assignment_type=activity_concept, activity_concept=Branching Choice Story, description=Each round, the child chooses what happens next and the AI weaves those choices into one continuous story, mechanic=narrate, category=cat1
+- [ ] assignment_type=activity_concept, activity_concept=Branching Choice Story, description=Each round, the child chooses what happens next and the AI weaves those choices into one continuous story, mechanic=decide, category=cat1
 ```
 
 Expected brief:
@@ -128,7 +128,7 @@ Expected brief:
 adaptation_brief:
   input_mode: concept_only
   core_promise: "Child co-authors a branching story by choosing what happens next."
-  canonical_mechanic: narrate
+  canonical_mechanic: decide
   mechanic_confidence: high
 
   category_decision: cat1
@@ -153,13 +153,13 @@ adaptation_brief:
     missing_asset_risk: none
 
   scaffold_choice:
-    pillar: Creation
-    game_style: inventor_workshop
+    pillar: Adventure
+    game_style: time_traveler
     scaffold_fit: acceptable
 
   assumptions:
     - "The photographed entity, if any, is only a story spark and not a source of factual claims."
-    - "The activity remains voice-led and does not require visual branching UI."
+    - "The activity remains dialogue-led and does not require visual branching UI."
 ```
 
 Why this mode fits:

@@ -51,11 +51,11 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | normalized_notes_en | This may need authored story planning for high quality. For the current package workflow, keep it voice-led and disclose assumptions if story branching is generated dynamically. |
 | assignment_type | activity_concept |
 | input_mode_hint | concept_only |
-| mechanic | narrate |
+| mechanic | decide |
 | category | cat1 |
 | asset_policy | no_assets |
 | trigger_condition_en | Child enters story mode or photographs a toy or object that can become a story character. |
-| adaptation_notes_en | Do not require a complex visual branching UI. If the story uses a photographed object, treat it as a catalyst rather than a factual subject. |
+| adaptation_notes_en | Preserve child choice as the repeated action. Do not require a complex visual branching UI. If the story uses a photographed object, treat it as a catalyst rather than a factual subject. |
 
 ### source_guess_in_10
 
@@ -84,7 +84,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | normalized_notes_en | Screen animal cards are optional. The activity should focus on voice, role play, and short low-pressure turns. |
 | assignment_type | activity_concept |
 | input_mode_hint | concept_only |
-| mechanic | voice |
+| mechanic | motion_voice |
 | category | cat1 |
 | asset_policy | optional_support |
 | asset_requirements | animal_sound_cards_01 |

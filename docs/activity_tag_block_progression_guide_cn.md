@@ -264,11 +264,11 @@ Not eligible for: unsafe/unclear photos，或者脚本其实偷偷依赖具体 p
 
 coherence 字段主要在 `activity_signature` 里。它们帮助 selector 根据 conversation signature、progression target 和 desired child action，在 eligible candidates 里排序。
 
-hard eligibility 通过之后，第一个 coherence 问题应该是 mechanic fit。如果 runtime request、assignment、child intent 或 product policy 偏好 collect、compare、deduce、voice、predict、build、care 这类 action，selector 应先用 `activity_signature.mechanic` 打分，再考虑 `game_style`。`game_style` 可以在 mechanic 匹配相近时做 tiebreaker，但它不是 primary action selector。
+hard eligibility 通过之后，第一个 coherence 问题应该是 mechanic fit。如果 runtime request、assignment、child intent 或 product policy 偏好 collect、compare、deduce、build、predict、decide、remember、imagine、care、motion/voice 这类 action，selector 应先用 `activity_signature.mechanic` 打分，再考虑 `game_style`。`game_style` 可以在 mechanic 匹配相近时做 tiebreaker，但它不是 primary action selector。
 
 | Field | 用法 | 例子 |
 |---|---|---|
-| `activity_signature.mechanic` | 孩子的 action pattern；用于 matching、runtime recap phrasing 和 parent analytics。 | `collect`, `compare`, `deduce`, `voice` |
+| `activity_signature.mechanic` | 孩子的 action pattern；用于 matching、runtime recap phrasing 和 parent analytics。 | `collect`, `compare`, `deduce`, `motion_voice` |
 | `activity_signature.observation_angle` | activity 关注的主要 attribute/dimension。 | `color`, `quantity`, `emotion` |
 | `activity_signature.bridge_prerequisites.primary` | 1-3 个最自然衔接的 conversation angles。 | `[color]`, `[behavior, function]` |
 | `activity_signature.bridge_prerequisites.secondary` | 辅助 angles 或 editorial descriptors。优先用 enum。 | `[pattern, visibility]` |
@@ -289,7 +289,7 @@ selector scoring 的基本思路：
 
 progression target 是强偏好，不是 hard promise。photo context、catalog coverage、safety、tier、entity eligibility 都可能让 selector 选择别的 activity。
 
-如果没有 explicit mechanic preference，先从当前 intent 推断 mechanic，再 fallback 到 style：孩子想 find/gather -> `collect`；孩子比较两个东西 -> `compare`；孩子问 why -> `deduce` 或 `predict`；孩子想 pretend speech -> `voice`；孩子想 make/arrange -> `build`；孩子注意到 care/help needs -> `care`。
+如果没有 explicit mechanic preference，先从当前 intent 推断 mechanic，再 fallback 到 style：孩子想 find/gather -> `collect`；孩子比较两个东西 -> `compare`；孩子问 why -> `deduce` 或 `predict`；孩子做选择 -> `decide`；孩子回忆或重复 -> `remember`；孩子想 pretend speech、imitate sound 或 movement -> `motion_voice`；孩子想 make/arrange -> `build` 或 `sort`；孩子想 tell/retell story -> `imagine`；孩子注意到 care/help needs -> `care`。
 
 ### 3.3 Runtime Selector Inputs 从哪里来
 
@@ -848,7 +848,7 @@ matchability:
   tier_support: {T0: true, T1: true, T2: true}
 activity_signature:
   observation_angle: behavior
-  mechanic: voice
+  mechanic: motion_voice
   entity_role: subject
   focal_attribute: lion_voice
 progression:

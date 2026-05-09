@@ -4,7 +4,7 @@
 
 For field ownership and authoring guidance across upstream matcher, runtime presentation, child recap, and parent dashboard, see `docs/activity_tag_block_usage.md`.
 
-**Version:** 1.5 · 2026-05-09
+**Version:** 2.0 · 2026-05-09
 
 ## Scope boundary
 
@@ -52,7 +52,7 @@ Recognition/safety-limited candidates:
 - Smell, taste, sound, and temperature are not photo-verifiable; taste is especially safety-sensitive.
 - Touch can appear as `texture`, but the runtime should not claim photo certainty when the value requires child report.
 
-## mechanic (10 values)
+## mechanic (12 values)
 
 What the child actually does during the activity. This is intentionally coarser than `game_style`: multiple game styles can share one mechanic, and one game style can still carry pillar-specific flavor in `game_style`.
 
@@ -60,16 +60,20 @@ For concept-led assignments, `mechanic` is the primary classification. If an ass
 
 | Token | Definition | Example games |
 |---|---|---|
-| `enumerate` | Name parts or list attributes | Detail Detective, Mix Lab |
-| `compare` | Contrast two+ items | Material Detective, comparison-chart games |
-| `collect` | Find N things matching a criterion | Color Scout, Shape Quest, most property bridges |
-| `sort` | Categorize into groups | Nature vs Made |
-| `deduce` | Infer an answer from clues or evidence | Mystery Lens, Mystery Trail |
-| `voice` | Give the entity a voice | Voice Stage Lion, Playground Voices |
-| `build` | Make/invent something | What-If Workshop, Inventor Workshop |
-| `predict` | "What happens next?" | Apple What Happens Next, Prediction Lab |
-| `narrate` | Tell a story | Library Book's Journey, storytelling_chain games |
-| `care` | Notice a need and propose help | Care Station, Rescue Team |
+| `enumerate` | Enumerate / Identify / Count / Measure: notice, identify, count, measure, or name visible parts and attributes | Detail Detective, Counting Hunt, Mix Lab |
+| `compare` | Compare / Contrast: inspect two or more items and name same/different/preference/evidence | Material Detective, animal picture comparisons |
+| `collect` | Collect / Match / Pair / Associate / Generalize: find, match, pair, or associate items that satisfy a criterion, then generalize the shared rule | Color Scout, Shape Quest, most property bridges |
+| `sort` | Sort / Rank / Sequence / Organize / Categorize: place items into groups, ranks, orders, or sequences and explain the organizing rule | Nature vs Made, Tiny Curator |
+| `deduce` | Deduce / Infer / Conclude / Justify: infer an answer from clues or evidence and justify the reasoning | Mystery Lens, Mystery Trail, Guess in 10 |
+| `build` | Build / Create / Assemble / Transform / Experiment / Invent: create, combine, assemble, transform, or experiment with ideas or materials | What-If Workshop, Inventor Workshop |
+| `predict` | Predict / Hypothesize / Plan: commit to a prediction, hypothesis, or plan before result/reveal/action | Prediction Lab, field experiments |
+| `decide` | Decide / Choose / Correct: choose between options, make a decision, or correct an error based on the activity context | Branching choice stories, correction games |
+| `remember` | Remember / Recall / Repeat: recall, repeat, retell from memory, or recognize something seen/heard earlier | Memory trail, echo-repeat challenges |
+| `imagine` | Imagine / Narrate / Pretend / Roleplay / Retell / Summarize: pretend, roleplay, narrate, retell, summarize, or weave a story sequence | Time Traveler, story chain games |
+| `care` | Care / Empathize: notice a need or feeling and propose help, comfort, repair, or empathy | Care Station, Rescue Team |
+| `motion_voice` | Motion / Voice: move, gesture, imitate a sound, or speak/perform in role | Voice Stage Lion, animal sound imitation |
+
+Migration note: `voice` is retired in favor of `motion_voice`; `narrate` is retired in favor of `imagine`. New runtime tag blocks should not use retired tokens.
 
 ### Mechanic to game-style mapping
 
@@ -83,11 +87,11 @@ The table below is guidance, not a reverse lookup. If a concept-led assignment f
 | mystery_trail | Mystery | `deduce` or `collect` depending on whether clue-solving or physical search is primary |
 | inventor_workshop | Creation | `build` |
 | mix_lab | Creation | `build` |
-| voice_stage | Performance | `voice` |
-| ensemble_show | Performance | `voice` |
+| voice_stage | Performance | `motion_voice` |
+| ensemble_show | Performance | `motion_voice` |
 | prediction_lab | Discovery | `predict` |
 | field_experiment | Discovery | `predict` for hypothesis-led experiments; `collect` for simple property hunts |
-| time_traveler | Adventure | `narrate` |
+| time_traveler | Adventure | `imagine` or `decide` depending on whether story-weaving or choice-making is primary |
 | quest_collector | Adventure | `collect` |
 | care_station | Nurture | `care` |
 | rescue_team | Nurture | `care` or `collect` depending on whether helping or finding is primary |
@@ -205,7 +209,7 @@ activity_signature:
 ## Versioning
 
 - Adding a value: bump minor (1.0 → 1.1); requires matching change in both consumer repos' enum code
-- Removing a value: major bump (1.0 → 2.0); requires migration of all affected games
+- Removing or renaming a value: major bump (1.0 → 2.0); requires migration of all affected games
 - Renaming: treat as remove + add
 - Adding recommended `atl_skills` tokens or explanatory mappings: bump minor; schema enforcement remains a separate change
 
@@ -218,8 +222,9 @@ Drift test compares parsed tables above against enum members; failure = CI block
 
 ## Revnote
 
-- **v1.4 · 2026-05-08** — Clarifies that `assignment_type` and `adaptation_brief.input_mode` are authoring-only workflow fields, not runtime tag-block enums; documents mechanic-first priority for concept-led assignments.
+- **v2.0 · 2026-05-09** — Expands `mechanic` from 10 to 12 values; adds `decide`, `remember`, and `motion_voice`; renames `voice` to `motion_voice` and `narrate` to `imagine`; broadens each mechanic definition to cover source-concept verb families.
 - **v1.5 · 2026-05-09** — Adds authoring-only `asset_policy` values for the activity concept asset dependency layer; no runtime enum or schema change.
+- **v1.4 · 2026-05-08** — Clarifies that `assignment_type` and `adaptation_brief.input_mode` are authoring-only workflow fields, not runtime tag-block enums; documents mechanic-first priority for concept-led assignments.
 - **v1.3 · 2026-04-27** — Adds `quantity` and `emotion` to the closed `observation_angle` enum.
 - **v1.2 · 2026-04-27** — Review clarification pass: documents observation-angle scope boundaries, adds game-style-to-mechanic mapping, clarifies entity-role examples, expands bridge-prerequisite uses, and adds the recommended WonderLens `atl_skills` vocabulary.
 - **v1.1 · 2026-04-27** — Adds `deduce` and `care` mechanics.
