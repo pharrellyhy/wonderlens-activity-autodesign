@@ -26,7 +26,7 @@ source:
     - conversation_bridge.md
 summary:
   pending_at_start: 9
-  generated_count: 2
+  generated_count: 3
   blocked_count: 0
   failed_count: 0
 outputs:
@@ -47,6 +47,14 @@ outputs:
       results_tsv_row: true
       status: PASS
       reviewer: PASS
+    - assignment_index: 3
+      assignment: "assignment_type=activity_concept, activity_concept=Branching Choice Story, concept_source=examples/source_activity_concept_briefs.md#source_branching_story, description=AI tells a story with choice points; the child chooses between two next steps and the story continues from that choice, mechanic=decide, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_branching_story_decide, trigger_condition=Child enters story mode or photographs a toy or object that can become a story character"
+      activity_id: concept_branching_story_decide
+      activity_path: activities/concept_branching_story_decide
+      adaptation_brief: runs/20260509_153004_activity_concepts/adaptation_briefs/003_branching_choice_story.yaml
+      results_tsv_row: true
+      status: PASS
+      reviewer: PASS after Game Feel and Mechanic Fidelity repair
   blocked_assignments: []
 checks:
   - command: "python3 -c \"import json, yaml, pathlib, sys; from jsonschema import Draft202012Validator; schema=json.loads(pathlib.Path('activities/_schema/tag_block.schema.json').read_text()); p=pathlib.Path('activities/concept_scavenger_hunt_collect/tag_block.yaml'); errs=list(Draft202012Validator(schema).iter_errors(yaml.safe_load(p.read_text()))); sys.exit(1 if errs else 0)\""
@@ -58,6 +66,10 @@ checks:
   - command: "python3 focused package invariants for activities/concept_phoneme_hunt_collect"
     result: PASS
   - command: "independent reviewer pass for activities/concept_phoneme_hunt_collect"
+    result: PASS
+  - command: "python3 focused package invariants for activities/concept_branching_story_decide"
+    result: PASS
+  - command: "independent reviewer pass for activities/concept_branching_story_decide"
     result: PASS
 notes:
   - "Canonical packages remain under activities/<activity_id>/."

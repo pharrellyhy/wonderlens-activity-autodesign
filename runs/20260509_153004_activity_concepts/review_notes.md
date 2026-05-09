@@ -17,3 +17,10 @@ Independent review notes, repair notes, and residual risks will be appended afte
 - Asset handling verified: `phoneme_letter_card_01` is optional, defined in `spec.md` `## Asset Brief`, referenced by ID in `prod.md`, and has a voice-only fallback.
 - Scaffold compromise verified: phoneme matching is represented as `observation_angle: pattern` because the closed enum has no sound/phoneme angle; this is disclosed in `spec.md`.
 - Residual risk: the package uses `/b/` as the concrete target sound because the companion asset prompt is specifically authored for B/b.
+
+## 003 -- concept_branching_story_decide
+
+- Initial independent review found two blocking issues: Dimension 9 Game Feel and Dimension 10 Mechanic Fidelity failed because choices were recorded without distinct consequences.
+- Repair: revised Step 3 and Step 4 so the door changes the world/path, the helper changes the road, and the ending changes the payoff.
+- Fresh independent review passed all 10 dimensions and package invariants.
+- Residual risk: branching remains voice-led with simple path tokens; it does not implement a complex branching UI.
