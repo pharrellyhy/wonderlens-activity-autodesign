@@ -26,7 +26,7 @@ source:
     - conversation_bridge.md
 summary:
   pending_at_start: 9
-  generated_count: 3
+  generated_count: 4
   blocked_count: 0
   failed_count: 0
 outputs:
@@ -55,6 +55,14 @@ outputs:
       results_tsv_row: true
       status: PASS
       reviewer: PASS after Game Feel and Mechanic Fidelity repair
+    - assignment_index: 4
+      assignment: "assignment_type=activity_concept, activity_concept=Guess in 10, concept_source=examples/source_activity_concept_briefs.md#source_guess_in_10, description=AI gives step-by-step clues and the child uses evidence to guess an animal or object, with easier clues if the child gets stuck, mechanic=deduce, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=examples/source_activity_concept_briefs.md#guess_reference_cards_01, activity_id=concept_guess_in_10_deduce, trigger_condition=Child photographs an animal toy, animal picture, or enters guessing mode"
+      activity_id: concept_guess_in_10_deduce
+      activity_path: activities/concept_guess_in_10_deduce
+      adaptation_brief: runs/20260509_153004_activity_concepts/adaptation_briefs/004_guess_in_10.yaml
+      results_tsv_row: true
+      status: PASS
+      reviewer: PASS after Edge Case Coverage repair
   blocked_assignments: []
 checks:
   - command: "python3 -c \"import json, yaml, pathlib, sys; from jsonschema import Draft202012Validator; schema=json.loads(pathlib.Path('activities/_schema/tag_block.schema.json').read_text()); p=pathlib.Path('activities/concept_scavenger_hunt_collect/tag_block.yaml'); errs=list(Draft202012Validator(schema).iter_errors(yaml.safe_load(p.read_text()))); sys.exit(1 if errs else 0)\""
@@ -70,6 +78,10 @@ checks:
   - command: "python3 focused package invariants for activities/concept_branching_story_decide"
     result: PASS
   - command: "independent reviewer pass for activities/concept_branching_story_decide"
+    result: PASS
+  - command: "python3 focused package invariants for activities/concept_guess_in_10_deduce"
+    result: PASS
+  - command: "independent reviewer pass for activities/concept_guess_in_10_deduce"
     result: PASS
 notes:
   - "Canonical packages remain under activities/<activity_id>/."
