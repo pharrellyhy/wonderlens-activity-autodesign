@@ -1,0 +1,52 @@
+run_id: 20260509_153004_activity_concepts
+status: in_progress
+started_at: "2026-05-09T15:30:04+08:00"
+completed_at:
+source:
+  goal_file: GOAL.md
+  runbook: run.md
+  assignments_file: assignments.md
+  assignment_snapshot: runs/20260509_153004_activity_concepts/assignment_snapshot.md
+  mapping_root: data/mappings_dev20_0318
+  source_files_loaded:
+    - GOAL.md
+    - program.md
+    - templates.md
+    - run.md
+    - runs/README.md
+    - activities/README.md
+    - activities/_schema/tag_block.schema.json
+    - docs/activity_vocabulary.md
+    - docs/game_styles.md
+    - docs/activity_tag_block_usage.md
+    - docs/activity_tag_block_progression_guide.md
+    - assignments.md
+    - examples/source_activity_concept_briefs.md
+    - entity_guidance.md
+    - conversation_bridge.md
+summary:
+  pending_at_start: 9
+  generated_count: 1
+  blocked_count: 0
+  failed_count: 0
+outputs:
+  generated_activities:
+    - assignment_index: 1
+      assignment: "assignment_type=match_pattern, activity_concept=Scavenger Hunt, concept_source=examples/source_activity_concept_briefs.md#source_scavenger_hunt, description=Child finds and photographs three things that share a color, shape, or category, then names one extra thing they have in common, mechanic=collect, category=cat5, tier=T1, asset_policy=no_assets, activity_id=concept_scavenger_hunt_collect, trigger_condition=Child photographs an object with a clear color, shape, or category feature"
+      activity_id: concept_scavenger_hunt_collect
+      activity_path: activities/concept_scavenger_hunt_collect
+      adaptation_brief: runs/20260509_153004_activity_concepts/adaptation_briefs/001_scavenger_hunt.yaml
+      results_tsv_row: true
+      status: PASS
+      reviewer: PASS after Tier Appropriateness repair
+  blocked_assignments: []
+checks:
+  - command: "python3 -c \"import json, yaml, pathlib, sys; from jsonschema import Draft202012Validator; schema=json.loads(pathlib.Path('activities/_schema/tag_block.schema.json').read_text()); p=pathlib.Path('activities/concept_scavenger_hunt_collect/tag_block.yaml'); errs=list(Draft202012Validator(schema).iter_errors(yaml.safe_load(p.read_text()))); sys.exit(1 if errs else 0)\""
+    result: PASS
+  - command: "python3 focused package invariants for activities/concept_scavenger_hunt_collect"
+    result: PASS
+  - command: "independent reviewer pass for activities/concept_scavenger_hunt_collect"
+    result: PASS
+notes:
+  - "Canonical packages remain under activities/<activity_id>/."
+  - "results.tsv currently uses the checked-in 16-column legacy header; rows appended by this run preserve that column order per AGENTS.md."
