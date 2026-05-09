@@ -10,3 +10,10 @@ Independent review notes, repair notes, and residual risks will be appended afte
 - Repair: shortened spoken runtime dialogue in `prod.md` while preserving the Cat5 collect loop, edge branches, and screen states.
 - Fresh independent review passed all 10 dimensions and package invariants.
 - Residual risk: this is a parameterized activity; runtime must supply or ask the child to confirm `{shared_feature}`, `{starter_entity}`, and `{extra_connection}` placeholders.
+
+## 002 -- concept_phoneme_hunt_collect
+
+- Independent review passed all 10 dimensions and package invariants.
+- Asset handling verified: `phoneme_letter_card_01` is optional, defined in `spec.md` `## Asset Brief`, referenced by ID in `prod.md`, and has a voice-only fallback.
+- Scaffold compromise verified: phoneme matching is represented as `observation_angle: pattern` because the closed enum has no sound/phoneme angle; this is disclosed in `spec.md`.
+- Residual risk: the package uses `/b/` as the concrete target sound because the companion asset prompt is specifically authored for B/b.

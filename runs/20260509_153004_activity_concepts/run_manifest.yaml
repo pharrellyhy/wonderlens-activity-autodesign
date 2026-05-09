@@ -26,7 +26,7 @@ source:
     - conversation_bridge.md
 summary:
   pending_at_start: 9
-  generated_count: 1
+  generated_count: 2
   blocked_count: 0
   failed_count: 0
 outputs:
@@ -39,6 +39,14 @@ outputs:
       results_tsv_row: true
       status: PASS
       reviewer: PASS after Tier Appropriateness repair
+    - assignment_index: 2
+      assignment: "assignment_type=match_pattern, activity_concept=Phoneme Treasure Hunt, concept_source=examples/source_activity_concept_briefs.md#source_phoneme_hunt, description=Child hears a target sound and finds one indoor treasure whose word starts with that sound, mechanic=collect, category=cat5, tier=T1, asset_policy=optional_support, asset_requirements=examples/source_activity_concept_briefs.md#phoneme_letter_card_01, activity_id=concept_phoneme_hunt_collect, trigger_condition=Child enters language treasure-hunt mode or photographs an everyday object suitable for sound play"
+      activity_id: concept_phoneme_hunt_collect
+      activity_path: activities/concept_phoneme_hunt_collect
+      adaptation_brief: runs/20260509_153004_activity_concepts/adaptation_briefs/002_phoneme_treasure_hunt.yaml
+      results_tsv_row: true
+      status: PASS
+      reviewer: PASS
   blocked_assignments: []
 checks:
   - command: "python3 -c \"import json, yaml, pathlib, sys; from jsonschema import Draft202012Validator; schema=json.loads(pathlib.Path('activities/_schema/tag_block.schema.json').read_text()); p=pathlib.Path('activities/concept_scavenger_hunt_collect/tag_block.yaml'); errs=list(Draft202012Validator(schema).iter_errors(yaml.safe_load(p.read_text()))); sys.exit(1 if errs else 0)\""
@@ -46,6 +54,10 @@ checks:
   - command: "python3 focused package invariants for activities/concept_scavenger_hunt_collect"
     result: PASS
   - command: "independent reviewer pass for activities/concept_scavenger_hunt_collect"
+    result: PASS
+  - command: "python3 focused package invariants for activities/concept_phoneme_hunt_collect"
+    result: PASS
+  - command: "independent reviewer pass for activities/concept_phoneme_hunt_collect"
     result: PASS
 notes:
   - "Canonical packages remain under activities/<activity_id>/."

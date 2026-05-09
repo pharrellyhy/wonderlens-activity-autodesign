@@ -45,3 +45,4 @@ butterfly + category 5 (collection/tracking), tier=T1, pillar=Mystery, style=mys
 bird + category 5 (collection/tracking), tier=T1, pillar=Performance, style=ensemble_show	bird	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/cat5/bird_cat5_spec.md	2026-04-01T00:02:00Z
 rock + category 5 (collection/tracking), tier=T1, pillar=Creation, style=mix_lab	rock	5	T1	PASS	P	P	P	P	P	P	P	P	N	designs/cat5/rock_cat5_spec.md	2026-04-01T00:01:00Z
 Scavenger Hunt	parameterized_shared_feature	cat5	T1	PASS	P	P	P	P	P	P	P	P	N	activities/concept_scavenger_hunt_collect	2026-05-09T15:43:28+08:00
+Phoneme Treasure Hunt	parameterized_beginning_b_sound	cat5	T1	PASS	P	P	P	P	P	P	P	P	N	activities/concept_phoneme_hunt_collect	2026-05-09T15:51:47+08:00
