@@ -27,11 +27,11 @@ The child copies two animal sounds or speaks as the animal. The AI cheers like a
 
 **3. Design Highlight**
 
-The child gets a tiny stage, a friendly audience, and two easy encore rounds. Every attempt counts.
+The child gets a tiny stage, a friendly audience, and two easy echo reveals. Each sound attempt wakes a hidden animal, so the child sees a concrete cause: their voice makes the stage come alive. The final audience appears only after both animals wake, making the encore feel earned rather than automatic.
 
 **4. Typical Scenario**
 
-Child photographs an animal toy; the AI starts a cat sound, then a duck sound.
+Child photographs an animal toy; the AI opens a tiny curtain, prompts a cat sound, then changes the stage to a duck sound. If the child only says the animal name or makes a different sound, the AI treats it as a performance attempt and gently models the target sound.
 
 ### C. Interaction Flow
 

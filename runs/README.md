@@ -7,6 +7,7 @@ Use this layer to answer:
 - Which `/goal` run produced this activity?
 - Which assignments were pending at run start?
 - Which assignments generated packages?
+- Which existing packages were enriched to current standards?
 - Which assignments blocked at the adaptation brief?
 - Where are the adaptation briefs and review notes for this run?
 
@@ -44,7 +45,7 @@ Use local operator time for readability. Keep the timestamp in `run_manifest.yam
 
 | File | Required? | Purpose |
 |---|---:|---|
-| `run_manifest.yaml` | Yes | Run-level index: inputs, status, generated packages, blocked briefs, checks, and timestamps. |
+| `run_manifest.yaml` | Yes | Run-level index: inputs, status, enriched packages, generated packages, blocked briefs, checks, and timestamps. |
 | `assignment_snapshot.md` | Yes | Copy of pending `assignments.md` rows at run start, preserving the source queue context. |
 | `generated_activity_ids.txt` | Yes | One generated `activity_id` per line, in completion order. |
 | `adaptation_briefs/` | Yes when Phase 0 runs | One YAML file per generated concept-led or underspecified assignment. |
@@ -55,7 +56,7 @@ Use local operator time for readability. Keep the timestamp in `run_manifest.yam
 
 ```yaml
 run_id: 20260509_113000_activity_concepts
-status: in_progress # in_progress|completed|blocked|failed
+status: in_progress # in_progress|completed|completed_with_blockers|failed
 started_at: "2026-05-09T11:30:00+08:00"
 completed_at:
 
@@ -68,11 +69,15 @@ source:
 
 summary:
   pending_at_start: 3
+  enrichment_audited_count: 0
+  enrichment_noop_count: 0
+  enriched_count: 0
   generated_count: 0
   blocked_count: 0
   failed_count: 0
 
 outputs:
+  enriched_activities: []
   generated_activities: []
   blocked_assignments: []
 
@@ -96,6 +101,20 @@ Generated activity entry:
   status: PASS
 ```
 
+Enriched activity entry:
+
+```yaml
+- activity_id: concept_phoneme_hunt_collect
+  activity_path: activities/concept_phoneme_hunt_collect
+  source_assignment: "checked assignment row with activity_id=concept_phoneme_hunt_collect"
+  changed_files:
+    - activities/concept_phoneme_hunt_collect/spec.md
+    - activities/concept_phoneme_hunt_collect/prod.md
+  reason: "Updated to current migrated package depth floor"
+  results_tsv_row: false
+  status: enriched
+```
+
 Blocked assignment entry:
 
 ```yaml
@@ -109,7 +128,9 @@ Blocked assignment entry:
 ## Rules
 
 - Create the run directory before processing the first assignment.
+- Audit and, when needed, enrich existing checked-row packages before processing unchecked assignments.
 - Keep activity packages in `activities/<activity_id>/`; do not nest runtime packages under `runs/`.
-- Record blocked assignments in `blocked_briefs/` even though they are not appended to `results.tsv`.
-- Update `run_manifest.yaml` after each generated or blocked assignment.
+- Record enrichment-only package maintenance in `enriched_activities`; do not append `results.tsv` for enrichment-only changes.
+- Record blocked assignments in `blocked_briefs/` and `blocked_assignments`, leave their assignment rows unchecked, and continue to later unchecked rows.
+- Update `run_manifest.yaml` after each enriched package, generated package, or blocked assignment.
 - Commit `runs/<run_id>/` together with generated activity packages and queue/log updates for the run.

@@ -1,7 +1,7 @@
 run_id: 20260509_153004_activity_concepts
-status: in_progress
+status: blocked
 started_at: "2026-05-09T15:30:04+08:00"
-completed_at:
+completed_at: "2026-05-09T16:52:52+08:00"
 source:
   goal_file: GOAL.md
   runbook: run.md
@@ -27,7 +27,7 @@ source:
 summary:
   pending_at_start: 9
   generated_count: 7
-  blocked_count: 0
+  blocked_count: 1
   failed_count: 0
 outputs:
   generated_activities:
@@ -87,7 +87,12 @@ outputs:
       results_tsv_row: true
       status: PASS
       reviewer: PASS after Mechanic Fidelity repair
-  blocked_assignments: []
+  blocked_assignments:
+    - assignment_index: 8
+      assignment: "assignment_type=capability_probe, activity_concept=Coloring Game, concept_source=examples/source_activity_concept_briefs.md#source_coloring_game, description=Screen shows line art; the child chooses colors by taking photos and AI fills regions to create a shareable artwork, mechanic=build, category=cat5, tier=T1, asset_policy=runtime_generated, asset_requirements=examples/source_activity_concept_briefs.md#runtime_coloring_line_art_01, product_capabilities=requires_generated_image,requires_coloring_ui,requires_ui_state, activity_id=concept_coloring_game_probe, trigger_condition=Child photographs an object with a clear color or enters coloring mode"
+      brief_path: runs/20260509_153004_activity_concepts/blocked_briefs/008_coloring_game.yaml
+      reason: "runtime-generated line art, fillable coloring UI, UI state storage, and artwork export require product decisions"
+      status: blocked_until_product_decision
 checks:
   - command: "python3 -c \"import json, yaml, pathlib, sys; from jsonschema import Draft202012Validator; schema=json.loads(pathlib.Path('activities/_schema/tag_block.schema.json').read_text()); p=pathlib.Path('activities/concept_scavenger_hunt_collect/tag_block.yaml'); errs=list(Draft202012Validator(schema).iter_errors(yaml.safe_load(p.read_text()))); sys.exit(1 if errs else 0)\""
     result: PASS
@@ -118,6 +123,8 @@ checks:
   - command: "python3 focused package invariants for activities/concept_partial_reveal_deduce"
     result: PASS
   - command: "independent reviewer pass for activities/concept_partial_reveal_deduce"
+    result: PASS
+  - command: "blocked Phase 0 adaptation brief for Coloring Game"
     result: PASS
 notes:
   - "Canonical packages remain under activities/<activity_id>/."

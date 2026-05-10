@@ -1,9 +1,11 @@
 # Templates
 
-> **Version**: 1.5 | **Date**: 2026-05-09
+> **Version**: 1.7 | **Date**: 2026-05-10
 > **Owns**: the mechanic adapters, pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture), and the Cat1 / Cat5 category modifier appendix.
 > **Does NOT own**: the migrated five-file package layout, the tag block schema, asset requirement rows, or the tier defaults — those live in `activities/README.md`, `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` Phase 0 / §1.9.
 > **Consumed by**: `program.md` Phase 5 (template-reading flow), `run.md` (activity package loop), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), `activities/*/prod.md` (runtime outputs), and legacy `designs/cat{1,5}/*.md` references.
+
+> **v1.7 — 2026-05-10**: Clarify enrichment mode. Existing migrated packages may be updated to the current template expansion floor without changing their mechanic, pillar/style, tag-block identity, or runtime package contract.
 
 ---
 
@@ -29,7 +31,7 @@ Template 0 spine
 = activity scaffold
 ```
 
-The agent then fills the `{slots}` and expands each beat to full `program.md` format.
+The agent then fills the `{slots}` and expands each beat to full `program.md` format. The migrated five-file package may be more compact than older legacy specs, but template expansion must not become thin or generic: every beat needs enough concrete dialogue, branch reaction, screen state, and payoff detail for the runtime prompt composer to run it without inventing missing behavior.
 
 **Why Option B (one file).** Mechanics, pillar creative variables (like `{hidden_details}`, `{modifications}`, `{quest_criterion}`), and category modifiers all influence the executable scaffold. Keeping them together avoids split-file drift while still making the mechanic layer the first-class child-action contract.
 
@@ -87,7 +89,7 @@ Mechanic adapters define the child-action loop independent of pillar. Use the ad
 
 **Tag block.** Every migrated activity package emits `activities/<activity_id>/tag_block.yaml`. The authoritative shape and field semantics live in `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` §1.9. This file does not duplicate the tag-block schema.
 
-**Package output.** Templates provide the creative scaffold only. The agent must still expand the scaffold into the five migrated files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`. `prod.md` keeps all runtime rounds fully expanded; `spec.md` carries the self-evaluation scorecard and, when applicable, `## Asset Brief`; the YAML files carry machine-readable metadata and recap/dashboard payloads.
+**Package output.** Templates provide the creative scaffold only. The agent must still expand the scaffold into the five migrated files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`. `prod.md` keeps all runtime rounds fully expanded; `spec.md` carries the self-evaluation scorecard and, when applicable, `## Asset Brief`; the YAML files carry machine-readable metadata and recap/dashboard payloads. A package that is structurally valid but under-detailed still fails the template contract. When enriching an existing package, keep its mechanic, pillar/style, `activity_id`, tag block, recap/dashboard payload shape, and asset IDs stable; add the missing scaffold expansion detail rather than redesigning the activity.
 
 **Tier dials.** T0 / T1 / T2 set language register, task depth, concept focus, AI role, and cumulative caregiver role. Authoritative table in `docs/template_0_preview.html` §06. Tier-guidance detail lives in `entity_guidance.md`.
 
@@ -313,10 +315,10 @@ The agent then fills `{role_title}` (e.g. "Roar Reporter"), `{metaphor}` (e.g. "
 4. **Apply the category modifier** from the appendix — pull the 8 fields that specialize for Cat1 or Cat5 (beat medium, round count, camera use, setting, step count, category frame, anchor priority, checklist extras).
 5. **Pick the pillar/style scaffold** only after the mechanic and category are fixed. Use the overlay that best supports the mechanic's emotional payoff; if scaffold fit is weak, disclose it in `spec.md` or block per Phase 0.
 6. **Fill all `{slots}`** with entity- or source-specific content. Universal variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`) first, then mechanic-specific loop details, then pillar-specific flavor (`{hidden_details}`, `{modifications}`, `{quest_criterion}`, etc.).
-7. **Expand each beat to full dialogue** — complete AI lines, 3 child response branches (ideal / unexpected / silence), follow-up branches, and screen descriptions — per `program.md` format.
-8. **Do not condense runtime rounds** — every round in `activities/*/prod.md` must be executable on its own, not a summary of a pattern.
+7. **Expand each beat to full dialogue** — complete AI lines, 3 child response branches (ideal / unexpected / silence), follow-up branches, and screen descriptions — per `program.md` format. This applies to bridge, framing, magic moment, and closing beats too, not only the core loop.
+8. **Do not condense runtime rounds** — every round in `activities/*/prod.md` must be executable on its own, not a summary of a pattern. Rounds should be distinct in objective, child action, follow-up, and screen-state change.
 9. **Emit the five-file package** per `program.md` §1.9 and `activities/README.md` — run the package self-check before output.
-10. **Run the 10-dimension rubric** (D1–D10), especially mechanic fidelity + scaffold honesty, and the category-specific adaptation checks from the appendix's `checklist_extras`.
+10. **Run the 10-dimension rubric** (D1–D10), especially game feel and mechanic fidelity + scaffold honesty, and the category-specific adaptation checks from the appendix's `checklist_extras`. Repair packages that feel like a sparse template fill even if every required section exists.
 
 ---
 
@@ -353,6 +355,8 @@ The same entity can be designed under different pillars — the pillar determine
 
 ## Revnote
 
+- **v1.7 · 2026-05-10** · Add enrichment-mode guidance for existing migrated packages: keep identity and machine-readable contracts stable while adding missing scaffold expansion detail.
+- **v1.6 · 2026-05-09** · Tighten migrated package expansion standards: compact five-file packages are acceptable, but structurally valid thin packages fail; every beat needs executable detail, and every core-loop round needs distinct action, reaction, and screen progression.
 - **v1.3 · 2026-05-08** · Add the mechanic adapter layer between Template 0 and pillar/style scaffolds. Mechanics now define the primary child-action loop; pillar/style provides emotional payoff only after mechanic and category are fixed.
 - **v1.2 · 2026-05-08** · Align template consumption with the migrated `activities/<activity_id>/` five-file package. Templates now explicitly forbid condensed runtime rounds and defer tag-block shape to `activities/_schema/tag_block.schema.json`.
 - **v1.1 · 2026-04-20** · Legacy inline-design note for `entity_attributes_covered`; superseded for migrated packages by v1.2 and `activities/_schema/tag_block.schema.json`.

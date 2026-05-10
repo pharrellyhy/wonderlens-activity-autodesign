@@ -43,6 +43,13 @@ Start this activity when the child photographs an animal toy, animal picture, or
 |---|---|---|---|---|---|---|---|---|---|
 | animal_sound_cards_01 | card_set | optional | pre_generated | prod.step_2; prod.step_3.round_1-2 | Help the child recognize the animal they are about to imitate. | prompt_en: Create a set of friendly animal picture cards for toddlers and preschoolers. Include common animals such as cat, dog, cow, duck, sheep, and lion. Use a plain bright background, simple expressive illustrations, one animal per card, no text, no scary poses. Source: new_ai_generated_asset. | Show one animal card each round while the AI invites the child to imitate its sound. | If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. | No real child photos, no attack or predation scenes, and friendly animal poses only. |
 
+## Runtime Detail Floor Notes
+
+- **Distinct round design:** Round 1 uses a sleeping cat and a tiny "meow" wake-up; Round 2 changes the sound, movement, and visual payoff to a hidden duck that wiggles. The child is not repeating a generic "make animal sound" prompt.
+- **Branch specificity:** Unexpected responses are accepted as performance attempts first, then redirected to the animal sound. No branch asks the system to verify audio quality or movement accuracy.
+- **Earned magic moment:** The encore audience appears only after both hidden animals have been woken by the child's sound attempts. The badge is a record of the child's stage turns, not a generic reward.
+- **Residual risk:** Because ASR cannot verify non-speech animal sounds reliably, the AI treats any vocalization, word, or role-play attempt as valid participation.
+
 ## Self-Evaluation Scorecard
 
 Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.md` Performance + Cat1 rules, and the Phase 0 adaptation brief.

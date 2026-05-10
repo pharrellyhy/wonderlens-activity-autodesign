@@ -1,9 +1,12 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.12 | **Date**: 2026-05-09
+> **Version**: 1.15 | **Date**: 2026-05-10
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.15 — 2026-05-10**: Change blocker handling from terminal stop to per-row triage. Product/design blockers write blocked briefs, remain unchecked, and the `/goal` loop continues to later unchecked rows; only hard workflow failures stop the batch.
+> **v1.14 — 2026-05-10**: Add existing package enrichment mode for `/goal` reruns. Checked assignment rows can be audited and enriched when migrated package standards tighten; preserve machine contracts and record maintenance in run provenance instead of relogging `results.tsv`.
+> **v1.13 — 2026-05-09**: Tighten migrated package depth standards. The five-file format may be more compact than legacy specs, but `spec.md` and `prod.md` must remain decision-useful, concrete, and reviewer-runnable; reviewers should fail structurally valid but thin/generic packages.
 > **v1.12 — 2026-05-09**: Expand the canonical `activity_signature.mechanic` enum to 12 values. Retire `voice` in favor of `motion_voice`, retire `narrate` in favor of `imagine`, and add `decide` plus `remember`.
 > **v1.11 — 2026-05-09**: Add run provenance directories under `runs/<run_id>/`. Runtime activity packages remain under `activities/<activity_id>/`, while run manifests, assignment snapshots, adaptation briefs, blocked briefs, and generated activity indexes live under `runs/`.
 > **v1.10 — 2026-05-09**: Add the Activity Concept Brief as the preferred concept-led source shape and introduce an explicit asset dependency layer. Concept rows should declare `asset_policy` and asset requirement rows instead of relying on the generator to infer image/display needs from prose.
@@ -26,20 +29,23 @@ You are an **Activity Design Agent** for WonderLens, an AI-powered educational c
 **The loop:**
 1. Receive input: an `assignment_type` row from `assignments.md`. New rows should use one of `entity_activity`, `activity_concept`, `match_pattern`, or `capability_probe`. Legacy concept aliases are normalized to `assignment_type=activity_concept` with `activity_concept=<value>`.
 2. Create a run provenance directory under `runs/<run_id>/` before processing assignments. Runtime packages still go under `activities/<activity_id>/`.
-3. Run **Phase 0: Activity Concept Adaptation Brief** before scaffold selection. Decide input mode, canonical mechanic, readiness, mapping usefulness, trigger condition, asset dependency, product-capability risks, and scaffold fit. Save the brief under the current run directory.
-4. If the brief is `blocked_until_product_decision`, stop with the adaptation brief and record it under `runs/<run_id>/blocked_briefs/`. Do not force a package, log results, or mark the assignment complete.
-5. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1 or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
-6. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
-7. Generate a complete migrated activity package following the exact output format.
-8. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking.
-9. If any dimension FAILS → identify the issue, fix it, re-evaluate.
-10. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
-11. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
-12. Only present the final package after ALL dimensions pass AND the package self-check passes.
-13. Put the rubric scorecard in `activities/<activity_id>/spec.md`; do not put a scorecard in `prod.md`.
-14. Update `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/generated_activity_ids.txt` so the run can be traced back to its generated packages.
+3. Audit checked-row existing packages for enrichment needs before processing unchecked assignments. If a package fails the current migrated package depth floor, enrich it in place and record the maintenance in run provenance.
+4. Run **Phase 0: Activity Concept Adaptation Brief** before scaffold selection. Decide input mode, canonical mechanic, readiness, mapping usefulness, trigger condition, asset dependency, product-capability risks, and scaffold fit. Save the brief under the current run directory.
+5. If the brief is `blocked_until_product_decision`, block only that assignment: record it under `runs/<run_id>/blocked_briefs/`, leave the row unchecked, and continue to later unchecked rows. Do not force a package, log results, or mark the assignment complete.
+6. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1 or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
+7. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
+8. Generate a complete migrated activity package following the exact output format.
+9. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking.
+10. If any dimension FAILS → identify the issue, fix it, re-evaluate.
+11. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
+12. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
+13. Only present the final package after ALL dimensions pass AND the package self-check passes.
+14. Put the rubric scorecard in `activities/<activity_id>/spec.md`; do not put a scorecard in `prod.md`.
+15. Update `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/generated_activity_ids.txt` so the run can be traced back to its generated packages.
 
 **Output language contract:** source concepts may arrive in Chinese or mixed language, but every generated artifact must be written in English: `adaptation_brief` values, `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, `dashboard.template.yaml`, asset brief rows, reviewer notes, and generated run-manifest summaries. Source snapshots may preserve original input rows for provenance, but do not copy Chinese source prose into generated package content.
+
+**Existing package enrichment mode:** when a `/goal` rerun finds checked `assignments.md` rows with existing `activities/<activity_id>/` packages, audit those packages against the current migrated package depth floor before processing unchecked rows. Checked rows are completion markers, not quality freeze markers. If a package is structurally valid but thin, enrich `spec.md` and `prod.md` in place while preserving `activity_id`, tag-block enums, recap/dashboard placeholder compatibility, asset IDs, and the five-file package contract. Record enrichment-only maintenance in `runs/<run_id>/run_manifest.yaml` or `runs/<run_id>/review_notes.md`; do not append `results.tsv` or create duplicate generated-activity log entries unless a new package is actually generated.
 
 **You never show intermediate drafts. You only present the final, self-evaluated design.**
 
@@ -173,16 +179,16 @@ adaptation_brief:
 - `asset_policy=no_assets`: proceed without an asset brief. Do not invent assets for polish.
 - `asset_policy=optional_support`: generation may proceed only when `fallback_behavior` is explicit. `spec.md` must include a `## Asset Brief`; `prod.md` may reference the asset ID as optional screen support.
 - `asset_policy=required_prebuilt`: generation may proceed with assumptions only when every required asset has `asset_id`, `asset_type`, `use_step`, `prompt_en` or source description, `display_behavior`, and `fallback_behavior`. If any required field is missing, block.
-- `asset_policy=runtime_generated`: block unless the concept explicitly declares runtime image generation as a supported product capability and includes timing, prompt, display, and fallback behavior. Current package generation should not create image files directly.
-- `asset_policy=blocked`: stop with `readiness=blocked_until_product_decision`.
-- Required visual assets must be treated as dependencies, not as narrative flavor. If an activity cannot work without the asset and the asset pipeline is not defined, stop at the adaptation brief.
+- `asset_policy=runtime_generated`: block the assignment unless the concept explicitly declares runtime image generation as a supported product capability and includes timing, prompt, display, and fallback behavior. Current package generation should not create image files directly.
+- `asset_policy=blocked`: mark the assignment `readiness=blocked_until_product_decision`.
+- Required visual assets must be treated as dependencies, not as narrative flavor. If an activity cannot work without the asset and the asset pipeline is not defined, block that assignment at the adaptation brief.
 - `prod.md` should reference asset IDs and runtime behavior, not raw image prompts. `spec.md` owns the author-facing `## Asset Brief` with image prompts and dependency rationale.
 
 ### 0.5 Readiness rules
 
 - `ready_to_generate`: current Cat1/Cat5 package workflow, V1 constraints, and existing schema can represent the idea safely.
 - `generate_with_assumptions`: generation may proceed, but `spec.md` must include an `Adaptation Rationale` section summarizing the assumptions, asset dependency, and any weak scaffold fit.
-- `blocked_until_product_decision`: stop after the brief. Do not create package files, append `results.tsv`, or mark the assignment complete. Use this for unsupported categories, required assets/UI state/material workflow/motion safety, OCR risk, pose risk, before/after state verification, or a mechanic that cannot be represented by current workflow without distorting the activity concept.
+- `blocked_until_product_decision`: write a blocked brief for this row, do not create package files, append `results.tsv`, or mark the assignment complete, then continue to the next unchecked row. Use this for unsupported categories, required assets/UI state/material workflow/motion safety, OCR risk, pose risk, before/after state verification, or a mechanic that cannot be represented by current workflow without distorting the activity concept.
 
 ### 0.6 Entity mapping use
 
@@ -468,10 +474,21 @@ The three closed enums under `activity_signature` are owned by `docs/activity_vo
 #### Package-level consumer contracts
 
 - **Runtime prompt composer** reads `prod.md`; it must contain complete beat-level dialogue and screen guidance with no scorecard and no one-line later-round summaries.
-- **Author/reviewer reference** reads `spec.md`; it must contain premise, target, rationale, selection trigger, pillar/game style, and the `## Self-Evaluation Scorecard`.
+- **Author/reviewer reference** reads `spec.md`; it must contain premise, target, rationale, selection trigger, pillar/game style, concrete assumptions/constraints, and the `## Self-Evaluation Scorecard`.
 - **Matcher/selector** reads `tag_block.yaml`; values must validate against `activities/_schema/tag_block.schema.json`.
 - **Child recap renderer** reads `recap.template.yaml`; the focal attribute token and reward language must match the runtime activity.
 - **Parent dashboard renderer** reads `dashboard.template.yaml`; `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.activity_signature.focal_attribute`.
+
+#### Migrated package depth floor
+
+The migrated five-file package intentionally moves metadata and recap/dashboard payloads out of `spec.md` and `prod.md`; shorter files are acceptable only when they remain rich enough to run and review. Compactness is not a quality goal. A package is too thin if a fresh reviewer cannot understand the intended experience, constraints, mechanic, game feel, and runtime behavior without reconstructing missing detail from older examples.
+
+- `spec.md` must be a decision-useful authoring reference, not just a scorecard wrapper. It must explain the premise, target tier/category, trigger, canonical mechanic, scaffold choice, adaptation rationale, mapping/asset/product assumptions, why the game feel works, and any known residual risk.
+- `prod.md` must be a runnable prompt source, not a terse script. Steps 1, 2, 4, and 5 need the same executable shape as Step 3: concrete AI line, ideal/unexpected/no-response child branches where applicable, matching AI follow-ups, and specific screen state.
+- Step 3 rounds must be distinct, not template clones. Each round needs a named objective, a different clue/challenge/action, child responses that exercise the promised mechanic, follow-ups that react to what the child said/did, and a screen-state change that preserves progress.
+- The magic moment must be visible in both dialogue and screen behavior. A badge alone is not enough; include a reveal, consequence, synthesis, audience reaction, map/progress completion, visitor test, or other payoff that follows from the child's actions.
+- Avoid generic filler such as "Great job," "try again," "the screen updates," or "the AI encourages" unless it is paired with specific evidence, consequence, or screen behavior. Warmth without specificity does not pass the detail floor.
+- Do not use line count as the primary measure. Use completeness, specificity, and replayable game feel. When in doubt, add concrete runtime detail rather than trimming.
 
 #### Pre-output self-check
 
@@ -483,9 +500,10 @@ Before emitting a completed migrated package, verify:
 - [ ] `tag_block.yaml` uses current field names: `game_style` (not `style`), `tier_range` (not `tier` / `tier_variants`), and `activity_signature.focal_attribute`.
 - [ ] `pillar`, `game_style`, `template_type`, `tier_range.primary`, `key_concepts`, `progression.topic_axis`, `activity_signature.observation_angle`, `activity_signature.mechanic`, and `activity_signature.entity_role` use the current enum vocabulary.
 - [ ] `prod.md` contains Basic Info, Activity Overview, and Interaction Flow sections, with every runtime step represented.
+- [ ] `prod.md` passes the migrated package depth floor: every step is runnable, concrete, and specific enough for the prompt composer without relying on old design files.
 - [ ] `prod.md` Step 3 keeps **every round in full detail**: AI says, child response branches, AI follow-up branches, and screen state. No "same structure," "AI gives...", or one-line summaries.
 - [ ] `prod.md` has no `## Self-Evaluation Scorecard`.
-- [ ] `spec.md` has exactly one `## Self-Evaluation Scorecard`, and the notes are truthful against `prod.md`, `tag_block.yaml`, `program.md`, and `templates.md`.
+- [ ] `spec.md` has exactly one `## Self-Evaluation Scorecard`, contains enough rationale for an independent reviewer to judge the activity, and the notes are truthful against `prod.md`, `tag_block.yaml`, `program.md`, and `templates.md`.
 - [ ] `recap.template.yaml` and `dashboard.template.yaml` use the same focal attribute / badge / activity identity as `tag_block.yaml` and `prod.md`.
 - [ ] `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` exactly equals `tag_block.yaml` `activity_signature.focal_attribute`.
 - [ ] No field value is a placeholder, ellipsis, or instruction-shaped string ("pick one of...", "see mapping", etc.).
@@ -598,12 +616,14 @@ activities/<activity_id>/
 [celebration first, then naturally names the Key Concepts the child explored; include child responses, AI follow-up, and Screen]
 ```
 
-`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`. For concept-led assignments, include an `## Adaptation Rationale` section before the scorecard summarizing the Phase 0 brief: core promise, canonical mechanic, input mode, readiness, trigger condition, mapping use, asset dependency, product-capability flags, scaffold fit, and assumptions. When `asset_dependency.policy` is not `no_assets`, also include an `## Asset Brief` section before the scorecard with one row per asset requirement: `asset_id`, `asset_type`, requiredness, generation timing, use step, purpose, `prompt_en` or source, display behavior, fallback behavior, and safety constraints.
+`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`. For concept-led assignments, include an `## Adaptation Rationale` section before the scorecard summarizing the Phase 0 brief: core promise, canonical mechanic, input mode, readiness, trigger condition, mapping use, asset dependency, product-capability flags, scaffold fit, and assumptions. When `asset_dependency.policy` is not `no_assets`, also include an `## Asset Brief` section before the scorecard with one row per asset requirement: `asset_id`, `asset_type`, requiredness, generation timing, use step, purpose, `prompt_en` or source, display behavior, fallback behavior, and safety constraints. Keep it concise, but not skeletal: include enough specifics that a reviewer can identify what makes this activity different from a generic template.
 
 ### Format Rules
 
 - **Tone markers** are always in square brackets at the start of AI dialogue: `[excited discovery tone]`, `[mysterious whisper]`, `[warm celebration]`, etc.
 - **Every runtime round must be fully expanded** in `prod.md`. Never write "same structure," "AI gives a riddle," "later rounds follow," or any one-line summary for a runtime round.
+- **All runtime steps must be executable.** Do not reserve full detail only for Step 3; Steps 1, 2, 4, and 5 also need concrete dialogue branches, follow-ups, and screen states unless a branch is genuinely inapplicable.
+- **Specificity beats brevity.** Distinguish rounds, screen states, and follow-ups with concrete clues, actions, labels, consequences, or child evidence. A compact migrated package still needs enough detail to match the older quality floor.
 - **Round counts** may be specified as ranges in the authoring rationale, but the runtime flow must include the concrete number of rounds the activity actually plays.
 - **Step count** varies by category: In-Device Verbal typically has 5 steps; Out-of-Device Collection may have 5–6 steps
 - **Closing speech** must celebrate FIRST, then naturally name Key Concepts. Concepts feel like praise, not vocabulary lessons.
@@ -619,6 +639,8 @@ activities/<activity_id>/
 After generating the activity design, evaluate it against ALL 10 dimensions below. Each dimension is scored PASS or FAIL. If ANY dimension fails, identify the specific issue, fix the design, then re-evaluate. Repeat until all applicable dimensions pass.
 
 Before finalizing the `## Self-Evaluation Scorecard`, spawn a separate reviewer agent to check the same 10 dimensions independently against the actual package files. The reviewer must read `program.md` Phase 3 and the generated `activities/<activity_id>/` package directly, plus `templates.md`, `activities/README.md`, `activities/_schema/tag_block.schema.json`, and `docs/activity_vocabulary.md`; for mapping-informed assignments, it must also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`. Treat any reviewer FAIL or credible uncertainty as a required repair: fix the package, rerun the author self-evaluation, and request a fresh independent review before writing the final scorecard, logging `results.tsv`, or marking the assignment complete.
+
+Reviewers must fail packages that are structurally valid but thin. Passing means the package meets the migrated package depth floor: `spec.md` carries enough authoring rationale to audit the design, and `prod.md` carries enough concrete dialogue and screen behavior to run the activity without inventing missing beats.
 
 ### Dimension 1: V1 Technical Compliance (PASS/FAIL)
 
@@ -668,6 +690,7 @@ For the target tier, check:
 - Does every AI line include a tone/emotion marker? → Must be YES
 - Are AI responses warm, playful, and child-appropriate? → Must be YES
 - Is there zero use of abstract instructions like "AI encourages" or "AI provides feedback"? → Must be YES
+- Do follow-ups react to the child's specific branch with evidence, consequence, or a targeted scaffold rather than generic praise? → Must be YES
 
 ### Dimension 7: Screen & UI Completeness (PASS/FAIL)
 
@@ -675,6 +698,7 @@ For the target tier, check:
 - Are screen descriptions specific (not "screen shows relevant content")? → Must be YES
 - Do screen elements match what's happening in the dialogue? → Must be YES
 - Are animations/visual effects described concretely (not just "animation plays")? → Must be YES
+- Does each screen description identify what persists, what changes, and how progress/payoff is represented? → Must be YES
 
 ### Dimension 8: Entity Mapping Alignment (PASS/FAIL) — mapping-informed designs only
 
@@ -697,11 +721,13 @@ Does the design feel like a GAME, not just a structured conversation?
 - Does the design have a clear emotional climax ("magic moment")? → Must be YES
 - Would a child want to play this again (replayability)? → Should be YES
 - Is there at least one moment of surprise, drama, or delight beyond warm encouragement? → Must be YES
+- Is the magic moment earned by the child's repeated action, not merely awarded as a generic badge? → Must be YES
 
 ### Dimension 10: Mechanic Fidelity + Scaffold Honesty (PASS/FAIL)
 
 Does the design preserve the child action promised by the assignment or Phase 0 brief, while using pillar/style scaffolding honestly?
 - Does the child's repeated action in `prod.md` match `tag_block.yaml` `activity_signature.mechanic` and the Phase 0 `canonical_mechanic` if present? → Must be YES
+- Does the repeated action include the full source promise, such as evidence explanation, rule naming, consequence choice, or synthesis when the assignment asks for it? → Must be YES
 - Does the selected pillar/style support the mechanic without distorting the activity concept or entity intent? → Must be YES
 - If `scaffold_fit` is `weak` or `generate_with_assumptions`, does `spec.md` disclose the scaffold compromise and assumptions in `## Adaptation Rationale`? → Must be YES
 - Does the package avoid forcing unsupported mechanics, product capabilities, or categories into a misleading current style? → Must be YES

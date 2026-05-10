@@ -27,11 +27,11 @@ The child hears the target sound `/b/` and finds three nearby objects whose name
 
 **3. Design Highlight**
 
-The treasure rule is a sound, not a visual color or shape. The optional card supports memory, but the core game works by voice, naming, and playful sound checks.
+The treasure rule is a sound, not a visual color or shape. Each find must pass through a playful spoken check: name the object, hear the first sound, then decide whether it joins the `/b/` map. The optional card supports memory, but the core game works by voice, naming, and a visible treasure trail.
 
 **4. Typical Scenario**
 
-Child enters sound hunt mode; the AI says `/b/`, and the child searches the room for a ball, book, or block.
+Child enters sound hunt mode; the AI says `/b/`, and the child searches the room for a ball, book, or block. A nonmatch can go into the different-sound basket without losing the three main treasure slots.
 
 ### C. Interaction Flow
 

@@ -37,6 +37,13 @@ Start this activity when the child enters story mode, asks for a story game, or 
 - **Game style:** `time_traveler`
 - **Why this scaffold:** the child travels through a sequence of story moments, makes a decision at each stop, and sees the whole path assembled at the end.
 
+## Runtime Detail Floor Notes
+
+- **Distinct round design:** The three decisions affect different story layers: world entry, helper/tool, and ending destination. Each choice changes the next visual state instead of only filling a token.
+- **Branch specificity:** Unexpected child ideas are handled as story material when possible; the AI validates the idea, then maps it back to one of the two available choices so the runtime does not need an open-ended branching engine.
+- **Earned magic moment:** The final map displays the chosen door, helper, and ending as a connected route. The child sees a story world that exists because of their decisions.
+- **Residual risk:** The package is authored branching, not dynamic narrative planning. It preserves agency through three clear consequences rather than unlimited story generation.
+
 ## Self-Evaluation Scorecard
 
 Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.md` Adventure + Cat1 rules, and the Phase 0 adaptation brief.

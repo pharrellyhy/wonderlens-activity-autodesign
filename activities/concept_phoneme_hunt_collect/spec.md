@@ -44,6 +44,13 @@ Start this activity when the child enters a language hunt mode, or when a photog
 |---|---|---|---|---|---|---|---|---|---|
 | phoneme_letter_card_01 | card_set | optional | pre_generated | prod.step_1; prod.step_3.round_1 | Give the child a visual reminder of the target `/b/` sound and letter. | prompt_en: Create a simple child-friendly phonics card for the /b/ sound. Show uppercase B and lowercase b in large rounded letters, include one small friendly picture of a ball and one banana, use a clean light background, no extra words, suitable for children ages 4-6. Source: new_ai_generated_asset. | Show the card at task start and briefly again if the child forgets the target sound. | If the card is unavailable, the AI repeats the target sound by voice only and must not claim the screen is showing a letter. | No real child photos, no brands, no complex text, and no cluttered composition. |
 
+## Runtime Detail Floor Notes
+
+- **Distinct round design:** The child builds a three-photo sound map. Each accepted treasure adds a slot, a path segment, and another chance to compare the spoken beginning sound.
+- **Branch specificity:** The AI handles nonmatches without rejecting the child personally: it can ask for the object name, model the first sound, or place a find in the "different sound" basket.
+- **Earned magic moment:** The `/b/` treasure map appears only after three collected examples. The payoff is the visible sound team, not just a phonics badge.
+- **Residual risk:** The runtime may need child naming or caregiver help when object classification is uncertain; the activity avoids OCR and does not require reading letters.
+
 ## Self-Evaluation Scorecard
 
 Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.md` Adventure + Cat5 rules, and the Phase 0 adaptation brief.

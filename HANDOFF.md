@@ -2,8 +2,8 @@
 
 ## Current Status
 
-- Status: mechanic-first activity concept adaptation workflow with explicit asset dependency layer and run provenance layer implemented in authoring docs
-- Date: 2026-05-09
+- Status: mechanic-first activity concept adaptation workflow with explicit asset dependency layer, run provenance layer, existing-package enrichment pass, and skip-and-continue blocker handling implemented in authoring docs
+- Date: 2026-05-10
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
@@ -14,7 +14,7 @@
 - Documented three input modes: `mapping_informed`, `parameterized`, and `concept_only`.
 - Clarified that entity mapping YAML is useful for grounding and matchability, but not mandatory for concept-only or parameterized briefs.
 - Added mechanic adapters to `templates.md` so Template 0 composes as mechanic-first before category and pillar/style scaffolding.
-- Updated `run.md` to stop on `blocked_until_product_decision` instead of forcing package generation.
+- Updated `run.md` to block unsupported assignments at `blocked_until_product_decision` instead of forcing package generation.
 - Marked `transform.md` and `transform_run.md` as legacy-only and not applicable to activity concept adaptation.
 - Updated `README.md` to reflect concept-led assignment shape, adaptation brief behavior, and the detailed input data source model.
 - Added the Activity Concept Brief + Asset Requirements source shape so concept owners and curriculum authors can declare visual assets, generation timing, use steps, prompts, display behavior, and fallbacks explicitly.
@@ -39,11 +39,35 @@
 - Updated `README.md` and `examples/README.md` to point concept owners to the fillable template.
 - Expanded the canonical `activity_signature.mechanic` enum from 10 to 12 values across `docs/activity_vocabulary.md`, `activities/_schema/tag_block.schema.json`, `program.md`, `templates.md`, `README.md`, examples, assignments, and migrated activity metadata.
 - Retired `voice` in favor of `motion_voice`, retired `narrate` in favor of `imagine`, and added `decide` plus `remember`.
+- Tightened the migrated package depth floor in `program.md`, `run.md`, `templates.md`, `GOAL.md`, and `activities/README.md`: compact five-file packages are allowed, but thin/generic `spec.md` or `prod.md` files should fail review.
+- Added explicit standards that Steps 1, 2, 4, and 5 need executable dialogue/screen detail, Step 3 rounds must be distinct, magic moments must be earned by the child action, and reviewers should fail structurally valid but under-detailed packages.
+- Re-ran the `/goal` loop as `runs/20260509_230616_activity_concepts`; current unchecked queue starts with Coloring Game, which blocked at Phase 0.
+- Added `runs/20260509_230616_activity_concepts/blocked_briefs/001_coloring_game.yaml`; no package, `results.tsv` row, generated ID, or assignment checkoff was created for the blocked probe.
+- Enriched all existing generated `activities/concept_*` packages to reflect the tightened depth floor: each `spec.md` now includes package-specific `## Runtime Detail Floor Notes`, and each `prod.md` overview has richer design-highlight / typical-scenario detail tied to progress, branch handling, and earned payoff.
+- Updated the `/goal` command and success criteria so future runs audit checked-row existing `activities/<activity_id>/` packages before processing unchecked assignments.
+- Added `run.md` Existing Package Enrichment Pass, including audit scope, allowed in-place enrichment, `results.tsv` non-logging rule, and `outputs.enriched_activities` run-manifest provenance.
+- Updated `program.md` v1.14, `templates.md` v1.7, and `runs/README.md` to make enrichment mode part of the canonical package workflow.
+- Updated `program.md` v1.15 to make blocked assignment handling non-terminal for the batch.
+- Updated blocker handling in `GOAL.md`, `run.md`, `program.md`, `README.md`, `runs/README.md`, and `assignments.md`: product/design blockers now write blocked briefs, remain unchecked, and the run continues to later unchecked rows. Only hard workflow failures stop the batch.
 
 ## Verification
 
 - `git diff --check`
   - Result: clean
+- Targeted detail-floor diff review across `program.md`, `run.md`, `templates.md`, `GOAL.md`, `activities/README.md`, and `HANDOFF.md`
+  - Result: migrated package generation now explicitly rejects thin/generic packages even when schema and structure are valid
+- Current-run blocked-state audit for `runs/20260509_230616_activity_concepts`
+  - Result: manifest status is `blocked`, `pending_at_start=2`, `generated_count=0`, `blocked_count=1`; Coloring Game remains unchecked, absent from `results.tsv`, absent from `generated_activity_ids.txt`, and has no activity package directory
+- Completion audit evidence check for the active `/goal` run
+  - Result: generation-ready rows are checked and have structurally valid packages; the first currently unchecked row is Coloring Game; that historical run stopped at its blocked Phase 0 brief under the previous terminal-blocker rule
+- Concept package enrichment invariant check
+  - Result: all seven `activities/concept_*` packages have exactly five files, matching tag/dashboard focal attributes, correct scorecard placement, no raw prompts in `prod.md`, no condensed-round placeholders, and `## Runtime Detail Floor Notes` in `spec.md`
+- Migrated package tag-block schema validation after concept package enrichment
+  - Result: all `activities/*/tag_block.yaml` files validate
+- Targeted enrichment workflow scan across `GOAL.md`, `run.md`, `program.md`, `templates.md`, `runs/README.md`, and `HANDOFF.md`
+  - Result: existing-package enrichment is now documented as a pre-loop `/goal` pass with provenance and no duplicate `results.tsv` logging
+- Targeted blocker-handling scan across `GOAL.md`, `run.md`, `program.md`, `README.md`, `runs/README.md`, `assignments.md`, and `HANDOFF.md`
+  - Result: product/design blockers are documented as per-row blocked briefs that do not halt later unchecked rows; `completed_with_blockers` is documented as the run status when blockers remain
 - Targeted run-layer scan across `README.md`, `GOAL.md`, `program.md`, `run.md`, `runs/README.md`, `docs/plans/2026-05-09-run-provenance-layer.md`, and `HANDOFF.md`
   - Result: expected `runs/<run_id>`, `run_manifest`, `assignment_snapshot`, `generated_activity_ids`, `adaptation_briefs`, and `blocked_briefs` references are present
 - Targeted source concept batch scan across `assignments.md`, `examples/source_activity_concept_briefs.md`, `run.md`, `program.md`, `README.md`, and `GOAL.md`
@@ -92,10 +116,12 @@
 - Mechanic enum changes require matching updates in downstream consumer enum mirrors before new packages using `decide`, `remember`, `imagine`, or `motion_voice` can be consumed safely.
 - Asset requirements are authoring-only in this pass; no runtime asset manifest file or tag-block schema field was added.
 - Runtime image generation remains blocked unless a future product decision declares support.
-- Run manifests are maintained by the agent workflow in this pass; there is no schema validator for `runs/<run_id>/run_manifest.yaml` yet.
+- Run manifests are maintained by the agent workflow in this pass; there is no schema validator for `runs/<run_id>/run_manifest.yaml` yet, including the new enrichment audit/no-op/enriched counters and `enriched_activities` entries.
+- Existing `activities/concept_*` packages now have a first enrichment pass, but they have not received a fresh independent reviewer pass after those editorial additions.
 
 ## Next Immediate Actions
 
 - Review the Activity Concept Brief + Asset Requirements fields with concept owners and curriculum authors.
 - For new concept rows, ask concept owners and curriculum authors to provide `asset_policy` and companion asset rows when they want AI pre-made images or screen-displayed visuals.
-- On the next `/goal` run, confirm the generated `runs/<run_id>/run_manifest.yaml` shape is sufficient before adding a formal schema.
+- On the next `/goal` run, confirm the generated `runs/<run_id>/run_manifest.yaml` enrichment fields are sufficient before adding a formal schema.
+- Decide whether to run a fresh independent review pass on the enriched `activities/concept_*` packages before treating the enrichment as final curriculum signoff.

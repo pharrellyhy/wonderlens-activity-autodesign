@@ -27,11 +27,11 @@ The child sees one cropped clue from a prebuilt card, guesses the hidden whole, 
 
 **3. Design Highlight**
 
-Each round starts with a mystery crop, not the full answer. If cards are unavailable, the same loop becomes a voice-only part riddle.
+Each round starts with a mystery crop, not the full answer. The child must name the whole and the evidence, such as "rabbit because long ears," before the reveal board pairs part with whole. If cards are unavailable, the same loop becomes a voice-only part riddle and the screen never claims to show a picture.
 
 **4. Typical Scenario**
 
-The screen shows long rabbit ears. The child guesses "rabbit" and says, "The ears helped."
+The screen shows long rabbit ears from `partial_reveal_cards_01`. The child guesses "rabbit" and says, "The ears helped"; the reveal later places the ear crop beside the full rabbit so the evidence stays visible.
 
 ### C. Interaction Flow
 

@@ -27,11 +27,11 @@ The child chooses three or four nearby objects, arranges them as a tiny exhibit,
 
 **3. Design Highlight**
 
-The AI never gives the category first. The child acts as curator, builds the exhibit, and earns the final label by defending their own rule.
+The AI never gives the category first. The child acts as curator, builds the exhibit, and earns the final label by defending their own rule with evidence. The "maybe shelf" keeps uncertain objects in play, so revising the rule feels like curator thinking rather than a wrong answer.
 
 **4. Typical Scenario**
 
-Child gathers a spoon, cup, plate, and napkin, arranges them together, then explains, "They are all for snack time."
+Child gathers a spoon, cup, plate, and napkin, arranges them together, then explains, "They are all for snack time." A visitor-ticket stamp appears only after the child gives a one-sentence tour of the rule.
 
 ### C. Interaction Flow
 

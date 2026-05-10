@@ -43,6 +43,13 @@ Start this activity when the child asks for a guessing game, enters guessing mod
 |---|---|---|---|---|---|---|---|---|---|
 | guess_reference_cards_01 | card_set | optional | pre_generated | prod.step_2; prod.step_3.round_1-3 | Provide optional reference pictures before or after a clue round to reduce frustration. | prompt_en: Create a set of friendly reference cards for common animals and household objects for a children's guessing game. Use one centered object per card, plain light background, clear recognizable shapes, soft colors, no text, no scary expressions. Source: new_ai_generated_asset. | Show the matching card after the answer is revealed, or show a partial hint card if the child is stuck. | If cards are unavailable, the AI continues with voice clues and encouragement and must not claim the screen is showing a picture. | No real child photos, friendly animal expressions, and no dangerous scenes. |
 
+## Runtime Detail Floor Notes
+
+- **Distinct round design:** The clue sequence moves from broad function evidence, to visible form evidence, to sound/behavior evidence. Each round narrows the answer and changes what a good guess can use.
+- **Branch specificity:** Wrong guesses are treated as hypotheses, not failures. The AI names which evidence still fits and which new evidence should redirect the child.
+- **Earned magic moment:** The reveal is earned by the three clue pips connecting into one evidence trail. The child can see how water, beak, and quack led to the answer.
+- **Residual risk:** The source name says "Guess in 10"; this package uses three runtime clues for T1 pacing while preserving the core deduction loop.
+
 ## Self-Evaluation Scorecard
 
 Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.md` Mystery + Cat1 rules, and the Phase 0 adaptation brief.

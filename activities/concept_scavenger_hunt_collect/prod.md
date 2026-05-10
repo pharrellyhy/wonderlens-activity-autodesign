@@ -27,11 +27,11 @@ The child starts with one photographed object and a shared clue such as `{shared
 
 **3. Design Highlight**
 
-The activity turns an ordinary scavenger hunt into a "shared clue" quest. Each photo gets a dramatic match check, and the final magic moment asks the child to name a second connection across the finds.
+The activity turns an ordinary scavenger hunt into a "shared clue" quest. Each photo gets a dramatic match check, a stable slot, and a visible connection line back to the starter object. The final magic moment asks the child to name a second connection, so the collection becomes an explained evidence web rather than a list of objects.
 
 **4. Typical Scenario**
 
-Child photographs a round blue ball; the AI chooses the clue "round," and the child hunts for three more round things nearby.
+Child photographs a round blue ball; the AI chooses the clue "round," and the child hunts for three more round things nearby. If one find is only "maybe" round, it can sit beside the trail while the main three-slot progress stays intact.
 
 ### C. Interaction Flow
 

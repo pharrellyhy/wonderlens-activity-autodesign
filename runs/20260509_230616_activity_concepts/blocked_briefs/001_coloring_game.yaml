@@ -1,0 +1,54 @@
+adaptation_brief:
+  assignment_index: 1
+  assignment_type: capability_probe
+  activity_concept: Coloring Game
+  source:
+    concept_source: examples/source_activity_concept_briefs.md#source_coloring_game
+    asset_requirements: examples/source_activity_concept_briefs.md#runtime_coloring_line_art_01
+    assignment_row: "assignment_type=capability_probe, activity_concept=Coloring Game, concept_source=examples/source_activity_concept_briefs.md#source_coloring_game, description=Screen shows line art; the child chooses colors by taking photos and AI fills regions to create a shareable artwork, mechanic=build, category=cat5, tier=T1, asset_policy=runtime_generated, asset_requirements=examples/source_activity_concept_briefs.md#runtime_coloring_line_art_01, product_capabilities=requires_generated_image,requires_coloring_ui,requires_ui_state, activity_id=concept_coloring_game_probe, trigger_condition=Child photographs an object with a clear color or enters coloring mode"
+  input_mode: concept_only
+  core_promise: "The child chooses colors by photographing objects, then the system fills regions of runtime-generated line art to create a shareable artwork."
+  canonical_mechanic: build
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: blocked_until_product_decision
+  trigger_condition: "Child photographs an object with a clear color or enters coloring mode."
+  entity_role: catalyst
+  observation_angle: color
+  focal_attribute: "captured_color_palette"
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+    - requires_generated_image
+    - requires_coloring_ui
+    - requires_ui_state
+  asset_dependency:
+    policy: runtime_generated
+    assets:
+      - asset_id: runtime_coloring_line_art_01
+        asset_type: line_art
+        requiredness: required
+        generation_timing: runtime_generated
+        use_step: "prod.step_2; prod.step_3.round_1-3"
+        purpose: "Convert a photographed object into a fillable line drawing and apply colors chosen from the child's photos."
+        prompt_en: "Generate a simple coloring-page line drawing based on the photographed object. Use clean black outlines, 3 to 5 large enclosed regions for coloring, no shading, no text, no background clutter, child-friendly proportions, and clear separation between regions."
+        source: future_runtime_image_generation
+        display_behavior: "Show the line art at runtime and fill a selected region after each child color photo."
+        fallback_behavior: "If runtime generation and coloring UI are unsupported, block at Phase 0 and do not generate an activity package."
+        safety_constraints: "Do not generate real child portraits, copyrighted characters, or detailed dangerous objects."
+    missing_asset_risk: high
+  scaffold_choice:
+    pillar: Creation
+    game_style: mix_lab
+    scaffold_fit: blocked_by_product_dependency
+    rationale: "The build mechanic could fit a Creation scaffold only if runtime line-art generation, fillable-region coloring UI, state storage, and artwork export exist. Without those capabilities, any text-only package would distort the source concept."
+  missing_product_decisions:
+    - "Confirm whether runtime image generation for child-safe line art is supported."
+    - "Define a fillable-region coloring UI with selectable regions and photo-derived colors."
+    - "Define UI state storage for selected colors, filled regions, and artwork progress."
+    - "Define export/share behavior for the completed artwork."
+    - "Define safety review and fallback behavior for generated line art."
+  assumptions: []

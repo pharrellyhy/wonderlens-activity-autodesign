@@ -45,6 +45,13 @@ If `partial_reveal_cards_01` cannot be displayed, use voice-only part riddles su
 |---|---|---|---|---|---|---|---|---|---|
 | partial_reveal_cards_01 | card_set | required | pre_generated | prod.step_2; prod.step_3.round_1-3 | Provide visible partial evidence so the child can infer the whole animal or object. | prompt_en: Create a set of partial-reveal animal guessing cards for children ages 4-6. Each card should show only one distinctive part of a common animal, such as a tiger tail, rabbit ears, elephant trunk, duck feet, or fish scales. Use a consistent soft illustration style, plain light background, no text, no scary details, and keep the cropped part large and easy to inspect. Source: new_ai_generated_asset. | Show one partial-reveal card full screen each round. The child observes the part, guesses the whole, and explains the evidence. | If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture. | No real child photos, no gore or scary details, no predation scenes, and clear inspectable cropped parts. |
 
+## Runtime Detail Floor Notes
+
+- **Distinct round design:** The three clues use different part-whole evidence types: ears, feet, and tail pattern. Each round asks the child to name both the whole and the clue that supports the guess.
+- **Branch specificity:** Follow-ups separate guess quality from evidence quality. A near guess can still be praised for noticing a useful clue, then narrowed with a targeted hint.
+- **Earned magic moment:** The final board pairs each cropped part with its full answer, so the child sees how small visible details became whole animals.
+- **Residual risk:** The full visual experience depends on `partial_reveal_cards_01`; the voice-only fallback preserves deduction but is less inspectable than the card version.
+
 ## Self-Evaluation Scorecard
 
 Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.md` Mystery + Cat1 rules, and the Phase 0 adaptation brief.

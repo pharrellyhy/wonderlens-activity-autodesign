@@ -36,7 +36,9 @@ The directory name MUST equal the `activity_id` inside that dir's `tag_block.yam
 - If an activity references AI-generated images, prebuilt card sets, line art, icons, overlays, or displayed reference images, `spec.md` must include `## Asset Brief` before the scorecard.
 - `prod.md` may reference stable `asset_id` values and fallback behavior, but must not include raw image-generation prompts.
 - Every Step 3 round in `prod.md` must be fully executable: AI dialogue, child response branches, AI follow-up branches, and screen state.
+- Steps 1, 2, 4, and 5 must also be executable enough for the runtime prompt composer: concrete AI dialogue, branch-specific follow-ups where applicable, and specific screen states.
 - Do not use condensed placeholders such as "same structure," "AI gives a riddle," "later rounds follow," or one-line summaries in migrated `prod.md` files.
+- Do not treat compact migrated files as a lower-detail target. `spec.md` must preserve decision-useful design rationale, and `prod.md` must preserve concrete game feel, progress, payoff, and source-promise behavior.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.yaml` `activity_signature.focal_attribute`.
 
 ## Asset brief invariant

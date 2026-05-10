@@ -40,6 +40,13 @@ Do not start if the child has only one object available, if the objects are unsa
 - **Game style:** `quest_collector`
 - **Why this scaffold:** the child builds a visible path from first object to final exhibit label. The progress frame creates momentum, while the sort mechanic remains the actual learning action.
 
+## Runtime Detail Floor Notes
+
+- **Distinct round design:** The loop progresses from first object clue, to second-object comparison, to full exhibit rule. The child makes and revises a grouping rule rather than collecting against an AI-supplied category.
+- **Branch specificity:** Favorite-object or off-rule choices are treated as curator thinking. The AI asks the child to name the reason, move the object to maybe, or revise the rule.
+- **Earned magic moment:** The visitor test is passed only when the child gives a one-sentence tour. The final exhibit title comes from the child's rule.
+- **Residual risk:** The AI does not prove object membership with computer vision. It accepts and scaffolds the child's spoken grouping evidence.
+
 ## Self-Evaluation Scorecard
 
 Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.md` mechanic adapter rules, and `docs/game_styles.md` sort guidance.

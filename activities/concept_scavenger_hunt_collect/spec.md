@@ -45,6 +45,13 @@ If runtime cannot infer a feature, the AI can ask the child to choose: "Should w
 - **Game style:** `quest_collector`
 - **Why this scaffold:** the child completes a purposeful quest, watches a three-slot trail fill up, and earns a badge by explaining the hidden connection among the finds.
 
+## Runtime Detail Floor Notes
+
+- **Distinct round design:** The three finds are not interchangeable counters. Round 1 establishes the first evidence match, Round 2 compares across two finds, and Round 3 completes the trail and sets up synthesis.
+- **Branch specificity:** When a photo may not match, the AI validates the find, asks for the visible matching part, and keeps the maybe pile separate from accepted progress.
+- **Earned magic moment:** The final web appears only after three accepted finds; the child then names an extra connection, turning collected photos into an explained rule.
+- **Residual risk:** Runtime similarity checks remain conversational. The package relies on broad visible or child-confirmed features rather than computational comparison across photos.
+
 ## Self-Evaluation Scorecard
 
 Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, and `templates.md` Adventure + Cat5 rules.

@@ -99,7 +99,7 @@
 
 > Source workbook: local concept workbook, `Sheet1`.
 > Companion concept and asset details: `examples/source_activity_concept_briefs.md`.
-> Rows in "Generation-ready / assumption-ready" are intended to create packages. Rows in "Capability probes" are intentionally placed last; the `/goal` loop should stop at the first blocked probe and leave it unchecked.
+> Rows in "Generation-ready / assumption-ready" are intended to create packages. Rows in "Capability probes" are expected to write blocked briefs when current product capabilities cannot support them; the `/goal` loop should leave blocked rows unchecked and continue to later unchecked rows.
 > All assignment row descriptions and trigger conditions in this batch are normalized to English even when the source concept name was Chinese.
 
 ### Generation-ready / assumption-ready concepts
@@ -112,7 +112,7 @@
 - [x] assignment_type=match_pattern, activity_concept=Tiny Curator, concept_source=examples/source_activity_concept_briefs.md#source_tiny_curator, description=Child finds three or four objects that they think belong together, arranges a tiny exhibition, then explains their grouping rule, mechanic=sort, category=cat5, tier=T2, asset_policy=no_assets, activity_id=concept_tiny_curator_sort, trigger_condition=Child is at home or outdoors with several objects that can be grouped or compared
 - [x] assignment_type=activity_concept, activity_concept=Partial Reveal Guess, concept_source=examples/source_activity_concept_briefs.md#source_partial_reveal_guess, description=Screen shows part of an animal or object; the child guesses the whole thing from visible clues and explains the evidence, mechanic=deduce, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=examples/source_activity_concept_briefs.md#partial_reveal_cards_01, product_capabilities=requires_asset_display, activity_id=concept_partial_reveal_deduce, trigger_condition=Child photographs an animal toy, animal picture, or enters partial-reveal guessing mode
 
-### Capability probes expected to stop at Phase 0
+### Capability probes expected to block at Phase 0
 
 - [ ] assignment_type=capability_probe, activity_concept=Coloring Game, concept_source=examples/source_activity_concept_briefs.md#source_coloring_game, description=Screen shows line art; the child chooses colors by taking photos and AI fills regions to create a shareable artwork, mechanic=build, category=cat5, tier=T1, asset_policy=runtime_generated, asset_requirements=examples/source_activity_concept_briefs.md#runtime_coloring_line_art_01, product_capabilities=requires_generated_image,requires_coloring_ui,requires_ui_state, activity_id=concept_coloring_game_probe, trigger_condition=Child photographs an object with a clear color or enters coloring mode
 - [ ] assignment_type=capability_probe, activity_concept=Guided Drawing, concept_source=examples/source_activity_concept_briefs.md#source_guided_drawing, description=AI guides the child to use paper and pencil to complete a simple drawing step by step, then the child photographs the finished work, mechanic=build, category=cat3, tier=T1, asset_policy=optional_support, asset_requirements=examples/source_activity_concept_briefs.md#guided_drawing_step_cards_01, product_capabilities=requires_materials,before_after_risk, activity_id=concept_guided_drawing_probe, trigger_condition=Child is indoors and photographs an object that could become a drawing theme

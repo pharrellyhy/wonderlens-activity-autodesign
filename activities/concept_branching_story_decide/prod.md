@@ -27,11 +27,11 @@ The child enters a short story with three choice points. Each choice changes wha
 
 **3. Design Highlight**
 
-The child is not just listening to a story. They decide the path, see each decision become a token, and get a custom ending built from their choices.
+The child is not just listening to a story. They decide the path, and each choice changes a visible part of the world: door color, helper tool, and ending place. The final map replays the three consequences together, so the child can retell a story that exists because of their decisions.
 
 **4. Typical Scenario**
 
-Child photographs a toy turtle; the AI makes it the hero of a two-door adventure.
+Child photographs a toy turtle; the AI makes it the hero of a two-door adventure. A blue door creates a river path, a cloud helper builds a bridge, and the chosen ending becomes the final stop on the path map.
 
 ### C. Interaction Flow
 

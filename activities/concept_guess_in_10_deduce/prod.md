@@ -27,11 +27,11 @@ The AI hides a common animal or object and gives clues one by one. The child gue
 
 **3. Design Highlight**
 
-The child experiences real suspense: each clue narrows the mystery, but the answer stays hidden until the reveal. Optional cards support the child only when available.
+The child experiences real suspense: each clue narrows the mystery, but the answer stays hidden until the reveal. The clue pips preserve evidence across rounds, so wrong guesses become part of the thinking trail rather than dead ends. Optional cards support the child only when available, and the voice-only version still keeps the same clue-to-guess-to-reveal loop.
 
 **4. Typical Scenario**
 
-Child enters guessing mode; the AI secretly chooses "duck" and gives clues about water, waddling, and a beak.
+Child enters guessing mode; the AI secretly chooses "duck" and gives clues about water, a beak, and waddling. The child may guess fish first, then revise when the beak clue appears, and the final reveal connects every clue to the answer.
 
 ### C. Interaction Flow
 

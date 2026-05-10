@@ -69,12 +69,12 @@ results.tsv                        Assignment and rubric log
 3. Start the loop with the Codex `/goal` command:
 
 ```text
-/goal Run the WonderLens autonomous activity generation loop from GOAL.md. Process unchecked assignments.md rows in order using run.md. Continue until all generation-ready assignments are completed or the first blocked/failing assignment needs a product/design decision. Use the success criteria in GOAL.md as the completion contract.
+/goal Run the WonderLens autonomous activity generation loop from GOAL.md. First audit and enrich existing activities/<activity_id>/ packages referenced by checked assignments when they do not meet the current migrated package depth floor, then process unchecked assignments.md rows in order using run.md. For each unchecked row, either generate a complete package or write a blocked brief with the missing product/design decision, then continue to the next row. Stop only on a hard workflow failure that prevents safe processing of later rows. Use the success criteria in GOAL.md as the completion contract.
 ```
 
 `GOAL.md` defines the run objective, success criteria, and completion contract. `run.md` defines the step-by-step execution loop.
 
-For generation-ready assignments, the loop creates one complete `activities/<activity_id>/` package, self-evaluates against the 10-dimension rubric, updates `results.tsv`, marks the assignment complete, and records the package in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments stop at the `adaptation_brief`, write a blocked brief under `runs/<run_id>/blocked_briefs/`, and are not logged or marked complete.
+For generation-ready assignments, the loop creates one complete `activities/<activity_id>/` package, self-evaluates against the 10-dimension rubric, updates `results.tsv`, marks the assignment complete, and records the package in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/`, are not logged or marked complete, and no longer halt the rest of the batch.
 
 ## Run Provenance
 
@@ -83,7 +83,7 @@ Use `runs/<run_id>/` to distinguish one autonomous generation session from anoth
 - `run_id` format is `YYYYMMDD_HHMMSS_<short_label>`, using local operator time, for example `20260509_113000_activity_concepts`.
 - `assignment_snapshot.md` preserves the unchecked assignment rows at run start.
 - `adaptation_briefs/` stores Phase 0 briefs for generated concept-led or underspecified assignments.
-- `blocked_briefs/` stores briefs for assignments that stop at `readiness=blocked_until_product_decision`.
+- `blocked_briefs/` stores briefs for assignments that reach `readiness=blocked_until_product_decision`.
 - `generated_activity_ids.txt` lists packages created by that run in completion order.
 - `run_manifest.yaml` is the run-level index linking assignment rows, generated `activities/<activity_id>/` packages, blocked briefs, results logging, checks, and timestamps.
 
@@ -103,7 +103,7 @@ MAPPING_ROOT=data/mappings_dev20_0318
 
 | Source | Typical fields | Required when | How the agent uses it |
 |---|---|---|---|
-| `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `concept_source`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `asset_policy`, `asset_requirements`, `product_capabilities` | Always. This is the execution queue the loop reads. | Normalizes the request, loads referenced concept/asset rows when present, runs Phase 0 when needed, then either generates a package or stops with an adaptation brief. |
+| `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `concept_source`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `asset_policy`, `asset_requirements`, `product_capabilities` | Always. This is the execution queue the loop reads. | Normalizes the request, loads referenced concept/asset rows when present, runs Phase 0 when needed, then either generates a package or records a blocked brief and continues. |
 | Activity Concept Brief | concept row plus optional companion asset requirement rows | The starting point is a source/curriculum/design concept rather than a full entity package request. This is the preferred source for concept-led work. | Produces an English `adaptation_brief` first. The brief decides input mode, readiness, trigger fit, asset dependency, mapping use, and scaffold fit. |
 | Asset Requirements table | `asset_id`, `concept_ref`, `asset_type`, `requiredness`, `generation_timing`, `use_step`, `purpose`, `prompt_en`, `source`, `display_behavior`, `fallback_behavior`, `safety_constraints` | The idea mentions or requires AI-generated images, screen-displayed reference images, line art, cards, icons, overlays, or visual supports. | Avoids asset inference from prose. Phase 0 copies the rows into `asset_dependency`; `spec.md` records an `## Asset Brief`; `prod.md` references stable asset IDs. |
 | Entity mapping YAML | `mapping=<entity_id>` resolved through `MAPPING_ROOT/_index.yaml` | Required only for mapping-informed packages, entity-specific factual claims, warm/cold bridge grounding, mapping-grounded Key Concepts, or matcher-ready entity routing. | Grounds visible attributes, tier language, IB concepts, related concepts, bridge prerequisites, trigger fit, and matchability. |
@@ -228,7 +228,7 @@ Optional:
 - `asset_requirements=file#asset_id` when an assignment row points to a companion asset table/YAML block.
 - `product_capabilities=` when an idea depends on asset display, runtime image generation, UI state, material workflows, motion safety, OCR, pose detection, or before/after state.
 
-Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas stop at the brief instead of forcing package generation. Legacy concept aliases should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
+Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas stay at the brief instead of forcing package generation, and the loop continues to later unchecked rows. Legacy concept aliases should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
 
 To rerun an assignment, change its checkbox back to `- [ ]`. To add work, append a new unchecked line in the appropriate batch section or create a new batch heading.
 

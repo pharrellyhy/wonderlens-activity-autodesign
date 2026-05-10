@@ -69,7 +69,37 @@ Key files and locations:
 7. When creating a git worktree, place it under `.worktrees/` at the project root using the convention `.worktrees/{feat,docs,fix,refactor,style,test,chore}/<worktree-name>`.
 8. When working in plan mode or discussing design / implementation plans, write the plan to `docs/plans/` before making code changes. Use the project plan naming convention and make the plan detailed enough for a fresh session to execute.
 
-## 6) Canonical Commands
+## 6) Commit and Pull Request Messages
+
+Use conventional commit format: `type(scope): description`.
+
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`.
+
+```text
+feat(agents): add director agent
+fix(frontend): resolve silence timer race condition
+refactor(assembler): simplify recipe validation
+```
+
+Keep the first line under 50 characters. Use present tense.
+
+Use the same conventional format for pull request titles. Do not prefix PR
+titles with agent markers such as `[codex]`; the title should describe the
+full branch diff, for example `feat(graph): rewrite knowledge graph viz with focus+context`.
+
+PR descriptions should be detailed enough to stand alone for reviewers. Use
+real Markdown sections and include, as applicable:
+
+- `## Summary` with concise bullets covering what changed, why it changed, and
+  operator/developer impact.
+- `## What's in the branch` when the branch has multiple commits, phases, or
+  implementation arcs.
+- `## Files` summarizing important new, modified, and removed paths.
+- `## Test plan` with exact commands and manual checks, using checkboxes when
+  the checks are reviewer-facing.
+- `## Out of scope / deferred` for known non-goals, tradeoffs, or follow-ups.
+
+## 7) Canonical Commands
 
 Run from repo root unless noted.
 
@@ -109,7 +139,7 @@ Notes:
 - The activity metadata validation snippet requires `jsonschema` and `pyyaml` in the active Python environment.
 - Do not start long-running services; this repository is primarily markdown, YAML, schema, and prompt assets.
 
-## 7) Validation Policy
+## 8) Validation Policy
 
 - `AGENTS.md` or docs-only edits: run `git diff --check` and review the targeted diff.
 - Generated design edits: manually verify against `program.md` Phase 2 format and Phase 3 rubric; run targeted `rg` checks for known forbidden/stale patterns when applicable.
@@ -119,7 +149,7 @@ Notes:
 - `results.tsv` edits: verify tab-separated column order and one row per completed assignment.
 - If no automated check applies, state the manual validation performed and the source document used as the reference.
 
-## 8) Change-Specific Guardrails
+## 9) Change-Specific Guardrails
 
 - New activity generation:
   - Follow `run.md` setup and loop.
@@ -141,7 +171,7 @@ Notes:
   - Keep `spec.md` as author/reviewer reference and `prod.md` as runtime prompt guidance.
   - Keep recap and dashboard templates placeholder-compatible with the runtime payload.
 
-## 9) Documentation and Session State
+## 10) Documentation and Session State
 
 Update living docs when behavior, operator workflow, or implementation status changes:
 
@@ -151,14 +181,14 @@ Update living docs when behavior, operator workflow, or implementation status ch
 
 Keep documentation factual and tied to repository state. Do not add aspirational architecture or workflow claims that are not reflected in the files.
 
-## 10) External Docs and Uncertainty
+## 11) External Docs and Uncertainty
 
 - Use Context7 for library/framework API uncertainty before coding or changing tooling.
 - Prefer repo source documents over memory for WonderLens domain rules.
 - If required docs or manifests referenced by an older file are missing or stale, say so explicitly and use the closest current source of truth.
 - When local validation depends on missing Python packages, ask before installing dependencies unless the user has already authorized environment changes.
 
-## 11) Completion Checklist
+## 12) Completion Checklist
 
 Before declaring completion:
 

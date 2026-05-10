@@ -54,10 +54,14 @@ source:
   mapping_root: data/mappings_dev20_0318
 summary:
   pending_at_start: <N>
+  enrichment_audited_count: 0
+  enrichment_noop_count: 0
+  enriched_count: 0
   generated_count: 0
   blocked_count: 0
   failed_count: 0
 outputs:
+  enriched_activities: []
   generated_activities: []
   blocked_assignments: []
 checks: []
@@ -67,9 +71,44 @@ notes:
 
 15. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Run id: <run_id>. Starting activity package loop."
 
+## Existing Package Enrichment Pass (do before unchecked assignment processing)
+
+Before processing any unchecked assignment, audit existing migrated packages that may have been generated under older or looser standards. A checked assignment means "already generated"; it does not mean the package is exempt from current quality rules.
+
+Scope for this pass:
+
+- Checked `assignments.md` rows that include `activity_id=<id>` and have an existing `activities/<id>/` package.
+- Existing `activities/concept_*` packages produced by prior concept-led runs, especially when `program.md`, `templates.md`, `run.md`, or `GOAL.md` recently tightened the migrated package depth floor.
+- Packages the user explicitly names for quality repair or enrichment.
+
+For each scoped package:
+
+1. Read `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`.
+2. Audit against the current package checks in this runbook, not only against the standard that existed when the package was first generated.
+3. If the package is structurally valid but thin, enrich it in place. Preserve `activity_id`, directory name, tag-block enum values, recap/dashboard placeholders, stable asset IDs, and the five-file package contract.
+4. For `spec.md`, add or update reviewer-facing detail that explains concrete design intent, scaffold fit, assumptions, constraints, product/asset dependency, game-feel rationale, and residual risk. A `## Runtime Detail Floor Notes` section is an acceptable way to record this when the existing file lacks an equivalent audit trail.
+5. For `prod.md`, enrich runnable runtime detail: executable Step 1/2/4/5 dialogue, branch-specific follow-ups, non-generic screen states, distinct Step 3 objectives, child actions that match the mechanic, and a magic moment earned by repeated child action.
+6. Do not append `results.tsv`, change completed assignment checkboxes, or create a duplicate `generated_activities` entry for enrichment-only work.
+7. Record the audit in `runs/<run_id>/review_notes.md` and increment `summary.enrichment_audited_count` for every package audited. If files changed, add or update an `outputs.enriched_activities` entry in `run_manifest.yaml` and increment `summary.enriched_count`; otherwise increment `summary.enrichment_noop_count` when the already-compliant audit is worth recording.
+8. Rerun the narrow package checks after any enrichment before moving to the unchecked assignment loop.
+
+Enriched activity entry:
+
+```yaml
+- activity_id: <activity_id>
+  activity_path: activities/<activity_id>
+  source_assignment: "<checked assignment row or package discovery source>"
+  changed_files:
+    - activities/<activity_id>/spec.md
+    - activities/<activity_id>/prod.md
+  reason: "Updated to current migrated package depth floor"
+  results_tsv_row: false
+  status: enriched
+```
+
 ## The Loop (repeat for every uncompleted assignment)
 
-For each assignment in `assignments.md` that is marked `- [ ]` (not yet completed):
+For each assignment in the run-start `assignment_snapshot.md` that is marked `- [ ]` (not yet completed), visit the row once in its original order. A blocked row remains unchecked in `assignments.md` for future product/design follow-up, but it is not retried again in the same run.
 
 ### Step 1: Parse the assignment
 
@@ -97,7 +136,7 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
 3. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
 4. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
 5. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
-6. If `readiness=blocked_until_product_decision`, stop. Output the adaptation brief and missing capability/template/asset decision. Update `run_manifest.yaml` with a `blocked_assignments` entry and `status: blocked`; do not create package files, append `results.tsv`, mark the assignment complete, or commit.
+6. If `readiness=blocked_until_product_decision`, block only this assignment. Output the adaptation brief and missing capability/template/asset decision. Update `run_manifest.yaml` with a `blocked_assignments` entry and increment `summary.blocked_count`; do not create package files, append `results.tsv`, mark the assignment complete, or commit. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
 7. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
 8. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
 9. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
@@ -133,7 +172,7 @@ Read `templates.md` in layered order:
 
 Use the composed scaffold as the activity's beat structure. Do not use the retired "Template A / Template B" split. If mapping-informed, ground creative variables in the selected dimensions and mapping attributes. If parameterized, use stable placeholders. If concept-only, avoid entity-specific claims.
 
-The child's actual repeated action must match `canonical_mechanic`. Keep the selected `game_style` coherent with the mechanic, but do not let style override the requested action. If scaffold fit is weak, disclose it in `spec.md` or stop before generation.
+The child's actual repeated action must match `canonical_mechanic`. Keep the selected `game_style` coherent with the mechanic, but do not let style override the requested action. If scaffold fit is weak, disclose it in `spec.md` or block this assignment before generation.
 
 ### Step 3: Generate the migrated activity package
 
@@ -160,6 +199,10 @@ Runtime completeness rule:
 
 - Every Step 3 round in `prod.md` must be fully expanded with AI dialogue, child response branches, AI follow-up branches, and screen state.
 - Never write "same structure," "later rounds follow," "AI gives a riddle," or one-line summaries in `activities/*/prod.md`.
+- The migrated package may be shorter than legacy `designs/*_spec.md`, but it must not be thin. `spec.md` must explain the activity's concrete design intent, assumptions, constraints, asset/product dependencies, scaffold fit, and game-feel rationale. `prod.md` must be runnable without the operator inventing missing beats.
+- Steps 1, 2, 4, and 5 also need concrete dialogue branches, follow-ups, and screen states. Do not concentrate all detail in Step 3 while leaving the bridge, rules, magic moment, or closing generic.
+- Each Step 3 round must be distinct: named objective, different clue/challenge/action, child responses that exercise the canonical mechanic, branch-specific follow-ups, and a screen-state change.
+- Generic warmth is insufficient. Fail and repair lines like "Great job," "try again," or "screen updates" when they are not tied to specific evidence, consequence, progress, or payoff.
 - If `start=warm+cold`, document the bridge logic in `spec.md`; the runtime `prod.md` should still have a single converged Step 1 unless the assignment explicitly asks for both starts at runtime.
 - Do not generate image files as part of this loop. When an activity uses AI-generated or displayed images, author the dependency in `spec.md` `## Asset Brief` and reference the stable `asset_id` from the relevant screen description in `prod.md`.
 
@@ -185,6 +228,7 @@ Reviewer instructions:
 - If the assignment has `mapping=`, also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`.
 - Evaluate the package files directly, not the authoring agent's claimed scorecard.
 - Return PASS/FAIL/N/A for each dimension with brief evidence and concrete file/section references for any issue. For Dimension 10, explicitly confirm that Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic` and the adaptation brief's `canonical_mechanic` when present. When assets are referenced, also confirm the package contains a coherent `## Asset Brief`, that every referenced `asset_id` is defined, and that required assets have prompts/source, use steps, display behavior, and fallback behavior.
+- Fail structurally valid but thin packages. The reviewer should explicitly check whether `spec.md` is decision-useful and whether `prod.md` contains enough concrete dialogue, branch reactions, screen state, game-feel payoff, and source-promise detail to run the activity without filling gaps.
 
 If the reviewer flags any FAIL or credible uncertainty, fix the package, rerun the author self-evaluation, and spawn a fresh independent review. Only finalize the `## Self-Evaluation Scorecard`, append `results.tsv`, and mark the assignment complete after both the author check and independent reviewer check pass.
 
@@ -196,6 +240,7 @@ Before logging or committing, verify:
 - Directory name equals `tag_block.yaml` `activity_id`.
 - `tag_block.yaml` validates against `activities/_schema/tag_block.schema.json`.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` equals `tag_block.yaml` `activity_signature.focal_attribute`.
+- `spec.md` and `prod.md` satisfy the migrated package depth floor from `program.md`: concrete rationale, executable runtime detail, branch-specific follow-ups, non-generic screen states, and a magic moment earned by the child's action.
 - Every `prod.md` Step 3 round is fully expanded; no condensed-round placeholders remain.
 - `spec.md` contains exactly one `## Self-Evaluation Scorecard`.
 - Concept-led packages with `generate_with_assumptions` include `spec.md` `## Adaptation Rationale`.
@@ -237,11 +282,13 @@ For every generated package:
 3. Add reviewer evidence, repair notes, or residual risks to `runs/<run_id>/review_notes.md` when useful.
 4. Verify `runs/<run_id>/run_manifest.yaml` has an entry for the generated activity and `runs/<run_id>/generated_activity_ids.txt` includes the generated `activity_id`.
 
-For blocked assignments, keep the entry under `blocked_assignments` and do not append `results.tsv`.
+For enrichment-only package maintenance, keep the entry under `enriched_activities` and do not append `results.tsv`.
 
-### Step 7: Mark assignment complete
+For blocked assignments, keep the entry under `blocked_assignments`, do not append `results.tsv`, leave the assignment row unchecked, and continue to the next unchecked row.
 
-In `assignments.md`, change `- [ ]` to `- [x]` for this assignment.
+### Step 7: Mark generated assignment complete
+
+In `assignments.md`, change `- [ ]` to `- [x]` only for assignments that generated a passing package.
 
 ### Step 8: Commit
 
@@ -252,7 +299,13 @@ git commit -m "Design: <activity_id> - ALL PASS"
 
 ### Step 9: Next assignment
 
-Move to the next `- [ ]` assignment. If none remain, set `run_manifest.yaml status: completed`, fill `completed_at`, update the summary counts, and say: "All assignments complete. [N] activity packages generated. See results.tsv and runs/<run_id>/run_manifest.yaml for summary."
+Move to the next `- [ ]` assignment from the run-start queue, including rows after a blocked assignment. When every row from `assignment_snapshot.md` has either generated, blocked, or failed:
+
+- If `failed_count > 0`, set `run_manifest.yaml status: failed` and stop with the failure reason.
+- Else if `blocked_count > 0`, set `run_manifest.yaml status: completed_with_blockers`.
+- Else set `run_manifest.yaml status: completed`.
+
+Fill `completed_at`, update the summary counts, and say: "Run complete. [N] activity packages generated; [M] existing packages enriched; [B] assignments blocked for product/design decisions. See results.tsv and runs/<run_id>/run_manifest.yaml for summary."
 
 ## Legacy transform workflow
 
@@ -265,5 +318,7 @@ Move to the next `- [ ]` assignment. If none remain, set `run_manifest.yaml stat
 - Never put a scorecard in `prod.md`.
 - Always put the scorecard in `spec.md`.
 - Keep `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` aligned with the runtime flow.
+- Do not treat checked assignment rows as immutable when generation standards changed; audit and enrich existing packages before the unchecked loop starts.
+- Do not let one product/design blocker halt the whole batch. Record the blocked brief, leave that row unchecked, and continue to later unchecked rows unless a hard workflow failure makes later processing unsafe.
 - Commit after every completed package unless the user explicitly asks to batch commits.
 - Quality over speed. Take as many self-evaluation rounds as needed.
