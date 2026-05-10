@@ -30,7 +30,7 @@
 - Updated `program.md`, `README.md`, and `GOAL.md` so generated packages remain under `activities/<activity_id>/` while run-level provenance lives under `runs/<run_id>/`.
 - Added `docs/plans/2026-05-09-run-provenance-layer.md` as the design decision record for the run layer.
 - Added `assignments.md` Batch 4 with selected typical source concepts from the local concept workbook, including ready concepts and capability probes.
-- Added `examples/source_activity_concept_briefs.md` with companion source concept rows and English asset prompts for Batch 4.
+- Added and later moved the active companion source concept rows and English asset prompts for Batch 4 to `inputs/source_activity_concepts.md`; `examples/` now remains sample-only.
 - Documented `concept_source=file#id` and `asset_requirements=file#id` loading in `run.md`, `program.md`, `README.md`, `GOAL.md`, and `assignments.md`.
 - Replaced direct source-team naming with neutral source-concept terminology and documented the English-only generated-output contract.
 - Renamed Batch 4 activity IDs, concept source anchors, and companion file references away from direct source-team shorthand.
@@ -70,7 +70,7 @@
   - Result: product/design blockers are documented as per-row blocked briefs that do not halt later unchecked rows; `completed_with_blockers` is documented as the run status when blockers remain
 - Targeted run-layer scan across `README.md`, `GOAL.md`, `program.md`, `run.md`, `runs/README.md`, `docs/plans/2026-05-09-run-provenance-layer.md`, and `HANDOFF.md`
   - Result: expected `runs/<run_id>`, `run_manifest`, `assignment_snapshot`, `generated_activity_ids`, `adaptation_briefs`, and `blocked_briefs` references are present
-- Targeted source concept batch scan across `assignments.md`, `examples/source_activity_concept_briefs.md`, `run.md`, `program.md`, `README.md`, and `GOAL.md`
+- Targeted source concept batch scan across `assignments.md`, `inputs/source_activity_concepts.md`, `run.md`, `program.md`, `README.md`, and `GOAL.md`
   - Result: `concept_source=file#id`, Batch 4 assignment rows, selected source concept IDs, and referenced asset IDs are present
 - Assignment reference validation for unchecked rows
   - Result: 15 `concept_source` / `asset_requirements` file anchors checked; all referenced sections found

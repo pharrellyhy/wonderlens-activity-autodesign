@@ -46,6 +46,7 @@ docs/activity_vocabulary.md        Closed enums for activity_signature fields
 docs/game_styles.md                12 game styles under 6 experience pillars
 entity_guidance.md                 Mapping schema and selection rules
 conversation_bridge.md             Warm/cold bridge patterns
+inputs/source_activity_concepts.md Active source concept rows referenced by assignments.md Batch 4
 examples/                          Concrete input-source and input-mode examples
 assignments.md                     Work queue
 results.tsv                        Assignment and rubric log
@@ -181,7 +182,7 @@ Use these Phase 0 input modes:
 
 Default to `parameterized` for activity concepts driven by properties, categories, or reusable match rules. Use `mapping_informed` only when a concrete mapping source is supplied. Lack of mapping should not block an adaptation brief, but it should block full generation when the package would otherwise need mapping-grounded facts or routing.
 
-See `examples/source_activity_concept_template.md` for the fillable template. See `examples/data_sources.md`, `examples/input_modes.md`, and `examples/source_activity_concept_briefs.md` for concrete assignment rows, selected source concepts, asset rows, and expected adaptation brief snippets.
+See `examples/source_activity_concept_template.md` for the fillable template. See `examples/data_sources.md`, `examples/input_modes.md`, and `inputs/source_activity_concepts.md` for concrete assignment rows, selected source concepts, asset rows, and expected adaptation brief snippets.
 
 ## Working With `assignments.md`
 

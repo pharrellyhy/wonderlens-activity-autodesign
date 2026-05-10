@@ -14,11 +14,11 @@ Source concepts may start in any language, but every field used by generation mu
 4. In `assignments.md`, reference these sections with:
 
 ```text
-concept_source=examples/source_activity_concept_template.md#source_<short_snake_case_name>
-asset_requirements=examples/source_activity_concept_template.md#<asset_id>
+concept_source=inputs/<filled_source_file>.md#source_<short_snake_case_name>
+asset_requirements=inputs/<filled_source_file>.md#<asset_id>
 ```
 
-For a filled reference, see `examples/source_activity_concept_briefs.md`.
+For a filled reference, see `inputs/source_activity_concepts.md`.
 
 ## Concept Rows
 
