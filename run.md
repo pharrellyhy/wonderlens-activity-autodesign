@@ -64,6 +64,7 @@ summary:
   failed_count: 0
 outputs:
   enriched_activities: []
+  audited_activities: []
   generated_activities: []
   blocked_assignments: []
   review_dashboard:
@@ -94,7 +95,7 @@ For each scoped package:
 6. For `spec.md`, add or update reviewer-facing detail that explains concrete design intent, scaffold fit, assumptions, constraints, product/asset dependency, game-feel rationale, and residual risk. A `## Runtime Detail Floor Notes` section is an acceptable way to record this when the existing file lacks an equivalent audit trail.
 7. For `prod.md`, enrich runnable runtime detail: executable Step 1/2/4/5 dialogue, branch-specific follow-ups, non-generic screen states, distinct Step 3 objectives, child actions that match the mechanic, and a magic moment earned by repeated child action.
 8. Do not append `results.tsv`, change completed assignment checkboxes, or create a duplicate `generated_activities` entry for enrichment-only work.
-9. Record the author audit, reviewer-agent findings, direct reviewer repairs, re-review outcomes, and residual concerns in `runs/<run_id>/review_notes.md`. Increment `summary.enrichment_audited_count` for every package audited. If files changed, add or update an `outputs.enriched_activities` entry in `run_manifest.yaml` and increment `summary.enriched_count`; otherwise increment `summary.enrichment_noop_count` when the already-compliant audit is worth recording.
+9. Record the author audit, reviewer-agent findings, direct reviewer repairs, re-review outcomes, and residual concerns in `runs/<run_id>/review_notes.md`. Increment `summary.enrichment_audited_count` for every package audited. If files changed, add or update an `outputs.enriched_activities` entry in `run_manifest.yaml` and increment `summary.enriched_count`; otherwise add or update an `outputs.audited_activities` entry and increment `summary.enrichment_noop_count` so the dashboard still shows the passed package.
 10. Rerun the narrow package checks after any enrichment before moving to the unchecked assignment loop.
 
 Enriched activity entry:
@@ -109,6 +110,19 @@ Enriched activity entry:
   reason: "Updated to current migrated package depth floor"
   results_tsv_row: false
   status: enriched
+```
+
+Audited no-op activity entry:
+
+```yaml
+- activity_id: <activity_id>
+  activity_path: activities/<activity_id>
+  source_assignment: "<checked assignment row or package discovery source>"
+  changed_files: []
+  reason: "Reviewer audit passed against the current migrated package depth floor; no package edits required"
+  results_tsv_row: false
+  status: PASS / no changes
+  reviewer: "<reviewer-agent name/id>"
 ```
 
 ## The Loop (repeat for every uncompleted assignment)
@@ -287,10 +301,10 @@ For every generated package:
   status: PASS
 ```
 
-3. Add reviewer evidence, repair notes, and residual risks to `runs/<run_id>/review_notes.md` for every generated or enriched package.
+3. Add reviewer evidence, repair notes, and residual risks to `runs/<run_id>/review_notes.md` for every generated, enriched, or audited package.
 4. Verify `runs/<run_id>/run_manifest.yaml` has an entry for the generated activity and `runs/<run_id>/generated_activity_ids.txt` includes the generated `activity_id`.
 
-For enrichment-only package maintenance, keep the entry under `enriched_activities` and do not append `results.tsv`.
+For enrichment-only package maintenance, keep changed packages under `enriched_activities` and do not append `results.tsv`. Keep audited packages that passed without edits under `audited_activities` so `review.html` shows all reviewer-covered packages, not only packages that changed.
 
 For blocked assignments, keep the entry under `blocked_assignments`, include `brief_path` and `design_preview`, do not append `results.tsv`, leave the assignment row unchecked, and continue to the next unchecked row. If the constraints are later resolved, rerun or promote the design preview into a normal five-file package, remove or resolve the blocked-element comments, then send it through the standard self-evaluation, reviewer-agent, validation, `results.tsv`, and checkoff gates.
 
@@ -302,7 +316,7 @@ This is a final-run step, not a per-assignment step. After every row from `assig
 runs/<run_id>/review.html
 ```
 
-This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards, popup/detail behavior, grouped tag colors, blocked-preview handling, link rules, and validation requirements.
+This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, 10-dimension criteria and scorecard results, blocked-preview handling, link rules, and validation requirements.
 
 Generation command:
 
@@ -317,7 +331,7 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for `python3 scripts/generate_run_review.py runs/<run_id>` and `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched packages, blocked entries when present, clickable detail behavior, modal/detail content, grouped tag colors, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, clickable detail behavior, modal/detail content, grouped tag colors, and resolving local links.
 
 ### Step 7: Mark generated assignment complete
 

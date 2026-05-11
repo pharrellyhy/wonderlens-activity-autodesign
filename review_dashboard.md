@@ -4,7 +4,7 @@ Use this file for `runs/<run_id>/review.html` requirements. `GOAL.md` should ref
 
 ## Purpose
 
-Create a self-contained HTML dashboard that lets a reviewer quickly scan a completed run, compare generated/enriched packages, inspect blocked assignments, and open full activity details without downloading package files.
+Create a self-contained HTML dashboard that lets a reviewer quickly scan a completed run, compare generated/enriched/audited packages, inspect blocked assignments, and open full activity details without downloading package files.
 
 The dashboard is a derived review artifact. The source of truth remains `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, adaptation briefs, blocked briefs, and constrained blocked design previews.
 
@@ -27,7 +27,8 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
 
 - Run header: `run_id`, status, timestamps, pending/generated/enriched/blocked/failed counts, and links to `run_manifest.yaml`, `review_notes.md`, `assignment_snapshot.md`, `generated_activity_ids.txt`, and `results.tsv`.
 - Summary metrics: compact counters visible near the top of the first viewport.
-- Activity cards: one concise card per generated or enriched package.
+- Review criteria: the `program.md` Phase 3 10-dimension rubric, including what passes and why a dimension fails.
+- Activity cards: one concise card per generated, enriched, or audited no-op package. A checked package that passes audit without edits must still appear as a card with `PASS / no changes` or equivalent status.
 - Blocked assignment cards: one concise card per blocked assignment.
 - Blocking reason guide: badge label, what it means, and why it blocks package validity.
 - Reviewer coverage summary: reviewer names/IDs when available, package scope, PASS/FAIL/N/A evidence, repairs made, and unresolved concerns.
@@ -44,6 +45,7 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
   - Design intent, premise, scenario, focal attribute, pillar, game style, and reviewer status.
   - Runtime beats with step/round title, AI prompt, expected child response branches, AI follow-up behavior, and screen state when present.
   - Learning tags, related concepts, ATL skills, and scorecard summary when present.
+  - Parsed scorecard results for all 10 dimensions from `spec.md`, with the PASS/FAIL/N/A result and the note explaining why. Dimension 8 may be N/A when no mapping source is required.
   - Changed files and package-file links.
 - Blocked cards must open a detail view with missing product/design decisions, capability flags, blocked reason badges, blocked brief link, constrained design preview link when present, proposed preview beats, and inline `BLOCKED ELEMENT` comments when present.
 - Clicking normal links inside a card must navigate to the link, not open the detail dialog.
@@ -106,4 +108,4 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for the generation and validation commands.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched packages, blocked entries when present, clickable detail behavior, modal/detail content, grouped tag colors, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, review criteria, 10-dimension scorecard results, clickable detail behavior, modal/detail content, grouped tag colors, and resolving local links.

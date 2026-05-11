@@ -38,7 +38,8 @@ outputs:
     source_assignment: checked assignment row with activity_id=concept_scavenger_hunt_collect
     changed_files:
     - activities/concept_scavenger_hunt_collect/spec.md
-    reason: Older checked package reviewed against current migrated package depth floor
+    reason: Older checked package reviewed against current migrated package depth
+      floor
     results_tsv_row: false
     reviewer_evidence: runs/20260510_152725_activity_concepts/review_notes.md
     status: enriched
@@ -48,7 +49,8 @@ outputs:
     source_assignment: checked assignment row with activity_id=concept_phoneme_hunt_collect
     changed_files:
     - activities/concept_phoneme_hunt_collect/spec.md
-    reason: Older checked package reviewed against current migrated package depth floor
+    reason: Older checked package reviewed against current migrated package depth
+      floor
     results_tsv_row: false
     reviewer_evidence: runs/20260510_152725_activity_concepts/review_notes.md
     status: enriched
@@ -59,7 +61,8 @@ outputs:
     changed_files:
     - activities/concept_branching_story_decide/spec.md
     - activities/concept_branching_story_decide/prod.md
-    reason: Older checked package reviewed and lightly repaired against current migrated package depth floor
+    reason: Older checked package reviewed and lightly repaired against current migrated
+      package depth floor
     results_tsv_row: false
     reviewer_evidence: runs/20260510_152725_activity_concepts/review_notes.md
     status: enriched
@@ -69,7 +72,8 @@ outputs:
     source_assignment: checked assignment row with activity_id=concept_guess_in_10_deduce
     changed_files:
     - activities/concept_guess_in_10_deduce/spec.md
-    reason: Older checked package reviewed against current migrated package depth floor
+    reason: Older checked package reviewed against current migrated package depth
+      floor
     results_tsv_row: false
     reviewer_evidence: runs/20260510_152725_activity_concepts/review_notes.md
     status: enriched
@@ -79,7 +83,8 @@ outputs:
     source_assignment: checked assignment row with activity_id=concept_animal_sound_motion_voice
     changed_files:
     - activities/concept_animal_sound_motion_voice/spec.md
-    reason: Older checked package reviewed against current migrated package depth floor
+    reason: Older checked package reviewed against current migrated package depth
+      floor
     results_tsv_row: false
     reviewer_evidence: runs/20260510_152725_activity_concepts/review_notes.md
     status: enriched
@@ -89,7 +94,8 @@ outputs:
     source_assignment: checked assignment row with activity_id=concept_tiny_curator_sort
     changed_files:
     - activities/concept_tiny_curator_sort/spec.md
-    reason: Older checked package reviewed against current migrated package depth floor
+    reason: Older checked package reviewed against current migrated package depth
+      floor
     results_tsv_row: false
     reviewer_evidence: runs/20260510_152725_activity_concepts/review_notes.md
     status: enriched
@@ -99,7 +105,8 @@ outputs:
     source_assignment: checked assignment row with activity_id=concept_partial_reveal_deduce
     changed_files:
     - activities/concept_partial_reveal_deduce/spec.md
-    reason: Older checked package reviewed against current migrated package depth floor
+    reason: Older checked package reviewed against current migrated package depth
+      floor
     results_tsv_row: false
     reviewer_evidence: runs/20260510_152725_activity_concepts/review_notes.md
     status: enriched
@@ -583,7 +590,8 @@ checks:
   result: PASS
 - command: reviewer-agent package quality review for 16 generated packages
   result: PASS
-- command: python3 reviewer evidence and ATL token validation for reviewed generated packages
+- command: python3 reviewer evidence and ATL token validation for reviewed generated
+    packages
   result: PASS
 - command: reviewer-agent package quality review for 7 older checked concept packages
   result: PASS
@@ -594,7 +602,8 @@ checks:
 - command: python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts
   result: PASS
 - command: python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts
-  result: PASS
+  result: PASS; dashboard contract checks, 23 package scorecards, and 270 local links
+    passed
 notes:
 - Canonical packages remain under activities/<activity_id>.
 - Blocked capability probes remain unchecked for product/design decisions.

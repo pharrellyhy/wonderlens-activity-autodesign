@@ -31,6 +31,69 @@ PACKAGE_FILES = [
     "dashboard.template.yaml",
 ]
 
+RUBRIC_CRITERIA = [
+    {
+        "number": "1",
+        "dimension": "V1 Technical Compliance",
+        "pass": "No runtime beat depends on blocked V1 capabilities such as OCR, pose/expression detection, IMU sensing, before/after comparison, or unsupported non-speech audio detection.",
+        "fail": "Fail when the package promises capability the current runtime cannot safely execute or verify.",
+    },
+    {
+        "number": "2",
+        "dimension": "Hook & Transition",
+        "pass": "Step 1 opens from emotional resonance, grows naturally from the trigger, and bridges into the activity without feeling like a sudden quiz.",
+        "fail": "Fail when the opening is a cold task assignment, knowledge test, or disconnected transition.",
+    },
+    {
+        "number": "3",
+        "dimension": "Edge Case Coverage",
+        "pass": "Every dialogue step covers ideal, unexpected, and no-response branches with validating redirects, wait timing, and concrete scaffolds.",
+        "fail": "Fail when branches are missing, generic, or leave a child stuck after silence or an unexpected answer.",
+    },
+    {
+        "number": "4",
+        "dimension": "IB Completeness",
+        "pass": "Key Concepts, Related Concepts, KUD, ATL skills, and closing dialogue are specific and match what the child actually does.",
+        "fail": "Fail when IB language is vague, missing, or forced onto an activity that does not support it.",
+    },
+    {
+        "number": "5",
+        "dimension": "Tier Appropriateness",
+        "pass": "Language, response length, number of rounds, task complexity, and vocabulary fit the declared target tier.",
+        "fail": "Fail when a T0/T1/T2 package asks for too much, uses over-complex language, or under-delivers for the target age.",
+    },
+    {
+        "number": "6",
+        "dimension": "Dialogue Specificity",
+        "pass": "AI lines are concrete spoken dialogue with tone markers and branch-specific reactions, not abstract narration.",
+        "fail": "Fail when the runtime would need to invent missing prompts, feedback, or child-facing wording.",
+    },
+    {
+        "number": "7",
+        "dimension": "Screen & UI Completeness",
+        "pass": "Each step names what appears, persists, changes, and how progress or payoff is represented on screen.",
+        "fail": "Fail when screen states are generic, missing, or disconnected from the dialogue.",
+    },
+    {
+        "number": "8",
+        "dimension": "Entity Mapping Alignment",
+        "pass": "Mapping-informed designs use mapping concepts, themes, related concepts, tier language, anchor dimensions, and approved warm-start bridge logic. Non-mapping packages may be N/A.",
+        "fail": "Fail when a mapping-informed package invents ungrounded facts or ignores required mapping anchors.",
+    },
+    {
+        "number": "9",
+        "dimension": "Game Feel",
+        "pass": "The child experiences uncertainty, stakes, surprise, replay value, and an earned magic moment tied to repeated action.",
+        "fail": "Fail when the activity is only a conversation or generic badge award without a game-like payoff.",
+    },
+    {
+        "number": "10",
+        "dimension": "Mechanic Fidelity + Scaffold Honesty",
+        "pass": "Step 3's repeated child action matches the declared mechanic and source promise, while the pillar/style scaffold supports rather than distorts it.",
+        "fail": "Fail when the scaffold hides a mechanic mismatch, unsupported capability, or diluted source promise.",
+    },
+]
+
 
 @dataclass
 class Link:
@@ -241,6 +304,27 @@ def overall_scorecard(spec_text: str) -> str:
     return normalize_text(match.group(1)) if match else ""
 
 
+def scorecard_rows(spec_text: str) -> list[dict[str, str]]:
+    body = section(spec_text, "Self-Evaluation Scorecard")
+    rows: list[dict[str, str]] = []
+    for line in body.splitlines():
+        stripped = line.strip()
+        if not stripped.startswith("|"):
+            continue
+        cells = [clean_markdown(cell.strip()) for cell in stripped.strip("|").split("|")]
+        if len(cells) < 4 or not cells[0].isdigit():
+            continue
+        rows.append(
+            {
+                "number": cells[0],
+                "dimension": cells[1],
+                "score": cells[2],
+                "notes": cells[3],
+            }
+        )
+    return rows
+
+
 def package_links(repo_root: Path, activity_path: str) -> list[Link]:
     links: list[Link] = []
     for filename in PACKAGE_FILES:
@@ -319,6 +403,8 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         "typical_scenario": subblock_after_bold(prod_text, "4. Typical Scenario"),
         "runtime_beats": runtime_beats(prod_text),
         "scorecard": overall_scorecard(spec_text),
+        "scorecard_rows": scorecard_rows(spec_text),
+        "review_reason": normalize_text(entry.get("reason") or ""),
         "links": package_links(repo_root, activity_path),
     }
     return package
@@ -531,7 +617,34 @@ def package_tags(package: dict[str, Any]) -> str:
     return "".join(tags)
 
 
-def package_detail_content(package: dict[str, Any], link_bits: str, runtime: str, details: str, changed: str) -> str:
+def scorecard_table(rows: list[dict[str, str]]) -> str:
+    if not rows:
+        return '<p class="muted">No scorecard table found in spec.md.</p>'
+    body = []
+    for row in rows:
+        body.append(
+            "<tr>"
+            f"<td>{esc(row['number'])}</td>"
+            f"<td>{esc(row['dimension'])}</td>"
+            f"<td>{group_badge(row['score'], 'status')}</td>"
+            f"<td>{esc(row['notes'])}</td>"
+            "</tr>"
+        )
+    return (
+        '<div class="table-wrap scorecard-wrap"><table class="scorecard-table">'
+        "<thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead>"
+        f"<tbody>{''.join(body)}</tbody></table></div>"
+    )
+
+
+def package_detail_content(
+    package: dict[str, Any],
+    link_bits: str,
+    runtime: str,
+    details: str,
+    changed: str,
+    scorecard: str,
+) -> str:
     return f"""
 <div class="dialog-grid">
   <section>
@@ -548,6 +661,8 @@ def package_detail_content(package: dict[str, Any], link_bits: str, runtime: str
       <div><span>Style</span><strong>{esc(package['game_style'])}</strong></div>
       <div><span>Focal</span><strong>{esc(package['focal_attribute'])}</strong></div>
       <div><span>Results</span><strong>{esc(package.get('result_summary') or 'Not logged')}</strong></div>
+      <div><span>Status</span><strong>{esc(package['status'])}</strong></div>
+      <div><span>Reviewer</span><strong>{esc(package['reviewer'])}</strong></div>
     </div>
   </section>
   <section class="dialog-wide">
@@ -562,8 +677,13 @@ def package_detail_content(package: dict[str, Any], link_bits: str, runtime: str
   </section>
   <section>
     <h4>Review Notes</h4>
+    <p>{esc(package['review_reason'] or 'No run-specific review rationale recorded.')}</p>
     <ul>{details or '<li>No detail-floor bullets found.</li>'}</ul>
     <p>{esc(package['scorecard'] or 'No scorecard summary found.')}</p>
+  </section>
+  <section class="dialog-wide">
+    <h4>Scorecard Results</h4>
+    {scorecard}
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -588,6 +708,7 @@ def package_card(package: dict[str, Any]) -> str:
             "focal_attribute",
             "asset_policy",
             "reviewer",
+            "review_reason",
             "intro",
             "preview_label",
             "preview_prompt",
@@ -610,10 +731,11 @@ def package_card(package: dict[str, Any]) -> str:
     link_bits = " ".join(link_html(link) for link in package["links"])
     runtime = "".join(runtime_beat_html(beat) for beat in package["runtime_beats"])
     details = "".join(f"<li>{esc(note)}</li>" for note in package["detail_notes"])
-    changed = value_list(package["changed_files"], empty="No changed-files entry")
+    changed = value_list(package["changed_files"], empty="No files changed")
+    scorecard = scorecard_table(package["scorecard_rows"])
     modal_id = dom_id("activity-detail", package["activity_id"], package["assignment_index"])
     tags = package_tags(package)
-    detail = package_detail_content(package, link_bits, runtime, details, changed)
+    detail = package_detail_content(package, link_bits, runtime, details, changed, scorecard)
     summary = package["intro"] or package["brief_description"] or package["premise"]
     return f"""
 <article class="activity-card clickable-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="detail-dialog" data-detail-template="{esc(modal_id)}" data-detail-title="{esc(package['activity_name'])}" {attrs}>
@@ -804,6 +926,29 @@ def reason_guide(reason_labels: list[str]) -> str:
 """
 
 
+def criteria_guide() -> str:
+    rows = []
+    for item in RUBRIC_CRITERIA:
+        rows.append(
+            "<tr>"
+            f"<td>{esc(item['number'])}</td>"
+            f"<td><strong>{esc(item['dimension'])}</strong></td>"
+            f"<td>{esc(item['pass'])}</td>"
+            f"<td>{esc(item['fail'])}</td>"
+            "</tr>"
+        )
+    return f"""
+  <section class="panel" id="review-criteria">
+    <div class="panel-head"><h2>Review Criteria</h2></div>
+    <div class="criteria-note">Packages are still judged with the `program.md` Phase 3 10-dimension rubric. A package passes only when every applicable dimension passes; Dimension 8 may be N/A for non-mapping packages. Any FAIL or credible reviewer uncertainty requires repair before logging or checkoff.</div>
+    <div class="table-wrap"><table class="criteria-table">
+      <thead><tr><th>#</th><th>Dimension</th><th>Pass Criteria</th><th>Why It Fails</th></tr></thead>
+      <tbody>{''.join(rows)}</tbody>
+    </table></div>
+  </section>
+"""
+
+
 def option_tags(values: list[str], all_label: str) -> str:
     options = [f'<option value="">{esc(all_label)}</option>']
     for value in sorted({normalize_text(v) for v in values if normalize_text(v)}):
@@ -864,7 +1009,8 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     outputs = manifest.get("outputs", {}) if isinstance(manifest.get("outputs"), dict) else {}
     generated = [collect_package(repo_root, run_dir, entry, "Generated") for entry in outputs.get("generated_activities", [])]
     enriched = [collect_package(repo_root, run_dir, entry, "Enriched") for entry in outputs.get("enriched_activities", [])]
-    packages = generated + enriched
+    audited = [collect_package(repo_root, run_dir, entry, "Audited") for entry in outputs.get("audited_activities", [])]
+    packages = generated + enriched + audited
     results_by_activity = read_results(repo_root)
     for package in packages:
         result = results_by_activity.get(package["activity_id"], {})
@@ -872,6 +1018,8 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
             package["result_summary"] = f"{result.get('status', 'logged')} at {result.get('timestamp', 'unknown time')}"
         elif package["kind"] == "Enriched":
             package["result_summary"] = "Enrichment only"
+        elif package["kind"] == "Audited":
+            package["result_summary"] = "Audit pass, no package edits"
         else:
             package["result_summary"] = "Not logged"
     blocked = [collect_blocked(repo_root, entry) for entry in outputs.get("blocked_assignments", [])]
@@ -899,6 +1047,7 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     package_cards = "\n".join(package_card(package) for package in packages)
     blocked_cards = "\n".join(blocked_card(item) for item in blocked)
     reason_guide_html = reason_guide(blocked_reasons)
+    criteria_guide_html = criteria_guide()
     checks = render_checks(manifest.get("checks", []))
     css = """
 :root {
@@ -1108,10 +1257,11 @@ ol, ul { margin: 0; padding-left: 20px; }
 }
 .tag-row, .reason-row { display: flex; flex-wrap: wrap; gap: 4px; }
 .badge-kind { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); border-color: transparent; }
+.badge-kind-audited { background: var(--teal-bg); color: var(--teal-text); border-color: transparent; }
 .badge-category, .badge-category-cat1 { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
 .badge-category-cat3 { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
 .badge-category-cat5 { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
-.badge-status, .badge-status-pass, .badge-status-enriched { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
+.badge-status, .badge-status-pass, .badge-status-enriched, .badge-status-pass-no-changes { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
 .badge-status-blocked-until-product-decision, .badge-blocked, .badge-reason { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
 .badge-status-fail, .badge-status-failed { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
 .badge-mechanic { background: var(--purple-bg); color: var(--purple-text); border-color: transparent; }
@@ -1150,6 +1300,13 @@ ol, ul { margin: 0; padding-left: 20px; }
 table { width: 100%; border-collapse: collapse; min-width: 840px; }
 th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; background: var(--panel-soft); }
+.criteria-note {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+}
+.scorecard-wrap table { min-width: 760px; }
+.scorecard-table td:first-child, .criteria-table td:first-child { width: 44px; color: var(--muted); font-weight: 750; }
 pre {
   margin: 0;
   white-space: pre-wrap;
@@ -1311,9 +1468,9 @@ filterBlocked();
         ("Pending at start", summary.get("pending_at_start", 0)),
         ("Generated", summary.get("generated_count", len(generated))),
         ("Enriched", summary.get("enriched_count", len(enriched))),
+        ("Audited no-op", summary.get("enrichment_noop_count", len(audited))),
         ("Blocked", summary.get("blocked_count", len(blocked))),
-        ("Failed", summary.get("failed_count", 0)),
-        ("Reviewer-covered", len(packages)),
+        ("Review cards", len(packages)),
     ]
     metric_html = "".join(f'<div class="metric"><span>{esc(label)}</span><strong>{esc(value)}</strong></div>' for label, value in metrics)
     return f"""<!doctype html>
@@ -1343,6 +1500,8 @@ filterBlocked();
     <div class="panel-head"><h2>Run Files</h2></div>
     <div class="link-grid">{run_link_html}</div>
   </section>
+
+{criteria_guide_html}
 
   <section class="panel" id="activity-details">
     <div class="panel-head"><h2>Activity Details</h2><span class="muted" id="package-count"></span></div>
@@ -1422,8 +1581,21 @@ def validate(repo_root: Path, run_dir: Path) -> None:
     html_parser.feed(text)
     manifest = load_yaml(run_dir / "run_manifest.yaml")
     outputs = manifest.get("outputs", {}) if isinstance(manifest.get("outputs"), dict) else {}
-    expected_packages = len(outputs.get("generated_activities", [])) + len(outputs.get("enriched_activities", []))
+    expected_packages = (
+        len(outputs.get("generated_activities", []))
+        + len(outputs.get("enriched_activities", []))
+        + len(outputs.get("audited_activities", []))
+    )
     expected_blocked = len(outputs.get("blocked_assignments", []))
+    package_entries = (
+        outputs.get("generated_activities", [])
+        + outputs.get("enriched_activities", [])
+        + outputs.get("audited_activities", [])
+    )
+    scorecard_sets = [
+        scorecard_rows(read_text(repo_root / normalize_text(entry.get("activity_path")) / "spec.md"))
+        for entry in package_entries
+    ]
     checks = {
         "has_html": "<html" in text,
         "has_style": "<style>" in text,
@@ -1435,6 +1607,22 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         "sort_controls": 'id="package-sort"' in text and "Sort by mechanic" in text,
         "blocked_reason_types": text.count("blocked-reason-type") >= expected_blocked,
         "detailed_runtime_beats": "beat-field" in text and "AI" in text and "Child" in text and "Screen" in text,
+        "review_criteria": "Review Criteria" in text
+        and "10-dimension rubric" in text
+        and "Mechanic Fidelity + Scaffold Honesty" in text,
+        "scorecard_results": expected_packages == 0
+        or (
+            text.count("Scorecard Results") >= expected_packages
+            and "scorecard-table" in text
+            and "Why" in text
+        ),
+        "package_scorecards_complete": expected_packages == 0
+        or all(
+            len(rows) == 10 and all(row["score"] in {"PASS", "FAIL", "N/A"} for row in rows)
+            for rows in scorecard_sets
+        ),
+        "audited_noop_cards": len(outputs.get("audited_activities", [])) == 0
+        or ("PASS / no changes" in text and "Audited" in text),
         "blocked_design_status": expected_blocked == 0
         or (
             "Constrained design preview available" in text

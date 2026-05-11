@@ -61,6 +61,7 @@
 - Updated the 7 older package scorecards with reviewer-agent PASS evidence and tightened `concept_branching_story_decide` Step 3 branch consequences.
 - Updated `runs/20260510_152725_activity_concepts/review_notes.md` and `run_manifest.yaml` so the older package pass is recorded as enrichment maintenance with reviewer evidence.
 - Added `scripts/generate_run_review.py` to generate and validate static run review dashboards from `run_manifest.yaml`, `review_notes.md`, package files, blocked briefs, and constrained blocked design previews.
+- Updated review dashboard behavior so `outputs.audited_activities` no-op passes render as first-class activity cards, alongside generated and enriched packages, and so package dialogs show the 10-dimension rubric result and rationale from `spec.md`.
 - Updated `GOAL.md`, `run.md`, `README.md`, and `runs/README.md` so future `/goal` runs create direct activity detail cards, sortable Cat1/Cat3/Cat5/status/mechanic controls, constrained blocked-preview links, and classified blocked-reason badges in `runs/<run_id>/review.html`.
 - Regenerated `runs/20260510_152725_activity_concepts/review.html` with 23 activity detail cards and 17 blocked-assignment cards; updated the run manifest with `outputs.review_dashboard` and dashboard generation/validation checks.
 - Expanded review dashboard runtime beats so activity cards show concrete AI prompt, child response branches, follow-up behavior, and screen state from `prod.md`.

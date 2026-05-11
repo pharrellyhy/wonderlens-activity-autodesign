@@ -20,6 +20,12 @@ Run id: `20260511_144424_activity_concepts`
 
 Summary: 23 checked concept packages were audited, 7 were repaired, and 16 required no edits.
 
+## Review Criteria
+
+All generated, enriched, and audited packages are judged against `program.md` Phase 3's 10-dimension rubric: V1 Technical Compliance, Hook & Transition, Edge Case Coverage, IB Completeness, Tier Appropriateness, Dialogue Specificity, Screen & UI Completeness, Entity Mapping Alignment, Game Feel, and Mechanic Fidelity + Scaffold Honesty. Dimension 8 may be N/A when the package is not mapping-informed. Passing means every applicable dimension is PASS and the package also meets the migrated package depth floor: `spec.md` is decision-useful, `prod.md` is runnable without inventing beats, metadata files align, and reviewer uncertainty has been resolved.
+
+This run uses the same 10-dimension validation as before. The per-package `spec.md` scorecard is parsed into `review.html` so each package detail dialog lists the result and the note explaining why.
+
 ## Blocked Assignments
 
 This run revisits the 17 still-unchecked capability probes and creates constrained blocked design previews under `runs/20260511_144424_activity_concepts/blocked_designs/`. These previews are not valid runtime packages and keep every row unchecked until the relevant product/design constraints are resolved.

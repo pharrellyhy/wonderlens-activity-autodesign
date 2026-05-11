@@ -83,9 +83,9 @@ The goal is complete only when all of the applicable criteria below are met.
    - Separate reviewer agents are spawned for scoped package-quality review when the run audits or enriches packages; assign reviewers disjoint package directories when multiple packages are reviewed in parallel.
    - Structurally valid but thin packages are enriched in place, preserving `activity_id`, tag-block enums, recap/dashboard placeholders, asset IDs, and the five-file package contract.
    - Enrichment focuses on decision-useful `spec.md` detail and runnable `prod.md` detail: concrete design intent, scaffold fit, game-feel rationale, executable dialogue, branch-specific follow-ups, screen states, distinct Step 3 rounds, and earned magic moments.
-   - Reviewer-agent findings, direct repairs, re-review outcomes, no-op decisions, and residual concerns are recorded in `runs/<run_id>/review_notes.md`; any changed files are also recorded in `runs/<run_id>/run_manifest.yaml`.
-   - Enrichment does not append `results.tsv`, rewrite completed assignment checkboxes, or create a second generated activity entry. It is recorded as package maintenance in `runs/<run_id>/run_manifest.yaml` and/or `runs/<run_id>/review_notes.md`.
-   - Packages that already meet the current floor are recorded as no-op audits in the run notes when useful.
+   - Reviewer-agent findings, direct repairs, re-review outcomes, no-op decisions, and residual concerns are recorded in `runs/<run_id>/review_notes.md`; changed packages are recorded under `outputs.enriched_activities`, and already-compliant packages are recorded under `outputs.audited_activities`.
+   - Enrichment/audit does not append `results.tsv`, rewrite completed assignment checkboxes, or create a second generated activity entry. It is recorded as package maintenance in `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/review_notes.md`.
+   - Packages that already meet the current floor are recorded as no-op audits with `status: PASS / no changes` so `review.html` displays them as passed activity cards.
    - Package checks are rerun after any enrichment.
 
 8. Runtime package quality checks pass:
@@ -133,7 +133,7 @@ The goal is complete only when all of the applicable criteria below are met.
 13. Human review dashboard is generated:
    - `runs/<run_id>/review.html` exists before the final report.
    - The dashboard is generated with `python3 scripts/generate_run_review.py runs/<run_id>` and validated with `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
-   - The dashboard satisfies `review_dashboard.md`: self-contained light-theme HTML, concise clickable cards, full detail dialog/page content, grouped tag colors, search/filter/sort controls, blocked-preview handling, reason guide, reviewer coverage, checks, residual risks, and resolving local links.
+   - The dashboard satisfies `review_dashboard.md`: self-contained light-theme HTML, concise clickable cards for generated/enriched/audited packages, full detail dialog/page content, grouped tag colors, search/filter/sort controls, blocked-preview handling, reason guide, reviewer coverage, 10-dimension review criteria, per-package scorecard results with why notes, checks, residual risks, and resolving local links.
    - `runs/<run_id>/run_manifest.yaml` records the dashboard path, and the final report includes it.
 
 14. Final report is clear:
