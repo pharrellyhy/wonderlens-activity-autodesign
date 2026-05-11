@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WonderLens Run Review - 20260510_152725_activity_concepts</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: oklch(98% 0.009 250);
+  --panel: oklch(99.2% 0.005 250);
+  --panel-soft: oklch(97.5% 0.007 250);
+  --control: oklch(99% 0.004 250);
+  --thead: oklch(98.6% 0.006 250);
+  --text: oklch(27% 0.035 255);
+  --muted: oklch(52% 0.04 255);
+  --mono: oklch(38% 0.045 255);
+  --line: oklch(91% 0.015 250);
+  --line-strong: oklch(84% 0.023 250);
+  --blue: oklch(48% 0.19 260);
+  --blue-bg: oklch(95% 0.035 260);
+  --blue-text: oklch(42% 0.15 260);
+  --green-bg: oklch(95% 0.045 155);
+  --green-text: oklch(40% 0.11 155);
+  --amber-bg: oklch(96% 0.06 85);
+  --amber-text: oklch(40% 0.1 78);
+  --red-bg: oklch(94% 0.045 28);
+  --red-text: oklch(42% 0.13 28);
+  --gray-bg: oklch(94% 0.012 250);
+  --gray-text: oklch(38% 0.04 255);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header { background: var(--panel); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; }
+.header-inner { max-width: 1440px; margin: 0 auto; padding: 18px 24px 16px; }
+.kicker { color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+h1 { margin: 2px 0 10px; font-size: clamp(22px, 3vw, 34px); line-height: 1.15; letter-spacing: 0; }
+.summary-line { display: flex; flex-wrap: wrap; gap: 10px 18px; color: var(--muted); }
+main { max-width: 1440px; margin: 0 auto; padding: 20px 24px 40px; }
+.metrics { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.metric { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; min-height: 74px; }
+.metric span { display: block; color: var(--muted); font-size: 12px; font-weight: 700; }
+.metric strong { display: block; margin-top: 6px; font-size: 28px; line-height: 1; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; margin: 16px 0; overflow: hidden; }
+.panel-head { padding: 14px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+h2 { margin: 0; font-size: 17px; letter-spacing: 0; }
+.controls { display: grid; grid-template-columns: minmax(220px, 1.2fr) repeat(4, minmax(140px, .7fr)); gap: 10px; padding: 14px 16px; background: var(--panel-soft); border-bottom: 1px solid var(--line); }
+input, select { width: 100%; min-height: 36px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 7px 10px; background: var(--control); color: var(--text); font: inherit; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 980px; }
+th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+th { background: var(--thead); color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+tr:last-child td { border-bottom: 0; }
+.subtle { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.links a { display: inline-block; margin: 0 7px 4px 0; }
+.badge, .status { display: inline-flex; align-items: center; justify-content: center; min-height: 24px; min-width: 74px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.badge-generated { background: var(--blue-bg); color: var(--blue-text); }
+.badge-enriched { background: var(--green-bg); color: var(--green-text); }
+.status-pass { background: var(--green-bg); color: var(--green-text); }
+.status-blocked { background: var(--amber-bg); color: var(--amber-text); }
+.missing { color: var(--red-text); background: var(--red-bg); border-radius: 4px; padding: 1px 5px; }
+.link-grid { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px; }
+.link-grid a { border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; background: var(--control); }
+.reviewers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 14px 16px; }
+.reviewer-card { border: 1px solid var(--line); border-radius: 8px; background: var(--panel-soft); padding: 12px; }
+.reviewer-card h3 { margin: 0 0 8px; font-size: 15px; }
+pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--mono); }
+.note-body { padding: 14px 16px; color: var(--mono); }
+.hidden { display: none; }
+@media (max-width: 980px) {
+  header { position: static; }
+  .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .controls { grid-template-columns: 1fr 1fr; }
+  .reviewers { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  main, .header-inner { padding-left: 14px; padding-right: 14px; }
+  .metrics, .controls { grid-template-columns: 1fr; }
+  table { min-width: 760px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="kicker">WonderLens Activity Run Review</div>
+    <h1>20260510_152725_activity_concepts</h1>
+    <div class="summary-line">
+      <span>Status: <strong>completed_with_blockers</strong></span>
+      <span>Started: 2026-05-10T15:27:25+08:00</span>
+      <span>Completed: 2026-05-10T15:34:08+08:00</span>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="metrics"><div class="metric"><span>Pending at start</span><strong>33</strong></div>
+<div class="metric"><span>Generated</span><strong>16</strong></div>
+<div class="metric"><span>Enriched</span><strong>7</strong></div>
+<div class="metric"><span>Blocked</span><strong>17</strong></div>
+<div class="metric"><span>Failed</span><strong>0</strong></div>
+<div class="metric"><span>Reviewer-covered</span><strong>23</strong></div></section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Run Files</h2></div>
+    <div class="link-grid">
+      <a href="run_manifest.yaml">run_manifest.yaml</a>
+      <a href="review_notes.md">review_notes.md</a>
+      <a href="assignment_snapshot.md">assignment_snapshot.md</a>
+      <a href="generated_activity_ids.txt">generated_activity_ids.txt</a>
+      <a href="../../results.tsv">results.tsv</a>
+      <a href="../../assignments.md">assignments.md</a>
+    </div>
+  </section>
+
+  <section class="panel" id="packages-panel">
+    <div class="panel-head"><h2>Generated And Enriched Packages</h2><span class="subtle" id="package-count"></span></div>
+    <div class="controls">
+      <input id="package-search" type="search" placeholder="Search packages, reviewer, mechanic">
+      <select id="kind-filter"><option value="">All package types</option><option>Generated</option><option>Enriched</option></select>
+      <select id="status-filter"><option value="">All statuses</option><option>PASS</option><option>enriched</option></select>
+      <select id="reviewer-filter"><option value="">All reviewers</option><option>Dalton reviewer-agent pass</option><option>Averroes reviewer-agent pass</option><option>Gibbs reviewer-agent pass</option><option>Aristotle reviewer-agent pass</option></select>
+      <select id="asset-filter"><option value="">All asset policies</option><option>no_assets</option><option>optional_support</option><option>required_prebuilt</option><option>asset_brief</option></select>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Type</th><th>Index</th><th>Activity</th><th>Mechanic</th><th>Pillar / Style</th><th>Focal</th><th>Assets</th><th>Reviewer</th><th>Status</th><th>Files</th></tr></thead>
+      <tbody id="package-rows"><tr data-kind="Generated" data-status="PASS" data-reviewer="Dalton reviewer-agent pass" data-asset="optional_support" data-search="concept_word_echo_remember generated dalton reviewer-agent pass pass remember performance voice_stage optional_support">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>1</td>
+<td><strong>concept_word_echo_remember</strong><div class="subtle">activities/concept_word_echo_remember</div></td>
+<td>remember</td>
+<td>Performance<div class="subtle">voice_stage</div></td>
+<td>echo_word_pattern</td>
+<td>optional_support</td>
+<td>Dalton reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_word_echo_remember/spec.md">spec</a> <a href="../../activities/concept_word_echo_remember/prod.md">prod</a> <a href="../../activities/concept_word_echo_remember/tag_block.yaml">tag</a> <a href="../../activities/concept_word_echo_remember/recap.template.yaml">recap</a> <a href="../../activities/concept_word_echo_remember/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Dalton reviewer-agent pass" data-asset="optional_support" data-search="concept_emotion_reader_care generated dalton reviewer-agent pass pass care nurture care_station optional_support">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>2</td>
+<td><strong>concept_emotion_reader_care</strong><div class="subtle">activities/concept_emotion_reader_care</div></td>
+<td>care</td>
+<td>Nurture<div class="subtle">care_station</div></td>
+<td>visible_feeling_cue</td>
+<td>optional_support</td>
+<td>Dalton reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_emotion_reader_care/spec.md">spec</a> <a href="../../activities/concept_emotion_reader_care/prod.md">prod</a> <a href="../../activities/concept_emotion_reader_care/tag_block.yaml">tag</a> <a href="../../activities/concept_emotion_reader_care/recap.template.yaml">recap</a> <a href="../../activities/concept_emotion_reader_care/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Dalton reviewer-agent pass" data-asset="no_assets" data-search="concept_plant_parts_enumerate generated dalton reviewer-agent pass pass enumerate discovery field_experiment no_assets">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>3</td>
+<td><strong>concept_plant_parts_enumerate</strong><div class="subtle">activities/concept_plant_parts_enumerate</div></td>
+<td>enumerate</td>
+<td>Discovery<div class="subtle">field_experiment</div></td>
+<td>visible_plant_part</td>
+<td>no_assets</td>
+<td>Dalton reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_plant_parts_enumerate/spec.md">spec</a> <a href="../../activities/concept_plant_parts_enumerate/prod.md">prod</a> <a href="../../activities/concept_plant_parts_enumerate/tag_block.yaml">tag</a> <a href="../../activities/concept_plant_parts_enumerate/recap.template.yaml">recap</a> <a href="../../activities/concept_plant_parts_enumerate/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Dalton reviewer-agent pass" data-asset="no_assets" data-search="concept_plant_state_compare generated dalton reviewer-agent pass pass compare discovery field_experiment no_assets">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>4</td>
+<td><strong>concept_plant_state_compare</strong><div class="subtle">activities/concept_plant_state_compare</div></td>
+<td>compare</td>
+<td>Discovery<div class="subtle">field_experiment</div></td>
+<td>visible_plant_state</td>
+<td>no_assets</td>
+<td>Dalton reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_plant_state_compare/spec.md">spec</a> <a href="../../activities/concept_plant_state_compare/prod.md">prod</a> <a href="../../activities/concept_plant_state_compare/tag_block.yaml">tag</a> <a href="../../activities/concept_plant_state_compare/recap.template.yaml">recap</a> <a href="../../activities/concept_plant_state_compare/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Dalton reviewer-agent pass" data-asset="optional_support" data-search="concept_color_mixing_collect generated dalton reviewer-agent pass pass collect discovery field_experiment optional_support">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>5</td>
+<td><strong>concept_color_mixing_collect</strong><div class="subtle">activities/concept_color_mixing_collect</div></td>
+<td>collect</td>
+<td>Discovery<div class="subtle">field_experiment</div></td>
+<td>two_color_mix</td>
+<td>optional_support</td>
+<td>Dalton reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_color_mixing_collect/spec.md">spec</a> <a href="../../activities/concept_color_mixing_collect/prod.md">prod</a> <a href="../../activities/concept_color_mixing_collect/tag_block.yaml">tag</a> <a href="../../activities/concept_color_mixing_collect/recap.template.yaml">recap</a> <a href="../../activities/concept_color_mixing_collect/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Dalton reviewer-agent pass" data-asset="required_prebuilt" data-search="concept_constellation_star_count_enumerate generated dalton reviewer-agent pass pass enumerate discovery field_experiment required_prebuilt">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>6</td>
+<td><strong>concept_constellation_star_count_enumerate</strong><div class="subtle">activities/concept_constellation_star_count_enumerate</div></td>
+<td>enumerate</td>
+<td>Discovery<div class="subtle">field_experiment</div></td>
+<td>visible_star_count</td>
+<td>required_prebuilt</td>
+<td>Dalton reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_constellation_star_count_enumerate/spec.md">spec</a> <a href="../../activities/concept_constellation_star_count_enumerate/prod.md">prod</a> <a href="../../activities/concept_constellation_star_count_enumerate/tag_block.yaml">tag</a> <a href="../../activities/concept_constellation_star_count_enumerate/recap.template.yaml">recap</a> <a href="../../activities/concept_constellation_star_count_enumerate/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Dalton reviewer-agent pass" data-asset="optional_support" data-search="concept_career_decision_decide generated dalton reviewer-agent pass pass decide nurture care_station optional_support">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>7</td>
+<td><strong>concept_career_decision_decide</strong><div class="subtle">activities/concept_career_decision_decide</div></td>
+<td>decide</td>
+<td>Nurture<div class="subtle">care_station</div></td>
+<td>helpful_action_choice</td>
+<td>optional_support</td>
+<td>Dalton reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_career_decision_decide/spec.md">spec</a> <a href="../../activities/concept_career_decision_decide/prod.md">prod</a> <a href="../../activities/concept_career_decision_decide/tag_block.yaml">tag</a> <a href="../../activities/concept_career_decision_decide/recap.template.yaml">recap</a> <a href="../../activities/concept_career_decision_decide/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Dalton reviewer-agent pass" data-asset="required_prebuilt" data-search="concept_vegetable_sort_sort generated dalton reviewer-agent pass pass sort adventure quest_collector required_prebuilt">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>8</td>
+<td><strong>concept_vegetable_sort_sort</strong><div class="subtle">activities/concept_vegetable_sort_sort</div></td>
+<td>sort</td>
+<td>Adventure<div class="subtle">quest_collector</div></td>
+<td>vegetable_sort_rule</td>
+<td>required_prebuilt</td>
+<td>Dalton reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_vegetable_sort_sort/spec.md">spec</a> <a href="../../activities/concept_vegetable_sort_sort/prod.md">prod</a> <a href="../../activities/concept_vegetable_sort_sort/tag_block.yaml">tag</a> <a href="../../activities/concept_vegetable_sort_sort/recap.template.yaml">recap</a> <a href="../../activities/concept_vegetable_sort_sort/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Averroes reviewer-agent pass" data-asset="required_prebuilt" data-search="concept_how_many_guess_enumerate generated averroes reviewer-agent pass pass enumerate discovery prediction_lab required_prebuilt">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>9</td>
+<td><strong>concept_how_many_guess_enumerate</strong><div class="subtle">activities/concept_how_many_guess_enumerate</div></td>
+<td>enumerate</td>
+<td>Discovery<div class="subtle">prediction_lab</div></td>
+<td>estimate_then_count</td>
+<td>required_prebuilt</td>
+<td>Averroes reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_how_many_guess_enumerate/spec.md">spec</a> <a href="../../activities/concept_how_many_guess_enumerate/prod.md">prod</a> <a href="../../activities/concept_how_many_guess_enumerate/tag_block.yaml">tag</a> <a href="../../activities/concept_how_many_guess_enumerate/recap.template.yaml">recap</a> <a href="../../activities/concept_how_many_guess_enumerate/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Averroes reviewer-agent pass" data-asset="required_prebuilt" data-search="concept_flashcards_enumerate generated averroes reviewer-agent pass pass enumerate mystery mystery_lens required_prebuilt">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>10</td>
+<td><strong>concept_flashcards_enumerate</strong><div class="subtle">activities/concept_flashcards_enumerate</div></td>
+<td>enumerate</td>
+<td>Mystery<div class="subtle">mystery_lens</div></td>
+<td>picture_card_target</td>
+<td>required_prebuilt</td>
+<td>Averroes reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_flashcards_enumerate/spec.md">spec</a> <a href="../../activities/concept_flashcards_enumerate/prod.md">prod</a> <a href="../../activities/concept_flashcards_enumerate/tag_block.yaml">tag</a> <a href="../../activities/concept_flashcards_enumerate/recap.template.yaml">recap</a> <a href="../../activities/concept_flashcards_enumerate/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Averroes reviewer-agent pass" data-asset="optional_support" data-search="concept_trivia_game_remember generated averroes reviewer-agent pass pass remember mystery mystery_lens optional_support">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>11</td>
+<td><strong>concept_trivia_game_remember</strong><div class="subtle">activities/concept_trivia_game_remember</div></td>
+<td>remember</td>
+<td>Mystery<div class="subtle">mystery_lens</div></td>
+<td>remembered_fact_clue</td>
+<td>optional_support</td>
+<td>Averroes reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_trivia_game_remember/spec.md">spec</a> <a href="../../activities/concept_trivia_game_remember/prod.md">prod</a> <a href="../../activities/concept_trivia_game_remember/tag_block.yaml">tag</a> <a href="../../activities/concept_trivia_game_remember/recap.template.yaml">recap</a> <a href="../../activities/concept_trivia_game_remember/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Averroes reviewer-agent pass" data-asset="no_assets" data-search="concept_would_you_rather_compare generated averroes reviewer-agent pass pass compare discovery field_experiment no_assets">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>12</td>
+<td><strong>concept_would_you_rather_compare</strong><div class="subtle">activities/concept_would_you_rather_compare</div></td>
+<td>compare</td>
+<td>Discovery<div class="subtle">field_experiment</div></td>
+<td>preference_tradeoff</td>
+<td>no_assets</td>
+<td>Averroes reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_would_you_rather_compare/spec.md">spec</a> <a href="../../activities/concept_would_you_rather_compare/prod.md">prod</a> <a href="../../activities/concept_would_you_rather_compare/tag_block.yaml">tag</a> <a href="../../activities/concept_would_you_rather_compare/recap.template.yaml">recap</a> <a href="../../activities/concept_would_you_rather_compare/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Averroes reviewer-agent pass" data-asset="no_assets" data-search="concept_current_topic_interview_deduce generated averroes reviewer-agent pass pass deduce mystery mystery_lens no_assets">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>13</td>
+<td><strong>concept_current_topic_interview_deduce</strong><div class="subtle">activities/concept_current_topic_interview_deduce</div></td>
+<td>deduce</td>
+<td>Mystery<div class="subtle">mystery_lens</div></td>
+<td>opinion_with_reason</td>
+<td>no_assets</td>
+<td>Averroes reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_current_topic_interview_deduce/spec.md">spec</a> <a href="../../activities/concept_current_topic_interview_deduce/prod.md">prod</a> <a href="../../activities/concept_current_topic_interview_deduce/tag_block.yaml">tag</a> <a href="../../activities/concept_current_topic_interview_deduce/recap.template.yaml">recap</a> <a href="../../activities/concept_current_topic_interview_deduce/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Averroes reviewer-agent pass" data-asset="no_assets" data-search="concept_little_poem_build generated averroes reviewer-agent pass pass build creation inventor_workshop no_assets">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>14</td>
+<td><strong>concept_little_poem_build</strong><div class="subtle">activities/concept_little_poem_build</div></td>
+<td>build</td>
+<td>Creation<div class="subtle">inventor_workshop</div></td>
+<td>poem_ingredient_stack</td>
+<td>no_assets</td>
+<td>Averroes reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_little_poem_build/spec.md">spec</a> <a href="../../activities/concept_little_poem_build/prod.md">prod</a> <a href="../../activities/concept_little_poem_build/tag_block.yaml">tag</a> <a href="../../activities/concept_little_poem_build/recap.template.yaml">recap</a> <a href="../../activities/concept_little_poem_build/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Averroes reviewer-agent pass" data-asset="optional_support" data-search="concept_travel_planner_predict generated averroes reviewer-agent pass pass predict discovery prediction_lab optional_support">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>15</td>
+<td><strong>concept_travel_planner_predict</strong><div class="subtle">activities/concept_travel_planner_predict</div></td>
+<td>predict</td>
+<td>Discovery<div class="subtle">prediction_lab</div></td>
+<td>pretend_trip_prediction</td>
+<td>optional_support</td>
+<td>Averroes reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_travel_planner_predict/spec.md">spec</a> <a href="../../activities/concept_travel_planner_predict/prod.md">prod</a> <a href="../../activities/concept_travel_planner_predict/tag_block.yaml">tag</a> <a href="../../activities/concept_travel_planner_predict/recap.template.yaml">recap</a> <a href="../../activities/concept_travel_planner_predict/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Generated" data-status="PASS" data-reviewer="Averroes reviewer-agent pass" data-asset="optional_support" data-search="concept_quick_silly_decide generated averroes reviewer-agent pass pass decide adventure time_traveler optional_support">
+<td><span class="badge badge-generated">Generated</span></td>
+<td>16</td>
+<td><strong>concept_quick_silly_decide</strong><div class="subtle">activities/concept_quick_silly_decide</div></td>
+<td>decide</td>
+<td>Adventure<div class="subtle">time_traveler</div></td>
+<td>quick_playful_choice</td>
+<td>optional_support</td>
+<td>Averroes reviewer-agent pass</td>
+<td><span class="status status-pass">PASS</span></td>
+<td class="links"><a href="../../activities/concept_quick_silly_decide/spec.md">spec</a> <a href="../../activities/concept_quick_silly_decide/prod.md">prod</a> <a href="../../activities/concept_quick_silly_decide/tag_block.yaml">tag</a> <a href="../../activities/concept_quick_silly_decide/recap.template.yaml">recap</a> <a href="../../activities/concept_quick_silly_decide/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: package files</div></td>
+</tr><tr data-kind="Enriched" data-status="enriched" data-reviewer="Gibbs reviewer-agent pass" data-asset="no_assets" data-search="concept_scavenger_hunt_collect enriched gibbs reviewer-agent pass enriched collect adventure quest_collector no_assets">
+<td><span class="badge badge-enriched">Enriched</span></td>
+<td>-</td>
+<td><strong>concept_scavenger_hunt_collect</strong><div class="subtle">activities/concept_scavenger_hunt_collect</div></td>
+<td>collect</td>
+<td>Adventure<div class="subtle">quest_collector</div></td>
+<td>{shared_feature}</td>
+<td>no_assets</td>
+<td>Gibbs reviewer-agent pass</td>
+<td><span class="status status-pass">enriched</span></td>
+<td class="links"><a href="../../activities/concept_scavenger_hunt_collect/spec.md">spec</a> <a href="../../activities/concept_scavenger_hunt_collect/prod.md">prod</a> <a href="../../activities/concept_scavenger_hunt_collect/tag_block.yaml">tag</a> <a href="../../activities/concept_scavenger_hunt_collect/recap.template.yaml">recap</a> <a href="../../activities/concept_scavenger_hunt_collect/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: spec.md</div></td>
+</tr><tr data-kind="Enriched" data-status="enriched" data-reviewer="Gibbs reviewer-agent pass" data-asset="asset_brief" data-search="concept_phoneme_hunt_collect enriched gibbs reviewer-agent pass enriched collect adventure quest_collector asset_brief">
+<td><span class="badge badge-enriched">Enriched</span></td>
+<td>-</td>
+<td><strong>concept_phoneme_hunt_collect</strong><div class="subtle">activities/concept_phoneme_hunt_collect</div></td>
+<td>collect</td>
+<td>Adventure<div class="subtle">quest_collector</div></td>
+<td>beginning_b_sound</td>
+<td>asset_brief</td>
+<td>Gibbs reviewer-agent pass</td>
+<td><span class="status status-pass">enriched</span></td>
+<td class="links"><a href="../../activities/concept_phoneme_hunt_collect/spec.md">spec</a> <a href="../../activities/concept_phoneme_hunt_collect/prod.md">prod</a> <a href="../../activities/concept_phoneme_hunt_collect/tag_block.yaml">tag</a> <a href="../../activities/concept_phoneme_hunt_collect/recap.template.yaml">recap</a> <a href="../../activities/concept_phoneme_hunt_collect/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: spec.md</div></td>
+</tr><tr data-kind="Enriched" data-status="enriched" data-reviewer="Gibbs reviewer-agent pass" data-asset="no_assets" data-search="concept_branching_story_decide enriched gibbs reviewer-agent pass enriched decide adventure time_traveler no_assets">
+<td><span class="badge badge-enriched">Enriched</span></td>
+<td>-</td>
+<td><strong>concept_branching_story_decide</strong><div class="subtle">activities/concept_branching_story_decide</div></td>
+<td>decide</td>
+<td>Adventure<div class="subtle">time_traveler</div></td>
+<td>story_choice_path</td>
+<td>no_assets</td>
+<td>Gibbs reviewer-agent pass</td>
+<td><span class="status status-pass">enriched</span></td>
+<td class="links"><a href="../../activities/concept_branching_story_decide/spec.md">spec</a> <a href="../../activities/concept_branching_story_decide/prod.md">prod</a> <a href="../../activities/concept_branching_story_decide/tag_block.yaml">tag</a> <a href="../../activities/concept_branching_story_decide/recap.template.yaml">recap</a> <a href="../../activities/concept_branching_story_decide/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: spec.md, prod.md</div></td>
+</tr><tr data-kind="Enriched" data-status="enriched" data-reviewer="Gibbs reviewer-agent pass" data-asset="asset_brief" data-search="concept_guess_in_10_deduce enriched gibbs reviewer-agent pass enriched deduce mystery mystery_lens asset_brief">
+<td><span class="badge badge-enriched">Enriched</span></td>
+<td>-</td>
+<td><strong>concept_guess_in_10_deduce</strong><div class="subtle">activities/concept_guess_in_10_deduce</div></td>
+<td>deduce</td>
+<td>Mystery<div class="subtle">mystery_lens</div></td>
+<td>clue_evidence</td>
+<td>asset_brief</td>
+<td>Gibbs reviewer-agent pass</td>
+<td><span class="status status-pass">enriched</span></td>
+<td class="links"><a href="../../activities/concept_guess_in_10_deduce/spec.md">spec</a> <a href="../../activities/concept_guess_in_10_deduce/prod.md">prod</a> <a href="../../activities/concept_guess_in_10_deduce/tag_block.yaml">tag</a> <a href="../../activities/concept_guess_in_10_deduce/recap.template.yaml">recap</a> <a href="../../activities/concept_guess_in_10_deduce/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: spec.md</div></td>
+</tr><tr data-kind="Enriched" data-status="enriched" data-reviewer="Aristotle reviewer-agent pass" data-asset="asset_brief" data-search="concept_animal_sound_motion_voice enriched aristotle reviewer-agent pass enriched motion_voice performance voice_stage asset_brief">
+<td><span class="badge badge-enriched">Enriched</span></td>
+<td>-</td>
+<td><strong>concept_animal_sound_motion_voice</strong><div class="subtle">activities/concept_animal_sound_motion_voice</div></td>
+<td>motion_voice</td>
+<td>Performance<div class="subtle">voice_stage</div></td>
+<td>animal_voice</td>
+<td>asset_brief</td>
+<td>Aristotle reviewer-agent pass</td>
+<td><span class="status status-pass">enriched</span></td>
+<td class="links"><a href="../../activities/concept_animal_sound_motion_voice/spec.md">spec</a> <a href="../../activities/concept_animal_sound_motion_voice/prod.md">prod</a> <a href="../../activities/concept_animal_sound_motion_voice/tag_block.yaml">tag</a> <a href="../../activities/concept_animal_sound_motion_voice/recap.template.yaml">recap</a> <a href="../../activities/concept_animal_sound_motion_voice/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: spec.md</div></td>
+</tr><tr data-kind="Enriched" data-status="enriched" data-reviewer="Aristotle reviewer-agent pass" data-asset="no_assets" data-search="concept_tiny_curator_sort enriched aristotle reviewer-agent pass enriched sort adventure quest_collector no_assets">
+<td><span class="badge badge-enriched">Enriched</span></td>
+<td>-</td>
+<td><strong>concept_tiny_curator_sort</strong><div class="subtle">activities/concept_tiny_curator_sort</div></td>
+<td>sort</td>
+<td>Adventure<div class="subtle">quest_collector</div></td>
+<td>child_made_grouping_rule</td>
+<td>no_assets</td>
+<td>Aristotle reviewer-agent pass</td>
+<td><span class="status status-pass">enriched</span></td>
+<td class="links"><a href="../../activities/concept_tiny_curator_sort/spec.md">spec</a> <a href="../../activities/concept_tiny_curator_sort/prod.md">prod</a> <a href="../../activities/concept_tiny_curator_sort/tag_block.yaml">tag</a> <a href="../../activities/concept_tiny_curator_sort/recap.template.yaml">recap</a> <a href="../../activities/concept_tiny_curator_sort/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: spec.md</div></td>
+</tr><tr data-kind="Enriched" data-status="enriched" data-reviewer="Aristotle reviewer-agent pass" data-asset="asset_brief" data-search="concept_partial_reveal_deduce enriched aristotle reviewer-agent pass enriched deduce mystery mystery_lens asset_brief">
+<td><span class="badge badge-enriched">Enriched</span></td>
+<td>-</td>
+<td><strong>concept_partial_reveal_deduce</strong><div class="subtle">activities/concept_partial_reveal_deduce</div></td>
+<td>deduce</td>
+<td>Mystery<div class="subtle">mystery_lens</div></td>
+<td>partial_visual_clue</td>
+<td>asset_brief</td>
+<td>Aristotle reviewer-agent pass</td>
+<td><span class="status status-pass">enriched</span></td>
+<td class="links"><a href="../../activities/concept_partial_reveal_deduce/spec.md">spec</a> <a href="../../activities/concept_partial_reveal_deduce/prod.md">prod</a> <a href="../../activities/concept_partial_reveal_deduce/tag_block.yaml">tag</a> <a href="../../activities/concept_partial_reveal_deduce/recap.template.yaml">recap</a> <a href="../../activities/concept_partial_reveal_deduce/dashboard.template.yaml">dashboard</a><div class="subtle">Changed: spec.md</div></td>
+</tr></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel" id="blocked-panel">
+    <div class="panel-head"><h2>Blocked Assignments</h2><span class="subtle" id="blocked-count"></span></div>
+    <div class="controls" style="grid-template-columns:minmax(220px,1fr) minmax(140px,.4fr);">
+      <input id="blocked-search" type="search" placeholder="Search blocked reason, concept, capability">
+      <select id="blocked-asset-filter"><option value="">All asset policies</option><option>no_assets</option><option>optional_support</option><option>required_prebuilt</option><option>runtime_generated</option></select>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Index</th><th>Concept / Capability</th><th>Asset Policy</th><th>Missing Decision</th><th>Status</th><th>Brief</th></tr></thead>
+      <tbody id="blocked-rows"><tr data-status="blocked" data-asset="runtime_generated" data-search="coloring game runtime_generated requires_generated_image confirm runtime image generation support and safety review for child-facing generated assets.; define coloring or recoloring ui behavior, selectable regions, state storage, and fallback behavior. blocked_until_product_decision">
+<td>17</td>
+<td><strong>Coloring Game</strong><div class="subtle">requires_generated_image</div></td>
+<td>runtime_generated</td>
+<td>Confirm runtime image generation support and safety review for child-facing generated assets.; Define coloring or recoloring UI behavior, selectable regions, state storage, and fallback behavior.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/017_coloring_game.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="optional_support" data-search="guided drawing optional_support requires_materials define a supported cat3 material workflow or convert the concept to a current cat1/cat5 scaffold without distorting the source promise.; define caregiver/material setup, pacing, and no-assessment fallback for physical work. blocked_until_product_decision">
+<td>18</td>
+<td><strong>Guided Drawing</strong><div class="subtle">requires_materials</div></td>
+<td>optional_support</td>
+<td>Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment fallback for physical work.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/018_guided_drawing.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="optional_support" data-search="building challenge optional_support requires_materials define a supported cat3 material workflow or convert the concept to a current cat1/cat5 scaffold without distorting the source promise.; define caregiver/material setup, pacing, and no-assessment fallback for physical work. blocked_until_product_decision">
+<td>19</td>
+<td><strong>Building Challenge</strong><div class="subtle">requires_materials</div></td>
+<td>optional_support</td>
+<td>Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment fallback for physical work.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/019_building_challenge.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="optional_support" data-search="story challenge unlock optional_support requires_ui_state define ui state storage, progress memory, and resume/reset behavior. blocked_until_product_decision">
+<td>20</td>
+<td><strong>Story Challenge Unlock</strong><div class="subtle">requires_ui_state</div></td>
+<td>optional_support</td>
+<td>Define UI state storage, progress memory, and resume/reset behavior.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/020_story_challenge_unlock.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="no_assets" data-search="classic music and movement no_assets requires_motion_safety define age-safe movement policy, caregiver gating, space checks, and prohibited movements. blocked_until_product_decision">
+<td>21</td>
+<td><strong>Classic Music And Movement</strong><div class="subtle">requires_motion_safety</div></td>
+<td>no_assets</td>
+<td>Define age-safe movement policy, caregiver gating, space checks, and prohibited movements.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/021_classic_music_movement.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="required_prebuilt" data-search="children&#x27;s yoga required_prebuilt requires_asset_display define age-safe movement policy, caregiver gating, space checks, and prohibited movements.; confirm approved prebuilt asset library, display contract, and asset metadata availability. blocked_until_product_decision">
+<td>22</td>
+<td><strong>Children&#x27;s Yoga</strong><div class="subtle">requires_asset_display</div></td>
+<td>required_prebuilt</td>
+<td>Define age-safe movement policy, caregiver gating, space checks, and prohibited movements.; Confirm approved prebuilt asset library, display contract, and asset metadata availability.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/022_childrens_yoga.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="required_prebuilt" data-search="emotion color outfit required_prebuilt requires_asset_display define coloring or recoloring ui behavior, selectable regions, state storage, and fallback behavior.; define ui state storage, progress memory, and resume/reset behavior. blocked_until_product_decision">
+<td>23</td>
+<td><strong>Emotion Color Outfit</strong><div class="subtle">requires_asset_display</div></td>
+<td>required_prebuilt</td>
+<td>Define coloring or recoloring UI behavior, selectable regions, state storage, and fallback behavior.; Define UI state storage, progress memory, and resume/reset behavior.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/023_emotion_color_outfit.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="no_assets" data-search="toy tidy challenge no_assets requires_ui_state define ui state storage, progress memory, and resume/reset behavior.; define before/after capture or parent confirmation; do not infer completion from one photo. blocked_until_product_decision">
+<td>24</td>
+<td><strong>Toy Tidy Challenge</strong><div class="subtle">requires_ui_state</div></td>
+<td>no_assets</td>
+<td>Define UI state storage, progress memory, and resume/reset behavior.; Define before/after capture or parent confirmation; do not infer completion from one photo.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/024_toy_tidy_challenge.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="no_assets" data-search="time sense challenge no_assets requires_ui_state define ui state storage, progress memory, and resume/reset behavior. blocked_until_product_decision">
+<td>25</td>
+<td><strong>Time Sense Challenge</strong><div class="subtle">requires_ui_state</div></td>
+<td>no_assets</td>
+<td>Define UI state storage, progress memory, and resume/reset behavior.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/025_time_sense_challenge.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="required_prebuilt" data-search="one-line drawing challenge required_prebuilt requires_materials define a supported cat3 material workflow or convert the concept to a current cat1/cat5 scaffold without distorting the source promise.; define caregiver/material setup, pacing, and no-assessment fallback for physical work. blocked_until_product_decision">
+<td>26</td>
+<td><strong>One-Line Drawing Challenge</strong><div class="subtle">requires_materials</div></td>
+<td>required_prebuilt</td>
+<td>Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment fallback for physical work.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/026_one_line_drawing.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="no_assets" data-search="message bottle note no_assets requires_materials define a supported cat3 material workflow or convert the concept to a current cat1/cat5 scaffold without distorting the source promise.; define caregiver/material setup, pacing, and no-assessment fallback for physical work. blocked_until_product_decision">
+<td>27</td>
+<td><strong>Message Bottle Note</strong><div class="subtle">requires_materials</div></td>
+<td>no_assets</td>
+<td>Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment fallback for physical work.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/027_message_bottle_note.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="optional_support" data-search="award certificate optional_support requires_materials define a supported cat3 material workflow or convert the concept to a current cat1/cat5 scaffold without distorting the source promise.; define caregiver/material setup, pacing, and no-assessment fallback for physical work. blocked_until_product_decision">
+<td>28</td>
+<td><strong>Award Certificate</strong><div class="subtle">requires_materials</div></td>
+<td>optional_support</td>
+<td>Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment fallback for physical work.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/028_award_certificate.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="required_prebuilt" data-search="recognition pop challenge required_prebuilt requires_asset_display define ui state storage, progress memory, and resume/reset behavior.; confirm approved prebuilt asset library, display contract, and asset metadata availability. blocked_until_product_decision">
+<td>29</td>
+<td><strong>Recognition Pop Challenge</strong><div class="subtle">requires_asset_display</div></td>
+<td>required_prebuilt</td>
+<td>Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved prebuilt asset library, display contract, and asset metadata availability.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/029_whack_a_mole_recognition.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="required_prebuilt" data-search="word build guess required_prebuilt requires_asset_display define ui state storage, progress memory, and resume/reset behavior.; confirm approved prebuilt asset library, display contract, and asset metadata availability. blocked_until_product_decision">
+<td>30</td>
+<td><strong>Word Build Guess</strong><div class="subtle">requires_asset_display</div></td>
+<td>required_prebuilt</td>
+<td>Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved prebuilt asset library, display contract, and asset metadata availability.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/030_word_build_guess.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="required_prebuilt" data-search="art critic tournament required_prebuilt requires_asset_display define ui state storage, progress memory, and resume/reset behavior.; confirm approved prebuilt asset library, display contract, and asset metadata availability. blocked_until_product_decision">
+<td>31</td>
+<td><strong>Art Critic Tournament</strong><div class="subtle">requires_asset_display</div></td>
+<td>required_prebuilt</td>
+<td>Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved prebuilt asset library, display contract, and asset metadata availability.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/031_art_critic_tournament.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="required_prebuilt" data-search="color in famous art required_prebuilt requires_asset_display confirm approved prebuilt asset library, display contract, and asset metadata availability. blocked_until_product_decision">
+<td>32</td>
+<td><strong>Color In Famous Art</strong><div class="subtle">requires_asset_display</div></td>
+<td>required_prebuilt</td>
+<td>Confirm approved prebuilt asset library, display contract, and asset metadata availability.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/032_color_in_famous_art.yaml">brief</a></td>
+</tr><tr data-status="blocked" data-asset="required_prebuilt" data-search="simple body movement guide required_prebuilt requires_asset_display define age-safe movement policy, caregiver gating, space checks, and prohibited movements.; confirm approved prebuilt asset library, display contract, and asset metadata availability. blocked_until_product_decision">
+<td>33</td>
+<td><strong>Simple Body Movement Guide</strong><div class="subtle">requires_asset_display</div></td>
+<td>required_prebuilt</td>
+<td>Define age-safe movement policy, caregiver gating, space checks, and prohibited movements.; Confirm approved prebuilt asset library, display contract, and asset metadata availability.</td>
+<td><span class="status status-blocked">blocked_until_product_decision</span></td>
+<td><a href="blocked_briefs/033_simple_body_movement.yaml">brief</a></td>
+</tr></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Reviewer Coverage</h2></div>
+    <div class="reviewers"><article class="reviewer-card"><h3>Dalton</h3><pre>- Reviewer A: Dalton (`019e14a9-b67d-7430-95a3-840b60797764`)
+- Scope: `concept_word_echo_remember`, `concept_emotion_reader_care`, `concept_plant_parts_enumerate`, `concept_plant_state_compare`, `concept_color_mixing_collect`, `concept_constellation_star_count_enumerate`, `concept_career_decision_decide`, `concept_vegetable_sort_sort`.
+- Outcome: edited all eight packages; final package contract PASS after reviewer checks.
+- Repairs: replaced templated runtime dialogue with activity-specific hooks, rules, branch follow-ups, magic moments, and IB closings; made KUD language concrete in `prod.md` and `tag_block.yaml`; updated recap copy to reflect earned moments; fixed no-asset plant spec references; changed color mixing asset type to canonical `ui_overlay`; corrected constellation and vegetable asset-brief round references.
+- Reviewer checks reported: full tag-block schema validation PASS, placeholder/forbidden-text scan clean, `git diff --check` on assigned dirs PASS, and each assigned package has exactly five files.</pre></article><article class="reviewer-card"><h3>Averroes</h3><pre>- Reviewer B: Averroes (`019e14a9-e2b2-7200-8e82-cb0b42da8d16`)
+- Scope: `concept_how_many_guess_enumerate`, `concept_flashcards_enumerate`, `concept_trivia_game_remember`, `concept_would_you_rather_compare`, `concept_current_topic_interview_deduce`, `concept_little_poem_build`, `concept_travel_planner_predict`, `concept_quick_silly_decide`.
+- Outcome: edited all eight packages; final package contract PASS after reviewer checks.
+- Repairs: replaced generic KUD lines with activity-specific knowledge, understanding, and child actions; strengthened Step 3 branch follow-ups with concrete evidence, redirects, and mechanic-specific scaffolds; tightened T0 dialogue; fixed no-asset spec language; normalized asset brief rows; replaced non-vocabulary ATL token `communication` with `language_expression`; fixed YAML indentation.
+- Reviewer checks reported: full tag-block schema validation PASS, assigned package structural/template check PASS, targeted thin-marker/stale-token scan clean, and assigned-dir status stayed within scope.</pre></article><article class="reviewer-card"><h3>Gibbs</h3><pre>- Reviewer C: Gibbs (`019e14c5-502c-7903-9ca8-9e6827749fd4`)
+- Scope: `concept_scavenger_hunt_collect`, `concept_phoneme_hunt_collect`, `concept_branching_story_decide`, `concept_guess_in_10_deduce`.
+- Outcome: final package contract PASS for all four assigned packages.
+- Repairs: updated scorecard overall lines to record reviewer-agent evidence; tightened `concept_branching_story_decide` Step 3 follow-ups so each ideal branch names the specific consequence for the selected option.
+- Reviewer checks reported: file-count check PASS, scorecard placement PASS, tag/dashboard focal match PASS, placeholder/forbidden scan clean, full tag-block schema validation PASS, and scoped `git diff --check` PASS.</pre></article><article class="reviewer-card"><h3>Aristotle</h3><pre>- Reviewer D: Aristotle (`019e14c5-8586-7433-a20c-6f1df5c6afa5`)
+- Scope: `concept_animal_sound_motion_voice`, `concept_tiny_curator_sort`, `concept_partial_reveal_deduce`.
+- Outcome: final package contract PASS for all three assigned packages.
+- Repairs: updated scorecard overall lines to record reviewer-agent evidence; no runtime/prod/tag/template content changes were needed.
+- Reviewer checks reported: file-count check PASS, scorecard placement PASS, tag/dashboard focal match PASS, targeted placeholder/forbidden scan clean, full tag-block schema validation PASS, and scoped `git diff --check` PASS.</pre></article></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Validation Checks</h2></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Command</th><th>Result</th></tr></thead>
+      <tbody><tr><td>python3 activities tag_block schema validation</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>python3 generated package invariant check for runs/20260510_152725_activity_concepts</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>python3 run assignment/results consistency check</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>python3 run snapshot index coverage validation</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>python3 assignment source/asset reference validation</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>python3 results.tsv column count validation</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>python3 run manifest count validation</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>rg stale reference scan for old source file, terminal blocker wording, and invalid non-canonical key concept</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>python3 ASCII scan for concept package text/yaml</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>git diff --check</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>reviewer-agent package quality review for 16 generated packages</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>python3 reviewer evidence and ATL token validation for reviewed generated packages</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>reviewer-agent package quality review for 7 older checked concept packages</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>python3 older checked package invariant check</td><td><span class="status status-pass">PASS</span></td></tr><tr><td>python3 run manifest reviewer coverage validation</td><td><span class="status status-pass">PASS</span></td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>Residual Risk And Next Actions</h2></div>
+    <div class="note-body"><pre>No residual risk section found in review_notes.md.</pre></div>
+  </section>
+</main>
+<script>
+function norm(value) { return (value || '').toString().toLowerCase(); }
+function filterPackages() {
+  const q = norm(document.getElementById('package-search').value);
+  const kind = document.getElementById('kind-filter').value;
+  const status = document.getElementById('status-filter').value;
+  const reviewer = document.getElementById('reviewer-filter').value;
+  const asset = document.getElementById('asset-filter').value;
+  let visible = 0;
+  document.querySelectorAll('#package-rows tr').forEach(row => {
+    const pass = (!q || row.dataset.search.includes(q)) && (!kind || row.dataset.kind === kind) && (!status || row.dataset.status === status) && (!reviewer || row.dataset.reviewer === reviewer) && (!asset || row.dataset.asset === asset);
+    row.classList.toggle('hidden', !pass);
+    if (pass) visible += 1;
+  });
+  document.getElementById('package-count').textContent = visible + ' visible';
+}
+function filterBlocked() {
+  const q = norm(document.getElementById('blocked-search').value);
+  const asset = document.getElementById('blocked-asset-filter').value;
+  let visible = 0;
+  document.querySelectorAll('#blocked-rows tr').forEach(row => {
+    const pass = (!q || row.dataset.search.includes(q)) && (!asset || row.dataset.asset === asset);
+    row.classList.toggle('hidden', !pass);
+    if (pass) visible += 1;
+  });
+  document.getElementById('blocked-count').textContent = visible + ' visible';
+}
+['package-search','kind-filter','status-filter','reviewer-filter','asset-filter'].forEach(id => document.getElementById(id).addEventListener('input', filterPackages));
+['blocked-search','blocked-asset-filter'].forEach(id => document.getElementById(id).addEventListener('input', filterBlocked));
+filterPackages();
+filterBlocked();
+</script>
+</body>
+</html>
