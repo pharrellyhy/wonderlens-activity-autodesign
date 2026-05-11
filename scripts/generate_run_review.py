@@ -985,6 +985,18 @@ def blocked_comment_rows(comments: list[dict[str, str]]) -> str:
     )
 
 
+def minimum_unblock_rows(item: dict[str, Any]) -> str:
+    labels = item.get("reason_types", []) + item.get("blocked_comment_types", [])
+    definitions = reason_definitions(labels) or [FALLBACK_REASON]
+    return "".join(
+        '<li class="minimum-unblock-row">'
+        f'{reason_badge(definition["label"], "minimum-unblock-chip")}'
+        f'<p>{esc(definition.get("unblocks_when", FALLBACK_REASON["unblocks_when"]))}</p>'
+        "</li>"
+        for definition in definitions
+    )
+
+
 def blocked_preview_scorecard_rows(item: dict[str, Any]) -> list[dict[str, str]]:
     reason_types = item.get("reason_types", []) or [FALLBACK_REASON["label"]]
     blockers = ", ".join(reason_types)
@@ -1079,6 +1091,7 @@ def blocked_detail_content(
     item: dict[str, Any],
     decisions: str,
     flag_badges: str,
+    minimum_unblock: str,
     preview_runtime: str,
     comments: str,
     marker_summary: str,
@@ -1108,6 +1121,11 @@ def blocked_detail_content(
   <section>
     <h4>Capability Flags</h4>
     <p>{flag_badges}</p>
+  </section>
+  <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list">{minimum_unblock}</ul>
   </section>
   <section>
     <h4>Inline Blocked Markers</h4>
@@ -1183,6 +1201,7 @@ def blocked_card(item: dict[str, Any]) -> str:
     preview_runtime = preview_runtime or "<li>No constrained runtime beats were recorded.</li>"
     comments = blocked_comment_rows(item["blocked_comments"])
     marker_summary = blocked_comment_summary(item["blocked_comments"])
+    minimum_unblock = minimum_unblock_rows(item)
     scorecard = scorecard_table(blocked_preview_scorecard_rows(item))
     modal_id = dom_id("blocked-detail", item["activity_concept"], item["assignment_index"])
     tags = blocked_tags(item)
@@ -1190,6 +1209,7 @@ def blocked_card(item: dict[str, Any]) -> str:
         item,
         decisions,
         flag_badges,
+        minimum_unblock,
         preview_runtime,
         comments,
         marker_summary,
@@ -1940,6 +1960,8 @@ ol, ul { margin: 0; padding-left: 20px; }
 .blocked-element-chip { margin-bottom: 0; }
 .blocked-marker-summary { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 10px; }
 .blocked-marker-list { display: grid; gap: 0; padding-left: 0; list-style: none; border-top: 1px solid var(--hairline); }
+.minimum-unblock-list { display: grid; gap: 0; padding-left: 0; list-style: none; margin: 8px 0 0; border-top: 1px solid var(--hairline); }
+.minimum-unblock-row,
 .blocked-marker-row {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
@@ -1948,6 +1970,7 @@ ol, ul { margin: 0; padding-left: 20px; }
   padding: 9px 4px;
   border-bottom: 1px solid var(--hairline);
 }
+.minimum-unblock-row p { margin: 0; color: var(--text-soft); }
 .detail-button, .dialog-close {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -2241,6 +2264,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   .metric:nth-child(2n) { border-right: none !important; }
   .metric:nth-last-child(-n+2) { border-bottom: none; }
   .side-nav, .sidebar-counts, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid { grid-template-columns: 1fr; }
+  .minimum-unblock-row, .blocked-marker-row { grid-template-columns: 1fr; }
   .meta-grid > div, .meta-grid.compact > div, .inline-fields > div { border-right: none !important; }
   .dialog-wide { grid-column: auto; }
   .file-row { display: block; }
@@ -2773,6 +2797,12 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             "Inline blocked markers" in text
             and "Unique blocker types" in text
             and "These are occurrences inside the preview steps" in text
+        ),
+        "minimum_unblock_per_blocked_card": expected_blocked == 0
+        or (
+            text.count("Minimum To Unblock") >= expected_blocked
+            and "minimum-unblock-list" in text
+            and "Smallest policy or scope decision needed" in text
         ),
         "blocked_element_chips": expected_blocked == 0
         or ("blocked-element-chip" in text and "blocked-marker-row" in text),

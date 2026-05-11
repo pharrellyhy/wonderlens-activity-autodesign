@@ -570,6 +570,8 @@ ol, ul { margin: 0; padding-left: 20px; }
 .blocked-element-chip { margin-bottom: 0; }
 .blocked-marker-summary { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 10px; }
 .blocked-marker-list { display: grid; gap: 0; padding-left: 0; list-style: none; border-top: 1px solid var(--hairline); }
+.minimum-unblock-list { display: grid; gap: 0; padding-left: 0; list-style: none; margin: 8px 0 0; border-top: 1px solid var(--hairline); }
+.minimum-unblock-row,
 .blocked-marker-row {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
@@ -578,6 +580,7 @@ ol, ul { margin: 0; padding-left: 20px; }
   padding: 9px 4px;
   border-bottom: 1px solid var(--hairline);
 }
+.minimum-unblock-row p { margin: 0; color: var(--text-soft); }
 .detail-button, .dialog-close {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -871,6 +874,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   .metric:nth-child(2n) { border-right: none !important; }
   .metric:nth-last-child(-n+2) { border-bottom: none; }
   .side-nav, .sidebar-counts, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid { grid-template-columns: 1fr; }
+  .minimum-unblock-row, .blocked-marker-row { grid-template-columns: 1fr; }
   .meta-grid > div, .meta-grid.compact > div, .inline-fields > div { border-right: none !important; }
   .dialog-wide { grid-column: auto; }
   .file-row { display: block; }
@@ -2555,6 +2559,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
     <p><span class="badge badge-metadata badge-metadata-requires-generated-image">requires_generated_image</span> <span class="badge badge-metadata badge-metadata-requires-coloring-ui">requires_coloring_ui</span> <span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-coloring-or-recoloring-ui minimum-unblock-chip">Coloring or recoloring UI</span><p>Product approves a coloring UI contract (selectable regions, color input, persistence rules) or declares a no-coloring fallback such as verbal description of color choices with no on-screen fill.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-runtime-image-generation minimum-unblock-chip">Runtime image generation</span><p>Product approves a runtime-image policy: latency cap, content-safety rules, and a declared fallback when generation fails or is unavailable. A simpler unblock is to declare no runtime generation and use only prebuilt assets.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-ui-state-or-progress-memory minimum-unblock-chip">UI state or progress memory</span><p>Product declares the state model: what persists across rounds and sessions, resume/reset rules, and the stateless fallback used when storage is unavailable.</p></li></ul>
+  </section>
+  <section>
     <h4>Inline Blocked Markers</h4>
     <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
     <div class="blocked-marker-summary"><span class="badge badge-reason badge-reason-coloring-or-recoloring-ui blocked-element-chip">Coloring or recoloring UI x3</span> <span class="badge badge-reason badge-reason-runtime-image-generation blocked-element-chip">Runtime image generation x2</span> <span class="badge badge-reason badge-reason-ui-state-or-progress-memory blocked-element-chip">UI state or progress memory x2</span></div>
@@ -2615,6 +2624,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <section>
     <h4>Capability Flags</h4>
     <p><span class="badge badge-metadata badge-metadata-requires-materials">requires_materials</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span></p>
+  </section>
+  <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-before-after-evidence minimum-unblock-chip">Before/after evidence</span><p>Product picks an evidence policy - caregiver confirmation, child self-report, or no completion verification at all (AI narrates progress without claiming evidence). Choosing &#x27;no verification&#x27; is the smallest unblock.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing minimum-unblock-chip">Caregiver setup and pacing</span><p>Product defines caregiver responsibilities (setup steps, timing cues, no-assessment fallback) and the package records them in a caregiver-facing pacing note.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-cat3-material-workflow minimum-unblock-chip">Cat3 material workflow</span><p>Product extends the package contract to Cat3 (material list, caregiver setup script, timing, completion-evidence policy) or commits to a Cat1/Cat5 re-cast that does not require materials.</p></li></ul>
   </section>
   <section>
     <h4>Inline Blocked Markers</h4>
@@ -2679,6 +2693,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
     <p><span class="badge badge-metadata badge-metadata-requires-materials">requires_materials</span> <span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span></p>
   </section>
   <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-before-after-evidence minimum-unblock-chip">Before/after evidence</span><p>Product picks an evidence policy - caregiver confirmation, child self-report, or no completion verification at all (AI narrates progress without claiming evidence). Choosing &#x27;no verification&#x27; is the smallest unblock.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing minimum-unblock-chip">Caregiver setup and pacing</span><p>Product defines caregiver responsibilities (setup steps, timing cues, no-assessment fallback) and the package records them in a caregiver-facing pacing note.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-cat3-material-workflow minimum-unblock-chip">Cat3 material workflow</span><p>Product extends the package contract to Cat3 (material list, caregiver setup script, timing, completion-evidence policy) or commits to a Cat1/Cat5 re-cast that does not require materials.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li></ul>
+  </section>
+  <section>
     <h4>Inline Blocked Markers</h4>
     <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
     <div class="blocked-marker-summary"><span class="badge badge-reason badge-reason-before-after-evidence blocked-element-chip">Before/after evidence x2</span> <span class="badge badge-reason badge-reason-caregiver-setup-and-pacing blocked-element-chip">Caregiver setup and pacing x3</span> <span class="badge badge-reason badge-reason-cat3-material-workflow blocked-element-chip">Cat3 material workflow x2</span></div>
@@ -2739,6 +2758,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <section>
     <h4>Capability Flags</h4>
     <p><span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span> <span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span></p>
+  </section>
+  <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-ui-state-or-progress-memory minimum-unblock-chip">UI state or progress memory</span><p>Product declares the state model: what persists across rounds and sessions, resume/reset rules, and the stateless fallback used when storage is unavailable.</p></li></ul>
   </section>
   <section>
     <h4>Inline Blocked Markers</h4>
@@ -2803,6 +2827,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
     <p><span class="badge badge-metadata badge-metadata-requires-motion-safety">requires_motion_safety</span></p>
   </section>
   <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing minimum-unblock-chip">Caregiver setup and pacing</span><p>Product defines caregiver responsibilities (setup steps, timing cues, no-assessment fallback) and the package records them in a caregiver-facing pacing note.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-motion-safety minimum-unblock-chip">Motion safety</span><p>Product approves an age-appropriate motion policy (allowed/prohibited movements, caregiver-present requirement, space-check prompt) or restricts the activity to low-risk gestures that match the existing safety contract.</p></li></ul>
+  </section>
+  <section>
     <h4>Inline Blocked Markers</h4>
     <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
     <div class="blocked-marker-summary"><span class="badge badge-reason badge-reason-motion-safety blocked-element-chip">Motion safety x7</span></div>
@@ -2863,6 +2892,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <section>
     <h4>Capability Flags</h4>
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-motion-safety">requires_motion_safety</span></p>
+  </section>
+  <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing minimum-unblock-chip">Caregiver setup and pacing</span><p>Product defines caregiver responsibilities (setup steps, timing cues, no-assessment fallback) and the package records them in a caregiver-facing pacing note.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-motion-safety minimum-unblock-chip">Motion safety</span><p>Product approves an age-appropriate motion policy (allowed/prohibited movements, caregiver-present requirement, space-check prompt) or restricts the activity to low-risk gestures that match the existing safety contract.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li></ul>
   </section>
   <section>
     <h4>Inline Blocked Markers</h4>
@@ -2927,6 +2961,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-coloring-ui">requires_coloring_ui</span> <span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-coloring-or-recoloring-ui minimum-unblock-chip">Coloring or recoloring UI</span><p>Product approves a coloring UI contract (selectable regions, color input, persistence rules) or declares a no-coloring fallback such as verbal description of color choices with no on-screen fill.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-ui-state-or-progress-memory minimum-unblock-chip">UI state or progress memory</span><p>Product declares the state model: what persists across rounds and sessions, resume/reset rules, and the stateless fallback used when storage is unavailable.</p></li></ul>
+  </section>
+  <section>
     <h4>Inline Blocked Markers</h4>
     <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
     <div class="blocked-marker-summary"><span class="badge badge-reason badge-reason-coloring-or-recoloring-ui blocked-element-chip">Coloring or recoloring UI x2</span> <span class="badge badge-reason badge-reason-prebuilt-asset-display blocked-element-chip">Prebuilt asset display x2</span> <span class="badge badge-reason badge-reason-ui-state-or-progress-memory blocked-element-chip">UI state or progress memory x3</span></div>
@@ -2987,6 +3026,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <section>
     <h4>Capability Flags</h4>
     <p><span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span></p>
+  </section>
+  <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-before-after-evidence minimum-unblock-chip">Before/after evidence</span><p>Product picks an evidence policy - caregiver confirmation, child self-report, or no completion verification at all (AI narrates progress without claiming evidence). Choosing &#x27;no verification&#x27; is the smallest unblock.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-ui-state-or-progress-memory minimum-unblock-chip">UI state or progress memory</span><p>Product declares the state model: what persists across rounds and sessions, resume/reset rules, and the stateless fallback used when storage is unavailable.</p></li></ul>
   </section>
   <section>
     <h4>Inline Blocked Markers</h4>
@@ -3051,6 +3095,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
     <p><span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-ui-state-or-progress-memory minimum-unblock-chip">UI state or progress memory</span><p>Product declares the state model: what persists across rounds and sessions, resume/reset rules, and the stateless fallback used when storage is unavailable.</p></li></ul>
+  </section>
+  <section>
     <h4>Inline Blocked Markers</h4>
     <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
     <div class="blocked-marker-summary"><span class="badge badge-reason badge-reason-ui-state-or-progress-memory blocked-element-chip">UI state or progress memory x7</span></div>
@@ -3111,6 +3160,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <section>
     <h4>Capability Flags</h4>
     <p><span class="badge badge-metadata badge-metadata-requires-materials">requires_materials</span> <span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span></p>
+  </section>
+  <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-before-after-evidence minimum-unblock-chip">Before/after evidence</span><p>Product picks an evidence policy - caregiver confirmation, child self-report, or no completion verification at all (AI narrates progress without claiming evidence). Choosing &#x27;no verification&#x27; is the smallest unblock.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing minimum-unblock-chip">Caregiver setup and pacing</span><p>Product defines caregiver responsibilities (setup steps, timing cues, no-assessment fallback) and the package records them in a caregiver-facing pacing note.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-cat3-material-workflow minimum-unblock-chip">Cat3 material workflow</span><p>Product extends the package contract to Cat3 (material list, caregiver setup script, timing, completion-evidence policy) or commits to a Cat1/Cat5 re-cast that does not require materials.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li></ul>
   </section>
   <section>
     <h4>Inline Blocked Markers</h4>
@@ -3175,6 +3229,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
     <p><span class="badge badge-metadata badge-metadata-requires-materials">requires_materials</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span> <span class="badge badge-metadata badge-metadata-ocr-risk">ocr_risk</span></p>
   </section>
   <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-before-after-evidence minimum-unblock-chip">Before/after evidence</span><p>Product picks an evidence policy - caregiver confirmation, child self-report, or no completion verification at all (AI narrates progress without claiming evidence). Choosing &#x27;no verification&#x27; is the smallest unblock.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing minimum-unblock-chip">Caregiver setup and pacing</span><p>Product defines caregiver responsibilities (setup steps, timing cues, no-assessment fallback) and the package records them in a caregiver-facing pacing note.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-cat3-material-workflow minimum-unblock-chip">Cat3 material workflow</span><p>Product extends the package contract to Cat3 (material list, caregiver setup script, timing, completion-evidence policy) or commits to a Cat1/Cat5 re-cast that does not require materials.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-ocr-or-text-handling minimum-unblock-chip">OCR or text handling</span><p>Product picks a text-handling policy: approve OCR with privacy and reading-level rules, OR require the child to speak text aloud instead, OR declare no correctness verification of written text. The &#x27;no verification&#x27; decision is the smallest unblock.</p></li></ul>
+  </section>
+  <section>
     <h4>Inline Blocked Markers</h4>
     <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
     <div class="blocked-marker-summary"><span class="badge badge-reason badge-reason-before-after-evidence blocked-element-chip">Before/after evidence x2</span> <span class="badge badge-reason badge-reason-caregiver-setup-and-pacing blocked-element-chip">Caregiver setup and pacing x3</span> <span class="badge badge-reason badge-reason-cat3-material-workflow blocked-element-chip">Cat3 material workflow x2</span></div>
@@ -3235,6 +3294,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <section>
     <h4>Capability Flags</h4>
     <p><span class="badge badge-metadata badge-metadata-requires-materials">requires_materials</span> <span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span></p>
+  </section>
+  <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-before-after-evidence minimum-unblock-chip">Before/after evidence</span><p>Product picks an evidence policy - caregiver confirmation, child self-report, or no completion verification at all (AI narrates progress without claiming evidence). Choosing &#x27;no verification&#x27; is the smallest unblock.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing minimum-unblock-chip">Caregiver setup and pacing</span><p>Product defines caregiver responsibilities (setup steps, timing cues, no-assessment fallback) and the package records them in a caregiver-facing pacing note.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-cat3-material-workflow minimum-unblock-chip">Cat3 material workflow</span><p>Product extends the package contract to Cat3 (material list, caregiver setup script, timing, completion-evidence policy) or commits to a Cat1/Cat5 re-cast that does not require materials.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li></ul>
   </section>
   <section>
     <h4>Inline Blocked Markers</h4>
@@ -3299,6 +3363,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-ui-state-or-progress-memory minimum-unblock-chip">UI state or progress memory</span><p>Product declares the state model: what persists across rounds and sessions, resume/reset rules, and the stateless fallback used when storage is unavailable.</p></li></ul>
+  </section>
+  <section>
     <h4>Inline Blocked Markers</h4>
     <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
     <div class="blocked-marker-summary"><span class="badge badge-reason badge-reason-prebuilt-asset-display blocked-element-chip">Prebuilt asset display x5</span> <span class="badge badge-reason badge-reason-ui-state-or-progress-memory blocked-element-chip">UI state or progress memory x2</span></div>
@@ -3359,6 +3428,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <section>
     <h4>Capability Flags</h4>
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
+  </section>
+  <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-ui-state-or-progress-memory minimum-unblock-chip">UI state or progress memory</span><p>Product declares the state model: what persists across rounds and sessions, resume/reset rules, and the stateless fallback used when storage is unavailable.</p></li></ul>
   </section>
   <section>
     <h4>Inline Blocked Markers</h4>
@@ -3423,6 +3497,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-ui-state-or-progress-memory minimum-unblock-chip">UI state or progress memory</span><p>Product declares the state model: what persists across rounds and sessions, resume/reset rules, and the stateless fallback used when storage is unavailable.</p></li></ul>
+  </section>
+  <section>
     <h4>Inline Blocked Markers</h4>
     <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
     <div class="blocked-marker-summary"><span class="badge badge-reason badge-reason-prebuilt-asset-display blocked-element-chip">Prebuilt asset display x5</span> <span class="badge badge-reason badge-reason-ui-state-or-progress-memory blocked-element-chip">UI state or progress memory x2</span></div>
@@ -3485,6 +3564,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span></p>
   </section>
   <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li></ul>
+  </section>
+  <section>
     <h4>Inline Blocked Markers</h4>
     <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
     <div class="blocked-marker-summary"><span class="badge badge-reason badge-reason-prebuilt-asset-display blocked-element-chip">Prebuilt asset display x7</span></div>
@@ -3545,6 +3629,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <section>
     <h4>Capability Flags</h4>
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-motion-safety">requires_motion_safety</span></p>
+  </section>
+  <section>
+    <h4>Minimum To Unblock</h4>
+    <p class="muted">Smallest policy or scope decision needed before this preview can become a valid package.</p>
+    <ul class="minimum-unblock-list"><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing minimum-unblock-chip">Caregiver setup and pacing</span><p>Product defines caregiver responsibilities (setup steps, timing cues, no-assessment fallback) and the package records them in a caregiver-facing pacing note.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-motion-safety minimum-unblock-chip">Motion safety</span><p>Product approves an age-appropriate motion policy (allowed/prohibited movements, caregiver-present requirement, space-check prompt) or restricts the activity to low-risk gestures that match the existing safety contract.</p></li><li class="minimum-unblock-row"><span class="badge badge-reason badge-reason-prebuilt-asset-display minimum-unblock-chip">Prebuilt asset display</span><p>Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.</p></li></ul>
   </section>
   <section>
     <h4>Inline Blocked Markers</h4>

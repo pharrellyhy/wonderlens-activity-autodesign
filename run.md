@@ -316,7 +316,7 @@ This is a final-run step, not a per-assignment step. After every row from `assig
 runs/<run_id>/review.html
 ```
 
-This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, 10-dimension criteria and package scorecard results, blocked-preview handling, blocked-preview scorecards, link rules, validation requirements, the editorial design language in `review_dashboard.md` §"Design language" (warm-paper palette, indigo accent, serif display title, hairline-divided panels, tabular numerals, accent rails on cards, status-dot run indicator), and the in-file preview behavior in `review_dashboard.md` §"In-file preview" (embedded `<template>` content, dedicated preview `<dialog>`, dependency-free Markdown rendering, modifier-click bypass, "Open in new tab" escape hatch).
+This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, 10-dimension criteria and package scorecard results, blocked-preview handling, per-blocked-card `Minimum To Unblock` sections below capability flags, blocked-preview scorecards, link rules, validation requirements, the editorial design language in `review_dashboard.md` §"Design language" (warm-paper palette, indigo accent, serif display title, hairline-divided panels, tabular numerals, accent rails on cards, status-dot run indicator), and the in-file preview behavior in `review_dashboard.md` §"In-file preview" (embedded `<template>` content, dedicated preview `<dialog>`, dependency-free Markdown rendering, modifier-click bypass, "Open in new tab" escape hatch).
 
 Generation command:
 
@@ -331,7 +331,7 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for `python3 scripts/generate_run_review.py runs/<run_id>` and `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, grouped tag colors, inline blocked marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
 
 ### Step 7: Mark generated assignment complete
 
