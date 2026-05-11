@@ -63,6 +63,9 @@
 - Added `scripts/generate_run_review.py` to generate and validate static run review dashboards from `run_manifest.yaml`, `review_notes.md`, package files, and blocked briefs.
 - Updated `GOAL.md`, `run.md`, `README.md`, and `runs/README.md` so future `/goal` runs create direct activity detail cards, sortable Cat1/Cat3/Cat5/status/mechanic controls, and classified blocked-reason badges in `runs/<run_id>/review.html`.
 - Regenerated `runs/20260510_152725_activity_concepts/review.html` with 23 activity detail cards and 17 blocked-assignment cards; updated the run manifest with `outputs.review_dashboard` and dashboard generation/validation checks.
+- Expanded review dashboard runtime beats so activity cards show concrete AI prompt, child response branches, follow-up behavior, and screen state from `prod.md`.
+- Clarified blocked assignment cards as Phase 0 only: they intentionally do not have package files or runtime beats until the product/design blocker is resolved.
+- Added a blocking-reason guide to `review.html` with "what it means" and "why it blocks design" descriptions for each active blocker badge.
 
 ## Verification
 
@@ -71,7 +74,9 @@
 - `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
   - Result: regenerated `runs/20260510_152725_activity_concepts/review.html`
 - `python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts`
-  - Result: PASS for HTML/style/script presence, run id, 23 activity cards, 17 blocked cards, category filter, sort controls, blocked reason types, no external assets, and 138 resolving local links
+  - Result: PASS for HTML/style/script presence, run id, 23 activity cards, 17 blocked cards, category filter, sort controls, blocked reason types, detailed runtime beats, blocked design-status text, reason guide descriptions, no external assets, and 138 resolving local links
+- Targeted review dashboard content assertion
+  - Result: PASS for detailed AI/child/screen runtime beat fields, Phase 0 blocker explanation, reason guide headings, and active reason descriptions
 - `git diff --check`
   - Result: clean
 - Targeted detail-floor diff review across `program.md`, `run.md`, `templates.md`, `GOAL.md`, `activities/README.md`, and `HANDOFF.md`

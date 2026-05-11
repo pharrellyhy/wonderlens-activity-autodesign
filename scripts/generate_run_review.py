@@ -165,17 +165,75 @@ def bullets_from_markdown(text: str, limit: int = 5) -> list[str]:
     return bullets
 
 
-def runtime_beats(prod_text: str) -> list[str]:
-    beats: list[str] = []
-    for line in prod_text.splitlines():
+def clean_markdown(value: str) -> str:
+    value = re.sub(r"\*\*(.*?)\*\*", r"\1", value)
+    value = re.sub(r"`([^`]+)`", r"\1", value)
+    value = re.sub(r"\[(.*?)\]\((.*?)\)", r"\1", value)
+    return normalize_text(value)
+
+
+def field_block(text: str, label: str) -> str:
+    pattern = re.compile(
+        rf"\*\*{re.escape(label)}:\*\*\s*(?P<body>.*?)(?=\n\*\*[A-Z][^*]+:\*\*|\n\*\*Round |\n#### |\Z)",
+        re.DOTALL,
+    )
+    match = pattern.search(text)
+    return match.group("body").strip() if match else ""
+
+
+def summarize_child_responses(text: str) -> str:
+    lines = []
+    for line in text.splitlines():
         stripped = line.strip()
-        if stripped.startswith("#### Step "):
-            beats.append(stripped.lstrip("# ").strip())
-        elif stripped.startswith("**Round ") and stripped.endswith("**"):
-            beats.append(stripped.strip("*: "))
+        match = re.match(r"\d+\.\s*\(([^)]+)\)\s*(.*)", stripped)
+        if match:
+            lines.append(f"{match.group(1)}: {match.group(2)}")
+        if len(lines) >= 3:
+            break
+    return " | ".join(lines) if lines else clean_markdown(text)
+
+
+def summarize_ai_followup(text: str) -> str:
+    lines = []
+    for line in text.splitlines():
+        stripped = line.strip()
+        match = re.match(r"\d+\.\s*(.*)", stripped)
+        if match:
+            lines.append(match.group(1))
+        if len(lines) >= 2:
+            break
+    return " | ".join(clean_markdown(line) for line in lines) if lines else clean_markdown(text)
+
+
+def beat_from_chunk(title: str, chunk: str) -> dict[str, str]:
+    return {
+        "title": clean_markdown(title),
+        "ai": clean_markdown(field_block(chunk, "AI says")),
+        "child": summarize_child_responses(field_block(chunk, "Child responses")),
+        "followup": summarize_ai_followup(field_block(chunk, "AI follow-up")),
+        "screen": clean_markdown(field_block(chunk, "Screen")),
+    }
+
+
+def runtime_beats(prod_text: str) -> list[dict[str, str]]:
+    beats: list[dict[str, str]] = []
+    step_matches = list(re.finditer(r"^####\s+(Step \d+:\s+.*?)\s*$", prod_text, re.MULTILINE))
+    for step_index, step_match in enumerate(step_matches):
+        step_title = step_match.group(1)
+        start = step_match.end()
+        end = step_matches[step_index + 1].start() if step_index + 1 < len(step_matches) else len(prod_text)
+        step_chunk = prod_text[start:end].strip()
+        round_matches = list(re.finditer(r"^\*\*(Round .*?):\*\*\s*$", step_chunk, re.MULTILINE))
+        if round_matches:
+            for round_index, round_match in enumerate(round_matches):
+                round_start = round_match.end()
+                round_end = round_matches[round_index + 1].start() if round_index + 1 < len(round_matches) else len(step_chunk)
+                beats.append(beat_from_chunk(round_match.group(1), step_chunk[round_start:round_end]))
+        else:
+            beats.append(beat_from_chunk(step_title, step_chunk))
         if len(beats) >= 9:
             break
-    return beats
+    return beats[:9]
 
 
 def overall_scorecard(spec_text: str) -> str:
@@ -266,17 +324,74 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
     return package
 
 
-REASON_RULES: list[tuple[str, tuple[str, ...]]] = [
-    ("Runtime image generation", ("runtime image generation", "requires_generated_image", "runtime_generated")),
-    ("Coloring or recoloring UI", ("coloring", "recoloring", "requires_coloring_ui", "fillable")),
-    ("Cat3 material workflow", ("cat3", "requires_materials", "material workflow", "paper", "pencil")),
-    ("UI state or progress memory", ("requires_ui_state", "state storage", "progress memory", "resume/reset")),
-    ("Prebuilt asset display", ("requires_asset_display", "prebuilt asset", "asset library", "display contract")),
-    ("Motion safety", ("requires_motion_safety", "movement policy", "space checks", "prohibited movements")),
-    ("Before/after evidence", ("before_after_risk", "before/after", "parent confirmation", "infer completion")),
-    ("OCR or text handling", ("ocr_risk", "ocr", "text-aware", "reading level")),
-    ("Caregiver setup and pacing", ("caregiver", "setup", "pacing", "no-assessment")),
+REASON_RULES: list[dict[str, Any]] = [
+    {
+        "label": "Runtime image generation",
+        "needles": ("runtime image generation", "requires_generated_image", "runtime_generated"),
+        "meaning": "The concept needs the product to generate child-facing images during the session.",
+        "why": "The package cannot promise runtime artwork until generation safety, latency, content policy, and fallback behavior are approved.",
+    },
+    {
+        "label": "Coloring or recoloring UI",
+        "needles": ("coloring", "recoloring", "requires_coloring_ui", "fillable"),
+        "meaning": "The concept needs selectable regions, color application, or saved coloring state.",
+        "why": "Runtime beats would otherwise assume UI controls and state behavior that do not exist in the current package contract.",
+    },
+    {
+        "label": "Cat3 material workflow",
+        "needles": ("cat3", "requires_materials", "material workflow", "paper", "pencil"),
+        "meaning": "The child must use physical materials such as paper, blocks, craft objects, or handwriting.",
+        "why": "The current run contract supports Cat1/Cat5 packages; material setup, caregiver involvement, timing, and completion evidence need a product decision first.",
+    },
+    {
+        "label": "UI state or progress memory",
+        "needles": ("requires_ui_state", "state storage", "progress memory", "resume/reset"),
+        "meaning": "The activity needs persistent progress, resume/reset behavior, or interactive screen state.",
+        "why": "Designing rounds before the state model is defined risks creating flows the runtime cannot store, resume, or verify.",
+    },
+    {
+        "label": "Prebuilt asset display",
+        "needles": ("requires_asset_display", "prebuilt asset", "asset library", "display contract"),
+        "meaning": "The activity depends on approved cards, artworks, pose images, or other displayed assets.",
+        "why": "The package needs known asset IDs, metadata, display rules, and fallbacks before it can claim what appears on screen.",
+    },
+    {
+        "label": "Motion safety",
+        "needles": ("requires_motion_safety", "movement policy", "space checks", "prohibited movements"),
+        "meaning": "The child is asked to move their body or follow pose/action prompts.",
+        "why": "Movement activities need age-safe constraints, caregiver gating, space checks, and prohibited movement rules before runtime dialogue is safe.",
+    },
+    {
+        "label": "Before/after evidence",
+        "needles": ("before_after_risk", "before/after", "parent confirmation", "infer completion"),
+        "meaning": "The product would need to compare a finished physical result with an earlier state or receive confirmation.",
+        "why": "Without an evidence policy, the activity could overclaim that it can assess drawings, builds, cleanup, or craft completion.",
+    },
+    {
+        "label": "OCR or text handling",
+        "needles": ("ocr_risk", "ocr", "text-aware", "reading level"),
+        "meaning": "The activity may need to read child writing, letters, words, or text content.",
+        "why": "Text recognition and reading-level behavior need explicit capability, privacy, and fallback decisions before runtime beats can rely on them.",
+    },
+    {
+        "label": "Caregiver setup and pacing",
+        "needles": ("caregiver", "setup", "pacing", "no-assessment"),
+        "meaning": "The activity requires adult setup, material timing, or a no-assessment physical-work fallback.",
+        "why": "The design needs clear caregiver responsibilities and pacing rules so the runtime does not leave the child waiting or judge unsupported work.",
+    },
 ]
+
+FALLBACK_REASON = {
+    "label": "Product decision needed",
+    "meaning": "The brief names an unresolved product or design dependency outside the current package contract.",
+    "why": "The assignment should stay as a Phase 0 brief until the missing decision is resolved.",
+}
+
+
+def reason_definitions(labels: list[str]) -> list[dict[str, str]]:
+    definitions = {rule["label"]: rule for rule in REASON_RULES}
+    definitions[FALLBACK_REASON["label"]] = FALLBACK_REASON
+    return [definitions[label] for label in sorted(set(labels)) if label in definitions]
 
 
 def classify_block_reason(brief: dict[str, Any], manifest_reason: str) -> list[str]:
@@ -286,8 +401,12 @@ def classify_block_reason(brief: dict[str, Any], manifest_reason: str) -> list[s
     scaffold = adaptation.get("scaffold_choice", {})
     scaffold_text = json.dumps(scaffold, sort_keys=True) if isinstance(scaffold, dict) else str(scaffold)
     haystack = normalize_text(f"{manifest_reason} {decisions} {flags} {scaffold_text}").lower()
-    labels = [label for label, needles in REASON_RULES if any(needle.lower() in haystack for needle in needles)]
-    return labels or ["Product decision needed"]
+    labels = [
+        str(rule["label"])
+        for rule in REASON_RULES
+        if any(str(needle).lower() in haystack for needle in rule["needles"])
+    ]
+    return labels or [FALLBACK_REASON["label"]]
 
 
 def collect_blocked(repo_root: Path, entry: dict[str, Any]) -> dict[str, Any]:
@@ -387,7 +506,7 @@ def package_card(package: dict[str, Any]) -> str:
         }
     )
     link_bits = " ".join(link_html(link) for link in package["links"])
-    runtime = "".join(f"<li>{esc(beat)}</li>" for beat in package["runtime_beats"])
+    runtime = "".join(runtime_beat_html(beat) for beat in package["runtime_beats"])
     details = "".join(f"<li>{esc(note)}</li>" for note in package["detail_notes"])
     changed = value_list(package["changed_files"], empty="No changed-files entry")
     return f"""
@@ -427,7 +546,7 @@ def package_card(package: dict[str, Any]) -> str:
       </section>
       <section>
         <h4>Runtime Beats</h4>
-        <ol>{runtime or '<li>Unknown</li>'}</ol>
+        <ol class="beat-list">{runtime or '<li>Unknown</li>'}</ol>
       </section>
       <section>
         <h4>Learning Tags</h4>
@@ -447,6 +566,20 @@ def package_card(package: dict[str, Any]) -> str:
     <div class="changed-files">{changed}</div>
   </div>
 </article>"""
+
+
+def runtime_beat_html(beat: dict[str, str]) -> str:
+    fields = [
+        ("AI", beat.get("ai", "")),
+        ("Child", beat.get("child", "")),
+        ("Follow-up", beat.get("followup", "")),
+        ("Screen", beat.get("screen", "")),
+    ]
+    field_html = "".join(
+        f'<div class="beat-field"><span>{esc(label)}</span><p>{esc(value or "Unknown")}</p></div>'
+        for label, value in fields
+    )
+    return f'<li><strong>{esc(beat.get("title", "Runtime beat"))}</strong>{field_html}</li>'
 
 
 def blocked_card(item: dict[str, Any]) -> str:
@@ -495,6 +628,7 @@ def blocked_card(item: dict[str, Any]) -> str:
     </div>
   </div>
   <div class="reason-row">{reason_badges}</div>
+  <div class="blocked-design-status"><strong>Design status:</strong> Phase 0 only. No runtime beats are authored yet because the missing product decision would determine the safe interaction model.</div>
   <p class="summary-copy">{esc(item['core_promise'])}</p>
   <div class="meta-grid compact">
     <div><span>Mechanic</span><strong>{esc(item['mechanic'])}</strong></div>
@@ -509,6 +643,30 @@ def blocked_card(item: dict[str, Any]) -> str:
   </details>
   <div class="file-row"><a href="{esc(brief_href)}">blocked brief</a></div>
 </article>"""
+
+
+def reason_guide(reason_labels: list[str]) -> str:
+    definitions = reason_definitions(reason_labels)
+    if not definitions:
+        return ""
+    rows = []
+    for item in definitions:
+        rows.append(
+            "<tr>"
+            f"<td>{badge(item['label'], 'badge-reason')}</td>"
+            f"<td>{esc(item['meaning'])}</td>"
+            f"<td>{esc(item['why'])}</td>"
+            "</tr>"
+        )
+    return f"""
+  <section class="panel" id="blocking-reason-guide">
+    <div class="panel-head"><h2>Blocking Reason Guide</h2></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Reason</th><th>What it means</th><th>Why it blocks design</th></tr></thead>
+      <tbody>{''.join(rows)}</tbody>
+    </table></div>
+  </section>
+"""
 
 
 def option_tags(values: list[str], all_label: str) -> str:
@@ -605,6 +763,7 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     run_link_html = "".join(f'<a href="{esc(href)}">{esc(label)}</a>' for label, href in run_links)
     package_cards = "\n".join(package_card(package) for package in packages)
     blocked_cards = "\n".join(blocked_card(item) for item in blocked)
+    reason_guide_html = reason_guide(blocked_reasons)
     checks = render_checks(manifest.get("checks", []))
     css = """
 :root {
@@ -755,6 +914,27 @@ summary { cursor: pointer; font-weight: 750; color: var(--blue-text); }
 .details-grid section { min-width: 0; }
 .details-grid p { margin: 0 0 8px; }
 ol, ul { margin: 0; padding-left: 20px; }
+.beat-list { display: grid; gap: 10px; }
+.beat-list li {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-soft);
+  padding: 10px;
+}
+.beat-list strong { display: block; margin-bottom: 8px; }
+.beat-field {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+.beat-field p { margin: 0; }
+.blocked-design-status {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-soft);
+  padding: 9px;
+}
 .badge {
   display: inline-flex;
   align-items: center;
@@ -952,6 +1132,8 @@ filterBlocked();
     <div class="blocked-grid" id="blocked-cards">{blocked_cards}</div>
   </section>
 
+{reason_guide_html}
+
   <section class="panel">
     <div class="panel-head"><h2>Reviewer Coverage</h2></div>
     <div class="reviewers">{reviewer_summary(review_notes)}</div>
@@ -994,6 +1176,9 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         "category_filter": 'id="package-category-filter"' in text and "cat1" in text and "cat5" in text,
         "sort_controls": 'id="package-sort"' in text and "Sort by mechanic" in text,
         "blocked_reason_types": text.count("blocked-reason-type") >= expected_blocked,
+        "detailed_runtime_beats": "beat-field" in text and "AI" in text and "Child" in text and "Screen" in text,
+        "blocked_design_status": "Phase 0 only" in text and "No runtime beats are authored yet" in text,
+        "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks design" in text,
         "no_external_assets": not re.search(r"<(?:script|link)[^>]+(?:src|href)=[\"']https?://", text),
     }
     missing_links: list[str] = []

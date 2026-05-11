@@ -132,10 +132,11 @@ The goal is complete only when all of the applicable criteria below are met.
    - Default visual design is a polished light theme. Use restrained color, clear typography, accessible contrast, compact tables, stable spacing, responsive layout, and status badges; do not default to a dark theme or decorative gradient/orb-heavy presentation.
    - The dashboard is generated with `python3 scripts/generate_run_review.py runs/<run_id>` and validated with `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
    - The dashboard includes run summary counts, direct activity detail cards for every generated/enriched package, blocked assignment cards or tables, reviewer-agent coverage, validation/check results, residual risks, and next actions.
-   - Activity cards expose enough `spec.md`, `prod.md`, and `tag_block.yaml` detail for a reviewer to inspect the activity in the page without opening or downloading package files.
+   - Activity cards expose enough `spec.md`, `prod.md`, and `tag_block.yaml` detail for a reviewer to inspect the activity in the page without opening or downloading package files, including concrete runtime beat details for AI prompt, child responses, follow-up, and screen state.
    - Generated and enriched package rows link to the package files; blocked rows link to blocked briefs; run-level links point to the manifest, review notes, assignment snapshot, and generated activity ID list.
    - The dashboard includes search/filter/sort controls for status, package type, Cat1/Cat3/Cat5 type, mechanic, tier, reviewer coverage, asset dependency, and blocked reason when those fields are available.
    - Blocked assignments classify missing product/design decisions into skim-friendly reason badges, for example runtime image generation, coloring/recoloring UI, Cat3 material workflow, UI state/progress memory, prebuilt asset display, motion safety, before/after evidence, OCR/text handling, and caregiver setup/pacing.
+   - Blocked assignments are labeled as Phase 0 only. They do not have runtime beats or package files until the blocking product/design decision is resolved; the dashboard includes a blocking-reason guide explaining what each reason means and why it prevents safe design.
    - `runs/<run_id>/run_manifest.yaml` records the dashboard path, and the final report includes it.
 
 14. Final report is clear:
