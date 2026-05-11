@@ -11,7 +11,7 @@ Each run must also create a provenance directory under `runs/<run_id>/` so gener
 ## Recommended `/goal` Command
 
 ```text
-/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich existing checked activity packages against the current migrated package depth floor, using separate reviewer agents for package-quality review and repair evidence. Then process the run-start unchecked assignment snapshot exactly once in order. For each row, generate a five-file package that passes author self-check, independent reviewer-agent review, and package validation, or record a blocked brief and continue. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, checks, and residual risks.
+/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich existing checked activity packages against the current migrated package depth floor, using separate reviewer agents for package-quality review and repair evidence. Then process the run-start unchecked assignment snapshot exactly once in order. For each row, generate a five-file package that passes author self-check, independent reviewer-agent review, and package validation, or record a blocked brief and continue. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate a self-contained light-theme review dashboard at runs/<run_id>/review.html. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, review dashboard path, checks, and residual risks.
 ```
 
 ## Success Criteria
@@ -125,11 +125,22 @@ The goal is complete only when all of the applicable criteria below are met.
    - `runs/<run_id>/run_manifest.yaml` links each generated assignment row to `activities/<activity_id>/`, its adaptation brief when present, and `results.tsv`.
    - The processed assignment row is changed from `- [ ]` to `- [x]`.
 
-13. Final report is clear:
+13. Human review dashboard is generated:
+   - `runs/<run_id>/review.html` exists before the final report.
+   - The page is a static, self-contained HTML file with embedded CSS/JS only; it does not require a dev server, build step, network access, or external assets.
+   - The page is a derived review artifact, not a source of truth. It summarizes data from `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, adaptation briefs, and blocked briefs; if a value cannot be derived, it is shown as unknown or omitted rather than invented.
+   - Default visual design is a polished light theme. Use restrained color, clear typography, accessible contrast, compact tables, stable spacing, responsive layout, and status badges; do not default to a dark theme or decorative gradient/orb-heavy presentation.
+   - The dashboard includes run summary counts, generated/enriched/blocked package tables, reviewer-agent coverage, validation/check results, residual risks, and next actions.
+   - Generated and enriched package rows link to the package files; blocked rows link to blocked briefs; run-level links point to the manifest, review notes, assignment snapshot, and generated activity ID list.
+   - The dashboard includes search/filter controls for status, package type, reviewer coverage, asset dependency, and blocked reason when those fields are available.
+   - `runs/<run_id>/run_manifest.yaml` records the dashboard path, and the final report includes it.
+
+14. Final report is clear:
    - State how many packages were generated.
    - State how many existing packages were enriched or audited as already compliant.
    - List any blocked assignments and the exact reason.
    - Include the `run_id` and `runs/<run_id>/run_manifest.yaml` path.
+   - Include the `runs/<run_id>/review.html` path.
    - Report reviewer-agent coverage: which packages were reviewed, which were edited by reviewers or repaired after review, and whether all generated packages received independent PASS evidence.
    - List verification commands run and their results.
    - State any residual risk or follow-up product decision.

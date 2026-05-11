@@ -32,7 +32,8 @@ runs/<run_id>/
 ├── generated_activity_ids.txt
 ├── adaptation_briefs/
 ├── blocked_briefs/
-└── review_notes.md
+├── review_notes.md
+└── review.html                  # generated at end of run
 ```
 
 Use `run_id=YYYYMMDD_HHMMSS_<short_label>`, for example `20260509_113000_activity_concepts`. If the user supplies a run label, slugify it for `<short_label>`; otherwise infer a short label from the assignment batch, such as `activity_concepts`, `mapping_batch`, or `mixed_assignments`.
@@ -64,6 +65,7 @@ outputs:
   enriched_activities: []
   generated_activities: []
   blocked_assignments: []
+  review_dashboard:
 checks: []
 notes:
   - "Canonical packages remain under activities/<activity_id>/."
@@ -291,6 +293,47 @@ For enrichment-only package maintenance, keep the entry under `enriched_activiti
 
 For blocked assignments, keep the entry under `blocked_assignments`, do not append `results.tsv`, leave the assignment row unchecked, and continue to the next unchecked row.
 
+### Step 6.7: Generate human review dashboard
+
+This is a final-run step, not a per-assignment step. After every row from `assignment_snapshot.md` has generated, blocked, or failed, and after all package checks, reviewer evidence, manifest entries, and blocked-brief entries are current, generate a single static review dashboard at:
+
+```text
+runs/<run_id>/review.html
+```
+
+This file is for human review only. It is a derived artifact, not a source of truth; the authoritative data remains in `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, adaptation briefs, and blocked briefs. If a value cannot be derived from those sources, show `Unknown` or omit the field instead of inventing content.
+
+Dashboard content requirements:
+
+- Run header: `run_id`, status, timestamps, pending/generated/enriched/blocked/failed counts, and links to `run_manifest.yaml`, `review_notes.md`, `assignment_snapshot.md`, `generated_activity_ids.txt`, and `results.tsv`.
+- Package review table: generated and enriched packages with `activity_id`, package type, assignment index when present, mechanic, pillar, game style, focal attribute, asset dependency, reviewer-agent coverage, changed files, validation status, and links to `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`.
+- Blocked assignment table: assignment index, activity concept, missing product/design decision, asset policy or capability flags when present, and link to the blocked brief.
+- Reviewer coverage summary: reviewer names/IDs when available, package scope, PASS/FAIL/N/A evidence, repairs made, and unresolved concerns.
+- Checks section: commands and results from `run_manifest.yaml` `checks`.
+- Residual risk / next actions section derived from `review_notes.md` and run notes.
+
+Frontend design requirements:
+
+- Default to an impeccable light theme. Use a neutral page background, high-contrast text, subtle borders, restrained status colors, compact information density, and clear visual hierarchy.
+- Keep the first viewport useful: summary metrics and primary filters should be visible without scrolling on typical desktop widths.
+- Provide search and filter controls for package type, status, reviewer coverage, asset dependency, and blocked reason when those fields are available.
+- Use semantic HTML tables for dense review data; make columns readable on mobile with responsive wrapping or stacked rows.
+- Use stable dimensions and spacing for badges, table cells, and controls so filtering does not shift the layout unexpectedly.
+- Do not use external CSS, JavaScript, fonts, images, CDNs, or build tooling. Embed the minimal CSS and JavaScript needed for filtering directly in the HTML.
+- Do not use a dark theme by default, gradient/orb decoration, marketing hero layout, or in-app explanatory prose about how to use the dashboard.
+
+Link rules from `runs/<run_id>/review.html`:
+
+- Run-local files use local relative links such as `run_manifest.yaml` and `blocked_briefs/017_coloring_game.yaml`.
+- Activity package files use relative links back to the repo root, such as `../../activities/<activity_id>/spec.md`.
+- Links should degrade safely if a target is missing: keep the text visible and mark the target as missing rather than hiding the row.
+
+After writing `review.html`:
+
+1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
+2. Add a check entry for dashboard generation and any validation performed.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, and the run id, and includes rows or sections for generated, enriched, and blocked outputs when those exist.
+
 ### Step 7: Mark generated assignment complete
 
 In `assignments.md`, change `- [ ]` to `- [x]` only for assignments that generated a passing package.
@@ -310,7 +353,9 @@ Move to the next `- [ ]` assignment from the run-start queue, including rows aft
 - Else if `blocked_count > 0`, set `run_manifest.yaml status: completed_with_blockers`.
 - Else set `run_manifest.yaml status: completed`.
 
-Fill `completed_at`, update the summary counts, and say: "Run complete. [N] activity packages generated; [M] existing packages enriched; [B] assignments blocked for product/design decisions. See results.tsv and runs/<run_id>/run_manifest.yaml for summary."
+Fill `completed_at`, update the summary counts, and generate `runs/<run_id>/review.html` after the final manifest/check entries are current. Then say: "Run complete. [N] activity packages generated; [M] existing packages enriched; [B] assignments blocked for product/design decisions. See results.tsv, runs/<run_id>/run_manifest.yaml, and runs/<run_id>/review.html for summary and review."
+
+Before that final message, ensure `runs/<run_id>/review.html` exists and is referenced in `run_manifest.yaml`. Include the dashboard path in the final message so reviewers can open the run in one place.
 
 ## Legacy transform workflow
 
