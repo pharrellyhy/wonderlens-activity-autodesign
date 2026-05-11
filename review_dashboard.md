@@ -118,6 +118,17 @@ These choices are visual polish on top of the contract above. They must not remo
 - Activity package files use relative links back to the repo root, such as `../../activities/<activity_id>/spec.md`.
 - Links should degrade safely if a target is missing: keep the label visible and mark the target missing instead of hiding the row.
 
+## In-file preview
+
+Reviewers must be able to read every linked `.md`, `.yaml`, and `.txt` file without leaving the dashboard. The generator embeds the raw content of each linked file as a hidden `<template>` element and opens it on click in an accessible in-page preview dialog.
+
+- The generator embeds raw text content for every relative `.md`, `.yaml`, `.yml`, and `.txt` link inside the run directory or the repo. Files larger than ~240 KB are recorded with a "truncated" flag and the preview dialog shows a "Open file in new tab" affordance instead of inline content.
+- Each previewable anchor carries a `data-preview-id` attribute pointing at its `<template>` element. The dialog renders Markdown for `.md` files and a preformatted code block for `.yaml`/`.txt`/`.tsv`.
+- The Markdown renderer is dependency-free and inline (no external libraries). It supports headings, paragraphs, ordered/unordered lists, fenced code, inline code, bold/italic, blockquotes, and links.
+- Click behaviour: a plain click opens the inline preview. `Cmd`/`Ctrl`/`Shift`/`Alt`/middle-click bypass the preview and navigate to the file directly. The dialog also exposes an "Open file in new tab" link so reviewers can escape to the raw file when they want it.
+- Accessibility: the preview dialog uses the native `<dialog>` element, is opened with `showModal()`, closes on `Escape`, closes when the backdrop is clicked, and returns focus to the link that opened it. Markdown rendering inherits the dashboard's serif display stack for headings and the system sans stack for body text.
+- The preview behaviour must not interfere with the existing activity-detail dialog, card-click navigation, or `data-detail-template` modal pattern.
+
 ## Generation And Validation
 
 Generate and validate:
@@ -131,4 +142,4 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for the generation and validation commands.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, sidebar navigation, cards for generated/enriched/audited packages, blocked entries when present, review criteria, the blocking reason guide directly after review criteria, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, grouped tag colors, inline blocked marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, sidebar navigation, cards for generated/enriched/audited packages, blocked entries when present, review criteria, the blocking reason guide directly after review criteria, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, grouped tag colors, inline blocked marker chips, clear missing-decision versus inline-marker counts, in-file preview templates plus a `<dialog id="preview-dialog">` and `data-preview-id` link wiring, and resolving local links.

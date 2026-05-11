@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.19 | **Date**: 2026-05-11
+> **Version**: 1.20 | **Date**: 2026-05-11
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.20 — 2026-05-11**: Run review dashboards must support in-file preview for every linked `.md`/`.yaml`/`.txt` so reviewers can read package files (spec.md, prod.md, tag_block.yaml, recap/dashboard templates, blocked briefs, blocked design previews, run manifest, review notes) inline. The generator embeds raw file content as hidden `<template>` elements; a dedicated preview `<dialog>` renders Markdown client-side and shows YAML/text in a preformatted block. Plain click previews; modifier-click and an "Open in new tab" link still navigate. See `review_dashboard.md` §"In-file preview" for the full contract.
 > **v1.19 — 2026-05-11**: Lock the editorial design language for `runs/<run_id>/review.html`. Warm-paper palette, single indigo-ink accent, serif display title and dialog headings, hairline-divided panels in place of card-within-card nesting, tabular numerals on every numeric column, indigo/amber accent rails on activity and blocked cards, and a status-dot run indicator in the header. See `review_dashboard.md` §"Design language" for the full contract.
 > **v1.18 — 2026-05-11**: Run review dashboards must show every reviewer-audited package, including no-op passes, and must expose the 10-dimension review criteria plus per-package scorecard results and rationale.
 > **v1.17 — 2026-05-11**: Blocked assignments now still receive constrained run-local design previews. The preview must show detailed runtime steps with inline blocked-element comments, but it is not a valid runtime package and is not logged or checked off until the blocking decisions are resolved.

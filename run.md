@@ -316,7 +316,7 @@ This is a final-run step, not a per-assignment step. After every row from `assig
 runs/<run_id>/review.html
 ```
 
-This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, 10-dimension criteria and package scorecard results, blocked-preview handling, blocked-preview scorecards, link rules, validation requirements, and the editorial design language in `review_dashboard.md` §"Design language" (warm-paper palette, indigo accent, serif display title, hairline-divided panels, tabular numerals, accent rails on cards, status-dot run indicator).
+This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, 10-dimension criteria and package scorecard results, blocked-preview handling, blocked-preview scorecards, link rules, validation requirements, the editorial design language in `review_dashboard.md` §"Design language" (warm-paper palette, indigo accent, serif display title, hairline-divided panels, tabular numerals, accent rails on cards, status-dot run indicator), and the in-file preview behavior in `review_dashboard.md` §"In-file preview" (embedded `<template>` content, dedicated preview `<dialog>`, dependency-free Markdown rendering, modifier-click bypass, "Open in new tab" escape hatch).
 
 Generation command:
 

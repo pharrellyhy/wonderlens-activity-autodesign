@@ -336,7 +336,9 @@ def package_links(repo_root: Path, activity_path: str) -> list[Link]:
 
 def link_html(link: Link) -> str:
     if link.exists:
-        return f'<a href="{esc(link.href)}">{esc(link.label)}</a>'
+        pid = register_preview(link.href)
+        data = f' data-preview-id="{esc(pid)}"' if pid else ""
+        return f'<a href="{esc(link.href)}"{data}>{esc(link.label)}</a>'
     return f'<span class="missing">{esc(link.label)} missing</span>'
 
 
@@ -598,6 +600,107 @@ def _status_dot_class(status: Any) -> str:
     if token in {"in-progress", "running", "started", "pending"}:
         return "status-progress"
     return "status-progress"
+
+
+# In-file preview registry. Populated as link_html / file links are emitted; emitted
+# as <template> elements at the end of the page so reviewers can read .md/.yaml
+# files without leaving the dashboard. See review_dashboard.md §"In-file preview".
+_PREVIEW_REGISTRY: dict[str, dict[str, str]] = {}
+_PREVIEW_CTX: dict[str, Path] = {}
+_PREVIEW_MAX_BYTES = 240_000
+_PREVIEW_KINDS = {".md": "Markdown", ".yaml": "YAML", ".yml": "YAML", ".txt": "Text", ".tsv": "Text"}
+
+
+def _preview_label(repo_root: Path, full_path: Path) -> str:
+    try:
+        return str(full_path.resolve().relative_to(repo_root.resolve()))
+    except ValueError:
+        return full_path.name
+
+
+def register_preview(href: str) -> str | None:
+    """Read the file at href (relative to the run dir), record its content, return preview id.
+
+    Returns None when the file is missing, outside the repo, oversized, or in a
+    non-previewable format. Existing entries are not re-read.
+    """
+
+    if not href or href.startswith("#") or "://" in href:
+        return None
+    repo_root = _PREVIEW_CTX.get("repo_root")
+    run_dir = _PREVIEW_CTX.get("run_dir")
+    if not repo_root or not run_dir:
+        return None
+    target = (run_dir / href).resolve()
+    try:
+        target.relative_to(repo_root.resolve())
+    except ValueError:
+        return None
+    if not target.is_file():
+        return None
+    suffix = target.suffix.lower()
+    if suffix not in _PREVIEW_KINDS:
+        return None
+    pid = "preview-" + css_token(href)
+    if pid in _PREVIEW_REGISTRY:
+        return pid
+    try:
+        size = target.stat().st_size
+    except OSError:
+        return None
+    if size > _PREVIEW_MAX_BYTES:
+        _PREVIEW_REGISTRY[pid] = {
+            "id": pid,
+            "label": _preview_label(repo_root, target),
+            "href": href,
+            "kind": _PREVIEW_KINDS[suffix],
+            "content": "",
+            "truncated": "true",
+            "size": str(size),
+        }
+        return pid
+    try:
+        text = target.read_text(errors="replace")
+    except OSError:
+        return None
+    _PREVIEW_REGISTRY[pid] = {
+        "id": pid,
+        "label": _preview_label(repo_root, target),
+        "href": href,
+        "kind": _PREVIEW_KINDS[suffix],
+        "content": text,
+        "truncated": "false",
+        "size": str(size),
+    }
+    return pid
+
+
+def preview_anchor(href: str, label: str, *, class_attr: str = "") -> str:
+    """Render an anchor that opens the in-page preview when previewable; falls back to a plain link otherwise."""
+
+    pid = register_preview(href)
+    cls = f' class="{esc(class_attr)}"' if class_attr else ""
+    data = f' data-preview-id="{esc(pid)}"' if pid else ""
+    return f'<a href="{esc(href)}"{cls}{data}>{esc(label)}</a>'
+
+
+def preview_templates_html() -> str:
+    """Emit <template> elements with raw escaped file content for all registered previews."""
+
+    if not _PREVIEW_REGISTRY:
+        return ""
+    parts: list[str] = ['<div id="file-previews" hidden aria-hidden="true">']
+    for entry in _PREVIEW_REGISTRY.values():
+        attrs = (
+            f' data-label="{esc(entry["label"])}"'
+            f' data-href="{esc(entry["href"])}"'
+            f' data-kind="{esc(entry["kind"])}"'
+            f' data-truncated="{esc(entry.get("truncated", "false"))}"'
+            f' data-size="{esc(entry.get("size", "0"))}"'
+        )
+        parts.append(f'<template id="{esc(entry["id"])}"{attrs}>{multiline(entry["content"])}</template>')
+    parts.append("</div>")
+    return "\n".join(parts)
 
 
 def dom_id(prefix: str, value: Any, fallback: Any = "item") -> str:
@@ -973,7 +1076,7 @@ def blocked_detail_content(
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
-    <div class="file-row inline-file-row"><a href="{esc(brief_href)}">blocked brief</a>{preview_link}</div>
+    <div class="file-row inline-file-row">{preview_anchor(brief_href, "blocked brief")}{preview_link}</div>
   </section>
 </div>"""
 
@@ -1018,7 +1121,7 @@ def blocked_card(item: dict[str, Any]) -> str:
     brief_href = run_href(item["brief_path"])
     preview_href = run_href(item["design_preview"])
     preview_link = (
-        f'<a href="{esc(preview_href)}">blocked design preview</a>'
+        preview_anchor(preview_href, "blocked design preview")
         if item["design_preview"] and item["preview_exists"]
         else '<span class="muted">No constrained design preview in this legacy run</span>'
     )
@@ -1063,7 +1166,7 @@ def blocked_card(item: dict[str, Any]) -> str:
     <div><span>Unique blocker types</span><strong>{esc(len(item['blocked_comment_types']))}</strong></div>
     <div><span>Preview beats</span><strong>{esc(len(item['preview_beats']))}</strong></div>
   </div>
-  <div class="file-row"><a href="{esc(brief_href)}">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
+  <div class="file-row">{preview_anchor(brief_href, "blocked brief")}<button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="{esc(modal_id)}">{detail}</template>
 </article>"""
 
@@ -1169,6 +1272,9 @@ def residual_summary(review_notes: str) -> str:
 
 
 def build_html(repo_root: Path, run_dir: Path) -> str:
+    _PREVIEW_REGISTRY.clear()
+    _PREVIEW_CTX["repo_root"] = repo_root
+    _PREVIEW_CTX["run_dir"] = run_dir
     manifest = load_yaml(run_dir / "run_manifest.yaml")
     if not manifest:
         raise SystemExit(f"Missing or unreadable manifest: {run_dir / 'run_manifest.yaml'}")
@@ -1209,7 +1315,7 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     blocked_categories = [b["category"] for b in blocked]
     blocked_mechanics = [b["mechanic"] for b in blocked]
     blocked_reasons = [reason for item in blocked for reason in item["reason_types"]]
-    run_link_html = "".join(f'<a href="{esc(href)}">{esc(label)}</a>' for label, href in run_links)
+    run_link_html = "".join(preview_anchor(href, label) for label, href in run_links)
     package_cards = "\n".join(package_card(package) for package in packages)
     blocked_cards = "\n".join(blocked_card(item) for item in blocked)
     reason_guide_html = reason_guide(blocked_reasons).strip()
@@ -1920,6 +2026,140 @@ pre {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   html { scroll-behavior: auto; }
 }
+a[data-preview-id] {
+  border-bottom-style: dashed;
+  border-bottom-color: color-mix(in oklch, var(--accent) 40%, transparent);
+}
+a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(--accent); }
+.link-grid a[data-preview-id], .file-row a[data-preview-id] { border-bottom: 1px solid var(--line); }
+.link-grid a[data-preview-id]:hover, .file-row a[data-preview-id]:hover { border-color: var(--accent); }
+.preview-dialog {
+  width: min(1120px, calc(100vw - 32px));
+  max-height: min(880px, calc(100vh - 32px));
+}
+.preview-head {
+  align-items: flex-start;
+  padding: 14px 20px 12px;
+}
+.preview-head-meta { min-width: 0; display: grid; gap: 4px; }
+.preview-head h2 {
+  font-family: var(--mono-stack);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--text);
+  text-transform: none;
+  word-break: break-all;
+  line-height: 1.3;
+}
+.preview-head h2::before { display: none; }
+.preview-subline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  margin-top: 2px;
+  font-size: 11.5px;
+}
+.preview-subline .badge { margin: 0; }
+.preview-size { font-family: var(--mono-stack); font-size: 11px; font-variant-numeric: var(--tnum); }
+.preview-open {
+  color: var(--accent-ink);
+  border-bottom: 1px dashed color-mix(in oklch, var(--accent) 35%, transparent);
+  font-weight: 600;
+  font-size: 11.5px;
+}
+.preview-open:hover { border-bottom-style: solid; border-bottom-color: var(--accent); }
+.preview-truncated {
+  padding: 10px 20px;
+  border-top: 1px solid var(--hairline);
+  background: var(--panel-soft);
+  font-size: 12px;
+}
+.preview-body {
+  padding: 22px 26px 26px;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.62;
+  max-width: none;
+  max-height: calc(min(880px, calc(100vh - 32px)) - 96px);
+}
+.preview-body.kind-markdown { max-width: 78ch; margin: 0 auto; }
+.preview-body h1, .preview-body h2, .preview-body h3, .preview-body h4, .preview-body h5, .preview-body h6 {
+  font-family: var(--display-stack);
+  font-weight: 560;
+  color: var(--text);
+  margin: 1.5em 0 .5em;
+  letter-spacing: -0.012em;
+  text-transform: none;
+  line-height: 1.2;
+}
+.preview-body h1:first-child, .preview-body h2:first-child, .preview-body h3:first-child { margin-top: 0; }
+.preview-body h1 { font-size: 26px; }
+.preview-body h2 { font-size: 21px; }
+.preview-body h2::before { display: none; }
+.preview-body h3 { font-size: 17px; }
+.preview-body h4 { font-size: 14px; font-family: var(--sans-stack); font-weight: 680; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin-top: 1.6em; }
+.preview-body h5, .preview-body h6 { font-size: 13px; font-family: var(--sans-stack); font-weight: 700; }
+.preview-body p { margin: 0 0 1em; }
+.preview-body ul, .preview-body ol { margin: 0 0 1em; padding-left: 1.4em; }
+.preview-body li { margin-bottom: .35em; }
+.preview-body li > ul, .preview-body li > ol { margin-top: .25em; margin-bottom: .25em; }
+.preview-body blockquote {
+  margin: 0 0 1em;
+  padding: .4em 1em;
+  border-left: 3px solid var(--accent-line);
+  background: color-mix(in oklch, var(--accent-soft) 50%, var(--panel));
+  color: var(--text-soft);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.preview-body blockquote p:last-child { margin-bottom: 0; }
+.preview-body hr {
+  border: none;
+  border-top: 1px solid var(--hairline);
+  margin: 1.6em 0;
+}
+.preview-body code {
+  font-family: var(--mono-stack);
+  font-size: 12.5px;
+  background: var(--panel-soft);
+  border: 1px solid var(--hairline);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  color: var(--accent-ink);
+}
+.preview-body pre {
+  background: var(--panel-soft);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  overflow: auto;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text);
+  margin: 0 0 1em;
+}
+.preview-body pre code { background: none; border: none; padding: 0; color: inherit; border-radius: 0; }
+.preview-body a { color: var(--accent-ink); border-bottom: 1px solid color-mix(in oklch, var(--accent) 35%, transparent); }
+.preview-body a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.preview-body strong { color: var(--text); font-weight: 660; }
+.preview-body em { font-style: italic; color: var(--text-soft); }
+.preview-body table { min-width: 0; border: 1px solid var(--hairline); border-radius: var(--radius); margin: 0 0 1em; }
+.preview-body th, .preview-body td { padding: 8px 12px; }
+.preview-body.kind-yaml, .preview-body.kind-text {
+  padding: 0;
+  max-width: none;
+}
+.preview-body.kind-yaml pre, .preview-body.kind-text pre {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: var(--panel-raised);
+  padding: 22px 26px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  max-height: calc(min(880px, calc(100vh - 32px)) - 96px);
+}
 @media (max-width: 1120px) {
   header { position: static; }
   .header-inner { grid-template-columns: 1fr; }
@@ -1956,7 +2196,7 @@ pre {
   .changed-files { text-align: left; margin-top: 8px; }
 }
 """
-    js = """
+    js = r"""
 function normalize(value) {
   return (value || "").toString().toLowerCase();
 }
@@ -2061,6 +2301,188 @@ document.getElementById("package-sort").addEventListener("input", event => sortC
 document.getElementById("blocked-sort").addEventListener("input", event => sortCards("blocked-cards", ".blocked-card", event.target.value));
 filterPackages();
 filterBlocked();
+
+// ----- In-file preview ------------------------------------------------------
+const previewDialog = document.getElementById("preview-dialog");
+const previewTitle = document.getElementById("preview-title");
+const previewBody = document.getElementById("preview-body");
+const previewKind = document.getElementById("preview-kind");
+const previewSize = document.getElementById("preview-size");
+const previewOpen = document.getElementById("preview-open");
+const previewClose = document.getElementById("preview-close");
+const previewTruncated = document.getElementById("preview-truncated");
+let previewLastTrigger = null;
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function formatBytes(n) {
+  n = Number(n) || 0;
+  if (n < 1024) return n + " B";
+  if (n < 1024 * 1024) return (n / 1024).toFixed(1) + " KB";
+  return (n / 1024 / 1024).toFixed(2) + " MB";
+}
+
+// Minimal, dependency-free Markdown renderer. Supports headings, paragraphs,
+// bullet / ordered lists, fenced & indented code, blockquotes, horizontal rules,
+// inline code, bold, italic, and links. Anything richer is left as text.
+function renderMarkdown(src) {
+  const lines = src.replace(/\r\n?/g, "\n").split("\n");
+  let out = "";
+  let inFence = false;
+  let fenceBuf = [];
+  let listStack = []; // entries: { type, indent }
+  let paraBuf = [];
+  let quoteBuf = [];
+
+  function inline(s) {
+    s = escapeHtml(s);
+    s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+    s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    s = s.replace(/\b_([^_]+)_\b/g, "<em>$1</em>");
+    s = s.replace(/(^|[^*])\*([^*][^*]*?)\*(?!\*)/g, "$1<em>$2</em>");
+    s = s.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+&quot;[^&]*&quot;)?\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    return s;
+  }
+  function closeListsTo(indent) {
+    while (listStack.length && listStack[listStack.length - 1].indent >= indent) {
+      out += "</" + listStack.pop().type + ">";
+    }
+  }
+  function flushPara() {
+    if (paraBuf.length) {
+      out += "<p>" + inline(paraBuf.join(" ")) + "</p>";
+      paraBuf = [];
+    }
+  }
+  function flushQuote() {
+    if (quoteBuf.length) {
+      out += "<blockquote>" + inline(quoteBuf.join(" ")) + "</blockquote>";
+      quoteBuf = [];
+    }
+  }
+  function closeBlocks() {
+    flushPara();
+    flushQuote();
+    closeListsTo(-1);
+  }
+
+  for (const raw of lines) {
+    if (raw.startsWith("```") || raw.startsWith("~~~")) {
+      if (inFence) {
+        out += "<pre><code>" + escapeHtml(fenceBuf.join("\n")) + "</code></pre>";
+        fenceBuf = [];
+        inFence = false;
+      } else {
+        closeBlocks();
+        inFence = true;
+      }
+      continue;
+    }
+    if (inFence) { fenceBuf.push(raw); continue; }
+
+    if (!raw.trim()) { closeBlocks(); continue; }
+
+    const heading = raw.match(/^(#{1,6})\s+(.*)$/);
+    if (heading) {
+      closeBlocks();
+      const lvl = heading[1].length;
+      out += `<h${lvl}>${inline(heading[2].trim())}</h${lvl}>`;
+      continue;
+    }
+    if (/^\s*([-*_])\s*\1\s*\1[\s\1]*$/.test(raw)) {
+      closeBlocks();
+      out += "<hr>";
+      continue;
+    }
+    const quote = raw.match(/^>\s?(.*)$/);
+    if (quote) {
+      flushPara();
+      closeListsTo(-1);
+      quoteBuf.push(quote[1]);
+      continue;
+    }
+    flushQuote();
+    const bullet = raw.match(/^(\s*)[-*]\s+(.*)$/);
+    const ordered = raw.match(/^(\s*)\d+\.\s+(.*)$/);
+    if (bullet || ordered) {
+      flushPara();
+      const m = bullet || ordered;
+      const indent = m[1].length;
+      const type = bullet ? "ul" : "ol";
+      closeListsTo(indent);
+      if (!listStack.length || listStack[listStack.length - 1].indent < indent) {
+        out += "<" + type + ">";
+        listStack.push({ type, indent });
+      } else if (listStack[listStack.length - 1].type !== type) {
+        out += "</" + listStack.pop().type + "><" + type + ">";
+        listStack.push({ type, indent });
+      }
+      out += "<li>" + inline(m[2]) + "</li>";
+      continue;
+    }
+    if (listStack.length && /^\s{2,}/.test(raw)) {
+      out = out.replace(/<\/li>$/, " " + inline(raw.trim()) + "</li>");
+      continue;
+    }
+    closeListsTo(-1);
+    paraBuf.push(raw);
+  }
+  closeBlocks();
+  if (inFence) out += "<pre><code>" + escapeHtml(fenceBuf.join("\n")) + "</code></pre>";
+  return out;
+}
+
+function openPreview(trigger) {
+  if (!previewDialog) return false;
+  const id = trigger.dataset && trigger.dataset.previewId;
+  if (!id) return false;
+  const tpl = document.getElementById(id);
+  if (!tpl) return false;
+  const meta = tpl.dataset;
+  const kind = meta.kind || "Text";
+  const label = meta.label || trigger.textContent.trim() || "File";
+  const truncated = meta.truncated === "true";
+  const raw = (tpl.content && tpl.content.textContent) || tpl.textContent || "";
+  previewLastTrigger = trigger;
+  previewTitle.textContent = label;
+  previewKind.textContent = kind;
+  previewSize.textContent = meta.size ? formatBytes(meta.size) : "";
+  previewOpen.href = trigger.getAttribute("href");
+  previewBody.className = "dialog-body preview-body kind-" + kind.toLowerCase();
+  if (truncated || !raw) {
+    previewBody.innerHTML = '<p class="muted">Preview not embedded for this file.</p>';
+    previewTruncated.classList.toggle("hidden", !truncated);
+  } else if (kind === "Markdown") {
+    previewBody.innerHTML = renderMarkdown(raw);
+    previewTruncated.classList.add("hidden");
+  } else {
+    previewBody.innerHTML = "<pre><code>" + escapeHtml(raw) + "</code></pre>";
+    previewTruncated.classList.add("hidden");
+  }
+  previewDialog.showModal();
+  previewBody.scrollTop = 0;
+  return true;
+}
+
+if (previewDialog) {
+  document.addEventListener("click", event => {
+    if (event.defaultPrevented) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button === 1) return;
+    const trigger = event.target.closest("a[data-preview-id]");
+    if (!trigger) return;
+    if (openPreview(trigger)) event.preventDefault();
+  });
+  if (previewClose) previewClose.addEventListener("click", () => previewDialog.close());
+  previewDialog.addEventListener("click", event => {
+    if (event.target === previewDialog) previewDialog.close();
+  });
+  previewDialog.addEventListener("close", () => {
+    previewBody.innerHTML = "";
+    previewTruncated.classList.add("hidden");
+    if (previewLastTrigger) previewLastTrigger.focus();
+  });
+}
 """
     metrics = [
         ("Pending at start", summary.get("pending_at_start", 0)),
@@ -2203,6 +2625,23 @@ filterBlocked();
   </div>
   <div class="dialog-body" id="detail-body"></div>
 </dialog>
+<dialog class="detail-dialog preview-dialog" id="preview-dialog" aria-labelledby="preview-title">
+  <div class="dialog-head preview-head">
+    <div class="preview-head-meta">
+      <div class="eyebrow eyebrow-muted">File preview</div>
+      <h2 id="preview-title">File</h2>
+      <div class="preview-subline">
+        <span class="badge badge-metadata" id="preview-kind">Text</span>
+        <span class="preview-size muted" id="preview-size"></span>
+        <a class="preview-open" id="preview-open" href="#" target="_blank" rel="noopener">Open file in new tab ↗</a>
+      </div>
+    </div>
+    <button class="dialog-close" id="preview-close" type="button">Close</button>
+  </div>
+  <div class="dialog-body preview-body" id="preview-body"></div>
+  <div class="preview-truncated muted hidden" id="preview-truncated">File is larger than the inline-preview limit. Use “Open file in new tab” to read the full contents.</div>
+</dialog>
+{preview_templates_html()}
 <script>{js}</script>
 </body>
 </html>
@@ -2301,6 +2740,13 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         and "badge-reviewer" in text,
         "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks validity" in text,
         "no_external_assets": not re.search(r"<(?:script|link)[^>]+(?:src|href)=[\"']https?://", text),
+        "in_file_preview_wired": (
+            'id="preview-dialog"' in text
+            and 'data-preview-id="preview-' in text
+            and 'id="file-previews"' in text
+            and "renderMarkdown" in text
+            and text.count("<template ") > expected_packages
+        ),
     }
     missing_links: list[str] = []
     for href in parser.hrefs:
