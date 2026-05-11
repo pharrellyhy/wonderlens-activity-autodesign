@@ -31,6 +31,7 @@ summary:
   blocked_count: 17
   failed_count: 0
 outputs:
+  review_dashboard: runs/20260510_152725_activity_concepts/review.html
   enriched_activities:
   - activity_id: concept_scavenger_hunt_collect
     activity_path: activities/concept_scavenger_hunt_collect
@@ -589,6 +590,10 @@ checks:
 - command: python3 older checked package invariant check
   result: PASS
 - command: python3 run manifest reviewer coverage validation
+  result: PASS
+- command: python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts
+  result: PASS
+- command: python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts
   result: PASS
 notes:
 - Canonical packages remain under activities/<activity_id>.

@@ -60,9 +60,18 @@
 - Reviewer C (`Gibbs`, `019e14c5-502c-7903-9ca8-9e6827749fd4`) reviewed `concept_scavenger_hunt_collect`, `concept_phoneme_hunt_collect`, `concept_branching_story_decide`, and `concept_guess_in_10_deduce`; Reviewer D (`Aristotle`, `019e14c5-8586-7433-a20c-6f1df5c6afa5`) reviewed `concept_animal_sound_motion_voice`, `concept_tiny_curator_sort`, and `concept_partial_reveal_deduce`.
 - Updated the 7 older package scorecards with reviewer-agent PASS evidence and tightened `concept_branching_story_decide` Step 3 branch consequences.
 - Updated `runs/20260510_152725_activity_concepts/review_notes.md` and `run_manifest.yaml` so the older package pass is recorded as enrichment maintenance with reviewer evidence.
+- Added `scripts/generate_run_review.py` to generate and validate static run review dashboards from `run_manifest.yaml`, `review_notes.md`, package files, and blocked briefs.
+- Updated `GOAL.md`, `run.md`, `README.md`, and `runs/README.md` so future `/goal` runs create direct activity detail cards, sortable Cat1/Cat3/Cat5/status/mechanic controls, and classified blocked-reason badges in `runs/<run_id>/review.html`.
+- Regenerated `runs/20260510_152725_activity_concepts/review.html` with 23 activity detail cards and 17 blocked-assignment cards; updated the run manifest with `outputs.review_dashboard` and dashboard generation/validation checks.
 
 ## Verification
 
+- `python3 -m py_compile scripts/generate_run_review.py`
+  - Result: clean
+- `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
+  - Result: regenerated `runs/20260510_152725_activity_concepts/review.html`
+- `python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts`
+  - Result: PASS for HTML/style/script presence, run id, 23 activity cards, 17 blocked cards, category filter, sort controls, blocked reason types, no external assets, and 138 resolving local links
 - `git diff --check`
   - Result: clean
 - Targeted detail-floor diff review across `program.md`, `run.md`, `templates.md`, `GOAL.md`, `activities/README.md`, and `HANDOFF.md`

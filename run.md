@@ -306,8 +306,8 @@ This file is for human review only. It is a derived artifact, not a source of tr
 Dashboard content requirements:
 
 - Run header: `run_id`, status, timestamps, pending/generated/enriched/blocked/failed counts, and links to `run_manifest.yaml`, `review_notes.md`, `assignment_snapshot.md`, `generated_activity_ids.txt`, and `results.tsv`.
-- Package review table: generated and enriched packages with `activity_id`, package type, assignment index when present, mechanic, pillar, game style, focal attribute, asset dependency, reviewer-agent coverage, changed files, validation status, and links to `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`.
-- Blocked assignment table: assignment index, activity concept, missing product/design decision, asset policy or capability flags when present, and link to the blocked brief.
+- Activity detail cards: create one card for each generated or enriched package. Each card must show `activity_id`, package type, assignment index when present, Cat1/Cat3/Cat5 type, status, mechanic, tier, pillar, game style, focal attribute, asset dependency, reviewer-agent coverage, changed files, package-file links, and enough direct details from `spec.md`, `prod.md`, and `tag_block.yaml` for a reviewer to inspect the activity without opening or downloading the package files.
+- Blocked assignment cards or table: assignment index, activity concept, Cat1/Cat3/Cat5 type, status, mechanic, asset policy, capability flags, missing product/design decisions, link to the blocked brief, and a short human-skim reason classification derived from the blocked brief.
 - Reviewer coverage summary: reviewer names/IDs when available, package scope, PASS/FAIL/N/A evidence, repairs made, and unresolved concerns.
 - Checks section: commands and results from `run_manifest.yaml` `checks`.
 - Residual risk / next actions section derived from `review_notes.md` and run notes.
@@ -316,11 +316,21 @@ Frontend design requirements:
 
 - Default to an impeccable light theme. Use a neutral page background, high-contrast text, subtle borders, restrained status colors, compact information density, and clear visual hierarchy.
 - Keep the first viewport useful: summary metrics and primary filters should be visible without scrolling on typical desktop widths.
-- Provide search and filter controls for package type, status, reviewer coverage, asset dependency, and blocked reason when those fields are available.
+- Provide search, filter, and sort controls for package type, Cat1/Cat3/Cat5 type, status, mechanic, tier, reviewer coverage, asset dependency, and blocked reason when those fields are available.
+- Classify blocked reasons into a small stable set such as runtime image generation, coloring/recoloring UI, Cat3 material workflow, UI state/progress memory, prebuilt asset display, motion safety, before/after evidence, OCR/text handling, and caregiver setup/pacing. A blocked assignment may carry multiple reason badges.
 - Use semantic HTML tables for dense review data; make columns readable on mobile with responsive wrapping or stacked rows.
 - Use stable dimensions and spacing for badges, table cells, and controls so filtering does not shift the layout unexpectedly.
 - Do not use external CSS, JavaScript, fonts, images, CDNs, or build tooling. Embed the minimal CSS and JavaScript needed for filtering directly in the HTML.
 - Do not use a dark theme by default, gradient/orb decoration, marketing hero layout, or in-app explanatory prose about how to use the dashboard.
+
+Generation command:
+
+```bash
+python3 scripts/generate_run_review.py runs/<run_id>
+python3 scripts/generate_run_review.py --validate runs/<run_id>
+```
+
+The generator reads `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, and blocked briefs, then writes `runs/<run_id>/review.html`.
 
 Link rules from `runs/<run_id>/review.html`:
 
@@ -331,7 +341,7 @@ Link rules from `runs/<run_id>/review.html`:
 After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
-2. Add a check entry for dashboard generation and any validation performed.
+2. Add check entries for `python3 scripts/generate_run_review.py runs/<run_id>` and `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
 3. Verify the file exists, is non-empty, has `<html`, `<style`, and the run id, and includes rows or sections for generated, enriched, and blocked outputs when those exist.
 
 ### Step 7: Mark generated assignment complete
