@@ -1,0 +1,63 @@
+adaptation_brief:
+  assignment_index: 15
+  assignment_type: capability_probe
+  activity_concept: Art Critic Tournament
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_art_critic_tournament
+    asset_requirements: inputs/source_activity_concepts.md#artwork_tournament_set_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Art Critic Tournament,
+      concept_source=inputs/source_activity_concepts.md#source_art_critic_tournament, description=Child
+      compares two approved artworks at a time and chooses a favorite until one wins, mechanic=compare,
+      category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#artwork_tournament_set_01,
+      product_capabilities=requires_asset_display,requires_ui_state, activity_id=concept_art_critic_tournament_probe,
+      trigger_condition=Product can show two approved artworks side by side and remember tournament
+      progress
+  input_mode: concept_only
+  core_promise: The child compares two approved artworks at a time and chooses a favorite
+    until one wins.
+  canonical_mechanic: compare
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: blocked_until_product_decision
+  trigger_condition: Product can show two approved artworks side by side and remember tournament
+    progress.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: art_critic_tournament
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_ui_state
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: artwork_tournament_set_01
+      concept_ref: source_art_critic_tournament
+      asset_type: approved_artwork_set
+      requiredness: required
+      generation_timing: pre_curated
+      use_step: prod.step_2; prod.step_3.round_1-5
+      purpose_en: Provide approved artwork pairs for comparison and tournament choice.
+      prompt_en: No image generation prompt. Use a curated, rights-cleared artwork set with
+        metadata for artist, title, visual features, and child-safe discussion notes.
+      source: approved_public_domain_or_licensed_artwork_set
+      display_behavior_en: Show two artworks side by side only if product supports artwork
+        display and tournament state.
+      fallback_behavior_en: If the artwork set or tournament state is unavailable, block at
+        Phase 0.
+      safety_constraints_en: Use rights-cleared, age-appropriate artworks only; no graphic
+        violence, explicit content, or sensitive religious/political framing for young children.
+    missing_asset_risk: high
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Stop at Phase 0 until artwork source and tournament state are defined.
+  missing_product_decisions:
+  - Define UI state storage, progress memory, and resume/reset behavior.
+  - Confirm approved prebuilt asset library, display contract, and asset metadata availability.
+  assumptions: []

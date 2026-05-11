@@ -1,0 +1,62 @@
+adaptation_brief:
+  assignment_index: 13
+  assignment_type: capability_probe
+  activity_concept: Recognition Pop Challenge
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_whack_a_mole_recognition
+    asset_requirements: inputs/source_activity_concepts.md#recognition_challenge_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Recognition Pop Challenge,
+      concept_source=inputs/source_activity_concepts.md#source_whack_a_mole_recognition, description=Child
+      quickly chooses matching target pictures from a changing set, mechanic=compare, category=cat1,
+      tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#recognition_challenge_cards_01,
+      product_capabilities=requires_asset_display,requires_ui_state, activity_id=concept_recognition_pop_probe,
+      trigger_condition=Product has a tap-based recognition game surface
+  input_mode: concept_only
+  core_promise: The child quickly chooses matching target pictures from a changing set.
+  canonical_mechanic: compare
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: blocked_until_product_decision
+  trigger_condition: Product has a tap-based recognition game surface.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: recognition_pop
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_ui_state
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: recognition_challenge_cards_01
+      concept_ref: source_whack_a_mole_recognition
+      asset_type: target_card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-5
+      purpose_en: Provide target and distractor images for a tap-based recognition challenge.
+      prompt_en: Create a set of simple recognition challenge cards for children. Include
+        target and distractor objects with clear differences in shape, color, or category.
+        Use one object per card, plain background, no text, no brands, and consistent friendly
+        style.
+      source: new_ai_generated_asset
+      display_behavior_en: Show multiple cards only within a supported tap-based game surface.
+      fallback_behavior_en: If tap UI or state timing is unavailable, block at Phase 0 rather
+        than converting to dialogue.
+      safety_constraints_en: Avoid violent whack imagery, no weapons, no scary targets, and
+        no punitive feedback.
+    missing_asset_risk: high
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Do not force this into a pure dialogue package. Stop at Phase 0 until UI support
+      is declared.
+  missing_product_decisions:
+  - Define UI state storage, progress memory, and resume/reset behavior.
+  - Confirm approved prebuilt asset library, display contract, and asset metadata availability.
+  assumptions: []
