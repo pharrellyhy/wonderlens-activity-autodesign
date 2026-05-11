@@ -9,8 +9,8 @@ recap_payload:
     token: visible_plant_state
     child_label: visible plant state
     badge_emoji_none: true
-  highlight_moment: The final evidence strip shows a likely state word plus visible
-    clues, so comparison becomes a careful plant claim.
+  highlight_moment: The evidence strip showed clue-vs-clue, state-vs-state, and
+    strongest-evidence comparisons.
   difficulty_level: 2
   next_step_hint: Try one new answer or explain why next time.
   caregiver_observed: co-explorer
@@ -18,7 +18,7 @@ recap_payload:
 rendered:
   title: You were a Plant State Investigator today!
   line_1: You compared plant clues before making a claim.
-  line_2: The evidence strip saved your state word and visible clues.
-  line_3: Your comparison made a careful plant claim.
+  line_2: The evidence strip saved your clue-vs-clue and state-vs-state choices.
+  line_3: Your comparisons made a careful plant claim.
   badge: Plant State Investigator
   next: Try a new answer next time.

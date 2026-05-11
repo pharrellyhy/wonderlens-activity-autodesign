@@ -17,21 +17,21 @@
 
 **1. Brief Description**
 
-The child compares a plant's visible state, such as sprouting, blooming, wilting, dried, healthy, or fruiting.
+The child repeatedly compares visible plant clues and state-word options, then explains which evidence makes the state likely.
 
 **2. Educational Purpose (KUD)**
 
 - **K (Know):** Children know plant state words such as sprouting, blooming, wilting, dried, healthy, and fruiting.
 - **U (Understand):** Children understand that a likely state claim needs visible plant evidence.
-- **D (Do):** Children compare two visible clues and explain why a state word fits.
+- **D (Do):** Children compare two visible clues or two state-word options, then explain which evidence best supports the likely state.
 
 **3. Design Highlight**
 
-The package compares visible states and uses likely language; it does not diagnose invisible plant health.
+Every core round keeps the `compare` mechanic active: clue vs clue, state word vs state word, then stronger evidence vs weaker evidence. The package uses likely language and does not diagnose invisible plant health.
 
 **4. Typical Scenario**
 
-A child photographs a plant with one droopy leaf and one fresh leaf. The AI helps compare evidence without claiming hidden health.
+A child photographs a plant with one droopy leaf and one fresh leaf. The AI helps compare fresh versus changed clues, then decide whether "wilting" or "healthy" fits better.
 
 ### C. Interaction Flow
 
@@ -49,7 +49,7 @@ A child photographs a plant with one droopy leaf and one fresh leaf. The AI help
 
 **AI follow-up:**
 
-1. [excited] "Great. We will choose a state word and back it with visible clues."
+1. [excited] "Great. We will compare plant clues before we choose the best state word."
 2. [friendly] "It is an evidence mission. We say what looks likely, not hidden plant health."
 3. [wait 2s] [gentle] "You can point to a clue or say one state word."
 
@@ -57,7 +57,7 @@ A child photographs a plant with one droopy leaf and one fresh leaf. The AI help
 
 #### Step 2: Rule Introduction
 
-**AI says:** [clear guide tone] "Investigator rule: choose a likely state, compare two clues, then explain your evidence."
+**AI says:** [clear guide tone] "Investigator rule: compare two things each round, then say which clue fits the plant state best."
 
 **Child responses:**
 
@@ -68,70 +68,70 @@ A child photographs a plant with one droopy leaf and one fresh leaf. The AI help
 **AI follow-up:**
 
 1. [encouraging] "Round one is ready."
-2. [validating] "Yes, your idea can help. We will keep each answer tied to what we can see."
+2. [validating] "Yes, your idea can help. We will keep every answer tied to a visible comparison."
 3. [wait 2s] [modeling] "I will start, and you can copy my first answer if you want."
 
 **Screen:** A simple rule strip appears: Listen or look, answer, save a token. Token 1 pulses.
 
 #### Step 3: Core Loop
 
-**Round 1 -- Pick the State Word:**
+**Round 1 -- Fresh Clue vs Changed Clue:**
 
-**AI says:** [focused playful tone] "Does this plant look sprouting, blooming, wilting, dried, healthy, or fruiting?"
-
-**Child responses:**
-
-1. (Ideal) "wilting."
-2. (Unexpected) "sleepy."
-3. (No response) Child looks at the screen or waits.
-
-**AI follow-up:**
-
-1. [specific praise] "Wilting is a likely state word for droopy clues. Token 1 is saved."
-2. [warm redirect] "Sleepy is a friendly idea. For a plant state, we can say wilting."
-3. [wait 2s] [gentle hint] "Try this short answer with me: wilting."
-
-**Screen:** A state wheel highlights the child choice. Token 1 fills with a short label from the child's response.
-
-**Round 2 -- Compare Two Clues:**
-
-**AI says:** [focused playful tone] "Find one clue that looks fresh and one clue that looks tired or changed."
+**AI says:** [focused investigator tone] "Find two clues: one that looks fresh and one that looks changed or tired. What is different between them?"
 
 **Child responses:**
 
-1. (Ideal) "fresh leaf and droopy leaf."
-2. (Unexpected) "it is sad."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) "Fresh leaf and droopy leaf." / "This one is green; that one hangs down."
+2. (Unexpected) "It is sad." / "I like this one."
+3. (No response) Child looks at the plant photo or waits.
 
 **AI follow-up:**
 
-1. [specific praise] "Fresh leaf and droopy leaf make a clear comparison. Token 2 is saved."
-2. [warm redirect] "Sad is a feeling word. Let us compare visible clues: fresh leaf and droopy leaf."
-3. [wait 2s] [gentle hint] "Try this short answer with me: fresh leaf and droopy leaf."
+1. [specific praise] "That is a clear comparison: green and lifted versus droopy and changed. Token 1 is saved."
+2. [warm redirect] "Sad is a feeling word. Compare what we can see: fresh leaf and droopy leaf."
+3. [wait 2s] [gentle hint] "Try this comparison with me: fresh leaf, droopy leaf."
 
-**Screen:** Two evidence pins appear on the photo. Token 2 fills with a short label from the child's response.
+**Screen:** Two evidence pins appear on the photo: "fresh clue" and "changed clue." Token 1 fills with the child's comparison.
 
-**Round 3 -- Explain the Likely State:**
+**Round 2 -- State Word vs State Word:**
 
-**AI says:** [focused playful tone] "What evidence makes your state guess likely?"
+**AI says:** [choice-point tone] "Which state word fits better with those clues: healthy or wilting? Compare the two choices before you pick."
 
 **Child responses:**
 
-1. (Ideal) "the leaf hangs down."
-2. (Unexpected) "because I like it."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) "Wilting, because the leaf hangs down."
+2. (Unexpected) "Healthy, because I like plants."
+3. (No response) Child looks between the two state words.
 
 **AI follow-up:**
 
-1. [specific praise] "The hanging leaf is evidence you can see. Token 3 is saved."
-2. [warm redirect] "Liking it is kind. Evidence is a visible clue, like the leaf hangs down."
-3. [wait 2s] [gentle hint] "Try this short answer with me: the leaf hangs down."
+1. [specific praise] "Wilting fits the droopy clue better than healthy does. Token 2 is saved."
+2. [warm redirect] "Liking plants is kind. For the state word, use the comparison: droopy leaf points more to wilting."
+3. [wait 2s] [gentle hint] "Try this answer with me: wilting fits the droopy leaf."
 
-**Screen:** The state wheel connects to the two evidence pins. Token 3 fills with a short label from the child's response.
+**Screen:** A small state scale appears with "healthy" on one side and "wilting" on the other. The chosen word glows and token 2 fills.
+
+**Round 3 -- Stronger Evidence Check:**
+
+**AI says:** [careful evidence tone] "Which clue is stronger for your state guess: the fresh green leaf or the droopy changed leaf? Tell me why."
+
+**Child responses:**
+
+1. (Ideal) "The droopy leaf, because it hangs down."
+2. (Unexpected) "The green leaf, because green is pretty."
+3. (No response) Child looks at the pinned clues.
+
+**AI follow-up:**
+
+1. [specific praise] "That is stronger evidence for likely wilting. Token 3 is saved."
+2. [warm redirect] "Green is visible too, but the droopy changed leaf explains the state better."
+3. [wait 2s] [gentle hint] "Try this evidence sentence: the droopy leaf is stronger."
+
+**Screen:** The stronger clue gets a bold outline. A line connects it to the chosen state word, and token 3 fills with the evidence phrase.
 
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Look at that. Your three tokens made an evidence strip: likely wilting, fresh leaf, droopy leaf, and the clue that explains it."
+**AI says:** [delighted reveal] "Look at that. Your comparisons made an evidence strip: fresh clue versus changed clue, healthy versus wilting, and the stronger droopy-leaf evidence."
 
 **Child responses:**
 
@@ -141,11 +141,11 @@ A child photographs a plant with one droopy leaf and one fresh leaf. The AI help
 
 **AI follow-up:**
 
-1. [celebrating] "Yes. Your answers caused this reveal."
+1. [celebrating] "Yes. Your comparisons caused this evidence reveal."
 2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
 3. [wait 2s] [soft recap] "I will read the three tokens back so you can see your path."
 
-**Screen:** The three tokens expand into a final board labeled "Plant State Investigator". Each token stays visible so the payoff is earned by the child's earlier actions.
+**Screen:** The three tokens expand into a comparison board labeled "Plant State Investigator." It shows two pinned clues, the chosen state word, and the strongest evidence arrow.
 
 #### Step 5: Closing + IB Concepts
 

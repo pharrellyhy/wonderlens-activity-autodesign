@@ -4,7 +4,7 @@
 
 ## Premise
 
-The child notices an obvious expression or body cue and thinks about what feeling or help might fit. The activity turns that source promise into a cat1 runtime package where the child becomes the Feeling Helper. The repeated action is `care`, and the payoff is visible progress tied to the child's own responses.
+The child notices an obvious expression or body cue, names a possible need with "might" language, and chooses gentle help. The activity turns that source promise into a cat1 runtime package where the child becomes the Feeling Helper. The repeated action is `care`, and the payoff is visible comfort tied to the child's own choices.
 
 ## Target
 
@@ -17,7 +17,7 @@ The child notices an obvious expression or body cue and thinks about what feelin
 ## Adaptation Rationale
 
 - **Input mode:** concept_only.
-- **Core promise:** The child notices an obvious expression or body cue and thinks about what feeling or help might fit.
+- **Core promise:** The child notices a visible cue, names a possible need without diagnosing, and chooses gentle care.
 - **Canonical mechanic:** `care`; Step 3's repeated child action preserves this mechanic.
 - **Readiness:** generate_with_assumptions.
 - **Trigger condition:** A character, animal, or story moment shows an obvious emotional expression.
@@ -39,9 +39,9 @@ Start when A character, animal, or story moment shows an obvious emotional expre
 
 ## Runtime Detail Floor Notes
 
-- **Distinct round design:** Round 1 -- Notice the Cue, Round 2 -- Name the Evidence, and Round 3 -- Offer Help each ask for a different child contribution and update a different progress token.
+- **Distinct round design:** Round 1 -- Worried Hands Need, Round 2 -- Tired Body Need, and Round 3 -- Brave Try Need each follow the care adapter: visible cue, possible need, child care idea, visible comfort response.
 - **Branch specificity:** Unexpected answers are validated, then redirected to the current objective without pretending the runtime can verify unsupported facts.
-- **Earned magic moment:** Your noticing changed the scene: the character gets a comfort plan, not just a feeling label.
+- **Earned magic moment:** The child's three care choices become a comfort path: ask first, quiet rest, safe try.
 - **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
 
 ## Asset Brief

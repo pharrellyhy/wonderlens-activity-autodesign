@@ -4,7 +4,7 @@
 
 ## Premise
 
-The child compares a plant's visible state, such as sprouting, blooming, wilting, dried, healthy, or fruiting. The activity turns that source promise into a cat5 runtime package where the child becomes the Plant State Investigator. The repeated action is `compare`, and the payoff is visible progress tied to the child's own responses.
+The child compares visible plant clues and state-word options, such as fresh versus changed evidence and healthy versus wilting. The activity turns that source promise into a cat5 runtime package where the child becomes the Plant State Investigator. The repeated action is `compare`, and the payoff is a visible evidence strip tied to the child's comparisons.
 
 ## Target
 
@@ -17,7 +17,7 @@ The child compares a plant's visible state, such as sprouting, blooming, wilting
 ## Adaptation Rationale
 
 - **Input mode:** parameterized.
-- **Core promise:** The child compares a plant's visible state, such as sprouting, blooming, wilting, dried, healthy, or fruiting.
+- **Core promise:** The child compares visible plant evidence and state-word options before making a likely state claim.
 - **Canonical mechanic:** `compare`; Step 3's repeated child action preserves this mechanic.
 - **Readiness:** generate_with_assumptions.
 - **Trigger condition:** A plant photo shows a clear state, such as blooming, wilting, dried, or after watering.
@@ -35,13 +35,13 @@ Start when a plant photo shows a clear state, such as blooming, wilting, dried, 
 
 - **Pillar:** Discovery
 - **Game style:** `field_experiment`
-- **Why this scaffold:** The package compares visible states and uses likely language; it does not diagnose invisible plant health.
+- **Why this scaffold:** The package keeps comparison visible in every round and uses likely language; it does not diagnose invisible plant health.
 
 ## Runtime Detail Floor Notes
 
-- **Distinct round design:** Round 1 -- Pick the State Word, Round 2 -- Compare Two Clues, and Round 3 -- Explain the Likely State each ask for a different child contribution and update a different progress token.
+- **Distinct round design:** Round 1 -- Fresh Clue vs Changed Clue, Round 2 -- State Word vs State Word, and Round 3 -- Stronger Evidence Check each require the child to compare two visible or named options.
 - **Branch specificity:** Unexpected answers are validated, then redirected to the current objective without pretending the runtime can verify unsupported facts.
-- **Earned magic moment:** The final evidence strip shows a likely state word plus visible clues, so comparison becomes a careful plant claim.
+- **Earned magic moment:** The final evidence strip shows clue-vs-clue, state-vs-state, and strongest-evidence comparisons, so the likely plant state is earned by repeated comparison.
 - **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
 
 ## Self-Evaluation Scorecard

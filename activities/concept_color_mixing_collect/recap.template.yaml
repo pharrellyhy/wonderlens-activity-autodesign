@@ -9,16 +9,16 @@ recap_payload:
     token: two_color_mix
     child_label: two color mix
     badge_emoji_none: true
-  highlight_moment: Red and yellow flowed into orange, showing how two chosen colors
-    caused a change.
+  highlight_moment: Three collected color pairs made a color wheel: orange, green,
+    and purple.
   difficulty_level: 2
   next_step_hint: Try one new answer or explain why next time.
   caregiver_observed: co-explorer
   reward_badge: color_mix_tester
 rendered:
   title: You were a Color Mix Tester today!
-  line_1: You collected red and yellow for the lab.
-  line_2: Red and yellow flowed into orange.
-  line_3: Your color choices caused the reveal.
+  line_1: You collected red plus yellow, blue plus yellow, and red plus blue.
+  line_2: Your pairs made orange, green, and purple.
+  line_3: Your collected color pairs caused the reveal.
   badge: Color Mix Tester
   next: Try a new answer next time.

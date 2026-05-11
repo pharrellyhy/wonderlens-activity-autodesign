@@ -17,21 +17,21 @@
 
 **1. Brief Description**
 
-The child notices an obvious expression or body cue and thinks about what feeling or help might fit.
+The child notices an obvious expression or body cue, names a possible need, and chooses gentle help in each care round.
 
 **2. Educational Purpose (KUD)**
 
 - **K (Know):** Children know that faces, hands, and posture can be visible feeling cues.
 - **U (Understand):** Children understand that a feeling guess is kinder and safer when it uses "might" plus evidence.
-- **D (Do):** Children name a possible feeling, point to one cue, and choose a gentle help action.
+- **D (Do):** Children notice a visible cue, name a possible need with "might" language, and choose one gentle care action.
 
 **3. Design Highlight**
 
-The copy uses might-feel language and asks for visible evidence, avoiding diagnosis while preserving the care mechanic.
+Each round follows the `care` loop: visible cue -> possible need -> child care idea -> visible comfort response. The copy uses "might" language so the child practices empathy without diagnosing.
 
 **4. Typical Scenario**
 
-A story animal looks worried on a card. The child notices eyebrows, hands, and posture, then suggests gentle help.
+A story animal looks worried on a card. The child notices tight hands, offers a gentle check-in, then sees the animal relax a little before the next need appears.
 
 ### C. Interaction Flow
 
@@ -49,7 +49,7 @@ A story animal looks worried on a card. The child notices eyebrows, hands, and p
 
 **AI follow-up:**
 
-1. [excited] "Great. We will notice, name one clue, then choose gentle help."
+1. [excited] "Great. Each round we will notice a cue, guess a possible need, and choose gentle help."
 2. [friendly] "It is a kindness mission. We guess with evidence, not mind-reading."
 3. [wait 2s] [gentle] "You can point to a cue or say one feeling word."
 
@@ -57,7 +57,7 @@ A story animal looks worried on a card. The child notices eyebrows, hands, and p
 
 #### Step 2: Rule Introduction
 
-**AI says:** [clear guide tone] "Helper rule: say what they might feel, show one clue, then choose one gentle help."
+**AI says:** [clear guide tone] "Helper rule: notice the cue, say what they might need, then choose one gentle help."
 
 **Child responses:**
 
@@ -68,70 +68,70 @@ A story animal looks worried on a card. The child notices eyebrows, hands, and p
 **AI follow-up:**
 
 1. [encouraging] "Round one is ready."
-2. [validating] "Yes, your way can help. We will still use visible clues before choosing care."
+2. [validating] "Yes, your way can help. We will still connect every care idea to a visible cue."
 3. [wait 2s] [modeling] "I will start, and you can copy my first answer if you want."
 
 **Screen:** A simple rule strip appears: Listen or look, answer, save a token. Token 1 pulses.
 
 #### Step 3: Core Loop
 
-**Round 1 -- Notice the Cue:**
+**Round 1 -- Worried Hands Need:**
 
-**AI says:** [focused playful tone] "Look at the face and body. What might this character feel?"
-
-**Child responses:**
-
-1. (Ideal) "worried."
-2. (Unexpected) "mad because it is blue."
-3. (No response) Child looks at the screen or waits.
-
-**AI follow-up:**
-
-1. [specific praise] "Worried is a careful might-feel word. Token 1 is saved."
-2. [warm redirect] "Blue is something you noticed. Now use the face and body cues: maybe worried."
-3. [wait 2s] [gentle hint] "Try this short answer with me: worried."
-
-**Screen:** A cue ring highlights eyebrows and hands. Token 1 fills with a short label from the child's response.
-
-**Round 2 -- Name the Evidence:**
-
-**AI says:** [focused playful tone] "What do you see that makes you think that?"
+**AI says:** [focused helper tone] "Look at the tight hands and high eyebrows. This character might feel worried. What gentle help could we try first?"
 
 **Child responses:**
 
-1. (Ideal) "the mouth is small."
-2. (Unexpected) "because I know."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) "Ask if it wants help." / "Take a breath together."
+2. (Unexpected) "Give it candy." / "Make it stop."
+3. (No response) Child looks at the worried cue or waits.
 
 **AI follow-up:**
 
-1. [specific praise] "That small mouth is visible evidence. Token 2 is saved."
-2. [warm redirect] "Knowing is a start. Pick one thing we can see, like the small mouth."
-3. [wait 2s] [gentle hint] "Try this short answer with me: the mouth is small."
+1. [specific praise] "Asking first is gentle care. The hands loosen a little. Token 1 is saved."
+2. [warm redirect] "Candy might be fun later. First care is safer when we ask what they need."
+3. [wait 2s] [gentle hint] "Try this helper line with me: Do you want help?"
 
-**Screen:** The evidence board saves one visible cue. Token 2 fills with a short label from the child's response.
+**Screen:** A cue ring highlights eyebrows and hands. After the care idea, the hands uncurl slightly and token 1 fills with "asked first."
 
-**Round 3 -- Offer Help:**
+**Round 2 -- Tired Body Need:**
 
-**AI says:** [focused playful tone] "What could we do to help gently?"
+**AI says:** [soft helper tone] "Now the shoulders droop and the eyes look sleepy. This character might need rest. What care could help?"
 
 **Child responses:**
 
-1. (Ideal) "ask if it needs a hug."
-2. (Unexpected) "give candy."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) "Give it a quiet blanket." / "Let it rest."
+2. (Unexpected) "Make it run fast." / "Wake it up loud."
+3. (No response) Child looks at the tired cue or waits.
 
 **AI follow-up:**
 
-1. [specific praise] "Asking first is gentle care. Token 3 is saved."
-2. [warm redirect] "Candy might be fun later. A gentle first help is to ask what they need."
-3. [wait 2s] [gentle hint] "Try this short answer with me: ask if it needs a hug."
+1. [specific praise] "Quiet rest matches the droopy shoulders. The character settles. Token 2 is saved."
+2. [warm redirect] "Running fast is playful, but tired clues ask for calm care."
+3. [wait 2s] [gentle hint] "Try this care idea with me: a quiet rest spot."
 
-**Screen:** A care sparkle moves from the child badge to the character. Token 3 fills with a short label from the child's response.
+**Screen:** A small rest mat appears beside the character. The shoulders lower into a calmer pose and token 2 fills with "quiet rest."
+
+**Round 3 -- Brave Try Need:**
+
+**AI says:** [encouraging helper tone] "Last cue: the character wants to try a big jump but is hiding behind its backpack. What kind help could make trying feel safer?"
+
+**Child responses:**
+
+1. (Ideal) "Say I can stay with you." / "Try a tiny jump first."
+2. (Unexpected) "Push it." / "Laugh at it."
+3. (No response) Child watches the hiding cue or waits.
+
+**AI follow-up:**
+
+1. [specific praise] "Staying nearby makes the brave try feel safe. Token 3 is saved."
+2. [firm gentle redirect] "We do not push or laugh. Care helps the character choose a tiny safe try."
+3. [wait 2s] [gentle hint] "Try this helper line with me: I can stay with you."
+
+**Screen:** The backpack moves aside. The character takes one tiny jump beside the child badge, then smiles. Token 3 fills with "safe try."
 
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Look at that. Your three tokens made something new: Your noticing changed the scene: the character gets a comfort plan, not just a feeling label."
+**AI says:** [delighted reveal] "Look at that. Your care plan worked: ask first, quiet rest, safe try. The character is not just labeled; it is comforted because of your helper choices."
 
 **Child responses:**
 
@@ -141,11 +141,11 @@ A story animal looks worried on a card. The child notices eyebrows, hands, and p
 
 **AI follow-up:**
 
-1. [celebrating] "Yes. Your answers caused this reveal."
+1. [celebrating] "Yes. Your care choices caused this comfort reveal."
 2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
 3. [wait 2s] [soft recap] "I will read the three tokens back so you can see your path."
 
-**Screen:** The three tokens expand into a final board labeled "Feeling Helper". Each token stays visible so the payoff is earned by the child's earlier actions.
+**Screen:** The three tokens expand into a comfort path labeled "Feeling Helper": worried hands -> asked first, tired body -> quiet rest, brave try -> safe support. The character waves thanks from the end of the path.
 
 #### Step 5: Closing + IB Concepts
 

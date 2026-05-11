@@ -42,9 +42,9 @@ kud:
   - Causation helps children connect the color pair to the result
   - Change helps children notice that the mix is different from the starting colors
   do:
-  - choose a first color
-  - choose a second color
-  - predict the mixed color
+  - collect a two-color pair
+  - predict the mixed result
+  - save the revealed result to the set
 progression:
   topic_axis: causation
   difficulty_level: 2

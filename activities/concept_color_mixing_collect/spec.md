@@ -4,7 +4,7 @@
 
 ## Premise
 
-The child chooses or finds two colors, predicts what they make together, and compares against the mixed result. The activity turns that source promise into a cat1 runtime package where the child becomes the Color Mix Tester. The repeated action is `collect`, and the payoff is visible progress tied to the child's own responses.
+The child collects two-color pairs, predicts what each pair makes, and compares each reveal to the guess. The activity turns that source promise into a cat1 runtime package where the child becomes the Color Mix Tester. The repeated action is `collect`, and the payoff is a visible color wheel tied to the child's collected pairs.
 
 ## Target
 
@@ -17,7 +17,7 @@ The child chooses or finds two colors, predicts what they make together, and com
 ## Adaptation Rationale
 
 - **Input mode:** concept_only.
-- **Core promise:** The child chooses or finds two colors, predicts what they make together, and compares against the mixed result.
+- **Core promise:** The child collects color pairs, predicts each result, and saves the revealed mix as part of a set.
 - **Canonical mechanic:** `collect`; Step 3's repeated child action preserves this mechanic.
 - **Readiness:** generate_with_assumptions.
 - **Trigger condition:** Child notices two colors nearby or selects a color experiment mode.
@@ -25,23 +25,23 @@ The child chooses or finds two colors, predicts what they make together, and com
 - **Asset dependency:** Asset dependency: `color_mixing_board_01` is optional ui_overlay support; fallback behavior is documented.
 - **Product capability flags:** requires_asset_display.
 - **Scaffold fit:** acceptable. Discovery / `field_experiment` supplies the emotional payoff while `collect` remains the child-action contract.
-- **Assumptions:** Use a collect-and-predict loop around color pairs. If the board asset is unavailable, describe the result verbally.
+- **Assumptions:** Use a collect-and-predict loop around three color pairs. If the board asset is unavailable, describe each pair and result verbally.
 
 ## Selection Trigger
 
-Start when Child notices two colors nearby or selects a color experiment mode. If the required visual support is unavailable, use the fallback behavior from the Asset Brief or keep the interaction voice-only.
+Start when Child notices colors nearby or selects a color experiment mode. If the required visual support is unavailable, use the fallback behavior from the Asset Brief or keep the interaction voice-only.
 
 ## Experience Pillar & Game Style
 
 - **Pillar:** Discovery
 - **Game style:** `field_experiment`
-- **Why this scaffold:** The loop preserves collection of color inputs while adding a prediction reveal. The optional board supports the moment; voice-only fallback still works.
+- **Why this scaffold:** The loop preserves collection of color pairs while adding prediction reveals. The optional board supports the moment; voice-only fallback still works.
 
 ## Runtime Detail Floor Notes
 
-- **Distinct round design:** Round 1 -- Collect Color One, Round 2 -- Collect Color Two, and Round 3 -- Predict the Result each ask for a different child contribution and update a different progress token.
+- **Distinct round design:** Round 1 -- Collect Red + Yellow, Round 2 -- Collect Blue + Yellow, and Round 3 -- Collect Red + Blue each repeat the collect-pair action with a different result.
 - **Branch specificity:** Unexpected answers are validated, then redirected to the current objective without pretending the runtime can verify unsupported facts.
-- **Earned magic moment:** Red and yellow flow into orange, showing how two chosen colors caused a visible change.
+- **Earned magic moment:** Three collected pairs become a color wheel: red plus yellow to orange, blue plus yellow to green, and red plus blue to purple.
 - **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
 
 ## Asset Brief
@@ -53,10 +53,10 @@ Start when Child notices two colors nearby or selects a color experiment mode. I
 | requiredness | optional |
 | generation_timing | pre_generated |
 | use_step | prod.step_2; prod.step_3.round_1-3 |
-| purpose | Support color prediction by showing two color spots combining into a result spot. |
-| prompt_en | Create a simple children's color-mixing board with two large empty color circles flowing into one result circle. Use clean white background, soft outline arrows, no text, no paint splashes that obscure the circles, and enough blank space for runtime color overlays. |
+| purpose | Support color-pair collection by showing three two-color pair rows flowing into result spots. |
+| prompt_en | Create a simple children's color-mixing board with three rows. Each row has two large empty color circles flowing into one result circle. Use clean white background, soft outline arrows, no text, no paint splashes that obscure the circles, and enough blank space for runtime color overlays. |
 | source | new_ai_generated_asset |
-| display_behavior | Show the board when the child chooses or finds two colors. Fill or point to the result only if product supports overlays; otherwise use it as a static visual. |
+| display_behavior | Show the board when the child chooses or finds color pairs. Fill or point to each result only if product supports overlays; otherwise use it as a static visual. |
 | fallback_behavior | If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors. |
 | safety_constraints | No messy materials requirement, no brands, and no confusing tiny color regions. |
 ## Self-Evaluation Scorecard

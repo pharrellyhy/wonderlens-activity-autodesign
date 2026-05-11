@@ -42,9 +42,9 @@ kud:
   - Change helps children describe how the plant looks right now
   - Form helps children use visible leaf or flower clues as evidence
   do:
-  - choose a likely state word
   - compare two visible clues
-  - explain why the evidence fits
+  - compare two possible state words
+  - explain the strongest evidence
 progression:
   topic_axis: change
   difficulty_level: 2
