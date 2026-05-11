@@ -1,0 +1,39 @@
+adaptation_brief:
+  assignment_index: 12
+  assignment_type: activity_concept
+  activity_concept: Would You Rather
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_would_you_rather
+    asset_requirements: null
+    assignment_row: assignment_type=activity_concept, activity_concept=Would You Rather,
+      concept_source=inputs/source_activity_concepts.md#source_would_you_rather, description=Child
+      chooses between two playful options and explains the preference or tradeoff,
+      mechanic=compare, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_would_you_rather_compare,
+      trigger_condition=Conversation break story reflection or choice-making activity
+  input_mode: concept_only
+  core_promise: The child chooses between two playful options and explains the preference
+    or tradeoff.
+  canonical_mechanic: compare
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: Conversation break, story reflection, or choice-making activity.
+  entity_role: catalyst
+  observation_angle: behavior
+  focal_attribute: preference_tradeoff
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: acceptable
+  assumptions:
+  - The repeated action is compare two options, choose one, and name why.

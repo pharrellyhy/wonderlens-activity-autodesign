@@ -1,0 +1,25 @@
+recap_payload:
+  entity: '{runtime_entity}'
+  tier: '{runtime_tier}'
+  age_years: '{runtime_age}'
+  what_we_noticed: function
+  what_we_did: predict
+  entity_role: catalyst
+  focal_attribute:
+    token: pretend_trip_prediction
+    child_label: pretend trip prediction
+    badge_emoji_none: true
+  highlight_moment: The pretend itinerary shows pack, travel, and surprise plan as
+    one ready journey.
+  difficulty_level: 2
+  next_step_hint: Try one new answer or explain why next time.
+  caregiver_observed: co-explorer
+  reward_badge: trip_predictor
+rendered:
+  title: You were a Trip Predictor today!
+  line_1: You practiced predict in three rounds.
+  line_2: The pretend itinerary shows pack, travel, and surprise plan as one ready
+    journey.
+  line_3: Your answers made the final reveal.
+  badge: Trip Predictor
+  next: Try a new answer next time.

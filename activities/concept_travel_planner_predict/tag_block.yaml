@@ -1,0 +1,77 @@
+activity_id: concept_travel_planner_predict
+version: 1
+source_entity_exemplar: pretend_destination
+template_type: cat1
+pillar: Discovery
+game_style: prediction_lab
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span:
+  - T0
+  - T1
+  - T2
+  elasticity: neighbor
+category: category_1
+attributes:
+- pretend_trip_prediction
+- function
+key_concepts:
+- Causation
+- Change
+related_concepts:
+- plan
+- prediction
+- journey
+- need
+atl_skills:
+- prediction
+- logical_reasoning
+- creative_thinking
+transdisciplinary_theme: Where_We_Are_In_Place_And_Time
+subject_tags:
+- social_studies
+- language
+kud:
+  know:
+  - Pretend Trip Planner has a simple three-round structure
+  - pretend_trip_prediction is the focus of the activity
+  understand:
+  - Causation helps children notice the important evidence
+  - Change helps children connect their response to the result
+  do:
+  - practice predict in three short rounds
+  - explain or repeat one answer
+  - notice the final payoff
+progression:
+  topic_axis: causation
+  difficulty_level: 2
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Trip Predictor badge
+caregiver_role:
+- scaffold
+- co-explorer
+activity_signature:
+  observation_angle: function
+  mechanic: predict
+  entity_role: catalyst
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - causation
+    - predict
+  focal_attribute: pretend_trip_prediction
+  intro: The child practices predict through Pretend Trip Planner.
+  preview_label: Pretend Trip Planner
+  preview_prompt: Ready to be the Trip Predictor?
+  role_pivot_note: The runtime entity starts the activity but the package remains
+    concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true

@@ -1,0 +1,62 @@
+adaptation_brief:
+  assignment_index: 16
+  assignment_type: activity_concept
+  activity_concept: Quick and Silly Questions
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_quick_silly_questions
+    asset_requirements: inputs/source_activity_concepts.md#quick_silly_countdown_01
+    assignment_row: assignment_type=activity_concept, activity_concept=Quick and Silly
+      Questions, concept_source=inputs/source_activity_concepts.md#source_quick_silly_questions,
+      description=Child answers very short playful choice questions during a transition
+      or warm-up, mechanic=decide, category=cat1, tier=T0, asset_policy=optional_support,
+      asset_requirements=inputs/source_activity_concepts.md#quick_silly_countdown_01,
+      activity_id=concept_quick_silly_decide, trigger_condition=Light transition waiting
+      moment or warm-up conversation
+  input_mode: concept_only
+  core_promise: The child answers very short playful choice questions during a transition
+    or warm-up.
+  canonical_mechanic: decide
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: Light transition, waiting moment, or warm-up conversation.
+  entity_role: catalyst
+  observation_angle: behavior
+  focal_attribute: quick_playful_choice
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_ui_state
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: quick_silly_countdown_01
+      concept_ref: source_quick_silly_questions
+      asset_type: ui_overlay
+      requiredness: optional
+      generation_timing: pre_generated_or_runtime_ui
+      use_step: prod.step_2; prod.step_3.round_1-5
+      purpose_en: Optionally add a playful countdown or prompt card for quick silly
+        questions.
+      prompt_en: Create a simple playful countdown overlay for children's quick questions.
+        Use three large friendly countdown circles, bright but calm colors, no text
+        except numerals 3, 2, 1, no brands, and enough blank space for a spoken prompt.
+      source: new_ai_generated_asset_or_runtime_ui
+      display_behavior_en: Show the countdown only if product supports short stateful
+        prompt timing.
+      fallback_behavior_en: If countdown UI is unavailable, ask the quick questions
+        by voice only and do not claim a timer is on screen.
+      safety_constraints_en: No pressure, no buzzer shame, no flashing effects, and
+        no competitive scoring.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Adventure
+    game_style: time_traveler
+    scaffold_fit: acceptable
+  assumptions:
+  - The repeated action is hear one prompt, decide quickly, and explain if the child
+    wants.

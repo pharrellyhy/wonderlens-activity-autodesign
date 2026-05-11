@@ -1,0 +1,44 @@
+adaptation_brief:
+  assignment_index: 25
+  assignment_type: capability_probe
+  activity_concept: Time Sense Challenge
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_time_sense_challenge
+    asset_requirements: null
+    assignment_row: assignment_type=capability_probe, activity_concept=Time Sense
+      Challenge, concept_source=inputs/source_activity_concepts.md#source_time_sense_challenge,
+      description=Child predicts when a short amount of time has passed then checks
+      the result, mechanic=predict, category=cat1, tier=T1, asset_policy=no_assets,
+      product_capabilities=requires_ui_state, activity_id=concept_time_sense_probe,
+      trigger_condition=Child can sit safely and make a short time estimate
+  input_mode: concept_only
+  core_promise: The child predicts when a short amount of time has passed, then checks
+    the result.
+  canonical_mechanic: predict
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: blocked_until_product_decision
+  trigger_condition: Child can sit safely and make a short estimate such as ten seconds
+    or one minute.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: time_sense
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_ui_state
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: medium
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Stop at Phase 0 unless the product declares timer state behavior.
+  missing_product_decisions:
+  - Define UI state storage, progress memory, and resume/reset behavior.
+  assumptions: []

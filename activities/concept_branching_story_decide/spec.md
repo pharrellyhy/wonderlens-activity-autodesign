@@ -61,4 +61,4 @@ Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.
 | 9 | Game Feel | PASS | Each choice has uncertainty and a distinct revealed consequence: door changes the world, helper changes the road, and ending changes the payoff. |
 | 10 | Mechanic Fidelity + Scaffold Honesty | PASS | `decide` is preserved in Step 3 and tag metadata; each decision applies a consequence while the voice-led branching and time_traveler scaffold compromise are disclosed. |
 
-**Overall**: ALL PASS -- one reviewer issue found and fixed: Step 3 choices now apply distinct story consequences instead of only recording tokens.
+**Overall**: ALL PASS -- Older Package Reviewer C pass completed; Step 3 choices apply distinct story consequences and preserve the `decide` mechanic after review.

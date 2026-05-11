@@ -85,12 +85,14 @@ For each scoped package:
 
 1. Read `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`.
 2. Audit against the current package checks in this runbook, not only against the standard that existed when the package was first generated.
-3. If the package is structurally valid but thin, enrich it in place. Preserve `activity_id`, directory name, tag-block enum values, recap/dashboard placeholders, stable asset IDs, and the five-file package contract.
-4. For `spec.md`, add or update reviewer-facing detail that explains concrete design intent, scaffold fit, assumptions, constraints, product/asset dependency, game-feel rationale, and residual risk. A `## Runtime Detail Floor Notes` section is an acceptable way to record this when the existing file lacks an equivalent audit trail.
-5. For `prod.md`, enrich runnable runtime detail: executable Step 1/2/4/5 dialogue, branch-specific follow-ups, non-generic screen states, distinct Step 3 objectives, child actions that match the mechanic, and a magic moment earned by repeated child action.
-6. Do not append `results.tsv`, change completed assignment checkboxes, or create a duplicate `generated_activities` entry for enrichment-only work.
-7. Record the audit in `runs/<run_id>/review_notes.md` and increment `summary.enrichment_audited_count` for every package audited. If files changed, add or update an `outputs.enriched_activities` entry in `run_manifest.yaml` and increment `summary.enriched_count`; otherwise increment `summary.enrichment_noop_count` when the already-compliant audit is worth recording.
-8. Rerun the narrow package checks after any enrichment before moving to the unchecked assignment loop.
+3. Spawn separate reviewer agents for package-quality review. When more than one package is in scope, partition packages into disjoint directory sets so reviewers can work in parallel without touching the same files.
+4. Reviewer agents may make direct, minimal quality repairs inside their assigned package directories when the scope is explicit. They must not edit `assignments.md`, `results.tsv`, run manifests, or unrelated docs.
+5. If the package is structurally valid but thin, enrich it in place. Preserve `activity_id`, directory name, tag-block enum values, recap/dashboard placeholders, stable asset IDs, and the five-file package contract.
+6. For `spec.md`, add or update reviewer-facing detail that explains concrete design intent, scaffold fit, assumptions, constraints, product/asset dependency, game-feel rationale, and residual risk. A `## Runtime Detail Floor Notes` section is an acceptable way to record this when the existing file lacks an equivalent audit trail.
+7. For `prod.md`, enrich runnable runtime detail: executable Step 1/2/4/5 dialogue, branch-specific follow-ups, non-generic screen states, distinct Step 3 objectives, child actions that match the mechanic, and a magic moment earned by repeated child action.
+8. Do not append `results.tsv`, change completed assignment checkboxes, or create a duplicate `generated_activities` entry for enrichment-only work.
+9. Record the author audit, reviewer-agent findings, direct reviewer repairs, re-review outcomes, and residual concerns in `runs/<run_id>/review_notes.md`. Increment `summary.enrichment_audited_count` for every package audited. If files changed, add or update an `outputs.enriched_activities` entry in `run_manifest.yaml` and increment `summary.enriched_count`; otherwise increment `summary.enrichment_noop_count` when the already-compliant audit is worth recording.
+10. Rerun the narrow package checks after any enrichment before moving to the unchecked assignment loop.
 
 Enriched activity entry:
 
@@ -219,7 +221,9 @@ Dimension 8 only applies to mapping-informed designs. Score as N/A if no mapping
 
 ### Step 4.5: Independent scorecard review
 
-Spawn a separate reviewer agent to independently check the same 10 dimensions against the completed package files before finalizing `spec.md`.
+Spawn a separate reviewer agent to independently check the same 10 dimensions against the completed package files before finalizing `spec.md`. This is mandatory for every generated package in an autonomous `/goal` run. If reviewer-agent tooling is unavailable, treat that as a hard workflow failure for package finalization because generated rows cannot be safely logged or checked off without independent review evidence.
+
+For batch efficiency, reviewer agents may review disjoint package sets in parallel after each package is drafted, but each generated package still needs independent PASS evidence before `results.tsv` logging and assignment checkoff. Reviewer agents may propose repairs or directly edit their assigned package directories when explicitly scoped; any edited package must be rechecked and recorded in `review_notes.md`.
 
 Reviewer instructions:
 
@@ -249,6 +253,7 @@ Before logging or committing, verify:
 - Required or optional asset rows include `asset_type`, requiredness, generation timing, use step, display behavior, and fallback behavior; generated assets also include a directly usable `prompt_en`, while existing/displayed assets include a `source` or approved source description.
 - `prod.md` Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic`.
 - `prod.md` contains zero `## Self-Evaluation Scorecard` sections.
+- `runs/<run_id>/review_notes.md` contains independent reviewer-agent evidence for the package, including final PASS status or the unresolved issue that prevents logging.
 
 ### Step 6: Log the result
 
@@ -279,7 +284,7 @@ For every generated package:
   status: PASS
 ```
 
-3. Add reviewer evidence, repair notes, or residual risks to `runs/<run_id>/review_notes.md` when useful.
+3. Add reviewer evidence, repair notes, and residual risks to `runs/<run_id>/review_notes.md` for every generated or enriched package.
 4. Verify `runs/<run_id>/run_manifest.yaml` has an entry for the generated activity and `runs/<run_id>/generated_activity_ids.txt` includes the generated `activity_id`.
 
 For enrichment-only package maintenance, keep the entry under `enriched_activities` and do not append `results.tsv`.

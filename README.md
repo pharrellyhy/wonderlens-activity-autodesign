@@ -58,6 +58,7 @@ results.tsv                        Assignment and rubric log
 - `prod.md` is runtime prompt guidance. It must not contain a scorecard.
 - Every Step 3 round in `prod.md` must be fully expanded with AI dialogue, child response branches, AI follow-up branches, and screen state.
 - Do not use condensed runtime placeholders such as "same structure," "AI gives a riddle," or one-line later-round summaries in migrated `prod.md` files.
+- Every generated package must receive independent reviewer-agent PASS evidence before `results.tsv` logging or assignment checkoff; reviewer FAILs must be repaired and re-reviewed.
 - If an activity uses pre-generated or displayed images, `spec.md` owns `## Asset Brief` with asset IDs, use timing, prompts/sources, display behavior, and fallback behavior. `prod.md` references asset IDs and fallback behavior only.
 - `tag_block.yaml` must validate against `activities/_schema/tag_block.schema.json`.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` must equal `tag_block.yaml` `activity_signature.focal_attribute`.
@@ -70,12 +71,12 @@ results.tsv                        Assignment and rubric log
 3. Start the loop with the Codex `/goal` command:
 
 ```text
-/goal Run the WonderLens autonomous activity generation loop from GOAL.md. First audit and enrich existing activities/<activity_id>/ packages referenced by checked assignments when they do not meet the current migrated package depth floor, then process unchecked assignments.md rows in order using run.md. For each unchecked row, either generate a complete package or write a blocked brief with the missing product/design decision, then continue to the next row. Stop only on a hard workflow failure that prevents safe processing of later rows. Use the success criteria in GOAL.md as the completion contract.
+/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich existing checked activity packages against the current migrated package depth floor, using separate reviewer agents for package-quality review and repair evidence. Then process the run-start unchecked assignment snapshot exactly once in order. For each row, generate a five-file package that passes author self-check, independent reviewer-agent review, and package validation, or record a blocked brief and continue. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, checks, and residual risks.
 ```
 
 `GOAL.md` defines the run objective, success criteria, and completion contract. `run.md` defines the step-by-step execution loop.
 
-For generation-ready assignments, the loop creates one complete `activities/<activity_id>/` package, self-evaluates against the 10-dimension rubric, updates `results.tsv`, marks the assignment complete, and records the package in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/`, are not logged or marked complete, and no longer halt the rest of the batch.
+For generation-ready assignments, the loop creates one complete `activities/<activity_id>/` package, self-evaluates against the 10-dimension rubric, gets independent reviewer-agent PASS evidence, updates `results.tsv`, marks the assignment complete, and records the package in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/`, are not logged or marked complete, and no longer halt the rest of the batch.
 
 ## Run Provenance
 
@@ -86,6 +87,7 @@ Use `runs/<run_id>/` to distinguish one autonomous generation session from anoth
 - `adaptation_briefs/` stores Phase 0 briefs for generated concept-led or underspecified assignments.
 - `blocked_briefs/` stores briefs for assignments that reach `readiness=blocked_until_product_decision`.
 - `generated_activity_ids.txt` lists packages created by that run in completion order.
+- `review_notes.md` stores independent reviewer-agent coverage, repair notes, and residual risks for generated and enriched packages.
 - `run_manifest.yaml` is the run-level index linking assignment rows, generated `activities/<activity_id>/` packages, blocked briefs, results logging, checks, and timestamps.
 
 Runtime packages are never nested inside `runs/`; the run layer is provenance only. See `runs/README.md` for the manifest template and update rules.

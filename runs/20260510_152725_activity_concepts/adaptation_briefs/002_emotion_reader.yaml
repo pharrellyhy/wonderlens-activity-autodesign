@@ -1,0 +1,63 @@
+adaptation_brief:
+  assignment_index: 2
+  assignment_type: activity_concept
+  activity_concept: Emotion Reader
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_emotion_reader
+    asset_requirements: inputs/source_activity_concepts.md#emotion_expression_cards_01
+    assignment_row: assignment_type=activity_concept, activity_concept=Emotion Reader,
+      concept_source=inputs/source_activity_concepts.md#source_emotion_reader, description=Child
+      notices an obvious expression or body cue and thinks about what feeling or help
+      might fit, mechanic=care, category=cat1, tier=T1, asset_policy=optional_support,
+      asset_requirements=inputs/source_activity_concepts.md#emotion_expression_cards_01,
+      activity_id=concept_emotion_reader_care, trigger_condition=A character animal
+      or story moment shows an obvious emotional expression
+  input_mode: concept_only
+  core_promise: The child notices an obvious expression or body cue and thinks about
+    what feeling or help might fit.
+  canonical_mechanic: care
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: A character, animal, or story moment shows an obvious emotional
+    expression.
+  entity_role: catalyst
+  observation_angle: emotion
+  focal_attribute: visible_feeling_cue
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: emotion_expression_cards_01
+      concept_ref: source_emotion_reader
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      purpose_en: Provide simple character expressions that children can interpret
+        with evidence.
+      prompt_en: Create a set of friendly illustrated character expression cards for
+        children ages 4-7. Include happy, worried, proud, tired, surprised, and frustrated
+        expressions. Use one character per card, clear face and body cue, plain background,
+        no text, no stereotypes, and no real people.
+      source: new_ai_generated_asset
+      display_behavior_en: Show one expression card when asking what the character
+        might feel.
+      fallback_behavior_en: If cards are unavailable, use a story description of a
+        character's visible cues and avoid claiming the screen shows a face.
+      safety_constraints_en: No real child faces, no intense distress, no medical
+        or mental-health diagnosis framing.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Nurture
+    game_style: care_station
+    scaffold_fit: acceptable
+  assumptions:
+  - Avoid claiming to diagnose a real person's emotion. Use "might feel" language
+    and ask the child for evidence.

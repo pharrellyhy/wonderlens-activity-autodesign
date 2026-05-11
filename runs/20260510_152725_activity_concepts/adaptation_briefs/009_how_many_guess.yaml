@@ -1,0 +1,61 @@
+adaptation_brief:
+  assignment_index: 9
+  assignment_type: activity_concept
+  activity_concept: How Many Guess
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_how_many_guess
+    asset_requirements: inputs/source_activity_concepts.md#how_many_count_cards_01
+    assignment_row: assignment_type=activity_concept, activity_concept=How Many Guess,
+      concept_source=inputs/source_activity_concepts.md#source_how_many_guess, description=Child
+      estimates how many objects are visible then counts together with the AI, mechanic=enumerate,
+      category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#how_many_count_cards_01,
+      product_capabilities=requires_asset_display, activity_id=concept_how_many_guess_enumerate,
+      trigger_condition=Screen can show a small set of objects or the camera sees
+      countable items
+  input_mode: concept_only
+  core_promise: The child estimates how many objects are visible, then counts together
+    with the AI.
+  canonical_mechanic: enumerate
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: Screen can show a small set of objects or the camera sees countable
+    items.
+  entity_role: reference
+  observation_angle: quantity
+  focal_attribute: estimate_then_count
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: how_many_count_cards_01
+      concept_ref: source_how_many_guess
+      asset_type: count_card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-4
+      purpose_en: Show small countable sets for estimate-then-count rounds.
+      prompt_en: Create a set of counting cards for children ages 4-6. Each card shows
+        3 to 10 identical or related objects, such as stars, apples, buttons, shells,
+        or toy cars. Use clear spacing, plain background, no text, no overlapping
+        objects, and high contrast for counting.
+      source: new_ai_generated_asset
+      display_behavior_en: Show one card, ask the child to guess how many, then count
+        together.
+      fallback_behavior_en: If cards are unavailable, use real photographed countable
+        items or voice-only counting and do not claim a card is displayed.
+      safety_constraints_en: No tiny choking hazard emphasis, no clutter, no brands,
+        and no confusing overlapping objects.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Discovery
+    game_style: prediction_lab
+    scaffold_fit: acceptable
+  assumptions:
+  - The repeated action is estimate, count, and check.

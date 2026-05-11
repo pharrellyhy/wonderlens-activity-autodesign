@@ -2,8 +2,8 @@
 
 ## Current Status
 
-- Status: mechanic-first activity concept adaptation workflow with explicit asset dependency layer, run provenance layer, existing-package enrichment pass, and skip-and-continue blocker handling implemented in authoring docs
-- Date: 2026-05-10
+- Status: `/goal` run `20260510_152725_activity_concepts` completed with blockers under the mechanic-first activity concept workflow
+- Date: 2026-05-11
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
@@ -49,6 +49,17 @@
 - Updated `program.md` v1.14, `templates.md` v1.7, and `runs/README.md` to make enrichment mode part of the canonical package workflow.
 - Updated `program.md` v1.15 to make blocked assignment handling non-terminal for the batch.
 - Updated blocker handling in `GOAL.md`, `run.md`, `program.md`, `README.md`, `runs/README.md`, and `assignments.md`: product/design blockers now write blocked briefs, remain unchecked, and the run continues to later unchecked rows. Only hard workflow failures stop the batch.
+- Updated the recommended `/goal` command in `GOAL.md` and `README.md` to the shorter snapshot-based form.
+- Executed `/goal` run `runs/20260510_152725_activity_concepts`: audited 7 existing checked concept packages as already compliant, generated 16 new five-file activity packages, recorded 17 blocked capability probes, and left blocked rows unchecked.
+- Marked the 16 generated assignment rows complete and appended 16 `results.tsv` rows while preserving the existing 16-column header.
+- Spawned two separate reviewer agents on 2026-05-11 to check and improve the 16 generated packages from run `20260510_152725_activity_concepts`.
+- Reviewer A (`Dalton`, `019e14a9-b67d-7430-95a3-840b60797764`) edited the first eight generated package directories; Reviewer B (`Averroes`, `019e14a9-e2b2-7200-8e82-cb0b42da8d16`) edited the remaining eight.
+- Updated `runs/20260510_152725_activity_concepts/review_notes.md` and `run_manifest.yaml` with reviewer-agent coverage and PASS evidence for all 16 generated packages.
+- Updated reviewer-gate rules in `GOAL.md`, `program.md` v1.16, `run.md`, `templates.md` v1.8, `README.md`, `runs/README.md`, and `activities/README.md`: future `/goal` runs must use separate reviewer agents, repair reviewer findings, and re-review before `results.tsv` logging or assignment checkoff.
+- Spawned two additional reviewer agents on 2026-05-11 for the 7 older checked concept packages audited earlier as no-op.
+- Reviewer C (`Gibbs`, `019e14c5-502c-7903-9ca8-9e6827749fd4`) reviewed `concept_scavenger_hunt_collect`, `concept_phoneme_hunt_collect`, `concept_branching_story_decide`, and `concept_guess_in_10_deduce`; Reviewer D (`Aristotle`, `019e14c5-8586-7433-a20c-6f1df5c6afa5`) reviewed `concept_animal_sound_motion_voice`, `concept_tiny_curator_sort`, and `concept_partial_reveal_deduce`.
+- Updated the 7 older package scorecards with reviewer-agent PASS evidence and tightened `concept_branching_story_decide` Step 3 branch consequences.
+- Updated `runs/20260510_152725_activity_concepts/review_notes.md` and `run_manifest.yaml` so the older package pass is recorded as enrichment maintenance with reviewer evidence.
 
 ## Verification
 
@@ -59,7 +70,7 @@
 - Current-run blocked-state audit for `runs/20260509_230616_activity_concepts`
   - Result: manifest status is `blocked`, `pending_at_start=2`, `generated_count=0`, `blocked_count=1`; Coloring Game remains unchecked, absent from `results.tsv`, absent from `generated_activity_ids.txt`, and has no activity package directory
 - Completion audit evidence check for the active `/goal` run
-  - Result: generation-ready rows are checked and have structurally valid packages; the first currently unchecked row is Coloring Game; that historical run stopped at its blocked Phase 0 brief under the previous terminal-blocker rule
+  - Result: generation-ready rows from the earlier run are checked and have structurally valid packages; that historical run stopped at Coloring Game under the previous terminal-blocker rule
 - Concept package enrichment invariant check
   - Result: all seven `activities/concept_*` packages have exactly five files, matching tag/dashboard focal attributes, correct scorecard placement, no raw prompts in `prod.md`, no condensed-round placeholders, and `## Runtime Detail Floor Notes` in `spec.md`
 - Migrated package tag-block schema validation after concept package enrichment
@@ -72,8 +83,8 @@
   - Result: expected `runs/<run_id>`, `run_manifest`, `assignment_snapshot`, `generated_activity_ids`, `adaptation_briefs`, and `blocked_briefs` references are present
 - Targeted source concept batch scan across `assignments.md`, `inputs/source_activity_concepts.md`, `run.md`, `program.md`, `README.md`, and `GOAL.md`
   - Result: `concept_source=file#id`, Batch 4 assignment rows, selected source concept IDs, and referenced asset IDs are present
-- Assignment reference validation for unchecked rows
-  - Result: 15 `concept_source` / `asset_requirements` file anchors checked; all referenced sections found
+- Historical assignment reference validation for the earlier unchecked queue
+  - Result: 15 `concept_source` / `asset_requirements` file anchors checked at that time; all referenced sections found
 - Direct source-team naming scan across the repo
   - Result: no direct shorthand source-team terms remain
 - English-only generation source scan across active assignment/example/generator docs
@@ -108,6 +119,36 @@
   - Result: `asset_policy`, `asset_dependency`, `Asset Brief`, `prompt_en`, and asset requirement examples are present in the generation contract; stale `prompt_zh` references are absent
 - Targeted diff review of the changed docs
   - Result: changes are limited to the mechanic-first activity concept adaptation workflow, run provenance layer, and related documentation state
+- `/goal` run `20260510_152725_activity_concepts` manifest count validation
+  - Result: `status=completed_with_blockers`, `pending_at_start=33`, `generated_count=16`, `blocked_count=17`, `failed_count=0`, `enrichment_audited_count=7`, `enrichment_noop_count=0`, `enriched_count=7`
+- Generated package invariant check for run `20260510_152725_activity_concepts`
+  - Result: all 16 generated packages have exactly five files, matching activity IDs, correct scorecard placement, `## Runtime Detail Floor Notes`, no condensed-round placeholders, asset references backed by `## Asset Brief`, and matching dashboard/tag focal attributes
+- Migrated package tag-block schema validation after run `20260510_152725_activity_concepts`
+  - Result: all `activities/*/tag_block.yaml` files validate
+- Run assignment/results consistency check
+  - Result: all 16 generated activity IDs are checked in `assignments.md` and represented in `results.tsv`; all 17 blocked probe rows remain unchecked and have blocked brief files
+- Run snapshot index coverage validation
+  - Result: assignment indices 1-33 from the run-start snapshot are each represented exactly once as generated or blocked in the run manifest
+- Assignment source/asset reference validation after input move
+  - Result: 68 assignment-row `concept_source` / `asset_requirements` file anchors checked; all referenced sections found in `inputs/source_activity_concepts.md`
+- `results.tsv` column-count validation
+  - Result: all rows preserve the existing 16-column header
+- Stale-reference scan for old source file, terminal blocker wording, and invalid non-canonical key concept
+  - Result: no stale matches in active GOAL/run/assignment docs, generated packages, or current run artifacts
+- ASCII scan for concept package text/YAML
+  - Result: all generated and existing `activities/concept_*` text/YAML files are ASCII-only
+- Reviewer-agent package quality review for the 16 generated packages from run `20260510_152725_activity_concepts`
+  - Result: all 16 packages were edited by a separate reviewer agent and recorded as reviewer-agent PASS in `runs/20260510_152725_activity_concepts/review_notes.md`
+- Post-review generated package invariant check
+  - Result: all 16 reviewed packages have exactly five files, matching activity IDs, correct scorecard placement, `## Runtime Detail Floor Notes`, no condensed-round placeholders, asset references backed by `## Asset Brief`, and matching dashboard/tag focal attributes
+- Post-review tag-block schema validation
+  - Result: all `activities/*/tag_block.yaml` files validate after reviewer edits
+- Targeted reviewer-gate scan across `GOAL.md`, `README.md`, `run.md`, `program.md`, `templates.md`, `activities/`, and the current run artifacts
+  - Result: the active goal/run docs require reviewer-agent PASS before package logging/checkoff; old local-review wording was removed from the 16 generated package scorecards and run manifest
+- Reviewer-agent package quality review for the 7 older checked concept packages
+  - Result: all 7 older checked concept packages now have reviewer-agent PASS evidence; `concept_branching_story_decide/prod.md` received a branch-specific runtime wording repair
+- Post-review older package invariant check
+  - Result: all 7 older packages have exactly five files, correct scorecard placement, matching tag/dashboard focal attributes, no condensed-round placeholders, and reviewer-agent PASS wording in `spec.md`
 
 ## Residual Risk
 
@@ -117,11 +158,12 @@
 - Asset requirements are authoring-only in this pass; no runtime asset manifest file or tag-block schema field was added.
 - Runtime image generation remains blocked unless a future product decision declares support.
 - Run manifests are maintained by the agent workflow in this pass; there is no schema validator for `runs/<run_id>/run_manifest.yaml` yet, including the new enrichment audit/no-op/enriched counters and `enriched_activities` entries.
-- Existing `activities/concept_*` packages now have a first enrichment pass, but they have not received a fresh independent reviewer pass after those editorial additions.
+- All 23 concept packages covered by run `20260510_152725_activity_concepts` now have separate reviewer-agent PASS evidence: 16 generated packages plus 7 older checked packages.
+- Several generated packages use required or optional prebuilt/display assets; package specs include fallbacks, but no asset files or runtime asset manifest were generated.
 
 ## Next Immediate Actions
 
 - Review the Activity Concept Brief + Asset Requirements fields with concept owners and curriculum authors.
 - For new concept rows, ask concept owners and curriculum authors to provide `asset_policy` and companion asset rows when they want AI pre-made images or screen-displayed visuals.
-- On the next `/goal` run, confirm the generated `runs/<run_id>/run_manifest.yaml` enrichment fields are sufficient before adding a formal schema.
-- Decide whether to run a fresh independent review pass on the enriched `activities/concept_*` packages before treating the enrichment as final curriculum signoff.
+- Review the 23 concept packages for curriculum tone and product fit before treating them as final signoff.
+- Resolve the 17 blocked capability probes by defining product support or moving them out of the active generation queue.

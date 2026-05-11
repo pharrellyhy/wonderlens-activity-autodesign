@@ -1,0 +1,45 @@
+adaptation_brief:
+  assignment_index: 21
+  assignment_type: capability_probe
+  activity_concept: Classic Music And Movement
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_classic_music_movement
+    asset_requirements: null
+    assignment_row: assignment_type=capability_probe, activity_concept=Classic Music
+      And Movement, concept_source=inputs/source_activity_concepts.md#source_classic_music_movement,
+      description=Child moves their body in response to music mood or rhythm cues,
+      mechanic=motion_voice, category=cat1, tier=T0, asset_policy=no_assets, product_capabilities=requires_motion_safety,
+      activity_id=concept_classic_music_movement_probe, trigger_condition=Parent starts
+      a movement break and the environment is open calm and safe
+  input_mode: concept_only
+  core_promise: The child moves their body in response to music mood or rhythm cues.
+  canonical_mechanic: motion_voice
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: blocked_until_product_decision
+  trigger_condition: Parent starts a movement break and the environment is open, calm,
+    and safe.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: classic_music_movement
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_motion_safety
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: medium
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Do not promise copyrighted music playback or unsafe movement detection.
+      Stop at Phase 0 until motion safety and audio policy are declared.
+  missing_product_decisions:
+  - Define age-safe movement policy, caregiver gating, space checks, and prohibited
+    movements.
+  assumptions: []

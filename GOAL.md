@@ -11,7 +11,7 @@ Each run must also create a provenance directory under `runs/<run_id>/` so gener
 ## Recommended `/goal` Command
 
 ```text
-/goal Run the WonderLens autonomous activity generation loop from GOAL.md. First audit and enrich existing activities/<activity_id>/ packages referenced by checked assignments when they do not meet the current migrated package depth floor, then process unchecked assignments.md rows in order using run.md. For each unchecked row, either generate a complete package or write a blocked brief with the missing product/design decision, then continue to the next row. Stop only on a hard workflow failure that prevents safe processing of later rows. Use the success criteria in GOAL.md as the completion contract.
+/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich existing checked activity packages against the current migrated package depth floor, using separate reviewer agents for package-quality review and repair evidence. Then process the run-start unchecked assignment snapshot exactly once in order. For each row, generate a five-file package that passes author self-check, independent reviewer-agent review, and package validation, or record a blocked brief and continue. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, checks, and residual risks.
 ```
 
 ## Success Criteria
@@ -75,8 +75,10 @@ The goal is complete only when all of the applicable criteria below are met.
 7. Existing package enrichment is handled before the unchecked assignment loop starts:
    - Checked `assignments.md` rows that include `activity_id=<id>` and have an existing `activities/<id>/` package are audited against the current migrated package depth floor.
    - Checked rows are not treated as frozen when generation standards changed after they were created.
+   - Separate reviewer agents are spawned for scoped package-quality review when the run audits or enriches packages; assign reviewers disjoint package directories when multiple packages are reviewed in parallel.
    - Structurally valid but thin packages are enriched in place, preserving `activity_id`, tag-block enums, recap/dashboard placeholders, asset IDs, and the five-file package contract.
    - Enrichment focuses on decision-useful `spec.md` detail and runnable `prod.md` detail: concrete design intent, scaffold fit, game-feel rationale, executable dialogue, branch-specific follow-ups, screen states, distinct Step 3 rounds, and earned magic moments.
+   - Reviewer-agent findings, direct repairs, re-review outcomes, no-op decisions, and residual concerns are recorded in `runs/<run_id>/review_notes.md`; any changed files are also recorded in `runs/<run_id>/run_manifest.yaml`.
    - Enrichment does not append `results.tsv`, rewrite completed assignment checkboxes, or create a second generated activity entry. It is recorded as package maintenance in `runs/<run_id>/run_manifest.yaml` and/or `runs/<run_id>/review_notes.md`.
    - Packages that already meet the current floor are recorded as no-op audits in the run notes when useful.
    - Package checks are rerun after any enrichment.
@@ -114,8 +116,10 @@ The goal is complete only when all of the applicable criteria below are met.
 
 12. Review and logging are complete for generated packages:
    - The package passes the 10-dimension rubric in `program.md`.
-   - Independent reviewer checks pass when the run workflow requires them.
+   - A separate reviewer agent checks every generated package against the same 10 dimensions, the migrated package depth floor, mechanic fidelity, asset-brief coherence, and package-file consistency.
    - Reviewers explicitly fail structurally valid but thin/generic packages that do not meet the migrated package depth floor.
+   - Any reviewer FAIL or credible uncertainty is repaired before logging; the repaired package is re-reviewed by a fresh separate reviewer agent or by the original reviewer after reading the changed files.
+   - `runs/<run_id>/review_notes.md` records reviewer-agent name/id when available, package scope, PASS/FAIL/N/A evidence, repairs made, and final reviewer outcome.
    - `results.tsv` receives one row for each generated package.
    - `runs/<run_id>/generated_activity_ids.txt` includes each generated `activity_id`.
    - `runs/<run_id>/run_manifest.yaml` links each generated assignment row to `activities/<activity_id>/`, its adaptation brief when present, and `results.tsv`.
@@ -126,6 +130,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - State how many existing packages were enriched or audited as already compliant.
    - List any blocked assignments and the exact reason.
    - Include the `run_id` and `runs/<run_id>/run_manifest.yaml` path.
+   - Report reviewer-agent coverage: which packages were reviewed, which were edited by reviewers or repaired after review, and whether all generated packages received independent PASS evidence.
    - List verification commands run and their results.
    - State any residual risk or follow-up product decision.
 

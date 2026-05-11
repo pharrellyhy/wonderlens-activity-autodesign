@@ -1,0 +1,62 @@
+adaptation_brief:
+  assignment_index: 10
+  assignment_type: activity_concept
+  activity_concept: Flashcards
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_flashcards
+    asset_requirements: inputs/source_activity_concepts.md#generic_flashcard_library_01
+    assignment_row: assignment_type=activity_concept, activity_concept=Flashcards,
+      concept_source=inputs/source_activity_concepts.md#source_flashcards, description=Child
+      recognizes a picture card names what they see and answers one tiny follow-up,
+      mechanic=enumerate, category=cat1, tier=T0, asset_policy=required_prebuilt,
+      asset_requirements=inputs/source_activity_concepts.md#generic_flashcard_library_01,
+      product_capabilities=requires_asset_display, activity_id=concept_flashcards_enumerate,
+      trigger_condition=Parent selects a vocabulary shape color animal or object-recognition
+      practice mode
+  input_mode: concept_only
+  core_promise: The child recognizes a picture card, names what they see, and answers
+    one tiny follow-up.
+  canonical_mechanic: enumerate
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: Parent selects a vocabulary, shape, color, animal, or object-recognition
+    practice mode.
+  entity_role: reference
+  observation_angle: shape
+  focal_attribute: picture_card_target
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: generic_flashcard_library_01
+      concept_ref: source_flashcards
+      asset_type: card_library
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-5
+      purpose_en: Provide simple picture-first recognition cards.
+      prompt_en: Create a generic children's flashcard library for common objects,
+        colors, shapes, animals, and foods. Use one clear subject per card, plain
+        light background, no extra text except optional single-word labels in a separate
+        variant, no brands, and consistent friendly illustration style.
+      source: new_ai_generated_asset
+      display_behavior_en: Show one card at a time and ask the child to name or identify
+        it.
+      fallback_behavior_en: If cards are unavailable, use a photographed object or
+        voice-only recognition prompt and do not claim the screen shows a card.
+      safety_constraints_en: No real child photos, no copyrighted characters, no dangerous
+        objects, and no cluttered scenes.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Mystery
+    game_style: mystery_lens
+    scaffold_fit: acceptable
+  assumptions:
+  - Keep each card to one clear recognition target and one optional extension question.

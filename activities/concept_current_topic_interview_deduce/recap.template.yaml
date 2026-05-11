@@ -1,0 +1,25 @@
+recap_payload:
+  entity: '{runtime_entity}'
+  tier: '{runtime_tier}'
+  age_years: '{runtime_age}'
+  what_we_noticed: function
+  what_we_did: deduce
+  entity_role: catalyst
+  focal_attribute:
+    token: opinion_with_reason
+    child_label: opinion with reason
+    badge_emoji_none: true
+  highlight_moment: The notebook shows opinion, reason, and new clue together, so
+    the child sees reasoning grow.
+  difficulty_level: 3
+  next_step_hint: Try one new answer or explain why next time.
+  caregiver_observed: co-explorer
+  reward_badge: reason_reporter
+rendered:
+  title: You were a Reason Reporter today!
+  line_1: You practiced deduce in three rounds.
+  line_2: The notebook shows opinion, reason, and new clue together, so the child
+    sees reasoning grow.
+  line_3: Your answers made the final reveal.
+  badge: Reason Reporter
+  next: Try a new answer next time.

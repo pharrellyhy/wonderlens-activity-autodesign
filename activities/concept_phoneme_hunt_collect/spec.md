@@ -68,4 +68,4 @@ Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.
 | 9 | Game Feel | PASS | Sound verdicts, treasure-slot progress, a maybe basket, and the final `/b/` treasure map create stakes and payoff. |
 | 10 | Mechanic Fidelity + Scaffold Honesty | PASS | `collect` is preserved in Step 3 and tag metadata; the phoneme-to-`pattern` enum compromise and one-treasure-to-three-round expansion are disclosed. |
 
-**Overall**: ALL PASS -- ready for independent review.
+**Overall**: ALL PASS -- Older Package Reviewer C pass completed; optional asset fallback, sound-pattern compromise, and `collect` loop remain explicit after review.

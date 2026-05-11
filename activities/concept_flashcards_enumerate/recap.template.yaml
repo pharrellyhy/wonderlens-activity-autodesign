@@ -1,0 +1,24 @@
+recap_payload:
+  entity: '{runtime_entity}'
+  tier: '{runtime_tier}'
+  age_years: '{runtime_age}'
+  what_we_noticed: shape
+  what_we_did: enumerate
+  entity_role: reference
+  focal_attribute:
+    token: picture_card_target
+    child_label: picture card target
+    badge_emoji_none: true
+  highlight_moment: The card turns into a named picture badge with one feature the
+    child noticed.
+  difficulty_level: 1
+  next_step_hint: Try one new answer or explain why next time.
+  caregiver_observed: co-explorer
+  reward_badge: picture_namer
+rendered:
+  title: You were a Picture Namer today!
+  line_1: You practiced enumerate in three rounds.
+  line_2: The card turns into a named picture badge with one feature the child noticed.
+  line_3: Your answers made the final reveal.
+  badge: Picture Namer
+  next: Try a new answer next time.

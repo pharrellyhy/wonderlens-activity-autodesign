@@ -1,0 +1,41 @@
+adaptation_brief:
+  assignment_index: 13
+  assignment_type: activity_concept
+  activity_concept: Current Topic Interview
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_current_topic_interview
+    asset_requirements: null
+    assignment_row: assignment_type=activity_concept, activity_concept=Current Topic
+      Interview, concept_source=inputs/source_activity_concepts.md#source_current_topic_interview,
+      description=Child discusses an age-appropriate topic by giving an opinion and
+      a reason, mechanic=deduce, category=cat1, tier=T2, asset_policy=no_assets, activity_id=concept_current_topic_interview_deduce,
+      trigger_condition=Older child and parent select an age-appropriate news school
+      community or nature topic
+  input_mode: concept_only
+  core_promise: The child discusses an age-appropriate topic by giving an opinion
+    and a reason.
+  canonical_mechanic: deduce
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: Older child and parent select an age-appropriate news, school,
+    community, or nature topic.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: opinion_with_reason
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Mystery
+    game_style: mystery_lens
+    scaffold_fit: acceptable
+  assumptions:
+  - The repeated action is infer, justify, and revise with new evidence.

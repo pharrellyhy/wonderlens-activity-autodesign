@@ -8,6 +8,7 @@ Use this layer to answer:
 - Which assignments were pending at run start?
 - Which assignments generated packages?
 - Which existing packages were enriched to current standards?
+- Which packages received independent reviewer-agent coverage?
 - Which assignments blocked at the adaptation brief?
 - Where are the adaptation briefs and review notes for this run?
 
@@ -50,7 +51,7 @@ Use local operator time for readability. Keep the timestamp in `run_manifest.yam
 | `generated_activity_ids.txt` | Yes | One generated `activity_id` per line, in completion order. |
 | `adaptation_briefs/` | Yes when Phase 0 runs | One YAML file per generated concept-led or underspecified assignment. |
 | `blocked_briefs/` | Yes when blocked | One YAML file per blocked assignment. |
-| `review_notes.md` | Recommended | Independent reviewer summary, repair notes, and residual risks. |
+| `review_notes.md` | Required for generated or enriched packages | Independent reviewer-agent coverage, PASS/FAIL/N/A evidence, repair notes, re-review outcomes, and residual risks. |
 
 ## Manifest Template
 
@@ -98,6 +99,7 @@ Generated activity entry:
   activity_path: activities/color_hunt_red
   adaptation_brief: runs/<run_id>/adaptation_briefs/001_color_hunt.yaml # omit when no Phase 0 brief was produced
   results_tsv_row: true
+  reviewer_evidence: runs/<run_id>/review_notes.md
   status: PASS
 ```
 
@@ -112,6 +114,7 @@ Enriched activity entry:
     - activities/concept_phoneme_hunt_collect/prod.md
   reason: "Updated to current migrated package depth floor"
   results_tsv_row: false
+  reviewer_evidence: runs/<run_id>/review_notes.md
   status: enriched
 ```
 
@@ -129,8 +132,10 @@ Blocked assignment entry:
 
 - Create the run directory before processing the first assignment.
 - Audit and, when needed, enrich existing checked-row packages before processing unchecked assignments.
+- Spawn separate reviewer agents for package-quality review of generated packages and scoped enrichment/audit packages; partition package directories across reviewers when reviewing multiple packages in parallel.
 - Keep activity packages in `activities/<activity_id>/`; do not nest runtime packages under `runs/`.
 - Record enrichment-only package maintenance in `enriched_activities`; do not append `results.tsv` for enrichment-only changes.
+- Record reviewer-agent findings, direct repairs, author repairs, re-review outcomes, and residual concerns in `review_notes.md`.
 - Record blocked assignments in `blocked_briefs/` and `blocked_assignments`, leave their assignment rows unchecked, and continue to later unchecked rows.
 - Update `run_manifest.yaml` after each enriched package, generated package, or blocked assignment.
 - Commit `runs/<run_id>/` together with generated activity packages and queue/log updates for the run.

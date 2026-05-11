@@ -1,11 +1,12 @@
 # Templates
 
-> **Version**: 1.7 | **Date**: 2026-05-10
+> **Version**: 1.8 | **Date**: 2026-05-11
 > **Owns**: the mechanic adapters, pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture), and the Cat1 / Cat5 category modifier appendix.
 > **Does NOT own**: the migrated five-file package layout, the tag block schema, asset requirement rows, or the tier defaults — those live in `activities/README.md`, `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` Phase 0 / §1.9.
 > **Consumed by**: `program.md` Phase 5 (template-reading flow), `run.md` (activity package loop), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), `activities/*/prod.md` (runtime outputs), and legacy `designs/cat{1,5}/*.md` references.
 
 > **v1.7 — 2026-05-10**: Clarify enrichment mode. Existing migrated packages may be updated to the current template expansion floor without changing their mechanic, pillar/style, tag-block identity, or runtime package contract.
+> **v1.8 — 2026-05-11**: Make independent reviewer-agent quality review part of the package acceptance gate for generated and enriched packages.
 
 ---
 
@@ -89,7 +90,7 @@ Mechanic adapters define the child-action loop independent of pillar. Use the ad
 
 **Tag block.** Every migrated activity package emits `activities/<activity_id>/tag_block.yaml`. The authoritative shape and field semantics live in `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` §1.9. This file does not duplicate the tag-block schema.
 
-**Package output.** Templates provide the creative scaffold only. The agent must still expand the scaffold into the five migrated files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`. `prod.md` keeps all runtime rounds fully expanded; `spec.md` carries the self-evaluation scorecard and, when applicable, `## Asset Brief`; the YAML files carry machine-readable metadata and recap/dashboard payloads. A package that is structurally valid but under-detailed still fails the template contract. When enriching an existing package, keep its mechanic, pillar/style, `activity_id`, tag block, recap/dashboard payload shape, and asset IDs stable; add the missing scaffold expansion detail rather than redesigning the activity.
+**Package output.** Templates provide the creative scaffold only. The agent must still expand the scaffold into the five migrated files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`. `prod.md` keeps all runtime rounds fully expanded; `spec.md` carries the self-evaluation scorecard and, when applicable, `## Asset Brief`; the YAML files carry machine-readable metadata and recap/dashboard payloads. A package that is structurally valid but under-detailed still fails the template contract. Generated packages are not accepted until a separate reviewer agent passes the files or all reviewer issues are repaired and re-reviewed. When enriching an existing package, keep its mechanic, pillar/style, `activity_id`, tag block, recap/dashboard payload shape, and asset IDs stable; add the missing scaffold expansion detail rather than redesigning the activity, and record reviewer-agent evidence in the run notes.
 
 **Tier dials.** T0 / T1 / T2 set language register, task depth, concept focus, AI role, and cumulative caregiver role. Authoritative table in `docs/template_0_preview.html` §06. Tier-guidance detail lives in `entity_guidance.md`.
 

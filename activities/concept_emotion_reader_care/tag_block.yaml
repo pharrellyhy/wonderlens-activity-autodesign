@@ -1,0 +1,77 @@
+activity_id: concept_emotion_reader_care
+version: 1
+source_entity_exemplar: character_or_story_expression
+template_type: cat1
+pillar: Nurture
+game_style: care_station
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span:
+  - T0
+  - T1
+  - T2
+  elasticity: neighbor
+category: category_1
+attributes:
+- visible_feeling_cue
+- emotion
+key_concepts:
+- Perspective
+- Responsibility
+related_concepts:
+- feeling
+- cue
+- empathy
+- help
+atl_skills:
+- empathy
+- perspective_taking
+- observation
+transdisciplinary_theme: Who_We_Are
+subject_tags:
+- social_emotional
+- language
+kud:
+  know:
+  - Faces, hands, and posture can be visible feeling cues
+  - visible_feeling_cue is the focus of the activity
+  understand:
+  - Perspective helps children use might-feel language instead of certainty
+  - Responsibility helps children choose gentle help after noticing evidence
+  do:
+  - name a possible feeling
+  - point to one visible cue
+  - choose a gentle help action
+progression:
+  topic_axis: responsibility
+  difficulty_level: 2
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Feeling Helper badge
+caregiver_role:
+- scaffold
+- co-explorer
+activity_signature:
+  observation_angle: emotion
+  mechanic: care
+  entity_role: catalyst
+  bridge_prerequisites:
+    primary:
+    - emotion
+    secondary:
+    - responsibility
+    - care
+  focal_attribute: visible_feeling_cue
+  intro: The child practices care through Feeling Helper Station.
+  preview_label: Feeling Helper Station
+  preview_prompt: Ready to be the Feeling Helper?
+  role_pivot_note: The runtime entity starts the activity but the package remains
+    concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true

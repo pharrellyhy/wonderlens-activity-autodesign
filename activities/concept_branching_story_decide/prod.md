@@ -87,7 +87,7 @@ Child photographs a toy turtle; the AI makes it the hero of a two-door adventure
 
 **AI follow-up:**
 
-1. [story reveal tone] "The door opens. Blue makes a river path. Gold makes a bell path."
+1. [story reveal tone] "The door opens. If you chose blue, a river path appears. If you chose gold, a bell path appears."
 2. [playful validation] "A red door would be wild. For this room, choose blue or gold."
 3. [wait 2s] [gentle choice tone] "Let's pick together. Blue hums. Gold jingles. Which one?"
 
@@ -105,7 +105,7 @@ Child photographs a toy turtle; the AI makes it the hero of a two-door adventure
 
 **AI follow-up:**
 
-1. [delighted] "Helper chosen. Cloud makes a soft bridge. Drum wakes a secret gate."
+1. [delighted] "Helper chosen. If you picked cloud, it makes a soft bridge. If you picked drum, it wakes a secret gate."
 2. [warmly validating] "A dinosaur is fun. This room has cloud or drum. Pick one for now."
 3. [wait 2s] [soft prompt] "The cloud is soft. The drum is loud. Which helper joins?"
 
@@ -123,7 +123,7 @@ Child photographs a toy turtle; the AI makes it the hero of a two-door adventure
 
 **AI follow-up:**
 
-1. [dramatic reveal tone] "Ending chosen. Star makes a sky parade. Tunnel makes a whisper cave."
+1. [dramatic reveal tone] "Ending chosen. If you picked star, the sky parade begins. If you picked tunnel, the whisper cave opens."
 2. [validating then focusing] "Home sounds cozy. This ending needs star or tunnel first."
 3. [wait 2s] [gentle countdown] "Two endings wait. Star above, tunnel below. Choose one."
 
