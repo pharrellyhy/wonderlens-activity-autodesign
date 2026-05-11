@@ -1,0 +1,25 @@
+dashboard_fragment:
+  session:
+    axis: form
+    angle: pattern
+    mechanic: remember
+    entity_role: catalyst
+    focal_attribute: echo_word_pattern
+    entry_rung: '{runtime_entry_rung}'
+    exit_rung: '{runtime_exit_rung}'
+    outcome: '{runtime_outcome}'
+  contributes_to:
+    curiosity_radial:
+      axis: form
+      angle: pattern
+    exploration_matrix:
+      cell: remember by pattern
+    key_concepts_exposure:
+      Form:
+        angle: pattern
+      Connection:
+        angle: pattern
+    atl_skills_trail:
+    - language_expression
+    - focus
+    - pattern_recognition

@@ -1,0 +1,25 @@
+dashboard_fragment:
+  session:
+    axis: perspective
+    angle: behavior
+    mechanic: decide
+    entity_role: catalyst
+    focal_attribute: quick_playful_choice
+    entry_rung: '{runtime_entry_rung}'
+    exit_rung: '{runtime_exit_rung}'
+    outcome: '{runtime_outcome}'
+  contributes_to:
+    curiosity_radial:
+      axis: perspective
+      angle: behavior
+    exploration_matrix:
+      cell: decide by behavior
+    key_concepts_exposure:
+      Perspective:
+        angle: behavior
+      Form:
+        angle: behavior
+    atl_skills_trail:
+    - focus
+    - language_expression
+    - creative_thinking

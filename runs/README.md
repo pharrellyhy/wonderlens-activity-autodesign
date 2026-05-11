@@ -1,6 +1,8 @@
 # Runs
 
-Run directories record provenance for each autonomous generation session. They do **not** replace canonical runtime packages under `activities/<activity_id>/`.
+Run directories record provenance for each autonomous generation session. They do **not** replace runtime packages under `activities/<activity_id>/`.
+
+Fresh assignment-generation runs must create distinct runtime package directories in `activities/` using the run timestamp, for example `activities/concept_scavenger_hunt_collect_r20260511_233559/`. Existing checked-package enrichment may still update an existing package in place, but new generation rows should never silently point back to an older package directory.
 
 Use this layer to answer:
 
@@ -95,7 +97,8 @@ checks:
     result:
 
 notes:
-  - "Canonical packages remain under activities/<activity_id>/."
+  - "Fresh assignment generation creates distinct package directories under activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>."
+  - "Existing checked-package enrichment may update activities/<activity_id>/ in place, but unchecked generation-ready rows must not reuse old package directories."
 ```
 
 Generated activity entry:
@@ -103,10 +106,12 @@ Generated activity entry:
 ```yaml
 - assignment_index: 1
   assignment: "assignment_type=activity_concept, activity_concept=..."
-  activity_id: color_hunt_red
-  activity_path: activities/color_hunt_red
+  base_activity_id: color_hunt_red
+  activity_id: color_hunt_red_r20260509_113000
+  activity_path: activities/color_hunt_red_r20260509_113000
   adaptation_brief: runs/<run_id>/adaptation_briefs/001_color_hunt.yaml # omit when no Phase 0 brief was produced
   results_tsv_row: true
+  generation_policy: fresh_rerun_distinct_directory
   reviewer_evidence: runs/<run_id>/review_notes.md
   status: PASS
 ```
@@ -156,6 +161,7 @@ Blocked assignment entry:
 - Audit and, when needed, enrich existing checked-row packages before processing unchecked assignments.
 - Spawn separate reviewer agents for package-quality review of generated packages and scoped enrichment/audit packages; partition package directories across reviewers when reviewing multiple packages in parallel.
 - Keep activity packages in `activities/<activity_id>/`; do not nest runtime packages under `runs/`.
+- For fresh generation, treat assignment `activity_id=` as a base slug and write the actual package to `activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>/`. Strip an existing trailing run suffix before appending the current one to avoid suffix stacking.
 - Record changed enrichment-only package maintenance in `enriched_activities`; record no-op audit passes in `audited_activities`; do not append `results.tsv` for either path.
 - Record reviewer-agent findings, direct repairs, author repairs, re-review outcomes, and residual concerns in `review_notes.md`.
 - Record blocked assignments in `blocked_briefs/`, `blocked_designs/`, and `blocked_assignments`, leave their assignment rows unchecked, and continue to later unchecked rows.

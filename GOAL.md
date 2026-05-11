@@ -8,10 +8,12 @@ Generate or triage WonderLens activity assignments from `assignments.md` using t
 
 Each run must also create a provenance directory under `runs/<run_id>/` so generated packages, blocked briefs, and constrained blocked design previews can be traced back to the exact `/goal` session.
 
+For fresh assignment generation, the assignment `activity_id=` value is a base slug, not permission to reuse an existing package directory. The actual generated package directory must be unique to the run: strip any trailing `_rYYYYMMDD_HHMMSS` suffix from the base slug, then create `activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>/` using the current run timestamp. Enrichment-only maintenance may update existing checked packages in place, but unchecked generation-ready rows must produce distinct package directories so reruns can be compared side by side.
+
 ## Recommended `/goal` Command
 
 ```text
-/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich checked activity packages against the current migrated package depth floor with separate reviewer-agent evidence, then process the run-start unchecked assignment snapshot exactly once in order. For each row, generate a passing five-file package or record a blocked brief plus constrained blocked design preview and continue. In blocked previews, still design detailed runtime steps, annotate unsupported dependencies inline with BLOCKED ELEMENT comments, and keep the activity invalid until the blocker is resolved. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate runs/<run_id>/review.html according to review_dashboard.md. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, review dashboard path, checks, and residual risks.
+/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich checked activity packages against the current migrated package depth floor with separate reviewer-agent evidence, then process the run-start unchecked assignment snapshot exactly once in order. For each generation-ready row, derive a run-specific activity_id by appending _rYYYYMMDD_HHMMSS to the base slug and generate a passing five-file package in a new activities/<run-specific_activity_id>/ directory; for blocked rows, record a blocked brief plus constrained blocked design preview and continue. In blocked previews, still design detailed runtime steps, annotate unsupported dependencies inline with BLOCKED ELEMENT comments, and keep the activity invalid until the blocker is resolved. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate runs/<run_id>/review.html according to review_dashboard.md. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, review dashboard path, checks, and residual risks.
 ```
 
 ## Success Criteria
@@ -69,6 +71,10 @@ The goal is complete only when all of the applicable criteria below are met.
    - Use `status: completed_with_blockers` when the run finishes all processable rows but one or more rows blocked. Use `status: failed` only for hard workflow failures that prevent safe processing of later rows.
 
 6. Generation-ready assignments produce a complete package:
+   - Resolve `base_activity_id` from the assignment `activity_id=` when present, or from a stable generated slug when absent.
+   - Strip any trailing `_rYYYYMMDD_HHMMSS` suffix from `base_activity_id` before deriving a fresh run package ID.
+   - For unchecked generation-ready rows, the actual `activity_id` is `<base_activity_id>_r<YYYYMMDD_HHMMSS>`, where the timestamp comes from the current `run_id`.
+   - Do not reuse an existing `activities/<base_activity_id>/` or previous `activities/<base_activity_id>_r.../` directory for fresh generation. Reuse is allowed only for enrichment/audit of already checked packages.
    - Exactly five files exist under `activities/<activity_id>/`:
      - `spec.md`
      - `prod.md`
@@ -128,8 +134,9 @@ The goal is complete only when all of the applicable criteria below are met.
    - `runs/<run_id>/review_notes.md` records reviewer-agent name/id when available, package scope, PASS/FAIL/N/A evidence, repairs made, and final reviewer outcome.
    - `results.tsv` receives one row for each generated package.
    - `runs/<run_id>/generated_activity_ids.txt` includes each generated `activity_id`.
-   - `runs/<run_id>/run_manifest.yaml` links each generated assignment row to `activities/<activity_id>/`, its adaptation brief when present, and `results.tsv`.
-   - The processed assignment row is changed from `- [ ]` to `- [x]`.
+   - `runs/<run_id>/run_manifest.yaml` links each generated assignment row to `activities/<activity_id>/`, its `base_activity_id`, its adaptation brief when present, and `results.tsv`.
+   - `results.tsv` `filename` points at the run-specific `activities/<activity_id>` directory, not a reused base package.
+   - The processed assignment row is changed from `- [ ]` to `- [x]`, and its `activity_id=` value is rewritten to the actual run-specific `activity_id` so checked assignments point to the package produced by that run.
 
 13. Human review dashboard is generated:
    - `runs/<run_id>/review.html` exists before the final report.

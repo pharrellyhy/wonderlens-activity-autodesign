@@ -70,7 +70,8 @@ outputs:
   review_dashboard:
 checks: []
 notes:
-  - "Canonical packages remain under activities/<activity_id>/."
+  - "Fresh assignment generation creates distinct package directories under activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>."
+  - "Existing checked-package enrichment may update activities/<activity_id>/ in place, but unchecked generation-ready rows must not reuse old package directories."
 ```
 
 15. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Run id: <run_id>. Starting activity package loop."
@@ -133,6 +134,8 @@ For each assignment in the run-start `assignment_snapshot.md` that is marked `- 
 
 Extract: assignment_type (if provided), activity_concept (if provided), legacy concept alias (if provided), concept_source (if provided), description/notes (if provided), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), start type (if provided), and output activity_id (if provided). Normalize any legacy concept alias to `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared.
 
+For unchecked generation-ready rows, treat `activity_id=` as `base_activity_id`, not the final package ID. If the base value already ends in `_rYYYYMMDD_HHMMSS` because a prior run row was copied, strip that suffix first. The final package ID for this run must be `<base_activity_id>_r<YYYYMMDD_HHMMSS>`, using the timestamp prefix from the current `run_id`. This prevents fresh reruns from silently linking back to old `activities/` package directories. The only exception is enrichment/audit of already checked rows, which intentionally uses the existing package ID in place.
+
 If `concept_source=` points to `file#concept_id`, read that repo-relative file and load the matching concept section before Phase 0. If `asset_requirements=` points to `file#asset_id`, read the same or referenced file and load the matching asset requirement section. Use the assignment row as the execution source of truth, and use the companion file as richer source / asset context.
 
 Source concepts may arrive in Chinese or mixed language. Before writing an adaptation brief or package, normalize the concept name, description, trigger, assumptions, asset rows, and generated copy to English. Do not copy Chinese source prose into generated activity artifacts.
@@ -194,6 +197,14 @@ Use the composed scaffold as the activity's beat structure. Do not use the retir
 The child's actual repeated action must match `canonical_mechanic`. Keep the selected `game_style` coherent with the mechanic, but do not let style override the requested action. If scaffold fit is weak, disclose it in `spec.md` or block this assignment before generation.
 
 ### Step 3: Generate the migrated activity package
+
+Resolve the final package ID before writing files:
+
+1. `base_activity_id`: assignment `activity_id=` if present, otherwise a stable lowercase snake_case slug derived from the concept/entity/mechanic.
+2. Remove a trailing `_rYYYYMMDD_HHMMSS` suffix from `base_activity_id` when present.
+3. `activity_id`: `<base_activity_id>_r<YYYYMMDD_HHMMSS>`, using the current run timestamp.
+4. If `activities/<activity_id>/` already exists, stop and choose the next non-conflicting run-specific suffix before writing. Do not merge into or overwrite the existing directory.
+5. Record both `base_activity_id` and `activity_id` in `run_manifest.yaml`.
 
 Create a complete `activities/<activity_id>/` package with exactly five files:
 
@@ -294,10 +305,12 @@ For every generated package:
 ```yaml
 - assignment_index: <ordinal from assignment_snapshot.md>
   assignment: "<original assignment row>"
+  base_activity_id: <base_activity_id>
   activity_id: <activity_id>
   activity_path: activities/<activity_id>
   adaptation_brief: runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml # omit when no Phase 0 brief was produced
   results_tsv_row: true
+  generation_policy: fresh_rerun_distinct_directory
   status: PASS
 ```
 
@@ -335,7 +348,7 @@ After writing `review.html`:
 
 ### Step 7: Mark generated assignment complete
 
-In `assignments.md`, change `- [ ]` to `- [x]` only for assignments that generated a passing package.
+In `assignments.md`, change `- [ ]` to `- [x]` only for assignments that generated a passing package. Also rewrite that row's `activity_id=` value to the actual run-specific `activity_id` so the checked row points at the generated directory. If the row did not already have `activity_id=`, add one near the other assignment fields. Do not rewrite blocked rows.
 
 ### Step 8: Commit
 
@@ -368,6 +381,7 @@ Before that final message, ensure `runs/<run_id>/review.html` exists and is refe
 - Always put the scorecard in `spec.md`.
 - Keep `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` aligned with the runtime flow.
 - Do not treat checked assignment rows as immutable when generation standards changed; audit and enrich existing packages before the unchecked loop starts.
+- Do not reuse an old `activities/<activity_id>/` directory for unchecked generation-ready rows. Fresh reruns must create a new run-specific directory named `activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>/`, and `tag_block.yaml` `activity_id` must match it.
 - Do not let one product/design blocker halt the whole batch. Record the blocked brief and constrained design preview, leave that row unchecked, and continue to later unchecked rows unless a hard workflow failure makes later processing unsafe.
 - Commit after every completed package unless the user explicitly asks to batch commits.
 - Quality over speed. Take as many self-evaluation rounds as needed.

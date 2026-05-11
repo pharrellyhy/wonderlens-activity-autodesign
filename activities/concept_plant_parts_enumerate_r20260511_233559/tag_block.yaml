@@ -1,0 +1,77 @@
+activity_id: concept_plant_parts_enumerate_r20260511_233559
+version: 1
+source_entity_exemplar: visible_plant
+template_type: cat5
+pillar: Discovery
+game_style: field_experiment
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span:
+  - T0
+  - T1
+  - T2
+  elasticity: neighbor
+category: category_5
+attributes:
+- visible_plant_part
+- function
+key_concepts:
+- Form
+- Function
+related_concepts:
+- part
+- whole
+- plant_structure
+- evidence
+atl_skills:
+- observation
+- classification
+- language_expression
+transdisciplinary_theme: Sharing_The_Planet
+subject_tags:
+- science
+- nature
+kud:
+  know:
+  - Plants can have visible parts such as leaf, stem, flower, bud, seed, fruit, or root
+  - visible_plant_part is the focus of the activity
+  understand:
+  - Form helps children name the visible plant part
+  - Function helps children notice how parts work together
+  do:
+  - point to a visible leaf
+  - identify a stem
+  - add one more plant part to the map
+progression:
+  topic_axis: form
+  difficulty_level: 2
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Plant Parts Scout badge
+caregiver_role:
+- scaffold
+- co-explorer
+activity_signature:
+  observation_angle: function
+  mechanic: enumerate
+  entity_role: subject
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - form
+    - enumerate
+  focal_attribute: visible_plant_part
+  intro: The child practices enumerate through Plant Parts Field Scout.
+  preview_label: Plant Parts Field Scout
+  preview_prompt: Ready to be the Plant Parts Scout?
+  role_pivot_note: The runtime entity starts the activity but the package remains
+    concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true

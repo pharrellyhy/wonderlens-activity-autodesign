@@ -4,6 +4,8 @@ Prompt, template, and activity-package repository for generating and maintaining
 
 The current runtime format is the migrated `activities/<activity_id>/` package. Legacy `designs/` files remain as reference and compatibility material, but new activity generation should target `activities/`.
 
+Fresh `/goal` generation runs create run-specific package IDs so reruns are distinguishable by directory name. An assignment `activity_id=` is treated as a base slug; the generated package uses `activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>/`, with the timestamp taken from the run ID. Existing checked-package enrichment may still update packages in place.
+
 Each autonomous `/goal` run also creates a provenance directory under `runs/<run_id>/`. The run directory records the assignment snapshot, adaptation briefs, blocked briefs, constrained blocked design previews, generated activity IDs, review notes, a static `review.html` dashboard, and a run manifest, so you can tell which run produced which packages without moving runtime files out of `activities/`.
 
 ## How It Works
@@ -11,7 +13,7 @@ Each autonomous `/goal` run also creates a provenance directory under `runs/<run
 The agent reads the authoring contract, runs a mechanic-first adaptation brief when the input is a concept-led assignment, carries any explicit asset dependency into the brief, composes a Template 0 spine with a mechanic adapter, Cat1/Cat5 category modifier, and pillar/style scaffold, then writes a complete five-file activity package:
 
 ```text
-activities/<activity_id>/
+activities/<activity_id>/               # fresh runs use <base_activity_id>_r<YYYYMMDD_HHMMSS>
 ├── spec.md
 ├── prod.md
 ├── tag_block.yaml
@@ -75,12 +77,12 @@ results.tsv                        Assignment and rubric log
 3. Start the loop with the Codex `/goal` command:
 
 ```text
-/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich checked activity packages against the current migrated package depth floor with separate reviewer-agent evidence, then process the run-start unchecked assignment snapshot exactly once in order. For each row, generate a passing five-file package or record a blocked brief plus constrained blocked design preview and continue. In blocked previews, still design detailed runtime steps, annotate unsupported dependencies inline with BLOCKED ELEMENT comments, and keep the activity invalid until the blocker is resolved. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate runs/<run_id>/review.html according to review_dashboard.md. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, review dashboard path, checks, and residual risks.
+/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich checked activity packages against the current migrated package depth floor with separate reviewer-agent evidence, then process the run-start unchecked assignment snapshot exactly once in order. For each generation-ready row, derive a run-specific activity_id by appending _rYYYYMMDD_HHMMSS to the base slug and generate a passing five-file package in a new activities/<run-specific_activity_id>/ directory; for blocked rows, record a blocked brief plus constrained blocked design preview and continue. In blocked previews, still design detailed runtime steps, annotate unsupported dependencies inline with BLOCKED ELEMENT comments, and keep the activity invalid until the blocker is resolved. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate runs/<run_id>/review.html according to review_dashboard.md. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, review dashboard path, checks, and residual risks.
 ```
 
 `GOAL.md` defines the run objective, success criteria, and completion contract. `run.md` defines the step-by-step execution loop.
 
-For generation-ready assignments, the loop creates one complete `activities/<activity_id>/` package, self-evaluates against the 10-dimension rubric, gets independent reviewer-agent PASS evidence, updates `results.tsv`, marks the assignment complete, and records the package in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/` and a constrained design preview under `runs/<run_id>/blocked_designs/`. These previews still show detailed proposed runtime steps with inline `BLOCKED ELEMENT` comments, but they are not logged, packaged, or marked complete until the constraints are resolved. They no longer halt the rest of the batch.
+For generation-ready assignments, the loop creates one complete run-specific `activities/<activity_id>/` package, self-evaluates against the 10-dimension rubric, gets independent reviewer-agent PASS evidence, updates `results.tsv`, rewrites the completed assignment row to the actual run-specific `activity_id`, and records both `base_activity_id` and `activity_id` in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/` and a constrained design preview under `runs/<run_id>/blocked_designs/`. These previews still show detailed proposed runtime steps with inline `BLOCKED ELEMENT` comments, but they are not logged, packaged, or marked complete until the constraints are resolved. They no longer halt the rest of the batch.
 
 ## Run Provenance
 
@@ -91,10 +93,10 @@ Use `runs/<run_id>/` to distinguish one autonomous generation session from anoth
 - `adaptation_briefs/` stores Phase 0 briefs for generated concept-led or underspecified assignments.
 - `blocked_briefs/` stores briefs for assignments that reach `readiness=blocked_until_product_decision`.
 - `blocked_designs/` stores constrained design previews for blocked assignments; these are human-review artifacts, not valid runtime packages.
-- `generated_activity_ids.txt` lists packages created by that run in completion order.
+- `generated_activity_ids.txt` lists run-specific packages created by that run in completion order.
 - `review_notes.md` stores independent reviewer-agent coverage, repair notes, no-op audit decisions, and residual risks for generated, enriched, and audited packages.
 - `review.html` is the static human review dashboard generated by `scripts/generate_run_review.py` according to `review_dashboard.md`; it includes concise clickable cards for generated, enriched, and audited no-op packages, blocked-assignment cards, full detail dialogs, grouped tag colors, sortable/filterable views, constrained preview links, reviewer coverage, 10-dimension criteria and package scorecard results, blocked-preview scorecards, checks, classified blocked reasons, colored inline blocked marker chips, and a reason guide explaining what each blocker means.
-- `run_manifest.yaml` is the run-level index linking assignment rows, generated `activities/<activity_id>/` packages, blocked briefs, constrained design previews, results logging, checks, and timestamps.
+- `run_manifest.yaml` is the run-level index linking assignment rows, generated `activities/<activity_id>/` packages, base activity IDs, blocked briefs, constrained design previews, results logging, checks, and timestamps.
 
 Runtime packages are never nested inside `runs/`; the run layer is provenance only. See `runs/README.md` for the manifest template and update rules.
 
@@ -233,13 +235,13 @@ Optional:
 - `pillar=` and `style=` when you want to force a specific experience format.
 - `mapping=` when the entity should be grounded in `MAPPING_ROOT`; pair it with `start=warm+cold` for dual bridge handling.
 - `concept_source=file#concept_id` when the assignment should load a companion source concept brief before Phase 0.
-- `activity_id=` when you need a specific package directory name.
+- `activity_id=` when you need a stable base slug. Fresh `/goal` runs append `_rYYYYMMDD_HHMMSS` to create the actual package directory; copied rerun rows should not stack multiple run suffixes because the loop strips an existing trailing run suffix first.
 - `asset_requirements=file#asset_id` when an assignment row points to a companion asset table/YAML block.
 - `product_capabilities=` when an idea depends on asset display, runtime image generation, UI state, material workflows, motion safety, OCR, pose detection, or before/after state.
 
 Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas also get a constrained design preview with inline blocked-element comments instead of forcing package generation, and the loop continues to later unchecked rows. Legacy concept aliases should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
 
-To rerun an assignment, change its checkbox back to `- [ ]`. To add work, append a new unchecked line in the appropriate batch section or create a new batch heading.
+To rerun an assignment, change its checkbox back to `- [ ]` or copy it into a fresh batch. The rerun will create a new run-specific package directory instead of overwriting or relinking the previous package. To add work, append a new unchecked line in the appropriate batch section or create a new batch heading.
 
 ## Project Structure
 
@@ -314,7 +316,7 @@ See `docs/game_styles.md` for definitions, migration notes, and coverage.
 
 ## Current Coverage
 
-- Migrated runtime packages: 5 activities in `activities/`.
+- Migrated runtime packages: 51 five-file activity package directories in `activities/`, including run-specific rerun packages.
 - Legacy/reference designs: existing Cat1 and Cat5 prod/spec files under `designs/`.
 - Backend consumers may support both during migration, but new generation should use `activities/`.
 

@@ -1,0 +1,63 @@
+activity_id: concept_scavenger_hunt_collect_r20260511_233559
+version: 1
+source_entity_exemplar: "{runtime_entity}"
+template_type: cat5
+pillar: Adventure
+game_style: quest_collector
+
+entity: "{parameterized_by_matched_property}"
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span: [T0, T1, T2]
+  elasticity: "+/-1"
+
+category: objects
+attributes: ["{shared_feature}"]
+key_concepts: [Form, Connection]
+related_concepts: [similarity, classification, evidence, observation]
+atl_skills: [observation, classification, evidence_collection]
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags: [science, language]
+
+kud:
+  know:
+    - "objects can share visible or nameable features"
+    - "a collection rule explains why examples belong together"
+    - "photos can become evidence for a shared rule"
+  understand:
+    - "Form helps us notice what things are like"
+    - "Connection helps us explain why different things belong together"
+  do:
+    - "find and photograph three things that match one shared feature"
+    - "describe the evidence that makes each find match"
+    - "name one extra commonality across the collection"
+
+progression:
+  topic_axis: connection
+  difficulty_level: 2
+  next_step_hint: "Next time, compare two shared features at once, such as color and shape."
+  reward_hook: "Earned the Shared Clue Scout badge"
+
+caregiver_role: [scaffold, co-explorer]
+
+activity_signature:
+  observation_angle: pattern
+  mechanic: collect
+  entity_role: exemplar
+  bridge_prerequisites:
+    primary: [color, shape, function]
+    secondary: [material, category]
+  focal_attribute: "{shared_feature}"
+  intro: "The child finds three things that share {shared_feature} with the photographed {entity}, then names one extra commonality."
+  preview_label: "Find 3 with the same clue"
+  preview_prompt: "You found a clear clue on the {entity}. Let's find three more things that share it."
+  role_pivot_note: "The starting {entity} becomes the first example of a broader shared-feature hunt."
+
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true

@@ -20,7 +20,7 @@ Summary: 23 checked concept packages were audited, 4 were enriched, and 19 requi
 
 ## Generated Package Reviews
 
-Batch 5 fresh-rerun generation-ready rows reused the same stable `activity_id` packages after current-run reviewer audit and repairs. All 23 generated rows have independent PASS evidence from Reviewer A or Reviewer B before `results.tsv` logging and assignment checkoff. The generated package entries in `run_manifest.yaml` link each row to its current adaptation brief and package directory.
+Batch 5 fresh-rerun generation-ready rows now materialize distinct run-specific package directories under `activities/<base_activity_id>_r20260511_233559/`. The original assignment `activity_id=` values are recorded as `base_activity_id` in `run_manifest.yaml`; `results.tsv`, `generated_activity_ids.txt`, and checked Batch 5 assignment rows point to the run-specific package IDs. All 23 generated rows inherit independent PASS evidence from Reviewer A or Reviewer B after current-run package audit and repairs, with package checks rerun against the run-specific directories.
 
 ## Blocked Assignments
 

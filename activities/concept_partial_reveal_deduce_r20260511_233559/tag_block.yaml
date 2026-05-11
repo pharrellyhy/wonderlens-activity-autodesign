@@ -1,0 +1,63 @@
+activity_id: concept_partial_reveal_deduce_r20260511_233559
+version: 1
+source_entity_exemplar: rabbit
+template_type: cat1
+pillar: Mystery
+game_style: mystery_lens
+
+entity: common_animal_or_object
+entity_class: [animal, object]
+entity_binding: agnostic
+tier_range:
+  primary: T1
+  span: [T0, T1, T2]
+  elasticity: "+/-1"
+
+category: partial_reveal_guessing
+attributes: [partial_visual_clue, part_whole_evidence, shape_clues]
+key_concepts: [Form, Connection]
+related_concepts: [evidence, inference, part_whole, clue]
+atl_skills: [observation, logical_reasoning, language_expression]
+transdisciplinary_theme: How_The_World_Works
+subject_tags: [science, language]
+
+kud:
+  know:
+    - "a visible part can be evidence for a whole animal or object"
+    - "a guess can change when new evidence appears"
+    - "a reveal checks whether the part and whole fit together"
+  understand:
+    - "Form helps us notice shape, texture, and visible details"
+    - "Connection helps us link a part to the whole it may belong to"
+  do:
+    - "inspect a partial visual clue"
+    - "guess the whole animal or object"
+    - "explain which clue supported the guess"
+
+progression:
+  topic_axis: form
+  difficulty_level: 2
+  next_step_hint: "Next time, ask which clue part helped most before the reveal."
+  reward_hook: "Earned the Part-Spotter Detective badge"
+
+caregiver_role: [scaffold, co-explorer]
+
+activity_signature:
+  observation_angle: shape
+  mechanic: deduce
+  entity_role: reference
+  bridge_prerequisites:
+    primary: [shape, pattern]
+    secondary: [texture, function]
+  focal_attribute: "partial_visual_clue"
+  intro: "The child inspects partial reveal cards, guesses the whole animal or object, and explains the evidence."
+  preview_label: "Guess the hidden whole"
+  preview_prompt: "Look at the part, make a guess, and tell what clue helped."
+  role_pivot_note: "The starting photo or mode launches a general partial-reveal mystery using prebuilt safe cards."
+
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true

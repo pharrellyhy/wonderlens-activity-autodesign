@@ -1,0 +1,75 @@
+activity_id: concept_flashcards_enumerate_r20260511_233559
+version: 1
+source_entity_exemplar: picture_card
+template_type: cat1
+pillar: Mystery
+game_style: mystery_lens
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T0
+  span:
+  - T0
+  - T1
+  elasticity: neighbor
+category: category_1
+attributes:
+- picture_card_target
+- shape
+key_concepts:
+- Form
+- Function
+related_concepts:
+- name
+- picture
+- feature
+- category
+atl_skills:
+- observation
+- language_expression
+- focus
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags:
+- language
+kud:
+  know:
+  - Picture Pop Cards has a simple two-round structure
+  - picture_card_target is the focus of the activity
+  understand:
+  - Form helps children notice the important evidence
+  - Function helps children connect their response to the result
+  do:
+  - practice enumerate in two short rounds
+  - explain or repeat one answer
+  - notice the final payoff
+progression:
+  topic_axis: form
+  difficulty_level: 1
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Picture Namer badge
+caregiver_role:
+- scaffold
+- co-explorer
+activity_signature:
+  observation_angle: shape
+  mechanic: enumerate
+  entity_role: reference
+  bridge_prerequisites:
+    primary:
+    - shape
+    secondary:
+    - form
+    - enumerate
+  focal_attribute: picture_card_target
+  intro: The child practices enumerate through Picture Pop Cards.
+  preview_label: Picture Pop Cards
+  preview_prompt: Ready to be the Picture Namer?
+  role_pivot_note: The runtime entity starts the activity but the package remains
+    concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: false

@@ -1,0 +1,35 @@
+recap_payload:
+  entity: "{runtime_entity}"
+  tier: "{runtime_tier}"
+  age_years: "{runtime_age}"
+
+  what_we_noticed: shape
+  what_we_did: deduced
+  entity_role: reference
+
+  focal_attribute:
+    token: "partial_visual_clue"
+    child_label: "partial visual clue"
+    badge_emoji_none: true
+
+  highlight_moment: "You used tiny parts as evidence to guess the whole."
+
+  clue_trail:
+    - {part: "{partial_clue_1}", answer: "{answer_1}"}
+    - {part: "{partial_clue_2}", answer: "{answer_2}"}
+    - {part: "{partial_clue_3}", answer: "{answer_3}"}
+
+  strongest_clue: "{child_strongest_clue}"
+  difficulty_level: 2
+  next_step_hint: "Next time, explain which clue part helped most before the reveal."
+
+  caregiver_observed: co-explorer
+  reward_badge: part_spotter_detective
+
+rendered:
+  title: "You were a Part-Spotter Detective today!"
+  line_1: "You inspected hidden-whole clues."
+  line_2: "You guessed the whole from visible parts."
+  line_3: "Your strongest clue was: {child_strongest_clue}."
+  badge: "Part-Spotter Detective"
+  next: "Next time, explain which clue part helped most before the reveal."

@@ -38,10 +38,10 @@ outputs:
   - activity_id: concept_word_echo_remember
     activity_path: activities/concept_word_echo_remember
     source_assignment: assignment_type=activity_concept, activity_concept=Word Echo Practice, concept_source=inputs/source_activity_concepts.md#source_word_echo_practice,
-      description=AI says a simple word or phrase and the child repeats it back in a playful echo
-      round, mechanic=remember, category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#word_echo_cards_01,
-      activity_id=concept_word_echo_remember, trigger_condition=Child enters language-practice mode
-      or asks what a familiar object is called
+      description=AI says a simple word or phrase and the child repeats it back in a playful echo round,
+      mechanic=remember, category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#word_echo_cards_01,
+      activity_id=concept_word_echo_remember, trigger_condition=Child enters language-practice mode or
+      asks what a familiar object is called
     changed_files:
     - activities/concept_word_echo_remember/spec.md
     - activities/concept_word_echo_remember/prod.md
@@ -55,10 +55,10 @@ outputs:
   - activity_id: concept_emotion_reader_care
     activity_path: activities/concept_emotion_reader_care
     source_assignment: assignment_type=activity_concept, activity_concept=Emotion Reader, concept_source=inputs/source_activity_concepts.md#source_emotion_reader,
-      description=Child notices an obvious expression or body cue and thinks about what feeling or
-      help might fit, mechanic=care, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#emotion_expression_cards_01,
-      activity_id=concept_emotion_reader_care, trigger_condition=A character animal or story moment
-      shows an obvious emotional expression
+      description=Child notices an obvious expression or body cue and thinks about what feeling or help
+      might fit, mechanic=care, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#emotion_expression_cards_01,
+      activity_id=concept_emotion_reader_care, trigger_condition=A character animal or story moment shows
+      an obvious emotional expression
     changed_files:
     - activities/concept_emotion_reader_care/spec.md
     reason: Updated to current migrated package depth floor after reviewer audit
@@ -69,10 +69,10 @@ outputs:
   - activity_id: concept_color_mixing_collect
     activity_path: activities/concept_color_mixing_collect
     source_assignment: assignment_type=activity_concept, activity_concept=Color Mixing Board, concept_source=inputs/source_activity_concepts.md#source_color_mixing_board,
-      description=Child chooses or finds two colors predicts what they make together and compares
-      against the mixed result, mechanic=collect, category=cat1, tier=T1, asset_policy=optional_support,
-      asset_requirements=inputs/source_activity_concepts.md#color_mixing_board_01, activity_id=concept_color_mixing_collect,
-      trigger_condition=Child notices two colors nearby or selects a color experiment mode
+      description=Child chooses or finds two colors predicts what they make together and compares against
+      the mixed result, mechanic=collect, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#color_mixing_board_01,
+      activity_id=concept_color_mixing_collect, trigger_condition=Child notices two colors nearby or selects
+      a color experiment mode
     changed_files:
     - activities/concept_color_mixing_collect/spec.md
     - activities/concept_color_mixing_collect/recap.template.yaml
@@ -84,8 +84,8 @@ outputs:
   - activity_id: concept_little_poem_build
     activity_path: activities/concept_little_poem_build
     source_assignment: assignment_type=activity_concept, activity_concept=Little Poem Generator, concept_source=inputs/source_activity_concepts.md#source_little_poem_generator,
-      description=Child contributes words images or feelings and co-creates a short poem with the
-      AI, mechanic=build, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_little_poem_build,
+      description=Child contributes words images or feelings and co-creates a short poem with the AI,
+      mechanic=build, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_little_poem_build,
       trigger_condition=Child photographs an object chooses a feeling or names a favorite topic
     changed_files:
     - activities/concept_little_poem_build/prod.md
@@ -99,13 +99,12 @@ outputs:
   - activity_id: concept_scavenger_hunt_collect
     activity_path: activities/concept_scavenger_hunt_collect
     source_assignment: assignment_type=match_pattern, activity_concept=Scavenger Hunt, concept_source=inputs/source_activity_concepts.md#source_scavenger_hunt,
-      description=Child finds and photographs three things that share a color, shape, or category,
-      then names one extra thing they have in common, mechanic=collect, category=cat5, tier=T1, asset_policy=no_assets,
-      activity_id=concept_scavenger_hunt_collect, trigger_condition=Child photographs an object with
-      a clear color, shape, or category feature
+      description=Child finds and photographs three things that share a color, shape, or category, then
+      names one extra thing they have in common, mechanic=collect, category=cat5, tier=T1, asset_policy=no_assets,
+      activity_id=concept_scavenger_hunt_collect, trigger_condition=Child photographs an object with a
+      clear color, shape, or category feature
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -113,28 +112,25 @@ outputs:
   - activity_id: concept_phoneme_hunt_collect
     activity_path: activities/concept_phoneme_hunt_collect
     source_assignment: assignment_type=match_pattern, activity_concept=Phoneme Treasure Hunt, concept_source=inputs/source_activity_concepts.md#source_phoneme_hunt,
-      description=Child hears a target sound and finds one indoor treasure whose word starts with
-      that sound, mechanic=collect, category=cat5, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#phoneme_letter_card_01,
+      description=Child hears a target sound and finds one indoor treasure whose word starts with that
+      sound, mechanic=collect, category=cat5, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#phoneme_letter_card_01,
       activity_id=concept_phoneme_hunt_collect, trigger_condition=Child enters language treasure-hunt
       mode or photographs an everyday object suitable for sound play
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
   - activity_id: concept_branching_story_decide
     activity_path: activities/concept_branching_story_decide
-    source_assignment: assignment_type=activity_concept, activity_concept=Branching Choice Story,
-      concept_source=inputs/source_activity_concepts.md#source_branching_story, description=AI tells
-      a story with choice points; the child chooses between two next steps and the story continues
-      from that choice, mechanic=decide, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_branching_story_decide,
-      trigger_condition=Child enters story mode or photographs a toy or object that can become a story
-      character
+    source_assignment: assignment_type=activity_concept, activity_concept=Branching Choice Story, concept_source=inputs/source_activity_concepts.md#source_branching_story,
+      description=AI tells a story with choice points; the child chooses between two next steps and the
+      story continues from that choice, mechanic=decide, category=cat1, tier=T1, asset_policy=no_assets,
+      activity_id=concept_branching_story_decide, trigger_condition=Child enters story mode or photographs
+      a toy or object that can become a story character
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -147,23 +143,20 @@ outputs:
       asset_requirements=inputs/source_activity_concepts.md#guess_reference_cards_01, activity_id=concept_guess_in_10_deduce,
       trigger_condition=Child photographs an animal toy, animal picture, or enters guessing mode
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
   - activity_id: concept_animal_sound_motion_voice
     activity_path: activities/concept_animal_sound_motion_voice
-    source_assignment: assignment_type=activity_concept, activity_concept=Animal Sound Imitation,
-      concept_source=inputs/source_activity_concepts.md#source_animal_sound_imitation, description=AI
-      prompts a familiar animal and the child imitates its sound or speaks in that animal role, mechanic=motion_voice,
-      category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#animal_sound_cards_01,
-      activity_id=concept_animal_sound_motion_voice, trigger_condition=Child photographs an animal
-      toy, animal picture, or enters animal-sound mode
+    source_assignment: assignment_type=activity_concept, activity_concept=Animal Sound Imitation, concept_source=inputs/source_activity_concepts.md#source_animal_sound_imitation,
+      description=AI prompts a familiar animal and the child imitates its sound or speaks in that animal
+      role, mechanic=motion_voice, category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#animal_sound_cards_01,
+      activity_id=concept_animal_sound_motion_voice, trigger_condition=Child photographs an animal toy,
+      animal picture, or enters animal-sound mode
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -171,13 +164,12 @@ outputs:
   - activity_id: concept_tiny_curator_sort
     activity_path: activities/concept_tiny_curator_sort
     source_assignment: assignment_type=match_pattern, activity_concept=Tiny Curator, concept_source=inputs/source_activity_concepts.md#source_tiny_curator,
-      description=Child finds three or four objects that they think belong together, arranges a tiny
-      exhibition, then explains their grouping rule, mechanic=sort, category=cat5, tier=T2, asset_policy=no_assets,
+      description=Child finds three or four objects that they think belong together, arranges a tiny exhibition,
+      then explains their grouping rule, mechanic=sort, category=cat5, tier=T2, asset_policy=no_assets,
       activity_id=concept_tiny_curator_sort, trigger_condition=Child is at home or outdoors with several
       objects that can be grouped or compared
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -185,14 +177,13 @@ outputs:
   - activity_id: concept_partial_reveal_deduce
     activity_path: activities/concept_partial_reveal_deduce
     source_assignment: assignment_type=activity_concept, activity_concept=Partial Reveal Guess, concept_source=inputs/source_activity_concepts.md#source_partial_reveal_guess,
-      description=Screen shows part of an animal or object; the child guesses the whole thing from
-      visible clues and explains the evidence, mechanic=deduce, category=cat1, tier=T1, asset_policy=required_prebuilt,
+      description=Screen shows part of an animal or object; the child guesses the whole thing from visible
+      clues and explains the evidence, mechanic=deduce, category=cat1, tier=T1, asset_policy=required_prebuilt,
       asset_requirements=inputs/source_activity_concepts.md#partial_reveal_cards_01, product_capabilities=requires_asset_display,
-      activity_id=concept_partial_reveal_deduce, trigger_condition=Child photographs an animal toy,
-      animal picture, or enters partial-reveal guessing mode
+      activity_id=concept_partial_reveal_deduce, trigger_condition=Child photographs an animal toy, animal
+      picture, or enters partial-reveal guessing mode
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -200,12 +191,11 @@ outputs:
   - activity_id: concept_plant_parts_enumerate
     activity_path: activities/concept_plant_parts_enumerate
     source_assignment: assignment_type=match_pattern, activity_concept=Plant Parts Explorer, concept_source=inputs/source_activity_concepts.md#source_plant_parts_explorer,
-      description=Child looks at a plant and identifies visible parts such as leaf stem flower fruit
-      seed or root, mechanic=enumerate, category=cat5, tier=T1, asset_policy=no_assets, activity_id=concept_plant_parts_enumerate,
+      description=Child looks at a plant and identifies visible parts such as leaf stem flower fruit seed
+      or root, mechanic=enumerate, category=cat5, tier=T1, asset_policy=no_assets, activity_id=concept_plant_parts_enumerate,
       trigger_condition=Photo clearly shows a plant with at least two visible parts
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -215,27 +205,22 @@ outputs:
     source_assignment: assignment_type=match_pattern, activity_concept=Plant State Compare, concept_source=inputs/source_activity_concepts.md#source_plant_state_compare,
       description=Child compares a plant's visible state and explains evidence for sprouting blooming
       wilting dried healthy or fruiting, mechanic=compare, category=cat5, tier=T1, asset_policy=no_assets,
-      activity_id=concept_plant_state_compare, trigger_condition=A plant photo shows a clear visible
-      state
+      activity_id=concept_plant_state_compare, trigger_condition=A plant photo shows a clear visible state
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
   - activity_id: concept_constellation_star_count_enumerate
     activity_path: activities/concept_constellation_star_count_enumerate
-    source_assignment: assignment_type=activity_concept, activity_concept=Constellation Star Count,
-      concept_source=inputs/source_activity_concepts.md#source_constellation_star_count, description=Child
-      counts visible stars in an approved constellation card or simplified star pattern, mechanic=enumerate,
-      category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#constellation_count_cards_01,
+    source_assignment: assignment_type=activity_concept, activity_concept=Constellation Star Count, concept_source=inputs/source_activity_concepts.md#source_constellation_star_count,
+      description=Child counts visible stars in an approved constellation card or simplified star pattern,
+      mechanic=enumerate, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#constellation_count_cards_01,
       product_capabilities=requires_asset_display, activity_id=concept_constellation_star_count_enumerate,
-      trigger_condition=Child chooses a space theme or the screen can show an approved constellation
-      card
+      trigger_condition=Child chooses a space theme or the screen can show an approved constellation card
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -243,13 +228,12 @@ outputs:
   - activity_id: concept_career_decision_decide
     activity_path: activities/concept_career_decision_decide
     source_assignment: assignment_type=activity_concept, activity_concept=Career Decision, concept_source=inputs/source_activity_concepts.md#source_career_decision,
-      description=Child helps choose what a helper or professional should do in a simple scenario,
-      mechanic=decide, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#career_portrait_cards_01,
-      activity_id=concept_career_decision_decide, trigger_condition=Child sees a professional role
-      tool uniform vehicle or story character connected to work
+      description=Child helps choose what a helper or professional should do in a simple scenario, mechanic=decide,
+      category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#career_portrait_cards_01,
+      activity_id=concept_career_decision_decide, trigger_condition=Child sees a professional role tool
+      uniform vehicle or story character connected to work
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -257,13 +241,12 @@ outputs:
   - activity_id: concept_vegetable_sort_sort
     activity_path: activities/concept_vegetable_sort_sort
     source_assignment: assignment_type=activity_concept, activity_concept=Vegetable Sort, concept_source=inputs/source_activity_concepts.md#source_vegetable_sort,
-      description=Child sorts vegetable cards or photographed vegetables by a visible or meaningful
-      rule, mechanic=sort, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#vegetable_sort_cards_01,
+      description=Child sorts vegetable cards or photographed vegetables by a visible or meaningful rule,
+      mechanic=sort, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#vegetable_sort_cards_01,
       product_capabilities=requires_asset_display, activity_id=concept_vegetable_sort_sort, trigger_condition=Screen
       can show vegetable cards or a child photographs several vegetables
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -276,8 +259,7 @@ outputs:
       product_capabilities=requires_asset_display, activity_id=concept_how_many_guess_enumerate, trigger_condition=Screen
       can show a small set of objects or the camera sees countable items
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -290,8 +272,7 @@ outputs:
       product_capabilities=requires_asset_display, activity_id=concept_flashcards_enumerate, trigger_condition=Parent
       selects a vocabulary shape color animal or object-recognition practice mode
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -301,11 +282,10 @@ outputs:
     source_assignment: assignment_type=activity_concept, activity_concept=Trivia Game, concept_source=inputs/source_activity_concepts.md#source_trivia_game,
       description=Child answers short memory or knowledge questions and receives a simple explanation,
       mechanic=remember, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#trivia_reward_board_01,
-      activity_id=concept_trivia_game_remember, trigger_condition=Child has just explored a topic
-      and can answer short fact or memory questions
+      activity_id=concept_trivia_game_remember, trigger_condition=Child has just explored a topic and
+      can answer short fact or memory questions
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -313,26 +293,24 @@ outputs:
   - activity_id: concept_would_you_rather_compare
     activity_path: activities/concept_would_you_rather_compare
     source_assignment: assignment_type=activity_concept, activity_concept=Would You Rather, concept_source=inputs/source_activity_concepts.md#source_would_you_rather,
-      description=Child chooses between two playful options and explains the preference or tradeoff,
-      mechanic=compare, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_would_you_rather_compare,
-      trigger_condition=Conversation break story reflection or choice-making activity
+      description=Child chooses between two playful options and explains the preference or tradeoff, mechanic=compare,
+      category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_would_you_rather_compare, trigger_condition=Conversation
+      break story reflection or choice-making activity
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
   - activity_id: concept_current_topic_interview_deduce
     activity_path: activities/concept_current_topic_interview_deduce
-    source_assignment: assignment_type=activity_concept, activity_concept=Current Topic Interview,
-      concept_source=inputs/source_activity_concepts.md#source_current_topic_interview, description=Child
-      discusses an age-appropriate topic by giving an opinion and a reason, mechanic=deduce, category=cat1,
-      tier=T2, asset_policy=no_assets, activity_id=concept_current_topic_interview_deduce, trigger_condition=Older
-      child and parent select an age-appropriate news school community or nature topic
+    source_assignment: assignment_type=activity_concept, activity_concept=Current Topic Interview, concept_source=inputs/source_activity_concepts.md#source_current_topic_interview,
+      description=Child discusses an age-appropriate topic by giving an opinion and a reason, mechanic=deduce,
+      category=cat1, tier=T2, asset_policy=no_assets, activity_id=concept_current_topic_interview_deduce,
+      trigger_condition=Older child and parent select an age-appropriate news school community or nature
+      topic
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -340,28 +318,25 @@ outputs:
   - activity_id: concept_travel_planner_predict
     activity_path: activities/concept_travel_planner_predict
     source_assignment: assignment_type=activity_concept, activity_concept=Travel Planner, concept_source=inputs/source_activity_concepts.md#source_travel_planner,
-      description=Child helps plan a pretend trip by choosing what to pack how to travel and what
-      might happen, mechanic=predict, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#travel_planning_cards_01,
-      activity_id=concept_travel_planner_predict, trigger_condition=Child asks about a place weather
-      vehicle animal habitat or character journey
+      description=Child helps plan a pretend trip by choosing what to pack how to travel and what might
+      happen, mechanic=predict, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#travel_planning_cards_01,
+      activity_id=concept_travel_planner_predict, trigger_condition=Child asks about a place weather vehicle
+      animal habitat or character journey
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
   - activity_id: concept_quick_silly_decide
     activity_path: activities/concept_quick_silly_decide
-    source_assignment: assignment_type=activity_concept, activity_concept=Quick and Silly Questions,
-      concept_source=inputs/source_activity_concepts.md#source_quick_silly_questions, description=Child
-      answers very short playful choice questions during a transition or warm-up, mechanic=decide,
+    source_assignment: assignment_type=activity_concept, activity_concept=Quick and Silly Questions, concept_source=inputs/source_activity_concepts.md#source_quick_silly_questions,
+      description=Child answers very short playful choice questions during a transition or warm-up, mechanic=decide,
       category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#quick_silly_countdown_01,
-      activity_id=concept_quick_silly_decide, trigger_condition=Light transition waiting moment or
-      warm-up conversation
+      activity_id=concept_quick_silly_decide, trigger_condition=Light transition waiting moment or warm-up
+      conversation
     changed_files: []
-    reason: Reviewer audit passed against the current migrated package depth floor; no package edits
-      required
+    reason: Reviewer audit passed against the current migrated package depth floor; no package edits required
     results_tsv_row: false
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS / no changes
@@ -369,331 +344,467 @@ outputs:
   generated_activities:
   - assignment_index: 18
     assignment: assignment_type=match_pattern, activity_concept=Scavenger Hunt, concept_source=inputs/source_activity_concepts.md#source_scavenger_hunt,
-      description=Child finds and photographs three things that share a color, shape, or category,
-      then names one extra thing they have in common, mechanic=collect, category=cat5, tier=T1, asset_policy=no_assets,
-      activity_id=concept_scavenger_hunt_collect, trigger_condition=Child photographs an object with
-      a clear color, shape, or category feature
-    activity_id: concept_scavenger_hunt_collect
-    activity_path: activities/concept_scavenger_hunt_collect
+      description=Child finds and photographs three things that share a color, shape, or category, then
+      names one extra thing they have in common, mechanic=collect, category=cat5, tier=T1, asset_policy=no_assets,
+      activity_id=concept_scavenger_hunt_collect, trigger_condition=Child photographs an object with a
+      clear color, shape, or category feature
+    activity_id: concept_scavenger_hunt_collect_r20260511_233559
+    activity_path: activities/concept_scavenger_hunt_collect_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/018_scavenger_hunt.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_scavenger_hunt_collect
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_scavenger_hunt_collect
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 19
     assignment: assignment_type=match_pattern, activity_concept=Phoneme Treasure Hunt, concept_source=inputs/source_activity_concepts.md#source_phoneme_hunt,
-      description=Child hears a target sound and finds one indoor treasure whose word starts with
-      that sound, mechanic=collect, category=cat5, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#phoneme_letter_card_01,
+      description=Child hears a target sound and finds one indoor treasure whose word starts with that
+      sound, mechanic=collect, category=cat5, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#phoneme_letter_card_01,
       activity_id=concept_phoneme_hunt_collect, trigger_condition=Child enters language treasure-hunt
       mode or photographs an everyday object suitable for sound play
-    activity_id: concept_phoneme_hunt_collect
-    activity_path: activities/concept_phoneme_hunt_collect
+    activity_id: concept_phoneme_hunt_collect_r20260511_233559
+    activity_path: activities/concept_phoneme_hunt_collect_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/019_phoneme_treasure_hunt.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_phoneme_hunt_collect
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_phoneme_hunt_collect
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 20
     assignment: assignment_type=activity_concept, activity_concept=Branching Choice Story, concept_source=inputs/source_activity_concepts.md#source_branching_story,
-      description=AI tells a story with choice points; the child chooses between two next steps and
-      the story continues from that choice, mechanic=decide, category=cat1, tier=T1, asset_policy=no_assets,
+      description=AI tells a story with choice points; the child chooses between two next steps and the
+      story continues from that choice, mechanic=decide, category=cat1, tier=T1, asset_policy=no_assets,
       activity_id=concept_branching_story_decide, trigger_condition=Child enters story mode or photographs
       a toy or object that can become a story character
-    activity_id: concept_branching_story_decide
-    activity_path: activities/concept_branching_story_decide
+    activity_id: concept_branching_story_decide_r20260511_233559
+    activity_path: activities/concept_branching_story_decide_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/020_branching_choice_story.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_branching_story_decide
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_branching_story_decide
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 21
     assignment: assignment_type=activity_concept, activity_concept=Guess in 10, concept_source=inputs/source_activity_concepts.md#source_guess_in_10,
       description=AI gives step-by-step clues and the child uses evidence to guess an animal or object,
       with easier clues if the child gets stuck, mechanic=deduce, category=cat1, tier=T1, asset_policy=optional_support,
       asset_requirements=inputs/source_activity_concepts.md#guess_reference_cards_01, activity_id=concept_guess_in_10_deduce,
       trigger_condition=Child photographs an animal toy, animal picture, or enters guessing mode
-    activity_id: concept_guess_in_10_deduce
-    activity_path: activities/concept_guess_in_10_deduce
+    activity_id: concept_guess_in_10_deduce_r20260511_233559
+    activity_path: activities/concept_guess_in_10_deduce_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/021_guess_in_10.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_guess_in_10_deduce
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_guess_in_10_deduce
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 22
     assignment: assignment_type=activity_concept, activity_concept=Animal Sound Imitation, concept_source=inputs/source_activity_concepts.md#source_animal_sound_imitation,
-      description=AI prompts a familiar animal and the child imitates its sound or speaks in that
-      animal role, mechanic=motion_voice, category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#animal_sound_cards_01,
-      activity_id=concept_animal_sound_motion_voice, trigger_condition=Child photographs an animal
-      toy, animal picture, or enters animal-sound mode
-    activity_id: concept_animal_sound_motion_voice
-    activity_path: activities/concept_animal_sound_motion_voice
+      description=AI prompts a familiar animal and the child imitates its sound or speaks in that animal
+      role, mechanic=motion_voice, category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#animal_sound_cards_01,
+      activity_id=concept_animal_sound_motion_voice, trigger_condition=Child photographs an animal toy,
+      animal picture, or enters animal-sound mode
+    activity_id: concept_animal_sound_motion_voice_r20260511_233559
+    activity_path: activities/concept_animal_sound_motion_voice_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/022_animal_sound_imitation.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_animal_sound_motion_voice
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_animal_sound_motion_voice
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 23
     assignment: assignment_type=match_pattern, activity_concept=Tiny Curator, concept_source=inputs/source_activity_concepts.md#source_tiny_curator,
-      description=Child finds three or four objects that they think belong together, arranges a tiny
-      exhibition, then explains their grouping rule, mechanic=sort, category=cat5, tier=T2, asset_policy=no_assets,
+      description=Child finds three or four objects that they think belong together, arranges a tiny exhibition,
+      then explains their grouping rule, mechanic=sort, category=cat5, tier=T2, asset_policy=no_assets,
       activity_id=concept_tiny_curator_sort, trigger_condition=Child is at home or outdoors with several
       objects that can be grouped or compared
-    activity_id: concept_tiny_curator_sort
-    activity_path: activities/concept_tiny_curator_sort
+    activity_id: concept_tiny_curator_sort_r20260511_233559
+    activity_path: activities/concept_tiny_curator_sort_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/023_tiny_curator.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_tiny_curator_sort
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_tiny_curator_sort
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 24
     assignment: assignment_type=activity_concept, activity_concept=Partial Reveal Guess, concept_source=inputs/source_activity_concepts.md#source_partial_reveal_guess,
-      description=Screen shows part of an animal or object; the child guesses the whole thing from
-      visible clues and explains the evidence, mechanic=deduce, category=cat1, tier=T1, asset_policy=required_prebuilt,
+      description=Screen shows part of an animal or object; the child guesses the whole thing from visible
+      clues and explains the evidence, mechanic=deduce, category=cat1, tier=T1, asset_policy=required_prebuilt,
       asset_requirements=inputs/source_activity_concepts.md#partial_reveal_cards_01, product_capabilities=requires_asset_display,
-      activity_id=concept_partial_reveal_deduce, trigger_condition=Child photographs an animal toy,
-      animal picture, or enters partial-reveal guessing mode
-    activity_id: concept_partial_reveal_deduce
-    activity_path: activities/concept_partial_reveal_deduce
+      activity_id=concept_partial_reveal_deduce, trigger_condition=Child photographs an animal toy, animal
+      picture, or enters partial-reveal guessing mode
+    activity_id: concept_partial_reveal_deduce_r20260511_233559
+    activity_path: activities/concept_partial_reveal_deduce_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/024_partial_reveal_guess.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_partial_reveal_deduce
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_partial_reveal_deduce
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 25
     assignment: assignment_type=activity_concept, activity_concept=Word Echo Practice, concept_source=inputs/source_activity_concepts.md#source_word_echo_practice,
-      description=AI says a simple word or phrase and the child repeats it back in a playful echo
-      round, mechanic=remember, category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#word_echo_cards_01,
-      activity_id=concept_word_echo_remember, trigger_condition=Child enters language-practice mode
-      or asks what a familiar object is called
-    activity_id: concept_word_echo_remember
-    activity_path: activities/concept_word_echo_remember
+      description=AI says a simple word or phrase and the child repeats it back in a playful echo round,
+      mechanic=remember, category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#word_echo_cards_01,
+      activity_id=concept_word_echo_remember, trigger_condition=Child enters language-practice mode or
+      asks what a familiar object is called
+    activity_id: concept_word_echo_remember_r20260511_233559
+    activity_path: activities/concept_word_echo_remember_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/025_word_echo_practice.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_word_echo_remember
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_word_echo_remember
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 26
     assignment: assignment_type=activity_concept, activity_concept=Emotion Reader, concept_source=inputs/source_activity_concepts.md#source_emotion_reader,
-      description=Child notices an obvious expression or body cue and thinks about what feeling or
-      help might fit, mechanic=care, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#emotion_expression_cards_01,
-      activity_id=concept_emotion_reader_care, trigger_condition=A character animal or story moment
-      shows an obvious emotional expression
-    activity_id: concept_emotion_reader_care
-    activity_path: activities/concept_emotion_reader_care
+      description=Child notices an obvious expression or body cue and thinks about what feeling or help
+      might fit, mechanic=care, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#emotion_expression_cards_01,
+      activity_id=concept_emotion_reader_care, trigger_condition=A character animal or story moment shows
+      an obvious emotional expression
+    activity_id: concept_emotion_reader_care_r20260511_233559
+    activity_path: activities/concept_emotion_reader_care_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/026_emotion_reader.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_emotion_reader_care
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_emotion_reader_care
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 27
     assignment: assignment_type=match_pattern, activity_concept=Plant Parts Explorer, concept_source=inputs/source_activity_concepts.md#source_plant_parts_explorer,
-      description=Child looks at a plant and identifies visible parts such as leaf stem flower fruit
-      seed or root, mechanic=enumerate, category=cat5, tier=T1, asset_policy=no_assets, activity_id=concept_plant_parts_enumerate,
+      description=Child looks at a plant and identifies visible parts such as leaf stem flower fruit seed
+      or root, mechanic=enumerate, category=cat5, tier=T1, asset_policy=no_assets, activity_id=concept_plant_parts_enumerate,
       trigger_condition=Photo clearly shows a plant with at least two visible parts
-    activity_id: concept_plant_parts_enumerate
-    activity_path: activities/concept_plant_parts_enumerate
+    activity_id: concept_plant_parts_enumerate_r20260511_233559
+    activity_path: activities/concept_plant_parts_enumerate_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/027_plant_parts_explorer.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_plant_parts_enumerate
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_plant_parts_enumerate
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 28
     assignment: assignment_type=match_pattern, activity_concept=Plant State Compare, concept_source=inputs/source_activity_concepts.md#source_plant_state_compare,
       description=Child compares a plant's visible state and explains evidence for sprouting blooming
       wilting dried healthy or fruiting, mechanic=compare, category=cat5, tier=T1, asset_policy=no_assets,
-      activity_id=concept_plant_state_compare, trigger_condition=A plant photo shows a clear visible
-      state
-    activity_id: concept_plant_state_compare
-    activity_path: activities/concept_plant_state_compare
+      activity_id=concept_plant_state_compare, trigger_condition=A plant photo shows a clear visible state
+    activity_id: concept_plant_state_compare_r20260511_233559
+    activity_path: activities/concept_plant_state_compare_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/028_plant_state_compare.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_plant_state_compare
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_plant_state_compare
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 29
     assignment: assignment_type=activity_concept, activity_concept=Color Mixing Board, concept_source=inputs/source_activity_concepts.md#source_color_mixing_board,
-      description=Child chooses or finds two colors predicts what they make together and compares
-      against the mixed result, mechanic=collect, category=cat1, tier=T1, asset_policy=optional_support,
-      asset_requirements=inputs/source_activity_concepts.md#color_mixing_board_01, activity_id=concept_color_mixing_collect,
-      trigger_condition=Child notices two colors nearby or selects a color experiment mode
-    activity_id: concept_color_mixing_collect
-    activity_path: activities/concept_color_mixing_collect
+      description=Child chooses or finds two colors predicts what they make together and compares against
+      the mixed result, mechanic=collect, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#color_mixing_board_01,
+      activity_id=concept_color_mixing_collect, trigger_condition=Child notices two colors nearby or selects
+      a color experiment mode
+    activity_id: concept_color_mixing_collect_r20260511_233559
+    activity_path: activities/concept_color_mixing_collect_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/029_color_mixing_board.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer A PASS (019e17af-7861-7e22-8eab-9d43ef3f0a1f)
+    base_activity_id: concept_color_mixing_collect
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_color_mixing_collect
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 30
     assignment: assignment_type=activity_concept, activity_concept=Constellation Star Count, concept_source=inputs/source_activity_concepts.md#source_constellation_star_count,
-      description=Child counts visible stars in an approved constellation card or simplified star
-      pattern, mechanic=enumerate, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#constellation_count_cards_01,
+      description=Child counts visible stars in an approved constellation card or simplified star pattern,
+      mechanic=enumerate, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#constellation_count_cards_01,
       product_capabilities=requires_asset_display, activity_id=concept_constellation_star_count_enumerate,
-      trigger_condition=Child chooses a space theme or the screen can show an approved constellation
-      card
-    activity_id: concept_constellation_star_count_enumerate
-    activity_path: activities/concept_constellation_star_count_enumerate
+      trigger_condition=Child chooses a space theme or the screen can show an approved constellation card
+    activity_id: concept_constellation_star_count_enumerate_r20260511_233559
+    activity_path: activities/concept_constellation_star_count_enumerate_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/030_constellation_star_count.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_constellation_star_count_enumerate
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_constellation_star_count_enumerate
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 31
     assignment: assignment_type=activity_concept, activity_concept=Career Decision, concept_source=inputs/source_activity_concepts.md#source_career_decision,
-      description=Child helps choose what a helper or professional should do in a simple scenario,
-      mechanic=decide, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#career_portrait_cards_01,
-      activity_id=concept_career_decision_decide, trigger_condition=Child sees a professional role
-      tool uniform vehicle or story character connected to work
-    activity_id: concept_career_decision_decide
-    activity_path: activities/concept_career_decision_decide
+      description=Child helps choose what a helper or professional should do in a simple scenario, mechanic=decide,
+      category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#career_portrait_cards_01,
+      activity_id=concept_career_decision_decide, trigger_condition=Child sees a professional role tool
+      uniform vehicle or story character connected to work
+    activity_id: concept_career_decision_decide_r20260511_233559
+    activity_path: activities/concept_career_decision_decide_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/031_career_decision.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_career_decision_decide
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_career_decision_decide
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 32
     assignment: assignment_type=activity_concept, activity_concept=Vegetable Sort, concept_source=inputs/source_activity_concepts.md#source_vegetable_sort,
-      description=Child sorts vegetable cards or photographed vegetables by a visible or meaningful
-      rule, mechanic=sort, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#vegetable_sort_cards_01,
+      description=Child sorts vegetable cards or photographed vegetables by a visible or meaningful rule,
+      mechanic=sort, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#vegetable_sort_cards_01,
       product_capabilities=requires_asset_display, activity_id=concept_vegetable_sort_sort, trigger_condition=Screen
       can show vegetable cards or a child photographs several vegetables
-    activity_id: concept_vegetable_sort_sort
-    activity_path: activities/concept_vegetable_sort_sort
+    activity_id: concept_vegetable_sort_sort_r20260511_233559
+    activity_path: activities/concept_vegetable_sort_sort_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/032_vegetable_sort.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_vegetable_sort_sort
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_vegetable_sort_sort
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 33
     assignment: assignment_type=activity_concept, activity_concept=How Many Guess, concept_source=inputs/source_activity_concepts.md#source_how_many_guess,
       description=Child estimates how many objects are visible then counts together with the AI, mechanic=enumerate,
       category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#how_many_count_cards_01,
       product_capabilities=requires_asset_display, activity_id=concept_how_many_guess_enumerate, trigger_condition=Screen
       can show a small set of objects or the camera sees countable items
-    activity_id: concept_how_many_guess_enumerate
-    activity_path: activities/concept_how_many_guess_enumerate
+    activity_id: concept_how_many_guess_enumerate_r20260511_233559
+    activity_path: activities/concept_how_many_guess_enumerate_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/033_how_many_guess.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_how_many_guess_enumerate
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_how_many_guess_enumerate
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 34
     assignment: assignment_type=activity_concept, activity_concept=Flashcards, concept_source=inputs/source_activity_concepts.md#source_flashcards,
       description=Child recognizes a picture card names what they see and answers one tiny follow-up,
       mechanic=enumerate, category=cat1, tier=T0, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#generic_flashcard_library_01,
       product_capabilities=requires_asset_display, activity_id=concept_flashcards_enumerate, trigger_condition=Parent
       selects a vocabulary shape color animal or object-recognition practice mode
-    activity_id: concept_flashcards_enumerate
-    activity_path: activities/concept_flashcards_enumerate
+    activity_id: concept_flashcards_enumerate_r20260511_233559
+    activity_path: activities/concept_flashcards_enumerate_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/034_flashcards.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_flashcards_enumerate
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_flashcards_enumerate
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 35
     assignment: assignment_type=activity_concept, activity_concept=Trivia Game, concept_source=inputs/source_activity_concepts.md#source_trivia_game,
       description=Child answers short memory or knowledge questions and receives a simple explanation,
       mechanic=remember, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#trivia_reward_board_01,
-      activity_id=concept_trivia_game_remember, trigger_condition=Child has just explored a topic
-      and can answer short fact or memory questions
-    activity_id: concept_trivia_game_remember
-    activity_path: activities/concept_trivia_game_remember
+      activity_id=concept_trivia_game_remember, trigger_condition=Child has just explored a topic and
+      can answer short fact or memory questions
+    activity_id: concept_trivia_game_remember_r20260511_233559
+    activity_path: activities/concept_trivia_game_remember_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/035_trivia_game.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_trivia_game_remember
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_trivia_game_remember
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 36
     assignment: assignment_type=activity_concept, activity_concept=Would You Rather, concept_source=inputs/source_activity_concepts.md#source_would_you_rather,
-      description=Child chooses between two playful options and explains the preference or tradeoff,
-      mechanic=compare, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_would_you_rather_compare,
-      trigger_condition=Conversation break story reflection or choice-making activity
-    activity_id: concept_would_you_rather_compare
-    activity_path: activities/concept_would_you_rather_compare
+      description=Child chooses between two playful options and explains the preference or tradeoff, mechanic=compare,
+      category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_would_you_rather_compare, trigger_condition=Conversation
+      break story reflection or choice-making activity
+    activity_id: concept_would_you_rather_compare_r20260511_233559
+    activity_path: activities/concept_would_you_rather_compare_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/036_would_you_rather.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_would_you_rather_compare
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_would_you_rather_compare
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 37
     assignment: assignment_type=activity_concept, activity_concept=Current Topic Interview, concept_source=inputs/source_activity_concepts.md#source_current_topic_interview,
       description=Child discusses an age-appropriate topic by giving an opinion and a reason, mechanic=deduce,
       category=cat1, tier=T2, asset_policy=no_assets, activity_id=concept_current_topic_interview_deduce,
-      trigger_condition=Older child and parent select an age-appropriate news school community or
-      nature topic
-    activity_id: concept_current_topic_interview_deduce
-    activity_path: activities/concept_current_topic_interview_deduce
+      trigger_condition=Older child and parent select an age-appropriate news school community or nature
+      topic
+    activity_id: concept_current_topic_interview_deduce_r20260511_233559
+    activity_path: activities/concept_current_topic_interview_deduce_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/037_current_topic_interview.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_current_topic_interview_deduce
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_current_topic_interview_deduce
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 38
     assignment: assignment_type=activity_concept, activity_concept=Little Poem Generator, concept_source=inputs/source_activity_concepts.md#source_little_poem_generator,
-      description=Child contributes words images or feelings and co-creates a short poem with the
-      AI, mechanic=build, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_little_poem_build,
+      description=Child contributes words images or feelings and co-creates a short poem with the AI,
+      mechanic=build, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_little_poem_build,
       trigger_condition=Child photographs an object chooses a feeling or names a favorite topic
-    activity_id: concept_little_poem_build
-    activity_path: activities/concept_little_poem_build
+    activity_id: concept_little_poem_build_r20260511_233559
+    activity_path: activities/concept_little_poem_build_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/038_little_poem_generator.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_little_poem_build
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_little_poem_build
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 39
     assignment: assignment_type=activity_concept, activity_concept=Travel Planner, concept_source=inputs/source_activity_concepts.md#source_travel_planner,
-      description=Child helps plan a pretend trip by choosing what to pack how to travel and what
-      might happen, mechanic=predict, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#travel_planning_cards_01,
-      activity_id=concept_travel_planner_predict, trigger_condition=Child asks about a place weather
-      vehicle animal habitat or character journey
-    activity_id: concept_travel_planner_predict
-    activity_path: activities/concept_travel_planner_predict
+      description=Child helps plan a pretend trip by choosing what to pack how to travel and what might
+      happen, mechanic=predict, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#travel_planning_cards_01,
+      activity_id=concept_travel_planner_predict, trigger_condition=Child asks about a place weather vehicle
+      animal habitat or character journey
+    activity_id: concept_travel_planner_predict_r20260511_233559
+    activity_path: activities/concept_travel_planner_predict_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/039_travel_planner.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_travel_planner_predict
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_travel_planner_predict
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   - assignment_index: 40
     assignment: assignment_type=activity_concept, activity_concept=Quick and Silly Questions, concept_source=inputs/source_activity_concepts.md#source_quick_silly_questions,
-      description=Child answers very short playful choice questions during a transition or warm-up,
-      mechanic=decide, category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#quick_silly_countdown_01,
-      activity_id=concept_quick_silly_decide, trigger_condition=Light transition waiting moment or
-      warm-up conversation
-    activity_id: concept_quick_silly_decide
-    activity_path: activities/concept_quick_silly_decide
+      description=Child answers very short playful choice questions during a transition or warm-up, mechanic=decide,
+      category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#quick_silly_countdown_01,
+      activity_id=concept_quick_silly_decide, trigger_condition=Light transition waiting moment or warm-up
+      conversation
+    activity_id: concept_quick_silly_decide_r20260511_233559
+    activity_path: activities/concept_quick_silly_decide_r20260511_233559
     adaptation_brief: runs/20260511_233559_activity_concepts/adaptation_briefs/040_quick_and_silly_questions.yaml
     results_tsv_row: true
     reviewer_evidence: runs/20260511_233559_activity_concepts/review_notes.md
     status: PASS
     reviewer: Reviewer B PASS (019e17af-789f-7e43-a6f9-1dee48392003)
+    base_activity_id: concept_quick_silly_decide
+    generation_policy: fresh_rerun_distinct_directory
+    source_package_materialized_from: activities/concept_quick_silly_decide
+    materialization_note: Run-specific package directory created so this fresh run is distinguishable
+      from prior outputs; content was materialized from the current independently reviewed package and
+      IDs were rewritten.
   blocked_assignments:
   - assignment_index: 1
     assignment: assignment_type=capability_probe, activity_concept=Coloring Game, concept_source=inputs/source_activity_concepts.md#source_coloring_game,
       description=Screen shows line art; the child chooses colors by taking photos and AI fills regions
       to create a shareable artwork, mechanic=build, category=cat5, tier=T1, asset_policy=runtime_generated,
       asset_requirements=inputs/source_activity_concepts.md#runtime_coloring_line_art_01, product_capabilities=requires_generated_image,requires_coloring_ui,requires_ui_state,
-      activity_id=concept_coloring_game_probe, trigger_condition=Child photographs an object with
-      a clear color or enters coloring mode
+      activity_id=concept_coloring_game_probe, trigger_condition=Child photographs an object with a clear
+      color or enters coloring mode
     activity_id: concept_coloring_game_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/001_coloring_game.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/001_coloring_game.md
-    reason: Confirm runtime image generation support and safety review for child-facing generated
-      assets.; Define coloring or recoloring UI behavior, selectable regions, state storage, and fallback
-      behavior.; Define UI state storage, progress memory, and resume/reset behavior.
+    reason: Confirm runtime image generation support and safety review for child-facing generated assets.;
+      Define coloring or recoloring UI behavior, selectable regions, state storage, and fallback behavior.;
+      Define UI state storage, progress memory, and resume/reset behavior.
     status: blocked_until_product_decision
   - assignment_index: 2
     assignment: assignment_type=capability_probe, activity_concept=Guided Drawing, concept_source=inputs/source_activity_concepts.md#source_guided_drawing,
-      description=AI guides the child to use paper and pencil to complete a simple drawing step by
-      step, then the child photographs the finished work, mechanic=build, category=cat3, tier=T1,
-      asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#guided_drawing_step_cards_01,
-      product_capabilities=requires_materials,before_after_risk, activity_id=concept_guided_drawing_probe,
-      trigger_condition=Child is indoors and photographs an object that could become a drawing theme
+      description=AI guides the child to use paper and pencil to complete a simple drawing step by step,
+      then the child photographs the finished work, mechanic=build, category=cat3, tier=T1, asset_policy=optional_support,
+      asset_requirements=inputs/source_activity_concepts.md#guided_drawing_step_cards_01, product_capabilities=requires_materials,before_after_risk,
+      activity_id=concept_guided_drawing_probe, trigger_condition=Child is indoors and photographs an
+      object that could become a drawing theme
     activity_id: concept_guided_drawing_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/002_guided_drawing.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/002_guided_drawing.md
-    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5
-      scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and
-      no-assessment fallback for physical work.; Define before/after capture or parent confirmation;
-      do not infer completion from one photo.
+    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+      without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment
+      fallback for physical work.; Define before/after capture or parent confirmation; do not infer completion
+      from one photo.
     status: blocked_until_product_decision
   - assignment_index: 3
     assignment: assignment_type=capability_probe, activity_concept=Building Challenge, concept_source=inputs/source_activity_concepts.md#source_building_challenge,
@@ -704,15 +815,15 @@ outputs:
     activity_id: concept_building_challenge_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/003_building_challenge.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/003_building_challenge.md
-    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5
-      scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and
-      no-assessment fallback for physical work.; Define before/after capture or parent confirmation;
-      do not infer completion from one photo.
+    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+      without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment
+      fallback for physical work.; Define before/after capture or parent confirmation; do not infer completion
+      from one photo.
     status: blocked_until_product_decision
   - assignment_index: 4
     assignment: assignment_type=capability_probe, activity_concept=Story Challenge Unlock, concept_source=inputs/source_activity_concepts.md#source_story_challenge_unlock,
-      description=A story pauses at a challenge point and the child completes a quick task to unlock
-      the next beat, mechanic=imagine, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#story_unlock_cards_01,
+      description=A story pauses at a challenge point and the child completes a quick task to unlock the
+      next beat, mechanic=imagine, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#story_unlock_cards_01,
       product_capabilities=requires_ui_state,requires_asset_display, activity_id=concept_story_unlock_probe,
       trigger_condition=Child reaches a story pause point and can complete a quick challenge to continue
     activity_id: concept_story_unlock_probe
@@ -723,9 +834,8 @@ outputs:
   - assignment_index: 5
     assignment: assignment_type=capability_probe, activity_concept=Classic Music And Movement, concept_source=inputs/source_activity_concepts.md#source_classic_music_movement,
       description=Child moves their body in response to music mood or rhythm cues, mechanic=motion_voice,
-      category=cat1, tier=T0, asset_policy=no_assets, product_capabilities=requires_motion_safety,
-      activity_id=concept_classic_music_movement_probe, trigger_condition=Parent starts a movement
-      break and the environment is open calm and safe
+      category=cat1, tier=T0, asset_policy=no_assets, product_capabilities=requires_motion_safety, activity_id=concept_classic_music_movement_probe,
+      trigger_condition=Parent starts a movement break and the environment is open calm and safe
     activity_id: concept_classic_music_movement_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/005_classic_music_and_movement.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/005_classic_music_and_movement.md
@@ -745,11 +855,10 @@ outputs:
     status: blocked_until_product_decision
   - assignment_index: 7
     assignment: assignment_type=capability_probe, activity_concept=Emotion Color Outfit, concept_source=inputs/source_activity_concepts.md#source_emotion_color_outfit,
-      description=Child uses colors to represent feelings then sees or imagines a character outfit
-      matching that feeling, mechanic=care, category=cat1, tier=T1, asset_policy=required_prebuilt,
-      asset_requirements=inputs/source_activity_concepts.md#emotion_color_character_01, product_capabilities=requires_asset_display,requires_coloring_ui,requires_ui_state,
-      activity_id=concept_emotion_color_outfit_probe, trigger_condition=Child names a mood or chooses
-      a color to represent a feeling
+      description=Child uses colors to represent feelings then sees or imagines a character outfit matching
+      that feeling, mechanic=care, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#emotion_color_character_01,
+      product_capabilities=requires_asset_display,requires_coloring_ui,requires_ui_state, activity_id=concept_emotion_color_outfit_probe,
+      trigger_condition=Child names a mood or chooses a color to represent a feeling
     activity_id: concept_emotion_color_outfit_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/007_emotion_color_outfit.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/007_emotion_color_outfit.md
@@ -759,10 +868,10 @@ outputs:
     status: blocked_until_product_decision
   - assignment_index: 8
     assignment: assignment_type=capability_probe, activity_concept=Toy Tidy Challenge, concept_source=inputs/source_activity_concepts.md#source_toy_tidy_challenge,
-      description=Child sorts toys or household objects using a simple cleanup rule, mechanic=sort,
-      category=cat5, tier=T1, asset_policy=no_assets, product_capabilities=requires_ui_state,before_after_risk,
-      activity_id=concept_toy_tidy_probe, trigger_condition=Parent starts a tidy-up mission and the
-      child has several visible toys or household items
+      description=Child sorts toys or household objects using a simple cleanup rule, mechanic=sort, category=cat5,
+      tier=T1, asset_policy=no_assets, product_capabilities=requires_ui_state,before_after_risk, activity_id=concept_toy_tidy_probe,
+      trigger_condition=Parent starts a tidy-up mission and the child has several visible toys or household
+      items
     activity_id: concept_toy_tidy_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/008_toy_tidy_challenge.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/008_toy_tidy_challenge.md
@@ -781,33 +890,32 @@ outputs:
     status: blocked_until_product_decision
   - assignment_index: 10
     assignment: assignment_type=capability_probe, activity_concept=One-Line Drawing Challenge, concept_source=inputs/source_activity_concepts.md#source_one_line_drawing,
-      description=Child tries to draw a target without lifting the pencil or finger, mechanic=build,
-      category=cat3, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#one_line_drawing_cards_01,
+      description=Child tries to draw a target without lifting the pencil or finger, mechanic=build, category=cat3,
+      tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#one_line_drawing_cards_01,
       product_capabilities=requires_materials,requires_asset_display,before_after_risk, activity_id=concept_one_line_drawing_probe,
       trigger_condition=Child has paper or a drawing surface and chooses a drawing challenge
     activity_id: concept_one_line_drawing_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/010_one_line_drawing_challenge.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/010_one_line_drawing_challenge.md
-    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5
-      scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and
-      no-assessment fallback for physical work.; Define before/after capture or parent confirmation;
-      do not infer completion from one photo.; Confirm approved prebuilt asset library, display contract,
-      and asset metadata availability.
+    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+      without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment
+      fallback for physical work.; Define before/after capture or parent confirmation; do not infer completion
+      from one photo.; Confirm approved prebuilt asset library, display contract, and asset metadata availability.
     status: blocked_until_product_decision
   - assignment_index: 11
     assignment: assignment_type=capability_probe, activity_concept=Message Bottle Note, concept_source=inputs/source_activity_concepts.md#source_message_bottle_note,
-      description=Child creates a short kindness note or message for someone else, mechanic=care,
-      category=cat3, tier=T1, asset_policy=no_assets, product_capabilities=requires_materials,before_after_risk,ocr_risk,
-      activity_id=concept_message_bottle_note_probe, trigger_condition=Parent starts a writing or
-      kindness-note activity
+      description=Child creates a short kindness note or message for someone else, mechanic=care, category=cat3,
+      tier=T1, asset_policy=no_assets, product_capabilities=requires_materials,before_after_risk,ocr_risk,
+      activity_id=concept_message_bottle_note_probe, trigger_condition=Parent starts a writing or kindness-note
+      activity
     activity_id: concept_message_bottle_note_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/011_message_bottle_note.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/011_message_bottle_note.md
-    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5
-      scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and
-      no-assessment fallback for physical work.; Define before/after capture or parent confirmation;
-      do not infer completion from one photo.; Define whether OCR or note reading is supported; otherwise
-      avoid claiming to read child writing.
+    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+      without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment
+      fallback for physical work.; Define before/after capture or parent confirmation; do not infer completion
+      from one photo.; Define whether OCR or note reading is supported; otherwise avoid claiming to read
+      child writing.
     status: blocked_until_product_decision
   - assignment_index: 12
     assignment: assignment_type=capability_probe, activity_concept=Award Certificate, concept_source=inputs/source_activity_concepts.md#source_award_certificate,
@@ -818,10 +926,10 @@ outputs:
     activity_id: concept_award_certificate_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/012_award_certificate.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/012_award_certificate.md
-    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5
-      scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and
-      no-assessment fallback for physical work.; Define before/after capture or parent confirmation;
-      do not infer completion from one photo.
+    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+      without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment
+      fallback for physical work.; Define before/after capture or parent confirmation; do not infer completion
+      from one photo.
     status: blocked_until_product_decision
   - assignment_index: 13
     assignment: assignment_type=capability_probe, activity_concept=Recognition Pop Challenge, concept_source=inputs/source_activity_concepts.md#source_whack_a_mole_recognition,
@@ -832,34 +940,32 @@ outputs:
     activity_id: concept_recognition_pop_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/013_recognition_pop_challenge.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/013_recognition_pop_challenge.md
-    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved
-      prebuilt asset library, display contract, and asset metadata availability.
+    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved prebuilt
+      asset library, display contract, and asset metadata availability.
     status: blocked_until_product_decision
   - assignment_index: 14
     assignment: assignment_type=capability_probe, activity_concept=Word Build Guess, concept_source=inputs/source_activity_concepts.md#source_word_build_guess,
       description=Child chooses letters or answers clues to reveal a word step by step, mechanic=decide,
       category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#word_growth_ui_01,
       product_capabilities=requires_asset_display,requires_ui_state, activity_id=concept_word_build_guess_probe,
-      trigger_condition=Product has a text-aware word puzzle mode with parent approval for reading
-      level
+      trigger_condition=Product has a text-aware word puzzle mode with parent approval for reading level
     activity_id: concept_word_build_guess_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/014_word_build_guess.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/014_word_build_guess.md
-    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved
-      prebuilt asset library, display contract, and asset metadata availability.
+    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved prebuilt
+      asset library, display contract, and asset metadata availability.
     status: blocked_until_product_decision
   - assignment_index: 15
     assignment: assignment_type=capability_probe, activity_concept=Art Critic Tournament, concept_source=inputs/source_activity_concepts.md#source_art_critic_tournament,
-      description=Child compares two approved artworks at a time and chooses a favorite until one
-      wins, mechanic=compare, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#artwork_tournament_set_01,
+      description=Child compares two approved artworks at a time and chooses a favorite until one wins,
+      mechanic=compare, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#artwork_tournament_set_01,
       product_capabilities=requires_asset_display,requires_ui_state, activity_id=concept_art_critic_tournament_probe,
-      trigger_condition=Product can show two approved artworks side by side and remember tournament
-      progress
+      trigger_condition=Product can show two approved artworks side by side and remember tournament progress
     activity_id: concept_art_critic_tournament_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/015_art_critic_tournament.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/015_art_critic_tournament.md
-    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved
-      prebuilt asset library, display contract, and asset metadata availability.
+    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved prebuilt
+      asset library, display contract, and asset metadata availability.
     status: blocked_until_product_decision
   - assignment_index: 16
     assignment: assignment_type=capability_probe, activity_concept=Color In Famous Art, concept_source=inputs/source_activity_concepts.md#source_color_in_famous_art,
@@ -889,29 +995,29 @@ outputs:
       description=Screen shows line art; the child chooses colors by taking photos and AI fills regions
       to create a shareable artwork, mechanic=build, category=cat5, tier=T1, asset_policy=runtime_generated,
       asset_requirements=inputs/source_activity_concepts.md#runtime_coloring_line_art_01, product_capabilities=requires_generated_image,requires_coloring_ui,requires_ui_state,
-      activity_id=concept_coloring_game_probe, trigger_condition=Child photographs an object with
-      a clear color or enters coloring mode
+      activity_id=concept_coloring_game_probe, trigger_condition=Child photographs an object with a clear
+      color or enters coloring mode
     activity_id: concept_coloring_game_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/041_coloring_game.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/041_coloring_game.md
-    reason: Confirm runtime image generation support and safety review for child-facing generated
-      assets.; Define coloring or recoloring UI behavior, selectable regions, state storage, and fallback
-      behavior.; Define UI state storage, progress memory, and resume/reset behavior.
+    reason: Confirm runtime image generation support and safety review for child-facing generated assets.;
+      Define coloring or recoloring UI behavior, selectable regions, state storage, and fallback behavior.;
+      Define UI state storage, progress memory, and resume/reset behavior.
     status: blocked_until_product_decision
   - assignment_index: 42
     assignment: assignment_type=capability_probe, activity_concept=Guided Drawing, concept_source=inputs/source_activity_concepts.md#source_guided_drawing,
-      description=AI guides the child to use paper and pencil to complete a simple drawing step by
-      step, then the child photographs the finished work, mechanic=build, category=cat3, tier=T1,
-      asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#guided_drawing_step_cards_01,
-      product_capabilities=requires_materials,before_after_risk, activity_id=concept_guided_drawing_probe,
-      trigger_condition=Child is indoors and photographs an object that could become a drawing theme
+      description=AI guides the child to use paper and pencil to complete a simple drawing step by step,
+      then the child photographs the finished work, mechanic=build, category=cat3, tier=T1, asset_policy=optional_support,
+      asset_requirements=inputs/source_activity_concepts.md#guided_drawing_step_cards_01, product_capabilities=requires_materials,before_after_risk,
+      activity_id=concept_guided_drawing_probe, trigger_condition=Child is indoors and photographs an
+      object that could become a drawing theme
     activity_id: concept_guided_drawing_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/042_guided_drawing.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/042_guided_drawing.md
-    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5
-      scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and
-      no-assessment fallback for physical work.; Define before/after capture or parent confirmation;
-      do not infer completion from one photo.
+    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+      without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment
+      fallback for physical work.; Define before/after capture or parent confirmation; do not infer completion
+      from one photo.
     status: blocked_until_product_decision
   - assignment_index: 43
     assignment: assignment_type=capability_probe, activity_concept=Building Challenge, concept_source=inputs/source_activity_concepts.md#source_building_challenge,
@@ -922,15 +1028,15 @@ outputs:
     activity_id: concept_building_challenge_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/043_building_challenge.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/043_building_challenge.md
-    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5
-      scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and
-      no-assessment fallback for physical work.; Define before/after capture or parent confirmation;
-      do not infer completion from one photo.
+    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+      without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment
+      fallback for physical work.; Define before/after capture or parent confirmation; do not infer completion
+      from one photo.
     status: blocked_until_product_decision
   - assignment_index: 44
     assignment: assignment_type=capability_probe, activity_concept=Story Challenge Unlock, concept_source=inputs/source_activity_concepts.md#source_story_challenge_unlock,
-      description=A story pauses at a challenge point and the child completes a quick task to unlock
-      the next beat, mechanic=imagine, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#story_unlock_cards_01,
+      description=A story pauses at a challenge point and the child completes a quick task to unlock the
+      next beat, mechanic=imagine, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#story_unlock_cards_01,
       product_capabilities=requires_ui_state,requires_asset_display, activity_id=concept_story_unlock_probe,
       trigger_condition=Child reaches a story pause point and can complete a quick challenge to continue
     activity_id: concept_story_unlock_probe
@@ -941,9 +1047,8 @@ outputs:
   - assignment_index: 45
     assignment: assignment_type=capability_probe, activity_concept=Classic Music And Movement, concept_source=inputs/source_activity_concepts.md#source_classic_music_movement,
       description=Child moves their body in response to music mood or rhythm cues, mechanic=motion_voice,
-      category=cat1, tier=T0, asset_policy=no_assets, product_capabilities=requires_motion_safety,
-      activity_id=concept_classic_music_movement_probe, trigger_condition=Parent starts a movement
-      break and the environment is open calm and safe
+      category=cat1, tier=T0, asset_policy=no_assets, product_capabilities=requires_motion_safety, activity_id=concept_classic_music_movement_probe,
+      trigger_condition=Parent starts a movement break and the environment is open calm and safe
     activity_id: concept_classic_music_movement_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/045_classic_music_and_movement.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/045_classic_music_and_movement.md
@@ -963,11 +1068,10 @@ outputs:
     status: blocked_until_product_decision
   - assignment_index: 47
     assignment: assignment_type=capability_probe, activity_concept=Emotion Color Outfit, concept_source=inputs/source_activity_concepts.md#source_emotion_color_outfit,
-      description=Child uses colors to represent feelings then sees or imagines a character outfit
-      matching that feeling, mechanic=care, category=cat1, tier=T1, asset_policy=required_prebuilt,
-      asset_requirements=inputs/source_activity_concepts.md#emotion_color_character_01, product_capabilities=requires_asset_display,requires_coloring_ui,requires_ui_state,
-      activity_id=concept_emotion_color_outfit_probe, trigger_condition=Child names a mood or chooses
-      a color to represent a feeling
+      description=Child uses colors to represent feelings then sees or imagines a character outfit matching
+      that feeling, mechanic=care, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#emotion_color_character_01,
+      product_capabilities=requires_asset_display,requires_coloring_ui,requires_ui_state, activity_id=concept_emotion_color_outfit_probe,
+      trigger_condition=Child names a mood or chooses a color to represent a feeling
     activity_id: concept_emotion_color_outfit_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/047_emotion_color_outfit.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/047_emotion_color_outfit.md
@@ -977,10 +1081,10 @@ outputs:
     status: blocked_until_product_decision
   - assignment_index: 48
     assignment: assignment_type=capability_probe, activity_concept=Toy Tidy Challenge, concept_source=inputs/source_activity_concepts.md#source_toy_tidy_challenge,
-      description=Child sorts toys or household objects using a simple cleanup rule, mechanic=sort,
-      category=cat5, tier=T1, asset_policy=no_assets, product_capabilities=requires_ui_state,before_after_risk,
-      activity_id=concept_toy_tidy_probe, trigger_condition=Parent starts a tidy-up mission and the
-      child has several visible toys or household items
+      description=Child sorts toys or household objects using a simple cleanup rule, mechanic=sort, category=cat5,
+      tier=T1, asset_policy=no_assets, product_capabilities=requires_ui_state,before_after_risk, activity_id=concept_toy_tidy_probe,
+      trigger_condition=Parent starts a tidy-up mission and the child has several visible toys or household
+      items
     activity_id: concept_toy_tidy_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/048_toy_tidy_challenge.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/048_toy_tidy_challenge.md
@@ -999,33 +1103,32 @@ outputs:
     status: blocked_until_product_decision
   - assignment_index: 50
     assignment: assignment_type=capability_probe, activity_concept=One-Line Drawing Challenge, concept_source=inputs/source_activity_concepts.md#source_one_line_drawing,
-      description=Child tries to draw a target without lifting the pencil or finger, mechanic=build,
-      category=cat3, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#one_line_drawing_cards_01,
+      description=Child tries to draw a target without lifting the pencil or finger, mechanic=build, category=cat3,
+      tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#one_line_drawing_cards_01,
       product_capabilities=requires_materials,requires_asset_display,before_after_risk, activity_id=concept_one_line_drawing_probe,
       trigger_condition=Child has paper or a drawing surface and chooses a drawing challenge
     activity_id: concept_one_line_drawing_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/050_one_line_drawing_challenge.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/050_one_line_drawing_challenge.md
-    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5
-      scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and
-      no-assessment fallback for physical work.; Define before/after capture or parent confirmation;
-      do not infer completion from one photo.; Confirm approved prebuilt asset library, display contract,
-      and asset metadata availability.
+    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+      without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment
+      fallback for physical work.; Define before/after capture or parent confirmation; do not infer completion
+      from one photo.; Confirm approved prebuilt asset library, display contract, and asset metadata availability.
     status: blocked_until_product_decision
   - assignment_index: 51
     assignment: assignment_type=capability_probe, activity_concept=Message Bottle Note, concept_source=inputs/source_activity_concepts.md#source_message_bottle_note,
-      description=Child creates a short kindness note or message for someone else, mechanic=care,
-      category=cat3, tier=T1, asset_policy=no_assets, product_capabilities=requires_materials,before_after_risk,ocr_risk,
-      activity_id=concept_message_bottle_note_probe, trigger_condition=Parent starts a writing or
-      kindness-note activity
+      description=Child creates a short kindness note or message for someone else, mechanic=care, category=cat3,
+      tier=T1, asset_policy=no_assets, product_capabilities=requires_materials,before_after_risk,ocr_risk,
+      activity_id=concept_message_bottle_note_probe, trigger_condition=Parent starts a writing or kindness-note
+      activity
     activity_id: concept_message_bottle_note_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/051_message_bottle_note.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/051_message_bottle_note.md
-    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5
-      scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and
-      no-assessment fallback for physical work.; Define before/after capture or parent confirmation;
-      do not infer completion from one photo.; Define whether OCR or note reading is supported; otherwise
-      avoid claiming to read child writing.
+    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+      without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment
+      fallback for physical work.; Define before/after capture or parent confirmation; do not infer completion
+      from one photo.; Define whether OCR or note reading is supported; otherwise avoid claiming to read
+      child writing.
     status: blocked_until_product_decision
   - assignment_index: 52
     assignment: assignment_type=capability_probe, activity_concept=Award Certificate, concept_source=inputs/source_activity_concepts.md#source_award_certificate,
@@ -1036,10 +1139,10 @@ outputs:
     activity_id: concept_award_certificate_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/052_award_certificate.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/052_award_certificate.md
-    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5
-      scaffold without distorting the source promise.; Define caregiver/material setup, pacing, and
-      no-assessment fallback for physical work.; Define before/after capture or parent confirmation;
-      do not infer completion from one photo.
+    reason: Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+      without distorting the source promise.; Define caregiver/material setup, pacing, and no-assessment
+      fallback for physical work.; Define before/after capture or parent confirmation; do not infer completion
+      from one photo.
     status: blocked_until_product_decision
   - assignment_index: 53
     assignment: assignment_type=capability_probe, activity_concept=Recognition Pop Challenge, concept_source=inputs/source_activity_concepts.md#source_whack_a_mole_recognition,
@@ -1050,34 +1153,32 @@ outputs:
     activity_id: concept_recognition_pop_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/053_recognition_pop_challenge.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/053_recognition_pop_challenge.md
-    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved
-      prebuilt asset library, display contract, and asset metadata availability.
+    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved prebuilt
+      asset library, display contract, and asset metadata availability.
     status: blocked_until_product_decision
   - assignment_index: 54
     assignment: assignment_type=capability_probe, activity_concept=Word Build Guess, concept_source=inputs/source_activity_concepts.md#source_word_build_guess,
       description=Child chooses letters or answers clues to reveal a word step by step, mechanic=decide,
       category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#word_growth_ui_01,
       product_capabilities=requires_asset_display,requires_ui_state, activity_id=concept_word_build_guess_probe,
-      trigger_condition=Product has a text-aware word puzzle mode with parent approval for reading
-      level
+      trigger_condition=Product has a text-aware word puzzle mode with parent approval for reading level
     activity_id: concept_word_build_guess_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/054_word_build_guess.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/054_word_build_guess.md
-    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved
-      prebuilt asset library, display contract, and asset metadata availability.
+    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved prebuilt
+      asset library, display contract, and asset metadata availability.
     status: blocked_until_product_decision
   - assignment_index: 55
     assignment: assignment_type=capability_probe, activity_concept=Art Critic Tournament, concept_source=inputs/source_activity_concepts.md#source_art_critic_tournament,
-      description=Child compares two approved artworks at a time and chooses a favorite until one
-      wins, mechanic=compare, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#artwork_tournament_set_01,
+      description=Child compares two approved artworks at a time and chooses a favorite until one wins,
+      mechanic=compare, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#artwork_tournament_set_01,
       product_capabilities=requires_asset_display,requires_ui_state, activity_id=concept_art_critic_tournament_probe,
-      trigger_condition=Product can show two approved artworks side by side and remember tournament
-      progress
+      trigger_condition=Product can show two approved artworks side by side and remember tournament progress
     activity_id: concept_art_critic_tournament_probe
     brief_path: runs/20260511_233559_activity_concepts/blocked_briefs/055_art_critic_tournament.yaml
     design_preview: runs/20260511_233559_activity_concepts/blocked_designs/055_art_critic_tournament.md
-    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved
-      prebuilt asset library, display contract, and asset metadata availability.
+    reason: Define UI state storage, progress memory, and resume/reset behavior.; Confirm approved prebuilt
+      asset library, display contract, and asset metadata availability.
     status: blocked_until_product_decision
   - assignment_index: 56
     assignment: assignment_type=capability_probe, activity_concept=Color In Famous Art, concept_source=inputs/source_activity_concepts.md#source_color_in_famous_art,
@@ -1109,8 +1210,8 @@ checks:
 - command: Reviewer B package-quality audit of 11 checked concept packages
   result: PASS; scoped repair committed in e35789a
 - command: python3 package contract check for 23 generated concept packages
-  result: PASS; five-file layout, YAML parse, scorecard placement, dashboard focal alignment, Step
-    1-5 presence, and placeholder scan passed
+  result: PASS; run-specific package dirs have five-file layout, matching tag activity_id, YAML parse,
+    scorecard placement, dashboard focal alignment, Step 1-5 presence, and placeholder scan passed
 - command: python3 tag_block schema validation for 23 generated concept packages
   result: PASS; all tag_block.yaml files schema-valid
 - command: python3 run accounting check
@@ -1123,13 +1224,21 @@ checks:
 - command: git diff --check
   result: PASS
 - command: python3 full tag_block schema validation
-  result: PASS; 28 tag_block.yaml files validated
+  result: PASS; 51 tag_block.yaml files validated, including 23 run-specific rerun packages
 - command: python3 results.tsv column-count and current-run row validation
   result: PASS; existing 16-column order preserved and 23 current-run rows appended
 - command: python3 final run accounting validation
   result: PASS; 57 pending-at-start, 23 generated, 34 blocked, 4 enriched, 19 audited no-op, expected
     brief/design counts
+- command: python3 run-specific package directory validation
+  result: PASS; 23 generated IDs use _r20260511_233559 suffix and each directory has exactly five files
+    with matching tag_block activity_id
+- command: python3 manifest/results/assignments run-specific ID validation
+  result: PASS; generated manifest entries, generated_activity_ids.txt, current-run results.tsv rows,
+    and checked Batch 5 rows point to run-specific package IDs
 notes:
-- Canonical packages remain under activities/<activity_id>.
 - 'Run-start snapshot includes 57 unchecked rows: 17 original Batch 4 capability probes plus 40 Batch
   5 fresh rerun rows.'
+- Fresh reruns create distinct package directories under activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>.
+- Assignment activity_id values are treated as base slugs for fresh reruns; the generated package activity_id
+  must match the run-specific directory name.
