@@ -21,9 +21,9 @@ The AI says a simple word or phrase and the child repeats it back in a playful e
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Children know that a word can be repeated as a single word, a doubled echo, or a tiny phrase.
+- **K (Know):** Children know that a word can be repeated as a single word or a doubled echo.
 - **U (Understand):** Children understand that keeping the word pattern connected helps the echo ladder grow.
-- **D (Do):** Children listen, repeat, and recall a short two-word phrase without pressure.
+- **D (Do):** Children listen, repeat, and recall a short echo without pressure.
 
 **3. Design Highlight**
 
@@ -31,7 +31,7 @@ The activity keeps recall low-pressure: the child hears, repeats, and plays with
 
 **4. Typical Scenario**
 
-A child asks what a cup is called. The AI turns cup, sip, and little cup into three playful echo rounds.
+A child asks what a cup is called. The AI turns cup and cup-cup into two playful echo rounds.
 
 ### C. Interaction Flow
 
@@ -53,11 +53,11 @@ A child asks what a cup is called. The AI turns cup, sip, and little cup into th
 2. [friendly] "It is an echo mission. I speak first, and you copy the sound."
 3. [wait 2s] [gentle] "Just listen first. Your echo can be one small word."
 
-**Screen:** The activity badge "Echo Word Keeper" appears with three empty progress tokens. If `word_echo_cards_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
+**Screen:** The activity badge "Echo Word Keeper" appears with two empty progress tokens. If `word_echo_cards_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
 
 #### Step 2: Rule Introduction
 
-**AI says:** [clear guide tone] "Echo rule: hear it, say it, save it. Three echoes make a word ladder."
+**AI says:** [clear guide tone] "Echo rule: hear it, say it, save it. Two echoes make a word ladder."
 
 **Child responses:**
 
@@ -111,27 +111,9 @@ A child asks what a cup is called. The AI turns cup, sip, and little cup into th
 
 **Screen:** Echo 2 adds two bouncing sound dots. Token 2 fills with a short label from the child's response.
 
-**Round 3 -- Tiny Phrase Echo:**
-
-**AI says:** [focused playful tone] "Last echo: little cup. Say the two words together."
-
-**Child responses:**
-
-1. (Ideal) "little cup."
-2. (Unexpected) "I only say cup."
-3. (No response) Child looks at the screen or waits.
-
-**AI follow-up:**
-
-1. [specific praise] "You remembered both words. Token 3 is saved."
-2. [warm redirect] "Cup is the anchor word. Add the tiny word before it: little cup."
-3. [wait 2s] [gentle hint] "Try this short answer with me: little cup."
-
-**Screen:** Echo 3 links the picture cue to two sound dots. Token 3 fills with a short label from the child's response.
-
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Look at that. Your three tokens made something new: Your three echoes made a word ladder: cup, cup-cup, little cup."
+**AI says:** [delighted reveal] "Look at that. Your two tokens made something new: Your echoes made a word ladder, cup to cup-cup."
 
 **Child responses:**
 
@@ -143,13 +125,13 @@ A child asks what a cup is called. The AI turns cup, sip, and little cup into th
 
 1. [celebrating] "Yes. Your answers caused this reveal."
 2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
-3. [wait 2s] [soft recap] "I will read the three tokens back so you can see your path."
+3. [wait 2s] [soft recap] "I will read the two tokens back so you can see your path."
 
-**Screen:** The three tokens expand into a final board labeled "Echo Word Keeper". Each token stays visible so the payoff is earned by the child's earlier actions.
+**Screen:** The two tokens expand into a final board labeled "Echo Word Keeper". Each token stays visible so the payoff is earned by the child's earlier actions.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** [warm celebration] "You earned the Echo Word Keeper badge. You used Form by keeping the word shape, and Connection by linking cup to cup-cup to little cup."
+**AI says:** [warm celebration] "You earned the Echo Word Keeper badge. You used Form by keeping the word shape, and Connection by linking cup to cup-cup."
 
 **Child responses:**
 
@@ -163,4 +145,4 @@ A child asks what a cup is called. The AI turns cup, sip, and little cup into th
 2. [flexible] "That can be the next mission. This badge saves what you did today."
 3. [wait 2s] [gentle goodbye] "Your Echo Word Keeper badge is saved."
 
-**Screen:** The badge, the three round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."
+**Screen:** The badge, the two round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."

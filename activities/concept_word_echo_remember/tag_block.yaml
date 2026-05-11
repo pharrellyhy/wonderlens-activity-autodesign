@@ -34,15 +34,15 @@ subject_tags:
 - language
 kud:
   know:
-  - A word can be repeated as a single word, doubled echo, or tiny phrase
+  - A word can be repeated as a single word or doubled echo
   - echo_word_pattern is the focus of the activity
   understand:
   - Form helps children keep the word shape steady
-  - Connection helps children link cup, cup-cup, and little cup into one echo ladder
+  - Connection helps children link cup and cup-cup into one echo ladder
   do:
   - listen to a word or phrase
   - repeat the echo from memory
-  - build a short word ladder
+  - build a two-step word ladder
 progression:
   topic_axis: form
   difficulty_level: 1

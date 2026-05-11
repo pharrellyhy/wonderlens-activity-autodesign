@@ -22,14 +22,14 @@ The child collects two-color pairs, predicts what each pair makes, and compares 
 - **Readiness:** generate_with_assumptions.
 - **Trigger condition:** Child notices two colors nearby or selects a color experiment mode.
 - **Mapping use:** no required mapping for this package; runtime parameters avoid entity-specific facts unless runtime supplies them.
-- **Asset dependency:** Asset dependency: `color_mixing_board_01` is optional ui_overlay support; fallback behavior is documented.
-- **Product capability flags:** requires_asset_display.
+- **Asset dependency:** `color_mixing_board_01` is optional ui_overlay support; fallback behavior is documented.
+- **Product capability flags:** `optional_asset_display`; no display capability is required because the voice-only fallback remains valid.
 - **Scaffold fit:** acceptable. Discovery / `field_experiment` supplies the emotional payoff while `collect` remains the child-action contract.
 - **Assumptions:** Use a collect-and-predict loop around three color pairs. If the board asset is unavailable, describe each pair and result verbally.
 
 ## Selection Trigger
 
-Start when Child notices colors nearby or selects a color experiment mode. If the required visual support is unavailable, use the fallback behavior from the Asset Brief or keep the interaction voice-only.
+Start when Child notices colors nearby or selects a color experiment mode. If optional visual support is unavailable, use the fallback behavior from the Asset Brief and keep the interaction voice-only.
 
 ## Experience Pillar & Game Style
 

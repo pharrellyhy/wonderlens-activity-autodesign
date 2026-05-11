@@ -22,14 +22,14 @@ The child notices an obvious expression or body cue, names a possible need with 
 - **Readiness:** generate_with_assumptions.
 - **Trigger condition:** A character, animal, or story moment shows an obvious emotional expression.
 - **Mapping use:** no required mapping for this package; runtime parameters avoid entity-specific facts unless runtime supplies them.
-- **Asset dependency:** Asset dependency: `emotion_expression_cards_01` is optional card_set support; fallback behavior is documented.
-- **Product capability flags:** requires_asset_display.
+- **Asset dependency:** `emotion_expression_cards_01` is optional card_set support; fallback behavior is documented.
+- **Product capability flags:** `optional_asset_display`; no display capability is required because the voice-only story fallback remains valid.
 - **Scaffold fit:** acceptable. Nurture / `care_station` supplies the emotional payoff while `care` remains the child-action contract.
 - **Assumptions:** Avoid claiming to diagnose a real person's emotion. Use "might feel" language and ask the child for evidence.
 
 ## Selection Trigger
 
-Start when A character, animal, or story moment shows an obvious emotional expression. If the required visual support is unavailable, use the fallback behavior from the Asset Brief or keep the interaction voice-only.
+Start when a character, animal, or story moment shows an obvious emotional expression. If optional visual support is unavailable, use the fallback behavior from the Asset Brief and keep the interaction voice-only.
 
 ## Experience Pillar & Game Style
 
