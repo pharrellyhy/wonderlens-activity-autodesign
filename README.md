@@ -4,7 +4,7 @@ Prompt, template, and activity-package repository for generating and maintaining
 
 The current runtime format is the migrated `activities/<activity_id>/` package. Legacy `designs/` files remain as reference and compatibility material, but new activity generation should target `activities/`.
 
-Each autonomous `/goal` run also creates a provenance directory under `runs/<run_id>/`. The run directory records the assignment snapshot, adaptation briefs, blocked briefs, generated activity IDs, review notes, a static `review.html` dashboard, and a run manifest, so you can tell which run produced which packages without moving runtime files out of `activities/`.
+Each autonomous `/goal` run also creates a provenance directory under `runs/<run_id>/`. The run directory records the assignment snapshot, adaptation briefs, blocked briefs, constrained blocked design previews, generated activity IDs, review notes, a static `review.html` dashboard, and a run manifest, so you can tell which run produced which packages without moving runtime files out of `activities/`.
 
 ## How It Works
 
@@ -28,6 +28,7 @@ runs/<run_id>/
 ├── generated_activity_ids.txt
 ├── adaptation_briefs/
 ├── blocked_briefs/
+├── blocked_designs/
 ├── review_notes.md
 └── review.html
 ```
@@ -73,12 +74,12 @@ results.tsv                        Assignment and rubric log
 3. Start the loop with the Codex `/goal` command:
 
 ```text
-/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich existing checked activity packages against the current migrated package depth floor, using separate reviewer agents for package-quality review and repair evidence. Then process the run-start unchecked assignment snapshot exactly once in order. For each row, generate a five-file package that passes author self-check, independent reviewer-agent review, and package validation, or record a blocked brief and continue. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate a self-contained light-theme review dashboard at runs/<run_id>/review.html with direct activity detail cards, sortable Cat1/Cat3/Cat5/status/mechanic controls, and classified blocked-reason badges. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, review dashboard path, checks, and residual risks.
+/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich existing checked activity packages against the current migrated package depth floor, using separate reviewer agents for package-quality review and repair evidence. Then process the run-start unchecked assignment snapshot exactly once in order. For each row, generate a five-file package that passes author self-check, independent reviewer-agent review, and package validation, or record a blocked brief plus a constrained blocked design preview and continue. In blocked previews, still design detailed runtime steps, but annotate each unsupported dependency inline with BLOCKED ELEMENT comments and keep the activity invalid until the blocker is resolved. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate a self-contained light-theme review dashboard at runs/<run_id>/review.html with direct activity detail cards, sortable Cat1/Cat3/Cat5/status/mechanic controls, constrained blocked-preview links, and classified blocked-reason badges. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, review dashboard path, checks, and residual risks.
 ```
 
 `GOAL.md` defines the run objective, success criteria, and completion contract. `run.md` defines the step-by-step execution loop.
 
-For generation-ready assignments, the loop creates one complete `activities/<activity_id>/` package, self-evaluates against the 10-dimension rubric, gets independent reviewer-agent PASS evidence, updates `results.tsv`, marks the assignment complete, and records the package in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/`, are not logged or marked complete, and no longer halt the rest of the batch.
+For generation-ready assignments, the loop creates one complete `activities/<activity_id>/` package, self-evaluates against the 10-dimension rubric, gets independent reviewer-agent PASS evidence, updates `results.tsv`, marks the assignment complete, and records the package in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/` and a constrained design preview under `runs/<run_id>/blocked_designs/`. These previews still show detailed proposed runtime steps with inline `BLOCKED ELEMENT` comments, but they are not logged, packaged, or marked complete until the constraints are resolved. They no longer halt the rest of the batch.
 
 ## Run Provenance
 
@@ -88,10 +89,11 @@ Use `runs/<run_id>/` to distinguish one autonomous generation session from anoth
 - `assignment_snapshot.md` preserves the unchecked assignment rows at run start.
 - `adaptation_briefs/` stores Phase 0 briefs for generated concept-led or underspecified assignments.
 - `blocked_briefs/` stores briefs for assignments that reach `readiness=blocked_until_product_decision`.
+- `blocked_designs/` stores constrained design previews for blocked assignments; these are human-review artifacts, not valid runtime packages.
 - `generated_activity_ids.txt` lists packages created by that run in completion order.
 - `review_notes.md` stores independent reviewer-agent coverage, repair notes, and residual risks for generated and enriched packages.
-- `review.html` is the static human review dashboard generated by `scripts/generate_run_review.py`; it includes activity detail cards with concrete runtime beats, sortable/filterable package and blocked-assignment views, reviewer coverage, checks, classified blocked reasons, and a reason guide explaining what each blocker means.
-- `run_manifest.yaml` is the run-level index linking assignment rows, generated `activities/<activity_id>/` packages, blocked briefs, results logging, checks, and timestamps.
+- `review.html` is the static human review dashboard generated by `scripts/generate_run_review.py`; it includes activity detail cards with concrete runtime beats, sortable/filterable package and blocked-assignment views, constrained preview links, reviewer coverage, checks, classified blocked reasons, and a reason guide explaining what each blocker means.
+- `run_manifest.yaml` is the run-level index linking assignment rows, generated `activities/<activity_id>/` packages, blocked briefs, constrained design previews, results logging, checks, and timestamps.
 
 Runtime packages are never nested inside `runs/`; the run layer is provenance only. See `runs/README.md` for the manifest template and update rules.
 
@@ -109,12 +111,12 @@ MAPPING_ROOT=data/mappings_dev20_0318
 
 | Source | Typical fields | Required when | How the agent uses it |
 |---|---|---|---|
-| `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `concept_source`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `asset_policy`, `asset_requirements`, `product_capabilities` | Always. This is the execution queue the loop reads. | Normalizes the request, loads referenced concept/asset rows when present, runs Phase 0 when needed, then either generates a package or records a blocked brief and continues. |
+| `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `concept_source`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `asset_policy`, `asset_requirements`, `product_capabilities` | Always. This is the execution queue the loop reads. | Normalizes the request, loads referenced concept/asset rows when present, runs Phase 0 when needed, then either generates a package or records a blocked brief plus constrained design preview and continues. |
 | Activity Concept Brief | concept row plus optional companion asset requirement rows | The starting point is a source/curriculum/design concept rather than a full entity package request. This is the preferred source for concept-led work. | Produces an English `adaptation_brief` first. The brief decides input mode, readiness, trigger fit, asset dependency, mapping use, and scaffold fit. |
 | Asset Requirements table | `asset_id`, `concept_ref`, `asset_type`, `requiredness`, `generation_timing`, `use_step`, `purpose`, `prompt_en`, `source`, `display_behavior`, `fallback_behavior`, `safety_constraints` | The idea mentions or requires AI-generated images, screen-displayed reference images, line art, cards, icons, overlays, or visual supports. | Avoids asset inference from prose. Phase 0 copies the rows into `asset_dependency`; `spec.md` records an `## Asset Brief`; `prod.md` references stable asset IDs. |
 | Entity mapping YAML | `mapping=<entity_id>` resolved through `MAPPING_ROOT/_index.yaml` | Required only for mapping-informed packages, entity-specific factual claims, warm/cold bridge grounding, mapping-grounded Key Concepts, or matcher-ready entity routing. | Grounds visible attributes, tier language, IB concepts, related concepts, bridge prerequisites, trigger fit, and matchability. |
 | Runtime matcher placeholders | `{matched_color}`, `{matched_shape}`, `{entity_class}`, or similar placeholders | Activity concept is property/category driven but no specific photographed entity is supplied. | Supports `parameterized` briefs and packages that can be matched later across many entities without inventing entity-specific facts. |
-| Product capability notes | `product_capabilities=...`, concept comments, or explicit UI/material/runtime-generation assumptions | The idea depends on UI state, runtime image generation, materials, motion safety, OCR, pose detection, or before/after state. | Sets `product_capability_flags`; unsupported dependencies should produce `readiness=blocked_until_product_decision` instead of a forced package. |
+| Product capability notes | `product_capabilities=...`, concept comments, or explicit UI/material/runtime-generation assumptions | The idea depends on UI state, runtime image generation, materials, motion safety, OCR, pose detection, or before/after state. | Sets `product_capability_flags`; unsupported dependencies should produce `readiness=blocked_until_product_decision`, a blocked brief, and a constrained design preview instead of a forced package. |
 
 ### Preferred Concept Source
 
@@ -164,7 +166,7 @@ Asset requirements table:
 | `optional_support` | Visuals improve the activity but are not required. | Proceed only with explicit fallback behavior. |
 | `required_prebuilt` | Activity depends on assets that can be generated or sourced before runtime. | Proceed with assumptions only if every asset row is complete; otherwise block. |
 | `runtime_generated` | Activity depends on image generation during the session. | Block unless product support is explicitly declared. |
-| `blocked` | Source or design owner knows the idea needs unresolved asset/product work. | Stop at the adaptation brief. |
+| `blocked` | Source or design owner knows the idea needs unresolved asset/product work. | Write a blocked brief and constrained design preview; keep it out of valid packages until resolved. |
 
 The activity package loop does **not** generate image files. It writes directly usable English prompts into `spec.md` `## Asset Brief` so a separate asset pipeline can create or approve visuals later.
 
@@ -234,7 +236,7 @@ Optional:
 - `asset_requirements=file#asset_id` when an assignment row points to a companion asset table/YAML block.
 - `product_capabilities=` when an idea depends on asset display, runtime image generation, UI state, material workflows, motion safety, OCR, pose detection, or before/after state.
 
-Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas stay at the brief instead of forcing package generation, and the loop continues to later unchecked rows. Legacy concept aliases should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
+Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas also get a constrained design preview with inline blocked-element comments instead of forcing package generation, and the loop continues to later unchecked rows. Legacy concept aliases should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
 
 To rerun an assignment, change its checkbox back to `- [ ]`. To add work, append a new unchecked line in the appropriate batch section or create a new batch heading.
 
@@ -257,6 +259,7 @@ To rerun an assignment, change its checkbox back to `- [ ]`. To add work, append
 │       ├── generated_activity_ids.txt
 │       ├── adaptation_briefs/
 │       ├── blocked_briefs/
+│       ├── blocked_designs/
 │       ├── review_notes.md
 │       └── review.html
 ├── scripts/

@@ -32,6 +32,7 @@ runs/<run_id>/
 ├── generated_activity_ids.txt
 ├── adaptation_briefs/
 ├── blocked_briefs/
+├── blocked_designs/
 ├── review_notes.md
 └── review.html                  # generated at end of run
 ```
@@ -140,7 +141,7 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
 3. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
 4. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
 5. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
-6. If `readiness=blocked_until_product_decision`, block only this assignment. Output the adaptation brief and missing capability/template/asset decision. Update `run_manifest.yaml` with a `blocked_assignments` entry and increment `summary.blocked_count`; do not create package files, append `results.tsv`, mark the assignment complete, or commit. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
+6. If `readiness=blocked_until_product_decision`, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> — <what product/design decision is needed>`. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
 7. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
 8. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
 9. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
@@ -291,25 +292,25 @@ For every generated package:
 
 For enrichment-only package maintenance, keep the entry under `enriched_activities` and do not append `results.tsv`.
 
-For blocked assignments, keep the entry under `blocked_assignments`, do not append `results.tsv`, leave the assignment row unchecked, and continue to the next unchecked row.
+For blocked assignments, keep the entry under `blocked_assignments`, include `brief_path` and `design_preview`, do not append `results.tsv`, leave the assignment row unchecked, and continue to the next unchecked row. If the constraints are later resolved, rerun or promote the design preview into a normal five-file package, remove or resolve the blocked-element comments, then send it through the standard self-evaluation, reviewer-agent, validation, `results.tsv`, and checkoff gates.
 
 ### Step 6.7: Generate human review dashboard
 
-This is a final-run step, not a per-assignment step. After every row from `assignment_snapshot.md` has generated, blocked, or failed, and after all package checks, reviewer evidence, manifest entries, and blocked-brief entries are current, generate a single static review dashboard at:
+This is a final-run step, not a per-assignment step. After every row from `assignment_snapshot.md` has generated, blocked, or failed, and after all package checks, reviewer evidence, manifest entries, blocked-brief entries, and blocked design previews are current, generate a single static review dashboard at:
 
 ```text
 runs/<run_id>/review.html
 ```
 
-This file is for human review only. It is a derived artifact, not a source of truth; the authoritative data remains in `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, adaptation briefs, and blocked briefs. If a value cannot be derived from those sources, show `Unknown` or omit the field instead of inventing content.
+This file is for human review only. It is a derived artifact, not a source of truth; the authoritative data remains in `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, adaptation briefs, blocked briefs, and blocked design previews. If a value cannot be derived from those sources, show `Unknown` or omit the field instead of inventing content.
 
 Dashboard content requirements:
 
 - Run header: `run_id`, status, timestamps, pending/generated/enriched/blocked/failed counts, and links to `run_manifest.yaml`, `review_notes.md`, `assignment_snapshot.md`, `generated_activity_ids.txt`, and `results.tsv`.
 - Activity detail cards: create one card for each generated or enriched package. Each card must show `activity_id`, package type, assignment index when present, Cat1/Cat3/Cat5 type, status, mechanic, tier, pillar, game style, focal attribute, asset dependency, reviewer-agent coverage, changed files, package-file links, and enough direct details from `spec.md`, `prod.md`, and `tag_block.yaml` for a reviewer to inspect the activity without opening or downloading the package files.
 - Runtime beats: activity cards must expose concrete Step/Round details, including the beat title, AI prompt, expected child response branches, AI follow-up behavior, and screen state when those fields exist in `prod.md`.
-- Blocked assignment cards or table: assignment index, activity concept, Cat1/Cat3/Cat5 type, status, mechanic, asset policy, capability flags, missing product/design decisions, link to the blocked brief, and a short human-skim reason classification derived from the blocked brief. Make clear that blocked assignments are Phase 0 briefs only: they do not have runtime beats or package files yet because the unresolved product/design decision would change the interaction model.
-- Blocking reason guide: include a compact legend for every blocked-reason badge used in the run, with "what it means" and "why it blocks design" descriptions.
+- Blocked assignment cards or table: assignment index, activity concept, Cat1/Cat3/Cat5 type, status, mechanic, asset policy, capability flags, missing product/design decisions, link to the blocked brief, link to the constrained design preview, and a short human-skim reason classification derived from the blocked brief. Make clear that blocked assignments are designed for review but remain invalid until constraints are resolved; show their blocked-element comments where available.
+- Blocking reason guide: include a compact legend for every blocked-reason badge used in the run, with "what it means" and "why it blocks package validity" descriptions.
 - Reviewer coverage summary: reviewer names/IDs when available, package scope, PASS/FAIL/N/A evidence, repairs made, and unresolved concerns.
 - Checks section: commands and results from `run_manifest.yaml` `checks`.
 - Residual risk / next actions section derived from `review_notes.md` and run notes.
@@ -332,11 +333,11 @@ python3 scripts/generate_run_review.py runs/<run_id>
 python3 scripts/generate_run_review.py --validate runs/<run_id>
 ```
 
-The generator reads `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, and blocked briefs, then writes `runs/<run_id>/review.html`.
+The generator reads `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, blocked briefs, and blocked design previews, then writes `runs/<run_id>/review.html`.
 
 Link rules from `runs/<run_id>/review.html`:
 
-- Run-local files use local relative links such as `run_manifest.yaml` and `blocked_briefs/017_coloring_game.yaml`.
+- Run-local files use local relative links such as `run_manifest.yaml`, `blocked_briefs/017_coloring_game.yaml`, and `blocked_designs/017_coloring_game.md`.
 - Activity package files use relative links back to the repo root, such as `../../activities/<activity_id>/spec.md`.
 - Links should degrade safely if a target is missing: keep the text visible and mark the target as missing rather than hiding the row.
 
@@ -381,6 +382,6 @@ Before that final message, ensure `runs/<run_id>/review.html` exists and is refe
 - Always put the scorecard in `spec.md`.
 - Keep `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` aligned with the runtime flow.
 - Do not treat checked assignment rows as immutable when generation standards changed; audit and enrich existing packages before the unchecked loop starts.
-- Do not let one product/design blocker halt the whole batch. Record the blocked brief, leave that row unchecked, and continue to later unchecked rows unless a hard workflow failure makes later processing unsafe.
+- Do not let one product/design blocker halt the whole batch. Record the blocked brief and constrained design preview, leave that row unchecked, and continue to later unchecked rows unless a hard workflow failure makes later processing unsafe.
 - Commit after every completed package unless the user explicitly asks to batch commits.
 - Quality over speed. Take as many self-evaluation rounds as needed.

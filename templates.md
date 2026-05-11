@@ -69,7 +69,7 @@ Every pillar overlay layers 2–3 pillar-specific variables on top of these four
 
 ## Mechanic adapters
 
-Mechanic adapters define the child-action loop independent of pillar. Use the adapter matching `activity_signature.mechanic` and Phase 0 `canonical_mechanic`; then apply category and pillar/style scaffolding around it. If an activity concept cannot be expressed by one of these adapters without changing the child action, stop with `readiness: blocked_until_product_decision` or recommend a vocabulary/template extension.
+Mechanic adapters define the child-action loop independent of pillar. Use the adapter matching `activity_signature.mechanic` and Phase 0 `canonical_mechanic`; then apply category and pillar/style scaffolding around it. If an activity concept cannot be expressed by one of these adapters without changing the child action, mark it with `readiness: blocked_until_product_decision`, draft a constrained design preview, or recommend a vocabulary/template extension.
 
 | Mechanic | Core loop | Notes |
 | --- | --- | --- |
@@ -86,7 +86,7 @@ Mechanic adapters define the child-action loop independent of pillar. Use the ad
 | `care` | need or feeling appears → child proposes help → AI shows gratitude/impact | Use for empathy, responsibility, rescue, and repair metaphors. Avoid before/after state-change verification; impact can be narrated or self-reported. |
 | `motion_voice` | motion/sound/role prompt → child moves, imitates, or speaks in role → AI reacts as audience/partner | ASR captures words only and cannot verify motion/audio quality. For motion-heavy prompts, use caregiver-safe, low-risk actions and do not claim sensor verification. |
 
-**Mechanic adapter self-check.** Before writing runtime dialogue, verify: (a) Step 3's repeated child action matches the adapter, (b) `tag_block.yaml activity_signature.mechanic` uses the same mechanic, (c) the selected pillar/style does not replace the adapter loop with a different action, and (d) unsupported source/product needs are blocked instead of hidden in dialogue.
+**Mechanic adapter self-check.** Before writing runtime dialogue, verify: (a) Step 3's repeated child action matches the adapter, (b) `tag_block.yaml activity_signature.mechanic` uses the same mechanic, (c) the selected pillar/style does not replace the adapter loop with a different action, and (d) unsupported source/product needs are never hidden in valid package dialogue. For blocked assignments, continue drafting the run-local constrained design preview, but annotate the unsupported runtime elements inline with `BLOCKED ELEMENT` comments and keep the preview out of `activities/` until the constraint is resolved.
 
 **Tag block.** Every migrated activity package emits `activities/<activity_id>/tag_block.yaml`. The authoritative shape and field semantics live in `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` §1.9. This file does not duplicate the tag-block schema.
 

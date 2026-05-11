@@ -40,6 +40,7 @@ The directory name MUST equal the `activity_id` inside that dir's `tag_block.yam
 - Do not use condensed placeholders such as "same structure," "AI gives a riddle," "later rounds follow," or one-line summaries in migrated `prod.md` files.
 - Do not treat compact migrated files as a lower-detail target. `spec.md` must preserve decision-useful design rationale, and `prod.md` must preserve concrete game feel, progress, payoff, and source-promise behavior.
 - During `/goal` runs, generated packages are accepted only after independent reviewer-agent PASS evidence; reviewer FAILs must be repaired and re-reviewed before logging or assignment checkoff.
+- Blocked activity concepts may have run-local constrained previews under `runs/<run_id>/blocked_designs/`, but those previews are not activity packages and must not be copied here until blockers are resolved and the standard five-file gates pass.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.yaml` `activity_signature.focal_attribute`.
 
 ## Asset brief invariant

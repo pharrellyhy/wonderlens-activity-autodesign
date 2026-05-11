@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.16 | **Date**: 2026-05-11
+> **Version**: 1.17 | **Date**: 2026-05-11
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.17 — 2026-05-11**: Blocked assignments now still receive constrained run-local design previews. The preview must show detailed runtime steps with inline blocked-element comments, but it is not a valid runtime package and is not logged or checked off until the blocking decisions are resolved.
 > **v1.16 — 2026-05-11**: Tighten reviewer gating for `/goal` runs. Generated packages require separate reviewer-agent PASS evidence before logging/checkoff, and enrichment/audit passes should use reviewer agents with disjoint package scopes.
 > **v1.15 — 2026-05-10**: Change blocker handling from terminal stop to per-row triage. Product/design blockers write blocked briefs, remain unchecked, and the `/goal` loop continues to later unchecked rows; only hard workflow failures stop the batch.
 > **v1.14 — 2026-05-10**: Add existing package enrichment mode for `/goal` reruns. Checked assignment rows can be audited and enriched when migrated package standards tighten; preserve machine contracts and record maintenance in run provenance instead of relogging `results.tsv`.
@@ -32,7 +33,7 @@ You are an **Activity Design Agent** for WonderLens, an AI-powered educational c
 2. Create a run provenance directory under `runs/<run_id>/` before processing assignments. Runtime packages still go under `activities/<activity_id>/`.
 3. Audit checked-row existing packages for enrichment needs before processing unchecked assignments. Use separate reviewer agents for scoped package-quality review when package audits or enrichment are part of the run. If a package fails the current migrated package depth floor, enrich it in place and record the maintenance in run provenance.
 4. Run **Phase 0: Activity Concept Adaptation Brief** before scaffold selection. Decide input mode, canonical mechanic, readiness, mapping usefulness, trigger condition, asset dependency, product-capability risks, and scaffold fit. Save the brief under the current run directory.
-5. If the brief is `blocked_until_product_decision`, block only that assignment: record it under `runs/<run_id>/blocked_briefs/`, leave the row unchecked, and continue to later unchecked rows. Do not force a package, log results, or mark the assignment complete.
+5. If the brief is `blocked_until_product_decision`, still draft a constrained design preview for human review: record the brief under `runs/<run_id>/blocked_briefs/`, write detailed proposed runtime steps under `runs/<run_id>/blocked_designs/`, annotate every unsupported dependency inline with `BLOCKED ELEMENT: <reason>`, leave the row unchecked, and continue to later unchecked rows. Do not create a valid `activities/<activity_id>/` package, log results, or mark the assignment complete until the blocking decisions are resolved.
 6. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1 or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
 7. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
 8. Generate a complete migrated activity package following the exact output format.
@@ -182,14 +183,14 @@ adaptation_brief:
 - `asset_policy=required_prebuilt`: generation may proceed with assumptions only when every required asset has `asset_id`, `asset_type`, `use_step`, `prompt_en` or source description, `display_behavior`, and `fallback_behavior`. If any required field is missing, block.
 - `asset_policy=runtime_generated`: block the assignment unless the concept explicitly declares runtime image generation as a supported product capability and includes timing, prompt, display, and fallback behavior. Current package generation should not create image files directly.
 - `asset_policy=blocked`: mark the assignment `readiness=blocked_until_product_decision`.
-- Required visual assets must be treated as dependencies, not as narrative flavor. If an activity cannot work without the asset and the asset pipeline is not defined, block that assignment at the adaptation brief.
+- Required visual assets must be treated as dependencies, not as narrative flavor. If an activity cannot work without the asset and the asset pipeline is not defined, mark that assignment blocked at the adaptation brief and call out the dependency in the constrained design preview.
 - `prod.md` should reference asset IDs and runtime behavior, not raw image prompts. `spec.md` owns the author-facing `## Asset Brief` with image prompts and dependency rationale.
 
 ### 0.5 Readiness rules
 
 - `ready_to_generate`: current Cat1/Cat5 package workflow, V1 constraints, and existing schema can represent the idea safely.
 - `generate_with_assumptions`: generation may proceed, but `spec.md` must include an `Adaptation Rationale` section summarizing the assumptions, asset dependency, and any weak scaffold fit.
-- `blocked_until_product_decision`: write a blocked brief for this row, do not create package files, append `results.tsv`, or mark the assignment complete, then continue to the next unchecked row. Use this for unsupported categories, required assets/UI state/material workflow/motion safety, OCR risk, pose risk, before/after state verification, or a mechanic that cannot be represented by current workflow without distorting the activity concept.
+- `blocked_until_product_decision`: write a blocked brief and a constrained design preview for this row, do not create a valid runtime package under `activities/`, append `results.tsv`, or mark the assignment complete, then continue to the next unchecked row. Use this for unsupported categories, required assets/UI state/material workflow/motion safety, OCR risk, pose risk, before/after state verification, or a mechanic that cannot be represented by current workflow without distorting the activity concept. The preview should be detailed enough to review the proposed activity, but every blocked assumption must be called out inline with `BLOCKED ELEMENT: <reason>` so the design can become valid only after those constraints are resolved.
 
 ### 0.6 Entity mapping use
 
@@ -838,7 +839,7 @@ Examples:
 - `Adapt activity concept: assignment_type=activity_concept, activity_concept=Scavenger Hunt, description=find X things with a shared color or shape, mechanic=collect`
 - `Adapt activity concept: assignment_type=capability_probe, activity_concept=Coloring Game, description=child photographs colors and AI fills a line drawing, category=cat5`
 
-If `mechanic=` is provided, honor it when setting `activity_signature.mechanic`. If `style=` is omitted, infer it per §1.6 rules from the canonical mechanic, entity affordances, category, and scaffold fit. If an activity concept requires unsupported product capabilities, output the adaptation brief and block instead of forcing generation.
+If `mechanic=` is provided, honor it when setting `activity_signature.mechanic`. If `style=` is omitted, infer it per §1.6 rules from the canonical mechanic, entity affordances, category, and scaffold fit. If an activity concept requires unsupported product capabilities, output the adaptation brief and constrained design preview instead of forcing a valid package.
 
 ### If tier is not specified
 

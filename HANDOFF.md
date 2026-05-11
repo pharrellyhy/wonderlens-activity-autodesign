@@ -26,7 +26,7 @@
 - Added `GOAL.md` as the Codex `/goal` objective and success criteria contract.
 - Synced `docs/activity_vocabulary.md`, `docs/game_styles.md`, `entity_guidance.md`, and `conversation_bridge.md` to the assignment-type / `concept_only` / mechanic-first workflow.
 - Added `runs/README.md` and documented per-run provenance directories under `runs/<run_id>/`.
-- Updated `run.md` so each autonomous loop creates a run manifest, assignment snapshot, generated activity index, adaptation brief directory, blocked brief directory, and review notes before processing assignments.
+- Updated `run.md` so each autonomous loop creates a run manifest, assignment snapshot, generated activity index, adaptation brief directory, blocked brief directory, blocked design preview directory, and review notes before processing assignments.
 - Updated `program.md`, `README.md`, and `GOAL.md` so generated packages remain under `activities/<activity_id>/` while run-level provenance lives under `runs/<run_id>/`.
 - Added `docs/plans/2026-05-09-run-provenance-layer.md` as the design decision record for the run layer.
 - Added `assignments.md` Batch 4 with selected typical source concepts from the local concept workbook, including ready concepts and capability probes.
@@ -60,23 +60,25 @@
 - Reviewer C (`Gibbs`, `019e14c5-502c-7903-9ca8-9e6827749fd4`) reviewed `concept_scavenger_hunt_collect`, `concept_phoneme_hunt_collect`, `concept_branching_story_decide`, and `concept_guess_in_10_deduce`; Reviewer D (`Aristotle`, `019e14c5-8586-7433-a20c-6f1df5c6afa5`) reviewed `concept_animal_sound_motion_voice`, `concept_tiny_curator_sort`, and `concept_partial_reveal_deduce`.
 - Updated the 7 older package scorecards with reviewer-agent PASS evidence and tightened `concept_branching_story_decide` Step 3 branch consequences.
 - Updated `runs/20260510_152725_activity_concepts/review_notes.md` and `run_manifest.yaml` so the older package pass is recorded as enrichment maintenance with reviewer evidence.
-- Added `scripts/generate_run_review.py` to generate and validate static run review dashboards from `run_manifest.yaml`, `review_notes.md`, package files, and blocked briefs.
-- Updated `GOAL.md`, `run.md`, `README.md`, and `runs/README.md` so future `/goal` runs create direct activity detail cards, sortable Cat1/Cat3/Cat5/status/mechanic controls, and classified blocked-reason badges in `runs/<run_id>/review.html`.
+- Added `scripts/generate_run_review.py` to generate and validate static run review dashboards from `run_manifest.yaml`, `review_notes.md`, package files, blocked briefs, and constrained blocked design previews.
+- Updated `GOAL.md`, `run.md`, `README.md`, and `runs/README.md` so future `/goal` runs create direct activity detail cards, sortable Cat1/Cat3/Cat5/status/mechanic controls, constrained blocked-preview links, and classified blocked-reason badges in `runs/<run_id>/review.html`.
 - Regenerated `runs/20260510_152725_activity_concepts/review.html` with 23 activity detail cards and 17 blocked-assignment cards; updated the run manifest with `outputs.review_dashboard` and dashboard generation/validation checks.
 - Expanded review dashboard runtime beats so activity cards show concrete AI prompt, child response branches, follow-up behavior, and screen state from `prod.md`.
-- Clarified blocked assignment cards as Phase 0 only: they intentionally do not have package files or runtime beats until the product/design blocker is resolved.
-- Added a blocking-reason guide to `review.html` with "what it means" and "why it blocks design" descriptions for each active blocker badge.
+- Updated blocked assignment handling so future blocked rows still get detailed run-local constrained design previews under `blocked_designs/`, with inline `BLOCKED ELEMENT` comments where unsupported runtime behavior appears.
+- Added a blocking-reason guide to `review.html` with "what it means" and "why it blocks validity" descriptions for each active blocker badge.
 
 ## Verification
 
 - `python3 -m py_compile scripts/generate_run_review.py`
   - Result: clean
+- Targeted blocked-preview rule assertion across `run.md`, `GOAL.md`, `scripts/generate_run_review.py`, and `runs/README.md`
+  - Result: PASS for `blocked_designs/`, `BLOCKED ELEMENT`, `blocked design preview`, and `design_preview` support
 - `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
-  - Result: regenerated `runs/20260510_152725_activity_concepts/review.html`
+  - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with legacy blocked rows labeled as missing constrained previews
 - `python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts`
   - Result: PASS for HTML/style/script presence, run id, 23 activity cards, 17 blocked cards, category filter, sort controls, blocked reason types, detailed runtime beats, blocked design-status text, reason guide descriptions, no external assets, and 138 resolving local links
 - Targeted review dashboard content assertion
-  - Result: PASS for detailed AI/child/screen runtime beat fields, Phase 0 blocker explanation, reason guide headings, and active reason descriptions
+  - Result: PASS for the legacy blocked-preview gap notice, blocked-element comment notice, `Why it blocks validity` reason guide heading, and removal of old Phase 0-only/no-runtime-beats copy
 - `git diff --check`
   - Result: clean
 - Targeted detail-floor diff review across `program.md`, `run.md`, `templates.md`, `GOAL.md`, `activities/README.md`, and `HANDOFF.md`
@@ -92,9 +94,9 @@
 - Targeted enrichment workflow scan across `GOAL.md`, `run.md`, `program.md`, `templates.md`, `runs/README.md`, and `HANDOFF.md`
   - Result: existing-package enrichment is now documented as a pre-loop `/goal` pass with provenance and no duplicate `results.tsv` logging
 - Targeted blocker-handling scan across `GOAL.md`, `run.md`, `program.md`, `README.md`, `runs/README.md`, `assignments.md`, and `HANDOFF.md`
-  - Result: product/design blockers are documented as per-row blocked briefs that do not halt later unchecked rows; `completed_with_blockers` is documented as the run status when blockers remain
+  - Result: product/design blockers are documented as per-row blocked briefs plus constrained design previews that do not halt later unchecked rows; `completed_with_blockers` is documented as the run status when blockers remain
 - Targeted run-layer scan across `README.md`, `GOAL.md`, `program.md`, `run.md`, `runs/README.md`, `docs/plans/2026-05-09-run-provenance-layer.md`, and `HANDOFF.md`
-  - Result: expected `runs/<run_id>`, `run_manifest`, `assignment_snapshot`, `generated_activity_ids`, `adaptation_briefs`, and `blocked_briefs` references are present
+  - Result: expected `runs/<run_id>`, `run_manifest`, `assignment_snapshot`, `generated_activity_ids`, `adaptation_briefs`, `blocked_briefs`, and `blocked_designs` references are present
 - Targeted source concept batch scan across `assignments.md`, `inputs/source_activity_concepts.md`, `run.md`, `program.md`, `README.md`, and `GOAL.md`
   - Result: `concept_source=file#id`, Batch 4 assignment rows, selected source concept IDs, and referenced asset IDs are present
 - Historical assignment reference validation for the earlier unchecked queue
@@ -171,6 +173,7 @@
 - Mechanic enum changes require matching updates in downstream consumer enum mirrors before new packages using `decide`, `remember`, `imagine`, or `motion_voice` can be consumed safely.
 - Asset requirements are authoring-only in this pass; no runtime asset manifest file or tag-block schema field was added.
 - Runtime image generation remains blocked unless a future product decision declares support.
+- Historical blocked rows in `runs/20260510_152725_activity_concepts` predate the constrained-preview rule, so their regenerated dashboard labels the missing preview as legacy rather than inventing runtime beats.
 - Run manifests are maintained by the agent workflow in this pass; there is no schema validator for `runs/<run_id>/run_manifest.yaml` yet, including the new enrichment audit/no-op/enriched counters and `enriched_activities` entries.
 - All 23 concept packages covered by run `20260510_152725_activity_concepts` now have separate reviewer-agent PASS evidence: 16 generated packages plus 7 older checked packages.
 - Several generated packages use required or optional prebuilt/display assets; package specs include fallbacks, but no asset files or runtime asset manifest were generated.
@@ -180,4 +183,4 @@
 - Review the Activity Concept Brief + Asset Requirements fields with concept owners and curriculum authors.
 - For new concept rows, ask concept owners and curriculum authors to provide `asset_policy` and companion asset rows when they want AI pre-made images or screen-displayed visuals.
 - Review the 23 concept packages for curriculum tone and product fit before treating them as final signoff.
-- Resolve the 17 blocked capability probes by defining product support or moving them out of the active generation queue.
+- Resolve the 17 blocked capability probes by defining product support, moving them out of the active generation queue, or rerunning them under the new constrained-preview rule when detailed proposed steps are needed.

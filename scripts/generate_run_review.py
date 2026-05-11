@@ -384,7 +384,7 @@ REASON_RULES: list[dict[str, Any]] = [
 FALLBACK_REASON = {
     "label": "Product decision needed",
     "meaning": "The brief names an unresolved product or design dependency outside the current package contract.",
-    "why": "The assignment should stay as a Phase 0 brief until the missing decision is resolved.",
+    "why": "The assignment may be previewed, but it cannot become a valid package until the missing decision is resolved.",
 }
 
 
@@ -409,6 +409,22 @@ def classify_block_reason(brief: dict[str, Any], manifest_reason: str) -> list[s
     return labels or [FALLBACK_REASON["label"]]
 
 
+def run_href(path: str) -> str:
+    path = normalize_text(path)
+    return path.split("/", 2)[-1] if path.startswith("runs/") else path
+
+
+def blocked_comments(preview_text: str) -> list[str]:
+    comments: list[str] = []
+    for line in preview_text.splitlines():
+        match = re.search(r"BLOCKED ELEMENT:\s*(.+)", line)
+        if match:
+            comments.append(normalize_text(match.group(1)))
+        if len(comments) >= 8:
+            break
+    return comments
+
+
 def collect_blocked(repo_root: Path, entry: dict[str, Any]) -> dict[str, Any]:
     brief_path = normalize_text(entry.get("brief_path"))
     brief = load_yaml(repo_root / brief_path)
@@ -420,6 +436,14 @@ def collect_blocked(repo_root: Path, entry: dict[str, Any]) -> dict[str, Any]:
     asset_policy = ""
     if isinstance(asset_dependency, dict):
         asset_policy = normalize_text(asset_dependency.get("policy"))
+    design_preview = normalize_text(
+        entry.get("design_preview")
+        or entry.get("design_preview_path")
+        or entry.get("blocked_design")
+        or adaptation.get("design_preview")
+        or ""
+    )
+    preview_text = read_text(repo_root / design_preview) if design_preview else ""
     item = {
         "assignment_index": entry.get("assignment_index", ""),
         "activity_concept": normalize_text(adaptation.get("activity_concept") or assignment_fields.get("activity_concept") or "Unknown"),
@@ -436,6 +460,10 @@ def collect_blocked(repo_root: Path, entry: dict[str, Any]) -> dict[str, Any]:
         "reason": normalize_text(entry.get("reason") or "; ".join(decisions)),
         "reason_types": classify_block_reason(brief, normalize_text(entry.get("reason"))),
         "brief_path": brief_path,
+        "design_preview": design_preview,
+        "preview_exists": bool(design_preview and (repo_root / design_preview).exists()),
+        "preview_beats": runtime_beats(preview_text),
+        "blocked_comments": blocked_comments(preview_text),
     }
     return item
 
@@ -598,7 +626,7 @@ def blocked_card(item: dict[str, Any]) -> str:
             "trigger_condition",
         ]
     )
-    search += " " + " ".join(item["reason_types"] + item["missing_decisions"] + item["flags"])
+    search += " " + " ".join(item["reason_types"] + item["missing_decisions"] + item["flags"] + item["blocked_comments"])
     attrs = data_attrs(
         {
             "search": search.lower(),
@@ -613,7 +641,21 @@ def blocked_card(item: dict[str, Any]) -> str:
     decisions = "".join(f"<li>{esc(decision)}</li>" for decision in item["missing_decisions"])
     reason_badges = " ".join(badge(reason, "badge-reason blocked-reason-type") for reason in item["reason_types"])
     flag_badges = value_list(item["flags"], empty="No capability flags")
-    brief_href = item["brief_path"].split("/", 2)[-1] if item["brief_path"].startswith("runs/") else item["brief_path"]
+    brief_href = run_href(item["brief_path"])
+    preview_href = run_href(item["design_preview"])
+    preview_link = (
+        f'<a href="{esc(preview_href)}">blocked design preview</a>'
+        if item["design_preview"] and item["preview_exists"]
+        else '<span class="muted">No constrained design preview in this legacy run</span>'
+    )
+    if item["preview_exists"]:
+        design_status = "Constrained design preview available; invalid until blockers are resolved."
+    else:
+        design_status = "No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments."
+    preview_runtime = "".join(runtime_beat_html(beat) for beat in item["preview_beats"])
+    preview_runtime = preview_runtime or "<li>No constrained runtime beats were recorded.</li>"
+    comments = "".join(f"<li>{esc(comment)}</li>" for comment in item["blocked_comments"])
+    comments = comments or "<li>No inline BLOCKED ELEMENT comments were recorded.</li>"
     return f"""
 <article class="blocked-card" {attrs}>
   <div class="card-top">
@@ -628,7 +670,7 @@ def blocked_card(item: dict[str, Any]) -> str:
     </div>
   </div>
   <div class="reason-row">{reason_badges}</div>
-  <div class="blocked-design-status"><strong>Design status:</strong> Phase 0 only. No runtime beats are authored yet because the missing product decision would determine the safe interaction model.</div>
+  <div class="blocked-design-status"><strong>Design status:</strong> {esc(design_status)}</div>
   <p class="summary-copy">{esc(item['core_promise'])}</p>
   <div class="meta-grid compact">
     <div><span>Mechanic</span><strong>{esc(item['mechanic'])}</strong></div>
@@ -641,7 +683,18 @@ def blocked_card(item: dict[str, Any]) -> str:
     <ul>{decisions or f'<li>{esc(item["reason"])}</li>'}</ul>
     <p><span>Capability flags</span>{flag_badges}</p>
   </details>
-  <div class="file-row"><a href="{esc(brief_href)}">blocked brief</a></div>
+  <details>
+    <summary>Constrained Preview</summary>
+    <section>
+      <h4>Preview Beats</h4>
+      <ol class="beat-list">{preview_runtime}</ol>
+    </section>
+    <section>
+      <h4>Blocked Elements</h4>
+      <ul>{comments}</ul>
+    </section>
+  </details>
+  <div class="file-row"><a href="{esc(brief_href)}">blocked brief</a>{preview_link}</div>
 </article>"""
 
 
@@ -662,7 +715,7 @@ def reason_guide(reason_labels: list[str]) -> str:
   <section class="panel" id="blocking-reason-guide">
     <div class="panel-head"><h2>Blocking Reason Guide</h2></div>
     <div class="table-wrap"><table>
-      <thead><tr><th>Reason</th><th>What it means</th><th>Why it blocks design</th></tr></thead>
+      <thead><tr><th>Reason</th><th>What it means</th><th>Why it blocks validity</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table></div>
   </section>
@@ -1177,8 +1230,12 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         "sort_controls": 'id="package-sort"' in text and "Sort by mechanic" in text,
         "blocked_reason_types": text.count("blocked-reason-type") >= expected_blocked,
         "detailed_runtime_beats": "beat-field" in text and "AI" in text and "Child" in text and "Screen" in text,
-        "blocked_design_status": "Phase 0 only" in text and "No runtime beats are authored yet" in text,
-        "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks design" in text,
+        "blocked_design_status": expected_blocked == 0
+        or (
+            "Constrained design preview available" in text
+            or "No constrained design preview was recorded" in text
+        ),
+        "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks validity" in text,
         "no_external_assets": not re.search(r"<(?:script|link)[^>]+(?:src|href)=[\"']https?://", text),
     }
     missing_links: list[str] = []
