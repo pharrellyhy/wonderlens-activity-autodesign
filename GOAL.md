@@ -11,7 +11,7 @@ Each run must also create a provenance directory under `runs/<run_id>/` so gener
 ## Recommended `/goal` Command
 
 ```text
-/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich existing checked activity packages against the current migrated package depth floor, using separate reviewer agents for package-quality review and repair evidence. Then process the run-start unchecked assignment snapshot exactly once in order. For each row, generate a five-file package that passes author self-check, independent reviewer-agent review, and package validation, or record a blocked brief plus a constrained blocked design preview and continue. In blocked previews, still design detailed runtime steps, but annotate each unsupported dependency inline with BLOCKED ELEMENT comments and keep the activity invalid until the blocker is resolved. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate a self-contained light-theme review dashboard at runs/<run_id>/review.html with direct activity detail cards, sortable Cat1/Cat3/Cat5/status/mechanic controls, constrained blocked-preview links, and classified blocked-reason badges. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, review dashboard path, checks, and residual risks.
+/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich checked activity packages against the current migrated package depth floor with separate reviewer-agent evidence, then process the run-start unchecked assignment snapshot exactly once in order. For each row, generate a passing five-file package or record a blocked brief plus constrained blocked design preview and continue. In blocked previews, still design detailed runtime steps, annotate unsupported dependencies inline with BLOCKED ELEMENT comments, and keep the activity invalid until the blocker is resolved. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate runs/<run_id>/review.html according to review_dashboard.md. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, review dashboard path, checks, and residual risks.
 ```
 
 ## Success Criteria
@@ -23,6 +23,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - `program.md`
    - `templates.md`
    - `run.md`
+   - `review_dashboard.md`
    - `runs/README.md`
    - `activities/README.md`
    - `activities/_schema/tag_block.schema.json`
@@ -57,7 +58,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - If `readiness=blocked_until_product_decision`, output the adaptation brief and a constrained blocked design preview for that assignment, then continue to the next unchecked row.
    - Write the brief to `runs/<run_id>/blocked_briefs/` and the preview to `runs/<run_id>/blocked_designs/`.
    - The preview still designs detailed runtime steps so reviewers can inspect the proposed child experience.
-   - Add short inline comments at each unsupported dependency using `BLOCKED ELEMENT: <reason> — <decision needed>`.
+   - Add short inline comments at each unsupported dependency using `BLOCKED ELEMENT: <reason> -- <decision needed>`.
    - Do not create valid runtime package files under `activities/`.
    - Do not append `results.tsv`.
    - Do not mark the assignment complete; it remains visible for the future product/design decision.
@@ -131,17 +132,8 @@ The goal is complete only when all of the applicable criteria below are met.
 
 13. Human review dashboard is generated:
    - `runs/<run_id>/review.html` exists before the final report.
-   - The page is a static, self-contained HTML file with embedded CSS/JS only; it does not require a dev server, build step, network access, or external assets.
-   - The page is a derived review artifact, not a source of truth. It summarizes data from `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, adaptation briefs, blocked briefs, and constrained blocked design previews; if a value cannot be derived, it is shown as unknown or omitted rather than invented.
-   - Default visual design is a polished light theme. Use restrained color, clear typography, accessible contrast, compact tables, stable spacing, responsive layout, and status badges; do not default to a dark theme or decorative gradient/orb-heavy presentation.
    - The dashboard is generated with `python3 scripts/generate_run_review.py runs/<run_id>` and validated with `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
-   - The dashboard includes run summary counts, direct activity detail cards for every generated/enriched package, blocked assignment cards or tables, reviewer-agent coverage, validation/check results, residual risks, and next actions.
-   - Activity cards expose enough `spec.md`, `prod.md`, and `tag_block.yaml` detail for a reviewer to inspect the activity in the page without opening or downloading package files, including concrete runtime beat details for AI prompt, child responses, follow-up, and screen state.
-   - Generated and enriched package rows link to the package files; blocked rows link to blocked briefs and constrained design previews; run-level links point to the manifest, review notes, assignment snapshot, and generated activity ID list.
-   - The dashboard includes search/filter/sort controls for status, package type, Cat1/Cat3/Cat5 type, mechanic, tier, reviewer coverage, asset dependency, and blocked reason when those fields are available.
-   - Blocked assignments classify missing product/design decisions into skim-friendly reason badges, for example runtime image generation, coloring/recoloring UI, Cat3 material workflow, UI state/progress memory, prebuilt asset display, motion safety, before/after evidence, OCR/text handling, and caregiver setup/pacing.
-   - Blocked assignments are labeled as constrained previews, not valid packages. They show proposed runtime beats when a preview exists, highlight inline blocked-element comments, and remain invalid until the blocking product/design decision is resolved.
-   - The dashboard includes a blocking-reason guide explaining what each reason means and why it blocks package validity.
+   - The dashboard satisfies `review_dashboard.md`: self-contained light-theme HTML, concise clickable cards, full detail dialog/page content, grouped tag colors, search/filter/sort controls, blocked-preview handling, reason guide, reviewer coverage, checks, residual risks, and resolving local links.
    - `runs/<run_id>/run_manifest.yaml` records the dashboard path, and the final report includes it.
 
 14. Final report is clear:

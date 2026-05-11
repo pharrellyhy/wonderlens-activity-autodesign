@@ -66,19 +66,28 @@
 - Expanded review dashboard runtime beats so activity cards show concrete AI prompt, child response branches, follow-up behavior, and screen state from `prod.md`.
 - Updated blocked assignment handling so future blocked rows still get detailed run-local constrained design previews under `blocked_designs/`, with inline `BLOCKED ELEMENT` comments where unsupported runtime behavior appears.
 - Added a blocking-reason guide to `review.html` with "what it means" and "why it blocks validity" descriptions for each active blocker badge.
+- Added `review_dashboard.md` as the standalone source of truth for `runs/<run_id>/review.html` requirements so `GOAL.md` can stay concise.
+- Shortened the recommended `/goal` command in `GOAL.md` and `README.md` to reference `review_dashboard.md` instead of repeating dashboard requirements.
+- Updated `scripts/generate_run_review.py` so activity and blocked cards are concise clickable summaries that open full details in a native in-page dialog.
+- Added grouped tag color classes for category, status, mechanic, tier, asset, reviewer, metadata, and blocked-reason tags.
+- Regenerated `runs/20260510_152725_activity_concepts/review.html` with clickable cards, detail templates, a shared detail dialog, and grouped tag colors.
 
 ## Verification
 
 - `python3 -m py_compile scripts/generate_run_review.py`
   - Result: clean
+- `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
+  - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with concise clickable cards, detail templates, shared dialog markup, and grouped tag colors
 - Targeted blocked-preview rule assertion across `run.md`, `GOAL.md`, `scripts/generate_run_review.py`, and `runs/README.md`
   - Result: PASS for `blocked_designs/`, `BLOCKED ELEMENT`, `blocked design preview`, and `design_preview` support
-- `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
-  - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with legacy blocked rows labeled as missing constrained previews
 - `python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts`
-  - Result: PASS for HTML/style/script presence, run id, 23 activity cards, 17 blocked cards, category filter, sort controls, blocked reason types, detailed runtime beats, blocked design-status text, reason guide descriptions, no external assets, and 138 resolving local links
+  - Result: PASS for HTML/style/script presence, run id, 23 activity cards, 17 blocked cards, category filter, sort controls, blocked reason types, detailed runtime beats, blocked design-status text, clickable detail cards, grouped tag colors, reason guide descriptions, no external assets, and 270 resolving local links
 - Targeted review dashboard content assertion
   - Result: PASS for the legacy blocked-preview gap notice, blocked-element comment notice, `Why it blocks validity` reason guide heading, and removal of old Phase 0-only/no-runtime-beats copy
+- Targeted clickable-card and tag-color assertion
+  - Result: PASS for `review_dashboard.md` references, at least 40 clickable cards, native detail dialog markup, 23 activity detail templates, 17 blocked detail templates, and grouped category/mechanic/asset/reviewer/reason tag classes
+- Inline review dashboard script parse with Node
+  - Result: PASS
 - `git diff --check`
   - Result: clean
 - Targeted detail-floor diff review across `program.md`, `run.md`, `templates.md`, `GOAL.md`, `activities/README.md`, and `HANDOFF.md`

@@ -483,19 +483,93 @@ def read_results(repo_root: Path) -> dict[str, dict[str, str]]:
     return rows
 
 
-def badge(text: str, class_name: str = "") -> str:
+def css_token(value: Any) -> str:
+    token = normalize_text(value).lower().replace("_", "-")
+    token = re.sub(r"[^a-z0-9-]+", "-", token).strip("-")
+    return token or "unknown"
+
+
+def dom_id(prefix: str, value: Any, fallback: Any = "item") -> str:
+    return f"{prefix}-{css_token(value) or css_token(fallback)}"
+
+
+def badge(text: str, class_name: str = "", group: str = "default") -> str:
     classes = "badge" + (f" {class_name}" if class_name else "")
+    group_attr = f' data-tag-group="{esc(group)}"'
+    value_attr = f' data-tag-value="{esc(css_token(text))}"'
+    return f'<span class="{classes}"{group_attr}{value_attr}>{esc(text)}</span>'
+
+
+def group_badge(text: str, group: str, class_name: str = "") -> str:
+    token = css_token(text)
+    classes = f"badge badge-{group} badge-{group}-{token}"
+    if class_name:
+        classes += f" {class_name}"
     return f'<span class="{classes}">{esc(text)}</span>'
 
 
 def value_list(items: list[str], empty: str = "None") -> str:
     if not items:
         return f'<span class="muted">{esc(empty)}</span>'
-    return " ".join(badge(item) for item in items)
+    return " ".join(group_badge(item, "metadata") for item in items)
 
 
 def data_attrs(values: dict[str, Any]) -> str:
     return " ".join(f'data-{key}="{esc(value)}"' for key, value in values.items())
+
+
+def package_tags(package: dict[str, Any]) -> str:
+    tags = [
+        group_badge(package["kind"], "kind"),
+        group_badge(package["category"], "category"),
+        group_badge(package["status"], "status"),
+        group_badge(package["mechanic"], "mechanic"),
+        group_badge(package["tier"], "tier"),
+        group_badge(package["asset_policy"], "asset"),
+        group_badge(package["reviewer"], "reviewer"),
+    ]
+    return "".join(tags)
+
+
+def package_detail_content(package: dict[str, Any], link_bits: str, runtime: str, details: str, changed: str) -> str:
+    return f"""
+<div class="dialog-grid">
+  <section>
+    <h4>Design</h4>
+    <p>{esc(package['design_highlight'] or package['premise'] or 'Unknown')}</p>
+    <p class="muted">{esc(package['typical_scenario'])}</p>
+  </section>
+  <section>
+    <h4>Metadata</h4>
+    <div class="meta-grid compact">
+      <div><span>Activity ID</span><strong>{esc(package['activity_id'])}</strong></div>
+      <div><span>Package</span><strong>{esc(package['kind'])}</strong></div>
+      <div><span>Pillar</span><strong>{esc(package['pillar'])}</strong></div>
+      <div><span>Style</span><strong>{esc(package['game_style'])}</strong></div>
+      <div><span>Focal</span><strong>{esc(package['focal_attribute'])}</strong></div>
+      <div><span>Results</span><strong>{esc(package.get('result_summary') or 'Not logged')}</strong></div>
+    </div>
+  </section>
+  <section class="dialog-wide">
+    <h4>Runtime Beats</h4>
+    <ol class="beat-list">{runtime or '<li>Unknown</li>'}</ol>
+  </section>
+  <section>
+    <h4>Learning Tags</h4>
+    <p><span>Concepts</span>{value_list(package['key_concepts'])}</p>
+    <p><span>Related</span>{value_list(package['related_concepts'])}</p>
+    <p><span>ATL</span>{value_list(package['atl_skills'])}</p>
+  </section>
+  <section>
+    <h4>Review Notes</h4>
+    <ul>{details or '<li>No detail-floor bullets found.</li>'}</ul>
+    <p>{esc(package['scorecard'] or 'No scorecard summary found.')}</p>
+  </section>
+  <section class="dialog-wide">
+    <h4>Files</h4>
+    <div class="file-row inline-file-row"><div>{link_bits}</div><div class="changed-files">{changed}</div></div>
+  </section>
+</div>"""
 
 
 def package_card(package: dict[str, Any]) -> str:
@@ -537,62 +611,30 @@ def package_card(package: dict[str, Any]) -> str:
     runtime = "".join(runtime_beat_html(beat) for beat in package["runtime_beats"])
     details = "".join(f"<li>{esc(note)}</li>" for note in package["detail_notes"])
     changed = value_list(package["changed_files"], empty="No changed-files entry")
+    modal_id = dom_id("activity-detail", package["activity_id"], package["assignment_index"])
+    tags = package_tags(package)
+    detail = package_detail_content(package, link_bits, runtime, details, changed)
+    summary = package["intro"] or package["brief_description"] or package["premise"]
     return f"""
-<article class="activity-card" {attrs}>
+<article class="activity-card clickable-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="detail-dialog" data-detail-template="{esc(modal_id)}" data-detail-title="{esc(package['activity_name'])}" {attrs}>
   <div class="card-top">
     <div>
       <div class="eyebrow">{esc(package['kind'])} activity</div>
       <h3>{esc(package['activity_name'])}</h3>
       <p class="activity-id">{esc(package['activity_id'])}</p>
     </div>
-    <div class="status-stack">
-      {badge(package['category'], 'badge-category')}
-      {badge(package['status'], 'badge-status')}
-    </div>
   </div>
-  <div class="meta-grid">
-    <div><span>Mechanic</span><strong>{esc(package['mechanic'])}</strong></div>
-    <div><span>Tier</span><strong>{esc(package['tier'])}</strong></div>
-    <div><span>Pillar</span><strong>{esc(package['pillar'])}</strong></div>
-    <div><span>Style</span><strong>{esc(package['game_style'])}</strong></div>
-    <div><span>Focal</span><strong>{esc(package['focal_attribute'])}</strong></div>
-    <div><span>Assets</span><strong>{esc(package['asset_policy'])}</strong></div>
-  </div>
-  <p class="summary-copy">{esc(package['intro'] or package['brief_description'] or package['premise'])}</p>
+  <div class="tag-row">{tags}</div>
+  <p class="summary-copy">{esc(summary)}</p>
   <div class="inline-fields">
     <div><span>Preview label</span><strong>{esc(package['preview_label'] or 'Unknown')}</strong></div>
-    <div><span>Reviewer</span><strong>{esc(package['reviewer'])}</strong></div>
-    <div><span>Results log</span><strong>{esc(package.get('result_summary') or 'Not logged')}</strong></div>
+    <div><span>Runtime beats</span><strong>{esc(len(package['runtime_beats']))}</strong></div>
   </div>
-  <details>
-    <summary>Activity details</summary>
-    <div class="details-grid">
-      <section>
-        <h4>Design</h4>
-        <p>{esc(package['design_highlight'] or package['premise'] or 'Unknown')}</p>
-        <p class="muted">{esc(package['typical_scenario'])}</p>
-      </section>
-      <section>
-        <h4>Runtime Beats</h4>
-        <ol class="beat-list">{runtime or '<li>Unknown</li>'}</ol>
-      </section>
-      <section>
-        <h4>Learning Tags</h4>
-        <p><span>Concepts</span>{value_list(package['key_concepts'])}</p>
-        <p><span>Related</span>{value_list(package['related_concepts'])}</p>
-        <p><span>ATL</span>{value_list(package['atl_skills'])}</p>
-      </section>
-      <section>
-        <h4>Review Notes</h4>
-        <ul>{details or '<li>No detail-floor bullets found.</li>'}</ul>
-        <p>{esc(package['scorecard'] or 'No scorecard summary found.')}</p>
-      </section>
-    </div>
-  </details>
   <div class="file-row">
     <div>{link_bits}</div>
-    <div class="changed-files">{changed}</div>
+    <button class="detail-button" type="button" data-open-detail>View details</button>
   </div>
+  <template id="{esc(modal_id)}">{detail}</template>
 </article>"""
 
 
@@ -608,6 +650,65 @@ def runtime_beat_html(beat: dict[str, str]) -> str:
         for label, value in fields
     )
     return f'<li><strong>{esc(beat.get("title", "Runtime beat"))}</strong>{field_html}</li>'
+
+
+def blocked_tags(item: dict[str, Any]) -> str:
+    tags = [
+        group_badge(item["category"], "category"),
+        group_badge(item["status"], "status"),
+        group_badge(item["mechanic"], "mechanic"),
+        group_badge(item["tier"], "tier"),
+        group_badge(item["asset_policy"], "asset"),
+    ]
+    tags.extend(group_badge(reason, "reason", "blocked-reason-type") for reason in item["reason_types"])
+    return "".join(tags)
+
+
+def blocked_detail_content(
+    item: dict[str, Any],
+    decisions: str,
+    flag_badges: str,
+    preview_runtime: str,
+    comments: str,
+    brief_href: str,
+    preview_link: str,
+    design_status: str,
+) -> str:
+    return f"""
+<div class="dialog-grid">
+  <section>
+    <h4>Why Blocked</h4>
+    <p>{esc(design_status)}</p>
+    <ul>{decisions or f'<li>{esc(item["reason"])}</li>'}</ul>
+  </section>
+  <section>
+    <h4>Metadata</h4>
+    <div class="meta-grid compact">
+      <div><span>Concept</span><strong>{esc(item['activity_concept'])}</strong></div>
+      <div><span>Activity ID</span><strong>{esc(item['activity_id'] or 'No package generated')}</strong></div>
+      <div><span>Mechanic</span><strong>{esc(item['mechanic'])}</strong></div>
+      <div><span>Tier</span><strong>{esc(item['tier'])}</strong></div>
+      <div><span>Assets</span><strong>{esc(item['asset_policy'])}</strong></div>
+      <div><span>Trigger</span><strong>{esc(item['trigger_condition'] or 'Unknown')}</strong></div>
+    </div>
+  </section>
+  <section>
+    <h4>Capability Flags</h4>
+    <p>{flag_badges}</p>
+  </section>
+  <section>
+    <h4>Blocked Elements</h4>
+    <ul>{comments}</ul>
+  </section>
+  <section class="dialog-wide">
+    <h4>Constrained Preview Beats</h4>
+    <ol class="beat-list">{preview_runtime}</ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Files</h4>
+    <div class="file-row inline-file-row"><a href="{esc(brief_href)}">blocked brief</a>{preview_link}</div>
+  </section>
+</div>"""
 
 
 def blocked_card(item: dict[str, Any]) -> str:
@@ -639,7 +740,6 @@ def blocked_card(item: dict[str, Any]) -> str:
         }
     )
     decisions = "".join(f"<li>{esc(decision)}</li>" for decision in item["missing_decisions"])
-    reason_badges = " ".join(badge(reason, "badge-reason blocked-reason-type") for reason in item["reason_types"])
     flag_badges = value_list(item["flags"], empty="No capability flags")
     brief_href = run_href(item["brief_path"])
     preview_href = run_href(item["design_preview"])
@@ -656,45 +756,27 @@ def blocked_card(item: dict[str, Any]) -> str:
     preview_runtime = preview_runtime or "<li>No constrained runtime beats were recorded.</li>"
     comments = "".join(f"<li>{esc(comment)}</li>" for comment in item["blocked_comments"])
     comments = comments or "<li>No inline BLOCKED ELEMENT comments were recorded.</li>"
+    modal_id = dom_id("blocked-detail", item["activity_concept"], item["assignment_index"])
+    tags = blocked_tags(item)
+    detail = blocked_detail_content(item, decisions, flag_badges, preview_runtime, comments, brief_href, preview_link, design_status)
     return f"""
-<article class="blocked-card" {attrs}>
+<article class="blocked-card clickable-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="detail-dialog" data-detail-template="{esc(modal_id)}" data-detail-title="{esc(item['activity_concept'])}" {attrs}>
   <div class="card-top">
     <div>
       <div class="eyebrow">Blocked assignment {esc(item['assignment_index'])}</div>
       <h3>{esc(item['activity_concept'])}</h3>
       <p class="activity-id">{esc(item['activity_id'] or 'No package generated')}</p>
     </div>
-    <div class="status-stack">
-      {badge(item['category'], 'badge-category')}
-      {badge(item['status'], 'badge-blocked')}
-    </div>
   </div>
-  <div class="reason-row">{reason_badges}</div>
+  <div class="tag-row">{tags}</div>
   <div class="blocked-design-status"><strong>Design status:</strong> {esc(design_status)}</div>
   <p class="summary-copy">{esc(item['core_promise'])}</p>
-  <div class="meta-grid compact">
-    <div><span>Mechanic</span><strong>{esc(item['mechanic'])}</strong></div>
-    <div><span>Tier</span><strong>{esc(item['tier'])}</strong></div>
-    <div><span>Assets</span><strong>{esc(item['asset_policy'])}</strong></div>
-    <div><span>Trigger</span><strong>{esc(item['trigger_condition'] or 'Unknown')}</strong></div>
+  <div class="inline-fields">
+    <div><span>Missing decisions</span><strong>{esc(len(item['missing_decisions']))}</strong></div>
+    <div><span>Preview beats</span><strong>{esc(len(item['preview_beats']))}</strong></div>
   </div>
-  <details>
-    <summary>Why blocked</summary>
-    <ul>{decisions or f'<li>{esc(item["reason"])}</li>'}</ul>
-    <p><span>Capability flags</span>{flag_badges}</p>
-  </details>
-  <details>
-    <summary>Constrained Preview</summary>
-    <section>
-      <h4>Preview Beats</h4>
-      <ol class="beat-list">{preview_runtime}</ol>
-    </section>
-    <section>
-      <h4>Blocked Elements</h4>
-      <ul>{comments}</ul>
-    </section>
-  </details>
-  <div class="file-row"><a href="{esc(brief_href)}">blocked brief</a>{preview_link}</div>
+  <div class="file-row"><a href="{esc(brief_href)}">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
+  <template id="{esc(modal_id)}">{detail}</template>
 </article>"""
 
 
@@ -838,6 +920,12 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
   --amber-text: oklch(41% 0.1 78);
   --red-bg: oklch(94% 0.045 28);
   --red-text: oklch(42% 0.13 28);
+  --purple-bg: oklch(95% 0.035 306);
+  --purple-text: oklch(40% 0.12 306);
+  --teal-bg: oklch(95% 0.035 190);
+  --teal-text: oklch(36% 0.1 190);
+  --neutral-tag-bg: oklch(94% 0.01 245);
+  --neutral-tag-text: oklch(41% 0.035 245);
 }
 * { box-sizing: border-box; }
 body {
@@ -924,10 +1012,23 @@ input, select {
   border-radius: 8px;
   background: var(--panel);
   padding: 14px;
-  min-height: 360px;
+  min-height: 265px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+.clickable-card {
+  cursor: pointer;
+  transition: border-color 160ms ease-out, box-shadow 160ms ease-out, transform 160ms ease-out;
+}
+.clickable-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: 0 6px 20px oklch(40% 0.04 250 / 0.08);
+  transform: translateY(-1px);
+}
+.clickable-card:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
 }
 .card-top { display: flex; justify-content: space-between; gap: 14px; align-items: flex-start; }
 .status-stack { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
@@ -958,14 +1059,15 @@ input, select {
 .summary-copy { margin: 0; color: var(--text); max-width: 74ch; }
 details { border-top: 1px solid var(--line); padding-top: 10px; }
 summary { cursor: pointer; font-weight: 750; color: var(--blue-text); }
-.details-grid {
+.details-grid, .dialog-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-top: 10px;
 }
-.details-grid section { min-width: 0; }
-.details-grid p { margin: 0 0 8px; }
+.details-grid section, .dialog-grid section { min-width: 0; }
+.dialog-wide { grid-column: 1 / -1; }
+.details-grid p, .dialog-grid p { margin: 0 0 8px; }
 ol, ul { margin: 0; padding-left: 20px; }
 .beat-list { display: grid; gap: 10px; }
 .beat-list li {
@@ -1004,10 +1106,32 @@ ol, ul { margin: 0; padding-left: 20px; }
   white-space: nowrap;
   margin: 0 4px 4px 0;
 }
-.badge-category { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
-.badge-status { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
-.badge-blocked, .badge-reason { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
-.reason-row { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag-row, .reason-row { display: flex; flex-wrap: wrap; gap: 4px; }
+.badge-kind { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); border-color: transparent; }
+.badge-category, .badge-category-cat1 { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
+.badge-category-cat3 { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
+.badge-category-cat5 { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
+.badge-status, .badge-status-pass, .badge-status-enriched { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
+.badge-status-blocked-until-product-decision, .badge-blocked, .badge-reason { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
+.badge-status-fail, .badge-status-failed { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
+.badge-mechanic { background: var(--purple-bg); color: var(--purple-text); border-color: transparent; }
+.badge-tier { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
+.badge-asset, .badge-asset-no-assets, .badge-asset-optional-support { background: var(--teal-bg); color: var(--teal-text); border-color: transparent; }
+.badge-asset-required-prebuilt, .badge-asset-runtime-generated, .badge-asset-blocked { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
+.badge-reviewer { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
+.badge-reviewer-unknown, .badge-reviewer-n-a { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
+.badge-metadata { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); border-color: transparent; }
+.detail-button, .dialog-close {
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  padding: 6px 9px;
+  background: var(--control);
+  color: var(--text);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+.detail-button:hover, .dialog-close:hover { border-color: var(--blue); color: var(--blue-text); }
 .file-row {
   display: flex;
   justify-content: space-between;
@@ -1017,6 +1141,7 @@ ol, ul { margin: 0; padding-left: 20px; }
   border-top: 1px solid var(--line);
   padding-top: 10px;
 }
+.inline-file-row { margin-top: 0; }
 .changed-files { text-align: right; color: var(--muted); font-size: 12px; }
 .missing { color: var(--red-text); background: var(--red-bg); border-radius: 4px; padding: 2px 6px; }
 .muted { color: var(--muted); }
@@ -1034,6 +1159,32 @@ pre {
 .reviewers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 14px 16px; }
 .reviewer-card { border: 1px solid var(--line); border-radius: 8px; background: var(--panel-soft); padding: 12px; }
 .note-body { padding: 14px 16px; }
+.detail-dialog {
+  width: min(1080px, calc(100vw - 32px));
+  max-height: min(860px, calc(100vh - 32px));
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  padding: 0;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 18px 60px oklch(30% 0.04 250 / 0.18);
+}
+.detail-dialog::backdrop { background: oklch(30% 0.04 250 / 0.28); }
+.dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel-soft);
+}
+.dialog-head h2 { font-size: 18px; }
+.dialog-body {
+  padding: 16px;
+  overflow: auto;
+  max-height: calc(min(860px, calc(100vh - 32px)) - 62px);
+}
 @media (max-width: 1120px) {
   header { position: static; }
   .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1043,8 +1194,10 @@ pre {
 @media (max-width: 700px) {
   main, .header-inner { padding-left: 14px; padding-right: 14px; }
   h1 { font-size: 23px; }
-  .metrics, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid { grid-template-columns: 1fr; }
+  .metrics, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid { grid-template-columns: 1fr; }
+  .dialog-wide { grid-column: auto; }
   .file-row { display: block; }
+  .detail-button { margin-top: 8px; }
   .changed-files { text-align: left; margin-top: 8px; }
 }
 """
@@ -1101,6 +1254,51 @@ function filterBlocked() {
     if (show) visible += 1;
   });
   document.getElementById("blocked-count").textContent = `${visible} shown`;
+}
+let lastDetailTrigger = null;
+const detailDialog = document.getElementById("detail-dialog");
+const detailTitle = document.getElementById("detail-title");
+const detailBody = document.getElementById("detail-body");
+const detailClose = document.getElementById("detail-close");
+function openDetail(card) {
+  const template = document.getElementById(card.dataset.detailTemplate || "");
+  if (!template || !detailDialog) return;
+  lastDetailTrigger = card;
+  detailTitle.textContent = card.dataset.detailTitle || "Activity details";
+  detailBody.innerHTML = template.innerHTML;
+  detailDialog.showModal();
+}
+function shouldSkipCardOpen(target) {
+  return Boolean(target.closest("a, select, input, summary"));
+}
+document.querySelectorAll("[data-detail-template]").forEach(card => {
+  card.addEventListener("click", event => {
+    const target = event.target;
+    if (target.closest("[data-open-detail]")) {
+      event.preventDefault();
+      openDetail(card);
+      return;
+    }
+    if (shouldSkipCardOpen(target)) return;
+    openDetail(card);
+  });
+  card.addEventListener("keydown", event => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    openDetail(card);
+  });
+});
+if (detailClose) {
+  detailClose.addEventListener("click", () => detailDialog.close());
+}
+if (detailDialog) {
+  detailDialog.addEventListener("click", event => {
+    if (event.target === detailDialog) detailDialog.close();
+  });
+  detailDialog.addEventListener("close", () => {
+    detailBody.innerHTML = "";
+    if (lastDetailTrigger) lastDetailTrigger.focus();
+  });
 }
 document.querySelectorAll("[data-package-control]").forEach(el => el.addEventListener("input", filterPackages));
 document.querySelectorAll("[data-blocked-control]").forEach(el => el.addEventListener("input", filterBlocked));
@@ -1202,6 +1400,13 @@ filterBlocked();
     <div class="note-body">{residual_summary(review_notes)}</div>
   </section>
 </main>
+<dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title">
+  <div class="dialog-head">
+    <h2 id="detail-title">Activity details</h2>
+    <button class="dialog-close" id="detail-close" type="button">Close</button>
+  </div>
+  <div class="dialog-body" id="detail-body"></div>
+</dialog>
 <script>{js}</script>
 </body>
 </html>
@@ -1224,8 +1429,8 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         "has_style": "<style>" in text,
         "has_script": "<script>" in text,
         "has_run_id": normalize_text(manifest.get("run_id")) in text,
-        "activity_card_count": text.count('class="activity-card"') == expected_packages,
-        "blocked_card_count": text.count('class="blocked-card"') == expected_blocked,
+        "activity_card_count": text.count('class="activity-card') == expected_packages,
+        "blocked_card_count": text.count('class="blocked-card') == expected_blocked,
         "category_filter": 'id="package-category-filter"' in text and "cat1" in text and "cat5" in text,
         "sort_controls": 'id="package-sort"' in text and "Sort by mechanic" in text,
         "blocked_reason_types": text.count("blocked-reason-type") >= expected_blocked,
@@ -1235,6 +1440,14 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             "Constrained design preview available" in text
             or "No constrained design preview was recorded" in text
         ),
+        "clickable_detail_cards": text.count("data-detail-template=") >= expected_packages + expected_blocked
+        and "<dialog" in text
+        and "showModal()" in text
+        and "View details" in text,
+        "grouped_tag_colors": "badge-mechanic" in text
+        and "badge-asset" in text
+        and "badge-category" in text
+        and "badge-reviewer" in text,
         "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks validity" in text,
         "no_external_assets": not re.search(r"<(?:script|link)[^>]+(?:src|href)=[\"']https?://", text),
     }
