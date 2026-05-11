@@ -495,19 +495,28 @@ def classify_block_reason(brief: dict[str, Any], manifest_reason: str) -> list[s
     return labels or [FALLBACK_REASON["label"]]
 
 
+def classify_reason_text(text: str) -> str:
+    primary_text = normalize_text(text).split("--", 1)[0]
+    for candidate in (primary_text, text):
+        haystack = normalize_text(candidate).lower()
+        for rule in REASON_RULES:
+            if any(str(needle).lower() in haystack for needle in rule["needles"]):
+                return str(rule["label"])
+    return FALLBACK_REASON["label"]
+
+
 def run_href(path: str) -> str:
     path = normalize_text(path)
     return path.split("/", 2)[-1] if path.startswith("runs/") else path
 
 
-def blocked_comments(preview_text: str) -> list[str]:
-    comments: list[str] = []
+def blocked_comments(preview_text: str) -> list[dict[str, str]]:
+    comments: list[dict[str, str]] = []
     for line in preview_text.splitlines():
         match = re.search(r"BLOCKED ELEMENT:\s*(.+)", line)
         if match:
-            comments.append(normalize_text(match.group(1)))
-        if len(comments) >= 8:
-            break
+            text = normalize_text(match.group(1))
+            comments.append({"label": classify_reason_text(text), "text": text})
     return comments
 
 
@@ -530,6 +539,8 @@ def collect_blocked(repo_root: Path, entry: dict[str, Any]) -> dict[str, Any]:
         or ""
     )
     preview_text = read_text(repo_root / design_preview) if design_preview else ""
+    blocked_comment_items = blocked_comments(preview_text)
+    blocked_comment_types = sorted({item["label"] for item in blocked_comment_items})
     item = {
         "assignment_index": entry.get("assignment_index", ""),
         "activity_concept": normalize_text(adaptation.get("activity_concept") or assignment_fields.get("activity_concept") or "Unknown"),
@@ -549,7 +560,8 @@ def collect_blocked(repo_root: Path, entry: dict[str, Any]) -> dict[str, Any]:
         "design_preview": design_preview,
         "preview_exists": bool(design_preview and (repo_root / design_preview).exists()),
         "preview_beats": runtime_beats(preview_text),
-        "blocked_comments": blocked_comments(preview_text),
+        "blocked_comments": blocked_comment_items,
+        "blocked_comment_types": blocked_comment_types,
     }
     return item
 
@@ -592,6 +604,14 @@ def group_badge(text: str, group: str, class_name: str = "") -> str:
     if class_name:
         classes += f" {class_name}"
     return f'<span class="{classes}">{esc(text)}</span>'
+
+
+def reason_badge(label: str, class_name: str = "", suffix: str = "") -> str:
+    token = css_token(label)
+    classes = f"badge badge-reason badge-reason-{token}"
+    if class_name:
+        classes += f" {class_name}"
+    return f'<span class="{classes}">{esc(label + suffix)}</span>'
 
 
 def value_list(items: list[str], empty: str = "None") -> str:
@@ -774,6 +794,109 @@ def runtime_beat_html(beat: dict[str, str]) -> str:
     return f'<li><strong>{esc(beat.get("title", "Runtime beat"))}</strong>{field_html}</li>'
 
 
+def blocked_comment_summary(comments: list[dict[str, str]]) -> str:
+    if not comments:
+        return '<span class="muted">No inline blocked markers recorded</span>'
+    counts: dict[str, int] = {}
+    for comment in comments:
+        label = comment["label"]
+        counts[label] = counts.get(label, 0) + 1
+    return " ".join(
+        reason_badge(label, "blocked-element-chip", suffix=f" x{count}")
+        for label, count in sorted(counts.items())
+    )
+
+
+def blocked_comment_rows(comments: list[dict[str, str]]) -> str:
+    if not comments:
+        return '<li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li>'
+    return "".join(
+        '<li class="blocked-marker-row">'
+        f'{reason_badge(comment["label"], "blocked-element-chip")}'
+        f'<span>{esc(comment["text"])}</span>'
+        "</li>"
+        for comment in comments
+    )
+
+
+def blocked_preview_scorecard_rows(item: dict[str, Any]) -> list[dict[str, str]]:
+    reason_types = item.get("reason_types", []) or [FALLBACK_REASON["label"]]
+    blockers = ", ".join(reason_types)
+    has_preview = bool(item.get("preview_exists") and item.get("preview_beats"))
+    marker_count = len(item.get("blocked_comments", []))
+    marker_type_count = len(item.get("blocked_comment_types", []))
+    marker_note = f"{marker_count} inline blocked marker(s) across {marker_type_count} blocker type(s)."
+    has_branches = any(
+        normalize_text(beat.get("child")) and normalize_text(beat.get("followup"))
+        for beat in item.get("preview_beats", [])
+    )
+    has_screen = any(normalize_text(beat.get("screen")) for beat in item.get("preview_beats", []))
+    has_magic = any("magic moment" in normalize_text(beat.get("title")).lower() for beat in item.get("preview_beats", []))
+    reviewable = "REVIEWABLE" if has_preview else "BLOCKED"
+    return [
+        {
+            "number": "1",
+            "dimension": "V1 Technical Compliance",
+            "score": "BLOCKED",
+            "notes": f"Blocked by unresolved {blockers}. The preview remains invalid until the product/design decision is resolved.",
+        },
+        {
+            "number": "2",
+            "dimension": "Hook & Transition",
+            "score": reviewable,
+            "notes": "The constrained preview can be inspected for opening flow." if has_preview else "No constrained preview was recorded.",
+        },
+        {
+            "number": "3",
+            "dimension": "Edge Case Coverage",
+            "score": "REVIEWABLE" if has_branches else "BLOCKED",
+            "notes": "Preview includes child branches and follow-up behavior, but final pass depends on resolved blockers." if has_branches else "Branch coverage cannot be judged without preview beats.",
+        },
+        {
+            "number": "4",
+            "dimension": "IB Completeness",
+            "score": "BLOCKED",
+            "notes": "No valid five-file package or final metadata should be produced until blockers are resolved.",
+        },
+        {
+            "number": "5",
+            "dimension": "Tier Appropriateness",
+            "score": reviewable,
+            "notes": f"Tier target is {item.get('tier') or 'unknown'}; final dialogue must be rechecked after blockers are resolved.",
+        },
+        {
+            "number": "6",
+            "dimension": "Dialogue Specificity",
+            "score": reviewable,
+            "notes": "Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.",
+        },
+        {
+            "number": "7",
+            "dimension": "Screen & UI Completeness",
+            "score": "REVIEWABLE" if has_screen else "BLOCKED",
+            "notes": "Screen states are present for preview review." if has_screen else "Screen states are missing or unavailable in the preview.",
+        },
+        {
+            "number": "8",
+            "dimension": "Entity Mapping Alignment",
+            "score": "N/A",
+            "notes": "Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.",
+        },
+        {
+            "number": "9",
+            "dimension": "Game Feel",
+            "score": "REVIEWABLE" if has_magic else reviewable,
+            "notes": "Preview includes a magic-moment beat." if has_magic else "Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.",
+        },
+        {
+            "number": "10",
+            "dimension": "Mechanic Fidelity + Scaffold Honesty",
+            "score": "BLOCKED",
+            "notes": f"{marker_note} The mechanic cannot be marked valid until these blocked elements are resolved or removed.",
+        },
+    ]
+
+
 def blocked_tags(item: dict[str, Any]) -> str:
     tags = [
         group_badge(item["category"], "category"),
@@ -782,7 +905,7 @@ def blocked_tags(item: dict[str, Any]) -> str:
         group_badge(item["tier"], "tier"),
         group_badge(item["asset_policy"], "asset"),
     ]
-    tags.extend(group_badge(reason, "reason", "blocked-reason-type") for reason in item["reason_types"])
+    tags.extend(reason_badge(reason, "blocked-reason-type") for reason in item["reason_types"])
     return "".join(tags)
 
 
@@ -792,6 +915,8 @@ def blocked_detail_content(
     flag_badges: str,
     preview_runtime: str,
     comments: str,
+    marker_summary: str,
+    scorecard: str,
     brief_href: str,
     preview_link: str,
     design_status: str,
@@ -799,7 +924,7 @@ def blocked_detail_content(
     return f"""
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>{esc(design_status)}</p>
     <ul>{decisions or f'<li>{esc(item["reason"])}</li>'}</ul>
   </section>
@@ -819,12 +944,19 @@ def blocked_detail_content(
     <p>{flag_badges}</p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul>{comments}</ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary">{marker_summary}</div>
+    <ul class="blocked-marker-list">{comments}</ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list">{preview_runtime}</ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    {scorecard}
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -849,7 +981,14 @@ def blocked_card(item: dict[str, Any]) -> str:
             "trigger_condition",
         ]
     )
-    search += " " + " ".join(item["reason_types"] + item["missing_decisions"] + item["flags"] + item["blocked_comments"])
+    comment_text = [comment["text"] for comment in item["blocked_comments"]]
+    search += " " + " ".join(
+        item["reason_types"]
+        + item["blocked_comment_types"]
+        + item["missing_decisions"]
+        + item["flags"]
+        + comment_text
+    )
     attrs = data_attrs(
         {
             "search": search.lower(),
@@ -876,11 +1015,23 @@ def blocked_card(item: dict[str, Any]) -> str:
         design_status = "No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments."
     preview_runtime = "".join(runtime_beat_html(beat) for beat in item["preview_beats"])
     preview_runtime = preview_runtime or "<li>No constrained runtime beats were recorded.</li>"
-    comments = "".join(f"<li>{esc(comment)}</li>" for comment in item["blocked_comments"])
-    comments = comments or "<li>No inline BLOCKED ELEMENT comments were recorded.</li>"
+    comments = blocked_comment_rows(item["blocked_comments"])
+    marker_summary = blocked_comment_summary(item["blocked_comments"])
+    scorecard = scorecard_table(blocked_preview_scorecard_rows(item))
     modal_id = dom_id("blocked-detail", item["activity_concept"], item["assignment_index"])
     tags = blocked_tags(item)
-    detail = blocked_detail_content(item, decisions, flag_badges, preview_runtime, comments, brief_href, preview_link, design_status)
+    detail = blocked_detail_content(
+        item,
+        decisions,
+        flag_badges,
+        preview_runtime,
+        comments,
+        marker_summary,
+        scorecard,
+        brief_href,
+        preview_link,
+        design_status,
+    )
     return f"""
 <article class="blocked-card clickable-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="detail-dialog" data-detail-template="{esc(modal_id)}" data-detail-title="{esc(item['activity_concept'])}" {attrs}>
   <div class="card-top">
@@ -895,6 +1046,8 @@ def blocked_card(item: dict[str, Any]) -> str:
   <p class="summary-copy">{esc(item['core_promise'])}</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>{esc(len(item['missing_decisions']))}</strong></div>
+    <div><span>Inline blocked markers</span><strong>{esc(len(item['blocked_comments']))}</strong></div>
+    <div><span>Unique blocker types</span><strong>{esc(len(item['blocked_comment_types']))}</strong></div>
     <div><span>Preview beats</span><strong>{esc(len(item['preview_beats']))}</strong></div>
   </div>
   <div class="file-row"><a href="{esc(brief_href)}">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
@@ -910,7 +1063,7 @@ def reason_guide(reason_labels: list[str]) -> str:
     for item in definitions:
         rows.append(
             "<tr>"
-            f"<td>{badge(item['label'], 'badge-reason')}</td>"
+            f"<td>{reason_badge(item['label'])}</td>"
             f"<td>{esc(item['meaning'])}</td>"
             f"<td>{esc(item['why'])}</td>"
             "</tr>"
@@ -1261,16 +1414,41 @@ ol, ul { margin: 0; padding-left: 20px; }
 .badge-category, .badge-category-cat1 { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
 .badge-category-cat3 { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
 .badge-category-cat5 { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
-.badge-status, .badge-status-pass, .badge-status-enriched, .badge-status-pass-no-changes { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
-.badge-status-blocked-until-product-decision, .badge-blocked, .badge-reason { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
-.badge-status-fail, .badge-status-failed { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
+	.badge-status, .badge-status-pass, .badge-status-enriched, .badge-status-pass-no-changes { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
+	.badge-status-reviewable { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
+	.badge-status-n-a { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); border-color: transparent; }
+	.badge-status-blocked, .badge-status-blocked-until-product-decision, .badge-blocked, .badge-reason { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
+	.badge-status-fail, .badge-status-failed { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
 .badge-mechanic { background: var(--purple-bg); color: var(--purple-text); border-color: transparent; }
 .badge-tier { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
 .badge-asset, .badge-asset-no-assets, .badge-asset-optional-support { background: var(--teal-bg); color: var(--teal-text); border-color: transparent; }
 .badge-asset-required-prebuilt, .badge-asset-runtime-generated, .badge-asset-blocked { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
-.badge-reviewer { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
-.badge-reviewer-unknown, .badge-reviewer-n-a { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
-.badge-metadata { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); border-color: transparent; }
+	.badge-reviewer { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
+	.badge-reviewer-unknown, .badge-reviewer-n-a { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
+	.badge-metadata { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); border-color: transparent; }
+	.badge-reason-runtime-image-generation { background: oklch(95% 0.05 306); color: oklch(38% 0.13 306); border-color: transparent; }
+	.badge-reason-coloring-or-recoloring-ui { background: oklch(95% 0.052 338); color: oklch(39% 0.14 338); border-color: transparent; }
+	.badge-reason-cat3-material-workflow { background: oklch(96% 0.055 75); color: oklch(40% 0.105 75); border-color: transparent; }
+	.badge-reason-ui-state-or-progress-memory { background: oklch(95% 0.04 248); color: oklch(37% 0.13 248); border-color: transparent; }
+	.badge-reason-prebuilt-asset-display { background: oklch(95% 0.04 185); color: oklch(34% 0.1 185); border-color: transparent; }
+	.badge-reason-motion-safety { background: oklch(94% 0.052 28); color: oklch(40% 0.14 28); border-color: transparent; }
+	.badge-reason-before-after-evidence { background: oklch(95.5% 0.06 98); color: oklch(38% 0.105 98); border-color: transparent; }
+	.badge-reason-ocr-or-text-handling { background: oklch(95% 0.045 282); color: oklch(38% 0.13 282); border-color: transparent; }
+	.badge-reason-caregiver-setup-and-pacing { background: oklch(94.5% 0.025 230); color: oklch(36% 0.06 230); border-color: transparent; }
+	.badge-reason-product-decision-needed { background: oklch(95% 0.03 65); color: oklch(38% 0.095 65); border-color: transparent; }
+	.blocked-element-chip { margin-bottom: 0; }
+	.blocked-marker-summary { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 10px; }
+	.blocked-marker-list { display: grid; gap: 8px; padding-left: 0; list-style: none; }
+	.blocked-marker-row {
+	  display: grid;
+	  grid-template-columns: max-content minmax(0, 1fr);
+	  gap: 8px;
+	  align-items: start;
+	  border: 1px solid var(--line);
+	  border-radius: 8px;
+	  background: var(--panel-soft);
+	  padding: 8px;
+	}
 .detail-button, .dialog-close {
   border: 1px solid var(--line-strong);
   border-radius: 6px;
@@ -1627,6 +1805,20 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         or (
             "Constrained design preview available" in text
             or "No constrained design preview was recorded" in text
+        ),
+        "blocked_marker_clarity": expected_blocked == 0
+        or (
+            "Inline blocked markers" in text
+            and "Unique blocker types" in text
+            and "These are occurrences inside the preview steps" in text
+        ),
+        "blocked_element_chips": expected_blocked == 0
+        or ("blocked-element-chip" in text and "blocked-marker-row" in text),
+        "blocked_preview_scorecards": expected_blocked == 0
+        or (
+            text.count("Blocked Preview Scorecard") >= expected_blocked
+            and "BLOCKED" in text
+            and "This is review evidence only" in text
         ),
         "clickable_detail_cards": text.count("data-detail-template=") >= expected_packages + expected_blocked
         and "<dialog" in text

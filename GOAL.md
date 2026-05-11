@@ -59,6 +59,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - Write the brief to `runs/<run_id>/blocked_briefs/` and the preview to `runs/<run_id>/blocked_designs/`.
    - The preview still designs detailed runtime steps so reviewers can inspect the proposed child experience.
    - Add short inline comments at each unsupported dependency using `BLOCKED ELEMENT: <reason> -- <decision needed>`.
+   - Treat inline blocked comments as runtime occurrences. They may outnumber missing product/design decisions when one unresolved blocker affects several beats.
    - Do not create valid runtime package files under `activities/`.
    - Do not append `results.tsv`.
    - Do not mark the assignment complete; it remains visible for the future product/design decision.
@@ -133,7 +134,7 @@ The goal is complete only when all of the applicable criteria below are met.
 13. Human review dashboard is generated:
    - `runs/<run_id>/review.html` exists before the final report.
    - The dashboard is generated with `python3 scripts/generate_run_review.py runs/<run_id>` and validated with `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
-   - The dashboard satisfies `review_dashboard.md`: self-contained light-theme HTML, concise clickable cards for generated/enriched/audited packages, full detail dialog/page content, grouped tag colors, search/filter/sort controls, blocked-preview handling, reason guide, reviewer coverage, 10-dimension review criteria, per-package scorecard results with why notes, checks, residual risks, and resolving local links.
+   - The dashboard satisfies `review_dashboard.md`: self-contained light-theme HTML, concise clickable cards for generated/enriched/audited packages, full detail dialog/page content, grouped tag colors, search/filter/sort controls, blocked-preview handling, clear missing-decision versus inline-marker counts, colored inline blocked marker chips, blocked-preview scorecards, reason guide, reviewer coverage, 10-dimension review criteria, per-package scorecard results with why notes, checks, residual risks, and resolving local links.
    - `runs/<run_id>/run_manifest.yaml` records the dashboard path, and the final report includes it.
 
 14. Final report is clear:

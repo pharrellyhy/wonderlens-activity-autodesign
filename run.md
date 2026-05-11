@@ -155,7 +155,7 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
 3. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
 4. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
 5. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
-6. If `readiness=blocked_until_product_decision`, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> -- <what product/design decision is needed>`. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
+6. If `readiness=blocked_until_product_decision`, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> -- <what product/design decision is needed>`. Use the same blocker reason consistently when one missing product decision affects multiple beats; each inline marker is an occurrence, not a separate missing decision. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
 7. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
 8. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
 9. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
@@ -316,7 +316,7 @@ This is a final-run step, not a per-assignment step. After every row from `assig
 runs/<run_id>/review.html
 ```
 
-This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, 10-dimension criteria and scorecard results, blocked-preview handling, link rules, and validation requirements.
+This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, 10-dimension criteria and package scorecard results, blocked-preview handling, blocked-preview scorecards, link rules, and validation requirements.
 
 Generation command:
 
@@ -331,7 +331,7 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for `python3 scripts/generate_run_review.py runs/<run_id>` and `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, clickable detail behavior, modal/detail content, grouped tag colors, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, grouped tag colors, inline blocked marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
 
 ### Step 7: Mark generated assignment complete
 

@@ -72,11 +72,23 @@
 - Updated `scripts/generate_run_review.py` so activity and blocked cards are concise clickable summaries that open full details in a native in-page dialog.
 - Added grouped tag color classes for category, status, mechanic, tier, asset, reviewer, metadata, and blocked-reason tags.
 - Regenerated `runs/20260510_152725_activity_concepts/review.html` with clickable cards, detail templates, a shared detail dialog, and grouped tag colors.
+- Updated blocked review cards so missing product/design decisions, inline blocked marker occurrences, and unique blocker types are counted separately.
+- Added colored inline blocked marker chips and blocked-preview scorecards to `review.html`; these scorecards are review evidence only and do not make blocked previews valid runtime packages.
+- Updated `review_dashboard.md`, `run.md`, `GOAL.md`, `README.md`, and `runs/README.md` so future `/goal` runs preserve the same blocked-marker and blocked-preview scorecard behavior.
+- Regenerated `runs/20260511_144424_activity_concepts/review.html` and `runs/20260510_152725_activity_concepts/review.html` with the new blocked review treatment.
 
 ## Verification
 
 - `python3 -m py_compile scripts/generate_run_review.py`
   - Result: clean
+- `python3 scripts/generate_run_review.py runs/20260511_144424_activity_concepts`
+  - Result: regenerated `runs/20260511_144424_activity_concepts/review.html` with colored inline blocked marker chips and blocked-preview scorecards
+- `python3 scripts/generate_run_review.py --validate runs/20260511_144424_activity_concepts`
+  - Result: PASS for dashboard contract checks, blocked marker clarity, blocked preview scorecards, and 287 resolving local links
+- `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
+  - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with the same blocked review treatment
+- `python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts`
+  - Result: PASS for dashboard contract checks, blocked marker clarity, blocked preview scorecards, and 270 resolving local links
 - `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
   - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with concise clickable cards, detail templates, shared dialog markup, and grouped tag colors
 - Targeted blocked-preview rule assertion across `run.md`, `GOAL.md`, `scripts/generate_run_review.py`, and `runs/README.md`

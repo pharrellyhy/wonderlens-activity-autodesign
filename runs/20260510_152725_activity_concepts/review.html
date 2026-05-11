@@ -216,16 +216,41 @@ ol, ul { margin: 0; padding-left: 20px; }
 .badge-category, .badge-category-cat1 { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
 .badge-category-cat3 { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
 .badge-category-cat5 { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
-.badge-status, .badge-status-pass, .badge-status-enriched, .badge-status-pass-no-changes { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
-.badge-status-blocked-until-product-decision, .badge-blocked, .badge-reason { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
-.badge-status-fail, .badge-status-failed { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
+	.badge-status, .badge-status-pass, .badge-status-enriched, .badge-status-pass-no-changes { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
+	.badge-status-reviewable { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
+	.badge-status-n-a { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); border-color: transparent; }
+	.badge-status-blocked, .badge-status-blocked-until-product-decision, .badge-blocked, .badge-reason { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
+	.badge-status-fail, .badge-status-failed { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
 .badge-mechanic { background: var(--purple-bg); color: var(--purple-text); border-color: transparent; }
 .badge-tier { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
 .badge-asset, .badge-asset-no-assets, .badge-asset-optional-support { background: var(--teal-bg); color: var(--teal-text); border-color: transparent; }
 .badge-asset-required-prebuilt, .badge-asset-runtime-generated, .badge-asset-blocked { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
-.badge-reviewer { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
-.badge-reviewer-unknown, .badge-reviewer-n-a { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
-.badge-metadata { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); border-color: transparent; }
+	.badge-reviewer { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
+	.badge-reviewer-unknown, .badge-reviewer-n-a { background: var(--amber-bg); color: var(--amber-text); border-color: transparent; }
+	.badge-metadata { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); border-color: transparent; }
+	.badge-reason-runtime-image-generation { background: oklch(95% 0.05 306); color: oklch(38% 0.13 306); border-color: transparent; }
+	.badge-reason-coloring-or-recoloring-ui { background: oklch(95% 0.052 338); color: oklch(39% 0.14 338); border-color: transparent; }
+	.badge-reason-cat3-material-workflow { background: oklch(96% 0.055 75); color: oklch(40% 0.105 75); border-color: transparent; }
+	.badge-reason-ui-state-or-progress-memory { background: oklch(95% 0.04 248); color: oklch(37% 0.13 248); border-color: transparent; }
+	.badge-reason-prebuilt-asset-display { background: oklch(95% 0.04 185); color: oklch(34% 0.1 185); border-color: transparent; }
+	.badge-reason-motion-safety { background: oklch(94% 0.052 28); color: oklch(40% 0.14 28); border-color: transparent; }
+	.badge-reason-before-after-evidence { background: oklch(95.5% 0.06 98); color: oklch(38% 0.105 98); border-color: transparent; }
+	.badge-reason-ocr-or-text-handling { background: oklch(95% 0.045 282); color: oklch(38% 0.13 282); border-color: transparent; }
+	.badge-reason-caregiver-setup-and-pacing { background: oklch(94.5% 0.025 230); color: oklch(36% 0.06 230); border-color: transparent; }
+	.badge-reason-product-decision-needed { background: oklch(95% 0.03 65); color: oklch(38% 0.095 65); border-color: transparent; }
+	.blocked-element-chip { margin-bottom: 0; }
+	.blocked-marker-summary { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 10px; }
+	.blocked-marker-list { display: grid; gap: 8px; padding-left: 0; list-style: none; }
+	.blocked-marker-row {
+	  display: grid;
+	  grid-template-columns: max-content minmax(0, 1fr);
+	  gap: 8px;
+	  align-items: start;
+	  border: 1px solid var(--line);
+	  border-radius: 8px;
+	  background: var(--panel-soft);
+	  padding: 8px;
+	}
 .detail-button, .dialog-close {
   border: 1px solid var(--line-strong);
   border-radius: 6px;
@@ -1934,13 +1959,15 @@ pre {
   <p class="summary-copy">The screen shows line art with regions to color. The child chooses colors by photographing objects, and the system fills the regions to create a shareable artwork.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>3</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/017_coloring_game.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-coloring-game">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Confirm runtime image generation support and safety review for child-facing generated assets.</li><li>Define coloring or recoloring UI behavior, selectable regions, state storage, and fallback behavior.</li><li>Define UI state storage, progress memory, and resume/reset behavior.</li></ul>
   </section>
@@ -1960,12 +1987,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-generated-image">requires_generated_image</span> <span class="badge badge-metadata badge-metadata-requires-coloring-ui">requires_coloring_ui</span> <span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Runtime image generation, Coloring or recoloring UI, UI state or progress memory. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -1987,13 +2021,15 @@ pre {
   <p class="summary-copy">The AI guides the child to use paper and pencil to complete a simple drawing step by step.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>3</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/018_guided_drawing.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-guided-drawing">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold without distorting the source promise.</li><li>Define caregiver/material setup, pacing, and no-assessment fallback for physical work.</li><li>Define before/after capture or parent confirmation; do not infer completion from one photo.</li></ul>
   </section>
@@ -2013,12 +2049,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-materials">requires_materials</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Cat3 material workflow, Before/after evidence, Caregiver setup and pacing. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2040,13 +2083,15 @@ pre {
   <p class="summary-copy">The child uses blocks, bricks, or household materials to build a simple target.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>3</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/019_building_challenge.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-building-challenge">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold without distorting the source promise.</li><li>Define caregiver/material setup, pacing, and no-assessment fallback for physical work.</li><li>Define before/after capture or parent confirmation; do not infer completion from one photo.</li></ul>
   </section>
@@ -2066,12 +2111,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-materials">requires_materials</span> <span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Cat3 material workflow, Prebuilt asset display, Before/after evidence, Caregiver setup and pacing. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2093,13 +2145,15 @@ pre {
   <p class="summary-copy">A story pauses at a challenge point; the child completes a quick task to unlock the next beat.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>1</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/020_story_challenge_unlock.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-story-challenge-unlock">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define UI state storage, progress memory, and resume/reset behavior.</li></ul>
   </section>
@@ -2119,12 +2173,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span> <span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved UI state or progress memory, Prebuilt asset display. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2146,13 +2207,15 @@ pre {
   <p class="summary-copy">The child moves their body in response to music mood or rhythm cues.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>1</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/021_classic_music_movement.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-classic-music-and-movement">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define age-safe movement policy, caregiver gating, space checks, and prohibited movements.</li></ul>
   </section>
@@ -2172,12 +2235,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-motion-safety">requires_motion_safety</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Motion safety, Caregiver setup and pacing. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T0; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2199,13 +2269,15 @@ pre {
   <p class="summary-copy">The AI guides a short, child-safe pose routine using animal or object metaphors.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>2</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/022_childrens_yoga.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-children-s-yoga">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define age-safe movement policy, caregiver gating, space checks, and prohibited movements.</li><li>Confirm approved prebuilt asset library, display contract, and asset metadata availability.</li></ul>
   </section>
@@ -2225,12 +2297,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-motion-safety">requires_motion_safety</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Prebuilt asset display, Motion safety, Caregiver setup and pacing. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T0; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2252,13 +2331,15 @@ pre {
   <p class="summary-copy">The child uses colors to represent feelings, then sees or imagines a character outfit matching that feeling.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>3</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/023_emotion_color_outfit.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-emotion-color-outfit">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define coloring or recoloring UI behavior, selectable regions, state storage, and fallback behavior.</li><li>Define UI state storage, progress memory, and resume/reset behavior.</li><li>Confirm approved prebuilt asset library, display contract, and asset metadata availability.</li></ul>
   </section>
@@ -2278,12 +2359,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-coloring-ui">requires_coloring_ui</span> <span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Coloring or recoloring UI, UI state or progress memory, Prebuilt asset display. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2305,13 +2393,15 @@ pre {
   <p class="summary-copy">The child sorts toys or household objects using a simple cleanup rule.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>2</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/024_toy_tidy_challenge.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-toy-tidy-challenge">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define UI state storage, progress memory, and resume/reset behavior.</li><li>Define before/after capture or parent confirmation; do not infer completion from one photo.</li></ul>
   </section>
@@ -2331,12 +2421,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved UI state or progress memory, Before/after evidence. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2358,13 +2455,15 @@ pre {
   <p class="summary-copy">The child predicts when a short amount of time has passed, then checks the result.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>1</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/025_time_sense_challenge.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-time-sense-challenge">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define UI state storage, progress memory, and resume/reset behavior.</li></ul>
   </section>
@@ -2384,12 +2483,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved UI state or progress memory. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2411,13 +2517,15 @@ pre {
   <p class="summary-copy">The child tries to draw a target without lifting the pencil or finger.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>4</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/026_one_line_drawing.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-one-line-drawing-challenge">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold without distorting the source promise.</li><li>Define caregiver/material setup, pacing, and no-assessment fallback for physical work.</li><li>Define before/after capture or parent confirmation; do not infer completion from one photo.</li><li>Confirm approved prebuilt asset library, display contract, and asset metadata availability.</li></ul>
   </section>
@@ -2437,12 +2545,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-materials">requires_materials</span> <span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Cat3 material workflow, Prebuilt asset display, Before/after evidence, Caregiver setup and pacing. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2464,13 +2579,15 @@ pre {
   <p class="summary-copy">The child creates a short kindness note or message for someone else.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>4</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/027_message_bottle_note.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-message-bottle-note">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold without distorting the source promise.</li><li>Define caregiver/material setup, pacing, and no-assessment fallback for physical work.</li><li>Define before/after capture or parent confirmation; do not infer completion from one photo.</li><li>Define whether OCR or note reading is supported; otherwise avoid claiming to read child writing.</li></ul>
   </section>
@@ -2490,12 +2607,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-materials">requires_materials</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span> <span class="badge badge-metadata badge-metadata-ocr-risk">ocr_risk</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Cat3 material workflow, Before/after evidence, OCR or text handling, Caregiver setup and pacing. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2517,13 +2641,15 @@ pre {
   <p class="summary-copy">The child makes or designs an award for someone who helped, tried hard, or deserves appreciation.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>3</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/028_award_certificate.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-award-certificate">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold without distorting the source promise.</li><li>Define caregiver/material setup, pacing, and no-assessment fallback for physical work.</li><li>Define before/after capture or parent confirmation; do not infer completion from one photo.</li></ul>
   </section>
@@ -2543,12 +2669,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-materials">requires_materials</span> <span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-before-after-risk">before_after_risk</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Cat3 material workflow, Prebuilt asset display, Before/after evidence, Caregiver setup and pacing. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2570,13 +2703,15 @@ pre {
   <p class="summary-copy">The child quickly chooses matching target pictures from a changing set.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>2</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/029_whack_a_mole_recognition.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-recognition-pop-challenge">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define UI state storage, progress memory, and resume/reset behavior.</li><li>Confirm approved prebuilt asset library, display contract, and asset metadata availability.</li></ul>
   </section>
@@ -2596,12 +2731,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved UI state or progress memory, Prebuilt asset display. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2623,13 +2765,15 @@ pre {
   <p class="summary-copy">The child chooses letters or answers clues to reveal a word step by step.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>2</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/030_word_build_guess.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-word-build-guess">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define UI state storage, progress memory, and resume/reset behavior.</li><li>Confirm approved prebuilt asset library, display contract, and asset metadata availability.</li></ul>
   </section>
@@ -2649,12 +2793,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved UI state or progress memory, Prebuilt asset display. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2676,13 +2827,15 @@ pre {
   <p class="summary-copy">The child compares two approved artworks at a time and chooses a favorite until one wins.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>2</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/031_art_critic_tournament.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-art-critic-tournament">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define UI state storage, progress memory, and resume/reset behavior.</li><li>Confirm approved prebuilt asset library, display contract, and asset metadata availability.</li></ul>
   </section>
@@ -2702,12 +2855,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-ui-state">requires_ui_state</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved UI state or progress memory, Prebuilt asset display. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2729,13 +2889,15 @@ pre {
   <p class="summary-copy">The child looks at an approved artwork and identifies important colors.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>1</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/032_color_in_famous_art.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-color-in-famous-art">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Confirm approved prebuilt asset library, display contract, and asset metadata availability.</li></ul>
   </section>
@@ -2755,12 +2917,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Prebuilt asset display. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T1; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2782,13 +2951,15 @@ pre {
   <p class="summary-copy">The AI guides one simple body movement at a time with safety limits.</p>
   <div class="inline-fields">
     <div><span>Missing decisions</span><strong>2</strong></div>
+    <div><span>Inline blocked markers</span><strong>0</strong></div>
+    <div><span>Unique blocker types</span><strong>0</strong></div>
     <div><span>Preview beats</span><strong>0</strong></div>
   </div>
   <div class="file-row"><a href="blocked_briefs/033_simple_body_movement.yaml">blocked brief</a><button class="detail-button" type="button" data-open-detail>View details</button></div>
   <template id="blocked-detail-simple-body-movement-guide">
 <div class="dialog-grid">
   <section>
-    <h4>Why Blocked</h4>
+    <h4>Missing Product Decisions</h4>
     <p>No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments.</p>
     <ul><li>Define age-safe movement policy, caregiver gating, space checks, and prohibited movements.</li><li>Confirm approved prebuilt asset library, display contract, and asset metadata availability.</li></ul>
   </section>
@@ -2808,12 +2979,19 @@ pre {
     <p><span class="badge badge-metadata badge-metadata-requires-asset-display">requires_asset_display</span> <span class="badge badge-metadata badge-metadata-requires-motion-safety">requires_motion_safety</span></p>
   </section>
   <section>
-    <h4>Blocked Elements</h4>
-    <ul><li>No inline BLOCKED ELEMENT comments were recorded.</li></ul>
+    <h4>Inline Blocked Markers</h4>
+    <p class="muted">These are occurrences inside the preview steps, not separate missing decisions.</p>
+    <div class="blocked-marker-summary"><span class="muted">No inline blocked markers recorded</span></div>
+    <ul class="blocked-marker-list"><li class="blocked-marker-row"><span class="muted">No inline BLOCKED ELEMENT comments were recorded.</span></li></ul>
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
     <ol class="beat-list"><li>No constrained runtime beats were recorded.</li></ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Blocked Preview Scorecard</h4>
+    <p class="muted">This is review evidence only. It does not turn a blocked preview into a passing package.</p>
+    <div class="table-wrap scorecard-wrap"><table class="scorecard-table"><thead><tr><th>#</th><th>Dimension</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td>1</td><td>V1 Technical Compliance</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Blocked by unresolved Prebuilt asset display, Motion safety, Caregiver setup and pacing. The preview remains invalid until the product/design decision is resolved.</td></tr><tr><td>2</td><td>Hook &amp; Transition</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No constrained preview was recorded.</td></tr><tr><td>3</td><td>Edge Case Coverage</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Branch coverage cannot be judged without preview beats.</td></tr><tr><td>4</td><td>IB Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>No valid five-file package or final metadata should be produced until blockers are resolved.</td></tr><tr><td>5</td><td>Tier Appropriateness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Tier target is T0; final dialogue must be rechecked after blockers are resolved.</td></tr><tr><td>6</td><td>Dialogue Specificity</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview dialogue is available for human review, but blocked markers identify unsupported assumptions.</td></tr><tr><td>7</td><td>Screen &amp; UI Completeness</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Screen states are missing or unavailable in the preview.</td></tr><tr><td>8</td><td>Entity Mapping Alignment</td><td><span class="badge badge-status badge-status-n-a">N/A</span></td><td>Blocked concept previews are treated as product-decision triage unless the brief explicitly requires mapping.</td></tr><tr><td>9</td><td>Game Feel</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>Preview can be reviewed for payoff, but the final package must re-score this after blockers are resolved.</td></tr><tr><td>10</td><td>Mechanic Fidelity + Scaffold Honesty</td><td><span class="badge badge-status badge-status-blocked">BLOCKED</span></td><td>0 inline blocked marker(s) across 0 blocker type(s). The mechanic cannot be marked valid until these blocked elements are resolved or removed.</td></tr></tbody></table></div>
   </section>
   <section class="dialog-wide">
     <h4>Files</h4>
@@ -2828,7 +3006,7 @@ pre {
     <div class="panel-head"><h2>Blocking Reason Guide</h2></div>
     <div class="table-wrap"><table>
       <thead><tr><th>Reason</th><th>What it means</th><th>Why it blocks validity</th></tr></thead>
-      <tbody><tr><td><span class="badge badge-reason" data-tag-group="default" data-tag-value="before-after-evidence">Before/after evidence</span></td><td>The product would need to compare a finished physical result with an earlier state or receive confirmation.</td><td>Without an evidence policy, the activity could overclaim that it can assess drawings, builds, cleanup, or craft completion.</td></tr><tr><td><span class="badge badge-reason" data-tag-group="default" data-tag-value="caregiver-setup-and-pacing">Caregiver setup and pacing</span></td><td>The activity requires adult setup, material timing, or a no-assessment physical-work fallback.</td><td>The design needs clear caregiver responsibilities and pacing rules so the runtime does not leave the child waiting or judge unsupported work.</td></tr><tr><td><span class="badge badge-reason" data-tag-group="default" data-tag-value="cat3-material-workflow">Cat3 material workflow</span></td><td>The child must use physical materials such as paper, blocks, craft objects, or handwriting.</td><td>The current run contract supports Cat1/Cat5 packages; material setup, caregiver involvement, timing, and completion evidence need a product decision first.</td></tr><tr><td><span class="badge badge-reason" data-tag-group="default" data-tag-value="coloring-or-recoloring-ui">Coloring or recoloring UI</span></td><td>The concept needs selectable regions, color application, or saved coloring state.</td><td>Runtime beats would otherwise assume UI controls and state behavior that do not exist in the current package contract.</td></tr><tr><td><span class="badge badge-reason" data-tag-group="default" data-tag-value="motion-safety">Motion safety</span></td><td>The child is asked to move their body or follow pose/action prompts.</td><td>Movement activities need age-safe constraints, caregiver gating, space checks, and prohibited movement rules before runtime dialogue is safe.</td></tr><tr><td><span class="badge badge-reason" data-tag-group="default" data-tag-value="ocr-or-text-handling">OCR or text handling</span></td><td>The activity may need to read child writing, letters, words, or text content.</td><td>Text recognition and reading-level behavior need explicit capability, privacy, and fallback decisions before runtime beats can rely on them.</td></tr><tr><td><span class="badge badge-reason" data-tag-group="default" data-tag-value="prebuilt-asset-display">Prebuilt asset display</span></td><td>The activity depends on approved cards, artworks, pose images, or other displayed assets.</td><td>The package needs known asset IDs, metadata, display rules, and fallbacks before it can claim what appears on screen.</td></tr><tr><td><span class="badge badge-reason" data-tag-group="default" data-tag-value="runtime-image-generation">Runtime image generation</span></td><td>The concept needs the product to generate child-facing images during the session.</td><td>The package cannot promise runtime artwork until generation safety, latency, content policy, and fallback behavior are approved.</td></tr><tr><td><span class="badge badge-reason" data-tag-group="default" data-tag-value="ui-state-or-progress-memory">UI state or progress memory</span></td><td>The activity needs persistent progress, resume/reset behavior, or interactive screen state.</td><td>Designing rounds before the state model is defined risks creating flows the runtime cannot store, resume, or verify.</td></tr></tbody>
+      <tbody><tr><td><span class="badge badge-reason badge-reason-before-after-evidence">Before/after evidence</span></td><td>The product would need to compare a finished physical result with an earlier state or receive confirmation.</td><td>Without an evidence policy, the activity could overclaim that it can assess drawings, builds, cleanup, or craft completion.</td></tr><tr><td><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing">Caregiver setup and pacing</span></td><td>The activity requires adult setup, material timing, or a no-assessment physical-work fallback.</td><td>The design needs clear caregiver responsibilities and pacing rules so the runtime does not leave the child waiting or judge unsupported work.</td></tr><tr><td><span class="badge badge-reason badge-reason-cat3-material-workflow">Cat3 material workflow</span></td><td>The child must use physical materials such as paper, blocks, craft objects, or handwriting.</td><td>The current run contract supports Cat1/Cat5 packages; material setup, caregiver involvement, timing, and completion evidence need a product decision first.</td></tr><tr><td><span class="badge badge-reason badge-reason-coloring-or-recoloring-ui">Coloring or recoloring UI</span></td><td>The concept needs selectable regions, color application, or saved coloring state.</td><td>Runtime beats would otherwise assume UI controls and state behavior that do not exist in the current package contract.</td></tr><tr><td><span class="badge badge-reason badge-reason-motion-safety">Motion safety</span></td><td>The child is asked to move their body or follow pose/action prompts.</td><td>Movement activities need age-safe constraints, caregiver gating, space checks, and prohibited movement rules before runtime dialogue is safe.</td></tr><tr><td><span class="badge badge-reason badge-reason-ocr-or-text-handling">OCR or text handling</span></td><td>The activity may need to read child writing, letters, words, or text content.</td><td>Text recognition and reading-level behavior need explicit capability, privacy, and fallback decisions before runtime beats can rely on them.</td></tr><tr><td><span class="badge badge-reason badge-reason-prebuilt-asset-display">Prebuilt asset display</span></td><td>The activity depends on approved cards, artworks, pose images, or other displayed assets.</td><td>The package needs known asset IDs, metadata, display rules, and fallbacks before it can claim what appears on screen.</td></tr><tr><td><span class="badge badge-reason badge-reason-runtime-image-generation">Runtime image generation</span></td><td>The concept needs the product to generate child-facing images during the session.</td><td>The package cannot promise runtime artwork until generation safety, latency, content policy, and fallback behavior are approved.</td></tr><tr><td><span class="badge badge-reason badge-reason-ui-state-or-progress-memory">UI state or progress memory</span></td><td>The activity needs persistent progress, resume/reset behavior, or interactive screen state.</td><td>Designing rounds before the state model is defined risks creating flows the runtime cannot store, resume, or verify.</td></tr></tbody>
     </table></div>
   </section>
 
@@ -2880,7 +3058,7 @@ pre {
 <tr><td>python3 older checked package invariant check</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
 <tr><td>python3 run manifest reviewer coverage validation</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
 <tr><td>python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
-<tr><td>python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-dashboard-contract-checks-23-package-scorecards-and-270-local-links-passed">PASS; dashboard contract checks, 23 package scorecards, and 270 local links passed</span></td></tr></tbody></table></div>
+<tr><td>python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-dashboard-contract-checks-23-package-scorecards-blocked-marker-clarity-blocked-preview-scorecards-and-270-local-links-passed">PASS; dashboard contract checks, 23 package scorecards, blocked marker clarity, blocked preview scorecards, and 270 local links passed</span></td></tr></tbody></table></div>
   </section>
 
   <section class="panel">

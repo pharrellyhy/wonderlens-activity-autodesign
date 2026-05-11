@@ -48,6 +48,9 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
   - Parsed scorecard results for all 10 dimensions from `spec.md`, with the PASS/FAIL/N/A result and the note explaining why. Dimension 8 may be N/A when no mapping source is required.
   - Changed files and package-file links.
 - Blocked cards must open a detail view with missing product/design decisions, capability flags, blocked reason badges, blocked brief link, constrained design preview link when present, proposed preview beats, and inline `BLOCKED ELEMENT` comments when present.
+- Blocked cards must distinguish missing decisions from inline blocked markers. Missing decisions are unresolved product/design questions from the brief. Inline blocked markers are occurrences inside proposed runtime steps where that unresolved decision affects a beat. Show both counts when available, plus a unique blocker-type count, so one missing decision that appears in several beats is not mistaken for several separate decisions.
+- Inline blocked markers must be classified into the same blocking reason groups used by the reason guide and rendered as colored chips with the marker text. The text remains authoritative; color is only a scan aid.
+- Blocked detail views must include a blocked-preview scorecard using the 10 `program.md` dimensions. This scorecard is review evidence only. It may use `REVIEWABLE`, `BLOCKED`, and `N/A` statuses to show what can be inspected in the constrained preview and what prevents package validity. It must not be treated as a normal package PASS, and it must not allow `results.tsv` logging or assignment checkoff until blockers are resolved and a standard five-file package passes the normal rubric.
 - Clicking normal links inside a card must navigate to the link, not open the detail dialog.
 - The detail dialog must provide a visible close button, close on `Escape`, trap browser focus naturally through the native dialog behavior, and return focus to the opened card when closed.
 
@@ -77,6 +80,7 @@ Use grouped tag colors so reviewers can distinguish metadata types quickly:
 - Asset tags: teal for normal/no-assets, amber for required/blocked/runtime-generated.
 - Reviewer tags: green for PASS/covered, amber for unresolved/N/A, red for FAIL.
 - Blocked reason tags: amber family, distinct from category and mechanic tags.
+- Inline blocked marker tags: reason-specific backgrounds so runtime image generation, coloring UI, Cat3 material workflow, UI state, prebuilt assets, motion safety, before/after evidence, OCR/text handling, caregiver setup, and generic product decisions can be skimmed separately.
 
 Keep colors restrained and accessible. Tags must not rely on color alone; the text label remains authoritative.
 
@@ -108,4 +112,4 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for the generation and validation commands.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, review criteria, 10-dimension scorecard results, clickable detail behavior, modal/detail content, grouped tag colors, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, review criteria, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, grouped tag colors, inline blocked marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
