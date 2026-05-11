@@ -95,6 +95,23 @@ Keep colors restrained and accessible. Tags must not rely on color alone; the te
 - Do not use external CSS, JavaScript, fonts, images, CDNs, or build tooling.
 - Do not use dark theme by default, decorative gradient/orb backgrounds, card-within-card nesting, or visible instructional copy explaining how to use the dashboard.
 
+### Design language
+
+The generator implements an editorial product-dashboard aesthetic. Treat the following as the canonical visual identity; preserve it across regenerations.
+
+- **Palette.** Warm paper background (a faint amber-tinted off-white), slate-ink text, single indigo accent (`oklch(40% 0.18 268)` family). Status colors stay restrained: mint green for PASS, soft amber for blocked/warning, muted red for fail, neutral grey for N/A. Reason chips keep their distinct hues. Never pure black or pure white. Tint neutrals toward the indigo/amber paper hue.
+- **Typography.** Pair a display serif stack (`ui-serif`, `"Iowan Old Style"`, `"Hoefler Text"`, Charter, Georgia) with the system sans stack for body text and a system mono stack for IDs and file links. Use the serif for the run title (H1) and detail dialog titles; use small-caps uppercase with tracked letterspacing for H2/eyebrow/section labels; use `font-variant-numeric: tabular-nums` on every numeric display (metrics, counts, timestamps, scorecards).
+- **Hierarchy.** Editorial H1 (fluid `clamp(28px, ..., 38px)`, weight ~540, negative tracking) → small uppercase H2 section labels with a 6px accent dot prefix → compact 16px serif card titles → small uppercase field labels with 10px tracked letterspacing.
+- **Spacing rhythm.** Use varied spacing, not uniform padding. Larger gaps between major panels (~18px), tight gaps inside panels (~12-14px). Section panels round at 10px; chips and field cells round at 4-6px. Hairline separators (`color-mix` with line color) replace heavy borders inside dense regions.
+- **No card-in-card.** Inside a panel, prefer hairline-divided grids (metrics, meta-grid, inline-fields), counter-numbered hairline lists (runtime beats use `01`, `02`, ... in mono), and bordered chips. Do not stack panels-within-panels or boxed cards-within-cards. The reviewer-coverage and runtime-beat sections must use hairline rows, not nested card boxes.
+- **Card accent rails.** Activity cards carry a thin indigo accent rail along the left edge. Blocked cards carry an amber accent rail. The rail is decorative reinforcement of the badge — the badge text and color remain authoritative.
+- **Run status indicator.** The header shows a small filled dot beside the run status: mint green for `completed`, amber for `completed_with_blockers`, red for `failed`, blue for `in_progress`. The status word remains the authoritative signal; the dot is a scan aid.
+- **Header layout.** The header uses a two-column layout: title block on the left (a 96px accent rule above the eyebrow, the eyebrow `WonderLens · Activity Run Review`, the run-id H1, then a single summary line with status dot, started, completed), and a small bordered "Run ID" stamp on the right. The header sticks while the user scrolls and uses a subtle backdrop blur.
+- **Interaction polish.** Hover transitions are snappy (~100-120ms). Interactive surfaces (cards, buttons, inputs, sidebar links) all show a clear accent border or a soft `box-shadow` focus ring (`0 0 0 3px` of a 18% accent mix) on `:focus-visible`. The detail dialog uses a backdrop blur, refined drop shadow, and serif title; it must respect `prefers-reduced-motion`.
+- **Numbers as data.** Metric numerals, scorecard counts, timestamps, and run ids must use tabular numerals so columns align without jitter when filters/sorts re-flow them.
+
+These choices are visual polish on top of the contract above. They must not remove any data, navigation, filter, modal behavior, or accessibility affordance the contract requires.
+
 ## Link Rules
 
 - Run-local files use local relative links such as `run_manifest.yaml`, `blocked_briefs/017_coloring_game.yaml`, and `blocked_designs/017_coloring_game.md`.

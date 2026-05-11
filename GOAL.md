@@ -135,6 +135,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - `runs/<run_id>/review.html` exists before the final report.
    - The dashboard is generated with `python3 scripts/generate_run_review.py runs/<run_id>` and validated with `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
    - The dashboard satisfies `review_dashboard.md`: self-contained light-theme HTML, concise clickable cards for generated/enriched/audited packages, full detail dialog/page content, grouped tag colors, search/filter/sort controls, blocked-preview handling, clear missing-decision versus inline-marker counts, colored inline blocked marker chips, blocked-preview scorecards, reason guide, reviewer coverage, 10-dimension review criteria, per-package scorecard results with why notes, checks, residual risks, and resolving local links.
+   - The dashboard preserves the editorial design language defined in `review_dashboard.md` §"Design language": warm-paper palette, single indigo accent, serif display title and dialog headings, hairline-divided panels (no card-within-card), tabular numerals on numeric columns, indigo/amber accent rails on activity/blocked cards, and a status-dot run indicator.
    - `runs/<run_id>/run_manifest.yaml` records the dashboard path, and the final report includes it.
 
 14. Final report is clear:
