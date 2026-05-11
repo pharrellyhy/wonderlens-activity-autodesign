@@ -1,0 +1,42 @@
+adaptation_brief:
+  assignment_index: 18
+  assignment_type: match_pattern
+  activity_concept: Scavenger Hunt
+  source:
+    concept_source: examples/source_activity_concept_briefs.md#source_scavenger_hunt
+    assignment_row: assignment_type=match_pattern, activity_concept=Scavenger Hunt, concept_source=inputs/source_activity_concepts.md#source_scavenger_hunt,
+      description=Child finds and photographs three things that share a color, shape, or category,
+      then names one extra thing they have in common, mechanic=collect, category=cat5, tier=T1, asset_policy=no_assets,
+      activity_id=concept_scavenger_hunt_collect, trigger_condition=Child photographs an object with
+      a clear color, shape, or category feature
+  input_mode: parameterized
+  core_promise: The child starts from one photographed object, finds three more things that share
+    a visible or nameable feature, and then names one extra commonality across the collected set.
+  canonical_mechanic: collect
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: ready_to_generate
+  trigger_condition: Child photographs an object with a clear color, shape, or category feature.
+  entity_role: exemplar
+  observation_angle: pattern
+  focal_attribute: '{shared_feature}'
+  mapping_use:
+    required: false
+    available: false
+    value_if_available:
+    - matchability
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Adventure
+    game_style: quest_collector
+    scaffold_fit: strong
+  assumptions:
+  - Runtime can resolve or ask the child to confirm a broad shared feature such as color, shape, material,
+    function, or category.
+  - Each collection photo is processed independently; the child and AI name the shared rule by dialogue
+    rather than relying on cross-photo computational comparison.

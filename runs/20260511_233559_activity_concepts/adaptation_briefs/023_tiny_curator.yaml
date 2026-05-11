@@ -1,0 +1,46 @@
+adaptation_brief:
+  assignment_index: 23
+  assignment_type: match_pattern
+  activity_concept: Tiny Curator
+  source:
+    concept_source: examples/source_activity_concept_briefs.md#source_tiny_curator
+    assignment_row: assignment_type=match_pattern, activity_concept=Tiny Curator, concept_source=inputs/source_activity_concepts.md#source_tiny_curator,
+      description=Child finds three or four objects that they think belong together, arranges a tiny
+      exhibition, then explains their grouping rule, mechanic=sort, category=cat5, tier=T2, asset_policy=no_assets,
+      activity_id=concept_tiny_curator_sort, trigger_condition=Child is at home or outdoors with several
+      objects that can be grouped or compared
+  input_mode: parameterized
+  core_promise: The child chooses three or four objects, arranges them as a tiny exhibit, and explains
+    the child-made rule that makes the group belong together.
+  canonical_mechanic: sort
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: generate_with_assumptions
+  trigger_condition: Child is at home or outdoors with several objects that can be grouped or compared.
+  entity_role: catalyst
+  observation_angle: pattern
+  focal_attribute: child_made_grouping_rule
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Adventure
+    game_style: quest_collector
+    scaffold_fit: weak_but_usable
+    rationale: The current taxonomy has no dedicated sort style. Adventure / quest_collector is used
+      only for visible exhibit-progress framing; the Step 3 loop remains rule-making, arranging, and
+      explaining.
+  assumptions:
+  - The runtime may start from a room, table, shelf, outdoor area, or a photo containing several candidate
+    objects.
+  - The AI does not decide a single correct category before the child acts; it validates the child's
+    rule and asks for evidence.
+  - Photo/screen states support display of child-taken photos and simple labels, but no prebuilt or
+    generated visual assets are required.

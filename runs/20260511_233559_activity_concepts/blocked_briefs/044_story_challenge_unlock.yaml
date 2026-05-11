@@ -1,0 +1,60 @@
+adaptation_brief:
+  assignment_index: 44
+  assignment_type: capability_probe
+  activity_concept: Story Challenge Unlock
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_story_challenge_unlock
+    asset_requirements: inputs/source_activity_concepts.md#story_unlock_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Story Challenge Unlock, concept_source=inputs/source_activity_concepts.md#source_story_challenge_unlock,
+      description=A story pauses at a challenge point and the child completes a quick task to unlock
+      the next beat, mechanic=imagine, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#story_unlock_cards_01,
+      product_capabilities=requires_ui_state,requires_asset_display, activity_id=concept_story_unlock_probe,
+      trigger_condition=Child reaches a story pause point and can complete a quick challenge to continue
+  input_mode: concept_only
+  core_promise: A story pauses at a challenge point; the child completes a quick task to unlock the
+    next beat.
+  canonical_mechanic: imagine
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: blocked_until_product_decision
+  trigger_condition: Child reaches a story pause point and can complete a quick challenge to continue.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: story_unlock
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_ui_state
+  - requires_asset_display
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: story_unlock_cards_01
+      concept_ref: source_story_challenge_unlock
+      asset_type: story_card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      purpose_en: Show a simple locked story door, token, or next-scene card during a story challenge.
+      prompt_en: Create a set of child-friendly story unlock cards. Each card shows a magical door,
+        path marker, treasure token, or story page waiting to open. Use warm illustrated style, no
+        text, no scary elements, and clear central object.
+      source: new_ai_generated_asset
+      display_behavior_en: Show the card at a story pause point and change to the next scene only
+        when product unlock state is supported.
+      fallback_behavior_en: If unlock UI is unavailable, use voice-only story choices and do not claim
+        a screen element has unlocked.
+      safety_constraints_en: No frightening doors, traps, weapons, or branded characters.
+    missing_asset_risk: high
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Keep the child action as making a story contribution or completing a small challenge.
+      Do not require visual unlock UI unless product declares it.
+  missing_product_decisions:
+  - Define UI state storage, progress memory, and resume/reset behavior.
+  assumptions: []

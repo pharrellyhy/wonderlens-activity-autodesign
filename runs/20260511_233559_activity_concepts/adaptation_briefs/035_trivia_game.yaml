@@ -1,0 +1,56 @@
+adaptation_brief:
+  assignment_index: 35
+  assignment_type: activity_concept
+  activity_concept: Trivia Game
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_trivia_game
+    asset_requirements: inputs/source_activity_concepts.md#trivia_reward_board_01
+    assignment_row: assignment_type=activity_concept, activity_concept=Trivia Game, concept_source=inputs/source_activity_concepts.md#source_trivia_game,
+      description=Child answers short memory or knowledge questions and receives a simple explanation,
+      mechanic=remember, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#trivia_reward_board_01,
+      activity_id=concept_trivia_game_remember, trigger_condition=Child has just explored a topic
+      and can answer short fact or memory questions
+  input_mode: concept_only
+  core_promise: The child answers short memory or knowledge questions and receives a simple explanation.
+  canonical_mechanic: remember
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: Child has just explored a topic and can answer short fact or memory questions.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: remembered_fact_clue
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_ui_state
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: trivia_reward_board_01
+      concept_ref: source_trivia_game
+      asset_type: reward_board
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-5
+      purpose_en: Optionally visualize progress through trivia rounds.
+      prompt_en: Create a simple child-friendly trivia progress board with five empty star spaces
+        and a small castle or clubhouse outline at the end. Use warm colors, clean shapes, no text,
+        no competitive ranking, no brands, and enough blank space for runtime stars.
+      source: new_ai_generated_asset
+      display_behavior_en: Show progress only if product can update state after each answer.
+      fallback_behavior_en: If stateful reward display is unavailable, use verbal encouragement only
+        and do not claim stars are being added.
+      safety_constraints_en: No leaderboards, no shame states, no gambling-like reward visuals, and
+        no brands.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Mystery
+    game_style: mystery_lens
+    scaffold_fit: acceptable
+  assumptions:
+  - Keep questions brief and age-appropriate. If no reward board exists, use verbal celebration only.

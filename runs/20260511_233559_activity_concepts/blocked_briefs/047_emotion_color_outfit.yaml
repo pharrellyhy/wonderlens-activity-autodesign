@@ -1,0 +1,65 @@
+adaptation_brief:
+  assignment_index: 47
+  assignment_type: capability_probe
+  activity_concept: Emotion Color Outfit
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_emotion_color_outfit
+    asset_requirements: inputs/source_activity_concepts.md#emotion_color_character_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Emotion Color Outfit, concept_source=inputs/source_activity_concepts.md#source_emotion_color_outfit,
+      description=Child uses colors to represent feelings then sees or imagines a character outfit
+      matching that feeling, mechanic=care, category=cat1, tier=T1, asset_policy=required_prebuilt,
+      asset_requirements=inputs/source_activity_concepts.md#emotion_color_character_01, product_capabilities=requires_asset_display,requires_coloring_ui,requires_ui_state,
+      activity_id=concept_emotion_color_outfit_probe, trigger_condition=Child names a mood or chooses
+      a color to represent a feeling
+  input_mode: concept_only
+  core_promise: The child uses colors to represent feelings, then sees or imagines a character outfit
+    matching that feeling.
+  canonical_mechanic: care
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: blocked_until_product_decision
+  trigger_condition: Child names a mood or chooses a color to represent a feeling.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: emotion_color_outfit
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_coloring_ui
+  - requires_ui_state
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: emotion_color_character_01
+      concept_ref: source_emotion_color_outfit
+      asset_type: character_template
+      requiredness: required
+      generation_timing: pre_generated_or_runtime_recolored
+      use_step: prod.step_2; prod.step_3.round_1-3
+      purpose_en: Show a character whose outfit can reflect the child's chosen emotion color.
+      prompt_en: Create a simple friendly character template for an emotion color activity. The character
+        should have a plain outfit with large clean regions that can be recolored, neutral expression,
+        light background, no text, no brands, and no complex details.
+      source: new_ai_generated_asset_or_future_avatar_renderer
+      display_behavior_en: Show the character before the child chooses an emotion color, then update
+        the outfit only if recoloring UI is supported.
+      fallback_behavior_en: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color
+        conversation without claiming the outfit changed.
+      safety_constraints_en: No real child photos, no stereotypes about colors or feelings, and no
+        mental-health diagnosis framing.
+    missing_asset_risk: high
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Stop at Phase 0 unless product supports outfit recoloring, avatar state, or an approved
+      equivalent.
+  missing_product_decisions:
+  - Define coloring or recoloring UI behavior, selectable regions, state storage, and fallback behavior.
+  - Define UI state storage, progress memory, and resume/reset behavior.
+  - Confirm approved prebuilt asset library, display contract, and asset metadata availability.
+  assumptions: []

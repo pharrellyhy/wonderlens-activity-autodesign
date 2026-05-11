@@ -1,0 +1,47 @@
+adaptation_brief:
+  assignment_index: 51
+  assignment_type: capability_probe
+  activity_concept: Message Bottle Note
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_message_bottle_note
+    asset_requirements: null
+    assignment_row: assignment_type=capability_probe, activity_concept=Message Bottle Note, concept_source=inputs/source_activity_concepts.md#source_message_bottle_note,
+      description=Child creates a short kindness note or message for someone else, mechanic=care,
+      category=cat3, tier=T1, asset_policy=no_assets, product_capabilities=requires_materials,before_after_risk,ocr_risk,
+      activity_id=concept_message_bottle_note_probe, trigger_condition=Parent starts a writing or
+      kindness-note activity
+  input_mode: concept_only
+  core_promise: The child creates a short kindness note or message for someone else.
+  canonical_mechanic: care
+  mechanic_confidence: high
+  category_decision: unsupported_cat3
+  readiness: blocked_until_product_decision
+  trigger_condition: Parent starts a writing or kindness-note activity.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: message_bottle_note
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_materials
+  - before_after_risk
+  - ocr_risk
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: medium
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Stop at Phase 0 unless material workflow and note-capture behavior are defined.
+  missing_product_decisions:
+  - Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+    without distorting the source promise.
+  - Define caregiver/material setup, pacing, and no-assessment fallback for physical work.
+  - Define before/after capture or parent confirmation; do not infer completion from one photo.
+  - Define whether OCR or note reading is supported; otherwise avoid claiming to read child writing.
+  assumptions: []

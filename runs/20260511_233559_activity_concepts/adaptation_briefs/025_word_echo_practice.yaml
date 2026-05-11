@@ -1,0 +1,58 @@
+adaptation_brief:
+  assignment_index: 25
+  assignment_type: activity_concept
+  activity_concept: Word Echo Practice
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_word_echo_practice
+    asset_requirements: inputs/source_activity_concepts.md#word_echo_cards_01
+    assignment_row: assignment_type=activity_concept, activity_concept=Word Echo Practice, concept_source=inputs/source_activity_concepts.md#source_word_echo_practice,
+      description=AI says a simple word or phrase and the child repeats it back in a playful echo
+      round, mechanic=remember, category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#word_echo_cards_01,
+      activity_id=concept_word_echo_remember, trigger_condition=Child enters language-practice mode
+      or asks what a familiar object is called
+  input_mode: concept_only
+  core_promise: The AI says a simple word or phrase and the child repeats it back in a playful echo
+    round.
+  canonical_mechanic: remember
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: Child enters language-practice mode, asks what an object is called, or photographs
+    a familiar object whose name can be repeated safely.
+  entity_role: catalyst
+  observation_angle: pattern
+  focal_attribute: echo_word_pattern
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: word_echo_cards_01
+      concept_ref: source_word_echo_practice
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_1; prod.step_3.round_1-3
+      purpose_en: Provide a simple picture cue for the word the child repeats.
+      prompt_en: Create a child-friendly vocabulary card set for common household objects. Each card
+        shows one centered object, one large simple English word label, a clean light background,
+        soft colors, and no extra text.
+      source: new_ai_generated_asset
+      display_behavior_en: Show one card when introducing a word, then hide or keep it small while
+        the child repeats by voice.
+      fallback_behavior_en: If cards are unavailable, run the activity voice-only and do not claim
+        the screen is showing a word.
+      safety_constraints_en: No real child photos, no brands, no complex text, and no cluttered composition.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Performance
+    game_style: voice_stage
+    scaffold_fit: acceptable
+  assumptions:
+  - The repeated child action is listen, echo, and try again with one tiny phrase. If no card is shown,
+    run voice-only and do not claim the screen displays text.

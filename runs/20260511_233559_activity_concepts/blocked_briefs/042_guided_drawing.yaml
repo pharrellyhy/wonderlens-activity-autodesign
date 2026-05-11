@@ -1,0 +1,65 @@
+adaptation_brief:
+  assignment_index: 42
+  assignment_type: capability_probe
+  activity_concept: Guided Drawing
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_guided_drawing
+    asset_requirements: inputs/source_activity_concepts.md#guided_drawing_step_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Guided Drawing, concept_source=inputs/source_activity_concepts.md#source_guided_drawing,
+      description=AI guides the child to use paper and pencil to complete a simple drawing step by
+      step, then the child photographs the finished work, mechanic=build, category=cat3, tier=T1,
+      asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#guided_drawing_step_cards_01,
+      product_capabilities=requires_materials,before_after_risk, activity_id=concept_guided_drawing_probe,
+      trigger_condition=Child is indoors and photographs an object that could become a drawing theme
+  input_mode: concept_only
+  core_promise: The AI guides the child to use paper and pencil to complete a simple drawing step
+    by step.
+  canonical_mechanic: build
+  mechanic_confidence: high
+  category_decision: unsupported_cat3
+  readiness: blocked_until_product_decision
+  trigger_condition: Child is indoors and photographs an object that could become a drawing theme.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: guided_drawing
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_materials
+  - before_after_risk
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: guided_drawing_step_cards_01
+      concept_ref: source_guided_drawing
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-4
+      purpose_en: Provide optional visual steps for a simple drawing task.
+      prompt_en: Create a set of step-by-step drawing cards for children ages 4-6. Show how to draw
+        a simple friendly object in 4 clear steps using thick black sketch lines, large shapes, no
+        text, minimal details, and a plain white background.
+      source: new_ai_generated_asset
+      display_behavior_en: Show one step card at a time while the AI leaves enough time for the child
+        to draw on paper.
+      fallback_behavior_en: If step cards are unavailable, use voice-only step descriptions; the Cat3
+        material workflow still requires product approval before package generation.
+      safety_constraints_en: No real child photos, no fine-copying requirement, and only simple non-dangerous
+        drawing themes.
+    missing_asset_risk: high
+  scaffold_choice:
+    pillar: Creation
+    game_style: inventor_workshop
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Do not force this into the current Cat1/Cat5 package workflow. Output a Phase 0 brief
+      and block unless product support for material workflows and final-work capture is declared.
+  missing_product_decisions:
+  - Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+    without distorting the source promise.
+  - Define caregiver/material setup, pacing, and no-assessment fallback for physical work.
+  - Define before/after capture or parent confirmation; do not infer completion from one photo.
+  assumptions: []

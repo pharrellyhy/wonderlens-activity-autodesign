@@ -1,0 +1,45 @@
+adaptation_brief:
+  assignment_index: 8
+  assignment_type: capability_probe
+  activity_concept: Toy Tidy Challenge
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_toy_tidy_challenge
+    asset_requirements: null
+    assignment_row: assignment_type=capability_probe, activity_concept=Toy Tidy Challenge, concept_source=inputs/source_activity_concepts.md#source_toy_tidy_challenge,
+      description=Child sorts toys or household objects using a simple cleanup rule, mechanic=sort,
+      category=cat5, tier=T1, asset_policy=no_assets, product_capabilities=requires_ui_state,before_after_risk,
+      activity_id=concept_toy_tidy_probe, trigger_condition=Parent starts a tidy-up mission and the
+      child has several visible toys or household items
+  input_mode: concept_only
+  core_promise: The child sorts toys or household objects using a simple cleanup rule.
+  canonical_mechanic: sort
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: blocked_until_product_decision
+  trigger_condition: Parent starts a tidy-up mission and the child has several visible toys or household
+    items.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: toy_tidy
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_ui_state
+  - before_after_risk
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: medium
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Stop at Phase 0 unless the product defines progress memory, confirmation, or before/after
+      review.
+  missing_product_decisions:
+  - Define UI state storage, progress memory, and resume/reset behavior.
+  - Define before/after capture or parent confirmation; do not infer completion from one photo.
+  assumptions: []

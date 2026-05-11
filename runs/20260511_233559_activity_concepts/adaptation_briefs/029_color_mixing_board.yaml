@@ -1,0 +1,58 @@
+adaptation_brief:
+  assignment_index: 29
+  assignment_type: activity_concept
+  activity_concept: Color Mixing Board
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_color_mixing_board
+    asset_requirements: inputs/source_activity_concepts.md#color_mixing_board_01
+    assignment_row: assignment_type=activity_concept, activity_concept=Color Mixing Board, concept_source=inputs/source_activity_concepts.md#source_color_mixing_board,
+      description=Child chooses or finds two colors predicts what they make together and compares
+      against the mixed result, mechanic=collect, category=cat1, tier=T1, asset_policy=optional_support,
+      asset_requirements=inputs/source_activity_concepts.md#color_mixing_board_01, activity_id=concept_color_mixing_collect,
+      trigger_condition=Child notices two colors nearby or selects a color experiment mode
+  input_mode: concept_only
+  core_promise: The child chooses or finds two colors, predicts what they make together, and compares
+    against the mixed result.
+  canonical_mechanic: collect
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: Child notices two colors nearby or selects a color experiment mode.
+  entity_role: catalyst
+  observation_angle: color
+  focal_attribute: two_color_mix
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: color_mixing_board_01
+      concept_ref: source_color_mixing_board
+      asset_type: visual_board
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      purpose_en: Support color prediction by showing two color spots combining into a result spot.
+      prompt_en: Create a simple children's color-mixing board with two large empty color circles
+        flowing into one result circle. Use clean white background, soft outline arrows, no text,
+        no paint splashes that obscure the circles, and enough blank space for runtime color overlays.
+      source: new_ai_generated_asset
+      display_behavior_en: Show the board when the child chooses or finds two colors. Fill or point
+        to the result only if product supports overlays; otherwise use it as a static visual.
+      fallback_behavior_en: If the board is unavailable, explain the color result by voice and do
+        not claim the screen is mixing colors.
+      safety_constraints_en: No messy materials requirement, no brands, and no confusing tiny color
+        regions.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: acceptable
+  assumptions:
+  - Use a collect-and-predict loop around color pairs. If the board asset is unavailable, describe
+    the result verbally.

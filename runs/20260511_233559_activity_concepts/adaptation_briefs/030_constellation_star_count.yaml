@@ -1,0 +1,57 @@
+adaptation_brief:
+  assignment_index: 30
+  assignment_type: activity_concept
+  activity_concept: Constellation Star Count
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_constellation_star_count
+    asset_requirements: inputs/source_activity_concepts.md#constellation_count_cards_01
+    assignment_row: assignment_type=activity_concept, activity_concept=Constellation Star Count, concept_source=inputs/source_activity_concepts.md#source_constellation_star_count,
+      description=Child counts visible stars in an approved constellation card or simplified star
+      pattern, mechanic=enumerate, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#constellation_count_cards_01,
+      product_capabilities=requires_asset_display, activity_id=concept_constellation_star_count_enumerate,
+      trigger_condition=Child chooses a space theme or the screen can show an approved constellation
+      card
+  input_mode: concept_only
+  core_promise: The child counts visible stars in a constellation card or simplified star pattern.
+  canonical_mechanic: enumerate
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: Child chooses a space theme or the screen can show an approved constellation
+    card.
+  entity_role: reference
+  observation_angle: quantity
+  focal_attribute: visible_star_count
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: constellation_count_cards_01
+      concept_ref: source_constellation_star_count
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-4
+      purpose_en: Provide clear star patterns for counting and simple constellation talk.
+      prompt_en: Create a set of child-friendly constellation counting cards. Each card shows 4 to
+        10 bright stars connected by simple thin lines on a dark blue sky background, one pattern
+        per card, no text, no real astronomy labels, no clutter, and high contrast for counting.
+      source: new_ai_generated_asset_or_approved_constellation_set
+      display_behavior_en: Show one card each round so the child can count visible stars.
+      fallback_behavior_en: If cards are unavailable, use a voice-only imaginary star-counting riddle
+        and do not claim a constellation is displayed.
+      safety_constraints_en: No scientific claims unless backed by approved metadata, no scary space
+        imagery, and no dense star fields.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: acceptable
+  assumptions:
+  - Keep the counting task concrete and avoid astronomy claims unless asset metadata supplies them.

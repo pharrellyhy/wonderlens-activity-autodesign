@@ -1,0 +1,64 @@
+adaptation_brief:
+  assignment_index: 19
+  assignment_type: match_pattern
+  activity_concept: Phoneme Treasure Hunt
+  source:
+    concept_source: examples/source_activity_concept_briefs.md#source_phoneme_hunt
+    asset_requirements: examples/source_activity_concept_briefs.md#phoneme_letter_card_01
+    assignment_row: assignment_type=match_pattern, activity_concept=Phoneme Treasure Hunt, concept_source=inputs/source_activity_concepts.md#source_phoneme_hunt,
+      description=Child hears a target sound and finds one indoor treasure whose word starts with
+      that sound, mechanic=collect, category=cat5, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#phoneme_letter_card_01,
+      activity_id=concept_phoneme_hunt_collect, trigger_condition=Child enters language treasure-hunt
+      mode or photographs an everyday object suitable for sound play
+  input_mode: parameterized
+  core_promise: The child hears a target beginning sound, finds indoor treasures whose spoken names
+    start with that sound, and celebrates the sound pattern.
+  canonical_mechanic: collect
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: generate_with_assumptions
+  trigger_condition: Child enters language treasure-hunt mode or photographs an everyday object suitable
+    for sound play.
+  entity_role: catalyst
+  observation_angle: pattern
+  focal_attribute: beginning_b_sound
+  mapping_use:
+    required: false
+    available: false
+    value_if_available:
+    - matchability
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_assets
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: phoneme_letter_card_01
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_1; prod.step_3.round_1
+      purpose: Give the child a visual reminder of the target /b/ sound and letter.
+      prompt_en: Create a simple child-friendly phonics card for the /b/ sound. Show uppercase B and
+        lowercase b in large rounded letters, include one small friendly picture of a ball and one
+        banana, use a clean light background, no extra words, suitable for children ages 4-6.
+      source: new_ai_generated_asset
+      display_behavior: Show the card at task start and briefly again if the child forgets the target
+        sound.
+      fallback_behavior: If the card is unavailable, the AI repeats the target sound by voice only
+        and must not claim the screen is showing a letter.
+      safety_constraints: No real child photos, no brands, no complex text, and no cluttered composition.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Adventure
+    game_style: quest_collector
+    scaffold_fit: acceptable
+  assumptions:
+  - The current closed observation-angle enum has no phoneme or sound value; the package uses `pattern`
+    for the repeated beginning-sound pattern and discloses this scaffold compromise.
+  - The optional card is authored for /b/, so this package uses /b/ as the concrete target sound rather
+    than a fully dynamic phoneme set.
+  - The source row names one treasure; the Cat5 quest scaffold expands this into three short treasure
+    rounds so the collect mechanic is repeated and reviewable.
+  - If object recognition is uncertain, the AI asks the child to name the photographed object and
+    judges the beginning sound through dialogue.

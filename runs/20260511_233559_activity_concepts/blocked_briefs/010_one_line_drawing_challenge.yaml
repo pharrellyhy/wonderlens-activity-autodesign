@@ -1,0 +1,63 @@
+adaptation_brief:
+  assignment_index: 10
+  assignment_type: capability_probe
+  activity_concept: One-Line Drawing Challenge
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_one_line_drawing
+    asset_requirements: inputs/source_activity_concepts.md#one_line_drawing_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=One-Line Drawing Challenge,
+      concept_source=inputs/source_activity_concepts.md#source_one_line_drawing, description=Child
+      tries to draw a target without lifting the pencil or finger, mechanic=build, category=cat3,
+      tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#one_line_drawing_cards_01,
+      product_capabilities=requires_materials,requires_asset_display,before_after_risk, activity_id=concept_one_line_drawing_probe,
+      trigger_condition=Child has paper or a drawing surface and chooses a drawing challenge
+  input_mode: concept_only
+  core_promise: The child tries to draw a target without lifting the pencil or finger.
+  canonical_mechanic: build
+  mechanic_confidence: high
+  category_decision: unsupported_cat3
+  readiness: blocked_until_product_decision
+  trigger_condition: Child has paper or a drawing surface and chooses a drawing challenge.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: one_line_drawing
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_materials
+  - requires_asset_display
+  - before_after_risk
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: one_line_drawing_cards_01
+      concept_ref: source_one_line_drawing
+      asset_type: challenge_card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      purpose_en: Show simple one-line drawing targets.
+      prompt_en: Create a set of one-line drawing challenge cards for children ages 5-8. Each card
+        shows one simple object made from a continuous thick black line, such as a house, fish, flower,
+        car, or snail. Use plain white background, no text, and easy-to-follow shapes.
+      source: new_ai_generated_asset
+      display_behavior_en: Show one target before the child attempts the drawing.
+      fallback_behavior_en: If cards or drawing workflow are unavailable, block at Phase 0.
+      safety_constraints_en: No fine-copying pressure, no copyrighted characters, and no unsafe drawing
+        themes.
+    missing_asset_risk: high
+  scaffold_choice:
+    pillar: Creation
+    game_style: inventor_workshop
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Stop at Phase 0 under the current Cat1/Cat5-only workflow.
+  missing_product_decisions:
+  - Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+    without distorting the source promise.
+  - Define caregiver/material setup, pacing, and no-assessment fallback for physical work.
+  - Define before/after capture or parent confirmation; do not infer completion from one photo.
+  - Confirm approved prebuilt asset library, display contract, and asset metadata availability.
+  assumptions: []

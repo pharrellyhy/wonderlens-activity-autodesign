@@ -9,8 +9,7 @@ recap_payload:
     token: two_color_mix
     child_label: two color mix
     badge_emoji_none: true
-  highlight_moment: Three collected color pairs made a color wheel: orange, green,
-    and purple.
+  highlight_moment: "Three collected color pairs made a color wheel: orange, green, and purple."
   difficulty_level: 2
   next_step_hint: Try one new answer or explain why next time.
   caregiver_observed: co-explorer

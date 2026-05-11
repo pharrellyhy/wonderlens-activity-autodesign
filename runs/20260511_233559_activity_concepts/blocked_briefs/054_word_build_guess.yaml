@@ -1,0 +1,60 @@
+adaptation_brief:
+  assignment_index: 54
+  assignment_type: capability_probe
+  activity_concept: Word Build Guess
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_word_build_guess
+    asset_requirements: inputs/source_activity_concepts.md#word_growth_ui_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Word Build Guess, concept_source=inputs/source_activity_concepts.md#source_word_build_guess,
+      description=Child chooses letters or answers clues to reveal a word step by step, mechanic=decide,
+      category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#word_growth_ui_01,
+      product_capabilities=requires_asset_display,requires_ui_state, activity_id=concept_word_build_guess_probe,
+      trigger_condition=Product has a text-aware word puzzle mode with parent approval for reading
+      level
+  input_mode: concept_only
+  core_promise: The child chooses letters or answers clues to reveal a word step by step.
+  canonical_mechanic: decide
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: blocked_until_product_decision
+  trigger_condition: Product has a text-aware word puzzle mode with parent approval for reading level.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: word_build_guess
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_ui_state
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: word_growth_ui_01
+      concept_ref: source_word_build_guess
+      asset_type: ui_overlay
+      requiredness: required
+      generation_timing: pre_generated_or_runtime_ui
+      use_step: prod.step_2; prod.step_3.round_1-5
+      purpose_en: Show a constructive word reveal surface for letter or clue guesses.
+      prompt_en: Create a child-friendly word-growth puzzle screen concept. Show a row of blank letter
+        tiles that can fill in, a small growing plant or building progress visual, clean background,
+        no hangman imagery, no scary elements, and no extra text beyond blank tiles.
+      source: future_runtime_ui_or_new_ai_generated_asset
+      display_behavior_en: Show and update letter tiles only if product supports word puzzle state.
+      fallback_behavior_en: If word state is unsupported, block at Phase 0 or run a voice-only clue
+        riddle with no letter UI claims.
+      safety_constraints_en: No hangman imagery, no punishment, no shame feedback, and age-appropriate
+        vocabulary only.
+    missing_asset_risk: high
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Stop at Phase 0 until word state, letter UI, and reading-level constraints are declared.
+  missing_product_decisions:
+  - Define UI state storage, progress memory, and resume/reset behavior.
+  - Confirm approved prebuilt asset library, display contract, and asset metadata availability.
+  assumptions: []

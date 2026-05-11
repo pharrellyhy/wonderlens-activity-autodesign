@@ -1,0 +1,63 @@
+adaptation_brief:
+  assignment_index: 3
+  assignment_type: capability_probe
+  activity_concept: Building Challenge
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_building_challenge
+    asset_requirements: inputs/source_activity_concepts.md#building_reference_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Building Challenge, concept_source=inputs/source_activity_concepts.md#source_building_challenge,
+      description=Child uses blocks bricks or household materials to build a simple target, mechanic=build,
+      category=cat3, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#building_reference_cards_01,
+      product_capabilities=requires_materials,requires_asset_display,before_after_risk, activity_id=concept_building_challenge_probe,
+      trigger_condition=Parent or child selects a hands-on build mode and has materials available
+  input_mode: concept_only
+  core_promise: The child uses blocks, bricks, or household materials to build a simple target.
+  canonical_mechanic: build
+  mechanic_confidence: high
+  category_decision: unsupported_cat3
+  readiness: blocked_until_product_decision
+  trigger_condition: Parent or child selects a hands-on build mode and has materials available.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: building_challenge
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_materials
+  - requires_asset_display
+  - before_after_risk
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: building_reference_cards_01
+      concept_ref: source_building_challenge
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-4
+      purpose_en: Show simple build targets for hands-on block or recycled-material construction.
+      prompt_en: Create a set of simple construction challenge cards for children ages 5-8. Show one
+        build idea per card, such as bridge, tower, animal home, ramp, or tiny city. Use blocky child-friendly
+        shapes, clean background, no text, no brands, and visible simple structure.
+      source: new_ai_generated_asset
+      display_behavior_en: Show one build target before the child starts planning and building.
+      fallback_behavior_en: If cards are unavailable, describe the build target by voice; still block
+        package generation unless material workflow support exists.
+      safety_constraints_en: No unsafe structures, sharp tools, choking hazards, or dangerous material
+        suggestions.
+    missing_asset_risk: high
+  scaffold_choice:
+    pillar: Creation
+    game_style: inventor_workshop
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Stop at Phase 0 unless product support exists for material setup, before/after capture,
+      and build review.
+  missing_product_decisions:
+  - Define a supported Cat3 material workflow or convert the concept to a current Cat1/Cat5 scaffold
+    without distorting the source promise.
+  - Define caregiver/material setup, pacing, and no-assessment fallback for physical work.
+  - Define before/after capture or parent confirmation; do not infer completion from one photo.
+  assumptions: []

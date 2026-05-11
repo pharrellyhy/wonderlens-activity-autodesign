@@ -1,0 +1,39 @@
+adaptation_brief:
+  assignment_index: 27
+  assignment_type: match_pattern
+  activity_concept: Plant Parts Explorer
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_plant_parts_explorer
+    asset_requirements: null
+    assignment_row: assignment_type=match_pattern, activity_concept=Plant Parts Explorer, concept_source=inputs/source_activity_concepts.md#source_plant_parts_explorer,
+      description=Child looks at a plant and identifies visible parts such as leaf stem flower fruit
+      seed or root, mechanic=enumerate, category=cat5, tier=T1, asset_policy=no_assets, activity_id=concept_plant_parts_enumerate,
+      trigger_condition=Photo clearly shows a plant with at least two visible parts
+  input_mode: mapping_informed
+  core_promise: The child looks at a plant and identifies visible parts such as leaf, stem, flower,
+    fruit, seed, or root.
+  canonical_mechanic: enumerate
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: generate_with_assumptions
+  trigger_condition: Uploaded or live photo clearly shows a plant with at least two visible parts.
+  entity_role: subject
+  observation_angle: function
+  focal_attribute: visible_plant_part
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: acceptable
+  assumptions:
+  - Use mapping to ground visible parts and tier language when available. If mapping is absent, avoid
+    species-specific facts.

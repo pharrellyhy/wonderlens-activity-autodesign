@@ -1,0 +1,57 @@
+adaptation_brief:
+  assignment_index: 56
+  assignment_type: capability_probe
+  activity_concept: Color In Famous Art
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_color_in_famous_art
+    asset_requirements: inputs/source_activity_concepts.md#color_artwork_set_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Color In Famous Art, concept_source=inputs/source_activity_concepts.md#source_color_in_famous_art,
+      description=Child looks at an approved artwork and identifies important colors, mechanic=enumerate,
+      category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#color_artwork_set_01,
+      product_capabilities=requires_asset_display, activity_id=concept_color_famous_art_probe, trigger_condition=Screen
+      can show approved public-domain artwork with known color metadata
+  input_mode: concept_only
+  core_promise: The child looks at an approved artwork and identifies important colors.
+  canonical_mechanic: enumerate
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: blocked_until_product_decision
+  trigger_condition: Screen can show approved public-domain artwork with known color metadata.
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: color_famous_art
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: color_artwork_set_01
+      concept_ref: source_color_in_famous_art
+      asset_type: approved_artwork_set
+      requiredness: required
+      generation_timing: pre_curated
+      use_step: prod.step_2; prod.step_3.round_1-4
+      purpose_en: Provide approved artworks with known dominant color metadata.
+      prompt_en: No image generation prompt. Use a curated, rights-cleared artwork set with dominant
+        color metadata and child-safe notes about visible colors, shapes, and mood.
+      source: approved_public_domain_or_licensed_artwork_set
+      display_behavior_en: Show one artwork at a time and ask the child to identify colors that stand
+        out.
+      fallback_behavior_en: If the artwork set is unavailable, block at Phase 0 rather than referencing
+        famous art that cannot be shown.
+      safety_constraints_en: Use rights-cleared, age-appropriate artworks only; no graphic violence,
+        explicit content, or complex sensitive context.
+    missing_asset_risk: high
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: blocked_by_product_dependency
+    rationale: Stop at Phase 0 until approved artwork assets and metadata are available.
+  missing_product_decisions:
+  - Confirm approved prebuilt asset library, display contract, and asset metadata availability.
+  assumptions: []
