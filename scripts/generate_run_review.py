@@ -458,54 +458,63 @@ REASON_RULES: list[dict[str, Any]] = [
         "needles": ("runtime image generation", "requires_generated_image", "runtime_generated"),
         "meaning": "The concept needs the product to generate child-facing images during the session.",
         "why": "The package cannot promise runtime artwork until generation safety, latency, content policy, and fallback behavior are approved.",
+        "unblocks_when": "Product approves a runtime-image policy: latency cap, content-safety rules, and a declared fallback when generation fails or is unavailable. A simpler unblock is to declare no runtime generation and use only prebuilt assets.",
     },
     {
         "label": "Coloring or recoloring UI",
         "needles": ("coloring", "recoloring", "requires_coloring_ui", "fillable"),
         "meaning": "The concept needs selectable regions, color application, or saved coloring state.",
         "why": "Runtime beats would otherwise assume UI controls and state behavior that do not exist in the current package contract.",
+        "unblocks_when": "Product approves a coloring UI contract (selectable regions, color input, persistence rules) or declares a no-coloring fallback such as verbal description of color choices with no on-screen fill.",
     },
     {
         "label": "Cat3 material workflow",
         "needles": ("cat3", "requires_materials", "material workflow", "paper", "pencil"),
         "meaning": "The child must use physical materials such as paper, blocks, craft objects, or handwriting.",
         "why": "The current run contract supports Cat1/Cat5 packages; material setup, caregiver involvement, timing, and completion evidence need a product decision first.",
+        "unblocks_when": "Product extends the package contract to Cat3 (material list, caregiver setup script, timing, completion-evidence policy) or commits to a Cat1/Cat5 re-cast that does not require materials.",
     },
     {
         "label": "UI state or progress memory",
         "needles": ("requires_ui_state", "state storage", "progress memory", "resume/reset"),
         "meaning": "The activity needs persistent progress, resume/reset behavior, or interactive screen state.",
         "why": "Designing rounds before the state model is defined risks creating flows the runtime cannot store, resume, or verify.",
+        "unblocks_when": "Product declares the state model: what persists across rounds and sessions, resume/reset rules, and the stateless fallback used when storage is unavailable.",
     },
     {
         "label": "Prebuilt asset display",
         "needles": ("requires_asset_display", "prebuilt asset", "asset library", "display contract"),
         "meaning": "The activity depends on approved cards, artworks, pose images, or other displayed assets.",
         "why": "The package needs known asset IDs, metadata, display rules, and fallbacks before it can claim what appears on screen.",
+        "unblocks_when": "Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.",
     },
     {
         "label": "Motion safety",
         "needles": ("requires_motion_safety", "movement policy", "space checks", "prohibited movements"),
         "meaning": "The child is asked to move their body or follow pose/action prompts.",
         "why": "Movement activities need age-safe constraints, caregiver gating, space checks, and prohibited movement rules before runtime dialogue is safe.",
+        "unblocks_when": "Product approves an age-appropriate motion policy (allowed/prohibited movements, caregiver-present requirement, space-check prompt) or restricts the activity to low-risk gestures that match the existing safety contract.",
     },
     {
         "label": "Before/after evidence",
         "needles": ("before_after_risk", "before/after", "parent confirmation", "infer completion"),
         "meaning": "The product would need to compare a finished physical result with an earlier state or receive confirmation.",
         "why": "Without an evidence policy, the activity could overclaim that it can assess drawings, builds, cleanup, or craft completion.",
+        "unblocks_when": "Product picks an evidence policy — caregiver confirmation, child self-report, or no completion verification at all (AI narrates progress without claiming evidence). Choosing 'no verification' is the smallest unblock.",
     },
     {
         "label": "OCR or text handling",
         "needles": ("ocr_risk", "ocr", "text-aware", "reading level"),
         "meaning": "The activity may need to read child writing, letters, words, or text content.",
         "why": "Text recognition and reading-level behavior need explicit capability, privacy, and fallback decisions before runtime beats can rely on them.",
+        "unblocks_when": "Product picks a text-handling policy: approve OCR with privacy and reading-level rules, OR require the child to speak text aloud instead, OR declare no correctness verification of written text. The 'no verification' decision is the smallest unblock.",
     },
     {
         "label": "Caregiver setup and pacing",
         "needles": ("caregiver", "setup", "pacing", "no-assessment"),
         "meaning": "The activity requires adult setup, material timing, or a no-assessment physical-work fallback.",
         "why": "The design needs clear caregiver responsibilities and pacing rules so the runtime does not leave the child waiting or judge unsupported work.",
+        "unblocks_when": "Product defines caregiver responsibilities (setup steps, timing cues, no-assessment fallback) and the package records them in a caregiver-facing pacing note.",
     },
 ]
 
@@ -513,6 +522,7 @@ FALLBACK_REASON = {
     "label": "Product decision needed",
     "meaning": "The brief names an unresolved product or design dependency outside the current package contract.",
     "why": "The assignment may be previewed, but it cannot become a valid package until the missing decision is resolved.",
+    "unblocks_when": "Resolve the missing product or design decision, capture it in program.md / run.md / the relevant schema, and rerun the assignment so the brief and package can be validated against the updated contract.",
 }
 
 
@@ -1222,13 +1232,15 @@ def reason_guide(reason_labels: list[str]) -> str:
             f"<td>{reason_badge(item['label'])}</td>"
             f"<td>{esc(item['meaning'])}</td>"
             f"<td>{esc(item['why'])}</td>"
+            f"<td>{esc(item.get('unblocks_when', 'Resolve the missing product or design decision recorded in the brief.'))}</td>"
             "</tr>"
         )
     return f"""
   <section class="panel" id="blocking-reason-guide">
     <div class="panel-head"><h2>Blocking Reason Guide</h2></div>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Reason</th><th>What it means</th><th>Why it blocks validity</th></tr></thead>
+    <div class="criteria-note">Each row also lists the minimum policy or scope decision that would make the blocker valid. Resolve any one of the listed options to unblock — full capability approval is not required, sometimes a "no verification" or fallback-only decision is enough.</div>
+    <div class="table-wrap"><table class="reason-guide-table">
+      <thead><tr><th>Reason</th><th>What it means</th><th>Why it blocks validity</th><th>Minimum to unblock</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table></div>
   </section>
@@ -2778,7 +2790,7 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         and "badge-asset" in text
         and "badge-category" in text
         and "badge-reviewer" in text,
-        "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks validity" in text,
+        "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks validity" in text and "Minimum to unblock" in text,
         "no_external_assets": not re.search(r"<(?:script|link)[^>]+(?:src|href)=[\"']https?://", text),
         "in_file_preview_wired": (
             'id="preview-dialog"' in text

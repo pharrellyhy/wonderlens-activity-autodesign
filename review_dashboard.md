@@ -29,7 +29,7 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
 - Sidebar navigation: a compact navigation column or collapsed top rail with links to the main review sections and high-signal run counts.
 - Summary metrics: compact counters visible near the top of the first viewport.
 - Review criteria: the `program.md` Phase 3 10-dimension rubric, including what passes and why a dimension fails.
-- Blocking reason guide: badge label, what it means, and why it blocks package validity. This section must appear directly after Review Criteria when blocked assignments exist.
+- Blocking reason guide: badge label, what it means, why it blocks package validity, and the minimum policy or scope decision that would unblock it (the smallest acceptable resolution — often a "no verification" or fallback-only decision rather than full capability approval). This section must appear directly after Review Criteria when blocked assignments exist.
 - Activity cards: one concise card per generated, enriched, or audited no-op package. A checked package that passes audit without edits must still appear as a card with `PASS / no changes` or equivalent status.
 - Blocked assignment cards: one concise card per blocked assignment.
 - Reviewer coverage summary: reviewer names/IDs when available, package scope, PASS/FAIL/N/A evidence, repairs made, and unresolved concerns.
