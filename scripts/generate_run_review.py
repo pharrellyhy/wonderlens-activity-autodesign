@@ -342,12 +342,52 @@ def link_html(link: Link) -> str:
     return f'<span class="missing">{esc(link.label)} missing</span>'
 
 
-def collect_asset_policy(entry: dict[str, Any], assignment_fields: dict[str, str], brief: dict[str, Any]) -> str:
+def asset_policy_from_spec(spec_text: str) -> str:
+    """Derive an asset_policy enum value from spec.md when assignment/brief don't carry it.
+
+    Mapping: no `## Asset Brief` → `no_assets`. With a brief, `requiredness: optional`
+    → `optional_support`; `requiredness: required` plus a generated source →
+    `runtime_generated`; otherwise `required_prebuilt`.
+    """
+
+    body = section(spec_text, "Asset Brief")
+    if not body:
+        return "no_assets"
+    fields: dict[str, str] = {}
+    for line in body.splitlines():
+        match = re.match(r"^\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*$", line)
+        if not match:
+            continue
+        key = match.group(1).strip().lower()
+        value = match.group(2).strip().lower()
+        if key in {"field", "key", "---", ":---", "---:"} or value in {"value", "---"}:
+            continue
+        # Keep the first occurrence (covers the first asset in a multi-asset brief).
+        fields.setdefault(key, value)
+    requiredness = fields.get("requiredness", "")
+    source = fields.get("source", "")
+    if requiredness == "optional":
+        return "optional_support"
+    if requiredness == "required":
+        if any(token in source for token in ("runtime_generated", "new_ai_generated", "ai_generated")):
+            return "runtime_generated"
+        return "required_prebuilt"
+    return "optional_support" if fields else "no_assets"
+
+
+def collect_asset_policy(
+    entry: dict[str, Any],
+    assignment_fields: dict[str, str],
+    brief: dict[str, Any],
+    spec_text: str = "",
+) -> str:
     if assignment_fields.get("asset_policy"):
         return assignment_fields["asset_policy"]
     dependency = brief.get("adaptation_brief", {}).get("asset_dependency", {})
     if isinstance(dependency, dict) and dependency.get("policy"):
         return str(dependency["policy"])
+    if spec_text:
+        return asset_policy_from_spec(spec_text)
     return "unknown"
 
 
@@ -389,7 +429,7 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         "focal_attribute": normalize_text(signature.get("focal_attribute") or "unknown"),
         "observation_angle": normalize_text(signature.get("observation_angle") or "unknown"),
         "entity_role": normalize_text(signature.get("entity_role") or "unknown"),
-        "asset_policy": collect_asset_policy(entry, assignment_fields, brief),
+        "asset_policy": collect_asset_policy(entry, assignment_fields, brief, spec_text),
         "changed_files": compact_list(entry.get("changed_files"), limit=8),
         "key_concepts": compact_list(tag.get("key_concepts"), limit=4),
         "related_concepts": compact_list(tag.get("related_concepts"), limit=5),
