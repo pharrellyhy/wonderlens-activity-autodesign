@@ -131,7 +131,7 @@ The child photographs a leaf, chooses green, windy, and sleepy as ingredients, a
 
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Look at that. Your three tokens made something new: The three ingredient tiles fold into a four-line poem that includes the child words."
+**AI says:** [delighted reveal] "Look at that. Your three word tiles made a poem: Green leaf. Sleepy blue. Dance, little leaf. I made you."
 
 **Child responses:**
 
@@ -143,9 +143,9 @@ The child photographs a leaf, chooses green, windy, and sleepy as ingredients, a
 
 1. [celebrating] "Yes. Your answers caused this reveal."
 2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
-3. [wait 2s] [soft recap] "I will read the three tokens back so you can see your path."
+3. [wait 2s] [soft recap] "I will read the poem softly so you can hear your words."
 
-**Screen:** The three tokens expand into a final board labeled "Tiny Poet Builder". Each token stays visible so the payoff is earned by the child's earlier actions.
+**Screen:** The three tokens fold into a four-line poem card labeled "Tiny Poet Builder". The seeing word, feeling word, and action word remain highlighted inside the poem so the payoff is earned by the child's earlier choices.
 
 #### Step 5: Closing + IB Concepts
 
