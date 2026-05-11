@@ -26,11 +26,12 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
 ## Required Sections
 
 - Run header: `run_id`, status, timestamps, pending/generated/enriched/blocked/failed counts, and links to `run_manifest.yaml`, `review_notes.md`, `assignment_snapshot.md`, `generated_activity_ids.txt`, and `results.tsv`.
+- Sidebar navigation: a compact navigation column or collapsed top rail with links to the main review sections and high-signal run counts.
 - Summary metrics: compact counters visible near the top of the first viewport.
 - Review criteria: the `program.md` Phase 3 10-dimension rubric, including what passes and why a dimension fails.
+- Blocking reason guide: badge label, what it means, and why it blocks package validity. This section must appear directly after Review Criteria when blocked assignments exist.
 - Activity cards: one concise card per generated, enriched, or audited no-op package. A checked package that passes audit without edits must still appear as a card with `PASS / no changes` or equivalent status.
 - Blocked assignment cards: one concise card per blocked assignment.
-- Blocking reason guide: badge label, what it means, and why it blocks package validity.
 - Reviewer coverage summary: reviewer names/IDs when available, package scope, PASS/FAIL/N/A evidence, repairs made, and unresolved concerns.
 - Validation checks: commands and results from `run_manifest.yaml` `checks`.
 - Residual risk / next actions: derived from `review_notes.md` and run notes.
@@ -88,6 +89,7 @@ Keep colors restrained and accessible. Tags must not rely on color alone; the te
 
 - Default to a polished light theme.
 - Use system fonts, high-contrast text, subtle borders, compact spacing, and predictable product-dashboard patterns.
+- Use a sidebar on desktop for section navigation and run counts. Collapse it above the content on narrower screens instead of hiding the navigation.
 - Keep the first viewport useful: header, summary metrics, and primary filters should be visible without excessive scrolling on typical desktop widths.
 - Prefer dense but organized information over marketing-style presentation.
 - Do not use external CSS, JavaScript, fonts, images, CDNs, or build tooling.
@@ -112,4 +114,4 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for the generation and validation commands.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, review criteria, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, grouped tag colors, inline blocked marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, sidebar navigation, cards for generated/enriched/audited packages, blocked entries when present, review criteria, the blocking reason guide directly after review criteria, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, grouped tag colors, inline blocked marker chips, clear missing-decision versus inline-marker counts, and resolving local links.

@@ -1199,9 +1199,10 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     run_link_html = "".join(f'<a href="{esc(href)}">{esc(label)}</a>' for label, href in run_links)
     package_cards = "\n".join(package_card(package) for package in packages)
     blocked_cards = "\n".join(blocked_card(item) for item in blocked)
-    reason_guide_html = reason_guide(blocked_reasons)
-    criteria_guide_html = criteria_guide()
-    checks = render_checks(manifest.get("checks", []))
+    reason_guide_html = reason_guide(blocked_reasons).strip()
+    criteria_guide_html = criteria_guide().strip()
+    manifest_checks = manifest.get("checks", [])
+    checks = render_checks(manifest_checks)
     css = """
 :root {
   color-scheme: light;
@@ -1228,10 +1229,11 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
   --teal-text: oklch(36% 0.1 190);
   --neutral-tag-bg: oklch(94% 0.01 245);
   --neutral-tag-text: oklch(41% 0.035 245);
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
+	}
+	* { box-sizing: border-box; }
+	html { scroll-behavior: smooth; }
+	body {
+	  margin: 0;
   background: var(--bg);
   color: var(--text);
   font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
@@ -1244,8 +1246,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
-}
-.header-inner { max-width: 1500px; margin: 0 auto; padding: 18px 24px 16px; }
+	}
+	.header-inner { max-width: 1500px; margin: 0 auto; padding: 18px 24px 16px; }
 .eyebrow {
   color: var(--muted);
   font-size: 11px;
@@ -1258,18 +1260,77 @@ h2 { margin: 0; font-size: 18px; letter-spacing: 0; }
 h3 { margin: 2px 0 0; font-size: 18px; line-height: 1.22; letter-spacing: 0; }
 h4 { margin: 0 0 6px; font-size: 13px; letter-spacing: 0; }
 .summary-line { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); }
-main { max-width: 1500px; margin: 0 auto; padding: 18px 24px 42px; }
-.metrics { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+	main { max-width: 1500px; margin: 0 auto; padding: 18px 24px 42px; }
+	.review-layout {
+	  display: grid;
+	  grid-template-columns: 238px minmax(0, 1fr);
+	  gap: 16px;
+	  align-items: start;
+	}
+	.review-content { min-width: 0; }
+	.sidebar {
+	  position: sticky;
+	  top: 92px;
+	  max-height: calc(100vh - 112px);
+	  overflow: auto;
+	  border: 1px solid var(--line);
+	  border-radius: 8px;
+	  background: var(--panel);
+	  padding: 13px;
+	}
+	.sidebar-title {
+	  margin-bottom: 10px;
+	  font-size: 13px;
+	  font-weight: 800;
+	  color: var(--text);
+	}
+	.side-nav {
+	  display: grid;
+	  gap: 4px;
+	}
+	.side-nav a {
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+	  min-height: 32px;
+	  border-radius: 6px;
+	  padding: 6px 8px;
+	  color: var(--text);
+	  font-weight: 700;
+	}
+	.side-nav a:hover {
+	  background: var(--blue-bg);
+	  color: var(--blue-text);
+	  text-decoration: none;
+	}
+	.sidebar-counts {
+	  display: grid;
+	  gap: 6px;
+	  margin-top: 12px;
+	  padding-top: 12px;
+	  border-top: 1px solid var(--line);
+	}
+	.sidebar-counts div {
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+	  gap: 10px;
+	  color: var(--muted);
+	  font-size: 12px;
+	}
+	.sidebar-counts strong { color: var(--text); font-size: 13px; }
+	.metrics { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
 .metric { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 11px 13px; min-height: 70px; }
 .metric span { display: block; color: var(--muted); font-size: 12px; font-weight: 700; }
 .metric strong { display: block; margin-top: 4px; font-size: 25px; line-height: 1; }
-.panel {
-  background: var(--panel);
+	.panel {
+	  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
   margin-top: 14px;
-  overflow: hidden;
-}
+	  overflow: hidden;
+	}
+	.panel, .metrics { scroll-margin-top: 92px; }
 .panel-head {
   display: flex;
   align-items: center;
@@ -1520,17 +1581,22 @@ pre {
   overflow: auto;
   max-height: calc(min(860px, calc(100vh - 32px)) - 62px);
 }
-@media (max-width: 1120px) {
-  header { position: static; }
-  .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .controls { grid-template-columns: 1fr 1fr 1fr; }
-  .activity-grid, .blocked-grid, .reviewers { grid-template-columns: 1fr; }
-}
-@media (max-width: 700px) {
-  main, .header-inner { padding-left: 14px; padding-right: 14px; }
-  h1 { font-size: 23px; }
-  .metrics, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid { grid-template-columns: 1fr; }
-  .dialog-wide { grid-column: auto; }
+	@media (max-width: 1120px) {
+	  header { position: static; }
+	  .review-layout { grid-template-columns: 1fr; }
+	  .sidebar { position: static; max-height: none; }
+	  .side-nav { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	  .sidebar-counts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	  .sidebar-counts div { display: block; }
+	  .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	  .controls { grid-template-columns: 1fr 1fr 1fr; }
+	  .activity-grid, .blocked-grid, .reviewers { grid-template-columns: 1fr; }
+	}
+	@media (max-width: 700px) {
+	  main, .header-inner { padding-left: 14px; padding-right: 14px; }
+	  h1 { font-size: 23px; }
+	  .side-nav, .sidebar-counts, .metrics, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid { grid-template-columns: 1fr; }
+	  .dialog-wide { grid-column: auto; }
   .file-row { display: block; }
   .detail-button { margin-top: 8px; }
   .changed-files { text-align: left; margin-top: 8px; }
@@ -1651,6 +1717,36 @@ filterBlocked();
         ("Review cards", len(packages)),
     ]
     metric_html = "".join(f'<div class="metric"><span>{esc(label)}</span><strong>{esc(value)}</strong></div>' for label, value in metrics)
+    sidebar_links = [
+        ("summary-metrics", "Summary"),
+        ("run-files", "Run Files"),
+        ("review-criteria", "Review Criteria"),
+        ("activity-details", "Activities"),
+        ("blocked-assignments", "Blocked"),
+        ("reviewer-coverage", "Reviewers"),
+        ("validation-checks", "Validation"),
+        ("residual-risk", "Residual Risk"),
+    ]
+    if reason_guide_html:
+        sidebar_links.insert(3, ("blocking-reason-guide", "Blocking Reasons"))
+    sidebar_link_html = "\n".join(f'      <a href="#{anchor}">{label}</a>' for anchor, label in sidebar_links)
+    sidebar_stats = [
+        ("Review cards", len(packages)),
+        ("Blocked", len(blocked)),
+        ("Failed", summary.get("failed_count", 0)),
+        ("Checks", len(manifest_checks) if isinstance(manifest_checks, list) else 0),
+    ]
+    sidebar_stat_html = "".join(
+        f"<div><span>{esc(label)}</span><strong>{esc(value)}</strong></div>"
+        for label, value in sidebar_stats
+    )
+    sidebar_html = f"""  <aside class="sidebar" aria-label="Review navigation">
+    <div class="sidebar-title">Review Navigation</div>
+    <nav class="side-nav">
+{sidebar_link_html}
+    </nav>
+    <div class="sidebar-counts">{sidebar_stat_html}</div>
+  </aside>"""
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -1670,18 +1766,23 @@ filterBlocked();
       <span>Completed: {esc(manifest.get('completed_at', 'unknown'))}</span>
     </div>
   </div>
-</header>
-<main>
-  <section class="metrics">{metric_html}</section>
+	</header>
+	<main>
+	  <div class="review-layout">
+	{sidebar_html}
+	  <div class="review-content">
+	  <section class="metrics" id="summary-metrics">{metric_html}</section>
 
-  <section class="panel">
-    <div class="panel-head"><h2>Run Files</h2></div>
-    <div class="link-grid">{run_link_html}</div>
-  </section>
+	  <section class="panel" id="run-files">
+	    <div class="panel-head"><h2>Run Files</h2></div>
+	    <div class="link-grid">{run_link_html}</div>
+	  </section>
 
-{criteria_guide_html}
+	{criteria_guide_html}
 
-  <section class="panel" id="activity-details">
+	{reason_guide_html}
+
+	  <section class="panel" id="activity-details">
     <div class="panel-head"><h2>Activity Details</h2><span class="muted" id="package-count"></span></div>
     <div class="controls">
       <input id="package-search" data-package-control type="search" placeholder="Search activity cards">
@@ -1717,26 +1818,26 @@ filterBlocked();
         <option value="activity">Sort by concept</option>
       </select>
     </div>
-    <div class="blocked-grid" id="blocked-cards">{blocked_cards}</div>
-  </section>
+	    <div class="blocked-grid" id="blocked-cards">{blocked_cards}</div>
+	  </section>
 
-{reason_guide_html}
+	  <section class="panel" id="reviewer-coverage">
+	    <div class="panel-head"><h2>Reviewer Coverage</h2></div>
+	    <div class="reviewers">{reviewer_summary(review_notes)}</div>
+	  </section>
 
-  <section class="panel">
-    <div class="panel-head"><h2>Reviewer Coverage</h2></div>
-    <div class="reviewers">{reviewer_summary(review_notes)}</div>
-  </section>
+	  <section class="panel" id="validation-checks">
+	    <div class="panel-head"><h2>Validation Checks</h2></div>
+	    <div class="table-wrap"><table><thead><tr><th>Command</th><th>Result</th></tr></thead><tbody>{checks}</tbody></table></div>
+	  </section>
 
-  <section class="panel">
-    <div class="panel-head"><h2>Validation Checks</h2></div>
-    <div class="table-wrap"><table><thead><tr><th>Command</th><th>Result</th></tr></thead><tbody>{checks}</tbody></table></div>
-  </section>
-
-  <section class="panel">
-    <div class="panel-head"><h2>Residual Risk And Next Actions</h2></div>
-    <div class="note-body">{residual_summary(review_notes)}</div>
-  </section>
-</main>
+	  <section class="panel" id="residual-risk">
+	    <div class="panel-head"><h2>Residual Risk And Next Actions</h2></div>
+	    <div class="note-body">{residual_summary(review_notes)}</div>
+	  </section>
+	  </div>
+	  </div>
+	</main>
 <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title">
   <div class="dialog-head">
     <h2 id="detail-title">Activity details</h2>
@@ -1774,6 +1875,9 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         scorecard_rows(read_text(repo_root / normalize_text(entry.get("activity_path")) / "spec.md"))
         for entry in package_entries
     ]
+    criteria_pos = text.find('id="review-criteria"')
+    reason_pos = text.find('id="blocking-reason-guide"')
+    activity_pos = text.find('id="activity-details"')
     checks = {
         "has_html": "<html" in text,
         "has_style": "<style>" in text,
@@ -1783,6 +1887,12 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         "blocked_card_count": text.count('class="blocked-card') == expected_blocked,
         "category_filter": 'id="package-category-filter"' in text and "cat1" in text and "cat5" in text,
         "sort_controls": 'id="package-sort"' in text and "Sort by mechanic" in text,
+        "sidebar_navigation": 'class="sidebar"' in text
+        and "Review Navigation" in text
+        and 'href="#review-criteria"' in text
+        and 'href="#activity-details"' in text,
+        "reason_guide_position": expected_blocked == 0
+        or (0 <= criteria_pos < reason_pos < activity_pos),
         "blocked_reason_types": text.count("blocked-reason-type") >= expected_blocked,
         "detailed_runtime_beats": "beat-field" in text and "AI" in text and "Child" in text and "Screen" in text,
         "review_criteria": "Review Criteria" in text

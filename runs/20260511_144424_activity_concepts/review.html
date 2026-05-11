@@ -30,10 +30,11 @@
   --teal-text: oklch(36% 0.1 190);
   --neutral-tag-bg: oklch(94% 0.01 245);
   --neutral-tag-text: oklch(41% 0.035 245);
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
+	}
+	* { box-sizing: border-box; }
+	html { scroll-behavior: smooth; }
+	body {
+	  margin: 0;
   background: var(--bg);
   color: var(--text);
   font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
@@ -46,8 +47,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
-}
-.header-inner { max-width: 1500px; margin: 0 auto; padding: 18px 24px 16px; }
+	}
+	.header-inner { max-width: 1500px; margin: 0 auto; padding: 18px 24px 16px; }
 .eyebrow {
   color: var(--muted);
   font-size: 11px;
@@ -60,18 +61,77 @@ h2 { margin: 0; font-size: 18px; letter-spacing: 0; }
 h3 { margin: 2px 0 0; font-size: 18px; line-height: 1.22; letter-spacing: 0; }
 h4 { margin: 0 0 6px; font-size: 13px; letter-spacing: 0; }
 .summary-line { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); }
-main { max-width: 1500px; margin: 0 auto; padding: 18px 24px 42px; }
-.metrics { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+	main { max-width: 1500px; margin: 0 auto; padding: 18px 24px 42px; }
+	.review-layout {
+	  display: grid;
+	  grid-template-columns: 238px minmax(0, 1fr);
+	  gap: 16px;
+	  align-items: start;
+	}
+	.review-content { min-width: 0; }
+	.sidebar {
+	  position: sticky;
+	  top: 92px;
+	  max-height: calc(100vh - 112px);
+	  overflow: auto;
+	  border: 1px solid var(--line);
+	  border-radius: 8px;
+	  background: var(--panel);
+	  padding: 13px;
+	}
+	.sidebar-title {
+	  margin-bottom: 10px;
+	  font-size: 13px;
+	  font-weight: 800;
+	  color: var(--text);
+	}
+	.side-nav {
+	  display: grid;
+	  gap: 4px;
+	}
+	.side-nav a {
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+	  min-height: 32px;
+	  border-radius: 6px;
+	  padding: 6px 8px;
+	  color: var(--text);
+	  font-weight: 700;
+	}
+	.side-nav a:hover {
+	  background: var(--blue-bg);
+	  color: var(--blue-text);
+	  text-decoration: none;
+	}
+	.sidebar-counts {
+	  display: grid;
+	  gap: 6px;
+	  margin-top: 12px;
+	  padding-top: 12px;
+	  border-top: 1px solid var(--line);
+	}
+	.sidebar-counts div {
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+	  gap: 10px;
+	  color: var(--muted);
+	  font-size: 12px;
+	}
+	.sidebar-counts strong { color: var(--text); font-size: 13px; }
+	.metrics { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
 .metric { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 11px 13px; min-height: 70px; }
 .metric span { display: block; color: var(--muted); font-size: 12px; font-weight: 700; }
 .metric strong { display: block; margin-top: 4px; font-size: 25px; line-height: 1; }
-.panel {
-  background: var(--panel);
+	.panel {
+	  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
   margin-top: 14px;
-  overflow: hidden;
-}
+	  overflow: hidden;
+	}
+	.panel, .metrics { scroll-margin-top: 92px; }
 .panel-head {
   display: flex;
   align-items: center;
@@ -322,17 +382,22 @@ pre {
   overflow: auto;
   max-height: calc(min(860px, calc(100vh - 32px)) - 62px);
 }
-@media (max-width: 1120px) {
-  header { position: static; }
-  .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .controls { grid-template-columns: 1fr 1fr 1fr; }
-  .activity-grid, .blocked-grid, .reviewers { grid-template-columns: 1fr; }
-}
-@media (max-width: 700px) {
-  main, .header-inner { padding-left: 14px; padding-right: 14px; }
-  h1 { font-size: 23px; }
-  .metrics, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid { grid-template-columns: 1fr; }
-  .dialog-wide { grid-column: auto; }
+	@media (max-width: 1120px) {
+	  header { position: static; }
+	  .review-layout { grid-template-columns: 1fr; }
+	  .sidebar { position: static; max-height: none; }
+	  .side-nav { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	  .sidebar-counts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	  .sidebar-counts div { display: block; }
+	  .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	  .controls { grid-template-columns: 1fr 1fr 1fr; }
+	  .activity-grid, .blocked-grid, .reviewers { grid-template-columns: 1fr; }
+	}
+	@media (max-width: 700px) {
+	  main, .header-inner { padding-left: 14px; padding-right: 14px; }
+	  h1 { font-size: 23px; }
+	  .side-nav, .sidebar-counts, .metrics, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid { grid-template-columns: 1fr; }
+	  .dialog-wide { grid-column: auto; }
   .file-row { display: block; }
   .detail-button { margin-top: 8px; }
   .changed-files { text-align: left; margin-top: 8px; }
@@ -350,17 +415,33 @@ pre {
       <span>Completed: 2026-05-11T15:02:07+08:00</span>
     </div>
   </div>
-</header>
-<main>
-  <section class="metrics"><div class="metric"><span>Pending at start</span><strong>17</strong></div><div class="metric"><span>Generated</span><strong>0</strong></div><div class="metric"><span>Enriched</span><strong>7</strong></div><div class="metric"><span>Audited no-op</span><strong>16</strong></div><div class="metric"><span>Blocked</span><strong>17</strong></div><div class="metric"><span>Review cards</span><strong>23</strong></div></section>
+	</header>
+	<main>
+	  <div class="review-layout">
+	  <aside class="sidebar" aria-label="Review navigation">
+    <div class="sidebar-title">Review Navigation</div>
+    <nav class="side-nav">
+      <a href="#summary-metrics">Summary</a>
+      <a href="#run-files">Run Files</a>
+      <a href="#review-criteria">Review Criteria</a>
+      <a href="#blocking-reason-guide">Blocking Reasons</a>
+      <a href="#activity-details">Activities</a>
+      <a href="#blocked-assignments">Blocked</a>
+      <a href="#reviewer-coverage">Reviewers</a>
+      <a href="#validation-checks">Validation</a>
+      <a href="#residual-risk">Residual Risk</a>
+    </nav>
+    <div class="sidebar-counts"><div><span>Review cards</span><strong>23</strong></div><div><span>Blocked</span><strong>17</strong></div><div><span>Failed</span><strong>0</strong></div><div><span>Checks</span><strong>11</strong></div></div>
+  </aside>
+	  <div class="review-content">
+	  <section class="metrics" id="summary-metrics"><div class="metric"><span>Pending at start</span><strong>17</strong></div><div class="metric"><span>Generated</span><strong>0</strong></div><div class="metric"><span>Enriched</span><strong>7</strong></div><div class="metric"><span>Audited no-op</span><strong>16</strong></div><div class="metric"><span>Blocked</span><strong>17</strong></div><div class="metric"><span>Review cards</span><strong>23</strong></div></section>
 
-  <section class="panel">
-    <div class="panel-head"><h2>Run Files</h2></div>
-    <div class="link-grid"><a href="run_manifest.yaml">run_manifest.yaml</a><a href="review_notes.md">review_notes.md</a><a href="assignment_snapshot.md">assignment_snapshot.md</a><a href="generated_activity_ids.txt">generated_activity_ids.txt</a><a href="../../results.tsv">results.tsv</a><a href="../../assignments.md">assignments.md</a></div>
-  </section>
+	  <section class="panel" id="run-files">
+	    <div class="panel-head"><h2>Run Files</h2></div>
+	    <div class="link-grid"><a href="run_manifest.yaml">run_manifest.yaml</a><a href="review_notes.md">review_notes.md</a><a href="assignment_snapshot.md">assignment_snapshot.md</a><a href="generated_activity_ids.txt">generated_activity_ids.txt</a><a href="../../results.tsv">results.tsv</a><a href="../../assignments.md">assignments.md</a></div>
+	  </section>
 
-
-  <section class="panel" id="review-criteria">
+	<section class="panel" id="review-criteria">
     <div class="panel-head"><h2>Review Criteria</h2></div>
     <div class="criteria-note">Packages are still judged with the `program.md` Phase 3 10-dimension rubric. A package passes only when every applicable dimension passes; Dimension 8 may be N/A for non-mapping packages. Any FAIL or credible reviewer uncertainty requires repair before logging or checkoff.</div>
     <div class="table-wrap"><table class="criteria-table">
@@ -369,8 +450,15 @@ pre {
     </table></div>
   </section>
 
+	<section class="panel" id="blocking-reason-guide">
+    <div class="panel-head"><h2>Blocking Reason Guide</h2></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Reason</th><th>What it means</th><th>Why it blocks validity</th></tr></thead>
+      <tbody><tr><td><span class="badge badge-reason badge-reason-before-after-evidence">Before/after evidence</span></td><td>The product would need to compare a finished physical result with an earlier state or receive confirmation.</td><td>Without an evidence policy, the activity could overclaim that it can assess drawings, builds, cleanup, or craft completion.</td></tr><tr><td><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing">Caregiver setup and pacing</span></td><td>The activity requires adult setup, material timing, or a no-assessment physical-work fallback.</td><td>The design needs clear caregiver responsibilities and pacing rules so the runtime does not leave the child waiting or judge unsupported work.</td></tr><tr><td><span class="badge badge-reason badge-reason-cat3-material-workflow">Cat3 material workflow</span></td><td>The child must use physical materials such as paper, blocks, craft objects, or handwriting.</td><td>The current run contract supports Cat1/Cat5 packages; material setup, caregiver involvement, timing, and completion evidence need a product decision first.</td></tr><tr><td><span class="badge badge-reason badge-reason-coloring-or-recoloring-ui">Coloring or recoloring UI</span></td><td>The concept needs selectable regions, color application, or saved coloring state.</td><td>Runtime beats would otherwise assume UI controls and state behavior that do not exist in the current package contract.</td></tr><tr><td><span class="badge badge-reason badge-reason-motion-safety">Motion safety</span></td><td>The child is asked to move their body or follow pose/action prompts.</td><td>Movement activities need age-safe constraints, caregiver gating, space checks, and prohibited movement rules before runtime dialogue is safe.</td></tr><tr><td><span class="badge badge-reason badge-reason-ocr-or-text-handling">OCR or text handling</span></td><td>The activity may need to read child writing, letters, words, or text content.</td><td>Text recognition and reading-level behavior need explicit capability, privacy, and fallback decisions before runtime beats can rely on them.</td></tr><tr><td><span class="badge badge-reason badge-reason-prebuilt-asset-display">Prebuilt asset display</span></td><td>The activity depends on approved cards, artworks, pose images, or other displayed assets.</td><td>The package needs known asset IDs, metadata, display rules, and fallbacks before it can claim what appears on screen.</td></tr><tr><td><span class="badge badge-reason badge-reason-runtime-image-generation">Runtime image generation</span></td><td>The concept needs the product to generate child-facing images during the session.</td><td>The package cannot promise runtime artwork until generation safety, latency, content policy, and fallback behavior are approved.</td></tr><tr><td><span class="badge badge-reason badge-reason-ui-state-or-progress-memory">UI state or progress memory</span></td><td>The activity needs persistent progress, resume/reset behavior, or interactive screen state.</td><td>Designing rounds before the state model is defined risks creating flows the runtime cannot store, resume, or verify.</td></tr></tbody>
+    </table></div>
+  </section>
 
-  <section class="panel" id="activity-details">
+	  <section class="panel" id="activity-details">
     <div class="panel-head"><h2>Activity Details</h2><span class="muted" id="package-count"></span></div>
     <div class="controls">
       <input id="package-search" data-package-control type="search" placeholder="Search activity cards">
@@ -1945,7 +2033,7 @@ pre {
         <option value="activity">Sort by concept</option>
       </select>
     </div>
-    <div class="blocked-grid" id="blocked-cards">
+	    <div class="blocked-grid" id="blocked-cards">
 <article class="blocked-card clickable-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="detail-dialog" data-detail-template="blocked-detail-coloring-game" data-detail-title="Coloring Game" data-search="coloring game concept_coloring_game_probe blocked_until_product_decision cat5 build t1 runtime_generated confirm runtime image generation support and safety review for child-facing generated assets.; define coloring or recoloring ui behavior, selectable regions, state storage, and fallback behavior.; define ui state storage, progress memory, and resume/reset behavior. the screen shows line art with regions to color. the child chooses colors by photographing objects, and the system fills the regions to create a shareable artwork. child photographs an object with a clear color or enters coloring mode. runtime image generation coloring or recoloring ui ui state or progress memory coloring or recoloring ui runtime image generation ui state or progress memory confirm runtime image generation support and safety review for child-facing generated assets. define coloring or recoloring ui behavior, selectable regions, state storage, and fallback behavior. define ui state storage, progress memory, and resume/reset behavior. requires_generated_image requires_coloring_ui requires_ui_state confirm runtime image generation support and safety review for child-facing generated assets. -- the runtime must know whether this setup can be supported before this screen becomes product behavior. define coloring or recoloring ui behavior, selectable regions, state storage, and fallback behavior. -- this setup requires a product contract for assets, ui state, material flow, movement safety, ocr, or evidence handling before it can be valid. confirm runtime image generation support and safety review for child-facing generated assets. -- the product must define how this child action is captured and what the screen is allowed to claim. define coloring or recoloring ui behavior, selectable regions, state storage, and fallback behavior. -- the runtime needs state, asset display, safety, or material-pacing support to preserve this round honestly. define ui state storage, progress memory, and resume/reset behavior. -- the product must define progress memory, verification limits, and fallback behavior before this becomes a valid runtime loop. define coloring or recoloring ui behavior, selectable regions, state storage, and fallback behavior. -- the payoff depends on unresolved rendering, state, evidence, asset, or safety behavior. define ui state storage, progress memory, and resume/reset behavior. -- recap/dashboard output cannot claim completed unsupported work until the product decision is resolved." data-category="cat5" data-status="blocked_until_product_decision" data-mechanic="build" data-reason="Runtime image generation|Coloring or recoloring UI|UI state or progress memory" data-activity="Coloring Game" data-index="1">
   <div class="card-top">
     <div>
@@ -2999,21 +3087,11 @@ pre {
   </section>
 </div></template>
 </article></div>
-  </section>
+	  </section>
 
-
-  <section class="panel" id="blocking-reason-guide">
-    <div class="panel-head"><h2>Blocking Reason Guide</h2></div>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Reason</th><th>What it means</th><th>Why it blocks validity</th></tr></thead>
-      <tbody><tr><td><span class="badge badge-reason badge-reason-before-after-evidence">Before/after evidence</span></td><td>The product would need to compare a finished physical result with an earlier state or receive confirmation.</td><td>Without an evidence policy, the activity could overclaim that it can assess drawings, builds, cleanup, or craft completion.</td></tr><tr><td><span class="badge badge-reason badge-reason-caregiver-setup-and-pacing">Caregiver setup and pacing</span></td><td>The activity requires adult setup, material timing, or a no-assessment physical-work fallback.</td><td>The design needs clear caregiver responsibilities and pacing rules so the runtime does not leave the child waiting or judge unsupported work.</td></tr><tr><td><span class="badge badge-reason badge-reason-cat3-material-workflow">Cat3 material workflow</span></td><td>The child must use physical materials such as paper, blocks, craft objects, or handwriting.</td><td>The current run contract supports Cat1/Cat5 packages; material setup, caregiver involvement, timing, and completion evidence need a product decision first.</td></tr><tr><td><span class="badge badge-reason badge-reason-coloring-or-recoloring-ui">Coloring or recoloring UI</span></td><td>The concept needs selectable regions, color application, or saved coloring state.</td><td>Runtime beats would otherwise assume UI controls and state behavior that do not exist in the current package contract.</td></tr><tr><td><span class="badge badge-reason badge-reason-motion-safety">Motion safety</span></td><td>The child is asked to move their body or follow pose/action prompts.</td><td>Movement activities need age-safe constraints, caregiver gating, space checks, and prohibited movement rules before runtime dialogue is safe.</td></tr><tr><td><span class="badge badge-reason badge-reason-ocr-or-text-handling">OCR or text handling</span></td><td>The activity may need to read child writing, letters, words, or text content.</td><td>Text recognition and reading-level behavior need explicit capability, privacy, and fallback decisions before runtime beats can rely on them.</td></tr><tr><td><span class="badge badge-reason badge-reason-prebuilt-asset-display">Prebuilt asset display</span></td><td>The activity depends on approved cards, artworks, pose images, or other displayed assets.</td><td>The package needs known asset IDs, metadata, display rules, and fallbacks before it can claim what appears on screen.</td></tr><tr><td><span class="badge badge-reason badge-reason-runtime-image-generation">Runtime image generation</span></td><td>The concept needs the product to generate child-facing images during the session.</td><td>The package cannot promise runtime artwork until generation safety, latency, content policy, and fallback behavior are approved.</td></tr><tr><td><span class="badge badge-reason badge-reason-ui-state-or-progress-memory">UI state or progress memory</span></td><td>The activity needs persistent progress, resume/reset behavior, or interactive screen state.</td><td>Designing rounds before the state model is defined risks creating flows the runtime cannot store, resume, or verify.</td></tr></tbody>
-    </table></div>
-  </section>
-
-
-  <section class="panel">
-    <div class="panel-head"><h2>Reviewer Coverage</h2></div>
-    <div class="reviewers"><article class="reviewer-card"><pre>- Reviewer Carson (`019e15c8-8918-7072-b92d-6173a529072b`): PASS
+	  <section class="panel" id="reviewer-coverage">
+	    <div class="panel-head"><h2>Reviewer Coverage</h2></div>
+	    <div class="reviewers"><article class="reviewer-card"><pre>- Reviewer Carson (`019e15c8-8918-7072-b92d-6173a529072b`): PASS
   - Scope: 12 checked concept packages: `concept_scavenger_hunt_collect`, `concept_phoneme_hunt_collect`, `concept_branching_story_decide`, `concept_guess_in_10_deduce`, `concept_animal_sound_motion_voice`, `concept_tiny_curator_sort`, `concept_partial_reveal_deduce`, `concept_word_echo_remember`, `concept_emotion_reader_care`, `concept_plant_parts_enumerate`, `concept_plant_state_compare`, `concept_color_mixing_collect`.
   - Repairs: `concept_emotion_reader_care`, `concept_plant_state_compare`, and `concept_color_mixing_collect` were repaired so Step 3 repeatedly performs the declared `care`, `compare`, and `collect` mechanics.
   - Evidence commit: `61c56b9 fix(activities): align concept mechanics`.
@@ -3024,26 +3102,26 @@ pre {
   - Evidence commit: `593bef5 fix(activities): repair concept depth`.
   - Checks: assigned-package schema validation, focused package-depth/alignment script, exact five-file contract, scorecard placement, Step 1/2/4/5 labels, Step 3 round-count/detail checks, tag/dashboard/recap focal and mechanic alignment, and `git diff --check HEAD~1..HEAD` all passed.
   - Residual risk: no package-level residual risks found in the assigned scope.</pre></article></div>
-  </section>
+	  </section>
 
-  <section class="panel">
-    <div class="panel-head"><h2>Validation Checks</h2></div>
-    <div class="table-wrap"><table><thead><tr><th>Command</th><th>Result</th></tr></thead><tbody><tr><td>Carson reviewer-agent audit of 12 checked packages</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-3-scoped-repairs-committed-as-61c56b9">PASS; 3 scoped repairs committed as 61c56b9</span></td></tr>
+	  <section class="panel" id="validation-checks">
+	    <div class="panel-head"><h2>Validation Checks</h2></div>
+	    <div class="table-wrap"><table><thead><tr><th>Command</th><th>Result</th></tr></thead><tbody><tr><td>Carson reviewer-agent audit of 12 checked packages</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-3-scoped-repairs-committed-as-61c56b9">PASS; 3 scoped repairs committed as 61c56b9</span></td></tr>
 <tr><td>Copernicus reviewer-agent audit of 11 checked packages</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-4-scoped-repairs-committed-as-593bef5">PASS; 4 scoped repairs committed as 593bef5</span></td></tr>
 <tr><td>python3 - &lt;&lt;PY # validate all activities/*/tag_block.yaml against activities/_schema/tag_block.schema.json</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-28-tag-block-yaml-files-validated">PASS; 28 tag_block.yaml files validated</span></td></tr>
 <tr><td>python3 - &lt;&lt;PY # validate run blocked previews, brief paths, counts, and assignment snapshot consistency</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-17-blocked-previews-17-unchecked-rows-7-enriched-entries-16-audited-no-op-entries">PASS; 17 blocked previews, 17 unchecked rows, 7 enriched entries, 16 audited no-op entries</span></td></tr>
 <tr><td>python3 scripts/generate_run_review.py runs/20260511_144424_activity_concepts</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-wrote-review-html">PASS; wrote review.html</span></td></tr>
-<tr><td>python3 scripts/generate_run_review.py --validate runs/20260511_144424_activity_concepts</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-dashboard-contract-checks-23-package-scorecards-blocked-marker-clarity-blocked-preview-scorecards-and-287-local-links-passed">PASS; dashboard contract checks, 23 package scorecards, blocked marker clarity, blocked preview scorecards, and 287 local links passed</span></td></tr>
+<tr><td>python3 scripts/generate_run_review.py --validate runs/20260511_144424_activity_concepts</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-dashboard-contract-checks-23-package-scorecards-blocked-marker-clarity-sidebar-navigation-reason-guide-placement-blocked-preview-scorecards-and-296-local-links-passed">PASS; dashboard contract checks, 23 package scorecards, blocked marker clarity, sidebar navigation, reason guide placement, blocked preview scorecards, and 296 local links passed</span></td></tr>
 <tr><td>python3 -m py_compile scripts/generate_run_review.py</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
 <tr><td>git diff --check</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
 <tr><td>python3 - &lt;&lt;PY # completion audit for goal objective coverage</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-objective-artifacts-reviewer-evidence-blocked-previews-dashboard-cards-and-manifest-counts-verified">PASS; objective artifacts, reviewer evidence, blocked previews, dashboard cards, and manifest counts verified</span></td></tr>
 <tr><td>python3 - &lt;&lt;PY # dashboard audited-card and 10-dimension scorecard assertions</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-23-activity-cards-review-criteria-scorecard-tables-and-pass-no-changes-status-verified">PASS; 23 activity cards, review criteria, scorecard tables, and PASS / no changes status verified</span></td></tr>
 <tr><td>python3 - &lt;&lt;PY # verify 23 package scorecards have 10 PASS/N/A rows</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass-23-package-scorecards-parsed-with-10-rows-each">PASS; 23 package scorecards parsed with 10 rows each</span></td></tr></tbody></table></div>
-  </section>
+	  </section>
 
-  <section class="panel">
-    <div class="panel-head"><h2>Residual Risk And Next Actions</h2></div>
-    <div class="note-body"><h4>Residual Risk</h4><pre>- All 17 unchecked capability probes remain blocked because the source rows still declare unresolved product capabilities such as runtime image generation, coloring UI, Cat3 material workflow, UI state, asset display, motion safety, before/after evidence, or OCR/text handling.
+	  <section class="panel" id="residual-risk">
+	    <div class="panel-head"><h2>Residual Risk And Next Actions</h2></div>
+	    <div class="note-body"><h4>Residual Risk</h4><pre>- All 17 unchecked capability probes remain blocked because the source rows still declare unresolved product capabilities such as runtime image generation, coloring UI, Cat3 material workflow, UI state, asset display, motion safety, before/after evidence, or OCR/text handling.
 - The constrained previews are review artifacts only; they do not create valid `activities/` packages or `results.tsv` rows.
 - Static package review does not prove runtime prompt execution or actual asset availability; it verifies file contracts, metadata/schema alignment, and design-depth requirements.
 
@@ -3053,8 +3131,10 @@ pre {
 - Use `review.html` to sort blocked probes by reason type and inspect each constrained preview&#x27;s inline `BLOCKED ELEMENT` comments before deciding which constraints to resolve first.</pre>
 <h4>Next Actions</h4><pre>- Product/design owners can resolve individual constraints, then rerun or promote the corresponding constrained preview through the normal five-file package gates.
 - Use `review.html` to sort blocked probes by reason type and inspect each constrained preview&#x27;s inline `BLOCKED ELEMENT` comments before deciding which constraints to resolve first.</pre></div>
-  </section>
-</main>
+	  </section>
+	  </div>
+	  </div>
+	</main>
 <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title">
   <div class="dialog-head">
     <h2 id="detail-title">Activity details</h2>

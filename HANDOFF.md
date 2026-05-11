@@ -76,6 +76,7 @@
 - Added colored inline blocked marker chips and blocked-preview scorecards to `review.html`; these scorecards are review evidence only and do not make blocked previews valid runtime packages.
 - Updated `review_dashboard.md`, `run.md`, `GOAL.md`, `README.md`, and `runs/README.md` so future `/goal` runs preserve the same blocked-marker and blocked-preview scorecard behavior.
 - Regenerated `runs/20260511_144424_activity_concepts/review.html` and `runs/20260510_152725_activity_concepts/review.html` with the new blocked review treatment.
+- Added sidebar navigation to generated `review.html` dashboards and moved the Blocking Reason Guide directly after Review Criteria.
 
 ## Verification
 
@@ -89,6 +90,14 @@
   - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with the same blocked review treatment
 - `python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts`
   - Result: PASS for dashboard contract checks, blocked marker clarity, blocked preview scorecards, and 270 resolving local links
+- `python3 scripts/generate_run_review.py runs/20260511_144424_activity_concepts`
+  - Result: regenerated `runs/20260511_144424_activity_concepts/review.html` with sidebar navigation and the reason guide directly after review criteria
+- `python3 scripts/generate_run_review.py --validate runs/20260511_144424_activity_concepts`
+  - Result: PASS for sidebar navigation, reason guide placement, blocked marker clarity, blocked preview scorecards, and 296 resolving local links
+- `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
+  - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with sidebar navigation and the reason guide directly after review criteria
+- `python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts`
+  - Result: PASS for sidebar navigation, reason guide placement, blocked marker clarity, blocked preview scorecards, and 279 resolving local links
 - `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
   - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with concise clickable cards, detail templates, shared dialog markup, and grouped tag colors
 - Targeted blocked-preview rule assertion across `run.md`, `GOAL.md`, `scripts/generate_run_review.py`, and `runs/README.md`
