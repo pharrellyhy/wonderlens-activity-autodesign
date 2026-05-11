@@ -42,8 +42,8 @@ kud:
   - Causation helps children notice the important evidence
   - Change helps children connect their response to the result
   do:
-  - practice predict in three short rounds
-  - explain or repeat one answer
+  - commit to predictions in three short rounds before each reveal
+  - explain or repeat one prediction
   - notice the final payoff
 progression:
   topic_axis: causation

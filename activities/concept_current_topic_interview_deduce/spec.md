@@ -4,7 +4,7 @@
 
 ## Premise
 
-The child discusses an age-appropriate topic by giving an opinion and a reason. The activity turns that source promise into a cat1 runtime package where the child becomes the Reason Reporter. The repeated action is `deduce`, and the payoff is visible progress tied to the child's own responses.
+The child solves an age-appropriate topic question by using clues to infer a reasoned conclusion. The activity turns that source promise into a cat1 runtime package where the child becomes the Reason Reporter. The repeated action is `deduce`, and the payoff is visible progress tied to the child's own responses.
 
 ## Target
 
@@ -17,7 +17,7 @@ The child discusses an age-appropriate topic by giving an opinion and a reason. 
 ## Adaptation Rationale
 
 - **Input mode:** concept_only.
-- **Core promise:** The child discusses an age-appropriate topic by giving an opinion and a reason.
+- **Core promise:** The child uses clues from an age-appropriate topic to infer a conclusion and explain the reason.
 - **Canonical mechanic:** `deduce`; Step 3's repeated child action preserves this mechanic.
 - **Readiness:** generate_with_assumptions.
 - **Trigger condition:** Older child and parent select an age-appropriate news, school, community, or nature topic.
@@ -25,7 +25,7 @@ The child discusses an age-appropriate topic by giving an opinion and a reason. 
 - **Asset dependency:** `no_assets`; no asset brief is needed.
 - **Product capability flags:** none.
 - **Scaffold fit:** acceptable. Mystery / `mystery_lens` supplies the emotional payoff while `deduce` remains the child-action contract.
-- **Assumptions:** The repeated action is infer, justify, and revise with new evidence.
+- **Assumptions:** The repeated action is clue -> conclusion -> reason, with a final revision when timing evidence changes the best answer.
 
 ## Selection Trigger
 
@@ -35,13 +35,13 @@ Start when an older child and parent select an age-appropriate school, community
 
 - **Pillar:** Mystery
 - **Game style:** `mystery_lens`
-- **Why this scaffold:** Topics must be parent-selected and age-appropriate. The AI asks for reasons and evidence instead of live-news claims.
+- **Why this scaffold:** Topics must be parent-selected and age-appropriate. The AI uses safe fictional clues and asks for evidence-based inference instead of live-news claims.
 
 ## Runtime Detail Floor Notes
 
-- **Distinct round design:** Round 1 -- Give an Opinion, Round 2 -- Add a Reason, and Round 3 -- Use a New Clue each ask for a different child contribution and update a different progress token.
+- **Distinct round design:** Round 1 -- Use the First Clue, Round 2 -- Add a Reason From Evidence, and Round 3 -- Make the Final Deduction each ask the child to infer from clue evidence and update a different notebook token.
 - **Branch specificity:** Unexpected answers are validated, then redirected to the current objective without pretending the runtime can verify unsupported facts.
-- **Earned magic moment:** The notebook shows opinion, reason, and new clue together, so the child sees reasoning grow.
+- **Earned magic moment:** The notebook resolves the clue chain into "flowers first now, vegetables later," so the child sees how evidence changed the conclusion.
 - **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
 
 ## Self-Evaluation Scorecard

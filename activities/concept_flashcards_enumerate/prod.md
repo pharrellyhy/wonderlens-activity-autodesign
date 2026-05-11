@@ -21,9 +21,9 @@ The child recognizes a picture card, names what they see, and answers one tiny f
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Children know a picture can have a name, a visible feature, and a simple thing it can do.
-- **U (Understand):** Children understand that naming and noticing make a picture easier to remember and talk about.
-- **D (Do):** Children name one card, say one visible feature, and answer one function choice.
+- **K (Know):** Children know a picture can have a name and one simple action or use clue.
+- **U (Understand):** Children understand that naming and answering one tiny clue make a picture easier to remember and talk about.
+- **D (Do):** Children name one card and answer one feature/function follow-up.
 
 **3. Design Highlight**
 
@@ -53,11 +53,11 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 2. [friendly] "A picture will pop."
 3. [wait 2s] [gentle] "Point or say one word."
 
-**Screen:** The activity badge "Picture Namer" appears with three empty progress tokens. If `generic_flashcard_library_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
+**Screen:** The activity badge "Picture Namer" appears with two empty progress tokens. If `generic_flashcard_library_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
 
 #### Step 2: Rule Introduction
 
-**AI says:** [clear guide tone] "Name it. Notice it. Pick one."
+**AI says:** [clear guide tone] "Name it. Pick one."
 
 **Child responses:**
 
@@ -71,7 +71,7 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 2. [validating] "Your way can help."
 3. [wait 2s] [modeling] "Copy me: duck."
 
-**Screen:** A simple rule strip appears: Listen or look, answer, save a token. Token 1 pulses.
+**Screen:** A simple rule strip appears: Look, name, answer. Token 1 pulses; token 2 waits.
 
 #### Step 3: Core Loop
 
@@ -93,25 +93,7 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 
 **Screen:** The card pops forward with one clear picture. Token 1 fills with a short label from the child's response.
 
-**Round 2 -- Notice One Feature:**
-
-**AI says:** [focused playful tone] "What do you notice about it?"
-
-**Child responses:**
-
-1. (Ideal) "it is yellow."
-2. (Unexpected) "it is loud."
-3. (No response) Child looks at the screen or waits.
-
-**AI follow-up:**
-
-1. [noticing tone] "Yellow. I sparkle that part."
-2. [warm redirect] "Loud is a fun idea. Here we notice color: yellow."
-3. [wait 2s] [gentle hint] "Point to one part."
-
-**Screen:** A tiny sparkle marks the named feature. Token 2 fills with a short label from the child's response.
-
-**Round 3 -- Answer a Tiny Follow-Up:**
+**Round 2 -- Answer a Tiny Follow-Up:**
 
 **AI says:** [focused playful tone] "Does a duck swim or drive a car?"
 
@@ -127,11 +109,11 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 2. [silly redirect] "A driving duck is pretend. This duck swims."
 3. [wait 2s] [gentle hint] "Choose swim or car."
 
-**Screen:** Two simple icons appear, and swim glows after the answer. Token 3 fills with a short label from the child's response.
+**Screen:** Two simple icons appear, and swim glows after the answer. Token 2 fills with a short label from the child's response.
 
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Pop! Duck badge made. Yellow feature saved."
+**AI says:** [delighted reveal] "Pop! Duck badge made. Swim clue saved."
 
 **Child responses:**
 
@@ -143,9 +125,9 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 
 1. [celebrating] "Yes. You made it."
 2. [replay invitation] "Good idea. First we save this."
-3. [wait 2s] [soft recap] "Duck, yellow, swim. Saved."
+3. [wait 2s] [soft recap] "Duck and swim. Saved."
 
-**Screen:** The three tokens expand into a final board labeled "Picture Namer". Each token stays visible so the payoff is earned by the child's earlier actions.
+**Screen:** The two tokens expand into a final board labeled "Picture Namer". Each token stays visible so the payoff is earned by the child's earlier actions.
 
 #### Step 5: Closing + IB Concepts
 
@@ -163,4 +145,4 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 2. [flexible] "New topic next. Badge saved."
 3. [wait 2s] [gentle goodbye] "Picture Namer is saved."
 
-**Screen:** The badge, the three round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."
+**Screen:** The badge, the two round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."

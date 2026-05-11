@@ -9,8 +9,8 @@ recap_payload:
     token: opinion_with_reason
     child_label: opinion with reason
     badge_emoji_none: true
-  highlight_moment: The notebook shows opinion, reason, and new clue together, so
-    the child sees reasoning grow.
+  highlight_moment: The notebook resolves the clue chain into flowers first now
+    and vegetables later.
   difficulty_level: 3
   next_step_hint: Try one new answer or explain why next time.
   caregiver_observed: co-explorer
@@ -18,8 +18,8 @@ recap_payload:
 rendered:
   title: You were a Reason Reporter today!
   line_1: You practiced deduce in three rounds.
-  line_2: The notebook shows opinion, reason, and new clue together, so the child
-    sees reasoning grow.
+  line_2: The notebook resolves the clue chain into flowers first now and vegetables
+    later.
   line_3: Your answers made the final reveal.
   badge: Reason Reporter
   next: Try a new answer next time.

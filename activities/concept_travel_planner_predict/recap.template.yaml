@@ -9,8 +9,8 @@ recap_payload:
     token: pretend_trip_prediction
     child_label: pretend trip prediction
     badge_emoji_none: true
-  highlight_moment: The pretend itinerary shows pack, travel, and surprise plan as
-    one ready journey.
+  highlight_moment: The final board shows prediction, reveal, and plan for raincoat,
+    boat, and boots.
   difficulty_level: 2
   next_step_hint: Try one new answer or explain why next time.
   caregiver_observed: co-explorer
@@ -18,8 +18,8 @@ recap_payload:
 rendered:
   title: You were a Trip Predictor today!
   line_1: You practiced predict in three rounds.
-  line_2: The pretend itinerary shows pack, travel, and surprise plan as one ready
-    journey.
+  line_2: The final board shows prediction, reveal, and plan for raincoat, boat,
+    and boots.
   line_3: Your answers made the final reveal.
   badge: Trip Predictor
   next: Try a new answer next time.

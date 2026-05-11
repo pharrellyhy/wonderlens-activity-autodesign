@@ -23,7 +23,7 @@ The child answers very short playful choice questions during a transition or war
 
 - **K (Know):** Children know a quick choice can pick one playful option and move the game forward.
 - **U (Understand):** Children understand that their decisions shape the tiny transition parade.
-- **D (Do):** Children make three fast, low-pressure choices by speaking, pointing, or copying.
+- **D (Do):** Children make two fast, low-pressure choices by speaking, pointing, or copying.
 
 **3. Design Highlight**
 
@@ -31,7 +31,7 @@ The activity is fast and pressure-free. Optional countdown UI is decorative; voi
 
 **4. Typical Scenario**
 
-During a waiting moment, the AI asks three tiny choices like socks or rockets, quiet lion or tiny robot, blue door or green door.
+During a waiting moment, the AI asks two tiny choices like banana hat or moon shoes, then blue door or green door.
 
 ### C. Interaction Flow
 
@@ -49,11 +49,11 @@ During a waiting moment, the AI asks three tiny choices like socks or rockets, q
 
 **AI follow-up:**
 
-1. [excited] "Yes. Three quick pops."
+1. [excited] "Yes. Two quick pops."
 2. [friendly] "Pick one silly thing."
 3. [wait 2s] [gentle] "Point or say one."
 
-**Screen:** The activity badge "Silly Choice Sprinter" appears with three empty progress tokens. If `quick_silly_countdown_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
+**Screen:** The activity badge "Silly Choice Sprinter" appears with two empty progress tokens. If `quick_silly_countdown_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
 
 #### Step 2: Rule Introduction
 
@@ -93,25 +93,7 @@ During a waiting moment, the AI asks three tiny choices like socks or rockets, q
 
 **Screen:** A tiny 3-2-1 bubble or voice beat pops. Token 1 fills with a short label from the child's response.
 
-**Round 2 -- Fast Pretend:**
-
-**AI says:** [focused playful tone] "Would you rather whisper like a lion or beep like a robot?"
-
-**Child responses:**
-
-1. (Ideal) "robot."
-2. (Unexpected) "both."
-3. (No response) Child looks at the screen or waits.
-
-**AI follow-up:**
-
-1. [playful] "Robot beep joins in."
-2. [delighted redirect] "Both is extra silly. Pick one sound first."
-3. [wait 2s] [gentle hint] "Lion whisper or robot beep?"
-
-**Screen:** A sound icon jumps to the chosen side. Token 2 fills with a short label from the child's response.
-
-**Round 3 -- Fast Path:**
+**Round 2 -- Fast Path:**
 
 **AI says:** [focused playful tone] "Blue door or green door for our tiny goodbye?"
 
@@ -127,11 +109,11 @@ During a waiting moment, the AI asks three tiny choices like socks or rockets, q
 2. [imaginative redirect] "Rainbow door is beautiful. Today choose blue or green so the parade can finish."
 3. [wait 2s] [gentle hint] "Blue door or green door?"
 
-**Screen:** A mini door opens in the chosen color. Token 3 fills with a short label from the child's response.
+**Screen:** A mini door opens in the chosen color. Token 2 fills with a short label from the child's response.
 
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Pop-pop-pop! Your parade is ready."
+**AI says:** [delighted reveal] "Pop-pop! Your parade is ready."
 
 **Child responses:**
 
@@ -143,9 +125,9 @@ During a waiting moment, the AI asks three tiny choices like socks or rockets, q
 
 1. [celebrating] "Yes. You chose it."
 2. [replay invitation] "Good idea. First this parade."
-3. [wait 2s] [soft recap] "Shoes, robot, green. Parade!"
+3. [wait 2s] [soft recap] "Moon shoes, green door. Parade!"
 
-**Screen:** The three tokens expand into a final board labeled "Silly Choice Sprinter". Each token stays visible so the payoff is earned by the child's earlier actions.
+**Screen:** The two tokens expand into a final board labeled "Silly Choice Sprinter". Each token stays visible so the payoff is earned by the child's earlier actions.
 
 #### Step 5: Closing + IB Concepts
 
@@ -163,4 +145,4 @@ During a waiting moment, the AI asks three tiny choices like socks or rockets, q
 2. [flexible] "New mission next. Badge saved."
 3. [wait 2s] [gentle goodbye] "Silly Choice is saved."
 
-**Screen:** The badge, the three round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."
+**Screen:** The badge, the two round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."

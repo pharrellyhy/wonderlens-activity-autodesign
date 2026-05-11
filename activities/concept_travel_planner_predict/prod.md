@@ -17,13 +17,13 @@
 
 **1. Brief Description**
 
-The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen.
+The child helps plan a pretend trip by predicting what the hidden trip cards will need before each reveal.
 
 **2. Educational Purpose (KUD)**
 
 - **K (Know):** Children know that a pretend trip plan can include a need, a travel choice, and a surprise plan.
 - **U (Understand):** Children understand that predictions connect a situation to a likely consequence before the pretend reveal.
-- **D (Do):** Children predict what to pack, choose travel with a reason, and plan for one possible surprise.
+- **D (Do):** Children commit to a prediction, see the pretend reveal, and adjust the trip plan with evidence.
 
 **3. Design Highlight**
 
@@ -31,7 +31,7 @@ The package avoids real booking or location claims and keeps the activity in pre
 
 **4. Typical Scenario**
 
-The child plans a pretend trip to a rainy forest. They choose what to pack, predict the weather problem, and pick travel help.
+The child plans a pretend trip to a rainy forest. They predict the needed item, travel helper, and surprise plan before each hidden card flips.
 
 ### C. Interaction Flow
 
@@ -57,7 +57,7 @@ The child plans a pretend trip to a rainy forest. They choose what to pack, pred
 
 #### Step 2: Rule Introduction
 
-**AI says:** [clear guide tone] "Here is the rule: I give you one small challenge, you answer, and we save one progress token. Three tokens make the final reveal."
+**AI says:** [clear guide tone] "Here is the rule: predict before I flip the card, then we save what the reveal shows."
 
 **Child responses:**
 
@@ -77,7 +77,7 @@ The child plans a pretend trip to a rainy forest. They choose what to pack, pred
 
 **Round 1 -- Predict What We Need:**
 
-**AI says:** [focused playful tone] "If our pretend trip is rainy, what should we pack first?"
+**AI says:** [focused playful tone] "Before I flip the rainy route card, predict what we will need first: raincoat, snack, or sunglasses?"
 
 **Child responses:**
 
@@ -87,33 +87,33 @@ The child plans a pretend trip to a rainy forest. They choose what to pack, pred
 
 **AI follow-up:**
 
-1. [planner tone] "Raincoat fits rainy weather. I am packing it before we reveal the route."
-2. [warm redirect] "A swimsuit is fun for water play. Rainy forest needs something that keeps us dry."
-3. [wait 2s] [gentle hint] "Think rain. Pack raincoat, boots, or umbrella."
+1. [reveal tone] "The card flips to raindrops. Raincoat matches the reveal, so token 1 becomes a dry-trip stamp."
+2. [warm redirect] "A swimsuit is fun for water play. The reveal is raindrops, so choose something that keeps us dry."
+3. [wait 2s] [gentle hint] "Think rain before the flip. Predict raincoat, boots, or umbrella."
 
-**Screen:** A suitcase card opens with one item slot. Token 1 fills with a short label from the child's response.
+**Screen:** A hidden route card flips to a rainy path. A suitcase slot fills with the predicted item, and token 1 saves the match or correction.
 
 **Round 2 -- Predict How to Travel:**
 
-**AI says:** [focused playful tone] "Would walking, bus, train, or boat help this trip? Why?"
+**AI says:** [focused playful tone] "Before I reveal the path, predict what travel helps cross a wide puddle: walking, bus, train, or boat?"
 
 **Child responses:**
 
-1. (Ideal) "bus because it is far."
+1. (Ideal) "boat."
 2. (Unexpected) "rocket."
 3. (No response) Child looks at the screen or waits.
 
 **AI follow-up:**
 
-1. [route-building] "Bus because it is far gives us a reasoned route. Token 2 draws the bus line."
-2. [pretend boundary] "Rocket is a funny pretend extra. For this trip, choose walking, bus, train, or boat and say why."
-3. [wait 2s] [gentle hint] "Try: bus because it is far."
+1. [route-building] "The path card flips to a wide puddle. Boat fits the reveal, so token 2 draws a little water route."
+2. [pretend boundary] "Rocket is a funny pretend extra. The reveal is a puddle path, so pick boat or walking carefully."
+3. [wait 2s] [gentle hint] "Predict one travel helper before the card flips. Boat is ready."
 
-**Screen:** A route line draws the chosen travel type. Token 2 fills with a short label from the child's response.
+**Screen:** The hidden path card flips from gray to blue puddle. The chosen travel icon moves onto the route, and token 2 records the prediction result.
 
 **Round 3 -- Predict a Surprise:**
 
-**AI says:** [focused playful tone] "What might happen on the trip, and what should we do?"
+**AI says:** [focused playful tone] "Before I reveal the surprise card, predict what might block us and what plan helps."
 
 **Child responses:**
 
@@ -123,15 +123,15 @@ The child plans a pretend trip to a rainy forest. They choose what to pack, pred
 
 **AI follow-up:**
 
-1. [cause-effect tone] "Mud plus boots is a strong prediction-and-plan pair. I am saving the surprise plan."
-2. [safety redirect] "A dragon can stay in a storybook. For our trip, pick a safe surprise like mud, rain, or a long hill."
-3. [wait 2s] [gentle hint] "Try: mud, wear boots."
+1. [cause-effect tone] "The surprise card flips to mud. Boots match your prediction-and-plan pair, so token 3 becomes the safe-step stamp."
+2. [safety redirect] "A dragon can stay in a storybook. The safe reveal is mud, so predict boots or a careful step."
+3. [wait 2s] [gentle hint] "Try a safe prediction: mud, wear boots."
 
-**Screen:** A surprise cloud appears with a plan token. Token 3 fills with a short label from the child's response.
+**Screen:** The surprise cloud flips open to a muddy path. A boot icon lands on it, and token 3 keeps the prediction visible.
 
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Look at that. Your three tokens made something new: The pretend itinerary shows pack, travel, and surprise plan as one ready journey."
+**AI says:** [delighted reveal] "Look at that. Your three predictions made something new: raincoat matched rain, boat crossed the puddle, and boots solved the mud."
 
 **Child responses:**
 
@@ -145,11 +145,11 @@ The child plans a pretend trip to a rainy forest. They choose what to pack, pred
 2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
 3. [wait 2s] [soft recap] "I will read the three tokens back so you can see your path."
 
-**Screen:** The three tokens expand into a final board labeled "Trip Predictor". Each token stays visible so the payoff is earned by the child's earlier actions.
+**Screen:** The three tokens expand into a final board labeled "Trip Predictor". Each token shows prediction -> reveal -> plan, so the payoff is earned by the child's earlier commitments.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** [warm celebration] "You earned the Trip Predictor badge. You used Causation by noticing the important part, and Change by connecting your answers to what happened next."
+**AI says:** [warm celebration] "You earned the Trip Predictor badge. You used Causation by predicting what each clue would need, and Change by updating the trip after each reveal."
 
 **Child responses:**
 

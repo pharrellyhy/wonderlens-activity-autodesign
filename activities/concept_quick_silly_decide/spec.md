@@ -39,9 +39,9 @@ Start when Light transition, waiting moment, or warm-up conversation. If the req
 
 ## Runtime Detail Floor Notes
 
-- **Distinct round design:** Round 1 -- Fast Favorite, Round 2 -- Fast Pretend, and Round 3 -- Fast Path each ask for a different child contribution and update a different progress token.
+- **Distinct round design:** Round 1 -- Fast Favorite and Round 2 -- Fast Path each ask for a different child contribution and update a different progress token, keeping the T0 loop to two rounds.
 - **Branch specificity:** Unexpected answers are validated, then redirected to the current objective without pretending the runtime can verify unsupported facts.
-- **Earned magic moment:** The three silly choices become a tiny transition parade that ends the waiting moment.
+- **Earned magic moment:** The two silly choices become a tiny transition parade that ends the waiting moment.
 - **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
 
 ## Asset Brief
@@ -52,7 +52,7 @@ Start when Light transition, waiting moment, or warm-up conversation. If the req
 | asset_type | ui_overlay |
 | requiredness | optional |
 | generation_timing | runtime_generated |
-| use_step | prod.step_2; prod.step_3.round_1-3 |
+| use_step | prod.step_2; prod.step_3.round_1-2 |
 | purpose | Optionally add a playful countdown or prompt card for quick silly questions. |
 | prompt_en | Create a simple playful countdown overlay for children's quick questions. Use three large friendly countdown circles, bright but calm colors, no text except numerals 3, 2, 1, no brands, and enough blank space for a spoken prompt. |
 | source | new_ai_generated_asset_or_runtime_ui |
@@ -69,7 +69,7 @@ Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.
 | 2 | Hook & Transition | PASS | Step 1 bridges from the trigger into a playful role without testing the child. |
 | 3 | Edge Case Coverage | PASS | Each step includes ideal, unexpected, and no-response handling with concrete redirects. |
 | 4 | IB Completeness | PASS | Key Concepts, related concepts, KUD, ATL skills, recap, and dashboard fragments align. |
-| 5 | Tier Appropriateness | PASS | Language and task load match T0 expectations. |
+| 5 | Tier Appropriateness | PASS | Language, answer length, and the two-round task load match T0 expectations. |
 | 6 | Dialogue Specificity | PASS | Runtime lines include concrete prompts, child branches, and follow-ups instead of abstract encouragement. |
 | 7 | Screen & UI Completeness | PASS | Screen states identify visible progress, token changes, and fallback behavior where assets are optional or required. |
 | 8 | Entity Mapping Alignment | N/A | This is a concept-led package with no required mapping source and no entity-specific claims. |

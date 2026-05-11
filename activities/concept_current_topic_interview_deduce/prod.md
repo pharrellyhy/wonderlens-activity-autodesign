@@ -17,21 +17,21 @@
 
 **1. Brief Description**
 
-The child discusses an age-appropriate topic by giving an opinion and a reason.
+The child solves an age-appropriate topic question by using clues to infer a reasoned conclusion.
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Children know that an opinion answers "what I think," a reason answers "why," and a new clue can strengthen or change an idea.
-- **U (Understand):** Children understand that respectful discussion uses evidence, not just volume or certainty.
-- **D (Do):** Children state an opinion, justify it with a reason, and revise or strengthen it after hearing one safe clue.
+- **K (Know):** Children know that a clue gives evidence, a conclusion answers the question, and a reason explains why.
+- **U (Understand):** Children understand that respectful discussion can change when new evidence appears.
+- **D (Do):** Children infer from a clue, justify the conclusion, and revise after one new safe clue.
 
 **3. Design Highlight**
 
-Topics must be parent-selected and age-appropriate. The AI asks for reasons and evidence instead of live-news claims.
+Topics must be parent-selected and age-appropriate. The AI supplies safe clues and asks the child to infer from evidence instead of making live-news claims.
 
 **4. Typical Scenario**
 
-An older child discusses a school garden topic, gives an opinion, listens to one new clue, and revises or strengthens the reason.
+An older child investigates a school garden topic, uses clues about butterflies and snack day, and deduces what the class should plant first.
 
 ### C. Interaction Flow
 
@@ -57,7 +57,7 @@ An older child discusses a school garden topic, gives an opinion, listens to one
 
 #### Step 2: Rule Introduction
 
-**AI says:** [clear guide tone] "Here is the rule: I give you one small challenge, you answer, and we save one progress token. Three tokens make the final reveal."
+**AI says:** [clear guide tone] "Here is the rule: hear a clue, make a conclusion, and tell me why before the next clue."
 
 **Child responses:**
 
@@ -75,63 +75,63 @@ An older child discusses a school garden topic, gives an opinion, listens to one
 
 #### Step 3: Core Loop
 
-**Round 1 -- Give an Opinion:**
+**Round 1 -- Use the First Clue:**
 
-**AI says:** [focused playful tone] "Here is the topic: should the class plant flowers or vegetables first? What do you think?"
+**AI says:** [focused playful tone] "Clue one: the class garden wants butterflies to visit this week. Should they plant flowers or vegetables first?"
 
 **Child responses:**
 
-1. (Ideal) "vegetables."
+1. (Ideal) "flowers."
 2. (Unexpected) "robots."
 3. (No response) Child looks at the screen or waits.
 
 **AI follow-up:**
 
-1. [reporter tone] "Vegetables is your opinion. I am writing it on the first notebook line."
-2. [boundary-setting] "Robots would make a wild topic. This interview is about the garden choice: flowers or vegetables."
-3. [wait 2s] [gentle hint] "Choose one starting idea: flowers first, or vegetables first."
+1. [reporter tone] "Flowers is your first conclusion because butterflies visit flowers. I am writing that clue on line one."
+2. [boundary-setting] "Robots would make a wild topic. This clue asks flowers or vegetables, so infer from butterflies."
+3. [wait 2s] [gentle hint] "Think of butterflies. Choose flowers first, or vegetables first."
 
-**Screen:** A reporter notebook saves the opinion. Token 1 fills with a short label from the child's response.
+**Screen:** A reporter notebook saves clue 1 with a butterfly icon, the child's conclusion, and token 1.
 
-**Round 2 -- Add a Reason:**
+**Round 2 -- Add a Reason From Evidence:**
 
-**AI says:** [focused playful tone] "What reason supports your idea?"
+**AI says:** [focused playful tone] "Clue two: the class also wants a snack later. Which choice does this clue support, and why?"
 
 **Child responses:**
 
-1. (Ideal) "we can eat vegetables."
+1. (Ideal) "vegetables, because we can eat them."
 2. (Unexpected) "because I said so."
 3. (No response) Child looks at the screen or waits.
 
 **AI follow-up:**
 
-1. [evidence tone] "That is a usable reason: people can eat vegetables. It goes under your opinion."
-2. [respectful redirect] "Because I said so tells me you care. Add evidence the class could check."
-3. [wait 2s] [gentle hint] "Try a reason starter: because the class can..."
+1. [evidence tone] "That clue supports vegetables because the class can eat them later. I am adding it as evidence line two."
+2. [respectful redirect] "Because I said so tells me you care. Add clue evidence the class could check."
+3. [wait 2s] [gentle hint] "Try: vegetables, because the class can eat them."
 
-**Screen:** A reason card appears under the opinion. Token 2 fills with a short label from the child's response.
+**Screen:** A second notebook line appears with a snack icon, conclusion, and reason. Token 2 fills with the evidence label.
 
-**Round 3 -- Use a New Clue:**
+**Round 3 -- Make the Final Deduction:**
 
-**AI says:** [focused playful tone] "New clue: the garden has many butterflies. Does that change or strengthen your idea?"
+**AI says:** [focused playful tone] "Final clue: butterfly week starts tomorrow, but snack day is next month. What should the class plant first, and why?"
 
 **Child responses:**
 
-1. (Ideal) "flowers help butterflies."
-2. (Unexpected) "no."
+1. (Ideal) "flowers first, because butterflies come now."
+2. (Unexpected) "vegetables, because snacks."
 3. (No response) Child looks at the screen or waits.
 
 **AI follow-up:**
 
-1. [thoughtful] "That clue supports flowers. I will mark it as a new piece of evidence."
-2. [validating] "No can be reasonable. Tell me whether the butterfly clue changes your mind or strengthens your first reason."
-3. [wait 2s] [gentle hint] "You can say: it changes my idea, or it strengthens my idea."
+1. [thoughtful] "That conclusion uses the timing clue: flowers first for butterflies now, vegetables can come later."
+2. [validating] "Vegetables still matter for snack day. The timing clue says first means flowers this week."
+3. [wait 2s] [gentle hint] "Use the timing clue: flowers first because butterflies come now."
 
-**Screen:** A clue arrow links to revised or strengthened reasoning. Token 3 fills with a short label from the child's response.
+**Screen:** The notebook draws arrows from butterfly week to flowers first, and from snack day to later vegetables. Token 3 fills with the final deduction.
 
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Look at that. Your three tokens made something new: The notebook shows opinion, reason, and new clue together, so the child sees reasoning grow."
+**AI says:** [delighted reveal] "Look at that. Your three clues made something new: a reporter answer that says flowers first now, vegetables later."
 
 **Child responses:**
 
@@ -145,11 +145,11 @@ An older child discusses a school garden topic, gives an opinion, listens to one
 2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
 3. [wait 2s] [soft recap] "I will read the three tokens back so you can see your path."
 
-**Screen:** The three tokens expand into a final board labeled "Reason Reporter". Each token stays visible so the payoff is earned by the child's earlier actions.
+**Screen:** The three tokens expand into a final board labeled "Reason Reporter". It shows clue -> conclusion -> reason for each line, so the payoff is earned by the child's deductions.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** [warm celebration] "You earned the Reason Reporter badge. You used Perspective by noticing the important part, and Causation by connecting your answers to what happened next."
+**AI says:** [warm celebration] "You earned the Reason Reporter badge. You used Perspective by weighing two class needs, and Causation by explaining why the timing clue changes what comes first."
 
 **Child responses:**
 

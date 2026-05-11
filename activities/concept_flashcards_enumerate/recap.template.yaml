@@ -9,16 +9,17 @@ recap_payload:
     token: picture_card_target
     child_label: picture card target
     badge_emoji_none: true
-  highlight_moment: The card turns into a named picture badge with one feature the
-    child noticed.
+  highlight_moment: The card turns into a named picture badge with one action clue
+    the child answered.
   difficulty_level: 1
   next_step_hint: Try one new answer or explain why next time.
   caregiver_observed: co-explorer
   reward_badge: picture_namer
 rendered:
   title: You were a Picture Namer today!
-  line_1: You practiced enumerate in three rounds.
-  line_2: The card turns into a named picture badge with one feature the child noticed.
+  line_1: You practiced enumerate in two rounds.
+  line_2: The card turns into a named picture badge with one action clue the child
+    answered.
   line_3: Your answers made the final reveal.
   badge: Picture Namer
   next: Try a new answer next time.

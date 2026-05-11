@@ -17,7 +17,7 @@ The child helps plan a pretend trip by choosing what to pack, how to travel, and
 ## Adaptation Rationale
 
 - **Input mode:** concept_only.
-- **Core promise:** The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen.
+- **Core promise:** The child helps plan a pretend trip by predicting what hidden trip cards will need before each reveal.
 - **Canonical mechanic:** `predict`; Step 3's repeated child action preserves this mechanic.
 - **Readiness:** generate_with_assumptions.
 - **Trigger condition:** Child asks about a place, weather, vehicle, animal habitat, or character journey.
@@ -25,7 +25,7 @@ The child helps plan a pretend trip by choosing what to pack, how to travel, and
 - **Asset dependency:** `travel_planning_cards_01` is optional `card_set` support; fallback behavior is documented.
 - **Product capability flags:** requires_asset_display.
 - **Scaffold fit:** acceptable. Discovery / `prediction_lab` supplies the emotional payoff while `predict` remains the child-action contract.
-- **Assumptions:** Use planning and prediction, not factual itinerary generation.
+- **Assumptions:** Use commit-before-reveal prediction and pretend planning, not factual itinerary generation.
 
 ## Selection Trigger
 
@@ -39,9 +39,9 @@ Start when Child asks about a place, weather, vehicle, animal habitat, or charac
 
 ## Runtime Detail Floor Notes
 
-- **Distinct round design:** Round 1 -- Predict What We Need, Round 2 -- Predict How to Travel, and Round 3 -- Predict a Surprise each ask for a different child contribution and update a different progress token.
+- **Distinct round design:** Round 1 -- Predict What We Need, Round 2 -- Predict How to Travel, and Round 3 -- Predict a Surprise each require a child prediction before the hidden card reveal.
 - **Branch specificity:** Unexpected answers are validated, then redirected to the current objective without pretending the runtime can verify unsupported facts.
-- **Earned magic moment:** The pretend itinerary shows pack, travel, and surprise plan as one ready journey.
+- **Earned magic moment:** The final board shows prediction -> reveal -> plan for raincoat, boat, and boots, making the payoff depend on the child's commitments.
 - **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
 
 ## Asset Brief
