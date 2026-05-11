@@ -89,7 +89,7 @@ Keep colors restrained and accessible. Tags must not rely on color alone; the te
 
 - Default to a polished light theme.
 - Use system fonts, high-contrast text, subtle borders, compact spacing, and predictable product-dashboard patterns.
-- Use a sidebar on desktop for section navigation and run counts. Collapse it above the content on narrower screens instead of hiding the navigation.
+- Use a fixed desktop sidebar for section navigation and run counts. It must remain visible while the page scrolls and must not clip beneath the header. Collapse it above the content on narrower screens instead of hiding the navigation.
 - Keep the first viewport useful: header, summary metrics, and primary filters should be visible without excessive scrolling on typical desktop widths.
 - Prefer dense but organized information over marketing-style presentation.
 - Do not use external CSS, JavaScript, fonts, images, CDNs, or build tooling.

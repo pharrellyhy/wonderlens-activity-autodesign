@@ -77,6 +77,8 @@
 - Updated `review_dashboard.md`, `run.md`, `GOAL.md`, `README.md`, and `runs/README.md` so future `/goal` runs preserve the same blocked-marker and blocked-preview scorecard behavior.
 - Regenerated `runs/20260511_144424_activity_concepts/review.html` and `runs/20260510_152725_activity_concepts/review.html` with the new blocked review treatment.
 - Added sidebar navigation to generated `review.html` dashboards and moved the Blocking Reason Guide directly after Review Criteria.
+- Changed desktop sidebar navigation from sticky to fixed positioning so Review Navigation stays visible while scrolling and does not clip beneath the header.
+- Polished generated `review.html` visual styling: raised panels, steadier spacing, improved control focus states, cleaner card hover treatment, stronger table scan states, and refined light-theme surfaces.
 
 ## Verification
 
@@ -98,6 +100,14 @@
   - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with sidebar navigation and the reason guide directly after review criteria
 - `python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts`
   - Result: PASS for sidebar navigation, reason guide placement, blocked marker clarity, blocked preview scorecards, and 279 resolving local links
+- `python3 scripts/generate_run_review.py runs/20260511_144424_activity_concepts`
+  - Result: regenerated `runs/20260511_144424_activity_concepts/review.html` with fixed desktop sidebar navigation and visual polish
+- `python3 scripts/generate_run_review.py --validate runs/20260511_144424_activity_concepts`
+  - Result: PASS for fixed desktop sidebar navigation, reason guide placement, blocked marker clarity, blocked preview scorecards, and 296 resolving local links
+- `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
+  - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with fixed desktop sidebar navigation and visual polish
+- `python3 scripts/generate_run_review.py --validate runs/20260510_152725_activity_concepts`
+  - Result: PASS for fixed desktop sidebar navigation, reason guide placement, blocked marker clarity, blocked preview scorecards, and 279 resolving local links
 - `python3 scripts/generate_run_review.py runs/20260510_152725_activity_concepts`
   - Result: regenerated `runs/20260510_152725_activity_concepts/review.html` with concise clickable cards, detail templates, shared dialog markup, and grouped tag colors
 - Targeted blocked-preview rule assertion across `run.md`, `GOAL.md`, `scripts/generate_run_review.py`, and `runs/README.md`

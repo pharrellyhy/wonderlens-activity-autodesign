@@ -700,8 +700,8 @@ checks:
   result: PASS; wrote review.html
 - command: python3 scripts/generate_run_review.py --validate runs/20260511_144424_activity_concepts
   result: PASS; dashboard contract checks, 23 package scorecards, blocked marker clarity,
-    sidebar navigation, reason guide placement, blocked preview scorecards, and 296
-    local links passed
+    fixed desktop sidebar navigation, reason guide placement, blocked preview scorecards,
+    and 296 local links passed
 - command: python3 -m py_compile scripts/generate_run_review.py
   result: PASS
 - command: git diff --check
