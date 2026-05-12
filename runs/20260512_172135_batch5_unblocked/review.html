@@ -464,6 +464,10 @@ input:focus, select:focus {
   overflow: hidden;
   background: var(--panel-soft);
 }
+.asset-metric-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 10px 0 12px; }
+.asset-metric-strip > div:nth-child(2n) { border-right: 1px solid var(--hairline); }
+.asset-metric-strip > div:nth-child(3n) { border-right: none; }
+.asset-metric-strip > div:nth-last-child(-n+3) { border-bottom: none; }
 .summary-copy { margin: 0; color: var(--text-soft); max-width: 74ch; font-size: 13.5px; line-height: 1.5; }
 details { border-top: 1px solid var(--hairline); padding-top: 10px; }
 summary { cursor: pointer; font-weight: 700; color: var(--accent-ink); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
@@ -479,6 +483,38 @@ summary { cursor: pointer; font-weight: 700; color: var(--accent-ink); font-size
 .details-grid section + section, .dialog-grid section + section { }
 .dialog-grid section { padding-bottom: 4px; }
 ol, ul { margin: 0; padding-left: 20px; }
+.workflow-list {
+  display: grid;
+  gap: 0;
+  padding: 0 18px 16px;
+  list-style: none;
+  counter-reset: workflow;
+  border-top: 1px solid var(--hairline);
+}
+.workflow-list li {
+  position: relative;
+  counter-increment: workflow;
+  padding: 14px 0 14px 38px;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--text-soft);
+}
+.workflow-list li:last-child { border-bottom: none; }
+.workflow-list li::before {
+  content: counter(workflow, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 17px;
+  font: 11px/1 var(--mono-stack);
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+.workflow-list strong { display: block; margin-bottom: 5px; color: var(--text); font-size: 13px; }
+.workflow-list span, .workflow-list code { display: block; font-size: 13px; line-height: 1.5; }
+.workflow-list code {
+  font-family: var(--mono-stack);
+  color: var(--accent-ink);
+  overflow-wrap: anywhere;
+}
 .beat-list { display: grid; gap: 0; padding-left: 0; list-style: none; counter-reset: beat; border-top: 1px solid var(--hairline); }
 .beat-list li {
   border-bottom: 1px solid var(--hairline);
@@ -645,7 +681,7 @@ tbody tr:last-child td { border-bottom: none; }
   max-width: 86ch;
 }
 .scorecard-wrap table { min-width: 760px; }
-.asset-usage-table { min-width: 1120px; }
+.asset-usage-table { min-width: 1320px; }
 .asset-usage-table td:first-child strong { display: block; font-family: var(--mono-stack); font-size: 11px; color: var(--text); }
 .scorecard-table td:first-child, .criteria-table td:first-child {
   width: 38px;
@@ -912,10 +948,11 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
     <nav class="side-nav">
       <a href="#summary-metrics">Summary</a>
       <a href="#run-files">Run Files</a>
-      <a href="#review-criteria">Review Criteria</a>
+      <a href="#dashboard-workflow">Workflow</a>
       <a href="#resolved-contract-items">Resolved Items</a>
       <a href="#extensibility-overview">Extensibility</a>
       <a href="#blocking-reason-guide">Blocking Reasons</a>
+      <a href="#review-criteria">Review Criteria</a>
       <a href="#activity-details">Activities</a>
       <a href="#blocked-assignments">Blocked</a>
       <a href="#reviewer-coverage">Reviewers</a>
@@ -931,6 +968,18 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
 	    <div class="panel-head"><h2>Run Files</h2></div>
 	    <div class="link-grid"><a href="run_manifest.yaml" data-preview-id="preview-run-manifest-yaml">run_manifest.yaml</a><a href="review_notes.md" data-preview-id="preview-review-notes-md">review_notes.md</a><a href="assignment_snapshot.md" data-preview-id="preview-assignment-snapshot-md">assignment_snapshot.md</a><a href="generated_activity_ids.txt" data-preview-id="preview-generated-activity-ids-txt">generated_activity_ids.txt</a><a href="../../results.tsv" data-preview-id="preview-results-tsv">results.tsv</a><a href="../../assignments.md" data-preview-id="preview-assignments-md">assignments.md</a></div>
 	  </section>
+
+	<section class="panel" id="dashboard-workflow">
+    <div class="panel-head"><h2>Review Dashboard Workflow</h2></div>
+    <div class="criteria-note">This HTML file is generated once after package generation, reviewer evidence, manifest entries, blocked previews, and package checks are current. It is derived from run files and package files; it is not a source of truth.</div>
+    <ol class="workflow-list">
+      <li><strong>Collect run inputs</strong><span>Read `run_manifest.yaml`, `review_notes.md`, `results.tsv`, generated or enriched package files, blocked briefs, and blocked design previews.</span></li>
+      <li><strong>Generate the dashboard</strong><code>python3 scripts/generate_run_review.py runs/20260512_172135_batch5_unblocked</code></li>
+      <li><strong>Validate the dashboard</strong><code>python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked</code></li>
+      <li><strong>Record provenance</strong><span>Keep `outputs.review_dashboard` pointing to `runs/20260512_172135_batch5_unblocked/review.html` and record the generation and validation checks in the run manifest.</span></li>
+    </ol>
+  </section>
+
 
 	<section class="panel" id="review-criteria">
     <div class="panel-head"><h2>Review Criteria</h2></div>
@@ -1025,7 +1074,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Find 3 with the same clue</strong></div>
     <div><span>Runtime beats</span><strong>8</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>10</strong></div>
   </div>
@@ -1059,7 +1110,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -1107,7 +1163,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Find /b/ treasures</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>6</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -1141,8 +1199,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>phoneme_letter_card_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4</td><td>center_card_area</td><td>Give the child a visual reminder of the target sound and letter.</td><td>new_ai_generated_asset</td><td>If the card is unavailable, the AI repeats the target sound by voice only and must not claim the screen is showing a letter.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>6</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>phoneme_letter_card_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4</td><td>6</td><td>1 set, items TBD</td><td>center_card_area</td><td>Give the child a visual reminder of the target sound and letter.</td><td>new_ai_generated_asset</td><td>If the card is unavailable, the AI repeats the target sound by voice only and must not claim the screen is showing a letter.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -1189,7 +1252,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Choose the story path</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -1223,7 +1288,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -1271,7 +1341,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Solve the clue mystery</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>2</strong></div>
   </div>
@@ -1305,8 +1377,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>guess_reference_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Provide optional reference pictures before or after a clue round to reduce frustration.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, the AI continues with voice clues and encouragement and must not claim the screen is showing a picture.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>guess_reference_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide optional reference pictures before or after a clue round to reduce frustration.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, the AI continues with voice clues and encouragement and must not claim the screen is showing a picture.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -1353,7 +1430,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Echo animal sounds</strong></div>
     <div><span>Runtime beats</span><strong>6</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>3</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>2</strong></div>
   </div>
@@ -1387,8 +1466,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>animal_sound_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-2</td><td>center_card_area</td><td>Help the child recognize the animal they are about to imitate.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>3</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>animal_sound_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-2</td><td>3</td><td>1 set, items TBD</td><td>center_card_area</td><td>Help the child recognize the animal they are about to imitate.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -1435,7 +1519,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Make a tiny exhibit</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>5</strong></div>
   </div>
@@ -1469,7 +1555,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -1517,7 +1608,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Guess the hidden whole</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>6</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>2</strong></div>
   </div>
@@ -1551,8 +1644,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>partial_reveal_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4</td><td>center_card_area</td><td>Provide visible partial evidence so the child can infer the whole animal or object.</td><td>new_ai_generated_asset</td><td>If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>6</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>partial_reveal_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4</td><td>6</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide visible partial evidence so the child can infer the whole animal or object.</td><td>new_ai_generated_asset</td><td>If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -1599,7 +1697,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Echo Word Stage</strong></div>
     <div><span>Runtime beats</span><strong>6</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>5</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -1633,8 +1733,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>word_echo_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_1; prod.step_2; prod.step_3.round_1-2; prod.step_4</td><td>center_card_area</td><td>Provide a simple picture cue for the word the child repeats.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>5</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>word_echo_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_1; prod.step_2; prod.step_3.round_1-2; prod.step_4</td><td>5</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide a simple picture cue for the word the child repeats.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -1681,7 +1786,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Feeling Helper Station</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>6</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -1715,8 +1822,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>emotion_expression_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4</td><td>center_card_area</td><td>Provide simple character expressions that children can interpret with evidence.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, use a story description of a character&#x27;s visible cues and avoid claiming the screen shows a face.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>6</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>emotion_expression_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4</td><td>6</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide simple character expressions that children can interpret with evidence.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, use a story description of a character&#x27;s visible cues and avoid claiming the screen shows a face.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -1763,7 +1875,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Plant Parts Field Scout</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>5</strong></div>
   </div>
@@ -1797,7 +1911,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -1845,7 +1964,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Plant State Evidence Lab</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>5</strong></div>
   </div>
@@ -1879,7 +2000,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -1927,7 +2053,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Two-Color Mix Lab</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -1961,8 +2089,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>color_mixing_board_01</strong><br><span class="muted">ui_overlay</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>support_panel</td><td>Support color prediction by showing two color spots combining into a result spot.</td><td>new_ai_generated_asset</td><td>If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>color_mixing_board_01</strong><br><span class="muted">ui_overlay</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1</td><td>support_panel</td><td>Support color prediction by showing two color spots combining into a result spot.</td><td>new_ai_generated_asset</td><td>If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -2009,7 +2142,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Star Pattern Counter</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -2043,8 +2178,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>constellation_count_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Provide clear star patterns for counting and simple constellation talk.</td><td>new_ai_generated_asset_or_approved_constellation_set</td><td>If cards are unavailable, use a voice-only imaginary star-counting riddle and do not claim a constellation is displayed.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>constellation_count_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide clear star patterns for counting and simple constellation talk.</td><td>new_ai_generated_asset_or_approved_constellation_set</td><td>If cards are unavailable, use a voice-only imaginary star-counting riddle and do not claim a constellation is displayed.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -2091,7 +2231,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Helper Choice Desk</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -2125,8 +2267,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>career_portrait_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Provide inclusive helper-role visuals for scenario decisions.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, describe the helper role by voice and avoid claiming the screen shows a person.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>career_portrait_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide inclusive helper-role visuals for scenario decisions.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, describe the helper role by voice and avoid claiming the screen shows a person.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -2173,7 +2320,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Vegetable Sort Stand</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>6</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -2207,8 +2356,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>vegetable_sort_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4</td><td>center_card_area</td><td>Provide vegetable cards that can be sorted by color, shape, edible part, or cooking use.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, use photographed vegetables or a voice-only sorting prompt and do not claim cards are shown.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>6</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>vegetable_sort_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4</td><td>6</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide vegetable cards that can be sorted by color, shape, edible part, or cooking use.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, use photographed vegetables or a voice-only sorting prompt and do not claim cards are shown.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -2255,7 +2409,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Guess Then Count</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -2289,8 +2445,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>how_many_count_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Show small countable sets for estimate-then-count rounds.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, use real photographed countable items or voice-only counting and do not claim a card is displayed.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>how_many_count_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Show small countable sets for estimate-then-count rounds.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, use real photographed countable items or voice-only counting and do not claim a card is displayed.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -2337,7 +2498,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Picture Pop Cards</strong></div>
     <div><span>Runtime beats</span><strong>6</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>3</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -2371,8 +2534,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>generic_flashcard_library_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-2</td><td>center_card_area</td><td>Provide simple picture-first recognition cards.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, use a photographed object or voice-only recognition prompt and do not claim the screen shows a card.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>3</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>generic_flashcard_library_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-2</td><td>3</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide simple picture-first recognition cards.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, use a photographed object or voice-only recognition prompt and do not claim the screen shows a card.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -2419,7 +2587,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Tiny Trivia Trail</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -2453,8 +2623,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>trivia_reward_board_01</strong><br><span class="muted">ui_overlay</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>support_panel</td><td>Optionally visualize progress through trivia rounds.</td><td>new_ai_generated_asset</td><td>If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>trivia_reward_board_01</strong><br><span class="muted">ui_overlay</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1</td><td>support_panel</td><td>Optionally visualize progress through trivia rounds.</td><td>new_ai_generated_asset</td><td>If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -2501,7 +2676,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Two-Choice Compare Chat</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -2535,7 +2712,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -2583,7 +2765,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Reason Reporter Interview</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>7</strong></div>
   </div>
@@ -2617,7 +2801,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -2665,7 +2854,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Tiny Poem Workshop</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -2699,7 +2890,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -2747,7 +2943,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Pretend Trip Planner</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -2781,8 +2979,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>travel_planning_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Support pretend trip planning with visual choices.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, run the planning conversation by voice only.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>travel_planning_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Support pretend trip planning with visual choices.</td><td>new_ai_generated_asset</td><td>If cards are unavailable, run the planning conversation by voice only.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -2829,7 +3032,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Quick Silly Choice Pop</strong></div>
     <div><span>Runtime beats</span><strong>6</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>3</strong></div>
+    <div><span>Image items</span><strong>1</strong></div>
     <div><span>Resolved blockers</span><strong>0</strong></div>
     <div><span>Reusable slots</span><strong>3</strong></div>
   </div>
@@ -2863,8 +3068,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>quick_silly_countdown_01</strong><br><span class="muted">ui_overlay</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-2</td><td>top_prompt_or_progress_overlay</td><td>Optionally add a playful countdown or prompt card for quick silly questions.</td><td>new_ai_generated_asset_or_runtime_ui</td><td>If countdown UI is unavailable, ask the quick questions by voice only and do not claim a timer is on screen.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>3</strong></div>
+      <div><span>Image items</span><strong>1</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>quick_silly_countdown_01</strong><br><span class="muted">ui_overlay</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-2</td><td>3</td><td>1</td><td>top_prompt_or_progress_overlay</td><td>Optionally add a playful countdown or prompt card for quick silly questions.</td><td>new_ai_generated_asset_or_runtime_ui</td><td>If countdown UI is unavailable, ask the quick questions by voice only and do not claim a timer is on screen.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -2911,7 +3121,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Coloring Game</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1</strong></div>
     <div><span>Resolved blockers</span><strong>3</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -2945,8 +3157,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>runtime_coloring_line_art_01</strong><br><span class="muted">line_art</span></td><td><span class="badge badge-asset badge-asset-runtime-generated">runtime_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>full_screen_canvas</td><td>Convert a photographed object into a fillable line drawing and apply colors chosen from the child&#x27;s photos.</td><td>future_runtime_image_generation</td><td>Use a no-image color-plan fallback: the child names colors and regions verbally, and the screen shows text/color chips without claiming generated line art exists.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>runtime_coloring_line_art_01</strong><br><span class="muted">line_art</span></td><td><span class="badge badge-asset badge-asset-runtime-generated">runtime_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1</td><td>full_screen_canvas</td><td>Convert a photographed object into a fillable line drawing and apply colors chosen from the child&#x27;s photos.</td><td>future_runtime_image_generation</td><td>Use a no-image color-plan fallback: the child names colors and regions verbally, and the screen shows text/color chips without claiming generated line art exists.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -2993,7 +3210,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Guided Drawing</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>2</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3027,8 +3246,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>guided_drawing_step_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Provide optional visual steps for a simple drawing task.</td><td>new_ai_generated_asset</td><td>If step cards are unavailable, use voice-only step descriptions with caregiver setup, self-report completion, and no drawing-quality assessment.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>guided_drawing_step_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide optional visual steps for a simple drawing task.</td><td>new_ai_generated_asset</td><td>If step cards are unavailable, use voice-only step descriptions with caregiver setup, self-report completion, and no drawing-quality assessment.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -3075,7 +3299,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Building Challenge</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>3</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3109,8 +3335,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>building_reference_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Show simple build targets for hands-on block or recycled-material construction.</td><td>new_ai_generated_asset</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>building_reference_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Show simple build targets for hands-on block or recycled-material construction.</td><td>new_ai_generated_asset</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -3157,7 +3388,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Story Challenge Unlock</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>2</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3191,8 +3424,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>story_unlock_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Show a simple locked story door, token, or next-scene card during a story challenge.</td><td>new_ai_generated_asset</td><td>If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>story_unlock_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Show a simple locked story door, token, or next-scene card during a story challenge.</td><td>new_ai_generated_asset</td><td>If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -3239,7 +3477,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Classic Music And Movement</strong></div>
     <div><span>Runtime beats</span><strong>6</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>1</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3273,7 +3513,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -3321,7 +3566,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Children&#x27;s Yoga</strong></div>
     <div><span>Runtime beats</span><strong>6</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>3</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>2</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3355,8 +3602,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>childrens_yoga_pose_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-2</td><td>center_pose_card</td><td>Show approved, age-safe pose references for a calm movement routine.</td><td>new_ai_generated_asset</td><td>Use voice-only safe movement prompts with caregiver space check, or stop the movement activity without claiming a pose card is visible.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>3</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>childrens_yoga_pose_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-2</td><td>3</td><td>1 set, items TBD</td><td>center_pose_card</td><td>Show approved, age-safe pose references for a calm movement routine.</td><td>new_ai_generated_asset</td><td>Use voice-only safe movement prompts with caregiver space check, or stop the movement activity without claiming a pose card is visible.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -3403,7 +3655,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Emotion Color Outfit</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1</strong></div>
     <div><span>Resolved blockers</span><strong>3</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3437,8 +3691,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>emotion_color_character_01</strong><br><span class="muted">character_image</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>support_panel</td><td>Show a character whose outfit can reflect the child&#x27;s chosen emotion color.</td><td>new_ai_generated_asset_or_future_avatar_renderer</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>emotion_color_character_01</strong><br><span class="muted">character_image</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1</td><td>support_panel</td><td>Show a character whose outfit can reflect the child&#x27;s chosen emotion color.</td><td>new_ai_generated_asset_or_future_avatar_renderer</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -3485,7 +3744,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Toy Tidy Challenge</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>2</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3519,7 +3780,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -3567,7 +3833,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Time Sense Challenge</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>1</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3601,7 +3869,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -3649,7 +3922,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>One-Line Drawing Challenge</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>3</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3683,8 +3958,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>one_line_drawing_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Show simple one-line drawing targets.</td><td>new_ai_generated_asset</td><td>Use a voice-only path-planning challenge and child self-report; do not claim a drawing card or drawing verification is available.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>one_line_drawing_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Show simple one-line drawing targets.</td><td>new_ai_generated_asset</td><td>Use a voice-only path-planning challenge and child self-report; do not claim a drawing card or drawing verification is available.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -3731,7 +4011,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Message Bottle Note</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>0</strong></div>
+    <div><span>Asset dependencies</span><strong>0</strong></div>
+    <div><span>Display beats</span><strong>0</strong></div>
+    <div><span>Image items</span><strong>0</strong></div>
     <div><span>Resolved blockers</span><strong>3</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3765,7 +4047,12 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>0</strong></div>
+      <div><span>Display beats</span><strong>0</strong></div>
+      <div><span>Image items</span><strong>0</strong></div>
+    </div>
     <p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>
   </section>
   <section>
@@ -3813,7 +4100,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Award Certificate</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>3</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3847,8 +4136,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>award_inspiration_badges_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Provide simple positive badge ideas for an award certificate.</td><td>new_ai_generated_asset</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>award_inspiration_badges_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide simple positive badge ideas for an award certificate.</td><td>new_ai_generated_asset</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -3895,7 +4189,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Recognition Pop Challenge</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>2</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -3929,8 +4225,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>recognition_challenge_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>center_card_area</td><td>Provide target and distractor images for a tap-based recognition challenge.</td><td>new_ai_generated_asset</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>recognition_challenge_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1 set, items TBD</td><td>center_card_area</td><td>Provide target and distractor images for a tap-based recognition challenge.</td><td>new_ai_generated_asset</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -3977,7 +4278,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Word Build Guess</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1</strong></div>
     <div><span>Resolved blockers</span><strong>2</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -4011,8 +4314,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>word_growth_ui_01</strong><br><span class="muted">ui_overlay</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>top_prompt_or_progress_overlay</td><td>Show a constructive word reveal surface for letter or clue guesses.</td><td>future_runtime_ui_or_new_ai_generated_asset</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>word_growth_ui_01</strong><br><span class="muted">ui_overlay</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1</td><td>top_prompt_or_progress_overlay</td><td>Show a constructive word reveal surface for letter or clue guesses.</td><td>future_runtime_ui_or_new_ai_generated_asset</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -4059,7 +4367,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Art Critic Tournament</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1</strong></div>
     <div><span>Resolved blockers</span><strong>2</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -4093,8 +4403,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>artwork_tournament_set_01</strong><br><span class="muted">reference_image</span></td><td><span class="badge badge-asset badge-asset-display-existing">display_existing</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>split_or_center_artwork_panel</td><td>Provide approved artwork pairs for comparison and tournament choice.</td><td>approved_public_domain_or_licensed_artwork_set</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>artwork_tournament_set_01</strong><br><span class="muted">reference_image</span></td><td><span class="badge badge-asset badge-asset-display-existing">display_existing</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1</td><td>split_or_center_artwork_panel</td><td>Provide approved artwork pairs for comparison and tournament choice.</td><td>approved_public_domain_or_licensed_artwork_set</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -4141,7 +4456,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Color In Famous Art</strong></div>
     <div><span>Runtime beats</span><strong>7</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>4</strong></div>
+    <div><span>Image items</span><strong>1</strong></div>
     <div><span>Resolved blockers</span><strong>1</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -4175,8 +4492,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>color_artwork_set_01</strong><br><span class="muted">reference_image</span></td><td><span class="badge badge-asset badge-asset-display-existing">display_existing</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>split_or_center_artwork_panel</td><td>Provide approved artworks with known dominant color metadata.</td><td>approved_public_domain_or_licensed_artwork_set</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>4</strong></div>
+      <div><span>Image items</span><strong>1</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>color_artwork_set_01</strong><br><span class="muted">reference_image</span></td><td><span class="badge badge-asset badge-asset-display-existing">display_existing</span></td><td>prod.step_2; prod.step_3.round_1-3</td><td>4</td><td>1</td><td>split_or_center_artwork_panel</td><td>Provide approved artworks with known dominant color metadata.</td><td>approved_public_domain_or_licensed_artwork_set</td><td>Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -4223,7 +4545,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="inline-fields">
     <div><span>Preview label</span><strong>Simple Body Movement Guide</strong></div>
     <div><span>Runtime beats</span><strong>6</strong></div>
-    <div><span>Image uses</span><strong>1</strong></div>
+    <div><span>Asset dependencies</span><strong>1</strong></div>
+    <div><span>Display beats</span><strong>3</strong></div>
+    <div><span>Image items</span><strong>1 set, items TBD</strong></div>
     <div><span>Resolved blockers</span><strong>2</strong></div>
     <div><span>Reusable slots</span><strong>4</strong></div>
   </div>
@@ -4257,8 +4581,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
-    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>body_movement_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-2</td><td>center_pose_card</td><td>Show simple safe movement prompts.</td><td>new_ai_generated_asset</td><td>Use voice-only safe movement prompts with caregiver space check, or stop the movement activity without claiming a pose card is visible.</td></tr></tbody></table></div>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>1</strong></div>
+      <div><span>Display beats</span><strong>3</strong></div>
+      <div><span>Image items</span><strong>1 set, items TBD</strong></div>
+    </div>
+    <div class="table-wrap"><table class="asset-usage-table"><thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead><tbody><tr><td><strong>body_movement_cards_01</strong><br><span class="muted">card_set</span></td><td><span class="badge badge-asset badge-asset-pre-generated">pre_generated</span></td><td>prod.step_2; prod.step_3.round_1-2</td><td>3</td><td>1 set, items TBD</td><td>center_pose_card</td><td>Show simple safe movement prompts.</td><td>new_ai_generated_asset</td><td>Use voice-only safe movement prompts with caregiver space check, or stop the movement activity without claiming a pose card is visible.</td></tr></tbody></table></div>
   </section>
   <section>
     <h4>Learning Tags</h4>

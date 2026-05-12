@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.23 | **Date**: 2026-05-12
+> **Version**: 1.24 | **Date**: 2026-05-12
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.24 — 2026-05-12**: Clarify review dashboard image accounting. `review.html` must distinguish unique asset dependencies from runtime display beats and known image-item counts; one `asset_id` or card set can appear in several steps, and set item counts stay TBD unless source data declares them. The dashboard must also show the generation/validation workflow used to create the derived HTML.
 > **v1.23 — 2026-05-12**: Require image/display dependencies to be trackable as an asset usage timeline. Asset briefs now expose where and when each prebuilt, displayed, or runtime-generated image is loaded, shown, used, persisted/hidden, and how fallback works; `review.html` must surface that timeline for fast review.
 > **v1.22 — 2026-05-12**: Add product-contract override handling for `minimum_unblock_allowed` runs. Formerly blocked capability probes can generate normal five-file packages when the minimum unblock decisions are assumed approved, but the package must preserve those dependencies as `RESOLVED BLOCKER` annotations and `review.html` must show resolved contract items. Add Cat3 `template_type` support and require concept-led packages to include extensibility notes for reusable entity/property/asset-set retargeting.
 > **v1.21 — 2026-05-12**: Fresh `/goal` generation writes actual five-file packages under `runs/<run_id>/activity_packages/<base_activity_id>/` with clean `activity_id` values. `activities/<activity_id>/` is reserved for canonical/promoted packages and explicit checked-package enrichment; run-local paths distinguish reruns without suffixing IDs.
@@ -650,7 +651,7 @@ The five files are:
 - **Closing speech** must celebrate FIRST, then naturally name Key Concepts. Concepts feel like praise, not vocabulary lessons.
 - **All AI dialogue is in English.** Use age-appropriate, warm, playful language.
 - **Scorecard placement**: `spec.md` includes the scorecard; `prod.md` does not.
-- **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `spec.md` must include `## Asset Usage Timeline` for any prebuilt, displayed, or runtime-generated image dependency. `prod.md` references asset IDs, display location, and fallback behavior only. Do not generate or store image files as part of package generation unless a future asset pipeline explicitly requires it.
+- **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `spec.md` must include `## Asset Usage Timeline` for any prebuilt, displayed, or runtime-generated image dependency. `prod.md` references asset IDs, display location, and fallback behavior only. Review outputs must distinguish `Asset dependencies` from `Display beats` and `Image items`; do not treat one asset row or card set as one image when it is displayed across multiple steps. Do not generate or store image files as part of package generation unless a future asset pipeline explicitly requires it.
 - **Resolved blocker placement**: product-contract override runs use `RESOLVED BLOCKER` comments in `prod.md` where the formerly unsupported behavior affects a runtime beat. These comments are review annotations and do not make the package invalid when the run manifest records the override.
 - **Extensibility placement**: concept-led and parameterized packages should name reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, `{matched_shape}`, or approved asset-set IDs in `spec.md` `## Extensibility Notes`.
 - **Package alignment**: `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` must describe the same pillar, game style, focal attribute, badge, and next-step direction as `spec.md` and `prod.md`.

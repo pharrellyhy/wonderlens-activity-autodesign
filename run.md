@@ -360,7 +360,7 @@ This is a final-run step, not a per-assignment step. After every row from `assig
 runs/<run_id>/review.html
 ```
 
-This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, asset usage timelines for image/display dependencies, 10-dimension criteria and package scorecard results, resolved contract item handling, extensibility overview, blocked-preview handling, per-blocked-card `Minimum To Unblock` sections below capability flags, blocked-preview scorecards, link rules, validation requirements, the editorial design language in `review_dashboard.md` §"Design language" (warm-paper palette, indigo accent, serif display title and dialog headings, hairline-divided panels, tabular numerals, accent rails on cards, status-dot run indicator), and the in-file preview behavior in `review_dashboard.md` §"In-file preview" (embedded `<template>` content, dedicated preview `<dialog>`, dependency-free Markdown rendering, modifier-click bypass, "Open in new tab" escape hatch).
+This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, asset usage timelines for image/display dependencies, distinct `Asset dependencies` / `Display beats` / `Image items` metrics, 10-dimension criteria and package scorecard results, resolved contract item handling, extensibility overview, blocked-preview handling, per-blocked-card `Minimum To Unblock` sections below capability flags, blocked-preview scorecards, link rules, validation requirements, the editorial design language in `review_dashboard.md` §"Design language" (warm-paper palette, indigo accent, serif display title and dialog headings, hairline-divided panels, tabular numerals, accent rails on cards, status-dot run indicator), and the in-file preview behavior in `review_dashboard.md` §"In-file preview" (embedded `<template>` content, dedicated preview `<dialog>`, dependency-free Markdown rendering, modifier-click bypass, "Open in new tab" escape hatch).
 
 Generation command:
 
@@ -369,13 +369,13 @@ python3 scripts/generate_run_review.py runs/<run_id>
 python3 scripts/generate_run_review.py --validate runs/<run_id>
 ```
 
-The generator reads `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, blocked briefs, and blocked design previews, then writes `runs/<run_id>/review.html`.
+The generator reads `run_manifest.yaml`, `review_notes.md`, `results.tsv`, package files, blocked briefs, and blocked design previews, then writes `runs/<run_id>/review.html`. The generated HTML must include a `Review Dashboard Workflow` section with these generation and validation commands so reviewers can see how the artifact was produced.
 
 After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for `python3 scripts/generate_run_review.py runs/<run_id>` and `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, asset usage timelines when image/display dependencies exist, resolved contract items when resolved blockers exist, extensibility overview when extensibility notes exist, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, the `Review Dashboard Workflow` section, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, asset usage timelines when image/display dependencies exist, distinct `Asset dependencies`, `Display beats`, and `Image items` labels, resolved contract items when resolved blockers exist, extensibility overview when extensibility notes exist, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
 
 ### Step 7: Mark generated assignment complete
 

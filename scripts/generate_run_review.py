@@ -436,6 +436,84 @@ def normalize_asset_item(item: dict[str, Any]) -> dict[str, str]:
     }
 
 
+def asset_dependency_count(assets: list[dict[str, str]]) -> int:
+    ids = {asset.get("asset_id", "") for asset in assets if asset.get("asset_id")}
+    return len(ids) if ids else len(assets)
+
+
+def asset_display_count_for_token(token: str) -> tuple[int, bool]:
+    round_ranges = [
+        (int(match.group(1)), int(match.group(2)))
+        for match in re.finditer(r"round[_\s-]*(\d+)\s*[-\u2013\u2014]\s*(\d+)", token, re.I)
+    ]
+    if round_ranges:
+        return sum(abs(end - start) + 1 for start, end in round_ranges), False
+
+    step_ranges = [
+        (int(match.group(1)), int(match.group(2)))
+        for match in re.finditer(r"step[_\s-]*(\d+)\s*[-\u2013\u2014]\s*(\d+)", token, re.I)
+    ]
+    if step_ranges:
+        return sum(abs(end - start) + 1 for start, end in step_ranges), False
+
+    round_refs = re.findall(r"round[_\s-]*\d+", token, re.I)
+    if round_refs:
+        return len(round_refs), False
+
+    step_refs = re.findall(r"step[_\s-]*\d+", token, re.I)
+    if step_refs:
+        return len(step_refs), False
+
+    return 1, True
+
+
+def asset_display_beat_count(use_step: str) -> tuple[int, bool]:
+    text = normalize_text(use_step)
+    if not text:
+        return 0, True
+    total = 0
+    has_unknown = False
+    tokens = [token.strip() for token in re.split(r"\s*(?:;|,|\+|\band\b)\s*", text) if token.strip()]
+    for token in tokens:
+        count, unknown = asset_display_count_for_token(token)
+        total += count
+        has_unknown = has_unknown or unknown
+    return total, has_unknown
+
+
+def asset_display_summary(assets: list[dict[str, str]]) -> str:
+    if not assets:
+        return "0"
+    total = 0
+    has_unknown = False
+    for asset in assets:
+        count, unknown = asset_display_beat_count(asset.get("use_step", ""))
+        total += count
+        has_unknown = has_unknown or unknown
+    if has_unknown and total:
+        return f"{total}+"
+    if has_unknown:
+        return "Unknown"
+    return str(total)
+
+
+def asset_item_summary(assets: list[dict[str, str]]) -> str:
+    if not assets:
+        return "0"
+    set_count = sum(1 for asset in assets if "set" in asset.get("asset_type", "").lower())
+    individual_count = max(0, len(assets) - set_count)
+    parts: list[str] = []
+    if individual_count:
+        parts.append(str(individual_count))
+    if set_count == 1:
+        parts.append("1 set")
+    elif set_count > 1:
+        parts.append(f"{set_count} sets")
+    if set_count:
+        parts.append("items TBD")
+    return ", ".join(parts) if parts else str(len(assets))
+
+
 def asset_usage_from_spec(spec_text: str) -> list[dict[str, str]]:
     body = section(spec_text, "Asset Usage Timeline") or section(spec_text, "Asset Brief")
     if not body:
@@ -1021,6 +1099,8 @@ def asset_usage_table(package: dict[str, Any]) -> str:
             f"<td><strong>{esc(asset.get('asset_id') or 'Unknown')}</strong><br><span class=\"muted\">{esc(asset.get('asset_type') or 'image/support')}</span></td>"
             f"<td>{group_badge(asset.get('generation_timing') or 'unknown', 'asset')}</td>"
             f"<td>{esc(asset.get('use_step') or 'Not specified')}</td>"
+            f"<td>{esc(asset_display_summary([asset]))}</td>"
+            f"<td>{esc(asset_item_summary([asset]))}</td>"
             f"<td>{esc(display_context)}</td>"
             f"<td>{esc(asset.get('purpose') or asset.get('display_behavior') or 'Not specified')}</td>"
             f"<td>{esc(clip_text(asset.get('prompt_or_source') or 'Not specified'))}</td>"
@@ -1031,9 +1111,18 @@ def asset_usage_table(package: dict[str, Any]) -> str:
         return '<p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>'
     return (
         '<div class="table-wrap"><table class="asset-usage-table">'
-        "<thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead>"
+        "<thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Display beats</th><th>Image items</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead>"
         f"<tbody>{''.join(rows)}</tbody></table></div>"
     )
+
+
+def asset_metric_strip(package: dict[str, Any]) -> str:
+    assets = package.get("asset_usage", [])
+    return f"""<div class="inline-fields asset-metric-strip">
+      <div><span>Asset dependencies</span><strong>{esc(asset_dependency_count(assets))}</strong></div>
+      <div><span>Display beats</span><strong>{esc(asset_display_summary(assets))}</strong></div>
+      <div><span>Image items</span><strong>{esc(asset_item_summary(assets))}</strong></div>
+    </div>"""
 
 
 def package_detail_content(
@@ -1070,7 +1159,8 @@ def package_detail_content(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    {asset_metric_strip(package)}
     {asset_usage_table(package)}
   </section>
   <section>
@@ -1170,7 +1260,9 @@ def package_card(package: dict[str, Any]) -> str:
   <div class="inline-fields">
     <div><span>Preview label</span><strong>{esc(package['preview_label'] or 'Unknown')}</strong></div>
     <div><span>Runtime beats</span><strong>{esc(len(package['runtime_beats']))}</strong></div>
-    <div><span>Image uses</span><strong>{esc(len(package['asset_usage']))}</strong></div>
+    <div><span>Asset dependencies</span><strong>{esc(asset_dependency_count(package['asset_usage']))}</strong></div>
+    <div><span>Display beats</span><strong>{esc(asset_display_summary(package['asset_usage']))}</strong></div>
+    <div><span>Image items</span><strong>{esc(asset_item_summary(package['asset_usage']))}</strong></div>
     <div><span>Resolved blockers</span><strong>{esc(len(package['resolved_blockers']))}</strong></div>
     <div><span>Reusable slots</span><strong>{esc(len(package['parameter_slots']))}</strong></div>
   </div>
@@ -1577,6 +1669,21 @@ def criteria_guide() -> str:
       <thead><tr><th>#</th><th>Dimension</th><th>Pass Criteria</th><th>Why It Fails</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table></div>
+  </section>
+"""
+
+
+def dashboard_workflow(run_id: str) -> str:
+    run_path = f"runs/{run_id}"
+    return f"""<section class="panel" id="dashboard-workflow">
+    <div class="panel-head"><h2>Review Dashboard Workflow</h2></div>
+    <div class="criteria-note">This HTML file is generated once after package generation, reviewer evidence, manifest entries, blocked previews, and package checks are current. It is derived from run files and package files; it is not a source of truth.</div>
+    <ol class="workflow-list">
+      <li><strong>Collect run inputs</strong><span>Read `run_manifest.yaml`, `review_notes.md`, `results.tsv`, generated or enriched package files, blocked briefs, and blocked design previews.</span></li>
+      <li><strong>Generate the dashboard</strong><code>python3 scripts/generate_run_review.py {esc(run_path)}</code></li>
+      <li><strong>Validate the dashboard</strong><code>python3 scripts/generate_run_review.py --validate {esc(run_path)}</code></li>
+      <li><strong>Record provenance</strong><span>Keep `outputs.review_dashboard` pointing to `{esc(run_path)}/review.html` and record the generation and validation checks in the run manifest.</span></li>
+    </ol>
   </section>
 """
 
@@ -2152,6 +2259,10 @@ input:focus, select:focus {
   overflow: hidden;
   background: var(--panel-soft);
 }
+.asset-metric-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 10px 0 12px; }
+.asset-metric-strip > div:nth-child(2n) { border-right: 1px solid var(--hairline); }
+.asset-metric-strip > div:nth-child(3n) { border-right: none; }
+.asset-metric-strip > div:nth-last-child(-n+3) { border-bottom: none; }
 .summary-copy { margin: 0; color: var(--text-soft); max-width: 74ch; font-size: 13.5px; line-height: 1.5; }
 details { border-top: 1px solid var(--hairline); padding-top: 10px; }
 summary { cursor: pointer; font-weight: 700; color: var(--accent-ink); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
@@ -2167,6 +2278,38 @@ summary { cursor: pointer; font-weight: 700; color: var(--accent-ink); font-size
 .details-grid section + section, .dialog-grid section + section { }
 .dialog-grid section { padding-bottom: 4px; }
 ol, ul { margin: 0; padding-left: 20px; }
+.workflow-list {
+  display: grid;
+  gap: 0;
+  padding: 0 18px 16px;
+  list-style: none;
+  counter-reset: workflow;
+  border-top: 1px solid var(--hairline);
+}
+.workflow-list li {
+  position: relative;
+  counter-increment: workflow;
+  padding: 14px 0 14px 38px;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--text-soft);
+}
+.workflow-list li:last-child { border-bottom: none; }
+.workflow-list li::before {
+  content: counter(workflow, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 17px;
+  font: 11px/1 var(--mono-stack);
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+.workflow-list strong { display: block; margin-bottom: 5px; color: var(--text); font-size: 13px; }
+.workflow-list span, .workflow-list code { display: block; font-size: 13px; line-height: 1.5; }
+.workflow-list code {
+  font-family: var(--mono-stack);
+  color: var(--accent-ink);
+  overflow-wrap: anywhere;
+}
 .beat-list { display: grid; gap: 0; padding-left: 0; list-style: none; counter-reset: beat; border-top: 1px solid var(--hairline); }
 .beat-list li {
   border-bottom: 1px solid var(--hairline);
@@ -2333,7 +2476,7 @@ tbody tr:last-child td { border-bottom: none; }
   max-width: 86ch;
 }
 .scorecard-wrap table { min-width: 760px; }
-.asset-usage-table { min-width: 1120px; }
+.asset-usage-table { min-width: 1320px; }
 .asset-usage-table td:first-child strong { display: block; font-family: var(--mono-stack); font-size: 11px; color: var(--text); }
 .scorecard-table td:first-child, .criteria-table td:first-child {
   width: 38px;
@@ -2876,6 +3019,7 @@ if (previewDialog) {
     sidebar_links = [
         ("summary-metrics", "Summary"),
         ("run-files", "Run Files"),
+        ("dashboard-workflow", "Workflow"),
         ("review-criteria", "Review Criteria"),
         ("activity-details", "Activities"),
         ("blocked-assignments", "Blocked"),
@@ -2941,6 +3085,8 @@ if (previewDialog) {
 	    <div class="panel-head"><h2>Run Files</h2></div>
 	    <div class="link-grid">{run_link_html}</div>
 	  </section>
+
+	{dashboard_workflow(run_id)}
 
 	{criteria_guide_html}
 
@@ -3085,6 +3231,7 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         "sort_controls": 'id="package-sort"' in text and "Sort by mechanic" in text,
         "sidebar_navigation": 'class="sidebar"' in text
         and "Review Navigation" in text
+        and 'href="#dashboard-workflow"' in text
         and 'href="#review-criteria"' in text
         and 'href="#activity-details"' in text,
         "sidebar_fixed_desktop": "position: fixed" in text
@@ -3097,6 +3244,9 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         "review_criteria": "Review Criteria" in text
         and "10-dimension rubric" in text
         and "Mechanic Fidelity + Scaffold Honesty" in text,
+        "dashboard_workflow": "Review Dashboard Workflow" in text
+        and f"python3 scripts/generate_run_review.py runs/{run_dir.name}" in text
+        and f"python3 scripts/generate_run_review.py --validate runs/{run_dir.name}" in text,
         "scorecard_results": expected_packages == 0
         or (
             text.count("Scorecard Results") >= expected_packages
@@ -3146,7 +3296,9 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         "asset_usage_timeline": expected_packages == 0
         or (
             text.count("Asset Usage Timeline") >= expected_packages
-            and "Image uses" in text
+            and "Asset dependencies" in text
+            and "Display beats" in text
+            and "Image items" in text
             and (not any(asset_usage_sets) or "asset-usage-table" in text)
         ),
         "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks validity" in text and "Minimum to unblock" in text,

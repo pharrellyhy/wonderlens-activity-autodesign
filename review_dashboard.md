@@ -24,7 +24,7 @@ The generator reads:
 - `runs/<run_id>/blocked_briefs/*.yaml`
 - `runs/<run_id>/blocked_designs/*.md` when present
 - `run_manifest.yaml` generated-activity fields such as `resolved_blockers`, `resolved_blocker_types`, `extensibility_summary`, and `extensibility_notes` when a run used a product-contract override or reusable-entity review
-- `spec.md` `## Asset Brief` and `## Asset Usage Timeline`, plus `run_manifest.yaml` `asset_usage` entries when present, for packages that use prebuilt, displayed, or runtime-generated images
+- `spec.md` `## Asset Brief` and `## Asset Usage Timeline`, plus `run_manifest.yaml` `asset_usage` entries when present, for packages that use prebuilt, displayed, or runtime-generated images. Treat these rows as asset dependencies, not necessarily one image per row.
 
 If a value cannot be derived from those inputs, show `Unknown` or omit the field instead of inventing content.
 
@@ -53,6 +53,7 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
   - Design intent, premise, scenario, focal attribute, pillar, game style, and reviewer status.
   - Runtime beats with step/round title, AI prompt, expected child response branches, AI follow-up behavior, and screen state when present.
   - Asset usage timeline when visual assets are present: asset ID, type, requiredness, prebuilt/runtime/display timing, exact use step or round, screen location, display/use behavior, persistence/hide behavior, prompt/source summary, and fallback behavior.
+  - Asset usage metrics that distinguish `Asset dependencies` (unique asset IDs or asset sets), `Display beats` (runtime step/round appearances parsed from `use_step`), and `Image items` (known image count, or set/item-count TBD when a row represents a card set or asset set). Do not label a single asset row as a single image when it is displayed across multiple steps.
   - Learning tags, related concepts, ATL skills, and scorecard summary when present.
   - Parsed scorecard results for all 10 dimensions from `spec.md`, with the PASS/FAIL/N/A result and the note explaining why. Dimension 8 may be N/A when no mapping source is required.
   - Resolved blocker notes when the product contract allowed a formerly blocking dependency. These notes must be visible near the affected activity detail and tagged with the same reason colors as blocked markers.
@@ -77,7 +78,7 @@ Provide search, filter, and sort controls when fields are available:
 - Tier
 - Reviewer coverage
 - Asset dependency
-- Image use count / asset usage timing
+- Asset dependency count / display beat count / asset usage timing
 - Blocked reason
 
 Filters must hide/show cards without changing source data. Sorting must preserve stable card dimensions and avoid layout jumps beyond normal reflow.
@@ -97,6 +98,15 @@ Use grouped tag colors so reviewers can distinguish metadata types quickly:
 - Inline blocked/resolved marker tags: reason-specific backgrounds so runtime image generation, coloring UI, Cat3 material workflow, UI state, prebuilt assets, motion safety, before/after evidence, OCR/text handling, caregiver setup, and generic product decisions can be skimmed separately.
 
 Keep colors restrained and accessible. Tags must not rely on color alone; the text label remains authoritative.
+
+## Asset Counting Rules
+
+The dashboard must avoid the ambiguous label `Image uses`.
+
+- `Asset dependencies` counts unique `asset_id` rows. A `card_set` or approved reference pack still counts as one dependency even if it contains many images.
+- `Display beats` counts where the dependency appears in runtime. For example, `prod.step_2; prod.step_3.round_1-2` means one asset dependency and three display beats.
+- `Image items` should show a known item count only when the source declares it. For `card_set`, `reference pack`, or other set-like rows without an explicit item count, show a set label such as `1 set, items TBD`.
+- The detail view should keep the raw `use_step` text visible so reviewers can verify the parsed display-beat count.
 
 ## Visual Design
 
@@ -151,8 +161,15 @@ python3 scripts/generate_run_review.py runs/<run_id>
 python3 scripts/generate_run_review.py --validate runs/<run_id>
 ```
 
+Workflow:
+
+1. Finish package generation, reviewer evidence, package checks, blocked briefs/previews, and manifest outputs first.
+2. Run `python3 scripts/generate_run_review.py runs/<run_id>` to generate the self-contained HTML from `run_manifest.yaml`, `review_notes.md`, `results.tsv`, packages, blocked briefs, and blocked design previews.
+3. Run `python3 scripts/generate_run_review.py --validate runs/<run_id>` before reporting completion.
+4. Keep the generated HTML as a derived artifact. Fix source run/package files or the generator, then regenerate; do not hand-edit `review.html` as the source of truth.
+
 After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for the generation and validation commands.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, sidebar navigation, cards for generated/enriched/audited packages, blocked entries when present, review criteria, the blocking reason guide directly after review criteria when blocked or resolved blocker annotations exist, resolved contract items when applicable, extensibility overview when applicable, asset usage timelines when image/display dependencies exist, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, in-file preview templates plus a `<dialog id="preview-dialog">` and `data-preview-id` link wiring, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, sidebar navigation, the review-dashboard workflow section, cards for generated/enriched/audited packages, blocked entries when present, review criteria, the blocking reason guide directly after review criteria when blocked or resolved blocker annotations exist, resolved contract items when applicable, extensibility overview when applicable, asset usage timelines when image/display dependencies exist, distinct `Asset dependencies`, `Display beats`, and `Image items` labels, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, in-file preview templates plus a `<dialog id="preview-dialog">` and `data-preview-id` link wiring, and resolving local links.
