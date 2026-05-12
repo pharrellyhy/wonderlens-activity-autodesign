@@ -1,0 +1,25 @@
+dashboard_fragment:
+  session:
+    axis: connection
+    angle: emotion
+    mechanic: build
+    entity_role: reference
+    focal_attribute: poem_ingredient_stack
+    entry_rung: '{runtime_entry_rung}'
+    exit_rung: '{runtime_exit_rung}'
+    outcome: '{runtime_outcome}'
+  contributes_to:
+    curiosity_radial:
+      axis: connection
+      angle: emotion
+    exploration_matrix:
+      cell: build by emotion
+    key_concepts_exposure:
+      Connection:
+        angle: emotion
+      Perspective:
+        angle: emotion
+    atl_skills_trail:
+    - creative_thinking
+    - language_expression
+    - imagination

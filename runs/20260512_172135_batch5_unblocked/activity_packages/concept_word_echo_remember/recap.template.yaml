@@ -1,0 +1,23 @@
+recap_payload:
+  entity: '{runtime_entity}'
+  tier: '{runtime_tier}'
+  age_years: '{runtime_age}'
+  what_we_noticed: pattern
+  what_we_did: remember
+  entity_role: catalyst
+  focal_attribute:
+    token: echo_word_pattern
+    child_label: echo word pattern
+    badge_emoji_none: true
+  highlight_moment: 'Your two echoes made a word ladder: {target_word}, {echo_pattern}.'
+  difficulty_level: 1
+  next_step_hint: Try one new answer or explain why next time.
+  caregiver_observed: co-explorer
+  reward_badge: echo_word_keeper
+rendered:
+  title: You were an Echo Word Keeper today!
+  line_1: You listened, echoed, and remembered {echo_pattern}.
+  line_2: 'Your two echoes made a word ladder: {target_word}, {echo_pattern}.'
+  line_3: Your word pattern became the final ladder.
+  badge: Echo Word Keeper
+  next: Try a new answer next time.

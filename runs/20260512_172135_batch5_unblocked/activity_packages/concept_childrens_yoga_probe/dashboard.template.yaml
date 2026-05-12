@@ -1,0 +1,25 @@
+dashboard_fragment:
+  session:
+    axis: perspective
+    angle: function
+    mechanic: motion_voice
+    entity_role: catalyst
+    focal_attribute: childrens_yoga
+    entry_rung: '{runtime_entry_rung}'
+    exit_rung: '{runtime_exit_rung}'
+    outcome: '{runtime_outcome}'
+  contributes_to:
+    curiosity_radial:
+      axis: perspective
+      angle: function
+    exploration_matrix:
+      cell: motion_voice by function
+    key_concepts_exposure:
+      Form:
+        angle: function
+      Perspective:
+        angle: function
+    atl_skills_trail:
+    - language_expression
+    - focus
+    - collaboration

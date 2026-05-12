@@ -1,0 +1,75 @@
+activity_id: concept_career_decision_decide
+version: 1
+source_entity_exemplar: helper_role_or_tool
+template_type: cat1
+pillar: Nurture
+game_style: care_station
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span:
+  - T1
+  - T2
+  elasticity: '+1'
+category: category_1
+attributes:
+- helpful_action_choice
+- function
+key_concepts:
+- Responsibility
+- Function
+related_concepts:
+- role
+- tool
+- choice
+- community
+atl_skills:
+- perspective_taking
+- logical_reasoning
+- language_expression
+transdisciplinary_theme: How_We_Organize_Ourselves
+subject_tags:
+- social_studies
+- social_emotional
+kud:
+  know:
+  - Helpers use roles, tools, and first actions to solve simple needs
+  - helpful_action_choice is the focus of the activity
+  understand:
+  - Responsibility helps children choose a safe first action
+  - Function helps children match the helper to a useful tool
+  do:
+  - choose a helper
+  - match a tool
+  - decide what the helper should do first
+progression:
+  topic_axis: responsibility
+  difficulty_level: 2
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Helpful Decision Maker badge
+caregiver_role:
+- scaffold
+- co-explorer
+activity_signature:
+  observation_angle: function
+  mechanic: decide
+  entity_role: catalyst
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - responsibility
+    - decide
+  focal_attribute: helpful_action_choice
+  intro: The child practices decide through Helper Choice Desk.
+  preview_label: Helper Choice Desk
+  preview_prompt: Ready to be the Helpful Decision Maker?
+  role_pivot_note: The runtime entity starts the activity but the package remains concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: false
+    T1: true
+    T2: true

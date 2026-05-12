@@ -1,0 +1,27 @@
+recap_payload:
+  entity: '{runtime_entity}'
+  tier: '{runtime_tier}'
+  age_years: '{runtime_age}'
+  what_we_noticed: function
+  what_we_did: decide
+  entity_role: catalyst
+  focal_attribute:
+    token: word_build_guess
+    child_label: '{runtime_focal_label}'
+    badge_emoji_none: true
+  highlight_moment: You completed Word Build Guess in three small steps.
+  rounds:
+  - '{round_1_summary}'
+  - '{round_2_summary}'
+  - '{round_3_summary}'
+  difficulty_level: 2
+  next_step_hint: Try the same activity with a new theme or approved asset set.
+  caregiver_observed: co-explorer
+  reward_badge: word_build_guess
+rendered:
+  title: You completed Word Build Guess today!
+  line_1: You made three careful moves.
+  line_2: You practiced decide.
+  line_3: You explained one reason or result.
+  badge: Word Build Guess Badge
+  next: Next time, change the theme and keep the same game rules.

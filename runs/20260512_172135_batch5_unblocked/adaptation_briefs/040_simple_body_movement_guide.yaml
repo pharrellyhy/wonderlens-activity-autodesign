@@ -1,0 +1,74 @@
+adaptation_brief:
+  assignment_index: 40
+  assignment_type: capability_probe
+  activity_concept: Simple Body Movement Guide
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_simple_body_movement
+    asset_requirements: inputs/source_activity_concepts.md#body_movement_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Simple Body Movement Guide, concept_source=inputs/source_activity_concepts.md#source_simple_body_movement,
+      description=AI guides one simple body movement at a time with safety limits, mechanic=motion_voice, category=cat1, tier=T0,
+      asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#body_movement_cards_01, product_capabilities=requires_asset_display,requires_motion_safety,
+      activity_id=concept_body_movement_probe, trigger_condition=Parent starts a short movement prompt and the child has enough
+      space
+  input_mode: concept_only
+  core_promise: The AI guides one simple body movement at a time with safety limits.
+  canonical_mechanic: motion_voice
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Parent starts a short movement prompt and the child has enough space
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: body_movement
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_motion_safety
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: body_movement_cards_01
+      concept_ref: source_simple_body_movement
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-2
+      display_location: center_pose_card
+      purpose: Show simple safe movement prompts.
+      prompt_en: Create a set of simple movement cards using a friendly non-real child-like character. Include wave hands,
+        reach up, touch shoulders, stomp feet softly, and freeze like a statue. Use clear poses, plain background, no text,
+        no extreme flexibility, no jumping from height, and no unsafe props.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one movement card per round with short voice guidance.
+      fallback_behavior: Use voice-only safe movement prompts with caregiver space check, or stop the movement activity without
+        claiming a pose card is visible.
+      safety_constraints: No real child photos, no risky balance, no running, no jumping from furniture, and no medical claims.
+    missing_asset_risk: resolved_by_override
+  scaffold_choice:
+    pillar: Performance
+    game_style: voice_stage
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Performance / `voice_stage` supports simple movement/voice participation without claiming motion verification.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.'
+  - 'Approved minimum motion policy: caregiver gating, space check, low-risk movement set, and prohibited motions are documented.'
+  resolved_blocker_types:
+  - Prebuilt asset display
+  - Motion safety
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - body_movement
+    - body_movement_cards_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `body_movement_cards_01` without changing
+      the motion_voice mechanic.

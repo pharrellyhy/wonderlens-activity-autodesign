@@ -1,0 +1,75 @@
+activity_id: concept_current_topic_interview_deduce
+version: 1
+source_entity_exemplar: parent_selected_topic
+template_type: cat1
+pillar: Mystery
+game_style: mystery_lens
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T2
+  span:
+  - T1
+  - T2
+  elasticity: neighbor
+category: category_1
+attributes:
+- opinion_with_reason
+- function
+key_concepts:
+- Perspective
+- Causation
+related_concepts:
+- opinion
+- reason
+- evidence
+- respectful_discussion
+atl_skills:
+- logical_reasoning
+- language_expression
+- perspective_taking
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags:
+- language
+- social_studies
+kud:
+  know:
+  - A clue gives evidence for an opinion
+  - A reason explains why an opinion fits the clue
+  understand:
+  - Perspective helps the child weigh more than one class need
+  - Causation helps explain why timing changes the best first choice
+  do:
+  - give a first opinion about the garden choice
+  - use butterfly and snack-day clues as evidence
+  - revise respectfully when the timing clue appears
+progression:
+  topic_axis: perspective
+  difficulty_level: 3
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Reason Reporter badge
+caregiver_role:
+- co-explorer
+- observer
+activity_signature:
+  observation_angle: function
+  mechanic: deduce
+  entity_role: catalyst
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - perspective
+    - deduce
+  focal_attribute: opinion_with_reason
+  intro: The child deduces a reasoned school-garden choice from safe clues and explains the evidence.
+  preview_label: Reason Reporter Interview
+  preview_prompt: Ready to be the Reason Reporter?
+  role_pivot_note: The runtime entity starts the activity but the package remains concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: false
+    T1: true
+    T2: true

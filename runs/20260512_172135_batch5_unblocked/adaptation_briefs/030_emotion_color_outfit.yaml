@@ -1,0 +1,80 @@
+adaptation_brief:
+  assignment_index: 30
+  assignment_type: capability_probe
+  activity_concept: Emotion Color Outfit
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_emotion_color_outfit
+    asset_requirements: inputs/source_activity_concepts.md#emotion_color_character_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Emotion Color Outfit, concept_source=inputs/source_activity_concepts.md#source_emotion_color_outfit,
+      description=Child uses colors to represent feelings then sees or imagines a character outfit matching that feeling,
+      mechanic=care, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#emotion_color_character_01,
+      product_capabilities=requires_asset_display,requires_coloring_ui,requires_ui_state, activity_id=concept_emotion_color_outfit_probe,
+      trigger_condition=Child names a mood or chooses a color to represent a feeling
+  input_mode: concept_only
+  core_promise: The child uses colors to represent feelings, then sees or imagines a character outfit matching that feeling.
+  canonical_mechanic: care
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Child names a mood or chooses a color to represent a feeling
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: emotion_color_outfit
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_coloring_ui
+  - requires_ui_state
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: emotion_color_character_01
+      concept_ref: source_emotion_color_outfit
+      asset_type: character_image
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: support_panel
+      purpose: Show a character whose outfit can reflect the child's chosen emotion color.
+      prompt_en: Create a simple friendly character template for an emotion color activity. The character should have a plain
+        outfit with large clean regions that can be recolored, neutral expression, light background, no text, no brands, and
+        no complex details.
+      source: new_ai_generated_asset_or_future_avatar_renderer
+      prompt_or_source: new_ai_generated_asset_or_future_avatar_renderer
+      display_behavior: Show the character before the child chooses an emotion color, then update the outfit only if recoloring
+        UI is supported.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: No real child photos, no stereotypes about colors or feelings, and no mental-health diagnosis framing.
+    missing_asset_risk: resolved_by_override
+  scaffold_choice:
+    pillar: Nurture
+    game_style: care_station
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Nurture / `care_station` preserves need -> support color -> caring action.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.'
+  - 'Approved minimum coloring/recoloring contract: selectable regions, child color input, persistence rules, and a voice-only
+    fallback are allowed.'
+  - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and a
+    stateless fallback.'
+  resolved_blocker_types:
+  - Prebuilt asset display
+  - Coloring or recoloring UI
+  - UI state or progress memory
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - emotion_color_outfit
+    - emotion_color_character_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `emotion_color_character_01` without
+      changing the care mechanic.

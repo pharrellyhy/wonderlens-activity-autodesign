@@ -1,0 +1,67 @@
+adaptation_brief:
+  assignment_index: 14
+  assignment_type: activity_concept
+  activity_concept: Career Decision
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_career_decision
+    asset_requirements: inputs/source_activity_concepts.md#career_portrait_cards_01
+    assignment_row: assignment_type=activity_concept, activity_concept=Career Decision, concept_source=inputs/source_activity_concepts.md#source_career_decision,
+      description=Child helps choose what a helper or professional should do in a simple scenario, mechanic=decide, category=cat1,
+      tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#career_portrait_cards_01,
+      activity_id=concept_career_decision_decide, trigger_condition=Child sees a professional role tool uniform vehicle or
+      story character connected to work
+  input_mode: concept_only
+  core_promise: The child helps choose what a helper or professional should do in a simple scenario.
+  canonical_mechanic: decide
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: ready_to_generate
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Child sees a professional role tool uniform vehicle or story character connected to work
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: helpful_action_choice
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: career_portrait_cards_01
+      concept_ref: source_career_decision
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide inclusive helper-role visuals for scenario decisions.
+      prompt_en: Create a set of inclusive child-friendly helper-role cards, including doctor, firefighter, chef, gardener,
+        bus driver, teacher, engineer, and artist. Show one adult character per card with one simple tool, plain background,
+        no text, no stereotypes, and no brands.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one role card before asking what the helper should do.
+      fallback_behavior: If cards are unavailable, describe the helper role by voice and avoid claiming the screen shows a
+        person.
+      safety_constraints: Avoid gender, race, or class stereotypes; no emergency gore; no real person photos.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Nurture
+    game_style: care_station
+    scaffold_fit: strong
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions: []
+  resolved_blockers: []
+  resolved_blocker_types: []
+  extensibility:
+    entity_binding: parameterized
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - helpful_action_choice
+    - career_portrait_cards_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `career_portrait_cards_01` without changing
+      the decide mechanic.

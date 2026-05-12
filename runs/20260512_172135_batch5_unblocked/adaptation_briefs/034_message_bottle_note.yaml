@@ -1,0 +1,60 @@
+adaptation_brief:
+  assignment_index: 34
+  assignment_type: capability_probe
+  activity_concept: Message Bottle Note
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_message_bottle_note
+    asset_requirements: null
+    assignment_row: assignment_type=capability_probe, activity_concept=Message Bottle Note, concept_source=inputs/source_activity_concepts.md#source_message_bottle_note,
+      description=Child creates a short kindness note or message for someone else, mechanic=care, category=cat3, tier=T1,
+      asset_policy=no_assets, product_capabilities=requires_materials,before_after_risk,ocr_risk, activity_id=concept_message_bottle_note_probe,
+      trigger_condition=Parent starts a writing or kindness-note activity
+  input_mode: concept_only
+  core_promise: The child creates a short kindness note or message for someone else.
+  canonical_mechanic: care
+  mechanic_confidence: high
+  category_decision: cat3
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Parent starts a writing or kindness-note activity
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: message_bottle_note
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_materials
+  - before_after_risk
+  - ocr_risk
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence
+    are documented.'
+  - 'Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual
+    verification.'
+  - 'Approved minimum text policy: the child can speak text aloud or self-report; the AI does not claim to read handwriting
+    unless OCR is enabled.'
+  resolved_blocker_types:
+  - Cat3 material workflow
+  - Before/after evidence
+  - OCR or text handling
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - message_bottle_note
+    retargeting_note: Reusable by replacing the runtime topic, entity, or property slot while preserving the care mechanic.

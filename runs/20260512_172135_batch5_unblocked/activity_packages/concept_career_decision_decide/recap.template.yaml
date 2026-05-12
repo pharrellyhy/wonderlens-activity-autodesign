@@ -1,0 +1,25 @@
+recap_payload:
+  entity: '{runtime_entity}'
+  tier: '{runtime_tier}'
+  age_years: '{runtime_age}'
+  what_we_noticed: function
+  what_we_did: decide
+  entity_role: catalyst
+  focal_attribute:
+    token: helpful_action_choice
+    child_label: helpful action choice
+    badge_emoji_none: true
+  highlight_moment: 'The help plan lights up: helper, tool, and first action become
+    one responsible choice.'
+  difficulty_level: 2
+  next_step_hint: Try one new answer or explain why next time.
+  caregiver_observed: co-explorer
+  reward_badge: helpful_decision_maker
+rendered:
+  title: You were a Helpful Decision Maker today!
+  line_1: You chose a helper, a tool, and a first action.
+  line_2: 'The help plan lights up: helper, tool, and first action become one responsible
+    choice.'
+  line_3: Your decisions built the help plan.
+  badge: Helpful Decision Maker
+  next: Try a new answer next time.

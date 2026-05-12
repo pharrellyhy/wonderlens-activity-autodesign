@@ -1,0 +1,76 @@
+activity_id: concept_story_unlock_probe
+version: 1
+source_entity_exemplar: '{runtime_entity}'
+template_type: cat1
+pillar: Adventure
+game_style: time_traveler
+entity: '{runtime_entity_or_mode_topic}'
+entity_class: []
+entity_binding: agnostic
+tier_range:
+  primary: T1
+  span:
+  - T1
+  - T2
+  elasticity: '+1'
+category: story_challenge_unlock
+attributes:
+- story_unlock
+- function
+key_concepts:
+- Perspective
+- Connection
+related_concepts:
+- evidence
+- choice
+- progress
+- reflection
+atl_skills:
+- imagination
+- narrative_expression
+- language_expression
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags:
+- language
+- thinking
+kud:
+  know:
+  - one safe action or visible cue can guide the next activity step
+  - progress can be represented as a small sequence of choices or actions
+  understand:
+  - Perspective helps focus attention
+  - Connection connects the child's action to the final result
+  do:
+  - complete three imagine rounds
+  - explain one reason or observation
+  - reflect on the final result
+progression:
+  topic_axis: perspective
+  difficulty_level: 2
+  next_step_hint: Repeat the same mechanic with a new theme, property, or approved asset set.
+  reward_hook: Earned the Story Challenge Unlock badge
+caregiver_role:
+- observer
+- co-explorer
+activity_signature:
+  observation_angle: function
+  mechanic: imagine
+  entity_role: catalyst
+  focal_attribute: story_unlock
+  intro: The child completes three imagine rounds for Story Challenge Unlock and reflects on the result.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - function
+    - state
+  preview_label: Story Challenge Unlock
+  preview_prompt: Try Story Challenge Unlock with one small choice at a time.
+  role_pivot_note: The runtime entity or mode topic launches a reusable source-concept activity; no entity-specific factual
+    claim is required.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: false
+    T1: true
+    T2: true

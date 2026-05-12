@@ -1,0 +1,79 @@
+adaptation_brief:
+  assignment_index: 26
+  assignment_type: capability_probe
+  activity_concept: Building Challenge
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_building_challenge
+    asset_requirements: inputs/source_activity_concepts.md#building_reference_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Building Challenge, concept_source=inputs/source_activity_concepts.md#source_building_challenge,
+      description=Child uses blocks bricks or household materials to build a simple target, mechanic=build, category=cat3,
+      tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#building_reference_cards_01,
+      product_capabilities=requires_materials,requires_asset_display,before_after_risk, activity_id=concept_building_challenge_probe,
+      trigger_condition=Parent or child selects a hands-on build mode and has materials available
+  input_mode: concept_only
+  core_promise: The child uses blocks, bricks, or household materials to build a simple target.
+  canonical_mechanic: build
+  mechanic_confidence: high
+  category_decision: cat3
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Parent or child selects a hands-on build mode and has materials available
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: building_challenge
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_materials
+  - requires_asset_display
+  - before_after_risk
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: building_reference_cards_01
+      concept_ref: source_building_challenge
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show simple build targets for hands-on block or recycled-material construction.
+      prompt_en: Create a set of simple construction challenge cards for children ages 5-8. Show one build idea per card,
+        such as bridge, tower, animal home, ramp, or tiny city. Use blocky child-friendly shapes, clean background, no text,
+        no brands, and visible simple structure.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one build target before the child starts planning and building.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: No unsafe structures, sharp tools, choking hazards, or dangerous material suggestions.
+    missing_asset_risk: resolved_by_override
+  scaffold_choice:
+    pillar: Creation
+    game_style: inventor_workshop
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence
+    are documented.'
+  - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.'
+  - 'Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual
+    verification.'
+  resolved_blocker_types:
+  - Cat3 material workflow
+  - Prebuilt asset display
+  - Before/after evidence
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - building_challenge
+    - building_reference_cards_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `building_reference_cards_01` without
+      changing the build mechanic.

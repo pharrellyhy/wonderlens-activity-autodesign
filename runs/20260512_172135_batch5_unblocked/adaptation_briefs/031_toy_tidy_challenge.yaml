@@ -1,0 +1,56 @@
+adaptation_brief:
+  assignment_index: 31
+  assignment_type: capability_probe
+  activity_concept: Toy Tidy Challenge
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_toy_tidy_challenge
+    asset_requirements: null
+    assignment_row: assignment_type=capability_probe, activity_concept=Toy Tidy Challenge, concept_source=inputs/source_activity_concepts.md#source_toy_tidy_challenge,
+      description=Child sorts toys or household objects using a simple cleanup rule, mechanic=sort, category=cat5, tier=T1,
+      asset_policy=no_assets, product_capabilities=requires_ui_state,before_after_risk, activity_id=concept_toy_tidy_probe,
+      trigger_condition=Parent starts a tidy-up mission and the child has several visible toys or household items
+  input_mode: concept_only
+  core_promise: The child sorts toys or household objects using a simple cleanup rule.
+  canonical_mechanic: sort
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Parent starts a tidy-up mission and the child has several visible toys or household items
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: toy_tidy
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_ui_state
+  - before_after_risk
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and a
+    stateless fallback.'
+  - 'Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual
+    verification.'
+  resolved_blocker_types:
+  - UI state or progress memory
+  - Before/after evidence
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - toy_tidy
+    retargeting_note: Reusable by replacing the runtime topic, entity, or property slot while preserving the sort mechanic.

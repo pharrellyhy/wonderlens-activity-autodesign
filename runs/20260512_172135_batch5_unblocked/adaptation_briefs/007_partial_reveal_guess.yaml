@@ -1,0 +1,72 @@
+adaptation_brief:
+  assignment_index: 7
+  assignment_type: activity_concept
+  activity_concept: Partial Reveal Guess
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_partial_reveal_guess
+    asset_requirements: inputs/source_activity_concepts.md#partial_reveal_cards_01
+    assignment_row: assignment_type=activity_concept, activity_concept=Partial Reveal Guess, concept_source=inputs/source_activity_concepts.md#source_partial_reveal_guess,
+      description=Screen shows part of an animal or object; the child guesses the whole thing from visible clues and explains
+      the evidence, mechanic=deduce, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#partial_reveal_cards_01,
+      product_capabilities=requires_asset_display, activity_id=concept_partial_reveal_deduce, trigger_condition=Child photographs
+      an animal toy, animal picture, or enters partial-reveal guessing mode
+  input_mode: concept_only
+  core_promise: The screen shows one distinctive part of an animal or object, and the child guesses the whole thing from visible
+    clues.
+  canonical_mechanic: deduce
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: ready_to_generate
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Child photographs an animal toy, animal picture, or enters partial-reveal guessing mode
+  entity_role: reference
+  observation_angle: shape
+  focal_attribute: partial_visual_clue
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: partial_reveal_cards_01
+      concept_ref: source_partial_reveal_guess
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4
+      display_location: center_card_area
+      purpose: Provide visible partial evidence so the child can infer the whole animal or object.
+      prompt_en: Create a set of partial-reveal animal guessing cards for children ages 4-6. Each card should show only one
+        distinctive part of a common animal, such as a tiger tail, rabbit ears, elephant trunk, duck feet, or fish scales.
+        Use a consistent soft illustration style, plain light background, no text, no scary details, and keep the cropped
+        part large and easy to inspect.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one partial-reveal card full screen each round. The child observes the part, guesses the whole,
+        and explains the evidence.
+      fallback_behavior: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the
+        screen is showing a picture.
+      safety_constraints: No real child photos, no gore or scary details, no predation scenes, and clear inspectable cropped
+        parts.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Mystery
+    game_style: mystery_lens
+    scaffold_fit: strong
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions: []
+  resolved_blockers: []
+  resolved_blocker_types: []
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - partial_visual_clue
+    - partial_reveal_cards_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `partial_reveal_cards_01` without changing
+      the deduce mechanic.

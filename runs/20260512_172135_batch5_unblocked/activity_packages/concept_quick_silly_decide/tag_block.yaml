@@ -1,0 +1,75 @@
+activity_id: concept_quick_silly_decide
+version: 1
+source_entity_exemplar: transition_moment
+template_type: cat1
+pillar: Adventure
+game_style: time_traveler
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T0
+  span:
+  - T0
+  - T1
+  elasticity: neighbor
+category: category_1
+attributes:
+- quick_playful_choice
+- behavior
+key_concepts:
+- Perspective
+- Form
+related_concepts:
+- choice
+- preference
+- play
+- transition
+atl_skills:
+- focus
+- language_expression
+- creative_thinking
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags:
+- language
+- social_emotional
+kud:
+  know:
+  - Quick Silly Choice Pop has a simple two-round structure
+  - quick_playful_choice is the focus of the activity
+  understand:
+  - Perspective helps children notice the important evidence
+  - Form helps children connect their response to the result
+  do:
+  - practice decide in two short rounds
+  - explain or repeat one answer
+  - notice the final payoff
+progression:
+  topic_axis: perspective
+  difficulty_level: 1
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Silly Choice Sprinter badge
+caregiver_role:
+- scaffold
+- co-explorer
+activity_signature:
+  observation_angle: behavior
+  mechanic: decide
+  entity_role: catalyst
+  bridge_prerequisites:
+    primary:
+    - behavior
+    secondary:
+    - perspective
+    - decide
+  focal_attribute: quick_playful_choice
+  intro: The child practices decide through Quick Silly Choice Pop.
+  preview_label: Quick Silly Choice Pop
+  preview_prompt: Ready to be the Silly Choice Sprinter?
+  role_pivot_note: The runtime entity starts the activity but the package remains concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: false

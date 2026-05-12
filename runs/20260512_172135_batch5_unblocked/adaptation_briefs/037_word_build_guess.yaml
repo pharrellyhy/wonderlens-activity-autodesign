@@ -1,0 +1,75 @@
+adaptation_brief:
+  assignment_index: 37
+  assignment_type: capability_probe
+  activity_concept: Word Build Guess
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_word_build_guess
+    asset_requirements: inputs/source_activity_concepts.md#word_growth_ui_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Word Build Guess, concept_source=inputs/source_activity_concepts.md#source_word_build_guess,
+      description=Child chooses letters or answers clues to reveal a word step by step, mechanic=decide, category=cat1, tier=T1,
+      asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#word_growth_ui_01, product_capabilities=requires_asset_display,requires_ui_state,
+      activity_id=concept_word_build_guess_probe, trigger_condition=Product has a text-aware word puzzle mode with parent
+      approval for reading level
+  input_mode: concept_only
+  core_promise: The child chooses letters or answers clues to reveal a word step by step.
+  canonical_mechanic: decide
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Product has a text-aware word puzzle mode with parent approval for reading level
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: word_build_guess
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_ui_state
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: word_growth_ui_01
+      concept_ref: source_word_build_guess
+      asset_type: ui_overlay
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: top_prompt_or_progress_overlay
+      purpose: Show a constructive word reveal surface for letter or clue guesses.
+      prompt_en: Create a child-friendly word-growth puzzle screen concept. Show a row of blank letter tiles that can fill
+        in, a small growing plant or building progress visual, clean background, no hangman imagery, no scary elements, and
+        no extra text beyond blank tiles.
+      source: future_runtime_ui_or_new_ai_generated_asset
+      prompt_or_source: future_runtime_ui_or_new_ai_generated_asset
+      display_behavior: Show and update letter tiles only if product supports word puzzle state.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: No hangman imagery, no punishment, no shame feedback, and age-appropriate vocabulary only.
+    missing_asset_risk: resolved_by_override
+  scaffold_choice:
+    pillar: Adventure
+    game_style: time_traveler
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Adventure / `time_traveler` frames clue choices as a sequence while preserving decide.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.'
+  - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and a
+    stateless fallback.'
+  resolved_blocker_types:
+  - Prebuilt asset display
+  - UI state or progress memory
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - word_build_guess
+    - word_growth_ui_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `word_growth_ui_01` without changing
+      the decide mechanic.

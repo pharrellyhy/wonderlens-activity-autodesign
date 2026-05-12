@@ -1,0 +1,25 @@
+dashboard_fragment:
+  session:
+    axis: form
+    angle: color
+    mechanic: enumerate
+    entity_role: catalyst
+    focal_attribute: color_famous_art
+    entry_rung: '{runtime_entry_rung}'
+    exit_rung: '{runtime_exit_rung}'
+    outcome: '{runtime_outcome}'
+  contributes_to:
+    curiosity_radial:
+      axis: form
+      angle: color
+    exploration_matrix:
+      cell: enumerate by color
+    key_concepts_exposure:
+      Form:
+        angle: color
+      Function:
+        angle: color
+    atl_skills_trail:
+    - observation
+    - counting
+    - language_expression

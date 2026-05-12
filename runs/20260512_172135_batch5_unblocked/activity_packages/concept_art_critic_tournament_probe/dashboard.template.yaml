@@ -1,0 +1,25 @@
+dashboard_fragment:
+  session:
+    axis: perspective
+    angle: function
+    mechanic: compare
+    entity_role: catalyst
+    focal_attribute: art_critic_tournament
+    entry_rung: '{runtime_entry_rung}'
+    exit_rung: '{runtime_exit_rung}'
+    outcome: '{runtime_outcome}'
+  contributes_to:
+    curiosity_radial:
+      axis: perspective
+      angle: function
+    exploration_matrix:
+      cell: compare by function
+    key_concepts_exposure:
+      Form:
+        angle: function
+      Perspective:
+        angle: function
+    atl_skills_trail:
+    - observation
+    - quantity_comparison
+    - language_expression
