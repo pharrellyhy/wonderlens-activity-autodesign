@@ -23,6 +23,7 @@ The generator reads:
 - `<activity_path>/dashboard.template.yaml`
 - `runs/<run_id>/blocked_briefs/*.yaml`
 - `runs/<run_id>/blocked_designs/*.md` when present
+- `run_manifest.yaml` generated-activity fields such as `resolved_blockers`, `resolved_blocker_types`, `extensibility_summary`, and `extensibility_notes` when a run used a product-contract override or reusable-entity review
 
 If a value cannot be derived from those inputs, show `Unknown` or omit the field instead of inventing content.
 
@@ -32,7 +33,9 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
 - Sidebar navigation: a compact navigation column or collapsed top rail with links to the main review sections and high-signal run counts.
 - Summary metrics: compact counters visible near the top of the first viewport.
 - Review criteria: the `program.md` Phase 3 10-dimension rubric, including what passes and why a dimension fails.
-- Blocking reason guide: badge label, what it means, why it blocks package validity, and the minimum policy or scope decision that would unblock it (the smallest acceptable resolution — often a "no verification" or fallback-only decision rather than full capability approval). This section must appear directly after Review Criteria when blocked assignments exist.
+- Blocking reason guide: badge label, what it means, why it blocks package validity, and the minimum policy or scope decision that would unblock it (the smallest acceptable resolution — often a "no verification" or fallback-only decision rather than full capability approval). This section must appear directly after Review Criteria when blocked assignments or resolved blocker annotations exist.
+- Resolved contract items: when a run assumes minimum-to-unblock decisions are allowed by the product contract, list the formerly blocking activity elements as resolved blocker annotations. These are review callouts, not run failures.
+- Extensibility overview: for every generated, enriched, or audited package with reusable-entity potential, show whether the package is entity-specific, entity-agnostic, or parameterized; list reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, or asset-set IDs; and summarize how the activity can be extended by replacing the current entity, property, or approved asset set.
 - Activity cards: one concise card per generated, enriched, or audited no-op package. A checked package that passes audit without edits must still appear as a card with `PASS / no changes` or equivalent status.
 - Blocked assignment cards: one concise card per blocked assignment.
 - Reviewer coverage summary: reviewer names/IDs when available, package scope, PASS/FAIL/N/A evidence, repairs made, and unresolved concerns.
@@ -50,6 +53,8 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
   - Runtime beats with step/round title, AI prompt, expected child response branches, AI follow-up behavior, and screen state when present.
   - Learning tags, related concepts, ATL skills, and scorecard summary when present.
   - Parsed scorecard results for all 10 dimensions from `spec.md`, with the PASS/FAIL/N/A result and the note explaining why. Dimension 8 may be N/A when no mapping source is required.
+  - Resolved blocker notes when the product contract allowed a formerly blocking dependency. These notes must be visible near the affected activity detail and tagged with the same reason colors as blocked markers.
+  - Extensibility notes and reusable slots, including parameter placeholders and any explicit `## Extensibility Notes` from `spec.md`.
   - Changed files and package-file links.
 - Blocked cards must open a detail view with missing product/design decisions, capability flags, a `Minimum To Unblock` section immediately below capability flags, blocked reason badges, blocked brief link, constrained design preview link when present, proposed preview beats, and inline `BLOCKED ELEMENT` comments when present.
 - The blocked detail `Minimum To Unblock` section must deduplicate blocker groups across missing decisions and inline markers, then show the smallest policy or scope decision that would make each blocker valid. Use the same reason definitions as the Blocking Reason Guide so the card-level answer matches the run-level guide.
@@ -85,7 +90,7 @@ Use grouped tag colors so reviewers can distinguish metadata types quickly:
 - Asset tags: teal for normal/no-assets, amber for required/blocked/runtime-generated.
 - Reviewer tags: green for PASS/covered, amber for unresolved/N/A, red for FAIL.
 - Blocked reason tags: amber family, distinct from category and mechanic tags.
-- Inline blocked marker tags: reason-specific backgrounds so runtime image generation, coloring UI, Cat3 material workflow, UI state, prebuilt assets, motion safety, before/after evidence, OCR/text handling, caregiver setup, and generic product decisions can be skimmed separately.
+- Inline blocked/resolved marker tags: reason-specific backgrounds so runtime image generation, coloring UI, Cat3 material workflow, UI state, prebuilt assets, motion safety, before/after evidence, OCR/text handling, caregiver setup, and generic product decisions can be skimmed separately.
 
 Keep colors restrained and accessible. Tags must not rely on color alone; the text label remains authoritative.
 
@@ -146,4 +151,4 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for the generation and validation commands.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, sidebar navigation, cards for generated/enriched/audited packages, blocked entries when present, review criteria, the blocking reason guide directly after review criteria, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked marker chips, clear missing-decision versus inline-marker counts, in-file preview templates plus a `<dialog id="preview-dialog">` and `data-preview-id` link wiring, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, sidebar navigation, cards for generated/enriched/audited packages, blocked entries when present, review criteria, the blocking reason guide directly after review criteria when blocked or resolved blocker annotations exist, resolved contract items when applicable, extensibility overview when applicable, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, in-file preview templates plus a `<dialog id="preview-dialog">` and `data-preview-id` link wiring, and resolving local links.

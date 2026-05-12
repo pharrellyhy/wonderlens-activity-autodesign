@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.21 | **Date**: 2026-05-12
+> **Version**: 1.22 | **Date**: 2026-05-12
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.22 — 2026-05-12**: Add product-contract override handling for `minimum_unblock_allowed` runs. Formerly blocked capability probes can generate normal five-file packages when the minimum unblock decisions are assumed approved, but the package must preserve those dependencies as `RESOLVED BLOCKER` annotations and `review.html` must show resolved contract items. Add Cat3 `template_type` support and require concept-led packages to include extensibility notes for reusable entity/property/asset-set retargeting.
 > **v1.21 — 2026-05-12**: Fresh `/goal` generation writes actual five-file packages under `runs/<run_id>/activity_packages/<base_activity_id>/` with clean `activity_id` values. `activities/<activity_id>/` is reserved for canonical/promoted packages and explicit checked-package enrichment; run-local paths distinguish reruns without suffixing IDs.
 > **v1.20 — 2026-05-11**: Run review dashboards must support in-file preview for every linked `.md`/`.yaml`/`.txt` so reviewers can read package files (spec.md, prod.md, tag_block.yaml, recap/dashboard templates, blocked briefs, blocked design previews, run manifest, review notes) inline. The generator embeds raw file content as hidden `<template>` elements; a dedicated preview `<dialog>` renders Markdown client-side and shows YAML/text in a preformatted block. Plain click previews; modifier-click and an "Open in new tab" link still navigate. See `review_dashboard.md` §"In-file preview" for the full contract.
 > **v1.19 — 2026-05-11**: Lock the editorial design language for `runs/<run_id>/review.html`. Warm-paper palette, single indigo-ink accent, serif display title and dialog headings, hairline-divided panels in place of card-within-card nesting, tabular numerals on every numeric column, indigo/amber accent rails on activity and blocked cards, and a status-dot run indicator in the header. See `review_dashboard.md` §"Design language" for the full contract.
@@ -37,8 +38,8 @@ You are an **Activity Design Agent** for WonderLens, an AI-powered educational c
 2. Create a run provenance directory under `runs/<run_id>/` before processing assignments. Fresh generated packages go under `runs/<run_id>/activity_packages/<base_activity_id>/` with clean `activity_id` values; canonical/promoted packages remain under `activities/<activity_id>/`.
 3. Audit checked-row existing packages for enrichment needs before processing unchecked assignments. Use `package_path=` when present; otherwise use an existing canonical `activities/<activity_id>/` package. Use separate reviewer agents for scoped package-quality review when package audits or enrichment are part of the run. If a package fails the current migrated package depth floor, enrich it in place and record the maintenance in run provenance.
 4. Run **Phase 0: Activity Concept Adaptation Brief** before scaffold selection. Decide input mode, canonical mechanic, readiness, mapping usefulness, trigger condition, asset dependency, product-capability risks, and scaffold fit. Save the brief under the current run directory.
-5. If the brief is `blocked_until_product_decision`, still draft a constrained design preview for human review: record the brief under `runs/<run_id>/blocked_briefs/`, write detailed proposed runtime steps under `runs/<run_id>/blocked_designs/`, annotate every unsupported dependency inline with `BLOCKED ELEMENT: <reason>`, leave the row unchecked, and continue to later unchecked rows. Do not create a valid package under `runs/<run_id>/activity_packages/` or `activities/`, log results, or mark the assignment complete until the blocking decisions are resolved.
-6. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1 or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
+5. If the brief is `blocked_until_product_decision`, still draft a constrained design preview for human review unless the run has `product_contract_override=minimum_unblock_allowed`. Under that override, generate a normal package and preserve the formerly blocking dependencies as resolved blocker notes in `spec.md`, `prod.md`, `run_manifest.yaml`, and `review.html`.
+6. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1, Cat3, or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
 7. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
 8. Generate a complete migrated activity package following the exact output format.
 9. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking. Do not log `results.tsv`, update `generated_activity_ids.txt`, or mark the assignment complete until reviewer issues are repaired and the package has independent PASS evidence.
@@ -140,7 +141,7 @@ adaptation_brief:
   canonical_mechanic: <enumerate|compare|collect|sort|deduce|build|predict|decide|remember|imagine|care|motion_voice>
   mechanic_confidence: <high|medium|low>
 
-  category_decision: <cat1|cat5|unsupported_cat2|unsupported_cat3|unsupported_cat4|unsupported_cat6>
+  category_decision: <cat1|cat3|cat5|unsupported_cat2|unsupported_cat4|unsupported_cat6>
   readiness: <ready_to_generate|generate_with_assumptions|blocked_until_product_decision>
 
   trigger_condition: "<best photo/conversation/environment condition>"
@@ -178,6 +179,14 @@ adaptation_brief:
 
   assumptions:
     - "<only assumptions needed to proceed>"
+
+  resolved_blockers:
+    - "<formerly blocking product/design dependency, only when product_contract_override=minimum_unblock_allowed>"
+
+  extensibility:
+    entity_binding: <bound|parameterized|agnostic>
+    reusable_slots: ["<runtime placeholder, matched property, or replaceable asset-set id>"]
+    retargeting_note: "<how to reuse the activity with another entity/property/asset set without changing the mechanic>"
 ```
 
 ### 0.4 Asset dependency rules
@@ -185,16 +194,17 @@ adaptation_brief:
 - `asset_policy=no_assets`: proceed without an asset brief. Do not invent assets for polish.
 - `asset_policy=optional_support`: generation may proceed only when `fallback_behavior` is explicit. `spec.md` must include a `## Asset Brief`; `prod.md` may reference the asset ID as optional screen support.
 - `asset_policy=required_prebuilt`: generation may proceed with assumptions only when every required asset has `asset_id`, `asset_type`, `use_step`, `prompt_en` or source description, `display_behavior`, and `fallback_behavior`. If any required field is missing, block.
-- `asset_policy=runtime_generated`: block the assignment unless the concept explicitly declares runtime image generation as a supported product capability and includes timing, prompt, display, and fallback behavior. Current package generation should not create image files directly.
+- `asset_policy=runtime_generated`: block the assignment unless the concept explicitly declares runtime image generation as a supported product capability and includes timing, prompt, display, and fallback behavior, or the current run records `product_contract_override=minimum_unblock_allowed`. Current package generation should not create image files directly.
 - `asset_policy=blocked`: mark the assignment `readiness=blocked_until_product_decision`.
 - Required visual assets must be treated as dependencies, not as narrative flavor. If an activity cannot work without the asset and the asset pipeline is not defined, mark that assignment blocked at the adaptation brief and call out the dependency in the constrained design preview.
 - `prod.md` should reference asset IDs and runtime behavior, not raw image prompts. `spec.md` owns the author-facing `## Asset Brief` with image prompts and dependency rationale.
 
 ### 0.5 Readiness rules
 
-- `ready_to_generate`: current Cat1/Cat5 package workflow, V1 constraints, and existing schema can represent the idea safely.
+- `ready_to_generate`: current Cat1/Cat3/Cat5 package workflow, V1 constraints, and existing schema can represent the idea safely.
 - `generate_with_assumptions`: generation may proceed, but `spec.md` must include an `Adaptation Rationale` section summarizing the assumptions, asset dependency, and any weak scaffold fit.
 - `blocked_until_product_decision`: write a blocked brief and a constrained design preview for this row, do not create a valid runtime package under `activities/`, append `results.tsv`, or mark the assignment complete, then continue to the next unchecked row. Use this for unsupported categories, required assets/UI state/material workflow/motion safety, OCR risk, pose risk, before/after state verification, or a mechanic that cannot be represented by current workflow without distorting the activity concept. The preview should be detailed enough to review the proposed activity, but every blocked assumption must be called out inline with `BLOCKED ELEMENT: <reason>` so the design can become valid only after those constraints are resolved.
+- `minimum_unblock_allowed` override: if the run manifest records this product-contract override, dependencies that previously caused `blocked_until_product_decision` may generate as normal packages. The package still must show those dependencies in `spec.md` `## Resolved Product Contract Notes`, inline `prod.md` `RESOLVED BLOCKER` comments near affected beats, and `run_manifest.yaml` `resolved_blockers`. Dimension 1 passes because the product contract now authorizes the minimum behavior; the annotations remain for review and implementation traceability.
 
 ### 0.6 Entity mapping use
 
@@ -410,7 +420,7 @@ For new-structure activity packages, write the tag block as a standalone YAML fi
 activity_id: <lower_snake_case_id>        # must equal the parent directory name
 version: 1
 source_entity_exemplar: <entity_or_property_exemplar>
-template_type: <cat1|cat5>
+template_type: <cat1|cat3|cat5>
 pillar: <Discovery|Performance|Mystery|Creation|Adventure|Nurture>
 game_style: <mystery_lens|mystery_trail|inventor_workshop|mix_lab|voice_stage|ensemble_show|prediction_lab|field_experiment|time_traveler|quest_collector|care_station|rescue_team>
 
@@ -624,7 +634,7 @@ The five files are:
 [celebration first, then naturally names the Key Concepts the child explored; include child responses, AI follow-up, and Screen]
 ```
 
-`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`. For concept-led assignments, include an `## Adaptation Rationale` section before the scorecard summarizing the Phase 0 brief: core promise, canonical mechanic, input mode, readiness, trigger condition, mapping use, asset dependency, product-capability flags, scaffold fit, and assumptions. When `asset_dependency.policy` is not `no_assets`, also include an `## Asset Brief` section before the scorecard with one row per asset requirement: `asset_id`, `asset_type`, requiredness, generation timing, use step, purpose, `prompt_en` or source, display behavior, fallback behavior, and safety constraints. Keep it concise, but not skeletal: include enough specifics that a reviewer can identify what makes this activity different from a generic template.
+`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`. For concept-led assignments, include an `## Adaptation Rationale` section before the scorecard summarizing the Phase 0 brief: core promise, canonical mechanic, input mode, readiness, trigger condition, mapping use, asset dependency, product-capability flags, scaffold fit, and assumptions. When `product_contract_override=minimum_unblock_allowed` applies, include `## Resolved Product Contract Notes` before the scorecard and list every formerly blocking dependency. When the concept can be reused with other entities, properties, or asset sets, include `## Extensibility Notes` before the scorecard with concrete reusable slots and retargeting guidance. When `asset_dependency.policy` is not `no_assets`, also include an `## Asset Brief` section before the scorecard with one row per asset requirement: `asset_id`, `asset_type`, requiredness, generation timing, use step, purpose, `prompt_en` or source, display behavior, fallback behavior, and safety constraints. Keep it concise, but not skeletal: include enough specifics that a reviewer can identify what makes this activity different from a generic template.
 
 ### Format Rules
 
@@ -638,6 +648,8 @@ The five files are:
 - **All AI dialogue is in English.** Use age-appropriate, warm, playful language.
 - **Scorecard placement**: `spec.md` includes the scorecard; `prod.md` does not.
 - **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `prod.md` references asset IDs and fallback behavior only. Do not generate or store image files as part of package generation unless a future asset pipeline explicitly requires it.
+- **Resolved blocker placement**: product-contract override runs use `RESOLVED BLOCKER` comments in `prod.md` where the formerly unsupported behavior affects a runtime beat. These comments are review annotations and do not make the package invalid when the run manifest records the override.
+- **Extensibility placement**: concept-led and parameterized packages should name reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, `{matched_shape}`, or approved asset-set IDs in `spec.md` `## Extensibility Notes`.
 - **Package alignment**: `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` must describe the same pillar, game style, focal attribute, badge, and next-step direction as `spec.md` and `prod.md`.
 
 ---
@@ -659,6 +671,7 @@ Check every step for dependency on blocked capabilities:
 - Does any step require comparing before/after object state changes (e.g., "did you fold it?")? → FAIL
 - Does any step require detecting non-speech audio (clapping, tapping)? → If yes, is it replaced with dialogue workaround? If not → FAIL
 - Note: Multi-photo workflows (child takes several photos across steps) are ALLOWED. What's blocked is computational comparison between photos to detect differences.
+- Exception: in a run with `product_contract_override=minimum_unblock_allowed`, a formerly blocked dependency may PASS only when the package records it as a resolved blocker in `spec.md`, `prod.md`, and `run_manifest.yaml`. If the dependency is used silently, Dimension 1 still FAILS.
 
 ### Dimension 2: Hook & Transition (PASS/FAIL)
 
@@ -816,7 +829,7 @@ Study these two exemplars carefully. They represent the quality floor. Your outp
 
 Before generating any design, ALWAYS:
 1. Run Phase 0 when the assignment is concept-led, has `activity_concept=`, has a legacy concept alias, or lacks a fully specified entity + category request.
-2. Read `templates.md` in the layered order: (a) the **Template 0 reference** for the 5-beat spine and universal creative variables, (b) the **Mechanic Adapter** matching `canonical_mechanic`, (c) the **category modifier** for Cat1 or Cat5, and then (d) the least misleading pillar/style scaffold required by the package schema.
+2. Read `templates.md` in the layered order: (a) the **Template 0 reference** for the 5-beat spine and universal creative variables, (b) the **Mechanic Adapter** matching `canonical_mechanic`, (c) the **category modifier** for Cat1, Cat3, or Cat5, and then (d) the least misleading pillar/style scaffold required by the package schema.
 3. Use the composed scaffold (Template 0 spine + mechanic adapter + category modifier + optional pillar/style scaffold) — follow the beat sequence and keep the child action faithful to `activity_signature.mechanic`.
 4. Use the **Quick Entity Brainstorm Guide** for inspiration, but invent FRESH creative variables.
 5. Run the mechanic fidelity, scaffold honesty, and category-specific checks before running the full rubric (Dimensions 1–10, with D8 only for mapping-informed designs).

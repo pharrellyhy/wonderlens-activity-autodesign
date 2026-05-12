@@ -10,10 +10,12 @@ Each run must also create a provenance directory under `runs/<run_id>/` so gener
 
 For fresh assignment generation, the assignment `activity_id=` value is a clean base slug. Strip any trailing `_rYYYYMMDD_HHMMSS` suffix from copied rows, keep the clean base slug as the package `activity_id`, and write the actual package under `runs/<run_id>/activity_packages/<base_activity_id>/`. Enrichment-only maintenance may update existing checked canonical packages under `activities/<activity_id>/` in place. Do not write fresh rerun packages directly under `activities/` unless a later explicit promotion step asks for that.
 
+If the user supplies a scope such as "only Batch 5" or "last batch", process only that scoped assignment subset in the run-start snapshot. If the user says the product contract now allows minimum-to-unblock decisions, treat prior capability probes as generation-ready under `product_contract_override=minimum_unblock_allowed`: generate normal five-file packages, record formerly blocking dependencies as resolved blocker annotations, and keep those callouts visible in `review.html`.
+
 ## Recommended `/goal` Command
 
 ```text
-/goal Execute GOAL.md end to end using run.md. Initialize run provenance, audit/enrich checked activity packages that have an explicit package_path or canonical activities/<activity_id>/ directory against the current migrated package depth floor with separate reviewer-agent evidence, then process the run-start unchecked assignment snapshot exactly once in order. For each generation-ready row, use the assignment activity_id as a clean base slug, strip any copied _rYYYYMMDD_HHMMSS suffix, and generate a passing five-file package under runs/<run_id>/activity_packages/<base_activity_id>/ with tag_block.yaml activity_id matching the clean base slug; for blocked rows, record a blocked brief plus constrained blocked design preview and continue. In blocked previews, still design detailed runtime steps, annotate unsupported dependencies inline with BLOCKED ELEMENT comments, and keep the activity invalid until the blocker is resolved. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate runs/<run_id>/review.html according to review_dashboard.md. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, reviewer-agent coverage, review dashboard path, checks, and residual risks.
+/goal Execute GOAL.md end to end using run.md. Initialize run provenance, honor any user-specified assignment scope or product-contract override, audit/enrich checked activity packages that have an explicit package_path or canonical activities/<activity_id>/ directory against the current migrated package depth floor with separate reviewer-agent evidence, then process the run-start unchecked assignment snapshot exactly once in order. For each generation-ready row, use the assignment activity_id as a clean base slug, strip any copied _rYYYYMMDD_HHMMSS suffix, and generate a passing five-file package under runs/<run_id>/activity_packages/<base_activity_id>/ with tag_block.yaml activity_id matching the clean base slug; for blocked rows, record a blocked brief plus constrained blocked design preview and continue. If product_contract_override=minimum_unblock_allowed is active, generate formerly blocked rows as normal packages, replace invalid blockers with resolved blocker annotations, and still show those resolved dependencies in review.html. Include extensibility notes for every package so reviewers can see whether the activity can be reused with other entities, properties, or asset sets. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate runs/<run_id>/review.html according to review_dashboard.md. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, resolved blockers, extensibility coverage, reviewer-agent coverage, review dashboard path, checks, and residual risks.
 ```
 
 ## Success Criteria
@@ -40,6 +42,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - `runs/<run_id>/run_manifest.yaml` exists with `status: in_progress`, source files, mapping root, output lists, and summary counters.
    - `runs/<run_id>/assignment_snapshot.md` preserves unchecked assignment rows pending at run start.
    - `runs/<run_id>/generated_activity_ids.txt`, `activity_packages/`, `adaptation_briefs/`, `blocked_briefs/`, `blocked_designs/`, and `review_notes.md` are initialized.
+   - Any user-specified batch/scope filter and product-contract override are recorded in `run_manifest.yaml` `source` or `notes`.
 
 3. Assignment rows are processed in order:
    - Only unchecked `- [ ]` rows are processed.
@@ -68,6 +71,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - Update `runs/<run_id>/run_manifest.yaml` with a `blocked_assignments` entry, including `brief_path` and `design_preview`, and increment `blocked_count`.
    - Report the missing product decision, capability, schema, category, template extension, or asset pipeline decision.
    - If the constraint is later resolved, rerun or promote the constrained preview into a normal five-file package, remove or resolve the blocked comments, then apply the standard self-evaluation, reviewer, validation, `results.tsv`, and checkoff gates.
+   - If `product_contract_override=minimum_unblock_allowed` is active, do not leave the row blocked solely for a minimum-to-unblock decision. Generate the normal five-file package, record the former blocker in `spec.md` `## Resolved Product Contract Notes` and near the affected runtime beat in `prod.md` as `RESOLVED BLOCKER`, and record `resolved_blockers` / `resolved_blocker_types` in `run_manifest.yaml`.
    - Use `status: completed_with_blockers` when the run finishes all processable rows but one or more rows blocked. Use `status: failed` only for hard workflow failures that prevent safe processing of later rows.
 
 6. Generation-ready assignments produce a complete package:
@@ -106,6 +110,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - Magic moments are earned by the child's repeated action and visible in dialogue plus screen behavior, not only awarded as a generic badge.
    - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` equals `tag_block.yaml` `activity_signature.focal_attribute`.
    - `tag_block.yaml`, `recap.template.yaml`, `dashboard.template.yaml`, `spec.md`, and `prod.md` agree on mechanic, pillar, game style, focal attribute, badge/reward, and next-step direction.
+   - `spec.md` includes `## Extensibility Notes` for concept-led or parameterized packages, describing reusable slots and how the activity can be retargeted to other entities, properties, or approved asset sets without changing the mechanic.
 
 9. Mechanic-first checks pass:
    - `tag_block.yaml` `activity_signature.mechanic` matches the canonical mechanic from the assignment or adaptation brief.
@@ -142,6 +147,8 @@ The goal is complete only when all of the applicable criteria below are met.
    - `runs/<run_id>/review.html` exists before the final report.
    - The dashboard is generated with `python3 scripts/generate_run_review.py runs/<run_id>` and validated with `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
    - The dashboard satisfies `review_dashboard.md`: self-contained light-theme HTML, concise clickable cards for generated/enriched/audited packages, full detail dialog/page content, grouped tag colors, search/filter/sort controls, blocked-preview handling, clear missing-decision versus inline-marker counts, per-blocked-card `Minimum To Unblock` sections below capability flags, colored inline blocked marker chips, blocked-preview scorecards, reason guide, reviewer coverage, 10-dimension review criteria, per-package scorecard results with why notes, checks, residual risks, and resolving local links.
+   - If resolved blockers exist, the dashboard includes a blocking reason guide, a resolved contract items section, and per-card resolved blocker tags; these callouts do not count as blocked cards or failed package status.
+   - The dashboard includes an extensibility overview and per-card extensibility details for reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, or approved asset-set replacements.
    - The dashboard preserves the editorial design language defined in `review_dashboard.md` §"Design language": warm-paper palette, single indigo accent, serif display title and dialog headings, hairline-divided panels (no card-within-card), tabular numerals on numeric columns, indigo/amber accent rails on activity/blocked cards, and a status-dot run indicator.
    - The dashboard provides in-file preview for every linked `.md`/`.yaml`/`.txt` per `review_dashboard.md` §"In-file preview": raw content embedded as `<template>` elements, a dedicated preview `<dialog>` renders Markdown inline and YAML/text in a code block, plain click previews while modifier-click and the "Open in new tab" link still navigate.
    - `runs/<run_id>/run_manifest.yaml` records the dashboard path, and the final report includes it.
@@ -150,6 +157,8 @@ The goal is complete only when all of the applicable criteria below are met.
    - State how many packages were generated.
    - State how many existing packages were enriched or audited as already compliant.
    - List any blocked assignments and the exact reason.
+   - List any resolved blockers that were allowed by product-contract override.
+   - Summarize extensibility coverage for reusable or parameterized activities.
    - Include the `run_id` and `runs/<run_id>/run_manifest.yaml` path.
    - Include the `runs/<run_id>/review.html` path.
    - Report reviewer-agent coverage: which packages were reviewed, which were edited by reviewers or repaired after review, and whether all generated packages received independent PASS evidence.

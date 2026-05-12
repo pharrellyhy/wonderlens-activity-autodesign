@@ -6,11 +6,11 @@ The current runtime format is the migrated five-file activity package. Canonical
 
 Fresh `/goal` generation runs keep clean base IDs. An assignment `activity_id=` is treated as a base slug; the generated package uses `runs/<run_id>/activity_packages/<base_activity_id>/`, and `tag_block.yaml` keeps `activity_id: <base_activity_id>`. Existing checked-package enrichment may still update an explicit `package_path=` or canonical `activities/<activity_id>/` package in place.
 
-Each autonomous `/goal` run creates a provenance directory under `runs/<run_id>/`. The run directory records the generated packages, assignment snapshot, adaptation briefs, blocked briefs, constrained blocked design previews, generated activity IDs, review notes, a static `review.html` dashboard, and a run manifest.
+Each autonomous `/goal` run creates a provenance directory under `runs/<run_id>/`. The run directory records the generated packages, assignment snapshot, adaptation briefs, blocked briefs, constrained blocked design previews, generated activity IDs, review notes, a static `review.html` dashboard, and a run manifest. When a run is scoped to a batch or the user declares `product_contract_override=minimum_unblock_allowed`, the scope and override are recorded in that manifest so reruns are reproducible.
 
 ## How It Works
 
-The agent reads the authoring contract, runs a mechanic-first adaptation brief when the input is a concept-led assignment, carries any explicit asset dependency into the brief, composes a Template 0 spine with a mechanic adapter, Cat1/Cat5 category modifier, and pillar/style scaffold, then writes a complete five-file activity package:
+The agent reads the authoring contract, runs a mechanic-first adaptation brief when the input is a concept-led assignment, carries any explicit asset dependency into the brief, composes a Template 0 spine with a mechanic adapter, Cat1/Cat3/Cat5 category modifier, and pillar/style scaffold, then writes a complete five-file activity package:
 
 ```text
 runs/<run_id>/activity_packages/<activity_id>/   # fresh runs use clean base IDs
@@ -41,7 +41,7 @@ Core files:
 ```text
 GOAL.md                            Codex /goal objective and success criteria
 program.md                         Agent instructions, adaptation brief, migrated output contract, rubric
-templates.md                       Template 0 reference, mechanic adapters, pillar scaffolds, Cat1/Cat5 modifiers
+templates.md                       Template 0 reference, mechanic adapters, pillar scaffolds, Cat1/Cat3/Cat5 modifiers
 run.md                             Autonomous activity-package loop
 review_dashboard.md                Static review dashboard contract and UI requirements
 runs/README.md                     Run provenance directory contract
@@ -190,7 +190,7 @@ Use these Phase 0 input modes:
 |---|---|---|---|
 | `mapping_informed` | `entity + category + mapping=<entity_id>` or an activity concept tied to a specific photographed entity/entity class | Required | Full package may use concrete mapped attributes, tier language, IB concepts, and warm/cold bridges. |
 | `parameterized` | Activity concept about a property or category, such as color hunt, shape sort, animal sounds, or find-three-things | Optional | Package or brief uses runtime placeholders and stays matcher-ready without claiming specific entity facts. |
-| `concept_only` | Broad activity mechanic or product concept with no entity or match criterion yet | Optional | Usually produces an adaptation brief; full generation proceeds only if the current Cat1/Cat5 package workflow can represent the idea safely. |
+| `concept_only` | Broad activity mechanic or product concept with no entity or match criterion yet | Optional | Usually produces an adaptation brief; full generation proceeds only if the current Cat1/Cat3/Cat5 package workflow can represent the idea safely. |
 
 Default to `parameterized` for activity concepts driven by properties, categories, or reusable match rules. Use `mapping_informed` only when a concrete mapping source is supplied. Lack of mapping should not block an adaptation brief, but it should block full generation when the package would otherwise need mapping-grounded facts or routing.
 
@@ -221,7 +221,7 @@ For asset-dependent concepts, keep the assignment row compact and put the full a
 Required:
 
 - Either `entity + category`, such as `lion + category 1 (sustained verbal)`, or `activity_concept + description/mechanic` for a concept-led assignment.
-- `category=` when known. If it is unknown, Phase 0 must infer `cat1`, `cat5`, or an unsupported category decision before generation.
+- `category=` when known. If it is unknown, Phase 0 must infer `cat1`, `cat3`, `cat5`, or an unsupported category decision before generation.
 
 Recommended:
 
@@ -241,7 +241,7 @@ Optional:
 - `asset_requirements=file#asset_id` when an assignment row points to a companion asset table/YAML block.
 - `product_capabilities=` when an idea depends on asset display, runtime image generation, UI state, material workflows, motion safety, OCR, pose detection, or before/after state.
 
-Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas also get a constrained design preview with inline blocked-element comments instead of forcing package generation, and the loop continues to later unchecked rows. Legacy concept aliases should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
+Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas also get a constrained design preview with inline blocked-element comments instead of forcing package generation, and the loop continues to later unchecked rows. If a scoped run declares `product_contract_override=minimum_unblock_allowed`, formerly blocking minimum-to-unblock decisions generate as normal packages with resolved blocker annotations and review-dashboard callouts. Legacy concept aliases should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
 
 To rerun an assignment, change its checkbox back to `- [ ]` or copy it into a fresh batch. The rerun will create a new run-local package directory instead of overwriting or relinking the previous package. To add work, append a new unchecked line in the appropriate batch section or create a new batch heading.
 

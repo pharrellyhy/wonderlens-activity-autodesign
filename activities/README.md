@@ -44,6 +44,7 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 - During `/goal` runs, generated packages are accepted only after independent reviewer-agent PASS evidence; reviewer FAILs must be repaired and re-reviewed before logging or assignment checkoff.
 - During fresh `/goal` generation, a new run-local package directory is required even when the assignment supplies an `activity_id` that already exists. This keeps rerun outputs distinguishable by run path while preserving clean base IDs.
 - Blocked activity concepts may have run-local constrained previews under `runs/<run_id>/blocked_designs/`, but those previews are not activity packages and must not be copied here until blockers are resolved and the standard five-file gates pass.
+- Product-contract override runs may convert formerly blocked minimum-to-unblock items into valid run-local packages only when the package records resolved blocker notes in `spec.md`, affected `prod.md` beats, and the run manifest.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.yaml` `activity_signature.focal_attribute`.
 
 ## Asset brief invariant
@@ -67,7 +68,7 @@ Current package generation does not create image files. A separate asset pipelin
 
 ## Canonical vocabulary
 
-The three closed enums in `tag_block.yaml activity_signature` — `observation_angle` (12), `mechanic` (12), `entity_role` (4) — are defined in [`docs/activity_vocabulary.md`](../docs/activity_vocabulary.md). The schema's enum lists must stay in sync with that doc; drift is CI-blocked.
+The three closed enums in `tag_block.yaml activity_signature` — `observation_angle` (12), `mechanic` (12), `entity_role` (4) — are defined in [`docs/activity_vocabulary.md`](../docs/activity_vocabulary.md). `template_type` is also schema-controlled and currently supports `cat1`, `cat3`, and `cat5`. The schema's enum lists must stay in sync with that doc; drift is CI-blocked.
 
 For field ownership and authoring guidance, use [`docs/activity_tag_block_usage.md`](../docs/activity_tag_block_usage.md). It separates matcher-facing, runtime-presentation, child-recap, and parent-dashboard fields.
 

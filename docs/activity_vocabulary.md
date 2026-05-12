@@ -4,11 +4,19 @@
 
 For field ownership and authoring guidance across upstream matcher, runtime presentation, child recap, and parent dashboard, see `docs/activity_tag_block_usage.md`.
 
-**Version:** 2.0 · 2026-05-09
+**Version:** 2.1 · 2026-05-12
 
 ## Scope boundary
 
-This file owns the closed runtime `activity_signature` enums. The mechanic-first authoring workflow also uses authoring-only fields that are **not** tag-block enums:
+This file owns the closed runtime `activity_signature` enums. It also records runtime package enums that must stay synchronized with consumer validators.
+
+Runtime package enums outside `activity_signature`:
+
+| Field | Current values | Owner |
+|---|---|---|
+| `template_type` | `cat1`, `cat3`, `cat5` | `activities/_schema/tag_block.schema.json`, `program.md`, `run.md` |
+
+The mechanic-first authoring workflow also uses authoring-only fields that are **not** tag-block enums:
 
 | Field | Current values | Owner |
 |---|---|---|
@@ -16,7 +24,7 @@ This file owns the closed runtime `activity_signature` enums. The mechanic-first
 | `adaptation_brief.input_mode` | `mapping_informed`, `parameterized`, `concept_only` | `program.md` Phase 0 |
 | `asset_policy` | `no_assets`, `optional_support`, `required_prebuilt`, `runtime_generated`, `blocked` | `program.md` Phase 0, `README.md` Input Data Sources |
 
-Do not mirror those authoring-only values into consumer runtime enum code unless a future schema change explicitly promotes them into `tag_block.yaml`.
+Do not mirror authoring-only values into consumer runtime enum code unless a future schema change explicitly promotes them into `tag_block.yaml`. Because `template_type` is a runtime schema field and now includes Cat3 after the unblocked product-contract update, downstream consumers that validate tag blocks must mirror that enum change.
 
 ---
 

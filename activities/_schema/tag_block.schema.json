@@ -28,7 +28,7 @@
     },
     "version": { "type": "integer", "minimum": 1 },
     "source_entity_exemplar": { "type": "string" },
-    "template_type": { "enum": ["cat1", "cat5"] },
+    "template_type": { "enum": ["cat1", "cat3", "cat5"] },
     "pillar": {
       "enum": ["Discovery", "Performance", "Mystery", "Creation", "Adventure", "Nurture"]
     },

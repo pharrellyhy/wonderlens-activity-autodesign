@@ -40,7 +40,7 @@ runs/<run_id>/
 
 Use `run_id=YYYYMMDD_HHMMSS_<short_label>`, for example `20260509_113000_activity_concepts`. If the user supplies a run label, slugify it for `<short_label>`; otherwise infer a short label from the assignment batch, such as `activity_concepts`, `mapping_batch`, or `mixed_assignments`.
 
-13. Write `assignment_snapshot.md` with the unchecked `- [ ]` rows that are pending at run start, preserving their original order and section headings where practical.
+13. Write `assignment_snapshot.md` with the unchecked `- [ ]` rows that are pending at run start, preserving their original order and section headings where practical. If the user explicitly scoped the run to a batch or named assignment subset, include only that scoped subset in the snapshot and record the scope in `run_manifest.yaml`.
 
 14. Initialize `run_manifest.yaml`:
 
@@ -54,6 +54,8 @@ source:
   runbook: run.md
   assignments_file: assignments.md
   assignment_snapshot: runs/<run_id>/assignment_snapshot.md
+  assignment_scope: "<all unchecked rows or explicit user scope>"
+  product_contract_override: "<none|minimum_unblock_allowed>"
   mapping_root: data/mappings_dev20_0318
 summary:
   pending_at_start: <N>
@@ -73,6 +75,7 @@ checks: []
 notes:
   - "Fresh assignment generation writes run-local packages under runs/<run_id>/activity_packages/<base_activity_id>/ with clean activity_id values."
   - "Existing checked-package enrichment may update canonical activities/<activity_id>/ packages in place, but unchecked generation-ready rows must not reuse old canonical package directories."
+  - "If product_contract_override=minimum_unblock_allowed is active, formerly blocking dependencies generate as resolved blocker annotations instead of blocked rows."
 ```
 
 15. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Run id: <run_id>. Starting activity package loop."
@@ -160,7 +163,9 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
 3. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
 4. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
 5. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
-6. If `readiness=blocked_until_product_decision`, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> -- <what product/design decision is needed>`. Use the same blocker reason consistently when one missing product decision affects multiple beats; each inline marker is an occurrence, not a separate missing decision. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `runs/<run_id>/activity_packages/` or `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
+6. If `readiness=blocked_until_product_decision`, first check whether the run has `product_contract_override=minimum_unblock_allowed`.
+   - Without the override, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> -- <what product/design decision is needed>`. Use the same blocker reason consistently when one missing product decision affects multiple beats; each inline marker is an occurrence, not a separate missing decision. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `runs/<run_id>/activity_packages/` or `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
+   - With the override, treat the row as generation-ready. Save the brief under `adaptation_briefs/`, set `readiness=generate_with_assumptions`, and copy every former missing decision into `resolved_blockers`. In `spec.md`, add `## Resolved Product Contract Notes`; in `prod.md`, annotate affected beats with `> RESOLVED BLOCKER: <reason> -- <formerly needed decision now allowed by product contract>`. Do not create a blocked brief, do not add `blocked_assignments`, and do not count the row as blocked.
 7. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
 8. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
 9. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
@@ -191,10 +196,10 @@ Read `templates.md` in layered order:
 
 1. Template 0 reference.
 2. Mechanic adapter matching `canonical_mechanic`.
-3. Cat1 or Cat5 category modifier.
+3. Cat1, Cat3, or Cat5 category modifier.
 4. Pillar/style scaffold selected by the adaptation brief.
 
-Use the composed scaffold as the activity's beat structure. Do not use the retired "Template A / Template B" split. If mapping-informed, ground creative variables in the selected dimensions and mapping attributes. If parameterized, use stable placeholders. If concept-only, avoid entity-specific claims.
+Use the composed scaffold as the activity's beat structure. Do not use the retired "Template A / Template B" split. If mapping-informed, ground creative variables in the selected dimensions and mapping attributes. If parameterized, use stable placeholders. If concept-only, avoid entity-specific claims. Cat3 hands-on/material workflows may generate when the product contract explicitly allows caregiver setup, material pacing, and honest completion evidence; otherwise they remain blocked or constrained previews.
 
 The child's actual repeated action must match `canonical_mechanic`. Keep the selected `game_style` coherent with the mechanic, but do not let style override the requested action. If scaffold fit is weak, disclose it in `spec.md` or block this assignment before generation.
 
@@ -230,6 +235,8 @@ Rules:
 
 Runtime completeness rule:
 
+- Every generated concept-led package should include `spec.md` `## Extensibility Notes` when the loop can be reused with other entities, properties, or asset sets. Name concrete reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, `{matched_shape}`, or a replaceable approved asset-set ID. If the package is intentionally not reusable, state why.
+- For product-contract override runs, every former blocker must be visible as resolved review evidence: `spec.md` `## Resolved Product Contract Notes`, `prod.md` inline `RESOLVED BLOCKER` comments near affected beats, and `run_manifest.yaml` `resolved_blockers` / `resolved_blocker_types` for the generated activity.
 - Every Step 3 round in `prod.md` must be fully expanded with AI dialogue, child response branches, AI follow-up branches, and screen state.
 - Never write "same structure," "later rounds follow," "AI gives a riddle," or one-line summaries in generated `prod.md`.
 - The migrated package may be shorter than legacy `designs/*_spec.md`, but it must not be thin. `spec.md` must explain the activity's concrete design intent, assumptions, constraints, asset/product dependencies, scaffold fit, and game-feel rationale. `prod.md` must be runnable without the operator inventing missing beats.
@@ -248,7 +255,7 @@ Run through all 10 rubric dimensions from `program.md` Phase 3 against the actua
 3. Re-evaluate.
 4. Repeat until all dimensions PASS.
 
-Dimension 8 only applies to mapping-informed designs. Score as N/A if no mapping. Dimensions 9 and 10 always apply. Dimension 10 checks mechanic fidelity + scaffold honesty, even though the legacy log column name remains `d10_pillar_fidelity`.
+Dimension 1 may pass with formerly blocking capabilities only when `product_contract_override=minimum_unblock_allowed` is recorded and the package exposes those dependencies as resolved blockers. Dimension 8 only applies to mapping-informed designs. Score as N/A if no mapping. Dimensions 9 and 10 always apply. Dimension 10 checks mechanic fidelity + scaffold honesty, even though the legacy log column name remains `d10_pillar_fidelity`.
 
 ### Step 4.5: Independent scorecard review
 
@@ -285,6 +292,8 @@ Before logging or committing, verify:
 - `prod.md` Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic`.
 - `prod.md` contains zero `## Self-Evaluation Scorecard` sections.
 - `runs/<run_id>/review_notes.md` contains independent reviewer-agent evidence for the package, including final PASS status or the unresolved issue that prevents logging.
+- Concept-led and parameterized packages include `spec.md` `## Extensibility Notes`, and `run_manifest.yaml` records `extensibility_summary` / `extensibility_notes` for dashboard review.
+- Product-contract override packages include resolved blocker notes in `spec.md`, affected `prod.md` beats, and `run_manifest.yaml`.
 
 ### Step 6: Log the result
 
@@ -315,6 +324,11 @@ For every generated package:
   adaptation_brief: runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml # omit when no Phase 0 brief was produced
   results_tsv_row: true
   generation_policy: fresh_run_local_package
+  resolved_blockers: [] # omit or leave empty unless product_contract_override allowed former blockers
+  resolved_blocker_types: []
+  extensibility_summary: "<how this activity can be retargeted, or why not>"
+  extensibility_notes:
+    - "<reusable entity/property/asset-set slot or limitation>"
   status: PASS
 ```
 
@@ -325,6 +339,8 @@ For enrichment-only package maintenance, keep changed packages under `enriched_a
 
 For blocked assignments, keep the entry under `blocked_assignments`, include `brief_path` and `design_preview`, do not append `results.tsv`, leave the assignment row unchecked, and continue to the next unchecked row. If the constraints are later resolved, rerun or promote the design preview into a normal five-file package, remove or resolve the blocked-element comments, then send it through the standard self-evaluation, reviewer-agent, validation, `results.tsv`, and checkoff gates.
 
+For product-contract override assignments, do not create a `blocked_assignments` entry for dependencies covered by `minimum_unblock_allowed`. Keep the row under `generated_activities`, add `resolved_blockers` and `resolved_blocker_types`, and ensure the dashboard reports the former blockers as resolved contract items.
+
 ### Step 6.7: Generate human review dashboard
 
 This is a final-run step, not a per-assignment step. After every row from `assignment_snapshot.md` has generated, blocked, or failed, and after all package checks, reviewer evidence, manifest entries, blocked-brief entries, and blocked design previews are current, generate a single static review dashboard at:
@@ -333,7 +349,7 @@ This is a final-run step, not a per-assignment step. After every row from `assig
 runs/<run_id>/review.html
 ```
 
-This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, 10-dimension criteria and package scorecard results, blocked-preview handling, per-blocked-card `Minimum To Unblock` sections below capability flags, blocked-preview scorecards, link rules, validation requirements, the editorial design language in `review_dashboard.md` §"Design language" (warm-paper palette, indigo accent, serif display title, hairline-divided panels, tabular numerals, accent rails on cards, status-dot run indicator), and the in-file preview behavior in `review_dashboard.md` §"In-file preview" (embedded `<template>` content, dedicated preview `<dialog>`, dependency-free Markdown rendering, modifier-click bypass, "Open in new tab" escape hatch).
+This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, 10-dimension criteria and package scorecard results, resolved contract item handling, extensibility overview, blocked-preview handling, per-blocked-card `Minimum To Unblock` sections below capability flags, blocked-preview scorecards, link rules, validation requirements, the editorial design language in `review_dashboard.md` §"Design language" (warm-paper palette, indigo accent, serif display title and dialog headings, hairline-divided panels, tabular numerals, accent rails on cards, status-dot run indicator), and the in-file preview behavior in `review_dashboard.md` §"In-file preview" (embedded `<template>` content, dedicated preview `<dialog>`, dependency-free Markdown rendering, modifier-click bypass, "Open in new tab" escape hatch).
 
 Generation command:
 
@@ -348,7 +364,7 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for `python3 scripts/generate_run_review.py runs/<run_id>` and `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, resolved contract items when resolved blockers exist, extensibility overview when extensibility notes exist, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
 
 ### Step 7: Mark generated assignment complete
 
@@ -387,5 +403,8 @@ Before that final message, ensure `runs/<run_id>/review.html` exists and is refe
 - Do not treat checked assignment rows as immutable when generation standards changed; audit and enrich existing packages before the unchecked loop starts.
 - Do not reuse an old `activities/<activity_id>/` directory for unchecked generation-ready rows. Fresh reruns must create a new run-local directory named `runs/<run_id>/activity_packages/<base_activity_id>/`, and `tag_block.yaml` `activity_id` must match the clean base directory name.
 - Do not let one product/design blocker halt the whole batch. Record the blocked brief and constrained design preview, leave that row unchecked, and continue to later unchecked rows unless a hard workflow failure makes later processing unsafe.
+- When a user scopes a fresh rerun to a named batch or assignment subset, do not process outside that scope.
+- When the user declares minimum-to-unblock decisions allowed by product contract, generate those rows as normal packages and preserve the former blockers as resolved annotations rather than invalid blockers.
+- Always include extensibility notes for reusable concept-led packages so review.html can show how the activity adapts to other entities, properties, or asset sets.
 - Commit after every completed package unless the user explicitly asks to batch commits.
 - Quality over speed. Take as many self-evaluation rounds as needed.

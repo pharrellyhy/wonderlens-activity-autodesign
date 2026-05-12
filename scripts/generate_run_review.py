@@ -191,6 +191,27 @@ def compact_list(value: Any, limit: int = 5) -> list[str]:
     return items[:limit]
 
 
+def placeholder_tokens(*values: Any) -> list[str]:
+    tokens: set[str] = set()
+
+    def visit(value: Any) -> None:
+        if isinstance(value, dict):
+            for child in value.values():
+                visit(child)
+            return
+        if isinstance(value, list):
+            for child in value:
+                visit(child)
+            return
+        text = normalize_text(value)
+        for match in re.finditer(r"\{[a-zA-Z0-9_]+\}", text):
+            tokens.add(match.group(0))
+
+    for value in values:
+        visit(value)
+    return sorted(tokens)
+
+
 def read_text(path: Path) -> str:
     return path.read_text() if path.exists() else ""
 
@@ -414,6 +435,14 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
             prod_title = line.strip("# ").strip()
             break
     detail_floor = section(spec_text, "Runtime Detail Floor Notes")
+    resolved_blockers = compact_list(entry.get("resolved_blockers"), limit=20) or bullets_from_markdown(
+        section(spec_text, "Resolved Product Contract Notes"),
+        limit=20,
+    )
+    extensibility_notes = compact_list(entry.get("extensibility_notes"), limit=10) or bullets_from_markdown(
+        section(spec_text, "Extensibility Notes"),
+        limit=10,
+    )
     package = {
         "kind": kind,
         "assignment_index": entry.get("assignment_index", ""),
@@ -434,6 +463,8 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         "focal_attribute": normalize_text(signature.get("focal_attribute") or "unknown"),
         "observation_angle": normalize_text(signature.get("observation_angle") or "unknown"),
         "entity_role": normalize_text(signature.get("entity_role") or "unknown"),
+        "entity_binding": normalize_text(tag.get("entity_binding") or "unknown"),
+        "parameter_slots": placeholder_tokens(tag, spec_text),
         "asset_policy": collect_asset_policy(entry, assignment_fields, brief, spec_text),
         "changed_files": compact_list(entry.get("changed_files"), limit=8),
         "key_concepts": compact_list(tag.get("key_concepts"), limit=4),
@@ -452,6 +483,14 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         "scorecard": overall_scorecard(spec_text),
         "scorecard_rows": scorecard_rows(spec_text),
         "review_reason": normalize_text(entry.get("reason") or ""),
+        "resolved_blockers": resolved_blockers,
+        "resolved_blocker_types": sorted({classify_reason_text(item) for item in resolved_blockers}),
+        "extensibility_notes": extensibility_notes,
+        "extensibility_summary": normalize_text(
+            entry.get("extensibility_summary")
+            or section(spec_text, "Extensibility Summary")
+            or ""
+        ),
         "links": package_links(repo_root, run_dir, activity_path),
     }
     return package
@@ -830,6 +869,37 @@ def scorecard_table(rows: list[dict[str, str]]) -> str:
     )
 
 
+def resolved_blocker_rows(package: dict[str, Any]) -> str:
+    items = package.get("resolved_blockers", [])
+    if not items:
+        return '<p class="muted">No resolved product-contract blockers recorded for this package.</p>'
+    rows = []
+    for item in items:
+        rows.append(
+            '<li class="resolved-blocker-row">'
+            f'{reason_badge(classify_reason_text(item), "resolved-blocker-chip")}'
+            f'<span>{esc(item)}</span>'
+            "</li>"
+        )
+    return f'<ul class="resolved-blocker-list">{"".join(rows)}</ul>'
+
+
+def extensibility_rows(package: dict[str, Any]) -> str:
+    slots = package.get("parameter_slots", [])
+    notes = package.get("extensibility_notes", [])
+    slot_html = value_list(slots, empty="No explicit parameter slots")
+    note_html = "".join(f"<li>{esc(note)}</li>" for note in notes)
+    note_html = note_html or "<li>Package is primarily standalone; no extensibility note recorded.</li>"
+    summary = package.get("extensibility_summary") or "Review how the activity can be reused by replacing entity, attribute, asset, or topic slots."
+    return (
+        '<div class="extensibility-block">'
+        f'<p>{esc(summary)}</p>'
+        f'<p><span>Reusable slots</span>{slot_html}</p>'
+        f'<ul>{note_html}</ul>'
+        "</div>"
+    )
+
+
 def package_detail_content(
     package: dict[str, Any],
     link_bits: str,
@@ -875,6 +945,15 @@ def package_detail_content(
     <p>{esc(package['scorecard'] or 'No scorecard summary found.')}</p>
   </section>
   <section class="dialog-wide">
+    <h4>Resolved Blockers</h4>
+    <p class="muted">These are product-contract dependencies that would previously block the activity. This run assumes the minimum unblock decisions are now allowed.</p>
+    {resolved_blocker_rows(package)}
+  </section>
+  <section class="dialog-wide">
+    <h4>Extensibility</h4>
+    {extensibility_rows(package)}
+  </section>
+  <section class="dialog-wide">
     <h4>Scorecard Results</h4>
     {scorecard}
   </section>
@@ -902,6 +981,11 @@ def package_card(package: dict[str, Any]) -> str:
             "asset_policy",
             "reviewer",
             "review_reason",
+            "resolved_blocker_types",
+            "resolved_blockers",
+            "extensibility_summary",
+            "extensibility_notes",
+            "parameter_slots",
             "intro",
             "preview_label",
             "preview_prompt",
@@ -944,6 +1028,8 @@ def package_card(package: dict[str, Any]) -> str:
   <div class="inline-fields">
     <div><span>Preview label</span><strong>{esc(package['preview_label'] or 'Unknown')}</strong></div>
     <div><span>Runtime beats</span><strong>{esc(len(package['runtime_beats']))}</strong></div>
+    <div><span>Resolved blockers</span><strong>{esc(len(package['resolved_blockers']))}</strong></div>
+    <div><span>Reusable slots</span><strong>{esc(len(package['parameter_slots']))}</strong></div>
   </div>
   <div class="file-row">
     <div>{link_bits}</div>
@@ -1274,6 +1360,61 @@ def reason_guide(reason_labels: list[str]) -> str:
 """
 
 
+def resolved_contract_summary(packages: list[dict[str, Any]]) -> str:
+    packages_with_items = [package for package in packages if package.get("resolved_blockers")]
+    if not packages_with_items:
+        return ""
+    rows = []
+    for package in packages_with_items:
+        chips = " ".join(reason_badge(label, "resolved-blocker-chip") for label in package["resolved_blocker_types"])
+        rows.append(
+            "<tr>"
+            f"<td>{esc(package['activity_name'])}<br><span class=\"muted\">{esc(package['activity_id'])}</span></td>"
+            f"<td>{chips}</td>"
+            f"<td>{esc(len(package['resolved_blockers']))}</td>"
+            "</tr>"
+        )
+    return f"""
+  <section class="panel" id="resolved-contract-items">
+    <div class="panel-head"><h2>Resolved Contract Items</h2></div>
+    <div class="criteria-note">This run assumes the minimum unblock decisions are now part of the product contract. The activity detail dialogs still call out where those formerly blocking capabilities appear.</div>
+    <div class="table-wrap"><table class="reason-guide-table">
+      <thead><tr><th>Activity</th><th>Resolved blocker types</th><th>Occurrences</th></tr></thead>
+      <tbody>{''.join(rows)}</tbody>
+    </table></div>
+  </section>
+"""
+
+
+def extensibility_summary(packages: list[dict[str, Any]]) -> str:
+    rows = []
+    for package in packages:
+        notes = package.get("extensibility_notes", [])
+        slots = package.get("parameter_slots", [])
+        if not notes and not slots:
+            continue
+        rows.append(
+            "<tr>"
+            f"<td>{esc(package['activity_name'])}<br><span class=\"muted\">{esc(package['activity_id'])}</span></td>"
+            f"<td>{esc(package.get('entity_binding') or 'unknown')}</td>"
+            f"<td>{value_list(slots, empty='No explicit slots')}</td>"
+            f"<td>{esc(notes[0] if notes else package.get('extensibility_summary') or 'Reusable by changing the concept context.')}</td>"
+            "</tr>"
+        )
+    if not rows:
+        return ""
+    return f"""
+  <section class="panel" id="extensibility-overview">
+    <div class="panel-head"><h2>Extensibility Overview</h2></div>
+    <div class="criteria-note">This section highlights whether an activity can be extended to other entities, topics, or matched properties by replacing slots such as {{runtime_entity}}, {{shared_feature}}, or asset-set IDs.</div>
+    <div class="table-wrap"><table class="reason-guide-table">
+      <thead><tr><th>Activity</th><th>Binding</th><th>Reusable slots</th><th>How to extend</th></tr></thead>
+      <tbody>{''.join(rows)}</tbody>
+    </table></div>
+  </section>
+"""
+
+
 def criteria_guide() -> str:
     rows = []
     for item in RUBRIC_CRITERIA:
@@ -1394,10 +1535,17 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     blocked_categories = [b["category"] for b in blocked]
     blocked_mechanics = [b["mechanic"] for b in blocked]
     blocked_reasons = [reason for item in blocked for reason in item["reason_types"]]
+    resolved_reasons = [
+        reason
+        for package in packages
+        for reason in package.get("resolved_blocker_types", [])
+    ]
     run_link_html = "".join(preview_anchor(href, label) for label, href in run_links)
     package_cards = "\n".join(package_card(package) for package in packages)
     blocked_cards = "\n".join(blocked_card(item) for item in blocked)
-    reason_guide_html = reason_guide(blocked_reasons).strip()
+    reason_guide_html = reason_guide(blocked_reasons + resolved_reasons).strip()
+    resolved_contract_html = resolved_contract_summary(packages).strip()
+    extensibility_html = extensibility_summary(packages).strip()
     criteria_guide_html = criteria_guide().strip()
     manifest_checks = manifest.get("checks", [])
     checks = render_checks(manifest_checks)
@@ -1966,10 +2114,11 @@ ol, ul { margin: 0; padding-left: 20px; }
 .badge-reason-product-decision-needed { background: oklch(95% 0.03 65); color: oklch(38% 0.095 65); border-color: transparent; }
 .blocked-element-chip { margin-bottom: 0; }
 .blocked-marker-summary { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 10px; }
-.blocked-marker-list { display: grid; gap: 0; padding-left: 0; list-style: none; border-top: 1px solid var(--hairline); }
+.blocked-marker-list, .resolved-blocker-list { display: grid; gap: 0; padding-left: 0; list-style: none; border-top: 1px solid var(--hairline); }
 .minimum-unblock-list { display: grid; gap: 0; padding-left: 0; list-style: none; margin: 8px 0 0; border-top: 1px solid var(--hairline); }
 .minimum-unblock-row,
-.blocked-marker-row {
+.blocked-marker-row,
+.resolved-blocker-row {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   gap: 10px;
@@ -1978,6 +2127,9 @@ ol, ul { margin: 0; padding-left: 20px; }
   border-bottom: 1px solid var(--hairline);
 }
 .minimum-unblock-row p { margin: 0; color: var(--text-soft); }
+.resolved-blocker-chip { box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--green-text) 24%, transparent); }
+.extensibility-block ul { margin-top: 8px; }
+.extensibility-block p span { display: inline-block; margin-right: 8px; color: var(--muted); font-size: 10px; font-weight: 740; letter-spacing: .1em; text-transform: uppercase; }
 .detail-button, .dialog-close {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -2271,7 +2423,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   .metric:nth-child(2n) { border-right: none !important; }
   .metric:nth-last-child(-n+2) { border-bottom: none; }
   .side-nav, .sidebar-counts, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid { grid-template-columns: 1fr; }
-  .minimum-unblock-row, .blocked-marker-row { grid-template-columns: 1fr; }
+  .minimum-unblock-row, .blocked-marker-row, .resolved-blocker-row { grid-template-columns: 1fr; }
   .meta-grid > div, .meta-grid.compact > div, .inline-fields > div { border-right: none !important; }
   .dialog-wide { grid-column: auto; }
   .file-row { display: block; }
@@ -2588,6 +2740,10 @@ if (previewDialog) {
     ]
     if reason_guide_html:
         sidebar_links.insert(3, ("blocking-reason-guide", "Blocking Reasons"))
+    if resolved_contract_html:
+        sidebar_links.insert(3, ("resolved-contract-items", "Resolved Items"))
+    if extensibility_html:
+        sidebar_links.insert(4, ("extensibility-overview", "Extensibility"))
     sidebar_link_html = "\n".join(f'      <a href="#{anchor}">{label}</a>' for anchor, label in sidebar_links)
     sidebar_stats = [
         ("Review cards", len(packages)),
@@ -2644,6 +2800,10 @@ if (previewDialog) {
 	{criteria_guide_html}
 
 	{reason_guide_html}
+
+	{resolved_contract_html}
+
+	{extensibility_html}
 
 	  <section class="panel" id="activity-details">
     <div class="panel-head"><h2>Activity Details</h2><span class="muted" id="package-count"></span></div>
@@ -2746,6 +2906,13 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         + len(outputs.get("audited_activities", []))
     )
     expected_blocked = len(outputs.get("blocked_assignments", []))
+    has_resolved_blockers = any(
+        entry.get("resolved_blockers") for entry in outputs.get("generated_activities", [])
+    )
+    has_extensibility = any(
+        entry.get("extensibility_notes") or entry.get("extensibility_summary")
+        for entry in outputs.get("generated_activities", [])
+    )
     package_entries = (
         outputs.get("generated_activities", [])
         + outputs.get("enriched_activities", [])
@@ -2828,6 +2995,18 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         and "badge-category" in text
         and "badge-reviewer" in text,
         "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks validity" in text and "Minimum to unblock" in text,
+        "resolved_blocker_annotations": not has_resolved_blockers
+        or (
+            "Resolved Contract Items" in text
+            and "Resolved Blockers" in text
+            and "resolved-blocker-row" in text
+        ),
+        "extensibility_overview": not has_extensibility
+        or (
+            "Extensibility Overview" in text
+            and "Reusable slots" in text
+            and "Extensibility" in text
+        ),
         "no_external_assets": not re.search(r"<(?:script|link)[^>]+(?:src|href)=[\"']https?://", text),
         "in_file_preview_wired": (
             'id="preview-dialog"' in text

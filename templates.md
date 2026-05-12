@@ -1,12 +1,13 @@
 # Templates
 
-> **Version**: 1.8 | **Date**: 2026-05-11
-> **Owns**: the mechanic adapters, pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture), and the Cat1 / Cat5 category modifier appendix.
+> **Version**: 1.9 | **Date**: 2026-05-12
+> **Owns**: the mechanic adapters, pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture), and the Cat1 / Cat3 / Cat5 category modifier appendix.
 > **Does NOT own**: the migrated five-file package layout, the tag block schema, asset requirement rows, or the tier defaults — those live in `activities/README.md`, `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` Phase 0 / §1.9.
 > **Consumed by**: `program.md` Phase 5 (template-reading flow), `run.md` (activity package loop), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), generated `prod.md` runtime outputs, and legacy `designs/cat{1,5}/*.md` references.
 
 > **v1.7 — 2026-05-10**: Clarify enrichment mode. Existing migrated packages may be updated to the current template expansion floor without changing their mechanic, pillar/style, tag-block identity, or runtime package contract.
 > **v1.8 — 2026-05-11**: Make independent reviewer-agent quality review part of the package acceptance gate for generated and enriched packages.
+> **v1.9 — 2026-05-12**: Add Cat3 material-exploration modifier for product-contract override runs, and require reusable concept-led packages to expose extensibility slots such as `{runtime_entity}`, `{shared_feature}`, or approved asset-set IDs.
 
 ---
 
@@ -16,8 +17,8 @@ An activity design is built by composing four activity layers, plus an optional 
 
 1. **Template 0** — the category-agnostic skeleton. It defines the 5-beat spine (Transition Bridge → Frame & Role → Core Loop → Magic Moment → Celebration), the universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the three tier dials (T0 / T1 / T2). The migrated output contract lives in `program.md` §1.9 and `activities/README.md`.
 2. **Mechanic adapter** — one of the twelve `activity_signature.mechanic` adapters below. It defines what the child actually does in the repeated loop. This is the primary source/product intent layer and must not be overwritten by pillar or style.
-3. **Category modifier** — Cat1 (in-device, sustained verbal) or Cat5 (out-of-device, collection/tracking), drawn from the appendix at the bottom of this file. Category modifiers are small — 8 fields (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras). They set the physical frame for the mechanic.
-4. **Pillar/style scaffold** — one of the six overlays below (Mystery / Creation / Performance / Discovery / Adventure / Nurture) and its Cat1/Cat5 style. It provides emotional payoff, metaphor flavor, and magic-moment shape. If no pillar/style cleanly fits, choose the least misleading scaffold only when the mechanic remains intact; otherwise block generation per `program.md` Phase 0.
+3. **Category modifier** — Cat1 (in-device, sustained verbal), Cat3 (out-of-device material exploration), or Cat5 (out-of-device collection/tracking), drawn from the appendix at the bottom of this file. Category modifiers are small — 8 fields (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras). They set the physical frame for the mechanic.
+4. **Pillar/style scaffold** — one of the six overlays below (Mystery / Creation / Performance / Discovery / Adventure / Nurture) and its compatible style. It provides emotional payoff, metaphor flavor, and magic-moment shape. If no pillar/style cleanly fits, choose the least misleading scaffold only when the mechanic remains intact; otherwise block generation per `program.md` Phase 0.
 
 The optional **asset dependency layer** is not a template layer and must not change the mechanic. It declares whether the scaffold may reference prebuilt cards, AI-generated images, line art, icons, overlays, or reference pictures. Asset requirements come from `adaptation_brief.asset_dependency` and are documented in `spec.md` `## Asset Brief`; `prod.md` references asset IDs and fallback behavior only.
 
@@ -78,7 +79,7 @@ Mechanic adapters define the child-action loop independent of pillar. Use the ad
 | `collect` | criterion → child finds/matches/pairs/photos → AI reacts → set synthesis | Best for Cat5 and parameterized property bridges. Criterion must be broad enough for 3+ finds and V1-visible when AI assesses photos. |
 | `sort` | rule or child-made rule → group/rank/sequence items → explain organizing logic | Use when the child's action is categorizing, sequencing, ranking, or arranging. If the rule is child-invented, AI validates and helps name it rather than correcting. |
 | `deduce` | clue/evidence → child infers/guesses → child justifies → AI reveals or gives next clue | Use for mystery, Guess-in-10, hidden detail, and evidence-based inference. Always include soft hints when the child is stuck. |
-| `build` | material/idea prompt → child creates/assembles/transforms/experiments → AI adds/combines | In Cat1/Cat5 this is imaginative or collection-combination build. Physical material builds are unsupported Cat3 unless a Cat3 workflow exists. |
+| `build` | material/idea prompt → child creates/assembles/transforms/experiments → AI adds/combines | In Cat1/Cat5 this is imaginative or collection-combination build. Physical material builds use Cat3 only when the product contract covers caregiver setup, material pacing, and honest completion evidence. |
 | `predict` | commit guess/hypothesis/plan → reveal/result/action → tally or consequence | Preserve commit-before-reveal. Out-of-device hypotheses must use V1-visible properties. Planning is valid only when the later action/result can be represented honestly. |
 | `decide` | options appear → child chooses/corrects → AI applies consequence or explains correction | Use for branching choices, decision points, correction games, or "which one should we use?" loops. If the decision requires a complex UI state, declare the product dependency. |
 | `remember` | encode/show/hear → delay or distract → child recalls/repeats/retells → AI confirms and extends | Use for memory, recall, repetition, retell, and "what did we see before?" loops. Keep recall age-appropriate and avoid testing pressure. |
@@ -284,18 +285,18 @@ Mechanic adapters define the child-action loop independent of pillar. Use the ad
 
 ## Appendix: Category modifiers
 
-Category modifiers are small overrides on top of Template 0. Each modifier fills exactly 8 fields and inherits everything else. Only **Cat1** and **Cat5** are live today; Cat2–Cat6 will follow the same shape.
+Category modifiers are small overrides on top of Template 0. Each modifier fills exactly 8 fields and inherits everything else. **Cat1**, **Cat3**, and **Cat5** are live today. Cat2, Cat4, and Cat6 will follow the same shape later.
 
-| Dimension | Cat1 — In-Device (sustained verbal) | Cat5 — Out-of-Device (collection / tracking) |
-| --- | --- | --- |
-| `beat_medium` | `verbal_dialogue` — AI ↔ child voice/text exchange, no additional camera use | `photo_collection + physical` — child moves through a space and photographs finds |
-| `round_count` | 3–5 rounds in the core loop (beat 3) | 3–4 photo-taking rounds in the exploration step |
-| `camera_use` | Initial photo only — no additional photos after launch | Initial photo + 2–3 additional photos during collection |
-| `setting` | Indoor, quiet — sofa, table, floor; minimal distraction | Outdoor — park, yard, playground, nature trail, or a large indoor space with findable variety |
-| `step_count` | 5 steps (Bridge → Setup & Demo → Core Loop → Payoff → Celebration) | 5–6 steps (Bridge → Mission Briefing → Exploration → Synthesis → Discovery Celebration → Closing) |
-| `category_frame` | `scenario → verbal → validate` — AI presents a mechanic-specific scenario, child responds verbally, AI validates through the chosen mechanic | `mission → find → synthesize` — AI frames a physical mission, child explores and photographs, AI reacts per find, child synthesizes the set |
-| `anchor_priority` | **Engagement-first** — primary anchor = emotions / imagination / narrative / reasoning; secondary = relationship; physical ground = appearance / senses / function | **Physical-first** — primary anchor = appearance (drives the visual feature children hunt for); secondary = structure / senses; engagement ground = relationship / reasoning (drives synthesis) |
-| `checklist_extras` | Verify: (a) magic moment is present in Step 4, (b) blind reader can identify the pillar, (c) role title is specific to what the child DOES, (d) metaphor isn't generic | Verify: (a) visual feature is 4–6 year old observable, (b) collection criterion is broad enough for 3+ finds but specific enough to feel like a mission, (c) stuck hint names REAL, SPECIFIC places to look, (d) reflective question has no single correct answer |
+| Dimension | Cat1 — In-Device (sustained verbal) | Cat3 — Out-of-Device (material exploration) | Cat5 — Out-of-Device (collection / tracking) |
+| --- | --- | --- | --- |
+| `beat_medium` | `verbal_dialogue` — AI ↔ child voice/text exchange, no additional camera use | `guided_material_action + self_report` — child uses safe materials while AI paces and records self-reported progress | `photo_collection + physical` — child moves through a space and photographs finds |
+| `round_count` | 3–5 rounds in the core loop (beat 3) | 3 concrete making/arranging/drawing rounds in the core loop | 3–4 photo-taking rounds in the exploration step |
+| `camera_use` | Initial photo only — no additional photos after launch | Initial photo optional; final photo/self-report only when contract allows honest completion evidence | Initial photo + 2–3 additional photos during collection |
+| `setting` | Indoor, quiet — sofa, table, floor; minimal distraction | Indoor table/floor with caregiver-approved safe materials and cleanup boundary | Outdoor — park, yard, playground, nature trail, or a large indoor space with findable variety |
+| `step_count` | 5 steps (Bridge → Setup & Demo → Core Loop → Payoff → Celebration) | 5 steps (Bridge → Materials & Safety → Make Loop → Share/Inspect → Celebration) | 5–6 steps (Bridge → Mission Briefing → Exploration → Synthesis → Discovery Celebration → Closing) |
+| `category_frame` | `scenario → verbal → validate` — AI presents a mechanic-specific scenario, child responds verbally, AI validates through the chosen mechanic | `setup → make → self-report/share` — AI defines safe materials and small actions, child creates, AI reflects without claiming unsupported verification | `mission → find → synthesize` — AI frames a physical mission, child explores and photographs, AI reacts per find, child synthesizes the set |
+| `anchor_priority` | **Engagement-first** — primary anchor = emotions / imagination / narrative / reasoning; secondary = relationship; physical ground = appearance / senses / function | **Material-first** — primary anchor = hand action / material property / safety boundary; secondary = child intention; evidence ground = self-report or allowed photo | **Physical-first** — primary anchor = appearance (drives the visual feature children hunt for); secondary = structure / senses; engagement ground = relationship / reasoning (drives synthesis) |
+| `checklist_extras` | Verify: (a) magic moment is present in Step 4, (b) blind reader can identify the pillar, (c) role title is specific to what the child DOES, (d) metaphor isn't generic | Verify: (a) material setup is caregiver-safe, (b) every action is small and age-appropriate, (c) completion evidence is self-reported or contract-supported, (d) cleanup/stop branch exists | Verify: (a) visual feature is 4–6 year old observable, (b) collection criterion is broad enough for 3+ finds but specific enough to feel like a mission, (c) stuck hint names REAL, SPECIFIC places to look, (d) reflective question has no single correct answer |
 
 **How the layers compose.** A concrete example: `lion + Cat1 + Performance + T0`.
 
@@ -313,13 +314,14 @@ The agent then fills `{role_title}` (e.g. "Roar Reporter"), `{metaphor}` (e.g. "
 1. **Run Phase 0** from `program.md` when the assignment is concept-led or lacks a full entity + category request. This produces `canonical_mechanic`, input mode, readiness, and scaffold fit.
 2. **Pick the mechanic adapter** from `activity_signature.mechanic` / `canonical_mechanic`. This is the primary child-action layer.
 3. **Read the Template 0 reference** (above + `docs/template_0_preview.html` §03) to internalize the 5-beat spine, universal creative variables, and package shape.
-4. **Apply the category modifier** from the appendix — pull the 8 fields that specialize for Cat1 or Cat5 (beat medium, round count, camera use, setting, step count, category frame, anchor priority, checklist extras).
+4. **Apply the category modifier** from the appendix — pull the 8 fields that specialize for Cat1, Cat3, or Cat5 (beat medium, round count, camera use, setting, step count, category frame, anchor priority, checklist extras).
 5. **Pick the pillar/style scaffold** only after the mechanic and category are fixed. Use the overlay that best supports the mechanic's emotional payoff; if scaffold fit is weak, disclose it in `spec.md` or block per Phase 0.
 6. **Fill all `{slots}`** with entity- or source-specific content. Universal variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`) first, then mechanic-specific loop details, then pillar-specific flavor (`{hidden_details}`, `{modifications}`, `{quest_criterion}`, etc.).
 7. **Expand each beat to full dialogue** — complete AI lines, 3 child response branches (ideal / unexpected / silence), follow-up branches, and screen descriptions — per `program.md` format. This applies to bridge, framing, magic moment, and closing beats too, not only the core loop.
 8. **Do not condense runtime rounds** — every round in generated `prod.md` must be executable on its own, not a summary of a pattern. Rounds should be distinct in objective, child action, follow-up, and screen-state change.
-9. **Emit the five-file package** per `program.md` §1.9 and `activities/README.md` — run the package self-check before output.
-10. **Run the 10-dimension rubric** (D1–D10), especially game feel and mechanic fidelity + scaffold honesty, and the category-specific adaptation checks from the appendix's `checklist_extras`. Repair packages that feel like a sparse template fill even if every required section exists.
+9. **Record extensibility** for concept-led and parameterized packages. `spec.md` should name reusable slots and whether another entity, shared feature, matched property, or approved asset set can replace the current one without changing the mechanic.
+10. **Emit the five-file package** per `program.md` §1.9 and `activities/README.md` — run the package self-check before output.
+11. **Run the 10-dimension rubric** (D1–D10), especially game feel and mechanic fidelity + scaffold honesty, and the category-specific adaptation checks from the appendix's `checklist_extras`. Repair packages that feel like a sparse template fill even if every required section exists.
 
 ---
 
