@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.20 | **Date**: 2026-05-11
+> **Version**: 1.21 | **Date**: 2026-05-12
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.21 — 2026-05-12**: Fresh `/goal` generation writes actual five-file packages under `runs/<run_id>/activity_packages/<base_activity_id>/` with clean `activity_id` values. `activities/<activity_id>/` is reserved for canonical/promoted packages and explicit checked-package enrichment; run-local paths distinguish reruns without suffixing IDs.
 > **v1.20 — 2026-05-11**: Run review dashboards must support in-file preview for every linked `.md`/`.yaml`/`.txt` so reviewers can read package files (spec.md, prod.md, tag_block.yaml, recap/dashboard templates, blocked briefs, blocked design previews, run manifest, review notes) inline. The generator embeds raw file content as hidden `<template>` elements; a dedicated preview `<dialog>` renders Markdown client-side and shows YAML/text in a preformatted block. Plain click previews; modifier-click and an "Open in new tab" link still navigate. See `review_dashboard.md` §"In-file preview" for the full contract.
 > **v1.19 — 2026-05-11**: Lock the editorial design language for `runs/<run_id>/review.html`. Warm-paper palette, single indigo-ink accent, serif display title and dialog headings, hairline-divided panels in place of card-within-card nesting, tabular numerals on every numeric column, indigo/amber accent rails on activity and blocked cards, and a status-dot run indicator in the header. See `review_dashboard.md` §"Design language" for the full contract.
 > **v1.18 — 2026-05-11**: Run review dashboards must show every reviewer-audited package, including no-op passes, and must expose the 10-dimension review criteria plus per-package scorecard results and rationale.
@@ -33,10 +34,10 @@ You are an **Activity Design Agent** for WonderLens, an AI-powered educational c
 
 **The loop:**
 1. Receive input: an `assignment_type` row from `assignments.md`. New rows should use one of `entity_activity`, `activity_concept`, `match_pattern`, or `capability_probe`. Legacy concept aliases are normalized to `assignment_type=activity_concept` with `activity_concept=<value>`.
-2. Create a run provenance directory under `runs/<run_id>/` before processing assignments. Runtime packages still go under `activities/<activity_id>/`.
-3. Audit checked-row existing packages for enrichment needs before processing unchecked assignments. Use separate reviewer agents for scoped package-quality review when package audits or enrichment are part of the run. If a package fails the current migrated package depth floor, enrich it in place and record the maintenance in run provenance.
+2. Create a run provenance directory under `runs/<run_id>/` before processing assignments. Fresh generated packages go under `runs/<run_id>/activity_packages/<base_activity_id>/` with clean `activity_id` values; canonical/promoted packages remain under `activities/<activity_id>/`.
+3. Audit checked-row existing packages for enrichment needs before processing unchecked assignments. Use `package_path=` when present; otherwise use an existing canonical `activities/<activity_id>/` package. Use separate reviewer agents for scoped package-quality review when package audits or enrichment are part of the run. If a package fails the current migrated package depth floor, enrich it in place and record the maintenance in run provenance.
 4. Run **Phase 0: Activity Concept Adaptation Brief** before scaffold selection. Decide input mode, canonical mechanic, readiness, mapping usefulness, trigger condition, asset dependency, product-capability risks, and scaffold fit. Save the brief under the current run directory.
-5. If the brief is `blocked_until_product_decision`, still draft a constrained design preview for human review: record the brief under `runs/<run_id>/blocked_briefs/`, write detailed proposed runtime steps under `runs/<run_id>/blocked_designs/`, annotate every unsupported dependency inline with `BLOCKED ELEMENT: <reason>`, leave the row unchecked, and continue to later unchecked rows. Do not create a valid `activities/<activity_id>/` package, log results, or mark the assignment complete until the blocking decisions are resolved.
+5. If the brief is `blocked_until_product_decision`, still draft a constrained design preview for human review: record the brief under `runs/<run_id>/blocked_briefs/`, write detailed proposed runtime steps under `runs/<run_id>/blocked_designs/`, annotate every unsupported dependency inline with `BLOCKED ELEMENT: <reason>`, leave the row unchecked, and continue to later unchecked rows. Do not create a valid package under `runs/<run_id>/activity_packages/` or `activities/`, log results, or mark the assignment complete until the blocking decisions are resolved.
 6. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1 or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
 7. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
 8. Generate a complete migrated activity package following the exact output format.
@@ -45,12 +46,12 @@ You are an **Activity Design Agent** for WonderLens, an AI-powered educational c
 11. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
 12. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
 13. Only present the final package after ALL dimensions pass AND the package self-check passes.
-14. Put the rubric scorecard in `activities/<activity_id>/spec.md`; do not put a scorecard in `prod.md`.
+14. Put the rubric scorecard in `<package_dir>/spec.md`; do not put a scorecard in `prod.md`.
 15. Update `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/generated_activity_ids.txt` so the run can be traced back to its generated packages.
 
 **Output language contract:** source concepts may arrive in Chinese or mixed language, but every generated artifact must be written in English: `adaptation_brief` values, `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, `dashboard.template.yaml`, asset brief rows, reviewer notes, and generated run-manifest summaries. Source snapshots may preserve original input rows for provenance, but do not copy Chinese source prose into generated package content.
 
-**Existing package enrichment mode:** when a `/goal` rerun finds checked `assignments.md` rows with existing `activities/<activity_id>/` packages, audit those packages against the current migrated package depth floor before processing unchecked rows. Checked rows are completion markers, not quality freeze markers. Spawn separate reviewer agents for package-quality review, using disjoint package directory scopes when reviewing multiple packages in parallel. If a package is structurally valid but thin, enrich `spec.md` and `prod.md` in place while preserving `activity_id`, tag-block enums, recap/dashboard placeholder compatibility, asset IDs, and the five-file package contract. Record reviewer findings, direct reviewer repairs, author repairs, re-review outcomes, and enrichment-only maintenance in `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/review_notes.md`; changed packages belong under `outputs.enriched_activities`, already-compliant no-op passes belong under `outputs.audited_activities`, and neither path appends `results.tsv` or creates duplicate generated-activity log entries unless a new package is actually generated.
+**Existing package enrichment mode:** when a `/goal` rerun finds checked `assignments.md` rows with an explicit `package_path=` or an existing canonical `activities/<activity_id>/` package, audit that package against the current migrated package depth floor before processing unchecked rows. Checked rows are completion markers, not quality freeze markers. Spawn separate reviewer agents for package-quality review, using disjoint package directory scopes when reviewing multiple packages in parallel. If a package is structurally valid but thin, enrich `spec.md` and `prod.md` in place while preserving `activity_id`, tag-block enums, recap/dashboard placeholder compatibility, asset IDs, and the five-file package contract. Record reviewer findings, direct reviewer repairs, author repairs, re-review outcomes, and enrichment-only maintenance in `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/review_notes.md`; changed packages belong under `outputs.enriched_activities`, already-compliant no-op passes belong under `outputs.audited_activities`, and neither path appends `results.tsv` or creates duplicate generated-activity log entries unless a new package is actually generated.
 
 **You never show intermediate drafts. You only present the final, self-evaluated design.**
 
@@ -397,13 +398,13 @@ Read `conversation_bridge.md` for warm/cold start bridge requirements.
 
 ### 1.9 Tag block — the central contract
 
-The **tag block** is the structured metadata file every migrated activity package must emit as `activities/<activity_id>/tag_block.yaml`. It is the contract between the activity package and the downstream surfaces that consume it: the **child recap screen** (post-activity celebration), the **parent growth-path dashboard** (weekly legibility of growth), and the activity matcher/selector. The canonical schema lives in `activities/_schema/tag_block.schema.json`; canonical enum vocabulary lives in `docs/activity_vocabulary.md`.
+The **tag block** is the structured metadata file every migrated activity package must emit as `<package_dir>/tag_block.yaml`. It is the contract between the activity package and the downstream surfaces that consume it: the **child recap screen** (post-activity celebration), the **parent growth-path dashboard** (weekly legibility of growth), and the activity matcher/selector. The canonical schema lives in `activities/_schema/tag_block.schema.json`; canonical enum vocabulary lives in `docs/activity_vocabulary.md`.
 
 **Why this matters.** Without a well-formed tag block, the child recap cannot name the moment the child just made, and the parent dashboard cannot place the activity on a progression axis. Empty, placeholder, or drifted fields are runtime bugs — the recap falls back to generic copy and the dashboard collapses to an onboarding state. Treat the tag block as load-bearing output, not as metadata trim.
 
 #### Migrated package schema
 
-For new-structure activity packages, write the tag block as a standalone YAML file at `activities/<activity_id>/tag_block.yaml`. Do **not** embed this YAML inside `spec.md` or `prod.md`. Use the exact field names and nesting shown below — downstream readers key on literal strings.
+For new-structure activity packages, write the tag block as a standalone YAML file at `<package_dir>/tag_block.yaml`. Fresh `/goal` packages use `runs/<run_id>/activity_packages/<activity_id>/tag_block.yaml`; canonical/promoted packages use `activities/<activity_id>/tag_block.yaml`. Do **not** embed this YAML inside `spec.md` or `prod.md`. Use the exact field names and nesting shown below — downstream readers key on literal strings.
 
 ```yaml
 activity_id: <lower_snake_case_id>        # must equal the parent directory name
@@ -523,10 +524,12 @@ If any box fails, fix the package and re-run both the 10-dimension rubric and th
 
 Generate the migrated activity package in this EXACT structure. Do not skip files, do not reorder sections, and do not abbreviate runtime rounds.
 
+For fresh `/goal` generation, `<package_dir>` is `runs/<run_id>/activity_packages/<activity_id>/`. For canonical/promoted package maintenance, `<package_dir>` may be `activities/<activity_id>/`.
+
 The five files are:
 
 ```text
-activities/<activity_id>/
+<package_dir>/
 ├── spec.md
 ├── prod.md
 ├── tag_block.yaml
@@ -643,7 +646,7 @@ activities/<activity_id>/
 
 After generating the activity design, evaluate it against ALL 10 dimensions below. Each dimension is scored PASS or FAIL. If ANY dimension fails, identify the specific issue, fix the design, then re-evaluate. Repeat until all applicable dimensions pass.
 
-Before finalizing the `## Self-Evaluation Scorecard`, spawn a separate reviewer agent to check the same 10 dimensions independently against the actual package files. This is a required acceptance gate for every generated package in a `/goal` run; if reviewer-agent tooling is unavailable, package finalization is a hard workflow failure, not a skippable residual risk. The reviewer must read `program.md` Phase 3 and the generated `activities/<activity_id>/` package directly, plus `templates.md`, `activities/README.md`, `activities/_schema/tag_block.schema.json`, and `docs/activity_vocabulary.md`; for mapping-informed assignments, it must also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`. Treat any reviewer FAIL or credible uncertainty as a required repair: fix the package, rerun the author self-evaluation, and request a fresh independent review before writing the final scorecard, logging `results.tsv`, or marking the assignment complete. Record reviewer-agent coverage, evidence, repairs, and re-review outcome in the current run's `review_notes.md`.
+Before finalizing the `## Self-Evaluation Scorecard`, spawn a separate reviewer agent to check the same 10 dimensions independently against the actual package files. This is a required acceptance gate for every generated package in a `/goal` run; if reviewer-agent tooling is unavailable, package finalization is a hard workflow failure, not a skippable residual risk. The reviewer must read `program.md` Phase 3 and the generated `<package_dir>` directly, plus `templates.md`, `activities/README.md`, `activities/_schema/tag_block.schema.json`, and `docs/activity_vocabulary.md`; for mapping-informed assignments, it must also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`. Treat any reviewer FAIL or credible uncertainty as a required repair: fix the package, rerun the author self-evaluation, and request a fresh independent review before writing the final scorecard, logging `results.tsv`, or marking the assignment complete. Record reviewer-agent coverage, evidence, repairs, and re-review outcome in the current run's `review_notes.md`.
 
 Reviewers must fail packages that are structurally valid but thin. Passing means the package meets the migrated package depth floor: `spec.md` carries enough authoring rationale to audit the design, and `prod.md` carries enough concrete dialogue and screen behavior to run the activity without inventing missing beats.
 
@@ -863,7 +866,7 @@ If the human gives multiple assignments at once, design each one fully before mo
 ### After Generating
 
 Always end with:
-1. A complete `activities/<activity_id>/` package with five files.
+1. A complete `<package_dir>/` package with five files.
 2. The self-evaluation scorecard at the end of `spec.md` only.
 3. A one-line summary: "Ready for curriculum review" or "N issues found and fixed during self-evaluation"
 

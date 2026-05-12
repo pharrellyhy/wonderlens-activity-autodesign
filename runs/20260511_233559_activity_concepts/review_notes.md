@@ -20,7 +20,7 @@ Summary: 23 checked concept packages were audited, 4 were enriched, and 19 requi
 
 ## Generated Package Reviews
 
-Batch 5 fresh-rerun generation-ready rows now materialize distinct run-specific package directories under `activities/<base_activity_id>_r20260511_233559/`. The original assignment `activity_id=` values are recorded as `base_activity_id` in `run_manifest.yaml`; `results.tsv`, `generated_activity_ids.txt`, and checked Batch 5 assignment rows point to the run-specific package IDs. All 23 generated rows inherit independent PASS evidence from Reviewer A or Reviewer B after current-run package audit and repairs, with package checks rerun against the run-specific directories.
+Batch 5 fresh-rerun generation-ready rows now materialize run-local package directories under `runs/20260511_233559_activity_concepts/activity_packages/<base_activity_id>/` with clean `activity_id` values. The original assignment `activity_id=` values are recorded as `base_activity_id` in `run_manifest.yaml`; `results.tsv`, `generated_activity_ids.txt`, and checked Batch 5 assignment rows point to the run-local package paths. All 23 generated rows inherit independent PASS evidence from Reviewer A or Reviewer B after current-run package audit and repairs, with package checks rerun against the run-local directories.
 
 ## Blocked Assignments
 

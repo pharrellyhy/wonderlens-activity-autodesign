@@ -1,0 +1,77 @@
+activity_id: concept_color_mixing_collect
+version: 1
+source_entity_exemplar: color_pair
+template_type: cat1
+pillar: Discovery
+game_style: field_experiment
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span:
+  - T0
+  - T1
+  - T2
+  elasticity: neighbor
+category: category_1
+attributes:
+- two_color_mix
+- color
+key_concepts:
+- Causation
+- Change
+related_concepts:
+- color
+- mix
+- prediction
+- result
+atl_skills:
+- prediction
+- observation
+- creative_thinking
+transdisciplinary_theme: How_The_World_Works
+subject_tags:
+- science
+- arts
+kud:
+  know:
+  - Two chosen colors can combine into a result color
+  - two_color_mix is the focus of the activity
+  understand:
+  - Causation helps children connect the color pair to the result
+  - Change helps children notice that the mix is different from the starting colors
+  do:
+  - collect a two-color pair
+  - predict the mixed result
+  - save the revealed result to the set
+progression:
+  topic_axis: causation
+  difficulty_level: 2
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Color Mix Tester badge
+caregiver_role:
+- scaffold
+- co-explorer
+activity_signature:
+  observation_angle: color
+  mechanic: collect
+  entity_role: catalyst
+  bridge_prerequisites:
+    primary:
+    - color
+    secondary:
+    - causation
+    - collect
+  focal_attribute: two_color_mix
+  intro: The child practices collect through Two-Color Mix Lab.
+  preview_label: Two-Color Mix Lab
+  preview_prompt: Ready to be the Color Mix Tester?
+  role_pivot_note: The runtime entity starts the activity but the package remains
+    concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true

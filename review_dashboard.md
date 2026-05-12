@@ -15,9 +15,12 @@ The generator reads:
 - `runs/<run_id>/run_manifest.yaml`
 - `runs/<run_id>/review_notes.md`
 - `results.tsv`
-- `activities/<activity_id>/spec.md`
-- `activities/<activity_id>/prod.md`
-- `activities/<activity_id>/tag_block.yaml`
+- Package files referenced by `run_manifest.yaml` `activity_path`, including fresh run-local packages under `runs/<run_id>/activity_packages/<activity_id>/` and canonical/enriched packages under `activities/<activity_id>/`
+- `<activity_path>/spec.md`
+- `<activity_path>/prod.md`
+- `<activity_path>/tag_block.yaml`
+- `<activity_path>/recap.template.yaml`
+- `<activity_path>/dashboard.template.yaml`
 - `runs/<run_id>/blocked_briefs/*.yaml`
 - `runs/<run_id>/blocked_designs/*.md` when present
 
@@ -115,8 +118,8 @@ These choices are visual polish on top of the contract above. They must not remo
 
 ## Link Rules
 
-- Run-local files use local relative links such as `run_manifest.yaml`, `blocked_briefs/017_coloring_game.yaml`, and `blocked_designs/017_coloring_game.md`.
-- Activity package files use relative links back to the repo root, such as `../../activities/<activity_id>/spec.md`.
+- Run-local files use local relative links such as `run_manifest.yaml`, `activity_packages/<activity_id>/spec.md`, `blocked_briefs/017_coloring_game.yaml`, and `blocked_designs/017_coloring_game.md`.
+- Canonical activity package files use relative links back to the repo root, such as `../../activities/<activity_id>/spec.md`.
 - Links should degrade safely if a target is missing: keep the label visible and mark the target missing instead of hiding the row.
 
 ## In-file preview

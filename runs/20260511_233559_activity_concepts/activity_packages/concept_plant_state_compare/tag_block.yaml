@@ -1,0 +1,77 @@
+activity_id: concept_plant_state_compare
+version: 1
+source_entity_exemplar: visible_plant_state
+template_type: cat5
+pillar: Discovery
+game_style: field_experiment
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span:
+  - T0
+  - T1
+  - T2
+  elasticity: neighbor
+category: category_5
+attributes:
+- visible_plant_state
+- state
+key_concepts:
+- Change
+- Form
+related_concepts:
+- state
+- evidence
+- lifecycle
+- care
+atl_skills:
+- observation
+- logical_reasoning
+- classification
+transdisciplinary_theme: Sharing_The_Planet
+subject_tags:
+- science
+- nature
+kud:
+  know:
+  - Plant states can include sprouting, blooming, wilting, dried, healthy, or fruiting
+  - visible_plant_state is the focus of the activity
+  understand:
+  - Change helps children describe how the plant looks right now
+  - Form helps children use visible leaf or flower clues as evidence
+  do:
+  - compare two visible clues
+  - compare two possible state words
+  - explain the strongest evidence
+progression:
+  topic_axis: change
+  difficulty_level: 2
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Plant State Investigator badge
+caregiver_role:
+- scaffold
+- co-explorer
+activity_signature:
+  observation_angle: state
+  mechanic: compare
+  entity_role: subject
+  bridge_prerequisites:
+    primary:
+    - state
+    secondary:
+    - change
+    - compare
+  focal_attribute: visible_plant_state
+  intro: The child practices compare through Plant State Evidence Lab.
+  preview_label: Plant State Evidence Lab
+  preview_prompt: Ready to be the Plant State Investigator?
+  role_pivot_note: The runtime entity starts the activity but the package remains
+    concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true

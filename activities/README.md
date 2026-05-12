@@ -1,6 +1,6 @@
 # Activities
 
-Per-game directory layout. Each subdirectory describes one activity in 5 files.
+Canonical/promoted per-game directory layout. Each subdirectory describes one activity in 5 files.
 
 ## Layout
 
@@ -19,7 +19,7 @@ activities/
 
 The directory name MUST equal the `activity_id` inside that dir's `tag_block.yaml`.
 
-For fresh `/goal` generation runs, assignment `activity_id=` values are treated as base slugs. The generated package directory must be run-specific: `activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>/`, and the contained `tag_block.yaml` `activity_id` must use that exact value. Existing checked-package enrichment may update a package in place, but unchecked generation-ready rows must not reuse a prior package directory.
+Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity_packages/<base_activity_id>/` with clean `activity_id` values. Do not add fresh rerun packages directly under `activities/` unless explicitly promoting the package to the canonical set. Existing checked-package enrichment may update a package here in place when the checked row points to an existing canonical package.
 
 ## File roles
 
@@ -42,7 +42,7 @@ For fresh `/goal` generation runs, assignment `activity_id=` values are treated 
 - Do not use condensed placeholders such as "same structure," "AI gives a riddle," "later rounds follow," or one-line summaries in migrated `prod.md` files.
 - Do not treat compact migrated files as a lower-detail target. `spec.md` must preserve decision-useful design rationale, and `prod.md` must preserve concrete game feel, progress, payoff, and source-promise behavior.
 - During `/goal` runs, generated packages are accepted only after independent reviewer-agent PASS evidence; reviewer FAILs must be repaired and re-reviewed before logging or assignment checkoff.
-- During fresh `/goal` generation, a new run-specific package directory is required even when the assignment supplies an `activity_id` that already exists. This keeps rerun outputs distinguishable by directory name.
+- During fresh `/goal` generation, a new run-local package directory is required even when the assignment supplies an `activity_id` that already exists. This keeps rerun outputs distinguishable by run path while preserving clean base IDs.
 - Blocked activity concepts may have run-local constrained previews under `runs/<run_id>/blocked_designs/`, but those previews are not activity packages and must not be copied here until blockers are resolved and the standard five-file gates pass.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.yaml` `activity_signature.focal_attribute`.
 
@@ -98,7 +98,7 @@ Requires `pip install jsonschema pyyaml`.
 
 ## Current V1 coverage
 
-This repository currently contains 51 five-file activity package directories under `activities/`, including run-specific rerun packages. Legacy single-file outputs remain under `designs/` for historical reference and migration work.
+This repository currently contains 28 canonical/promoted five-file activity package directories under `activities/`. Fresh run-local packages live under `runs/<run_id>/activity_packages/`. Legacy single-file outputs remain under `designs/` for historical reference and migration work.
 
 ## Cross-repo notes
 

@@ -2,15 +2,15 @@
 
 ## Current Status
 
-- Status: `/goal` run `20260511_233559_activity_concepts` completed with blockers and corrected to use distinct run-specific package directories
+- Status: `/goal` run `20260511_233559_activity_concepts` completed with blockers and corrected to use run-local package directories with clean activity IDs
 - Date: 2026-05-12
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
 
-- Created 23 run-specific package directories for run `20260511_233559_activity_concepts` using the suffix `_r20260511_233559`, so the fresh rerun is distinguishable from prior `activities/concept_*` packages.
-- Updated `GOAL.md`, `run.md`, `README.md`, `runs/README.md`, and `activities/README.md` so future fresh `/goal` generation treats assignment `activity_id=` as a base slug and writes `activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>/`.
-- Updated `assignments.md`, `results.tsv`, `runs/20260511_233559_activity_concepts/generated_activity_ids.txt`, `run_manifest.yaml`, `review_notes.md`, and regenerated `review.html` so the 23 generated rows point at the new run-specific package IDs.
+- Moved the 23 generated packages for run `20260511_233559_activity_concepts` from suffixed `activities/*_r20260511_233559/` directories into `runs/20260511_233559_activity_concepts/activity_packages/<base_activity_id>/` with clean `activity_id` values.
+- Updated `GOAL.md`, `run.md`, `program.md`, `templates.md`, `README.md`, `review_dashboard.md`, `runs/README.md`, and `activities/README.md` so future fresh `/goal` generation treats assignment `activity_id=` as a base slug and writes run-local packages under `runs/<run_id>/activity_packages/<base_activity_id>/`.
+- Updated `assignments.md`, `results.tsv`, `runs/20260511_233559_activity_concepts/generated_activity_ids.txt`, `run_manifest.yaml`, `review_notes.md`, and regenerated `review.html` so the 23 generated rows point at the run-local package paths.
 - Added `program.md` Phase 0 for Activity Concept Adaptation Briefs.
 - Made `activity_signature.mechanic` the primary activity-intent signal; pillar and `game_style` remain required scaffold metadata.
 - Documented formal assignment types: `entity_activity`, `activity_concept`, `match_pattern`, and `capability_probe`.
@@ -85,12 +85,12 @@
 
 ## Verification
 
-- Run-specific package directory validation for `runs/20260511_233559_activity_concepts`
-  - Result: PASS; 23 generated IDs use `_r20260511_233559`, each directory has exactly five files, and each `tag_block.yaml` `activity_id` matches the directory.
+- Run-local package directory validation for `runs/20260511_233559_activity_concepts`
+  - Result: PASS; 23 generated IDs use clean base IDs, each directory has exactly five files, and each `tag_block.yaml` `activity_id` matches the directory.
 - Manifest/results/assignment pointer validation for `runs/20260511_233559_activity_concepts`
-  - Result: PASS; generated manifest entries, `generated_activity_ids.txt`, current-run `results.tsv` rows, and checked Batch 5 assignment rows point to run-specific package IDs.
+  - Result: PASS; generated manifest entries, `generated_activity_ids.txt`, current-run `results.tsv` rows, and checked Batch 5 assignment rows point to run-local package paths.
 - `python3 scripts/generate_run_review.py runs/20260511_233559_activity_concepts`
-  - Result: regenerated `runs/20260511_233559_activity_concepts/review.html` after switching generated packages to run-specific dirs.
+  - Result: regenerated `runs/20260511_233559_activity_concepts/review.html` after switching generated packages to run-local dirs.
 - `python3 scripts/generate_run_review.py --validate runs/20260511_233559_activity_concepts`
   - Result: PASS for dashboard contract checks and 578 resolving local links.
 - Full migrated package tag-block schema validation
@@ -233,7 +233,7 @@
 - Run manifests are maintained by the agent workflow in this pass; there is no schema validator for `runs/<run_id>/run_manifest.yaml` yet, including the new enrichment audit/no-op/enriched counters and `enriched_activities` entries.
 - All 23 concept packages covered by run `20260510_152725_activity_concepts` now have separate reviewer-agent PASS evidence: 16 generated packages plus 7 older checked packages.
 - Several generated packages use required or optional prebuilt/display assets; package specs include fallbacks, but no asset files or runtime asset manifest were generated.
-- The 23 corrected run-specific packages for `20260511_233559_activity_concepts` were materialized from the current independently reviewed packages with IDs rewritten. Future fresh `/goal` runs are now required to generate directly into distinct run-specific directories from the start.
+- The 23 corrected run-local packages for `20260511_233559_activity_concepts` were materialized from the current independently reviewed packages with clean IDs. Future fresh `/goal` runs are now required to generate directly into run-local package directories from the start.
 
 ## Next Immediate Actions
 

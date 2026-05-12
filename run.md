@@ -30,6 +30,7 @@ runs/<run_id>/
 ├── run_manifest.yaml
 ├── assignment_snapshot.md
 ├── generated_activity_ids.txt
+├── activity_packages/
 ├── adaptation_briefs/
 ├── blocked_briefs/
 ├── blocked_designs/
@@ -70,8 +71,8 @@ outputs:
   review_dashboard:
 checks: []
 notes:
-  - "Fresh assignment generation creates distinct package directories under activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>."
-  - "Existing checked-package enrichment may update activities/<activity_id>/ in place, but unchecked generation-ready rows must not reuse old package directories."
+  - "Fresh assignment generation writes run-local packages under runs/<run_id>/activity_packages/<base_activity_id>/ with clean activity_id values."
+  - "Existing checked-package enrichment may update canonical activities/<activity_id>/ packages in place, but unchecked generation-ready rows must not reuse old canonical package directories."
 ```
 
 15. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Run id: <run_id>. Starting activity package loop."
@@ -82,7 +83,8 @@ Before processing any unchecked assignment, audit existing migrated packages tha
 
 Scope for this pass:
 
-- Checked `assignments.md` rows that include `activity_id=<id>` and have an existing `activities/<id>/` package.
+- Checked `assignments.md` rows that include `package_path=<repo-relative package dir>`.
+- Checked rows without `package_path` that include `activity_id=<id>` and have an existing canonical `activities/<id>/` package.
 - Existing `activities/concept_*` packages produced by prior concept-led runs, especially when `program.md`, `templates.md`, `run.md`, or `GOAL.md` recently tightened the migrated package depth floor.
 - Packages the user explicitly names for quality repair or enrichment.
 
@@ -134,7 +136,7 @@ For each assignment in the run-start `assignment_snapshot.md` that is marked `- 
 
 Extract: assignment_type (if provided), activity_concept (if provided), legacy concept alias (if provided), concept_source (if provided), description/notes (if provided), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), start type (if provided), and output activity_id (if provided). Normalize any legacy concept alias to `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared.
 
-For unchecked generation-ready rows, treat `activity_id=` as `base_activity_id`, not the final package ID. If the base value already ends in `_rYYYYMMDD_HHMMSS` because a prior run row was copied, strip that suffix first. The final package ID for this run must be `<base_activity_id>_r<YYYYMMDD_HHMMSS>`, using the timestamp prefix from the current `run_id`. This prevents fresh reruns from silently linking back to old `activities/` package directories. The only exception is enrichment/audit of already checked rows, which intentionally uses the existing package ID in place.
+For unchecked generation-ready rows, treat `activity_id=` as `base_activity_id`. If the base value already ends in `_rYYYYMMDD_HHMMSS` because a prior run row was copied, strip that suffix first. The final package `activity_id` stays the clean `<base_activity_id>`, and the run-specific identity comes from the package path `runs/<run_id>/activity_packages/<base_activity_id>/`. This prevents fresh reruns from silently linking back to old canonical `activities/` package directories while keeping package IDs clean. The only exception is enrichment/audit of already checked rows, which intentionally uses the existing canonical package ID in place.
 
 If `concept_source=` points to `file#concept_id`, read that repo-relative file and load the matching concept section before Phase 0. If `asset_requirements=` points to `file#asset_id`, read the same or referenced file and load the matching asset requirement section. Use the assignment row as the execution source of truth, and use the companion file as richer source / asset context.
 
@@ -158,7 +160,7 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
 3. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
 4. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
 5. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
-6. If `readiness=blocked_until_product_decision`, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> -- <what product/design decision is needed>`. Use the same blocker reason consistently when one missing product decision affects multiple beats; each inline marker is an occurrence, not a separate missing decision. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
+6. If `readiness=blocked_until_product_decision`, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> -- <what product/design decision is needed>`. Use the same blocker reason consistently when one missing product decision affects multiple beats; each inline marker is an occurrence, not a separate missing decision. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `runs/<run_id>/activity_packages/` or `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
 7. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
 8. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
 9. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
@@ -202,14 +204,15 @@ Resolve the final package ID before writing files:
 
 1. `base_activity_id`: assignment `activity_id=` if present, otherwise a stable lowercase snake_case slug derived from the concept/entity/mechanic.
 2. Remove a trailing `_rYYYYMMDD_HHMMSS` suffix from `base_activity_id` when present.
-3. `activity_id`: `<base_activity_id>_r<YYYYMMDD_HHMMSS>`, using the current run timestamp.
-4. If `activities/<activity_id>/` already exists, stop and choose the next non-conflicting run-specific suffix before writing. Do not merge into or overwrite the existing directory.
-5. Record both `base_activity_id` and `activity_id` in `run_manifest.yaml`.
+3. `activity_id`: the clean `<base_activity_id>`.
+4. `package_dir`: `runs/<run_id>/activity_packages/<activity_id>/`.
+5. If `package_dir` already exists in the current run, stop and choose a non-conflicting clean slug before writing. Do not merge into or overwrite an existing package directory.
+6. Record `base_activity_id`, `activity_id`, `activity_path`, `package_scope: run_local`, and `generation_policy: fresh_run_local_package` in `run_manifest.yaml`.
 
-Create a complete `activities/<activity_id>/` package with exactly five files:
+Create a complete `runs/<run_id>/activity_packages/<activity_id>/` package with exactly five files:
 
 ```
-activities/<activity_id>/
+runs/<run_id>/activity_packages/<activity_id>/
 ├── spec.md
 ├── prod.md
 ├── tag_block.yaml
@@ -228,7 +231,7 @@ Rules:
 Runtime completeness rule:
 
 - Every Step 3 round in `prod.md` must be fully expanded with AI dialogue, child response branches, AI follow-up branches, and screen state.
-- Never write "same structure," "later rounds follow," "AI gives a riddle," or one-line summaries in `activities/*/prod.md`.
+- Never write "same structure," "later rounds follow," "AI gives a riddle," or one-line summaries in generated `prod.md`.
 - The migrated package may be shorter than legacy `designs/*_spec.md`, but it must not be thin. `spec.md` must explain the activity's concrete design intent, assumptions, constraints, asset/product dependencies, scaffold fit, and game-feel rationale. `prod.md` must be runnable without the operator inventing missing beats.
 - Steps 1, 2, 4, and 5 also need concrete dialogue branches, follow-ups, and screen states. Do not concentrate all detail in Step 3 while leaving the bridge, rules, magic moment, or closing generic.
 - Each Step 3 round must be distinct: named objective, different clue/challenge/action, child responses that exercise the canonical mechanic, branch-specific follow-ups, and a screen-state change.
@@ -255,7 +258,7 @@ For batch efficiency, reviewer agents may review disjoint package sets in parall
 
 Reviewer instructions:
 
-- Read `program.md` Phase 0 and Phase 3, the adaptation brief / `spec.md` `## Adaptation Rationale` when present, and the generated `activities/<activity_id>/` package.
+- Read `program.md` Phase 0 and Phase 3, the adaptation brief / `spec.md` `## Adaptation Rationale` when present, and the generated package at `runs/<run_id>/activity_packages/<activity_id>/`.
 - Read `templates.md`, `activities/README.md`, `activities/_schema/tag_block.schema.json`, and `docs/activity_vocabulary.md`.
 - If the assignment has `mapping=`, also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`.
 - Evaluate the package files directly, not the authoring agent's claimed scorecard.
@@ -268,7 +271,7 @@ If the reviewer flags any FAIL or credible uncertainty, fix the package, rerun t
 
 Before logging or committing, verify:
 
-- `activities/<activity_id>/` contains exactly the five required files.
+- `runs/<run_id>/activity_packages/<activity_id>/` contains exactly the five required files.
 - Directory name equals `tag_block.yaml` `activity_id`.
 - `tag_block.yaml` validates against `activities/_schema/tag_block.schema.json`.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` equals `tag_block.yaml` `activity_signature.focal_attribute`.
@@ -288,7 +291,7 @@ Before logging or committing, verify:
 Append a row to `results.tsv`:
 
 ```
-[assignment]\t[entity]\t[category]\t[tier]\t[pillar]\t[style]\t[PASS/FAIL]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F/N]\t[P/F]\t[P/F]\t[activity_id]\t[ISO timestamp]
+[assignment]\t[entity]\t[category]\t[tier]\t[pillar]\t[style]\t[PASS/FAIL]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F]\t[P/F/N]\t[P/F]\t[P/F]\t[package_path]\t[ISO timestamp]
 ```
 
 Column order: assignment, entity, category, tier, pillar, style, status, d1_tech, d2_hook_transition, d3_edge, d4_ib, d5_tier, d6_dialogue, d7_screen, d8_mapping, d9_game_feel, d10_pillar_fidelity, filename, timestamp.
@@ -307,10 +310,11 @@ For every generated package:
   assignment: "<original assignment row>"
   base_activity_id: <base_activity_id>
   activity_id: <activity_id>
-  activity_path: activities/<activity_id>
+  activity_path: runs/<run_id>/activity_packages/<activity_id>
+  package_scope: run_local
   adaptation_brief: runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml # omit when no Phase 0 brief was produced
   results_tsv_row: true
-  generation_policy: fresh_rerun_distinct_directory
+  generation_policy: fresh_run_local_package
   status: PASS
 ```
 
@@ -348,12 +352,12 @@ After writing `review.html`:
 
 ### Step 7: Mark generated assignment complete
 
-In `assignments.md`, change `- [ ]` to `- [x]` only for assignments that generated a passing package. Also rewrite that row's `activity_id=` value to the actual run-specific `activity_id` so the checked row points at the generated directory. If the row did not already have `activity_id=`, add one near the other assignment fields. Do not rewrite blocked rows.
+In `assignments.md`, change `- [ ]` to `- [x]` only for assignments that generated a passing package. Keep or add the clean `activity_id=<base_activity_id>` value, and add or update `package_path=runs/<run_id>/activity_packages/<activity_id>` so the checked row points at the generated directory. Do not rewrite blocked rows.
 
 ### Step 8: Commit
 
 ```bash
-git add activities/<activity_id>/ runs/<run_id>/ results.tsv assignments.md
+git add runs/<run_id>/activity_packages/<activity_id>/ runs/<run_id>/ results.tsv assignments.md
 git commit -m "Design: <activity_id> - ALL PASS"
 ```
 
@@ -381,7 +385,7 @@ Before that final message, ensure `runs/<run_id>/review.html` exists and is refe
 - Always put the scorecard in `spec.md`.
 - Keep `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` aligned with the runtime flow.
 - Do not treat checked assignment rows as immutable when generation standards changed; audit and enrich existing packages before the unchecked loop starts.
-- Do not reuse an old `activities/<activity_id>/` directory for unchecked generation-ready rows. Fresh reruns must create a new run-specific directory named `activities/<base_activity_id>_r<YYYYMMDD_HHMMSS>/`, and `tag_block.yaml` `activity_id` must match it.
+- Do not reuse an old `activities/<activity_id>/` directory for unchecked generation-ready rows. Fresh reruns must create a new run-local directory named `runs/<run_id>/activity_packages/<base_activity_id>/`, and `tag_block.yaml` `activity_id` must match the clean base directory name.
 - Do not let one product/design blocker halt the whole batch. Record the blocked brief and constrained design preview, leave that row unchecked, and continue to later unchecked rows unless a hard workflow failure makes later processing unsafe.
 - Commit after every completed package unless the user explicitly asks to batch commits.
 - Quality over speed. Take as many self-evaluation rounds as needed.

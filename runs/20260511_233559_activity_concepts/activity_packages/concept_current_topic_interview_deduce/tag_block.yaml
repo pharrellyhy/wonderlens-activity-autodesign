@@ -1,0 +1,76 @@
+activity_id: concept_current_topic_interview_deduce
+version: 1
+source_entity_exemplar: parent_selected_topic
+template_type: cat1
+pillar: Mystery
+game_style: mystery_lens
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T2
+  span:
+  - T1
+  - T2
+  elasticity: neighbor
+category: category_1
+attributes:
+- opinion_with_reason
+- function
+key_concepts:
+- Perspective
+- Causation
+related_concepts:
+- opinion
+- reason
+- evidence
+- respectful_discussion
+atl_skills:
+- logical_reasoning
+- language_expression
+- perspective_taking
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags:
+- language
+- social_studies
+kud:
+  know:
+  - Reason Reporter Interview has a simple three-round structure
+  - opinion_with_reason is the focus of the activity
+  understand:
+  - Perspective helps children notice the important evidence
+  - Causation helps children connect their response to the result
+  do:
+  - practice deduce in three short rounds
+  - infer a conclusion from clues, then explain the reason
+  - notice the final payoff
+progression:
+  topic_axis: perspective
+  difficulty_level: 3
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Reason Reporter badge
+caregiver_role:
+- co-explorer
+- observer
+activity_signature:
+  observation_angle: function
+  mechanic: deduce
+  entity_role: catalyst
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - perspective
+    - deduce
+  focal_attribute: opinion_with_reason
+  intro: The child practices deduce through Reason Reporter Interview.
+  preview_label: Reason Reporter Interview
+  preview_prompt: Ready to be the Reason Reporter?
+  role_pivot_note: The runtime entity starts the activity but the package remains
+    concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: false
+    T1: true
+    T2: true

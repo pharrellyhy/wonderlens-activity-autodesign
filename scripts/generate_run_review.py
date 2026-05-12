@@ -7,6 +7,7 @@ import argparse
 import csv
 import html
 import json
+import os
 import re
 import sys
 from dataclasses import dataclass
@@ -325,11 +326,15 @@ def scorecard_rows(spec_text: str) -> list[dict[str, str]]:
     return rows
 
 
-def package_links(repo_root: Path, activity_path: str) -> list[Link]:
+def href_from_run_dir(run_dir: Path, target: Path) -> str:
+    return Path(os.path.relpath(target, run_dir)).as_posix()
+
+
+def package_links(repo_root: Path, run_dir: Path, activity_path: str) -> list[Link]:
     links: list[Link] = []
     for filename in PACKAGE_FILES:
-        target = repo_root / activity_path / filename
-        href = f"../../{activity_path}/{filename}"
+        target = (repo_root / activity_path / filename).resolve()
+        href = href_from_run_dir(run_dir.resolve(), target)
         links.append(Link(filename, href, target.exists()))
     return links
 
@@ -447,7 +452,7 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         "scorecard": overall_scorecard(spec_text),
         "scorecard_rows": scorecard_rows(spec_text),
         "review_reason": normalize_text(entry.get("reason") or ""),
-        "links": package_links(repo_root, activity_path),
+        "links": package_links(repo_root, run_dir, activity_path),
     }
     return package
 
@@ -627,9 +632,11 @@ def read_results(repo_root: Path) -> dict[str, dict[str, str]]:
         reader = csv.DictReader(handle, delimiter="\t")
         for row in reader:
             filename = row.get("filename", "")
-            match = re.search(r"activities/([^/\t]+)", filename)
+            if filename:
+                rows[filename] = row
+            match = re.search(r"(?:activities|activity_packages)/([^/\t]+)", filename)
             if match:
-                rows[match.group(1)] = row
+                rows.setdefault(match.group(1), row)
     return rows
 
 
@@ -1357,7 +1364,7 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     packages = generated + enriched + audited
     results_by_activity = read_results(repo_root)
     for package in packages:
-        result = results_by_activity.get(package["activity_id"], {})
+        result = results_by_activity.get(package["activity_path"], {}) or results_by_activity.get(package["activity_id"], {})
         if result:
             package["result_summary"] = f"{result.get('status', 'logged')} at {result.get('timestamp', 'unknown time')}"
         elif package["kind"] == "Enriched":
