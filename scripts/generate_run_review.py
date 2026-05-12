@@ -506,11 +506,11 @@ def asset_item_summary(assets: list[dict[str, str]]) -> str:
     if individual_count:
         parts.append(str(individual_count))
     if set_count == 1:
-        parts.append("1 set")
+        parts.append("card set")
     elif set_count > 1:
-        parts.append(f"{set_count} sets")
+        parts.append(f"{set_count} card sets")
     if set_count:
-        parts.append("items TBD")
+        parts.append("count not declared")
     return ", ".join(parts) if parts else str(len(assets))
 
 
@@ -1159,7 +1159,7 @@ def package_detail_content(
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
-    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items stay TBD for card sets unless the source declares the exact count.</p>
+    <p class="muted">Asset dependencies count unique asset IDs or asset sets. Display beats count runtime appearances from the use-step range, so `prod.step_2; prod.step_3.round_1-2` is one asset dependency but three display beats. Image items show card set, count not declared when the source does not declare the exact count.</p>
     {asset_metric_strip(package)}
     {asset_usage_table(package)}
   </section>

@@ -105,7 +105,7 @@ The dashboard must avoid the ambiguous label `Image uses`.
 
 - `Asset dependencies` counts unique `asset_id` rows. A `card_set` or approved reference pack still counts as one dependency even if it contains many images.
 - `Display beats` counts where the dependency appears in runtime. For example, `prod.step_2; prod.step_3.round_1-2` means one asset dependency and three display beats.
-- `Image items` should show a known item count only when the source declares it. For `card_set`, `reference pack`, or other set-like rows without an explicit item count, show a set label such as `1 set, items TBD`.
+- `Image items` should show a known item count only when the source declares it. For `card_set`, `reference pack`, or other set-like rows without an explicit item count, show a set label such as `card set, count not declared`.
 - The detail view should keep the raw `use_step` text visible so reviewers can verify the parsed display-beat count.
 
 ## Visual Design
