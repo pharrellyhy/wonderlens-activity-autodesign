@@ -24,6 +24,7 @@ The generator reads:
 - `runs/<run_id>/blocked_briefs/*.yaml`
 - `runs/<run_id>/blocked_designs/*.md` when present
 - `run_manifest.yaml` generated-activity fields such as `resolved_blockers`, `resolved_blocker_types`, `extensibility_summary`, and `extensibility_notes` when a run used a product-contract override or reusable-entity review
+- `spec.md` `## Asset Brief` and `## Asset Usage Timeline`, plus `run_manifest.yaml` `asset_usage` entries when present, for packages that use prebuilt, displayed, or runtime-generated images
 
 If a value cannot be derived from those inputs, show `Unknown` or omit the field instead of inventing content.
 
@@ -51,6 +52,7 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
 - The detail view must include enough `spec.md`, `prod.md`, and `tag_block.yaml` information for review without opening package files:
   - Design intent, premise, scenario, focal attribute, pillar, game style, and reviewer status.
   - Runtime beats with step/round title, AI prompt, expected child response branches, AI follow-up behavior, and screen state when present.
+  - Asset usage timeline when visual assets are present: asset ID, type, requiredness, prebuilt/runtime/display timing, exact use step or round, screen location, display/use behavior, persistence/hide behavior, prompt/source summary, and fallback behavior.
   - Learning tags, related concepts, ATL skills, and scorecard summary when present.
   - Parsed scorecard results for all 10 dimensions from `spec.md`, with the PASS/FAIL/N/A result and the note explaining why. Dimension 8 may be N/A when no mapping source is required.
   - Resolved blocker notes when the product contract allowed a formerly blocking dependency. These notes must be visible near the affected activity detail and tagged with the same reason colors as blocked markers.
@@ -75,6 +77,7 @@ Provide search, filter, and sort controls when fields are available:
 - Tier
 - Reviewer coverage
 - Asset dependency
+- Image use count / asset usage timing
 - Blocked reason
 
 Filters must hide/show cards without changing source data. Sorting must preserve stable card dimensions and avoid layout jumps beyond normal reflow.
@@ -88,6 +91,7 @@ Use grouped tag colors so reviewers can distinguish metadata types quickly:
 - Mechanic tags: neutral-purple or similar non-status color.
 - Tier tags: subdued neutral/blue.
 - Asset tags: teal for normal/no-assets, amber for required/blocked/runtime-generated.
+- Asset usage tags: distinct timing chips for `pre_generated`, `runtime_generated`, and `display_existing`; the text remains authoritative.
 - Reviewer tags: green for PASS/covered, amber for unresolved/N/A, red for FAIL.
 - Blocked reason tags: amber family, distinct from category and mechanic tags.
 - Inline blocked/resolved marker tags: reason-specific backgrounds so runtime image generation, coloring UI, Cat3 material workflow, UI state, prebuilt assets, motion safety, before/after evidence, OCR/text handling, caregiver setup, and generic product decisions can be skimmed separately.
@@ -151,4 +155,4 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for the generation and validation commands.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, sidebar navigation, cards for generated/enriched/audited packages, blocked entries when present, review criteria, the blocking reason guide directly after review criteria when blocked or resolved blocker annotations exist, resolved contract items when applicable, extensibility overview when applicable, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, in-file preview templates plus a `<dialog id="preview-dialog">` and `data-preview-id` link wiring, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, sidebar navigation, cards for generated/enriched/audited packages, blocked entries when present, review criteria, the blocking reason guide directly after review criteria when blocked or resolved blocker annotations exist, resolved contract items when applicable, extensibility overview when applicable, asset usage timelines when image/display dependencies exist, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, in-file preview templates plus a `<dialog id="preview-dialog">` and `data-preview-id` link wiring, and resolving local links.

@@ -120,10 +120,12 @@ The goal is complete only when all of the applicable criteria below are met.
 
 10. Asset dependency checks pass when assets are present:
    - `spec.md` includes `## Asset Brief` when `asset_dependency.policy` is not `no_assets`.
+   - `spec.md` includes `## Asset Usage Timeline` for any prebuilt, displayed, or runtime-generated image dependency.
    - Every `asset_id` referenced in `prod.md` is defined in `spec.md` `## Asset Brief`.
-   - Required assets declare `asset_type`, requiredness, generation timing, use step, purpose, display behavior, and fallback behavior.
+   - Required assets declare `asset_type`, requiredness, generation timing, use step, display location, purpose, display behavior, and fallback behavior.
+   - The usage timeline makes the image flow skimmable: prebuilt versus runtime-generated, load/generate moment, first display step, visible step/round range, screen location, interaction/use, prompt/source summary, persistence or hide behavior, and fallback.
    - Generated assets include a directly usable English `prompt_en`; existing/displayed assets include a `source` or approved source description.
-   - `prod.md` references asset IDs and fallback behavior, not raw generation prompts.
+   - `prod.md` references asset IDs, display location, and fallback behavior, not raw generation prompts.
    - The loop does not generate or store image files unless a future asset pipeline explicitly changes this contract.
 
 11. Mapping checks pass when mapping is required:
@@ -146,7 +148,7 @@ The goal is complete only when all of the applicable criteria below are met.
 13. Human review dashboard is generated:
    - `runs/<run_id>/review.html` exists before the final report.
    - The dashboard is generated with `python3 scripts/generate_run_review.py runs/<run_id>` and validated with `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
-   - The dashboard satisfies `review_dashboard.md`: self-contained light-theme HTML, concise clickable cards for generated/enriched/audited packages, full detail dialog/page content, grouped tag colors, search/filter/sort controls, blocked-preview handling, clear missing-decision versus inline-marker counts, per-blocked-card `Minimum To Unblock` sections below capability flags, colored inline blocked marker chips, blocked-preview scorecards, reason guide, reviewer coverage, 10-dimension review criteria, per-package scorecard results with why notes, checks, residual risks, and resolving local links.
+   - The dashboard satisfies `review_dashboard.md`: self-contained light-theme HTML, concise clickable cards for generated/enriched/audited packages, full detail dialog/page content, grouped tag colors, search/filter/sort controls, asset usage timelines for image/display dependencies, blocked-preview handling, clear missing-decision versus inline-marker counts, per-blocked-card `Minimum To Unblock` sections below capability flags, colored inline blocked marker chips, blocked-preview scorecards, reason guide, reviewer coverage, 10-dimension review criteria, per-package scorecard results with why notes, checks, residual risks, and resolving local links.
    - If resolved blockers exist, the dashboard includes a blocking reason guide, a resolved contract items section, and per-card resolved blocker tags; these callouts do not count as blocked cards or failed package status.
    - The dashboard includes an extensibility overview and per-card extensibility details for reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, or approved asset-set replacements.
    - The dashboard preserves the editorial design language defined in `review_dashboard.md` §"Design language": warm-paper palette, single indigo accent, serif display title and dialog headings, hairline-divided panels (no card-within-card), tabular numerals on numeric columns, indigo/amber accent rails on activity/blocked cards, and a status-dot run indicator.

@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.22 | **Date**: 2026-05-12
+> **Version**: 1.23 | **Date**: 2026-05-12
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.23 — 2026-05-12**: Require image/display dependencies to be trackable as an asset usage timeline. Asset briefs now expose where and when each prebuilt, displayed, or runtime-generated image is loaded, shown, used, persisted/hidden, and how fallback works; `review.html` must surface that timeline for fast review.
 > **v1.22 — 2026-05-12**: Add product-contract override handling for `minimum_unblock_allowed` runs. Formerly blocked capability probes can generate normal five-file packages when the minimum unblock decisions are assumed approved, but the package must preserve those dependencies as `RESOLVED BLOCKER` annotations and `review.html` must show resolved contract items. Add Cat3 `template_type` support and require concept-led packages to include extensibility notes for reusable entity/property/asset-set retargeting.
 > **v1.21 — 2026-05-12**: Fresh `/goal` generation writes actual five-file packages under `runs/<run_id>/activity_packages/<base_activity_id>/` with clean `activity_id` values. `activities/<activity_id>/` is reserved for canonical/promoted packages and explicit checked-package enrichment; run-local paths distinguish reruns without suffixing IDs.
 > **v1.20 — 2026-05-11**: Run review dashboards must support in-file preview for every linked `.md`/`.yaml`/`.txt` so reviewers can read package files (spec.md, prod.md, tag_block.yaml, recap/dashboard templates, blocked briefs, blocked design previews, run manifest, review notes) inline. The generator embeds raw file content as hidden `<template>` elements; a dedicated preview `<dialog>` renders Markdown client-side and shows YAML/text in a preformatted block. Plain click previews; modifier-click and an "Open in new tab" link still navigate. See `review_dashboard.md` §"In-file preview" for the full contract.
@@ -111,6 +112,7 @@ Asset requirement row fields:
 | `requiredness` | Yes | `required`, `optional`, or `fallback`. |
 | `generation_timing` | Yes | `pre_generated`, `runtime_generated`, `display_existing`, or `none`. |
 | `use_step` | Yes | Exact intended use point, for example `prod.step_2` or `prod.step_3.round_1`. |
+| `display_location` | Yes when shown on screen | Screen region or UI slot, for example `center_card`, `side_hint_panel`, `full_screen_canvas`, or `reward_strip`. |
 | `purpose` | Yes | Why the asset exists in the activity loop. |
 | `prompt_en` | Required for generated assets | English image-generation prompt that can be used directly by an asset pipeline. |
 | `source` | Required for existing/displayed assets | Existing asset library, approved reference set, or source description when no generation prompt is needed. |
@@ -166,6 +168,7 @@ adaptation_brief:
         requiredness: <required|optional|fallback>
         generation_timing: <pre_generated|runtime_generated|display_existing|none>
         use_step: "<where the asset appears, e.g. prod.step_2>"
+        display_location: "<screen slot / region where the asset appears>"
         prompt_en: "<directly usable English image prompt, if generated>"
         source: "<existing source or approved library ref, if not generated>"
         display_behavior: "<how screen uses it>"
@@ -634,7 +637,7 @@ The five files are:
 [celebration first, then naturally names the Key Concepts the child explored; include child responses, AI follow-up, and Screen]
 ```
 
-`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`. For concept-led assignments, include an `## Adaptation Rationale` section before the scorecard summarizing the Phase 0 brief: core promise, canonical mechanic, input mode, readiness, trigger condition, mapping use, asset dependency, product-capability flags, scaffold fit, and assumptions. When `product_contract_override=minimum_unblock_allowed` applies, include `## Resolved Product Contract Notes` before the scorecard and list every formerly blocking dependency. When the concept can be reused with other entities, properties, or asset sets, include `## Extensibility Notes` before the scorecard with concrete reusable slots and retargeting guidance. When `asset_dependency.policy` is not `no_assets`, also include an `## Asset Brief` section before the scorecard with one row per asset requirement: `asset_id`, `asset_type`, requiredness, generation timing, use step, purpose, `prompt_en` or source, display behavior, fallback behavior, and safety constraints. Keep it concise, but not skeletal: include enough specifics that a reviewer can identify what makes this activity different from a generic template.
+`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`. For concept-led assignments, include an `## Adaptation Rationale` section before the scorecard summarizing the Phase 0 brief: core promise, canonical mechanic, input mode, readiness, trigger condition, mapping use, asset dependency, product-capability flags, scaffold fit, and assumptions. When `product_contract_override=minimum_unblock_allowed` applies, include `## Resolved Product Contract Notes` before the scorecard and list every formerly blocking dependency. When the concept can be reused with other entities, properties, or asset sets, include `## Extensibility Notes` before the scorecard with concrete reusable slots and retargeting guidance. When `asset_dependency.policy` is not `no_assets`, also include an `## Asset Brief` section before the scorecard with one row per asset requirement: `asset_id`, `asset_type`, requiredness, generation timing, use step, display location, purpose, `prompt_en` or source, display behavior, fallback behavior, and safety constraints. Add `## Asset Usage Timeline` before the scorecard for any prebuilt, displayed, or runtime-generated image dependency; each row must make it easy to see the asset ID, whether it is prebuilt or runtime-generated, exactly when it is loaded/generated, where it appears on screen, which step/round uses it, the prompt/source summary, whether it persists or is hidden, and the fallback. Keep it concise, but not skeletal: include enough specifics that a reviewer can identify what makes this activity different from a generic template.
 
 ### Format Rules
 
@@ -647,7 +650,7 @@ The five files are:
 - **Closing speech** must celebrate FIRST, then naturally name Key Concepts. Concepts feel like praise, not vocabulary lessons.
 - **All AI dialogue is in English.** Use age-appropriate, warm, playful language.
 - **Scorecard placement**: `spec.md` includes the scorecard; `prod.md` does not.
-- **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `prod.md` references asset IDs and fallback behavior only. Do not generate or store image files as part of package generation unless a future asset pipeline explicitly requires it.
+- **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `spec.md` must include `## Asset Usage Timeline` for any prebuilt, displayed, or runtime-generated image dependency. `prod.md` references asset IDs, display location, and fallback behavior only. Do not generate or store image files as part of package generation unless a future asset pipeline explicitly requires it.
 - **Resolved blocker placement**: product-contract override runs use `RESOLVED BLOCKER` comments in `prod.md` where the formerly unsupported behavior affects a runtime beat. These comments are review annotations and do not make the package invalid when the run manifest records the override.
 - **Extensibility placement**: concept-led and parameterized packages should name reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, `{matched_shape}`, or approved asset-set IDs in `spec.md` `## Extensibility Notes`.
 - **Package alignment**: `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` must describe the same pillar, game style, focal attribute, badge, and next-step direction as `spec.md` and `prod.md`.

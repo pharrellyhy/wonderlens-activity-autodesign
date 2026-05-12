@@ -243,6 +243,7 @@ adaptation_brief:
         requiredness: required
         generation_timing: pre_generated
         use_step: "prod.step_2 and prod.step_3"
+        display_location: "center split-card comparison area"
         prompt_en: "Create animal picture-pair cards for children ages 4-6. Each pair should show two animals side by side with simple backgrounds, clear poses, visible features for comparison, and no text."
         source: "new_ai_generated_asset"
         display_behavior: "Each round displays two cards side by side while AI asks for one similarity or difference."
@@ -254,4 +255,4 @@ Why this mode fits:
 
 - The activity depends on visual assets, but the concept is not tied to a specific mapped entity.
 - The asset requirement is explicit, so the generator does not need to infer image needs from prose.
-- `prod.md` can reference `asset_id=animal_pair_cards_01`; `spec.md` owns the image prompt.
+- `prod.md` can reference `asset_id=animal_pair_cards_01` and the display location; `spec.md` owns the image prompt plus the asset usage timeline.

@@ -141,6 +141,13 @@ def normalize_text(value: Any) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def clip_text(value: Any, limit: int = 140) -> str:
+    text = normalize_text(value)
+    if len(text) <= limit:
+        return text
+    return text[: limit - 1].rstrip() + "..."
+
+
 def esc(value: Any) -> str:
     return html.escape(normalize_text(value), quote=True)
 
@@ -368,6 +375,111 @@ def link_html(link: Link) -> str:
     return f'<span class="missing">{esc(link.label)} missing</span>'
 
 
+def markdown_table_blocks(body: str) -> list[list[list[str]]]:
+    blocks: list[list[list[str]]] = []
+    current: list[list[str]] = []
+    for line in body.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("|") and stripped.endswith("|"):
+            cells = [cell.strip() for cell in stripped.strip("|").split("|")]
+            if cells and not all(re.fullmatch(r":?-{2,}:?", cell) for cell in cells):
+                current.append(cells)
+            continue
+        if current:
+            blocks.append(current)
+            current = []
+    if current:
+        blocks.append(current)
+    return blocks
+
+
+def asset_key(key: str) -> str:
+    normalized = re.sub(r"[^a-z0-9]+", "_", normalize_text(key).lower()).strip("_")
+    aliases = {
+        "prompt_en_source": "prompt_or_source",
+        "prompt_source": "prompt_or_source",
+        "purpose_en": "purpose",
+        "display_behavior_en": "display_behavior",
+        "fallback_behavior_en": "fallback_behavior",
+        "safety_constraints_en": "safety_constraints",
+        "display_slot": "display_location",
+        "screen_slot": "display_location",
+        "screen_location": "display_location",
+        "where_to_display": "display_location",
+        "where_displayed": "display_location",
+        "when_to_display": "use_step",
+        "when_displayed": "use_step",
+    }
+    return aliases.get(normalized, normalized)
+
+
+def normalize_asset_item(item: dict[str, Any]) -> dict[str, str]:
+    fields = {asset_key(key): normalize_text(value) for key, value in item.items() if normalize_text(value)}
+    prompt_or_source = (
+        fields.get("prompt_or_source")
+        or fields.get("prompt_en")
+        or fields.get("source")
+        or fields.get("prompt")
+        or ""
+    )
+    return {
+        "asset_id": fields.get("asset_id", ""),
+        "asset_type": fields.get("asset_type", ""),
+        "requiredness": fields.get("requiredness", ""),
+        "generation_timing": fields.get("generation_timing", ""),
+        "use_step": fields.get("use_step", ""),
+        "display_location": fields.get("display_location", ""),
+        "purpose": fields.get("purpose", ""),
+        "prompt_or_source": prompt_or_source,
+        "display_behavior": fields.get("display_behavior", ""),
+        "fallback_behavior": fields.get("fallback_behavior", ""),
+    }
+
+
+def asset_usage_from_spec(spec_text: str) -> list[dict[str, str]]:
+    body = section(spec_text, "Asset Usage Timeline") or section(spec_text, "Asset Brief")
+    if not body:
+        return []
+    assets: list[dict[str, str]] = []
+    for block in markdown_table_blocks(body):
+        if not block:
+            continue
+        header = [asset_key(cell) for cell in block[0]]
+        if "asset_id" in header and len(header) > 2:
+            for row in block[1:]:
+                fields = {header[index]: row[index] for index in range(min(len(header), len(row)))}
+                asset = normalize_asset_item(fields)
+                if asset["asset_id"]:
+                    assets.append(asset)
+            continue
+        if all(len(row) == 2 for row in block):
+            current: dict[str, str] = {}
+            for key_cell, value in block:
+                key = asset_key(key_cell)
+                if key == "asset_id" and current.get("asset_id"):
+                    assets.append(normalize_asset_item(current))
+                    current = {}
+                current[key] = value
+            asset = normalize_asset_item(current)
+            if asset["asset_id"]:
+                assets.append(asset)
+    return assets
+
+
+def asset_usage_from_brief(brief: dict[str, Any]) -> list[dict[str, str]]:
+    dependency = brief.get("adaptation_brief", {}).get("asset_dependency", {})
+    if not isinstance(dependency, dict):
+        return []
+    assets = dependency.get("assets", [])
+    if not isinstance(assets, list):
+        return []
+    return [
+        asset
+        for asset in (normalize_asset_item(item) for item in assets if isinstance(item, dict))
+        if asset["asset_id"]
+    ]
+
+
 def asset_policy_from_spec(spec_text: str) -> str:
     """Derive an asset_policy enum value from spec.md when assignment/brief don't carry it.
 
@@ -376,29 +488,20 @@ def asset_policy_from_spec(spec_text: str) -> str:
     `runtime_generated`; otherwise `required_prebuilt`.
     """
 
-    body = section(spec_text, "Asset Brief")
-    if not body:
+    assets = asset_usage_from_spec(spec_text)
+    if not assets:
         return "no_assets"
-    fields: dict[str, str] = {}
-    for line in body.splitlines():
-        match = re.match(r"^\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*$", line)
-        if not match:
-            continue
-        key = match.group(1).strip().lower()
-        value = match.group(2).strip().lower()
-        if key in {"field", "key", "---", ":---", "---:"} or value in {"value", "---"}:
-            continue
-        # Keep the first occurrence (covers the first asset in a multi-asset brief).
-        fields.setdefault(key, value)
-    requiredness = fields.get("requiredness", "")
-    source = fields.get("source", "")
+    first = assets[0]
+    requiredness = first.get("requiredness", "").lower()
+    source = first.get("prompt_or_source", "").lower()
+    timing = first.get("generation_timing", "").lower()
     if requiredness == "optional":
         return "optional_support"
     if requiredness == "required":
-        if any(token in source for token in ("runtime_generated", "new_ai_generated", "ai_generated")):
+        if "runtime_generated" in timing or any(token in source for token in ("runtime_generated", "new_ai_generated", "ai_generated")):
             return "runtime_generated"
         return "required_prebuilt"
-    return "optional_support" if fields else "no_assets"
+    return "optional_support"
 
 
 def collect_asset_policy(
@@ -443,6 +546,14 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         section(spec_text, "Extensibility Notes"),
         limit=10,
     )
+    manifest_asset_usage: list[dict[str, str]] = []
+    if isinstance(entry.get("asset_usage"), list):
+        for item in entry["asset_usage"]:
+            if isinstance(item, dict):
+                asset = normalize_asset_item(item)
+                if asset["asset_id"]:
+                    manifest_asset_usage.append(asset)
+    asset_usage = manifest_asset_usage or asset_usage_from_spec(spec_text) or asset_usage_from_brief(brief)
     package = {
         "kind": kind,
         "assignment_index": entry.get("assignment_index", ""),
@@ -466,6 +577,7 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         "entity_binding": normalize_text(tag.get("entity_binding") or "unknown"),
         "parameter_slots": placeholder_tokens(tag, spec_text),
         "asset_policy": collect_asset_policy(entry, assignment_fields, brief, spec_text),
+        "asset_usage": asset_usage,
         "changed_files": compact_list(entry.get("changed_files"), limit=8),
         "key_concepts": compact_list(tag.get("key_concepts"), limit=4),
         "related_concepts": compact_list(tag.get("related_concepts"), limit=5),
@@ -900,6 +1012,30 @@ def extensibility_rows(package: dict[str, Any]) -> str:
     )
 
 
+def asset_usage_table(package: dict[str, Any]) -> str:
+    rows = []
+    for asset in package.get("asset_usage", []):
+        display_context = asset.get("display_location") or asset.get("display_behavior") or "Not specified"
+        rows.append(
+            "<tr>"
+            f"<td><strong>{esc(asset.get('asset_id') or 'Unknown')}</strong><br><span class=\"muted\">{esc(asset.get('asset_type') or 'image/support')}</span></td>"
+            f"<td>{group_badge(asset.get('generation_timing') or 'unknown', 'asset')}</td>"
+            f"<td>{esc(asset.get('use_step') or 'Not specified')}</td>"
+            f"<td>{esc(display_context)}</td>"
+            f"<td>{esc(asset.get('purpose') or asset.get('display_behavior') or 'Not specified')}</td>"
+            f"<td>{esc(clip_text(asset.get('prompt_or_source') or 'Not specified'))}</td>"
+            f"<td>{esc(asset.get('fallback_behavior') or 'Not specified')}</td>"
+            "</tr>"
+        )
+    if not rows:
+        return '<p class="muted">No image, card, line-art, icon, overlay, or displayed reference asset recorded for this package.</p>'
+    return (
+        '<div class="table-wrap"><table class="asset-usage-table">'
+        "<thead><tr><th>Asset</th><th>Timing</th><th>When</th><th>Where</th><th>Use</th><th>Prompt/source</th><th>Fallback</th></tr></thead>"
+        f"<tbody>{''.join(rows)}</tbody></table></div>"
+    )
+
+
 def package_detail_content(
     package: dict[str, Any],
     link_bits: str,
@@ -931,6 +1067,11 @@ def package_detail_content(
   <section class="dialog-wide">
     <h4>Runtime Beats</h4>
     <ol class="beat-list">{runtime or '<li>Unknown</li>'}</ol>
+  </section>
+  <section class="dialog-wide">
+    <h4>Asset Usage Timeline</h4>
+    <p class="muted">Image and display dependencies are tracked by asset ID, generation timing, step/round, screen location or display behavior, use, and fallback.</p>
+    {asset_usage_table(package)}
   </section>
   <section>
     <h4>Learning Tags</h4>
@@ -979,6 +1120,7 @@ def package_card(package: dict[str, Any]) -> str:
             "game_style",
             "focal_attribute",
             "asset_policy",
+            "asset_usage",
             "reviewer",
             "review_reason",
             "resolved_blocker_types",
@@ -1028,6 +1170,7 @@ def package_card(package: dict[str, Any]) -> str:
   <div class="inline-fields">
     <div><span>Preview label</span><strong>{esc(package['preview_label'] or 'Unknown')}</strong></div>
     <div><span>Runtime beats</span><strong>{esc(len(package['runtime_beats']))}</strong></div>
+    <div><span>Image uses</span><strong>{esc(len(package['asset_usage']))}</strong></div>
     <div><span>Resolved blockers</span><strong>{esc(len(package['resolved_blockers']))}</strong></div>
     <div><span>Reusable slots</span><strong>{esc(len(package['parameter_slots']))}</strong></div>
   </div>
@@ -2190,6 +2333,8 @@ tbody tr:last-child td { border-bottom: none; }
   max-width: 86ch;
 }
 .scorecard-wrap table { min-width: 760px; }
+.asset-usage-table { min-width: 1120px; }
+.asset-usage-table td:first-child strong { display: block; font-family: var(--mono-stack); font-size: 11px; color: var(--text); }
 .scorecard-table td:first-child, .criteria-table td:first-child {
   width: 38px;
   color: var(--muted);
@@ -2922,6 +3067,10 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         scorecard_rows(read_text(repo_root / normalize_text(entry.get("activity_path")) / "spec.md"))
         for entry in package_entries
     ]
+    asset_usage_sets = [
+        asset_usage_from_spec(read_text(repo_root / normalize_text(entry.get("activity_path")) / "spec.md"))
+        for entry in package_entries
+    ]
     criteria_pos = text.find('id="review-criteria"')
     reason_pos = text.find('id="blocking-reason-guide"')
     activity_pos = text.find('id="activity-details"')
@@ -2994,6 +3143,12 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         and "badge-asset" in text
         and "badge-category" in text
         and "badge-reviewer" in text,
+        "asset_usage_timeline": expected_packages == 0
+        or (
+            text.count("Asset Usage Timeline") >= expected_packages
+            and "Image uses" in text
+            and (not any(asset_usage_sets) or "asset-usage-table" in text)
+        ),
         "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks validity" in text and "Minimum to unblock" in text,
         "resolved_blocker_annotations": not has_resolved_blockers
         or (

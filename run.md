@@ -168,7 +168,8 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
    - With the override, treat the row as generation-ready. Save the brief under `adaptation_briefs/`, set `readiness=generate_with_assumptions`, and copy every former missing decision into `resolved_blockers`. In `spec.md`, add `## Resolved Product Contract Notes`; in `prod.md`, annotate affected beats with `> RESOLVED BLOCKER: <reason> -- <formerly needed decision now allowed by product contract>`. Do not create a blocked brief, do not add `blocked_assignments`, and do not count the row as blocked.
 7. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
 8. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
-9. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
+9. For any prebuilt, displayed, or runtime-generated image dependency, also create `spec.md` `## Asset Usage Timeline` rows that make the image flow reviewable: `asset_id`, prebuilt/runtime timing, load or generation moment, first display step, visible step/round range, screen location, interaction/use, prompt/source summary, persistence or hide behavior, and fallback.
+10. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
 
 ### Step 1.5: Load entity mapping (when required or available)
 
@@ -227,7 +228,7 @@ runs/<run_id>/activity_packages/<activity_id>/
 
 Rules:
 
-- `spec.md`: author/reviewer reference with premise, target, rationale, selection trigger, pillar/game style, optional `## Adaptation Rationale`, optional `## Asset Brief`, and `## Self-Evaluation Scorecard`.
+- `spec.md`: author/reviewer reference with premise, target, rationale, selection trigger, pillar/game style, optional `## Adaptation Rationale`, optional `## Asset Brief`, optional `## Asset Usage Timeline`, and `## Self-Evaluation Scorecard`.
 - `prod.md`: runtime prompt guidance with Basic Info, Activity Overview, and full Interaction Flow. It must not contain a scorecard.
 - `tag_block.yaml`: structured metadata matching `activities/_schema/tag_block.schema.json`.
 - `recap.template.yaml`: child recap payload using the same focal attribute, role/badge, and next-step direction.
@@ -244,7 +245,7 @@ Runtime completeness rule:
 - Each Step 3 round must be distinct: named objective, different clue/challenge/action, child responses that exercise the canonical mechanic, branch-specific follow-ups, and a screen-state change.
 - Generic warmth is insufficient. Fail and repair lines like "Great job," "try again," or "screen updates" when they are not tied to specific evidence, consequence, progress, or payoff.
 - If `start=warm+cold`, document the bridge logic in `spec.md`; the runtime `prod.md` should still have a single converged Step 1 unless the assignment explicitly asks for both starts at runtime.
-- Do not generate image files as part of this loop. When an activity uses AI-generated or displayed images, author the dependency in `spec.md` `## Asset Brief` and reference the stable `asset_id` from the relevant screen description in `prod.md`.
+- Do not generate image files as part of this loop. When an activity uses AI-generated or displayed images, author the dependency in `spec.md` `## Asset Brief`, add a skimmable `## Asset Usage Timeline`, and reference the stable `asset_id` plus display location from the relevant screen description in `prod.md`.
 
 ### Step 4: Self-evaluate and repair
 
@@ -287,8 +288,10 @@ Before logging or committing, verify:
 - `spec.md` contains exactly one `## Self-Evaluation Scorecard`.
 - Concept-led packages with `generate_with_assumptions` include `spec.md` `## Adaptation Rationale`.
 - Packages whose adaptation brief has `asset_dependency.policy` other than `no_assets` include `spec.md` `## Asset Brief`.
+- Packages with image/display dependencies include `spec.md` `## Asset Usage Timeline`.
 - Every `asset_id` referenced in `prod.md` is defined in `spec.md` `## Asset Brief`.
-- Required or optional asset rows include `asset_type`, requiredness, generation timing, use step, display behavior, and fallback behavior; generated assets also include a directly usable `prompt_en`, while existing/displayed assets include a `source` or approved source description.
+- Every image usage point in the timeline has a step/round, timing, display location, use, prompt/source summary, and fallback.
+- Required or optional asset rows include `asset_type`, requiredness, generation timing, use step, display location, display behavior, and fallback behavior; generated assets also include a directly usable `prompt_en`, while existing/displayed assets include a `source` or approved source description.
 - `prod.md` Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic`.
 - `prod.md` contains zero `## Self-Evaluation Scorecard` sections.
 - `runs/<run_id>/review_notes.md` contains independent reviewer-agent evidence for the package, including final PASS status or the unresolved issue that prevents logging.
@@ -326,6 +329,14 @@ For every generated package:
   generation_policy: fresh_run_local_package
   resolved_blockers: [] # omit or leave empty unless product_contract_override allowed former blockers
   resolved_blocker_types: []
+  asset_usage:
+    - asset_id: "<image/card/line-art/ui asset id>"
+      generation_timing: "<pre_generated|runtime_generated|display_existing>"
+      use_step: "<prod step/round range>"
+      display_location: "<screen region or UI slot>"
+      prompt_or_source: "<short prompt/source summary for reviewer traceability>"
+      display_behavior: "<how/when the asset appears and persists>"
+      fallback_behavior: "<what runtime does if unavailable>"
   extensibility_summary: "<how this activity can be retargeted, or why not>"
   extensibility_notes:
     - "<reusable entity/property/asset-set slot or limitation>"
@@ -349,7 +360,7 @@ This is a final-run step, not a per-assignment step. After every row from `assig
 runs/<run_id>/review.html
 ```
 
-This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, 10-dimension criteria and package scorecard results, resolved contract item handling, extensibility overview, blocked-preview handling, per-blocked-card `Minimum To Unblock` sections below capability flags, blocked-preview scorecards, link rules, validation requirements, the editorial design language in `review_dashboard.md` §"Design language" (warm-paper palette, indigo accent, serif display title and dialog headings, hairline-divided panels, tabular numerals, accent rails on cards, status-dot run indicator), and the in-file preview behavior in `review_dashboard.md` §"In-file preview" (embedded `<template>` content, dedicated preview `<dialog>`, dependency-free Markdown rendering, modifier-click bypass, "Open in new tab" escape hatch).
+This file is for human review only. It is a derived artifact, not a source of truth. Follow `review_dashboard.md` for the dashboard contract, including source inputs, concise clickable cards for generated/enriched/audited packages, popup/detail behavior, grouped tag colors, asset usage timelines for image/display dependencies, 10-dimension criteria and package scorecard results, resolved contract item handling, extensibility overview, blocked-preview handling, per-blocked-card `Minimum To Unblock` sections below capability flags, blocked-preview scorecards, link rules, validation requirements, the editorial design language in `review_dashboard.md` §"Design language" (warm-paper palette, indigo accent, serif display title and dialog headings, hairline-divided panels, tabular numerals, accent rails on cards, status-dot run indicator), and the in-file preview behavior in `review_dashboard.md` §"In-file preview" (embedded `<template>` content, dedicated preview `<dialog>`, dependency-free Markdown rendering, modifier-click bypass, "Open in new tab" escape hatch).
 
 Generation command:
 
@@ -364,7 +375,7 @@ After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for `python3 scripts/generate_run_review.py runs/<run_id>` and `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
-3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, resolved contract items when resolved blockers exist, extensibility overview when extensibility notes exist, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
+3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, asset usage timelines when image/display dependencies exist, resolved contract items when resolved blockers exist, extensibility overview when extensibility notes exist, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
 
 ### Step 7: Mark generated assignment complete
 

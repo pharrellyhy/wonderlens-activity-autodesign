@@ -78,6 +78,7 @@ Asset requirements row:
 | requiredness | required |
 | generation_timing | pre_generated |
 | use_step | prod.step_2; prod.step_3.round_1-3 |
+| display_location | full_screen_card |
 | purpose | Give the child visible animal outline evidence to inspect. |
 | prompt_en | Create a set of animal silhouette cards for children ages 4-6. Use a plain white background, clear black silhouettes, recognizable outlines for common animals such as a cat, bird, and fish, no text, and a non-scary style. |
 | source | new_ai_generated_asset |
@@ -100,7 +101,7 @@ Expected handling:
 - Product capability flags: `requires_assets`, `requires_asset_display`
 - Asset dependency: `required_prebuilt`, with a required `card_set`
 - Generation readiness: `generate_with_assumptions` if asset display is supported and fallback is explicit; otherwise `blocked_until_product_decision`
-- Package behavior: `spec.md` includes `## Asset Brief`; `prod.md` references `asset_id=shadow_card_set_01` and the fallback, not the raw prompt.
+- Package behavior: `spec.md` includes `## Asset Brief` and `## Asset Usage Timeline`; `prod.md` references `asset_id=shadow_card_set_01`, the display location, and the fallback, not the raw prompt.
 
 ## 4. Entity Mapping YAML
 

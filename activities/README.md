@@ -36,7 +36,8 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 - `prod.md` must not contain `## Self-Evaluation Scorecard`.
 - `spec.md` must contain exactly one `## Self-Evaluation Scorecard`.
 - If an activity references AI-generated images, prebuilt card sets, line art, icons, overlays, or displayed reference images, `spec.md` must include `## Asset Brief` before the scorecard.
-- `prod.md` may reference stable `asset_id` values and fallback behavior, but must not include raw image-generation prompts.
+- If an activity references AI-generated images, prebuilt card sets, line art, icons, overlays, or displayed reference images, `spec.md` must also include `## Asset Usage Timeline` before the scorecard so reviewers can track where and when each asset is generated, loaded, displayed, used, persisted or hidden, and replaced by fallback.
+- `prod.md` may reference stable `asset_id` values, display locations, and fallback behavior, but must not include raw image-generation prompts.
 - Every Step 3 round in `prod.md` must be fully executable: AI dialogue, child response branches, AI follow-up branches, and screen state.
 - Steps 1, 2, 4, and 5 must also be executable enough for the runtime prompt composer: concrete AI dialogue, branch-specific follow-ups where applicable, and specific screen states.
 - Do not use condensed placeholders such as "same structure," "AI gives a riddle," "later rounds follow," or one-line summaries in migrated `prod.md` files.
@@ -58,6 +59,7 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 | `requiredness` | `required`, `optional`, or `fallback`. |
 | `generation_timing` | `pre_generated`, `runtime_generated`, `display_existing`, or `none`. |
 | `use_step` | Exact step/round where the asset appears. |
+| `display_location` | Screen region or UI slot where the asset appears. |
 | `prompt_en` | Direct English generation prompt for generated assets. |
 | `source` | Existing asset library, approved reference set, or source description when no generation prompt is needed. |
 | `display_behavior` | How the runtime should present it. |
@@ -65,6 +67,8 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 | `safety_constraints` | Visual safety and content constraints. |
 
 Current package generation does not create image files. A separate asset pipeline may later consume the prompts or source descriptions.
+
+`## Asset Usage Timeline` should restate the operational view in a compact table: `asset_id`, `generation_timing`, load/generate moment, first display step, visible step/round range, display location, interaction/use, persistence/hide behavior, and fallback. This section is optimized for `review.html`, not for asset generation.
 
 ## Canonical vocabulary
 

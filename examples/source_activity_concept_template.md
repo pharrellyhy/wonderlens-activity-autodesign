@@ -60,6 +60,7 @@ Copy this block once per asset or asset set.
 | requiredness | <required|optional|fallback> |
 | generation_timing | <pre_generated|runtime_generated|display_existing|none> |
 | use_step | <exact use point, such as prod.step_2 or prod.step_3.round_1-3> |
+| display_location | <screen region or UI slot, such as center_card, side_hint_panel, full_screen_canvas, or reward_strip> |
 | purpose_en | <why this asset exists in the activity loop> |
 | prompt_en | <direct English image-generation prompt, required for generated assets> |
 | source | <new_ai_generated_asset|existing_asset_library|approved_reference_set|future_runtime_image_generation|none> |
@@ -144,6 +145,7 @@ Before adding the assignment row:
 - `activity_concept`, `normalized_description_en`, `mechanic`, `category`, `asset_policy`, and `trigger_condition_en` are filled.
 - Any non-`no_assets` concept has at least one asset section or a clear reason to block.
 - Every generated asset has a direct English `prompt_en`.
-- Every shown asset has `display_behavior_en` and `fallback_behavior_en`.
+- Every shown asset has `use_step`, `display_location`, `display_behavior_en`, and `fallback_behavior_en`.
+- Every image/card/line-art/UI asset can be copied into an `Asset Usage Timeline`: when it is generated or loaded, where it appears, how the child uses it, whether it persists or hides, and what fallback replaces it.
 - `runtime_generated`, material workflow, motion safety, OCR, pose, and before/after state dependencies are declared in `product_capabilities`.
 - The assignment row is English-only.
