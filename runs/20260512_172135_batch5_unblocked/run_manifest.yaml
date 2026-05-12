@@ -34,6 +34,7 @@ summary:
   failed_count: 0
 outputs:
   review_dashboard: runs/20260512_172135_batch5_unblocked/review.html
+  review_dashboard_zh: runs/20260512_172135_batch5_unblocked/review.zh.html
   enriched_activities: []
   audited_activities: []
   generated_activities:
