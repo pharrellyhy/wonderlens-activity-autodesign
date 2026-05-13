@@ -65,6 +65,14 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
             visible_type_count = cells[1].count("resolved-blocker-chip")
             self.assertEqual(str(visible_type_count), re.sub(r"<.*?>", "", cells[2]))
 
+    def test_runtime_beats_have_visual_map(self):
+        self.assertGreaterEqual(self.html.count('class="runtime-map"'), 40)
+        self.assertIn('class="runtime-map-node', self.html)
+        self.assertIn('class="runtime-lane runtime-lane-ai"', self.html)
+        self.assertIn('class="runtime-lane runtime-lane-followup"', self.html)
+        self.assertIn('class="branch-chip branch-chip-ideal"', self.html)
+        self.assertIn('class="screen-strip"', self.html)
+
 
 if __name__ == "__main__":
     unittest.main()

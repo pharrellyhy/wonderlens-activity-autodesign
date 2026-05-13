@@ -1180,6 +1180,7 @@ def asset_metric_strip(package: dict[str, Any]) -> str:
 def package_detail_content(
     package: dict[str, Any],
     link_bits: str,
+    runtime_map: str,
     runtime: str,
     details: str,
     changed: str,
@@ -1207,6 +1208,8 @@ def package_detail_content(
   </section>
   <section class="dialog-wide">
     <h4>Runtime Beats</h4>
+    {runtime_map}
+    <div class="runtime-source-label">Extracted source detail</div>
     <ol class="beat-list">{runtime or '<li>Unknown</li>'}</ol>
   </section>
   <section class="dialog-wide">
@@ -1290,13 +1293,14 @@ def package_card(package: dict[str, Any]) -> str:
         }
     )
     link_bits = " ".join(link_html(link) for link in package["links"])
+    runtime_map = runtime_beat_map(package["runtime_beats"])
     runtime = "".join(runtime_beat_html(beat) for beat in package["runtime_beats"])
     details = "".join(f"<li>{esc(note)}</li>" for note in package["detail_notes"])
     changed = value_list(package["changed_files"], empty="No files changed")
     scorecard = scorecard_table(package["scorecard_rows"])
     modal_id = dom_id("activity-detail", package["activity_id"], package["assignment_index"])
     tags = package_tags(package)
-    detail = package_detail_content(package, link_bits, runtime, details, changed, scorecard)
+    detail = package_detail_content(package, link_bits, runtime_map, runtime, details, changed, scorecard)
     summary = package["intro"] or package["brief_description"] or package["premise"]
     return f"""
 <article class="activity-card clickable-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="detail-dialog" data-detail-template="{esc(modal_id)}" data-detail-title="{esc(package['activity_name'])}" {attrs}>
@@ -1324,6 +1328,68 @@ def package_card(package: dict[str, Any]) -> str:
   </div>
   <template id="{esc(modal_id)}">{detail}</template>
 </article>"""
+
+
+def runtime_beat_kind(title: str) -> str:
+    value = normalize_text(title).lower()
+    if "round" in value:
+        return "round"
+    if "step 1" in value or "warm" in value or "cold" in value:
+        return "setup"
+    if "step 2" in value or "bridge" in value or "invite" in value:
+        return "prompt"
+    if "step 4" in value or "magic" in value or "celebrat" in value:
+        return "payoff"
+    if "step 5" in value or "closing" in value or "wrap" in value:
+        return "close"
+    return "beat"
+
+
+def runtime_branch_chips(child_text: str) -> str:
+    text = normalize_text(child_text)
+    if not text:
+        return '<span class="branch-chip branch-chip-observed"><span>Child</span>Unknown</span>'
+    chips = []
+    labels = [
+        ("Ideal", "ideal"),
+        ("Unexpected", "unexpected"),
+        ("No response", "no-response"),
+    ]
+    next_labels = "|".join(re.escape(label) for label, _ in labels)
+    for label, token in labels:
+        pattern = rf"(?:^|\|\s*){re.escape(label)}:\s*(.*?)(?=\s*\|\s*(?:{next_labels}):|$)"
+        match = re.search(pattern, text, flags=re.IGNORECASE)
+        if match:
+            chips.append(
+                f'<span class="branch-chip branch-chip-{token}"><span>{esc(label)}</span>{esc(clip_text(match.group(1), 92) or "Recorded")}</span>'
+            )
+    if chips:
+        return "".join(chips)
+    return f'<span class="branch-chip branch-chip-observed"><span>Child</span>{esc(clip_text(text, 140))}</span>'
+
+
+def runtime_beat_map(beats: list[dict[str, str]]) -> str:
+    if not beats:
+        return '<p class="muted">No visual runtime map available.</p>'
+    nodes = []
+    for index, beat in enumerate(beats, start=1):
+        title = beat.get("title") or "Runtime beat"
+        kind = runtime_beat_kind(title)
+        nodes.append(
+            f"""<li class="runtime-map-node runtime-map-node-{esc(kind)}">
+  <div class="runtime-step-marker"><span>{index:02d}</span></div>
+  <div class="runtime-step-body">
+    <div class="runtime-map-head"><strong>{esc(title)}</strong><span>{esc(kind)}</span></div>
+    <div class="runtime-lanes">
+      <div class="runtime-lane runtime-lane-ai"><span>AI</span><p>{esc(clip_text(beat.get("ai") or "Unknown", 170))}</p></div>
+      <div class="runtime-branches"><span>Child branches</span><div>{runtime_branch_chips(beat.get("child", ""))}</div></div>
+      <div class="runtime-lane runtime-lane-followup"><span>Follow-up</span><p>{esc(clip_text(beat.get("followup") or "Unknown", 150))}</p></div>
+    </div>
+    <div class="screen-strip"><span>Screen</span><p>{esc(clip_text(beat.get("screen") or "Unknown", 180))}</p></div>
+  </div>
+</li>"""
+        )
+    return f'<ol class="runtime-map">{"".join(nodes)}</ol>'
 
 
 def runtime_beat_html(beat: dict[str, str]) -> str:
@@ -1472,6 +1538,7 @@ def blocked_detail_content(
     decisions: str,
     flag_badges: str,
     minimum_unblock: str,
+    preview_runtime_map: str,
     preview_runtime: str,
     comments: str,
     marker_summary: str,
@@ -1515,6 +1582,8 @@ def blocked_detail_content(
   </section>
   <section class="dialog-wide">
     <h4>Constrained Preview Beats</h4>
+    {preview_runtime_map}
+    <div class="runtime-source-label">Extracted source detail</div>
     <ol class="beat-list">{preview_runtime}</ol>
   </section>
   <section class="dialog-wide">
@@ -1577,6 +1646,7 @@ def blocked_card(item: dict[str, Any]) -> str:
         design_status = "Constrained design preview available; invalid until blockers are resolved."
     else:
         design_status = "No constrained design preview was recorded for this legacy run; future blocked assignments should include detailed steps with inline blocked-element comments."
+    preview_runtime_map = runtime_beat_map(item["preview_beats"])
     preview_runtime = "".join(runtime_beat_html(beat) for beat in item["preview_beats"])
     preview_runtime = preview_runtime or "<li>No constrained runtime beats were recorded.</li>"
     comments = blocked_comment_rows(item["blocked_comments"])
@@ -1590,6 +1660,7 @@ def blocked_card(item: dict[str, Any]) -> str:
         decisions,
         flag_badges,
         minimum_unblock,
+        preview_runtime_map,
         preview_runtime,
         comments,
         marker_summary,
@@ -2385,6 +2456,140 @@ ol, ul { margin: 0; padding-left: 20px; }
   color: var(--accent-ink);
   overflow-wrap: anywhere;
 }
+.runtime-map {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  margin: 2px 0 14px;
+  list-style: none;
+  border-top: 1px solid var(--hairline);
+}
+.runtime-map-node {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.runtime-step-marker {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  min-height: 100%;
+}
+.runtime-step-marker::after {
+  content: "";
+  width: 1px;
+  min-height: 100%;
+  margin-top: 6px;
+  background: var(--hairline);
+}
+.runtime-step-marker span {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in oklch, var(--accent-line) 60%, var(--line));
+  background: var(--panel-raised);
+  color: var(--accent-ink);
+  font: 11px/1 var(--mono-stack);
+  font-variant-numeric: var(--tnum);
+}
+.runtime-step-body { min-width: 0; display: grid; gap: 9px; }
+.runtime-map-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.runtime-map-head strong {
+  min-width: 0;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 680;
+}
+.runtime-map-head span {
+  flex: 0 0 auto;
+  border-radius: var(--radius-sm);
+  padding: 2px 7px;
+  background: var(--neutral-tag-bg);
+  color: var(--neutral-tag-text);
+  font-size: 10px;
+  font-weight: 760;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.runtime-lanes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.16fr) minmax(0, 1fr);
+  gap: 8px;
+}
+.runtime-lane,
+.runtime-branches,
+.screen-strip {
+  min-width: 0;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklch, var(--panel-soft) 82%, var(--panel-raised));
+  padding: 8px 10px;
+}
+.runtime-lane > span,
+.runtime-branches > span,
+.screen-strip > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 760;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.runtime-lane p,
+.screen-strip p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.runtime-branches > div { display: flex; flex-wrap: wrap; gap: 5px; }
+.branch-chip {
+  display: inline-grid;
+  gap: 2px;
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  padding: 5px 7px;
+  color: var(--text-soft);
+  font-size: 12px;
+  line-height: 1.35;
+}
+.branch-chip span {
+  color: inherit;
+  font-size: 9.5px;
+  font-weight: 780;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.branch-chip-ideal { background: var(--green-bg); color: var(--green-text); }
+.branch-chip-unexpected { background: var(--amber-bg); color: var(--amber-text); }
+.branch-chip-no-response { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); }
+.branch-chip-observed { background: var(--accent-soft); color: var(--accent-ink); }
+.screen-strip {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 10px;
+  background: color-mix(in oklch, var(--teal-bg) 55%, var(--panel-raised));
+}
+.screen-strip > span { margin: 0; padding-top: 2px; color: var(--teal-text); }
+.runtime-source-label {
+  margin: 2px 0 6px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 760;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
 .beat-list { display: grid; gap: 0; padding-left: 0; list-style: none; counter-reset: beat; border-top: 1px solid var(--hairline); }
 .beat-list li {
   border-bottom: 1px solid var(--hairline);
@@ -2786,6 +2991,13 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   .metric:nth-child(2n) { border-right: none !important; }
   .metric:nth-last-child(-n+2) { border-bottom: none; }
   .side-nav, .sidebar-counts, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid { grid-template-columns: 1fr; }
+  .runtime-map-node, .runtime-lanes, .screen-strip { grid-template-columns: 1fr; }
+  .runtime-step-marker {
+    display: flex;
+    justify-content: flex-start;
+    min-height: 0;
+  }
+  .runtime-step-marker::after { display: none; }
   .minimum-unblock-row, .blocked-marker-row, .resolved-blocker-row { grid-template-columns: 1fr; }
   .meta-grid > div, .meta-grid.compact > div, .inline-fields > div { border-right: none !important; }
   .dialog-wide { grid-column: auto; }
@@ -3334,6 +3546,15 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         or (0 <= criteria_pos < reason_pos < activity_pos),
         "blocked_reason_types": text.count("blocked-reason-type") >= expected_blocked,
         "detailed_runtime_beats": "beat-field" in text and "AI" in text and "Child" in text and "Screen" in text,
+        "visual_runtime_beat_maps": expected_packages == 0
+        or (
+            text.count('class="runtime-map"') >= expected_packages
+            and "runtime-map-node" in text
+            and "runtime-lane-ai" in text
+            and "runtime-lane-followup" in text
+            and "branch-chip-ideal" in text
+            and "screen-strip" in text
+        ),
         "review_criteria": "Review Criteria" in text
         and "10-dimension rubric" in text
         and "Mechanic Fidelity + Scaffold Honesty" in text,
