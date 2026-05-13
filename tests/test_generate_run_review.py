@@ -1,5 +1,6 @@
 import importlib.util
 from pathlib import Path
+import re
 import sys
 import unittest
 
@@ -48,6 +49,21 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
         for label in expected_labels:
             with self.subTest(label=label):
                 self.assertIn(f">{label}</span>", self.html)
+
+    def test_resolved_contract_summary_counts_visible_types(self):
+        section = re.search(
+            r'id="resolved-contract-items".*?</section>', self.html, flags=re.S
+        )
+        self.assertIsNotNone(section)
+        section_html = section.group(0)
+        self.assertIn("<th>Type count</th>", section_html)
+        self.assertIn("<th>Resolved notes</th>", section_html)
+        for row in re.findall(r"<tr><td>.*?</tr>", section_html, flags=re.S):
+            cells = re.findall(r"<td>(.*?)</td>", row, flags=re.S)
+            if len(cells) != 4:
+                continue
+            visible_type_count = cells[1].count("resolved-blocker-chip")
+            self.assertEqual(str(visible_type_count), re.sub(r"<.*?>", "", cells[2]))
 
 
 if __name__ == "__main__":

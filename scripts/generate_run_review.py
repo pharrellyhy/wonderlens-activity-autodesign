@@ -1654,11 +1654,14 @@ def resolved_contract_summary(packages: list[dict[str, Any]]) -> str:
     rows = []
     for package in packages_with_items:
         chips = " ".join(reason_badge(label, "resolved-blocker-chip") for label in package["resolved_blocker_types"])
+        type_count = len(package["resolved_blocker_types"])
+        note_count = len(package["resolved_blockers"])
         rows.append(
             "<tr>"
             f"<td>{esc(package['activity_name'])}<br><span class=\"muted\">{esc(package['activity_id'])}</span></td>"
             f"<td>{chips}</td>"
-            f"<td>{esc(len(package['resolved_blockers']))}</td>"
+            f"<td>{esc(type_count)}</td>"
+            f"<td>{esc(note_count)}</td>"
             "</tr>"
         )
     return f"""
@@ -1666,7 +1669,7 @@ def resolved_contract_summary(packages: list[dict[str, Any]]) -> str:
     <div class="panel-head"><h2>Resolved Contract Items</h2></div>
     <div class="criteria-note">This run assumes the minimum unblock decisions are now part of the product contract. The activity detail dialogs still call out where those formerly blocking capabilities appear.</div>
     <div class="table-wrap"><table class="reason-guide-table">
-      <thead><tr><th>Activity</th><th>Resolved blocker types</th><th>Occurrences</th></tr></thead>
+      <thead><tr><th>Activity</th><th>Resolved blocker types</th><th>Type count</th><th>Resolved notes</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table></div>
   </section>
