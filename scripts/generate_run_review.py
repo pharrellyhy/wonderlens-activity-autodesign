@@ -620,6 +620,12 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         section(spec_text, "Resolved Product Contract Notes"),
         limit=20,
     )
+    declared_resolved_types = compact_list(entry.get("resolved_blocker_types"), limit=20)
+    inferred_resolved_types = [
+        label
+        for item in resolved_blockers
+        for label in classify_reason_text_labels(item)
+    ]
     extensibility_notes = compact_list(entry.get("extensibility_notes"), limit=10) or bullets_from_markdown(
         section(spec_text, "Extensibility Notes"),
         limit=10,
@@ -674,7 +680,7 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         "scorecard_rows": scorecard_rows(spec_text),
         "review_reason": normalize_text(entry.get("reason") or ""),
         "resolved_blockers": resolved_blockers,
-        "resolved_blocker_types": sorted({classify_reason_text(item) for item in resolved_blockers}),
+        "resolved_blocker_types": sorted(set(declared_resolved_types + inferred_resolved_types)),
         "extensibility_notes": extensibility_notes,
         "extensibility_summary": normalize_text(
             entry.get("extensibility_summary")
@@ -689,7 +695,14 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
 REASON_RULES: list[dict[str, Any]] = [
     {
         "label": "Runtime image generation",
-        "needles": ("runtime image generation", "requires_generated_image", "runtime_generated"),
+        "needles": (
+            "runtime image generation",
+            "runtime image",
+            "runtime-image",
+            "requires_generated_image",
+            "runtime_generated",
+            "no-image fallback",
+        ),
         "meaning": "The concept needs the product to generate child-facing images during the session.",
         "why": "The package cannot promise runtime artwork until generation safety, latency, content policy, and fallback behavior are approved.",
         "unblocks_when": "Product approves a runtime-image policy: latency cap, content-safety rules, and a declared fallback when generation fails or is unavailable. A simpler unblock is to declare no runtime generation and use only prebuilt assets.",
@@ -710,35 +723,67 @@ REASON_RULES: list[dict[str, Any]] = [
     },
     {
         "label": "UI state or progress memory",
-        "needles": ("requires_ui_state", "state storage", "progress memory", "resume/reset"),
+        "needles": (
+            "requires_ui_state",
+            "state storage",
+            "progress memory",
+            "state contract",
+            "per-round choices persist",
+            "stateless fallback",
+            "resume/reset",
+        ),
         "meaning": "The activity needs persistent progress, resume/reset behavior, or interactive screen state.",
         "why": "Designing rounds before the state model is defined risks creating flows the runtime cannot store, resume, or verify.",
         "unblocks_when": "Product declares the state model: what persists across rounds and sessions, resume/reset rules, and the stateless fallback used when storage is unavailable.",
     },
     {
         "label": "Prebuilt asset display",
-        "needles": ("requires_asset_display", "prebuilt asset", "asset library", "display contract"),
+        "needles": (
+            "requires_asset_display",
+            "prebuilt asset",
+            "asset library",
+            "asset-display contract",
+            "display contract",
+            "asset ids may be displayed",
+        ),
         "meaning": "The activity depends on approved cards, artworks, pose images, or other displayed assets.",
         "why": "The package needs known asset IDs, metadata, display rules, and fallbacks before it can claim what appears on screen.",
         "unblocks_when": "Product approves the required asset IDs with metadata and display rules, and the package documents a voice-only or no-display fallback when an asset is missing.",
     },
     {
         "label": "Motion safety",
-        "needles": ("requires_motion_safety", "movement policy", "space checks", "prohibited movements"),
+        "needles": (
+            "requires_motion_safety",
+            "movement policy",
+            "motion policy",
+            "space check",
+            "low-risk movement",
+            "prohibited motions",
+            "prohibited movements",
+        ),
         "meaning": "The child is asked to move their body or follow pose/action prompts.",
         "why": "Movement activities need age-safe constraints, caregiver gating, space checks, and prohibited movement rules before runtime dialogue is safe.",
         "unblocks_when": "Product approves an age-appropriate motion policy (allowed/prohibited movements, caregiver-present requirement, space-check prompt) or restricts the activity to low-risk gestures that match the existing safety contract.",
     },
     {
         "label": "Before/after evidence",
-        "needles": ("before_after_risk", "before/after", "parent confirmation", "infer completion"),
+        "needles": (
+            "before_after_risk",
+            "before/after",
+            "evidence policy",
+            "parent confirmation",
+            "self-report",
+            "visual verification",
+            "completion evidence",
+            "infer completion",
+        ),
         "meaning": "The product would need to compare a finished physical result with an earlier state or receive confirmation.",
         "why": "Without an evidence policy, the activity could overclaim that it can assess drawings, builds, cleanup, or craft completion.",
         "unblocks_when": "Product picks an evidence policy — caregiver confirmation, child self-report, or no completion verification at all (AI narrates progress without claiming evidence). Choosing 'no verification' is the smallest unblock.",
     },
     {
         "label": "OCR or text handling",
-        "needles": ("ocr_risk", "ocr", "text-aware", "reading level"),
+        "needles": ("ocr_risk", "ocr", "text-aware", "text policy", "speak text", "reading level"),
         "meaning": "The activity may need to read child writing, letters, words, or text content.",
         "why": "Text recognition and reading-level behavior need explicit capability, privacy, and fallback decisions before runtime beats can rely on them.",
         "unblocks_when": "Product picks a text-handling policy: approve OCR with privacy and reading-level rules, OR require the child to speak text aloud instead, OR declare no correctness verification of written text. The 'no verification' decision is the smallest unblock.",
@@ -781,14 +826,21 @@ def classify_block_reason(brief: dict[str, Any], manifest_reason: str) -> list[s
     return labels or [FALLBACK_REASON["label"]]
 
 
-def classify_reason_text(text: str) -> str:
+def classify_reason_text_labels(text: str) -> list[str]:
     primary_text = normalize_text(text).split("--", 1)[0]
+    labels: list[str] = []
     for candidate in (primary_text, text):
         haystack = normalize_text(candidate).lower()
         for rule in REASON_RULES:
             if any(str(needle).lower() in haystack for needle in rule["needles"]):
-                return str(rule["label"])
-    return FALLBACK_REASON["label"]
+                label = str(rule["label"])
+                if label not in labels:
+                    labels.append(label)
+    return labels or [FALLBACK_REASON["label"]]
+
+
+def classify_reason_text(text: str) -> str:
+    return classify_reason_text_labels(text)[0]
 
 
 def run_href(path: str) -> str:
@@ -1728,6 +1780,21 @@ def reviewer_summary(review_notes: str) -> str:
     return "".join(f'<article class="reviewer-card"><pre>{multiline(card)}</pre></article>' for card in cards)
 
 
+def reviewer_by_activity(review_notes: str) -> dict[str, str]:
+    body = section(review_notes, "Generated Package Review") + "\n\n" + section(review_notes, "Existing Package Enrichment Audit")
+    reviewers: dict[str, str] = {}
+    for line in body.splitlines():
+        if not line.startswith("- Reviewer "):
+            continue
+        match = re.match(r"- Reviewer\s+([^(`:]+)", line)
+        if not match:
+            continue
+        reviewer = normalize_text(match.group(1))
+        for activity_id in re.findall(r"`(concept_[^`]+)`", line):
+            reviewers[activity_id] = reviewer
+    return reviewers
+
+
 def residual_summary(review_notes: str) -> str:
     risk = section(review_notes, "Residual Risks") or section(review_notes, "Residual Risk")
     next_actions = section(review_notes, "Next Actions") or section(review_notes, "Next actions")
@@ -1753,6 +1820,12 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     enriched = [collect_package(repo_root, run_dir, entry, "Enriched") for entry in outputs.get("enriched_activities", [])]
     audited = [collect_package(repo_root, run_dir, entry, "Audited") for entry in outputs.get("audited_activities", [])]
     packages = generated + enriched + audited
+    review_notes = read_text(run_dir / "review_notes.md")
+    reviewers = reviewer_by_activity(review_notes)
+    for package in packages:
+        reviewer = reviewers.get(package["activity_id"])
+        if reviewer and css_token(package.get("reviewer")) in {"", "unknown", "n-a"}:
+            package["reviewer"] = reviewer
     results_by_activity = read_results(repo_root)
     for package in packages:
         result = results_by_activity.get(package["activity_path"], {}) or results_by_activity.get(package["activity_id"], {})
@@ -1765,7 +1838,6 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
         else:
             package["result_summary"] = "Not logged"
     blocked = [collect_blocked(repo_root, entry) for entry in outputs.get("blocked_assignments", [])]
-    review_notes = read_text(run_dir / "review_notes.md")
     summary = manifest.get("summary", {}) if isinstance(manifest.get("summary"), dict) else {}
     run_id = normalize_text(manifest.get("run_id") or run_dir.name)
     run_links = [
@@ -3209,6 +3281,24 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         + outputs.get("enriched_activities", [])
         + outputs.get("audited_activities", [])
     )
+    reviewer_map = reviewer_by_activity(read_text(run_dir / "review_notes.md"))
+    package_ids = {normalize_text(entry.get("activity_id")) for entry in package_entries}
+    expected_reviewer_pairs = {
+        activity_id: reviewer
+        for activity_id, reviewer in reviewer_map.items()
+        if activity_id in package_ids
+    }
+    expected_reason_labels = {
+        label
+        for entry in package_entries
+        for label in compact_list(entry.get("resolved_blocker_types"), limit=20)
+    }
+    expected_reason_labels.update(
+        label
+        for entry in package_entries
+        for blocker in compact_list(entry.get("resolved_blockers"), limit=20)
+        for label in classify_reason_text_labels(blocker)
+    )
     scorecard_sets = [
         scorecard_rows(read_text(repo_root / normalize_text(entry.get("activity_path")) / "spec.md"))
         for entry in package_entries
@@ -3293,6 +3383,8 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         and "badge-asset" in text
         and "badge-category" in text
         and "badge-reviewer" in text,
+        "reviewer_mapping": not expected_reviewer_pairs
+        or all(f'data-reviewer="{reviewer}"' in text for reviewer in expected_reviewer_pairs.values()),
         "asset_usage_timeline": expected_packages == 0
         or (
             text.count("Asset Usage Timeline") >= expected_packages
@@ -3302,6 +3394,8 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             and (not any(asset_usage_sets) or "asset-usage-table" in text)
         ),
         "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks validity" in text and "Minimum to unblock" in text,
+        "resolved_blocker_reason_coverage": not expected_reason_labels
+        or all(f">{label}</span>" in text for label in expected_reason_labels),
         "resolved_blocker_annotations": not has_resolved_blockers
         or (
             "Resolved Contract Items" in text
