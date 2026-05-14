@@ -16,11 +16,11 @@ tier_range:
   elasticity: "±1"
 
 category: objects
-attributes: []
+attributes: [polka_dots, spots, circles]
 
 key_concepts: [Form, Connection]
 related_concepts: [pattern, observation, similarity, difference]
-atl_skills: [observation, classification]
+atl_skills: [observation, pattern_recognition, evidence_collection, classification]
 transdisciplinary_theme: How_We_Express_Ourselves
 
 kud:

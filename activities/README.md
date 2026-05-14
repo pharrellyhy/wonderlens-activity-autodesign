@@ -103,7 +103,7 @@ Requires `pip install jsonschema pyyaml`.
 
 ## Current V1 coverage
 
-This repository currently contains 28 canonical/promoted five-file activity package directories under `activities/`. Fresh run-local packages live under `runs/<run_id>/activity_packages/`. Legacy single-file outputs remain under `designs/` for historical reference and migration work.
+This repository currently contains 32 canonical/promoted five-file activity package directories under `activities/`. Fresh run-local packages live under `runs/<run_id>/activity_packages/`. Legacy single-file outputs remain under `designs/` for historical reference and migration work.
 
 ## Cross-repo notes
 

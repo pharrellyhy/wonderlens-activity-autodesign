@@ -2,12 +2,15 @@
 
 ## Current Status
 
-- Status: `/goal` run `20260511_233559_activity_concepts` completed with blockers and corrected to use run-local package directories with clean activity IDs
-- Date: 2026-05-12
+- Status: Direct migration of selected frontend-demo activities into canonical five-file package format completed in the working tree
+- Date: 2026-05-14
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
 
+- Added canonical five-file activity packages for frontend demo games: `activities/dream_whisperer_cat`, `activities/mood_changer_dog`, `activities/time_machine_dinosaur`, and `activities/fluffy_expedition_dandelion`.
+- Refreshed `activities/polka_dot_patrol` metadata/spec notes to mark it as the current-format package for the frontend demo source while preserving its stronger existing `quest_collector` migration.
+- Updated `activities/README.md` package count from 28 to 32 canonical/promoted packages.
 - Moved the 23 generated packages for run `20260511_233559_activity_concepts` from suffixed `activities/*_r20260511_233559/` directories into `runs/20260511_233559_activity_concepts/activity_packages/<base_activity_id>/` with clean `activity_id` values.
 - Updated `GOAL.md`, `run.md`, `program.md`, `templates.md`, `README.md`, `review_dashboard.md`, `runs/README.md`, and `activities/README.md` so future fresh `/goal` generation treats assignment `activity_id=` as a base slug and writes run-local packages under `runs/<run_id>/activity_packages/<base_activity_id>/`.
 - Updated `assignments.md`, `results.tsv`, `runs/20260511_233559_activity_concepts/generated_activity_ids.txt`, `run_manifest.yaml`, `review_notes.md`, and regenerated `review.html` so the 23 generated rows point at the run-local package paths.

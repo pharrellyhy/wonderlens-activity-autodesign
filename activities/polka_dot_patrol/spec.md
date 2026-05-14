@@ -38,6 +38,10 @@ Because the trigger is pattern-as-property, the entity functions as an *exemplar
 - **Observation angle:** `pattern`
 - **Entity role:** `exemplar` (parameterized — the ladybug is one example of the polka-dot pattern class)
 
+## Demo Source Migration Notes
+
+This canonical package covers the current frontend demo source `wonderlens-activity-fullstack-demo/backend/games/polka_dot_patrol.md`. The older demo source used `comparison_chart`; this package keeps the latest Adventure / `quest_collector` migration because it preserves the dot-finding mission and adds the required patrol-story payoff. Demo icon catalogs are treated as optional UI support only; the package runtime depends on the child photo slots and generic pattern UI, not on prebuilt image files.
+
 ## Self-Evaluation Scorecard
 
 Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, and `templates.md` Adventure + Cat5 rules.
