@@ -1,0 +1,48 @@
+activity_id: concept_little_poem_build
+activity_name: Tiny Poem Workshop
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:24:36'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a0604c3b840819383b7e757f6218a4c.png
+prompt_sha256: af996e94d53d38b4ff2d63d171e01a4e3bebb6d85ab8064ee2adefa36b3dc567
+prompt_path: visual_storyboards/concept_little_poem_build/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_little_poem_build/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_little_poem_build
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: The child photographs a leaf, chooses green, windy, and sleepy as ingredients,
+    and the AI builds a short poem line by line.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Here is the rule: I give
+    you one small challenge, you answer, and we save one progress to... | Ideal: "Okay."
+    | Unexpected: "Can I do it my w...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is build: Round 1 -- Add a Seeing Word | [focused
+    playful tone] "Give me one thing we can see in the poem." | Ideal: "green leaf."
+    | Unexpected: "truck noise." | No response: Child looks...'
+  source: Round 1 -- Add a Seeing Word
+- number: '4'
+  title: Feedback Loop
+  caption: '[poet voice] "Green leaf gives the poem something to see. I am saving
+    that tile." | [bridging] "Truck noise is a hearing idea. For this first tile,
+    give me something the poem can show."'
+  source: Round 1 -- Add a Seeing Word
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Add a Feeling Word | [focused playful tone] "What feeling should
+    the poem have: cozy, silly, brave, sleepy, or surprised?" | Ideal: "sleepy." |
+    Unexpected: "angry monster." | No...'
+  source: Round 2 -- Add a Feeling Word
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Tiny
+    Poet Builder badge. You used Connection by noticing the important par... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

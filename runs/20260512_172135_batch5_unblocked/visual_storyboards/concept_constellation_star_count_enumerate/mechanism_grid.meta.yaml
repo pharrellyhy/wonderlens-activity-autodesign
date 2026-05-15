@@ -1,0 +1,48 @@
+activity_id: concept_constellation_star_count_enumerate
+activity_name: Star Pattern Counter
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:03:00'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05ffd7448c8193a946e7b843e4ad02.png
+prompt_sha256: 9bacadfd58e639ba7509b848041fe3a5dd92f53b149ebaba9b68b184d459ad8b
+prompt_path: visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_constellation_star_count_enumerate
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: The screen shows a simplified star card with six clear stars. The child
+    estimates, counts by pointing, and checks the count.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Scout rule: make a quick
+    estimate, count each star, then compare where more stars sit." | Ideal: "Okay."
+    | Unexpected: "Can I do it my way?"...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is enumerate: Round 1 -- Quick Estimate | [focused
+    playful tone] "Look fast. How many stars do you think are on this card?" | Ideal:
+    "six." | Unexpected: "a hundred." | No response: Child...'
+  source: Round 1 -- Quick Estimate
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific praise] "Six is your quick estimate. Token 1 is saved before
+    we check." | [warm redirect] "A hundred would be a giant sky. This card has fewer
+    bright stars; try six."'
+  source: Round 1 -- Quick Estimate
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Count Together | [focused playful tone] "Now count each bright
+    star with me. What number do we land on?" | Ideal: "six." | Unexpected: "I skipped
+    one." | No response: Child looks...'
+  source: Round 2 -- Count Together
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Star
+    Count Scout badge. You used Form by counting the star pattern, and Co... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

@@ -1,0 +1,48 @@
+activity_id: concept_award_certificate_probe
+activity_name: Award Certificate
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T00:40:56'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05f9e9a3f88193af95bff4f1413f26.png
+prompt_sha256: d870559084851296797629ed0b2a8219ea7773b8dd04b3d8f66c271fb1ce6106
+prompt_path: visual_storyboards/concept_award_certificate_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_award_certificate_probe/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_award_certificate_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: A child wants to thank a helper, teammate, sibling, or grown-up.
+    The AI keeps the certificate appreciative rather than competitive and does not
+    promise printing or template editing...'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Appreciation Designer rule:
+    name someone who helped, tried hard, or deserves appreciation... | Ideal: Child
+    confirms the role or starts round on...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is care: Round 1 -- Choose the honoree | [round-1
+    guide] "Round 1: name someone who helped, tried hard, or deserves appreciation."
+    | Ideal: "My sister." | Unexpected: Wants a best/worst c...'
+  source: Round 1 -- Choose the honoree
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific] "Your sister is the honoree." | [redirect] "This award is appreciation,
+    not ranking. Pick one helper."'
+  source: Round 1 -- Choose the honoree
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Pick the award reason | [round-2 guide] "Round 2: choose kindness,
+    trying hard, helping, bravery, creativity, or teamwork." | Ideal: "Helping, because
+    she cleaned." | Unexpected:...'
+  source: Round 2 -- Pick the award reason
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Responsibility
+    and Perspective today. You used your own care action to make the r... | Ideal:
+    "Again!" / names a favorite part. |...'
+  source: 'Step 5: Closing + IB Concepts'

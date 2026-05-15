@@ -1,0 +1,48 @@
+activity_id: concept_animal_sound_motion_voice
+activity_name: Animal Echo Stage
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T00:30:23'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05f7a7ee44819382f181ab9a312fae.png
+prompt_sha256: 8270fb5ed637d6221d300794c7c5280c4e323736ca85f1fc316f0ccaf59ecee1
+prompt_path: visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_animal_sound_motion_voice
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: Child photographs an animal toy; the AI opens a tiny curtain, prompts a
+    cat sound, then changes the stage to a duck sound. If the child only says the
+    animal name or makes a different sound,...
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Stage Rules -- Echo Star | [gentle host tone] "You are the Echo
+    Star. I say an animal. You echo its sound." | Ideal: "Okay!" / "Echo!" | Unexpected:
+    "I want duck." / "I want lion."...'
+  source: 'Step 2: Stage Rules -- Echo Star'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is motion_voice: Round 1 -- Cat Echo Reveal | [tiny
+    cat voice] "A hidden cat is sleeping. Say meow to wake it?" | Ideal: "Meow!" |
+    Unexpected: "Woof." / "Cat." | No response: Child stays...'
+  source: Round 1 -- Cat Echo Reveal
+- number: '4'
+  title: Feedback Loop
+  caption: '[audience cheer] "Meow! The cat wakes. It bows." | [warmly playful] "Woof
+    is funny. Cat peeks out. Try tiny meow?"'
+  source: Round 1 -- Cat Echo Reveal
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Duck Echo Reveal | [bouncy duck voice] "A duck hides backstage.
+    Say quack to wake it?" | Ideal: "Quack!" | Unexpected: "Meow." / "Duck." | No
+    response: Child smiles or watches. |...'
+  source: Round 2 -- Duck Echo Reveal
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You were an Echo Star.
+    You used Perspective. You tried animal voices. You used Form too.... | Ideal:
+    "Meow!" / "Quack!" | Unexpected: "Ro...'
+  source: 'Step 5: Closing + IB Concepts'

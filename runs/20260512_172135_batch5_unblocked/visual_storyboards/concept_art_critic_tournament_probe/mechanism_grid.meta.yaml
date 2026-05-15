@@ -1,0 +1,48 @@
+activity_id: concept_art_critic_tournament_probe
+activity_name: Art Critic Tournament
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T00:32:11'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05f89ed3b88193a77a0491136b7689.png
+prompt_sha256: 9658b309bbc83b3cf9ca80082fcd93d28c705d41c9749718a43a56c6e051a8cc
+prompt_path: visual_storyboards/concept_art_critic_tournament_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_art_critic_tournament_probe/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_art_critic_tournament_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: The approved artwork set can show two age-safe images side by
+    side. The AI asks for visible reasons, supports ties, and avoids outside artist
+    claims unless metadata supplies them.'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Gallery Chooser rule: choose
+    a favorite artwork and name one visible reason. I only save... | Ideal: Child
+    confirms the role or starts round one...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is compare: Round 1 -- Compare pair one | [round-1
+    guide] "Round 1: choose a favorite artwork and name one visible reason." | Ideal:
+    "I pick the blue one because waves." | Unexpected: Say...'
+  source: Round 1 -- Compare pair one
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific] "Blue waves is visible evidence. Artwork A advances." | [redirect]
+    "Famous is outside our card metadata. Use color, shape, or feeling."'
+  source: Round 1 -- Compare pair one
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Compare the winner | [round-2 guide] "Round 2: put the winner
+    against another approved artwork." | Ideal: "This one feels calmer." | Unexpected:
+    Wants unapproved art | No respons...'
+  source: Round 2 -- Compare the winner
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Form and Perspective
+    today. You used your own compare action to make the result." | Ideal: "Again!"
+    / names a favorite part. | Un...'
+  source: 'Step 5: Closing + IB Concepts'

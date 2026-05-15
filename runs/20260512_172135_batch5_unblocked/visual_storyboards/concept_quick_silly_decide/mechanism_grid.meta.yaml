@@ -1,0 +1,47 @@
+activity_id: concept_quick_silly_decide
+activity_name: Quick Silly Choice Pop
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:28:08'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064c1714f88193972403ead58b519d.png
+prompt_sha256: 56e91f834e3fe61509c8e45c54362656cb86683f96c71139fd6d7ab61c24a523
+prompt_path: visual_storyboards/concept_quick_silly_decide/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_quick_silly_decide/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_quick_silly_decide
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: During a waiting moment, the AI asks two tiny choices like banana hat or
+    moon shoes, then blue door or green door.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Hear two. Pick one. Pop."
+    | Ideal: "Okay." | Unexpected: "Can I do it my way?" | No response: Child hesitates.
+    | [encouraging] "Round one pop...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is decide: Round 1 -- Fast Favorite | [focused playful
+    tone] "Banana hat or moon shoes?" | Ideal: "moon shoes." | Unexpected: "neither."
+    | No response: Child looks at the screen or waits....'
+  source: Round 1 -- Fast Favorite
+- number: '4'
+  title: Feedback Loop
+  caption: '[pop tone] "Moon shoes pop in." | [validating] "Neither is allowed. Pick
+    one for the parade."'
+  source: Round 1 -- Fast Favorite
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Fast Path | [focused playful tone] "Blue door or green door?"
+    | Ideal: "green door." | Unexpected: "rainbow door." | No response: Child looks
+    at the screen or waits. | [bright] "...'
+  source: Round 2 -- Fast Path
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "Silly Choice badge
+    earned. You used Perspective. You used Form." | Ideal: "Again" or names a favorite
+    round. | Unexpected: Child asks for...'
+  source: 'Step 5: Closing + IB Concepts'

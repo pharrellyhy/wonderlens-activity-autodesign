@@ -1,0 +1,48 @@
+activity_id: concept_would_you_rather_compare
+activity_name: Two-Choice Compare Chat
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:47:58'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a0650c1b6848193a7bbc75f05685da0.png
+prompt_sha256: 5743cbaeaad9d04cf7466af141e3b10409cef13699b53a35090de005b1c22652
+prompt_path: visual_storyboards/concept_would_you_rather_compare/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_would_you_rather_compare/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_would_you_rather_compare
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: The child chooses whether they would rather hop like a frog or glide like
+    a kite, then gives one reason.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Here is the rule: I give
+    you one small challenge, you answer, and we save one progress to... | Ideal: "Okay."
+    | Unexpected: "Can I do it my w...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is compare: Round 1 -- Pick One | [focused playful
+    tone] "Would you rather have rainbow shoes or moon boots?" | Ideal: "moon boots."
+    | Unexpected: "both." | No response: Child looks at th...'
+  source: Round 1 -- Pick One
+- number: '4'
+  title: Feedback Loop
+  caption: '[choice marker] "Moon boots win your first vote. I am pinning them on
+    the chosen side." | [validating] "Both is a fun wish. This round needs one winner,
+    then we can be fair to the other sid...'
+  source: Round 1 -- Pick One
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Say Why | [focused playful tone] "What makes that choice better
+    for you?" | Ideal: "I can jump high." | Unexpected: "because yes." | No response:
+    Child looks at the screen or wai...'
+  source: Round 2 -- Say Why
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Choice
+    Comparator badge. You used Perspective by noticing the important pa... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

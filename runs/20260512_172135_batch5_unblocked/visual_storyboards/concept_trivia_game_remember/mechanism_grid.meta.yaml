@@ -1,0 +1,48 @@
+activity_id: concept_trivia_game_remember
+activity_name: Tiny Trivia Trail
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:39:49'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064ed5f76c8193950fb18acf35ce61.png
+prompt_sha256: 8a32bf0fd91e69615f9cbda3390cc747b8e2e3559d187650ca0228cd18f2c950
+prompt_path: visual_storyboards/concept_trivia_game_remember/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_trivia_game_remember/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_trivia_game_remember
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: After learning about plants, the AI asks three tiny questions such as what
+    leaves help plants do, then explains gently.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Here is the rule: I give
+    you one small challenge, you answer, and we save one progress to... | Ideal: "Okay."
+    | Unexpected: "Can I do it my w...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is remember: Round 1 -- Remember One Detail | [focused
+    playful tone] "What did we learn leaves help a plant do?" | Ideal: "catch sunlight."
+    | Unexpected: "sleep." | No response: Child loo...'
+  source: Round 1 -- Remember One Detail
+- number: '4'
+  title: Feedback Loop
+  caption: '[warm recall tone] "Yes, leaves catch sunlight. I am saving that as clue
+    one." | [gentle correction] "Sleep is a cozy idea. This clue is about sunlight,
+    so leaves catch sunlight."'
+  source: Round 1 -- Remember One Detail
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Choose the Better Answer | [focused playful tone] "Which fits:
+    roots drink water, or roots fly?" | Ideal: "drink water." | Unexpected: "fly."
+    | No response: Child looks at the sc...'
+  source: Round 2 -- Choose the Better Answer
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Trivia
+    Trail Finder badge. You used Connection by noticing the important p... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

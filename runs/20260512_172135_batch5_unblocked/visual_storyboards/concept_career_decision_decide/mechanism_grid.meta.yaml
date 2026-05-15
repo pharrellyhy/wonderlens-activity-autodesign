@@ -1,0 +1,49 @@
+activity_id: concept_career_decision_decide
+activity_name: Helper Choice Desk
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T00:48:45'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05fc7bacc481939f005954eaf771ed.png
+prompt_sha256: 8f8d98ab02cbee7a7a62f55ef570bc5bdb66593a7402a6661791981b3008521c
+prompt_path: visual_storyboards/concept_career_decision_decide/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_career_decision_decide/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_career_decision_decide
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: A playground gate is stuck and a child is worried because the class cannot
+    enter. The AI presents one concrete situation first, then the child decides which
+    helper fits, what tool helps, an...
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Desk rule: hear the problem
+    first. Then choose helper, tool, and first action." | Ideal: "Okay." | Unexpected:
+    "Can I do it my way?" | No res...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is decide: Round 1 -- Read the Need | [scenario
+    tone] "The playground gate is stuck. The class is waiting outside. Which helper
+    fits this need: tea... | Ideal: "Teacher first." / "A grown...'
+  source: Round 1 -- Read the Need
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific praise] "Teacher first fits the school problem. Token 1 is saved."
+    | [warm redirect] "A firefighter helps danger. This is a stuck gate with waiting
+    children, so a teacher or caret...'
+  source: Round 1 -- Read the Need
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Match the Tool | [tool-matching tone] "Now choose the tool
+    for the helper: phone to call help, key ring, garden shovel, or bus... | Ideal:
+    "Key ring." / "Phone to call caretaker....'
+  source: Round 2 -- Match the Tool
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Helpful
+    Decision Maker badge. You used Responsibility by choosing a safe f... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

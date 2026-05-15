@@ -1,0 +1,49 @@
+activity_id: concept_coloring_game_probe
+activity_name: Coloring Game
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:01:12'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05ff7204d881938120832eed404a1c.png
+prompt_sha256: a4b9a8b6f2773aecfd89b0a55c40d25db586a7ebb3209c645020c28f45bb3c54
+prompt_path: visual_storyboards/concept_coloring_game_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_coloring_game_probe/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_coloring_game_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: A child photographs a toy car or flower, selects a big region,
+    then adds a contrast color and accent. If generated line art or fillable regions
+    are unavailable, the session display...'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Palette Builder rule: choose
+    the photographed object for the line-art page. I only save w... | Ideal: Child
+    confirms the role or starts round on...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is build: Round 1 -- Pick the coloring subject |
+    [round-1 guide] "Round 1: choose the photographed object for the line-art page."
+    | Ideal: "My toy car." / "This flower." | Unexpected: "Ma...'
+  source: Round 1 -- Pick the coloring subject
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific] "Good choice. I will turn that object into simple regions."
+    | [redirect] "We can only use safe, original objects. Pick this photo or another
+    everyday object."'
+  source: Round 1 -- Pick the coloring subject
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Fill the big region | [round-2 guide] "Round 2: photograph
+    or choose a real-world color for the biggest region." | Ideal: "Red from my cup."
+    | Unexpected: Chooses two colors at o...'
+  source: Round 2 -- Fill the big region
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Function and
+    Change today. You used your own build action to make the result." | Ideal: "Again!"
+    / names a favorite part. | Unexp...'
+  source: 'Step 5: Closing + IB Concepts'

@@ -1,0 +1,48 @@
+activity_id: concept_guided_drawing_probe
+activity_name: Guided Drawing
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:19:42'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a0603b69b08819396c6fb253ec373d2.png
+prompt_sha256: 9b67417b0563f4ec105ed61c503a8b6ba19387f8a29137e9924222250bfb12de
+prompt_path: visual_storyboards/concept_guided_drawing_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_guided_drawing_probe/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_guided_drawing_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: A child has paper and pencil ready and chooses a simple object
+    as the drawing theme. The AI paces each mark, accepts caregiver/self-report evidence,
+    and falls back to voice-only st...'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Step Sketch Coach rule: draw
+    the largest simple shape from the card or my voice clue. I o... | Ideal: Child
+    confirms the role or starts round on...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is build: Round 1 -- Draw the big shape | [round-1
+    guide] "Round 1: draw the largest simple shape from the card or voice clue." |
+    Ideal: "I drew a circle body." | Unexpected: "Mine is mes...'
+  source: Round 1 -- Draw the big shape
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific] "A big circle body is enough for step one." | [redirect] "Messy
+    counts. We care about trying the shape, not perfect copying."'
+  source: Round 1 -- Draw the big shape
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Add one useful detail | [round-2 guide] "Round 2: add one detail
+    that makes the drawing recognizable." | Ideal: "I added ears." | Unexpected: Child
+    cannot find pencil/material |...'
+  source: Round 2 -- Add one useful detail
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Function and
+    Change today. You used your own build action to make the result." | Ideal: "Again!"
+    / names a favorite part. | Unexp...'
+  source: 'Step 5: Closing + IB Concepts'

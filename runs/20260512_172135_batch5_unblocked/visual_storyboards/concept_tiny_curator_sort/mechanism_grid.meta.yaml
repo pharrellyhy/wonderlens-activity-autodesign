@@ -1,0 +1,49 @@
+activity_id: concept_tiny_curator_sort
+activity_name: Tiny Curator Gallery
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:35:12'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064dcb1d0c81939b0b409b00a1ab75.png
+prompt_sha256: c777336acdd91c56f1a099b8cd39c25a6b2be8b48c05dcbe9cdc1cac386b1bfc
+prompt_path: visual_storyboards/concept_tiny_curator_sort/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_tiny_curator_sort/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_tiny_curator_sort
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: Child gathers a spoon, cup, plate, and napkin, arranges them together,
+    then explains, "They are all for snack time." A visitor-ticket stamp appears only
+    after the child gives a one-sentence...
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Gallery Rules -- Curator Choice | [clear mission tone] "Your job
+    is to make one tiny exhibit. Pick three or four objects. Arrange them so a vis...
+    | Ideal: "I will make a snack exhi...'
+  source: 'Step 2: Gallery Rules -- Curator Choice'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is sort: Round 1 -- First Exhibit Piece | [attentive
+    guide tone] "Place your first object in the exhibit. What made you choose this
+    one?" | Ideal: "It is a spoon. It is for eating." / "Th...'
+  source: Round 1 -- First Exhibit Piece
+- number: '4'
+  title: Feedback Loop
+  caption: '[thoughtful] "That gives us a clue. The rule might be about use, color,
+    shape, material, or place." | [validating then extending] "Favorites can start
+    exhibits. What is one thing a visitor...'
+  source: Round 1 -- First Exhibit Piece
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Add and Compare | [curious visitor tone] "Add a second object
+    beside it. Does this one follow the same idea, or should it go on... | Ideal:
+    "Same idea." / "It also helps with sna...'
+  source: Round 2 -- Add and Compare
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [proud gallery host] "Tiny Curator, you
+    used Connection. You showed why separate objects belong together. You... | Ideal:
+    "Can I make another exhibit?" / "I...'
+  source: 'Step 5: Closing + IB Concepts'

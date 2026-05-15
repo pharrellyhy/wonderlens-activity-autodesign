@@ -35,6 +35,8 @@ summary:
 outputs:
   review_dashboard: runs/20260512_172135_batch5_unblocked/review.html
   review_dashboard_zh: runs/20260512_172135_batch5_unblocked/review.zh.html
+  visual_storyboards: runs/20260512_172135_batch5_unblocked/visual_storyboards
+  storyboard_manifest: runs/20260512_172135_batch5_unblocked/visual_storyboards/storyboard_manifest.yaml
   enriched_activities: []
   audited_activities: []
   generated_activities:
@@ -1566,6 +1568,12 @@ outputs:
 checks:
 - command: python3 -m py_compile scripts/generate_run_review.py
   result: PASS
+- command: python3 -m py_compile scripts/generate_storyboard_prompts.py
+  result: PASS
+- command: python3 scripts/generate_storyboard_prompts.py runs/20260512_172135_batch5_unblocked
+  result: PASS
+- command: run-local mechanism storyboard image count check for 40 packages
+  result: PASS
 - command: run-local tag_block schema validation for 40 packages
   result: PASS
 - command: run-local five-file package audit for 40 packages
@@ -1586,7 +1594,10 @@ checks:
   result: PASS
 - command: python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked
   result: PASS
+- command: review.zh.html storyboard/link validation for 40 packages
+  result: PASS
 notes:
 - 'Scoped run: no checked Batch 5 package_path rows existed at run start, so existing-package enrichment/audit was not applicable.'
 - Fresh packages are run-local under activity_packages/ with clean activity_id values.
 - Former capability-probe blockers are generated as resolved blocker annotations under product_contract_override=minimum_unblock_allowed.
+- Mechanism storyboard grids are post-run review artifacts generated from existing package data; they do not change activity package contracts.

@@ -1,0 +1,47 @@
+activity_id: concept_word_echo_remember
+activity_name: Echo Word Stage
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:46:26'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a06506837f881938af1c64f32418640.png
+prompt_sha256: cf4419b88a281fc0f54c959a51b5c8596191aa15dfb7a5fa64388abc9cee5333
+prompt_path: visual_storyboards/concept_word_echo_remember/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_word_echo_remember/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_word_echo_remember
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: A child asks what a {target_word} is called. The AI turns {target_word}
+    and {target_word}-{target_word} into two playful echo rounds.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Hear. Say. Save. Make
+    a word ladder." | Ideal: "Okay." | Unexpected: "Can I do it my way?" | No response:
+    Child hesitates. | [encouraging] "R...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is remember: Round 1 -- Tiny Hide Echo | [focused
+    playful tone] "Look, listen: {target_word}. I hide it. Echo it back." | Ideal:
+    "{target_word}." after the hide. | Unexpected: "I say mug....'
+  source: Round 1 -- Tiny Hide Echo
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific praise] "The stage lights up. {target_word} came back. Token
+    1 saved." | [warm redirect] "Mug is nearby. Echo {target_word}."'
+  source: Round 1 -- Tiny Hide Echo
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Double Pattern Echo | [focused playful tone] "Two beats: {target_word}-{target_word}.
+    Soft mouse voice." | Ideal: "{target_word} {target_word}." | Unexpected: "I squeak
+    anything...'
+  source: Round 2 -- Double Pattern Echo
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "Echo Keeper badge
+    earned. Form and Connection badge." | Ideal: "Again" or names a favorite round.
+    | Unexpected: Child asks for a differen...'
+  source: 'Step 5: Closing + IB Concepts'

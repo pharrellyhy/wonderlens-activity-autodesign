@@ -1,0 +1,48 @@
+activity_id: concept_one_line_drawing_probe
+activity_name: One-Line Drawing Challenge
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:27:16'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a06059011648193b516684f3a213d0d.png
+prompt_sha256: 8b332a2b5c493f4daa7159cb5d9a8882011144d6b48a8622da4a0e3f9fe0b70b
+prompt_path: visual_storyboards/concept_one_line_drawing_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_one_line_drawing_probe/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_one_line_drawing_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: A child has paper or a drawing surface ready. The AI shows or
+    describes one approved target, accepts self-report if the pencil lifts, and uses
+    start/turn/end language instead of im...'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Line Path Explorer rule:
+    plan the continuous path before drawing. I only save what you ch... | Ideal: Child
+    confirms the role or starts round on...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is build: Round 1 -- Trace the path in the air |
+    [round-1 guide] "Round 1: plan the continuous path before drawing." | Ideal: "Start
+    at the roof." | Unexpected: Child wants many separate...'
+  source: Round 1 -- Trace the path in the air
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific] "Starting at the roof gives your line a path." | [redirect]
+    "Many lines are another drawing game. This one uses one long path."'
+  source: Round 1 -- Trace the path in the air
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Draw without lifting | [round-2 guide] "Round 2: attempt the
+    one-line target on paper or screen." | Ideal: "I did it." | Unexpected: Lifts
+    pencil halfway | No response: Child sel...'
+  source: Round 2 -- Draw without lifting
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Function and
+    Change today. You used your own build action to make the result." | Ideal: "Again!"
+    / names a favorite part. | Unexp...'
+  source: 'Step 5: Closing + IB Concepts'

@@ -1,0 +1,48 @@
+activity_id: concept_how_many_guess_enumerate
+activity_name: Guess Then Count
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:21:33'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a06042d44148193844883f7a1040fa6.png
+prompt_sha256: 3efc599f3e7d685e346f4ae51e6021cabb4b337c6b9f5666a992b6ac748b7cde
+prompt_path: visual_storyboards/concept_how_many_guess_enumerate/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_how_many_guess_enumerate/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_how_many_guess_enumerate
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: A card shows seven shells. The child guesses first, then touches or counts
+    each shell with the AI.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Here is the rule: I give
+    you one small challenge, you answer, and we save one progress to... | Ideal: "Okay."
+    | Unexpected: "Can I do it my w...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is enumerate: Round 1 -- Make a Guess | [focused
+    playful tone] "Do not count yet. How many do you think are here?" | Ideal: "seven."
+    | Unexpected: "twenty." | No response: Child looks at...'
+  source: Round 1 -- Make a Guess
+- number: '4'
+  title: Feedback Loop
+  caption: '[curious] "Seven is your estimate. I am saving it before we count, so
+    it stays a real guess." | [warm redirect] "Twenty is a big guess. This card looks
+    smaller, so pick a number near seven."'
+  source: Round 1 -- Make a Guess
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Count Carefully | [focused playful tone] "Now count each object
+    one by one. What number do we reach?" | Ideal: "seven." | Unexpected: "I lost
+    track." | No response: Child looks a...'
+  source: Round 2 -- Count Carefully
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Careful
+    Counter badge. You used Form by noticing the important part, and C... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

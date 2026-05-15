@@ -1,0 +1,48 @@
+activity_id: concept_travel_planner_predict
+activity_name: Pretend Trip Planner
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:38:14'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064e7f3ae8819382100eb44089f5ad.png
+prompt_sha256: 29297e935c231ef11dbb2f3b310113a6444d54b9d1a341357a93390d9de79dfd
+prompt_path: visual_storyboards/concept_travel_planner_predict/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_travel_planner_predict/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_travel_planner_predict
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: The child plans a pretend trip to a rainy forest. They predict the needed
+    item, travel helper, and surprise plan before each hidden card flips.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Here is the rule: predict
+    before I flip the card, then we save what the reveal shows." | Ideal: "Okay."
+    | Unexpected: "Can I do it my way?" |...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is predict: Round 1 -- Predict What We Need | [focused
+    playful tone] "Before the rainy reveal, predict what we will need first: raincoat,
+    snack, or sunglas... | Ideal: "raincoat." | Unexp...'
+  source: Round 1 -- Predict What We Need
+- number: '4'
+  title: Feedback Loop
+  caption: '[reveal tone] "The reveal is raindrops. Raincoat matches, so token 1 becomes
+    a dry-trip stamp." | [warm redirect] "A swimsuit is fun for water play. The reveal
+    is raindrops, so choose somet...'
+  source: Round 1 -- Predict What We Need
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Predict How to Travel | [focused playful tone] "Before I reveal
+    the path, predict what travel helps cross a wide puddle: walking, bus... | Ideal:
+    "boat." | Unexpected: "rocket."...'
+  source: Round 2 -- Predict How to Travel
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Trip
+    Predictor badge. You used Causation by predicting what each clue woul... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

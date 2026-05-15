@@ -1,0 +1,49 @@
+activity_id: concept_current_topic_interview_deduce
+activity_name: Reason Reporter Interview
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:07:24'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a060043ddec8193be2d388cb17a9b7f.png
+prompt_sha256: 7913e82589aa44d158876695cdcbd8e67d5a567791a8241ef8282f5872ff9290
+prompt_path: visual_storyboards/concept_current_topic_interview_deduce/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_current_topic_interview_deduce/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_current_topic_interview_deduce
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: An older child investigates a school garden decision. Butterflies are visiting
+    this week, snack day is next month, and the child decides what should be planted
+    first while respecting both n...
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Here is the rule: hear
+    a clue, make a conclusion, and tell me why before the next clue." | Ideal: "Okay."
+    | Unexpected: "Can I do it my way?"...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is deduce: Round 1 -- First Opinion | [reporter
+    tone] "Clue one: butterflies are visiting the garden this week. What is your first
+    opinion: flowers... | Ideal: "Flowers first, because but...'
+  source: Round 1 -- First Opinion
+- number: '4'
+  title: Feedback Loop
+  caption: '[reporter tone] "Flowers first fits the butterfly clue. I am writing that
+    evidence on line one." | [boundary-setting] "Robots would make a wild topic. This
+    clue asks flowers or vegetables,...'
+  source: Round 1 -- First Opinion
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Add Evidence | [evidence tone] "Clue two: snack day is next
+    month, and vegetables could be eaten then. Which choice does thi... | Ideal: "Vegetables,
+    because snack day." | Unexpe...'
+  source: Round 2 -- Add Evidence
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Reason
+    Reporter badge. You used Perspective by weighing two class needs, a... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

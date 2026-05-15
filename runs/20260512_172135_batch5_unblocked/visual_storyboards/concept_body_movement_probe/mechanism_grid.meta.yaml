@@ -1,0 +1,48 @@
+activity_id: concept_body_movement_probe
+activity_name: Simple Body Movement Guide
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T00:42:37'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05fb15ec40819392a1770b31dc55d4.png
+prompt_sha256: 9a1b6588d18fe86192fb107c7cce79c6e29c005adf506bb99b3cf82ee97bbf7d
+prompt_path: visual_storyboards/concept_body_movement_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_body_movement_probe/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_body_movement_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: A parent starts a short movement prompt and confirms enough space.
+    The AI offers only low-risk hand, reach, and freeze prompts, accepts self-report,
+    and keeps the stop button visib...'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Rule: tiny safe moves only."
+    | Ideal: Child confirms the role or starts round one. | Unexpected: Child needs
+    materials, space, asset help, o......'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is motion_voice: Round 1 -- Hello hands | [round-1
+    guide] "Small wave or hand stretch." | Ideal: "Wave." | Unexpected: Starts running
+    | No response: No response | [specific] "Small wave i...'
+  source: Round 1 -- Hello hands
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific] "Small wave is safe." | [redirect] "Running is outside this
+    activity. Stay in one safe spot."'
+  source: Round 1 -- Hello hands
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Freeze statue | [round-2 guide] "Freeze and breathe." | Ideal:
+    "Freeze." | Unexpected: Risky balance pose | No response: Child sits | [specific]
+    "Seated freeze counts. Breathe in...'
+  source: Round 2 -- Freeze statue
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "Form and Perspective badge."
+    | Ideal: "Again!" / names a favorite part. | Unexpected: "That was hard." / wants
+    another theme. | No response:......'
+  source: 'Step 5: Closing + IB Concepts'

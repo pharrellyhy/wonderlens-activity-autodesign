@@ -1,0 +1,48 @@
+activity_id: concept_story_unlock_probe
+activity_name: Story Challenge Unlock
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:31:05'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064cce937c8193be52849d5f44d000.png
+prompt_sha256: 613d426d76f149cace02b0a795947e2c667170f9e12ae06a153100b4a6a70b56
+prompt_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_story_unlock_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: A child is in a story mode and reaches a door, bridge, or path
+    marker. The AI uses the child''s spoken idea as the unlock evidence and avoids
+    claiming persistent UI state when the f...'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Story Key Maker rule: choose
+    which path the character tries. I only save what you choose,... | Ideal: Child
+    confirms the role or starts round on...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is imagine: Round 1 -- Pick the story door | [round-1
+    guide] "Round 1: choose which path the character tries." | Ideal: "The moon door."
+    | Unexpected: "Both doors explode." | No response:...'
+  source: Round 1 -- Pick the story door
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific] "Moon door chosen. It glows because you picked it." | [redirect]
+    "Let us keep it safe and playful: moon door or forest door."'
+  source: Round 1 -- Pick the story door
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Make the unlock action | [round-2 guide] "Round 2: say a magic
+    word, gesture, or tiny answer to help the character." | Ideal: "Shine, moon!"
+    | Unexpected: Child gives unrelated n...'
+  source: Round 2 -- Make the unlock action
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Perspective
+    and Connection today. You used your own imagine action to make the re... | Ideal:
+    "Again!" / names a favorite part. |...'
+  source: 'Step 5: Closing + IB Concepts'

@@ -689,7 +689,59 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         ),
         "links": package_links(repo_root, run_dir, activity_path),
     }
+    package["storyboard"] = mechanism_storyboard(run_dir, package)
     return package
+
+
+def mechanism_storyboard(run_dir: Path, package: dict[str, Any]) -> dict[str, Any]:
+    """Return run-local visual storyboard metadata for an activity when present."""
+
+    activity_id = normalize_text(package.get("activity_id"))
+    storyboard_dir = run_dir / "visual_storyboards" / activity_id
+    meta_path = storyboard_dir / "mechanism_grid.meta.yaml"
+    prompt_path = storyboard_dir / "mechanism_grid.prompt.md"
+    image_path = storyboard_dir / "mechanism_grid.png"
+    if not storyboard_dir.exists() and not meta_path.exists() and not prompt_path.exists() and not image_path.exists():
+        return {}
+    meta = load_yaml(meta_path)
+    panel_captions = meta.get("panel_captions", [])
+    if not isinstance(panel_captions, list):
+        panel_captions = []
+    normalized_captions = []
+    for index, item in enumerate(panel_captions[:6], start=1):
+        if isinstance(item, dict):
+            normalized_captions.append(
+                {
+                    "number": normalize_text(item.get("number") or index),
+                    "title": normalize_text(item.get("title") or f"Panel {index}"),
+                    "caption": normalize_text(item.get("caption") or item.get("visual") or ""),
+                    "source": normalize_text(item.get("source") or ""),
+                }
+            )
+        else:
+            normalized_captions.append(
+                {
+                    "number": str(index),
+                    "title": f"Panel {index}",
+                    "caption": normalize_text(item),
+                    "source": "",
+                }
+            )
+    return {
+        "status": normalize_text(meta.get("status") or ("generated" if image_path.exists() else "prompt_ready")),
+        "tool": normalize_text(meta.get("tool") or "Codex image generation"),
+        "target_model": normalize_text(meta.get("target_model") or meta.get("model") or "gpt-image-2"),
+        "actual_model": normalize_text(meta.get("actual_model") or "codex-configured image model"),
+        "generated_at": normalize_text(meta.get("generated_at") or ""),
+        "source_image": normalize_text(meta.get("source_image") or ""),
+        "image_href": href_from_run_dir(run_dir.resolve(), image_path.resolve()) if image_path.exists() else "",
+        "image_exists": image_path.exists(),
+        "prompt_href": href_from_run_dir(run_dir.resolve(), prompt_path.resolve()) if prompt_path.exists() else "",
+        "prompt_exists": prompt_path.exists(),
+        "meta_href": href_from_run_dir(run_dir.resolve(), meta_path.resolve()) if meta_path.exists() else "",
+        "meta_exists": meta_path.exists(),
+        "panel_captions": normalized_captions,
+    }
 
 
 REASON_RULES: list[dict[str, Any]] = [
@@ -1177,6 +1229,66 @@ def asset_metric_strip(package: dict[str, Any]) -> str:
     </div>"""
 
 
+def storyboard_panel_rows(storyboard: dict[str, Any]) -> str:
+    captions = storyboard.get("panel_captions", [])
+    if not captions:
+        return '<p class="muted">No panel captions were recorded.</p>'
+    rows = []
+    for item in captions:
+        source = f'<span class="storyboard-source">{esc(item.get("source"))}</span>' if item.get("source") else ""
+        rows.append(
+            '<li class="storyboard-caption-row">'
+            f'<span class="storyboard-panel-number">{esc(item.get("number"))}</span>'
+            '<div>'
+            f'<strong>{esc(item.get("title"))}</strong>'
+            f'<p>{esc(item.get("caption"))}</p>'
+            f'{source}'
+            '</div>'
+            '</li>'
+        )
+    return f'<ol class="storyboard-caption-list">{"".join(rows)}</ol>'
+
+
+def storyboard_detail(package: dict[str, Any]) -> str:
+    storyboard = package.get("storyboard") or {}
+    if not storyboard:
+        return '<p class="muted">No review-only mechanism storyboard was generated for this package.</p>'
+    image = (
+        f'<a class="storyboard-image-link" href="{esc(storyboard["image_href"])}" target="_blank" rel="noopener">'
+        f'<img src="{esc(storyboard["image_href"])}" alt="Mechanism storyboard grid for {esc(package["activity_name"])}" loading="lazy">'
+        '</a>'
+        if storyboard.get("image_exists")
+        else '<div class="storyboard-placeholder">Prompt ready; image not generated yet.</div>'
+    )
+    links = []
+    if storyboard.get("prompt_exists"):
+        links.append(preview_anchor(storyboard["prompt_href"], "storyboard prompt"))
+    if storyboard.get("meta_exists"):
+        links.append(preview_anchor(storyboard["meta_href"], "storyboard metadata"))
+    if storyboard.get("image_exists"):
+        links.append(f'<a href="{esc(storyboard["image_href"])}" target="_blank" rel="noopener">storyboard image</a>')
+    link_html = " ".join(links) if links else '<span class="muted">No storyboard files linked.</span>'
+    provenance = (
+        '<div class="inline-fields storyboard-meta">'
+        f'<div><span>Status</span><strong>{esc(storyboard.get("status") or "Unknown")}</strong></div>'
+        f'<div><span>Tool</span><strong>{esc(storyboard.get("tool") or "Unknown")}</strong></div>'
+        f'<div><span>Target model</span><strong>{esc(storyboard.get("target_model") or "Unknown")}</strong></div>'
+        f'<div><span>Actual model</span><strong>{esc(storyboard.get("actual_model") or "Unknown")}</strong></div>'
+        f'<div><span>Generated</span><strong>{esc(storyboard.get("generated_at") or "Unknown")}</strong></div>'
+        f'<div><span>Files</span><strong>{link_html}</strong></div>'
+        '</div>'
+    )
+    return (
+        '<div class="storyboard-block">'
+        f'<figure class="storyboard-figure">{image}</figure>'
+        '<div class="storyboard-detail-copy">'
+        f'{provenance}'
+        f'{storyboard_panel_rows(storyboard)}'
+        '</div>'
+        '</div>'
+    )
+
+
 def package_detail_content(
     package: dict[str, Any],
     link_bits: str,
@@ -1205,6 +1317,10 @@ def package_detail_content(
       <div><span>Status</span><strong>{esc(package['status'])}</strong></div>
       <div><span>Reviewer</span><strong>{esc(package['reviewer'])}</strong></div>
     </div>
+  </section>
+  <section class="dialog-wide">
+    <h4>Mechanism Storyboard</h4>
+    {storyboard_detail(package)}
   </section>
   <section class="dialog-wide">
     <h4>Runtime Beats</h4>
@@ -1302,6 +1418,7 @@ def package_card(package: dict[str, Any]) -> str:
     tags = package_tags(package)
     detail = package_detail_content(package, link_bits, runtime_map, runtime, details, changed, scorecard)
     summary = package["intro"] or package["brief_description"] or package["premise"]
+    storyboard_status = (package.get("storyboard") or {}).get("status") or "not generated"
     return f"""
 <article class="activity-card clickable-card" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="detail-dialog" data-detail-template="{esc(modal_id)}" data-detail-title="{esc(package['activity_name'])}" {attrs}>
   <div class="card-top">
@@ -1319,6 +1436,7 @@ def package_card(package: dict[str, Any]) -> str:
     <div><span>Asset dependencies</span><strong>{esc(asset_dependency_count(package['asset_usage']))}</strong></div>
     <div><span>Display beats</span><strong>{esc(asset_display_summary(package['asset_usage']))}</strong></div>
     <div><span>Image items</span><strong>{esc(asset_item_summary(package['asset_usage']))}</strong></div>
+    <div><span>Storyboard</span><strong>{esc(storyboard_status)}</strong></div>
     <div><span>Resolved blockers</span><strong>{esc(len(package['resolved_blockers']))}</strong></div>
     <div><span>Reusable slots</span><strong>{esc(len(package['parameter_slots']))}</strong></div>
   </div>
@@ -1806,6 +1924,8 @@ def dashboard_workflow(run_id: str) -> str:
     <div class="criteria-note">This HTML file is generated once after package generation, reviewer evidence, manifest entries, blocked previews, and package checks are current. It is derived from run files and package files; it is not a source of truth.</div>
     <ol class="workflow-list">
       <li><strong>Collect run inputs</strong><span>Read `run_manifest.yaml`, `review_notes.md`, `results.tsv`, generated or enriched package files, blocked briefs, and blocked design previews.</span></li>
+      <li><strong>Prepare mechanism storyboard prompts</strong><code>python3 scripts/generate_storyboard_prompts.py {esc(run_path)}</code></li>
+      <li><strong>Generate review-only storyboard images</strong><span>Use Codex image generation with the prompt files under `visual_storyboards/&lt;activity_id&gt;/`, then copy each final PNG to `mechanism_grid.png` and rerun the prompt script to refresh metadata.</span></li>
       <li><strong>Generate the dashboard</strong><code>python3 scripts/generate_run_review.py {esc(run_path)}</code></li>
       <li><strong>Validate the dashboard</strong><code>python3 scripts/generate_run_review.py --validate {esc(run_path)}</code></li>
       <li><strong>Record provenance</strong><span>Keep `outputs.review_dashboard` pointing to `{esc(run_path)}/review.html` and record the generation and validation checks in the run manifest.</span></li>
@@ -1922,6 +2042,8 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
         ("results.tsv", "../../results.tsv"),
         ("assignments.md", "../../assignments.md"),
     ]
+    if (run_dir / "visual_storyboards" / "storyboard_manifest.yaml").exists():
+        run_links.insert(4, ("storyboard_manifest.yaml", "visual_storyboards/storyboard_manifest.yaml"))
     package_categories = [p["category"] for p in packages]
     package_statuses = [p["status"] for p in packages]
     package_mechanics = [p["mechanic"] for p in packages]
@@ -2409,6 +2531,87 @@ input:focus, select:focus {
 .asset-metric-strip > div:nth-child(2n) { border-right: 1px solid var(--hairline); }
 .asset-metric-strip > div:nth-child(3n) { border-right: none; }
 .asset-metric-strip > div:nth-last-child(-n+3) { border-bottom: none; }
+.storyboard-block {
+  display: grid;
+  grid-template-columns: minmax(280px, .92fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.storyboard-figure {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--panel-soft);
+  box-shadow: var(--shadow-soft);
+}
+.storyboard-image-link {
+  display: block;
+  border: 0;
+}
+.storyboard-image-link:hover { border: 0; }
+.storyboard-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.storyboard-placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+  padding: 20px;
+  color: var(--muted);
+  font-weight: 650;
+  text-align: center;
+}
+.storyboard-detail-copy { min-width: 0; display: grid; gap: 12px; }
+.storyboard-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.storyboard-caption-list {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-top: 1px solid var(--hairline);
+}
+.storyboard-caption-row {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.storyboard-panel-number {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font: 11px/1 var(--mono-stack);
+  font-variant-numeric: var(--tnum);
+}
+.storyboard-caption-row strong {
+  display: block;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 680;
+}
+.storyboard-caption-row p {
+  margin: 2px 0 0;
+  color: var(--text-soft);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.storyboard-source {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font: 10.5px/1.35 var(--mono-stack);
+}
 .summary-copy { margin: 0; color: var(--text-soft); max-width: 74ch; font-size: 13.5px; line-height: 1.5; }
 details { border-top: 1px solid var(--hairline); padding-top: 10px; }
 summary { cursor: pointer; font-weight: 700; color: var(--accent-ink); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
@@ -2990,7 +3193,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   .metric { border-right: 1px solid var(--hairline) !important; border-bottom: 1px solid var(--hairline); }
   .metric:nth-child(2n) { border-right: none !important; }
   .metric:nth-last-child(-n+2) { border-bottom: none; }
-  .side-nav, .sidebar-counts, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid { grid-template-columns: 1fr; }
+  .side-nav, .sidebar-counts, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid, .storyboard-block { grid-template-columns: 1fr; }
   .runtime-map-node, .runtime-lanes, .screen-strip { grid-template-columns: 1fr; }
   .runtime-step-marker {
     display: flex;
@@ -3496,6 +3699,17 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         + outputs.get("enriched_activities", [])
         + outputs.get("audited_activities", [])
     )
+    storyboard_root = run_dir / "visual_storyboards"
+    expected_storyboard_images = [
+        storyboard_root / normalize_text(entry.get("activity_id")) / "mechanism_grid.png"
+        for entry in package_entries
+        if normalize_text(entry.get("activity_id"))
+    ]
+    storyboard_meta_files = [
+        storyboard_root / normalize_text(entry.get("activity_id")) / "mechanism_grid.meta.yaml"
+        for entry in package_entries
+        if normalize_text(entry.get("activity_id"))
+    ]
     reviewer_map = reviewer_by_activity(read_text(run_dir / "review_notes.md"))
     package_ids = {normalize_text(entry.get("activity_id")) for entry in package_entries}
     expected_reviewer_pairs = {
@@ -3559,8 +3773,17 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         and "10-dimension rubric" in text
         and "Mechanic Fidelity + Scaffold Honesty" in text,
         "dashboard_workflow": "Review Dashboard Workflow" in text
+        and f"python3 scripts/generate_storyboard_prompts.py runs/{run_dir.name}" in text
         and f"python3 scripts/generate_run_review.py runs/{run_dir.name}" in text
         and f"python3 scripts/generate_run_review.py --validate runs/{run_dir.name}" in text,
+        "mechanism_storyboards": not storyboard_root.exists()
+        or (
+            text.count("Mechanism Storyboard") >= expected_packages
+            and text.count("mechanism_grid.png") >= len(expected_storyboard_images)
+            and all(path.exists() for path in expected_storyboard_images)
+            and all(path.exists() for path in storyboard_meta_files)
+            and "storyboard-caption-row" in text
+        ),
         "scorecard_results": expected_packages == 0
         or (
             text.count("Scorecard Results") >= expected_packages

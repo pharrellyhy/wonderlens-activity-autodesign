@@ -1,0 +1,48 @@
+activity_id: concept_recognition_pop_probe
+activity_name: Recognition Pop Challenge
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:29:35'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064c7801e08193a8e029816c5288d7.png
+prompt_sha256: 9980cdbcaae57265a019d1b93222b052fa317a6b9c837254bd675639eddd1c4a
+prompt_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_recognition_pop_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: The product can show a target card with simple distractors. The
+    AI gives tap, point, or spoken-choice options and slows the game down if timing
+    support is unavailable.'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Target Matcher rule: choose
+    the picture that matches the spoken target. I only save what... | Ideal: Child
+    confirms the role or starts round one...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is compare: Round 1 -- Find the target | [round-1
+    guide] "Round 1: choose the picture that matches the spoken target." | Ideal:
+    "I tapped the apple." | Unexpected: Taps a distractor | No...'
+  source: Round 1 -- Find the target
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific] "Apple matches the target. Slot one pops." | [redirect] "Close.
+    Banana is food too, but the target is apple."'
+  source: Round 1 -- Find the target
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Avoid the distractor | [round-2 guide] "Round 2: explain why
+    a similar picture is not the target." | Ideal: "Pear is not apple; different shape."
+    | Unexpected: Says all fruits co...'
+  source: Round 2 -- Avoid the distractor
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Form and Perspective
+    today. You used your own compare action to make the result." | Ideal: "Again!"
+    / names a favorite part. | Un...'
+  source: 'Step 5: Closing + IB Concepts'

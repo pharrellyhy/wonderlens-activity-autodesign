@@ -1,0 +1,48 @@
+activity_id: concept_time_sense_probe
+activity_name: Time Sense Challenge
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:32:30'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064d289dbc8193aac9edd20e2c626a.png
+prompt_sha256: da6878c80353ee83b0d21d405cbeb861be92f2c40e9caea4a8dc4b7083a49e53
+prompt_path: visual_storyboards/concept_time_sense_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_time_sense_probe/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_time_sense_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: A child can sit safely for a ten-second challenge. The AI gives
+    a clear start signal, records the child''s stop guess, reveals the elapsed result,
+    and keeps the second estimate low-...'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Time Guesser rule: predict
+    when ten seconds have passed. I only save what you choose, say... | Ideal: Child
+    confirms the role or starts round on...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is predict: Round 1 -- Make a short guess | [round-1
+    guide] "Round 1: predict when ten seconds have passed." | Ideal: "I will say stop."
+    | Unexpected: Wants a long timer | No response: No...'
+  source: Round 1 -- Make a short guess
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific] "Good. Your guess is locked before the timer." | [redirect]
+    "Let us keep it short: ten seconds is safer for this game."'
+  source: Round 1 -- Make a short guess
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Check the result | [round-2 guide] "Round 2: compare the guess
+    with the timer result." | Ideal: "I was early." | Unexpected: Argues the timer
+    is wrong | No response: No response...'
+  source: Round 2 -- Check the result
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Causation
+    and Change today. You used your own predict action to make the result." | Ideal:
+    "Again!" / names a favorite part. | Un...'
+  source: 'Step 5: Closing + IB Concepts'

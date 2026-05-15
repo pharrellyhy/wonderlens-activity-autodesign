@@ -1,0 +1,48 @@
+activity_id: concept_color_famous_art_probe
+activity_name: Color In Famous Art
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T00:56:40'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05fe61de448193ac0d00a7fdeaa0d0.png
+prompt_sha256: 0d8b463184495b1a0fbe5f8b715eec4d97533b360e7acdd9f2067f0c5ff166fd
+prompt_path: visual_storyboards/concept_color_famous_art_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_color_famous_art_probe/mechanism_grid.png
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_color_famous_art_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: The product can display a curated public-domain or licensed artwork
+    with color metadata. The AI discusses only visible colors and child-safe context,
+    with no live museum lookup req...'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Color Curator rule: name
+    the first color that stands out in the artwork. I only save what... | Ideal: Child
+    confirms the role or starts round on...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is enumerate: Round 1 -- Find the loudest color
+    | [round-1 guide] "Round 1: name the first color that stands out in the artwork."
+    | Ideal: "Bright yellow." | Unexpected: Names invisible c...'
+  source: Round 1 -- Find the loudest color
+- number: '4'
+  title: Feedback Loop
+  caption: '[specific] "Yellow is the loudest color you noticed." | [redirect] "Look
+    again at the approved artwork card. Pick a color you can see."'
+  source: Round 1 -- Find the loudest color
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Find repeated colors | [round-2 guide] "Round 2: point to or
+    name where the color appears again." | Ideal: "Yellow on the hat and window."
+    | Unexpected: Only says favorite color...'
+  source: Round 2 -- Find repeated colors
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Form and Function
+    today. You used your own enumerate action to make the result." | Ideal: "Again!"
+    / names a favorite part. | Une...'
+  source: 'Step 5: Closing + IB Concepts'
