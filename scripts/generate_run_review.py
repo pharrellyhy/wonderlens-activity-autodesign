@@ -32,6 +32,12 @@ PACKAGE_FILES = [
     "dashboard.template.yaml",
 ]
 
+BRANCH_LABELS = [
+    ("Ideal", "ideal"),
+    ("Unexpected", "unexpected"),
+    ("No response", "no-response"),
+]
+
 RUBRIC_CRITERIA = [
     {
         "number": "1",
@@ -278,6 +284,21 @@ def clean_markdown(value: str) -> str:
     return normalize_text(value)
 
 
+def branch_token(label: str) -> str:
+    normalized = normalize_text(label).lower().replace("-", " ")
+    for known_label, token in BRANCH_LABELS:
+        if normalized == known_label.lower().replace("-", " "):
+            return token
+    return re.sub(r"[^a-z0-9]+", "-", normalized).strip("-") or "observed"
+
+
+def branch_label_for_token(token: str) -> str:
+    for label, known_token in BRANCH_LABELS:
+        if token == known_token:
+            return label
+    return token.replace("-", " ").title() if token else "Observed"
+
+
 def field_block(text: str, label: str) -> str:
     pattern = re.compile(
         rf"\*\*{re.escape(label)}:\*\*\s*(?P<body>.*?)(?=\n\*\*[A-Z][^*]+:\*\*|\n\*\*Round |\n#### |\Z)",
@@ -288,6 +309,9 @@ def field_block(text: str, label: str) -> str:
 
 
 def summarize_child_responses(text: str) -> str:
+    branches = child_response_branches(text)
+    if branches:
+        return " | ".join(f"{branch['label']}: {branch['child']}" for branch in branches)
     lines = []
     for line in text.splitlines():
         stripped = line.strip()
@@ -300,6 +324,9 @@ def summarize_child_responses(text: str) -> str:
 
 
 def summarize_ai_followup(text: str) -> str:
+    followups = ai_followup_branches(text)
+    if followups:
+        return " | ".join(f"{followup['label']}: {followup['followup']}" for followup in followups)
     lines = []
     for line in text.splitlines():
         stripped = line.strip()
@@ -311,18 +338,88 @@ def summarize_ai_followup(text: str) -> str:
     return " | ".join(clean_markdown(line) for line in lines) if lines else clean_markdown(text)
 
 
-def beat_from_chunk(title: str, chunk: str) -> dict[str, str]:
+def child_response_branches(text: str) -> list[dict[str, str]]:
+    branches: list[dict[str, str]] = []
+    for line in text.splitlines():
+        stripped = line.strip()
+        match = re.match(r"\d+\.\s*\(([^)]+)\)\s*(.*)", stripped)
+        if not match:
+            continue
+        token = branch_token(match.group(1))
+        branches.append(
+            {
+                "label": branch_label_for_token(token),
+                "token": token,
+                "child": clean_markdown(match.group(2)),
+            }
+        )
+    return branches
+
+
+def ai_followup_branches(text: str) -> list[dict[str, str]]:
+    followups: list[dict[str, str]] = []
+    for line in text.splitlines():
+        stripped = line.strip()
+        match = re.match(r"\d+\.\s*(.*)", stripped)
+        if not match:
+            continue
+        body = match.group(1).strip()
+        label_match = re.match(r"\(([^)]+)\)\s*(.*)", body)
+        if label_match:
+            token = branch_token(label_match.group(1))
+            body = label_match.group(2)
+        elif len(followups) < len(BRANCH_LABELS):
+            _, token = BRANCH_LABELS[len(followups)]
+        else:
+            token = f"follow-up-{len(followups) + 1}"
+        followups.append(
+            {
+                "label": branch_label_for_token(token),
+                "token": token,
+                "followup": clean_markdown(body),
+            }
+        )
+    return followups
+
+
+def paired_branch_followups(child_text: str, followup_text: str) -> list[dict[str, str]]:
+    child_by_token = {branch["token"]: branch for branch in child_response_branches(child_text)}
+    followup_by_token = {followup["token"]: followup for followup in ai_followup_branches(followup_text)}
+    tokens = [token for _, token in BRANCH_LABELS]
+    tokens.extend(token for token in child_by_token if token not in tokens)
+    tokens.extend(token for token in followup_by_token if token not in tokens)
+    rows: list[dict[str, str]] = []
+    for token in tokens:
+        child = child_by_token.get(token, {})
+        followup = followup_by_token.get(token, {})
+        if not child and not followup:
+            continue
+        rows.append(
+            {
+                "label": child.get("label") or followup.get("label") or branch_label_for_token(token),
+                "token": token,
+                "child": child.get("child") or "",
+                "followup": followup.get("followup") or "",
+            }
+        )
+    return rows
+
+
+def beat_from_chunk(title: str, chunk: str) -> dict[str, Any]:
+    child_block = field_block(chunk, "Child responses")
+    followup_block = field_block(chunk, "AI follow-up")
     return {
         "title": clean_markdown(title),
         "ai": clean_markdown(field_block(chunk, "AI says")),
-        "child": summarize_child_responses(field_block(chunk, "Child responses")),
-        "followup": summarize_ai_followup(field_block(chunk, "AI follow-up")),
+        "child": summarize_child_responses(child_block),
+        "followup": summarize_ai_followup(followup_block),
+        "branches": paired_branch_followups(child_block, followup_block),
         "screen": clean_markdown(field_block(chunk, "Screen")),
     }
 
 
-def runtime_beats(prod_text: str) -> list[dict[str, str]]:
-    beats: list[dict[str, str]] = []
+def runtime_beats(prod_text: str) -> list[dict[str, Any]]:
+    beats: list[dict[str, Any]] = []
     step_matches = list(re.finditer(r"^####\s+(Step \d+:\s+.*?)\s*$", prod_text, re.MULTILINE))
     for step_index, step_match in enumerate(step_matches):
         step_title = step_match.group(1)
@@ -1654,30 +1751,35 @@ def runtime_beat_kind(title: str) -> str:
     return "beat"
 
 
-def runtime_branch_chips(child_text: str) -> str:
-    text = normalize_text(child_text)
-    if not text:
-        return '<span class="branch-chip branch-chip-observed"><span>Child</span>Unknown</span>'
-    chips = []
-    labels = [
-        ("Ideal", "ideal"),
-        ("Unexpected", "unexpected"),
-        ("No response", "no-response"),
-    ]
-    next_labels = "|".join(re.escape(label) for label, _ in labels)
-    for label, token in labels:
-        pattern = rf"(?:^|\|\s*){re.escape(label)}:\s*(.*?)(?=\s*\|\s*(?:{next_labels}):|$)"
-        match = re.search(pattern, text, flags=re.IGNORECASE)
-        if match:
-            chips.append(
-                f'<span class="branch-chip branch-chip-{token}"><span>{esc(label)}</span>{esc(clip_text(match.group(1), 92) or "Recorded")}</span>'
-            )
-    if chips:
-        return "".join(chips)
-    return f'<span class="branch-chip branch-chip-observed"><span>Child</span>{esc(clip_text(text, 140))}</span>'
+def runtime_branch_followups(beat: dict[str, Any]) -> str:
+    branches = beat.get("branches") if isinstance(beat.get("branches"), list) else []
+    if not branches:
+        child = normalize_text(beat.get("child"))
+        followup = normalize_text(beat.get("followup"))
+        return f"""
+<div class="branch-followup-grid">
+  <div class="branch-followup-card branch-followup-observed">
+    <div><span>Child</span><p>{esc(child or "Unknown")}</p></div>
+    <div><span>AI follow-up</span><p>{esc(followup or "Unknown")}</p></div>
+  </div>
+</div>"""
+    cards = []
+    for branch in branches:
+        token = branch_token(branch.get("token", "observed"))
+        label = branch.get("label") or branch_label_for_token(token)
+        child = branch.get("child") or "Unknown"
+        followup = branch.get("followup") or "Unknown"
+        cards.append(
+            f"""
+  <div class="branch-followup-card branch-followup-{esc(token)}">
+    <div><span>{esc(label)} child</span><p>{esc(child)}</p></div>
+    <div><span>AI follow-up</span><p>{esc(followup)}</p></div>
+  </div>"""
+        )
+    return f'<div class="branch-followup-grid">{"".join(cards)}</div>'
 
 
-def runtime_beat_map(beats: list[dict[str, str]]) -> str:
+def runtime_beat_map(beats: list[dict[str, Any]]) -> str:
     if not beats:
         return '<p class="muted">No visual runtime map available.</p>'
     nodes = []
@@ -1690,18 +1792,17 @@ def runtime_beat_map(beats: list[dict[str, str]]) -> str:
   <div class="runtime-step-body">
     <div class="runtime-map-head"><strong>{esc(title)}</strong><span>{esc(kind)}</span></div>
     <div class="runtime-lanes">
-      <div class="runtime-lane runtime-lane-ai"><span>AI</span><p>{esc(clip_text(beat.get("ai") or "Unknown", 170))}</p></div>
-      <div class="runtime-branches"><span>Child branches</span><div>{runtime_branch_chips(beat.get("child", ""))}</div></div>
-      <div class="runtime-lane runtime-lane-followup"><span>Follow-up</span><p>{esc(clip_text(beat.get("followup") or "Unknown", 150))}</p></div>
+      <div class="runtime-lane runtime-lane-ai"><span>AI prompt</span><p>{esc(beat.get("ai") or "Unknown")}</p></div>
+      <div class="runtime-branches"><span>Child branches and AI follow-ups</span>{runtime_branch_followups(beat)}</div>
     </div>
-    <div class="screen-strip"><span>Screen</span><p>{esc(clip_text(beat.get("screen") or "Unknown", 180))}</p></div>
+    <div class="screen-strip"><span>Screen</span><p>{esc(beat.get("screen") or "Unknown")}</p></div>
   </div>
 </li>"""
         )
     return f'<ol class="runtime-map">{"".join(nodes)}</ol>'
 
 
-def runtime_beat_html(beat: dict[str, str]) -> str:
+def runtime_beat_html(beat: dict[str, Any]) -> str:
     fields = [
         ("AI", beat.get("ai", "")),
         ("Child", beat.get("child", "")),
@@ -3014,8 +3115,9 @@ ol, ul { margin: 0; padding-left: 20px; }
 }
 .runtime-lanes {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.16fr) minmax(0, 1fr);
+  grid-template-columns: minmax(220px, .85fr) minmax(0, 2.15fr);
   gap: 8px;
+  align-items: start;
 }
 .runtime-lane,
 .runtime-branches,
@@ -3044,28 +3146,54 @@ ol, ul { margin: 0; padding-left: 20px; }
   font-size: 12.5px;
   line-height: 1.45;
 }
-.runtime-branches > div { display: flex; flex-wrap: wrap; gap: 5px; }
-.branch-chip {
-  display: inline-grid;
-  gap: 2px;
-  max-width: 100%;
-  border-radius: var(--radius-sm);
-  padding: 5px 7px;
-  color: var(--text-soft);
-  font-size: 12px;
-  line-height: 1.35;
+.branch-followup-grid {
+  display: grid;
+  gap: 7px;
 }
-.branch-chip span {
+.branch-followup-card {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.25fr);
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 7px 8px;
+  color: var(--text-soft);
+}
+.branch-followup-card span {
+  display: block;
+  margin-bottom: 3px;
   color: inherit;
   font-size: 9.5px;
   font-weight: 780;
   letter-spacing: .11em;
   text-transform: uppercase;
 }
-.branch-chip-ideal { background: var(--green-bg); color: var(--green-text); }
-.branch-chip-unexpected { background: var(--amber-bg); color: var(--amber-text); }
-.branch-chip-no-response { background: var(--neutral-tag-bg); color: var(--neutral-tag-text); }
-.branch-chip-observed { background: var(--accent-soft); color: var(--accent-ink); }
+.branch-followup-card p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 12px;
+  line-height: 1.42;
+}
+.branch-followup-ideal {
+  border-color: color-mix(in oklch, var(--green-text) 16%, transparent);
+  background: color-mix(in oklch, var(--green-bg) 82%, var(--panel-raised));
+}
+.branch-followup-ideal span { color: var(--green-text); }
+.branch-followup-unexpected {
+  border-color: color-mix(in oklch, var(--amber-text) 18%, transparent);
+  background: color-mix(in oklch, var(--amber-bg) 82%, var(--panel-raised));
+}
+.branch-followup-unexpected span { color: var(--amber-text); }
+.branch-followup-no-response {
+  border-color: color-mix(in oklch, var(--purple-text) 15%, transparent);
+  background: color-mix(in oklch, var(--purple-bg) 78%, var(--panel-raised));
+}
+.branch-followup-no-response span { color: var(--purple-text); }
+.branch-followup-observed {
+  border-color: color-mix(in oklch, var(--accent-line) 35%, transparent);
+  background: color-mix(in oklch, var(--accent-soft) 78%, var(--panel-raised));
+}
+.branch-followup-observed span { color: var(--accent-ink); }
 .screen-strip {
   display: grid;
   grid-template-columns: 74px minmax(0, 1fr);
@@ -3482,7 +3610,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   .metric:nth-child(2n) { border-right: none !important; }
   .metric:nth-last-child(-n+2) { border-bottom: none; }
   .side-nav, .sidebar-counts, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid, .storyboard-block { grid-template-columns: 1fr; }
-  .runtime-map-node, .runtime-lanes, .screen-strip { grid-template-columns: 1fr; }
+  .runtime-map-node, .runtime-lanes, .branch-followup-card, .screen-strip { grid-template-columns: 1fr; }
   .runtime-step-marker {
     display: flex;
     justify-content: flex-start;
@@ -4041,6 +4169,15 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         scorecard_rows(read_text(repo_root / normalize_text(entry.get("activity_path")) / "spec.md"))
         for entry in package_entries
     ]
+    runtime_sets = [
+        runtime_beats(read_text(repo_root / normalize_text(entry.get("activity_path")) / "prod.md"))
+        for entry in package_entries
+    ]
+    expected_branch_followups = sum(
+        len(beat.get("branches", []))
+        for beats in runtime_sets
+        for beat in beats
+    )
     asset_usage_sets = [
         asset_usage_from_spec(read_text(repo_root / normalize_text(entry.get("activity_path")) / "spec.md"))
         for entry in package_entries
@@ -4074,9 +4211,19 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             text.count('class="runtime-map"') >= expected_packages
             and "runtime-map-node" in text
             and "runtime-lane-ai" in text
-            and "runtime-lane-followup" in text
-            and "branch-chip-ideal" in text
+            and "branch-followup-grid" in text
+            and "branch-followup-ideal" in text
+            and "branch-followup-unexpected" in text
+            and "branch-followup-no-response" in text
             and "screen-strip" in text
+        ),
+        "branch_followups_all_paths": expected_branch_followups == 0
+        or (
+            text.count('class="branch-followup-card') >= expected_branch_followups
+            and "Child branches and AI follow-ups" in text
+            and "Ideal child" in text
+            and "Unexpected child" in text
+            and "No response child" in text
         ),
         "review_criteria": "Review Criteria" in text
         and "10-dimension rubric" in text
