@@ -55,6 +55,8 @@ The screen shows a simplified star card with six clear stars. The child estimate
 
 **Screen:** The activity badge "Star Count Scout" appears with three empty progress tokens. If `constellation_count_cards_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
 
+> RESOLVED BLOCKER: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location, and no-display fallback instead of blocking the package.
+
 #### Step 2: Rule Introduction
 
 **AI says:** [clear guide tone] "Scout rule: make a quick estimate, count each star, then compare where more stars sit."

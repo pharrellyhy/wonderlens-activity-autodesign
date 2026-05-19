@@ -243,8 +243,11 @@ outputs:
     adaptation_brief: runs/20260512_172135_batch5_unblocked/adaptation_briefs/007_partial_reveal_guess.yaml
     results_tsv_row: true
     generation_policy: fresh_run_local_package
-    resolved_blockers: []
-    resolved_blocker_types: []
+    resolved_blockers:
+    - 'Prebuilt asset display: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location,
+      and no-display fallback instead of blocking the package.'
+    resolved_blocker_types:
+    - Prebuilt asset display
     asset_usage:
     - asset_id: partial_reveal_cards_01
       concept_ref: source_partial_reveal_guess
@@ -456,8 +459,11 @@ outputs:
     adaptation_brief: runs/20260512_172135_batch5_unblocked/adaptation_briefs/013_constellation_star_count.yaml
     results_tsv_row: true
     generation_policy: fresh_run_local_package
-    resolved_blockers: []
-    resolved_blocker_types: []
+    resolved_blockers:
+    - 'Prebuilt asset display: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location,
+      and no-display fallback instead of blocking the package.'
+    resolved_blocker_types:
+    - Prebuilt asset display
     asset_usage:
     - asset_id: constellation_count_cards_01
       concept_ref: source_constellation_star_count
@@ -540,8 +546,11 @@ outputs:
     adaptation_brief: runs/20260512_172135_batch5_unblocked/adaptation_briefs/015_vegetable_sort.yaml
     results_tsv_row: true
     generation_policy: fresh_run_local_package
-    resolved_blockers: []
-    resolved_blocker_types: []
+    resolved_blockers:
+    - 'Prebuilt asset display: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location,
+      and no-display fallback instead of blocking the package.'
+    resolved_blocker_types:
+    - Prebuilt asset display
     asset_usage:
     - asset_id: vegetable_sort_cards_01
       concept_ref: source_vegetable_sort
@@ -582,8 +591,11 @@ outputs:
     adaptation_brief: runs/20260512_172135_batch5_unblocked/adaptation_briefs/016_how_many_guess.yaml
     results_tsv_row: true
     generation_policy: fresh_run_local_package
-    resolved_blockers: []
-    resolved_blocker_types: []
+    resolved_blockers:
+    - 'Prebuilt asset display: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location,
+      and no-display fallback instead of blocking the package.'
+    resolved_blocker_types:
+    - Prebuilt asset display
     asset_usage:
     - asset_id: how_many_count_cards_01
       concept_ref: source_how_many_guess
@@ -624,8 +636,11 @@ outputs:
     adaptation_brief: runs/20260512_172135_batch5_unblocked/adaptation_briefs/017_flashcards.yaml
     results_tsv_row: true
     generation_policy: fresh_run_local_package
-    resolved_blockers: []
-    resolved_blocker_types: []
+    resolved_blockers:
+    - 'Prebuilt asset display: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location,
+      and no-display fallback instead of blocking the package.'
+    resolved_blocker_types:
+    - Prebuilt asset display
     asset_usage:
     - asset_id: generic_flashcard_library_01
       concept_ref: source_flashcards

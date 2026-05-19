@@ -55,6 +55,8 @@ The screen shows long rabbit ears from `partial_reveal_cards_01`. The child gues
 
 **Screen:** A mystery curtain covers the answer. If `partial_reveal_cards_01` is available, a small card deck labeled "part clues" waits behind the curtain. If unavailable, show only clue pips and a voice-riddle badge.
 
+> RESOLVED BLOCKER: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location, and no-display fallback instead of blocking the package.
+
 #### Step 2: Rule Introduction -- Part-Spotter Detective
 
 **AI says:** [clear guide tone] "You are the Part-Spotter Detective. I show or describe one part. You guess the whole and tell me the clue."

@@ -44,6 +44,12 @@ Start when Child chooses a space theme or the screen can show an approved conste
 - **Earned magic moment:** The estimate flips into a counted star map, showing how careful counting checks a first guess.
 - **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
 
+## Resolved Product Contract Notes
+
+- **Prebuilt asset display:** Approved minimum asset-display contract: use the declared asset ID, display timing, screen location, and no-display fallback instead of blocking the package.
+
+These are resolved contract items for this run, not package failures. They remain visible so implementation can see the minimum-to-unblock assumptions.
+
 ## Asset Brief
 
 | asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_en/source | display_behavior | fallback_behavior | safety_constraints |

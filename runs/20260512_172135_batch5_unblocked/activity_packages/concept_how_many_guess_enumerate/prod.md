@@ -55,6 +55,8 @@ A card shows seven shells. The child guesses first, then touches or counts each 
 
 **Screen:** The activity badge "Careful Counter" appears with three empty progress tokens. If `how_many_count_cards_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
 
+> RESOLVED BLOCKER: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location, and no-display fallback instead of blocking the package.
+
 #### Step 2: Rule Introduction
 
 **AI says:** [clear guide tone] "Here is the rule: I give you one small challenge, you answer, and we save one progress token. Three tokens make the final reveal."

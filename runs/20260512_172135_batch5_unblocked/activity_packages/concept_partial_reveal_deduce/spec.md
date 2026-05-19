@@ -39,6 +39,12 @@ If `partial_reveal_cards_01` cannot be displayed, use voice-only part riddles su
 - **Game style:** `mystery_lens`
 - **Why this scaffold:** the child solves a hidden whole from visible evidence, and the reveal creates a clear "I figured it out" payoff.
 
+## Resolved Product Contract Notes
+
+- **Prebuilt asset display:** Approved minimum asset-display contract: use the declared asset ID, display timing, screen location, and no-display fallback instead of blocking the package.
+
+These are resolved contract items for this run, not package failures. They remain visible so implementation can see the minimum-to-unblock assumptions.
+
 ## Asset Brief
 
 | asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_en/source | display_behavior | fallback_behavior | safety_constraints |

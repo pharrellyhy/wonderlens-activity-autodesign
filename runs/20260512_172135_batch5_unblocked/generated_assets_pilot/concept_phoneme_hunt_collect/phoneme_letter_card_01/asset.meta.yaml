@@ -1,0 +1,29 @@
+run_id: 20260512_172135_batch5_unblocked
+activity_id: concept_phoneme_hunt_collect
+activity_name: concept_phoneme_hunt_collect
+mechanic: collect
+asset_id: phoneme_letter_card_01
+asset_type: card_set
+requiredness: optional
+generation_timing: pre_generated
+status: generated
+artifact_kind: prebuilt_asset_contact_sheet_pilot
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-16T00:19:41'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_03069657e481fc83016a07473e58bc819aade1ef0cc8818130.png
+prompt_sha256: c17bc188dc53ba7b5f427071df3a99088ae5146981b0591ccc206506a24f75b7
+prompt_path: generated_assets_pilot/concept_phoneme_hunt_collect/phoneme_letter_card_01/contact_sheet.prompt.md
+image_path: generated_assets_pilot/concept_phoneme_hunt_collect/phoneme_letter_card_01/contact_sheet.png
+meta_path: generated_assets_pilot/concept_phoneme_hunt_collect/phoneme_letter_card_01/asset.meta.yaml
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_phoneme_hunt_collect
+use_step: prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4
+display_location: center_card_area
+purpose: Give the child a visual reminder of the target sound and letter.
+display_behavior: Show the card at task start and briefly again if the child forgets
+  the target sound.
+fallback_behavior: If the card is unavailable, the AI repeats the target sound by
+  voice only and must not claim the screen is showing a letter.
+safety_constraints: No real child photos, no brands, no complex text, and no cluttered
+  composition.

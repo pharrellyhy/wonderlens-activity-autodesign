@@ -1,0 +1,30 @@
+run_id: 20260512_172135_batch5_unblocked
+activity_id: concept_partial_reveal_deduce
+activity_name: concept_partial_reveal_deduce
+mechanic: deduce
+asset_id: partial_reveal_cards_01
+asset_type: card_set
+requiredness: required
+generation_timing: pre_generated
+status: generated
+artifact_kind: prebuilt_asset_contact_sheet_pilot
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-16T00:23:29'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_03069657e481fc83016a07482cc608819ab0c191c8e43611c6.png
+prompt_sha256: d03cdf3b4a95403a13e3ed1341daf4de7c1c586a3790c92c003f0cc09b1df53a
+prompt_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/contact_sheet.prompt.md
+image_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/contact_sheet.png
+meta_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/asset.meta.yaml
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_partial_reveal_deduce
+use_step: prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4
+display_location: center_card_area
+purpose: Provide visible partial evidence so the child can infer the whole animal
+  or object.
+display_behavior: Show one partial-reveal card full screen each round. The child observes
+  the part, guesses the whole, and explains the evidence.
+fallback_behavior: If partial cards are unavailable, switch to a voice-only partial-clue
+  riddle and do not claim the screen is showing a picture.
+safety_constraints: No real child photos, no gore or scary details, no predation scenes,
+  and clear inspectable cropped parts.

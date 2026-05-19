@@ -55,6 +55,8 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 
 **Screen:** The activity badge "Picture Namer" appears with two empty progress tokens. If `generic_flashcard_library_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
 
+> RESOLVED BLOCKER: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location, and no-display fallback instead of blocking the package.
+
 #### Step 2: Rule Introduction
 
 **AI says:** [clear guide tone] "Name it. Pick one."

@@ -1,0 +1,29 @@
+run_id: 20260512_172135_batch5_unblocked
+activity_id: concept_guided_drawing_probe
+activity_name: concept_guided_drawing_probe
+mechanic: build
+asset_id: guided_drawing_step_cards_01
+asset_type: card_set
+requiredness: optional
+generation_timing: pre_generated
+status: generated
+artifact_kind: prebuilt_asset_contact_sheet_pilot
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-16T16:50:43'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_03069657e481fc83016a082f92229c819a9bd381715f03f631.png
+prompt_sha256: 136607ecb522aa07eb6ab6bf2420397a178cd06944f34416948bbcdd6c6ee797
+prompt_path: generated_assets_pilot/concept_guided_drawing_probe/guided_drawing_step_cards_01/contact_sheet.prompt.md
+image_path: generated_assets_pilot/concept_guided_drawing_probe/guided_drawing_step_cards_01/contact_sheet.png
+meta_path: generated_assets_pilot/concept_guided_drawing_probe/guided_drawing_step_cards_01/asset.meta.yaml
+package_path: runs/20260512_172135_batch5_unblocked/activity_packages/concept_guided_drawing_probe
+use_step: prod.step_2; prod.step_3.round_1-3
+display_location: center_card_area
+purpose: Provide optional visual steps for a simple drawing task.
+display_behavior: Show one step card at a time while the AI leaves enough time for
+  the child to draw on paper.
+fallback_behavior: If step cards are unavailable, use voice-only step descriptions
+  with caregiver setup, self-report completion, and no drawing-quality assessment.
+safety_constraints: No real child photos, no fine-copying requirement, and only simple
+  non-dangerous drawing themes.

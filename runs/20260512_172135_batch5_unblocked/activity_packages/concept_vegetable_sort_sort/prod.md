@@ -55,6 +55,8 @@ The screen shows carrot, broccoli, tomato, and potato cards. The child sorts by 
 
 **Screen:** The activity badge "Veggie Sorter" appears with three empty progress tokens. If `vegetable_sort_cards_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
 
+> RESOLVED BLOCKER: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location, and no-display fallback instead of blocking the package.
+
 #### Step 2: Rule Introduction
 
 **AI says:** [clear guide tone] "Sorter rule: choose the grouping rule, use it on the cards, then name one group."
