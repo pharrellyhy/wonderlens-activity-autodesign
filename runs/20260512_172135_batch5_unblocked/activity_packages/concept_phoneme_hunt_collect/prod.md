@@ -55,6 +55,8 @@ Child enters sound hunt mode; the AI says `/b/`, and the child searches the room
 
 **Screen:** If `phoneme_letter_card_01` is available, show it beside a pulsing sound bubble. If unavailable, show only the bubble labeled "Sound: /b/" and do not show or mention a letter card.
 
+**Photo capture timing:** No photo capture is required before the Step 1 child response. Step 1 teaches the target sound; treasure photos begin only after the mission briefing.
+
 #### Step 2: Mission Briefing -- Sound Treasure Scout
 
 **AI says:** [adventurous guide tone] "You are the Sound Treasure Scout. Find three things with /b/ names. Snap each treasure. We will sound it out."
@@ -72,6 +74,8 @@ Child enters sound hunt mode; the AI says `/b/`, and the child searches the room
 3. [wait 2s] [helpful whisper] "Look for a ball, book, block, bear, bottle, or banana."
 
 **Screen:** A treasure map appears with three empty slots. The sound bubble "/b/" sits at the top. If the optional card is available, a small card tab can reopen it; otherwise the tab is absent.
+
+**Photo capture timing:** No capture is required before the Step 2 child response. The first treasure photo is intended after this AI follow-up and before Round 1 starts.
 
 #### Step 3: Multi-Round Exploration
 
@@ -93,6 +97,8 @@ Child enters sound hunt mode; the AI says `/b/`, and the child searches the room
 
 **Screen:** The photo moves into slot 1 with a "B-SOUND MATCH" stamp. If the optional card is available, it flashes once; otherwise the /b/ sound bubble bounces.
 
+**Photo capture timing:** The first treasure photo has already been captured after Step 2 follow-up and before this Round 1 AI prompt. The child response is the spoken name and sound check after the photo is available.
+
 **Round 2 -- Second /b/ Treasure:**
 
 **AI says:** [playful detective tone] "Second treasure photo! Say its name slowly. Do you hear /b/ at the start?"
@@ -110,6 +116,8 @@ Child enters sound hunt mode; the AI says `/b/`, and the child searches the room
 3. [wait 2s] [gentle model tone] "I will model one: bottle. /b/ottle. Now try yours."
 
 **Screen:** Slot 2 fills. A dotted path connects treasure 1 and treasure 2. The sound bubble repeats "/b/..." with small pop marks.
+
+**Photo capture timing:** The second treasure photo is captured between the Round 1 follow-up and this Round 2 AI prompt. The child response happens after the new photo is visible.
 
 **Round 3 -- Final /b/ Treasure:**
 
@@ -129,6 +137,8 @@ Child enters sound hunt mode; the AI says `/b/`, and the child searches the room
 
 **Screen:** Slot 3 glows. When accepted, all three slots pop in order. The map counter flips to "3 /b/ treasures."
 
+**Photo capture timing:** The final treasure photo is captured between the Round 2 follow-up and this Round 3 AI prompt. If the child cannot find one, no capture happens until after the redirect follow-up sends them searching again.
+
 **Helper branch -- Not a /b/ treasure yet:**
 
 **AI says:** [friendly redirect tone] "This is a nice photo. I hear a different first sound. Let's keep hunting for /b/."
@@ -146,6 +156,8 @@ Child enters sound hunt mode; the AI says `/b/`, and the child searches the room
 3. [wait 2s] [soft reset tone] "No problem. Say /b/. Now look for ball, book, or bear."
 
 **Screen:** The photo goes into a "different sound" basket. The three main treasure slots stay visible so progress is not lost.
+
+**Photo capture timing:** This helper branch uses the current non-/b/ photo. If the child tries another object, capture happens after this AI follow-up and loops back before the next treasure prompt.
 
 #### Step 4: Magic Moment -- The B-Sound Map
 
@@ -165,6 +177,8 @@ Child enters sound hunt mode; the AI says `/b/`, and the child searches the room
 
 **Screen:** The three accepted photos arrange on a small treasure map. A path line connects their first sound bubbles. A banner says "B-Sound Team."
 
+**Photo capture timing:** No new photo capture happens in Step 4. The reveal uses the three accepted treasure photos already captured during the hunt.
+
 #### Step 5: Closing + IB Concepts
 
 **AI says:** [warm celebration] "You did it, Sound Treasure Scout. You used Form today. You noticed word sounds. You used Connection too. Different treasures shared one first sound."
@@ -182,3 +196,5 @@ Child enters sound hunt mode; the AI says `/b/`, and the child searches the room
 3. [wait 2s] [soft goodbye tone] "Your B-Sound badge is saved. You found a sound pattern."
 
 **Screen:** A "B-Sound Scout" badge appears with three photo insets. The words "Form" and "Connection" glow on the map. A next-step card says, "Next: try a new first sound."
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge summarizes the existing accepted photo set.

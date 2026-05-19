@@ -301,7 +301,7 @@ def branch_label_for_token(token: str) -> str:
 
 def field_block(text: str, label: str) -> str:
     pattern = re.compile(
-        rf"\*\*{re.escape(label)}:\*\*\s*(?P<body>.*?)(?=\n\*\*[A-Z][^*]+:\*\*|\n\*\*Round |\n#### |\Z)",
+        rf"\*\*{re.escape(label)}:\*\*\s*(?P<body>.*?)(?=\n\*\*[A-Z][^*]+:\*\*|\n\*\*Round |\n\*\*Helper branch |\n> RESOLVED BLOCKER|\n#### |\Z)",
         re.DOTALL,
     )
     match = pattern.search(text)
@@ -427,12 +427,14 @@ def runtime_beats(prod_text: str) -> list[dict[str, Any]]:
         start = step_match.end()
         end = step_matches[step_index + 1].start() if step_index + 1 < len(step_matches) else len(prod_text)
         step_chunk = prod_text[start:end].strip()
-        round_matches = list(re.finditer(r"^\*\*(Round .*?):\*\*\s*$", step_chunk, re.MULTILINE))
-        if round_matches:
-            for round_index, round_match in enumerate(round_matches):
-                round_start = round_match.end()
-                round_end = round_matches[round_index + 1].start() if round_index + 1 < len(round_matches) else len(step_chunk)
-                beats.append(beat_from_chunk(round_match.group(1), step_chunk[round_start:round_end]))
+        loop_matches = list(
+            re.finditer(r"^\*\*((?:Round|Helper branch).*?):\*\*\s*$", step_chunk, re.MULTILINE)
+        )
+        if loop_matches:
+            for loop_index, loop_match in enumerate(loop_matches):
+                loop_start = loop_match.end()
+                loop_end = loop_matches[loop_index + 1].start() if loop_index + 1 < len(loop_matches) else len(step_chunk)
+                beats.append(beat_from_chunk(loop_match.group(1), step_chunk[loop_start:loop_end]))
         else:
             beats.append(beat_from_chunk(step_title, step_chunk))
         if len(beats) >= 9:

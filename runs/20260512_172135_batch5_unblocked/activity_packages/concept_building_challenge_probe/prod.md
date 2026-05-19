@@ -55,6 +55,8 @@ Trigger: A child has blocks, bricks, cups, or recycled materials within caregive
 
 **Screen:** Shows title, setup cue, safety/fallback chip, and 3 empty progress slots.
 
+**Photo capture timing:** No photo capture happens in Step 1. The child prepares or confirms setup after the AI prompt; build evidence waits until the show/explain round.
+
 > RESOLVED BLOCKER: Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence are documented.
 > RESOLVED BLOCKER: Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.
 > RESOLVED BLOCKER: Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual verification.
@@ -77,6 +79,8 @@ Trigger: A child has blocks, bricks, cups, or recycled materials within caregive
 
 **Screen:** Shows the role badge and first action card. Uses `building_reference_cards_01` in `center_card_area`; fallback: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state is visible.
 
+**Photo capture timing:** No photo capture happens in Step 2. The child chooses materials and setup mode; evidence can be a later photo, show, caregiver report, or child self-report.
+
 #### Step 3: Multi-Round Core Loop
 
 **Round 1 -- Choose the base:**
@@ -96,6 +100,8 @@ Trigger: A child has blocks, bricks, cups, or recycled materials within caregive
 3. [wait 2s] [gentle hint] "Find one safe object or say pretend base."
 
 **Screen:** If `building_reference_cards_01` is available, the reference card stays visible. Fallback: voice-only build cue with no card claim. Caregiver/material setup chip appears.
+
+**Photo capture timing:** No photo capture happens in Round 1. The child builds or names the base after the AI prompt; the AI saves the reported choice rather than visual proof.
 
 > RESOLVED BLOCKER: Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence are documented.
 > RESOLVED BLOCKER: Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.
@@ -118,6 +124,8 @@ Trigger: A child has blocks, bricks, cups, or recycled materials within caregive
 
 **Screen:** Progress board shows base + added part, with self-report not visual verification.
 
+**Photo capture timing:** No photo capture happens in Round 2. The child adds one useful part after the AI prompt and reports what changed.
+
 > RESOLVED BLOCKER: Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence are documented.
 > RESOLVED BLOCKER: Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.
 > RESOLVED BLOCKER: Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual verification.
@@ -138,6 +146,8 @@ Trigger: A child has blocks, bricks, cups, or recycled materials within caregive
 3. [wait 2s] [gentle hint] "Say: it stands because ___."
 
 **Screen:** Finish slot shows child/caregiver confirmation and a no-assessment badge.
+
+**Photo capture timing:** If the child chooses photo evidence for the finished build, capture happens after the Round 3 AI prompt and before the child explanation is saved. The AI still treats it as child-provided evidence and does not judge build quality from the photo.
 
 > RESOLVED BLOCKER: Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence are documented.
 > RESOLVED BLOCKER: Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.
@@ -160,6 +170,8 @@ Trigger: A child has blocks, bricks, cups, or recycled materials within caregive
 
 **Screen:** Shows the specific payoff for Building Challenge: a stable target build with base, useful part, and child explanation. Resolved contract chips remain visible for reviewer traceability.
 
+**Photo capture timing:** No new photo capture happens in Step 4. The reveal uses the Round 3 photo only if one was provided, otherwise it uses child/caregiver self-report.
+
 #### Step 5: Closing + IB Concepts
 
 **AI says:** [warm close] "You practiced Function and Change today. You used your own build action to make the result."
@@ -177,3 +189,5 @@ Trigger: A child has blocks, bricks, cups, or recycled materials within caregive
 3. [wait 2s] [gentle goodbye] "Your Build Planner badge is saved."
 
 **Screen:** Recap badge shows the 3-turn trail, focal attribute `building_challenge`, asset/fallback note when relevant, and one next-step hint.
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge saves the existing build explanation and evidence mode.

@@ -55,6 +55,8 @@ Trigger: A child photographs a toy car or flower, selects a big region, then add
 
 **Screen:** Shows title, setup cue, safety/fallback chip, and 3 empty progress slots.
 
+**Photo capture timing:** If this run starts from a photographed object, that object photo is captured before the Step 1 AI prompt. If no safe starter photo exists yet, capture happens after the follow-up and before Step 2 setup repeats.
+
 > RESOLVED BLOCKER: Approved minimum runtime-image policy: use the declared asset prompt, safety rules, latency cap, and no-image fallback instead of blocking the package.
 > RESOLVED BLOCKER: Approved minimum coloring/recoloring contract: selectable regions, child color input, persistence rules, and a voice-only fallback are allowed.
 > RESOLVED BLOCKER: Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and a stateless fallback.
@@ -77,6 +79,8 @@ Trigger: A child photographs a toy car or flower, selects a big region, then add
 
 **Screen:** Shows the role badge and first action card. Uses `runtime_coloring_line_art_01` in `full_screen_canvas`; fallback: Use a no-image color-plan fallback: the child names colors and regions verbally, and the screen shows text/color chips without claiming generated line art exists.
 
+**Photo capture timing:** Step 2 consumes the existing photographed object as the coloring subject. No new capture happens before the child response unless the starter is missing; in that case capture happens after the redirect follow-up and Step 2 repeats.
+
 #### Step 3: Multi-Round Core Loop
 
 **Round 1 -- Pick the coloring subject:**
@@ -96,6 +100,8 @@ Trigger: A child photographs a toy car or flower, selects a big region, then add
 3. [wait 2s] [gentle hint] "Point to the object you want to color."
 
 **Screen:** Canvas shows `runtime_coloring_line_art_01` as 3-5 large regions, or fallback color chips if no generated line art exists.
+
+**Photo capture timing:** No new capture happens in the normal flow because the starter photo is already available. If the child picks a different safe everyday object, capture happens after this AI prompt or redirect follow-up and before the subject response is saved.
 
 > RESOLVED BLOCKER: Approved minimum runtime-image policy: use the declared asset prompt, safety rules, latency cap, and no-image fallback instead of blocking the package.
 > RESOLVED BLOCKER: Approved minimum coloring/recoloring contract: selectable regions, child color input, persistence rules, and a voice-only fallback are allowed.
@@ -118,6 +124,8 @@ Trigger: A child photographs a toy car or flower, selects a big region, then add
 
 **Screen:** Region 1 fills with the selected color; the source photo/color chip remains visible.
 
+**Photo capture timing:** If the child uses a real-world color photo, capture happens after the Round 2 AI prompt and before the child response is saved. If the child names or shows one color without taking a photo, no capture happens.
+
 > RESOLVED BLOCKER: Approved minimum runtime-image policy: use the declared asset prompt, safety rules, latency cap, and no-image fallback instead of blocking the package.
 > RESOLVED BLOCKER: Approved minimum coloring/recoloring contract: selectable regions, child color input, persistence rules, and a voice-only fallback are allowed.
 > RESOLVED BLOCKER: Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and a stateless fallback.
@@ -138,6 +146,8 @@ Trigger: A child photographs a toy car or flower, selects a big region, then add
 3. [wait 2s] [gentle hint] "We can finish with two colors and call it a mini palette."
 
 **Screen:** Canvas shows named regions and a saved three-color palette strip.
+
+**Photo capture timing:** No new photo capture happens in Round 3. The child chooses contrast and accent colors after the AI prompt using spoken, pointed, or already captured evidence.
 
 > RESOLVED BLOCKER: Approved minimum runtime-image policy: use the declared asset prompt, safety rules, latency cap, and no-image fallback instead of blocking the package.
 > RESOLVED BLOCKER: Approved minimum coloring/recoloring contract: selectable regions, child color input, persistence rules, and a voice-only fallback are allowed.
@@ -160,6 +170,8 @@ Trigger: A child photographs a toy car or flower, selects a big region, then add
 
 **Screen:** Shows the specific payoff for Coloring Game: saved color regions and palette; if line art is available, show the fillable page. Fallback: voice-only color plan with no generated-image claim. Resolved contract chips remain visible for reviewer traceability.
 
+**Photo capture timing:** No new photo capture happens in Step 4. The reveal uses the existing starter object photo and optional Round 2 color-source photo or voice-only color evidence.
+
 #### Step 5: Closing + IB Concepts
 
 **AI says:** [warm close] "You practiced Function and Change today. You used your own build action to make the result."
@@ -177,3 +189,5 @@ Trigger: A child photographs a toy car or flower, selects a big region, then add
 3. [wait 2s] [gentle goodbye] "Your Palette Builder badge is saved."
 
 **Screen:** Recap badge shows the 3-turn trail, focal attribute `coloring_game`, asset/fallback note when relevant, and one next-step hint.
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge summarizes the existing coloring subject and color evidence.

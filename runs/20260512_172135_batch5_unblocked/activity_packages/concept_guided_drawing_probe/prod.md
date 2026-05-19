@@ -55,6 +55,8 @@ Trigger: A child has paper and pencil ready and chooses a simple object as the d
 
 **Screen:** Shows title, setup cue, safety/fallback chip, and 3 empty progress slots.
 
+**Photo capture timing:** No photo capture happens in Step 1. The child prepares for drawing after the AI prompt; any finished-work photo waits until Round 3.
+
 > RESOLVED BLOCKER: Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence are documented.
 > RESOLVED BLOCKER: Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual verification.
 
@@ -76,6 +78,8 @@ Trigger: A child has paper and pencil ready and chooses a simple object as the d
 
 **Screen:** Shows the role badge and first action card. Uses `guided_drawing_step_cards_01` in `center_card_area`; fallback: If step cards are unavailable, use voice-only step descriptions with caregiver setup, self-report completion, and no drawing-quality assessment.
 
+**Photo capture timing:** No photo capture happens in Step 2. The rule prompt sets up drawing steps; photo evidence is only requested for the finished drawing in Round 3.
+
 #### Step 3: Multi-Round Core Loop
 
 **Round 1 -- Draw the big shape:**
@@ -95,6 +99,8 @@ Trigger: A child has paper and pencil ready and chooses a simple object as the d
 3. [wait 2s] [gentle hint] "Make one big shape and tell me done."
 
 **Screen:** If `guided_drawing_step_cards_01` is available, step card 1 stays in center. Fallback: voice-only step cue with no card claim. A timer says "drawing time"; no quality score appears.
+
+**Photo capture timing:** No photo capture happens in Round 1. The child draws after the AI prompt and responds by saying or self-reporting that the big shape is done.
 
 > RESOLVED BLOCKER: Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence are documented.
 > RESOLVED BLOCKER: Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual verification.
@@ -116,6 +122,8 @@ Trigger: A child has paper and pencil ready and chooses a simple object as the d
 
 **Screen:** If cards are available, step card 2 appears. Fallback: voice-only detail cue with no card claim. Material-help chip is visible for caregiver setup.
 
+**Photo capture timing:** No photo capture happens in Round 2. The child adds one detail after the AI prompt and reports completion verbally or by gesture.
+
 > RESOLVED BLOCKER: Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence are documented.
 > RESOLVED BLOCKER: Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual verification.
 **Round 3 -- Show the finish:**
@@ -135,6 +143,8 @@ Trigger: A child has paper and pencil ready and chooses a simple object as the d
 3. [wait 2s] [gentle hint] "Say one thing your drawing has."
 
 **Screen:** Final-work slot is marked photo, description, or skipped; no visual assessment claim is made.
+
+**Photo capture timing:** If the child chooses the photo path, the finished-drawing photo is captured after the Round 3 AI prompt and before the child response is saved. If the photo is blurry, refused, or skipped, the follow-up switches to description/self-report instead of requiring another capture.
 
 > RESOLVED BLOCKER: Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence are documented.
 > RESOLVED BLOCKER: Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual verification.
@@ -156,6 +166,8 @@ Trigger: A child has paper and pencil ready and chooses a simple object as the d
 
 **Screen:** Shows the specific payoff for Guided Drawing: a child-made drawing built from a big shape, detail, and finish photo/self-report. Resolved contract chips remain visible for reviewer traceability.
 
+**Photo capture timing:** No new photo capture happens in Step 4. The reveal uses the Round 3 finished photo when available, or the child's description/self-report when not.
+
 #### Step 5: Closing + IB Concepts
 
 **AI says:** [warm close] "You practiced Function and Change today. You used your own build action to make the result."
@@ -173,3 +185,5 @@ Trigger: A child has paper and pencil ready and chooses a simple object as the d
 3. [wait 2s] [gentle goodbye] "Your Step Sketch Coach badge is saved."
 
 **Screen:** Recap badge shows the 3-turn trail, focal attribute `guided_drawing`, asset/fallback note when relevant, and one next-step hint.
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge saves the existing finished-work evidence.

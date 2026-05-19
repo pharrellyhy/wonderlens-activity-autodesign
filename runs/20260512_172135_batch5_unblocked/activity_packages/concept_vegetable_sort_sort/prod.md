@@ -55,6 +55,8 @@ The screen shows carrot, broccoli, tomato, and potato cards. The child sorts by 
 
 **Screen:** The activity badge "Veggie Sorter" appears with three empty progress tokens. If `vegetable_sort_cards_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
 
+**Photo capture timing:** Normal card mode has no photo capture. If the activity uses photographed vegetables instead of cards, those vegetable photos are captured or uploaded before Step 1, or after the Step 1 follow-up before sorting starts.
+
 > RESOLVED BLOCKER: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location, and no-display fallback instead of blocking the package.
 
 #### Step 2: Rule Introduction
@@ -74,6 +76,8 @@ The screen shows carrot, broccoli, tomato, and potato cards. The child sorts by 
 3. [wait 2s] [modeling] "I will start, and you can copy my first answer if you want."
 
 **Screen:** A simple rule strip appears: Listen or look, answer, save a token. Token 1 pulses.
+
+**Photo capture timing:** No new photo capture happens in Step 2. The child chooses or accepts the sorting rule after the AI prompt using the existing cards or photographed vegetables.
 
 #### Step 3: Core Loop
 
@@ -95,6 +99,8 @@ The screen shows carrot, broccoli, tomato, and potato cards. The child sorts by 
 
 **Screen:** The chosen rule sign appears above two baskets. The card set switches labels to match: color groups, shape groups, or edible-part groups.
 
+**Photo capture timing:** No new photo capture happens in Round 1. The child chooses the sorting rule after the AI prompt; any photographed vegetables are already available.
+
 **Round 2 -- Place Two Vegetables:**
 
 **AI says:** [sorting tone] "Use your rule on carrot and tomato. If your rule is color, where do they go? If it is part we eat, where do they go?"
@@ -112,6 +118,8 @@ The screen shows carrot, broccoli, tomato, and potato cards. The child sorts by 
 3. [wait 2s] [gentle hint] "Try one evidence label: red, orange, root, or fruit."
 
 **Screen:** Carrot and tomato cards slide into groups based on the chosen rule; the screen labels the rule path instead of forcing color only.
+
+**Photo capture timing:** No new photo capture happens in Round 2. The child places or names groups using the existing cards or photographed vegetables after the AI prompt.
 
 **Round 3 -- Name the Group:**
 
@@ -131,6 +139,8 @@ The screen shows carrot, broccoli, tomato, and potato cards. The child sorts by 
 
 **Screen:** A label tag appears on the chosen group and carries the chosen rule type so the sort remains coherent.
 
+**Photo capture timing:** No new photo capture happens in Round 3. The child labels an already sorted group after the AI prompt.
+
 #### Step 4: Magic Moment
 
 **AI says:** [delighted reveal] "Look at that. Your three tokens opened the stand: your rule, sorted cards, and an evidence label."
@@ -149,6 +159,8 @@ The screen shows carrot, broccoli, tomato, and potato cards. The child sorts by 
 
 **Screen:** The three tokens expand into a final board labeled "Veggie Sorter": chosen rule, two sorted vegetables, and one evidence label. A replay hint invites the child to try another rule next time.
 
+**Photo capture timing:** No new photo capture happens in Step 4. The reveal uses the existing cards or photographed vegetables from setup.
+
 #### Step 5: Closing + IB Concepts
 
 **AI says:** [warm celebration] "You earned the Veggie Sorter badge. You used Connection by grouping foods by one rule, and Form by noticing color and shape clues."
@@ -166,3 +178,5 @@ The screen shows carrot, broccoli, tomato, and potato cards. The child sorts by 
 3. [wait 2s] [gentle goodbye] "Your Veggie Sorter badge is saved."
 
 **Screen:** The badge, the three round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge saves the existing sorting path, not a new photo.

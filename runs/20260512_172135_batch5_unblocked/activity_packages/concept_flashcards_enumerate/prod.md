@@ -55,6 +55,8 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 
 **Screen:** The activity badge "Picture Namer" appears with two empty progress tokens. If `generic_flashcard_library_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
 
+**Photo capture timing:** Normal flashcard mode has no photo capture. If the card fallback pivots to a photographed object, capture or upload happens after the Step 1 follow-up and before the naming round starts.
+
 > RESOLVED BLOCKER: Approved minimum asset-display contract: use the declared asset ID, display timing, screen location, and no-display fallback instead of blocking the package.
 
 #### Step 2: Rule Introduction
@@ -74,6 +76,8 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 3. [wait 2s] [modeling] "Copy me: duck."
 
 **Screen:** A simple rule strip appears: Look, name, answer. Token 1 pulses; token 2 waits.
+
+**Photo capture timing:** No new photo capture happens in Step 2. The child accepts the look/name/answer rule while the card or fallback photographed object is already available.
 
 #### Step 3: Core Loop
 
@@ -95,6 +99,8 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 
 **Screen:** The card pops forward with one clear picture. Token 1 fills with a short label from the child's response.
 
+**Photo capture timing:** No new photo capture happens in Round 1. If using the fallback photo object, it was already captured before this prompt and the child now names it.
+
 **Round 2 -- Answer a Tiny Follow-Up:**
 
 **AI says:** [focused playful tone] "Does a duck swim?"
@@ -112,6 +118,8 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 3. [wait 2s] [gentle hint] "Choose swim or car."
 
 **Screen:** Two simple icons appear, and swim glows after the answer. Token 2 fills with a short label from the child's response.
+
+**Photo capture timing:** No new photo capture happens in Round 2. The child answers a tiny follow-up about the existing card or fallback object.
 
 #### Step 4: Magic Moment
 
@@ -131,6 +139,8 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 
 **Screen:** The two tokens expand into a final board labeled "Picture Namer". Each token stays visible so the payoff is earned by the child's earlier actions.
 
+**Photo capture timing:** No new photo capture happens in Step 4. The reveal uses the existing card or fallback photographed object.
+
 #### Step 5: Closing + IB Concepts
 
 **AI says:** [warm celebration] "Picture Namer badge earned. You used Form. You used Function."
@@ -148,3 +158,5 @@ The screen shows a duck card. The child names it, notices one feature, and answe
 3. [wait 2s] [gentle goodbye] "Picture Namer is saved."
 
 **Screen:** The badge, the two round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge saves the existing naming path, not a new photo.

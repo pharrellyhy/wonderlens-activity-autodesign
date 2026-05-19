@@ -55,6 +55,8 @@ Child photographs an animal toy; the AI opens a tiny curtain, prompts a cat soun
 
 **Screen:** A simple stage curtain opens. Two soft spotlights appear. No animal card is shown unless the optional card set is available.
 
+**Photo capture timing:** If this run starts from an animal-toy photo, capture or upload happens before the Step 1 AI prompt. Step 1 consumes that starter photo as the stage theme; no new capture happens after the prompt or follow-up.
+
 #### Step 2: Stage Rules -- Echo Star
 
 **AI says:** [gentle host tone] "You are the Echo Star. I say an animal. You echo its sound."
@@ -72,6 +74,8 @@ Child photographs an animal toy; the AI opens a tiny curtain, prompts a cat soun
 3. [wait 2s] [soft model] "Listen first. Then copy me."
 
 **Screen:** If `animal_sound_cards_01` is available, show the card back as a hidden stage guest. If unavailable, show a paw-print spotlight and say the animal by voice only.
+
+**Photo capture timing:** No new photo capture happens in Step 2. The child responds to the echo rule; the starter photo or optional card only frames the animal role.
 
 #### Step 3: Multi-Round Animal Echo
 
@@ -93,6 +97,8 @@ Child photographs an animal toy; the AI opens a tiny curtain, prompts a cat soun
 
 **Screen:** The hidden spotlight opens. If `animal_sound_cards_01` is available, reveal the cat card and bounce it once. If unavailable, a paw-print icon wakes and bows.
 
+**Photo capture timing:** No new photo capture happens in Round 1. The child responds with a sound after the AI prompt.
+
 **Round 2 -- Duck Echo Reveal:**
 
 **AI says:** [bouncy duck voice] "A duck hides backstage. Say quack to wake it?"
@@ -110,6 +116,8 @@ Child photographs an animal toy; the AI opens a tiny curtain, prompts a cat soun
 3. [wait 2s] [gentle model] "Small quack is enough. Quack?"
 
 **Screen:** The second hidden spotlight opens. If `animal_sound_cards_01` is available, reveal the duck card and make it waddle. If unavailable, a duck-footprint icon wakes and wiggles.
+
+**Photo capture timing:** No new photo capture happens in Round 2. The child responds with a sound after the AI prompt.
 
 #### Step 4: Magic Moment -- Encore Applause
 
@@ -129,6 +137,8 @@ Child photographs an animal toy; the AI opens a tiny curtain, prompts a cat soun
 
 **Screen:** The cat and duck icons bow together. A tiny audience of star dots appears as the surprise crowd. A small "Encore!" sign appears.
 
+**Photo capture timing:** No new photo capture happens in Step 4. The reveal uses the existing stage theme and saved voice turns.
+
 #### Step 5: Closing + IB Concepts
 
 **AI says:** [warm celebration] "You were an Echo Star. You used Perspective. You tried animal voices. You used Form too. You heard sound shapes."
@@ -146,3 +156,5 @@ Child photographs an animal toy; the AI opens a tiny curtain, prompts a cat soun
 3. [wait 2s] [soft goodbye] "Your Echo Star badge shines."
 
 **Screen:** An "Echo Star" badge appears with cat and duck icons. The words "Perspective" and "Form" glow softly beside the stage.
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge summarizes the sound performance, not a new image.
