@@ -53,6 +53,8 @@ A child photographs a potted plant. The AI asks them to find leaf, stem, and one
 2. [friendly] "It is a plant map mission. We name only parts we can see."
 3. [wait 2s] [gentle] "You can point to one plant part or say its name."
 
+**Photo capture timing:** The plant photo is captured or uploaded before this Step 1 AI prompt. Step 1 consumes that photo; if there is no clear plant photo yet, capture happens after the follow-up and Step 1 repeats with the new photo.
+
 **Screen:** The activity badge "Plant Parts Scout" appears with three empty progress tokens.
 
 #### Step 2: Rule Introduction
@@ -70,6 +72,8 @@ A child photographs a potted plant. The AI asks them to find leaf, stem, and one
 1. [encouraging] "Round one is ready."
 2. [validating] "Yes, you can look your way. We will still save one visible plant part each round."
 3. [wait 2s] [modeling] "I will start, and you can copy my first answer if you want."
+
+**Photo capture timing:** No new capture is expected in Step 2. The child responds to the rule prompt while the current plant photo stays available.
 
 **Screen:** A simple rule strip appears: Listen or look, answer, save a token. Token 1 pulses.
 
@@ -91,6 +95,8 @@ A child photographs a potted plant. The AI asks them to find leaf, stem, and one
 2. [warm redirect] "The pot is not a plant part. If no leaf is visible, say leaf not visible."
 3. [wait 2s] [gentle hint] "Try: leaf, or not visible."
 
+**Photo capture timing:** No new capture happens before the normal Round 1 child response. The child inspects the existing photo after the AI prompt; if the photo is too unclear, a closer retake happens after the redirect follow-up and Round 1 repeats.
+
 **Screen:** The photo gets a green leaf marker, or a gray "leaf not visible" chip. Either way, the evidence trail continues.
 
 **Round 2 -- Stem Path Hunt:**
@@ -108,6 +114,8 @@ A child photographs a potted plant. The AI asks them to find leaf, stem, and one
 1. [specific praise] "Stem is the part holding the leaves up. Token 2 is saved."
 2. [warm redirect] "Stick is close. On a plant, say stem if it is visible, or stem hidden."
 3. [wait 2s] [gentle hint] "Try: stem, or hidden."
+
+**Photo capture timing:** No new capture happens before the normal Round 2 child response. The child traces the existing photo after the prompt; only an unclear-photo redirect asks for a retake after follow-up.
 
 **Screen:** A line marker climbs the stem area, or a gray "stem hidden" chip appears. A comparison line connects leaf and stem evidence.
 
@@ -127,6 +135,8 @@ A child photographs a potted plant. The AI asks them to find leaf, stem, and one
 2. [warm redirect] "Nothing visible is useful evidence. Say no extra part visible if the photo hides it."
 3. [wait 2s] [gentle hint] "Try: flower, bud, or not visible."
 
+**Photo capture timing:** No new capture happens before the normal Round 3 child response. The child checks the current photo after the prompt; if they need a clearer view, capture happens after the follow-up and the same check repeats.
+
 **Screen:** Surprise token fills with the named part or a gray "not visible" chip. The map still counts because the child inspected honestly.
 
 #### Step 4: Magic Moment
@@ -145,6 +155,8 @@ A child photographs a potted plant. The AI asks them to find leaf, stem, and one
 2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
 3. [wait 2s] [soft recap] "I will read the three tokens back so you can see your path."
 
+**Photo capture timing:** No new photo capture happens in Step 4. The reveal uses the existing photo and the three visible/not-visible answers.
+
 **Screen:** The three tokens expand into a plant evidence map. Visible parts glow; any not-visible token becomes a gray evidence chip, so honest observation is part of the payoff.
 
 #### Step 5: Closing + IB Concepts
@@ -162,6 +174,8 @@ A child photographs a potted plant. The AI asks them to find leaf, stem, and one
 1. [proud guide] "Next time we can look for a new plant part, like flower, seed, fruit, or root if it is visible."
 2. [flexible] "That can be the next mission. This badge saves what you did today."
 3. [wait 2s] [gentle goodbye] "Your Plant Parts Scout badge is saved."
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge summarizes the current plant photo evidence.
 
 **Screen:** The badge, the three round tokens, and a next-step card remain visible. Next-step card: "Try one new visible plant part next time."
 

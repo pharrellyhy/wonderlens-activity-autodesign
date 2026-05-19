@@ -53,6 +53,8 @@ A child starts with a droopy houseplant, then photographs a fresh-looking plant 
 2. [careful] "Maybe, but we do not diagnose. We compare visible clues."
 3. [wait 2s] [gentle] "Find one leaf, flower, or plant nearby, or ask a grown-up."
 
+**Photo capture timing:** The starter plant photo is captured or uploaded before this Step 1 AI prompt. If no clear starter photo exists, capture happens after the follow-up and Step 1 repeats with that starter photo.
+
 **Screen:** Starter plant photo appears as Example 0 with labels: visible clues only, likely words only.
 
 #### Step 2: Mission Rules
@@ -70,6 +72,8 @@ A child starts with a droopy houseplant, then photographs a fresh-looking plant 
 1. [encouraging] "Look for a leaf, flower, dried stem, or sprout."
 2. [fallback] "Then use the starter photo and I will offer a voice-only comparison example."
 3. [wait 2s] [model] "Say: this leaf is up, this leaf droops."
+
+**Photo capture timing:** No new capture is required before the Step 2 child response. A comparison photo may be taken after this follow-up and before Round 1 starts.
 
 **Screen:** Three evidence slots appear: starter, comparison A, comparison B. A fallback chip says voice example if no second plant is available.
 
@@ -91,6 +95,8 @@ A child starts with a droopy houseplant, then photographs a fresh-looking plant 
 2. [redirect] "The pot is useful context, but our state clue needs plant parts. Try leaf, flower, stem, or fruit."
 3. [wait 2s] [hint] "Look for green, droopy, dry, flower, or sprout."
 
+**Photo capture timing:** The comparison clue can be captured after the Round 1 AI prompt and before the child response, then the child names what looks different. If the child cannot find one, the AI follow-up switches to a voice example instead of requiring capture.
+
 **Screen:** Slot A fills with photo or voice example; visible clue chip is saved beside starter clue.
 
 **Round 2 -- Compare State Words:**
@@ -108,6 +114,8 @@ A child starts with a droopy houseplant, then photographs a fresh-looking plant 
 1. [specific] "Good compare: fresh-looking leaf is lifted, wilting leaf droops."
 2. [redirect] "Sad and happy are feelings. Plant state words are fresh-looking, wilting, blooming, dried, or sprouting."
 3. [wait 2s] [hint] "Say: this one looks fresh; that one looks wilting."
+
+**Photo capture timing:** No new photo capture happens in Round 2. The child compares the existing starter and comparison evidence after the AI prompt.
 
 **Screen:** State-word chips attach to each evidence slot with "likely" labels.
 
@@ -127,6 +135,8 @@ A child starts with a droopy houseplant, then photographs a fresh-looking plant 
 2. [redirect] "Liking it is okay. Evidence says what you can see: droopy, blooming, dried, or fresh."
 3. [wait 2s] [hint] "Point to the clue that helps most."
 
+**Photo capture timing:** If adding one more plant clue, capture happens after the Round 3 AI prompt and before the child names or points to the strongest evidence. If using existing evidence, no capture happens.
+
 **Screen:** Strongest evidence gets a bold outline; three evidence slots connect to the chosen likely state.
 
 #### Step 4: Magic Moment
@@ -145,6 +155,8 @@ A child starts with a droopy houseplant, then photographs a fresh-looking plant 
 2. [flexible] "We can save a second likely answer if you name its visible evidence."
 3. [wait 2s] [recap] "I will read the evidence trail back."
 
+**Photo capture timing:** No new photo capture happens in Step 4. The reveal uses the starter, comparison A, and optional comparison B evidence already captured or selected.
+
 **Screen:** Evidence trail shows starter, comparison A, comparison B, likely state word, and "visible evidence only" guardrail.
 
 #### Step 5: Closing + IB Concepts
@@ -162,5 +174,7 @@ A child starts with a droopy houseplant, then photographs a fresh-looking plant 
 1. [next-step] "Next time, compare a blooming clue or a sprouting clue."
 2. [careful] "A grown-up can help with plant care. We used visible clues today."
 3. [wait 2s] [goodbye] "Your evidence trail is saved."
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge saves the existing evidence trail.
 
 **Screen:** Badge shows three plant evidence slots and next-step card: "Compare a new visible state."

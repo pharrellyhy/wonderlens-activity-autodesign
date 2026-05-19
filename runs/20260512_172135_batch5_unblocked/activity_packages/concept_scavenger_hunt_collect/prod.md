@@ -53,6 +53,8 @@ Child photographs a round blue ball; the AI chooses the clue "round," and the ch
 2. [warmly validating] "It is special. Special things start good missions. Let's find its shared clue."
 3. [wait 2s] [gentle invitation] "Let's look together. Is it color, shape, or kind?"
 
+**Photo capture timing:** Starter photo is captured before this Step 1 AI prompt, either by the trigger photo or an already uploaded photo. Step 1 consumes that photo; no new capture happens after the prompt or follow-up.
+
 **Screen:** The starter photo fills the center. A glowing outline highlights the runtime-selected clue area. A small compass appears with the label "Shared clue: `{shared_feature}`" and three empty photo slots underneath.
 
 #### Step 2: Mission Briefing -- Shared Clue Scout
@@ -70,6 +72,8 @@ Child photographs a round blue ball; the AI chooses the clue "round," and the ch
 1. [cheering] "Mission starts now. Find your first match. Then take its picture."
 2. [flexible and clear] "You can choose with me. Same color, shape, or kind? Pick one clue. Then we hunt for three."
 3. [wait 2s] [helpful whisper] "Try the floor or shelf. Check a table or toy bin. A clue may hide nearby."
+
+**Photo capture timing:** No capture is required before the Step 2 child response. The first hunt photo is intended after this AI follow-up and before Round 1 starts.
 
 **Screen:** A mission card slides in: "Find 3 things with `{shared_feature}`." The starter photo sits at the left as "Example 0." Three empty numbered slots pulse softly. A trail line waits to connect the slots.
 
@@ -91,6 +95,8 @@ Child photographs a round blue ball; the AI chooses the clue "round," and the ch
 2. [kind redirect] "It is a cool find. This mission needs the shared clue. Does any part show `{shared_feature}`?"
 3. [wait 2s] [soft thinking tone] "I am checking slowly. If you see it, point. Or say the matching part."
 
+**Photo capture timing:** The first matching-find photo has already been captured after Step 2 follow-up and before this Round 1 AI prompt. The child response is the verbal match check after the photo is in.
+
 **Screen:** The first photo slides into slot 1. A green "MATCH" stamp appears if the clue fits; otherwise a yellow "Maybe" stamp appears with a loop arrow back to the hunt. The trail counter reads "1 of 3" when accepted.
 
 **Round 2 -- Second Matching Find:**
@@ -108,6 +114,8 @@ Child photographs a round blue ball; the AI chooses the clue "round," and the ch
 1. [delighted] "Another match! Your trail is stronger. Find 2 of 3."
 2. [validating then focusing] "Bigger is a good detail. Now check the mission clue. Does it share `{shared_feature}`?"
 3. [wait 2s] [gentle clue tone] "Look from edge to edge. Same color? Same shape? Same kind? Name the matching part."
+
+**Photo capture timing:** The second scout photo is captured between Round 1 follow-up and this Round 2 AI prompt. The child response happens after the new photo is visible.
 
 **Screen:** Slot 2 fills with the new photo. The trail line connects slot 1 to slot 2 with a dotted glow. A small "same clue?" magnifier bounces over both photos.
 
@@ -127,6 +135,8 @@ Child photographs a round blue ball; the AI chooses the clue "round," and the ch
 2. [reassuring search coach] "That is okay. Shared clues can hide. Look for tiny matches. Try one spot, corner, or group."
 3. [wait 2s] [calm guide tone] "Let's search one small place. Try the table, couch, or shoes. One matching clue is enough."
 
+**Photo capture timing:** The final scout photo is captured between Round 2 follow-up and this Round 3 AI prompt. If the child cannot find one, no capture happens until after the redirect follow-up sends them searching again.
+
 **Screen:** Slot 3 waits with a shimmering border. When accepted, all three slots light up in order, and the starter photo sends a glowing line to each find. The counter flips from "2 of 3" to "3 of 3."
 
 **Round 3 helper branch -- Not a match yet:**
@@ -144,6 +154,8 @@ Child photographs a round blue ball; the AI chooses the clue "round," and the ch
 1. [encouraging] "Good scout choice. Show me the matching part. If not, take one more photo."
 2. [respectful and flexible] "You are the scout. We can count it. First, name the shared clue."
 3. [wait 2s] [soft reset tone] "No problem. The quest is still open. Look for color, shape, or kind."
+
+**Photo capture timing:** This helper branch uses the current maybe photo. If the child takes one more photo, capture happens after this AI follow-up and loops back before the next matching-find prompt.
 
 **Screen:** The photo rests beside the trail in a "maybe pile" with a yellow question mark. The three main slots stay stable so the child can continue without losing progress.
 
@@ -163,6 +175,8 @@ Child photographs a round blue ball; the AI chooses the clue "round," and the ch
 2. [validating and extending] "They are different, yes. Different things can share clues. Same color, shape, place, or kind?"
 3. [wait 2s] [gentle multiple-choice tone] "I see one connection. You found them today. Do you see another one?"
 
+**Photo capture timing:** No new photo capture happens in Step 4. The child responds after reviewing the existing starter and three accepted photos.
+
 **Screen:** The photos arrange into a web. The first connection label reads "`{shared_feature}`." A second blank ribbon appears, then fills with "`{extra_connection}`" or "found today" if the child needs help.
 
 #### Step 5: Closing + IB Concepts
@@ -180,5 +194,7 @@ Child photographs a round blue ball; the AI chooses the clue "round," and the ch
 1. [proud guide tone] "Your clue eyes are strong. Next time, try two clues."
 2. [delighted] "More finds make bigger evidence. Keep scouting after the badge shines."
 3. [wait 2s] [soft goodbye tone] "Your Shared Clue badge is saved. You found a hidden rule."
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge summarizes the existing captured set.
 
 **Screen:** A "Shared Clue Scout" badge appears with three photo insets. The words "Form" and "Connection" glow as two paths on a small map. A next-step card says, "Next: try two clues at once."

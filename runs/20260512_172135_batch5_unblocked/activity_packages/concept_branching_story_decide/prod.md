@@ -53,6 +53,8 @@ Child photographs a toy turtle; the AI makes it the hero of a two-door adventure
 2. [warmly validating] "Both is a bold idea. First choose one door. Then surprises can follow."
 3. [wait 2s] [gentle prompt] "Point or say one: blue door or gold door."
 
+**Photo capture timing:** If this run starts from a toy/object photo, that starter photo is captured before this Step 1 AI prompt. Step 1 consumes the photo as a story catalyst; no new capture happens after the prompt, child response, or follow-up.
+
 **Screen:** The starter photo sits in a small story frame. Two simple doors appear, blue and gold, with a blank path strip below them.
 
 #### Step 2: Rule Introduction -- You Choose the Path
@@ -70,6 +72,8 @@ Child photographs a toy turtle; the AI makes it the hero of a two-door adventure
 1. [cheering] "Perfect. There are no wrong doors here."
 2. [reassuring] "You can make a new choice next round. Every path is interesting."
 3. [wait 2s] [soft model tone] "I will give easy choices. You can answer with one word."
+
+**Photo capture timing:** No photo capture happens in Step 2. The child responds to the rule prompt only.
 
 **Screen:** A badge appears: "Story Path Chooser." Three empty path tokens pulse: Door, Helper, Ending.
 
@@ -91,6 +95,8 @@ Child photographs a toy turtle; the AI makes it the hero of a two-door adventure
 2. [playful validation] "A red door would be wild. For this room, choose blue or gold."
 3. [wait 2s] [gentle choice tone] "Let's pick together. Blue hums. Gold jingles. Which one?"
 
+**Photo capture timing:** No photo capture happens in Round 1. The child response is a choice after the AI prompt.
+
 **Screen:** The chosen door lights up. Token 1 fills with "Blue River Door" or "Gold Bell Door." The path background changes: blue water ripples or gold bell sparkles. The other door fades but stays visible as replay curiosity.
 
 **Round 2 -- Helper Choice:**
@@ -108,6 +114,8 @@ Child photographs a toy turtle; the AI makes it the hero of a two-door adventure
 1. [delighted] "Helper chosen. If you picked cloud, it makes a soft bridge. If you picked drum, it wakes a secret gate."
 2. [warmly validating] "A dinosaur is fun. This room has cloud or drum. Pick one for now."
 3. [wait 2s] [soft prompt] "The cloud is soft. The drum is loud. Which helper joins?"
+
+**Photo capture timing:** No photo capture happens in Round 2. The existing starter photo remains only as the story frame.
 
 **Screen:** Two helper icons appear. The chosen helper slides onto the changed path. Token 2 fills with "Cloud Bridge" or "Drum Gate." The mini map adds either a fluffy bridge or a ringing gate.
 
@@ -127,6 +135,8 @@ Child photographs a toy turtle; the AI makes it the hero of a two-door adventure
 2. [validating then focusing] "Home sounds cozy. This ending needs star or tunnel first."
 3. [wait 2s] [gentle countdown] "Two endings wait. Star above, tunnel below. Choose one."
 
+**Photo capture timing:** No photo capture happens in Round 3. The child response is the ending choice after the AI prompt.
+
 **Screen:** The star and tunnel glow. Token 3 fills with "Sky Parade" or "Whisper Cave." The map animates the chosen ending while dimming the unchosen path.
 
 #### Step 4: Magic Moment -- Your Story Path
@@ -145,6 +155,8 @@ Child photographs a toy turtle; the AI makes it the hero of a two-door adventure
 2. [playful validation] "The other path is still waiting. That makes replay exciting."
 3. [wait 2s] [soft recap tone] "Look at your choices. Door changed world. Helper changed road. Ending changed finish."
 
+**Photo capture timing:** No photo capture happens in Step 4. The map reveals the choices made from the starter photo/story frame.
+
 **Screen:** The three path tokens expand into a mini map. The map shows the chosen door effect, helper effect, and ending effect. A banner says "Your Story Path Changed the World."
 
 #### Step 5: Closing + IB Concepts
@@ -162,5 +174,7 @@ Child photographs a toy turtle; the AI makes it the hero of a two-door adventure
 1. [proud guide tone] "Your choices made a real adventure. Next time, choose a new path."
 2. [delighted] "A dragon can visit another path. Your story door stays open."
 3. [wait 2s] [soft goodbye tone] "Your Story Path badge is saved. Your choices made the tale."
+
+**Photo capture timing:** No photo capture happens in Step 5. The badge saves the choice path, not a new photo.
 
 **Screen:** A "Story Path Chooser" badge appears. The words "Perspective" and "Causation" glow beside the path map. A next-step card says, "Next: try the other path."

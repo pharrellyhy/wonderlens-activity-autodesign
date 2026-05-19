@@ -53,6 +53,8 @@ Child gathers a spoon, cup, plate, and napkin, arranges them together, then expl
 2. [warmly narrowing] "Start with one favorite. Then ask, what could sit beside it for a reason?"
 3. [wait 2s] [gentle prompt] "Look for three things that share color, job, material, place, or story."
 
+**Photo capture timing:** No required photo capture happens before the Step 1 child response. If the child starts by photographing a favorite object, that capture happens after the AI prompt or follow-up, then becomes the first exhibit candidate.
+
 **Screen:** A blank gallery shelf appears with four empty object spots. A ribbon reads "Curator's rule: hidden for now." A small camera button says "Add exhibit piece."
 
 #### Step 2: Gallery Rules -- Curator Choice
@@ -70,6 +72,8 @@ Child gathers a spoon, cup, plate, and napkin, arranges them together, then expl
 1. [encouraging] "Great. Keep the rule in your head while you place the pieces."
 2. [respectful handoff] "You choose. Curators can change a rule when the exhibit teaches them something."
 3. [wait 2s] [soft scaffold] "Try one easy rule: same use, same place, same material, or same shape."
+
+**Photo capture timing:** No capture is required in Step 2. The child plans the exhibit after the AI prompt; object photos begin in the curation rounds.
 
 **Screen:** The shelf gets two zones: "Main exhibit" and "Maybe shelf." A rule ribbon stays blank. Three small badges wait: "Choose," "Arrange," "Explain."
 
@@ -91,6 +95,8 @@ Child gathers a spoon, cup, plate, and napkin, arranges them together, then expl
 2. [validating then extending] "Favorites can start exhibits. What is one thing a visitor can notice about it?"
 3. [wait 2s] [gentle observation cue] "I will mark it as Piece 1. Look at its color, shape, material, or job."
 
+**Photo capture timing:** The first object is placed or photographed after the Round 1 AI prompt and before the child explains why they chose it. If the child is silent, the placed/photo object counts as the response and the follow-up asks for an observable clue.
+
 **Screen:** The first photo or object card fills slot 1. A floating note says "Possible clue." The rule ribbon remains hidden.
 
 **Round 2 -- Add and Compare:**
@@ -108,6 +114,8 @@ Child gathers a spoon, cup, plate, and napkin, arranges them together, then expl
 1. [curator applause] "You are sorting now. Tell me the link between Piece 1 and Piece 2."
 2. [respectful sorting coach] "Different can still belong. Name the reason. If the reason is not ready, use the maybe shelf."
 3. [wait 2s] [choice prompt] "Put it close if it belongs. Put it on maybe if you are still deciding."
+
+**Photo capture timing:** The second object is placed or photographed after the Round 2 AI prompt and before the child says whether it follows the same idea. The AI follow-up handles the explanation or maybe-shelf choice.
 
 **Screen:** Slot 2 appears next to slot 1. A thin line asks "same rule?" The maybe shelf glows yellow but does not reject the object.
 
@@ -127,6 +135,8 @@ Child gathers a spoon, cup, plate, and napkin, arranges them together, then expl
 2. [flexible and precise] "Good catch. Curators revise. Change the rule, move that piece to maybe, or explain the exception."
 3. [wait 2s] [soft sentence starter] "Try this: 'These belong together because...'"
 
+**Photo capture timing:** Final exhibit pieces are placed or photographed after the Round 3 AI prompt and before the child gives the curator label. If the child revises after follow-up, they may move pieces or capture one replacement before repeating the label.
+
 **Screen:** Slots 3 and 4 open. The child can leave slot 4 empty. When the child names the rule, the ribbon fills with `{child_made_grouping_rule}` and the shelf lights trace around the grouped objects.
 
 #### Step 4: Magic Moment -- Visitor Test
@@ -145,6 +155,8 @@ Child gathers a spoon, cup, plate, and napkin, arranges them together, then expl
 2. [warm challenge] "Curators do get the final say. Help the visitor see it with one clue they can notice."
 3. [wait 2s] [gentle model] "I see a possible tour: 'These belong together because they all ____.'"
 
+**Photo capture timing:** No new capture happens in Step 4 unless the child changes the exhibit after the redirect. The normal response is a spoken tour using the already placed/photo exhibit pieces.
+
 **Screen:** A tiny visitor ticket stamps "Rule explained." The exhibit title appears as "{child_made_grouping_rule} Gallery." The maybe shelf folds away or becomes a small "future exhibit" card.
 
 #### Step 5: Closing + IB Concepts
@@ -162,5 +174,7 @@ Child gathers a spoon, cup, plate, and napkin, arranges them together, then expl
 1. [encouraged] "Yes. A new exhibit can use a new rule."
 2. [excited extension] "That is advanced curator thinking. Same objects, second rule, new gallery."
 3. [wait 2s] [soft celebration] "Your Tiny Curator badge is saved."
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge summarizes the finished exhibit.
 
 **Screen:** A "Tiny Curator" badge appears over the finished shelf. The words "Connection" and "Form" glow beside the exhibit label. A next-step card says, "Try a second rule with the same objects."

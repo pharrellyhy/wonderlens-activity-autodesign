@@ -53,6 +53,8 @@ The child photographs a leaf, chooses green, windy, and sleepy as ingredients, a
 2. [friendly] "Good question. I will show one tiny choice at a time."
 3. [wait 2s] [gentle] "You can answer with one word, a point, or a small idea."
 
+**Photo capture timing:** If the activity starts from an object photo, capture happens before this Step 1 AI prompt. If it starts from a feeling or spoken topic, no photo is captured.
+
 **Screen:** The activity badge "Tiny Poet Builder" appears with three empty progress tokens.
 
 #### Step 2: Rule Introduction
@@ -70,6 +72,8 @@ The child photographs a leaf, chooses green, windy, and sleepy as ingredients, a
 1. [encouraging] "Round one is ready."
 2. [validating] "Yes, your idea can help. I will still keep each round easy to answer."
 3. [wait 2s] [modeling] "I will start, and you can copy my first answer if you want."
+
+**Photo capture timing:** No new photo capture happens in Step 2. The rule prompt prepares the child to answer with words or use the already captured starter photo.
 
 **Screen:** A simple rule strip appears: Listen or look, answer, save a token. Token 1 pulses.
 
@@ -91,6 +95,8 @@ The child photographs a leaf, chooses green, windy, and sleepy as ingredients, a
 2. [bridging] "Truck noise is a hearing idea. For this first tile, give me something the poem can show."
 3. [wait 2s] [gentle hint] "Look near you and name one thing: leaf, shoe, cup, or sky."
 
+**Photo capture timing:** Normal flow uses the starter photo or nearby view after the AI prompt, then the child responds with a seeing word. If no starter photo exists and the child wants one, capture can happen after the prompt and before the seeing-word response.
+
 **Screen:** Ingredient one appears as a leaf word tile. Token 1 fills with a short label from the child's response.
 
 **Round 2 -- Add a Feeling Word:**
@@ -108,6 +114,8 @@ The child photographs a leaf, chooses green, windy, and sleepy as ingredients, a
 1. [soft delight] "Sleepy makes the poem gentle. I will tint the tile quiet blue."
 2. [validating] "Angry monster is strong and pretend. Let us choose one safe poem feeling: cozy, silly, brave, sleepy, or surprised."
 3. [wait 2s] [gentle hint] "Pick one feeling word. Sleepy is ready if you want it."
+
+**Photo capture timing:** No new photo capture happens in Round 2. The child chooses a feeling word after the AI prompt.
 
 **Screen:** Ingredient two becomes a soft feeling tile. Token 2 fills with a short label from the child's response.
 
@@ -127,6 +135,8 @@ The child photographs a leaf, chooses green, windy, and sleepy as ingredients, a
 2. [gentle scaffold] "Nothing can be still, but a poem needs one action. Try sway, hide, shine, or dance."
 3. [wait 2s] [gentle hint] "Choose one action word. I can use dance."
 
+**Photo capture timing:** No new photo capture happens in Round 3. The child chooses an action word after the AI prompt.
+
 **Screen:** Ingredient three becomes an action tile. Token 3 fills with a short label from the child's response.
 
 #### Step 4: Magic Moment
@@ -145,6 +155,8 @@ The child photographs a leaf, chooses green, windy, and sleepy as ingredients, a
 2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
 3. [wait 2s] [soft recap] "I will read the poem softly so you can hear your words."
 
+**Photo capture timing:** No new photo capture happens in Step 4. The poem reveal uses the existing photo-derived or spoken word ingredients.
+
 **Screen:** The three tokens fold into a four-line poem card labeled "Tiny Poet Builder". The seeing word, feeling word, and action word remain highlighted inside the poem so the payoff is earned by the child's earlier choices.
 
 #### Step 5: Closing + IB Concepts
@@ -162,5 +174,7 @@ The child photographs a leaf, chooses green, windy, and sleepy as ingredients, a
 1. [proud guide] "Next time we can make a new path with a new answer."
 2. [flexible] "That can be the next mission. This badge saves what you did today."
 3. [wait 2s] [gentle goodbye] "Your Tiny Poet Builder badge is saved."
+
+**Photo capture timing:** No new photo capture happens in Step 5. The badge saves the poem path.
 
 **Screen:** The badge, the three round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."

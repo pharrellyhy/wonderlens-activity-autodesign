@@ -414,6 +414,7 @@ def beat_from_chunk(title: str, chunk: str) -> dict[str, Any]:
         "child": summarize_child_responses(child_block),
         "followup": summarize_ai_followup(followup_block),
         "branches": paired_branch_followups(child_block, followup_block),
+        "photo_timing": clean_markdown(field_block(chunk, "Photo capture timing")),
         "screen": clean_markdown(field_block(chunk, "Screen")),
     }
 
@@ -1779,6 +1780,13 @@ def runtime_branch_followups(beat: dict[str, Any]) -> str:
     return f'<div class="branch-followup-grid">{"".join(cards)}</div>'
 
 
+def runtime_photo_timing(beat: dict[str, Any]) -> str:
+    timing = normalize_text(beat.get("photo_timing"))
+    if not timing:
+        return ""
+    return f'<div class="photo-timing-strip"><span>Photo timing</span><p>{esc(timing)}</p></div>'
+
+
 def runtime_beat_map(beats: list[dict[str, Any]]) -> str:
     if not beats:
         return '<p class="muted">No visual runtime map available.</p>'
@@ -1786,6 +1794,7 @@ def runtime_beat_map(beats: list[dict[str, Any]]) -> str:
     for index, beat in enumerate(beats, start=1):
         title = beat.get("title") or "Runtime beat"
         kind = runtime_beat_kind(title)
+        photo_timing = runtime_photo_timing(beat)
         nodes.append(
             f"""<li class="runtime-map-node runtime-map-node-{esc(kind)}">
   <div class="runtime-step-marker"><span>{index:02d}</span></div>
@@ -1795,6 +1804,7 @@ def runtime_beat_map(beats: list[dict[str, Any]]) -> str:
       <div class="runtime-lane runtime-lane-ai"><span>AI prompt</span><p>{esc(beat.get("ai") or "Unknown")}</p></div>
       <div class="runtime-branches"><span>Child branches and AI follow-ups</span>{runtime_branch_followups(beat)}</div>
     </div>
+{photo_timing}
     <div class="screen-strip"><span>Screen</span><p>{esc(beat.get("screen") or "Unknown")}</p></div>
   </div>
 </li>"""
@@ -1807,8 +1817,10 @@ def runtime_beat_html(beat: dict[str, Any]) -> str:
         ("AI", beat.get("ai", "")),
         ("Child", beat.get("child", "")),
         ("Follow-up", beat.get("followup", "")),
-        ("Screen", beat.get("screen", "")),
     ]
+    if normalize_text(beat.get("photo_timing")):
+        fields.append(("Photo timing", beat.get("photo_timing", "")))
+    fields.append(("Screen", beat.get("screen", "")))
     field_html = "".join(
         f'<div class="beat-field"><span>{esc(label)}</span><p>{esc(value or "Unknown")}</p></div>'
         for label, value in fields
@@ -3201,6 +3213,31 @@ ol, ul { margin: 0; padding-left: 20px; }
   background: color-mix(in oklch, var(--teal-bg) 55%, var(--panel-raised));
 }
 .screen-strip > span { margin: 0; padding-top: 2px; color: var(--teal-text); }
+.photo-timing-strip {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+  gap: 10px;
+  min-width: 0;
+  border: 1px solid color-mix(in oklch, var(--accent-line) 35%, var(--hairline));
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklch, var(--accent-soft) 55%, var(--panel-raised));
+  padding: 8px 10px;
+}
+.photo-timing-strip > span {
+  margin: 0;
+  padding-top: 2px;
+  color: var(--accent-ink);
+  font-size: 10px;
+  font-weight: 760;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.photo-timing-strip p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
 .runtime-source-label {
   margin: 2px 0 6px;
   color: var(--muted);
@@ -3610,7 +3647,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   .metric:nth-child(2n) { border-right: none !important; }
   .metric:nth-last-child(-n+2) { border-bottom: none; }
   .side-nav, .sidebar-counts, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid, .storyboard-block { grid-template-columns: 1fr; }
-  .runtime-map-node, .runtime-lanes, .branch-followup-card, .screen-strip { grid-template-columns: 1fr; }
+  .runtime-map-node, .runtime-lanes, .branch-followup-card, .photo-timing-strip, .screen-strip { grid-template-columns: 1fr; }
   .runtime-step-marker {
     display: flex;
     justify-content: flex-start;
@@ -4178,6 +4215,12 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         for beats in runtime_sets
         for beat in beats
     )
+    expected_photo_timing = sum(
+        1
+        for beats in runtime_sets
+        for beat in beats
+        if normalize_text(beat.get("photo_timing"))
+    )
     asset_usage_sets = [
         asset_usage_from_spec(read_text(repo_root / normalize_text(entry.get("activity_path")) / "spec.md"))
         for entry in package_entries
@@ -4224,6 +4267,12 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             and "Ideal child" in text
             and "Unexpected child" in text
             and "No response child" in text
+        ),
+        "photo_capture_timing": expected_photo_timing == 0
+        or (
+            text.count('class="photo-timing-strip"') >= expected_photo_timing
+            and "Photo timing" in text
+            and "Photo capture timing" in text
         ),
         "review_criteria": "Review Criteria" in text
         and "10-dimension rubric" in text
