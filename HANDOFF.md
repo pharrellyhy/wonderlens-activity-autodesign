@@ -17,6 +17,7 @@
 - Updated `runs/20260512_172135_batch5_unblocked/run_manifest.yaml` with integrated asset/export output paths, summary counts, and PASS check entries.
 - Updated `review_dashboard.md`, `runs/README.md`, and `scripts/generate_run_review.py` so the run workflow documents the asset integration and per-activity HTML export steps.
 - Local validation used `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 ...` because the default Homebrew `python3` on this machine did not have PyYAML installed.
+- `codex-review` was not installed in this environment; final review used manual staged-diff review plus the focused validation commands below, with no accepted/actionable findings remaining.
 - Added canonical five-file activity packages for frontend demo games: `activities/dream_whisperer_cat`, `activities/mood_changer_dog`, `activities/time_machine_dinosaur`, and `activities/fluffy_expedition_dandelion`.
 - Refreshed `activities/polka_dot_patrol` metadata/spec notes to mark it as the current-format package for the frontend demo source while preserving its stronger existing `quest_collector` migration.
 - Updated `activities/README.md` package count from 28 to 32 canonical/promoted packages.
