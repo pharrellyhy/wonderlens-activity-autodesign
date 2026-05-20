@@ -2,9 +2,9 @@
 
 > **For implementer:** REQUIRED SUB-SKILL: Use `superpowers:executing-plans` to implement this plan task-by-task.
 
-**Goal:** Integrate the 12 generated prebuilt asset contact sheets into their corresponding Batch 5 activity packages and export those 12 asset-backed activities as 12 separate static HTML files.
+**Goal:** Integrate the 12 generated prebuilt asset contact sheets into their corresponding Batch 5 activity packages and export those 12 asset-backed activities as 12 separate static HTML reviewer packets.
 
-**Architecture:** Keep the five-file activity package contract stable. Add a run-local asset binding manifest that joins package asset IDs to generated image files, then generate self-contained per-activity HTML exports from the binding manifest, package files, and asset metadata. The exports are review/runtime-preview artifacts, not a replacement for `spec.md`, `prod.md`, or the live WonderLens runtime.
+**Architecture:** Keep the five-file activity package contract stable. Add a run-local asset binding manifest that joins package asset IDs to generated image files, then generate self-contained per-activity HTML reviewer packets from the binding manifest, package files, asset metadata, and run-local mechanism storyboards. The exports are review artifacts, not a replacement for `spec.md`, `prod.md`, or the live WonderLens runtime.
 
 **Python environment:** Script commands require PyYAML. In this local worktree, run them through the PyYAML-capable pyenv interpreter:
 
@@ -77,7 +77,7 @@ Create:
 - `runs/20260512_172135_batch5_unblocked/activity_exports/concept_story_unlock_probe.html`
 - `runs/20260512_172135_batch5_unblocked/activity_exports/concept_recognition_pop_probe.html`
 
-Each HTML file is self-contained and embeds its `contact_sheet.png` as a base64 data URI. This makes the 12 exports portable and avoids broken relative image paths when a reviewer opens one file directly.
+Each HTML file is self-contained and embeds its `contact_sheet.png` as a base64 data URI. When a run-local `visual_storyboards/<activity_id>/mechanism_grid.png` exists, the packet also embeds that storyboard as a review-only base64 data URI. This makes the 12 exports portable and avoids broken relative image paths when a reviewer opens one file directly.
 
 ## Binding Manifest Schema
 
@@ -130,6 +130,7 @@ Each per-activity HTML page must include:
 - Activity title and `activity_id`.
 - Mechanic, category, tier, pillar, game style, asset policy, and reviewer status.
 - Embedded contact sheet image.
+- Embedded review-only mechanism storyboard image when available, labeled as review context and not child-facing runtime UI.
 - Asset ID, asset type, requiredness, generation timing, use steps, display location, display behavior, fallback behavior, and safety constraints.
 - Brief description, design highlight, typical scenario, and runtime flow from `prod.md`.
 - Asset brief/timeline summary from `spec.md` or `run_manifest.yaml` asset usage.
@@ -137,7 +138,7 @@ Each per-activity HTML page must include:
 - File provenance links as plain relative paths for the package, asset metadata, prompt, and source contact sheet image.
 - A source snapshot section with collapsible `spec.md`, `prod.md`, `asset.meta.yaml`, and `contact_sheet.prompt.md` text.
 
-The page must not claim to be a live runtime simulator. Use labels such as `Static Activity Export`, `Integrated Prebuilt Asset`, and `Fallback Contract`.
+The page must not claim to be a live runtime simulator. Use labels such as `Static Activity Export`, `Integrated Prebuilt Asset`, `Review-Only Mechanism Storyboard`, and `Fallback Contract`.
 
 ## Task 1: Add Asset Integration Script
 
@@ -501,7 +502,7 @@ Document the new optional run-local directories:
 
 ```markdown
 - `integrated_assets/` - run-local bindings between package asset IDs and generated asset files.
-- `activity_exports/` - one self-contained static HTML export per integrated activity, plus `export_manifest.yaml`.
+- `activity_exports/` - one self-contained static HTML reviewer packet per integrated activity, plus `export_manifest.yaml`.
 ```
 
 **Step 3: Update `HANDOFF.md`**
@@ -509,9 +510,9 @@ Document the new optional run-local directories:
 Record:
 
 - 12 pilot assets integrated.
-- 12 self-contained activity HTML exports generated.
+- 12 self-contained activity HTML reviewer packets generated.
 - Validation commands and results.
-- Remaining risk: contact sheets are review/runtime-preview assets, not sliced final runtime cards.
+- Remaining risk: contact sheets and mechanism storyboards are review assets, not sliced final runtime cards or child-facing runtime UI.
 
 **Step 4: Commit**
 
@@ -599,9 +600,11 @@ Expected changed paths are limited to:
 ## Acceptance Criteria
 
 - Exactly 12 pilot asset rows are integrated.
-- Exactly 12 self-contained HTML files are exported.
+- Exactly 12 self-contained HTML reviewer packets are exported.
 - Every HTML file embeds its corresponding generated `contact_sheet.png`.
+- Every HTML file embeds the corresponding review-only `mechanism_grid.png` storyboard when that run-local storyboard exists.
 - Every HTML file includes the corresponding activity runtime flow and fallback contract.
+- No HTML file presents a storyboard as child-facing runtime UI.
 - Validation fails if an image, package, metadata file, prompt, or asset ID link is missing.
 - The five-file activity package contract remains intact.
 - The run manifest records integration and export output paths.

@@ -205,8 +205,52 @@ pre {
 a { color: var(--accent); }
 .path-list { display: grid; gap: 6px; margin-top: 12px; }
 .path-list a { overflow-wrap: anywhere; }
+.storyboard-block {
+  display: grid;
+  grid-template-columns: minmax(280px, 48%) 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.storyboard-figure { margin: 0; }
+.storyboard-figure img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: white;
+}
+.storyboard-note {
+  color: var(--warn);
+  background: var(--warn-soft);
+  border: 1px solid #edd094;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 0 0 14px;
+}
+.storyboard-caption-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+.storyboard-caption-list li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+}
+.storyboard-caption-list li:first-child { border-top: 0; }
+.storyboard-panel-number {
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+.storyboard-caption-list strong { display: block; margin-bottom: 4px; }
+.storyboard-caption-list p { margin: 0; }
+.storyboard-source { display: block; color: var(--muted); font-size: 12px; margin-top: 5px; }
 @media (max-width: 820px) {
-  .layout, .branch-grid, .meta-grid { grid-template-columns: 1fr; }
+  .layout, .branch-grid, .meta-grid, .storyboard-block { grid-template-columns: 1fr; }
   .page { width: min(100vw - 20px, 1180px); }
 }
 """
@@ -386,7 +430,7 @@ def render_source_snapshot(title: str, text: str) -> str:
 
 
 def sanitize_snapshot(title: str, text: str) -> str:
-    if title != "asset.meta.yaml":
+    if not title.endswith(".meta.yaml"):
         return text
     return re.sub(
         r"(?m)^source_image:\s+/.*$",
@@ -397,6 +441,105 @@ def sanitize_snapshot(title: str, text: str) -> str:
 
 def relative_link_from_export(binding_path: str) -> str:
     return f"../{binding_path}"
+
+
+def storyboard_path(run_dir: Path, activity_id: str, filename: str) -> Path:
+    for root in ("visual_storyboards_v2", "visual_storyboards"):
+        candidate = run_dir / root / activity_id / filename
+        if candidate.is_file():
+            return candidate
+    return run_dir / "__missing_storyboard_file__"
+
+
+def storyboard_relative_path(run_dir: Path, activity_id: str, filename: str) -> str:
+    path = storyboard_path(run_dir, activity_id, filename)
+    return path.relative_to(run_dir).as_posix() if path.is_file() else ""
+
+
+def storyboard_file_path(run_dir: Path, storyboard: dict[str, Any], field: str) -> Path:
+    href = norm(storyboard.get(field))
+    return run_dir / href if href else run_dir / "__missing_storyboard_file__"
+
+
+def render_storyboard_captions(storyboard: dict[str, Any]) -> str:
+    captions = storyboard.get("panel_captions", [])
+    if not isinstance(captions, list) or not captions:
+        return '<p class="subline">No panel captions were recorded.</p>'
+    rows = []
+    for item in captions:
+        if not isinstance(item, dict):
+            continue
+        source = (
+            f'<span class="storyboard-source">{html_escape(item.get("source"))}</span>'
+            if item.get("source")
+            else ""
+        )
+        rows.append(
+            "<li>"
+            f'<span class="storyboard-panel-number">{html_escape(item.get("number"))}</span>'
+            "<div>"
+            f"<strong>{html_escape(item.get('title') or 'Panel')}</strong>"
+            f"<p>{html_escape(item.get('caption') or '')}</p>"
+            f"{source}"
+            "</div>"
+            "</li>"
+        )
+    return f'<ol class="storyboard-caption-list">{"".join(rows)}</ol>' if rows else '<p class="subline">No panel captions were recorded.</p>'
+
+
+def render_storyboard_section(run_dir: Path, package: dict[str, Any]) -> str:
+    storyboard = package.get("storyboard") or {}
+    if not storyboard:
+        return ""
+    image_path = storyboard_file_path(run_dir, storyboard, "image_href")
+    prompt_path = storyboard_file_path(run_dir, storyboard, "prompt_href")
+    meta_path = storyboard_file_path(run_dir, storyboard, "meta_href")
+    image = (
+        f'<img src="{data_uri(image_path)}" alt="Review-only mechanism storyboard for {html_escape(package.get("activity_name"))}">'
+        if image_path.is_file()
+        else '<p class="subline">Storyboard prompt ready; image not generated yet.</p>'
+    )
+    fields = {
+        "Status": storyboard.get("status") or "Unknown",
+        "Version": storyboard.get("version") or "Unknown",
+        "Tool": storyboard.get("tool") or "Unknown",
+        "Target model": storyboard.get("target_model") or "Unknown",
+        "Actual model": storyboard.get("actual_model") or "Unknown",
+        "Generated": storyboard.get("generated_at") or "Unknown",
+    }
+    meta = "".join(
+        f"<div><span>{html_escape(label)}</span><strong>{html_escape(value)}</strong></div>"
+        for label, value in fields.items()
+    )
+    links = []
+    for label, path in [
+        ("mechanism_grid.prompt.md", prompt_path),
+        ("mechanism_grid.meta.yaml", meta_path),
+        ("mechanism_grid.png", image_path),
+    ]:
+        if path.is_file():
+            rel_path = path.relative_to(run_dir).as_posix()
+            links.append(f'<a href="{html_escape(relative_link_from_export(rel_path))}">{html_escape(label)}: <code>{html_escape(rel_path)}</code></a>')
+    snapshots = ""
+    if prompt_path.is_file():
+        snapshots += render_source_snapshot("mechanism_grid.prompt.md", read_text(prompt_path))
+    if meta_path.is_file():
+        snapshots += render_source_snapshot("mechanism_grid.meta.yaml", read_text(meta_path))
+    return (
+        '<section class="panel">'
+        '<h2>Review-Only Mechanism Storyboard</h2>'
+        '<p class="storyboard-note">This storyboard is a review artifact, not runtime UI. It explains the activity mechanism and should not be treated as a child-facing prebuilt asset.</p>'
+        '<div class="storyboard-block">'
+        f'<figure class="storyboard-figure">{image}</figure>'
+        '<div>'
+        f'<div class="meta-grid">{meta}</div>'
+        f'{render_storyboard_captions(storyboard)}'
+        f'<div class="path-list">{"".join(links)}</div>'
+        '</div>'
+        '</div>'
+        f'{snapshots}'
+        '</section>'
+    )
 
 
 def render_provenance_links(binding: dict[str, Any]) -> str:
@@ -448,6 +591,7 @@ def render_activity_html(run_dir: Path, binding: dict[str, Any], package: dict[s
       </article>
     </section>
     {render_overview(package)}
+    {render_storyboard_section(run_dir, package)}
     {render_runtime_flow(package)}
     {render_scorecard(package)}
     <section class="panel">
@@ -504,6 +648,10 @@ def write_exports(run_dir: Path) -> dict[str, Any]:
                 "package_path": binding.get("package_path"),
                 "image_path": binding.get("image_path"),
                 "embedded_image": True,
+                "storyboard_image_path": storyboard_relative_path(run_dir, activity_id, "mechanism_grid.png"),
+                "storyboard_meta_path": storyboard_relative_path(run_dir, activity_id, "mechanism_grid.meta.yaml"),
+                "storyboard_prompt_path": storyboard_relative_path(run_dir, activity_id, "mechanism_grid.prompt.md"),
+                "embedded_storyboard": bool(storyboard_relative_path(run_dir, activity_id, "mechanism_grid.png")),
                 "status": "exported",
             }
         )
@@ -609,6 +757,15 @@ def validate_exports(run_dir: Path, expected_count: int | None = None) -> list[s
         expected_image = data_uri(run_dir / norm(binding.get("image_path")))
         if expected_image not in text:
             issues.append(f"{label}: embedded image does not match {binding.get('image_path')}")
+        storyboard_image = storyboard_path(run_dir, activity_id, "mechanism_grid.png")
+        if storyboard_image.is_file():
+            expected_storyboard = data_uri(storyboard_image)
+            if "Review-Only Mechanism Storyboard" not in text:
+                issues.append(f"{label}: HTML missing Review-Only Mechanism Storyboard")
+            if "review artifact, not runtime UI" not in text:
+                issues.append(f"{label}: HTML missing storyboard review-only disclaimer")
+            if expected_storyboard not in text:
+                issues.append(f"{label}: storyboard image does not match {storyboard_image.relative_to(run_dir)}")
         if re.search(r'(?:src|href)=["\']https?://', text, re.I):
             issues.append(f"{label}: HTML references an external URL")
         if "cdn." in text.lower() or "@import" in text.lower():

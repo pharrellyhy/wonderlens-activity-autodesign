@@ -152,6 +152,83 @@ class IntegratedAssetWorkflowTest(unittest.TestCase):
         self.assertIn("data:image/png;base64,cG5n", html)
         self.assertIn("asset_one", html)
 
+    def test_exporter_embeds_review_storyboard_image(self):
+        exporter = load_script("export_activity_html")
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = pathlib.Path(tmp) / "runs" / "test_run"
+            asset_dir = run_dir / "generated_assets_pilot" / "activity_one" / "asset_one"
+            storyboard_dir = run_dir / "visual_storyboards" / "activity_one"
+            package_dir = run_dir / "activity_packages" / "activity_one"
+            asset_dir.mkdir(parents=True)
+            storyboard_dir.mkdir(parents=True)
+            package_dir.mkdir(parents=True)
+            (asset_dir / "contact_sheet.png").write_bytes(b"asset")
+            (package_dir / "spec.md").write_text("scorecard\n")
+            (package_dir / "prod.md").write_text("runtime\n")
+            (asset_dir / "asset.meta.yaml").write_text("activity_id: activity_one\n")
+            (asset_dir / "contact_sheet.prompt.md").write_text("# Asset Prompt\n")
+            (storyboard_dir / "mechanism_grid.png").write_bytes(b"storyboard")
+            (storyboard_dir / "mechanism_grid.prompt.md").write_text("# Storyboard Prompt\n")
+            (storyboard_dir / "mechanism_grid.meta.yaml").write_text(
+                "source_image: /Users/example/local.png\nstatus: generated\n"
+            )
+
+            html = exporter.render_activity_html(
+                run_dir,
+                {
+                    "activity_id": "activity_one",
+                    "asset_id": "asset_one",
+                    "asset_type": "card_set",
+                    "package_path": "activity_packages/activity_one",
+                    "spec_path": "activity_packages/activity_one/spec.md",
+                    "prod_path": "activity_packages/activity_one/prod.md",
+                    "image_path": "generated_assets_pilot/activity_one/asset_one/contact_sheet.png",
+                    "meta_path": "generated_assets_pilot/activity_one/asset_one/asset.meta.yaml",
+                    "prompt_path": "generated_assets_pilot/activity_one/asset_one/contact_sheet.prompt.md",
+                },
+                {
+                    "activity_id": "activity_one",
+                    "activity_name": "Activity One",
+                    "mechanic": "deduce",
+                    "category": "cat1",
+                    "tier": "T1",
+                    "asset_policy": "required_prebuilt",
+                    "status": "PASS",
+                    "pillar": "play",
+                    "game_style": "mission",
+                    "reviewer": "Test",
+                    "runtime_beats": [],
+                    "scorecard_rows": [],
+                    "storyboard": {
+                        "status": "generated",
+                        "version": "v1",
+                        "tool": "Codex image generation",
+                        "target_model": "gpt-image-2",
+                        "actual_model": "test",
+                        "generated_at": "2026-05-21T00:00:00+08:00",
+                        "image_href": "visual_storyboards/activity_one/mechanism_grid.png",
+                        "image_exists": True,
+                        "prompt_href": "visual_storyboards/activity_one/mechanism_grid.prompt.md",
+                        "prompt_exists": True,
+                        "meta_href": "visual_storyboards/activity_one/mechanism_grid.meta.yaml",
+                        "meta_exists": True,
+                        "panel_captions": [
+                            {
+                                "number": "1",
+                                "title": "Setup",
+                                "caption": "Child sees the activity setup.",
+                                "source": "Step 1",
+                            }
+                        ],
+                    },
+                },
+            )
+
+        self.assertIn("Review-Only Mechanism Storyboard", html)
+        self.assertIn("data:image/png;base64,c3Rvcnlib2FyZA==", html)
+        self.assertIn("review artifact, not runtime UI", html)
+        self.assertNotIn("/Users/example/local.png", html)
+
     def test_export_validation_rejects_wrong_embedded_image(self):
         integrate = load_script("integrate_generated_assets")
         exporter = load_script("export_activity_html")
@@ -185,6 +262,55 @@ class IntegratedAssetWorkflowTest(unittest.TestCase):
             issues = exporter.validate_exports(run_dir, expected_count=1)
 
         self.assertIn("embedded image does not match", "\n".join(issues))
+
+    def test_export_validation_rejects_missing_storyboard_when_present(self):
+        exporter = load_script("export_activity_html")
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = pathlib.Path(tmp) / "runs" / "test_run"
+            asset_dir = run_dir / "generated_assets_pilot" / "activity_one" / "asset_one"
+            storyboard_dir = run_dir / "visual_storyboards" / "activity_one"
+            export_dir = run_dir / "activity_exports"
+            (run_dir / "integrated_assets").mkdir(parents=True)
+            asset_dir.mkdir(parents=True)
+            storyboard_dir.mkdir(parents=True)
+            export_dir.mkdir()
+            image_path = asset_dir / "contact_sheet.png"
+            image_path.write_bytes(b"asset")
+            (storyboard_dir / "mechanism_grid.png").write_bytes(b"storyboard")
+            exporter.write_yaml(
+                run_dir / "integrated_assets" / "asset_bindings.yaml",
+                {
+                    "entries": [
+                        {
+                            "activity_id": "activity_one",
+                            "asset_id": "asset_one",
+                            "image_path": "generated_assets_pilot/activity_one/asset_one/contact_sheet.png",
+                        }
+                    ]
+                },
+            )
+            (export_dir / "activity_one.html").write_text(
+                "<!doctype html><html lang=\"en\"><body>activity_one asset_one "
+                f"{exporter.data_uri(image_path)} Static Activity Export Integrated Prebuilt Asset "
+                "Fallback Runtime Flow Scorecard Source Files</body></html>"
+            )
+            exporter.write_yaml(
+                export_dir / "export_manifest.yaml",
+                {
+                    "export_count": 1,
+                    "entries": [
+                        {
+                            "activity_id": "activity_one",
+                            "asset_id": "asset_one",
+                            "html_path": "activity_exports/activity_one.html",
+                            "image_path": "generated_assets_pilot/activity_one/asset_one/contact_sheet.png",
+                        }
+                    ],
+                },
+            )
+            issues = exporter.validate_exports(run_dir, expected_count=1)
+
+        self.assertIn("storyboard image does not match", "\n".join(issues))
 
     def test_export_validation_rejects_duplicate_activity(self):
         exporter = load_script("export_activity_html")

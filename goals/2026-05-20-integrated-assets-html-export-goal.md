@@ -2,7 +2,7 @@
 
 ## Goal File Role
 
-This file is the concise Codex goal-mode execution contract for integrating the 12 generated prebuilt asset sets and exporting the corresponding 12 activity HTML files.
+This file is the concise Codex goal-mode execution contract for integrating the 12 generated prebuilt asset sets and exporting the corresponding 12 activity HTML reviewer packets.
 
 Detailed implementation lives in:
 
@@ -26,13 +26,13 @@ Implement the asset integration and static HTML export workflow for the 12 gener
 The finished system must:
 
 - create a run-local binding manifest that maps each generated pilot asset to its corresponding activity package;
-- export exactly 12 self-contained static HTML activity pages with embedded contact-sheet images;
+- export exactly 12 self-contained static HTML activity reviewer packets with embedded contact-sheet images and review-only mechanism storyboards when available;
 - update run provenance and workflow docs without changing the canonical five-file activity package contract.
 
 ## Recommended `/goal` Command
 
 ```text
-/goal Execute goals/2026-05-20-integrated-assets-html-export-goal.md end to end. Use docs/plans/2026-05-20-integrated-assets-html-export.md as the controlling implementation plan. Integrate the 12 generated pilot assets, export the 12 self-contained activity HTML files, update run provenance/docs, run all focused validations, commit intended changes only, and report outputs/checks/residual risks.
+/goal Execute goals/2026-05-20-integrated-assets-html-export-goal.md end to end. Use docs/plans/2026-05-20-integrated-assets-html-export.md as the controlling implementation plan. Integrate the 12 generated pilot assets, export the 12 self-contained activity HTML reviewer packets, update run provenance/docs, run all focused validations, commit intended changes only, and report outputs/checks/residual risks.
 ```
 
 ## Required Execution Mode
@@ -72,7 +72,7 @@ Implement the source plan and include these major work areas:
 - asset integration script: `scripts/integrate_generated_assets.py`;
 - run-local binding output: `runs/20260512_172135_batch5_unblocked/integrated_assets/asset_bindings.yaml`;
 - per-activity HTML exporter: `scripts/export_activity_html.py`;
-- 12 self-contained HTML files and `export_manifest.yaml` under `runs/20260512_172135_batch5_unblocked/activity_exports/`;
+- 12 self-contained HTML reviewer packets and `export_manifest.yaml` under `runs/20260512_172135_batch5_unblocked/activity_exports/`;
 - run manifest provenance updates in `runs/20260512_172135_batch5_unblocked/run_manifest.yaml`;
 - workflow documentation updates in `review_dashboard.md`, `runs/README.md`, and `HANDOFF.md`;
 - regenerated and validated run review dashboard when provenance changes require it.
@@ -161,11 +161,13 @@ git status --short
   - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked`
   - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked`
 - `runs/20260512_172135_batch5_unblocked/activity_exports/export_manifest.yaml` exists.
-- Exactly 12 `.html` files exist under `runs/20260512_172135_batch5_unblocked/activity_exports/`.
+- Exactly 12 `.html` reviewer packets exist under `runs/20260512_172135_batch5_unblocked/activity_exports/`.
 - Every HTML file embeds its corresponding `contact_sheet.png` as `data:image/png;base64,`.
+- Every HTML file embeds its corresponding review-only `mechanism_grid.png` storyboard when that run-local storyboard exists.
 - Every HTML file includes activity metadata, the integrated asset contract, fallback behavior, runtime flow, scorecard rows, and source snapshots.
 - No HTML file references external `http://`, `https://`, CDN, remote font, or remote image resources.
 - No HTML file claims to be a live runtime simulator.
+- No HTML file presents the storyboard as child-facing runtime UI.
 
 ### Provenance And Docs
 
@@ -233,5 +235,5 @@ Final response must include:
 - exact output paths for binding manifest and 12 HTML exports;
 - checks run and results;
 - review status;
-- residual risks, especially that contact sheets are preview/review assets, not sliced final runtime cards;
+- residual risks, especially that contact sheets and storyboards are review assets, not sliced final runtime cards or child-facing runtime UI;
 - commit hashes created during execution.

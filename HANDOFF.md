@@ -9,13 +9,13 @@
 ## Latest Changes
 
 - Added `scripts/integrate_generated_assets.py` to bind generated pilot contact sheets to run-local activity packages and validate package/image/metadata/prompt/asset-field consistency.
-- Added `scripts/export_activity_html.py` to export integrated activities as self-contained static HTML files with embedded contact-sheet PNG data URIs, runtime flow, scorecard rows, asset contract, fallback behavior, provenance links, and source snapshots.
+- Added `scripts/export_activity_html.py` to export integrated activities as self-contained standalone reviewer packets with embedded contact-sheet PNG data URIs, review-only mechanism storyboard PNG data URIs, runtime flow, scorecard rows, asset contract, fallback behavior, provenance links, and source snapshots.
 - Added focused unittest coverage in `tests/test_integrated_asset_workflow.py` for the new integration/export script APIs.
-- Tightened HTML export validation to use `(activity_id, asset_id)` identity, reject duplicate export paths, and preserve support for multiple assets on one activity.
+- Tightened HTML export validation to use `(activity_id, asset_id)` identity, reject duplicate export paths, preserve support for multiple assets on one activity, and require storyboard embedding when a run-local storyboard exists.
 - Generated and validated `runs/20260512_172135_batch5_unblocked/integrated_assets/asset_bindings.yaml` with 12 integrated prebuilt asset bindings.
-- Generated and validated 12 standalone activity HTML files plus `export_manifest.yaml` under `runs/20260512_172135_batch5_unblocked/activity_exports/`.
+- Generated and validated 12 standalone activity HTML reviewer packets plus `export_manifest.yaml` under `runs/20260512_172135_batch5_unblocked/activity_exports/`.
 - Updated `runs/20260512_172135_batch5_unblocked/run_manifest.yaml` with integrated asset/export output paths, summary counts, and PASS check entries.
-- Updated `review_dashboard.md`, `runs/README.md`, and `scripts/generate_run_review.py` so the run workflow documents the asset integration and per-activity HTML export steps.
+- Updated `review_dashboard.md`, `runs/README.md`, and `scripts/generate_run_review.py` so the run workflow documents the asset integration and per-activity HTML export steps, and `review.html` links directly to the 12 standalone reviewer packets.
 - Local validation used `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 ...` because the default Homebrew `python3` on this machine did not have PyYAML installed.
 - `codex-review` was not installed in this environment; final review used manual staged-diff review plus the focused validation commands below, with no accepted/actionable findings remaining.
 - Added canonical five-file activity packages for frontend demo games: `activities/dream_whisperer_cat`, `activities/mood_changer_dog`, `activities/time_machine_dinosaur`, and `activities/fluffy_expedition_dandelion`.
@@ -99,7 +99,7 @@
 ## Verification
 
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest discover -s tests -p 'test_integrated_asset_workflow.py' -v`
-  - Result: PASS; 9 focused integration/export tests passed, including same-activity multi-asset validation.
+  - Result: PASS; 11 focused integration/export tests passed, including same-activity multi-asset validation and storyboard-backed reviewer packet validation.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/integrate_generated_assets.py scripts/export_activity_html.py scripts/generate_run_review.py`
   - Result: PASS.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py runs/20260512_172135_batch5_unblocked`
@@ -107,13 +107,13 @@
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked`
   - Result: PASS; 12 assets, 12 activities.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked`
-  - Result: PASS; regenerated 12 activity HTML files and `export_manifest.yaml`.
+  - Result: PASS; regenerated 12 activity HTML reviewer packets and `export_manifest.yaml`.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked`
-  - Result: PASS; 12 HTML files validated with embedded contact sheets.
+  - Result: PASS; 12 HTML files validated with embedded contact sheets and mechanism storyboards.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py runs/20260512_172135_batch5_unblocked`
   - Result: PASS; regenerated `review.html`.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked`
-  - Result: PASS; dashboard contract passed with 630 resolving local links.
+  - Result: PASS; dashboard contract passed with 644 resolving local links, including the Activity HTML Exports section.
 - Targeted static export scan for local paths, external URLs, CDNs, unresolved placeholders, and CSS imports
   - Result: PASS; no matches in `runs/20260512_172135_batch5_unblocked/activity_exports/`.
 - Run-local package directory validation for `runs/20260511_233559_activity_concepts`
@@ -265,7 +265,7 @@
 - All 23 concept packages covered by run `20260510_152725_activity_concepts` now have separate reviewer-agent PASS evidence: 16 generated packages plus 7 older checked packages.
 - Several generated packages use required or optional prebuilt/display assets; package specs include fallbacks, but no asset files or runtime asset manifest were generated.
 - The 23 corrected run-local packages for `20260511_233559_activity_concepts` were materialized from the current independently reviewed packages with clean IDs. Future fresh `/goal` runs are now required to generate directly into run-local package directories from the start.
-- The 12 Batch 5 exported HTML files embed contact-sheet review images, not sliced final runtime cards. A downstream runtime will still need an approved final asset packaging/slicing convention before using these as production card assets.
+- The 12 Batch 5 exported HTML reviewer packets embed contact-sheet review images and review-only mechanism storyboards, not sliced final runtime cards. A downstream runtime will still need an approved final asset packaging/slicing convention before using these as production card assets.
 - The exported HTML source snapshots include asset metadata, but local `source_image` provenance paths are redacted inside static exports so the portable HTML files do not introduce additional machine-local paths.
 
 ## Next Immediate Actions

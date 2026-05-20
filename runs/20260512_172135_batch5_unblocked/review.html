@@ -519,6 +519,28 @@ input:focus, select:focus {
 .asset-pilot-fields { grid-template-columns: 1.15fr .85fr; }
 .asset-pilot-fields > div:nth-child(2n) { border-right: none; }
 .asset-pilot-fields > div:nth-last-child(-n+2) { border-bottom: none; }
+.activity-export-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 14px 18px 18px;
+}
+.activity-export-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel-raised);
+  box-shadow: var(--shadow-soft);
+}
+.activity-export-copy {
+  min-width: 0;
+  padding: 15px 16px 14px;
+  display: grid;
+  gap: 10px;
+}
+.activity-export-fields { grid-template-columns: 1fr; }
+.activity-export-fields > div { border-right: none; }
+.activity-export-fields > div:last-child { border-bottom: none; }
 .asset-placement {
   display: grid;
   gap: 7px;
@@ -1262,7 +1284,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   .metric:nth-child(3n) { border-right: none; }
   .metric:nth-last-child(-n+3) { border-bottom: none; }
   .controls { grid-template-columns: 1fr 1fr 1fr; }
-  .activity-grid, .blocked-grid, .asset-pilot-grid { grid-template-columns: 1fr; }
+  .activity-grid, .blocked-grid, .asset-pilot-grid, .activity-export-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
   main, .header-inner { padding-left: 16px; padding-right: 16px; }
@@ -1315,6 +1337,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
       <a href="#resolved-contract-items">Resolved Items</a>
       <a href="#extensibility-overview">Extensibility</a>
       <a href="#generated-assets">Generated Assets</a>
+      <a href="#activity-html-exports">HTML Exports</a>
       <a href="#blocking-reason-guide">Blocking Reasons</a>
       <a href="#review-criteria">Review Criteria</a>
       <a href="#activity-details">Activities</a>
@@ -1323,14 +1346,14 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
       <a href="#validation-checks">Validation</a>
       <a href="#residual-risk">Residual Risk</a>
     </nav>
-    <div class="sidebar-counts"><div><span>Review cards</span><strong>40</strong></div><div><span>Blocked</span><strong>0</strong></div><div><span>Asset sheets</span><strong>12</strong></div><div><span>Failed</span><strong>0</strong></div><div><span>Checks</span><strong>23</strong></div></div>
+    <div class="sidebar-counts"><div><span>Review cards</span><strong>40</strong></div><div><span>Blocked</span><strong>0</strong></div><div><span>Asset sheets</span><strong>12</strong></div><div><span>Failed</span><strong>0</strong></div><div><span>Checks</span><strong>24</strong></div></div>
   </aside>
 	  <div class="review-content">
 	  <section class="metrics" id="summary-metrics"><div class="metric"><span>Pending at start</span><strong>40</strong></div><div class="metric"><span>Generated</span><strong>40</strong></div><div class="metric"><span>Enriched</span><strong>0</strong></div><div class="metric"><span>Audited no-op</span><strong>0</strong></div><div class="metric"><span>Blocked</span><strong>0</strong></div><div class="metric"><span>Review cards</span><strong>40</strong></div></section>
 
 	  <section class="panel" id="run-files">
 	    <div class="panel-head"><h2>Run Files</h2></div>
-	    <div class="link-grid"><a href="run_manifest.yaml" data-preview-id="preview-run-manifest-yaml">run_manifest.yaml</a><a href="review_notes.md" data-preview-id="preview-review-notes-md">review_notes.md</a><a href="assignment_snapshot.md" data-preview-id="preview-assignment-snapshot-md">assignment_snapshot.md</a><a href="generated_activity_ids.txt" data-preview-id="preview-generated-activity-ids-txt">generated_activity_ids.txt</a><a href="visual_storyboards/storyboard_manifest.yaml" data-preview-id="preview-visual-storyboards-storyboard-manifest-yaml">storyboard_manifest.yaml</a><a href="generated_assets_pilot/asset_manifest.yaml" data-preview-id="preview-generated-assets-pilot-asset-manifest-yaml">asset_manifest.yaml</a><a href="../../results.tsv" data-preview-id="preview-results-tsv">results.tsv</a><a href="../../assignments.md" data-preview-id="preview-assignments-md">assignments.md</a></div>
+	    <div class="link-grid"><a href="run_manifest.yaml" data-preview-id="preview-run-manifest-yaml">run_manifest.yaml</a><a href="review_notes.md" data-preview-id="preview-review-notes-md">review_notes.md</a><a href="assignment_snapshot.md" data-preview-id="preview-assignment-snapshot-md">assignment_snapshot.md</a><a href="generated_activity_ids.txt" data-preview-id="preview-generated-activity-ids-txt">generated_activity_ids.txt</a><a href="visual_storyboards/storyboard_manifest.yaml" data-preview-id="preview-visual-storyboards-storyboard-manifest-yaml">storyboard_manifest.yaml</a><a href="generated_assets_pilot/asset_manifest.yaml" data-preview-id="preview-generated-assets-pilot-asset-manifest-yaml">asset_manifest.yaml</a><a href="activity_exports/export_manifest.yaml" data-preview-id="preview-activity-exports-export-manifest-yaml">export_manifest.yaml</a><a href="../../results.tsv" data-preview-id="preview-results-tsv">results.tsv</a><a href="../../assignments.md" data-preview-id="preview-assignments-md">assignments.md</a></div>
 	  </section>
 
 	<section class="panel" id="dashboard-workflow">
@@ -1642,6 +1665,179 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
       <p><span>Consistency</span>One contact sheet keeps card frame, lighting, scale, and illustration style consistent within this activity. Different mechanics use different style directions so cross-activity scenes remain visually distinct.</p>
     </div>
     <div class="file-row inline-file-row"><div><a href="generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/contact_sheet.prompt.md" data-preview-id="preview-generated-assets-pilot-concept-recognition-pop-probe-recognition-challenge-cards-01-contact-sheet-prompt-md">asset prompt</a> <a href="generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/asset.meta.yaml" data-preview-id="preview-generated-assets-pilot-concept-recognition-pop-probe-recognition-challenge-cards-01-asset-meta-yaml">asset metadata</a> <a href="generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/contact_sheet.png" target="_blank" rel="noopener">contact sheet</a></div></div>
+  </div>
+</article></div>
+  </section>
+
+	<section class="panel" id="activity-html-exports">
+    <div class="panel-head"><h2>Activity HTML Exports</h2><span class="muted">12 standalone reviewer packets</span></div>
+    <div class="criteria-note">These standalone reviewer packets embed the integrated contact sheet and the review-only mechanism storyboard for each exported activity. Storyboards explain the interaction mechanism; they are not child-facing runtime UI.</div>
+    <div class="activity-export-grid">
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>B-Sound Treasure Hunt</h3>
+    <p class="activity-id">concept_phoneme_hunt_collect</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>phoneme_letter_card_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_phoneme_hunt_collect/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_phoneme_hunt_collect.html">activity_exports/concept_phoneme_hunt_collect.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Partial Reveal Guess</h3>
+    <p class="activity-id">concept_partial_reveal_deduce</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>partial_reveal_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_partial_reveal_deduce.html">activity_exports/concept_partial_reveal_deduce.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Animal Echo Stage</h3>
+    <p class="activity-id">concept_animal_sound_motion_voice</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>animal_sound_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_animal_sound_motion_voice.html">activity_exports/concept_animal_sound_motion_voice.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Echo Word Stage</h3>
+    <p class="activity-id">concept_word_echo_remember</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>word_echo_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_word_echo_remember/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_word_echo_remember.html">activity_exports/concept_word_echo_remember.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Feeling Helper Station</h3>
+    <p class="activity-id">concept_emotion_reader_care</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>emotion_expression_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_emotion_reader_care/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_emotion_reader_care.html">activity_exports/concept_emotion_reader_care.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Star Pattern Counter</h3>
+    <p class="activity-id">concept_constellation_star_count_enumerate</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>constellation_count_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_constellation_star_count_enumerate.html">activity_exports/concept_constellation_star_count_enumerate.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Helper Choice Desk</h3>
+    <p class="activity-id">concept_career_decision_decide</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>career_portrait_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_career_decision_decide/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_career_decision_decide.html">activity_exports/concept_career_decision_decide.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Vegetable Sort Stand</h3>
+    <p class="activity-id">concept_vegetable_sort_sort</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>vegetable_sort_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_vegetable_sort_sort.html">activity_exports/concept_vegetable_sort_sort.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Pretend Trip Planner</h3>
+    <p class="activity-id">concept_travel_planner_predict</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>travel_planning_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_travel_planner_predict/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_travel_planner_predict.html">activity_exports/concept_travel_planner_predict.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Guided Drawing</h3>
+    <p class="activity-id">concept_guided_drawing_probe</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>guided_drawing_step_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_guided_drawing_probe/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_guided_drawing_probe.html">activity_exports/concept_guided_drawing_probe.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Story Challenge Unlock</h3>
+    <p class="activity-id">concept_story_unlock_probe</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>story_unlock_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_story_unlock_probe/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_story_unlock_probe.html">activity_exports/concept_story_unlock_probe.html</a></div></div>
+  </div>
+</article>
+
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>Recognition Pop Challenge</h3>
+    <p class="activity-id">concept_recognition_pop_probe</p>
+    <div class="tag-row"><span class="badge badge-kind badge-kind-review-packet">review packet</span><span class="badge badge-asset badge-asset-embedded-asset">embedded asset</span><span class="badge badge-metadata badge-metadata-storyboard">storyboard</span></div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>recognition_challenge_cards_01</strong></div>
+      <div><span>Storyboard</span><strong>visual_storyboards/concept_recognition_pop_probe/mechanism_grid.png</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="activity_exports/concept_recognition_pop_probe.html">activity_exports/concept_recognition_pop_probe.html</a></div></div>
   </div>
 </article></div>
   </section>
@@ -11911,6 +12107,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
 <tr><td>env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
 <tr><td>env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
 <tr><td>env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
+<tr><td>standalone activity export packet scan</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
 <tr><td>env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/generate_run_review.py runs/20260512_172135_batch5_unblocked</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
 <tr><td>env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr></tbody></table></div>
 	  </section>
@@ -11955,7 +12152,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="preview-truncated muted hidden" id="preview-truncated">File is larger than the inline-preview limit. Use “Open file in new tab” to read the full contents.</div>
 </dialog>
 <div id="file-previews" hidden aria-hidden="true">
-<template id="preview-run-manifest-yaml" data-label="runs/20260512_172135_batch5_unblocked/run_manifest.yaml" data-href="run_manifest.yaml" data-kind="YAML" data-truncated="false" data-size="109058">run_id: 20260512_172135_batch5_unblocked
+<template id="preview-run-manifest-yaml" data-label="runs/20260512_172135_batch5_unblocked/run_manifest.yaml" data-href="run_manifest.yaml" data-kind="YAML" data-truncated="false" data-size="109323">run_id: 20260512_172135_batch5_unblocked
 status: completed
 started_at: &#x27;2026-05-12T17:21:35+08:00&#x27;
 completed_at: &#x27;2026-05-12T22:15:01+08:00&#x27;
@@ -13585,6 +13782,8 @@ checks:
   result: PASS
 - command: env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked
   result: PASS
+- command: standalone activity export packet scan
+  result: PASS
 - command: env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/generate_run_review.py runs/20260512_172135_batch5_unblocked
   result: PASS
 - command: env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked
@@ -13594,7 +13793,8 @@ notes:
 - Fresh packages are run-local under activity_packages/ with clean activity_id values.
 - Former capability-probe blockers are generated as resolved blocker annotations under product_contract_override=minimum_unblock_allowed.
 - Mechanism storyboard grids are post-run review artifacts generated from existing package data; they do not change activity package contracts.
-- The 12 generated prebuilt asset pilot contact sheets are integrated through run-local asset bindings and exported as self-contained static activity HTML files.</template>
+- The 12 generated prebuilt asset pilot contact sheets are integrated through run-local asset bindings and exported as self-contained static activity HTML reviewer packets.
+- Each exported reviewer packet embeds the corresponding contact sheet and review-only mechanism storyboard when present; these storyboards are review context, not child-facing runtime UI.</template>
 <template id="preview-review-notes-md" data-label="runs/20260512_172135_batch5_unblocked/review_notes.md" data-href="review_notes.md" data-kind="Markdown" data-truncated="false" data-size="5461"># Review Notes
 
 Run id: `20260512_172135_batch5_unblocked`
@@ -14080,6 +14280,156 @@ entries:
   prompt_path: generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/contact_sheet.prompt.md
   image_path: generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/contact_sheet.png
   meta_path: generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/asset.meta.yaml</template>
+<template id="preview-activity-exports-export-manifest-yaml" data-label="runs/20260512_172135_batch5_unblocked/activity_exports/export_manifest.yaml" data-href="activity_exports/export_manifest.yaml" data-kind="YAML" data-truncated="false" data-size="8903">run_id: 20260512_172135_batch5_unblocked
+artifact_kind: integrated_activity_html_exports
+source_binding_manifest: integrated_assets/asset_bindings.yaml
+created_at: &#x27;2026-05-21T00:16:38+08:00&#x27;
+export_count: 12
+entries:
+- activity_id: concept_phoneme_hunt_collect
+  activity_name: B-Sound Treasure Hunt
+  asset_id: phoneme_letter_card_01
+  html_path: activity_exports/concept_phoneme_hunt_collect.html
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  image_path: generated_assets_pilot/concept_phoneme_hunt_collect/phoneme_letter_card_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_phoneme_hunt_collect/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_phoneme_hunt_collect/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_phoneme_hunt_collect/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_partial_reveal_deduce
+  activity_name: Partial Reveal Guess
+  asset_id: partial_reveal_cards_01
+  html_path: activity_exports/concept_partial_reveal_deduce.html
+  package_path: activity_packages/concept_partial_reveal_deduce
+  image_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_animal_sound_motion_voice
+  activity_name: Animal Echo Stage
+  asset_id: animal_sound_cards_01
+  html_path: activity_exports/concept_animal_sound_motion_voice.html
+  package_path: activity_packages/concept_animal_sound_motion_voice
+  image_path: generated_assets_pilot/concept_animal_sound_motion_voice/animal_sound_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_word_echo_remember
+  activity_name: Echo Word Stage
+  asset_id: word_echo_cards_01
+  html_path: activity_exports/concept_word_echo_remember.html
+  package_path: activity_packages/concept_word_echo_remember
+  image_path: generated_assets_pilot/concept_word_echo_remember/word_echo_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_word_echo_remember/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_word_echo_remember/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_word_echo_remember/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_emotion_reader_care
+  activity_name: Feeling Helper Station
+  asset_id: emotion_expression_cards_01
+  html_path: activity_exports/concept_emotion_reader_care.html
+  package_path: activity_packages/concept_emotion_reader_care
+  image_path: generated_assets_pilot/concept_emotion_reader_care/emotion_expression_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_emotion_reader_care/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_emotion_reader_care/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_emotion_reader_care/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_constellation_star_count_enumerate
+  activity_name: Star Pattern Counter
+  asset_id: constellation_count_cards_01
+  html_path: activity_exports/concept_constellation_star_count_enumerate.html
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  image_path: generated_assets_pilot/concept_constellation_star_count_enumerate/constellation_count_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_career_decision_decide
+  activity_name: Helper Choice Desk
+  asset_id: career_portrait_cards_01
+  html_path: activity_exports/concept_career_decision_decide.html
+  package_path: activity_packages/concept_career_decision_decide
+  image_path: generated_assets_pilot/concept_career_decision_decide/career_portrait_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_career_decision_decide/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_career_decision_decide/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_career_decision_decide/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_vegetable_sort_sort
+  activity_name: Vegetable Sort Stand
+  asset_id: vegetable_sort_cards_01
+  html_path: activity_exports/concept_vegetable_sort_sort.html
+  package_path: activity_packages/concept_vegetable_sort_sort
+  image_path: generated_assets_pilot/concept_vegetable_sort_sort/vegetable_sort_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_travel_planner_predict
+  activity_name: Pretend Trip Planner
+  asset_id: travel_planning_cards_01
+  html_path: activity_exports/concept_travel_planner_predict.html
+  package_path: activity_packages/concept_travel_planner_predict
+  image_path: generated_assets_pilot/concept_travel_planner_predict/travel_planning_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_travel_planner_predict/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_travel_planner_predict/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_travel_planner_predict/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_guided_drawing_probe
+  activity_name: Guided Drawing
+  asset_id: guided_drawing_step_cards_01
+  html_path: activity_exports/concept_guided_drawing_probe.html
+  package_path: activity_packages/concept_guided_drawing_probe
+  image_path: generated_assets_pilot/concept_guided_drawing_probe/guided_drawing_step_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_guided_drawing_probe/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_guided_drawing_probe/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_guided_drawing_probe/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_story_unlock_probe
+  activity_name: Story Challenge Unlock
+  asset_id: story_unlock_cards_01
+  html_path: activity_exports/concept_story_unlock_probe.html
+  package_path: activity_packages/concept_story_unlock_probe
+  image_path: generated_assets_pilot/concept_story_unlock_probe/story_unlock_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_recognition_pop_probe
+  activity_name: Recognition Pop Challenge
+  asset_id: recognition_challenge_cards_01
+  html_path: activity_exports/concept_recognition_pop_probe.html
+  package_path: activity_packages/concept_recognition_pop_probe
+  image_path: generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported</template>
 <template id="preview-results-tsv" data-label="results.tsv" data-href="../../results.tsv" data-kind="Text" data-truncated="false" data-size="22636">assignment	entity	category	tier	status	d1_tech	d2_hook	d3_transition	d4_edge	d5_ib	d6_tier	d7_dialogue	d8_screen	d9_mapping	filename	timestamp
 toy dinosaur + category 1 (sustained verbal), tier=T0	toy dinosaur	1	T0	PASS	P	P	P	P	P	P	P	P	N	designs/toy_dinosaur_cat1.md	2026-03-11T00:01:00Z
 stuffed cat + category 1 (sustained verbal), tier=T0	stuffed cat	1	T0	PASS	P	P	P	P	P	P	P	P	N	designs/stuffed_cat_cat1.md	2026-03-11T00:02:00Z
