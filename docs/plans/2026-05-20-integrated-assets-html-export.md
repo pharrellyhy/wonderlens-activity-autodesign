@@ -6,6 +6,12 @@
 
 **Architecture:** Keep the five-file activity package contract stable. Add a run-local asset binding manifest that joins package asset IDs to generated image files, then generate self-contained per-activity HTML exports from the binding manifest, package files, and asset metadata. The exports are review/runtime-preview artifacts, not a replacement for `spec.md`, `prod.md`, or the live WonderLens runtime.
 
+**Python environment:** Script commands require PyYAML. In this local worktree, run them through the PyYAML-capable pyenv interpreter:
+
+```bash
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3
+```
+
 **Tech Stack:** Python 3 standard library, PyYAML, existing run-local Markdown/YAML package files, static HTML/CSS with embedded base64 PNG images, no external CSS/JS/fonts/CDNs.
 
 ---
@@ -156,8 +162,8 @@ Expected: exit code 0.
 Implement a CLI:
 
 ```bash
-python3 scripts/integrate_generated_assets.py runs/<run_id>
-python3 scripts/integrate_generated_assets.py --validate runs/<run_id>
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py runs/<run_id>
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/<run_id>
 ```
 
 Core structure:
@@ -225,7 +231,7 @@ Do not infer an asset if the `asset_id` is absent from the activity's `asset_usa
 Run:
 
 ```bash
-python3 scripts/integrate_generated_assets.py runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py runs/20260512_172135_batch5_unblocked
 ```
 
 Expected output:
@@ -240,7 +246,7 @@ Wrote runs/20260512_172135_batch5_unblocked/integrated_assets/asset_bindings.yam
 Run:
 
 ```bash
-python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked
 ```
 
 Expected output:
@@ -279,8 +285,8 @@ Expected: exit code 0.
 Implement a CLI:
 
 ```bash
-python3 scripts/export_activity_html.py runs/<run_id>
-python3 scripts/export_activity_html.py --validate runs/<run_id>
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py runs/<run_id>
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/<run_id>
 ```
 
 The exporter may import parsing helpers from `scripts/generate_run_review.py`:
@@ -382,7 +388,7 @@ Keep CSS inline. Use a compact light product-dashboard style consistent with `re
 Run:
 
 ```bash
-python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked
 ```
 
 Expected output:
@@ -397,7 +403,7 @@ Wrote runs/20260512_172135_batch5_unblocked/activity_exports/export_manifest.yam
 Run:
 
 ```bash
-python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked
 ```
 
 Expected output:
@@ -451,8 +457,8 @@ If the manifest already has a `checks` list, append the four commands from Tasks
 Run:
 
 ```bash
-python3 scripts/generate_run_review.py runs/20260512_172135_batch5_unblocked
-python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked
 ```
 
 Expected: both commands pass. The regenerated `review.html` should continue to show the generated asset pilot section.
@@ -478,13 +484,13 @@ Add the integration/export commands after the generated prebuilt contact-sheet s
 
 ```markdown
 - Integrate generated prebuilt assets:
-  `python3 scripts/integrate_generated_assets.py runs/<run_id>`
+  `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py runs/<run_id>`
 - Validate integrated prebuilt assets:
-  `python3 scripts/integrate_generated_assets.py --validate runs/<run_id>`
+  `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/<run_id>`
 - Export per-activity static HTML files:
-  `python3 scripts/export_activity_html.py runs/<run_id>`
+  `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py runs/<run_id>`
 - Validate per-activity static HTML files:
-  `python3 scripts/export_activity_html.py --validate runs/<run_id>`
+  `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/<run_id>`
 ```
 
 Clarify that per-activity HTML exports are derived artifacts and should not be hand-edited.
@@ -525,7 +531,7 @@ git commit -m "docs(exports): document activity HTMLs"
 Run:
 
 ```bash
-python3 -m py_compile scripts/integrate_generated_assets.py scripts/export_activity_html.py scripts/generate_run_review.py
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/integrate_generated_assets.py scripts/export_activity_html.py scripts/generate_run_review.py
 ```
 
 Expected: exit code 0.
@@ -535,7 +541,7 @@ Expected: exit code 0.
 Run:
 
 ```bash
-python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked
 ```
 
 Expected: `PASS integrated asset bindings: 12 assets, 12 activities.`
@@ -545,7 +551,7 @@ Expected: `PASS integrated asset bindings: 12 assets, 12 activities.`
 Run:
 
 ```bash
-python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked
 ```
 
 Expected: `PASS activity HTML exports: 12 files.`
@@ -555,7 +561,7 @@ Expected: `PASS activity HTML exports: 12 files.`
 Run:
 
 ```bash
-python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked
 ```
 
 Expected: existing dashboard validation passes.

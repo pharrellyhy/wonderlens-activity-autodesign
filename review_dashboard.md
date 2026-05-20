@@ -157,19 +157,27 @@ Reviewers must be able to read every linked `.md`, `.yaml`, and `.txt` file with
 Generate and validate:
 
 ```bash
+python3 scripts/integrate_generated_assets.py runs/<run_id>
+python3 scripts/integrate_generated_assets.py --validate runs/<run_id>
+python3 scripts/export_activity_html.py runs/<run_id>
+python3 scripts/export_activity_html.py --validate runs/<run_id>
 python3 scripts/generate_run_review.py runs/<run_id>
 python3 scripts/generate_run_review.py --validate runs/<run_id>
 ```
 
+These commands assume `python3` resolves to an environment with PyYAML available. If the local default `python3` does not have PyYAML, activate the repo/operator Python environment first; for example, this run was validated with `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 ...`.
+
 Workflow:
 
 1. Finish package generation, reviewer evidence, package checks, blocked briefs/previews, and manifest outputs first.
-2. Run `python3 scripts/generate_run_review.py runs/<run_id>` to generate the self-contained HTML from `run_manifest.yaml`, `review_notes.md`, `results.tsv`, packages, blocked briefs, and blocked design previews.
-3. Run `python3 scripts/generate_run_review.py --validate runs/<run_id>` before reporting completion.
-4. Keep the generated HTML as a derived artifact. Fix source run/package files or the generator, then regenerate; do not hand-edit `review.html` as the source of truth.
+2. When generated prebuilt contact sheets are being accepted into the run, run `python3 scripts/integrate_generated_assets.py runs/<run_id>` and `python3 scripts/integrate_generated_assets.py --validate runs/<run_id>` to create and validate `integrated_assets/asset_bindings.yaml`.
+3. When integrated activities need standalone review pages, run `python3 scripts/export_activity_html.py runs/<run_id>` and `python3 scripts/export_activity_html.py --validate runs/<run_id>` to create one self-contained static HTML file per integrated activity under `activity_exports/`.
+4. Run `python3 scripts/generate_run_review.py runs/<run_id>` to generate the self-contained HTML from `run_manifest.yaml`, `review_notes.md`, `results.tsv`, packages, blocked briefs, blocked design previews, and run-local asset artifacts.
+5. Run `python3 scripts/generate_run_review.py --validate runs/<run_id>` before reporting completion.
+6. Keep generated HTML files as derived artifacts. Fix source run/package files or the generator, then regenerate; do not hand-edit `review.html` or `activity_exports/*.html` as source of truth.
 
 After writing `review.html`:
 
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
-2. Add check entries for the generation and validation commands.
+2. Add check entries for the integration, export, generation, and validation commands that were run.
 3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, sidebar navigation, the review-dashboard workflow section, cards for generated/enriched/audited packages, blocked entries when present, review criteria, the blocking reason guide directly after review criteria when blocked or resolved blocker annotations exist, resolved contract items when applicable, extensibility overview when applicable, visual runtime beat maps plus extracted source rows, asset usage timelines when image/display dependencies exist, distinct `Asset dependencies`, `Display beats`, and `Image items` labels, 10-dimension package scorecard results, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, in-file preview templates plus a `<dialog id="preview-dialog">` and `data-preview-id` link wiring, and resolving local links.

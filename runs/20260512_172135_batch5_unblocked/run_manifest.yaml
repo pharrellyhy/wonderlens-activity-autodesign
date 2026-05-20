@@ -32,11 +32,16 @@ summary:
   generated_count: 40
   blocked_count: 0
   failed_count: 0
+  integrated_asset_count: 12
+  activity_html_export_count: 12
 outputs:
   review_dashboard: runs/20260512_172135_batch5_unblocked/review.html
   review_dashboard_zh: runs/20260512_172135_batch5_unblocked/review.zh.html
   visual_storyboards: runs/20260512_172135_batch5_unblocked/visual_storyboards
   storyboard_manifest: runs/20260512_172135_batch5_unblocked/visual_storyboards/storyboard_manifest.yaml
+  integrated_asset_bindings: runs/20260512_172135_batch5_unblocked/integrated_assets/asset_bindings.yaml
+  activity_html_exports: runs/20260512_172135_batch5_unblocked/activity_exports
+  activity_html_export_manifest: runs/20260512_172135_batch5_unblocked/activity_exports/export_manifest.yaml
   enriched_activities: []
   audited_activities: []
   generated_activities:
@@ -1611,8 +1616,25 @@ checks:
   result: PASS
 - command: review.zh.html storyboard/link validation for 40 packages
   result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/integrate_generated_assets.py scripts/export_activity_html.py scripts/generate_run_review.py
+  result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest discover -s tests -p 'test_integrated_asset_workflow.py' -v
+  result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py runs/20260512_172135_batch5_unblocked
+  result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked
+  result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked
+  result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked
+  result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py runs/20260512_172135_batch5_unblocked
+  result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked
+  result: PASS
 notes:
 - 'Scoped run: no checked Batch 5 package_path rows existed at run start, so existing-package enrichment/audit was not applicable.'
 - Fresh packages are run-local under activity_packages/ with clean activity_id values.
 - Former capability-probe blockers are generated as resolved blocker annotations under product_contract_override=minimum_unblock_allowed.
 - Mechanism storyboard grids are post-run review artifacts generated from existing package data; they do not change activity package contracts.
+- The 12 generated prebuilt asset pilot contact sheets are integrated through run-local asset bindings and exported as self-contained static activity HTML files.

@@ -2234,6 +2234,10 @@ def dashboard_workflow(run_id: str) -> str:
       <li><strong>Generate review-only storyboard images</strong><span>Use Codex image generation with the prompt files under `visual_storyboards/&lt;activity_id&gt;/`, then copy each final PNG to `mechanism_grid.png` and rerun the prompt script to refresh metadata. Prompt-only storyboard experiments are ignored when generated v1 images are present.</span></li>
       <li><strong>Prepare prebuilt asset prompts</strong><code>python3 scripts/generate_asset_pilot_prompts.py {esc(run_path)}</code></li>
       <li><strong>Generate prebuilt contact sheets</strong><span>Use Codex image generation with `generated_assets_pilot/&lt;activity_id&gt;/&lt;asset_id&gt;/contact_sheet.prompt.md`, copy the selected PNG to `contact_sheet.png`, then rerun the prompt script so `asset.meta.yaml` and `asset_manifest.yaml` record status, timing, placement, fallback, and provenance.</span></li>
+      <li><strong>Integrate generated assets</strong><code>python3 scripts/integrate_generated_assets.py {esc(run_path)}</code></li>
+      <li><strong>Validate integrated assets</strong><code>python3 scripts/integrate_generated_assets.py --validate {esc(run_path)}</code></li>
+      <li><strong>Export integrated activity HTMLs</strong><code>python3 scripts/export_activity_html.py {esc(run_path)}</code></li>
+      <li><strong>Validate activity HTML exports</strong><code>python3 scripts/export_activity_html.py --validate {esc(run_path)}</code></li>
       <li><strong>Generate the dashboard</strong><code>python3 scripts/generate_run_review.py {esc(run_path)}</code></li>
       <li><strong>Validate the dashboard</strong><code>python3 scripts/generate_run_review.py --validate {esc(run_path)}</code></li>
       <li><strong>Record provenance</strong><span>Keep `outputs.review_dashboard` pointing to `{esc(run_path)}/review.html` and record the generation and validation checks in the run manifest.</span></li>

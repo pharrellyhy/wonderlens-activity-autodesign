@@ -13,6 +13,12 @@ Use the source plan for implementation details, output paths, validation behavio
 
 Source plan version: `2026-05-20`.
 
+Python environment: all script commands require PyYAML. In this local worktree, use the PyYAML-capable pyenv interpreter prefix:
+
+```bash
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3
+```
+
 ## Objective
 
 Implement the asset integration and static HTML export workflow for the 12 generated Batch 5 pilot asset sets.
@@ -141,8 +147,8 @@ git status --short
 ### Asset Integration
 
 - `scripts/integrate_generated_assets.py` exists and supports:
-  - `python3 scripts/integrate_generated_assets.py runs/20260512_172135_batch5_unblocked`
-  - `python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked`
+  - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py runs/20260512_172135_batch5_unblocked`
+  - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked`
 - `runs/20260512_172135_batch5_unblocked/integrated_assets/asset_bindings.yaml` exists.
 - The binding manifest has exactly 12 entries and 12 distinct `activity_id` values.
 - Every binding entry has a real package path, image path, metadata path, and prompt path.
@@ -152,8 +158,8 @@ git status --short
 ### HTML Export
 
 - `scripts/export_activity_html.py` exists and supports:
-  - `python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked`
-  - `python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked`
+  - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked`
+  - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked`
 - `runs/20260512_172135_batch5_unblocked/activity_exports/export_manifest.yaml` exists.
 - Exactly 12 `.html` files exist under `runs/20260512_172135_batch5_unblocked/activity_exports/`.
 - Every HTML file embeds its corresponding `contact_sheet.png` as `data:image/png;base64,`.
@@ -180,10 +186,10 @@ git status --short
 Minimum final checks:
 
 ```bash
-python3 -m py_compile scripts/integrate_generated_assets.py scripts/export_activity_html.py scripts/generate_run_review.py
-python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked
-python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked
-python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/integrate_generated_assets.py scripts/export_activity_html.py scripts/generate_run_review.py
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked
 git diff --check
 git status --short
 ```
@@ -191,9 +197,9 @@ git status --short
 Also run the generation commands before validation:
 
 ```bash
-python3 scripts/integrate_generated_assets.py runs/20260512_172135_batch5_unblocked
-python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked
-python3 scripts/generate_run_review.py runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked
+env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py runs/20260512_172135_batch5_unblocked
 ```
 
 ## Commit Expectations

@@ -2,12 +2,21 @@
 
 ## Current Status
 
-- Status: Direct migration of selected frontend-demo activities into canonical five-file package format completed in the working tree
-- Date: 2026-05-14
+- Status: Batch 5 pilot prebuilt assets are integrated and exported as static activity HTML review artifacts in the feature worktree
+- Date: 2026-05-20
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
 
+- Added `scripts/integrate_generated_assets.py` to bind generated pilot contact sheets to run-local activity packages and validate package/image/metadata/prompt/asset-field consistency.
+- Added `scripts/export_activity_html.py` to export integrated activities as self-contained static HTML files with embedded contact-sheet PNG data URIs, runtime flow, scorecard rows, asset contract, fallback behavior, provenance links, and source snapshots.
+- Added focused unittest coverage in `tests/test_integrated_asset_workflow.py` for the new integration/export script APIs.
+- Tightened HTML export validation to use `(activity_id, asset_id)` identity, reject duplicate export paths, and preserve support for multiple assets on one activity.
+- Generated and validated `runs/20260512_172135_batch5_unblocked/integrated_assets/asset_bindings.yaml` with 12 integrated prebuilt asset bindings.
+- Generated and validated 12 standalone activity HTML files plus `export_manifest.yaml` under `runs/20260512_172135_batch5_unblocked/activity_exports/`.
+- Updated `runs/20260512_172135_batch5_unblocked/run_manifest.yaml` with integrated asset/export output paths, summary counts, and PASS check entries.
+- Updated `review_dashboard.md`, `runs/README.md`, and `scripts/generate_run_review.py` so the run workflow documents the asset integration and per-activity HTML export steps.
+- Local validation used `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 ...` because the default Homebrew `python3` on this machine did not have PyYAML installed.
 - Added canonical five-file activity packages for frontend demo games: `activities/dream_whisperer_cat`, `activities/mood_changer_dog`, `activities/time_machine_dinosaur`, and `activities/fluffy_expedition_dandelion`.
 - Refreshed `activities/polka_dot_patrol` metadata/spec notes to mark it as the current-format package for the frontend demo source while preserving its stronger existing `quest_collector` migration.
 - Updated `activities/README.md` package count from 28 to 32 canonical/promoted packages.
@@ -88,6 +97,24 @@
 
 ## Verification
 
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest discover -s tests -p 'test_integrated_asset_workflow.py' -v`
+  - Result: PASS; 9 focused integration/export tests passed, including same-activity multi-asset validation.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/integrate_generated_assets.py scripts/export_activity_html.py scripts/generate_run_review.py`
+  - Result: PASS.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py runs/20260512_172135_batch5_unblocked`
+  - Result: PASS; regenerated `integrated_assets/asset_bindings.yaml`.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260512_172135_batch5_unblocked`
+  - Result: PASS; 12 assets, 12 activities.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py runs/20260512_172135_batch5_unblocked`
+  - Result: PASS; regenerated 12 activity HTML files and `export_manifest.yaml`.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260512_172135_batch5_unblocked`
+  - Result: PASS; 12 HTML files validated with embedded contact sheets.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py runs/20260512_172135_batch5_unblocked`
+  - Result: PASS; regenerated `review.html`.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked`
+  - Result: PASS; dashboard contract passed with 630 resolving local links.
+- Targeted static export scan for local paths, external URLs, CDNs, unresolved placeholders, and CSS imports
+  - Result: PASS; no matches in `runs/20260512_172135_batch5_unblocked/activity_exports/`.
 - Run-local package directory validation for `runs/20260511_233559_activity_concepts`
   - Result: PASS; 23 generated IDs use clean base IDs, each directory has exactly five files, and each `tag_block.yaml` `activity_id` matches the directory.
 - Manifest/results/assignment pointer validation for `runs/20260511_233559_activity_concepts`
@@ -237,9 +264,13 @@
 - All 23 concept packages covered by run `20260510_152725_activity_concepts` now have separate reviewer-agent PASS evidence: 16 generated packages plus 7 older checked packages.
 - Several generated packages use required or optional prebuilt/display assets; package specs include fallbacks, but no asset files or runtime asset manifest were generated.
 - The 23 corrected run-local packages for `20260511_233559_activity_concepts` were materialized from the current independently reviewed packages with clean IDs. Future fresh `/goal` runs are now required to generate directly into run-local package directories from the start.
+- The 12 Batch 5 exported HTML files embed contact-sheet review images, not sliced final runtime cards. A downstream runtime will still need an approved final asset packaging/slicing convention before using these as production card assets.
+- The exported HTML source snapshots include asset metadata, but local `source_image` provenance paths are redacted inside static exports so the portable HTML files do not introduce additional machine-local paths.
 
 ## Next Immediate Actions
 
+- Review the 12 static activity HTML exports for product/curriculum signoff on the integration shape before generating remaining prebuilt assets.
+- Decide whether the next asset pipeline step needs individual card slicing, per-card metadata, or a consumer-facing asset manifest beyond the run-local binding manifest.
 - Review the Activity Concept Brief + Asset Requirements fields with concept owners and curriculum authors.
 - For new concept rows, ask concept owners and curriculum authors to provide `asset_policy` and companion asset rows when they want AI pre-made images or screen-displayed visuals.
 - Review the 23 concept packages for curriculum tone and product fit before treating them as final signoff.
