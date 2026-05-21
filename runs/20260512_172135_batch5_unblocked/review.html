@@ -1360,7 +1360,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
       <a href="#validation-checks">Validation</a>
       <a href="#residual-risk">Residual Risk</a>
     </nav>
-    <div class="sidebar-counts"><div><span>Review cards</span><strong>40</strong></div><div><span>Blocked</span><strong>0</strong></div><div><span>Asset sheets</span><strong>12</strong></div><div><span>Failed</span><strong>0</strong></div><div><span>Checks</span><strong>27</strong></div></div>
+    <div class="sidebar-counts"><div><span>Review cards</span><strong>40</strong></div><div><span>Blocked</span><strong>0</strong></div><div><span>Asset sheets</span><strong>12</strong></div><div><span>Failed</span><strong>0</strong></div><div><span>Checks</span><strong>29</strong></div></div>
   </aside>
 	  <div class="review-content">
 	  <section class="metrics" id="summary-metrics"><div class="metric"><span>Pending at start</span><strong>40</strong></div><div class="metric"><span>Generated</span><strong>40</strong></div><div class="metric"><span>Enriched</span><strong>0</strong></div><div class="metric"><span>Audited no-op</span><strong>0</strong></div><div class="metric"><span>Blocked</span><strong>0</strong></div><div class="metric"><span>Review cards</span><strong>40</strong></div></section>
@@ -12951,7 +12951,9 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
 <tr><td>env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
 <tr><td>env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/generate_source_comparison_review.py runs/20260512_172135_batch5_unblocked --workbook &lt;source workbook&gt;</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
 <tr><td>env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/generate_source_comparison_review.py runs/20260512_172135_batch5_unblocked --workbook &lt;source workbook&gt; --validate</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
-<tr><td>source comparison standalone HTML scan</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr></tbody></table></div>
+<tr><td>source comparison standalone HTML scan</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
+<tr><td>env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 -m py_compile scripts/generate_source_comparison_review.py scripts/generate_run_review.py</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr>
+<tr><td>env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 -m unittest discover -s tests -v</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="pass">PASS</span></td></tr></tbody></table></div>
 	  </section>
 
 	  <section class="panel" id="residual-risk">
@@ -12994,7 +12996,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="preview-truncated muted hidden" id="preview-truncated">File is larger than the inline-preview limit. Use “Open file in new tab” to read the full contents.</div>
 </dialog>
 <div id="file-previews" hidden aria-hidden="true">
-<template id="preview-run-manifest-yaml" data-label="runs/20260512_172135_batch5_unblocked/run_manifest.yaml" data-href="run_manifest.yaml" data-kind="YAML" data-truncated="false" data-size="110113">run_id: 20260512_172135_batch5_unblocked
+<template id="preview-run-manifest-yaml" data-label="runs/20260512_172135_batch5_unblocked/run_manifest.yaml" data-href="run_manifest.yaml" data-kind="YAML" data-truncated="false" data-size="110406">run_id: 20260512_172135_batch5_unblocked
 status: completed
 started_at: &#x27;2026-05-12T17:21:35+08:00&#x27;
 completed_at: &#x27;2026-05-12T22:15:01+08:00&#x27;
@@ -14636,6 +14638,10 @@ checks:
 - command: env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 scripts/generate_source_comparison_review.py runs/20260512_172135_batch5_unblocked --workbook &lt;source workbook&gt; --validate
   result: PASS
 - command: source comparison standalone HTML scan
+  result: PASS
+- command: env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 -m py_compile scripts/generate_source_comparison_review.py scripts/generate_run_review.py
+  result: PASS
+- command: env PATH=&quot;$(pyenv root)/versions/3.13.6/bin:$PATH&quot; python3 -m unittest discover -s tests -v
   result: PASS
 notes:
 - &#x27;Scoped run: no checked Batch 5 package_path rows existed at run start, so existing-package enrichment/audit was not applicable.&#x27;

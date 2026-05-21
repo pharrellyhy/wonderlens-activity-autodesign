@@ -73,6 +73,43 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
         self.assertIn('class="branch-chip branch-chip-ideal"', self.html)
         self.assertIn('class="screen-strip"', self.html)
 
+    def test_runtime_behavior_contract_beats_parse_and_render(self):
+        prod_text = """
+#### Step 1: Story Gate
+
+**Runtime AI instruction:** Tell a short story beat first, pause at the gate, then ask for one blue-object photo challenge before unlocking the next beat.
+
+**Example AI line:** [mysterious story tone] "The moon gate is closed. Can you find something blue to wake it up?"
+
+**Child responses:**
+
+1. (Ideal) Child finds and photographs a blue object.
+2. (Unexpected) Child names a blue object instead of taking a photo.
+3. (No response) Child is quiet.
+
+**AI follow-up policy:**
+
+1. (Ideal) Celebrate the found color and unlock the next story line.
+2. (Unexpected) Validate the idea, then ask for a real photo if available.
+3. (No response) Offer a smaller hint.
+
+**Screen/state:** Moon gate card stays locked until the challenge is complete.
+"""
+        beats = self.report.runtime_beats(prod_text)
+        self.assertEqual(1, len(beats))
+        beat = beats[0]
+        self.assertEqual("runtime_contract", beat["speech_mode"])
+        self.assertIn("story beat first", beat["runtime_instruction"])
+        self.assertIn("moon gate", beat["example_ai_line"])
+        self.assertIn("unlock the next story line", beat["followup"])
+        self.assertIn("Moon gate card", beat["screen"])
+
+        rendered_map = self.report.runtime_beat_map(beats)
+        rendered_detail = self.report.runtime_beat_html(beat)
+        self.assertIn("Runtime behavior contract", rendered_map)
+        self.assertIn("Example AI line", rendered_map)
+        self.assertIn("Screen/state", rendered_detail)
+
 
 if __name__ == "__main__":
     unittest.main()
