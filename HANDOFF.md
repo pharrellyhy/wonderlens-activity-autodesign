@@ -8,6 +8,7 @@
 
 ## Latest Changes
 
+- Hardened `inputs/source_activity_concepts.md` for the four known intent-sensitive workbook rows: career decision, story challenge unlock, toy tidy challenge, and coloring game now carry explicit source-intent locks and minimum-unblock assumptions for future generation.
 - Added dry-run artifacts for the original workbook workflow: `docs/plans/2026-05-21-workbook-to-review-packet-dry-run.md` records workbook inspection, proposed scope, and the 40-row source mapping; `goals/2026-05-21-workbook-to-review-packet-goal.md` is the reviewable goal contract for a future full workbook-to-review-packet run.
 - Added repo-local Codex skill `skills/wonderlens-workbook-to-review-packet/` to guide workbook ingestion, run-specific goal creation, generation, source-intent audit, review export, and existing-run patch workflows from a single original design workbook.
 - Added `runs/20260512_172135_batch5_unblocked/source_comparison/source_intent_audit.yaml` with all 40 workbook rows audited for original play-frame fidelity against generated runtime beats.

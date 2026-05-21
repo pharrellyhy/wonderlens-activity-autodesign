@@ -115,6 +115,8 @@ Pay special attention to these workbook rows:
 - `source_toy_tidy_challenge`: preserve the tidy-up process and before/after or confirmation risk; do not reduce it to verbal sorting only unless product approves the adaptation.
 - `source_coloring_game`: do not claim live fillable coloring UI unless product support exists or the dependency is recorded as a resolved blocker under the override.
 
+For these rows, read and preserve the `source_intent_lock_en`, `minimum_unblock_status`, and `resolved_assumptions_en` fields in `inputs/source_activity_concepts.md`.
+
 ## Preconditions
 
 Before execution:
@@ -150,6 +152,7 @@ Expected output: `40`.
 - Workbook inspection confirms `Sheet1` has 40 activity rows.
 - Each workbook row maps to exactly one normalized source concept.
 - The run records source row IDs so later audit rows can trace back to the workbook.
+- Intent-sensitive source concepts carry explicit source-intent locks into adaptation briefs and generated package rationale.
 - Any mismatch between workbook text and `inputs/source_activity_concepts.md` is repaired before generation.
 
 ### Package Generation
