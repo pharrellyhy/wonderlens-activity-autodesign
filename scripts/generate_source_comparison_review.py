@@ -538,6 +538,7 @@ def table_row(row: dict[str, Any]) -> str:
         if row["reviewer_packet_link"]
         else '<span class="muted">No packet</span>'
     )
+    product_question = row["intent_review_question"] or row["review_question"]
     details = f"""
       <details>
         <summary>Details</summary>
@@ -562,7 +563,7 @@ def table_row(row: dict[str, Any]) -> str:
         <td><span>{esc(row["generated_category"] or "N/A")}</span><code>{esc(row["generated_mechanic"] or "N/A")}</code></td>
         <td>{status_badge(row["status"])}<p>{esc(row["what_changed"])}</p></td>
         <td>{intent_badge(row["intent_status"], row["intent_severity"])}<p>{esc(row["intent_recommendation"] or "No source-intent audit note.")}</p></td>
-        <td>{esc(row["review_question"])}</td>
+        <td>{esc(product_question)}</td>
         <td>{packet}</td>
       </tr>
     """
