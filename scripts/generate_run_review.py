@@ -1805,6 +1805,7 @@ def runtime_branch_followups(beat: dict[str, Any]) -> str:
         return f"""
 <div class="branch-followup-grid">
   <div class="branch-followup-card branch-followup-observed">
+    <span class="branch-chip branch-chip-observed">Observed</span>
     <div><span>Child</span><p>{esc(child or "Unknown")}</p></div>
     <div><span>AI follow-up</span><p>{esc(followup or "Unknown")}</p></div>
   </div>
@@ -1818,6 +1819,7 @@ def runtime_branch_followups(beat: dict[str, Any]) -> str:
         cards.append(
             f"""
   <div class="branch-followup-card branch-followup-{esc(token)}">
+    <span class="branch-chip branch-chip-{esc(token)}">{esc(label)}</span>
     <div><span>{esc(label)} child</span><p>{esc(child)}</p></div>
     <div><span>AI follow-up</span><p>{esc(followup)}</p></div>
   </div>"""
@@ -1847,7 +1849,7 @@ def runtime_beat_map(beats: list[dict[str, Any]]) -> str:
     <div class="runtime-map-head"><strong>{esc(title)}</strong><span>{esc(kind)}</span></div>
     <div class="runtime-lanes">
       <div class="runtime-lane runtime-lane-ai"><span>AI prompt</span><p>{esc(beat.get("ai") or "Unknown")}</p></div>
-      <div class="runtime-branches"><span>Child branches and AI follow-ups</span>{runtime_branch_followups(beat)}</div>
+      <div class="runtime-lane runtime-lane-followup"><span>Child branches and AI follow-ups</span>{runtime_branch_followups(beat)}</div>
     </div>
 {photo_timing}
     <div class="screen-strip"><span>Screen</span><p>{esc(beat.get("screen") or "Unknown")}</p></div>
@@ -3247,6 +3249,20 @@ ol, ul { margin: 0; padding-left: 20px; }
   padding: 7px 8px;
   color: var(--text-soft);
 }
+.branch-chip {
+  grid-column: 1 / -1;
+  justify-self: start;
+  border-radius: 999px;
+  padding: 2px 7px;
+  font-size: 9.5px;
+  font-weight: 780;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.branch-chip-ideal { background: var(--green-bg); color: var(--green-text); }
+.branch-chip-unexpected { background: var(--amber-bg); color: var(--amber-text); }
+.branch-chip-no-response { background: var(--purple-bg); color: var(--purple-text); }
+.branch-chip-observed { background: var(--accent-soft); color: var(--accent-ink); }
 .branch-followup-card span {
   display: block;
   margin-bottom: 3px;

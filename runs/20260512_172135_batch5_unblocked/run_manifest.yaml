@@ -42,6 +42,7 @@ outputs:
   integrated_asset_bindings: runs/20260512_172135_batch5_unblocked/integrated_assets/asset_bindings.yaml
   activity_html_exports: runs/20260512_172135_batch5_unblocked/activity_exports
   activity_html_export_manifest: runs/20260512_172135_batch5_unblocked/activity_exports/export_manifest.yaml
+  source_comparison_review: runs/20260512_172135_batch5_unblocked/source_comparison/product_review_matrix.html
   enriched_activities: []
   audited_activities: []
   generated_activities:
@@ -1634,6 +1635,16 @@ checks:
   result: PASS
 - command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked
   result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_source_comparison_review.py runs/20260512_172135_batch5_unblocked --workbook <source workbook>
+  result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_source_comparison_review.py runs/20260512_172135_batch5_unblocked --workbook <source workbook> --validate
+  result: PASS
+- command: source comparison standalone HTML scan
+  result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/generate_source_comparison_review.py scripts/generate_run_review.py
+  result: PASS
+- command: env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest discover -s tests -v
+  result: PASS
 notes:
 - 'Scoped run: no checked Batch 5 package_path rows existed at run start, so existing-package enrichment/audit was not applicable.'
 - Fresh packages are run-local under activity_packages/ with clean activity_id values.
@@ -1641,3 +1652,4 @@ notes:
 - Mechanism storyboard grids are post-run review artifacts generated from existing package data; they do not change activity package contracts.
 - The 12 generated prebuilt asset pilot contact sheets are integrated through run-local asset bindings and exported as self-contained static activity HTML reviewer packets.
 - Each exported reviewer packet embeds the corresponding contact sheet and review-only mechanism storyboard when present; these storyboards are review context, not child-facing runtime UI.
+- The product source comparison review page covers all 40 workbook rows, flags changed or capability-dependent adaptations for product review, and embeds only representative storyboard/contact-sheet examples.
