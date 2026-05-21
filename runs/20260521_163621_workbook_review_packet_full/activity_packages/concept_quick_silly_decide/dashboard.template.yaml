@@ -1,0 +1,11 @@
+activity_id: concept_quick_silly_decide
+dashboard_template:
+  parent_headline: 'Quick and Silly Questions: decide'
+  learning_focus:
+  - Form
+  - Responsibility
+  - logical_reasoning
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

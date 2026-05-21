@@ -1,0 +1,54 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_word_echo_practice
+    source_row: 5
+    assignment_row: assignment_type=activity_concept, activity_concept=Word Echo Practice,
+      concept_source=inputs/source_activity_concepts.md#source_word_echo_practice,
+      description=The AI says a simple word or phrase and the child repeats it back
+      in a playful echo round., mechanic=remember, category=cat1, tier=T1, asset_policy=optional_support,
+      asset_requirements=word_echo_cards_01, product_capabilities=requires_asset_display,
+      activity_id=concept_word_echo_remember, trigger_condition=Child enters language-practice
+      mode, asks what an object is called, or photographs a familiar object whose
+      name can be repeated safely.
+  activity_concept: Word Echo Practice
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: remember
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The AI says a simple word or phrase and the child repeats it back
+    in a playful echo round.
+  source_intent_lock: The AI says a simple word or phrase and the child repeats it
+    back in a playful echo round.
+  trigger_condition: Child enters language-practice mode, asks what an object is called,
+    or photographs a familiar object whose name can be repeated safely.
+  product_capability_flags:
+  - requires_asset_display
+  resolved_product_contract:
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: word_echo_cards_01
+      concept_ref: source_word_echo_practice
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide a simple picture cue for the word the child repeats.
+      prompt_en: Create a child-friendly vocabulary card set for common household
+        objects. Each card shows one centered object, one large simple English word
+        label, a clean light background, soft colors, and no extra text.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one card when introducing a word, then hide or keep it
+        small while the child repeats by voice.
+      fallback_behavior: If cards are unavailable, run the activity voice-only and
+        do not claim the screen is showing a word.
+      safety_constraints: No real child photos, no brands, no complex text, and no
+        cluttered composition.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

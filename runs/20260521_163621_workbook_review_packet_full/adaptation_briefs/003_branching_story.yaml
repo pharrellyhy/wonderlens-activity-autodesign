@@ -1,0 +1,30 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_branching_story
+    source_row: 3
+    assignment_row: assignment_type=activity_concept, activity_concept=Branching Choice
+      Story, concept_source=inputs/source_activity_concepts.md#source_branching_story,
+      description=The AI tells a story with choice points, and the child's choices
+      decide what happens next., mechanic=decide, category=cat1, tier=T1, asset_policy=no_assets,
+      activity_id=concept_branching_story_decide, trigger_condition=Child enters story
+      mode or photographs a toy or object that can become a story character.
+  activity_concept: Branching Choice Story
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: decide
+  readiness: ready
+  core_promise: The AI tells a story with choice points, and the child's choices decide
+    what happens next.
+  source_intent_lock: The AI tells a story with choice points, and the child's choices
+    decide what happens next.
+  trigger_condition: Child enters story mode or photographs a toy or object that can
+    become a story character.
+  product_capability_flags: []
+  resolved_product_contract: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

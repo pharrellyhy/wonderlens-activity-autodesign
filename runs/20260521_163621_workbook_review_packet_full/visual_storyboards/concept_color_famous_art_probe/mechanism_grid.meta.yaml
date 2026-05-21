@@ -1,0 +1,48 @@
+activity_id: concept_color_famous_art_probe
+activity_name: Color In Famous Art
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-21T15:39:18'
+source_image: ''
+prompt_sha256: 71c108a188a468840cea6808677d5a8c8245cb85d0a5d5aa8daca00e18b3ac01
+prompt_path: visual_storyboards/concept_color_famous_art_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_color_famous_art_probe/mechanism_grid.png
+package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_color_famous_art_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: A photographed yellow, blue, red, or green object becomes the bridge to
+    rights-cleared artworks with matching color metadata.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
+    required asset or honest fallback. | Ideal: The child confirms the rule or asks
+    for a smaller version. | Unexpected:...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is enumerate: Round 1 -- Capture The Color | Start
+    from the child color before showing artworks. | Ideal: The child names or confirms
+    the color. | Unexpected: Child gives an unrelated ans...'
+  source: Round 1 -- Capture The Color
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [specific] Use the color as the artwork search key. | Unexpected:
+    [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
+    | No response: [wait 2s] [gentle]...'
+  source: Round 1 -- Capture The Color
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Meet The First Artwork | Show one approved artwork where the
+    color is dominant and give a child-safe background note. | Ideal: The child points
+    or describes the color. | Unexpect...'
+  source: Round 2 -- Meet The First Artwork
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
+    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
+    or quietly watches the recap. | Unexpe...'
+  source: 'Step 5: Closing + IB Concepts'

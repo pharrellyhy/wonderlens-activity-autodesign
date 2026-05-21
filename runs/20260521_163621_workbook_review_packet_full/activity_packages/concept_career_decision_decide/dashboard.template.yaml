@@ -1,0 +1,11 @@
+activity_id: concept_career_decision_decide
+dashboard_template:
+  parent_headline: 'Career Decision Role Play: decide'
+  learning_focus:
+  - Form
+  - Responsibility
+  - logical_reasoning
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

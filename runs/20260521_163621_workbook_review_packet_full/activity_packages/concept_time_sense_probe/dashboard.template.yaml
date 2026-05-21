@@ -1,0 +1,11 @@
+activity_id: concept_time_sense_probe
+dashboard_template:
+  parent_headline: 'Time Sense Challenge: predict'
+  learning_focus:
+  - Form
+  - Causation
+  - prediction
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

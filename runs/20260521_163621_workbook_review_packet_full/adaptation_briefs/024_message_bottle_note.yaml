@@ -1,0 +1,37 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_message_bottle_note
+    source_row: 24
+    assignment_row: assignment_type=capability_probe, activity_concept=Message Bottle
+      Note, concept_source=inputs/source_activity_concepts.md#source_message_bottle_note,
+      description=The child creates a short kindness note or message for someone else.,
+      mechanic=care, category=cat3, tier=T1, asset_policy=no_assets, product_capabilities=requires_materials+before_after_risk+ocr_risk,
+      activity_id=concept_message_bottle_note_probe, trigger_condition=Parent starts
+      a writing or kindness-note activity.
+  activity_concept: Message Bottle Note
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat3
+  canonical_mechanic: care
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child creates a short kindness note or message for someone else.
+  source_intent_lock: The child creates a short kindness note or message for someone
+    else.
+  trigger_condition: Parent starts a writing or kindness-note activity.
+  product_capability_flags:
+  - requires_materials
+  - before_after_risk
+  - ocr_risk
+  resolved_product_contract:
+  - 'Cat3 material workflow: Approved minimum contract uses caregiver setup, child
+    self-report, and no-assessment physical-work language.'
+  - 'Before/after evidence: Approved minimum evidence policy uses child or caregiver
+    confirmation and never infers completion quality from photos.'
+  - 'OCR or text handling: Approved minimum text policy asks the child to speak or
+    choose text and does not verify handwriting or OCR correctness.'
+  asset_dependency:
+    policy: no_assets
+    assets: []
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

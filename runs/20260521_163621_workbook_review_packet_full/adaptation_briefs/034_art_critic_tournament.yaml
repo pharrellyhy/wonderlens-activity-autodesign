@@ -1,0 +1,58 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_art_critic_tournament
+    source_row: 34
+    assignment_row: assignment_type=capability_probe, activity_concept=Art Critic
+      Tournament, concept_source=inputs/source_activity_concepts.md#source_art_critic_tournament,
+      description=The child compares two approved artworks at a time, chooses a favorite,
+      and keeps the winner moving until a final favorite wins., mechanic=compare,
+      category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=artwork_tournament_set_01,
+      product_capabilities=requires_asset_display+requires_ui_state, activity_id=concept_art_critic_tournament_probe,
+      trigger_condition=Product can show two approved artworks side by side and remember
+      tournament progress.
+  activity_concept: Art Critic Tournament
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: compare
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child compares two approved artworks at a time, chooses a favorite,
+    and keeps the winner moving until a final favorite wins.
+  source_intent_lock: The child compares two approved artworks at a time and chooses
+    a favorite until one wins.
+  trigger_condition: Product can show two approved artworks side by side and remember
+    tournament progress.
+  product_capability_flags:
+  - requires_asset_display
+  - requires_ui_state
+  resolved_product_contract:
+  - 'UI state or progress memory: Approved minimum state contract keeps per-round
+    choices visible when supported and uses a stateless fallback when not.'
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: artwork_tournament_set_01
+      concept_ref: source_art_critic_tournament
+      asset_type: approved_artwork_set
+      requiredness: required
+      generation_timing: pre_curated
+      use_step: prod.step_2; prod.step_3.round_1-5
+      display_location: center_card_area
+      purpose: Provide approved artwork pairs for comparison and tournament choice.
+      prompt_en: No image generation prompt. Use a curated, rights-cleared artwork
+        set with metadata for artist, title, visual features, and child-safe discussion
+        notes.
+      source: approved_public_domain_or_licensed_artwork_set
+      prompt_or_source: approved_public_domain_or_licensed_artwork_set
+      display_behavior: Show two artworks side by side only if product supports artwork
+        display and tournament state.
+      fallback_behavior: If the artwork set or tournament state is unavailable, block
+        at Phase 0.
+      safety_constraints: Use rights-cleared, age-appropriate artworks only; no graphic
+        violence, explicit content, or sensitive religious/political framing for young
+        children.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

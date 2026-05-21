@@ -1,0 +1,73 @@
+activity_id: concept_coloring_game_probe
+version: 1
+template_type: cat5
+pillar: Creation
+game_style: inventor_workshop
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: agnostic
+tier_range:
+  primary: T1
+  span:
+  - T0
+  - T1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat5
+attributes:
+- coloring_game
+- build
+key_concepts:
+- Form
+- Change
+related_concepts:
+- evidence
+- choice
+- sequence
+- reflection
+atl_skills:
+- creative_thinking
+- observation
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
+kud:
+  know:
+  - The child knows the activity rule and one source-specific cue.
+  understand:
+  - The child understands that their action affects the next beat.
+  do:
+  - The child practices build through short guided turns.
+progression:
+  topic_axis: change
+  difficulty_level: 2
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
+caregiver_role:
+- scaffold
+- observer
+activity_signature:
+  observation_angle: color
+  mechanic: build
+  entity_role: catalyst
+  focal_attribute: coloring_game
+  intro: The screen shows fillable line art; the child photographs real-world colors;
+    the activity maps those colors to regions and honestly falls back if live recoloring
+    is unavailable.
+  bridge_prerequisites:
+    primary:
+    - color
+    secondary:
+    - function
+    - state
+  preview_label: Coloring Game
+  preview_prompt: Try Coloring Game with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true
+source_workbook_row: 8
+source_concept: source_coloring_game

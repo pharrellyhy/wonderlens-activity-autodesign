@@ -1,0 +1,47 @@
+activity_id: concept_little_poem_build
+activity_name: Little Poem Generator
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-21T15:39:18'
+source_image: ''
+prompt_sha256: 772b18e38ab2b7cbe4e46361ca757d060703b3080100309b1fd8fab0d9f8e7e4
+prompt_path: visual_storyboards/concept_little_poem_build/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_little_poem_build/mechanism_grid.png
+package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_little_poem_build
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: Child photographs an object, chooses a feeling, or names a favorite topic.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
+    required asset or honest fallback. | Ideal: The child confirms the rule or asks
+    for a smaller version. | Unexpected:...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is build: Round 1 -- Start The Source Action | Preserve
+    the workbook promise: The child contributes words, images, or feelings and co-creates
+    a short poem w... | Ideal: The child gives th...'
+  source: Round 1 -- Start The Source Action
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
+    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
+    one easier choice. | No response:...'
+  source: Round 1 -- Start The Source Action
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
+    for a second build turn with a small variation. | Ideal: The child repeats the
+    same mechanic with a variation. | Unex...'
+  source: Round 2 -- Repeat With A Variation
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
+    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
+    or quietly watches the recap. | Unexpe...'
+  source: 'Step 5: Closing + IB Concepts'

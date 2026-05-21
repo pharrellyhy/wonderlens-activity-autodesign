@@ -1,0 +1,70 @@
+activity_id: concept_classic_music_movement_probe
+version: 1
+template_type: cat1
+pillar: Performance
+game_style: voice_stage
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: agnostic
+tier_range:
+  primary: T1
+  span:
+  - T0
+  - T1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat1
+attributes:
+- classic_music_movement
+- motion_voice
+key_concepts:
+- Form
+- Perspective
+related_concepts:
+- evidence
+- choice
+- sequence
+- reflection
+atl_skills:
+- language_expression
+- observation
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
+kud:
+  know:
+  - The child knows the activity rule and one source-specific cue.
+  understand:
+  - The child understands that their action affects the next beat.
+  do:
+  - The child practices motion_voice through short guided turns.
+progression:
+  topic_axis: perspective
+  difficulty_level: 2
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: behavior
+  mechanic: motion_voice
+  entity_role: catalyst
+  focal_attribute: classic_music_movement
+  intro: The child moves their body in response to music mood or rhythm cues.
+  bridge_prerequisites:
+    primary:
+    - behavior
+    secondary:
+    - function
+    - state
+  preview_label: Classic Music And Movement
+  preview_prompt: Try Classic Music And Movement with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true
+source_workbook_row: 9
+source_concept: source_classic_music_movement

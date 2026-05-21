@@ -1,0 +1,29 @@
+run_id: 20260521_163621_workbook_review_packet_full
+activity_id: concept_animal_sound_motion_voice
+activity_name: concept_animal_sound_motion_voice
+mechanic: motion_voice
+asset_id: animal_sound_cards_01
+asset_type: card_set
+requiredness: optional
+generation_timing: pre_generated
+status: generated
+artifact_kind: prebuilt_asset_contact_sheet_pilot
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-21T15:39:18'
+source_image: ''
+prompt_sha256: 689685923c43e57cc3a24c9b101d11dca2b4e61143bffaea1d7d5cf9be9350c8
+prompt_path: generated_assets_pilot/concept_animal_sound_motion_voice/animal_sound_cards_01/contact_sheet.prompt.md
+image_path: generated_assets_pilot/concept_animal_sound_motion_voice/animal_sound_cards_01/contact_sheet.png
+meta_path: generated_assets_pilot/concept_animal_sound_motion_voice/animal_sound_cards_01/asset.meta.yaml
+package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_animal_sound_motion_voice
+use_step: prod.step_2; prod.step_3.round_1-3
+display_location: center_card_area
+purpose: Help the child recognize the animal they are about to imitate.
+display_behavior: Show one animal card each round while the AI invites the child to
+  imitate its sound.
+fallback_behavior: If cards are unavailable, the AI describes the animal by voice
+  and must not claim the screen is showing a picture.
+safety_constraints: No real child photos, no attack or predation scenes, and friendly
+  animal poses only.

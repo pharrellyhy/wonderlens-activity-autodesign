@@ -1,0 +1,55 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_career_decision
+    source_row: 26
+    assignment_row: assignment_type=activity_concept, activity_concept=Career Decision,
+      concept_source=inputs/source_activity_concepts.md#source_career_decision, description=The
+      AI first assigns the child a profession, then places the child inside a concrete
+      work scenario where they make expert decisions., mechanic=decide, category=cat1,
+      tier=T1, asset_policy=optional_support, asset_requirements=career_portrait_cards_01,
+      product_capabilities=requires_asset_display, activity_id=concept_career_decision_decide,
+      trigger_condition=Child sees a professional role, tool, uniform, vehicle, or
+      story character connected to work.
+  activity_concept: Career Decision
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: decide
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The AI first assigns the child a profession, then places the child
+    inside a concrete work scenario where they make expert decisions.
+  source_intent_lock: 'Preserve the sequence: assign the child a profession, place
+    them inside a concrete work scenario, ask a simple expert decision, then respond
+    to the decision. Do not turn this into choosing which profession matches a scenario.'
+  trigger_condition: Child sees a professional role, tool, uniform, vehicle, or story
+    character connected to work.
+  product_capability_flags:
+  - requires_asset_display
+  resolved_product_contract:
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: career_portrait_cards_01
+      concept_ref: source_career_decision
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide inclusive helper-role visuals for scenario decisions.
+      prompt_en: Create a set of inclusive child-friendly helper-role cards, including
+        doctor, firefighter, chef, gardener, bus driver, teacher, engineer, and artist.
+        Show one adult character per card with one simple tool, plain background,
+        no text, no stereotypes, and no brands.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one role card before asking what the helper should do.
+      fallback_behavior: If cards are unavailable, describe the helper role by voice
+        and avoid claiming the screen shows a person.
+      safety_constraints: Avoid gender, race, or class stereotypes; no emergency gore;
+        no real person photos.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

@@ -1,0 +1,54 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_guess_in_10
+    source_row: 18
+    assignment_row: assignment_type=activity_concept, activity_concept=Guess in 10,
+      concept_source=inputs/source_activity_concepts.md#source_guess_in_10, description=The
+      AI gives clues one by one, and the child guesses an animal or object from the
+      evidence., mechanic=deduce, category=cat1, tier=T1, asset_policy=optional_support,
+      asset_requirements=guess_reference_cards_01, activity_id=concept_guess_in_10_deduce,
+      trigger_condition=Child photographs an animal toy, animal picture, or enters
+      guessing mode.
+  activity_concept: Guess in 10
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: deduce
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The AI gives clues one by one, and the child guesses an animal or
+    object from the evidence.
+  source_intent_lock: The AI gives clues one by one, and the child guesses an animal
+    or object from the evidence.
+  trigger_condition: Child photographs an animal toy, animal picture, or enters guessing
+    mode.
+  product_capability_flags: []
+  resolved_product_contract:
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: guess_reference_cards_01
+      concept_ref: source_guess_in_10
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide optional reference pictures before or after a clue round to
+        reduce frustration.
+      prompt_en: Create a set of friendly reference cards for common animals and household
+        objects for a children's guessing game. Use one centered object per card,
+        plain light background, clear recognizable shapes, soft colors, no text, no
+        scary expressions.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show the matching card after the answer is revealed, or show
+        a partial hint card if the child is stuck.
+      fallback_behavior: If cards are unavailable, the AI continues with voice clues
+        and encouragement and must not claim the screen is showing a picture.
+      safety_constraints: No real child photos, friendly animal expressions, and no
+        dangerous scenes.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

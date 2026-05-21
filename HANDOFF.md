@@ -2,12 +2,16 @@
 
 ## Current Status
 
-- Status: Workbook review-packet goal run `runs/20260521_154053_workbook_review_packet` is completed in an isolated worktree and ready for review/PR
+- Status: Draft PR #29 now has the patched checkpoint run plus the fresh full rerun `runs/20260521_163621_workbook_review_packet_full`; full-rerun validation is passing locally
 - Date: 2026-05-21
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/workbook-review-packet`
 
 ## Latest Changes
 
+- Added fresh full workbook rerun `runs/20260521_163621_workbook_review_packet_full` for all 40 Sheet1 rows. This run has no `seed_run` provenance; packages, metadata, source-intent audit, source comparison, bindings, exports, and review dashboard were regenerated from the normalized workbook source snapshot.
+- The full rerun contains 40 five-file run-local packages, 40 source-intent audit entries, 40 mechanism storyboard prompts with reviewer PNGs present, 12 prebuilt asset contact sheets, 12 integrated asset bindings, 12 standalone HTML reviewer packets, and `review.html`.
+- Corrected `inputs/source_activity_concepts.md` for `source_color_in_famous_art` after checking the workbook row directly: the source intent starts from the child's photographed/chosen real-world color, then shows several approved artworks where that color is dominant or important.
+- Updated `scripts/generate_run_review.py` validation so runtime-contract beat labels (`Child branches and AI follow-up policy`) satisfy the same branch-followup coverage check as exact-dialogue labels.
 - Created workbook review-packet run `runs/20260521_154053_workbook_review_packet` for all 40 Sheet1 rows from `/Users/pharrelly/Downloads/活动库内部初版.xlsx`, seeded from `runs/20260512_172135_batch5_unblocked` and revalidated under the new run ID.
 - Repaired avoidable source-intent drift before regenerating reviewer artifacts: `concept_story_unlock_probe` is story-first before unlock challenges, `concept_career_decision_decide` is profession-first role play, `concept_toy_tidy_probe` is a physical tidy sprint, `concept_award_certificate_probe` produces a drawn/designed certificate, and `concept_color_famous_art_probe` starts from the child's real-world color before showing approved artwork matches.
 - Updated `concept_coloring_game_probe` metadata/recap wording so it preserves the photo-color-to-region intent while honestly falling back to a no-image color plan under `minimum_unblock_allowed`.
@@ -120,6 +124,20 @@
 
 ## Verification
 
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260521_163621_workbook_review_packet_full`
+  - Result: PASS; 12 assets, 12 activities.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260521_163621_workbook_review_packet_full`
+  - Result: PASS; 12 standalone activity HTML files.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_source_comparison_review.py runs/20260521_163621_workbook_review_packet_full --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_163621_workbook_review_packet_full/source_comparison/source_intent_audit.yaml --validate`
+  - Result: PASS; 40 source rows, 40 covered, 34 needing review, 0 intent drift.
+- Run-local activity package tag-block schema validation against `activities/_schema/tag_block.schema.json`
+  - Result: PASS; all 40 `runs/20260521_163621_workbook_review_packet_full/activity_packages/*/tag_block.yaml` files validate.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260521_163621_workbook_review_packet_full`
+  - Result: PASS; dashboard contract passed with 642 resolving local links.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/generate_run_review.py scripts/generate_source_comparison_review.py scripts/generate_storyboard_prompts.py scripts/generate_asset_pilot_prompts.py scripts/integrate_generated_assets.py scripts/export_activity_html.py`
+  - Result: PASS.
+- Stale seed-text scan for `seed_run`, `patched seeded`, `Batch 5`, `only Batch 5`, `fresh Batch`, and `20260512_172135_batch5_unblocked`
+  - Result: PASS; no matches in `runs/20260521_163621_workbook_review_packet_full` markdown, YAML, or HTML artifacts.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_source_comparison_review.py runs/20260521_154053_workbook_review_packet --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_154053_workbook_review_packet/source_comparison/source_intent_audit.yaml --validate`
   - Result: PASS; 40 source rows, 40 covered, 22 needing review, 0 intent drift.
 - Run-local activity package tag-block schema validation against `activities/_schema/tag_block.schema.json`

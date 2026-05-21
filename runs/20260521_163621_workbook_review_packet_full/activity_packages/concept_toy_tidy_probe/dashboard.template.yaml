@@ -1,0 +1,11 @@
+activity_id: concept_toy_tidy_probe
+dashboard_template:
+  parent_headline: 'Toy Tidy Challenge: sort'
+  learning_focus:
+  - Form
+  - Form
+  - classification
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

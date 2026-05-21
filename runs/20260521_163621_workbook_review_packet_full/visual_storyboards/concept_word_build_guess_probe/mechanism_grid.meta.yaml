@@ -1,0 +1,48 @@
+activity_id: concept_word_build_guess_probe
+activity_name: Word Build Guess
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-21T15:39:18'
+source_image: ''
+prompt_sha256: 8a1536f39710cf4a5071054d8a10aaa2e9304931cdf8cd9f7302c5be45429e0d
+prompt_path: visual_storyboards/concept_word_build_guess_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_word_build_guess_probe/mechanism_grid.png
+package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_word_build_guess_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: Product has a text-aware word puzzle mode with parent approval for reading
+    level.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
+    required asset or honest fallback. | Ideal: The child confirms the rule or asks
+    for a smaller version. | Unexpected:...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is decide: Round 1 -- Start The Source Action |
+    Preserve the workbook promise: The child chooses letters or answers clues to reveal
+    a word step by step.. Ask... | Ideal: The child gives t...'
+  source: Round 1 -- Start The Source Action
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
+    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
+    one easier choice. | No response:...'
+  source: Round 1 -- Start The Source Action
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
+    for a second decide turn with a small variation. | Ideal: The child repeats the
+    same mechanic with a variation. | Une...'
+  source: Round 2 -- Repeat With A Variation
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
+    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
+    or quietly watches the recap. | Unexpe...'
+  source: 'Step 5: Closing + IB Concepts'

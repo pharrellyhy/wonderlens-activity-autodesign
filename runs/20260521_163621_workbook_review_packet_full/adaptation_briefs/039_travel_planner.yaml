@@ -1,0 +1,54 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_travel_planner
+    source_row: 39
+    assignment_row: assignment_type=activity_concept, activity_concept=Travel Planner,
+      concept_source=inputs/source_activity_concepts.md#source_travel_planner, description=The
+      child helps plan a pretend trip by choosing what to pack, how to travel, and
+      what might happen., mechanic=predict, category=cat1, tier=T1, asset_policy=optional_support,
+      asset_requirements=travel_planning_cards_01, product_capabilities=requires_asset_display,
+      activity_id=concept_travel_planner_predict, trigger_condition=Child asks about
+      a place, weather, vehicle, animal habitat, or character journey.
+  activity_concept: Travel Planner
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: predict
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child helps plan a pretend trip by choosing what to pack, how
+    to travel, and what might happen.
+  source_intent_lock: The child helps plan a pretend trip by choosing what to pack,
+    how to travel, and what might happen.
+  trigger_condition: Child asks about a place, weather, vehicle, animal habitat, or
+    character journey.
+  product_capability_flags:
+  - requires_asset_display
+  resolved_product_contract:
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: travel_planning_cards_01
+      concept_ref: source_travel_planner
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Support pretend trip planning with visual choices.
+      prompt_en: Create a set of pretend travel planning cards for children. Include
+        suitcase, water bottle, map, train, bus, walking shoes, raincoat, snack, and
+        camera. Use simple friendly illustrations, plain background, no text, no brands,
+        and no real travel booking interface.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show a small group of cards when asking what to pack or how
+        to travel.
+      fallback_behavior: If cards are unavailable, run the planning conversation by
+        voice only.
+      safety_constraints: No real booking, no unsafe travel instructions, no location
+        tracking, and no brands.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

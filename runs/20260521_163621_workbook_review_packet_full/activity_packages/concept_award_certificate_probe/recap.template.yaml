@@ -1,0 +1,8 @@
+activity_id: concept_award_certificate_probe
+recap_template:
+  title: Award Certificate recap
+  child_summary: '{child_name} practiced care in Award Certificate.'
+  evidence_prompts:
+  - favorite_turn
+  - child_choice
+  - next_time_variation

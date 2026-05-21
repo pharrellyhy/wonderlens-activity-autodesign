@@ -1,0 +1,61 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_emotion_color_outfit
+    source_row: 17
+    assignment_row: assignment_type=capability_probe, activity_concept=Emotion Color
+      Outfit, concept_source=inputs/source_activity_concepts.md#source_emotion_color_outfit,
+      description=The child uses colors to represent feelings, then sees or imagines
+      a character outfit matching that feeling., mechanic=care, category=cat1, tier=T1,
+      asset_policy=required_prebuilt, asset_requirements=emotion_color_character_01,
+      product_capabilities=requires_asset_display+requires_coloring_ui+requires_ui_state,
+      activity_id=concept_emotion_color_outfit_probe, trigger_condition=Child names
+      a mood or chooses a color to represent a feeling.
+  activity_concept: Emotion Color Outfit
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: care
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child uses colors to represent feelings, then sees or imagines
+    a character outfit matching that feeling.
+  source_intent_lock: The child uses colors to represent feelings, then sees or imagines
+    a character outfit matching that feeling.
+  trigger_condition: Child names a mood or chooses a color to represent a feeling.
+  product_capability_flags:
+  - requires_asset_display
+  - requires_coloring_ui
+  - requires_ui_state
+  resolved_product_contract:
+  - 'Coloring or recoloring UI: Approved minimum contract may describe intended fills
+    or use static preview when live recoloring is unavailable.'
+  - 'UI state or progress memory: Approved minimum state contract keeps per-round
+    choices visible when supported and uses a stateless fallback when not.'
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: emotion_color_character_01
+      concept_ref: source_emotion_color_outfit
+      asset_type: character_template
+      requiredness: required
+      generation_timing: pre_generated_or_runtime_recolored
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show a character whose outfit can reflect the child's chosen emotion
+        color.
+      prompt_en: Create a simple friendly character template for an emotion color
+        activity. The character should have a plain outfit with large clean regions
+        that can be recolored, neutral expression, light background, no text, no brands,
+        and no complex details.
+      source: new_ai_generated_asset_or_future_avatar_renderer
+      prompt_or_source: new_ai_generated_asset_or_future_avatar_renderer
+      display_behavior: Show the character before the child chooses an emotion color,
+        then update the outfit only if recoloring UI is supported.
+      fallback_behavior: If recoloring is unavailable, block at Phase 0 or run a voice-only
+        emotion-color conversation without claiming the outfit changed.
+      safety_constraints: No real child photos, no stereotypes about colors or feelings,
+        and no mental-health diagnosis framing.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

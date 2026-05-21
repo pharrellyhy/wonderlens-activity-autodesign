@@ -1,0 +1,32 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_classic_music_movement
+    source_row: 9
+    assignment_row: assignment_type=capability_probe, activity_concept=Classic Music
+      And Movement, concept_source=inputs/source_activity_concepts.md#source_classic_music_movement,
+      description=The child moves their body in response to music mood or rhythm cues.,
+      mechanic=motion_voice, category=cat1, tier=T1, asset_policy=no_assets, product_capabilities=requires_motion_safety,
+      activity_id=concept_classic_music_movement_probe, trigger_condition=Parent starts
+      a movement break and the environment is open, calm, and safe.
+  activity_concept: Classic Music And Movement
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: motion_voice
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child moves their body in response to music mood or rhythm cues.
+  source_intent_lock: The child moves their body in response to music mood or rhythm
+    cues.
+  trigger_condition: Parent starts a movement break and the environment is open, calm,
+    and safe.
+  product_capability_flags:
+  - requires_motion_safety
+  resolved_product_contract:
+  - 'Motion safety: Approved minimum motion policy keeps movements low-risk, offers
+    seated or voice-only alternatives, and requires a space check.'
+  asset_dependency:
+    policy: no_assets
+    assets: []
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

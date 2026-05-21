@@ -1,0 +1,30 @@
+run_id: 20260521_163621_workbook_review_packet_full
+activity_id: concept_partial_reveal_deduce
+activity_name: concept_partial_reveal_deduce
+mechanic: deduce
+asset_id: partial_reveal_cards_01
+asset_type: card_set
+requiredness: required
+generation_timing: pre_generated
+status: generated
+artifact_kind: prebuilt_asset_contact_sheet_pilot
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-21T15:39:18'
+source_image: ''
+prompt_sha256: 21779a435651935580e2976dc952a761d5ce81061e9f05ca97b32af1ff517f5b
+prompt_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/contact_sheet.prompt.md
+image_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/contact_sheet.png
+meta_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/asset.meta.yaml
+package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_partial_reveal_deduce
+use_step: prod.step_2; prod.step_3.round_1-3
+display_location: center_card_area
+purpose: Provide visible partial evidence so the child can infer the whole animal
+  or object.
+display_behavior: Show one partial-reveal card full screen each round. The child observes
+  the part, guesses the whole, and explains the evidence.
+fallback_behavior: If partial cards are unavailable, switch to a voice-only partial-clue
+  riddle and do not claim the screen is showing a picture.
+safety_constraints: No real child photos, no gore or scary details, no predation scenes,
+  and clear inspectable cropped parts.

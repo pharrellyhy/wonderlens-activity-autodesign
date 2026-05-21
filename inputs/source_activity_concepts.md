@@ -621,8 +621,8 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 |---|---|
 | source_row | 35 |
 | activity_concept | Color In Famous Art |
-| normalized_description_en | The child looks at an approved artwork and identifies important colors. |
-| normalized_notes_en | Do not rely on live external museum APIs during generation. Use a curated public-domain artwork set or stop at Phase 0. |
+| normalized_description_en | The child photographs or chooses a real-world color, then sees several approved artworks where that color is dominant or important. |
+| normalized_notes_en | The source promise starts from the child's color and uses that color to introduce artworks, such as yellow leading to sunflower-heavy paintings. Do not rely on live external museum APIs during generation; use a curated public-domain artwork set or stop at Phase 0. |
 | assignment_type | capability_probe |
 | input_mode_hint | concept_only |
 | mechanic | enumerate |
@@ -630,8 +630,11 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_policy | required_prebuilt |
 | asset_requirements | color_artwork_set_01 |
 | product_capabilities | requires_asset_display |
-| trigger_condition_en | Screen can show approved public-domain artwork with known color metadata. |
-| adaptation_notes_en | Stop at Phase 0 until approved artwork assets and metadata are available. |
+| trigger_condition_en | Child photographs or names a clear color and the screen can show approved public-domain artwork with known color metadata. |
+| source_intent_lock_en | Preserve the sequence: child captures or chooses a real-world color, the system shows several artworks dominated by that color, then the AI gives a simple child-safe background introduction. Do not reduce this to studying one artwork first. |
+| minimum_unblock_status | approved_under_minimum_unblock_allowed |
+| resolved_assumptions_en | If live museum APIs or full famous-art metadata are unavailable, use a curated approved artwork set with known dominant colors and clearly label it as approved artwork support. |
+| adaptation_notes_en | Under minimum-unblock mode, preserve the color-to-artwork sequence with approved curated artworks. Under blocker-preserving mode, stop at Phase 0 until approved artwork assets and metadata are available. |
 
 ### source_simple_body_movement
 

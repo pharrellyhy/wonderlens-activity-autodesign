@@ -1,0 +1,8 @@
+activity_id: concept_classic_music_movement_probe
+recap_template:
+  title: Classic Music And Movement recap
+  child_summary: '{child_name} practiced motion_voice in Classic Music And Movement.'
+  evidence_prompts:
+  - favorite_turn
+  - child_choice
+  - next_time_variation

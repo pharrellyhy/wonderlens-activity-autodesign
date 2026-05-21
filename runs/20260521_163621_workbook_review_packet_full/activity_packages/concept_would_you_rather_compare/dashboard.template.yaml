@@ -1,0 +1,11 @@
+activity_id: concept_would_you_rather_compare
+dashboard_template:
+  parent_headline: 'Would You Rather: compare'
+  learning_focus:
+  - Form
+  - Perspective
+  - observation
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

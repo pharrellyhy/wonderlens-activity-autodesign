@@ -1,0 +1,30 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_little_poem_generator
+    source_row: 38
+    assignment_row: assignment_type=activity_concept, activity_concept=Little Poem
+      Generator, concept_source=inputs/source_activity_concepts.md#source_little_poem_generator,
+      description=The child contributes words, images, or feelings and co-creates
+      a short poem with the AI., mechanic=build, category=cat1, tier=T1, asset_policy=no_assets,
+      activity_id=concept_little_poem_build, trigger_condition=Child photographs an
+      object, chooses a feeling, or names a favorite topic.
+  activity_concept: Little Poem Generator
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: build
+  readiness: ready
+  core_promise: The child contributes words, images, or feelings and co-creates a
+    short poem with the AI.
+  source_intent_lock: The child contributes words, images, or feelings and co-creates
+    a short poem with the AI.
+  trigger_condition: Child photographs an object, chooses a feeling, or names a favorite
+    topic.
+  product_capability_flags: []
+  resolved_product_contract: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

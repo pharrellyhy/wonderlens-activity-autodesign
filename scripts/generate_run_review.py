@@ -4400,7 +4400,10 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         "branch_followups_all_paths": expected_branch_followups == 0
         or (
             text.count('class="branch-followup-card') >= expected_branch_followups
-            and "Child branches and AI follow-ups" in text
+            and (
+                "Child branches and AI follow-ups" in text
+                or "Child branches and AI follow-up policy" in text
+            )
             and "Ideal child" in text
             and "Unexpected child" in text
             and "No response child" in text

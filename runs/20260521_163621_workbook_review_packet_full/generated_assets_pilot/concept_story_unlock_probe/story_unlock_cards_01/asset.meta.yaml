@@ -1,0 +1,29 @@
+run_id: 20260521_163621_workbook_review_packet_full
+activity_id: concept_story_unlock_probe
+activity_name: concept_story_unlock_probe
+mechanic: imagine
+asset_id: story_unlock_cards_01
+asset_type: story_card_set
+requiredness: optional
+generation_timing: pre_generated
+status: generated
+artifact_kind: prebuilt_asset_contact_sheet_pilot
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-21T15:39:18'
+source_image: ''
+prompt_sha256: 71584f67ff44c25674750b19bfb4e245413f782746dbbdd266614f7156232656
+prompt_path: generated_assets_pilot/concept_story_unlock_probe/story_unlock_cards_01/contact_sheet.prompt.md
+image_path: generated_assets_pilot/concept_story_unlock_probe/story_unlock_cards_01/contact_sheet.png
+meta_path: generated_assets_pilot/concept_story_unlock_probe/story_unlock_cards_01/asset.meta.yaml
+package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_story_unlock_probe
+use_step: prod.step_2; prod.step_3.round_1-3
+display_location: center_card_area
+purpose: Show a simple locked story door, token, or next-scene card during a story
+  challenge.
+display_behavior: Show the card at a story pause point and change to the next scene
+  only when product unlock state is supported.
+fallback_behavior: If unlock UI is unavailable, use voice-only story choices and do
+  not claim a screen element has unlocked.
+safety_constraints: No frightening doors, traps, weapons, or branded characters.
