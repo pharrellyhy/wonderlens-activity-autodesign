@@ -14,6 +14,7 @@
 - Updated `program.md`, `run.md`, `GOAL.md`, `templates.md`, `runs/README.md`, and `review_dashboard.md` so future generation runs must capture source-promise alignment and existing runs can be patched with an audit overlay instead of a full rerun.
 - Updated `scripts/generate_run_review.py` and tests so review dashboards parse both legacy `AI says` beats and `Runtime AI instruction` plus `Example AI line` behavior-contract beats.
 - Updated `runs/20260512_172135_batch5_unblocked/run_manifest.yaml` with `outputs.source_intent_audit`, audit summary counts, validation checks, and residual high-severity source-intent findings.
+- Fixed independent review findings after the source-intent/runtime-contract pass: `program.md` no longer conflicts between runtime behavior contracts and the Dimension 6/self-check rubric, source comparison validation accepts intent-only drift rows, and HTML validation now rejects stale rendered audit content.
 - Added `scripts/generate_source_comparison_review.py` to build a product-facing source fidelity matrix from the original workbook, `inputs/source_activity_concepts.md`, run adaptation briefs, package files, reviewer packet exports, and storyboard/contact-sheet artifacts.
 - Added focused unittest coverage in `tests/test_source_comparison_review.py` for source row classification, visual-example selection, portable HTML rendering, and validation failures.
 - Generated `runs/20260512_172135_batch5_unblocked/source_comparison/product_review_matrix.html` as a self-contained review page with all 40 workbook rows, direct reviewer-packet links, and 5 representative storyboard/contact-sheet examples.
@@ -119,6 +120,8 @@
   - Result: PASS; 40 audit entries, visible Story Unlock and Career Decision product questions, no unresolved template placeholders, no external links.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked`
   - Result: PASS; dashboard contract passed with 644 resolving local links.
+- Independent read-only review after `3861733`
+  - Result: PASS; prior findings were confirmed resolved and no remaining actionable issues were reported.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest tests/test_source_comparison_review.py -v`
   - Result: PASS; 2 focused source-comparison tests passed.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/generate_source_comparison_review.py`
