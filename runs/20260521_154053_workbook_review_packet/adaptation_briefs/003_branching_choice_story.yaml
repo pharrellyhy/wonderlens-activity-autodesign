@@ -1,0 +1,47 @@
+adaptation_brief:
+  assignment_index: 3
+  assignment_type: activity_concept
+  activity_concept: Branching Choice Story
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_branching_story
+    asset_requirements: null
+    assignment_row: assignment_type=activity_concept, activity_concept=Branching Choice Story, concept_source=inputs/source_activity_concepts.md#source_branching_story,
+      description=AI tells a story with choice points; the child chooses between two next steps and the story continues from
+      that choice, mechanic=decide, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_branching_story_decide,
+      trigger_condition=Child enters story mode or photographs a toy or object that can become a story character
+  input_mode: concept_only
+  core_promise: The AI tells a story with choice points, and the child's choices decide what happens next.
+  canonical_mechanic: decide
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: ready_to_generate
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Child enters story mode or photographs a toy or object that can become a story character
+  entity_role: catalyst
+  observation_angle: behavior
+  focal_attribute: story_choice_path
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Adventure
+    game_style: time_traveler
+    scaffold_fit: strong
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions: []
+  resolved_blockers: []
+  resolved_blocker_types: []
+  extensibility:
+    entity_binding: parameterized
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - story_choice_path
+    retargeting_note: Reusable by replacing the runtime topic, entity, or property slot while preserving the decide mechanic.

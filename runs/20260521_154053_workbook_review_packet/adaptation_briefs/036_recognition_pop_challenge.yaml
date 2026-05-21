@@ -1,0 +1,75 @@
+adaptation_brief:
+  assignment_index: 36
+  assignment_type: capability_probe
+  activity_concept: Recognition Pop Challenge
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_whack_a_mole_recognition
+    asset_requirements: inputs/source_activity_concepts.md#recognition_challenge_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Recognition Pop Challenge, concept_source=inputs/source_activity_concepts.md#source_whack_a_mole_recognition,
+      description=Child quickly chooses matching target pictures from a changing set, mechanic=compare, category=cat1, tier=T1,
+      asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#recognition_challenge_cards_01,
+      product_capabilities=requires_asset_display,requires_ui_state, activity_id=concept_recognition_pop_probe, trigger_condition=Product
+      has a tap-based recognition game surface
+  input_mode: concept_only
+  core_promise: The child quickly chooses matching target pictures from a changing set.
+  canonical_mechanic: compare
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Product has a tap-based recognition game surface
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: recognition_pop
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_ui_state
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: recognition_challenge_cards_01
+      concept_ref: source_whack_a_mole_recognition
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide target and distractor images for a tap-based recognition challenge.
+      prompt_en: Create a set of simple recognition challenge cards for children. Include target and distractor objects with
+        clear differences in shape, color, or category. Use one object per card, plain background, no text, no brands, and
+        consistent friendly style.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show multiple cards only within a supported tap-based game surface.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: Avoid violent whack imagery, no weapons, no scary targets, and no punitive feedback.
+    missing_asset_risk: resolved_by_override
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.'
+  - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and a
+    stateless fallback.'
+  resolved_blocker_types:
+  - Prebuilt asset display
+  - UI state or progress memory
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - recognition_pop
+    - recognition_challenge_cards_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `recognition_challenge_cards_01` without
+      changing the compare mechanic.

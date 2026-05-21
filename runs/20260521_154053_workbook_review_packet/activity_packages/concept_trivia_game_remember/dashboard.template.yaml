@@ -1,0 +1,25 @@
+dashboard_fragment:
+  session:
+    axis: connection
+    angle: function
+    mechanic: remember
+    entity_role: catalyst
+    focal_attribute: remembered_fact_clue
+    entry_rung: '{runtime_entry_rung}'
+    exit_rung: '{runtime_exit_rung}'
+    outcome: '{runtime_outcome}'
+  contributes_to:
+    curiosity_radial:
+      axis: connection
+      angle: function
+    exploration_matrix:
+      cell: remember by function
+    key_concepts_exposure:
+      Connection:
+        angle: function
+      Function:
+        angle: function
+    atl_skills_trail:
+    - focus
+    - logical_reasoning
+    - language_expression

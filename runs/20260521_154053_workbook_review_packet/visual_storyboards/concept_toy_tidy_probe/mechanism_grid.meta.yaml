@@ -1,0 +1,49 @@
+activity_id: concept_toy_tidy_probe
+activity_name: Toy Tidy Challenge
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:36:47'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064e2268f08193962ebfe5f04b94b1.png
+prompt_sha256: 597c5005364a0ddf4927d09897ce82de46c1a8a7f16f44512a379a5cec8d79ea
+prompt_path: visual_storyboards/concept_toy_tidy_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_toy_tidy_probe/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_toy_tidy_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: A parent starts tidy mode near visible toys or a toy area. The
+    AI uses child/caregiver confirmation for progress and does not claim full-room
+    before/after verification.'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Tidy Sort Captain rule: choose
+    one toy group, tidy while I give simple tips, then tell me... | Ideal: Child confirms
+    the role or starts round on...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is sort: Round 1 -- Start The Tidy Mission | [round-1
+    guide] "Round 1: look at the toy area and pick one small group to tidy first:
+    cars, blocks, soft toy... | Ideal: "Cars." / "Blocks."...'
+  source: Round 1 -- Start The Tidy Mission
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [specific] "Cars is a clear first group. Timer token 1 is ready."
+    | Unexpected: [redirect] "We can use any safe visible objects or pause tidy mode."
+    | No response: [wait 2s] [gentle...'
+  source: Round 1 -- Start The Tidy Mission
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Tidy During The Timer | [round-2 guide] "Round 2: start moving
+    that group to its home. I will give two tiny tips while you work: put... | Ideal:
+    Child moves toys or says "Cars in...'
+  source: Round 2 -- Tidy During The Timer
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Form and Connection
+    today. You used your own sort action to make the result." | Ideal: "Again!" /
+    names a favorite part. | Unexpe...'
+  source: 'Step 5: Closing + IB Concepts'

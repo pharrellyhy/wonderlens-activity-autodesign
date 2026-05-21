@@ -1,0 +1,49 @@
+activity_id: concept_guess_in_10_deduce
+activity_name: Guess in 10
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:17:44'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a060349af8c81938d7d3c84c6f603f2.png
+prompt_sha256: d0a09e5a6c404a10c183732ebc86afeed5f6a7c2c24ffc8656b1b77d6d23e8f8
+prompt_path: visual_storyboards/concept_guess_in_10_deduce/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_guess_in_10_deduce/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_guess_in_10_deduce
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: Child enters guessing mode; the AI secretly chooses "duck" and gives clues
+    about water, a beak, and waddling. The child may guess fish first, then revise
+    when the beak clue appears, and the...
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction -- Clue Detective | [clear guide tone] "You
+    are the Clue Detective. I give a clue. You make a guess. New clues make the mystery
+    e... | Ideal: "Okay!" / "I can gues...'
+  source: 'Step 2: Rule Introduction -- Clue Detective'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is deduce: Round 1 -- Function Clue | [secret clue
+    tone] "Clue one: this mystery thing can move in water. What could it be?" | Ideal:
+    "Duck!" / "Fish!" / "Boat!" | Unexpected: "Car." / "I...'
+  source: Round 1 -- Function Clue
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [intrigued] "Good evidence guess. It could move in water. Let''s
+    collect another clue." | Unexpected: [kind redirect] "Good thinking. Mystery clues
+    can feel tricky. This one likes wat...'
+  source: Round 1 -- Function Clue
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Form Clue | [careful clue tone] "Clue two: it has a beak. Now
+    what is your best guess?" | Ideal: "Duck!" / "Bird!" | Unexpected: "Dog." / "A
+    spoon." | No response: Child looks un...'
+  source: Round 2 -- Form Clue
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You did it, Clue Detective.
+    You used Function. You thought about what it does. You used F... | Ideal: "Another
+    mystery!" / "I solved it!"...'
+  source: 'Step 5: Closing + IB Concepts'

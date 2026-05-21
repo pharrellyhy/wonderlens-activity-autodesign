@@ -1,0 +1,76 @@
+activity_id: concept_emotion_color_outfit_probe
+version: 1
+source_entity_exemplar: '{runtime_entity}'
+template_type: cat1
+pillar: Nurture
+game_style: care_station
+entity: '{runtime_entity_or_mode_topic}'
+entity_class: []
+entity_binding: agnostic
+tier_range:
+  primary: T1
+  span:
+  - T1
+  - T2
+  elasticity: '+1'
+category: emotion_color_outfit
+attributes:
+- emotion_color_outfit
+- function
+key_concepts:
+- Responsibility
+- Perspective
+related_concepts:
+- evidence
+- choice
+- progress
+- reflection
+atl_skills:
+- empathy
+- perspective_taking
+- language_expression
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags:
+- language
+- thinking
+kud:
+  know:
+  - one safe action or visible cue can guide the next activity step
+  - progress can be represented as a small sequence of choices or actions
+  understand:
+  - Responsibility helps focus attention
+  - Perspective connects the child's action to the final result
+  do:
+  - complete three care rounds
+  - explain one reason or observation
+  - reflect on the final result
+progression:
+  topic_axis: responsibility
+  difficulty_level: 2
+  next_step_hint: Repeat the same mechanic with a new theme, property, or approved asset set.
+  reward_hook: Earned the Emotion Color Outfit badge
+caregiver_role:
+- observer
+- co-explorer
+activity_signature:
+  observation_angle: function
+  mechanic: care
+  entity_role: catalyst
+  focal_attribute: emotion_color_outfit
+  intro: The child completes three care rounds for Emotion Color Outfit and reflects on the result.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - function
+    - state
+  preview_label: Emotion Color Outfit
+  preview_prompt: Try Emotion Color Outfit with one small choice at a time.
+  role_pivot_note: The runtime entity or mode topic launches a reusable source-concept activity; no entity-specific factual
+    claim is required.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: false
+    T1: true
+    T2: true

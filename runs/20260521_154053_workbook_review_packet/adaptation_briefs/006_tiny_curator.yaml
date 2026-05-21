@@ -1,0 +1,48 @@
+adaptation_brief:
+  assignment_index: 6
+  assignment_type: match_pattern
+  activity_concept: Tiny Curator
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_tiny_curator
+    asset_requirements: null
+    assignment_row: assignment_type=match_pattern, activity_concept=Tiny Curator, concept_source=inputs/source_activity_concepts.md#source_tiny_curator,
+      description=Child finds three or four objects that they think belong together, arranges a tiny exhibition, then explains
+      their grouping rule, mechanic=sort, category=cat5, tier=T2, asset_policy=no_assets, activity_id=concept_tiny_curator_sort,
+      trigger_condition=Child is at home or outdoors with several objects that can be grouped or compared
+  input_mode: parameterized
+  core_promise: The child finds three or four objects they think belong together, arranges them as a tiny exhibition, and
+    explains their grouping rule.
+  canonical_mechanic: sort
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: ready_to_generate
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Child is at home or outdoors with several objects that can be grouped or compared
+  entity_role: catalyst
+  observation_angle: pattern
+  focal_attribute: child_made_grouping_rule
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Adventure
+    game_style: quest_collector
+    scaffold_fit: strong
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions: []
+  resolved_blockers: []
+  resolved_blocker_types: []
+  extensibility:
+    entity_binding: parameterized
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - child_made_grouping_rule
+    retargeting_note: Reusable by replacing the runtime topic, entity, or property slot while preserving the sort mechanic.

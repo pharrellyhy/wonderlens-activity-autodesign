@@ -1,0 +1,26 @@
+dashboard_fragment:
+  session:
+    axis: function
+    angle: function
+    mechanic: deduce
+    entity_role: catalyst
+    focal_attribute: "clue_evidence"
+    entry_rung: "{runtime_entry_rung}"
+    exit_rung: "{runtime_exit_rung}"
+    outcome: "{runtime_outcome}"
+
+  contributes_to:
+    curiosity_radial:
+      axis: function
+      angle: function
+    exploration_matrix:
+      cell: "deduce by clue evidence"
+    key_concepts_exposure:
+      Function:
+        angle: function
+      Form:
+        angle: function
+    atl_skills_trail:
+      - logical_reasoning
+      - observation
+      - language_expression

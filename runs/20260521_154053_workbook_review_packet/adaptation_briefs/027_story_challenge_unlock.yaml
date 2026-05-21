@@ -1,0 +1,74 @@
+adaptation_brief:
+  assignment_index: 27
+  assignment_type: capability_probe
+  activity_concept: Story Challenge Unlock
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_story_challenge_unlock
+    asset_requirements: inputs/source_activity_concepts.md#story_unlock_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Story Challenge Unlock, concept_source=inputs/source_activity_concepts.md#source_story_challenge_unlock,
+      description=A story pauses at a challenge point and the child completes a quick task to unlock the next beat, mechanic=imagine,
+      category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#story_unlock_cards_01,
+      product_capabilities=requires_ui_state,requires_asset_display, activity_id=concept_story_unlock_probe, trigger_condition=Child
+      reaches a story pause point and can complete a quick challenge to continue
+  input_mode: concept_only
+  core_promise: A story pauses at a challenge point; the child completes a quick task to unlock the next beat.
+  canonical_mechanic: imagine
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Child reaches a story pause point and can complete a quick challenge to continue
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: story_unlock
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_ui_state
+  - requires_asset_display
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: story_unlock_cards_01
+      concept_ref: source_story_challenge_unlock
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show a simple locked story door, token, or next-scene card during a story challenge.
+      prompt_en: Create a set of child-friendly story unlock cards. Each card shows a magical door, path marker, treasure
+        token, or story page waiting to open. Use warm illustrated style, no text, no scary elements, and clear central object.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show the card at a story pause point and change to the next scene only when product unlock state is
+        supported.
+      fallback_behavior: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
+      safety_constraints: No frightening doors, traps, weapons, or branded characters.
+    missing_asset_risk: resolved_by_override
+  scaffold_choice:
+    pillar: Adventure
+    game_style: time_traveler
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Adventure / `time_traveler` frames the story as a journey sequence while preserving the imagine mechanic.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and a
+    stateless fallback.'
+  - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.'
+  resolved_blocker_types:
+  - UI state or progress memory
+  - Prebuilt asset display
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - story_unlock
+    - story_unlock_cards_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `story_unlock_cards_01` without changing
+      the imagine mechanic.

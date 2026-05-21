@@ -1,0 +1,632 @@
+run_id: 20260521_154053_workbook_review_packet
+artifact_kind: source_intent_audit
+source_workbook: 活动库内部初版.xlsx
+created_at: '2026-05-21T15:59:31+08:00'
+reviewer: codex
+status_values:
+- aligned
+- minor_adaptation
+- intent_drift
+- needs_product_decision
+summary:
+  source_rows: 40
+  aligned: 15
+  minor_adaptation: 25
+  intent_drift: 0
+  needs_product_decision: 0
+entries:
+- source_row: 1
+  activity_id: concept_scavenger_hunt_collect
+  original_play_frame: Child finds several things sharing a visible property such as color, shape, or category, then can extend
+    the collection with an extra shared idea.
+  generated_play_frame: Child starts from one photographed object, finds three more objects with the shared clue, then names
+    an extra common connection.
+  preserved:
+  - Photo-based scavenger hunt.
+  - Shared-property collection loop.
+  - Extension beyond simple collecting.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned.
+  product_review_question: Confirm this remains the baseline reusable scavenger-hunt pattern.
+- source_row: 2
+  activity_id: concept_phoneme_hunt_collect
+  original_play_frame: AI asks for a treasure whose word begins with a target sound, with optional letter support on screen.
+  generated_play_frame: Child hears /b/, finds nearby objects whose names start with that sound, and checks each photo as
+    a treasure.
+  preserved:
+  - Sound-first treasure hunt.
+  - Object finding tied to the target phoneme.
+  - Optional visual letter support.
+  drift:
+  - Expands one treasure into three rounds.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep the three-round version, but document that single-treasure mode is also valid.
+  product_review_question: Confirm the three-treasure expansion is acceptable for the phoneme hunt.
+- source_row: 3
+  activity_id: concept_branching_story_decide
+  original_play_frame: A story reaches choice points and the child chooses the next path, changing the story direction.
+  generated_play_frame: Child enters a short story with three choice points and an ending map that reflects the chosen path.
+  preserved:
+  - Story choice points.
+  - Child decision changes the path.
+  - Visible path summary.
+  drift:
+  - Mechanic is normalized to decide instead of imagine, but the source action is choosing.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep the decide realignment, but ensure future versions still tell enough story before each choice.
+  product_review_question: Approve decide as the canonical mechanic for source story path choices?
+- source_row: 4
+  activity_id: concept_guided_drawing_probe
+  original_play_frame: AI guides the child step by step through a simple paper sketch, then the child can show the final work
+    without quality judgment.
+  generated_play_frame: Child follows three sketch beats on paper or a drawing surface and self-reports or shows completion
+    without drawing-quality judgment.
+  preserved:
+  - Paper/drawing workflow.
+  - Step-by-step sketch guidance.
+  - Process encouragement rather than evaluation.
+  drift:
+  - Adds explicit per-step completion reporting.
+  - Uses generic shape/detail beats rather than a fuller authored drawing sequence.
+  status: minor_adaptation
+  severity: low
+  recommendation: Retain, but allow longer timed drawing pauses and optional authored drawing-step cards.
+  product_review_question: Confirm the concise three-beat sketch path is acceptable for V1.
+- source_row: 5
+  activity_id: concept_word_echo_remember
+  original_play_frame: Child repeats an English or second-language word in a pure echo-training interaction.
+  generated_play_frame: AI says a simple word or phrase and the child repeats it in playful echo rounds.
+  preserved:
+  - Repeat-after-me language practice.
+  - Voice-led echo loop.
+  drift:
+  - Language-selection and cultural/onboarding nuance is simplified.
+  - Mechanic is normalized to remember, while the source is closer to repeat/echo practice.
+  status: minor_adaptation
+  severity: medium
+  recommendation: Keep the echo loop, but future versions should preserve optional second-language selection explicitly.
+  product_review_question: Approve the simpler word-echo framing before language-selection support is defined?
+- source_row: 6
+  activity_id: concept_building_challenge_probe
+  original_play_frame: Child uses photographed cushions, blocks, clay, or similar materials to build something physical, then
+    celebrates or shows the result.
+  generated_play_frame: Child chooses safe materials, plans a build target, makes a base plus useful feature, and explains
+    what the structure can do.
+  preserved:
+  - Physical building with available materials.
+  - Child choice of target or plan.
+  - No quality judgment.
+  drift:
+  - Less tied to object-specific photo triggers such as cushions, clay, or blocks.
+  - Build target selection is more generic.
+  status: minor_adaptation
+  severity: low
+  recommendation: Add material-specific branches for cushions, clay, and blocks in future versions.
+  product_review_question: Confirm a generic safe-material build path is acceptable for V1.
+- source_row: 7
+  activity_id: concept_story_unlock_probe
+  original_play_frame: AI tells an adventure story, pauses at fixed points, and the child completes a quick challenge to unlock
+    the next story beat.
+  generated_play_frame: AI tells a moon-path story beat, pauses at locked gates, and asks quick color, sound, and echo challenges
+    before unlocking each next story beat.
+  preserved:
+  - Story-first sequence before each challenge.
+  - Quick child tasks gate progress.
+  - Unlock progression and final story recap.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned; future runtime can vary story themes and challenge types while preserving story-before-challenge
+    order.
+  product_review_question: Confirm the story-first repair is acceptable for reviewer-packet use.
+- source_row: 8
+  activity_id: concept_coloring_game_probe
+  original_play_frame: Child co-creates a coloring page by photographing colors for named regions, then AI fills the line
+    art into a shareable final artwork.
+  generated_play_frame: Child chooses a photographed coloring subject, assigns real-world colors to named regions, and uses
+    an honest no-image color-plan fallback when live recoloring is unavailable.
+  preserved:
+  - Color selection from real-world photos or objects.
+  - Named artwork regions receive child-selected colors.
+  - Co-creative coloring-page intent under the minimum contract.
+  drift:
+  - Fallback may show a saved color plan instead of a rendered filled artwork when recoloring is unavailable.
+  status: minor_adaptation
+  severity: medium
+  recommendation: Keep under minimum_unblock_allowed; product can upgrade the same flow to live line-art filling and shareable
+    artwork later.
+  product_review_question: Confirm the no-image color-plan fallback is acceptable for V1 reviewer packets.
+- source_row: 9
+  activity_id: concept_classic_music_movement_probe
+  original_play_frame: A classic movement game such as freeze dance or floor-is-lava uses music/rhythm prompts and physical
+    movement.
+  generated_play_frame: Child completes safe movement-and-voice turns from rhythm or mood cues, with motion-safety limits
+    and no dependency on licensed music playback.
+  preserved:
+  - Movement game.
+  - Music, rhythm, or mood cueing.
+  - Physical response with safety limits.
+  drift:
+  - Licensed music playback and exact freeze-dance/floor-is-lava rules are softened into safe rhythm/mood prompts.
+  status: minor_adaptation
+  severity: medium
+  recommendation: Keep as a minimum-contract movement adaptation; add exact freeze/lava variants only after music and movement-policy
+    support is finalized.
+  product_review_question: Confirm rhythm/mood prompts are an acceptable V1 substitute for full music-game support.
+- source_row: 10
+  activity_id: concept_childrens_yoga_probe
+  original_play_frame: Screen shows child-safe yoga poses and the child imitates them without AI judging pose quality.
+  generated_play_frame: AI guides a short child-safe pose routine with animal/object metaphors and optional pose cards.
+  preserved:
+  - Pose imitation.
+  - Process focus without evaluation.
+  - Optional pose visuals.
+  drift:
+  - Condenses several possible poses into a short two-pose routine.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep, assuming approved pose cards exist; consider adding a three-pose path for older children.
+  product_review_question: Confirm the short routine length and approved pose-card set are acceptable.
+- source_row: 11
+  activity_id: concept_partial_reveal_deduce
+  original_play_frame: Child sees half or a key part of an animal and guesses the whole animal.
+  generated_play_frame: Child sees one cropped clue from a prebuilt card, guesses the hidden whole, and explains the evidence.
+  preserved:
+  - Partial reveal guessing.
+  - Animal/object whole-from-part deduction.
+  - Prebuilt visual dependency.
+  drift:
+  - Mechanic changes from enumerate to deduce, but this better matches the source action.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep the deduce mechanic realignment.
+  product_review_question: Approve deduce as the canonical mechanic for partial-reveal guessing?
+- source_row: 12
+  activity_id: concept_emotion_reader_care
+  original_play_frame: A toy or animal appears in a situation, and the child names or chooses its feeling, optionally with
+    expression images.
+  generated_play_frame: Child notices expression/body cues, names a possible need, and chooses gentle help in care rounds.
+  preserved:
+  - Emotion understanding.
+  - Choice-supported low-age version.
+  - Care response after identifying feeling.
+  drift:
+  - Generated loop adds a care-action step beyond naming or choosing the feeling.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep if product accepts the empathy-support extension.
+  product_review_question: Confirm the care-action extension is acceptable.
+- source_row: 13
+  activity_id: concept_animal_sound_motion_voice
+  original_play_frame: Animal sound flashcards invite the child to imitate or request common animal sounds, with optional
+    animal pictures.
+  generated_play_frame: Child copies animal sounds or speaks as the animal while the AI cheers like a small audience.
+  preserved:
+  - Animal sound imitation.
+  - Common animal focus.
+  - Optional animal picture cards.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned.
+  product_review_question: Confirm the performance framing is acceptable for animal sound imitation.
+- source_row: 14
+  activity_id: concept_tiny_curator_sort
+  original_play_frame: Child finds objects that belong together, arranges a tiny exhibit, then explains the grouping rule
+    they had in mind.
+  generated_play_frame: Child chooses nearby objects, arranges them as a tiny exhibit, and explains the child-made grouping
+    rule.
+  preserved:
+  - Child-defined grouping.
+  - Tiny exhibit arrangement.
+  - Logic explanation after collecting.
+  drift:
+  - Mechanic is normalized from collect to sort, which better reflects the explanation of grouping.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep the sort realignment while preserving child-defined grouping.
+  product_review_question: Approve sort as the canonical mechanic for Tiny Curator?
+- source_row: 15
+  activity_id: concept_plant_parts_enumerate
+  original_play_frame: Child photographs or observes different plant parts while AI introduces the parts and their functions
+    playfully.
+  generated_play_frame: Child looks at a plant and identifies visible parts such as leaf, stem, flower, fruit, seed, or root.
+  preserved:
+  - Plant-part identification.
+  - Visible observation.
+  - Function vocabulary.
+  drift:
+  - Generated loop emphasizes naming visible parts more than varied playful function explanations.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep, but enrich future runtime copy with short function facts after each identified part.
+  product_review_question: Should plant-part rounds require a function explanation for each part?
+- source_row: 16
+  activity_id: concept_plant_state_compare
+  original_play_frame: Child photographs or compares plant leaves in different states and learns visible care/state differences.
+  generated_play_frame: Child compares plant-state photos or approved examples, chooses a state word, and explains visible
+    evidence.
+  preserved:
+  - Plant-state comparison.
+  - Visible evidence.
+  - Care/state vocabulary.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned.
+  product_review_question: Confirm generic care guidance is acceptable when plant species is unknown.
+- source_row: 17
+  activity_id: concept_emotion_color_outfit_probe
+  original_play_frame: A character with a white outfit and changing expressions appears; child chooses outfit colors that
+    fit each emotion and the outfit is colored.
+  generated_play_frame: Child notices a character feeling cue, chooses a comfort outfit color, and adds one caring action,
+    with visible recoloring only when the approved card/UI supports it.
+  preserved:
+  - Character emotion cue.
+  - Child-selected color for the outfit/support item.
+  - Recoloring state is represented when the approved UI supports it.
+  drift:
+  - Adds an empathy support action after the color choice.
+  - Fallback may store the outfit color verbally instead of visibly recoloring the character.
+  status: minor_adaptation
+  severity: medium
+  recommendation: Keep the empathy-color adaptation under the minimum contract while preserving the visible outfit-color path
+    when UI support exists.
+  product_review_question: Confirm adding a caring action does not over-shift the emotion-color outfit concept.
+- source_row: 18
+  activity_id: concept_guess_in_10_deduce
+  original_play_frame: AI gives clues one by one and the child guesses the hidden animal or object, with easier hints if stuck.
+  generated_play_frame: AI hides a common animal or object, gives clues one by one, and helps the child use evidence with
+    easier hints.
+  preserved:
+  - Sequential clue guessing.
+  - Animal/object mystery.
+  - Adaptive easier hints.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned.
+  product_review_question: Confirm clue difficulty range is appropriate.
+- source_row: 19
+  activity_id: concept_color_mixing_collect
+  original_play_frame: Child photographs two or three specified colors, then AI explains how those colors mix into new colors.
+  generated_play_frame: Child names, points to, or finds fixed two-color pairs, predicts each mix result, and saves the result
+    on a color-mix board.
+  preserved:
+  - Collecting color inputs before explanation.
+  - Predicting and explaining color mixing results.
+  - Multiple color examples become a final board.
+  drift:
+  - Photo capture is optional rather than required for each color.
+  - Uses fixed canonical pairs instead of arbitrary photographed colors.
+  status: minor_adaptation
+  severity: medium
+  recommendation: Keep as a stable V1 color-mixing board; future versions can require photo-based color collection when runtime
+    color extraction is available.
+  product_review_question: Confirm fixed canonical color pairs are acceptable for the first reviewer packet.
+- source_row: 20
+  activity_id: concept_constellation_star_count_enumerate
+  original_play_frame: Child chooses between two possible star counts, then sees the constellation matching that number with
+    a short introduction.
+  generated_play_frame: Child counts visible stars in a constellation card or simplified star pattern.
+  preserved:
+  - Constellation star-count number sense.
+  - Prebuilt constellation visuals.
+  drift:
+  - Source uses two-choice number guessing before reveal; generated loop emphasizes direct counting.
+  status: minor_adaptation
+  severity: medium
+  recommendation: Consider restoring the two-number choice and reveal flow if product wants the original guessing format.
+  product_review_question: Approve direct star counting instead of choosing between two possible counts?
+- source_row: 21
+  activity_id: concept_toy_tidy_probe
+  original_play_frame: Child photographs a toy-room mess, tidies for a short timed challenge, then photographs the after state
+    while AI gives organizing tips during the process.
+  generated_play_frame: Child chooses a toy group, runs a short physical tidy sprint with organizing tips, then confirms the
+    after-state change without unsupported visual-proof claims.
+  preserved:
+  - Physical toy tidy mission.
+  - Short timed cleanup process.
+  - Organizing tips during the process.
+  - After-state confirmation.
+  drift:
+  - Before/after photos are represented by self-report unless the runtime evidence flow supports them.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep the physical tidy-sprint repair; add actual before/after photo capture only when the product evidence
+    policy supports it.
+  product_review_question: Confirm self-reported after-state is acceptable under the minimum evidence contract.
+- source_row: 22
+  activity_id: concept_time_sense_probe
+  original_play_frame: Child closes eyes or waits quietly to feel a duration, then calls stop or compares perceived time with
+    actual elapsed time.
+  generated_play_frame: Child predicts a short duration, receives early/late/close feedback, and tries a better estimate.
+  preserved:
+  - Subjective time estimation.
+  - Predict-and-reveal feedback.
+  - Short upper-bounded timing.
+  drift:
+  - Quiet music/ticking atmosphere is simplified.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep as a close adaptation if product supports safe timing boundaries.
+  product_review_question: Confirm the prediction-feedback format is acceptable for time-sense play.
+- source_row: 23
+  activity_id: concept_one_line_drawing_probe
+  original_play_frame: Child copies a simple one-line drawing from a screen prompt, then shows the finished paper drawing
+    without quality evaluation.
+  generated_play_frame: Child copies or attempts a simple one-line drawing prompt on paper or screen, then shows or self-reports
+    completion without quality evaluation.
+  preserved:
+  - One-line drawing prompt.
+  - Paper/material workflow.
+  - No quality evaluation.
+  drift:
+  - Reference-card display and final evidence may fall back to verbal/self-report mode.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep under the minimum material/evidence contract; upgrade with reference-card display and final-work capture
+    when available.
+  product_review_question: Confirm self-report fallback is acceptable for one-line drawing review packets.
+- source_row: 24
+  activity_id: concept_message_bottle_note_probe
+  original_play_frame: AI tells a warm story from the child's photographed object, then invites the child to write or draw
+    a private kindness note for a parent or friend and place or deliver it.
+  generated_play_frame: Child names a recipient, creates a safe spoken or drawn kindness message, and chooses how it will
+    be saved or shared with caregiver support.
+  preserved:
+  - Warm message for parent or friend.
+  - Drawing/writing option.
+  - Caregiver-aware sharing.
+  drift:
+  - Photo-inspired warm story setup is weakened.
+  - Physical placement or delivery is generalized into save/share.
+  status: minor_adaptation
+  severity: medium
+  recommendation: Restore the photo-inspired warm story and physical delivery option if product wants the original emotional
+    arc.
+  product_review_question: Approve the generalized kindness-message flow?
+- source_row: 25
+  activity_id: concept_award_certificate_probe
+  original_play_frame: AI tells a warm setup, shows a small award inspiration, and helps the child draw a certificate for
+    a family member or friend.
+  generated_play_frame: AI gives a warm award mission, shows or describes positive badge inspiration, and helps the child
+    draw or design a certificate for a family member or friend.
+  preserved:
+  - Warm appreciation setup.
+  - Award inspiration badge support.
+  - Drawn or designed certificate artifact.
+  - Appreciation for a family member, friend, or helper.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned after the certificate-artifact repair.
+  product_review_question: Confirm paper drawing, simple on-screen design, or voice fallback satisfies the minimum certificate
+    workflow.
+- source_row: 26
+  activity_id: concept_career_decision_decide
+  original_play_frame: Role-play starts by assuming a profession, then the child faces a concrete work scenario and makes
+    expert choices.
+  generated_play_frame: Child becomes a firefighter first, then faces a concrete work scenario and makes expert role decisions
+    about response, tool, and safety check.
+  preserved:
+  - Profession-first role-play.
+  - Concrete work scenario.
+  - Decision mechanic inside the professional role.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned after the profession-first repair.
+  product_review_question: Confirm firefighter is an acceptable seed profession for the reviewer packet.
+- source_row: 27
+  activity_id: concept_vegetable_sort_sort
+  original_play_frame: AI introduces vegetable categories, shows common vegetables, and the child sorts them into category
+    groups.
+  generated_play_frame: Child sorts vegetable cards or photographed vegetables by a visible or meaningful rule.
+  preserved:
+  - Vegetable sorting.
+  - Category-rule learning.
+  - Reusable classification pattern.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned.
+  product_review_question: Confirm the vegetable categories are culturally appropriate for the target market.
+- source_row: 28
+  activity_id: concept_how_many_guess_enumerate
+  original_play_frame: Child answers count questions about quantity-bearing attributes, such as how many legs an animal has,
+    optionally with pictures.
+  generated_play_frame: Child estimates how many visible objects are present, then counts with the AI.
+  preserved:
+  - Quantity practice.
+  - Picture-supported counting.
+  drift:
+  - Source focuses on attribute knowledge such as animal legs; generated version focuses on visible object counting.
+  status: minor_adaptation
+  severity: medium
+  recommendation: Review whether visible counting is acceptable, or restore attribute-count prompts like animal legs.
+  product_review_question: Approve visible-object counting in place of attribute-count knowledge?
+- source_row: 29
+  activity_id: concept_flashcards_enumerate
+  original_play_frame: Reusable flashcards show core categories such as colors or animals for quick recognition practice.
+  generated_play_frame: Child recognizes a picture card, names what they see, and answers one tiny follow-up from a reusable
+    flashcard set.
+  preserved:
+  - Reusable picture-card recognition.
+  - Core category practice such as colors, animals, shapes, or objects.
+  - Short follow-up after naming.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned under the accepted prebuilt-card contract.
+  product_review_question: Confirm the reusable flashcard library is acceptable for reviewer packets.
+- source_row: 30
+  activity_id: concept_trivia_game_remember
+  original_play_frame: AI gives a short knowledge or story segment, then asks fun low-pressure recall questions with a progress
+    reward.
+  generated_play_frame: Child answers short memory or knowledge questions and receives a simple explanation.
+  preserved:
+  - Low-pressure trivia/recall.
+  - Knowledge or story memory.
+  drift:
+  - Progress reward such as building a castle is simplified.
+  - The content-output-before-quiz sequence needs to remain explicit in runtime beats.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep as acceptable if runtime beats include a short teaching/story moment before questions.
+  product_review_question: Confirm the simplified reward loop is acceptable.
+- source_row: 31
+  activity_id: concept_recognition_pop_probe
+  original_play_frame: A whack-a-mole-like recognition game shows mixed target and distractor images; the child responds only
+    when the target appears.
+  generated_play_frame: Child compares a spoken target with visible target/distractor cards, makes friendly pop-style matches,
+    and completes one quicker final match without punitive speed pressure.
+  preserved:
+  - Target recognition among distractors.
+  - Tap, point, or spoken choice response.
+  - Friendly pop feedback and a quicker final match.
+  drift:
+  - Whack-a-mole timing and rapid changing targets are softened for safety and V1 implementation.
+  status: minor_adaptation
+  severity: medium
+  recommendation: Keep the careful target-recognition adaptation unless product specifically wants timed whack-style interaction
+    in V1.
+  product_review_question: Confirm non-punitive pop matching is acceptable instead of full whack-a-mole timing.
+- source_row: 32
+  activity_id: concept_word_build_guess_probe
+  original_play_frame: Child says letters to gradually complete an object-related word in a warm non-hangman growth metaphor.
+  generated_play_frame: Child uses age-approved clues and letter choices to grow an object-related word one step at a time,
+    with a voice-only fallback if letter UI state is unavailable.
+  preserved:
+  - Gradual word growth.
+  - Child letter/sound or clue choices.
+  - Warm non-punitive puzzle metaphor.
+  drift:
+  - Clue-path choices are added so the flow works even when direct letter-state UI is unavailable.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep the word-growth adaptation under the minimum state contract; direct spoken-letter mode can be emphasized
+    when UI support is present.
+  product_review_question: Confirm clue-path scaffolding is acceptable for early readers.
+- source_row: 33
+  activity_id: concept_would_you_rather_compare
+  original_play_frame: AI asks playful either/or questions, and the child chooses and can explain the preference.
+  generated_play_frame: Child chooses between two playful options and explains the preference or tradeoff.
+  preserved:
+  - Would-you-rather choice.
+  - Silly playful options.
+  - Preference explanation.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned.
+  product_review_question: Confirm question length and silliness are age-appropriate.
+- source_row: 34
+  activity_id: concept_art_critic_tournament_probe
+  original_play_frame: Child compares two artworks at a time in a bracket or bubble-sort style tournament until one winner
+    remains.
+  generated_play_frame: Child compares approved artwork pairs in a small bracket, chooses favorites with visible evidence,
+    and crowns a gallery winner.
+  preserved:
+  - Two-artwork comparison at each turn.
+  - Bracket/tournament progression.
+  - Child-owned favorite with evidence.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned under the accepted artwork-display and state contract.
+  product_review_question: Confirm the small bracket size is acceptable for T1 review packets.
+- source_row: 35
+  activity_id: concept_color_famous_art_probe
+  original_play_frame: Child's photographed color leads to several famous artworks dominated by that color, with simple background
+    introductions.
+  generated_play_frame: Child starts with a photographed or chosen real-world color, then explores several approved artworks
+    where that color is dominant or important and chooses the strongest color match.
+  preserved:
+  - Child's real-world color launches the activity.
+  - Several approved artworks are tied to the chosen color.
+  - Simple background/visible-color discussion remains child-safe.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned after the real-world-color-to-artwork repair.
+  product_review_question: Confirm approved curated artworks can stand in for famous-art examples in the reviewer packet.
+- source_row: 36
+  activity_id: concept_body_movement_probe
+  original_play_frame: Screen shows simple movement or animal-pose pictures, and the child imitates safe low-risk actions
+    without detection or evaluation.
+  generated_play_frame: AI guides one simple body movement at a time with safety limits and optional movement cards, without
+    pose detection or quality evaluation.
+  preserved:
+  - Simple child-safe movement imitation.
+  - Optional screen picture/card support.
+  - No detection or evaluation of movement quality.
+  drift:
+  - Guidance can run voice-only if movement-card display is unavailable.
+  status: minor_adaptation
+  severity: low
+  recommendation: Keep under the minimum movement-card and safety contract.
+  product_review_question: Confirm voice-only fallback is acceptable when movement cards are unavailable.
+- source_row: 37
+  activity_id: concept_current_topic_interview_deduce
+  original_play_frame: For older children, AI introduces a social or funny discussion topic connected to an object/question,
+    then interviews the child for their viewpoint without strong judgment.
+  generated_play_frame: Child investigates a parent-approved school garden question, gives an opinion, uses evidence, and
+    revises respectfully.
+  preserved:
+  - Opinion interview.
+  - Dialectical discussion without right/wrong pressure.
+  - Older-child reasoning.
+  drift:
+  - Generated example narrows the broad current-topic/object-trigger concept to one school-garden scenario.
+  status: minor_adaptation
+  severity: medium
+  recommendation: Keep if treated as one safe seed scenario; future runtime should retarget to the child's object or approved
+    question.
+  product_review_question: Approve school-garden as the seed scenario for this broad interview format?
+- source_row: 38
+  activity_id: concept_little_poem_build
+  original_play_frame: AI co-creates a short warm or funny rhyming poem from the child's photographed object so the child
+    feels involved.
+  generated_play_frame: Child contributes words, images, or feelings and co-creates a short poem with the AI.
+  preserved:
+  - Co-created poem.
+  - Child contribution.
+  - Object or feeling as source material.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned.
+  product_review_question: Confirm generated poems should emphasize rhyme when age-appropriate.
+- source_row: 39
+  activity_id: concept_travel_planner_predict
+  original_play_frame: Child helps plan a pretend trip for a photographed toy or character by predicting what items are needed
+    for scenarios like rain.
+  generated_play_frame: Child helps plan a pretend trip by predicting what hidden trip cards will need before each reveal.
+  preserved:
+  - Pretend trip planning.
+  - Predict needed items from scenarios.
+  - Real-life planning practice.
+  drift:
+  - Generated hidden-card reveal is a game layer, but it preserves the planning action.
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned.
+  product_review_question: Confirm hidden trip cards are an acceptable planning scaffold.
+- source_row: 40
+  activity_id: concept_quick_silly_decide
+  original_play_frame: AI rapidly asks short silly yes/no or two-choice questions for fast reaction and playful host energy.
+  generated_play_frame: Child answers very short playful choice questions during a transition or warm-up.
+  preserved:
+  - Quick short choices.
+  - Silly low-knowledge play.
+  - Fast host-like rhythm.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: Keep as source-aligned.
+  product_review_question: Confirm runtime should preserve the fast 5-7 question cadence.

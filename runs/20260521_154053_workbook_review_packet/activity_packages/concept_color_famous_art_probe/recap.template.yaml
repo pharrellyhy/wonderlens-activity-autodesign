@@ -1,0 +1,27 @@
+recap_payload:
+  entity: '{runtime_entity}'
+  tier: '{runtime_tier}'
+  age_years: '{runtime_age}'
+  what_we_noticed: color
+  what_we_did: enumerate
+  entity_role: catalyst
+  focal_attribute:
+    token: color_famous_art
+    child_label: '{runtime_focal_label}'
+    badge_emoji_none: true
+  highlight_moment: You connected a real-world color to approved artworks that use the same color.
+  rounds:
+  - '{round_1_summary}'
+  - '{round_2_summary}'
+  - '{round_3_summary}'
+  difficulty_level: 2
+  next_step_hint: Try a new real-world color with the approved artwork set.
+  caregiver_observed: co-explorer
+  reward_badge: color_in_famous_art
+rendered:
+  title: You completed Color In Famous Art today!
+  line_1: You chose a color from your world.
+  line_2: You found approved artworks using that color.
+  line_3: You picked the strongest color match with evidence.
+  badge: Color In Famous Art Badge
+  next: Next time, try a new color and look for more artwork matches.

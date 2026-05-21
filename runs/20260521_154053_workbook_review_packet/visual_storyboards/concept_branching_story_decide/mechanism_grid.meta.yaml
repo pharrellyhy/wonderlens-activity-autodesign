@@ -1,0 +1,49 @@
+activity_id: concept_branching_story_decide
+activity_name: Two-Door Story Quest
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T00:44:27'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05fb7ad588819386035b15c0347a6b.png
+prompt_sha256: 7d57d190a956bd5f82a88c2341834da9537e57f8876262414ad1f03447d63887
+prompt_path: visual_storyboards/concept_branching_story_decide/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_branching_story_decide/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_branching_story_decide
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: Child photographs a toy turtle; the AI makes it the hero of a two-door
+    adventure. A blue door creates a river path, a cloud helper builds a bridge, and
+    the chosen ending becomes the final s...
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction -- You Choose the Path | [adventurous guide
+    tone] "You are the Story Path Chooser. I will offer two next steps. You choose
+    one. The st... | Ideal: "Okay!" / "I cho...'
+  source: 'Step 2: Rule Introduction -- You Choose the Path'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is decide: Round 1 -- Door Choice | [mysterious
+    whisper] "The blue door hums softly. The gold door jingles. Which door does {story_starter}
+    open?" | Ideal: "Blue." / "Gold." | Unexpected:...'
+  source: Round 1 -- Door Choice
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [story reveal tone] "The door opens. If you chose blue, a river
+    path appears. If you chose gold, a bell path appears." | Unexpected: [playful
+    validation] "A red door would be wild. F...'
+  source: Round 1 -- Door Choice
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Helper Choice | [curious narrator tone] "Because of that door,
+    two helpers appear. A sleepy cloud floats by. A tiny drum taps... | Ideal: "Cloud."
+    / "Drum." | Unexpected: "A dino...'
+  source: Round 2 -- Helper Choice
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You did it, Story
+    Path Chooser. You used Perspective. You chose what the hero should do.... | Ideal:
+    "I want another path!" / "I chose it...'
+  source: 'Step 5: Closing + IB Concepts'

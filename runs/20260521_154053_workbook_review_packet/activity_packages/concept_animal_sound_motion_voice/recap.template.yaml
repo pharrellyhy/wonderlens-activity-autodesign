@@ -1,0 +1,33 @@
+recap_payload:
+  entity: "{runtime_entity}"
+  tier: "{runtime_tier}"
+  age_years: "{runtime_age}"
+
+  what_we_noticed: behavior
+  what_we_did: performed
+  entity_role: catalyst
+
+  focal_attribute:
+    token: "animal_voice"
+    child_label: "animal voices"
+    badge_emoji_none: true
+
+  highlight_moment: "You echoed cat and duck sounds on stage."
+
+  sounds:
+    - {animal: cat, sound: meow}
+    - {animal: duck, sound: quack}
+
+  difficulty_level: 1
+  next_step_hint: "Next time, add a feeling voice."
+
+  caregiver_observed: scaffold
+  reward_badge: echo_star
+
+rendered:
+  title: "You were an Echo Star today!"
+  line_1: "You tried animal voices."
+  line_2: "Cat and duck answered your sound."
+  line_3: "Your tiny stage cheered."
+  badge: "Echo Star"
+  next: "Next time, add a feeling voice."

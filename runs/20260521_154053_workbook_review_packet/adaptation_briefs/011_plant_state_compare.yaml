@@ -1,0 +1,47 @@
+adaptation_brief:
+  assignment_index: 11
+  assignment_type: match_pattern
+  activity_concept: Plant State Compare
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_plant_state_compare
+    asset_requirements: null
+    assignment_row: assignment_type=match_pattern, activity_concept=Plant State Compare, concept_source=inputs/source_activity_concepts.md#source_plant_state_compare,
+      description=Child compares a plant's visible state and explains evidence for sprouting blooming wilting dried healthy
+      or fruiting, mechanic=compare, category=cat5, tier=T1, asset_policy=no_assets, activity_id=concept_plant_state_compare,
+      trigger_condition=A plant photo shows a clear visible state
+  input_mode: mapping_informed
+  core_promise: The child compares a plant's visible state, such as sprouting, blooming, wilting, dried, healthy, or fruiting.
+  canonical_mechanic: compare
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: ready_to_generate
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: A plant photo shows a clear visible state
+  entity_role: subject
+  observation_angle: state
+  focal_attribute: visible_plant_state
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: strong
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions: []
+  resolved_blockers: []
+  resolved_blocker_types: []
+  extensibility:
+    entity_binding: parameterized
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - visible_plant_state
+    retargeting_note: Reusable by replacing the runtime topic, entity, or property slot while preserving the compare mechanic.

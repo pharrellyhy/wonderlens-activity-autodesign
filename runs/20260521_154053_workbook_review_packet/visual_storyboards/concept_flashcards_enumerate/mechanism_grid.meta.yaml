@@ -1,0 +1,48 @@
+activity_id: concept_flashcards_enumerate
+activity_name: Picture Pop Cards
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:15:54'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a0602dbadc481938925401af3cb267d.png
+prompt_sha256: d386477ebd80de0f3d1d064c7e96ce3947077b43d8e88d8d01180fe80e4f8957
+prompt_path: visual_storyboards/concept_flashcards_enumerate/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_flashcards_enumerate/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_flashcards_enumerate
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: The screen shows a duck card. The child names it, notices one feature,
+    and answers one tiny follow-up.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Name it. Pick one." |
+    Ideal: "Okay." | Unexpected: "Can I do it my way?" | No response: Child hesitates.
+    | Ideal: [encouraging] "Round one is...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is enumerate: Round 1 -- Name the Picture | [focused
+    playful tone] "What is on this card?" | Ideal: "duck." | Unexpected: "yellow thing."
+    | No response: Child looks at the screen or waits...'
+  source: Round 1 -- Name the Picture
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [bright] "Duck. Token one pops." | Unexpected: [warm redirect]
+    "Yellow thing is close. It is a duck." | No response: [wait 2s] [gentle hint]
+    "Say duck, or point."'
+  source: Round 1 -- Name the Picture
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Answer a Tiny Follow-Up | [focused playful tone] "Does a duck
+    swim?" | Ideal: "swim." | Unexpected: "drive." | No response: Child looks at the
+    screen or waits. | Ideal: [playful]...'
+  source: Round 2 -- Answer a Tiny Follow-Up
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "Picture Namer badge
+    earned. You used Form. You used Function." | Ideal: "Again" or names a favorite
+    round. | Unexpected: Child asks for a...'
+  source: 'Step 5: Closing + IB Concepts'

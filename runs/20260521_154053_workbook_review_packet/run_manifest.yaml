@@ -1,0 +1,1651 @@
+run_id: 20260521_154053_workbook_review_packet
+status: completed
+started_at: '2026-05-21T15:40:53+08:00'
+completed_at: '2026-05-21T16:02:15+08:00'
+source:
+  goal_file: goals/2026-05-21-workbook-to-review-packet-goal.md
+  runbook: run.md
+  review_dashboard_contract: review_dashboard.md
+  assignment_snapshot: runs/20260521_154053_workbook_review_packet/assignment_snapshot.md
+  assignment_scope: all 40 Sheet1 rows from /Users/pharrelly/Downloads/活动库内部初版.xlsx
+  product_contract_override: minimum_unblock_allowed
+  mapping_root: data/mappings_dev20_0318
+  source_files_loaded:
+  - GOAL.md
+  - program.md
+  - templates.md
+  - run.md
+  - review_dashboard.md
+  - runs/README.md
+  - activities/README.md
+  - activities/_schema/tag_block.schema.json
+  - docs/activity_vocabulary.md
+  - docs/game_styles.md
+  - inputs/source_activity_concepts.md
+  source_workbook: /Users/pharrelly/Downloads/活动库内部初版.xlsx
+  normalized_source_snapshot: inputs/source_activity_concepts.md
+  seed_run: runs/20260512_172135_batch5_unblocked
+summary:
+  pending_at_start: 40
+  enrichment_audited_count: 0
+  enrichment_noop_count: 0
+  enriched_count: 0
+  generated_count: 40
+  blocked_count: 0
+  failed_count: 0
+  integrated_asset_count: 12
+  activity_html_export_count: 12
+  source_intent_audit_rows: 40
+  source_intent_aligned_count: 15
+  source_intent_minor_adaptation_count: 25
+  source_intent_drift_count: 0
+  source_intent_product_decision_count: 0
+outputs:
+  review_dashboard: runs/20260521_154053_workbook_review_packet/review.html
+  visual_storyboards: runs/20260521_154053_workbook_review_packet/visual_storyboards
+  storyboard_manifest: runs/20260521_154053_workbook_review_packet/visual_storyboards/storyboard_manifest.yaml
+  integrated_asset_bindings: runs/20260521_154053_workbook_review_packet/integrated_assets/asset_bindings.yaml
+  activity_html_exports: runs/20260521_154053_workbook_review_packet/activity_exports
+  activity_html_export_manifest: runs/20260521_154053_workbook_review_packet/activity_exports/export_manifest.yaml
+  source_intent_audit: runs/20260521_154053_workbook_review_packet/source_comparison/source_intent_audit.yaml
+  source_comparison_review: runs/20260521_154053_workbook_review_packet/source_comparison/product_review_matrix.html
+  enriched_activities: []
+  audited_activities: []
+  generated_activities:
+  - assignment_index: 1
+    assignment: assignment_type=match_pattern, activity_concept=Scavenger Hunt, concept_source=inputs/source_activity_concepts.md#source_scavenger_hunt,
+      description=Child finds and photographs three things that share a color, shape, or category, then names one extra thing
+      they have in common, mechanic=collect, category=cat5, tier=T1, asset_policy=no_assets, activity_id=concept_scavenger_hunt_collect,
+      trigger_condition=Child photographs an object with a clear color, shape, or category feature
+    base_activity_id: concept_scavenger_hunt_collect
+    activity_id: concept_scavenger_hunt_collect
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_scavenger_hunt_collect
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/001_scavenger_hunt.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the collect
+      mechanic.
+    extensibility_notes:
+    - Replace `{runtime_entity}` with any safe photographed object whose visible property can launch the same mechanic.
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 2
+    assignment: assignment_type=match_pattern, activity_concept=Phoneme Treasure Hunt, concept_source=inputs/source_activity_concepts.md#source_phoneme_hunt,
+      description=Child hears a target sound and finds one indoor treasure whose word starts with that sound, mechanic=collect,
+      category=cat5, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#phoneme_letter_card_01,
+      activity_id=concept_phoneme_hunt_collect, trigger_condition=Child enters language treasure-hunt mode or photographs
+      an everyday object suitable for sound play
+    base_activity_id: concept_phoneme_hunt_collect
+    activity_id: concept_phoneme_hunt_collect
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_phoneme_hunt_collect
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/002_phoneme_treasure_hunt.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage:
+    - asset_id: phoneme_letter_card_01
+      concept_ref: source_phoneme_hunt
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4
+      display_location: center_card_area
+      purpose: Give the child a visual reminder of the target sound and letter.
+      prompt_en: Create a simple child-friendly phonics card for the /b/ sound. Show uppercase B and lowercase b in large
+        rounded letters, include one small friendly picture of a ball and one banana, use a clean light background, no extra
+        words, suitable for children ages 4-6.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show the card at task start and briefly again if the child forgets the target sound.
+      fallback_behavior: If the card is unavailable, the AI repeats the target sound by voice only and must not claim the
+        screen is showing a letter.
+      safety_constraints: No real child photos, no brands, no complex text, and no cluttered composition.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `phoneme_letter_card_01` without
+      changing the collect mechanic.
+    extensibility_notes:
+    - Replace `{runtime_entity}` with any safe photographed object whose visible property can launch the same mechanic.
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    - Reuse the activity with another approved asset set by replacing `phoneme_letter_card_01` and preserving the same display
+      and fallback timing.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 3
+    assignment: assignment_type=activity_concept, activity_concept=Branching Choice Story, concept_source=inputs/source_activity_concepts.md#source_branching_story,
+      description=AI tells a story with choice points; the child chooses between two next steps and the story continues from
+      that choice, mechanic=decide, category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_branching_story_decide,
+      trigger_condition=Child enters story mode or photographs a toy or object that can become a story character
+    base_activity_id: concept_branching_story_decide
+    activity_id: concept_branching_story_decide
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_branching_story_decide
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/003_branching_choice_story.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the decide mechanic.
+    extensibility_notes:
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 4
+    assignment: assignment_type=activity_concept, activity_concept=Guess in 10, concept_source=inputs/source_activity_concepts.md#source_guess_in_10,
+      description=AI gives step-by-step clues and the child uses evidence to guess an animal or object, with easier clues
+      if the child gets stuck, mechanic=deduce, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#guess_reference_cards_01,
+      activity_id=concept_guess_in_10_deduce, trigger_condition=Child photographs an animal toy, animal picture, or enters
+      guessing mode
+    base_activity_id: concept_guess_in_10_deduce
+    activity_id: concept_guess_in_10_deduce
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_guess_in_10_deduce
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/004_guess_in_10.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage:
+    - asset_id: guess_reference_cards_01
+      concept_ref: source_guess_in_10
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide optional reference pictures before or after a clue round to reduce frustration.
+      prompt_en: Create a set of friendly reference cards for common animals and household objects for a children's guessing
+        game. Use one centered object per card, plain light background, clear recognizable shapes, soft colors, no text, no
+        scary expressions.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show the matching card after the answer is revealed, or show a partial hint card if the child is stuck.
+      fallback_behavior: If cards are unavailable, the AI continues with voice clues and encouragement and must not claim
+        the screen is showing a picture.
+      safety_constraints: No real child photos, friendly animal expressions, and no dangerous scenes.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `guess_reference_cards_01` without
+      changing the deduce mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `guess_reference_cards_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 5
+    assignment: assignment_type=activity_concept, activity_concept=Animal Sound Imitation, concept_source=inputs/source_activity_concepts.md#source_animal_sound_imitation,
+      description=AI prompts a familiar animal and the child imitates its sound or speaks in that animal role, mechanic=motion_voice,
+      category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#animal_sound_cards_01,
+      activity_id=concept_animal_sound_motion_voice, trigger_condition=Child photographs an animal toy, animal picture, or
+      enters animal-sound mode
+    base_activity_id: concept_animal_sound_motion_voice
+    activity_id: concept_animal_sound_motion_voice
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_animal_sound_motion_voice
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/005_animal_sound_imitation.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage:
+    - asset_id: animal_sound_cards_01
+      concept_ref: source_animal_sound_imitation
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-2
+      display_location: center_card_area
+      purpose: Help the child recognize the animal they are about to imitate.
+      prompt_en: Create a set of friendly animal picture cards for toddlers and preschoolers. Include common animals such
+        as cat, dog, cow, duck, sheep, and lion. Use a plain bright background, simple expressive illustrations, one animal
+        per card, no text, no scary poses.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one animal card each round while the AI invites the child to imitate its sound.
+      fallback_behavior: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing
+        a picture.
+      safety_constraints: No real child photos, no attack or predation scenes, and friendly animal poses only.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `animal_sound_cards_01` without
+      changing the motion_voice mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `animal_sound_cards_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 6
+    assignment: assignment_type=match_pattern, activity_concept=Tiny Curator, concept_source=inputs/source_activity_concepts.md#source_tiny_curator,
+      description=Child finds three or four objects that they think belong together, arranges a tiny exhibition, then explains
+      their grouping rule, mechanic=sort, category=cat5, tier=T2, asset_policy=no_assets, activity_id=concept_tiny_curator_sort,
+      trigger_condition=Child is at home or outdoors with several objects that can be grouped or compared
+    base_activity_id: concept_tiny_curator_sort
+    activity_id: concept_tiny_curator_sort
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_tiny_curator_sort
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/006_tiny_curator.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the sort mechanic.
+    extensibility_notes:
+    - Replace `{runtime_entity}` with any safe photographed object whose visible property can launch the same mechanic.
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 7
+    assignment: assignment_type=activity_concept, activity_concept=Partial Reveal Guess, concept_source=inputs/source_activity_concepts.md#source_partial_reveal_guess,
+      description=Screen shows part of an animal or object; the child guesses the whole thing from visible clues and explains
+      the evidence, mechanic=deduce, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#partial_reveal_cards_01,
+      product_capabilities=requires_asset_display, activity_id=concept_partial_reveal_deduce, trigger_condition=Child photographs
+      an animal toy, animal picture, or enters partial-reveal guessing mode
+    base_activity_id: concept_partial_reveal_deduce
+    activity_id: concept_partial_reveal_deduce
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_partial_reveal_deduce
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/007_partial_reveal_guess.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Prebuilt asset display: Approved minimum asset-display contract: use the declared asset ID, display timing, screen
+      location, and no-display fallback instead of blocking the package.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    asset_usage:
+    - asset_id: partial_reveal_cards_01
+      concept_ref: source_partial_reveal_guess
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4
+      display_location: center_card_area
+      purpose: Provide visible partial evidence so the child can infer the whole animal or object.
+      prompt_en: Create a set of partial-reveal animal guessing cards for children ages 4-6. Each card should show only one
+        distinctive part of a common animal, such as a tiger tail, rabbit ears, elephant trunk, duck feet, or fish scales.
+        Use a consistent soft illustration style, plain light background, no text, no scary details, and keep the cropped
+        part large and easy to inspect.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one partial-reveal card full screen each round. The child observes the part, guesses the whole,
+        and explains the evidence.
+      fallback_behavior: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the
+        screen is showing a picture.
+      safety_constraints: No real child photos, no gore or scary details, no predation scenes, and clear inspectable cropped
+        parts.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `partial_reveal_cards_01` without
+      changing the deduce mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `partial_reveal_cards_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 8
+    assignment: assignment_type=activity_concept, activity_concept=Word Echo Practice, concept_source=inputs/source_activity_concepts.md#source_word_echo_practice,
+      description=AI says a simple word or phrase and the child repeats it back in a playful echo round, mechanic=remember,
+      category=cat1, tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#word_echo_cards_01,
+      activity_id=concept_word_echo_remember, trigger_condition=Child enters language-practice mode or asks what a familiar
+      object is called
+    base_activity_id: concept_word_echo_remember
+    activity_id: concept_word_echo_remember
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_word_echo_remember
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/008_word_echo_practice.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage:
+    - asset_id: word_echo_cards_01
+      concept_ref: source_word_echo_practice
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_1; prod.step_2; prod.step_3.round_1-2; prod.step_4
+      display_location: center_card_area
+      purpose: Provide a simple picture cue for the word the child repeats.
+      prompt_en: Create a child-friendly vocabulary card set for common household objects. Each card shows one centered object,
+        one large simple English word label, a clean light background, soft colors, and no extra text.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one card when introducing a word, then hide or keep it small while the child repeats by voice.
+      fallback_behavior: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
+      safety_constraints: No real child photos, no brands, no complex text, and no cluttered composition.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `word_echo_cards_01` without changing
+      the remember mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `word_echo_cards_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 9
+    assignment: assignment_type=activity_concept, activity_concept=Emotion Reader, concept_source=inputs/source_activity_concepts.md#source_emotion_reader,
+      description=Child notices an obvious expression or body cue and thinks about what feeling or help might fit, mechanic=care,
+      category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#emotion_expression_cards_01,
+      activity_id=concept_emotion_reader_care, trigger_condition=A character animal or story moment shows an obvious emotional
+      expression
+    base_activity_id: concept_emotion_reader_care
+    activity_id: concept_emotion_reader_care
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_emotion_reader_care
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/009_emotion_reader.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage:
+    - asset_id: emotion_expression_cards_01
+      concept_ref: source_emotion_reader
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4
+      display_location: center_card_area
+      purpose: Provide simple character expressions that children can interpret with evidence.
+      prompt_en: Create a set of friendly illustrated character expression cards for children ages 4-7. Include happy, worried,
+        proud, tired, surprised, and frustrated expressions. Use one character per card, clear face and body cue, plain background,
+        no text, no stereotypes, and no real people.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one expression card when asking what the character might feel.
+      fallback_behavior: If cards are unavailable, use a story description of a character's visible cues and avoid claiming
+        the screen shows a face.
+      safety_constraints: No real child faces, no intense distress, no medical or mental-health diagnosis framing.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `emotion_expression_cards_01` without
+      changing the care mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `emotion_expression_cards_01` and preserving the same
+      display and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 10
+    assignment: assignment_type=match_pattern, activity_concept=Plant Parts Explorer, concept_source=inputs/source_activity_concepts.md#source_plant_parts_explorer,
+      description=Child looks at a plant and identifies visible parts such as leaf stem flower fruit seed or root, mechanic=enumerate,
+      category=cat5, tier=T1, asset_policy=no_assets, activity_id=concept_plant_parts_enumerate, trigger_condition=Photo clearly
+      shows a plant with at least two visible parts
+    base_activity_id: concept_plant_parts_enumerate
+    activity_id: concept_plant_parts_enumerate
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_plant_parts_enumerate
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/010_plant_parts_explorer.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the enumerate
+      mechanic.
+    extensibility_notes:
+    - Replace `{runtime_entity}` with any safe photographed object whose visible property can launch the same mechanic.
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 11
+    assignment: assignment_type=match_pattern, activity_concept=Plant State Compare, concept_source=inputs/source_activity_concepts.md#source_plant_state_compare,
+      description=Child compares a plant's visible state and explains evidence for sprouting blooming wilting dried healthy
+      or fruiting, mechanic=compare, category=cat5, tier=T1, asset_policy=no_assets, activity_id=concept_plant_state_compare,
+      trigger_condition=A plant photo shows a clear visible state
+    base_activity_id: concept_plant_state_compare
+    activity_id: concept_plant_state_compare
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_plant_state_compare
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/011_plant_state_compare.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the compare
+      mechanic.
+    extensibility_notes:
+    - Replace `{runtime_entity}` with any safe photographed object whose visible property can launch the same mechanic.
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 12
+    assignment: assignment_type=activity_concept, activity_concept=Color Mixing Board, concept_source=inputs/source_activity_concepts.md#source_color_mixing_board,
+      description=Child chooses or finds two colors predicts what they make together and compares against the mixed result,
+      mechanic=collect, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#color_mixing_board_01,
+      activity_id=concept_color_mixing_collect, trigger_condition=Child notices two colors nearby or selects a color experiment
+      mode
+    base_activity_id: concept_color_mixing_collect
+    activity_id: concept_color_mixing_collect
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_color_mixing_collect
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/012_color_mixing_board.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage:
+    - asset_id: color_mixing_board_01
+      concept_ref: source_color_mixing_board
+      asset_type: ui_overlay
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: support_panel
+      purpose: Support color prediction by showing two color spots combining into a result spot.
+      prompt_en: Create a simple children's color-mixing board with two large empty color circles flowing into one result
+        circle. Use clean white background, soft outline arrows, no text, no paint splashes that obscure the circles, and
+        enough blank space for runtime color overlays.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show the board when the child chooses or finds two colors. Fill or point to the result only if product
+        supports overlays; otherwise use it as a static visual.
+      fallback_behavior: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing
+        colors.
+      safety_constraints: No messy materials requirement, no brands, and no confusing tiny color regions.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `color_mixing_board_01` without
+      changing the collect mechanic.
+    extensibility_notes:
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    - Reuse the activity with another approved asset set by replacing `color_mixing_board_01` and preserving the same display
+      and fallback timing.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 13
+    assignment: assignment_type=activity_concept, activity_concept=Constellation Star Count, concept_source=inputs/source_activity_concepts.md#source_constellation_star_count,
+      description=Child counts visible stars in an approved constellation card or simplified star pattern, mechanic=enumerate,
+      category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#constellation_count_cards_01,
+      product_capabilities=requires_asset_display, activity_id=concept_constellation_star_count_enumerate, trigger_condition=Child
+      chooses a space theme or the screen can show an approved constellation card
+    base_activity_id: concept_constellation_star_count_enumerate
+    activity_id: concept_constellation_star_count_enumerate
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_constellation_star_count_enumerate
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/013_constellation_star_count.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Prebuilt asset display: Approved minimum asset-display contract: use the declared asset ID, display timing, screen
+      location, and no-display fallback instead of blocking the package.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    asset_usage:
+    - asset_id: constellation_count_cards_01
+      concept_ref: source_constellation_star_count
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide clear star patterns for counting and simple constellation talk.
+      prompt_en: Create a set of child-friendly constellation counting cards. Each card shows 4 to 10 bright stars connected
+        by simple thin lines on a dark blue sky background, one pattern per card, no text, no real astronomy labels, no clutter,
+        and high contrast for counting.
+      source: new_ai_generated_asset_or_approved_constellation_set
+      prompt_or_source: new_ai_generated_asset_or_approved_constellation_set
+      display_behavior: Show one card each round so the child can count visible stars.
+      fallback_behavior: If cards are unavailable, use a voice-only imaginary star-counting riddle and do not claim a constellation
+        is displayed.
+      safety_constraints: No scientific claims unless backed by approved metadata, no scary space imagery, and no dense star
+        fields.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `constellation_count_cards_01` without
+      changing the enumerate mechanic.
+    extensibility_notes:
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    - Reuse the activity with another approved asset set by replacing `constellation_count_cards_01` and preserving the same
+      display and fallback timing.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 14
+    assignment: assignment_type=activity_concept, activity_concept=Career Decision, concept_source=inputs/source_activity_concepts.md#source_career_decision,
+      description=Child helps choose what a helper or professional should do in a simple scenario, mechanic=decide, category=cat1,
+      tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#career_portrait_cards_01,
+      activity_id=concept_career_decision_decide, trigger_condition=Child sees a professional role tool uniform vehicle or
+      story character connected to work
+    base_activity_id: concept_career_decision_decide
+    activity_id: concept_career_decision_decide
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_career_decision_decide
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/014_career_decision.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage:
+    - asset_id: career_portrait_cards_01
+      concept_ref: source_career_decision
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide inclusive helper-role visuals for scenario decisions.
+      prompt_en: Create a set of inclusive child-friendly helper-role cards, including doctor, firefighter, chef, gardener,
+        bus driver, teacher, engineer, and artist. Show one adult character per card with one simple tool, plain background,
+        no text, no stereotypes, and no brands.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one role card before asking what the helper should do.
+      fallback_behavior: If cards are unavailable, describe the helper role by voice and avoid claiming the screen shows a
+        person.
+      safety_constraints: Avoid gender, race, or class stereotypes; no emergency gore; no real person photos.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `career_portrait_cards_01` without
+      changing the decide mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `career_portrait_cards_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 15
+    assignment: assignment_type=activity_concept, activity_concept=Vegetable Sort, concept_source=inputs/source_activity_concepts.md#source_vegetable_sort,
+      description=Child sorts vegetable cards or photographed vegetables by a visible or meaningful rule, mechanic=sort, category=cat1,
+      tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#vegetable_sort_cards_01,
+      product_capabilities=requires_asset_display, activity_id=concept_vegetable_sort_sort, trigger_condition=Screen can show
+      vegetable cards or a child photographs several vegetables
+    base_activity_id: concept_vegetable_sort_sort
+    activity_id: concept_vegetable_sort_sort
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_vegetable_sort_sort
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/015_vegetable_sort.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Prebuilt asset display: Approved minimum asset-display contract: use the declared asset ID, display timing, screen
+      location, and no-display fallback instead of blocking the package.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    asset_usage:
+    - asset_id: vegetable_sort_cards_01
+      concept_ref: source_vegetable_sort
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_1; prod.step_2; prod.step_3.round_1-3; prod.step_4
+      display_location: center_card_area
+      purpose: Provide vegetable cards that can be sorted by color, shape, edible part, or cooking use.
+      prompt_en: Create a set of clear vegetable picture cards for children ages 4-7. Include carrot, broccoli, tomato, potato,
+        corn, cucumber, pumpkin, and peas. Use one vegetable per card, plain light background, realistic but friendly illustration,
+        no text, no brands, and clear color and shape.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show a small set of cards and ask the child to choose a grouping rule.
+      fallback_behavior: If cards are unavailable, use photographed vegetables or a voice-only sorting prompt and do not claim
+        cards are shown.
+      safety_constraints: No choking imagery, no knives, no cooking hazards, and no brand packaging.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `vegetable_sort_cards_01` without
+      changing the sort mechanic.
+    extensibility_notes:
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    - Reuse the activity with another approved asset set by replacing `vegetable_sort_cards_01` and preserving the same display
+      and fallback timing.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 16
+    assignment: assignment_type=activity_concept, activity_concept=How Many Guess, concept_source=inputs/source_activity_concepts.md#source_how_many_guess,
+      description=Child estimates how many objects are visible then counts together with the AI, mechanic=enumerate, category=cat1,
+      tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#how_many_count_cards_01,
+      product_capabilities=requires_asset_display, activity_id=concept_how_many_guess_enumerate, trigger_condition=Screen
+      can show a small set of objects or the camera sees countable items
+    base_activity_id: concept_how_many_guess_enumerate
+    activity_id: concept_how_many_guess_enumerate
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_how_many_guess_enumerate
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/016_how_many_guess.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Prebuilt asset display: Approved minimum asset-display contract: use the declared asset ID, display timing, screen
+      location, and no-display fallback instead of blocking the package.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    asset_usage:
+    - asset_id: how_many_count_cards_01
+      concept_ref: source_how_many_guess
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show small countable sets for estimate-then-count rounds.
+      prompt_en: Create a set of counting cards for children ages 4-6. Each card shows 3 to 10 identical or related objects,
+        such as stars, apples, buttons, shells, or toy cars. Use clear spacing, plain background, no text, no overlapping
+        objects, and high contrast for counting.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one card, ask the child to guess how many, then count together.
+      fallback_behavior: If cards are unavailable, use real photographed countable items or voice-only counting and do not
+        claim a card is displayed.
+      safety_constraints: No tiny choking hazard emphasis, no clutter, no brands, and no confusing overlapping objects.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `how_many_count_cards_01` without
+      changing the enumerate mechanic.
+    extensibility_notes:
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    - Reuse the activity with another approved asset set by replacing `how_many_count_cards_01` and preserving the same display
+      and fallback timing.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 17
+    assignment: assignment_type=activity_concept, activity_concept=Flashcards, concept_source=inputs/source_activity_concepts.md#source_flashcards,
+      description=Child recognizes a picture card names what they see and answers one tiny follow-up, mechanic=enumerate,
+      category=cat1, tier=T0, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#generic_flashcard_library_01,
+      product_capabilities=requires_asset_display, activity_id=concept_flashcards_enumerate, trigger_condition=Parent selects
+      a vocabulary shape color animal or object-recognition practice mode
+    base_activity_id: concept_flashcards_enumerate
+    activity_id: concept_flashcards_enumerate
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_flashcards_enumerate
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/017_flashcards.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Prebuilt asset display: Approved minimum asset-display contract: use the declared asset ID, display timing, screen
+      location, and no-display fallback instead of blocking the package.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    asset_usage:
+    - asset_id: generic_flashcard_library_01
+      concept_ref: source_flashcards
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-2
+      display_location: center_card_area
+      purpose: Provide simple picture-first recognition cards.
+      prompt_en: Create a generic children's flashcard library for common objects, colors, shapes, animals, and foods. Use
+        one clear subject per card, plain light background, no extra text except optional single-word labels in a separate
+        variant, no brands, and consistent friendly illustration style.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one card at a time and ask the child to name or identify it.
+      fallback_behavior: If cards are unavailable, use a photographed object or voice-only recognition prompt and do not claim
+        the screen shows a card.
+      safety_constraints: No real child photos, no copyrighted characters, no dangerous objects, and no cluttered scenes.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `generic_flashcard_library_01` without
+      changing the enumerate mechanic.
+    extensibility_notes:
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    - Reuse the activity with another approved asset set by replacing `generic_flashcard_library_01` and preserving the same
+      display and fallback timing.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 18
+    assignment: assignment_type=activity_concept, activity_concept=Trivia Game, concept_source=inputs/source_activity_concepts.md#source_trivia_game,
+      description=Child answers short memory or knowledge questions and receives a simple explanation, mechanic=remember,
+      category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#trivia_reward_board_01,
+      activity_id=concept_trivia_game_remember, trigger_condition=Child has just explored a topic and can answer short fact
+      or memory questions
+    base_activity_id: concept_trivia_game_remember
+    activity_id: concept_trivia_game_remember
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_trivia_game_remember
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/018_trivia_game.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage:
+    - asset_id: trivia_reward_board_01
+      concept_ref: source_trivia_game
+      asset_type: ui_overlay
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: support_panel
+      purpose: Optionally visualize progress through trivia rounds.
+      prompt_en: Create a simple child-friendly trivia progress board with five empty star spaces and a small castle or clubhouse
+        outline at the end. Use warm colors, clean shapes, no text, no competitive ranking, no brands, and enough blank space
+        for runtime stars.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show progress only if product can update state after each answer.
+      fallback_behavior: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are
+        being added.
+      safety_constraints: No leaderboards, no shame states, no gambling-like reward visuals, and no brands.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `trivia_reward_board_01` without
+      changing the remember mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `trivia_reward_board_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 19
+    assignment: assignment_type=activity_concept, activity_concept=Would You Rather, concept_source=inputs/source_activity_concepts.md#source_would_you_rather,
+      description=Child chooses between two playful options and explains the preference or tradeoff, mechanic=compare, category=cat1,
+      tier=T1, asset_policy=no_assets, activity_id=concept_would_you_rather_compare, trigger_condition=Conversation break
+      story reflection or choice-making activity
+    base_activity_id: concept_would_you_rather_compare
+    activity_id: concept_would_you_rather_compare
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_would_you_rather_compare
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/019_would_you_rather.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the compare
+      mechanic.
+    extensibility_notes:
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 20
+    assignment: assignment_type=activity_concept, activity_concept=Current Topic Interview, concept_source=inputs/source_activity_concepts.md#source_current_topic_interview,
+      description=Child discusses an age-appropriate topic by giving an opinion and a reason, mechanic=deduce, category=cat1,
+      tier=T2, asset_policy=no_assets, activity_id=concept_current_topic_interview_deduce, trigger_condition=Older child and
+      parent select an age-appropriate news school community or nature topic
+    base_activity_id: concept_current_topic_interview_deduce
+    activity_id: concept_current_topic_interview_deduce
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_current_topic_interview_deduce
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/020_current_topic_interview.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the deduce mechanic.
+    extensibility_notes:
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 21
+    assignment: assignment_type=activity_concept, activity_concept=Little Poem Generator, concept_source=inputs/source_activity_concepts.md#source_little_poem_generator,
+      description=Child contributes words images or feelings and co-creates a short poem with the AI, mechanic=build, category=cat1,
+      tier=T1, asset_policy=no_assets, activity_id=concept_little_poem_build, trigger_condition=Child photographs an object
+      chooses a feeling or names a favorite topic
+    base_activity_id: concept_little_poem_build
+    activity_id: concept_little_poem_build
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_little_poem_build
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/021_little_poem_generator.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the build mechanic.
+    extensibility_notes:
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 22
+    assignment: assignment_type=activity_concept, activity_concept=Travel Planner, concept_source=inputs/source_activity_concepts.md#source_travel_planner,
+      description=Child helps plan a pretend trip by choosing what to pack how to travel and what might happen, mechanic=predict,
+      category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#travel_planning_cards_01,
+      activity_id=concept_travel_planner_predict, trigger_condition=Child asks about a place weather vehicle animal habitat
+      or character journey
+    base_activity_id: concept_travel_planner_predict
+    activity_id: concept_travel_planner_predict
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_travel_planner_predict
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/022_travel_planner.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage:
+    - asset_id: travel_planning_cards_01
+      concept_ref: source_travel_planner
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Support pretend trip planning with visual choices.
+      prompt_en: Create a set of pretend travel planning cards for children. Include suitcase, water bottle, map, train, bus,
+        walking shoes, raincoat, snack, and camera. Use simple friendly illustrations, plain background, no text, no brands,
+        and no real travel booking interface.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show a small group of cards when asking what to pack or how to travel.
+      fallback_behavior: If cards are unavailable, run the planning conversation by voice only.
+      safety_constraints: No real booking, no unsafe travel instructions, no location tracking, and no brands.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `travel_planning_cards_01` without
+      changing the predict mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `travel_planning_cards_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 23
+    assignment: assignment_type=activity_concept, activity_concept=Quick and Silly Questions, concept_source=inputs/source_activity_concepts.md#source_quick_silly_questions,
+      description=Child answers very short playful choice questions during a transition or warm-up, mechanic=decide, category=cat1,
+      tier=T0, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#quick_silly_countdown_01,
+      activity_id=concept_quick_silly_decide, trigger_condition=Light transition waiting moment or warm-up conversation
+    base_activity_id: concept_quick_silly_decide
+    activity_id: concept_quick_silly_decide
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_quick_silly_decide
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/023_quick_and_silly_questions.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers: []
+    resolved_blocker_types: []
+    asset_usage:
+    - asset_id: quick_silly_countdown_01
+      concept_ref: source_quick_silly_questions
+      asset_type: ui_overlay
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-2
+      display_location: top_prompt_or_progress_overlay
+      purpose: Optionally add a playful countdown or prompt card for quick silly questions.
+      prompt_en: Create a simple playful countdown overlay for children's quick questions. Use three large friendly countdown
+        circles, bright but calm colors, no text except numerals 3, 2, 1, no brands, and enough blank space for a spoken prompt.
+      source: new_ai_generated_asset_or_runtime_ui
+      prompt_or_source: new_ai_generated_asset_or_runtime_ui
+      display_behavior: Show the countdown only if product supports short stateful prompt timing.
+      fallback_behavior: If countdown UI is unavailable, ask the quick questions by voice only and do not claim a timer is
+        on screen.
+      safety_constraints: No pressure, no buzzer shame, no flashing effects, and no competitive scoring.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `quick_silly_countdown_01` without
+      changing the decide mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `quick_silly_countdown_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 24
+    assignment: assignment_type=capability_probe, activity_concept=Coloring Game, concept_source=inputs/source_activity_concepts.md#source_coloring_game,
+      description=Screen shows line art; the child chooses colors by taking photos and AI fills regions to create a shareable
+      artwork, mechanic=build, category=cat5, tier=T1, asset_policy=runtime_generated, asset_requirements=inputs/source_activity_concepts.md#runtime_coloring_line_art_01,
+      product_capabilities=requires_generated_image,requires_coloring_ui,requires_ui_state, activity_id=concept_coloring_game_probe,
+      trigger_condition=Child photographs an object with a clear color or enters coloring mode
+    base_activity_id: concept_coloring_game_probe
+    activity_id: concept_coloring_game_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_coloring_game_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/024_coloring_game.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum runtime-image policy: use the declared asset prompt, safety rules, latency cap, and no-image fallback
+      instead of blocking the package.'
+    - 'Approved minimum coloring/recoloring contract: selectable regions, child color input, persistence rules, and a voice-only
+      fallback are allowed.'
+    - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and
+      a stateless fallback.'
+    resolved_blocker_types:
+    - Runtime image generation
+    - Coloring or recoloring UI
+    - UI state or progress memory
+    asset_usage:
+    - asset_id: runtime_coloring_line_art_01
+      concept_ref: source_coloring_game
+      asset_type: line_art
+      requiredness: required
+      generation_timing: runtime_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: full_screen_canvas
+      purpose: Convert a photographed object into a fillable line drawing and apply colors chosen from the child's photos.
+      prompt_en: Generate a simple coloring-page line drawing based on the photographed object. Use clean black outlines,
+        3 to 5 large enclosed regions for coloring, no shading, no text, no background clutter, child-friendly proportions,
+        and clear separation between regions.
+      source: future_runtime_image_generation
+      prompt_or_source: future_runtime_image_generation
+      display_behavior: Show the line art at runtime and fill a selected region after each child color photo.
+      fallback_behavior: 'Use a no-image color-plan fallback: the child names colors and regions verbally, and the screen
+        shows text/color chips without claiming generated line art exists.'
+      safety_constraints: Do not generate real child portraits, copyrighted characters, or detailed dangerous objects.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `runtime_coloring_line_art_01` without
+      changing the build mechanic.
+    extensibility_notes:
+    - Replace `{runtime_entity}` with any safe photographed object whose visible property can launch the same mechanic.
+    - Reuse the activity with another approved asset set by replacing `runtime_coloring_line_art_01` and preserving the same
+      display and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 25
+    assignment: assignment_type=capability_probe, activity_concept=Guided Drawing, concept_source=inputs/source_activity_concepts.md#source_guided_drawing,
+      description=AI guides the child to use paper and pencil to complete a simple drawing step by step, then the child photographs
+      the finished work, mechanic=build, category=cat3, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#guided_drawing_step_cards_01,
+      product_capabilities=requires_materials,before_after_risk, activity_id=concept_guided_drawing_probe, trigger_condition=Child
+      is indoors and photographs an object that could become a drawing theme
+    base_activity_id: concept_guided_drawing_probe
+    activity_id: concept_guided_drawing_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_guided_drawing_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/025_guided_drawing.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence
+      are documented.'
+    - 'Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual
+      verification.'
+    resolved_blocker_types:
+    - Cat3 material workflow
+    - Before/after evidence
+    asset_usage:
+    - asset_id: guided_drawing_step_cards_01
+      concept_ref: source_guided_drawing
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide optional visual steps for a simple drawing task.
+      prompt_en: Create a set of step-by-step drawing cards for children ages 4-6. Show how to draw a simple friendly object
+        in 4 clear steps using thick black sketch lines, large shapes, no text, minimal details, and a plain white background.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one step card at a time while the AI leaves enough time for the child to draw on paper.
+      fallback_behavior: If step cards are unavailable, use voice-only step descriptions with caregiver setup, self-report
+        completion, and no drawing-quality assessment.
+      safety_constraints: No real child photos, no fine-copying requirement, and only simple non-dangerous drawing themes.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `guided_drawing_step_cards_01` without
+      changing the build mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `guided_drawing_step_cards_01` and preserving the same
+      display and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 26
+    assignment: assignment_type=capability_probe, activity_concept=Building Challenge, concept_source=inputs/source_activity_concepts.md#source_building_challenge,
+      description=Child uses blocks bricks or household materials to build a simple target, mechanic=build, category=cat3,
+      tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#building_reference_cards_01,
+      product_capabilities=requires_materials,requires_asset_display,before_after_risk, activity_id=concept_building_challenge_probe,
+      trigger_condition=Parent or child selects a hands-on build mode and has materials available
+    base_activity_id: concept_building_challenge_probe
+    activity_id: concept_building_challenge_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_building_challenge_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/026_building_challenge.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence
+      are documented.'
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    - 'Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual
+      verification.'
+    resolved_blocker_types:
+    - Cat3 material workflow
+    - Prebuilt asset display
+    - Before/after evidence
+    asset_usage:
+    - asset_id: building_reference_cards_01
+      concept_ref: source_building_challenge
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show simple build targets for hands-on block or recycled-material construction.
+      prompt_en: Create a set of simple construction challenge cards for children ages 5-8. Show one build idea per card,
+        such as bridge, tower, animal home, ramp, or tiny city. Use blocky child-friendly shapes, clean background, no text,
+        no brands, and visible simple structure.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one build target before the child starts planning and building.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: No unsafe structures, sharp tools, choking hazards, or dangerous material suggestions.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `building_reference_cards_01` without
+      changing the build mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `building_reference_cards_01` and preserving the same
+      display and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 27
+    assignment: assignment_type=capability_probe, activity_concept=Story Challenge Unlock, concept_source=inputs/source_activity_concepts.md#source_story_challenge_unlock,
+      description=A story pauses at a challenge point and the child completes a quick task to unlock the next beat, mechanic=imagine,
+      category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#story_unlock_cards_01,
+      product_capabilities=requires_ui_state,requires_asset_display, activity_id=concept_story_unlock_probe, trigger_condition=Child
+      reaches a story pause point and can complete a quick challenge to continue
+    base_activity_id: concept_story_unlock_probe
+    activity_id: concept_story_unlock_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_story_unlock_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/027_story_challenge_unlock.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and
+      a stateless fallback.'
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    resolved_blocker_types:
+    - UI state or progress memory
+    - Prebuilt asset display
+    asset_usage:
+    - asset_id: story_unlock_cards_01
+      concept_ref: source_story_challenge_unlock
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show a simple locked story door, token, or next-scene card during a story challenge.
+      prompt_en: Create a set of child-friendly story unlock cards. Each card shows a magical door, path marker, treasure
+        token, or story page waiting to open. Use warm illustrated style, no text, no scary elements, and clear central object.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show the card at a story pause point and change to the next scene only when product unlock state is
+        supported.
+      fallback_behavior: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
+      safety_constraints: No frightening doors, traps, weapons, or branded characters.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `story_unlock_cards_01` without
+      changing the imagine mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `story_unlock_cards_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 28
+    assignment: assignment_type=capability_probe, activity_concept=Classic Music And Movement, concept_source=inputs/source_activity_concepts.md#source_classic_music_movement,
+      description=Child moves their body in response to music mood or rhythm cues, mechanic=motion_voice, category=cat1, tier=T0,
+      asset_policy=no_assets, product_capabilities=requires_motion_safety, activity_id=concept_classic_music_movement_probe,
+      trigger_condition=Parent starts a movement break and the environment is open calm and safe
+    base_activity_id: concept_classic_music_movement_probe
+    activity_id: concept_classic_music_movement_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_classic_music_movement_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/028_classic_music_and_movement.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum motion policy: caregiver gating, space check, low-risk movement set, and prohibited motions are documented.'
+    resolved_blocker_types:
+    - Motion safety
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the motion_voice
+      mechanic.
+    extensibility_notes:
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 29
+    assignment: assignment_type=capability_probe, activity_concept=Children's Yoga, concept_source=inputs/source_activity_concepts.md#source_childrens_yoga,
+      description=AI guides a short child-safe pose routine using animal or object metaphors, mechanic=motion_voice, category=cat1,
+      tier=T0, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#childrens_yoga_pose_cards_01,
+      product_capabilities=requires_asset_display,requires_motion_safety, activity_id=concept_childrens_yoga_probe, trigger_condition=Parent
+      selects a calm movement routine and the child has enough space
+    base_activity_id: concept_childrens_yoga_probe
+    activity_id: concept_childrens_yoga_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_childrens_yoga_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/029_childrens_yoga.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    - 'Approved minimum motion policy: caregiver gating, space check, low-risk movement set, and prohibited motions are documented.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    - Motion safety
+    asset_usage:
+    - asset_id: childrens_yoga_pose_cards_01
+      concept_ref: source_childrens_yoga
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-2
+      display_location: center_pose_card
+      purpose: Show approved, age-safe pose references for a calm movement routine.
+      prompt_en: Create a set of child-safe yoga pose cards using a friendly non-real child-like character. Include simple
+        poses inspired by tree, cat, butterfly, and star. Use a clean background, no text, gentle proportions, stable poses
+        only, and no extreme flexibility.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one pose card per round while the AI gives short safety-limited guidance.
+      fallback_behavior: Use voice-only safe movement prompts with caregiver space check, or stop the movement activity without
+        claiming a pose card is visible.
+      safety_constraints: No real child photos, no extreme stretches, no inversions, no balance-risk poses, and no medical
+        claims.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `childrens_yoga_pose_cards_01` without
+      changing the motion_voice mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `childrens_yoga_pose_cards_01` and preserving the same
+      display and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 30
+    assignment: assignment_type=capability_probe, activity_concept=Emotion Color Outfit, concept_source=inputs/source_activity_concepts.md#source_emotion_color_outfit,
+      description=Child uses colors to represent feelings then sees or imagines a character outfit matching that feeling,
+      mechanic=care, category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#emotion_color_character_01,
+      product_capabilities=requires_asset_display,requires_coloring_ui,requires_ui_state, activity_id=concept_emotion_color_outfit_probe,
+      trigger_condition=Child names a mood or chooses a color to represent a feeling
+    base_activity_id: concept_emotion_color_outfit_probe
+    activity_id: concept_emotion_color_outfit_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_emotion_color_outfit_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/030_emotion_color_outfit.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    - 'Approved minimum coloring/recoloring contract: selectable regions, child color input, persistence rules, and a voice-only
+      fallback are allowed.'
+    - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and
+      a stateless fallback.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    - Coloring or recoloring UI
+    - UI state or progress memory
+    asset_usage:
+    - asset_id: emotion_color_character_01
+      concept_ref: source_emotion_color_outfit
+      asset_type: character_image
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: support_panel
+      purpose: Show a character whose outfit can reflect the child's chosen emotion color.
+      prompt_en: Create a simple friendly character template for an emotion color activity. The character should have a plain
+        outfit with large clean regions that can be recolored, neutral expression, light background, no text, no brands, and
+        no complex details.
+      source: new_ai_generated_asset_or_future_avatar_renderer
+      prompt_or_source: new_ai_generated_asset_or_future_avatar_renderer
+      display_behavior: Show the character before the child chooses an emotion color, then update the outfit only if recoloring
+        UI is supported.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: No real child photos, no stereotypes about colors or feelings, and no mental-health diagnosis framing.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `emotion_color_character_01` without
+      changing the care mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `emotion_color_character_01` and preserving the same
+      display and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 31
+    assignment: assignment_type=capability_probe, activity_concept=Toy Tidy Challenge, concept_source=inputs/source_activity_concepts.md#source_toy_tidy_challenge,
+      description=Child sorts toys or household objects using a simple cleanup rule, mechanic=sort, category=cat5, tier=T1,
+      asset_policy=no_assets, product_capabilities=requires_ui_state,before_after_risk, activity_id=concept_toy_tidy_probe,
+      trigger_condition=Parent starts a tidy-up mission and the child has several visible toys or household items
+    base_activity_id: concept_toy_tidy_probe
+    activity_id: concept_toy_tidy_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_toy_tidy_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/031_toy_tidy_challenge.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and
+      a stateless fallback.'
+    - 'Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual
+      verification.'
+    resolved_blocker_types:
+    - UI state or progress memory
+    - Before/after evidence
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the sort mechanic.
+    extensibility_notes:
+    - Replace `{runtime_entity}` with any safe photographed object whose visible property can launch the same mechanic.
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 32
+    assignment: assignment_type=capability_probe, activity_concept=Time Sense Challenge, concept_source=inputs/source_activity_concepts.md#source_time_sense_challenge,
+      description=Child predicts when a short amount of time has passed then checks the result, mechanic=predict, category=cat1,
+      tier=T1, asset_policy=no_assets, product_capabilities=requires_ui_state, activity_id=concept_time_sense_probe, trigger_condition=Child
+      can sit safely and make a short time estimate
+    base_activity_id: concept_time_sense_probe
+    activity_id: concept_time_sense_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_time_sense_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/032_time_sense_challenge.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and
+      a stateless fallback.'
+    resolved_blocker_types:
+    - UI state or progress memory
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the predict
+      mechanic.
+    extensibility_notes:
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 33
+    assignment: assignment_type=capability_probe, activity_concept=One-Line Drawing Challenge, concept_source=inputs/source_activity_concepts.md#source_one_line_drawing,
+      description=Child tries to draw a target without lifting the pencil or finger, mechanic=build, category=cat3, tier=T1,
+      asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#one_line_drawing_cards_01, product_capabilities=requires_materials,requires_asset_display,before_after_risk,
+      activity_id=concept_one_line_drawing_probe, trigger_condition=Child has paper or a drawing surface and chooses a drawing
+      challenge
+    base_activity_id: concept_one_line_drawing_probe
+    activity_id: concept_one_line_drawing_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_one_line_drawing_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/033_one_line_drawing_challenge.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence
+      are documented.'
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    - 'Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual
+      verification.'
+    resolved_blocker_types:
+    - Cat3 material workflow
+    - Prebuilt asset display
+    - Before/after evidence
+    asset_usage:
+    - asset_id: one_line_drawing_cards_01
+      concept_ref: source_one_line_drawing
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show simple one-line drawing targets.
+      prompt_en: Create a set of one-line drawing challenge cards for children ages 5-8. Each card shows one simple object
+        made from a continuous thick black line, such as a house, fish, flower, car, or snail. Use plain white background,
+        no text, and easy-to-follow shapes.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one target before the child attempts the drawing.
+      fallback_behavior: Use a voice-only path-planning challenge and child self-report; do not claim a drawing card or drawing
+        verification is available.
+      safety_constraints: No fine-copying pressure, no copyrighted characters, and no unsafe drawing themes.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `one_line_drawing_cards_01` without
+      changing the build mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `one_line_drawing_cards_01` and preserving the same
+      display and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 34
+    assignment: assignment_type=capability_probe, activity_concept=Message Bottle Note, concept_source=inputs/source_activity_concepts.md#source_message_bottle_note,
+      description=Child creates a short kindness note or message for someone else, mechanic=care, category=cat3, tier=T1,
+      asset_policy=no_assets, product_capabilities=requires_materials,before_after_risk,ocr_risk, activity_id=concept_message_bottle_note_probe,
+      trigger_condition=Parent starts a writing or kindness-note activity
+    base_activity_id: concept_message_bottle_note_probe
+    activity_id: concept_message_bottle_note_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_message_bottle_note_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/034_message_bottle_note.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence
+      are documented.'
+    - 'Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual
+      verification.'
+    - 'Approved minimum text policy: the child can speak text aloud or self-report; the AI does not claim to read handwriting
+      unless OCR is enabled.'
+    resolved_blocker_types:
+    - Cat3 material workflow
+    - Before/after evidence
+    - OCR or text handling
+    asset_usage: []
+    extensibility_summary: Reusable by replacing the runtime topic, entity, or property slot while preserving the care mechanic.
+    extensibility_notes:
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 35
+    assignment: assignment_type=capability_probe, activity_concept=Award Certificate, concept_source=inputs/source_activity_concepts.md#source_award_certificate,
+      description=Child makes or designs an award for someone who helped tried hard or deserves appreciation, mechanic=care,
+      category=cat3, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#award_inspiration_badges_01,
+      product_capabilities=requires_materials,requires_asset_display,before_after_risk, activity_id=concept_award_certificate_probe,
+      trigger_condition=Child names someone who helped tried hard or deserves appreciation
+    base_activity_id: concept_award_certificate_probe
+    activity_id: concept_award_certificate_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_award_certificate_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/035_award_certificate.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence
+      are documented.'
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    - 'Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual
+      verification.'
+    resolved_blocker_types:
+    - Cat3 material workflow
+    - Prebuilt asset display
+    - Before/after evidence
+    asset_usage:
+    - asset_id: award_inspiration_badges_01
+      concept_ref: source_award_certificate
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide simple positive badge ideas for an award certificate.
+      prompt_en: Create a set of friendly award badge illustrations for children. Include badges for kindness, trying hard,
+        helping, bravery, creativity, and teamwork. Use simple shapes, warm colors, no text, no medals with military styling,
+        and no brands.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show badges only as inspiration if certificate creation support exists.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: No competitive ranking, no shaming, no real child photos, and no exclusionary imagery.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `award_inspiration_badges_01` without
+      changing the care mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `award_inspiration_badges_01` and preserving the same
+      display and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 36
+    assignment: assignment_type=capability_probe, activity_concept=Recognition Pop Challenge, concept_source=inputs/source_activity_concepts.md#source_whack_a_mole_recognition,
+      description=Child quickly chooses matching target pictures from a changing set, mechanic=compare, category=cat1, tier=T1,
+      asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#recognition_challenge_cards_01,
+      product_capabilities=requires_asset_display,requires_ui_state, activity_id=concept_recognition_pop_probe, trigger_condition=Product
+      has a tap-based recognition game surface
+    base_activity_id: concept_recognition_pop_probe
+    activity_id: concept_recognition_pop_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_recognition_pop_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/036_recognition_pop_challenge.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and
+      a stateless fallback.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    - UI state or progress memory
+    asset_usage:
+    - asset_id: recognition_challenge_cards_01
+      concept_ref: source_whack_a_mole_recognition
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide target and distractor images for a tap-based recognition challenge.
+      prompt_en: Create a set of simple recognition challenge cards for children. Include target and distractor objects with
+        clear differences in shape, color, or category. Use one object per card, plain background, no text, no brands, and
+        consistent friendly style.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show multiple cards only within a supported tap-based game surface.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: Avoid violent whack imagery, no weapons, no scary targets, and no punitive feedback.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `recognition_challenge_cards_01`
+      without changing the compare mechanic.
+    extensibility_notes:
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    - Reuse the activity with another approved asset set by replacing `recognition_challenge_cards_01` and preserving the
+      same display and fallback timing.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 37
+    assignment: assignment_type=capability_probe, activity_concept=Word Build Guess, concept_source=inputs/source_activity_concepts.md#source_word_build_guess,
+      description=Child chooses letters or answers clues to reveal a word step by step, mechanic=decide, category=cat1, tier=T1,
+      asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#word_growth_ui_01, product_capabilities=requires_asset_display,requires_ui_state,
+      activity_id=concept_word_build_guess_probe, trigger_condition=Product has a text-aware word puzzle mode with parent
+      approval for reading level
+    base_activity_id: concept_word_build_guess_probe
+    activity_id: concept_word_build_guess_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_word_build_guess_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/037_word_build_guess.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and
+      a stateless fallback.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    - UI state or progress memory
+    asset_usage:
+    - asset_id: word_growth_ui_01
+      concept_ref: source_word_build_guess
+      asset_type: ui_overlay
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: top_prompt_or_progress_overlay
+      purpose: Show a constructive word reveal surface for letter or clue guesses.
+      prompt_en: Create a child-friendly word-growth puzzle screen concept. Show a row of blank letter tiles that can fill
+        in, a small growing plant or building progress visual, clean background, no hangman imagery, no scary elements, and
+        no extra text beyond blank tiles.
+      source: future_runtime_ui_or_new_ai_generated_asset
+      prompt_or_source: future_runtime_ui_or_new_ai_generated_asset
+      display_behavior: Show and update letter tiles only if product supports word puzzle state.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: No hangman imagery, no punishment, no shame feedback, and age-appropriate vocabulary only.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `word_growth_ui_01` without changing
+      the decide mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `word_growth_ui_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 38
+    assignment: assignment_type=capability_probe, activity_concept=Art Critic Tournament, concept_source=inputs/source_activity_concepts.md#source_art_critic_tournament,
+      description=Child compares two approved artworks at a time and chooses a favorite until one wins, mechanic=compare,
+      category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#artwork_tournament_set_01,
+      product_capabilities=requires_asset_display,requires_ui_state, activity_id=concept_art_critic_tournament_probe, trigger_condition=Product
+      can show two approved artworks side by side and remember tournament progress
+    base_activity_id: concept_art_critic_tournament_probe
+    activity_id: concept_art_critic_tournament_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_art_critic_tournament_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/038_art_critic_tournament.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and
+      a stateless fallback.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    - UI state or progress memory
+    asset_usage:
+    - asset_id: artwork_tournament_set_01
+      concept_ref: source_art_critic_tournament
+      asset_type: reference_image
+      requiredness: required
+      generation_timing: display_existing
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: split_or_center_artwork_panel
+      purpose: Provide approved artwork pairs for comparison and tournament choice.
+      prompt_en: No image generation prompt. Use a curated, rights-cleared artwork set with metadata for artist, title, visual
+        features, and child-safe discussion notes.
+      source: approved_public_domain_or_licensed_artwork_set
+      prompt_or_source: approved_public_domain_or_licensed_artwork_set
+      display_behavior: Show two artworks side by side only if product supports artwork display and tournament state.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: Use rights-cleared, age-appropriate artworks only; no graphic violence, explicit content, or sensitive
+        religious/political framing for young children.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `artwork_tournament_set_01` without
+      changing the compare mechanic.
+    extensibility_notes:
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    - Reuse the activity with another approved asset set by replacing `artwork_tournament_set_01` and preserving the same
+      display and fallback timing.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 39
+    assignment: assignment_type=capability_probe, activity_concept=Color In Famous Art, concept_source=inputs/source_activity_concepts.md#source_color_in_famous_art,
+      description=Child looks at an approved artwork and identifies important colors, mechanic=enumerate, category=cat1, tier=T1,
+      asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#color_artwork_set_01, product_capabilities=requires_asset_display,
+      activity_id=concept_color_famous_art_probe, trigger_condition=Screen can show approved public-domain artwork with known
+      color metadata
+    base_activity_id: concept_color_famous_art_probe
+    activity_id: concept_color_famous_art_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_color_famous_art_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/039_color_in_famous_art.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    asset_usage:
+    - asset_id: color_artwork_set_01
+      concept_ref: source_color_in_famous_art
+      asset_type: reference_image
+      requiredness: required
+      generation_timing: display_existing
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: split_or_center_artwork_panel
+      purpose: Provide approved artworks with known dominant color metadata.
+      prompt_en: No image generation prompt. Use a curated, rights-cleared artwork set with dominant color metadata and child-safe
+        notes about visible colors, shapes, and mood.
+      source: approved_public_domain_or_licensed_artwork_set
+      prompt_or_source: approved_public_domain_or_licensed_artwork_set
+      display_behavior: Show one artwork at a time and ask the child to identify colors that stand out.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: Use rights-cleared, age-appropriate artworks only; no graphic violence, explicit content, or complex
+        sensitive context.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `color_artwork_set_01` without changing
+      the enumerate mechanic.
+    extensibility_notes:
+    - Retarget the focal property, such as `{shared_feature}`, `{matched_color}`, `{visible_part}`, or `{sort_rule}`, while
+      keeping the same child action loop.
+    - Reuse the activity with another approved asset set by replacing `color_artwork_set_01` and preserving the same display
+      and fallback timing.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  - assignment_index: 40
+    assignment: assignment_type=capability_probe, activity_concept=Simple Body Movement Guide, concept_source=inputs/source_activity_concepts.md#source_simple_body_movement,
+      description=AI guides one simple body movement at a time with safety limits, mechanic=motion_voice, category=cat1, tier=T0,
+      asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#body_movement_cards_01, product_capabilities=requires_asset_display,requires_motion_safety,
+      activity_id=concept_body_movement_probe, trigger_condition=Parent starts a short movement prompt and the child has enough
+      space
+    base_activity_id: concept_body_movement_probe
+    activity_id: concept_body_movement_probe
+    activity_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_body_movement_probe
+    package_scope: run_local
+    adaptation_brief: runs/20260521_154053_workbook_review_packet/adaptation_briefs/040_simple_body_movement_guide.yaml
+    results_tsv_row: true
+    generation_policy: fresh_run_local_package
+    resolved_blockers:
+    - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display
+      fallback.'
+    - 'Approved minimum motion policy: caregiver gating, space check, low-risk movement set, and prohibited motions are documented.'
+    resolved_blocker_types:
+    - Prebuilt asset display
+    - Motion safety
+    asset_usage:
+    - asset_id: body_movement_cards_01
+      concept_ref: source_simple_body_movement
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-2
+      display_location: center_pose_card
+      purpose: Show simple safe movement prompts.
+      prompt_en: Create a set of simple movement cards using a friendly non-real child-like character. Include wave hands,
+        reach up, touch shoulders, stomp feet softly, and freeze like a statue. Use clear poses, plain background, no text,
+        no extreme flexibility, no jumping from height, and no unsafe props.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one movement card per round with short voice guidance.
+      fallback_behavior: Use voice-only safe movement prompts with caregiver space check, or stop the movement activity without
+        claiming a pose card is visible.
+      safety_constraints: No real child photos, no risky balance, no running, no jumping from furniture, and no medical claims.
+    extensibility_summary: Reusable by replacing the current theme and approved asset set `body_movement_cards_01` without
+      changing the motion_voice mechanic.
+    extensibility_notes:
+    - Reuse the activity with another approved asset set by replacing `body_movement_cards_01` and preserving the same display
+      and fallback timing.
+    - Swap the scenario, theme, or role prompt while preserving the declared mechanic and round structure.
+    reviewer_evidence: runs/20260521_154053_workbook_review_packet/review_notes.md
+    status: PASS
+  blocked_assignments: []
+checks:
+- command: rsync -a runs/20260512_172135_batch5_unblocked/ runs/20260521_154053_workbook_review_packet/
+  status: PASS
+  notes: Seeded complete 40-package run as baseline for workbook review packet execution.
+- command: rg -c '^### source_' inputs/source_activity_concepts.md
+  status: PASS
+  output: '40'
+- command: python3 scripts/generate_source_comparison_review.py runs/20260521_154053_workbook_review_packet --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx
+    --intent-audit runs/20260521_154053_workbook_review_packet/source_comparison/source_intent_audit.yaml --validate
+  status: PASS
+  output: 40 source rows, 40 covered, 22 needing review, 0 intent drift.
+- command: python3 scripts/generate_storyboard_prompts.py runs/20260521_154053_workbook_review_packet
+  status: PASS
+  output: 40 storyboard prompts, 40 images present.
+- command: python3 scripts/generate_asset_pilot_prompts.py runs/20260521_154053_workbook_review_packet
+  status: PASS
+  output: 12 pilot asset prompts, 12 images present.
+- command: python3 scripts/integrate_generated_assets.py --validate runs/20260521_154053_workbook_review_packet
+  status: PASS
+  output: 12 assets, 12 activities.
+- command: python3 scripts/export_activity_html.py --validate runs/20260521_154053_workbook_review_packet
+  status: PASS
+  output: 12 standalone activity HTML files.
+- command: run-local tag_block schema validation against activities/_schema/tag_block.schema.json
+  status: PASS
+  output: 40 run-local tag_block.yaml files validate.
+- command: python3 -m py_compile scripts/generate_run_review.py scripts/generate_source_comparison_review.py scripts/generate_storyboard_prompts.py
+    scripts/generate_asset_pilot_prompts.py scripts/integrate_generated_assets.py scripts/export_activity_html.py
+  status: PASS
+- command: python3 scripts/generate_run_review.py --validate runs/20260521_154053_workbook_review_packet
+  status: PASS
+  output: dashboard contract passed; checked_links=642.
+- command: stale seed-text scan across run markdown, YAML, and HTML artifacts
+  status: PASS
+  output: No stale seed-run text or stale audit-count matches.
+- command: git diff --check
+  status: PASS
+notes:
+- Run seeded from runs/20260512_172135_batch5_unblocked after source snapshot hardening; package provenance is revalidated
+  and repaired under this run ID.
+- Workbook scope is all 40 Sheet1 rows from /Users/pharrelly/Downloads/活动库内部初版.xlsx, normalized in inputs/source_activity_concepts.md.
+- Fresh reviewer outputs are run-local under runs/20260521_154053_workbook_review_packet/.
+- Former capability-probe blockers are generated as resolved blocker annotations under product_contract_override=minimum_unblock_allowed.
+- Source-intent repairs were applied to story unlock, career decision, toy tidy, coloring game metadata, award certificate,
+  and color-in-famous-art before regenerating reviewer artifacts.
+- 'The source intent audit covers all 40 workbook rows: 15 aligned, 25 minor adaptations, 0 intent drift, and 0 product-decision
+  rows.'
+- Mechanism storyboard grids are post-run review artifacts generated from existing package data; they do not change activity
+  package contracts.
+- The 12 generated prebuilt asset pilot contact sheets are integrated through run-local asset bindings and exported as self-contained
+  static activity HTML reviewer packets.
+- Each exported reviewer packet embeds the corresponding contact sheet and review-only mechanism storyboard when present;
+  these storyboards are review context, not child-facing runtime UI.
+- The product source comparison review page covers all 40 workbook rows and flags source adaptations for product review without
+  hard blockers.
+- The seeded localized review dashboard artifact was removed because the current review generator emits only review.html and
+  the copied localized dashboard contained stale seed-run text.

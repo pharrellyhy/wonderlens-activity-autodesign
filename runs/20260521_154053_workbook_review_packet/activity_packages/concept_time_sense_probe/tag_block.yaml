@@ -1,0 +1,76 @@
+activity_id: concept_time_sense_probe
+version: 1
+source_entity_exemplar: '{runtime_entity}'
+template_type: cat1
+pillar: Discovery
+game_style: field_experiment
+entity: '{runtime_entity_or_mode_topic}'
+entity_class: []
+entity_binding: agnostic
+tier_range:
+  primary: T1
+  span:
+  - T1
+  - T2
+  elasticity: '+1'
+category: time_sense_challenge
+attributes:
+- time_sense
+- function
+key_concepts:
+- Causation
+- Change
+related_concepts:
+- evidence
+- choice
+- progress
+- reflection
+atl_skills:
+- prediction
+- logical_reasoning
+- focus
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags:
+- language
+- thinking
+kud:
+  know:
+  - one safe action or visible cue can guide the next activity step
+  - progress can be represented as a small sequence of choices or actions
+  understand:
+  - Causation helps focus attention
+  - Change connects the child's action to the final result
+  do:
+  - complete three predict rounds
+  - explain one reason or observation
+  - reflect on the final result
+progression:
+  topic_axis: causation
+  difficulty_level: 2
+  next_step_hint: Repeat the same mechanic with a new theme, property, or approved asset set.
+  reward_hook: Earned the Time Sense Challenge badge
+caregiver_role:
+- observer
+- co-explorer
+activity_signature:
+  observation_angle: function
+  mechanic: predict
+  entity_role: catalyst
+  focal_attribute: time_sense
+  intro: The child completes three predict rounds for Time Sense Challenge and reflects on the result.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - function
+    - state
+  preview_label: Time Sense Challenge
+  preview_prompt: Try Time Sense Challenge with one small choice at a time.
+  role_pivot_note: The runtime entity or mode topic launches a reusable source-concept activity; no entity-specific factual
+    claim is required.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: false
+    T1: true
+    T2: true
