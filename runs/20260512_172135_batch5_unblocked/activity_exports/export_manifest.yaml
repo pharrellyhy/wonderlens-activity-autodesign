@@ -1,0 +1,150 @@
+run_id: 20260512_172135_batch5_unblocked
+artifact_kind: integrated_activity_html_exports
+source_binding_manifest: integrated_assets/asset_bindings.yaml
+created_at: '2026-05-21T00:16:38+08:00'
+export_count: 12
+entries:
+- activity_id: concept_phoneme_hunt_collect
+  activity_name: B-Sound Treasure Hunt
+  asset_id: phoneme_letter_card_01
+  html_path: activity_exports/concept_phoneme_hunt_collect.html
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  image_path: generated_assets_pilot/concept_phoneme_hunt_collect/phoneme_letter_card_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_phoneme_hunt_collect/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_phoneme_hunt_collect/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_phoneme_hunt_collect/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_partial_reveal_deduce
+  activity_name: Partial Reveal Guess
+  asset_id: partial_reveal_cards_01
+  html_path: activity_exports/concept_partial_reveal_deduce.html
+  package_path: activity_packages/concept_partial_reveal_deduce
+  image_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_animal_sound_motion_voice
+  activity_name: Animal Echo Stage
+  asset_id: animal_sound_cards_01
+  html_path: activity_exports/concept_animal_sound_motion_voice.html
+  package_path: activity_packages/concept_animal_sound_motion_voice
+  image_path: generated_assets_pilot/concept_animal_sound_motion_voice/animal_sound_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_word_echo_remember
+  activity_name: Echo Word Stage
+  asset_id: word_echo_cards_01
+  html_path: activity_exports/concept_word_echo_remember.html
+  package_path: activity_packages/concept_word_echo_remember
+  image_path: generated_assets_pilot/concept_word_echo_remember/word_echo_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_word_echo_remember/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_word_echo_remember/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_word_echo_remember/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_emotion_reader_care
+  activity_name: Feeling Helper Station
+  asset_id: emotion_expression_cards_01
+  html_path: activity_exports/concept_emotion_reader_care.html
+  package_path: activity_packages/concept_emotion_reader_care
+  image_path: generated_assets_pilot/concept_emotion_reader_care/emotion_expression_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_emotion_reader_care/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_emotion_reader_care/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_emotion_reader_care/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_constellation_star_count_enumerate
+  activity_name: Star Pattern Counter
+  asset_id: constellation_count_cards_01
+  html_path: activity_exports/concept_constellation_star_count_enumerate.html
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  image_path: generated_assets_pilot/concept_constellation_star_count_enumerate/constellation_count_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_career_decision_decide
+  activity_name: Helper Choice Desk
+  asset_id: career_portrait_cards_01
+  html_path: activity_exports/concept_career_decision_decide.html
+  package_path: activity_packages/concept_career_decision_decide
+  image_path: generated_assets_pilot/concept_career_decision_decide/career_portrait_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_career_decision_decide/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_career_decision_decide/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_career_decision_decide/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_vegetable_sort_sort
+  activity_name: Vegetable Sort Stand
+  asset_id: vegetable_sort_cards_01
+  html_path: activity_exports/concept_vegetable_sort_sort.html
+  package_path: activity_packages/concept_vegetable_sort_sort
+  image_path: generated_assets_pilot/concept_vegetable_sort_sort/vegetable_sort_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_travel_planner_predict
+  activity_name: Pretend Trip Planner
+  asset_id: travel_planning_cards_01
+  html_path: activity_exports/concept_travel_planner_predict.html
+  package_path: activity_packages/concept_travel_planner_predict
+  image_path: generated_assets_pilot/concept_travel_planner_predict/travel_planning_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_travel_planner_predict/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_travel_planner_predict/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_travel_planner_predict/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_guided_drawing_probe
+  activity_name: Guided Drawing
+  asset_id: guided_drawing_step_cards_01
+  html_path: activity_exports/concept_guided_drawing_probe.html
+  package_path: activity_packages/concept_guided_drawing_probe
+  image_path: generated_assets_pilot/concept_guided_drawing_probe/guided_drawing_step_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_guided_drawing_probe/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_guided_drawing_probe/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_guided_drawing_probe/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_story_unlock_probe
+  activity_name: Story Challenge Unlock
+  asset_id: story_unlock_cards_01
+  html_path: activity_exports/concept_story_unlock_probe.html
+  package_path: activity_packages/concept_story_unlock_probe
+  image_path: generated_assets_pilot/concept_story_unlock_probe/story_unlock_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported
+- activity_id: concept_recognition_pop_probe
+  activity_name: Recognition Pop Challenge
+  asset_id: recognition_challenge_cards_01
+  html_path: activity_exports/concept_recognition_pop_probe.html
+  package_path: activity_packages/concept_recognition_pop_probe
+  image_path: generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/contact_sheet.png
+  embedded_image: true
+  storyboard_image_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.png
+  storyboard_meta_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.meta.yaml
+  storyboard_prompt_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.prompt.md
+  embedded_storyboard: true
+  status: exported

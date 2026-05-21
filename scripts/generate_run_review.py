@@ -1580,6 +1580,49 @@ def prebuilt_asset_pilot_section(entries: list[dict[str, Any]]) -> str:
 """
 
 
+def activity_export_card(entry: dict[str, Any]) -> str:
+    activity_id = normalize_text(entry.get("activity_id"))
+    activity_name = normalize_text(entry.get("activity_name") or activity_id)
+    asset_id = normalize_text(entry.get("asset_id"))
+    html_path = normalize_text(entry.get("html_path"))
+    storyboard_path = normalize_text(entry.get("storyboard_image_path"))
+    tag_html = "".join(
+        [
+            group_badge("review packet", "kind"),
+            group_badge("embedded asset", "asset"),
+            group_badge("storyboard", "metadata" if storyboard_path else "status"),
+        ]
+    )
+    return f"""
+<article class="activity-export-card">
+  <div class="activity-export-copy">
+    <div class="eyebrow">Standalone reviewer packet</div>
+    <h3>{esc(activity_name)}</h3>
+    <p class="activity-id">{esc(activity_id)}</p>
+    <div class="tag-row">{tag_html}</div>
+    <div class="inline-fields activity-export-fields">
+      <div><span>Integrated asset</span><strong>{esc(asset_id or 'Unknown')}</strong></div>
+      <div><span>Storyboard</span><strong>{esc(storyboard_path or 'Not embedded')}</strong></div>
+    </div>
+    <div class="file-row inline-file-row"><div><a href="{esc(html_path)}">{esc(html_path)}</a></div></div>
+  </div>
+</article>"""
+
+
+def activity_export_section(entries: list[dict[str, Any]]) -> str:
+    clean_entries = [entry for entry in entries if isinstance(entry, dict)]
+    if not clean_entries:
+        return ""
+    cards = "\n".join(activity_export_card(entry) for entry in clean_entries)
+    return f"""
+  <section class="panel" id="activity-html-exports">
+    <div class="panel-head"><h2>Activity HTML Exports</h2><span class="muted">{esc(len(clean_entries))} standalone reviewer packets</span></div>
+    <div class="criteria-note">These standalone reviewer packets embed the integrated contact sheet and the review-only mechanism storyboard for each exported activity. Storyboards explain the interaction mechanism; they are not child-facing runtime UI.</div>
+    <div class="activity-export-grid">{cards}</div>
+  </section>
+"""
+
+
 def package_detail_content(
     package: dict[str, Any],
     link_bits: str,
@@ -2234,6 +2277,10 @@ def dashboard_workflow(run_id: str) -> str:
       <li><strong>Generate review-only storyboard images</strong><span>Use Codex image generation with the prompt files under `visual_storyboards/&lt;activity_id&gt;/`, then copy each final PNG to `mechanism_grid.png` and rerun the prompt script to refresh metadata. Prompt-only storyboard experiments are ignored when generated v1 images are present.</span></li>
       <li><strong>Prepare prebuilt asset prompts</strong><code>python3 scripts/generate_asset_pilot_prompts.py {esc(run_path)}</code></li>
       <li><strong>Generate prebuilt contact sheets</strong><span>Use Codex image generation with `generated_assets_pilot/&lt;activity_id&gt;/&lt;asset_id&gt;/contact_sheet.prompt.md`, copy the selected PNG to `contact_sheet.png`, then rerun the prompt script so `asset.meta.yaml` and `asset_manifest.yaml` record status, timing, placement, fallback, and provenance.</span></li>
+      <li><strong>Integrate generated assets</strong><code>python3 scripts/integrate_generated_assets.py {esc(run_path)}</code></li>
+      <li><strong>Validate integrated assets</strong><code>python3 scripts/integrate_generated_assets.py --validate {esc(run_path)}</code></li>
+      <li><strong>Export integrated activity HTMLs</strong><code>python3 scripts/export_activity_html.py {esc(run_path)}</code></li>
+      <li><strong>Validate activity HTML exports</strong><code>python3 scripts/export_activity_html.py --validate {esc(run_path)}</code></li>
       <li><strong>Generate the dashboard</strong><code>python3 scripts/generate_run_review.py {esc(run_path)}</code></li>
       <li><strong>Validate the dashboard</strong><code>python3 scripts/generate_run_review.py --validate {esc(run_path)}</code></li>
       <li><strong>Record provenance</strong><span>Keep `outputs.review_dashboard` pointing to `{esc(run_path)}/review.html` and record the generation and validation checks in the run manifest.</span></li>
@@ -2341,6 +2388,8 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
             package["result_summary"] = "Not logged"
     blocked = [collect_blocked(repo_root, entry) for entry in outputs.get("blocked_assignments", [])]
     asset_pilot_entries = prebuilt_asset_pilot_entries(run_dir)
+    export_manifest = load_yaml(run_dir / "activity_exports" / "export_manifest.yaml")
+    export_entries = export_manifest.get("entries", []) if isinstance(export_manifest.get("entries"), list) else []
     summary = manifest.get("summary", {}) if isinstance(manifest.get("summary"), dict) else {}
     run_id = normalize_text(manifest.get("run_id") or run_dir.name)
     run_links = [
@@ -2357,6 +2406,8 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
         run_links.insert(4, (label, f"{active_storyboard_root}/storyboard_manifest.yaml"))
     if (run_dir / "generated_assets_pilot" / "asset_manifest.yaml").exists():
         run_links.insert(5, ("asset_manifest.yaml", "generated_assets_pilot/asset_manifest.yaml"))
+    if (run_dir / "activity_exports" / "export_manifest.yaml").exists():
+        run_links.insert(6, ("export_manifest.yaml", "activity_exports/export_manifest.yaml"))
     package_categories = [p["category"] for p in packages]
     package_statuses = [p["status"] for p in packages]
     package_mechanics = [p["mechanic"] for p in packages]
@@ -2378,6 +2429,7 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     resolved_contract_html = resolved_contract_summary(packages).strip()
     extensibility_html = extensibility_summary(packages).strip()
     asset_pilot_html = prebuilt_asset_pilot_section(asset_pilot_entries).strip()
+    activity_export_html = activity_export_section(export_entries).strip()
     criteria_guide_html = criteria_guide().strip()
     manifest_checks = manifest.get("checks", [])
     checks = render_checks(manifest_checks)
@@ -2896,6 +2948,28 @@ input:focus, select:focus {
 .asset-pilot-fields { grid-template-columns: 1.15fr .85fr; }
 .asset-pilot-fields > div:nth-child(2n) { border-right: none; }
 .asset-pilot-fields > div:nth-last-child(-n+2) { border-bottom: none; }
+.activity-export-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 14px 18px 18px;
+}
+.activity-export-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel-raised);
+  box-shadow: var(--shadow-soft);
+}
+.activity-export-copy {
+  min-width: 0;
+  padding: 15px 16px 14px;
+  display: grid;
+  gap: 10px;
+}
+.activity-export-fields { grid-template-columns: 1fr; }
+.activity-export-fields > div { border-right: none; }
+.activity-export-fields > div:last-child { border-bottom: none; }
 .asset-placement {
   display: grid;
   gap: 7px;
@@ -3639,7 +3713,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   .metric:nth-child(3n) { border-right: none; }
   .metric:nth-last-child(-n+3) { border-bottom: none; }
   .controls { grid-template-columns: 1fr 1fr 1fr; }
-  .activity-grid, .blocked-grid, .asset-pilot-grid { grid-template-columns: 1fr; }
+  .activity-grid, .blocked-grid, .asset-pilot-grid, .activity-export-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
   main, .header-inner { padding-left: 16px; padding-right: 16px; }
@@ -3980,6 +4054,8 @@ if (previewDialog) {
         sidebar_links.insert(4, ("extensibility-overview", "Extensibility"))
     if asset_pilot_html:
         sidebar_links.insert(5, ("generated-assets", "Generated Assets"))
+    if activity_export_html:
+        sidebar_links.insert(6, ("activity-html-exports", "HTML Exports"))
     sidebar_link_html = "\n".join(f'      <a href="#{anchor}">{label}</a>' for anchor, label in sidebar_links)
     sidebar_stats = [
         ("Review cards", len(packages)),
@@ -4045,6 +4121,8 @@ if (previewDialog) {
 	{extensibility_html}
 
 	{asset_pilot_html}
+
+	{activity_export_html}
 
 	  <section class="panel" id="activity-details">
     <div class="panel-head"><h2>Activity Details</h2><span class="muted" id="package-count"></span></div>
@@ -4181,6 +4259,8 @@ def validate(repo_root: Path, run_dir: Path) -> None:
     ]
     storyboard_requires_images = bool(expected_storyboard_images) and any(path.exists() for path in expected_storyboard_images)
     asset_pilot_entries = prebuilt_asset_pilot_entries(run_dir)
+    export_manifest = load_yaml(run_dir / "activity_exports" / "export_manifest.yaml")
+    export_entries = export_manifest.get("entries", []) if isinstance(export_manifest.get("entries"), list) else []
     expected_asset_images = [
         run_dir / normalize_text(entry.get("image_href"))
         for entry in asset_pilot_entries
@@ -4306,6 +4386,13 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             and "When to display" in text
             and "Consistency" in text
             and all(path.exists() for path in expected_asset_images)
+        ),
+        "activity_html_exports": not export_entries
+        or (
+            "Activity HTML Exports" in text
+            and "standalone reviewer packets" in text
+            and text.count('class="activity-export-card"') == len(export_entries)
+            and all(normalize_text(entry.get("html_path")) in text for entry in export_entries if isinstance(entry, dict))
         ),
         "scorecard_results": expected_packages == 0
         or (
