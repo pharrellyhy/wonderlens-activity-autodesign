@@ -196,6 +196,47 @@ def write_fixture(repo_root):
     return run_dir
 
 
+def write_intent_audit(path, entries):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    lines = [
+        "run_id: test_run",
+        "artifact_kind: source_intent_audit",
+        "source_workbook: fixture.xlsx",
+        "created_at: '2026-05-21T00:00:00+08:00'",
+        "reviewer: test",
+        "status_values:",
+        "  - aligned",
+        "  - minor_adaptation",
+        "  - intent_drift",
+        "  - needs_product_decision",
+        "summary:",
+        "  source_rows: 3",
+        "  aligned: 1",
+        "  minor_adaptation: 1",
+        "  intent_drift: 1",
+        "  needs_product_decision: 0",
+        "entries:",
+    ]
+    for entry in entries:
+        lines.extend(
+            [
+                f"  - source_row: {entry['source_row']}",
+                f"    activity_id: {entry['activity_id']}",
+                f"    original_play_frame: {entry['original_play_frame']}",
+                f"    generated_play_frame: {entry['generated_play_frame']}",
+                "    preserved:",
+                "      - Mechanic",
+                "    drift:",
+                f"      - {entry['drift']}",
+                f"    status: {entry['status']}",
+                f"    severity: {entry['severity']}",
+                f"    recommendation: {entry['recommendation']}",
+                f"    product_review_question: {entry['product_review_question']}",
+            ]
+        )
+    path.write_text("\n".join(lines) + "\n")
+
+
 class SourceComparisonReviewTest(unittest.TestCase):
     def test_build_report_classifies_rows_and_selects_visual_examples(self):
         comparison = load_script("generate_source_comparison_review")
@@ -235,3 +276,97 @@ class SourceComparisonReviewTest(unittest.TestCase):
 
         self.assertIn("not all source rows are covered", "\n".join(issues))
         self.assertIn("no visual examples selected", "\n".join(issues))
+
+    def test_build_report_loads_intent_audit_and_renders_review_column(self):
+        comparison = load_script("generate_source_comparison_review")
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = pathlib.Path(tmp) / "repo"
+            repo_root.mkdir()
+            workbook = pathlib.Path(tmp) / "活动库内部初版.xlsx"
+            write_source_workbook(workbook)
+            run_dir = write_fixture(repo_root)
+            audit_path = run_dir / "source_comparison" / "source_intent_audit.yaml"
+            write_intent_audit(
+                audit_path,
+                [
+                    {
+                        "source_row": 1,
+                        "activity_id": "concept_phoneme_hunt_collect",
+                        "original_play_frame": "sound hunt first",
+                        "generated_play_frame": "sound hunt first",
+                        "drift": "None",
+                        "status": "aligned",
+                        "severity": "none",
+                        "recommendation": "No repair needed.",
+                        "product_review_question": "Confirm alignment.",
+                    },
+                    {
+                        "source_row": 2,
+                        "activity_id": "concept_partial_reveal_deduce",
+                        "original_play_frame": "part reveal guessing",
+                        "generated_play_frame": "deduction from a different clue style",
+                        "drift": "Reveal sequence changed.",
+                        "status": "intent_drift",
+                        "severity": "high",
+                        "recommendation": "Revise the generated loop to restore the reveal sequence.",
+                        "product_review_question": "Approve the reveal-frame change?",
+                    },
+                    {
+                        "source_row": 3,
+                        "activity_id": "concept_guided_drawing_probe",
+                        "original_play_frame": "paper drawing",
+                        "generated_play_frame": "paper drawing with capability assumptions",
+                        "drift": "Material support depends on product setup.",
+                        "status": "minor_adaptation",
+                        "severity": "low",
+                        "recommendation": "Keep as reviewed adaptation.",
+                        "product_review_question": "Confirm material workflow.",
+                    },
+                ],
+            )
+
+            report = comparison.build_report(repo_root, run_dir, workbook, intent_audit_path=audit_path)
+            html = comparison.render_html(report)
+
+        self.assertTrue(report["intent_audit_provided"])
+        self.assertEqual(1, report["summary"]["intent_drift"])
+        self.assertEqual("intent_drift", report["rows"][1]["intent_status"])
+        self.assertIn("Intent alignment", html)
+        self.assertIn("data-filter=\"intent-drift\"", html)
+        self.assertIn("Revise the generated loop to restore the reveal sequence.", html)
+        self.assertIn("intent_drift", html)
+
+    def test_validate_report_rejects_bad_intent_audit(self):
+        comparison = load_script("generate_source_comparison_review")
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = pathlib.Path(tmp) / "repo"
+            repo_root.mkdir()
+            workbook = pathlib.Path(tmp) / "活动库内部初版.xlsx"
+            write_source_workbook(workbook)
+            run_dir = write_fixture(repo_root)
+            audit_path = run_dir / "source_comparison" / "source_intent_audit.yaml"
+            write_intent_audit(
+                audit_path,
+                [
+                    {
+                        "source_row": 1,
+                        "activity_id": "wrong_activity",
+                        "original_play_frame": "sound hunt first",
+                        "generated_play_frame": "sound hunt first",
+                        "drift": "None",
+                        "status": "unsupported_status",
+                        "severity": "extreme",
+                        "recommendation": "No repair needed.",
+                        "product_review_question": "Confirm alignment.",
+                    }
+                ],
+            )
+
+            report = comparison.build_report(repo_root, run_dir, workbook, intent_audit_path=audit_path)
+            issues = comparison.validate_report(report)
+
+        joined = "\n".join(issues)
+        self.assertIn("intent audit does not cover every source row", joined)
+        self.assertIn("invalid intent status", joined)
+        self.assertIn("invalid intent severity", joined)
+        self.assertIn("activity_id mismatch", joined)

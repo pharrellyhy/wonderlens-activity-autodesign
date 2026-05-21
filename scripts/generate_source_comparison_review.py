@@ -56,6 +56,8 @@ STATUS_ORDER = {
     "Capability-dependent": 4,
     "Matches": 5,
 }
+INTENT_STATUSES = {"aligned", "minor_adaptation", "intent_drift", "needs_product_decision"}
+INTENT_SEVERITIES = {"none", "low", "medium", "high"}
 
 
 def esc(value: Any) -> str:
@@ -76,6 +78,21 @@ def load_yaml(path: Path) -> dict[str, Any]:
         return {}
     data = yaml.safe_load(path.read_text()) or {}
     return data if isinstance(data, dict) else {}
+
+
+def load_intent_audit(path: Path | None) -> dict[int, dict[str, Any]]:
+    if not path:
+        return {}
+    data = load_yaml(path)
+    entries = data.get("entries", [])
+    by_row: dict[int, dict[str, Any]] = {}
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        source_row = entry.get("source_row")
+        if isinstance(source_row, int) or str(source_row).isdigit():
+            by_row[int(source_row)] = entry
+    return by_row
 
 
 def col_to_index(col: str) -> int:
@@ -316,13 +333,29 @@ def change_note(status: str, source_cat: str, source_mech: str, generated_cat: s
     return "No generated package found for this source row."
 
 
-def build_report(repo_root: Path, run_dir: Path, workbook_path: Path) -> dict[str, Any]:
+def intent_key(value: str) -> str:
+    return norm(value) or "not_audited"
+
+
+def intent_label(value: str) -> str:
+    labels = {
+        "aligned": "Aligned",
+        "minor_adaptation": "Minor adaptation",
+        "intent_drift": "Intent drift",
+        "needs_product_decision": "Needs product decision",
+        "not_audited": "Not audited",
+    }
+    return labels.get(intent_key(value), norm(value) or "Not audited")
+
+
+def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_audit_path: Path | None = None) -> dict[str, Any]:
     workbook_rows = read_source_workbook(workbook_path)
     source_rows = source_markdown_by_row(repo_root)
     generated_by_source = generated_entries_by_source(run_dir)
     briefs = adaptation_briefs_by_source(run_dir)
     exports = exports_by_activity(run_dir)
     storyboards = storyboards_by_activity(run_dir)
+    intent_audit = load_intent_audit(intent_audit_path)
 
     rows = []
     for workbook_row in workbook_rows:
@@ -334,6 +367,7 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path) -> dict[st
         activity_id = norm(generated_entry.get("activity_id"))
         export = exports.get(activity_id, {})
         storyboard = storyboards.get(activity_id, {})
+        audit_entry = intent_audit.get(source_row_number, {})
 
         original_category = source_category(norm(workbook_row.get(SOURCE_FORM)))
         original_mechanic = source_mechanic(norm(workbook_row.get(SOURCE_MECHANIC)))
@@ -376,9 +410,20 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path) -> dict[st
             "storyboard_path": storyboard_path,
             "contact_sheet_data_uri": data_uri(run_dir / image_path) if image_path else "",
             "storyboard_data_uri": data_uri(run_dir / storyboard_path) if storyboard_path else "",
+            "intent_status": intent_key(audit_entry.get("status", "")),
+            "intent_severity": norm(audit_entry.get("severity")),
+            "original_play_frame": norm(audit_entry.get("original_play_frame")),
+            "generated_play_frame": norm(audit_entry.get("generated_play_frame")),
+            "intent_preserved": audit_entry.get("preserved") if isinstance(audit_entry.get("preserved"), list) else [],
+            "intent_drift_notes": audit_entry.get("drift") if isinstance(audit_entry.get("drift"), list) else [],
+            "intent_recommendation": norm(audit_entry.get("recommendation")),
+            "intent_review_question": norm(audit_entry.get("product_review_question")),
+            "intent_audit_activity_id": norm(audit_entry.get("activity_id")),
+            "intent_audit_present": bool(audit_entry),
         }
         rows.append(row)
 
+    intent_review_statuses = {"intent_drift", "needs_product_decision"}
     summary = {
         "source_rows": len(rows),
         "covered_rows": sum(1 for row in rows if row["activity_id"]),
@@ -387,7 +432,13 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path) -> dict[st
         "mechanic_changed": sum(1 for row in rows if row["status"] in ("Mechanic changed", "Category + mechanic changed")),
         "category_changed": sum(1 for row in rows if row["status"] in ("Category changed", "Category + mechanic changed")),
         "capability_dependent": sum(1 for row in rows if row["status"] == "Capability-dependent"),
-        "needs_review": sum(1 for row in rows if row["status"] != "Matches"),
+        "intent_drift": sum(1 for row in rows if row["intent_status"] == "intent_drift"),
+        "intent_needs_product_decision": sum(1 for row in rows if row["intent_status"] == "needs_product_decision"),
+        "needs_review": sum(
+            1
+            for row in rows
+            if row["status"] != "Matches" or row["intent_status"] in intent_review_statuses
+        ),
     }
     return {
         "run_id": run_dir.name,
@@ -396,6 +447,8 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path) -> dict[st
         "summary": summary,
         "rows": rows,
         "visual_examples": select_visual_examples(rows),
+        "intent_audit_provided": bool(intent_audit_path),
+        "intent_audit_path": norm(intent_audit_path),
     }
 
 
@@ -428,6 +481,14 @@ def select_visual_examples(rows: list[dict[str, Any]], limit: int = 5) -> list[d
 
 def status_badge(status: str) -> str:
     return f'<span class="status-badge status-{esc(status.lower().replace(" + ", "-").replace(" ", "-"))}">{esc(status)}</span>'
+
+
+def intent_badge(status: str, severity: str = "") -> str:
+    key = intent_key(status)
+    classes = f"intent-badge intent-{esc(key)}"
+    if severity:
+        classes += f" severity-{esc(severity)}"
+    return f'<span class="{classes}">{esc(intent_label(key))}</span>'
 
 
 def metric(label: str, value: Any, tone: str = "") -> str:
@@ -484,19 +545,23 @@ def table_row(row: dict[str, Any]) -> str:
           <div><span>Original notes</span><p>{esc(row["original_notes"] or "None recorded.")}</p></div>
           <div><span>Source screen dependency</span><p>{esc(row["screen_dependency"] or "None recorded.")}</p></div>
           <div><span>Generated core loop</span><p>{esc(row["generated_loop"] or "Not generated.")}</p></div>
+          <div><span>Original play frame</span><p>{esc(row["original_play_frame"] or "Not audited.")}</p></div>
+          <div><span>Generated play frame</span><p>{esc(row["generated_play_frame"] or "Not audited.")}</p></div>
+          <div><span>Intent drift notes</span><p>{esc("; ".join(row["intent_drift_notes"]) or "None recorded.")}</p></div>
           <div><span>Capability flags</span><p>{esc(", ".join(row["product_capability_flags"]) or "None")}</p></div>
           <div><span>Paths</span><p>{esc(row["package_path"] or "No package")}<br>{esc(row["brief_path"] or "No brief")}</p></div>
         </div>
       </details>
     """
     return f"""
-      <tr data-status="{esc(row["status_key"])}" data-review-needed="{str(row["status"] != "Matches").lower()}">
+      <tr data-status="{esc(row["status_key"])}" data-intent-status="{esc(row["intent_status"])}" data-review-needed="{str(row["status"] != "Matches" or row["intent_status"] in ("intent_drift", "needs_product_decision")).lower()}">
         <td class="row-number">{esc(row["source_row"])}</td>
         <td><strong>{esc(row["original_name"])}</strong><p>{esc(truncate(row["original_intent"], 130))}</p>{details}</td>
         <td><span>{esc(row["original_category"])}</span><code>{esc(row["original_mechanic"])}</code></td>
         <td><strong>{esc(row["generated_name"] or "Missing")}</strong><p class="activity-id">{esc(row["activity_id"] or "No activity ID")}</p></td>
         <td><span>{esc(row["generated_category"] or "N/A")}</span><code>{esc(row["generated_mechanic"] or "N/A")}</code></td>
         <td>{status_badge(row["status"])}<p>{esc(row["what_changed"])}</p></td>
+        <td>{intent_badge(row["intent_status"], row["intent_severity"])}<p>{esc(row["intent_recommendation"] or "No source-intent audit note.")}</p></td>
         <td>{esc(row["review_question"])}</td>
         <td>{packet}</td>
       </tr>
@@ -544,7 +609,7 @@ h1 { margin: 0; max-width: 780px; font-size: 38px; line-height: 1.08; letter-spa
 h2 { margin: 0; font-size: 20px; letter-spacing: 0; }
 h3 { margin: 0; font-size: 16px; letter-spacing: 0; }
 .intro { max-width: 74ch; margin: 12px 0 0; color: var(--muted); }
-.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
 .metric { min-width: 0; padding: 13px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .metric span { display: block; color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; }
 .metric strong { display: block; margin-top: 4px; font-size: 22px; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -579,6 +644,12 @@ code { display: inline-block; margin-top: 4px; padding: 2px 6px; border: 1px sol
 .status-mechanic-changed, .status-category-changed, .status-category-mechanic-changed { color: var(--amber); background: var(--amber-soft); }
 .status-capability-dependent { color: var(--violet); background: var(--violet-soft); }
 .status-missing-generated { color: var(--red); background: var(--red-soft); }
+.intent-badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 8px; font-size: 12px; font-weight: 760; white-space: nowrap; }
+.intent-aligned { color: var(--green); background: var(--green-soft); }
+.intent-minor_adaptation { color: var(--accent); background: var(--accent-soft); }
+.intent-intent_drift { color: var(--red); background: var(--red-soft); }
+.intent-needs_product_decision { color: var(--violet); background: var(--violet-soft); }
+.intent-not_audited { color: var(--muted); background: var(--surface-2); }
 details { margin-top: 8px; }
 summary { color: var(--accent); cursor: pointer; font-weight: 700; }
 .details-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; padding: 10px; border-radius: 7px; background: var(--surface-2); }
@@ -600,10 +671,13 @@ function applyFilter(filter) {
   let visible = 0;
   rows.forEach((row) => {
     const status = row.dataset.status || '';
+    const intentStatus = row.dataset.intentStatus || '';
     const reviewNeeded = row.dataset.reviewNeeded === 'true';
     const show = filter === 'all'
       || (filter === 'changed' && (status.includes('changed')))
       || (filter === 'capability' && status === 'capability-dependent')
+      || (filter === 'intent-drift' && intentStatus === 'intent_drift')
+      || (filter === 'intent-product' && intentStatus === 'needs_product_decision')
       || (filter === 'needs-review' && reviewNeeded)
       || status === filter;
     row.classList.toggle('is-hidden', !show);
@@ -637,6 +711,7 @@ applyFilter('all');
         {metric("Covered", summary["covered_rows"], "good")}
         {metric("Needs review", summary["needs_review"], "warn")}
         {metric("Capability-dependent", summary["capability_dependent"], "warn")}
+        {metric("Intent drift", summary["intent_drift"], "warn")}
       </div>
     </header>
 
@@ -645,6 +720,8 @@ applyFilter('all');
       <button type="button" data-filter="matches">Matches</button>
       <button type="button" data-filter="changed">Changed</button>
       <button type="button" data-filter="capability">Capability-dependent</button>
+      <button type="button" data-filter="intent-drift">Intent drift</button>
+      <button type="button" data-filter="intent-product">Intent product decision</button>
       <button type="button" data-filter="needs-review">Needs review</button>
       <span class="count" data-visible-count></span>
     </nav>
@@ -672,6 +749,7 @@ applyFilter('all');
               <th>Generated package</th>
               <th>Generated cat/mechanic</th>
               <th>Fidelity status</th>
+              <th>Intent alignment</th>
               <th>Product question</th>
               <th>Reviewer packet</th>
             </tr>
@@ -704,6 +782,26 @@ def validate_report(report: dict[str, Any]) -> list[str]:
         issues.append("local absolute path leaked into reviewer packet links")
     if not any(row.get("status") != "Matches" for row in rows):
         issues.append("no review-needed rows classified")
+    if report.get("intent_audit_provided"):
+        missing_audit = [row for row in rows if not row.get("intent_audit_present")]
+        if missing_audit:
+            issues.append("intent audit does not cover every source row")
+        for row in rows:
+            if not row.get("intent_audit_present"):
+                continue
+            status = norm(row.get("intent_status"))
+            severity = norm(row.get("intent_severity"))
+            audit_activity_id = norm(row.get("intent_audit_activity_id"))
+            activity_id = norm(row.get("activity_id"))
+            if status not in INTENT_STATUSES:
+                issues.append(f"invalid intent status for source row {row.get('source_row')}: {status}")
+            if severity not in INTENT_SEVERITIES:
+                issues.append(f"invalid intent severity for source row {row.get('source_row')}: {severity}")
+            if audit_activity_id != activity_id:
+                issues.append(
+                    f"activity_id mismatch for source row {row.get('source_row')}: "
+                    f"audit={audit_activity_id or 'missing'} generated={activity_id or 'missing'}"
+                )
     return issues
 
 
@@ -717,6 +815,8 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         'data-filter="capability"',
         "Reviewer packet",
     ]
+    if report.get("intent_audit_provided"):
+        required.extend(["Intent alignment", 'data-filter="intent-drift"'])
     for marker in required:
         if marker not in html_text:
             issues.append(f"HTML missing {marker}")
@@ -731,8 +831,14 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
     return issues
 
 
-def write_report(repo_root: Path, run_dir: Path, workbook_path: Path, output_rel: str = DEFAULT_OUTPUT) -> Path:
-    report = build_report(repo_root, run_dir, workbook_path)
+def write_report(
+    repo_root: Path,
+    run_dir: Path,
+    workbook_path: Path,
+    output_rel: str = DEFAULT_OUTPUT,
+    intent_audit_path: Path | None = None,
+) -> Path:
+    report = build_report(repo_root, run_dir, workbook_path, intent_audit_path=intent_audit_path)
     issues = validate_report(report)
     if issues:
         raise SystemExit("Source comparison validation failed before render:\n" + "\n".join(f"- {issue}" for issue in issues))
@@ -751,12 +857,13 @@ def main() -> None:
     parser.add_argument("run_dir", type=Path)
     parser.add_argument("--workbook", type=Path, required=True)
     parser.add_argument("--output", default=DEFAULT_OUTPUT)
+    parser.add_argument("--intent-audit", type=Path)
     parser.add_argument("--validate", action="store_true")
     args = parser.parse_args()
 
     repo_root = Path.cwd()
     if args.validate:
-        report = build_report(repo_root, args.run_dir, args.workbook)
+        report = build_report(repo_root, args.run_dir, args.workbook, intent_audit_path=args.intent_audit)
         issues = validate_report(report)
         output_path = args.run_dir / args.output
         if output_path.exists():
@@ -770,11 +877,12 @@ def main() -> None:
             raise SystemExit(1)
         print(
             f"PASS source comparison review: {report['summary']['source_rows']} source rows, "
-            f"{report['summary']['covered_rows']} covered, {report['summary']['needs_review']} needing review."
+            f"{report['summary']['covered_rows']} covered, {report['summary']['needs_review']} needing review, "
+            f"{report['summary']['intent_drift']} intent drift."
         )
         return
 
-    output_path = write_report(repo_root, args.run_dir, args.workbook, args.output)
+    output_path = write_report(repo_root, args.run_dir, args.workbook, args.output, intent_audit_path=args.intent_audit)
     print(f"Wrote {output_path}")
 
 
