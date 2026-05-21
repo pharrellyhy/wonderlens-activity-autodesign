@@ -519,7 +519,7 @@ The three closed enums under `activity_signature` are owned by `docs/activity_vo
 The migrated five-file package intentionally moves metadata and recap/dashboard payloads out of `spec.md` and `prod.md`; shorter files are acceptable only when they remain rich enough to run and review. Compactness is not a quality goal. A package is too thin if a fresh reviewer cannot understand the intended experience, constraints, mechanic, game feel, and runtime behavior without reconstructing missing detail from older examples.
 
 - `spec.md` must be a decision-useful authoring reference, not just a scorecard wrapper. It must explain the premise, target tier/category, trigger, canonical mechanic, scaffold choice, adaptation rationale, mapping/asset/product assumptions, why the game feel works, and any known residual risk.
-- `prod.md` must be a runnable prompt source, not a terse script. Steps 1, 2, 4, and 5 need the same executable shape as Step 3: concrete AI line, ideal/unexpected/no-response child branches where applicable, matching AI follow-ups, and specific screen state.
+- `prod.md` must be a runnable prompt source, not a terse script. Steps 1, 2, 4, and 5 need the same executable shape as Step 3: exact AI dialogue or a runtime behavior contract with an example AI line, ideal/unexpected/no-response child branches where applicable, matching AI follow-ups or follow-up policy, and specific screen state.
 - Step 3 rounds must be distinct, not template clones. Each round needs a named objective, a different clue/challenge/action, child responses that exercise the promised mechanic, follow-ups that react to what the child said/did, and a screen-state change that preserves progress.
 - The magic moment must be visible in both dialogue and screen behavior. A badge alone is not enough; include a reveal, consequence, synthesis, audience reaction, map/progress completion, visitor test, or other payoff that follows from the child's actions.
 - Avoid generic filler such as "Great job," "try again," "the screen updates," or "the AI encourages" unless it is paired with specific evidence, consequence, or screen behavior. Warmth without specificity does not pass the detail floor.
@@ -536,7 +536,7 @@ Before emitting a completed migrated package, verify:
 - [ ] `pillar`, `game_style`, `template_type`, `tier_range.primary`, `key_concepts`, `progression.topic_axis`, `activity_signature.observation_angle`, `activity_signature.mechanic`, and `activity_signature.entity_role` use the current enum vocabulary.
 - [ ] `prod.md` contains Basic Info, Activity Overview, and Interaction Flow sections, with every runtime step represented.
 - [ ] `prod.md` passes the migrated package depth floor: every step is runnable, concrete, and specific enough for the prompt composer without relying on old design files.
-- [ ] `prod.md` Step 3 keeps **every round in full detail**: AI says, child response branches, AI follow-up branches, and screen state. No "same structure," "AI gives...", or one-line summaries.
+- [ ] `prod.md` Step 3 keeps **every round in full detail**: either `AI says` exact dialogue or `Runtime AI instruction` plus `Example AI line`, child response branches, AI follow-up branches or policy, and screen state. No "same structure," "AI gives...", or one-line summaries.
 - [ ] `prod.md` has no `## Self-Evaluation Scorecard`.
 - [ ] `spec.md` has exactly one `## Self-Evaluation Scorecard`, contains enough rationale for an independent reviewer to judge the activity, and the notes are truthful against `prod.md`, `tag_block.yaml`, `program.md`, and `templates.md`.
 - [ ] `recap.template.yaml` and `dashboard.template.yaml` use the same focal attribute / badge / activity identity as `tag_block.yaml` and `prod.md`.
@@ -644,15 +644,15 @@ Existing `AI says` exact-dialogue steps remain valid. Do not use a single fixed 
 
 **Round 1 — [round name]:**
 
-[full AI says / child responses / AI follow-up / Screen]
+[full AI says or Runtime AI instruction + Example AI line / child responses / AI follow-up or policy / Screen]
 
 **Round 2 — [round name]:**
 
-[full AI says / child responses / AI follow-up / Screen]
+[full AI says or Runtime AI instruction + Example AI line / child responses / AI follow-up or policy / Screen]
 
 **Round 3 — [round name]:**
 
-[full AI says / child responses / AI follow-up / Screen]
+[full AI says or Runtime AI instruction + Example AI line / child responses / AI follow-up or policy / Screen]
 
 #### Step 4: [Magic Moment / Celebration / Synthesis]
 
@@ -738,9 +738,10 @@ For the target tier, check:
 
 ### Dimension 6: Dialogue Specificity (PASS/FAIL)
 
-- Is every AI line actual, concrete dialogue (not "AI guides the child to...")? → Must be YES
-- Does every AI line include a tone/emotion marker? → Must be YES
-- Are AI responses warm, playful, and child-appropriate? → Must be YES
+- For exact-dialogue beats, is every `AI says` / follow-up line actual, concrete dialogue (not "AI guides the child to...")? → Must be YES
+- For runtime-contract beats, does every `Runtime AI instruction` include required content, source frame, branch behavior, safety/product constraints, and a concrete `Example AI line`? → Must be YES
+- Does every exact AI line or example AI line include a tone/emotion marker? → Must be YES
+- Are AI responses or runtime behavior constraints warm, playful, and child-appropriate? → Must be YES
 - Is there zero use of abstract instructions like "AI encourages" or "AI provides feedback"? → Must be YES
 - Do follow-ups react to the child's specific branch with evidence, consequence, or a targeted scaffold rather than generic praise? → Must be YES
 

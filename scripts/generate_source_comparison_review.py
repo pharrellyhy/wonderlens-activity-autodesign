@@ -781,7 +781,7 @@ def validate_report(report: dict[str, Any]) -> list[str]:
         issues.append("too many visual examples selected")
     if any("/Users/" in norm(row.get("reviewer_packet_link")) for row in rows):
         issues.append("local absolute path leaked into reviewer packet links")
-    if not any(row.get("status") != "Matches" for row in rows):
+    if summary.get("needs_review", 0) <= 0:
         issues.append("no review-needed rows classified")
     if report.get("intent_audit_provided"):
         missing_audit = [row for row in rows if not row.get("intent_audit_present")]
@@ -829,6 +829,20 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         issues.append("HTML row count does not match source row count")
     if "data:image/png;base64," not in html_text:
         issues.append("HTML does not embed visual example images")
+    if report.get("intent_audit_provided"):
+        for row in report.get("rows", []):
+            if not row.get("intent_audit_present"):
+                continue
+            source_row = row.get("source_row")
+            for label, key in (
+                ("intent recommendation", "intent_recommendation"),
+                ("intent review question", "intent_review_question"),
+                ("original play frame", "original_play_frame"),
+                ("generated play frame", "generated_play_frame"),
+            ):
+                value = norm(row.get(key))
+                if value and esc(value) not in html_text:
+                    issues.append(f"HTML missing {label} for source row {source_row}")
     return issues
 
 

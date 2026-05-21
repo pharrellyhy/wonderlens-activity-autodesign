@@ -277,6 +277,29 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("not all source rows are covered", "\n".join(issues))
         self.assertIn("no visual examples selected", "\n".join(issues))
 
+    def test_validate_report_accepts_intent_only_review_rows(self):
+        comparison = load_script("generate_source_comparison_review")
+        report = {
+            "rows": [
+                {
+                    "source_row": 1,
+                    "activity_id": "concept_story_unlock_probe",
+                    "status": "Matches",
+                    "intent_status": "intent_drift",
+                    "intent_severity": "high",
+                    "intent_audit_activity_id": "concept_story_unlock_probe",
+                    "intent_audit_present": True,
+                }
+            ],
+            "summary": {"source_rows": 1, "covered_rows": 1, "needs_review": 1},
+            "visual_examples": [{"activity_id": "concept_story_unlock_probe"}],
+            "intent_audit_provided": True,
+        }
+
+        issues = comparison.validate_report(report)
+
+        self.assertNotIn("no review-needed rows classified", "\n".join(issues))
+
     def test_build_report_loads_intent_audit_and_renders_review_column(self):
         comparison = load_script("generate_source_comparison_review")
         with tempfile.TemporaryDirectory() as tmp:
@@ -335,6 +358,45 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("data-filter=\"intent-drift\"", html)
         self.assertIn("Revise the generated loop to restore the reveal sequence.", html)
         self.assertIn("intent_drift", html)
+
+    def test_validate_html_rejects_stale_intent_audit_content(self):
+        comparison = load_script("generate_source_comparison_review")
+        report = {
+            "intent_audit_provided": True,
+            "summary": {"source_rows": 1},
+            "rows": [
+                {
+                    "source_row": 7,
+                    "intent_audit_present": True,
+                    "intent_recommendation": "Fresh repair recommendation.",
+                    "intent_review_question": "Fresh product question?",
+                    "original_play_frame": "Story-first unlock.",
+                    "generated_play_frame": "Door-choice shell.",
+                }
+            ],
+        }
+        stale_html = """
+<html><body>
+Product Source Fidelity Review
+Visual Examples
+Review Matrix
+data-filter="changed"
+data-filter="capability"
+Reviewer packet
+Intent alignment
+data-filter="intent-drift"
+data:image/png;base64,cG5n
+<tr data-status="matches"></tr>
+Old repair recommendation.
+</body></html>
+"""
+
+        issues = comparison.validate_html(stale_html, report)
+
+        joined = "\n".join(issues)
+        self.assertIn("HTML missing intent recommendation for source row 7", joined)
+        self.assertIn("HTML missing intent review question for source row 7", joined)
+        self.assertIn("HTML missing original play frame for source row 7", joined)
 
     def test_validate_report_rejects_bad_intent_audit(self):
         comparison = load_script("generate_source_comparison_review")
