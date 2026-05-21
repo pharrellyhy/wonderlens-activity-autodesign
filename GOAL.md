@@ -6,6 +6,8 @@ Use this file as the `/goal` target for running the WonderLens autonomous activi
 
 Generate or triage WonderLens activity assignments from `assignments.md` using the current authoring workflow in `program.md`, `templates.md`, `run.md`, and the migrated five-file activity package contract.
 
+For source-derived batches, preserve the original source design's play frame. A generated package may keep the mechanic/category labels and still fail if it changes the child role, interaction sequence, story frame, or required child action without product approval.
+
 Each run must also create a provenance directory under `runs/<run_id>/` so generated packages, blocked briefs, and constrained blocked design previews can be traced back to the exact `/goal` session.
 
 For fresh assignment generation, the assignment `activity_id=` value is a clean base slug. Strip any trailing `_rYYYYMMDD_HHMMSS` suffix from copied rows, keep the clean base slug as the package `activity_id`, and write the actual package under `runs/<run_id>/activity_packages/<base_activity_id>/`. Enrichment-only maintenance may update existing checked canonical packages under `activities/<activity_id>/` in place. Do not write fresh rerun packages directly under `activities/` unless a later explicit promotion step asks for that.
@@ -15,7 +17,7 @@ If the user supplies a scope such as "only Batch 5" or "last batch", process onl
 ## Recommended `/goal` Command
 
 ```text
-/goal Execute GOAL.md end to end using run.md. Initialize run provenance, honor any user-specified assignment scope or product-contract override, audit/enrich checked activity packages that have an explicit package_path or canonical activities/<activity_id>/ directory against the current migrated package depth floor with separate reviewer-agent evidence, then process the run-start unchecked assignment snapshot exactly once in order. For each generation-ready row, use the assignment activity_id as a clean base slug, strip any copied _rYYYYMMDD_HHMMSS suffix, and generate a passing five-file package under runs/<run_id>/activity_packages/<base_activity_id>/ with tag_block.yaml activity_id matching the clean base slug; for blocked rows, record a blocked brief plus constrained blocked design preview and continue. If product_contract_override=minimum_unblock_allowed is active, generate formerly blocked rows as normal packages, replace invalid blockers with resolved blocker annotations, and still show those resolved dependencies in review.html. Include extensibility notes for every package so reviewers can see whether the activity can be reused with other entities, properties, or asset sets. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate runs/<run_id>/review.html according to review_dashboard.md. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, resolved blockers, extensibility coverage, reviewer-agent coverage, review dashboard path, checks, and residual risks.
+/goal Execute GOAL.md end to end using run.md. Initialize run provenance, honor any user-specified assignment scope or product-contract override, audit/enrich checked activity packages that have an explicit package_path or canonical activities/<activity_id>/ directory against the current migrated package depth floor with separate reviewer-agent evidence, then process the run-start unchecked assignment snapshot exactly once in order. For each generation-ready row, preserve source-promise alignment from the original source design, including original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, and product dependencies. Use the assignment activity_id as a clean base slug, strip any copied _rYYYYMMDD_HHMMSS suffix, and generate a passing five-file package under runs/<run_id>/activity_packages/<base_activity_id>/ with tag_block.yaml activity_id matching the clean base slug; for blocked rows, record a blocked brief plus constrained blocked design preview and continue. If product_contract_override=minimum_unblock_allowed is active, generate formerly blocked rows as normal packages, replace invalid blockers with resolved blocker annotations, and still show those resolved dependencies in review.html. Include extensibility notes for every package so reviewers can see whether the activity can be reused with other entities, properties, or asset sets. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate runs/<run_id>/review.html according to review_dashboard.md. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, resolved blockers, source-intent drift, extensibility coverage, reviewer-agent coverage, review dashboard path, checks, and residual risks.
 ```
 
 ## Success Criteria
@@ -49,13 +51,15 @@ The goal is complete only when all of the applicable criteria below are met.
    - The run-start `assignment_snapshot.md` is the queue; each snapshot row is visited at most once per run, even if a blocked row remains unchecked for a future product decision.
    - `assignment_type` is parsed or inferred.
    - `activity_concept=` is used for concept-led rows; legacy concept aliases are normalized before Phase 0.
+   - Source-promise cues are extracted when the source is richer than a simple entity/category row: original play frame, child role, interaction sequence, required child actions, and non-negotiable source elements.
+   - If a normalized assignment paraphrase conflicts with the original source design, the original source design controls unless product approval is recorded.
    - Source concepts may be Chinese, but generated adaptation briefs and package files are English-only.
 
 4. Phase 0 adaptation is completed when required:
    - `activity_concept`, `match_pattern`, and `capability_probe` rows always receive an `adaptation_brief`.
    - `entity_activity` rows receive an `adaptation_brief` when mapping, category, mechanic, trigger, or scaffold fit needs resolution.
    - Referenced `concept_source` and `asset_requirements` rows are loaded before the brief is written.
-   - The brief records `input_mode`, `canonical_mechanic`, readiness, trigger condition, mapping use, asset dependency, product capability flags, scaffold choice, and assumptions.
+   - The brief records `input_mode`, source-promise alignment, `canonical_mechanic`, readiness, trigger condition, mapping use, asset dependency, product capability flags, scaffold choice, and assumptions.
    - If `asset_policy` or companion asset rows are present, the brief copies them into `asset_dependency` instead of inferring image needs from prose.
    - The normalized brief is written to `runs/<run_id>/adaptation_briefs/` when generation may proceed, or to `runs/<run_id>/blocked_briefs/` when blocked.
 
@@ -103,6 +107,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` are written in English, even when the source concept was Chinese.
    - `spec.md` is decision-useful, not just a scorecard wrapper: it records concrete design intent, assumptions, constraints, scaffold fit, asset/product dependencies, game-feel rationale, and residual risk when relevant.
    - `prod.md` satisfies the migrated package depth floor from `program.md`: every step is runnable, concrete, and specific enough for the prompt composer without relying on old design files.
+   - Runtime beats may use existing `AI says` exact dialogue or the newer `Runtime AI instruction` plus `Example AI line` contract. A behavior instruction must preserve source frame, required content, branch policy, safety/product constraints, and screen/state expectation.
    - `prod.md` contains no `## Self-Evaluation Scorecard`.
    - `spec.md` contains exactly one `## Self-Evaluation Scorecard`.
    - Every runtime Step 3 round in `prod.md` is fully expanded.
@@ -115,6 +120,7 @@ The goal is complete only when all of the applicable criteria below are met.
 9. Mechanic-first checks pass:
    - `tag_block.yaml` `activity_signature.mechanic` matches the canonical mechanic from the assignment or adaptation brief.
    - The repeated child action in `prod.md` Step 3 matches that mechanic.
+   - The runtime flow preserves the source play frame, child role, interaction sequence, and required child actions unless a product-approved adaptation is recorded.
    - Weak scaffold fit or generation assumptions are disclosed in `spec.md` `## Adaptation Rationale`.
    - Pillar and `game_style` support the mechanic; they do not override it.
 
@@ -156,11 +162,18 @@ The goal is complete only when all of the applicable criteria below are met.
    - The dashboard provides in-file preview for every linked `.md`/`.yaml`/`.txt` per `review_dashboard.md` §"In-file preview": raw content embedded as `<template>` elements, a dedicated preview `<dialog>` renders Markdown inline and YAML/text in a code block, plain click previews while modifier-click and the "Open in new tab" link still navigate.
    - `runs/<run_id>/run_manifest.yaml` records the dashboard path, and the final report includes it.
 
-14. Final report is clear:
+14. Existing-run source-intent audits are patched without full rerun when requested:
+   - `runs/<run_id>/source_comparison/source_intent_audit.yaml` exists with one entry per source row.
+   - `scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml --validate` passes.
+   - `product_review_matrix.html` shows intent alignment separately from category/mechanic/capability status.
+   - High-severity `intent_drift` rows are either repaired in the specific affected package or explicitly left as product-review findings.
+
+15. Final report is clear:
    - State how many packages were generated.
    - State how many existing packages were enriched or audited as already compliant.
    - List any blocked assignments and the exact reason.
    - List any resolved blockers that were allowed by product-contract override.
+   - Summarize source-intent drift and product-decision counts when a source comparison audit exists.
    - Summarize extensibility coverage for reusable or parameterized activities.
    - Include the `run_id` and `runs/<run_id>/run_manifest.yaml` path.
    - Include the `runs/<run_id>/review.html` path.

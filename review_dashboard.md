@@ -52,7 +52,7 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
 - Opening a card must reveal all available activity details in a popup dialog or a dedicated detail page. The default implementation should use an accessible in-page dialog so the dashboard remains one self-contained HTML file.
 - The detail view must include enough `spec.md`, `prod.md`, and `tag_block.yaml` information for review without opening package files:
   - Design intent, premise, scenario, focal attribute, pillar, game style, and reviewer status.
-  - Runtime beats with a visual storyboard/timeline map before the extracted source rows. The map must show step/round title, AI prompt, expected child response branches as colored branch chips, AI follow-up behavior, and screen state when present.
+  - Runtime beats with a visual storyboard/timeline map before the extracted source rows. The map must show step/round title, AI prompt or runtime behavior contract, example AI line when present, expected child response branches as colored branch chips, AI follow-up behavior or policy, and screen/state when present.
   - Asset usage timeline when visual assets are present: asset ID, type, requiredness, prebuilt/runtime/display timing, exact use step or round, screen location, display/use behavior, persistence/hide behavior, prompt/source summary, and fallback behavior.
   - Asset usage metrics that distinguish `Asset dependencies` (unique asset IDs or asset sets), `Display beats` (runtime step/round appearances parsed from `use_step`), and `Image items` (known image count, or set/item-count TBD when a row represents a card set or asset set). Do not label a single asset row as a single image when it is displayed across multiple steps.
   - Learning tags, related concepts, ATL skills, and scorecard summary when present.
@@ -152,6 +152,15 @@ Reviewers must be able to read every linked `.md`, `.yaml`, and `.txt` file with
 - Click behaviour: a plain click opens the inline preview. `Cmd`/`Ctrl`/`Shift`/`Alt`/middle-click bypass the preview and navigate to the file directly. The dialog also exposes an "Open file in new tab" link so reviewers can escape to the raw file when they want it.
 - Accessibility: the preview dialog uses the native `<dialog>` element, is opened with `showModal()`, closes on `Escape`, closes when the backdrop is clicked, and returns focus to the link that opened it. Markdown rendering inherits the dashboard's serif display stack for headings and the system sans stack for body text.
 - The preview behaviour must not interfere with the existing activity-detail dialog, card-click navigation, or `data-detail-template` modal pattern.
+
+## Runtime Behavior Contracts
+
+The dashboard must parse both runtime speech shapes:
+
+- Existing exact dialogue: `AI says`, `Child responses`, `AI follow-up`, and `Screen`.
+- Runtime LLM behavior contract: `Runtime AI instruction`, `Example AI line`, `Child responses`, `AI follow-up policy`, and `Screen/state`.
+
+When the contract shape is used, label the beat as a runtime behavior contract in the detail view. The example line should be shown as a sample line, not as the only allowed runtime response. The storyboard still needs to surface source-promise-critical requirements such as story-first narration, profession-first role-play, physical/photo challenge gates, product constraints, and screen/state expectations.
 
 ## Generation And Validation
 

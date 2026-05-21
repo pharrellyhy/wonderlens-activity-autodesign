@@ -2,12 +2,24 @@
 
 ## Current Status
 
-- Status: Batch 5 pilot prebuilt assets are integrated and exported as static activity HTML review artifacts in the feature worktree
-- Date: 2026-05-20
+- Status: Batch 5 existing run is patched with a source-intent audit overlay and runtime behavior-contract review support
+- Date: 2026-05-21
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
 
+- Added `runs/20260512_172135_batch5_unblocked/source_comparison/source_intent_audit.yaml` with all 40 workbook rows audited for original play-frame fidelity against generated runtime beats.
+- Regenerated `runs/20260512_172135_batch5_unblocked/source_comparison/product_review_matrix.html` with a separate Intent alignment column, intent-drift filters, and product-review questions driven by the audit file.
+- Audit summary: 9 aligned, 16 minor adaptations, 4 intent drift, and 11 product-decision rows. High-severity intent drift remains explicitly flagged for `concept_story_unlock_probe`, `concept_toy_tidy_probe`, and `concept_career_decision_decide`.
+- Updated `program.md`, `run.md`, `GOAL.md`, `templates.md`, `runs/README.md`, and `review_dashboard.md` so future generation runs must capture source-promise alignment and existing runs can be patched with an audit overlay instead of a full rerun.
+- Updated `scripts/generate_run_review.py` and tests so review dashboards parse both legacy `AI says` beats and `Runtime AI instruction` plus `Example AI line` behavior-contract beats.
+- Updated `runs/20260512_172135_batch5_unblocked/run_manifest.yaml` with `outputs.source_intent_audit`, audit summary counts, validation checks, and residual high-severity source-intent findings.
+- Fixed independent review findings after the source-intent/runtime-contract pass: `program.md` no longer conflicts between runtime behavior contracts and the Dimension 6/self-check rubric, source comparison validation accepts intent-only drift rows, and HTML validation now rejects stale rendered audit content.
+- Added `scripts/generate_source_comparison_review.py` to build a product-facing source fidelity matrix from the original workbook, `inputs/source_activity_concepts.md`, run adaptation briefs, package files, reviewer packet exports, and storyboard/contact-sheet artifacts.
+- Added focused unittest coverage in `tests/test_source_comparison_review.py` for source row classification, visual-example selection, portable HTML rendering, and validation failures.
+- Generated `runs/20260512_172135_batch5_unblocked/source_comparison/product_review_matrix.html` as a self-contained review page with all 40 workbook rows, direct reviewer-packet links, and 5 representative storyboard/contact-sheet examples.
+- Updated `runs/20260512_172135_batch5_unblocked/run_manifest.yaml` and `runs/README.md` so source comparison review pages are recorded as derived run artifacts.
+- Updated `scripts/generate_run_review.py` runtime-map markup so the dashboard generator satisfies the current branch-followup regression tests, then regenerated `runs/20260512_172135_batch5_unblocked/review.html`.
 - Added `scripts/integrate_generated_assets.py` to bind generated pilot contact sheets to run-local activity packages and validate package/image/metadata/prompt/asset-field consistency.
 - Added `scripts/export_activity_html.py` to export integrated activities as self-contained standalone reviewer packets with embedded contact-sheet PNG data URIs, review-only mechanism storyboard PNG data URIs, runtime flow, scorecard rows, asset contract, fallback behavior, provenance links, and source snapshots.
 - Added focused unittest coverage in `tests/test_integrated_asset_workflow.py` for the new integration/export script APIs.
@@ -98,6 +110,34 @@
 
 ## Verification
 
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest tests/test_generate_run_review.py -v`
+  - Result: PASS; 5 run-review tests passed, including runtime behavior-contract parsing and rendering.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest tests/test_source_comparison_review.py -v`
+  - Result: PASS; 4 focused source-comparison tests passed, including source-intent audit validation.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_source_comparison_review.py runs/20260512_172135_batch5_unblocked --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260512_172135_batch5_unblocked/source_comparison/source_intent_audit.yaml --validate`
+  - Result: PASS; 40 source rows, 40 covered, 24 needing review, 4 intent drift.
+- Source intent audit matrix static scan
+  - Result: PASS; 40 audit entries, visible Story Unlock and Career Decision product questions, no unresolved template placeholders, no external links.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked`
+  - Result: PASS; dashboard contract passed with 644 resolving local links.
+- Independent read-only review after `3861733`
+  - Result: PASS; prior findings were confirmed resolved and no remaining actionable issues were reported.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest tests/test_source_comparison_review.py -v`
+  - Result: PASS; 2 focused source-comparison tests passed.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/generate_source_comparison_review.py`
+  - Result: PASS.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_source_comparison_review.py runs/20260512_172135_batch5_unblocked --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx`
+  - Result: PASS; regenerated `source_comparison/product_review_matrix.html`.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_source_comparison_review.py runs/20260512_172135_batch5_unblocked --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --validate`
+  - Result: PASS; 40 source rows, 40 covered, 22 needing review.
+- Source comparison static HTML scan for local paths, external URLs, unresolved placeholders, expected row count, and embedded visual examples
+  - Result: PASS; 40 matrix rows, 10 embedded representative images, no local absolute paths or external links.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260512_172135_batch5_unblocked`
+  - Result: PASS; dashboard contract passed with 644 resolving local links.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/generate_source_comparison_review.py scripts/generate_run_review.py`
+  - Result: PASS.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest discover -s tests -v`
+  - Result: PASS; all 17 local tests passed.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest discover -s tests -p 'test_integrated_asset_workflow.py' -v`
   - Result: PASS; 11 focused integration/export tests passed, including same-activity multi-asset validation and storyboard-backed reviewer packet validation.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/integrate_generated_assets.py scripts/export_activity_html.py scripts/generate_run_review.py`
@@ -255,6 +295,10 @@
 
 ## Residual Risk
 
+- Source-intent alignment is a structured audit for product/curriculum review, not final signoff.
+- `concept_story_unlock_probe` remains high-severity source-intent drift until repaired or product-approved: the original is story-first challenge unlock, but the generated package weakens the story-first sequence.
+- `concept_career_decision_decide` remains high-severity source-intent drift until repaired or product-approved: the original is profession-first role-play, but the generated package is scenario-to-profession matching.
+- `concept_toy_tidy_probe` remains high-severity source-intent drift until repaired or product-approved: the original timed tidy/visible evidence loop is weakened.
 - The existing `results.tsv` header predates the migrated package loop and is not changed in this pass.
 - `d10_pillar_fidelity` remains the documented log column name for compatibility, but it now records Dimension 10 Mechanic Fidelity + Scaffold Honesty.
 - Mechanic enum changes require matching updates in downstream consumer enum mirrors before new packages using `decide`, `remember`, `imagine`, or `motion_voice` can be consumed safely.
@@ -267,9 +311,13 @@
 - The 23 corrected run-local packages for `20260511_233559_activity_concepts` were materialized from the current independently reviewed packages with clean IDs. Future fresh `/goal` runs are now required to generate directly into run-local package directories from the start.
 - The 12 Batch 5 exported HTML reviewer packets embed contact-sheet review images and review-only mechanism storyboards, not sliced final runtime cards. A downstream runtime will still need an approved final asset packaging/slicing convention before using these as production card assets.
 - The exported HTML source snapshots include asset metadata, but local `source_image` provenance paths are redacted inside static exports so the portable HTML files do not introduce additional machine-local paths.
+- The source comparison page embeds representative visuals only; product reviewers should use linked reviewer packets for the full per-activity storyboard and asset detail.
+- Source fidelity status is based on workbook metadata, normalized source concept rows, and adaptation briefs. It is a review triage layer, not a replacement for curriculum signoff.
 
 ## Next Immediate Actions
 
+- Product/curriculum should review the 4 `intent_drift` rows and decide which should be repaired before signoff versus accepted as V1 adaptations.
+- Share `runs/20260512_172135_batch5_unblocked/source_comparison/product_review_matrix.html` with product reviewers as the first-pass source fidelity matrix.
 - Review the 12 static activity HTML exports for product/curriculum signoff on the integration shape before generating remaining prebuilt assets.
 - Decide whether the next asset pipeline step needs individual card slicing, per-card metadata, or a consumer-facing asset manifest beyond the run-local binding manifest.
 - Review the Activity Concept Brief + Asset Requirements fields with concept owners and curriculum authors.

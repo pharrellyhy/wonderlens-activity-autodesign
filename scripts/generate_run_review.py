@@ -308,6 +308,14 @@ def field_block(text: str, label: str) -> str:
     return match.group("body").strip() if match else ""
 
 
+def first_field_block(text: str, labels: tuple[str, ...]) -> str:
+    for label in labels:
+        value = field_block(text, label)
+        if value:
+            return value
+    return ""
+
+
 def summarize_child_responses(text: str) -> str:
     branches = child_response_branches(text)
     if branches:
@@ -407,15 +415,22 @@ def paired_branch_followups(child_text: str, followup_text: str) -> list[dict[st
 
 def beat_from_chunk(title: str, chunk: str) -> dict[str, Any]:
     child_block = field_block(chunk, "Child responses")
-    followup_block = field_block(chunk, "AI follow-up")
+    followup_block = first_field_block(chunk, ("AI follow-up", "AI follow-up policy"))
+    ai_says = clean_markdown(field_block(chunk, "AI says"))
+    runtime_instruction = clean_markdown(field_block(chunk, "Runtime AI instruction"))
+    example_ai_line = clean_markdown(field_block(chunk, "Example AI line"))
+    speech_mode = "runtime_contract" if runtime_instruction else "exact_dialogue"
     return {
         "title": clean_markdown(title),
-        "ai": clean_markdown(field_block(chunk, "AI says")),
+        "speech_mode": speech_mode,
+        "ai": ai_says or runtime_instruction,
+        "runtime_instruction": runtime_instruction,
+        "example_ai_line": example_ai_line,
         "child": summarize_child_responses(child_block),
         "followup": summarize_ai_followup(followup_block),
         "branches": paired_branch_followups(child_block, followup_block),
         "photo_timing": clean_markdown(field_block(chunk, "Photo capture timing")),
-        "screen": clean_markdown(field_block(chunk, "Screen")),
+        "screen": clean_markdown(first_field_block(chunk, ("Screen", "Screen/state"))),
     }
 
 
@@ -1805,6 +1820,7 @@ def runtime_branch_followups(beat: dict[str, Any]) -> str:
         return f"""
 <div class="branch-followup-grid">
   <div class="branch-followup-card branch-followup-observed">
+    <span class="branch-chip branch-chip-observed">Observed</span>
     <div><span>Child</span><p>{esc(child or "Unknown")}</p></div>
     <div><span>AI follow-up</span><p>{esc(followup or "Unknown")}</p></div>
   </div>
@@ -1818,6 +1834,7 @@ def runtime_branch_followups(beat: dict[str, Any]) -> str:
         cards.append(
             f"""
   <div class="branch-followup-card branch-followup-{esc(token)}">
+    <span class="branch-chip branch-chip-{esc(token)}">{esc(label)}</span>
     <div><span>{esc(label)} child</span><p>{esc(child)}</p></div>
     <div><span>AI follow-up</span><p>{esc(followup)}</p></div>
   </div>"""
@@ -1840,17 +1857,26 @@ def runtime_beat_map(beats: list[dict[str, Any]]) -> str:
         title = beat.get("title") or "Runtime beat"
         kind = runtime_beat_kind(title)
         photo_timing = runtime_photo_timing(beat)
+        is_contract = beat.get("speech_mode") == "runtime_contract"
+        ai_label = "Runtime behavior contract" if is_contract else "AI prompt"
+        followup_label = "Child branches and AI follow-up policy" if is_contract else "Child branches and AI follow-ups"
+        screen_label = "Screen/state" if is_contract else "Screen"
+        example_line = (
+            f'\n      <div class="runtime-lane runtime-lane-example"><span>Example AI line</span><p>{esc(beat.get("example_ai_line") or "Unknown")}</p></div>'
+            if is_contract
+            else ""
+        )
         nodes.append(
             f"""<li class="runtime-map-node runtime-map-node-{esc(kind)}">
   <div class="runtime-step-marker"><span>{index:02d}</span></div>
   <div class="runtime-step-body">
     <div class="runtime-map-head"><strong>{esc(title)}</strong><span>{esc(kind)}</span></div>
     <div class="runtime-lanes">
-      <div class="runtime-lane runtime-lane-ai"><span>AI prompt</span><p>{esc(beat.get("ai") or "Unknown")}</p></div>
-      <div class="runtime-branches"><span>Child branches and AI follow-ups</span>{runtime_branch_followups(beat)}</div>
+      <div class="runtime-lane runtime-lane-ai"><span>{esc(ai_label)}</span><p>{esc(beat.get("ai") or "Unknown")}</p></div>{example_line}
+      <div class="runtime-lane runtime-lane-followup"><span>{esc(followup_label)}</span>{runtime_branch_followups(beat)}</div>
     </div>
 {photo_timing}
-    <div class="screen-strip"><span>Screen</span><p>{esc(beat.get("screen") or "Unknown")}</p></div>
+    <div class="screen-strip"><span>{esc(screen_label)}</span><p>{esc(beat.get("screen") or "Unknown")}</p></div>
   </div>
 </li>"""
         )
@@ -1858,14 +1884,24 @@ def runtime_beat_map(beats: list[dict[str, Any]]) -> str:
 
 
 def runtime_beat_html(beat: dict[str, Any]) -> str:
-    fields = [
-        ("AI", beat.get("ai", "")),
-        ("Child", beat.get("child", "")),
-        ("Follow-up", beat.get("followup", "")),
-    ]
+    if beat.get("speech_mode") == "runtime_contract":
+        fields = [
+            ("Runtime behavior contract", beat.get("runtime_instruction", "")),
+            ("Example AI line", beat.get("example_ai_line", "")),
+            ("Child", beat.get("child", "")),
+            ("Follow-up policy", beat.get("followup", "")),
+        ]
+        screen_label = "Screen/state"
+    else:
+        fields = [
+            ("AI", beat.get("ai", "")),
+            ("Child", beat.get("child", "")),
+            ("Follow-up", beat.get("followup", "")),
+        ]
+        screen_label = "Screen"
     if normalize_text(beat.get("photo_timing")):
         fields.append(("Photo timing", beat.get("photo_timing", "")))
-    fields.append(("Screen", beat.get("screen", "")))
+    fields.append((screen_label, beat.get("screen", "")))
     field_html = "".join(
         f'<div class="beat-field"><span>{esc(label)}</span><p>{esc(value or "Unknown")}</p></div>'
         for label, value in fields
@@ -3247,6 +3283,20 @@ ol, ul { margin: 0; padding-left: 20px; }
   padding: 7px 8px;
   color: var(--text-soft);
 }
+.branch-chip {
+  grid-column: 1 / -1;
+  justify-self: start;
+  border-radius: 999px;
+  padding: 2px 7px;
+  font-size: 9.5px;
+  font-weight: 780;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.branch-chip-ideal { background: var(--green-bg); color: var(--green-text); }
+.branch-chip-unexpected { background: var(--amber-bg); color: var(--amber-text); }
+.branch-chip-no-response { background: var(--purple-bg); color: var(--purple-text); }
+.branch-chip-observed { background: var(--accent-soft); color: var(--accent-ink); }
 .branch-followup-card span {
   display: block;
   margin-bottom: 3px;
