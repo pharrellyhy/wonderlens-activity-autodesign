@@ -137,11 +137,11 @@ For each assignment in the run-start `assignment_snapshot.md` that is marked `- 
 
 ### Step 1: Parse the assignment
 
-Extract: assignment_type (if provided), activity_concept (if provided), legacy concept alias (if provided), concept_source (if provided), description/notes (if provided), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), start type (if provided), and output activity_id (if provided). Normalize any legacy concept alias to `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared.
+Extract: assignment_type (if provided), activity_concept (if provided), legacy concept alias (if provided), concept_source (if provided), description/notes (if provided), source-promise cues (original play frame, child role, interaction sequence, required child actions, non-negotiable source elements), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), start type (if provided), and output activity_id (if provided). Normalize any legacy concept alias to `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared.
 
 For unchecked generation-ready rows, treat `activity_id=` as `base_activity_id`. If the base value already ends in `_rYYYYMMDD_HHMMSS` because a prior run row was copied, strip that suffix first. The final package `activity_id` stays the clean `<base_activity_id>`, and the run-specific identity comes from the package path `runs/<run_id>/activity_packages/<base_activity_id>/`. This prevents fresh reruns from silently linking back to old canonical `activities/` package directories while keeping package IDs clean. The only exception is enrichment/audit of already checked rows, which intentionally uses the existing canonical package ID in place.
 
-If `concept_source=` points to `file#concept_id`, read that repo-relative file and load the matching concept section before Phase 0. If `asset_requirements=` points to `file#asset_id`, read the same or referenced file and load the matching asset requirement section. Use the assignment row as the execution source of truth, and use the companion file as richer source / asset context.
+If `concept_source=` points to `file#concept_id`, read that repo-relative file and load the matching concept section before Phase 0. If `asset_requirements=` points to `file#asset_id`, read the same or referenced file and load the matching asset requirement section. Use the assignment row as the execution source of truth, and use the companion file as richer source / asset context. When a workbook row, source concept, and normalized assignment paraphrase disagree, preserve the original source design's play frame unless product explicitly approves the adaptation.
 
 Source concepts may arrive in Chinese or mixed language. Before writing an adaptation brief or package, normalize the concept name, description, trigger, assumptions, asset rows, and generated copy to English. Do not copy Chinese source prose into generated activity artifacts.
 
@@ -159,17 +159,18 @@ If tier is not specified, infer it per `program.md` rules. If scene is not speci
 Run `program.md` Phase 0 before scaffold composition. This is required for `activity_concept`, `match_pattern`, `capability_probe`, legacy concept aliases, and underspecified rows; it is allowed for normal `entity_activity` rows.
 
 1. Classify `input_mode` as `mapping_informed`, `parameterized`, or `concept_only`.
-2. Identify `canonical_mechanic` and `mechanic_confidence`. If `mechanic=` is specified, it wins unless it is outside the current enum.
-3. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
-4. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
-5. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
-6. If `readiness=blocked_until_product_decision`, first check whether the run has `product_contract_override=minimum_unblock_allowed`.
+2. Identify `source_promise_alignment`: original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, product dependencies, and alignment status. This is a required review field for concept-led rows and should be included whenever a source concept is richer than a simple entity/category assignment.
+3. Identify `canonical_mechanic` and `mechanic_confidence`. If `mechanic=` is specified, it wins unless it is outside the current enum. The mechanic cannot override the original source play frame; it only labels the repeated child action.
+4. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
+5. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
+6. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
+7. If `readiness=blocked_until_product_decision`, first check whether the run has `product_contract_override=minimum_unblock_allowed`.
    - Without the override, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> -- <what product/design decision is needed>`. Use the same blocker reason consistently when one missing product decision affects multiple beats; each inline marker is an occurrence, not a separate missing decision. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `runs/<run_id>/activity_packages/` or `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
    - With the override, treat the row as generation-ready. Save the brief under `adaptation_briefs/`, set `readiness=generate_with_assumptions`, and copy every former missing decision into `resolved_blockers`. In `spec.md`, add `## Resolved Product Contract Notes`; in `prod.md`, annotate affected beats with `> RESOLVED BLOCKER: <reason> -- <formerly needed decision now allowed by product contract>`. Do not create a blocked brief, do not add `blocked_assignments`, and do not count the row as blocked.
-7. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
-8. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
-9. For any prebuilt, displayed, or runtime-generated image dependency, also create `spec.md` `## Asset Usage Timeline` rows that make the image flow reviewable: `asset_id`, prebuilt/runtime timing, load or generation moment, first display step, visible step/round range, screen location, interaction/use, prompt/source summary, persistence or hide behavior, and fallback.
-10. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
+8. If `readiness=generate_with_assumptions`, carry assumptions into `spec.md` under `## Adaptation Rationale`.
+9. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
+10. For any prebuilt, displayed, or runtime-generated image dependency, also create `spec.md` `## Asset Usage Timeline` rows that make the image flow reviewable: `asset_id`, prebuilt/runtime timing, load or generation moment, first display step, visible step/round range, screen location, interaction/use, prompt/source summary, persistence or hide behavior, and fallback.
+11. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
 
 ### Step 1.5: Load entity mapping (when required or available)
 
@@ -237,11 +238,13 @@ Rules:
 Runtime completeness rule:
 
 - Every generated concept-led package should include `spec.md` `## Extensibility Notes` when the loop can be reused with other entities, properties, or asset sets. Name concrete reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, `{matched_shape}`, or a replaceable approved asset-set ID. If the package is intentionally not reusable, state why.
+- Every concept-led package should include `spec.md` source-promise alignment notes. The notes must name the original play frame, child role, required child actions, allowed adaptations, and any product-approved source changes.
 - For product-contract override runs, every former blocker must be visible as resolved review evidence: `spec.md` `## Resolved Product Contract Notes`, `prod.md` inline `RESOLVED BLOCKER` comments near affected beats, and `run_manifest.yaml` `resolved_blockers` / `resolved_blocker_types` for the generated activity.
-- Every Step 3 round in `prod.md` must be fully expanded with AI dialogue, child response branches, AI follow-up branches, and screen state.
+- Every Step 3 round in `prod.md` must be fully expanded with either `AI says` exact dialogue or `Runtime AI instruction` plus `Example AI line`, child response branches, AI follow-up policy/branches, and screen state.
 - Never write "same structure," "later rounds follow," "AI gives a riddle," or one-line summaries in generated `prod.md`.
 - The migrated package may be shorter than legacy `designs/*_spec.md`, but it must not be thin. `spec.md` must explain the activity's concrete design intent, assumptions, constraints, asset/product dependencies, scaffold fit, and game-feel rationale. `prod.md` must be runnable without the operator inventing missing beats.
-- Steps 1, 2, 4, and 5 also need concrete dialogue branches, follow-ups, and screen states. Do not concentrate all detail in Step 3 while leaving the bridge, rules, magic moment, or closing generic.
+- Steps 1, 2, 4, and 5 also need concrete dialogue or runtime behavior contracts, branches, follow-ups, and screen states. Do not concentrate all detail in Step 3 while leaving the bridge, rules, magic moment, or closing generic.
+- Runtime behavior contracts must be constrained enough for a live LLM: include required story/setup or role-play frame, exact child challenge/action, branch behavior, safety/product constraints, screen/state expectation, and what must not be skipped. A single example line is only a sample, not the whole runtime response.
 - Each Step 3 round must be distinct: named objective, different clue/challenge/action, child responses that exercise the canonical mechanic, branch-specific follow-ups, and a screen-state change.
 - Generic warmth is insufficient. Fail and repair lines like "Great job," "try again," or "screen updates" when they are not tied to specific evidence, consequence, progress, or payoff.
 - If `start=warm+cold`, document the bridge logic in `spec.md`; the runtime `prod.md` should still have a single converged Step 1 unless the assignment explicitly asks for both starts at runtime.
@@ -284,7 +287,8 @@ Before logging or committing, verify:
 - `tag_block.yaml` validates against `activities/_schema/tag_block.schema.json`.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` equals `tag_block.yaml` `activity_signature.focal_attribute`.
 - `spec.md` and `prod.md` satisfy the migrated package depth floor from `program.md`: concrete rationale, executable runtime detail, branch-specific follow-ups, non-generic screen states, and a magic moment earned by the child's action.
-- Every `prod.md` Step 3 round is fully expanded; no condensed-round placeholders remain.
+- Every `prod.md` Step 3 round is fully expanded; no condensed-round placeholders remain. Each round uses either `AI says` or `Runtime AI instruction` plus `Example AI line`.
+- `spec.md` source-promise alignment notes and `prod.md` runtime flow preserve the original play frame, child role, interaction sequence, and required child actions unless a product-approved adaptation is recorded.
 - `spec.md` contains exactly one `## Self-Evaluation Scorecard`.
 - Concept-led packages with `generate_with_assumptions` include `spec.md` `## Adaptation Rationale`.
 - Packages whose adaptation brief has `asset_dependency.policy` other than `no_assets` include `spec.md` `## Asset Brief`.
@@ -376,6 +380,22 @@ After writing `review.html`:
 1. Update `runs/<run_id>/run_manifest.yaml` `outputs.review_dashboard` to `runs/<run_id>/review.html`.
 2. Add check entries for `python3 scripts/generate_run_review.py runs/<run_id>` and `python3 scripts/generate_run_review.py --validate runs/<run_id>`.
 3. Verify the file exists, is non-empty, has `<html`, `<style`, `<script>`, the run id, the `Review Dashboard Workflow` section, cards for generated/enriched/audited packages, blocked entries when present, the 10-dimension review criteria, per-package scorecard results with why notes, asset usage timelines when image/display dependencies exist, distinct `Asset dependencies`, `Display beats`, and `Image items` labels, resolved contract items when resolved blockers exist, extensibility overview when extensibility notes exist, blocked-preview scorecards when blocked entries exist, clickable detail behavior, modal/detail content, per-blocked-card `Minimum To Unblock` sections below capability flags, grouped tag colors, inline blocked/resolved marker chips, clear missing-decision versus inline-marker counts, and resolving local links.
+
+### Step 6.8: Patch existing runs with source-intent audit
+
+Use this step when the generated packages already exist and the user asks for audit/review coverage rather than a full generation rerun. Do not regenerate activities, assets, or exported reviewer packets unless the audit identifies a package that must be repaired.
+
+1. Create or update `runs/<run_id>/source_comparison/source_intent_audit.yaml` with one entry per source workbook row. Each entry records `source_row`, `activity_id`, `original_play_frame`, `generated_play_frame`, `preserved`, `drift`, `status`, `severity`, `recommendation`, and `product_review_question`.
+2. Classify `status` as `aligned`, `minor_adaptation`, `intent_drift`, or `needs_product_decision`. Use `intent_drift` when the category/mechanic token is preserved but child role, interaction sequence, story frame, or required child action materially changes.
+3. Regenerate the source review matrix from existing run artifacts:
+
+```bash
+python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml
+python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml --validate
+```
+
+4. Record `outputs.source_intent_audit`, `outputs.source_comparison_review`, audit counts, commands, and residual high-severity findings in `run_manifest.yaml` and `review_notes.md` or `HANDOFF.md`.
+5. If an entry is high-severity `intent_drift`, either repair only that activity package and regenerate the affected review artifacts, or leave it explicitly flagged as a product-review finding. Do not perform a full rerun merely to create the audit.
 
 ### Step 7: Mark generated assignment complete
 

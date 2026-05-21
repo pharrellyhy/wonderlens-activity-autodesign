@@ -1,6 +1,6 @@
 # Templates
 
-> **Version**: 1.9 | **Date**: 2026-05-12
+> **Version**: 1.10 | **Date**: 2026-05-21
 > **Owns**: the mechanic adapters, pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture), and the Cat1 / Cat3 / Cat5 category modifier appendix.
 > **Does NOT own**: the migrated five-file package layout, the tag block schema, asset requirement rows, or the tier defaults — those live in `activities/README.md`, `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` Phase 0 / §1.9.
 > **Consumed by**: `program.md` Phase 5 (template-reading flow), `run.md` (activity package loop), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), generated `prod.md` runtime outputs, and legacy `designs/cat{1,5}/*.md` references.
@@ -8,15 +8,18 @@
 > **v1.7 — 2026-05-10**: Clarify enrichment mode. Existing migrated packages may be updated to the current template expansion floor without changing their mechanic, pillar/style, tag-block identity, or runtime package contract.
 > **v1.8 — 2026-05-11**: Make independent reviewer-agent quality review part of the package acceptance gate for generated and enriched packages.
 > **v1.9 — 2026-05-12**: Add Cat3 material-exploration modifier for product-contract override runs, and require reusable concept-led packages to expose extensibility slots such as `{runtime_entity}`, `{shared_feature}`, or approved asset-set IDs.
+> **v1.10 — 2026-05-21**: Add source-promise alignment as a layer above templates. Mechanic adapters, category modifiers, and pillar/style scaffolds must preserve the original source play frame unless product approval is recorded.
 
 ---
 
 ## How templates work
 
-An activity design is built by composing four activity layers, plus an optional asset dependency layer supplied by Phase 0:
+An activity design is built by composing four activity layers, plus source-promise and optional asset dependency layers supplied by Phase 0:
+
+0. **Source-promise alignment** — the original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, and product dependencies. This layer controls over normalized category/mechanic shorthand when they conflict. Templates can shape the experience, but they cannot invert a profession-first activity into scenario matching, a story-first unlock into a door-choice game, or a photo-collection concept into in-device-only play without product approval.
 
 1. **Template 0** — the category-agnostic skeleton. It defines the 5-beat spine (Transition Bridge → Frame & Role → Core Loop → Magic Moment → Celebration), the universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the three tier dials (T0 / T1 / T2). The migrated output contract lives in `program.md` §1.9 and `activities/README.md`.
-2. **Mechanic adapter** — one of the twelve `activity_signature.mechanic` adapters below. It defines what the child actually does in the repeated loop. This is the primary source/product intent layer and must not be overwritten by pillar or style.
+2. **Mechanic adapter** — one of the twelve `activity_signature.mechanic` adapters below. It defines what the child actually does in the repeated loop. This is the primary action label, but it does not replace the source-promise layer. If the mechanic token is right but the child role or sequence changes, the package still needs repair or product approval.
 3. **Category modifier** — Cat1 (in-device, sustained verbal), Cat3 (out-of-device material exploration), or Cat5 (out-of-device collection/tracking), drawn from the appendix at the bottom of this file. Category modifiers are small — 8 fields (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras). They set the physical frame for the mechanic.
 4. **Pillar/style scaffold** — one of the six overlays below (Mystery / Creation / Performance / Discovery / Adventure / Nurture) and its compatible style. It provides emotional payoff, metaphor flavor, and magic-moment shape. If no pillar/style cleanly fits, choose the least misleading scaffold only when the mechanic remains intact; otherwise block generation per `program.md` Phase 0.
 
@@ -25,7 +28,8 @@ The optional **asset dependency layer** is not a template layer and must not cha
 The layers compose like this:
 
 ```text
-Template 0 spine
+Source Promise
++ Template 0 spine
 + Mechanic Adapter
 + Category Modifier
 + Optional Pillar/Style scaffold
