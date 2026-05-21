@@ -1,0 +1,76 @@
+activity_id: concept_color_famous_art_probe
+version: 1
+source_entity_exemplar: '{runtime_entity}'
+template_type: cat1
+pillar: Discovery
+game_style: field_experiment
+entity: '{runtime_entity_or_mode_topic}'
+entity_class: []
+entity_binding: agnostic
+tier_range:
+  primary: T1
+  span:
+  - T1
+  - T2
+  elasticity: '+1'
+category: color_in_famous_art
+attributes:
+- color_famous_art
+- function
+key_concepts:
+- Form
+- Function
+related_concepts:
+- evidence
+- choice
+- progress
+- reflection
+atl_skills:
+- observation
+- counting
+- language_expression
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags:
+- language
+- thinking
+kud:
+  know:
+  - a real-world color can connect to colors used in approved artworks
+  - approved artworks can be explored through visible color evidence
+  understand:
+  - Form helps the child identify visible color evidence
+  - Function helps the child explain what each color does in the artwork
+  do:
+  - capture or choose one clear color
+  - find approved artworks using that color
+  - choose the strongest color match with visible evidence
+progression:
+  topic_axis: form
+  difficulty_level: 2
+  next_step_hint: Repeat the same mechanic with a new real-world color and approved artwork set.
+  reward_hook: Earned the Color In Famous Art badge
+caregiver_role:
+- observer
+- co-explorer
+activity_signature:
+  observation_angle: color
+  mechanic: enumerate
+  entity_role: catalyst
+  focal_attribute: color_famous_art
+  intro: The child starts with a real-world color and matches it to approved artworks that use that color strongly.
+  bridge_prerequisites:
+    primary:
+    - color
+    secondary:
+    - color
+    - state
+  preview_label: Color In Famous Art
+  preview_prompt: Choose a color from your world, then find artworks where that color appears strongly.
+  role_pivot_note: The runtime entity or mode topic launches a reusable source-concept activity; no entity-specific factual
+    claim is required.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: false
+    T1: true
+    T2: true

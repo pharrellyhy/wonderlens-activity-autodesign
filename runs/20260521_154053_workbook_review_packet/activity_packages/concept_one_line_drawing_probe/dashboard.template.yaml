@@ -1,0 +1,25 @@
+dashboard_fragment:
+  session:
+    axis: change
+    angle: function
+    mechanic: build
+    entity_role: catalyst
+    focal_attribute: one_line_drawing
+    entry_rung: '{runtime_entry_rung}'
+    exit_rung: '{runtime_exit_rung}'
+    outcome: '{runtime_outcome}'
+  contributes_to:
+    curiosity_radial:
+      axis: change
+      angle: function
+    exploration_matrix:
+      cell: build by function
+    key_concepts_exposure:
+      Function:
+        angle: function
+      Change:
+        angle: function
+    atl_skills_trail:
+    - creative_thinking
+    - planning
+    - language_expression

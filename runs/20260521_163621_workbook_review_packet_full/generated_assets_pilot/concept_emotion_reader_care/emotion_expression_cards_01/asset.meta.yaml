@@ -1,0 +1,28 @@
+run_id: 20260521_163621_workbook_review_packet_full
+activity_id: concept_emotion_reader_care
+activity_name: concept_emotion_reader_care
+mechanic: care
+asset_id: emotion_expression_cards_01
+asset_type: card_set
+requiredness: optional
+generation_timing: pre_generated
+status: generated
+artifact_kind: prebuilt_asset_contact_sheet_pilot
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-21T15:39:18'
+source_image: ''
+prompt_sha256: 095687faf50c53ec473b9740c211cd9e9be6af129eacd37d96683d2a2172f0d4
+prompt_path: generated_assets_pilot/concept_emotion_reader_care/emotion_expression_cards_01/contact_sheet.prompt.md
+image_path: generated_assets_pilot/concept_emotion_reader_care/emotion_expression_cards_01/contact_sheet.png
+meta_path: generated_assets_pilot/concept_emotion_reader_care/emotion_expression_cards_01/asset.meta.yaml
+package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_emotion_reader_care
+use_step: prod.step_2; prod.step_3.round_1-3
+display_location: center_card_area
+purpose: Provide simple character expressions that children can interpret with evidence.
+display_behavior: Show one expression card when asking what the character might feel.
+fallback_behavior: If cards are unavailable, use a story description of a character's
+  visible cues and avoid claiming the screen shows a face.
+safety_constraints: No real child faces, no intense distress, no medical or mental-health
+  diagnosis framing.

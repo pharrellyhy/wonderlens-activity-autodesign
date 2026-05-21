@@ -1,0 +1,11 @@
+activity_id: concept_guess_in_10_deduce
+dashboard_template:
+  parent_headline: 'Guess in 10: deduce'
+  learning_focus:
+  - Form
+  - Causation
+  - logical_reasoning
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

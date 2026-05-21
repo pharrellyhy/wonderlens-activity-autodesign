@@ -1,0 +1,71 @@
+activity_id: concept_art_critic_tournament_probe
+version: 1
+template_type: cat1
+pillar: Mystery
+game_style: mystery_lens
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: agnostic
+tier_range:
+  primary: T1
+  span:
+  - T0
+  - T1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat1
+attributes:
+- art_critic_tournament
+- compare
+key_concepts:
+- Form
+- Perspective
+related_concepts:
+- evidence
+- choice
+- sequence
+- reflection
+atl_skills:
+- observation
+- observation
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
+kud:
+  know:
+  - The child knows the activity rule and one source-specific cue.
+  understand:
+  - The child understands that their action affects the next beat.
+  do:
+  - The child practices compare through short guided turns.
+progression:
+  topic_axis: perspective
+  difficulty_level: 2
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: color
+  mechanic: compare
+  entity_role: catalyst
+  focal_attribute: art_critic_tournament
+  intro: The child compares two approved artworks at a time, chooses a favorite, and
+    keeps the winner moving until a final favorite wins.
+  bridge_prerequisites:
+    primary:
+    - color
+    secondary:
+    - function
+    - state
+  preview_label: Art Critic Tournament
+  preview_prompt: Try Art Critic Tournament with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true
+source_workbook_row: 34
+source_concept: source_art_critic_tournament

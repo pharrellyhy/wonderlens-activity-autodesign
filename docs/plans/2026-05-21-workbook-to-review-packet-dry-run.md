@@ -34,6 +34,13 @@ The second sheet, `数据透视表`, is empty.
 
 The repo already has `inputs/source_activity_concepts.md`, a normalized English source snapshot derived from this workbook. The dry workflow should reuse it as the initial execution source, then verify it against the workbook before a real run starts.
 
+Post-dry-run hardening added explicit `source_intent_lock_en`, `minimum_unblock_status`, and `resolved_assumptions_en` fields for four rows with known drift risk:
+
+- `source_story_challenge_unlock`: story beat, paused challenge gate, child challenge, unlocked next story beat;
+- `source_coloring_game`: fillable line art, child photographs real colors, system maps colors into regions;
+- `source_toy_tidy_challenge`: initial toy context, short tidy mission, tips during cleanup, after-state confirmation;
+- `source_career_decision`: child assumes a profession first, then makes expert decisions inside work scenarios.
+
 The normalized snapshot contains:
 
 | Field | Count |

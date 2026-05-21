@@ -1,0 +1,48 @@
+activity_id: concept_plant_parts_enumerate
+activity_name: Plant Parts Field Scout
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:25:02'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064b6ad36081938ddd12f816b3fdb1.png
+prompt_sha256: f81c5467d417c704491d04c24f506f4723584460b97fa7819d72a63cf46d77aa
+prompt_path: visual_storyboards/concept_plant_parts_enumerate/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_plant_parts_enumerate/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_plant_parts_enumerate
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: A child photographs a potted plant. The AI asks them to find leaf, stem,
+    and one special part, then makes a labeled plant map.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Scout rule: point or name
+    a visible part, then we pin it on the plant map." | Ideal: "Okay." | Unexpected:
+    "Can I do it my way?" | No respons...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is enumerate: Round 1 -- Leaf Evidence Hunt | [field-guide
+    tone] "Find a leaf clue: flat shape, edge, or green part. What proves it is a
+    leaf?" | Ideal: "Leaf, flat green shape." | Unexpe...'
+  source: Round 1 -- Leaf Evidence Hunt
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [specific praise] "Flat green shape is leaf evidence. Leaf token
+    saved." | Unexpected: [warm redirect] "The pot is not a plant part. If no leaf
+    is visible, say leaf not visible." | N...'
+  source: Round 1 -- Leaf Evidence Hunt
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Stem Path Hunt | [investigator tone] "Trace the path that holds
+    the plant up. Is it a stem, stalk, or branch?" | Ideal: "stem." | Unexpected:
+    "Stick." / stem is hidden. | No resp...'
+  source: Round 2 -- Stem Path Hunt
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Plant
+    Parts Scout badge. You used Form by naming visible parts, and Functi... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

@@ -1,0 +1,30 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_tiny_curator
+    source_row: 14
+    assignment_row: assignment_type=match_pattern, activity_concept=Tiny Curator,
+      concept_source=inputs/source_activity_concepts.md#source_tiny_curator, description=The
+      child finds three or four objects they think belong together, arranges them
+      as a tiny exhibition, and explains their grouping rule., mechanic=sort, category=cat5,
+      tier=T1, asset_policy=no_assets, activity_id=concept_tiny_curator_sort, trigger_condition=Child
+      is at home or outdoors with several objects that can be grouped or compared.
+  activity_concept: Tiny Curator
+  assignment_type: match_pattern
+  input_mode: parameterized
+  category_decision: cat5
+  canonical_mechanic: sort
+  readiness: ready
+  core_promise: The child finds three or four objects they think belong together,
+    arranges them as a tiny exhibition, and explains their grouping rule.
+  source_intent_lock: The child finds three or four objects they think belong together,
+    arranges them as a tiny exhibition, and explains their grouping rule.
+  trigger_condition: Child is at home or outdoors with several objects that can be
+    grouped or compared.
+  product_capability_flags: []
+  resolved_product_contract: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

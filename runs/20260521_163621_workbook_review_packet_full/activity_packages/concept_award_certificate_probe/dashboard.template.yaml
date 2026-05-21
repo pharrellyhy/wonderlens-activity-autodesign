@@ -1,0 +1,11 @@
+activity_id: concept_award_certificate_probe
+dashboard_template:
+  parent_headline: 'Award Certificate: care'
+  learning_focus:
+  - Form
+  - Responsibility
+  - empathy
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

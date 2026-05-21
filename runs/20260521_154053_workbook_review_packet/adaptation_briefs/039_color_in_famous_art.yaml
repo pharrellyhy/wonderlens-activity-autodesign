@@ -1,0 +1,71 @@
+adaptation_brief:
+  assignment_index: 39
+  assignment_type: capability_probe
+  activity_concept: Color In Famous Art
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_color_in_famous_art
+    asset_requirements: inputs/source_activity_concepts.md#color_artwork_set_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Color In Famous Art, concept_source=inputs/source_activity_concepts.md#source_color_in_famous_art,
+      description=Child looks at an approved artwork and identifies important colors, mechanic=enumerate, category=cat1, tier=T1,
+      asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#color_artwork_set_01, product_capabilities=requires_asset_display,
+      activity_id=concept_color_famous_art_probe, trigger_condition=Screen can show approved public-domain artwork with known
+      color metadata
+  input_mode: concept_only
+  core_promise: The child looks at an approved artwork and identifies important colors.
+  canonical_mechanic: enumerate
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Screen can show approved public-domain artwork with known color metadata
+  entity_role: catalyst
+  observation_angle: color
+  focal_attribute: color_famous_art
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: color_artwork_set_01
+      concept_ref: source_color_in_famous_art
+      asset_type: reference_image
+      requiredness: required
+      generation_timing: display_existing
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: split_or_center_artwork_panel
+      purpose: Provide approved artworks with known dominant color metadata.
+      prompt_en: No image generation prompt. Use a curated, rights-cleared artwork set with dominant color metadata and child-safe
+        notes about visible colors, shapes, and mood.
+      source: approved_public_domain_or_licensed_artwork_set
+      prompt_or_source: approved_public_domain_or_licensed_artwork_set
+      display_behavior: Show one artwork at a time and ask the child to identify colors that stand out.
+      fallback_behavior: Use the declared voice-only or self-report fallback and do not claim the missing asset, UI, or state
+        is visible.
+      safety_constraints: Use rights-cleared, age-appropriate artworks only; no graphic violence, explicit content, or complex
+        sensitive context.
+    missing_asset_risk: resolved_by_override
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.'
+  resolved_blocker_types:
+  - Prebuilt asset display
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - color_famous_art
+    - color_artwork_set_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `color_artwork_set_01` without changing
+      the enumerate mechanic.

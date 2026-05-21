@@ -1,0 +1,55 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_simple_body_movement
+    source_row: 36
+    assignment_row: assignment_type=capability_probe, activity_concept=Simple Body
+      Movement Guide, concept_source=inputs/source_activity_concepts.md#source_simple_body_movement,
+      description=The AI guides one simple body movement at a time with safety limits.,
+      mechanic=motion_voice, category=cat1, tier=T1, asset_policy=required_prebuilt,
+      asset_requirements=body_movement_cards_01, product_capabilities=requires_asset_display+requires_motion_safety,
+      activity_id=concept_body_movement_probe, trigger_condition=Parent starts a short
+      movement prompt and the child has enough space.
+  activity_concept: Simple Body Movement Guide
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: motion_voice
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The AI guides one simple body movement at a time with safety limits.
+  source_intent_lock: The AI guides one simple body movement at a time with safety
+    limits.
+  trigger_condition: Parent starts a short movement prompt and the child has enough
+    space.
+  product_capability_flags:
+  - requires_asset_display
+  - requires_motion_safety
+  resolved_product_contract:
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  - 'Motion safety: Approved minimum motion policy keeps movements low-risk, offers
+    seated or voice-only alternatives, and requires a space check.'
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: body_movement_cards_01
+      concept_ref: source_simple_body_movement
+      asset_type: movement_card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show simple safe movement prompts.
+      prompt_en: Create a set of simple movement cards using a friendly non-real child-like
+        character. Include wave hands, reach up, touch shoulders, stomp feet softly,
+        and freeze like a statue. Use clear poses, plain background, no text, no extreme
+        flexibility, no jumping from height, and no unsafe props.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one movement card per round with short voice guidance.
+      fallback_behavior: If movement cards or safety gating are unavailable, block
+        at Phase 0.
+      safety_constraints: No real child photos, no risky balance, no running, no jumping
+        from furniture, and no medical claims.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

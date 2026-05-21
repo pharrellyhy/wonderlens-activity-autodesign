@@ -1,0 +1,11 @@
+activity_id: concept_trivia_game_remember
+dashboard_template:
+  parent_headline: 'Trivia Game: remember'
+  learning_focus:
+  - Form
+  - Connection
+  - focus
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

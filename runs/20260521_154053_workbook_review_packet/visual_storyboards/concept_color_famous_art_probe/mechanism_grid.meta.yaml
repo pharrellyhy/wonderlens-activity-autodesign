@@ -1,0 +1,49 @@
+activity_id: concept_color_famous_art_probe
+activity_name: Color In Famous Art
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T00:56:40'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05fe61de448193ac0d00a7fdeaa0d0.png
+prompt_sha256: 4207fdb38e0473ef4c272aa483e369e0ea085c14c00a6ab6db75a6d7e0c55134
+prompt_path: visual_storyboards/concept_color_famous_art_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_color_famous_art_probe/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_color_famous_art_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: 'Trigger: The child photographs a clear color or chooses one from a safe
+    object, and the product can display a curated public-domain or licensed artwork
+    set with color metadata. The AI discu...'
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | [clear guide tone] "Color Curator rule: start
+    with your color, then find artworks where that color is importa... | Ideal: Child
+    confirms the role or starts round on...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is enumerate: Round 1 -- Capture the child color
+    | [round-1 guide] "Round 1: show or name one color from your object. That color
+    will become our art-search clue... | Ideal: "Bright yellow...'
+  source: Round 1 -- Capture the child color
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [specific] "Yellow is our color clue." | Unexpected: [redirect]
+    "Choose a safe everyday color we can talk about without private details." | No
+    response: [wait 2s] [gentle hint] "Poin...'
+  source: Round 1 -- Capture the child color
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Match approved artworks | [round-2 guide] "Round 2: look at
+    two approved artworks. Where do you see your yellow color showing strongly?" |
+    Ideal: "This painting has yellow in the...'
+  source: Round 2 -- Match approved artworks
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm close] "You practiced Form and Function
+    today. You used your own enumerate action to make the result." | Ideal: "Again!"
+    / names a favorite part. | Une...'
+  source: 'Step 5: Closing + IB Concepts'

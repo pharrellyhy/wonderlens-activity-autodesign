@@ -1,0 +1,76 @@
+activity_id: concept_vegetable_sort_sort
+version: 1
+source_entity_exemplar: vegetable_card_set
+template_type: cat1
+pillar: Adventure
+game_style: quest_collector
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span:
+  - T1
+  - T2
+  elasticity: '+1'
+category: category_1
+attributes:
+- vegetable_sort_rule
+- shape
+key_concepts:
+- Connection
+- Form
+related_concepts:
+- classification
+- rule
+- food
+- evidence
+atl_skills:
+- classification
+- observation
+- logical_reasoning
+transdisciplinary_theme: How_We_Organize_Ourselves
+subject_tags:
+- math
+- science
+- food
+kud:
+  know:
+  - Vegetables can be grouped by color, shape, edible part, or use
+  - vegetable_sort_rule is the focus of the activity
+  understand:
+  - Connection helps children explain why items belong together
+  - Form helps children use visible color and shape clues
+  do:
+  - choose a sorting rule
+  - place vegetable cards by the rule
+  - name a group using evidence
+progression:
+  topic_axis: connection
+  difficulty_level: 2
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Veggie Sorter badge
+caregiver_role:
+- scaffold
+- co-explorer
+activity_signature:
+  observation_angle: function
+  mechanic: sort
+  entity_role: reference
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - connection
+    - sort
+  focal_attribute: vegetable_sort_rule
+  intro: The child practices sort through Vegetable Sort Stand.
+  preview_label: Vegetable Sort Stand
+  preview_prompt: Ready to be the Veggie Sorter?
+  role_pivot_note: The runtime entity starts the activity but the package remains concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: false
+    T1: true
+    T2: true

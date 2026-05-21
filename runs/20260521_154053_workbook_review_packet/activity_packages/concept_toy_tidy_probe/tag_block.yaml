@@ -1,0 +1,76 @@
+activity_id: concept_toy_tidy_probe
+version: 1
+source_entity_exemplar: '{runtime_entity}'
+template_type: cat5
+pillar: Discovery
+game_style: field_experiment
+entity: '{runtime_entity_or_mode_topic}'
+entity_class: []
+entity_binding: agnostic
+tier_range:
+  primary: T1
+  span:
+  - T1
+  - T2
+  elasticity: '+1'
+category: toy_tidy_challenge
+attributes:
+- toy_tidy
+- function
+key_concepts:
+- Form
+- Connection
+related_concepts:
+- evidence
+- choice
+- progress
+- reflection
+atl_skills:
+- classification
+- logical_reasoning
+- organization
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags:
+- language
+- thinking
+kud:
+  know:
+  - one safe action or visible cue can guide the next activity step
+  - progress can be represented as a small sequence of choices or actions
+  understand:
+  - Form helps focus attention
+  - Connection connects the child's action to the final result
+  do:
+  - accept a short tidy mission
+  - move one toy group during the timer
+  - confirm one after-state change
+progression:
+  topic_axis: connection
+  difficulty_level: 2
+  next_step_hint: Repeat the same mechanic with a new theme, property, or approved asset set.
+  reward_hook: Earned the Toy Tidy Challenge badge
+caregiver_role:
+- observer
+- co-explorer
+activity_signature:
+  observation_angle: function
+  mechanic: sort
+  entity_role: catalyst
+  focal_attribute: toy_tidy
+  intro: The child completes a short tidy sprint and confirms what changed.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - function
+    - state
+  preview_label: Toy Tidy Challenge
+  preview_prompt: Try Toy Tidy Challenge with one small choice at a time.
+  role_pivot_note: The runtime entity or mode topic launches a reusable source-concept activity; no entity-specific factual
+    claim is required.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: false
+    T1: true
+    T2: true

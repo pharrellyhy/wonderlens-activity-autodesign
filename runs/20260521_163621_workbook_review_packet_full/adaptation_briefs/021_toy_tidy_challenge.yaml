@@ -1,0 +1,38 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_toy_tidy_challenge
+    source_row: 21
+    assignment_row: assignment_type=capability_probe, activity_concept=Toy Tidy Challenge,
+      concept_source=inputs/source_activity_concepts.md#source_toy_tidy_challenge,
+      description=The child starts from a toy-area photo, agrees to a short tidy mission,
+      receives tips during the timer, and confirms the after state., mechanic=sort,
+      category=cat5, tier=T1, asset_policy=no_assets, product_capabilities=requires_ui_state+before_after_risk,
+      activity_id=concept_toy_tidy_probe, trigger_condition=Parent starts a tidy-up
+      mission and the child has several visible toys or household items.
+  activity_concept: Toy Tidy Challenge
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat5
+  canonical_mechanic: sort
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child starts from a toy-area photo, agrees to a short tidy mission,
+    receives tips during the timer, and confirms the after state.
+  source_intent_lock: 'Preserve the sequence: initial toy context, child agrees to
+    tidy, short timed cleanup, organizing tips during the timer, and after-state confirmation.
+    Do not reduce this to a purely verbal category-sorting game.'
+  trigger_condition: Parent starts a tidy-up mission and the child has several visible
+    toys or household items.
+  product_capability_flags:
+  - requires_ui_state
+  - before_after_risk
+  resolved_product_contract:
+  - 'UI state or progress memory: Approved minimum state contract keeps per-round
+    choices visible when supported and uses a stateless fallback when not.'
+  - 'Before/after evidence: Approved minimum evidence policy uses child or caregiver
+    confirmation and never infers completion quality from photos.'
+  asset_dependency:
+    policy: no_assets
+    assets: []
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

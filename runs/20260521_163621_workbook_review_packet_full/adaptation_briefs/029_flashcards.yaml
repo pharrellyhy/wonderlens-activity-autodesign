@@ -1,0 +1,54 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_flashcards
+    source_row: 29
+    assignment_row: assignment_type=activity_concept, activity_concept=Flashcards,
+      concept_source=inputs/source_activity_concepts.md#source_flashcards, description=The
+      child recognizes a picture card, names what they see, and answers one tiny follow-up.,
+      mechanic=enumerate, category=cat1, tier=T1, asset_policy=required_prebuilt,
+      asset_requirements=generic_flashcard_library_01, product_capabilities=requires_asset_display,
+      activity_id=concept_flashcards_enumerate, trigger_condition=Parent selects a
+      vocabulary, shape, color, animal, or object-recognition practice mode.
+  activity_concept: Flashcards
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: enumerate
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child recognizes a picture card, names what they see, and answers
+    one tiny follow-up.
+  source_intent_lock: The child recognizes a picture card, names what they see, and
+    answers one tiny follow-up.
+  trigger_condition: Parent selects a vocabulary, shape, color, animal, or object-recognition
+    practice mode.
+  product_capability_flags:
+  - requires_asset_display
+  resolved_product_contract:
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: generic_flashcard_library_01
+      concept_ref: source_flashcards
+      asset_type: card_library
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide simple picture-first recognition cards.
+      prompt_en: Create a generic children's flashcard library for common objects,
+        colors, shapes, animals, and foods. Use one clear subject per card, plain
+        light background, no extra text except optional single-word labels in a separate
+        variant, no brands, and consistent friendly illustration style.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one card at a time and ask the child to name or identify
+        it.
+      fallback_behavior: If cards are unavailable, use a photographed object or voice-only
+        recognition prompt and do not claim the screen shows a card.
+      safety_constraints: No real child photos, no copyrighted characters, no dangerous
+        objects, and no cluttered scenes.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

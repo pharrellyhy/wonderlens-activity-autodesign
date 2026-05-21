@@ -1,0 +1,55 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_vegetable_sort
+    source_row: 27
+    assignment_row: assignment_type=activity_concept, activity_concept=Vegetable Sort,
+      concept_source=inputs/source_activity_concepts.md#source_vegetable_sort, description=The
+      child sorts vegetable cards or photographed vegetables by a visible or meaningful
+      rule., mechanic=sort, category=cat1, tier=T1, asset_policy=required_prebuilt,
+      asset_requirements=vegetable_sort_cards_01, product_capabilities=requires_asset_display,
+      activity_id=concept_vegetable_sort_sort, trigger_condition=Screen can show vegetable
+      cards or a child photographs several vegetables.
+  activity_concept: Vegetable Sort
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: sort
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child sorts vegetable cards or photographed vegetables by a visible
+    or meaningful rule.
+  source_intent_lock: The child sorts vegetable cards or photographed vegetables by
+    a visible or meaningful rule.
+  trigger_condition: Screen can show vegetable cards or a child photographs several
+    vegetables.
+  product_capability_flags:
+  - requires_asset_display
+  resolved_product_contract:
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: vegetable_sort_cards_01
+      concept_ref: source_vegetable_sort
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide vegetable cards that can be sorted by color, shape, edible
+        part, or cooking use.
+      prompt_en: Create a set of clear vegetable picture cards for children ages 4-7.
+        Include carrot, broccoli, tomato, potato, corn, cucumber, pumpkin, and peas.
+        Use one vegetable per card, plain light background, realistic but friendly
+        illustration, no text, no brands, and clear color and shape.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show a small set of cards and ask the child to choose a grouping
+        rule.
+      fallback_behavior: If cards are unavailable, use photographed vegetables or
+        a voice-only sorting prompt and do not claim cards are shown.
+      safety_constraints: No choking imagery, no knives, no cooking hazards, and no
+        brand packaging.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

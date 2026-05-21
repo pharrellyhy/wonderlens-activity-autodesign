@@ -1,0 +1,66 @@
+adaptation_brief:
+  assignment_index: 22
+  assignment_type: activity_concept
+  activity_concept: Travel Planner
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_travel_planner
+    asset_requirements: inputs/source_activity_concepts.md#travel_planning_cards_01
+    assignment_row: assignment_type=activity_concept, activity_concept=Travel Planner, concept_source=inputs/source_activity_concepts.md#source_travel_planner,
+      description=Child helps plan a pretend trip by choosing what to pack how to travel and what might happen, mechanic=predict,
+      category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#travel_planning_cards_01,
+      activity_id=concept_travel_planner_predict, trigger_condition=Child asks about a place weather vehicle animal habitat
+      or character journey
+  input_mode: concept_only
+  core_promise: The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen.
+  canonical_mechanic: predict
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: ready_to_generate
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Child asks about a place weather vehicle animal habitat or character journey
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: pretend_trip_prediction
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: travel_planning_cards_01
+      concept_ref: source_travel_planner
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Support pretend trip planning with visual choices.
+      prompt_en: Create a set of pretend travel planning cards for children. Include suitcase, water bottle, map, train, bus,
+        walking shoes, raincoat, snack, and camera. Use simple friendly illustrations, plain background, no text, no brands,
+        and no real travel booking interface.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show a small group of cards when asking what to pack or how to travel.
+      fallback_behavior: If cards are unavailable, run the planning conversation by voice only.
+      safety_constraints: No real booking, no unsafe travel instructions, no location tracking, and no brands.
+    missing_asset_risk: low
+  scaffold_choice:
+    pillar: Discovery
+    game_style: prediction_lab
+    scaffold_fit: strong
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions: []
+  resolved_blockers: []
+  resolved_blocker_types: []
+  extensibility:
+    entity_binding: parameterized
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - pretend_trip_prediction
+    - travel_planning_cards_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `travel_planning_cards_01` without changing
+      the predict mechanic.

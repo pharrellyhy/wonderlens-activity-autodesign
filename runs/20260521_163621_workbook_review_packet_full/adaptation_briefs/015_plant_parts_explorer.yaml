@@ -1,0 +1,31 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_plant_parts_explorer
+    source_row: 15
+    assignment_row: assignment_type=match_pattern, activity_concept=Plant Parts Explorer,
+      concept_source=inputs/source_activity_concepts.md#source_plant_parts_explorer,
+      description=The child looks at a plant and identifies visible parts such as
+      leaf, stem, flower, fruit, seed, or root., mechanic=enumerate, category=cat5,
+      tier=T1, asset_policy=no_assets, activity_id=concept_plant_parts_enumerate,
+      trigger_condition=Uploaded or live photo clearly shows a plant with at least
+      two visible parts.
+  activity_concept: Plant Parts Explorer
+  assignment_type: match_pattern
+  input_mode: parameterized
+  category_decision: cat5
+  canonical_mechanic: enumerate
+  readiness: ready
+  core_promise: The child looks at a plant and identifies visible parts such as leaf,
+    stem, flower, fruit, seed, or root.
+  source_intent_lock: The child looks at a plant and identifies visible parts such
+    as leaf, stem, flower, fruit, seed, or root.
+  trigger_condition: Uploaded or live photo clearly shows a plant with at least two
+    visible parts.
+  product_capability_flags: []
+  resolved_product_contract: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

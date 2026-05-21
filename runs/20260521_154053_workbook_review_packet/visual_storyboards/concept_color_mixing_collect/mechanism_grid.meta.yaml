@@ -1,0 +1,48 @@
+activity_id: concept_color_mixing_collect
+activity_name: Two-Color Mix Lab
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T00:59:30'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a05ff035dac8193bf73ab9450f8e59d.png
+prompt_sha256: 96a3b93dfdecf398e95e189920f4cbff4ba6ba3301a23226e2f90d8498eb39d2
+prompt_path: visual_storyboards/concept_color_mixing_collect/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_color_mixing_collect/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_color_mixing_collect
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: The child names or finds red plus yellow, blue plus yellow, and red plus
+    blue. Each pair gets a prediction and a result stamp on the lab board.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Lab rule: collect a pair,
+    guess the mix, save the result. Three pairs make a color wheel." | Ideal: "Okay."
+    | Unexpected: "Can I do it my way...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is collect: Round 1 -- Collect Red + Yellow | [focused
+    lab tone] "First pair: collect red and yellow. Point to them, name them, or find
+    objects with those... | Ideal: "Red and yellow make...'
+  source: Round 1 -- Collect Red + Yellow
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [specific praise] "Red plus yellow is collected, and orange is
+    the result guess. Token 1 is saved." | Unexpected: [warm redirect] "Banana gives
+    us yellow. We still need the red partn...'
+  source: Round 1 -- Collect Red + Yellow
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Collect Blue + Yellow | [curious lab tone] "Second pair: collect
+    blue and yellow. Which result should this pair make?" | Ideal: "Green." | Unexpected:
+    "Orange again." / "I only f...'
+  source: Round 2 -- Collect Blue + Yellow
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Color
+    Mix Tester badge. You used Causation by collecting color pairs, and... | Ideal:
+    "Again" or names a favorite round. |...'
+  source: 'Step 5: Closing + IB Concepts'

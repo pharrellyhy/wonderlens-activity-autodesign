@@ -1,0 +1,55 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_quick_silly_questions
+    source_row: 40
+    assignment_row: assignment_type=activity_concept, activity_concept=Quick and Silly
+      Questions, concept_source=inputs/source_activity_concepts.md#source_quick_silly_questions,
+      description=The child answers very short playful choice questions during a transition
+      or warm-up., mechanic=decide, category=cat1, tier=T1, asset_policy=optional_support,
+      asset_requirements=quick_silly_countdown_01, product_capabilities=requires_asset_display+requires_ui_state,
+      activity_id=concept_quick_silly_decide, trigger_condition=Light transition,
+      waiting moment, or warm-up conversation.
+  activity_concept: Quick and Silly Questions
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: decide
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child answers very short playful choice questions during a transition
+    or warm-up.
+  source_intent_lock: The child answers very short playful choice questions during
+    a transition or warm-up.
+  trigger_condition: Light transition, waiting moment, or warm-up conversation.
+  product_capability_flags:
+  - requires_asset_display
+  - requires_ui_state
+  resolved_product_contract:
+  - 'UI state or progress memory: Approved minimum state contract keeps per-round
+    choices visible when supported and uses a stateless fallback when not.'
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: quick_silly_countdown_01
+      concept_ref: source_quick_silly_questions
+      asset_type: ui_overlay
+      requiredness: optional
+      generation_timing: pre_generated_or_runtime_ui
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Optionally add a playful countdown or prompt card for quick silly questions.
+      prompt_en: Create a simple playful countdown overlay for children's quick questions.
+        Use three large friendly countdown circles, bright but calm colors, no text
+        except numerals 3, 2, 1, no brands, and enough blank space for a spoken prompt.
+      source: new_ai_generated_asset_or_runtime_ui
+      prompt_or_source: new_ai_generated_asset_or_runtime_ui
+      display_behavior: Show the countdown only if product supports short stateful
+        prompt timing.
+      fallback_behavior: If countdown UI is unavailable, ask the quick questions by
+        voice only and do not claim a timer is on screen.
+      safety_constraints: No pressure, no buzzer shame, no flashing effects, and no
+        competitive scoring.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

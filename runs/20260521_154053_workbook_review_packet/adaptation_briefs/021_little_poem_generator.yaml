@@ -1,0 +1,47 @@
+adaptation_brief:
+  assignment_index: 21
+  assignment_type: activity_concept
+  activity_concept: Little Poem Generator
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_little_poem_generator
+    asset_requirements: null
+    assignment_row: assignment_type=activity_concept, activity_concept=Little Poem Generator, concept_source=inputs/source_activity_concepts.md#source_little_poem_generator,
+      description=Child contributes words images or feelings and co-creates a short poem with the AI, mechanic=build, category=cat1,
+      tier=T1, asset_policy=no_assets, activity_id=concept_little_poem_build, trigger_condition=Child photographs an object
+      chooses a feeling or names a favorite topic
+  input_mode: concept_only
+  core_promise: The child contributes words, images, or feelings and co-creates a short poem with the AI.
+  canonical_mechanic: build
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: ready_to_generate
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Child photographs an object chooses a feeling or names a favorite topic
+  entity_role: reference
+  observation_angle: emotion
+  focal_attribute: poem_ingredient_stack
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Creation
+    game_style: inventor_workshop
+    scaffold_fit: strong
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions: []
+  resolved_blockers: []
+  resolved_blocker_types: []
+  extensibility:
+    entity_binding: parameterized
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - poem_ingredient_stack
+    retargeting_note: Reusable by replacing the runtime topic, entity, or property slot while preserving the build mechanic.

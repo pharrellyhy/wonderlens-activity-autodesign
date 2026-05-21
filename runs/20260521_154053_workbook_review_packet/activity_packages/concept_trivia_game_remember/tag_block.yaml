@@ -1,0 +1,75 @@
+activity_id: concept_trivia_game_remember
+version: 1
+source_entity_exemplar: recent_topic
+template_type: cat1
+pillar: Mystery
+game_style: mystery_lens
+entity: '{runtime_entity}'
+entity_class: []
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span:
+  - T1
+  - T2
+  elasticity: '+1'
+category: category_1
+attributes:
+- remembered_fact_clue
+- function
+key_concepts:
+- Connection
+- Function
+related_concepts:
+- memory
+- question
+- clue
+- explanation
+atl_skills:
+- focus
+- logical_reasoning
+- language_expression
+transdisciplinary_theme: How_We_Express_Ourselves
+subject_tags:
+- language
+- general_knowledge
+kud:
+  know:
+  - Tiny Trivia Trail has a simple three-round structure
+  - remembered_fact_clue is the focus of the activity
+  understand:
+  - Connection helps children notice the important evidence
+  - Function helps children connect their response to the result
+  do:
+  - practice remember in three short rounds
+  - explain or repeat one answer
+  - notice the final payoff
+progression:
+  topic_axis: connection
+  difficulty_level: 2
+  next_step_hint: Try one new answer or explain the reason in more detail next time.
+  reward_hook: Earned the Trivia Trail Finder badge
+caregiver_role:
+- scaffold
+- co-explorer
+activity_signature:
+  observation_angle: function
+  mechanic: remember
+  entity_role: catalyst
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - connection
+    - remember
+  focal_attribute: remembered_fact_clue
+  intro: The child practices remember through Tiny Trivia Trail.
+  preview_label: Tiny Trivia Trail
+  preview_prompt: Ready to be the Trivia Trail Finder?
+  role_pivot_note: The runtime entity starts the activity but the package remains concept-led and parameterized.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: false
+    T1: true
+    T2: true

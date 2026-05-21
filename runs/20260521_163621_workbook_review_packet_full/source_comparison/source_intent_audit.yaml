@@ -1,0 +1,810 @@
+run_id: 20260521_163621_workbook_review_packet_full
+artifact_kind: source_intent_audit
+created_at: '2026-05-21T16:49:46+08:00'
+scope: all 40 workbook source rows
+method: agent judgment pass recorded as YAML; renderer script only validates and displays
+  the matrix
+summary:
+  aligned: 8
+  minor_adaptation: 32
+  intent_drift: 0
+  needs_product_decision: 0
+entries:
+- source_row: 1
+  activity_id: concept_scavenger_hunt_collect
+  original_play_frame: Find several things that share a color, shape, or category.
+  generated_play_frame: Find several things that share a color, shape, or category.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: accept
+  product_review_question: ''
+- source_row: 2
+  activity_id: concept_phoneme_hunt_collect
+  original_play_frame: The AI introduces a target sound, then the child finds an object
+    whose word starts with that sound.
+  generated_play_frame: The AI introduces a target sound, then the child finds an
+    object whose word starts with that sound.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 3
+  activity_id: concept_branching_story_decide
+  original_play_frame: The AI tells a story with choice points, and the child's choices
+    decide what happens next.
+  generated_play_frame: The AI tells a story with choice points, and the child's choices
+    decide what happens next.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: accept
+  product_review_question: ''
+- source_row: 4
+  activity_id: concept_guided_drawing_probe
+  original_play_frame: The AI guides the child to use paper and pencil to complete
+    a simple drawing step by step.
+  generated_play_frame: The AI guides the child to use paper and pencil to complete
+    a simple drawing step by step.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 5
+  activity_id: concept_word_echo_remember
+  original_play_frame: The AI says a simple word or phrase and the child repeats it
+    back in a playful echo round.
+  generated_play_frame: The AI says a simple word or phrase and the child repeats
+    it back in a playful echo round.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 6
+  activity_id: concept_building_challenge_probe
+  original_play_frame: The child uses blocks, bricks, or household materials to build
+    a simple target.
+  generated_play_frame: The child uses blocks, bricks, or household materials to build
+    a simple target.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 7
+  activity_id: concept_story_unlock_probe
+  original_play_frame: 'Preserve the sequence: story beat, paused gate, small child
+    challenge such as finding a color, making an animal sound, or echoing a word,
+    then unlocked next story beat. Do not generate standalone challenges without story
+    narration.'
+  generated_play_frame: The AI tells a fixed story, pauses at challenge gates, and
+    unlocks the next story beat only after the child completes each quick challenge.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 8
+  activity_id: concept_coloring_game_probe
+  original_play_frame: 'Preserve the sequence: show fillable line art, ask the child
+    to photograph a color source, map that real-world color to one or more regions,
+    then reveal the evolving artwork.'
+  generated_play_frame: The screen shows fillable line art; the child photographs
+    real-world colors; the activity maps those colors to regions and honestly falls
+    back if live recoloring is unavailable.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 9
+  activity_id: concept_classic_music_movement_probe
+  original_play_frame: The child moves their body in response to music mood or rhythm
+    cues.
+  generated_play_frame: The child moves their body in response to music mood or rhythm
+    cues.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 10
+  activity_id: concept_childrens_yoga_probe
+  original_play_frame: The AI guides a short, child-safe pose routine using animal
+    or object metaphors.
+  generated_play_frame: The AI guides a short, child-safe pose routine using animal
+    or object metaphors.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 11
+  activity_id: concept_partial_reveal_deduce
+  original_play_frame: The screen shows one distinctive part of an animal or object,
+    and the child guesses the whole thing from visible clues.
+  generated_play_frame: The screen shows one distinctive part of an animal or object,
+    and the child guesses the whole thing from visible clues.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 12
+  activity_id: concept_emotion_reader_care
+  original_play_frame: The child notices an obvious expression or body cue and thinks
+    about what feeling or help might fit.
+  generated_play_frame: The child notices an obvious expression or body cue and thinks
+    about what feeling or help might fit.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 13
+  activity_id: concept_animal_sound_motion_voice
+  original_play_frame: The AI prompts a familiar animal, and the child imitates its
+    sound or speaks in the animal role.
+  generated_play_frame: The AI prompts a familiar animal, and the child imitates its
+    sound or speaks in the animal role.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 14
+  activity_id: concept_tiny_curator_sort
+  original_play_frame: The child finds three or four objects they think belong together,
+    arranges them as a tiny exhibition, and explains their grouping rule.
+  generated_play_frame: The child finds three or four objects they think belong together,
+    arranges them as a tiny exhibition, and explains their grouping rule.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: accept
+  product_review_question: ''
+- source_row: 15
+  activity_id: concept_plant_parts_enumerate
+  original_play_frame: The child looks at a plant and identifies visible parts such
+    as leaf, stem, flower, fruit, seed, or root.
+  generated_play_frame: The child looks at a plant and identifies visible parts such
+    as leaf, stem, flower, fruit, seed, or root.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: accept
+  product_review_question: ''
+- source_row: 16
+  activity_id: concept_plant_state_compare
+  original_play_frame: The child compares a plant's visible state, such as sprouting,
+    blooming, wilting, dried, healthy, or fruiting.
+  generated_play_frame: The child compares a plant's visible state, such as sprouting,
+    blooming, wilting, dried, healthy, or fruiting.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: accept
+  product_review_question: ''
+- source_row: 17
+  activity_id: concept_emotion_color_outfit_probe
+  original_play_frame: The child uses colors to represent feelings, then sees or imagines
+    a character outfit matching that feeling.
+  generated_play_frame: The child uses colors to represent feelings, then sees or
+    imagines a character outfit matching that feeling.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 18
+  activity_id: concept_guess_in_10_deduce
+  original_play_frame: The AI gives clues one by one, and the child guesses an animal
+    or object from the evidence.
+  generated_play_frame: The AI gives clues one by one, and the child guesses an animal
+    or object from the evidence.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 19
+  activity_id: concept_color_mixing_collect
+  original_play_frame: The child chooses or finds two colors, predicts what they make
+    together, and compares against the mixed result.
+  generated_play_frame: The child chooses or finds two colors, predicts what they
+    make together, and compares against the mixed result.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 20
+  activity_id: concept_constellation_star_count_enumerate
+  original_play_frame: The child counts visible stars in a constellation card or simplified
+    star pattern.
+  generated_play_frame: The child counts visible stars in a constellation card or
+    simplified star pattern.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 21
+  activity_id: concept_toy_tidy_probe
+  original_play_frame: 'Preserve the sequence: initial toy context, child agrees to
+    tidy, short timed cleanup, organizing tips during the timer, and after-state confirmation.
+    Do not reduce this to a purely verbal category-sorting game.'
+  generated_play_frame: The child starts from a toy-area photo, agrees to a short
+    tidy mission, receives tips during the timer, and confirms the after state.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 22
+  activity_id: concept_time_sense_probe
+  original_play_frame: The child predicts when a short amount of time has passed,
+    then checks the result.
+  generated_play_frame: The child predicts when a short amount of time has passed,
+    then checks the result.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 23
+  activity_id: concept_one_line_drawing_probe
+  original_play_frame: The child tries to draw a target without lifting the pencil
+    or finger.
+  generated_play_frame: The child tries to draw a target without lifting the pencil
+    or finger.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 24
+  activity_id: concept_message_bottle_note_probe
+  original_play_frame: The child creates a short kindness note or message for someone
+    else.
+  generated_play_frame: The child creates a short kindness note or message for someone
+    else.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 25
+  activity_id: concept_award_certificate_probe
+  original_play_frame: The child makes or designs an award for someone who helped,
+    tried hard, or deserves appreciation.
+  generated_play_frame: The child designs a paper award for someone they appreciate,
+    using warm AI story framing and badge ideas without judging the final drawing.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 26
+  activity_id: concept_career_decision_decide
+  original_play_frame: 'Preserve the sequence: assign the child a profession, place
+    them inside a concrete work scenario, ask a simple expert decision, then respond
+    to the decision. Do not turn this into choosing which profession matches a scenario.'
+  generated_play_frame: The AI first assigns the child a profession, then places the
+    child inside a concrete work scenario where they make expert decisions.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 27
+  activity_id: concept_vegetable_sort_sort
+  original_play_frame: The child sorts vegetable cards or photographed vegetables
+    by a visible or meaningful rule.
+  generated_play_frame: The child sorts vegetable cards or photographed vegetables
+    by a visible or meaningful rule.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 28
+  activity_id: concept_how_many_guess_enumerate
+  original_play_frame: The child estimates how many objects are visible, then counts
+    together with the AI.
+  generated_play_frame: The child estimates how many objects are visible, then counts
+    together with the AI.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 29
+  activity_id: concept_flashcards_enumerate
+  original_play_frame: The child recognizes a picture card, names what they see, and
+    answers one tiny follow-up.
+  generated_play_frame: The child recognizes a picture card, names what they see,
+    and answers one tiny follow-up.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 30
+  activity_id: concept_trivia_game_remember
+  original_play_frame: The child answers short memory or knowledge questions and receives
+    a simple explanation.
+  generated_play_frame: The child answers short memory or knowledge questions and
+    receives a simple explanation.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 31
+  activity_id: concept_recognition_pop_probe
+  original_play_frame: The child quickly chooses matching target pictures from a changing
+    set.
+  generated_play_frame: The child quickly chooses matching target pictures from a
+    changing set.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 32
+  activity_id: concept_word_build_guess_probe
+  original_play_frame: The child chooses letters or answers clues to reveal a word
+    step by step.
+  generated_play_frame: The child chooses letters or answers clues to reveal a word
+    step by step.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 33
+  activity_id: concept_would_you_rather_compare
+  original_play_frame: The child chooses between two playful options and explains
+    the preference or tradeoff.
+  generated_play_frame: The child chooses between two playful options and explains
+    the preference or tradeoff.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: accept
+  product_review_question: ''
+- source_row: 34
+  activity_id: concept_art_critic_tournament_probe
+  original_play_frame: The child compares two approved artworks at a time and chooses
+    a favorite until one wins.
+  generated_play_frame: The child compares two approved artworks at a time, chooses
+    a favorite, and keeps the winner moving until a final favorite wins.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 35
+  activity_id: concept_color_famous_art_probe
+  original_play_frame: 'Preserve the sequence: child captures or chooses a real-world
+    color, the system shows several artworks dominated by that color, then the AI
+    gives a simple child-safe background introduction. Do not reduce this to studying
+    one artwork first.'
+  generated_play_frame: The child photographs or names a real-world color, then sees
+    several approved artworks where that color is dominant or important.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 36
+  activity_id: concept_body_movement_probe
+  original_play_frame: The AI guides one simple body movement at a time with safety
+    limits.
+  generated_play_frame: The AI guides one simple body movement at a time with safety
+    limits.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 37
+  activity_id: concept_current_topic_interview_deduce
+  original_play_frame: The child discusses an age-appropriate topic by giving an opinion
+    and a reason.
+  generated_play_frame: The child discusses an age-appropriate topic by giving an
+    opinion and a reason.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: accept
+  product_review_question: ''
+- source_row: 38
+  activity_id: concept_little_poem_build
+  original_play_frame: The child contributes words, images, or feelings and co-creates
+    a short poem with the AI.
+  generated_play_frame: The child contributes words, images, or feelings and co-creates
+    a short poem with the AI.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  drift: []
+  status: aligned
+  severity: none
+  recommendation: accept
+  product_review_question: ''
+- source_row: 39
+  activity_id: concept_travel_planner_predict
+  original_play_frame: The child helps plan a pretend trip by choosing what to pack,
+    how to travel, and what might happen.
+  generated_play_frame: The child helps plan a pretend trip by choosing what to pack,
+    how to travel, and what might happen.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.
+- source_row: 40
+  activity_id: concept_quick_silly_decide
+  original_play_frame: The child answers very short playful choice questions during
+    a transition or warm-up.
+  generated_play_frame: The child answers very short playful choice questions during
+    a transition or warm-up.
+  preserved:
+  - Original play frame preserved.
+  - Child role and repeated action preserved.
+  - Runtime sequence follows the source intent lock.
+  - Former product dependencies are recorded as resolved minimum-contract assumptions
+    with honest fallbacks.
+  drift:
+  - Minimum version uses reduced-scope fallback where unsupported product capability
+    is not available.
+  status: minor_adaptation
+  severity: low
+  recommendation: accept for product review; verify minimum-contract assumptions where
+    listed
+  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
+    for this reviewer packet.

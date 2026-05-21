@@ -1,0 +1,60 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_story_challenge_unlock
+    source_row: 7
+    assignment_row: assignment_type=capability_probe, activity_concept=Story Challenge
+      Unlock, concept_source=inputs/source_activity_concepts.md#source_story_challenge_unlock,
+      description=The AI tells a fixed story, pauses at challenge gates, and unlocks
+      the next story beat only after the child completes each quick challenge., mechanic=imagine,
+      category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=story_unlock_cards_01,
+      product_capabilities=requires_ui_state+requires_asset_display, activity_id=concept_story_unlock_probe,
+      trigger_condition=Child reaches a story pause point and can complete a quick
+      challenge to continue.
+  activity_concept: Story Challenge Unlock
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: imagine
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The AI tells a fixed story, pauses at challenge gates, and unlocks
+    the next story beat only after the child completes each quick challenge.
+  source_intent_lock: 'Preserve the sequence: story beat, paused gate, small child
+    challenge such as finding a color, making an animal sound, or echoing a word,
+    then unlocked next story beat. Do not generate standalone challenges without story
+    narration.'
+  trigger_condition: Child reaches a story pause point and can complete a quick challenge
+    to continue.
+  product_capability_flags:
+  - requires_ui_state
+  - requires_asset_display
+  resolved_product_contract:
+  - 'UI state or progress memory: Approved minimum state contract keeps per-round
+    choices visible when supported and uses a stateless fallback when not.'
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: story_unlock_cards_01
+      concept_ref: source_story_challenge_unlock
+      asset_type: story_card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show a simple locked story door, token, or next-scene card during a
+        story challenge.
+      prompt_en: Create a set of child-friendly story unlock cards. Each card shows
+        a magical door, path marker, treasure token, or story page waiting to open.
+        Use warm illustrated style, no text, no scary elements, and clear central
+        object.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show the card at a story pause point and change to the next
+        scene only when product unlock state is supported.
+      fallback_behavior: If unlock UI is unavailable, use voice-only story choices
+        and do not claim a screen element has unlocked.
+      safety_constraints: No frightening doors, traps, weapons, or branded characters.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

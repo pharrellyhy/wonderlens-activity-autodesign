@@ -1,0 +1,11 @@
+activity_id: concept_animal_sound_motion_voice
+dashboard_template:
+  parent_headline: 'Animal Sound Imitation: motion_voice'
+  learning_focus:
+  - Form
+  - Perspective
+  - language_expression
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

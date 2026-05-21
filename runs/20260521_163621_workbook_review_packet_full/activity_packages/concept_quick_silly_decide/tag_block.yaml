@@ -1,0 +1,71 @@
+activity_id: concept_quick_silly_decide
+version: 1
+template_type: cat1
+pillar: Adventure
+game_style: time_traveler
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: agnostic
+tier_range:
+  primary: T1
+  span:
+  - T0
+  - T1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat1
+attributes:
+- quick_silly_questions
+- decide
+key_concepts:
+- Form
+- Responsibility
+related_concepts:
+- evidence
+- choice
+- sequence
+- reflection
+atl_skills:
+- logical_reasoning
+- observation
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
+kud:
+  know:
+  - The child knows the activity rule and one source-specific cue.
+  understand:
+  - The child understands that their action affects the next beat.
+  do:
+  - The child practices decide through short guided turns.
+progression:
+  topic_axis: responsibility
+  difficulty_level: 2
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: function
+  mechanic: decide
+  entity_role: catalyst
+  focal_attribute: quick_silly_questions
+  intro: The child answers very short playful choice questions during a transition
+    or warm-up.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - function
+    - state
+  preview_label: Quick and Silly Questions
+  preview_prompt: Try Quick and Silly Questions with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true
+source_workbook_row: 40
+source_concept: source_quick_silly_questions

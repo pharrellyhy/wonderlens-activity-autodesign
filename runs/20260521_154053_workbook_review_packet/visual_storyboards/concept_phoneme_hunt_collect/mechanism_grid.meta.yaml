@@ -1,0 +1,49 @@
+activity_id: concept_phoneme_hunt_collect
+activity_name: B-Sound Treasure Hunt
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:22:38'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064abc06ec8193bac7b10aca89f137.png
+prompt_sha256: 5de448d5739390b6f5943bdbeca18a67b8577343c360b27ee555524c65bc7dc2
+prompt_path: visual_storyboards/concept_phoneme_hunt_collect/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_phoneme_hunt_collect/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_phoneme_hunt_collect
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: Child enters sound hunt mode; the AI says `/b/`, and the child searches
+    the room for a ball, book, or block. A nonmatch can go into the different-sound
+    basket without losing the three main...
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Mission Briefing -- Sound Treasure Scout | [adventurous guide
+    tone] "You are the Sound Treasure Scout. Find three things with /b/ names. Snap
+    each treas... | Ideal: "Ready!" / "I kn...'
+  source: 'Step 2: Mission Briefing -- Sound Treasure Scout'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is collect: Round 1 -- First /b/ Treasure | [curious
+    scout tone] "First treasure photo! What is its name? Does it start with /b/?"
+    | Ideal: "Ball!" / "Book!" / "Bear!" | Unexpected: "Cup....'
+  source: Round 1 -- First /b/ Treasure
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [triumphant] "Yes! Ball starts with /b/. Treasure 1 is found."
+    | Unexpected: [kind redirect] "Cup starts with /k/. Good try. Can you find ball,
+    book, or bear?" | No response: [wait 2...'
+  source: Round 1 -- First /b/ Treasure
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Second /b/ Treasure | [playful detective tone] "Second treasure
+    photo! Say its name slowly. Do you hear /b/ at the start?" | Ideal: "Block!" /
+    "Bottle!" | Unexpected: "It is blue...'
+  source: Round 2 -- Second /b/ Treasure
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You did it, Sound
+    Treasure Scout. You used Form today. You noticed word sounds. You used... | Ideal:
+    "I want another sound!" / "I found t...'
+  source: 'Step 5: Closing + IB Concepts'

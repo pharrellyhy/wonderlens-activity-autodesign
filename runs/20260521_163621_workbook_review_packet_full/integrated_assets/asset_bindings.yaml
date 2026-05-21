@@ -1,0 +1,460 @@
+run_id: 20260521_163621_workbook_review_packet_full
+artifact_kind: integrated_prebuilt_asset_bindings
+source_asset_manifest: generated_assets_pilot/asset_manifest.yaml
+created_at: '2026-05-21T16:50:21+08:00'
+activity_count: 12
+asset_count: 12
+missing_activity_entries: []
+entries:
+- activity_id: concept_phoneme_hunt_collect
+  activity_name: Phoneme Treasure Hunt
+  asset_id: phoneme_letter_card_01
+  asset_type: card_set
+  requiredness: optional
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  spec_path: activity_packages/concept_phoneme_hunt_collect/spec.md
+  prod_path: activity_packages/concept_phoneme_hunt_collect/prod.md
+  image_path: generated_assets_pilot/concept_phoneme_hunt_collect/phoneme_letter_card_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_phoneme_hunt_collect/phoneme_letter_card_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_phoneme_hunt_collect/phoneme_letter_card_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show the card at task start and briefly again if the child forgets
+    the target sound.
+  fallback_behavior: If the card is unavailable, the AI repeats the target sound by
+    voice only and must not claim the screen is showing a letter.
+  safety_constraints: No real child photos, no brands, no complex text, and no cluttered
+    composition.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_partial_reveal_deduce
+  activity_name: Partial Reveal Guess
+  asset_id: partial_reveal_cards_01
+  asset_type: card_set
+  requiredness: required
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_partial_reveal_deduce
+  spec_path: activity_packages/concept_partial_reveal_deduce/spec.md
+  prod_path: activity_packages/concept_partial_reveal_deduce/prod.md
+  image_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_partial_reveal_deduce/partial_reveal_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show one partial-reveal card full screen each round. The child
+    observes the part, guesses the whole, and explains the evidence.
+  fallback_behavior: If partial cards are unavailable, switch to a voice-only partial-clue
+    riddle and do not claim the screen is showing a picture.
+  safety_constraints: No real child photos, no gore or scary details, no predation
+    scenes, and clear inspectable cropped parts.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_animal_sound_motion_voice
+  activity_name: Animal Sound Imitation
+  asset_id: animal_sound_cards_01
+  asset_type: card_set
+  requiredness: optional
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_animal_sound_motion_voice
+  spec_path: activity_packages/concept_animal_sound_motion_voice/spec.md
+  prod_path: activity_packages/concept_animal_sound_motion_voice/prod.md
+  image_path: generated_assets_pilot/concept_animal_sound_motion_voice/animal_sound_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_animal_sound_motion_voice/animal_sound_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_animal_sound_motion_voice/animal_sound_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show one animal card each round while the AI invites the child
+    to imitate its sound.
+  fallback_behavior: If cards are unavailable, the AI describes the animal by voice
+    and must not claim the screen is showing a picture.
+  safety_constraints: No real child photos, no attack or predation scenes, and friendly
+    animal poses only.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_word_echo_remember
+  activity_name: Word Echo Practice
+  asset_id: word_echo_cards_01
+  asset_type: card_set
+  requiredness: optional
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_word_echo_remember
+  spec_path: activity_packages/concept_word_echo_remember/spec.md
+  prod_path: activity_packages/concept_word_echo_remember/prod.md
+  image_path: generated_assets_pilot/concept_word_echo_remember/word_echo_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_word_echo_remember/word_echo_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_word_echo_remember/word_echo_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show one card when introducing a word, then hide or keep it small
+    while the child repeats by voice.
+  fallback_behavior: If cards are unavailable, run the activity voice-only and do
+    not claim the screen is showing a word.
+  safety_constraints: No real child photos, no brands, no complex text, and no cluttered
+    composition.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_emotion_reader_care
+  activity_name: Emotion Reader
+  asset_id: emotion_expression_cards_01
+  asset_type: card_set
+  requiredness: optional
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_emotion_reader_care
+  spec_path: activity_packages/concept_emotion_reader_care/spec.md
+  prod_path: activity_packages/concept_emotion_reader_care/prod.md
+  image_path: generated_assets_pilot/concept_emotion_reader_care/emotion_expression_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_emotion_reader_care/emotion_expression_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_emotion_reader_care/emotion_expression_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show one expression card when asking what the character might
+    feel.
+  fallback_behavior: If cards are unavailable, use a story description of a character's
+    visible cues and avoid claiming the screen shows a face.
+  safety_constraints: No real child faces, no intense distress, no medical or mental-health
+    diagnosis framing.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_constellation_star_count_enumerate
+  activity_name: Constellation Star Count
+  asset_id: constellation_count_cards_01
+  asset_type: card_set
+  requiredness: required
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  spec_path: activity_packages/concept_constellation_star_count_enumerate/spec.md
+  prod_path: activity_packages/concept_constellation_star_count_enumerate/prod.md
+  image_path: generated_assets_pilot/concept_constellation_star_count_enumerate/constellation_count_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_constellation_star_count_enumerate/constellation_count_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_constellation_star_count_enumerate/constellation_count_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show one card each round so the child can count visible stars.
+  fallback_behavior: If cards are unavailable, use a voice-only imaginary star-counting
+    riddle and do not claim a constellation is displayed.
+  safety_constraints: No scientific claims unless backed by approved metadata, no
+    scary space imagery, and no dense star fields.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_career_decision_decide
+  activity_name: Career Decision Role Play
+  asset_id: career_portrait_cards_01
+  asset_type: card_set
+  requiredness: optional
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_career_decision_decide
+  spec_path: activity_packages/concept_career_decision_decide/spec.md
+  prod_path: activity_packages/concept_career_decision_decide/prod.md
+  image_path: generated_assets_pilot/concept_career_decision_decide/career_portrait_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_career_decision_decide/career_portrait_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_career_decision_decide/career_portrait_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show one role card before asking what the helper should do.
+  fallback_behavior: If cards are unavailable, describe the helper role by voice and
+    avoid claiming the screen shows a person.
+  safety_constraints: Avoid gender, race, or class stereotypes; no emergency gore;
+    no real person photos.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_vegetable_sort_sort
+  activity_name: Vegetable Sort
+  asset_id: vegetable_sort_cards_01
+  asset_type: card_set
+  requiredness: required
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_vegetable_sort_sort
+  spec_path: activity_packages/concept_vegetable_sort_sort/spec.md
+  prod_path: activity_packages/concept_vegetable_sort_sort/prod.md
+  image_path: generated_assets_pilot/concept_vegetable_sort_sort/vegetable_sort_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_vegetable_sort_sort/vegetable_sort_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_vegetable_sort_sort/vegetable_sort_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show a small set of cards and ask the child to choose a grouping
+    rule.
+  fallback_behavior: If cards are unavailable, use photographed vegetables or a voice-only
+    sorting prompt and do not claim cards are shown.
+  safety_constraints: No choking imagery, no knives, no cooking hazards, and no brand
+    packaging.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_travel_planner_predict
+  activity_name: Travel Planner
+  asset_id: travel_planning_cards_01
+  asset_type: card_set
+  requiredness: optional
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_travel_planner_predict
+  spec_path: activity_packages/concept_travel_planner_predict/spec.md
+  prod_path: activity_packages/concept_travel_planner_predict/prod.md
+  image_path: generated_assets_pilot/concept_travel_planner_predict/travel_planning_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_travel_planner_predict/travel_planning_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_travel_planner_predict/travel_planning_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show a small group of cards when asking what to pack or how to
+    travel.
+  fallback_behavior: If cards are unavailable, run the planning conversation by voice
+    only.
+  safety_constraints: No real booking, no unsafe travel instructions, no location
+    tracking, and no brands.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_guided_drawing_probe
+  activity_name: Guided Drawing
+  asset_id: guided_drawing_step_cards_01
+  asset_type: card_set
+  requiredness: optional
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_guided_drawing_probe
+  spec_path: activity_packages/concept_guided_drawing_probe/spec.md
+  prod_path: activity_packages/concept_guided_drawing_probe/prod.md
+  image_path: generated_assets_pilot/concept_guided_drawing_probe/guided_drawing_step_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_guided_drawing_probe/guided_drawing_step_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_guided_drawing_probe/guided_drawing_step_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show one step card at a time while the AI leaves enough time for
+    the child to draw on paper.
+  fallback_behavior: If step cards are unavailable, use voice-only step descriptions;
+    the Cat3 material workflow still requires product approval before package generation.
+  safety_constraints: No real child photos, no fine-copying requirement, and only
+    simple non-dangerous drawing themes.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_story_unlock_probe
+  activity_name: Story Challenge Unlock
+  asset_id: story_unlock_cards_01
+  asset_type: story_card_set
+  requiredness: optional
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_story_unlock_probe
+  spec_path: activity_packages/concept_story_unlock_probe/spec.md
+  prod_path: activity_packages/concept_story_unlock_probe/prod.md
+  image_path: generated_assets_pilot/concept_story_unlock_probe/story_unlock_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_story_unlock_probe/story_unlock_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_story_unlock_probe/story_unlock_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show the card at a story pause point and change to the next scene
+    only when product unlock state is supported.
+  fallback_behavior: If unlock UI is unavailable, use voice-only story choices and
+    do not claim a screen element has unlocked.
+  safety_constraints: No frightening doors, traps, weapons, or branded characters.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true
+- activity_id: concept_recognition_pop_probe
+  activity_name: Recognition Pop Challenge
+  asset_id: recognition_challenge_cards_01
+  asset_type: target_card_set
+  requiredness: required
+  generation_timing: pre_generated
+  integration_status: integrated
+  package_path: activity_packages/concept_recognition_pop_probe
+  spec_path: activity_packages/concept_recognition_pop_probe/spec.md
+  prod_path: activity_packages/concept_recognition_pop_probe/prod.md
+  image_path: generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/contact_sheet.png
+  meta_path: generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/asset.meta.yaml
+  prompt_path: generated_assets_pilot/concept_recognition_pop_probe/recognition_challenge_cards_01/contact_sheet.prompt.md
+  use_step: prod.step_2; prod.step_3.round_1-3
+  display_location: center_card_area
+  display_behavior: Show multiple cards only within a supported tap-based game surface.
+  fallback_behavior: If tap UI or state timing is unavailable, block at Phase 0 rather
+    than converting to dialogue.
+  safety_constraints: Avoid violent whack imagery, no weapons, no scary targets, and
+    no punitive feedback.
+  validation:
+    package_exists: true
+    image_exists: true
+    metadata_exists: true
+    prompt_exists: true
+    run_manifest_asset_usage_matches: true
+    meta_activity_id_matches: true
+    meta_asset_id_matches: true
+    spec_mentions_asset_id: true
+    prod_mentions_asset_id: true
+    requiredness_matches: true
+    use_step_matches: true
+    display_location_matches: true
+    spec_requiredness_matches: true
+    spec_use_step_matches: true
+    spec_display_location_matches: true
+    prod_covers_use_steps: true

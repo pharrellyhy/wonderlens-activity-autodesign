@@ -1,0 +1,61 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_award_certificate
+    source_row: 25
+    assignment_row: assignment_type=capability_probe, activity_concept=Award Certificate,
+      concept_source=inputs/source_activity_concepts.md#source_award_certificate,
+      description=The child designs a paper award for someone they appreciate, using
+      warm AI story framing and badge ideas without judging the final drawing., mechanic=care,
+      category=cat3, tier=T1, asset_policy=optional_support, asset_requirements=award_inspiration_badges_01,
+      product_capabilities=requires_materials+requires_asset_display+before_after_risk,
+      activity_id=concept_award_certificate_probe, trigger_condition=Child names someone
+      who helped, tried hard, or deserves appreciation.
+  activity_concept: Award Certificate
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat3
+  canonical_mechanic: care
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child designs a paper award for someone they appreciate, using
+    warm AI story framing and badge ideas without judging the final drawing.
+  source_intent_lock: The child makes or designs an award for someone who helped,
+    tried hard, or deserves appreciation.
+  trigger_condition: Child names someone who helped, tried hard, or deserves appreciation.
+  product_capability_flags:
+  - requires_materials
+  - requires_asset_display
+  - before_after_risk
+  resolved_product_contract:
+  - 'Cat3 material workflow: Approved minimum contract uses caregiver setup, child
+    self-report, and no-assessment physical-work language.'
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  - 'Before/after evidence: Approved minimum evidence policy uses child or caregiver
+    confirmation and never infers completion quality from photos.'
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: award_inspiration_badges_01
+      concept_ref: source_award_certificate
+      asset_type: badge_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide simple positive badge ideas for an award certificate.
+      prompt_en: Create a set of friendly award badge illustrations for children.
+        Include badges for kindness, trying hard, helping, bravery, creativity, and
+        teamwork. Use simple shapes, warm colors, no text, no medals with military
+        styling, and no brands.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show badges only as inspiration if certificate creation support
+        exists.
+      fallback_behavior: If badge assets or certificate workflow are unavailable,
+        block at Phase 0 or run a verbal appreciation activity without claiming a
+        certificate is created.
+      safety_constraints: No competitive ranking, no shaming, no real child photos,
+        and no exclusionary imagery.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

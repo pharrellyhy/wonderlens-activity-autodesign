@@ -1,0 +1,57 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_trivia_game
+    source_row: 30
+    assignment_row: assignment_type=activity_concept, activity_concept=Trivia Game,
+      concept_source=inputs/source_activity_concepts.md#source_trivia_game, description=The
+      child answers short memory or knowledge questions and receives a simple explanation.,
+      mechanic=remember, category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=trivia_reward_board_01,
+      product_capabilities=requires_asset_display+requires_ui_state, activity_id=concept_trivia_game_remember,
+      trigger_condition=Child has just explored a topic and can answer short fact
+      or memory questions.
+  activity_concept: Trivia Game
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: remember
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child answers short memory or knowledge questions and receives
+    a simple explanation.
+  source_intent_lock: The child answers short memory or knowledge questions and receives
+    a simple explanation.
+  trigger_condition: Child has just explored a topic and can answer short fact or
+    memory questions.
+  product_capability_flags:
+  - requires_asset_display
+  - requires_ui_state
+  resolved_product_contract:
+  - 'UI state or progress memory: Approved minimum state contract keeps per-round
+    choices visible when supported and uses a stateless fallback when not.'
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: trivia_reward_board_01
+      concept_ref: source_trivia_game
+      asset_type: reward_board
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Optionally visualize progress through trivia rounds.
+      prompt_en: Create a simple child-friendly trivia progress board with five empty
+        star spaces and a small castle or clubhouse outline at the end. Use warm colors,
+        clean shapes, no text, no competitive ranking, no brands, and enough blank
+        space for runtime stars.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show progress only if product can update state after each
+        answer.
+      fallback_behavior: If stateful reward display is unavailable, use verbal encouragement
+        only and do not claim stars are being added.
+      safety_constraints: No leaderboards, no shame states, no gambling-like reward
+        visuals, and no brands.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

@@ -2428,14 +2428,19 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     export_entries = export_manifest.get("entries", []) if isinstance(export_manifest.get("entries"), list) else []
     summary = manifest.get("summary", {}) if isinstance(manifest.get("summary"), dict) else {}
     run_id = normalize_text(manifest.get("run_id") or run_dir.name)
+    source = manifest.get("source", {}) if isinstance(manifest.get("source"), dict) else {}
     run_links = [
         ("run_manifest.yaml", "run_manifest.yaml"),
         ("review_notes.md", "review_notes.md"),
         ("assignment_snapshot.md", "assignment_snapshot.md"),
         ("generated_activity_ids.txt", "generated_activity_ids.txt"),
-        ("results.tsv", "../../results.tsv"),
-        ("assignments.md", "../../assignments.md"),
     ]
+    if (run_dir / "results.tsv").exists():
+        run_links.append(("results.tsv", "results.tsv"))
+    elif source.get("results_file"):
+        run_links.append(("results.tsv", f"../../{source['results_file']}"))
+    if source.get("assignments_file"):
+        run_links.append(("assignments.md", f"../../{source['assignments_file']}"))
     active_storyboard_root = active_storyboard_root_name(run_dir)
     if active_storyboard_root:
         label = "storyboard_manifest_v2.yaml" if active_storyboard_root.endswith("_v2") else "storyboard_manifest.yaml"
@@ -4395,7 +4400,10 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         "branch_followups_all_paths": expected_branch_followups == 0
         or (
             text.count('class="branch-followup-card') >= expected_branch_followups
-            and "Child branches and AI follow-ups" in text
+            and (
+                "Child branches and AI follow-ups" in text
+                or "Child branches and AI follow-up policy" in text
+            )
             and "Ideal child" in text
             and "Unexpected child" in text
             and "No response child" in text

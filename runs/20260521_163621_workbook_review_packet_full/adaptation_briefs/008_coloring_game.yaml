@@ -1,0 +1,66 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_coloring_game
+    source_row: 8
+    assignment_row: assignment_type=capability_probe, activity_concept=Coloring Game,
+      concept_source=inputs/source_activity_concepts.md#source_coloring_game, description=The
+      screen shows fillable line art; the child photographs real-world colors; the
+      activity maps those colors to regions and honestly falls back if live recoloring
+      is unavailable., mechanic=build, category=cat5, tier=T1, asset_policy=runtime_generated,
+      asset_requirements=runtime_coloring_line_art_01, product_capabilities=requires_generated_image+requires_coloring_ui+requires_ui_state,
+      activity_id=concept_coloring_game_probe, trigger_condition=Child photographs
+      an object with a clear color or enters coloring mode.
+  activity_concept: Coloring Game
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat5
+  canonical_mechanic: build
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The screen shows fillable line art; the child photographs real-world
+    colors; the activity maps those colors to regions and honestly falls back if live
+    recoloring is unavailable.
+  source_intent_lock: 'Preserve the sequence: show fillable line art, ask the child
+    to photograph a color source, map that real-world color to one or more regions,
+    then reveal the evolving artwork.'
+  trigger_condition: Child photographs an object with a clear color or enters coloring
+    mode.
+  product_capability_flags:
+  - requires_generated_image
+  - requires_coloring_ui
+  - requires_ui_state
+  resolved_product_contract:
+  - 'Runtime image generation: Approved minimum contract uses static or no-image fallback
+    and does not claim unavailable runtime artwork.'
+  - 'Coloring or recoloring UI: Approved minimum contract may describe intended fills
+    or use static preview when live recoloring is unavailable.'
+  - 'UI state or progress memory: Approved minimum state contract keeps per-round
+    choices visible when supported and uses a stateless fallback when not.'
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: runtime_generated
+    assets:
+    - asset_id: runtime_coloring_line_art_01
+      concept_ref: source_coloring_game
+      asset_type: line_art
+      requiredness: required
+      generation_timing: runtime_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Convert a photographed object into a fillable line drawing and apply
+        colors chosen from the child's photos.
+      prompt_en: Generate a simple coloring-page line drawing based on the photographed
+        object. Use clean black outlines, 3 to 5 large enclosed regions for coloring,
+        no shading, no text, no background clutter, child-friendly proportions, and
+        clear separation between regions.
+      source: future_runtime_image_generation
+      prompt_or_source: future_runtime_image_generation
+      display_behavior: Show the line art at runtime and fill a selected region after
+        each child color photo.
+      fallback_behavior: If runtime generation and coloring UI are unsupported, block
+        at Phase 0 and do not generate an activity package.
+      safety_constraints: Do not generate real child portraits, copyrighted characters,
+        or detailed dangerous objects.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

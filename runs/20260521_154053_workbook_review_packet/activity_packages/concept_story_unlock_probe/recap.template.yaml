@@ -1,0 +1,27 @@
+recap_payload:
+  entity: '{runtime_entity}'
+  tier: '{runtime_tier}'
+  age_years: '{runtime_age}'
+  what_we_noticed: function
+  what_we_did: imagine
+  entity_role: catalyst
+  focal_attribute:
+    token: story_unlock
+    child_label: '{runtime_focal_label}'
+    badge_emoji_none: true
+  highlight_moment: Your quick challenges unlocked the next beats of the story.
+  rounds:
+  - '{round_1_summary}'
+  - '{round_2_summary}'
+  - '{round_3_summary}'
+  difficulty_level: 2
+  next_step_hint: Try a new story path with one color, sound, or word challenge.
+  caregiver_observed: co-explorer
+  reward_badge: story_challenge_unlock
+rendered:
+  title: You completed Story Challenge Unlock today!
+  line_1: You listened to a story with locked pauses.
+  line_2: You used quick challenges to open the next beat.
+  line_3: You helped the ending make sense.
+  badge: Story Challenge Unlock Badge
+  next: Next time, unlock a new story with a new challenge.

@@ -1,0 +1,52 @@
+adaptation_brief:
+  assignment_index: 32
+  assignment_type: capability_probe
+  activity_concept: Time Sense Challenge
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_time_sense_challenge
+    asset_requirements: null
+    assignment_row: assignment_type=capability_probe, activity_concept=Time Sense Challenge, concept_source=inputs/source_activity_concepts.md#source_time_sense_challenge,
+      description=Child predicts when a short amount of time has passed then checks the result, mechanic=predict, category=cat1,
+      tier=T1, asset_policy=no_assets, product_capabilities=requires_ui_state, activity_id=concept_time_sense_probe, trigger_condition=Child
+      can sit safely and make a short time estimate
+  input_mode: concept_only
+  core_promise: The child predicts when a short amount of time has passed, then checks the result.
+  canonical_mechanic: predict
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Child can sit safely and make a short time estimate
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: time_sense
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_ui_state
+  asset_dependency:
+    policy: no_assets
+    assets: []
+    missing_asset_risk: none
+  scaffold_choice:
+    pillar: Discovery
+    game_style: field_experiment
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum state contract: per-round choices persist during the session, with clear reset/resume behavior and a
+    stateless fallback.'
+  resolved_blocker_types:
+  - UI state or progress memory
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - time_sense
+    retargeting_note: Reusable by replacing the runtime topic, entity, or property slot while preserving the predict mechanic.

@@ -1,0 +1,59 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_guided_drawing
+    source_row: 4
+    assignment_row: assignment_type=capability_probe, activity_concept=Guided Drawing,
+      concept_source=inputs/source_activity_concepts.md#source_guided_drawing, description=The
+      AI guides the child to use paper and pencil to complete a simple drawing step
+      by step., mechanic=build, category=cat3, tier=T1, asset_policy=optional_support,
+      asset_requirements=guided_drawing_step_cards_01, product_capabilities=requires_materials+before_after_risk,
+      activity_id=concept_guided_drawing_probe, trigger_condition=Child is indoors
+      and photographs an object that could become a drawing theme.
+  activity_concept: Guided Drawing
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat3
+  canonical_mechanic: build
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The AI guides the child to use paper and pencil to complete a simple
+    drawing step by step.
+  source_intent_lock: The AI guides the child to use paper and pencil to complete
+    a simple drawing step by step.
+  trigger_condition: Child is indoors and photographs an object that could become
+    a drawing theme.
+  product_capability_flags:
+  - requires_materials
+  - before_after_risk
+  resolved_product_contract:
+  - 'Cat3 material workflow: Approved minimum contract uses caregiver setup, child
+    self-report, and no-assessment physical-work language.'
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  - 'Before/after evidence: Approved minimum evidence policy uses child or caregiver
+    confirmation and never infers completion quality from photos.'
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: guided_drawing_step_cards_01
+      concept_ref: source_guided_drawing
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide optional visual steps for a simple drawing task.
+      prompt_en: Create a set of step-by-step drawing cards for children ages 4-6.
+        Show how to draw a simple friendly object in 4 clear steps using thick black
+        sketch lines, large shapes, no text, minimal details, and a plain white background.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one step card at a time while the AI leaves enough time
+        for the child to draw on paper.
+      fallback_behavior: If step cards are unavailable, use voice-only step descriptions;
+        the Cat3 material workflow still requires product approval before package
+        generation.
+      safety_constraints: No real child photos, no fine-copying requirement, and only
+        simple non-dangerous drawing themes.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

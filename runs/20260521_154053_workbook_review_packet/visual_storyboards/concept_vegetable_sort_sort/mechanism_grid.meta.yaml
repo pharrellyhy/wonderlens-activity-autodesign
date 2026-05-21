@@ -1,0 +1,48 @@
+activity_id: concept_vegetable_sort_sort
+activity_name: Vegetable Sort Stand
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T06:41:19'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a064f34faf4819398c1a6b28657b970.png
+prompt_sha256: 3d2db7a4481e2d6118d0fe88348a9f8a3b34d6c3581ead43a480b12053c11706
+prompt_path: visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_vegetable_sort_sort
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: The screen shows carrot, broccoli, tomato, and potato cards. The child
+    sorts by color first, then by plant part or cooking use.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Sorter rule: choose the
+    grouping rule, use it on the cards, then name one group." | Ideal: "Okay." | Unexpected:
+    "Can I do it my way?" | No r...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is sort: Round 1 -- Pick a Rule | [focused playful
+    tone] "Choose the stand rule: color, shape, or part we eat. Which rule should
+    run this round... | Ideal: "color" / "shape" / "part we ea...'
+  source: Round 1 -- Pick a Rule
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [specific praise] "That is a clear sorting rule. Token 1 is saved."
+    | Unexpected: [warm redirect] "Yummy is an opinion rule. Pick a rule the cards
+    can show: color, shape, or part we...'
+  source: Round 1 -- Pick a Rule
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Place Two Vegetables | [sorting tone] "Use your rule on carrot
+    and tomato. If your rule is color, where do they go? If it is part we... | Ideal:
+    "orange and red groups" / "roots...'
+  source: Round 2 -- Place Two Vegetables
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Veggie
+    Sorter badge. You used Connection by grouping foods by one rule, an... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

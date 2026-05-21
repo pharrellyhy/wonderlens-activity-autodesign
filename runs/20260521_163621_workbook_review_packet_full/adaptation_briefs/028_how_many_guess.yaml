@@ -1,0 +1,54 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_how_many_guess
+    source_row: 28
+    assignment_row: assignment_type=activity_concept, activity_concept=How Many Guess,
+      concept_source=inputs/source_activity_concepts.md#source_how_many_guess, description=The
+      child estimates how many objects are visible, then counts together with the
+      AI., mechanic=enumerate, category=cat1, tier=T1, asset_policy=required_prebuilt,
+      asset_requirements=how_many_count_cards_01, product_capabilities=requires_asset_display,
+      activity_id=concept_how_many_guess_enumerate, trigger_condition=Screen can show
+      a small set of objects or the camera sees countable items.
+  activity_concept: How Many Guess
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: enumerate
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child estimates how many objects are visible, then counts together
+    with the AI.
+  source_intent_lock: The child estimates how many objects are visible, then counts
+    together with the AI.
+  trigger_condition: Screen can show a small set of objects or the camera sees countable
+    items.
+  product_capability_flags:
+  - requires_asset_display
+  resolved_product_contract:
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: how_many_count_cards_01
+      concept_ref: source_how_many_guess
+      asset_type: count_card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show small countable sets for estimate-then-count rounds.
+      prompt_en: Create a set of counting cards for children ages 4-6. Each card shows
+        3 to 10 identical or related objects, such as stars, apples, buttons, shells,
+        or toy cars. Use clear spacing, plain background, no text, no overlapping
+        objects, and high contrast for counting.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one card, ask the child to guess how many, then count
+        together.
+      fallback_behavior: If cards are unavailable, use real photographed countable
+        items or voice-only counting and do not claim a card is displayed.
+      safety_constraints: No tiny choking hazard emphasis, no clutter, no brands,
+        and no confusing overlapping objects.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

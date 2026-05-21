@@ -1,0 +1,11 @@
+activity_id: concept_plant_parts_enumerate
+dashboard_template:
+  parent_headline: 'Plant Parts Explorer: enumerate'
+  learning_focus:
+  - Form
+  - Form
+  - counting
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

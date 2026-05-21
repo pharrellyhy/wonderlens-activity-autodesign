@@ -1,0 +1,49 @@
+activity_id: concept_partial_reveal_deduce
+activity_name: Partial Reveal Guess
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:29:00'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a0605f141188193a0f3a9704961af49.png
+prompt_sha256: 31f278e37d4d224e2ccfa4e616d894e0a9d57d47d4118c4bcc030cd7c9f48d41
+prompt_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_partial_reveal_deduce
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: The screen shows long rabbit ears from `partial_reveal_cards_01`. The child
+    guesses "rabbit" and says, "The ears helped"; the reveal later places the ear
+    crop beside the full rabbit so the...
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction -- Part-Spotter Detective | [clear guide tone]
+    "You are the Part-Spotter Detective. I show or describe one part. You guess the
+    whole and... | Ideal: "Okay!" / "I w...'
+  source: 'Step 2: Rule Introduction -- Part-Spotter Detective'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is deduce: Round 1 -- Long Ears Clue | [quiet clue
+    tone] "Clue one: I see two long ears. What whole animal could this be, and what
+    clue tells you?" | Ideal: "Rabbit, because ears." / "Bun...'
+  source: Round 1 -- Long Ears Clue
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [intrigued detective tone] "Strong evidence. You used the long
+    ears to connect the part to rabbit." | Unexpected: [kind redirect] "Dogs can have
+    ears too. Say what you notice: long e...'
+  source: Round 1 -- Long Ears Clue
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Webbed Feet Clue | [watery mystery tone] "Clue two: I see flat
+    webbed feet. What whole animal might be hiding, and what evidence... | Ideal:
+    "Duck, because webbed feet." / "Goose...'
+  source: Round 2 -- Webbed Feet Clue
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You did it, Part-Spotter
+    Detective. You used Form. You noticed shapes and details. You us... | Ideal: "Another
+    one!" / "I used clues." |...'
+  source: 'Step 5: Closing + IB Concepts'

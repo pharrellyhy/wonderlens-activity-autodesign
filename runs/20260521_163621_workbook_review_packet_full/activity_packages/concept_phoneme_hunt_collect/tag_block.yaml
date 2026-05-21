@@ -1,0 +1,72 @@
+activity_id: concept_phoneme_hunt_collect
+version: 1
+template_type: cat5
+pillar: Adventure
+game_style: quest_collector
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span:
+  - T0
+  - T1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat5
+attributes:
+- phoneme_hunt
+- collect
+key_concepts:
+- Form
+- Connection
+related_concepts:
+- evidence
+- choice
+- sequence
+- reflection
+atl_skills:
+- evidence_collection
+- observation
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
+kud:
+  know:
+  - The child knows the activity rule and one source-specific cue.
+  understand:
+  - The child understands that their action affects the next beat.
+  do:
+  - The child practices collect through short guided turns.
+progression:
+  topic_axis: connection
+  difficulty_level: 2
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
+caregiver_role:
+- scaffold
+- observer
+activity_signature:
+  observation_angle: color
+  mechanic: collect
+  entity_role: exemplar
+  focal_attribute: phoneme_hunt
+  intro: The AI introduces a target sound, then the child finds an object whose word
+    starts with that sound.
+  bridge_prerequisites:
+    primary:
+    - color
+    secondary:
+    - function
+    - state
+  preview_label: Phoneme Treasure Hunt
+  preview_prompt: Try Phoneme Treasure Hunt with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true
+source_workbook_row: 2
+source_concept: source_phoneme_hunt

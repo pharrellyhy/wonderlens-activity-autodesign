@@ -1,0 +1,48 @@
+activity_id: concept_award_certificate_probe
+activity_name: Award Certificate
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-21T15:39:18'
+source_image: ''
+prompt_sha256: 049a273fbed6d9e0121f11ca5008bd277cc627ff7d80bc8249f4f06b948fe19a
+prompt_path: visual_storyboards/concept_award_certificate_probe/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_award_certificate_probe/mechanism_grid.png
+package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_award_certificate_probe
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: A family story or photographed object inspires a handmade award such as
+    Best Helper or Best Mom.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
+    required asset or honest fallback. | Ideal: The child confirms the rule or asks
+    for a smaller version. | Unexpected:...'
+  source: 'Step 2: Role And Rules'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is care: Round 1 -- Choose The Person | Ask who
+    receives the award and why. | Ideal: The child names a person. | Unexpected: Child
+    gives an unrelated answer, unsafe action, or asks to cha...'
+  source: Round 1 -- Choose The Person
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [specific] Reflect the appreciation reason. | Unexpected: [redirect]
+    Validate the idea, restate the safe rule, and offer one easier choice. | No response:
+    [wait 2s] [gentle] Model a...'
+  source: Round 1 -- Choose The Person
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Design The Badge | Guide a paper-and-pencil badge with one
+    color and one kind phrase. | Ideal: The child draws or names a color. | Unexpected:
+    Child gives an unrelated answer, un...'
+  source: Round 2 -- Design The Badge
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
+    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
+    or quietly watches the recap. | Unexpe...'
+  source: 'Step 5: Closing + IB Concepts'

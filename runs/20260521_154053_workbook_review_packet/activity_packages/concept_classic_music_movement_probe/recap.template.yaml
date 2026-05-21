@@ -1,0 +1,26 @@
+recap_payload:
+  entity: '{runtime_entity}'
+  tier: '{runtime_tier}'
+  age_years: '{runtime_age}'
+  what_we_noticed: function
+  what_we_did: motion_voice
+  entity_role: catalyst
+  focal_attribute:
+    token: classic_music_movement
+    child_label: '{runtime_focal_label}'
+    badge_emoji_none: true
+  highlight_moment: You completed Classic Music And Movement in two small turns.
+  rounds:
+  - '{round_1_summary}'
+  - '{round_2_summary}'
+  difficulty_level: 2
+  next_step_hint: Try the same activity with a new theme or approved asset set.
+  caregiver_observed: co-explorer
+  reward_badge: classic_music_and_movement
+rendered:
+  title: You completed Classic Music And Movement today!
+  line_1: You made two safe mood moves.
+  line_2: You practiced safe rhythm movement.
+  line_3: You picked a safe version.
+  badge: Classic Music And Movement Badge
+  next: Next time, change the theme and keep the same game rules.

@@ -1,0 +1,30 @@
+run_id: 20260521_163621_workbook_review_packet_full
+activity_id: concept_vegetable_sort_sort
+activity_name: concept_vegetable_sort_sort
+mechanic: sort
+asset_id: vegetable_sort_cards_01
+asset_type: card_set
+requiredness: required
+generation_timing: pre_generated
+status: generated
+artifact_kind: prebuilt_asset_contact_sheet_pilot
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-21T15:39:18'
+source_image: ''
+prompt_sha256: 806a0b87683da4d786a59b1d3d263999738b8b77c9452974ac3dd98738ce8674
+prompt_path: generated_assets_pilot/concept_vegetable_sort_sort/vegetable_sort_cards_01/contact_sheet.prompt.md
+image_path: generated_assets_pilot/concept_vegetable_sort_sort/vegetable_sort_cards_01/contact_sheet.png
+meta_path: generated_assets_pilot/concept_vegetable_sort_sort/vegetable_sort_cards_01/asset.meta.yaml
+package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_vegetable_sort_sort
+use_step: prod.step_2; prod.step_3.round_1-3
+display_location: center_card_area
+purpose: Provide vegetable cards that can be sorted by color, shape, edible part,
+  or cooking use.
+display_behavior: Show a small set of cards and ask the child to choose a grouping
+  rule.
+fallback_behavior: If cards are unavailable, use photographed vegetables or a voice-only
+  sorting prompt and do not claim cards are shown.
+safety_constraints: No choking imagery, no knives, no cooking hazards, and no brand
+  packaging.

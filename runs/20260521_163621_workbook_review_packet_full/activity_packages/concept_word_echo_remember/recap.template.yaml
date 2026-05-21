@@ -1,0 +1,8 @@
+activity_id: concept_word_echo_remember
+recap_template:
+  title: Word Echo Practice recap
+  child_summary: '{child_name} practiced remember in Word Echo Practice.'
+  evidence_prompts:
+  - favorite_turn
+  - child_choice
+  - next_time_variation

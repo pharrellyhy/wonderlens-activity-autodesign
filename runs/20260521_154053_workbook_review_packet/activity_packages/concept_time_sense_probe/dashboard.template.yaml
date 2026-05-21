@@ -1,0 +1,25 @@
+dashboard_fragment:
+  session:
+    axis: causation
+    angle: function
+    mechanic: predict
+    entity_role: catalyst
+    focal_attribute: time_sense
+    entry_rung: '{runtime_entry_rung}'
+    exit_rung: '{runtime_exit_rung}'
+    outcome: '{runtime_outcome}'
+  contributes_to:
+    curiosity_radial:
+      axis: causation
+      angle: function
+    exploration_matrix:
+      cell: predict by function
+    key_concepts_exposure:
+      Causation:
+        angle: function
+      Change:
+        angle: function
+    atl_skills_trail:
+    - prediction
+    - logical_reasoning
+    - focus

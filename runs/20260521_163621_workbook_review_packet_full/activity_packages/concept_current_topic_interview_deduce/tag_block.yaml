@@ -1,0 +1,70 @@
+activity_id: concept_current_topic_interview_deduce
+version: 1
+template_type: cat1
+pillar: Mystery
+game_style: mystery_lens
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: agnostic
+tier_range:
+  primary: T2
+  span:
+  - T1
+  - T2
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat1
+attributes:
+- current_topic_interview
+- deduce
+key_concepts:
+- Form
+- Causation
+related_concepts:
+- evidence
+- choice
+- sequence
+- reflection
+atl_skills:
+- logical_reasoning
+- observation
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
+kud:
+  know:
+  - The child knows the activity rule and one source-specific cue.
+  understand:
+  - The child understands that their action affects the next beat.
+  do:
+  - The child practices deduce through short guided turns.
+progression:
+  topic_axis: causation
+  difficulty_level: 2
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: function
+  mechanic: deduce
+  entity_role: catalyst
+  focal_attribute: current_topic_interview
+  intro: The child discusses an age-appropriate topic by giving an opinion and a reason.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - function
+    - state
+  preview_label: Current Topic Interview
+  preview_prompt: Try Current Topic Interview with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
+matchability:
+  entity_class_filter: []
+  tier_support:
+    T0: true
+    T1: true
+    T2: true
+source_workbook_row: 37
+source_concept: source_current_topic_interview

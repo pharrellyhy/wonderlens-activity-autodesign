@@ -1,0 +1,26 @@
+recap_payload:
+  entity: '{runtime_entity}'
+  tier: '{runtime_tier}'
+  age_years: '{runtime_age}'
+  what_we_noticed: function
+  what_we_did: motion_voice
+  entity_role: catalyst
+  focal_attribute:
+    token: body_movement
+    child_label: '{runtime_focal_label}'
+    badge_emoji_none: true
+  highlight_moment: You completed Simple Body Movement Guide in two small turns.
+  rounds:
+  - '{round_1_summary}'
+  - '{round_2_summary}'
+  difficulty_level: 2
+  next_step_hint: Try the same activity with a new theme or approved asset set.
+  caregiver_observed: co-explorer
+  reward_badge: simple_body_movement_guide
+rendered:
+  title: You completed Simple Body Movement Guide today!
+  line_1: You made two safe moves.
+  line_2: You practiced safe movement.
+  line_3: You picked a safe version.
+  badge: Simple Body Movement Guide Badge
+  next: Next time, change the theme and keep the same game rules.

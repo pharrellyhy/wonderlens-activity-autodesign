@@ -1,0 +1,57 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_one_line_drawing
+    source_row: 23
+    assignment_row: assignment_type=capability_probe, activity_concept=One-Line Drawing
+      Challenge, concept_source=inputs/source_activity_concepts.md#source_one_line_drawing,
+      description=The child tries to draw a target without lifting the pencil or finger.,
+      mechanic=build, category=cat3, tier=T1, asset_policy=required_prebuilt, asset_requirements=one_line_drawing_cards_01,
+      product_capabilities=requires_materials+requires_asset_display+before_after_risk,
+      activity_id=concept_one_line_drawing_probe, trigger_condition=Child has paper
+      or a drawing surface and chooses a drawing challenge.
+  activity_concept: One-Line Drawing Challenge
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat3
+  canonical_mechanic: build
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child tries to draw a target without lifting the pencil or finger.
+  source_intent_lock: The child tries to draw a target without lifting the pencil
+    or finger.
+  trigger_condition: Child has paper or a drawing surface and chooses a drawing challenge.
+  product_capability_flags:
+  - requires_materials
+  - requires_asset_display
+  - before_after_risk
+  resolved_product_contract:
+  - 'Cat3 material workflow: Approved minimum contract uses caregiver setup, child
+    self-report, and no-assessment physical-work language.'
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  - 'Before/after evidence: Approved minimum evidence policy uses child or caregiver
+    confirmation and never infers completion quality from photos.'
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: one_line_drawing_cards_01
+      concept_ref: source_one_line_drawing
+      asset_type: challenge_card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show simple one-line drawing targets.
+      prompt_en: Create a set of one-line drawing challenge cards for children ages
+        5-8. Each card shows one simple object made from a continuous thick black
+        line, such as a house, fish, flower, car, or snail. Use plain white background,
+        no text, and easy-to-follow shapes.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one target before the child attempts the drawing.
+      fallback_behavior: If cards or drawing workflow are unavailable, block at Phase
+        0.
+      safety_constraints: No fine-copying pressure, no copyrighted characters, and
+        no unsafe drawing themes.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

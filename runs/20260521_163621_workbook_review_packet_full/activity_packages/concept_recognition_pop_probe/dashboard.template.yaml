@@ -1,0 +1,11 @@
+activity_id: concept_recognition_pop_probe
+dashboard_template:
+  parent_headline: 'Recognition Pop Challenge: compare'
+  learning_focus:
+  - Form
+  - Perspective
+  - observation
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

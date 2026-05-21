@@ -133,8 +133,8 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 |---|---|
 | source_row | 8 |
 | activity_concept | Coloring Game |
-| normalized_description_en | The screen shows line art with regions to color. The child chooses colors by photographing objects, and the system fills the regions to create a shareable artwork. |
-| normalized_notes_en | Limit the number of captured colors. The line art should be interesting but simple. One color may fill multiple regions. |
+| normalized_description_en | The screen shows line art with regions to color. The child chooses colors by photographing real objects, and the system fills the line-art regions with those photographed colors to create a shareable artwork. |
+| normalized_notes_en | Limit the number of captured colors. The line art should be interesting but simple. One color may fill multiple regions. The source promise is color-from-photo co-creation, not a generic color talk or drawing prompt. |
 | assignment_type | capability_probe |
 | input_mode_hint | concept_only |
 | mechanic | build |
@@ -143,7 +143,10 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | runtime_coloring_line_art_01 |
 | product_capabilities | requires_generated_image, requires_coloring_ui, requires_ui_state |
 | trigger_condition_en | Child photographs an object with a clear color or enters coloring mode. |
-| adaptation_notes_en | Block in the current workflow unless product support exists for runtime line-art generation, fillable-region UI, color state storage, and artwork export. |
+| source_intent_lock_en | Preserve the sequence: show fillable line art, ask the child to photograph a color source, map that real-world color to one or more regions, then reveal the evolving artwork. |
+| minimum_unblock_status | approved_under_minimum_unblock_allowed |
+| resolved_assumptions_en | If live recoloring is not available, the package may be reviewable only as a resolved-blocker contract that describes the required coloring behavior and offers a voice/static-preview fallback; it must not claim that regions actually recolor in runtime. |
+| adaptation_notes_en | Under blocker-preserving mode, block unless product support exists for runtime line-art generation, fillable-region UI, color state storage, and artwork export. Under minimum-unblock mode, keep the color-from-photo sequence visible and mark unsupported UI/image behavior as resolved blocker annotations. |
 
 ### source_guided_drawing
 
@@ -205,8 +208,8 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 |---|---|
 | source_row | 7 |
 | activity_concept | Story Challenge Unlock |
-| normalized_description_en | A story pauses at a challenge point; the child completes a quick task to unlock the next beat. |
-| normalized_notes_en | The story and challenge structure can be planned, but unlock state and progress memory are product-dependent. |
+| normalized_description_en | The AI tells a story first, pauses at a challenge gate, and asks the child to complete a quick task so the next story beat can unlock. |
+| normalized_notes_en | The story line is fixed rather than branching. The challenge exists to unlock story progress, so each round must include story narration before and after the child task. Unlock state and progress memory are product-dependent. |
 | assignment_type | capability_probe |
 | input_mode_hint | concept_only |
 | mechanic | imagine |
@@ -215,7 +218,10 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | story_unlock_cards_01 |
 | product_capabilities | requires_ui_state, requires_asset_display |
 | trigger_condition_en | Child reaches a story pause point and can complete a quick challenge to continue. |
-| adaptation_notes_en | Keep the child action as making a story contribution or completing a small challenge. Do not require visual unlock UI unless product declares it. |
+| source_intent_lock_en | Preserve the sequence: story beat, paused gate, small child challenge such as finding a color, making an animal sound, or echoing a word, then unlocked next story beat. Do not generate standalone challenges without story narration. |
+| minimum_unblock_status | approved_under_minimum_unblock_allowed |
+| resolved_assumptions_en | If visual unlock state is unavailable, use voice-only story unlocking and explicitly label screen cards as optional support. The AI may say the story continues after the challenge, but must not claim a UI element changed state unless supported. |
+| adaptation_notes_en | Keep the child action as completing a small challenge that unlocks story continuation. The story must be told around the challenge. Do not require visual unlock UI unless product declares it. |
 
 ### source_classic_music_movement
 
@@ -362,8 +368,8 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 |---|---|
 | source_row | 21 |
 | activity_concept | Toy Tidy Challenge |
-| normalized_description_en | The child sorts toys or household objects using a simple cleanup rule. |
-| normalized_notes_en | Sorting guidance is straightforward, but validating cleanup progress requires before/after state or parent confirmation. |
+| normalized_description_en | The child photographs toys or a toy area, accepts a short tidy-up mission, tidies for a limited time, then confirms or shows the after state. |
+| normalized_notes_en | The source promise is the cleanup process: invite the child to tidy, keep a two-minute challenge feel, offer simple organizing tips during the work time, and celebrate effort. Validating cleanup progress requires before/after state or parent/child confirmation. |
 | assignment_type | capability_probe |
 | input_mode_hint | concept_only |
 | mechanic | sort |
@@ -371,7 +377,10 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_policy | no_assets |
 | product_capabilities | requires_ui_state, before_after_risk |
 | trigger_condition_en | Parent starts a tidy-up mission and the child has several visible toys or household items. |
-| adaptation_notes_en | Stop at Phase 0 unless the product defines progress memory, confirmation, or before/after review. |
+| source_intent_lock_en | Preserve the sequence: initial toy context, child agrees to tidy, short timed cleanup, organizing tips during the timer, and after-state confirmation. Do not reduce this to a purely verbal category-sorting game. |
+| minimum_unblock_status | approved_under_minimum_unblock_allowed |
+| resolved_assumptions_en | If before/after vision or timer state is unavailable, use child or caregiver confirmation and a simple voice timer contract. Do not claim visual proof of cleanup unless supported. |
+| adaptation_notes_en | Under blocker-preserving mode, stop at Phase 0 unless the product defines progress memory, confirmation, or before/after review. Under minimum-unblock mode, generate a reviewable package that keeps the tidy-up process and records confirmation/timer limits as resolved blocker annotations. |
 
 ### source_time_sense_challenge
 
@@ -449,8 +458,8 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 |---|---|
 | source_row | 26 |
 | activity_concept | Career Decision |
-| normalized_description_en | The child helps choose what a helper or professional should do in a simple scenario. |
-| normalized_notes_en | Use decision rounds about roles, tools, and helpful actions. Keep roles broad and avoid stereotypes. |
+| normalized_description_en | The AI first tells the child to pretend they are a specific helper or professional, then presents a work scenario where the child, as that expert, makes a simple yes/no or two-choice decision. |
+| normalized_notes_en | Profession-first role play is required. Use decision rounds about what the child should do in role, which tool/action fits the work scenario, and why it helps. Keep roles broad, inclusive, and non-stereotyped. |
 | assignment_type | activity_concept |
 | input_mode_hint | concept_only |
 | mechanic | decide |
@@ -459,7 +468,10 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | career_portrait_cards_01 |
 | product_capabilities | requires_asset_display |
 | trigger_condition_en | Child sees a professional role, tool, uniform, vehicle, or story character connected to work. |
-| adaptation_notes_en | Treat the entity or picture as a catalyst for decision-making rather than a fixed career lesson. |
+| source_intent_lock_en | Preserve the sequence: assign the child a profession, place them inside a concrete work scenario, ask a simple expert decision, then respond to the decision. Do not turn this into choosing which profession matches a scenario. |
+| minimum_unblock_status | approved_under_minimum_unblock_allowed |
+| resolved_assumptions_en | Career portrait cards are optional support. If unavailable, run voice-only role play and do not claim the screen shows a portrait. |
+| adaptation_notes_en | Treat the entity or picture as a catalyst for profession role-play. The child is the professional making decisions, not a bystander matching professions to situations. |
 
 ### source_vegetable_sort
 
@@ -609,8 +621,8 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 |---|---|
 | source_row | 35 |
 | activity_concept | Color In Famous Art |
-| normalized_description_en | The child looks at an approved artwork and identifies important colors. |
-| normalized_notes_en | Do not rely on live external museum APIs during generation. Use a curated public-domain artwork set or stop at Phase 0. |
+| normalized_description_en | The child photographs or chooses a real-world color, then sees several approved artworks where that color is dominant or important. |
+| normalized_notes_en | The source promise starts from the child's color and uses that color to introduce artworks, such as yellow leading to sunflower-heavy paintings. Do not rely on live external museum APIs during generation; use a curated public-domain artwork set or stop at Phase 0. |
 | assignment_type | capability_probe |
 | input_mode_hint | concept_only |
 | mechanic | enumerate |
@@ -618,8 +630,11 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_policy | required_prebuilt |
 | asset_requirements | color_artwork_set_01 |
 | product_capabilities | requires_asset_display |
-| trigger_condition_en | Screen can show approved public-domain artwork with known color metadata. |
-| adaptation_notes_en | Stop at Phase 0 until approved artwork assets and metadata are available. |
+| trigger_condition_en | Child photographs or names a clear color and the screen can show approved public-domain artwork with known color metadata. |
+| source_intent_lock_en | Preserve the sequence: child captures or chooses a real-world color, the system shows several artworks dominated by that color, then the AI gives a simple child-safe background introduction. Do not reduce this to studying one artwork first. |
+| minimum_unblock_status | approved_under_minimum_unblock_allowed |
+| resolved_assumptions_en | If live museum APIs or full famous-art metadata are unavailable, use a curated approved artwork set with known dominant colors and clearly label it as approved artwork support. |
+| adaptation_notes_en | Under minimum-unblock mode, preserve the color-to-artwork sequence with approved curated artworks. Under blocker-preserving mode, stop at Phase 0 until approved artwork assets and metadata are available. |
 
 ### source_simple_body_movement
 

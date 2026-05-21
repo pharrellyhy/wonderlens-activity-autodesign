@@ -1,0 +1,11 @@
+activity_id: concept_flashcards_enumerate
+dashboard_template:
+  parent_headline: 'Flashcards: enumerate'
+  learning_focus:
+  - Form
+  - Form
+  - counting
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

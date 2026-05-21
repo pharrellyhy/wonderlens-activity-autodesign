@@ -1,0 +1,55 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_emotion_reader
+    source_row: 12
+    assignment_row: assignment_type=activity_concept, activity_concept=Emotion Reader,
+      concept_source=inputs/source_activity_concepts.md#source_emotion_reader, description=The
+      child notices an obvious expression or body cue and thinks about what feeling
+      or help might fit., mechanic=care, category=cat1, tier=T1, asset_policy=optional_support,
+      asset_requirements=emotion_expression_cards_01, product_capabilities=requires_asset_display,
+      activity_id=concept_emotion_reader_care, trigger_condition=A character, animal,
+      or story moment shows an obvious emotional expression.
+  activity_concept: Emotion Reader
+  assignment_type: activity_concept
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: care
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child notices an obvious expression or body cue and thinks about
+    what feeling or help might fit.
+  source_intent_lock: The child notices an obvious expression or body cue and thinks
+    about what feeling or help might fit.
+  trigger_condition: A character, animal, or story moment shows an obvious emotional
+    expression.
+  product_capability_flags:
+  - requires_asset_display
+  resolved_product_contract:
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: optional_support
+    assets:
+    - asset_id: emotion_expression_cards_01
+      concept_ref: source_emotion_reader
+      asset_type: card_set
+      requiredness: optional
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide simple character expressions that children can interpret with
+        evidence.
+      prompt_en: Create a set of friendly illustrated character expression cards for
+        children ages 4-7. Include happy, worried, proud, tired, surprised, and frustrated
+        expressions. Use one character per card, clear face and body cue, plain background,
+        no text, no stereotypes, and no real people.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one expression card when asking what the character might
+        feel.
+      fallback_behavior: If cards are unavailable, use a story description of a character's
+        visible cues and avoid claiming the screen shows a face.
+      safety_constraints: No real child faces, no intense distress, no medical or
+        mental-health diagnosis framing.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

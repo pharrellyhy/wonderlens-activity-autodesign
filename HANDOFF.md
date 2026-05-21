@@ -2,12 +2,24 @@
 
 ## Current Status
 
-- Status: Batch 5 existing run is patched with a source-intent audit overlay and runtime behavior-contract review support
+- Status: Draft PR #29 now has the patched checkpoint run plus the fresh full rerun `runs/20260521_163621_workbook_review_packet_full`; full-rerun validation is passing locally
 - Date: 2026-05-21
-- Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
+- Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/workbook-review-packet`
 
 ## Latest Changes
 
+- Added fresh full workbook rerun `runs/20260521_163621_workbook_review_packet_full` for all 40 Sheet1 rows. This run has no `seed_run` provenance; packages, metadata, source-intent audit, source comparison, bindings, exports, and review dashboard were regenerated from the normalized workbook source snapshot.
+- The full rerun contains 40 five-file run-local packages, 40 source-intent audit entries, 40 mechanism storyboard prompts with reviewer PNGs present, 12 prebuilt asset contact sheets, 12 integrated asset bindings, 12 standalone HTML reviewer packets, and `review.html`.
+- Corrected `inputs/source_activity_concepts.md` for `source_color_in_famous_art` after checking the workbook row directly: the source intent starts from the child's photographed/chosen real-world color, then shows several approved artworks where that color is dominant or important.
+- Updated `scripts/generate_run_review.py` validation so runtime-contract beat labels (`Child branches and AI follow-up policy`) satisfy the same branch-followup coverage check as exact-dialogue labels.
+- Created workbook review-packet run `runs/20260521_154053_workbook_review_packet` for all 40 Sheet1 rows from `/Users/pharrelly/Downloads/活动库内部初版.xlsx`, seeded from `runs/20260512_172135_batch5_unblocked` and revalidated under the new run ID.
+- Repaired avoidable source-intent drift before regenerating reviewer artifacts: `concept_story_unlock_probe` is story-first before unlock challenges, `concept_career_decision_decide` is profession-first role play, `concept_toy_tidy_probe` is a physical tidy sprint, `concept_award_certificate_probe` produces a drawn/designed certificate, and `concept_color_famous_art_probe` starts from the child's real-world color before showing approved artwork matches.
+- Updated `concept_coloring_game_probe` metadata/recap wording so it preserves the photo-color-to-region intent while honestly falling back to a no-image color plan under `minimum_unblock_allowed`.
+- Updated the run-local source-intent audit to cover all 40 workbook rows with 15 aligned, 25 minor adaptations, 0 intent drift, and 0 unresolved product-decision rows.
+- Regenerated `source_comparison/product_review_matrix.html`, 40 storyboard prompts, 12 generated-asset pilot prompts, `integrated_assets/asset_bindings.yaml`, 12 standalone `activity_exports/*.html` reviewer packets, and `review.html`.
+- Removed stale copied `review.zh.html` from the workbook run because the current generator emits only `review.html` and the copied localized dashboard still contained seed-run text.
+- Updated `scripts/generate_run_review.py` so workbook-sourced runs do not embed global `assignments.md` or `results.tsv` previews unless the manifest explicitly declares those source files.
+- Hardened `inputs/source_activity_concepts.md` for the four known intent-sensitive workbook rows: career decision, story challenge unlock, toy tidy challenge, and coloring game now carry explicit source-intent locks and minimum-unblock assumptions for future generation.
 - Added dry-run artifacts for the original workbook workflow: `docs/plans/2026-05-21-workbook-to-review-packet-dry-run.md` records workbook inspection, proposed scope, and the 40-row source mapping; `goals/2026-05-21-workbook-to-review-packet-goal.md` is the reviewable goal contract for a future full workbook-to-review-packet run.
 - Added repo-local Codex skill `skills/wonderlens-workbook-to-review-packet/` to guide workbook ingestion, run-specific goal creation, generation, source-intent audit, review export, and existing-run patch workflows from a single original design workbook.
 - Added `runs/20260512_172135_batch5_unblocked/source_comparison/source_intent_audit.yaml` with all 40 workbook rows audited for original play-frame fidelity against generated runtime beats.
@@ -112,6 +124,36 @@
 
 ## Verification
 
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260521_163621_workbook_review_packet_full`
+  - Result: PASS; 12 assets, 12 activities.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260521_163621_workbook_review_packet_full`
+  - Result: PASS; 12 standalone activity HTML files.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_source_comparison_review.py runs/20260521_163621_workbook_review_packet_full --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_163621_workbook_review_packet_full/source_comparison/source_intent_audit.yaml --validate`
+  - Result: PASS; 40 source rows, 40 covered, 34 needing review, 0 intent drift.
+- Run-local activity package tag-block schema validation against `activities/_schema/tag_block.schema.json`
+  - Result: PASS; all 40 `runs/20260521_163621_workbook_review_packet_full/activity_packages/*/tag_block.yaml` files validate.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260521_163621_workbook_review_packet_full`
+  - Result: PASS; dashboard contract passed with 642 resolving local links.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/generate_run_review.py scripts/generate_source_comparison_review.py scripts/generate_storyboard_prompts.py scripts/generate_asset_pilot_prompts.py scripts/integrate_generated_assets.py scripts/export_activity_html.py`
+  - Result: PASS.
+- Stale seed-text scan for `seed_run`, `patched seeded`, `Batch 5`, `only Batch 5`, `fresh Batch`, and `20260512_172135_batch5_unblocked`
+  - Result: PASS; no matches in `runs/20260521_163621_workbook_review_packet_full` markdown, YAML, or HTML artifacts.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_source_comparison_review.py runs/20260521_154053_workbook_review_packet --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_154053_workbook_review_packet/source_comparison/source_intent_audit.yaml --validate`
+  - Result: PASS; 40 source rows, 40 covered, 22 needing review, 0 intent drift.
+- Run-local activity package tag-block schema validation against `activities/_schema/tag_block.schema.json`
+  - Result: PASS; all 40 `runs/20260521_154053_workbook_review_packet/activity_packages/*/tag_block.yaml` files validate.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260521_154053_workbook_review_packet`
+  - Result: PASS; 12 assets, 12 activities.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260521_154053_workbook_review_packet`
+  - Result: PASS; 12 standalone activity HTML files.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/generate_run_review.py --validate runs/20260521_154053_workbook_review_packet`
+  - Result: PASS; dashboard contract passed with 642 resolving local links.
+- `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m py_compile scripts/generate_run_review.py scripts/generate_source_comparison_review.py scripts/generate_storyboard_prompts.py scripts/generate_asset_pilot_prompts.py scripts/integrate_generated_assets.py scripts/export_activity_html.py`
+  - Result: PASS.
+- Stale seed-text scan for `Batch 5`, `only Batch 5`, `fresh Batch`, stale drift counts, and `review.zh`
+  - Result: PASS; no matches in `runs/20260521_154053_workbook_review_packet` markdown, YAML, or HTML artifacts.
+- `git diff --check`
+  - Result: clean.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest tests/test_generate_run_review.py -v`
   - Result: PASS; 5 run-review tests passed, including runtime behavior-contract parsing and rendering.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 -m unittest tests/test_source_comparison_review.py -v`

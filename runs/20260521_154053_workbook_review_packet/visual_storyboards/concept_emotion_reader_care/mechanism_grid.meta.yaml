@@ -1,0 +1,49 @@
+activity_id: concept_emotion_reader_care
+activity_name: Feeling Helper Station
+status: generated
+tool: Codex built-in image generation
+target_model: gpt-image-2
+actual_model: codex-configured image model
+generated_at: '2026-05-15T01:14:05'
+source_image: /Users/pharrelly/.codex/generated_images/019e0b94-a17b-7b71-a642-a04920b5206f/ig_05e8fa11eeafd9f0016a0601de44848193824779c16147367c.png
+prompt_sha256: fface08f7c6904b78e44d8abb77d495403094be6f036534f3a4620a972bf4bd8
+prompt_path: visual_storyboards/concept_emotion_reader_care/mechanism_grid.prompt.md
+image_path: visual_storyboards/concept_emotion_reader_care/mechanism_grid.png
+package_path: runs/20260521_154053_workbook_review_packet/activity_packages/concept_emotion_reader_care
+panel_captions:
+- number: '1'
+  title: Setup
+  caption: A story animal looks worried on a card. The child notices tight hands,
+    offers a gentle check-in, then sees the animal relax a little before the next
+    need appears.
+  source: 'Step 1: Transition Bridge'
+- number: '2'
+  title: Prompt
+  caption: 'Step 2: Rule Introduction | [clear guide tone] "Helper rule: notice the
+    cue, say what they might need, then choose one gentle help." | Ideal: "Okay."
+    | Unexpected: "Can I do it my way?" | N...'
+  source: 'Step 2: Rule Introduction'
+- number: '3'
+  title: Child Action
+  caption: 'The repeated mechanic is care: Round 1 -- Worried Hands Need | [focused
+    helper tone] "Look at the tight hands and high eyebrows. This character might
+    feel worried. What gen... | Ideal: "Ask if it wants help."...'
+  source: Round 1 -- Worried Hands Need
+- number: '4'
+  title: Feedback Loop
+  caption: 'Ideal: [specific praise] "Asking first is gentle care. The hands loosen
+    a little. Token 1 is saved." | Unexpected: [warm redirect] "Candy might be fun
+    later. First care is safer when we ask...'
+  source: Round 1 -- Worried Hands Need
+- number: '5'
+  title: Variation
+  caption: 'Round 2 -- Tired Body Need | [soft helper tone] "Now the shoulders droop
+    and the eyes look sleepy. This character might need rest. What ca... | Ideal:
+    "Give it a quiet blanket." / "Let it r...'
+  source: Round 2 -- Tired Body Need
+- number: '6'
+  title: Completion
+  caption: 'Step 5: Closing + IB Concepts | [warm celebration] "You earned the Feeling
+    Helper badge. You used Perspective by asking what the character mi... | Ideal:
+    "Again" or names a favorite round....'
+  source: 'Step 5: Closing + IB Concepts'

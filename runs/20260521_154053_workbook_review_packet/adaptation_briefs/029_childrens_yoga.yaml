@@ -1,0 +1,75 @@
+adaptation_brief:
+  assignment_index: 29
+  assignment_type: capability_probe
+  activity_concept: Children's Yoga
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_childrens_yoga
+    asset_requirements: inputs/source_activity_concepts.md#childrens_yoga_pose_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=Children's Yoga, concept_source=inputs/source_activity_concepts.md#source_childrens_yoga,
+      description=AI guides a short child-safe pose routine using animal or object metaphors, mechanic=motion_voice, category=cat1,
+      tier=T0, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#childrens_yoga_pose_cards_01,
+      product_capabilities=requires_asset_display,requires_motion_safety, activity_id=concept_childrens_yoga_probe, trigger_condition=Parent
+      selects a calm movement routine and the child has enough space
+  input_mode: concept_only
+  core_promise: The AI guides a short, child-safe pose routine using animal or object metaphors.
+  canonical_mechanic: motion_voice
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Parent selects a calm movement routine and the child has enough space
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: childrens_yoga
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_asset_display
+  - requires_motion_safety
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: childrens_yoga_pose_cards_01
+      concept_ref: source_childrens_yoga
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-2
+      display_location: center_pose_card
+      purpose: Show approved, age-safe pose references for a calm movement routine.
+      prompt_en: Create a set of child-safe yoga pose cards using a friendly non-real child-like character. Include simple
+        poses inspired by tree, cat, butterfly, and star. Use a clean background, no text, gentle proportions, stable poses
+        only, and no extreme flexibility.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one pose card per round while the AI gives short safety-limited guidance.
+      fallback_behavior: Use voice-only safe movement prompts with caregiver space check, or stop the movement activity without
+        claiming a pose card is visible.
+      safety_constraints: No real child photos, no extreme stretches, no inversions, no balance-risk poses, and no medical
+        claims.
+    missing_asset_risk: resolved_by_override
+  scaffold_choice:
+    pillar: Performance
+    game_style: voice_stage
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Performance / `voice_stage` supports simple movement/voice participation without claiming motion verification.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.'
+  - 'Approved minimum motion policy: caregiver gating, space check, low-risk movement set, and prohibited motions are documented.'
+  resolved_blocker_types:
+  - Prebuilt asset display
+  - Motion safety
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - childrens_yoga
+    - childrens_yoga_pose_cards_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `childrens_yoga_pose_cards_01` without
+      changing the motion_voice mechanic.

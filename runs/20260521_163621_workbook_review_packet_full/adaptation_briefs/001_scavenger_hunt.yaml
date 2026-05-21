@@ -1,0 +1,28 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_scavenger_hunt
+    source_row: 1
+    assignment_row: assignment_type=match_pattern, activity_concept=Scavenger Hunt,
+      concept_source=inputs/source_activity_concepts.md#source_scavenger_hunt, description=Find
+      several things that share a color, shape, or category., mechanic=collect, category=cat5,
+      tier=T1, asset_policy=no_assets, activity_id=concept_scavenger_hunt_collect,
+      trigger_condition=Child photographs an object with a clear color, shape, or
+      category feature.
+  activity_concept: Scavenger Hunt
+  assignment_type: match_pattern
+  input_mode: parameterized
+  category_decision: cat5
+  canonical_mechanic: collect
+  readiness: ready
+  core_promise: Find several things that share a color, shape, or category.
+  source_intent_lock: Find several things that share a color, shape, or category.
+  trigger_condition: Child photographs an object with a clear color, shape, or category
+    feature.
+  product_capability_flags: []
+  resolved_product_contract: []
+  asset_dependency:
+    policy: no_assets
+    assets: []
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.

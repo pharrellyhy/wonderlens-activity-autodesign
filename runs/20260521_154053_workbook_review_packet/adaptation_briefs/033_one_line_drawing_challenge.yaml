@@ -1,0 +1,79 @@
+adaptation_brief:
+  assignment_index: 33
+  assignment_type: capability_probe
+  activity_concept: One-Line Drawing Challenge
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_one_line_drawing
+    asset_requirements: inputs/source_activity_concepts.md#one_line_drawing_cards_01
+    assignment_row: assignment_type=capability_probe, activity_concept=One-Line Drawing Challenge, concept_source=inputs/source_activity_concepts.md#source_one_line_drawing,
+      description=Child tries to draw a target without lifting the pencil or finger, mechanic=build, category=cat3, tier=T1,
+      asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#one_line_drawing_cards_01, product_capabilities=requires_materials,requires_asset_display,before_after_risk,
+      activity_id=concept_one_line_drawing_probe, trigger_condition=Child has paper or a drawing surface and chooses a drawing
+      challenge
+  input_mode: concept_only
+  core_promise: The child tries to draw a target without lifting the pencil or finger.
+  canonical_mechanic: build
+  mechanic_confidence: high
+  category_decision: cat3
+  readiness: resolved_from_blocked_until_product_decision
+  product_contract_override: minimum_unblock_allowed
+  trigger_condition: Child has paper or a drawing surface and chooses a drawing challenge
+  entity_role: catalyst
+  observation_angle: function
+  focal_attribute: one_line_drawing
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - requires_materials
+  - requires_asset_display
+  - before_after_risk
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: one_line_drawing_cards_01
+      concept_ref: source_one_line_drawing
+      asset_type: card_set
+      requiredness: required
+      generation_timing: pre_generated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Show simple one-line drawing targets.
+      prompt_en: Create a set of one-line drawing challenge cards for children ages 5-8. Each card shows one simple object
+        made from a continuous thick black line, such as a house, fish, flower, car, or snail. Use plain white background,
+        no text, and easy-to-follow shapes.
+      source: new_ai_generated_asset
+      prompt_or_source: new_ai_generated_asset
+      display_behavior: Show one target before the child attempts the drawing.
+      fallback_behavior: Use a voice-only path-planning challenge and child self-report; do not claim a drawing card or drawing
+        verification is available.
+      safety_constraints: No fine-copying pressure, no copyrighted characters, and no unsafe drawing themes.
+    missing_asset_risk: resolved_by_override
+  scaffold_choice:
+    pillar: Creation
+    game_style: inventor_workshop
+    scaffold_fit: acceptable_with_resolved_contract
+    rationale: Aligned to generated package tag metadata; scaffold supports the mechanic without replacing it.
+  assumptions:
+  - This scoped rerun assumes minimum product-contract unblock decisions are allowed.
+  resolved_blockers:
+  - 'Approved minimum Cat3 contract: caregiver setup, material pacing, no-assessment fallback, and honest completion evidence
+    are documented.'
+  - 'Approved minimum asset-display contract: listed asset IDs may be displayed with metadata and documented no-display fallback.'
+  - 'Approved minimum evidence policy: caregiver or child self-report is acceptable; the AI does not claim unsupported visual
+    verification.'
+  resolved_blocker_types:
+  - Cat3 material workflow
+  - Prebuilt asset display
+  - Before/after evidence
+  extensibility:
+    entity_binding: agnostic
+    reusable_slots:
+    - '{runtime_entity}'
+    - '{runtime_tier}'
+    - one_line_drawing
+    - one_line_drawing_cards_01
+    retargeting_note: Reusable by replacing the current theme and approved asset set `one_line_drawing_cards_01` without changing
+      the build mechanic.

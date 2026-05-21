@@ -1,0 +1,56 @@
+adaptation_brief:
+  source:
+    concept_source: inputs/source_activity_concepts.md#source_color_in_famous_art
+    source_row: 35
+    assignment_row: assignment_type=capability_probe, activity_concept=Color In Famous
+      Art, concept_source=inputs/source_activity_concepts.md#source_color_in_famous_art,
+      description=The child photographs or names a real-world color, then sees several
+      approved artworks where that color is dominant or important., mechanic=enumerate,
+      category=cat1, tier=T1, asset_policy=required_prebuilt, asset_requirements=color_artwork_set_01,
+      product_capabilities=requires_asset_display, activity_id=concept_color_famous_art_probe,
+      trigger_condition=Child photographs or names a clear color and the screen can
+      show approved public-domain artwork with known color metadata.
+  activity_concept: Color In Famous Art
+  assignment_type: capability_probe
+  input_mode: concept_only
+  category_decision: cat1
+  canonical_mechanic: enumerate
+  readiness: resolved_from_blocked_minimum_unblock_allowed
+  core_promise: The child photographs or names a real-world color, then sees several
+    approved artworks where that color is dominant or important.
+  source_intent_lock: 'Preserve the sequence: child captures or chooses a real-world
+    color, the system shows several artworks dominated by that color, then the AI
+    gives a simple child-safe background introduction. Do not reduce this to studying
+    one artwork first.'
+  trigger_condition: Child photographs or names a clear color and the screen can show
+    approved public-domain artwork with known color metadata.
+  product_capability_flags:
+  - requires_asset_display
+  resolved_product_contract:
+  - 'Prebuilt asset display: Approved minimum asset-display contract uses declared
+    asset IDs, display timing, and no-display fallback.'
+  asset_dependency:
+    policy: required_prebuilt
+    assets:
+    - asset_id: color_artwork_set_01
+      concept_ref: source_color_in_famous_art
+      asset_type: approved_artwork_set
+      requiredness: required
+      generation_timing: pre_curated
+      use_step: prod.step_2; prod.step_3.round_1-3
+      display_location: center_card_area
+      purpose: Provide approved artworks with known dominant color metadata.
+      prompt_en: No image generation prompt. Use a curated, rights-cleared artwork
+        set with dominant color metadata and child-safe notes about visible colors,
+        shapes, and mood.
+      source: approved_public_domain_or_licensed_artwork_set
+      prompt_or_source: approved_public_domain_or_licensed_artwork_set
+      display_behavior: Show one artwork at a time and ask the child to identify colors
+        that stand out.
+      fallback_behavior: If the artwork set is unavailable, block at Phase 0 rather
+        than referencing famous art that cannot be shown.
+      safety_constraints: Use rights-cleared, age-appropriate artworks only; no graphic
+        violence, explicit content, or complex sensitive context.
+  implementation_notes:
+  - Generated in a fresh full rerun from the normalized workbook source snapshot.
+  - Runtime AI instructions are behavior contracts with example lines.
