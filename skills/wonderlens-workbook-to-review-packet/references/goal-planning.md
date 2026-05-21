@@ -39,10 +39,19 @@ The goal must include:
 - activity scope;
 - whether full rerun or patch is allowed;
 - product-contract override status;
+- whether `minimum_unblock_allowed` is active for capability-probe rows;
 - source-intent audit requirement;
 - export requirement;
 - validation commands;
 - hard constraints against hand-editing generated HTML as source of truth.
+
+When the user has agreed to minimum acceptable versions for capability-dependent rows, the goal must say:
+
+- all workbook rows remain in scope unless explicitly excluded;
+- capability probes generate under `product_contract_override=minimum_unblock_allowed`;
+- formerly blocking dependencies are recorded as resolved blocker annotations;
+- reduced-scope behavior must be honest and reviewable;
+- source-intent audit still decides whether the minimum version preserved or drifted from the workbook intent.
 
 ## Execution
 

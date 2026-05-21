@@ -38,12 +38,22 @@ Create or update `runs/<run_id>/source_comparison/source_intent_audit.yaml` with
 - `aligned`: generated runtime preserves the workbook play frame, child role, sequence, and required child action.
 - `minor_adaptation`: surface framing or implementation changed, but source intent and coverage remain intact.
 - `intent_drift`: category/mechanic may be similar, but child role, sequence, story frame, or required child action materially changed.
-- `needs_product_decision`: source requires unsupported or unresolved product capability, asset policy, safety decision, or evidence rule.
+- `needs_product_decision`: source requires unsupported or unresolved product capability, asset policy, safety decision, or evidence rule, and no accepted minimum version covers it.
+
+When `product_contract_override=minimum_unblock_allowed` is active, do not use `needs_product_decision` for dependencies covered by the accepted minimum version. Instead, record the reduced behavior in `preserved`, `drift`, or the recommendation, then classify by whether source intent was preserved.
 
 Use `intent_drift` for examples like:
 
 - source asks the child to assume a profession and respond inside a work scenario, but generated activity asks the child to pick which profession matches a scenario;
 - source asks the AI to tell a story with challenge gates that unlock the next story beat, but generated activity contains standalone challenges without story narration.
+
+Examples of accepted minimum versions that can still be audit-aligned:
+
+- Cat3 material activities can use caregiver/child confirmation and process celebration instead of AI judging final artwork quality.
+- Movement activities can use safe verbal guidance and approved cards without motion detection.
+- Cleanup or timer activities can use child/parent confirmation instead of visual verification.
+- Coloring or avatar activities can use prebuilt/static assets or voice-only emotion-color discussion if live recoloring is unsupported.
+- Story unlock can be voice-only if the AI still tells a story beat, pauses for a challenge, and narratively unlocks the next beat.
 
 ## Render And Validate
 

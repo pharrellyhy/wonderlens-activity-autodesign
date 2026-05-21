@@ -17,11 +17,12 @@ Patch the current run artifacts with the smallest safe changes. Do not regenerat
 3. Load the original workbook and source-row mapping.
 4. Run a source-intent audit for every scoped workbook row.
 5. Classify each row as `aligned`, `minor_adaptation`, `intent_drift`, or `needs_product_decision`.
-6. For high-severity `intent_drift`, choose the smallest repair:
+6. If the existing run has `product_contract_override: minimum_unblock_allowed`, treat capability-probe dependencies covered by the accepted minimum version as resolved assumptions, not unresolved product-decision blockers.
+7. For high-severity `intent_drift`, choose the smallest repair:
    - patch only the affected package and regenerate review artifacts; or
    - leave the row explicitly flagged for product review when a product decision is required.
-7. Regenerate only affected derived artifacts: source comparison matrix, standalone packets, and/or `review.html`.
-8. Update manifest/review notes/handoff with audit counts, commands, changed packages, and residual high-severity findings.
+8. Regenerate only affected derived artifacts: source comparison matrix, standalone packets, and/or `review.html`.
+9. Update manifest/review notes/handoff with audit counts, commands, changed packages, and residual high-severity findings.
 
 ## Guardrails
 

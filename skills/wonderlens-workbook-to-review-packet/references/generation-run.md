@@ -44,11 +44,16 @@ Use a clean activity ID from the workbook/assignment. Strip copied `_rYYYYMMDD_H
 - For runtime AI behavior, prefer `Runtime AI instruction` plus `Example AI line` when the line should be generated dynamically. Use fixed `AI says` only when exact wording is intentionally required.
 - Every generated package must have exactly five files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`.
 - Do not append `results.tsv` or mark an assignment complete until package validation, self-evaluation, and review have passed.
-- Block product-dependent rows when the product contract does not support them. If `minimum_unblock_allowed` is active, record formerly blocking items as resolved blocker annotations.
+- Block product-dependent rows only when the product contract does not support them and no minimum acceptable version has been approved.
+- If `minimum_unblock_allowed` is active, generate capability-probe rows as normal packages when the reduced version can preserve source intent. Record formerly blocking items as resolved blocker annotations.
+- Do not fake unsupported features. Use explicit reduced-scope behavior: voice-only fallback, prebuilt/static assets, child or parent confirmation, process celebration without quality judgment, no motion detection, no live recoloring, no real cleanup verification, and no hidden UI state unless supported.
+- Surface minimum-version assumptions in `spec.md`, `prod.md`, `run_manifest.yaml`, `review.html`, and later source comparison.
 
 ## Full-Pass Audit Requirement
 
 Every new generation run from a workbook must include a full source-intent audit after package generation and before final completion. Do not rely only on the generation rubric; compare the runtime beats back to the original workbook intent.
+
+Under `minimum_unblock_allowed`, the audit should not classify a row as `needs_product_decision` merely because it used an approved reduced-scope implementation. Classify it by source-intent fidelity: `aligned`, `minor_adaptation`, or `intent_drift`, unless the minimum version still leaves a real unresolved product question.
 
 ## Checks
 

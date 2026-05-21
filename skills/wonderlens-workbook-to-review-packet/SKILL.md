@@ -51,6 +51,18 @@ For every workbook row, preserve the original source promise:
 
 Treat category and mechanic labels as metadata, not replacements for the actual play frame. A generated activity can keep a category token and still drift if the child role or loop changes materially.
 
+## Minimum Accepted Contract
+
+Capability-probe rows are not automatically blocked. If the user or run manifest states `product_contract_override=minimum_unblock_allowed`, treat the minimum acceptable version as approved for generation:
+
+- generate normal five-file packages for all scoped workbook rows when the minimum version can preserve source intent;
+- record formerly blocking dependencies as resolved blocker annotations, not unresolved product decisions;
+- keep assumptions visible in `spec.md`, `prod.md`, `run_manifest.yaml`, `review.html`, and source comparison artifacts;
+- do not claim unsupported runtime capabilities. Use honest reduced-scope behavior such as voice-only fallback, prebuilt assets, child/parent confirmation, no quality judgment, no motion detection, no live recoloring, or no hidden UI state unless the product actually supports it;
+- still run the source-intent audit. A minimum version can pass only if it preserves the original play frame, child role, sequence, and required action.
+
+Use `needs_product_decision` only when no minimum acceptable version has been approved, or when the approved minimum version still cannot express the source idea honestly.
+
 Known drift patterns to catch:
 
 - A profession-first role-play source becomes "pick the matching profession" instead of "you are this worker facing a scene."

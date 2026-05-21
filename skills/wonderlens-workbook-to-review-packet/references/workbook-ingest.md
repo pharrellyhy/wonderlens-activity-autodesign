@@ -26,6 +26,7 @@ Extract source design intent from the workbook before any generation, patch, or 
 5. Normalize the design summary to English for repo artifacts, but retain enough original wording or row references for traceability.
 6. Update or create the assignment/source snapshot expected by the current repo workflow. Prefer existing repo files and patterns such as `inputs/source_activity_concepts.md`, `assignments.md`, and run-local snapshots.
 7. Do not mark source rows as generation-ready until unsupported product dependencies are either resolved by contract override or explicitly represented as blockers.
+8. If `product_contract_override=minimum_unblock_allowed` is active or the user says the minimum acceptable versions are agreed, keep capability-probe rows in generation scope. Record their dependencies as resolved assumptions instead of product-decision blockers.
 
 ## Output Shape
 
@@ -47,10 +48,14 @@ allowed_v1_adaptations:
   - <acceptable simplification>
 product_dependencies:
   - <capability or decision>
+minimum_unblock_status: <none|required|approved>
+resolved_assumptions:
+  - <minimum accepted behavior, fallback, or limit>
 ```
 
 ## Checks
 
-- Every scoped workbook row maps to one source concept or one explicit blocked/product-decision item.
+- Every scoped workbook row maps to one source concept. It maps to a blocked/product-decision item only when no minimum acceptable version has been approved.
+- Under `minimum_unblock_allowed`, capability-probe rows remain generation candidates and carry visible resolved assumptions.
 - No generated artifact relies only on an inferred category when the workbook has a richer play frame.
 - Source row IDs are stable enough for later `source_intent_audit.yaml` entries.
