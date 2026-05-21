@@ -1,0 +1,4 @@
+interface:
+  display_name: "WonderLens Workbook Review Packet"
+  short_description: "Workbook to audited reviewer packets"
+  default_prompt: "Use $wonderlens-workbook-to-review-packet to turn this original design workbook into audited WonderLens reviewer packets."

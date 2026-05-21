@@ -45,6 +45,8 @@ templates.md                       Template 0 reference, mechanic adapters, pill
 run.md                             Autonomous activity-package loop
 review_dashboard.md                Static review dashboard contract and UI requirements
 runs/README.md                     Run provenance directory contract
+skills/wonderlens-workbook-to-review-packet/
+                                   Repo-local Codex workflow skill for workbook-to-review-packet runs
 scripts/generate_run_review.py     Static run review dashboard generator and validator
 activities/README.md               Five-file package rules and runtime invariants
 activities/_schema/tag_block.schema.json
@@ -266,6 +268,10 @@ To rerun an assignment, change its checkbox back to `- [ ]` or copy it into a fr
 │       ├── blocked_designs/
 │       ├── review_notes.md
 │       └── review.html
+├── skills/
+│   └── wonderlens-workbook-to-review-packet/
+│       ├── SKILL.md
+│       └── references/
 ├── scripts/
 │   └── generate_run_review.py
 ├── entity_guidance.md

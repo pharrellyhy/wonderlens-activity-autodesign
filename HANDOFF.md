@@ -8,6 +8,7 @@
 
 ## Latest Changes
 
+- Added repo-local Codex skill `skills/wonderlens-workbook-to-review-packet/` to guide workbook ingestion, run-specific goal creation, generation, source-intent audit, review export, and existing-run patch workflows from a single original design workbook.
 - Added `runs/20260512_172135_batch5_unblocked/source_comparison/source_intent_audit.yaml` with all 40 workbook rows audited for original play-frame fidelity against generated runtime beats.
 - Regenerated `runs/20260512_172135_batch5_unblocked/source_comparison/product_review_matrix.html` with a separate Intent alignment column, intent-drift filters, and product-review questions driven by the audit file.
 - Audit summary: 9 aligned, 16 minor adaptations, 4 intent drift, and 11 product-decision rows. High-severity intent drift remains explicitly flagged for `concept_story_unlock_probe`, `concept_toy_tidy_probe`, and `concept_career_decision_decide`.
