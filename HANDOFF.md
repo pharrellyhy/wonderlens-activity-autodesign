@@ -8,6 +8,7 @@
 
 ## Latest Changes
 
+- Added dry-run artifacts for the original workbook workflow: `docs/plans/2026-05-21-workbook-to-review-packet-dry-run.md` records workbook inspection, proposed scope, and the 40-row source mapping; `goals/2026-05-21-workbook-to-review-packet-goal.md` is the reviewable goal contract for a future full workbook-to-review-packet run.
 - Added repo-local Codex skill `skills/wonderlens-workbook-to-review-packet/` to guide workbook ingestion, run-specific goal creation, generation, source-intent audit, review export, and existing-run patch workflows from a single original design workbook.
 - Added `runs/20260512_172135_batch5_unblocked/source_comparison/source_intent_audit.yaml` with all 40 workbook rows audited for original play-frame fidelity against generated runtime beats.
 - Regenerated `runs/20260512_172135_batch5_unblocked/source_comparison/product_review_matrix.html` with a separate Intent alignment column, intent-drift filters, and product-review questions driven by the audit file.
