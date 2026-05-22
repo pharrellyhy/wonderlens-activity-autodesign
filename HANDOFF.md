@@ -2,7 +2,7 @@
 
 ## Current Status
 
-- Status: Branch `fix/review-runtime-branch-policy` patches reviewer runtime branch layout/specificity and source-comparison matrix clarity for the full workbook review packet; exact boilerplate, keyword-substitution rows, repeated Step 3 branch rows, stale source-comparison definitions/approval guidance, and overlap-prone matrix headers now fail validation; validations are passing locally.
+- Status: Branch `fix/review-runtime-branch-policy` patches reviewer runtime branch layout/specificity and source-comparison matrix clarity for the full workbook review packet; exact boilerplate, keyword-substitution rows, repeated Step 3 branch rows, stale source-comparison definitions/approval guidance, overlap-prone matrix headers, and missing minimum-unblock approval assumptions now fail validation; validations are passing locally.
 - Date: 2026-05-22
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/fix/review-runtime-branch-policy`
 
@@ -14,6 +14,7 @@
 - Replaced repetitive source-comparison matrix cell text with row-specific original-vs-generated summaries for fidelity status, intent alignment, and approval targets. Visible cells now show original category/mechanic, generated category/mechanic, original play frame, generated play frame, concrete drift/fallback notes, and only the actual approval deltas.
 - Compact source-comparison matrix layout now uses fixed column widths, horizontal table scrolling, clamped fidelity/intent/approval summaries, and closed `View full text` disclosure controls so long intent and approval text no longer expands rows excessively.
 - Added a visible `Scroll right for Intent alignment, Approval needed, and Reviewer packet` cue above the source-comparison matrix so reviewers know the table has additional right-side columns.
+- Added a `Minimum Unblock Approval Assumption` statement and `After minimum approval` metric/filter to the source-comparison matrix. The current full workbook audit has 34 raw review rows, but after assuming product has approved every minimum-unblock contract, only 7 rows still need review for category/mechanic changes, missing generated coverage, or explicit source-intent decisions.
 - Tightened source-comparison HTML validation so stale pages missing definitions/approval guidance or still using sticky table headers fail validation.
 - Regenerated `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html` from the workbook and current source-intent audit.
 - Updated `scripts/generate_run_review.py` so runtime branch policies render as a horizontal `Branch / Child behavior / AI follow-up` table and validation fails exact copied unexpected/no-response branch boilerplate, keyword-substitution rows, and repeated Step 3 branch policies within the same package.
@@ -143,7 +144,9 @@
 - `python -m py_compile scripts/generate_source_comparison_review.py`
   - Result: PASS.
 - `python scripts/generate_source_comparison_review.py runs/20260521_163621_workbook_review_packet_full --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_163621_workbook_review_packet_full/source_comparison/source_intent_audit.yaml --validate`
-  - Result: PASS; 40 source rows, 40 covered, 34 needing review, 0 intent drift.
+  - Result: PASS; 40 source rows, 40 covered, 34 needing review, 7 after minimum approval, 0 intent drift.
+- Static matrix scan for `data-review-after-minimum="true"`
+  - Result: PASS; 7 post-minimum-approval review rows are marked in `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html`.
 - Playwright static HTML geometry check for `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html`
   - Result: PASS; matrix header is static, status definitions and approval checklist are present, `Approval needed` is the row-level decision column, the first row starts below the table header without overlap, fixed-width horizontal table scrolling is active, sampled matrix rows render around 186-207px tall with clamped long summaries, and the right-scroll cue is visible above the table.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260521_163621_workbook_review_packet_full`

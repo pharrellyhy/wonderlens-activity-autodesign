@@ -58,6 +58,7 @@ STATUS_ORDER = {
 }
 INTENT_STATUSES = {"aligned", "minor_adaptation", "intent_drift", "needs_product_decision"}
 INTENT_SEVERITIES = {"none", "low", "medium", "high"}
+INTENT_REVIEW_STATUSES = {"intent_drift", "needs_product_decision"}
 
 
 def esc(value: Any) -> str:
@@ -348,6 +349,41 @@ def intent_label(value: str) -> str:
     return labels.get(intent_key(value), norm(value) or "Not audited")
 
 
+def minimum_unblock_assumed_approved(row: dict[str, Any]) -> bool:
+    readiness = norm(row.get("readiness")).lower().replace("-", "_").replace(" ", "_")
+    return row.get("status") == "Capability-dependent" and "minimum_unblock" in readiness
+
+
+def category_or_mechanic_changed(row: dict[str, Any]) -> bool:
+    category_changed = bool(
+        row.get("original_category")
+        and row.get("generated_category")
+        and row["original_category"] != row["generated_category"]
+    )
+    mechanic_changed = bool(
+        row.get("original_mechanic")
+        and row.get("generated_mechanic")
+        and row["original_mechanic"] != row["generated_mechanic"]
+    )
+    return category_changed or mechanic_changed
+
+
+def needs_review(row: dict[str, Any]) -> bool:
+    return row.get("status") != "Matches" or row.get("intent_status") in INTENT_REVIEW_STATUSES
+
+
+def needs_review_after_minimum_approval(row: dict[str, Any]) -> bool:
+    if not row.get("activity_id"):
+        return True
+    if row.get("intent_status") in INTENT_REVIEW_STATUSES:
+        return True
+    if category_or_mechanic_changed(row):
+        return True
+    if row.get("status") == "Capability-dependent":
+        return not minimum_unblock_assumed_approved(row)
+    return row.get("status") != "Matches"
+
+
 def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_audit_path: Path | None = None) -> dict[str, Any]:
     workbook_rows = read_source_workbook(workbook_path)
     source_rows = source_markdown_by_row(repo_root)
@@ -423,7 +459,11 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_aud
         }
         rows.append(row)
 
-    intent_review_statuses = {"intent_drift", "needs_product_decision"}
+    for row in rows:
+        row["minimum_unblock_assumed_approved"] = minimum_unblock_assumed_approved(row)
+        row["needs_review"] = needs_review(row)
+        row["needs_review_after_minimum_approval"] = needs_review_after_minimum_approval(row)
+
     summary = {
         "source_rows": len(rows),
         "covered_rows": sum(1 for row in rows if row["activity_id"]),
@@ -432,13 +472,11 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_aud
         "mechanic_changed": sum(1 for row in rows if row["status"] in ("Mechanic changed", "Category + mechanic changed")),
         "category_changed": sum(1 for row in rows if row["status"] in ("Category changed", "Category + mechanic changed")),
         "capability_dependent": sum(1 for row in rows if row["status"] == "Capability-dependent"),
+        "minimum_unblock_assumed_approved": sum(1 for row in rows if row["minimum_unblock_assumed_approved"]),
         "intent_drift": sum(1 for row in rows if row["intent_status"] == "intent_drift"),
         "intent_needs_product_decision": sum(1 for row in rows if row["intent_status"] == "needs_product_decision"),
-        "needs_review": sum(
-            1
-            for row in rows
-            if row["status"] != "Matches" or row["intent_status"] in intent_review_statuses
-        ),
+        "needs_review": sum(1 for row in rows if row["needs_review"]),
+        "needs_review_after_minimum_approval": sum(1 for row in rows if row["needs_review_after_minimum_approval"]),
     }
     return {
         "run_id": run_dir.name,
@@ -554,7 +592,13 @@ def clean_notes(values: list[Any]) -> list[str]:
 
 def capability_dependency(row: dict[str, Any]) -> str:
     flags = [norm(flag) for flag in row.get("product_capability_flags", []) if norm(flag)]
-    return ", ".join(flags) or norm(row.get("readiness")) or norm(row.get("assignment_type")) or "unspecified product support"
+    if flags:
+        return ", ".join(flags)
+    readiness = norm(row.get("readiness"))
+    normalized_readiness = readiness.lower().replace("-", "_").replace(" ", "_")
+    if "minimum_unblock" in normalized_readiness:
+        return "the reduced-scope minimum contract"
+    return readiness or norm(row.get("assignment_type")) or "unspecified product support"
 
 
 def fidelity_summary(row: dict[str, Any]) -> str:
@@ -600,19 +644,31 @@ def approval_summary(row: dict[str, Any]) -> str:
     original_frame = row["original_play_frame"] or truncate(row["original_intent"], 80)
     generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 80)
     notes = clean_notes(row["intent_drift_notes"])
+    minimum_approved = minimum_unblock_assumed_approved(row)
     targets = []
     if original_pair != generated_pair:
         targets.append(f"category/mechanic {original_pair} to {generated_pair}")
-    if row["intent_audit_present"] and original_frame != generated_frame:
+    if row["intent_audit_present"] and original_frame != generated_frame and (
+        not minimum_approved or row["intent_status"] in INTENT_REVIEW_STATUSES
+    ):
         targets.append(f"play frame {original_frame or 'not audited'} to {generated_frame or 'not generated'}")
-    elif row["intent_audit_present"] and notes:
+    elif row["intent_audit_present"] and notes and (
+        not minimum_approved or row["intent_status"] in INTENT_REVIEW_STATUSES
+    ):
         targets.append(f"fallback/minimum-contract note {'; '.join(sentence(note) for note in notes)}")
-    if row["status"] == "Capability-dependent":
+    if row["status"] == "Capability-dependent" and not minimum_approved:
         targets.append(f"capability dependency {capability_dependency(row)}")
+    if minimum_approved:
+        prefix = f"Minimum-unblock approval is assumed for {capability_dependency(row)}. "
+        if not needs_review_after_minimum_approval(row):
+            return prefix + "No remaining category/mechanic or source-intent delta is flagged; confirm packet readiness only if needed."
+        question = "Review the remaining non-minimum delta."
+    else:
+        prefix = ""
+        question = sentence(row["intent_review_question"] or row["review_question"])
     if not targets:
         targets.append("source-intent coverage and reviewer-packet readiness")
-    question = sentence(row["intent_review_question"] or row["review_question"])
-    return f"{question} Approve: {'; '.join(targets)}."
+    return f"{prefix}{sentence(question)} Approve: {'; '.join(targets)}."
 
 
 def matrix_summary(text: str, variant: str) -> str:
@@ -642,13 +698,14 @@ def table_row(row: dict[str, Any]) -> str:
           <div><span>Original play frame</span><p>{esc(row["original_play_frame"] or "Not audited.")}</p></div>
           <div><span>Generated play frame</span><p>{esc(row["generated_play_frame"] or "Not audited.")}</p></div>
           <div><span>Intent drift notes</span><p>{esc("; ".join(row["intent_drift_notes"]) or "None recorded.")}</p></div>
+          <div><span>Audit review question</span><p>{esc(row["intent_review_question"] or row["review_question"] or "None recorded.")}</p></div>
           <div><span>Capability flags</span><p>{esc(", ".join(row["product_capability_flags"]) or "None")}</p></div>
           <div><span>Paths</span><p>{esc(row["package_path"] or "No package")}<br>{esc(row["brief_path"] or "No brief")}</p></div>
         </div>
       </details>
     """
     return f"""
-      <tr data-status="{esc(row["status_key"])}" data-intent-status="{esc(row["intent_status"])}" data-review-needed="{str(row["status"] != "Matches" or row["intent_status"] in ("intent_drift", "needs_product_decision")).lower()}">
+      <tr data-status="{esc(row["status_key"])}" data-intent-status="{esc(row["intent_status"])}" data-review-needed="{str(row["needs_review"]).lower()}" data-review-after-minimum="{str(row["needs_review_after_minimum_approval"]).lower()}" data-minimum-unblock-approved="{str(row["minimum_unblock_assumed_approved"]).lower()}">
         <td class="row-number">{esc(row["source_row"])}</td>
         <td><strong>{esc(row["original_name"])}</strong><p>{esc(truncate(row["original_intent"], 130))}</p>{details}</td>
         <td><span>{esc(row["original_category"])}</span><code>{esc(row["original_mechanic"])}</code></td>
@@ -703,7 +760,7 @@ h1 { margin: 0; max-width: 780px; font-size: 38px; line-height: 1.08; letter-spa
 h2 { margin: 0; font-size: 20px; letter-spacing: 0; }
 h3 { margin: 0; font-size: 16px; letter-spacing: 0; }
 .intro { max-width: 74ch; margin: 12px 0 0; color: var(--muted); }
-.metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.metrics { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
 .metric { min-width: 0; padding: 13px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .metric span { display: block; color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; }
 .metric strong { display: block; margin-top: 4px; font-size: 22px; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -724,6 +781,10 @@ button:hover, button.active { border-color: var(--accent); background: var(--acc
 .approval-list li { margin: 0 0 7px; }
 .approval-list li:last-child { margin-bottom: 0; }
 .approval-list strong { color: var(--ink); }
+.assumption-panel { margin-top: 12px; background: color-mix(in oklch, var(--accent-soft) 48%, var(--surface)); }
+.assumption-panel p { margin: 0; color: var(--muted); }
+.assumption-panel p + p { margin-top: 8px; }
+.assumption-panel strong { color: var(--ink); }
 .section { margin-top: 22px; }
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
 .section-head p { margin: 0; color: var(--muted); }
@@ -795,12 +856,14 @@ function applyFilter(filter) {
     const status = row.dataset.status || '';
     const intentStatus = row.dataset.intentStatus || '';
     const reviewNeeded = row.dataset.reviewNeeded === 'true';
+    const reviewAfterMinimum = row.dataset.reviewAfterMinimum === 'true';
     const show = filter === 'all'
       || (filter === 'changed' && (status.includes('changed')))
       || (filter === 'capability' && status === 'capability-dependent')
       || (filter === 'intent-drift' && intentStatus === 'intent_drift')
       || (filter === 'intent-product' && intentStatus === 'needs_product_decision')
       || (filter === 'needs-review' && reviewNeeded)
+      || (filter === 'post-minimum-review' && reviewAfterMinimum)
       || status === filter;
     row.classList.toggle('is-hidden', !show);
     if (show) visible += 1;
@@ -832,6 +895,7 @@ applyFilter('all');
         {metric("Source rows", summary["source_rows"])}
         {metric("Covered", summary["covered_rows"], "good")}
         {metric("Needs review", summary["needs_review"], "warn")}
+        {metric("After minimum approval", summary["needs_review_after_minimum_approval"], "warn")}
         {metric("Capability-dependent", summary["capability_dependent"], "warn")}
         {metric("Intent drift", summary["intent_drift"], "warn")}
       </div>
@@ -845,6 +909,7 @@ applyFilter('all');
       <button type="button" data-filter="intent-drift">Intent drift</button>
       <button type="button" data-filter="intent-product">Intent product decision</button>
       <button type="button" data-filter="needs-review">Needs review</button>
+      <button type="button" data-filter="post-minimum-review">After minimum approval</button>
       <span class="count" data-visible-count></span>
     </nav>
 
@@ -875,6 +940,12 @@ applyFilter('all');
           <li><strong>Approve reviewer-packet readiness:</strong> the standalone packet gives enough runtime beats, branch handling, assets/storyboards, and fallback behavior for review.</li>
         </ul>
       </section>
+    </section>
+
+    <section class="guide-panel assumption-panel" aria-labelledby="minimum-approval-title">
+      <h2 id="minimum-approval-title">Minimum Unblock Approval Assumption</h2>
+      <p>For this audit view, product has approved every minimum-unblock contract in the reduced-scope packet. This does not approve the future full runtime capability; it only clears the minimum reviewer packet as an unblock path.</p>
+      <p><strong>{esc(summary["minimum_unblock_assumed_approved"])}</strong> rows carry that assumed minimum approval. After minimum approval, <strong>{esc(summary["needs_review_after_minimum_approval"])}</strong> rows still need review because they have category/mechanic changes, missing generated coverage, or explicit source-intent decisions.</p>
     </section>
 
     <section class="section" aria-labelledby="visual-examples-title">
@@ -945,6 +1016,8 @@ def validate_report(report: dict[str, Any]) -> list[str]:
         issues.append("local absolute path leaked into reviewer packet links")
     if summary.get("needs_review", 0) <= 0:
         issues.append("no review-needed rows classified")
+    if summary.get("needs_review_after_minimum_approval", 0) > summary.get("needs_review", 0):
+        issues.append("post-minimum review count exceeds raw review count")
     if report.get("intent_audit_provided"):
         missing_audit = [row for row in rows if not row.get("intent_audit_present")]
         if missing_audit:
@@ -986,6 +1059,9 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         "Approve category/mechanic changes",
         "Approve capability assumptions and minimum contracts",
         "Approve reviewer-packet readiness",
+        "Minimum Unblock Approval Assumption",
+        "product has approved every minimum-unblock contract",
+        "After minimum approval",
         "Approval needed",
         "Original category/mechanic:",
         "Generated category/mechanic:",
@@ -999,6 +1075,8 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         "View full text",
         "table-scroll-cue",
         "Scroll right for Intent alignment, Approval needed, and Reviewer packet.",
+        'data-filter="post-minimum-review"',
+        "data-review-after-minimum",
     ]
     if report.get("intent_audit_provided"):
         required.extend(["Intent alignment", 'data-filter="intent-drift"'])
@@ -1079,6 +1157,7 @@ def main() -> None:
         print(
             f"PASS source comparison review: {report['summary']['source_rows']} source rows, "
             f"{report['summary']['covered_rows']} covered, {report['summary']['needs_review']} needing review, "
+            f"{report['summary']['needs_review_after_minimum_approval']} after minimum approval, "
             f"{report['summary']['intent_drift']} intent drift."
         )
         return

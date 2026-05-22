@@ -149,7 +149,7 @@ def write_fixture(repo_root):
     briefs = {
         "001.yaml": ("Phoneme Treasure Hunt", "source_phoneme_hunt", "collect", "cat5", "ready_to_generate", "match_pattern"),
         "002.yaml": ("Partial Reveal Guess", "source_partial_reveal_guess", "deduce", "cat1", "ready_to_generate", "activity_concept"),
-        "003.yaml": ("Guided Drawing", "source_guided_drawing", "build", "cat3", "resolved_from_blocked_until_product_decision", "capability_probe"),
+        "003.yaml": ("Guided Drawing", "source_guided_drawing", "build", "cat3", "resolved_from_blocked_minimum_unblock_allowed", "capability_probe"),
     }
     for filename, (name, slug, mechanic, category, readiness, assignment_type) in briefs.items():
         (run_dir / "adaptation_briefs" / filename).write_text(
@@ -254,6 +254,8 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertEqual(3, report["summary"]["covered_rows"])
         self.assertEqual(1, report["summary"]["mechanic_changed"])
         self.assertEqual(1, report["summary"]["capability_dependent"])
+        self.assertEqual(1, report["summary"]["minimum_unblock_assumed_approved"])
+        self.assertEqual(1, report["summary"]["needs_review_after_minimum_approval"])
         self.assertEqual(0, report["summary"]["missing_generated"])
         self.assertGreaterEqual(len(report["visual_examples"]), 2)
         self.assertIn("Product Source Fidelity Review", html)
@@ -271,6 +273,9 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("Approve category/mechanic changes", html)
         self.assertIn("Approve capability assumptions and minimum contracts", html)
         self.assertIn("Approve reviewer-packet readiness", html)
+        self.assertIn("Minimum Unblock Approval Assumption", html)
+        self.assertIn("product has approved every minimum-unblock contract", html)
+        self.assertIn("After minimum approval", html)
         self.assertIn("Approval needed", html)
         self.assertIn("<colgroup>", html)
         self.assertIn("table-layout: fixed", html)
@@ -383,7 +388,8 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("Difference: Reveal sequence changed.", html)
         self.assertIn("Approve: category/mechanic cat1 / enumerate to cat1 / deduce; play frame part reveal guessing to deduction from a different clue style.", html)
         self.assertIn("Runtime dependency to approve: requires_materials.", html)
-        self.assertIn("Approve: play frame paper drawing to paper drawing with capability assumptions; capability dependency requires_materials.", html)
+        self.assertIn("Minimum-unblock approval is assumed for requires_materials.", html)
+        self.assertIn("No remaining category/mechanic or source-intent delta is flagged", html)
         self.assertNotIn("category/mechanic cat3 / build to cat3 / build", html)
         self.assertIn("intent_drift", html)
 
