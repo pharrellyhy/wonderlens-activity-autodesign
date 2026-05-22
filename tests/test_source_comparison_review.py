@@ -281,6 +281,10 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("table-layout: fixed", html)
         self.assertIn("class=\"matrix-summary matrix-summary-intent\"", html)
         self.assertIn("class=\"matrix-summary matrix-summary-approval\"", html)
+        self.assertIn("class=\"comparison-block comparison-block-fidelity\"", html)
+        self.assertIn("class=\"comparison-block comparison-block-intent\"", html)
+        self.assertIn("Reviewer-facing difference", html)
+        self.assertIn("delta-highlight", html)
         self.assertIn("-webkit-line-clamp: 5", html)
         self.assertIn("View full text", html)
         self.assertIn("table-scroll-cue", html)
@@ -362,8 +366,8 @@ class SourceComparisonReviewTest(unittest.TestCase):
                         "source_row": 3,
                         "activity_id": "concept_guided_drawing_probe",
                         "original_play_frame": "paper drawing",
-                        "generated_play_frame": "paper drawing with capability assumptions",
-                        "drift": "Material support depends on product setup.",
+                        "generated_play_frame": "paper drawing",
+                        "drift": "Minimum version uses reduced-scope fallback where unsupported product capability is not available.",
                         "status": "minor_adaptation",
                         "severity": "low",
                         "recommendation": "Keep as reviewed adaptation.",
@@ -388,6 +392,8 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("Difference: Reveal sequence changed.", html)
         self.assertIn("Approve: category/mechanic cat1 / enumerate to cat1 / deduce; play frame part reveal guessing to deduction from a different clue style.", html)
         self.assertIn("Runtime dependency to approve: requires_materials.", html)
+        self.assertIn("Original and generated play frames match.", html)
+        self.assertIn("Minimum-unblock fallback</mark>: this packet intentionally uses a reduced-scope version", html)
         self.assertIn("Minimum-unblock approval is assumed for requires_materials.", html)
         self.assertIn("No remaining category/mechanic or source-intent delta is flagged", html)
         self.assertNotIn("category/mechanic cat3 / build to cat3 / build", html)

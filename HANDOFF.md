@@ -15,6 +15,7 @@
 - Compact source-comparison matrix layout now uses fixed column widths, horizontal table scrolling, clamped fidelity/intent/approval summaries, and closed `View full text` disclosure controls so long intent and approval text no longer expands rows excessively.
 - Added a visible `Scroll right for Intent alignment, Approval needed, and Reviewer packet` cue above the source-comparison matrix so reviewers know the table has additional right-side columns.
 - Added a `Minimum Unblock Approval Assumption` statement and `After minimum approval` metric/filter to the source-comparison matrix. The current full workbook audit has 34 raw review rows, but after assuming product has approved every minimum-unblock contract, only 7 rows still need review for category/mechanic changes, missing generated coverage, or explicit source-intent decisions.
+- Updated the source-comparison matrix fidelity and intent cells from single dense paragraphs to structured `Original / Generated / Reviewer-facing difference` blocks. Difference phrases are highlighted, and minimum-unblock fallback rows now explain in plain language that the reduced-scope fallback is accepted under the approval assumption rather than being a remaining intent mismatch.
 - Tightened source-comparison HTML validation so stale pages missing definitions/approval guidance or still using sticky table headers fail validation.
 - Regenerated `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html` from the workbook and current source-intent audit.
 - Updated `scripts/generate_run_review.py` so runtime branch policies render as a horizontal `Branch / Child behavior / AI follow-up` table and validation fails exact copied unexpected/no-response branch boilerplate, keyword-substitution rows, and repeated Step 3 branch policies within the same package.
@@ -147,6 +148,8 @@
   - Result: PASS; 40 source rows, 40 covered, 34 needing review, 7 after minimum approval, 0 intent drift.
 - Static matrix scan for `data-review-after-minimum="true"`
   - Result: PASS; 7 post-minimum-approval review rows are marked in `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html`.
+- Static matrix scan for structured comparison blocks
+  - Result: PASS; the regenerated matrix has 40 fidelity comparison blocks, 40 intent comparison blocks, 81 highlighted delta phrases, and 32 plain-language minimum-unblock fallback explanations.
 - Playwright static HTML geometry check for `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html`
   - Result: PASS; matrix header is static, status definitions and approval checklist are present, `Approval needed` is the row-level decision column, the first row starts below the table header without overlap, fixed-width horizontal table scrolling is active, sampled matrix rows render around 186-207px tall with clamped long summaries, and the right-scroll cue is visible above the table.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260521_163621_workbook_review_packet_full`

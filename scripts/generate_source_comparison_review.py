@@ -617,6 +617,87 @@ def fidelity_summary(row: dict[str, Any]) -> str:
     return " ".join(parts)
 
 
+def minimum_unblock_explanation() -> str:
+    return (
+        "Minimum-unblock fallback: this packet intentionally uses a reduced-scope version "
+        "because the full product capability is unavailable. Under the approval assumption, "
+        "this fallback is not a remaining intent mismatch."
+    )
+
+
+def is_minimum_unblock_note(text: str) -> bool:
+    note = norm(text).lower()
+    return "minimum" in note and (
+        "reduced-scope" in note
+        or "unsupported product capability" in note
+        or "minimum-unblock" in note
+        or "minimum unblock" in note
+    )
+
+
+def comparison_row(label: str, value: str, changed: bool = False) -> str:
+    changed_class = " compare-value-changed" if changed else ""
+    return f"""
+            <div class="compare-row">
+              <span class="compare-label">{esc(label)}</span>
+              <p class="compare-value{changed_class}">{esc(value)}</p>
+            </div>
+    """
+
+
+def comparison_difference(text: str, tone: str = "neutral", highlight: str = "") -> str:
+    if highlight and highlight in text:
+        before, after = text.split(highlight, 1)
+        content = (
+            esc(before)
+            + f'<mark class="delta-highlight">{esc(highlight)}</mark>'
+            + esc(after)
+        )
+    else:
+        content = f'<mark class="delta-highlight">{esc(highlight or text)}</mark>' if text else ""
+    return f"""
+            <div class="compare-diff compare-diff-{esc(tone)}">
+              <span>Reviewer-facing difference</span>
+              <p>{content}</p>
+            </div>
+    """
+
+
+def fidelity_difference(row: dict[str, Any]) -> tuple[str, str, str]:
+    original_pair = category_mechanic_pair(row["original_category"], row["original_mechanic"])
+    generated_pair = category_mechanic_pair(row["generated_category"], row["generated_mechanic"])
+    if original_pair != generated_pair:
+        return (
+            f"Category/mechanic changed: {original_pair} to {generated_pair}.",
+            "Category/mechanic changed",
+            "warning",
+        )
+    if row["status"] == "Capability-dependent":
+        dependency = capability_dependency(row)
+        if minimum_unblock_assumed_approved(row):
+            return (
+                f"Runtime dependency is covered by the approved minimum-unblock path: {dependency}.",
+                "approved minimum-unblock path",
+                "warning",
+            )
+        return (f"Runtime dependency still needs product approval: {dependency}.", "still needs product approval", "warning")
+    return ("No category/mechanic change recorded.", "No category/mechanic change", "good")
+
+
+def fidelity_summary_html(row: dict[str, Any]) -> str:
+    original_pair = category_mechanic_pair(row["original_category"], row["original_mechanic"])
+    generated_pair = category_mechanic_pair(row["generated_category"], row["generated_mechanic"])
+    difference, highlight, tone = fidelity_difference(row)
+    changed = original_pair != generated_pair
+    return f"""
+          <div class="comparison-block comparison-block-fidelity">
+            {comparison_row("Original", original_pair)}
+            {comparison_row("Generated", generated_pair, changed=changed)}
+            {comparison_difference(difference, tone=tone, highlight=highlight)}
+          </div>
+    """
+
+
 def intent_summary(row: dict[str, Any]) -> str:
     original_frame = row["original_play_frame"] or truncate(row["original_intent"], 95) or "Not audited"
     generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 95) or "Not generated"
@@ -636,6 +717,39 @@ def intent_summary(row: dict[str, Any]) -> str:
         f"Difference: {difference}"
     )
     return summary + (f" Audit note: {recommendation}" if recommendation else "")
+
+
+def intent_difference(row: dict[str, Any], original_frame: str, generated_frame: str) -> tuple[str, str, str]:
+    notes = clean_notes(row["intent_drift_notes"])
+    note_text = " ".join(sentence(note) for note in notes)
+    has_minimum_note = minimum_unblock_assumed_approved(row) or any(is_minimum_unblock_note(note) for note in notes)
+    frames_match = norm(original_frame) == norm(generated_frame)
+
+    if has_minimum_note:
+        prefix = "Original and generated play frames match. " if frames_match else ""
+        return (prefix + minimum_unblock_explanation(), "Minimum-unblock fallback", "warning")
+    if notes:
+        highlight = "Intent drift" if row["intent_status"] == "intent_drift" else "Audit difference"
+        return (f"{highlight}: {note_text}", highlight, "critical" if row["intent_status"] == "intent_drift" else "warning")
+    if not row["intent_audit_present"]:
+        return ("Source-intent audit is missing for this row; compare the source and generated package manually.", "Source-intent audit is missing", "warning")
+    if frames_match:
+        return ("Original and generated play frames match. No source-intent difference is recorded.", "play frames match", "good")
+    return ("Play-frame wording differs, but no audit drift note was recorded; compare manually before approval.", "Play-frame wording differs", "warning")
+
+
+def intent_summary_html(row: dict[str, Any]) -> str:
+    original_frame = row["original_play_frame"] or truncate(row["original_intent"], 95) or "Not audited"
+    generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 95) or "Not generated"
+    difference, highlight, tone = intent_difference(row, original_frame, generated_frame)
+    changed = norm(original_frame) != norm(generated_frame)
+    return f"""
+          <div class="comparison-block comparison-block-intent">
+            {comparison_row("Original", sentence(original_frame))}
+            {comparison_row("Generated", sentence(generated_frame), changed=changed)}
+            {comparison_difference(difference, tone=tone, highlight=highlight)}
+          </div>
+    """
 
 
 def approval_summary(row: dict[str, Any]) -> str:
@@ -682,6 +796,16 @@ def matrix_summary(text: str, variant: str) -> str:
     """
 
 
+def matrix_summary_html(summary_html: str, full_text: str, variant: str) -> str:
+    return f"""
+          <div class="matrix-summary matrix-summary-{esc(variant)}">{summary_html}</div>
+          <details class="cell-full-text">
+            <summary>View full text</summary>
+            <p>{esc(full_text)}</p>
+          </details>
+    """
+
+
 def table_row(row: dict[str, Any]) -> str:
     packet = (
         f'<a href="{esc(row["reviewer_packet_link"])}">Packet</a>'
@@ -711,8 +835,8 @@ def table_row(row: dict[str, Any]) -> str:
         <td><span>{esc(row["original_category"])}</span><code>{esc(row["original_mechanic"])}</code></td>
         <td><strong>{esc(row["generated_name"] or "Missing")}</strong><p class="activity-id">{esc(row["activity_id"] or "No activity ID")}</p></td>
         <td><span>{esc(row["generated_category"] or "N/A")}</span><code>{esc(row["generated_mechanic"] or "N/A")}</code></td>
-        <td>{status_badge(row["status"])}{matrix_summary(fidelity_summary(row), "fidelity")}</td>
-        <td>{intent_badge(row["intent_status"], row["intent_severity"])}{matrix_summary(intent_summary(row), "intent")}</td>
+        <td>{status_badge(row["status"])}{matrix_summary_html(fidelity_summary_html(row), fidelity_summary(row), "fidelity")}</td>
+        <td>{intent_badge(row["intent_status"], row["intent_severity"])}{matrix_summary_html(intent_summary_html(row), intent_summary(row), "intent")}</td>
         <td>{matrix_summary(approval_summary(row), "approval")}</td>
         <td>{packet}</td>
       </tr>
@@ -829,8 +953,21 @@ code { display: inline-block; margin-top: 4px; padding: 2px 6px; border: 1px sol
 .intent-not_audited { color: var(--muted); background: var(--surface-2); }
 details { margin-top: 8px; }
 summary { color: var(--accent); cursor: pointer; font-weight: 700; }
-.matrix-summary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
-.matrix-summary-intent, .matrix-summary-approval { -webkit-line-clamp: 5; }
+.matrix-summary { margin-top: 8px; overflow: hidden; }
+.matrix-summary-fidelity, .matrix-summary-intent { max-height: 210px; }
+.matrix-summary-approval { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; }
+.comparison-block { display: grid; gap: 7px; }
+.compare-row { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; align-items: start; }
+.compare-label { color: var(--muted); font-size: 10px; font-weight: 760; letter-spacing: .04em; text-transform: uppercase; }
+.compare-value { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
+.compare-value-changed { font-weight: 680; }
+.compare-diff { padding: 8px 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface-2); }
+.compare-diff span { display: block; margin-bottom: 3px; color: var(--muted); font-size: 10px; font-weight: 780; letter-spacing: .04em; text-transform: uppercase; }
+.compare-diff p { margin: 0; color: var(--ink); }
+.compare-diff-good { background: var(--green-soft); }
+.compare-diff-warning { background: var(--amber-soft); }
+.compare-diff-critical { background: var(--red-soft); }
+.delta-highlight { padding: 1px 4px; border-radius: 4px; background: color-mix(in oklch, var(--amber) 20%, var(--surface)); color: var(--ink); font-weight: 780; }
 .cell-full-text { margin-top: 6px; }
 .cell-full-text summary { font-size: 12px; }
 .cell-full-text p { margin-top: 5px; }
@@ -1072,6 +1209,10 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         "table-layout: fixed",
         'class="matrix-summary matrix-summary-intent"',
         'class="matrix-summary matrix-summary-approval"',
+        'class="comparison-block comparison-block-fidelity"',
+        'class="comparison-block comparison-block-intent"',
+        "Reviewer-facing difference",
+        "delta-highlight",
         "View full text",
         "table-scroll-cue",
         "Scroll right for Intent alignment, Approval needed, and Reviewer packet.",
