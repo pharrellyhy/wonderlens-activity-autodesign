@@ -266,6 +266,12 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("Needs review means rows where product should make an explicit approval decision", html)
         self.assertIn("Capability-dependent means the generated packet depends on product support", html)
         self.assertIn("Intent drift means the source-intent audit found a meaningful mismatch", html)
+        self.assertIn("Approval Checklist", html)
+        self.assertIn("Approve source-intent coverage", html)
+        self.assertIn("Approve category/mechanic changes", html)
+        self.assertIn("Approve capability assumptions and minimum contracts", html)
+        self.assertIn("Approve reviewer-packet readiness", html)
+        self.assertIn("Approval needed", html)
         self.assertNotIn("th { position: sticky", html)
         self.assertNotIn(str(workbook.parent), html)
 

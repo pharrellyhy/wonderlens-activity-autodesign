@@ -620,12 +620,17 @@ h3 { margin: 0; font-size: 16px; letter-spacing: 0; }
 button { border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: var(--ink); font: inherit; font-weight: 650; padding: 8px 11px; cursor: pointer; }
 button:hover, button.active { border-color: var(--accent); background: var(--accent-soft); }
 .count { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
-.definitions { margin-top: 18px; padding: 13px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
-.definitions h2 { margin-bottom: 10px; }
+.review-guide { display: grid; grid-template-columns: .92fr 1.08fr; gap: 12px; margin-top: 18px; }
+.guide-panel { min-width: 0; padding: 13px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.guide-panel h2 { margin-bottom: 10px; }
 .definition-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .definition-grid div { min-width: 0; }
 .definition-grid dt { margin: 0 0 4px; color: var(--ink); font-weight: 760; }
 .definition-grid dd { margin: 0; color: var(--muted); max-width: 42ch; }
+.approval-list { margin: 0; padding-left: 18px; color: var(--muted); }
+.approval-list li { margin: 0 0 7px; }
+.approval-list li:last-child { margin-bottom: 0; }
+.approval-list strong { color: var(--ink); }
 .section { margin-top: 22px; }
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
 .section-head p { margin: 0; color: var(--muted); }
@@ -667,6 +672,7 @@ tr.is-hidden { display: none; }
 @media (max-width: 980px) {
   .hero, .visual-grid, .visual-card { grid-template-columns: 1fr; }
   .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .review-guide { grid-template-columns: 1fr; }
   .definition-grid { grid-template-columns: 1fr; }
 }
 """
@@ -733,22 +739,33 @@ applyFilter('all');
       <span class="count" data-visible-count></span>
     </nav>
 
-    <section class="definitions" aria-labelledby="status-definitions-title">
-      <h2 id="status-definitions-title">Status Definitions</h2>
-      <dl class="definition-grid">
-        <div>
-          <dt>Needs review</dt>
-          <dd>Needs review means rows where product should make an explicit approval decision before treating the generated package as accepted.</dd>
-        </div>
-        <div>
-          <dt>Capability-dependent</dt>
-          <dd>Capability-dependent means the generated packet depends on product support, permissions, materials, or runtime behavior that is not yet fully approved.</dd>
-        </div>
-        <div>
-          <dt>Intent drift</dt>
-          <dd>Intent drift means the source-intent audit found a meaningful mismatch between the original play frame and the generated activity flow.</dd>
-        </div>
-      </dl>
+    <section class="review-guide" aria-label="Review guidance">
+      <section class="guide-panel" aria-labelledby="status-definitions-title">
+        <h2 id="status-definitions-title">Status Definitions</h2>
+        <dl class="definition-grid">
+          <div>
+            <dt>Needs review</dt>
+            <dd>Needs review means rows where product should make an explicit approval decision before treating the generated package as accepted.</dd>
+          </div>
+          <div>
+            <dt>Capability-dependent</dt>
+            <dd>Capability-dependent means the generated packet depends on product support, permissions, materials, or runtime behavior that is not yet fully approved.</dd>
+          </div>
+          <div>
+            <dt>Intent drift</dt>
+            <dd>Intent drift means the source-intent audit found a meaningful mismatch between the original play frame and the generated activity flow.</dd>
+          </div>
+        </dl>
+      </section>
+      <section class="guide-panel" aria-labelledby="approval-checklist-title">
+        <h2 id="approval-checklist-title">Approval Checklist</h2>
+        <ul class="approval-list">
+          <li><strong>Approve source-intent coverage:</strong> the generated loop preserves the workbook idea's core child action, role/frame, and learning interaction.</li>
+          <li><strong>Approve category/mechanic changes:</strong> any changed category or mechanic is an accepted runtime realignment, not accidental drift.</li>
+          <li><strong>Approve capability assumptions and minimum contracts:</strong> capability-dependent rows can ship as probes or need product support before runtime use.</li>
+          <li><strong>Approve reviewer-packet readiness:</strong> the standalone packet gives enough runtime beats, branch handling, assets/storyboards, and fallback behavior for review.</li>
+        </ul>
+      </section>
     </section>
 
     <section class="section" aria-labelledby="visual-examples-title">
@@ -775,7 +792,7 @@ applyFilter('all');
               <th>Generated cat/mechanic</th>
               <th>Fidelity status</th>
               <th>Intent alignment</th>
-              <th>Product question</th>
+              <th>Approval needed</th>
               <th>Reviewer packet</th>
             </tr>
           </thead>
@@ -843,6 +860,12 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         "Needs review means rows where product should make an explicit approval decision",
         "Capability-dependent means the generated packet depends on product support",
         "Intent drift means the source-intent audit found a meaningful mismatch",
+        "Approval Checklist",
+        "Approve source-intent coverage",
+        "Approve category/mechanic changes",
+        "Approve capability assumptions and minimum contracts",
+        "Approve reviewer-packet readiness",
+        "Approval needed",
     ]
     if report.get("intent_audit_provided"):
         required.extend(["Intent alignment", 'data-filter="intent-drift"'])
