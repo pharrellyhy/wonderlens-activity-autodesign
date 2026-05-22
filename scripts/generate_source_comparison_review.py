@@ -687,6 +687,12 @@ def fidelity_difference(row: dict[str, Any]) -> tuple[str, str, str]:
 def fidelity_summary_html(row: dict[str, Any]) -> str:
     original_pair = category_mechanic_pair(row["original_category"], row["original_mechanic"])
     generated_pair = category_mechanic_pair(row["generated_category"], row["generated_mechanic"])
+    if original_pair == generated_pair and (row["status"] == "Matches" or minimum_unblock_assumed_approved(row)):
+        return f"""
+          <div class="comparison-block comparison-block-fidelity">
+            {comparison_row("Fidelity", original_pair)}
+          </div>
+    """
     difference, highlight, tone = fidelity_difference(row)
     changed = original_pair != generated_pair
     return f"""
@@ -758,6 +764,13 @@ def intent_display_status(row: dict[str, Any]) -> str:
 def intent_summary_html(row: dict[str, Any]) -> str:
     original_frame = row["original_play_frame"] or truncate(row["original_intent"], 95) or "Not audited"
     generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 95) or "Not generated"
+    if intent_display_status(row) == "aligned":
+        intent_value = original_frame if norm(original_frame) == norm(generated_frame) else generated_frame
+        return f"""
+          <div class="comparison-block comparison-block-intent">
+            {comparison_row("Intent", sentence(intent_value))}
+          </div>
+    """
     difference, highlight, tone = intent_difference(row, original_frame, generated_frame)
     changed = intent_display_status(row) != "aligned" and norm(original_frame) != norm(generated_frame)
     return f"""
