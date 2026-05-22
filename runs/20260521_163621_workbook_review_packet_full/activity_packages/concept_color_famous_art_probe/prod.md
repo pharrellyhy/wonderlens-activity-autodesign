@@ -46,14 +46,14 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 **Child responses:**
 
 1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Transition Bridge" in Color In Famous Art, skips the counting action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny counting model.
 
 **AI follow-up:**
 
 1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Color In Famous Art frame, and offer one safe choice that still completes "Transition Bridge".
+3. [wait 2s] [gentle] Model one tiny counting step for "Transition Bridge", then invite the child to copy or choose.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -67,14 +67,14 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 **Child responses:**
 
 1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Role And Rules" in Color In Famous Art, skips the counting action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny counting model.
 
 **AI follow-up:**
 
 1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Color In Famous Art frame, and offer one safe choice that still completes "Role And Rules".
+3. [wait 2s] [gentle] Model one tiny counting step for "Role And Rules", then invite the child to copy or choose.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `color_artwork_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the artwork set is unavailable, block at Phase 0 rather than referencing famous art that cannot be shown.
 
@@ -89,14 +89,14 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 **Child responses:**
 
 1. (Ideal) The child names or confirms the color.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Capture The Color" in Color In Famous Art, skips the counting action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Capture The Color", watches the current screen, or needs a first tiny counting model.
 
 **AI follow-up:**
 
 1. [specific] Use the color as the artwork search key.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Color In Famous Art frame, and offer one safe choice that still completes "Capture The Color".
+3. [wait 2s] [gentle] Model one tiny counting step for "Capture The Color", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_artwork_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the artwork set is unavailable, block at Phase 0 rather than referencing famous art that cannot be shown.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -110,14 +110,14 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 **Child responses:**
 
 1. (Ideal) The child points or describes the color.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Meet The First Artwork" in Color In Famous Art, skips the counting action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Meet The First Artwork", watches the current screen, or needs a first tiny counting model.
 
 **AI follow-up:**
 
 1. [specific] Confirm visible color evidence and add one simple background note.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Color In Famous Art frame, and offer one safe choice that still completes "Meet The First Artwork".
+3. [wait 2s] [gentle] Model one tiny counting step for "Meet The First Artwork", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_artwork_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the artwork set is unavailable, block at Phase 0 rather than referencing famous art that cannot be shown.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -131,14 +131,14 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 **Child responses:**
 
 1. (Ideal) The child chooses or describes a mood.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Compare More Art" in Color In Famous Art, skips the counting action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Compare More Art", watches the current screen, or needs a first tiny counting model.
 
 **AI follow-up:**
 
 1. [specific] Connect the child color to several artworks.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Color In Famous Art frame, and offer one safe choice that still completes "Compare More Art".
+3. [wait 2s] [gentle] Model one tiny counting step for "Compare More Art", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_artwork_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the artwork set is unavailable, block at Phase 0 rather than referencing famous art that cannot be shown.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -152,14 +152,14 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 **Child responses:**
 
 1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Magic Moment" in Color In Famous Art, skips the counting action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny counting model.
 
 **AI follow-up:**
 
 1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Color In Famous Art frame, and offer one safe choice that still completes "Magic Moment".
+3. [wait 2s] [gentle] Model one tiny counting step for "Magic Moment", then invite the child to copy or choose.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -172,13 +172,13 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 **Child responses:**
 
 1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Closing + IB Concepts" in Color In Famous Art, skips the counting action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny counting model.
 
 **AI follow-up:**
 
 1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Color In Famous Art frame, and offer one safe choice that still completes "Closing + IB Concepts".
+3. [wait 2s] [gentle] Model one tiny counting step for "Closing + IB Concepts", then invite the child to copy or choose.
 
 **Screen:** Recap badge lists title, mechanic `enumerate`, focal attribute `color_in_famous_art`, and next-step hint.

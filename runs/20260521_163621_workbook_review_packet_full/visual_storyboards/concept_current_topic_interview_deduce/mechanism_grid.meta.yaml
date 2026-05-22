@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 806e4f6867dc920c3373b520cfbad59d650833b7ba3a03d33b7cbd04ed446d23
+prompt_sha256: 99f0d1ff54722fdfb437c6343e69ba6601f194d7d748b1ab27efe8cdbed1dac7
 prompt_path: visual_storyboards/concept_current_topic_interview_deduce/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_current_topic_interview_deduce/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_current_topic_interview_deduce
@@ -31,8 +31,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Current Topic Interview
+    frame, and offer one safe choice th...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

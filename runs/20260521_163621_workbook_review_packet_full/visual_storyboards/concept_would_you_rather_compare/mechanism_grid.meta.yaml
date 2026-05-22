@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: ff3e5cf54f4575a2502ecc99358817f012278186833435fc9d8aeda43c61db99
+prompt_sha256: 3974f04a588ca5b75c367ce16d75cce0853718fcc2b01d2d9bd1406eb66ddbab
 prompt_path: visual_storyboards/concept_would_you_rather_compare/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_would_you_rather_compare/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_would_you_rather_compare
@@ -30,8 +30,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Would You Rather frame,
+    and offer one safe choice that stil...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 2d2482c91571f9e99fcdf64760834a0fd12bcc136c8373ca46e3ab87a8977b38
+prompt_sha256: b93b7f5abcd68303e00423101990bf42d9aa0ca2565907b833cbdc35fe7cc819
 prompt_path: visual_storyboards/concept_branching_story_decide/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_branching_story_decide/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_branching_story_decide
@@ -31,8 +31,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Branching Choice Story
+    frame, and offer one safe choice tha...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

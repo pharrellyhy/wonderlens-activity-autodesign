@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 2c27862f5ad45de940713ea99451fca5bed55d1529083ee5d63d618735dae1ff
+prompt_sha256: 105fe4ae2fc6c6611520f3f968c2cc664691c6c43138b8fb8bfc081d497bebbc
 prompt_path: visual_storyboards/concept_emotion_color_outfit_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_emotion_color_outfit_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_emotion_color_outfit_probe
@@ -30,8 +30,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Emotion Color Outfit
+    frame, and offer one safe choice that...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

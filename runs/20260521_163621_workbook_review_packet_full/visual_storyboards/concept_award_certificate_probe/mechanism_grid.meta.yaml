@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 049a273fbed6d9e0121f11ca5008bd277cc627ff7d80bc8249f4f06b948fe19a
+prompt_sha256: 461ee9442fad75c1c0a3a6ce743c722f68eb659e592a9f570166e98342acf5b1
 prompt_path: visual_storyboards/concept_award_certificate_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_award_certificate_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_award_certificate_probe
@@ -26,19 +26,19 @@ panel_captions:
   title: Child Action
   caption: 'The repeated mechanic is care: Round 1 -- Choose The Person | Ask who
     receives the award and why. | Ideal: The child names a person. | Unexpected: Child
-    gives an unrelated answer, unsafe action, or asks to cha...'
+    veers away from "Choose The Person" in Award Certificate...'
   source: Round 1 -- Choose The Person
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Reflect the appreciation reason. | Unexpected: [redirect]
-    Validate the idea, restate the safe rule, and offer one easier choice. | No response:
-    [wait 2s] [gentle] Model a...'
+    Validate briefly, keep the Award Certificate frame, and offer one safe choice
+    that still completes "Choose The Pe...'
   source: Round 1 -- Choose The Person
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Design The Badge | Guide a paper-and-pencil badge with one
     color and one kind phrase. | Ideal: The child draws or names a color. | Unexpected:
-    Child gives an unrelated answer, un...'
+    Child veers away from "Design The B...'
   source: Round 2 -- Design The Badge
 - number: '6'
   title: Completion

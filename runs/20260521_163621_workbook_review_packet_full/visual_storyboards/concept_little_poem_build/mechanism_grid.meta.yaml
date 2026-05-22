@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 772b18e38ab2b7cbe4e46361ca757d060703b3080100309b1fd8fab0d9f8e7e4
+prompt_sha256: b6a1e4e65c79cfffc315869366812eb8bd477e6e9f40cb99169f65c89c5c8a32
 prompt_path: visual_storyboards/concept_little_poem_build/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_little_poem_build/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_little_poem_build
@@ -30,8 +30,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Little Poem Generator
+    frame, and offer one safe choice that...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

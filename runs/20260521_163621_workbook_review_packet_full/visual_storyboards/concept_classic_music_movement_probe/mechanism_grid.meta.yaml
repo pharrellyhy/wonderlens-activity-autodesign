@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 157ed8a75b04ee2ac6856c6192a801b51e7d611c311e113f82c47631ae15f98c
+prompt_sha256: 8ac41afa0fcf812aa23cb9addab1d08e9e685df1f7fc4a33a5a2979d1739591f
 prompt_path: visual_storyboards/concept_classic_music_movement_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_classic_music_movement_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_classic_music_movement_probe
@@ -30,8 +30,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Classic Music And Movement
+    frame, and offer one safe choice...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

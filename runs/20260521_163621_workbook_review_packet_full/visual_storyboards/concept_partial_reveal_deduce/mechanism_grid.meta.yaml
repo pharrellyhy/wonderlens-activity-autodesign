@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 19eaa2bf8f5dc36d48b3612f663f8ba277add4cafaa95b8826cf204f462c2c86
+prompt_sha256: 364fe826a3d1ac3128919d1a15306d560938d1981f3beea7b54c1b481e41bc73
 prompt_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_partial_reveal_deduce
@@ -31,8 +31,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Partial Reveal Guess
+    frame, and offer one safe choice that...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

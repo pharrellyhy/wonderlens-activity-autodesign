@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 568623c835a67bdadb85a73215cfd60e9c21406ff392a59b16df20b78ed9891f
+prompt_sha256: 0ab89a3f456ec3f598ec557e46582843016a59126cdb1e46dbb9ddeb46650685
 prompt_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_story_unlock_probe
@@ -26,19 +26,19 @@ panel_captions:
   title: Child Action
   caption: 'The repeated mechanic is imagine: Round 1 -- Unlock The Moon Door | Tell
     the story beat before the task, then pause for a color challenge. | Ideal: The
-    child names or shows a color. | Unexpected: Child gives a...'
+    child names or shows a color. | Unexpected: Child veers a...'
   source: Round 1 -- Unlock The Moon Door
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Narrate the door opening and continue the story. | Unexpected:
-    [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-    | No response: [wait 2s] [...'
+    [redirect] Validate briefly, keep the Story Challenge Unlock frame, and offer
+    one safe choice that still com...'
   source: Round 1 -- Unlock The Moon Door
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Wake The Owl Bridge | Continue the story, then pause for a
     soft animal sound challenge. | Ideal: The child makes the sound or says hello
-    owl. | Unexpected: Child gives an unrelat...'
+    owl. | Unexpected: Child veers away from...'
   source: Round 2 -- Wake The Owl Bridge
 - number: '6'
   title: Completion

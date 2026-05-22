@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 8a1536f39710cf4a5071054d8a10aaa2e9304931cdf8cd9f7302c5be45429e0d
+prompt_sha256: 74e9f09e104866aa5afc999fb443ad75b15e1743dfdce2d71d3533be8f90fc83
 prompt_path: visual_storyboards/concept_word_build_guess_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_word_build_guess_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_word_build_guess_probe
@@ -31,8 +31,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Word Build Guess frame,
+    and offer one safe choice that stil...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

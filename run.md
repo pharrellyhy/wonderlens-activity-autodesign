@@ -245,6 +245,7 @@ Runtime completeness rule:
 - The migrated package may be shorter than legacy `designs/*_spec.md`, but it must not be thin. `spec.md` must explain the activity's concrete design intent, assumptions, constraints, asset/product dependencies, scaffold fit, and game-feel rationale. `prod.md` must be runnable without the operator inventing missing beats.
 - Steps 1, 2, 4, and 5 also need concrete dialogue or runtime behavior contracts, branches, follow-ups, and screen states. Do not concentrate all detail in Step 3 while leaving the bridge, rules, magic moment, or closing generic.
 - Runtime behavior contracts must be constrained enough for a live LLM: include required story/setup or role-play frame, exact child challenge/action, branch behavior, safety/product constraints, screen/state expectation, and what must not be skipped. A single example line is only a sample, not the whole runtime response.
+- Branch behavior must be beat-specific. Unexpected and no-response child branches may share safety principles, but their text must name likely off-track or quiet behavior for this activity, and the AI follow-up must return to the current role, source action, challenge, asset/fallback, or screen state. Do not copy boilerplate such as "Child gives an unrelated answer, unsafe action, or asks to change the task", "Validate the idea, restate the safe rule", or "Model a tiny answer" across packages.
 - Each Step 3 round must be distinct: named objective, different clue/challenge/action, child responses that exercise the canonical mechanic, branch-specific follow-ups, and a screen-state change.
 - Generic warmth is insufficient. Fail and repair lines like "Great job," "try again," or "screen updates" when they are not tied to specific evidence, consequence, progress, or payoff.
 - If `start=warm+cold`, document the bridge logic in `spec.md`; the runtime `prod.md` should still have a single converged Step 1 unless the assignment explicitly asks for both starts at runtime.
@@ -275,6 +276,7 @@ Reviewer instructions:
 - Evaluate the package files directly, not the authoring agent's claimed scorecard.
 - Return PASS/FAIL/N/A for each dimension with brief evidence and concrete file/section references for any issue. For Dimension 10, explicitly confirm that Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic` and the adaptation brief's `canonical_mechanic` when present. When assets are referenced, also confirm the package contains a coherent `## Asset Brief`, that every referenced `asset_id` is defined, and that required assets have prompts/source, use steps, display behavior, and fallback behavior.
 - Fail structurally valid but thin packages. The reviewer should explicitly check whether `spec.md` is decision-useful and whether `prod.md` contains enough concrete dialogue, branch reactions, screen state, game-feel payoff, and source-promise detail to run the activity without filling gaps.
+- Fail packages whose unexpected/no-response branch policies are generic clones. The reviewer should confirm those branches are tied to the current mechanic and source frame, not repeated run-level filler.
 
 If the reviewer flags any FAIL or credible uncertainty, fix the package, rerun the author self-evaluation, and spawn a fresh independent review. Only finalize the `## Self-Evaluation Scorecard`, append `results.tsv`, and mark the assignment complete after both the author check and independent reviewer check pass.
 
@@ -288,6 +290,7 @@ Before logging or committing, verify:
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` equals `tag_block.yaml` `activity_signature.focal_attribute`.
 - `spec.md` and `prod.md` satisfy the migrated package depth floor from `program.md`: concrete rationale, executable runtime detail, branch-specific follow-ups, non-generic screen states, and a magic moment earned by the child's action.
 - Every `prod.md` Step 3 round is fully expanded; no condensed-round placeholders remain. Each round uses either `AI says` or `Runtime AI instruction` plus `Example AI line`.
+- Every `prod.md` unexpected and no-response branch is specific to the beat. No copied run-level boilerplate remains for child behavior or AI follow-up policy.
 - `spec.md` source-promise alignment notes and `prod.md` runtime flow preserve the original play frame, child role, interaction sequence, and required child actions unless a product-approved adaptation is recorded.
 - `spec.md` contains exactly one `## Self-Evaluation Scorecard`.
 - Concept-led packages with `generate_with_assumptions` include `spec.md` `## Adaptation Rationale`.

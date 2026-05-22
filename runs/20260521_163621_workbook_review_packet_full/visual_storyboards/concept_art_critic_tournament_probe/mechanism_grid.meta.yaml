@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 3c79192c163779e1de81b90f1dedfb2c77236a9b69efb92024a37aeeeecd5710
+prompt_sha256: 2a9660be2b7a72b5765cd36c709c1b4077725569999d739a98915ebc39e952c0
 prompt_path: visual_storyboards/concept_art_critic_tournament_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_art_critic_tournament_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_art_critic_tournament_probe
@@ -26,19 +26,19 @@ panel_captions:
   title: Child Action
   caption: 'The repeated mechanic is compare: Round 1 -- Match 1 | Show two approved
     artworks and ask which one should stay. | Ideal: The child chooses and may give
-    a reason. | Unexpected: Child gives an unrelated answer,...'
+    a reason. | Unexpected: Child veers away from "Match 1"...'
   source: Round 1 -- Match 1
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Keep the chosen artwork as winner. | Unexpected: [redirect]
-    Validate the idea, restate the safe rule, and offer one easier choice. | No response:
-    [wait 2s] [gentle] Model...'
+    Validate briefly, keep the Art Critic Tournament frame, and offer one safe choice
+    that still completes "Match 1...'
   source: Round 1 -- Match 1
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Match 2 | Bring in a new challenger against the current winner.
-    | Ideal: The child chooses current or new. | Unexpected: Child gives an unrelated
-    answer, unsafe action, or ask......'
+    | Ideal: The child chooses current or new. | Unexpected: Child veers away from
+    "Match 2" in Art Critic Tourname......'
   source: Round 2 -- Match 2
 - number: '6'
   title: Completion

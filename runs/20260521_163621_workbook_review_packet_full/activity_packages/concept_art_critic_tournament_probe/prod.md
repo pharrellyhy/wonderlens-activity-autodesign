@@ -46,14 +46,14 @@ Two rights-cleared artworks appear side by side each round and the child decides
 **Child responses:**
 
 1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Transition Bridge" in Art Critic Tournament, skips the comparison action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny comparison model.
 
 **AI follow-up:**
 
 1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Art Critic Tournament frame, and offer one safe choice that still completes "Transition Bridge".
+3. [wait 2s] [gentle] Model one tiny comparison step for "Transition Bridge", then invite the child to copy or choose.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -68,14 +68,14 @@ Two rights-cleared artworks appear side by side each round and the child decides
 **Child responses:**
 
 1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Role And Rules" in Art Critic Tournament, skips the comparison action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny comparison model.
 
 **AI follow-up:**
 
 1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Art Critic Tournament frame, and offer one safe choice that still completes "Role And Rules".
+3. [wait 2s] [gentle] Model one tiny comparison step for "Role And Rules", then invite the child to copy or choose.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 
@@ -90,14 +90,14 @@ Two rights-cleared artworks appear side by side each round and the child decides
 **Child responses:**
 
 1. (Ideal) The child chooses and may give a reason.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Match 1" in Art Critic Tournament, skips the comparison action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Match 1", watches the current screen, or needs a first tiny comparison model.
 
 **AI follow-up:**
 
 1. [specific] Keep the chosen artwork as winner.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Art Critic Tournament frame, and offer one safe choice that still completes "Match 1".
+3. [wait 2s] [gentle] Model one tiny comparison step for "Match 1", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -112,14 +112,14 @@ Two rights-cleared artworks appear side by side each round and the child decides
 **Child responses:**
 
 1. (Ideal) The child chooses current or new.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Match 2" in Art Critic Tournament, skips the comparison action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Match 2", watches the current screen, or needs a first tiny comparison model.
 
 **AI follow-up:**
 
 1. [specific] Save the winner and name one visible feature.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Art Critic Tournament frame, and offer one safe choice that still completes "Match 2".
+3. [wait 2s] [gentle] Model one tiny comparison step for "Match 2", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -134,14 +134,14 @@ Two rights-cleared artworks appear side by side each round and the child decides
 **Child responses:**
 
 1. (Ideal) The child chooses a favorite.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Match 3" in Art Critic Tournament, skips the comparison action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Match 3", watches the current screen, or needs a first tiny comparison model.
 
 **AI follow-up:**
 
 1. [specific] Connect the choice to visible evidence.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Art Critic Tournament frame, and offer one safe choice that still completes "Match 3".
+3. [wait 2s] [gentle] Model one tiny comparison step for "Match 3", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -156,14 +156,14 @@ Two rights-cleared artworks appear side by side each round and the child decides
 **Child responses:**
 
 1. (Ideal) The child chooses and explains briefly.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Match 4" in Art Critic Tournament, skips the comparison action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Match 4", watches the current screen, or needs a first tiny comparison model.
 
 **AI follow-up:**
 
 1. [specific] Acknowledge the art-critic reason.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Art Critic Tournament frame, and offer one safe choice that still completes "Match 4".
+3. [wait 2s] [gentle] Model one tiny comparison step for "Match 4", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -178,14 +178,14 @@ Two rights-cleared artworks appear side by side each round and the child decides
 **Child responses:**
 
 1. (Ideal) The child chooses the champion.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Final Match" in Art Critic Tournament, skips the comparison action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Final Match", watches the current screen, or needs a first tiny comparison model.
 
 **AI follow-up:**
 
 1. [specific] Reveal the final winner and recap the reason.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Art Critic Tournament frame, and offer one safe choice that still completes "Final Match".
+3. [wait 2s] [gentle] Model one tiny comparison step for "Final Match", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -200,14 +200,14 @@ Two rights-cleared artworks appear side by side each round and the child decides
 **Child responses:**
 
 1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Magic Moment" in Art Critic Tournament, skips the comparison action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny comparison model.
 
 **AI follow-up:**
 
 1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Art Critic Tournament frame, and offer one safe choice that still completes "Magic Moment".
+3. [wait 2s] [gentle] Model one tiny comparison step for "Magic Moment", then invite the child to copy or choose.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -220,13 +220,13 @@ Two rights-cleared artworks appear side by side each round and the child decides
 **Child responses:**
 
 1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Closing + IB Concepts" in Art Critic Tournament, skips the comparison action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny comparison model.
 
 **AI follow-up:**
 
 1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Art Critic Tournament frame, and offer one safe choice that still completes "Closing + IB Concepts".
+3. [wait 2s] [gentle] Model one tiny comparison step for "Closing + IB Concepts", then invite the child to copy or choose.
 
 **Screen:** Recap badge lists title, mechanic `compare`, focal attribute `art_critic_tournament`, and next-step hint.

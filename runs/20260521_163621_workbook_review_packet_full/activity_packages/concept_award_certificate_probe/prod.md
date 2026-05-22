@@ -46,14 +46,14 @@ A family story or photographed object inspires a handmade award such as Best Hel
 **Child responses:**
 
 1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Transition Bridge" in Award Certificate, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny care or appreciation model.
 
 **AI follow-up:**
 
 1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Award Certificate frame, and offer one safe choice that still completes "Transition Bridge".
+3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Transition Bridge", then invite the child to copy or choose.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Cat3 material workflow: Approved minimum contract uses caregiver setup, child self-report, and no-assessment physical-work language.
@@ -69,14 +69,14 @@ A family story or photographed object inspires a handmade award such as Best Hel
 **Child responses:**
 
 1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Role And Rules" in Award Certificate, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny care or appreciation model.
 
 **AI follow-up:**
 
 1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Award Certificate frame, and offer one safe choice that still completes "Role And Rules".
+3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Role And Rules", then invite the child to copy or choose.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `award_inspiration_badges_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If badge assets or certificate workflow are unavailable, block at Phase 0 or run a verbal appreciation activity without claiming a certificate is created.
 
@@ -91,14 +91,14 @@ A family story or photographed object inspires a handmade award such as Best Hel
 **Child responses:**
 
 1. (Ideal) The child names a person.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Choose The Person" in Award Certificate, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Choose The Person", watches the current screen, or needs a first tiny care or appreciation model.
 
 **AI follow-up:**
 
 1. [specific] Reflect the appreciation reason.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Award Certificate frame, and offer one safe choice that still completes "Choose The Person".
+3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Choose The Person", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `award_inspiration_badges_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If badge assets or certificate workflow are unavailable, block at Phase 0 or run a verbal appreciation activity without claiming a certificate is created.
 > RESOLVED BLOCKER: Cat3 material workflow: Approved minimum contract uses caregiver setup, child self-report, and no-assessment physical-work language.
@@ -114,14 +114,14 @@ A family story or photographed object inspires a handmade award such as Best Hel
 **Child responses:**
 
 1. (Ideal) The child draws or names a color.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Design The Badge" in Award Certificate, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Design The Badge", watches the current screen, or needs a first tiny care or appreciation model.
 
 **AI follow-up:**
 
 1. [specific] Offer a short phrase the child can copy or say.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Award Certificate frame, and offer one safe choice that still completes "Design The Badge".
+3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Design The Badge", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `award_inspiration_badges_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If badge assets or certificate workflow are unavailable, block at Phase 0 or run a verbal appreciation activity without claiming a certificate is created.
 > RESOLVED BLOCKER: Cat3 material workflow: Approved minimum contract uses caregiver setup, child self-report, and no-assessment physical-work language.
@@ -137,14 +137,14 @@ A family story or photographed object inspires a handmade award such as Best Hel
 **Child responses:**
 
 1. (Ideal) The child presents or describes the award.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Present The Award" in Award Certificate, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Present The Award", watches the current screen, or needs a first tiny care or appreciation model.
 
 **AI follow-up:**
 
 1. [specific] Celebrate the caring intention, not drawing quality.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Award Certificate frame, and offer one safe choice that still completes "Present The Award".
+3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Present The Award", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `award_inspiration_badges_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If badge assets or certificate workflow are unavailable, block at Phase 0 or run a verbal appreciation activity without claiming a certificate is created.
 > RESOLVED BLOCKER: Cat3 material workflow: Approved minimum contract uses caregiver setup, child self-report, and no-assessment physical-work language.
@@ -160,14 +160,14 @@ A family story or photographed object inspires a handmade award such as Best Hel
 **Child responses:**
 
 1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Magic Moment" in Award Certificate, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny care or appreciation model.
 
 **AI follow-up:**
 
 1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Award Certificate frame, and offer one safe choice that still completes "Magic Moment".
+3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Magic Moment", then invite the child to copy or choose.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -180,13 +180,13 @@ A family story or photographed object inspires a handmade award such as Best Hel
 **Child responses:**
 
 1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Closing + IB Concepts" in Award Certificate, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny care or appreciation model.
 
 **AI follow-up:**
 
 1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Award Certificate frame, and offer one safe choice that still completes "Closing + IB Concepts".
+3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Closing + IB Concepts", then invite the child to copy or choose.
 
 **Screen:** Recap badge lists title, mechanic `care`, focal attribute `award_certificate`, and next-step hint.

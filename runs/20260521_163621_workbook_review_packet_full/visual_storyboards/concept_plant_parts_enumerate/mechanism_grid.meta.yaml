@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 9b5ba18c38ea0ce4c799afcd18aa8623b31f98cd2c9851f9b5e2e22ee56b7c58
+prompt_sha256: 6fef66fd256e445b33ffd858aad9afddd00a422af4f736c5e198d8ef13ae29b4
 prompt_path: visual_storyboards/concept_plant_parts_enumerate/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_plant_parts_enumerate/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_plant_parts_enumerate
@@ -31,8 +31,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Plant Parts Explorer
+    frame, and offer one safe choice that...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

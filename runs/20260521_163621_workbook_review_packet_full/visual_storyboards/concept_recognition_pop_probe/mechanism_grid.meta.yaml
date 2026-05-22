@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: e9846b46378b5bb89ad2fc4fa114db7027d3a810dc7a205881cefc4bff704539
+prompt_sha256: 722a4943611cfa58bda421fac827696dc9c23febf9da29d801717d18841f81df
 prompt_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_recognition_pop_probe
@@ -30,8 +30,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Recognition Pop Challenge
+    frame, and offer one safe choice...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

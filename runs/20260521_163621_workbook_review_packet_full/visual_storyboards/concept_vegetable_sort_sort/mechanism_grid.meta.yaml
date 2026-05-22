@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 7ce3f3da34dfc2b3fc418d12e70971b18e01dbfa99775775ac0007fa989cf5ed
+prompt_sha256: 3b81a49585885f015fd5c3516b0d5e82f255e5c5f99d055efd78c3cc481abc51
 prompt_path: visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_vegetable_sort_sort/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_vegetable_sort_sort
@@ -30,8 +30,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Vegetable Sort frame,
+    and offer one safe choice that still...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

@@ -110,6 +110,62 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
         self.assertIn("Example AI line", rendered_map)
         self.assertIn("Screen/state", rendered_detail)
 
+    def test_runtime_branch_policy_renders_as_horizontal_table(self):
+        prod_text = """
+#### Step 1: Story Gate
+
+**Runtime AI instruction:** Tell a short story beat first, pause at the gate, then ask for one blue-object photo challenge before unlocking the next beat.
+
+**Example AI line:** [mysterious story tone] "The moon gate is closed. Can you find something blue to wake it up?"
+
+**Child responses:**
+
+1. (Ideal) Child finds and photographs a blue object.
+2. (Unexpected) Child names a blue object instead of taking a photo.
+3. (No response) Child is quiet.
+
+**AI follow-up policy:**
+
+1. (Ideal) Celebrate the found color and unlock the next story line.
+2. (Unexpected) Validate the idea, then ask for a real photo if available.
+3. (No response) Offer a smaller hint.
+
+**Screen/state:** Moon gate card stays locked until the challenge is complete.
+"""
+        rendered_map = self.report.runtime_beat_map(self.report.runtime_beats(prod_text))
+        self.assertIn('class="branch-followup-table"', rendered_map)
+        self.assertIn("<th>Branch</th>", rendered_map)
+        self.assertIn("<th>Child behavior</th>", rendered_map)
+        self.assertIn("<th>AI follow-up</th>", rendered_map)
+
+    def test_generic_branch_policy_detection_flags_boilerplate(self):
+        prod_text = """
+#### Step 3: Start The Source Action
+
+**Runtime AI instruction:** Preserve the workbook promise: the child tells a story gate challenge.
+
+**Example AI line:** [story tone] "The gate opens after a blue-object challenge."
+
+**Child responses:**
+
+1. (Ideal) The child gives the first source-aligned action.
+2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
+3. (No response) Child stays quiet, waits, or looks at the screen.
+
+**AI follow-up policy:**
+
+1. (Ideal) [specific] Confirm the action and name how it matches the source rule.
+2. (Unexpected) [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
+3. (No response) [wait 2s] [gentle] Model a tiny answer and invite one small try.
+
+**Screen/state:** Shows the active round token.
+"""
+        findings = self.report.generic_branch_policy_findings(self.report.runtime_beats(prod_text))
+        self.assertEqual(1, len(findings))
+        self.assertIn("Step 3", findings[0])
+        self.assertIn("Unexpected", findings[0])
+        self.assertIn("No response", findings[0])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 0449e6eb5d4dc69b30a2b1fc8fd6b57950f1d6833aa038ca837edc569618c7c3
+prompt_sha256: b700e0bb2a08d67072b6e8529929b51661d61b0484286e64f30ee9fa016ffc0b
 prompt_path: visual_storyboards/concept_toy_tidy_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_toy_tidy_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_toy_tidy_probe
@@ -25,19 +25,19 @@ panel_captions:
   title: Child Action
   caption: 'The repeated mechanic is sort: Round 1 -- Agree To Tidy | Ask the child
     to accept a short tidy sprint. | Ideal: The child agrees or asks for a smaller
-    task. | Unexpected: Child gives an unrelated answer, unsaf...'
+    task. | Unexpected: Child veers away from "Agree To Tidy"...'
   source: Round 1 -- Agree To Tidy
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Start the mission and give one organizing tip. | Unexpected:
-    [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-    | No response: [wait 2s] [ge...'
+    [redirect] Validate briefly, keep the Toy Tidy Challenge frame, and offer one
+    safe choice that still completes...'
   source: Round 1 -- Agree To Tidy
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Sort One Group | Give a tip while the child physically tidies.
-    | Ideal: The child names or moves a group. | Unexpected: Child gives an unrelated
-    answer, unsafe action, or ask......'
+    | Ideal: The child names or moves a group. | Unexpected: Child veers away from
+    "Sort One Group" in Toy Tidy Cha......'
   source: Round 2 -- Sort One Group
 - number: '6'
   title: Completion

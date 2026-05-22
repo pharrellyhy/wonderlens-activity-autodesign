@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 619ed0265f2a568b525467d740ceb703f1e9a74d05fb0c7b4871a1add53c05b6
+prompt_sha256: 6b49c7466f5b26cc4c4453d5a8691dd729358fcc75f170eb1eece03767233c6d
 prompt_path: visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_constellation_star_count_enumerate/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_constellation_star_count_enumerate
@@ -31,8 +31,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Constellation Star Count
+    frame, and offer one safe choice t...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

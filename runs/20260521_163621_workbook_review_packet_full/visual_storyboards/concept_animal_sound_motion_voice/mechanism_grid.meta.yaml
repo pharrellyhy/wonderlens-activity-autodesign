@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 2adf23e4187fdea61943c6e452874ba20320274fa491bd313881311f22bd6882
+prompt_sha256: aa1f2886e0644813391f1568b8897b8984b3e59ccf0e2530610cd1e12a084fc4
 prompt_path: visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_animal_sound_motion_voice/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_animal_sound_motion_voice
@@ -31,8 +31,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Animal Sound Imitation
+    frame, and offer one safe choice tha...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

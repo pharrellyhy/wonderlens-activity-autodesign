@@ -2,12 +2,18 @@
 
 ## Current Status
 
-- Status: Draft PR #29 now has the patched checkpoint run plus the fresh full rerun `runs/20260521_163621_workbook_review_packet_full`; full-rerun validation is passing locally
-- Date: 2026-05-21
-- Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/workbook-review-packet`
+- Status: Branch `fix/review-runtime-branch-policy` patches reviewer runtime branch layout and specificity for the full workbook review packet; validations are passing locally.
+- Date: 2026-05-22
+- Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/fix/review-runtime-branch-policy`
 
 ## Latest Changes
 
+- Updated `scripts/generate_run_review.py` so runtime branch policies render as a horizontal `Branch / Child behavior / AI follow-up` table and validation fails exact copied unexpected/no-response branch boilerplate.
+- Updated `scripts/export_activity_html.py` so standalone reviewer packets use the same horizontal branch table.
+- Tightened `program.md`, `run.md`, `GOAL.md`, `review_dashboard.md`, and `skills/wonderlens-workbook-to-review-packet/references/generation-run.md` so future full-pass generation must produce beat-specific unexpected/no-response branch policies.
+- Patched all 40 `runs/20260521_163621_workbook_review_packet_full/activity_packages/*/prod.md` files to replace the exact generic unexpected/no-response branch boilerplate with activity/beat/mechanic-specific branch policies.
+- Regenerated 40 storyboard prompt/metadata files, 12 standalone activity HTML exports, and `runs/20260521_163621_workbook_review_packet_full/review.html` from the patched package content.
+- Validation: `python -m unittest tests.test_generate_run_review`, `python -m py_compile scripts/generate_run_review.py scripts/export_activity_html.py scripts/generate_storyboard_prompts.py`, `python scripts/export_activity_html.py --validate runs/20260521_163621_workbook_review_packet_full`, and `python scripts/generate_run_review.py --validate runs/20260521_163621_workbook_review_packet_full` all passed.
 - Added fresh full workbook rerun `runs/20260521_163621_workbook_review_packet_full` for all 40 Sheet1 rows. This run has no `seed_run` provenance; packages, metadata, source-intent audit, source comparison, bindings, exports, and review dashboard were regenerated from the normalized workbook source snapshot.
 - The full rerun contains 40 five-file run-local packages, 40 source-intent audit entries, 40 mechanism storyboard prompts with reviewer PNGs present, 12 prebuilt asset contact sheets, 12 integrated asset bindings, 12 standalone HTML reviewer packets, and `review.html`.
 - Corrected `inputs/source_activity_concepts.md` for `source_color_in_famous_art` after checking the workbook row directly: the source intent starts from the child's photographed/chosen real-world color, then shows several approved artworks where that color is dominant or important.

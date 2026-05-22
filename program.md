@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.26 | **Date**: 2026-05-21
+> **Version**: 1.27 | **Date**: 2026-05-22
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.27 — 2026-05-22**: Tighten branch policy specificity. Unexpected and no-response branches must be beat-specific to the current source action, role, challenge, asset/fallback, and screen state; shared safety principles are allowed, but copied boilerplate branch text fails review.
 > **v1.26 — 2026-05-21**: Add source-promise alignment as a generation and review gate. Phase 0 must capture the original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, and product dependencies. The original source design controls over a lossy normalized paraphrase when they conflict. Future runtime beats may use `Runtime AI instruction` plus `Example AI line` as a constrained behavior contract, while existing `AI says` exact-dialogue beats remain valid.
 > **v1.25 — 2026-05-13**: Require `review.html` detail dialogs to show runtime beats as a visual storyboard/timeline map before the extracted source rows. The map must make AI prompt, child response branches, follow-up behavior, and screen state scannable without hiding the full runtime text.
 > **v1.24 — 2026-05-12**: Clarify review dashboard image accounting. `review.html` must distinguish unique asset dependencies from runtime display beats and known image-item counts; one `asset_id` or card set can appear in several steps, and set item counts stay TBD unless source data declares them. The dashboard must also show the generation/validation workflow used to create the derived HTML.
@@ -615,14 +616,14 @@ The five files are:
 **Child responses:**
 
 1. (Ideal) "[specific response]"
-2. (Unexpected) "[specific alternative response]"
-3. (No response) [description of behavior]
+2. (Unexpected) "[specific off-track response likely in this exact beat]"
+3. (No response) [specific silence/hesitation behavior tied to this beat's screen, role, or action]
 
 **AI follow-up:**
 
 1. [tone marker] "[exact response to ideal]"
-2. [tone marker] "[exact response to unexpected — always validate, then redirect]"
-3. [wait 2s] [tone marker] "[exact response to silence — gentle prompt]"
+2. [tone marker] "[exact response to unexpected - validate, then return to this beat's source action]"
+3. [wait 2s] [tone marker] "[exact response to silence - model one tiny in-frame action]"
 
 **Screen:** [specific description of what the screen shows]
 
@@ -671,6 +672,7 @@ Existing `AI says` exact-dialogue steps remain valid. Do not use a single fixed 
 - **Every runtime round must be fully expanded** in `prod.md`. Never write "same structure," "AI gives a riddle," "later rounds follow," or any one-line summary for a runtime round.
 - **All runtime steps must be executable.** Do not reserve full detail only for Step 3; Steps 1, 2, 4, and 5 also need concrete dialogue branches, follow-ups, and screen states unless a branch is genuinely inapplicable.
 - **Runtime behavior contracts** must pair `Runtime AI instruction` with `Example AI line`, and must preserve source-promise alignment. A behavior instruction is not acceptable if it omits the story setup, profession role-play, physical challenge, photo collection, UI state, or other source element that makes the activity what it is.
+- **Branch policies must be beat-specific.** Do not reuse boilerplate such as "Child gives an unrelated answer, unsafe action, or asks to change the task", "Validate the idea, restate the safe rule", or "Model a tiny answer" across activities. Unexpected and no-response branches must name what the child is likely to do in this activity and how the AI preserves the current mechanic, source frame, asset/fallback, and screen state.
 - **Specificity beats brevity.** Distinguish rounds, screen states, and follow-ups with concrete clues, actions, labels, consequences, or child evidence. A compact migrated package still needs enough detail to match the older quality floor.
 - **Round counts** may be specified as ranges in the authoring rationale, but the runtime flow must include the concrete number of rounds the activity actually plays.
 - **Step count** varies by category: In-Device Verbal typically has 5 steps; Out-of-Device Collection may have 5–6 steps
@@ -744,6 +746,7 @@ For the target tier, check:
 - Are AI responses or runtime behavior constraints warm, playful, and child-appropriate? → Must be YES
 - Is there zero use of abstract instructions like "AI encourages" or "AI provides feedback"? → Must be YES
 - Do follow-ups react to the child's specific branch with evidence, consequence, or a targeted scaffold rather than generic praise? → Must be YES
+- Are unexpected/no-response child branches and AI follow-up policies specific to this beat, not copied boilerplate across the package or run? → Must be YES
 
 ### Dimension 7: Screen & UI Completeness (PASS/FAIL)
 

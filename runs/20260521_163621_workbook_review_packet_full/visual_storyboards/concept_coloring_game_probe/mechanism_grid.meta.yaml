@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 6ff7afbc0c4cf62d05a3ffc4b1d8959fe9fb6eb1d7bcb2f6638f872b166e5d54
+prompt_sha256: 4e27e9b44d1b3210a6cba5efec0d2b3e88fbfa8e5e4cea9a35226af83ed1c1ba
 prompt_path: visual_storyboards/concept_coloring_game_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_coloring_game_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_coloring_game_probe
@@ -25,19 +25,19 @@ panel_captions:
   title: Child Action
   caption: 'The repeated mechanic is build: Round 1 -- Choose A Region | Show a line-art
     region before asking for a real-world color source. | Ideal: The child provides
-    a color source. | Unexpected: Child gives an unrelat...'
+    a color source. | Unexpected: Child veers away from...'
   source: Round 1 -- Choose A Region
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Record the intended color and region. | Unexpected:
-    [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-    | No response: [wait 2s] [gentle] Mod...'
+    [redirect] Validate briefly, keep the Coloring Game frame, and offer one safe
+    choice that still completes "Choose A Reg...'
   source: Round 1 -- Choose A Region
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Apply Or Describe The Color | Fill the region only if coloring
     UI exists; otherwise describe the intended fill. | Ideal: The child confirms or
-    adjusts. | Unexpected: Child gives...'
+    adjusts. | Unexpected: Child veers...'
   source: Round 2 -- Apply Or Describe The Color
 - number: '6'
   title: Completion

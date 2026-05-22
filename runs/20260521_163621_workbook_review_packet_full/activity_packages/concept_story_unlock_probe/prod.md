@@ -46,14 +46,14 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 **Child responses:**
 
 1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Transition Bridge" in Story Challenge Unlock, skips the story challenge action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny story challenge model.
 
 **AI follow-up:**
 
 1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Story Challenge Unlock frame, and offer one safe choice that still completes "Transition Bridge".
+3. [wait 2s] [gentle] Model one tiny story challenge step for "Transition Bridge", then invite the child to copy or choose.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -68,14 +68,14 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 **Child responses:**
 
 1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Role And Rules" in Story Challenge Unlock, skips the story challenge action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny story challenge model.
 
 **AI follow-up:**
 
 1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Story Challenge Unlock frame, and offer one safe choice that still completes "Role And Rules".
+3. [wait 2s] [gentle] Model one tiny story challenge step for "Role And Rules", then invite the child to copy or choose.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `story_unlock_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
 
@@ -90,14 +90,14 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 **Child responses:**
 
 1. (Ideal) The child names or shows a color.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Unlock The Moon Door" in Story Challenge Unlock, skips the story challenge action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Unlock The Moon Door", watches the current screen, or needs a first tiny story challenge model.
 
 **AI follow-up:**
 
 1. [specific] Narrate the door opening and continue the story.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Story Challenge Unlock frame, and offer one safe choice that still completes "Unlock The Moon Door".
+3. [wait 2s] [gentle] Model one tiny story challenge step for "Unlock The Moon Door", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `story_unlock_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -112,14 +112,14 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 **Child responses:**
 
 1. (Ideal) The child makes the sound or says hello owl.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Wake The Owl Bridge" in Story Challenge Unlock, skips the story challenge action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Wake The Owl Bridge", watches the current screen, or needs a first tiny story challenge model.
 
 **AI follow-up:**
 
 1. [specific] Narrate the bridge waking and continuing.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Story Challenge Unlock frame, and offer one safe choice that still completes "Wake The Owl Bridge".
+3. [wait 2s] [gentle] Model one tiny story challenge step for "Wake The Owl Bridge", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `story_unlock_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -134,14 +134,14 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 **Child responses:**
 
 1. (Ideal) The child repeats the word.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Echo The Star Word" in Story Challenge Unlock, skips the story challenge action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Echo The Star Word", watches the current screen, or needs a first tiny story challenge model.
 
 **AI follow-up:**
 
 1. [specific] Unlock the meadow and recap the story path.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Story Challenge Unlock frame, and offer one safe choice that still completes "Echo The Star Word".
+3. [wait 2s] [gentle] Model one tiny story challenge step for "Echo The Star Word", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `story_unlock_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -156,14 +156,14 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 **Child responses:**
 
 1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Magic Moment" in Story Challenge Unlock, skips the story challenge action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny story challenge model.
 
 **AI follow-up:**
 
 1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Story Challenge Unlock frame, and offer one safe choice that still completes "Magic Moment".
+3. [wait 2s] [gentle] Model one tiny story challenge step for "Magic Moment", then invite the child to copy or choose.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -176,13 +176,13 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 **Child responses:**
 
 1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Closing + IB Concepts" in Story Challenge Unlock, skips the story challenge action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny story challenge model.
 
 **AI follow-up:**
 
 1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Story Challenge Unlock frame, and offer one safe choice that still completes "Closing + IB Concepts".
+3. [wait 2s] [gentle] Model one tiny story challenge step for "Closing + IB Concepts", then invite the child to copy or choose.
 
 **Screen:** Recap badge lists title, mechanic `imagine`, focal attribute `story_challenge_unlock`, and next-step hint.

@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 2faf4adbd09a8cf76e61359eb2d51d049e93f7113f7a4ca353109316cfe8bc1c
+prompt_sha256: 0b0da4970572bfcb22c428c0d28bbddfd8523089ab49139fedaea69105c06650
 prompt_path: visual_storyboards/concept_message_bottle_note_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_message_bottle_note_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_message_bottle_note_probe
@@ -30,8 +30,8 @@ panel_captions:
 - number: '4'
   title: Feedback Loop
   caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+    rule. | Unexpected: [redirect] Validate briefly, keep the Message Bottle Note
+    frame, and offer one safe choice that s...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation

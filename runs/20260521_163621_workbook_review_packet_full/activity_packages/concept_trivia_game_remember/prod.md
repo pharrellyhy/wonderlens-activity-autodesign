@@ -46,14 +46,14 @@ Child has just explored a topic and can answer short fact or memory questions.
 **Child responses:**
 
 1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Transition Bridge" in Trivia Game, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny echo or recall model.
 
 **AI follow-up:**
 
 1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Trivia Game frame, and offer one safe choice that still completes "Transition Bridge".
+3. [wait 2s] [gentle] Model one tiny echo or recall step for "Transition Bridge", then invite the child to copy or choose.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -68,14 +68,14 @@ Child has just explored a topic and can answer short fact or memory questions.
 **Child responses:**
 
 1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Role And Rules" in Trivia Game, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny echo or recall model.
 
 **AI follow-up:**
 
 1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Trivia Game frame, and offer one safe choice that still completes "Role And Rules".
+3. [wait 2s] [gentle] Model one tiny echo or recall step for "Role And Rules", then invite the child to copy or choose.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `trivia_reward_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.
 
@@ -90,14 +90,14 @@ Child has just explored a topic and can answer short fact or memory questions.
 **Child responses:**
 
 1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Start The Source Action" in Trivia Game, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Start The Source Action", watches the current screen, or needs a first tiny echo or recall model.
 
 **AI follow-up:**
 
 1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Trivia Game frame, and offer one safe choice that still completes "Start The Source Action".
+3. [wait 2s] [gentle] Model one tiny echo or recall step for "Start The Source Action", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `trivia_reward_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -112,14 +112,14 @@ Child has just explored a topic and can answer short fact or memory questions.
 **Child responses:**
 
 1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Repeat With A Variation" in Trivia Game, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Repeat With A Variation", watches the current screen, or needs a first tiny echo or recall model.
 
 **AI follow-up:**
 
 1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Trivia Game frame, and offer one safe choice that still completes "Repeat With A Variation".
+3. [wait 2s] [gentle] Model one tiny echo or recall step for "Repeat With A Variation", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `trivia_reward_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -134,14 +134,14 @@ Child has just explored a topic and can answer short fact or memory questions.
 **Child responses:**
 
 1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Complete The Loop" in Trivia Game, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Complete The Loop", watches the current screen, or needs a first tiny echo or recall model.
 
 **AI follow-up:**
 
 1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Trivia Game frame, and offer one safe choice that still completes "Complete The Loop".
+3. [wait 2s] [gentle] Model one tiny echo or recall step for "Complete The Loop", then invite the child to copy or choose.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `trivia_reward_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -156,14 +156,14 @@ Child has just explored a topic and can answer short fact or memory questions.
 **Child responses:**
 
 1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Magic Moment" in Trivia Game, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny echo or recall model.
 
 **AI follow-up:**
 
 1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Trivia Game frame, and offer one safe choice that still completes "Magic Moment".
+3. [wait 2s] [gentle] Model one tiny echo or recall step for "Magic Moment", then invite the child to copy or choose.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -176,13 +176,13 @@ Child has just explored a topic and can answer short fact or memory questions.
 **Child responses:**
 
 1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+2. (Unexpected) Child veers away from "Closing + IB Concepts" in Trivia Game, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny echo or recall model.
 
 **AI follow-up:**
 
 1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+2. [redirect] Validate briefly, keep the Trivia Game frame, and offer one safe choice that still completes "Closing + IB Concepts".
+3. [wait 2s] [gentle] Model one tiny echo or recall step for "Closing + IB Concepts", then invite the child to copy or choose.
 
 **Screen:** Recap badge lists title, mechanic `remember`, focal attribute `trivia_game`, and next-step hint.
