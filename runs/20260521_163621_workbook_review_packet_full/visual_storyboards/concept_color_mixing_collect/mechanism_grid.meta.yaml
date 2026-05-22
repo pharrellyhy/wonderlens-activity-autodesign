@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 7d1241d07619917d033e0f2ea74b10e75ad8e67c9fc7dc41853a5c30db5bc732
+prompt_sha256: 233ed189c032155c6d7a0cfdf831c9e28a41338ce18efc87567c3ac0085ea1b4
 prompt_path: visual_storyboards/concept_color_mixing_collect/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_color_mixing_collect/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_color_mixing_collect
@@ -18,30 +18,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the matching-item
+    hunt loop for Color Mixing Board o...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is collect: Round 1 -- Start The Source Action |
     Preserve the workbook promise: The child chooses or finds two colors, predicts
-    what they make together, and c... | Ideal: The child gives...'
+    what they make together, and c... | Ideal: The child finds...'
   source: Round 1 -- Start The Source Action
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+  caption: 'Ideal: Name the matching evidence for the first color pair, add the token
+    to the collection, and preview what changes next. | Unexpected: Keep the hunt
+    rule visible, contrast one non-match...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
-    for a second collect turn with a small variation. | Ideal: The child repeats the
-    same mechanic with a variation. | Un...'
+    for a second collect turn with a small variation. | Ideal: The child finds or
+    names something that fits the mixed-col...'
   source: Round 2 -- Repeat With A Variation
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Color Mixing Board
+    moment, asks to play again, or watche...'
   source: 'Step 5: Closing + IB Concepts'

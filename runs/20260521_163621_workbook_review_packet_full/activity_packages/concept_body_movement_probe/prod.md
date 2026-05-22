@@ -45,15 +45,15 @@ Parent starts a short movement prompt and the child has enough space.
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child accepts the simple body movement guide player role, notices the starter cue, or names something connected to the first safe movement.
+2. (Unexpected) Child asks for another game, starts the safe sound or movement before the Simple Body Movement Guide mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Simple Body Movement Guide title/trigger card without taking the simple body movement guide player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Name the simple body movement guide player role, connect it to the starter cue, and preview the first safe sound or movement.
+2. Acknowledge the request, return to the Simple Body Movement Guide promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Simple Body Movement Guide role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -67,15 +67,15 @@ Parent starts a short movement prompt and the child has enough space.
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child agrees to the safe sound or movement loop for Simple Body Movement Guide or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first safe movement, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Simple Body Movement Guide rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Restate the Simple Body Movement Guide loop as AI prompt, child safe sound or movement, saved token, and show the first response slot.
+2. Keep the rule tied to the first safe movement, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Simple Body Movement Guide rule in one sentence and ask for yes, a point, or the first chance to try a safe sound or movement.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `body_movement_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If movement cards or safety gating are unavailable, block at Phase 0.
 
@@ -83,21 +83,21 @@ Parent starts a short movement prompt and the child has enough space.
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The AI guides one simple body movement at a time with safety limits.. Ask the child to move or voice safely in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The AI guides one simple body movement at a time with safety limits. Ask the child to move or voice safely in the first small turn.
 
 **Example AI line:** "Let us start: The AI guides one simple body movement at a time with safety limits. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child tries the first safe movement with safe volume, space, or body control.
+2. (Unexpected) Child makes the first safe movement too rough/loud, switches to an unrelated performance, or proposes an unsafe movement.
+3. (No response) Child watches the first safe movement cue without moving, sounding, or choosing a smaller version.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Mirror the safe part of the first safe movement, save the performance token, and cue the next variation.
+2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the first safe movement.
+3. [wait 2s] Demonstrate the smallest safe version of the first safe movement, then ask the child to copy just that part.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `body_movement_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If movement cards or safety gating are unavailable, block at Phase 0.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -111,15 +111,15 @@ Parent starts a short movement prompt and the child has enough space.
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child tries the changed speed or size movement with safe volume, space, or body control.
+2. (Unexpected) Child makes the changed speed or size movement too rough/loud, switches to an unrelated performance, or proposes an unsafe movement.
+3. (No response) Child watches the changed speed or size movement cue without moving, sounding, or choosing a smaller version.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Mirror the safe part of the changed speed or size movement, save the performance token, and cue the next variation.
+2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the changed speed or size movement.
+3. [wait 2s] Demonstrate the smallest safe version of the changed speed or size movement, then ask the child to copy just that part.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `body_movement_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If movement cards or safety gating are unavailable, block at Phase 0.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -133,15 +133,15 @@ Parent starts a short movement prompt and the child has enough space.
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child tries the movement recap with safe volume, space, or body control.
+2. (Unexpected) Child makes the movement recap too rough/loud, switches to an unrelated performance, or proposes an unsafe movement.
+3. (No response) Child watches the movement recap cue without moving, sounding, or choosing a smaller version.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Mirror the safe part of the movement recap, save the performance token, and cue the next variation.
+2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the movement recap.
+3. [wait 2s] Demonstrate the smallest safe version of the movement recap, then ask the child to copy just that part.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `body_movement_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If movement cards or safety gating are unavailable, block at Phase 0.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -155,15 +155,15 @@ Parent starts a short movement prompt and the child has enough space.
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child notices how the movement recap changed the Simple Body Movement Guide board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Simple Body Movement Guide payoff or ignores how the saved safe sound or movement turns connect.
+3. (No response) Child watches the Simple Body Movement Guide reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Tie the reveal to the child's safe sound or movement turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Simple Body Movement Guide reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Simple Body Movement Guide board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -175,14 +175,14 @@ Parent starts a short movement prompt and the child has enough space.
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child names a favorite Simple Body Movement Guide moment, asks to play again, or watches the simple body movement recap badge.
+2. (Unexpected) Child shifts topic before the recap names the safe sound or movement skill or Form and Perspective.
+3. (No response) Child stays on the Simple Body Movement Guide recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Offer a next-time variation using the same motion_voice mechanic and the simple body movement frame.
+2. Close Simple Body Movement Guide first, name the practiced safe sound or movement, and then offer one next-round seed.
+3. [wait 2s] Read the Simple Body Movement Guide badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `motion_voice`, focal attribute `simple_body_movement`, and next-step hint.

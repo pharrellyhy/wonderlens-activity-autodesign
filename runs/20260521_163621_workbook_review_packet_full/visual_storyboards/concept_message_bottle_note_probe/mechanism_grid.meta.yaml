@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 2faf4adbd09a8cf76e61359eb2d51d049e93f7113f7a4ca353109316cfe8bc1c
+prompt_sha256: 6f50ac8dd46d1f90c3aabde9eaf1ab3f53eb2226f1105d180580df9197929d93
 prompt_path: visual_storyboards/concept_message_bottle_note_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_message_bottle_note_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_message_bottle_note_probe
@@ -18,30 +18,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the kind response
+    loop for Message Bottle Note or as...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is care: Round 1 -- Start The Source Action | Preserve
     the workbook promise: The child creates a short kindness note or message for someone
-    else.. Ask the... | Ideal: The child gives the...'
+    else. Ask the c... | Ideal: The child notices t...'
   source: Round 1 -- Start The Source Action
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+  caption: 'Ideal: Connect the cue to the caring choice, save the kindness token,
+    and show the calmer or helped state. | Unexpected: Reframe without judging, point
+    to the cue for the message recipient,...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
-    for a second care turn with a small variation. | Ideal: The child repeats the
-    same mechanic with a variation. | Unexp...'
+    for a second care turn with a small variation. | Ideal: The child notices the
+    kind note sentence cue and suggests a f...'
   source: Round 2 -- Repeat With A Variation
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Message Bottle Note
+    moment, asks to play again, or watch...'
   source: 'Step 5: Closing + IB Concepts'

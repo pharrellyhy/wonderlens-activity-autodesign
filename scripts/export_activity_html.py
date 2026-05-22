@@ -161,19 +161,44 @@ figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
   font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
-.branch-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+.branch-table-wrap {
+  overflow-x: auto;
   margin-top: 10px;
 }
-.branch {
-  border-left: 3px solid var(--accent);
-  background: #faf9f5;
-  padding: 9px 10px;
-  border-radius: 6px;
+.branch-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  font-size: 13px;
 }
-.branch b { display: block; font-size: 12px; margin-bottom: 4px; }
+.branch-table th,
+.branch-table td {
+  border-top: 1px solid var(--line);
+  padding: 9px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+.branch-table th {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.branch-table th:first-child,
+.branch-table td:first-child { width: 124px; }
+.branch-label {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 2px 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -250,7 +275,7 @@ a { color: var(--accent); }
 .storyboard-caption-list p { margin: 0; }
 .storyboard-source { display: block; color: var(--muted); font-size: 12px; margin-top: 5px; }
 @media (max-width: 820px) {
-  .layout, .branch-grid, .meta-grid, .storyboard-block { grid-template-columns: 1fr; }
+  .layout, .meta-grid, .storyboard-block { grid-template-columns: 1fr; }
   .page { width: min(100vw - 20px, 1180px); }
 }
 """
@@ -374,21 +399,26 @@ def branch_html(beat: dict[str, Any]) -> str:
     branches = beat.get("branches") if isinstance(beat.get("branches"), list) else []
     if not branches:
         return (
-            '<div class="branch-grid"><div class="branch">'
-            f'<b>Child</b>{html_escape(beat.get("child") or "Unknown")}'
-            f'<br><b>AI follow-up</b>{html_escape(beat.get("followup") or "Unknown")}'
-            "</div></div>"
+            '<div class="branch-table-wrap"><table class="branch-table">'
+            "<thead><tr><th>Branch</th><th>Child behavior</th><th>AI follow-up</th></tr></thead>"
+            '<tbody><tr><td><span class="branch-label">Observed</span></td>'
+            f'<td>{html_escape(beat.get("child") or "Unknown")}</td>'
+            f'<td>{html_escape(beat.get("followup") or "Unknown")}</td></tr></tbody></table></div>'
         )
-    cards = []
+    rows = []
     for branch in branches:
-        cards.append(
-            '<div class="branch">'
-            f'<b>{html_escape(branch.get("label") or branch.get("token") or "Branch")}</b>'
-            f'<p>{html_escape(branch.get("child") or "Unknown")}</p>'
-            f'<p>{html_escape(branch.get("followup") or "Unknown")}</p>'
-            "</div>"
+        rows.append(
+            "<tr>"
+            f'<td><span class="branch-label">{html_escape(branch.get("label") or branch.get("token") or "Branch")}</span></td>'
+            f'<td>{html_escape(branch.get("child") or "Unknown")}</td>'
+            f'<td>{html_escape(branch.get("followup") or "Unknown")}</td>'
+            "</tr>"
         )
-    return f'<div class="branch-grid">{"".join(cards)}</div>'
+    return (
+        '<div class="branch-table-wrap"><table class="branch-table">'
+        "<thead><tr><th>Branch</th><th>Child behavior</th><th>AI follow-up</th></tr></thead>"
+        f'<tbody>{"".join(rows)}</tbody></table></div>'
+    )
 
 
 def render_runtime_flow(package: dict[str, Any]) -> str:

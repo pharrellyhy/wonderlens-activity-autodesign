@@ -149,7 +149,7 @@ def write_fixture(repo_root):
     briefs = {
         "001.yaml": ("Phoneme Treasure Hunt", "source_phoneme_hunt", "collect", "cat5", "ready_to_generate", "match_pattern"),
         "002.yaml": ("Partial Reveal Guess", "source_partial_reveal_guess", "deduce", "cat1", "ready_to_generate", "activity_concept"),
-        "003.yaml": ("Guided Drawing", "source_guided_drawing", "build", "cat3", "resolved_from_blocked_until_product_decision", "capability_probe"),
+        "003.yaml": ("Guided Drawing", "source_guided_drawing", "build", "cat3", "resolved_from_blocked_minimum_unblock_allowed", "capability_probe"),
     }
     for filename, (name, slug, mechanic, category, readiness, assignment_type) in briefs.items():
         (run_dir / "adaptation_briefs" / filename).write_text(
@@ -254,6 +254,8 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertEqual(3, report["summary"]["covered_rows"])
         self.assertEqual(1, report["summary"]["mechanic_changed"])
         self.assertEqual(1, report["summary"]["capability_dependent"])
+        self.assertEqual(1, report["summary"]["minimum_unblock_assumed_approved"])
+        self.assertEqual(1, report["summary"]["needs_review_after_minimum_approval"])
         self.assertEqual(0, report["summary"]["missing_generated"])
         self.assertGreaterEqual(len(report["visual_examples"]), 2)
         self.assertIn("Product Source Fidelity Review", html)
@@ -262,6 +264,32 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("data:image/png;base64,cG5n", html)
         self.assertIn("Mechanic changed", html)
         self.assertIn("Capability-dependent", html)
+        self.assertIn("Status Definitions", html)
+        self.assertIn("Needs review means rows where product should make an explicit approval decision", html)
+        self.assertIn("Capability-dependent means the generated packet depends on product support", html)
+        self.assertIn("Intent drift means the source-intent audit found a meaningful mismatch", html)
+        self.assertIn("Approval Checklist", html)
+        self.assertIn("Approve source-intent coverage", html)
+        self.assertIn("Approve category/mechanic changes", html)
+        self.assertIn("Approve capability assumptions and minimum contracts", html)
+        self.assertIn("Approve reviewer-packet readiness", html)
+        self.assertIn("Minimum Unblock Approval Assumption", html)
+        self.assertIn("product has approved every minimum-unblock contract", html)
+        self.assertIn("After minimum approval", html)
+        self.assertIn("Approval needed", html)
+        self.assertIn("<colgroup>", html)
+        self.assertIn("table-layout: fixed", html)
+        self.assertIn("class=\"matrix-summary matrix-summary-intent\"", html)
+        self.assertIn("class=\"matrix-summary matrix-summary-approval\"", html)
+        self.assertIn("class=\"comparison-block comparison-block-fidelity\"", html)
+        self.assertIn("class=\"comparison-block comparison-block-intent\"", html)
+        self.assertIn("Reviewer-facing difference", html)
+        self.assertIn("delta-highlight", html)
+        self.assertIn("-webkit-line-clamp: 5", html)
+        self.assertIn("View full text", html)
+        self.assertIn("table-scroll-cue", html)
+        self.assertIn("Scroll right for Intent alignment, Approval needed, and Reviewer packet.", html)
+        self.assertNotIn("th { position: sticky", html)
         self.assertNotIn(str(workbook.parent), html)
 
     def test_validate_report_rejects_missing_coverage_and_visuals(self):
@@ -338,8 +366,8 @@ class SourceComparisonReviewTest(unittest.TestCase):
                         "source_row": 3,
                         "activity_id": "concept_guided_drawing_probe",
                         "original_play_frame": "paper drawing",
-                        "generated_play_frame": "paper drawing with capability assumptions",
-                        "drift": "Material support depends on product setup.",
+                        "generated_play_frame": "paper drawing with a reviewed minimum fallback",
+                        "drift": "Minimum version uses reduced-scope fallback where unsupported product capability is not available.",
                         "status": "minor_adaptation",
                         "severity": "low",
                         "recommendation": "Keep as reviewed adaptation.",
@@ -354,9 +382,35 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertTrue(report["intent_audit_provided"])
         self.assertEqual(1, report["summary"]["intent_drift"])
         self.assertEqual("intent_drift", report["rows"][1]["intent_status"])
+        self.assertEqual("aligned", report["rows"][2]["intent_display_status"])
         self.assertIn("Intent alignment", html)
         self.assertIn("data-filter=\"intent-drift\"", html)
         self.assertIn("Revise the generated loop to restore the reveal sequence.", html)
+        self.assertIn("Original category/mechanic: cat1 / enumerate.", html)
+        self.assertIn("Generated category/mechanic: cat1 / deduce.", html)
+        self.assertIn("Original play frame: part reveal guessing.", html)
+        self.assertIn("Generated play frame: deduction from a different clue style.", html)
+        self.assertIn("Difference: Reveal sequence changed.", html)
+        self.assertIn("Approve: category/mechanic cat1 / enumerate to cat1 / deduce; play frame part reveal guessing to deduction from a different clue style.", html)
+        self.assertIn("Runtime dependency to approve: requires_materials.", html)
+        self.assertIn('<span class="compare-label">Intent</span>', html)
+        self.assertIn('<p class="compare-value">sound hunt first.</p>', html)
+        self.assertIn('<span class="compare-label">Fidelity</span>', html)
+        self.assertIn('<p class="compare-value">cat5 / collect</p>', html)
+        self.assertIn("No source-intent difference recorded.", html)
+        self.assertIn("Approved minimum-unblock note: fallback is tracked as capability/approval information, not as a source-intent difference.", html)
+        self.assertIn('intent-badge intent-aligned severity-low">Aligned</span>', html)
+        self.assertIn('data-intent-status="aligned"', html)
+        self.assertIn("<span>Audit notes</span>", html)
+        self.assertNotIn("Minimum-unblock fallback</mark>: this packet intentionally uses a reduced-scope version", html)
+        self.assertNotIn("No source-intent approval needed</mark>: approved minimum-unblock is the only recorded adaptation.", html)
+        self.assertNotIn("Capability note</mark>: approved minimum-unblock fallback", html)
+        self.assertNotIn("No category/mechanic change</mark> recorded.", html)
+        self.assertNotIn("Play-frame wording differs", html)
+        self.assertNotIn("<span>Intent drift notes</span>", html)
+        self.assertIn("Minimum-unblock approval is assumed for requires_materials.", html)
+        self.assertIn("No remaining category/mechanic or source-intent delta is flagged", html)
+        self.assertNotIn("category/mechanic cat3 / build to cat3 / build", html)
         self.assertIn("intent_drift", html)
 
     def test_validate_html_rejects_stale_intent_audit_content(self):

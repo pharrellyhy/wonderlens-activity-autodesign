@@ -45,15 +45,15 @@ Older child and parent select an age-appropriate news, school, community, or nat
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child accepts the current topic interview player role, notices the starter cue, or names something connected to the first opinion.
+2. (Unexpected) Child asks for another game, starts the clue guess before the Current Topic Interview mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Current Topic Interview title/trigger card without taking the current topic interview player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Name the current topic interview player role, connect it to the starter cue, and preview the first clue guess.
+2. Acknowledge the request, return to the Current Topic Interview promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Current Topic Interview role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 
@@ -65,15 +65,15 @@ Older child and parent select an age-appropriate news, school, community, or nat
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child agrees to the clue guess loop for Current Topic Interview or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first opinion, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Current Topic Interview rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Restate the Current Topic Interview loop as AI prompt, child clue guess, saved token, and show the first response slot.
+2. Keep the rule tied to the first opinion, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Current Topic Interview rule in one sentence and ask for yes, a point, or the first chance to make a clue-based guess.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -81,21 +81,21 @@ Older child and parent select an age-appropriate news, school, community, or nat
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The child discusses an age-appropriate topic by giving an opinion and a reason.. Ask the child to use clues to infer in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The child discusses an age-appropriate topic by giving an opinion and a reason. Ask the child to use clues to infer in the first small turn.
 
 **Example AI line:** "Let us start: The child discusses an age-appropriate topic by giving an opinion and a reason. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child uses the first opinion to make or revise a plausible guess.
+2. (Unexpected) Child guesses without using the first opinion, asks for the answer, or follows a detail that is not evidence yet.
+3. (No response) Child studies the first opinion clue area without offering a maybe-guess.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Tie the guess to the visible clue, reveal whether that clue fits, and set up the next evidence step.
+2. Name the clue in the first opinion, separate it from one distracting detail, and ask for one maybe-guess.
+3. [wait 2s] Point to one visible clue for the first opinion, model a "maybe it is" guess, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -107,15 +107,15 @@ Older child and parent select an age-appropriate news, school, community, or nat
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child uses the reason for the opinion to make or revise a plausible guess.
+2. (Unexpected) Child guesses without using the reason for the opinion, asks for the answer, or follows a detail that is not evidence yet.
+3. (No response) Child studies the reason for the opinion clue area without offering a maybe-guess.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Tie the guess to the visible clue, reveal whether that clue fits, and set up the next evidence step.
+2. Name the clue in the reason for the opinion, separate it from one distracting detail, and ask for one maybe-guess.
+3. [wait 2s] Point to one visible clue for the reason for the opinion, model a "maybe it is" guess, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -127,15 +127,15 @@ Older child and parent select an age-appropriate news, school, community, or nat
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child uses the polite follow-up thought to make or revise a plausible guess.
+2. (Unexpected) Child guesses without using the polite follow-up thought, asks for the answer, or follows a detail that is not evidence yet.
+3. (No response) Child studies the polite follow-up thought clue area without offering a maybe-guess.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Tie the guess to the visible clue, reveal whether that clue fits, and set up the next evidence step.
+2. Name the clue in the polite follow-up thought, separate it from one distracting detail, and ask for one maybe-guess.
+3. [wait 2s] Point to one visible clue for the polite follow-up thought, model a "maybe it is" guess, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -147,15 +147,15 @@ Older child and parent select an age-appropriate news, school, community, or nat
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child notices how the polite follow-up thought changed the Current Topic Interview board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Current Topic Interview payoff or ignores how the saved clue guess turns connect.
+3. (No response) Child watches the Current Topic Interview reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Tie the reveal to the child's clue guess turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Current Topic Interview reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Current Topic Interview board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -167,14 +167,14 @@ Older child and parent select an age-appropriate news, school, community, or nat
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child names a favorite Current Topic Interview moment, asks to play again, or watches the current topic interview recap badge.
+2. (Unexpected) Child shifts topic before the recap names the clue guess skill or Form and Causation.
+3. (No response) Child stays on the Current Topic Interview recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Offer a next-time variation using the same deduce mechanic and the current topic interview frame.
+2. Close Current Topic Interview first, name the practiced clue guess, and then offer one next-round seed.
+3. [wait 2s] Read the Current Topic Interview badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `deduce`, focal attribute `current_topic_interview`, and next-step hint.

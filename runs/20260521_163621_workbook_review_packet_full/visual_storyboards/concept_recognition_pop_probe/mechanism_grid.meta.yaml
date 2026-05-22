@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: e9846b46378b5bb89ad2fc4fa114db7027d3a810dc7a205881cefc4bff704539
+prompt_sha256: 8482c570070396057fd6638299bc7d5c2da223ee85a36592221f0045d4647c8a
 prompt_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_recognition_pop_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_recognition_pop_probe
@@ -18,30 +18,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the comparison
+    choice loop for Recognition Pop Chall...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is compare: Round 1 -- Start The Source Action |
     Preserve the workbook promise: The child quickly chooses matching target pictures
-    from a changing set.. Ask t... | Ideal: The child gives...'
+    from a changing set. Ask th... | Ideal: The child compar...'
   source: Round 1 -- Start The Source Action
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+  caption: 'Ideal: Name the comparison evidence, save the selected option, and keep
+    the next comparison state clear. | Unexpected: Restate the two visible options
+    and the comparison lens for the first...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
-    for a second compare turn with a small variation. | Ideal: The child repeats the
-    same mechanic with a variation. | Un...'
+    for a second compare turn with a small variation. | Ideal: The child compares
+    the visible options for the new target...'
   source: Round 2 -- Repeat With A Variation
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Recognition Pop Challenge
+    moment, asks to play again, or...'
   source: 'Step 5: Closing + IB Concepts'

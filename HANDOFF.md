@@ -2,12 +2,30 @@
 
 ## Current Status
 
-- Status: Draft PR #29 now has the patched checkpoint run plus the fresh full rerun `runs/20260521_163621_workbook_review_packet_full`; full-rerun validation is passing locally
-- Date: 2026-05-21
-- Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/workbook-review-packet`
+- Status: Branch `fix/review-runtime-branch-policy` patches reviewer runtime branch layout/specificity and source-comparison matrix clarity for the full workbook review packet; exact boilerplate, keyword-substitution rows, repeated Step 3 branch rows, stale source-comparison definitions/approval guidance, overlap-prone matrix headers, and missing minimum-unblock approval assumptions now fail validation; validations are passing locally.
+- Date: 2026-05-22
+- Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/fix/review-runtime-branch-policy`
 
 ## Latest Changes
 
+- Updated `scripts/generate_source_comparison_review.py` so the product review matrix includes plain definitions for `Needs review`, `Capability-dependent`, and `Intent drift`, and removed sticky table headers that could overlap/cut off the first matrix rows under the sticky filter toolbar.
+- Added an `Approval Checklist` to the source-comparison matrix specifying that product review should approve source-intent coverage, category/mechanic realignments, capability assumptions/minimum contracts, and standalone reviewer-packet readiness.
+- Renamed the row-level `Product question` matrix column to `Approval needed` so each row presents the concrete product decision to make.
+- Replaced repetitive source-comparison matrix cell text with row-specific original-vs-generated summaries for fidelity status, intent alignment, and approval targets. Visible cells now show original category/mechanic, generated category/mechanic, original play frame, generated play frame, concrete drift/fallback notes, and only the actual approval deltas.
+- Compact source-comparison matrix layout now uses fixed column widths, horizontal table scrolling, clamped fidelity/intent/approval summaries, and closed `View full text` disclosure controls so long intent and approval text no longer expands rows excessively.
+- Added a visible `Scroll right for Intent alignment, Approval needed, and Reviewer packet` cue above the source-comparison matrix so reviewers know the table has additional right-side columns.
+- Added a `Minimum Unblock Approval Assumption` statement and `After minimum approval` metric/filter to the source-comparison matrix. The current full workbook audit has 34 raw review rows, but after assuming product has approved every minimum-unblock contract, only 7 rows still need review for category/mechanic changes, missing generated coverage, or explicit source-intent decisions.
+- Updated the source-comparison matrix fidelity and intent cells from single dense paragraphs to structured `Original / Generated / Reviewer-facing difference` blocks. Difference phrases are highlighted, and minimum-unblock fallback rows now explain in plain language that the reduced-scope fallback is accepted under the approval assumption rather than being a remaining intent mismatch.
+- Refined source-comparison intent display so approved minimum-unblock notes no longer render as intent differences. The renderer now keeps those fallbacks in fidelity/approval notes, while the intent column displays aligned when no non-minimum source-intent drift is recorded.
+- Simplified aligned source-comparison cells: aligned intent now shows one `Intent` value with no reviewer-facing difference block, and aligned fidelity now shows one `Fidelity` value with no duplicate original/generated rows.
+- Tightened source-comparison HTML validation so stale pages missing definitions/approval guidance or still using sticky table headers fail validation.
+- Regenerated `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html` from the workbook and current source-intent audit.
+- Updated `scripts/generate_run_review.py` so runtime branch policies render as a horizontal `Branch / Child behavior / AI follow-up` table and validation fails exact copied unexpected/no-response branch boilerplate, keyword-substitution rows, and repeated Step 3 branch policies within the same package.
+- Updated `scripts/export_activity_html.py` so standalone reviewer packets use the same horizontal branch table.
+- Tightened `program.md`, `run.md`, `GOAL.md`, `review_dashboard.md`, and `skills/wonderlens-workbook-to-review-packet/references/generation-run.md` so future full-pass generation must produce beat- and round-specific unexpected/no-response branch policies instead of boilerplate, keyword-substitution rows, or repeated Step 3 rows.
+- Patched all 40 `runs/20260521_163621_workbook_review_packet_full/activity_packages/*/prod.md` files to replace generic unexpected/no-response branch text with activity/beat/mechanic/round-specific branch policies across setup, rules, Step 3 rounds, magic moment, and closing.
+- Regenerated 40 storyboard prompt/metadata files, 12 standalone activity HTML exports, and `runs/20260521_163621_workbook_review_packet_full/review.html` from the patched package content.
+- Validation: `python -m unittest tests.test_generate_run_review`, `python -m py_compile scripts/generate_run_review.py scripts/export_activity_html.py scripts/generate_storyboard_prompts.py`, `python scripts/export_activity_html.py --validate runs/20260521_163621_workbook_review_packet_full`, `python scripts/generate_run_review.py --validate runs/20260521_163621_workbook_review_packet_full`, `git diff --check`, and a direct branch-policy finding scan (`branch_policy_findings=0`) all passed.
 - Added fresh full workbook rerun `runs/20260521_163621_workbook_review_packet_full` for all 40 Sheet1 rows. This run has no `seed_run` provenance; packages, metadata, source-intent audit, source comparison, bindings, exports, and review dashboard were regenerated from the normalized workbook source snapshot.
 - The full rerun contains 40 five-file run-local packages, 40 source-intent audit entries, 40 mechanism storyboard prompts with reviewer PNGs present, 12 prebuilt asset contact sheets, 12 integrated asset bindings, 12 standalone HTML reviewer packets, and `review.html`.
 - Corrected `inputs/source_activity_concepts.md` for `source_color_in_famous_art` after checking the workbook row directly: the source intent starts from the child's photographed/chosen real-world color, then shows several approved artworks where that color is dominant or important.
@@ -124,6 +142,18 @@
 
 ## Verification
 
+- `python -m unittest tests.test_source_comparison_review`
+  - Result: PASS; 6 source-comparison tests passed, including status-definition rendering, approval-checklist rendering, row-specific original/generated comparison text, approved minimum-unblock intent alignment, and non-sticky table-header regression coverage.
+- `python -m py_compile scripts/generate_source_comparison_review.py`
+  - Result: PASS.
+- `python scripts/generate_source_comparison_review.py runs/20260521_163621_workbook_review_packet_full --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_163621_workbook_review_packet_full/source_comparison/source_intent_audit.yaml --validate`
+  - Result: PASS; 40 source rows, 40 covered, 34 needing review, 7 after minimum approval, 0 intent drift.
+- Static matrix scan for `data-review-after-minimum="true"`
+  - Result: PASS; 7 post-minimum-approval review rows are marked in `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html`.
+- Static matrix scan for structured comparison blocks
+  - Result: PASS; the regenerated matrix has 40 fidelity comparison blocks, 40 intent comparison blocks, 33 single-value fidelity rows, 40 single-value intent rows, 7 remaining reviewer-facing difference blocks for actual post-minimum deltas, 0 stale minimum-as-intent-difference phrases, 0 raw `Minimum version uses reduced-scope fallback` notes in the HTML, 0 capability-note highlights, 0 minimum-only source-intent approval highlights, 0 no-category-change highlights, 0 play-frame-match highlights, 0 `Play-frame wording differs` warnings, 40 `Audit notes` detail labels, and 32 aligned low-severity badges.
+- Playwright static HTML geometry check for `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html`
+  - Result: PASS; matrix header is static, status definitions and approval checklist are present, `Approval needed` is the row-level decision column, the first row starts below the table header without overlap, fixed-width horizontal table scrolling is active, sampled matrix rows render around 186-207px tall with clamped long summaries, and the right-scroll cue is visible above the table.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260521_163621_workbook_review_packet_full`
   - Result: PASS; 12 assets, 12 activities.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260521_163621_workbook_review_packet_full`

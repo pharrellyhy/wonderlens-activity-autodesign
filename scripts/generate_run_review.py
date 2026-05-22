@@ -38,6 +38,13 @@ BRANCH_LABELS = [
     ("No response", "no-response"),
 ]
 
+GENERIC_BRANCH_POLICY_PATTERNS = {
+    "Unexpected child": "Child gives an unrelated answer, unsafe action, or asks to change the task.",
+    "No response child": "Child stays quiet, waits, or looks at the screen.",
+    "Unexpected AI follow-up": "[redirect] Validate the idea, restate the safe rule, and offer one easier choice.",
+    "No response AI follow-up": "[wait 2s] [gentle] Model a tiny answer and invite one small try.",
+}
+
 RUBRIC_CRITERIA = [
     {
         "number": "1",
@@ -411,6 +418,63 @@ def paired_branch_followups(child_text: str, followup_text: str) -> list[dict[st
             }
         )
     return rows
+
+
+def generic_branch_policy_findings(beats: list[dict[str, Any]]) -> list[str]:
+    findings: list[str] = []
+    seen_branch_policy: dict[tuple[str, str, str], list[str]] = {}
+    for beat in beats:
+        title = normalize_text(beat.get("title") or "Runtime beat")
+        labels: list[str] = []
+        templated_labels: list[str] = []
+        for branch in beat.get("branches", []):
+            token = branch_token(branch.get("token", "observed"))
+            child = normalize_text(branch.get("child"))
+            followup = normalize_text(branch.get("followup"))
+            child_lower = child.lower()
+            followup_lower = followup.lower()
+            if token in {"unexpected", "no-response"}:
+                if len(child) >= 48:
+                    seen_branch_policy.setdefault((token, "child", child), []).append(title)
+                if len(followup) >= 48:
+                    seen_branch_policy.setdefault((token, "AI follow-up", followup), []).append(title)
+            if followup_lower.startswith("[specific]") or "source rule" in followup_lower:
+                templated_labels.append(f"{branch_label_for_token(token)} AI follow-up")
+            if token == "unexpected":
+                if child == normalize_text(GENERIC_BRANCH_POLICY_PATTERNS["Unexpected child"]):
+                    labels.append("Unexpected child")
+                if followup == normalize_text(GENERIC_BRANCH_POLICY_PATTERNS["Unexpected AI follow-up"]):
+                    labels.append("Unexpected AI follow-up")
+                if "veers away from" in child_lower and "skips the" in child_lower and "unsafe/out-of-scope" in child_lower:
+                    templated_labels.append("Unexpected child")
+                if (
+                    "validate briefly, keep the" in followup_lower
+                    and "offer one safe choice that still completes" in followup_lower
+                ):
+                    templated_labels.append("Unexpected AI follow-up")
+            if token == "no-response":
+                if child == normalize_text(GENERIC_BRANCH_POLICY_PATTERNS["No response child"]):
+                    labels.append("No response child")
+                if followup == normalize_text(GENERIC_BRANCH_POLICY_PATTERNS["No response AI follow-up"]):
+                    labels.append("No response AI follow-up")
+                if "pauses at" in child_lower and "needs a first tiny" in child_lower and "model" in child_lower:
+                    templated_labels.append("No response child")
+                if "model one tiny" in followup_lower and "invite the child to copy or choose" in followup_lower:
+                    templated_labels.append("No response AI follow-up")
+        if labels:
+            findings.append(f"{title}: generic branch policy in {', '.join(labels)}")
+        elif templated_labels:
+            findings.append(f"{title}: keyword-substitution branch policy in {', '.join(templated_labels)}")
+    repeated_labels: list[str] = []
+    for (token, field, text), titles in seen_branch_policy.items():
+        distinct_titles = sorted(set(titles))
+        if len(distinct_titles) < 2:
+            continue
+        label = f"{branch_label_for_token(token)} {field}"
+        repeated_labels.append(f"{label} across {len(distinct_titles)} beats")
+    if repeated_labels:
+        findings.append(f"Runtime beat set: repeated branch policy in {', '.join(sorted(repeated_labels))}")
+    return findings
 
 
 def beat_from_chunk(title: str, chunk: str) -> dict[str, Any]:
@@ -1818,28 +1882,36 @@ def runtime_branch_followups(beat: dict[str, Any]) -> str:
         child = normalize_text(beat.get("child"))
         followup = normalize_text(beat.get("followup"))
         return f"""
-<div class="branch-followup-grid">
-  <div class="branch-followup-card branch-followup-observed">
-    <span class="branch-chip branch-chip-observed">Observed</span>
-    <div><span>Child</span><p>{esc(child or "Unknown")}</p></div>
-    <div><span>AI follow-up</span><p>{esc(followup or "Unknown")}</p></div>
-  </div>
+<div class="branch-followup-table-wrap">
+  <table class="branch-followup-table">
+    <thead><tr><th>Branch</th><th>Child behavior</th><th>AI follow-up</th></tr></thead>
+    <tbody><tr class="branch-followup-observed">
+      <td><span class="branch-chip branch-chip-observed">Observed</span></td>
+      <td>{esc(child or "Unknown")}</td>
+      <td>{esc(followup or "Unknown")}</td>
+    </tr></tbody>
+  </table>
 </div>"""
-    cards = []
+    rows = []
     for branch in branches:
         token = branch_token(branch.get("token", "observed"))
         label = branch.get("label") or branch_label_for_token(token)
         child = branch.get("child") or "Unknown"
         followup = branch.get("followup") or "Unknown"
-        cards.append(
+        rows.append(
             f"""
-  <div class="branch-followup-card branch-followup-{esc(token)}">
-    <span class="branch-chip branch-chip-{esc(token)}">{esc(label)}</span>
-    <div><span>{esc(label)} child</span><p>{esc(child)}</p></div>
-    <div><span>AI follow-up</span><p>{esc(followup)}</p></div>
-  </div>"""
+    <tr class="branch-followup-{esc(token)}">
+      <td><span class="branch-chip branch-chip-{esc(token)}">{esc(label)}</span></td>
+      <td>{esc(child)}</td>
+      <td>{esc(followup)}</td>
+    </tr>"""
         )
-    return f'<div class="branch-followup-grid">{"".join(cards)}</div>'
+    return (
+        '<div class="branch-followup-table-wrap">'
+        '<table class="branch-followup-table">'
+        "<thead><tr><th>Branch</th><th>Child behavior</th><th>AI follow-up</th></tr></thead>"
+        f'<tbody>{"".join(rows)}</tbody></table></div>'
+    )
 
 
 def runtime_photo_timing(beat: dict[str, Any]) -> str:
@@ -3268,6 +3340,7 @@ ol, ul { margin: 0; padding-left: 20px; }
   letter-spacing: .11em;
   text-transform: uppercase;
 }
+.runtime-lane-followup { grid-column: 1 / -1; }
 .runtime-lane p,
 .screen-strip p {
   margin: 0;
@@ -3275,22 +3348,35 @@ ol, ul { margin: 0; padding-left: 20px; }
   font-size: 12.5px;
   line-height: 1.45;
 }
-.branch-followup-grid {
-  display: grid;
-  gap: 7px;
-}
-.branch-followup-card {
-  display: grid;
-  grid-template-columns: minmax(0, .95fr) minmax(0, 1.25fr);
-  gap: 8px;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  padding: 7px 8px;
+.branch-followup-table-wrap { overflow-x: auto; }
+.branch-followup-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
   color: var(--text-soft);
 }
+.branch-followup-table th,
+.branch-followup-table td {
+  padding: 7px 8px;
+  border-top: 1px solid color-mix(in oklch, var(--hairline) 72%, transparent);
+  text-align: left;
+  vertical-align: top;
+}
+.branch-followup-table th {
+  color: var(--muted);
+  font-size: 9.5px;
+  font-weight: 780;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.branch-followup-table th:first-child,
+.branch-followup-table td:first-child { width: 126px; }
+.branch-followup-table tbody tr:first-child td { border-top-color: var(--hairline); }
 .branch-chip {
-  grid-column: 1 / -1;
-  justify-self: start;
+  display: inline-flex;
+  align-items: center;
   border-radius: 999px;
   padding: 2px 7px;
   font-size: 9.5px;
@@ -3302,41 +3388,14 @@ ol, ul { margin: 0; padding-left: 20px; }
 .branch-chip-unexpected { background: var(--amber-bg); color: var(--amber-text); }
 .branch-chip-no-response { background: var(--purple-bg); color: var(--purple-text); }
 .branch-chip-observed { background: var(--accent-soft); color: var(--accent-ink); }
-.branch-followup-card span {
-  display: block;
-  margin-bottom: 3px;
-  color: inherit;
-  font-size: 9.5px;
-  font-weight: 780;
-  letter-spacing: .11em;
-  text-transform: uppercase;
-}
-.branch-followup-card p {
-  margin: 0;
-  color: var(--text-soft);
+.branch-followup-table td {
   font-size: 12px;
   line-height: 1.42;
 }
-.branch-followup-ideal {
-  border-color: color-mix(in oklch, var(--green-text) 16%, transparent);
-  background: color-mix(in oklch, var(--green-bg) 82%, var(--panel-raised));
-}
-.branch-followup-ideal span { color: var(--green-text); }
-.branch-followup-unexpected {
-  border-color: color-mix(in oklch, var(--amber-text) 18%, transparent);
-  background: color-mix(in oklch, var(--amber-bg) 82%, var(--panel-raised));
-}
-.branch-followup-unexpected span { color: var(--amber-text); }
-.branch-followup-no-response {
-  border-color: color-mix(in oklch, var(--purple-text) 15%, transparent);
-  background: color-mix(in oklch, var(--purple-bg) 78%, var(--panel-raised));
-}
-.branch-followup-no-response span { color: var(--purple-text); }
-.branch-followup-observed {
-  border-color: color-mix(in oklch, var(--accent-line) 35%, transparent);
-  background: color-mix(in oklch, var(--accent-soft) 78%, var(--panel-raised));
-}
-.branch-followup-observed span { color: var(--accent-ink); }
+.branch-followup-ideal td { background: color-mix(in oklch, var(--green-bg) 72%, var(--panel-raised)); }
+.branch-followup-unexpected td { background: color-mix(in oklch, var(--amber-bg) 72%, var(--panel-raised)); }
+.branch-followup-no-response td { background: color-mix(in oklch, var(--purple-bg) 68%, var(--panel-raised)); }
+.branch-followup-observed td { background: color-mix(in oklch, var(--accent-soft) 68%, var(--panel-raised)); }
 .screen-strip {
   display: grid;
   grid-template-columns: 74px minmax(0, 1fr);
@@ -3778,7 +3837,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   .metric:nth-child(2n) { border-right: none !important; }
   .metric:nth-last-child(-n+2) { border-bottom: none; }
   .side-nav, .sidebar-counts, .controls, .meta-grid, .meta-grid.compact, .inline-fields, .details-grid, .dialog-grid, .storyboard-block { grid-template-columns: 1fr; }
-  .runtime-map-node, .runtime-lanes, .branch-followup-card, .photo-timing-strip, .screen-strip { grid-template-columns: 1fr; }
+  .runtime-map-node, .runtime-lanes, .photo-timing-strip, .screen-strip { grid-template-columns: 1fr; }
   .runtime-step-marker {
     display: flex;
     justify-content: flex-start;
@@ -4250,13 +4309,13 @@ if (previewDialog) {
       <div class="preview-subline">
         <span class="badge badge-metadata" id="preview-kind">Text</span>
         <span class="preview-size muted" id="preview-size"></span>
-        <a class="preview-open" id="preview-open" href="#" target="_blank" rel="noopener">Open file in new tab ↗</a>
+        <a class="preview-open" id="preview-open" href="#" target="_blank" rel="noopener">Open file in new tab</a>
       </div>
     </div>
     <button class="dialog-close" id="preview-close" type="button">Close</button>
   </div>
   <div class="dialog-body preview-body" id="preview-body"></div>
-  <div class="preview-truncated muted hidden" id="preview-truncated">File is larger than the inline-preview limit. Use “Open file in new tab” to read the full contents.</div>
+  <div class="preview-truncated muted hidden" id="preview-truncated">File is larger than the inline-preview limit. Use "Open file in new tab" to read the full contents.</div>
 </dialog>
 {preview_templates_html()}
 <script>{js}</script>
@@ -4347,6 +4406,11 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         runtime_beats(read_text(repo_root / normalize_text(entry.get("activity_path")) / "prod.md"))
         for entry in package_entries
     ]
+    generic_policy_findings = [
+        finding
+        for beats in runtime_sets
+        for finding in generic_branch_policy_findings(beats)
+    ]
     expected_branch_followups = sum(
         len(beat.get("branches", []))
         for beats in runtime_sets
@@ -4391,7 +4455,7 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             text.count('class="runtime-map"') >= expected_packages
             and "runtime-map-node" in text
             and "runtime-lane-ai" in text
-            and "branch-followup-grid" in text
+            and "branch-followup-table" in text
             and "branch-followup-ideal" in text
             and "branch-followup-unexpected" in text
             and "branch-followup-no-response" in text
@@ -4399,15 +4463,17 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         ),
         "branch_followups_all_paths": expected_branch_followups == 0
         or (
-            text.count('class="branch-followup-card') >= expected_branch_followups
+            text.count('<tr class="branch-followup-') >= expected_branch_followups
+            and 'class="branch-followup-table"' in text
+            and "<th>Branch</th>" in text
+            and "<th>Child behavior</th>" in text
+            and "<th>AI follow-up</th>" in text
             and (
                 "Child branches and AI follow-ups" in text
                 or "Child branches and AI follow-up policy" in text
             )
-            and "Ideal child" in text
-            and "Unexpected child" in text
-            and "No response child" in text
         ),
+        "branch_policy_specificity": not generic_policy_findings,
         "photo_capture_timing": expected_photo_timing == 0
         or (
             text.count('class="photo-timing-strip"') >= expected_photo_timing

@@ -45,15 +45,15 @@ The child becomes the firefighter before the smoke-alarm scenario starts.
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child accepts the firefighter role-player role, notices the starter cue, or names something connected to the firefighter alarm decision.
+2. (Unexpected) Child asks for another game, starts the choice before the Career Decision Role Play mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Career Decision Role Play title/trigger card without taking the firefighter role-player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Name the firefighter role-player role, connect it to the starter cue, and preview the first choice.
+2. Acknowledge the request, return to the Career Decision Role Play promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Career Decision Role Play role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -66,15 +66,15 @@ The child becomes the firefighter before the smoke-alarm scenario starts.
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child agrees to the choice loop for Career Decision Role Play or asks for the easiest version.
+2. (Unexpected) Child tries to skip the firefighter alarm decision, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Career Decision Role Play rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Restate the Career Decision Role Play loop as AI prompt, child choice, saved token, and show the first response slot.
+2. Keep the rule tied to the firefighter alarm decision, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Career Decision Role Play rule in one sentence and ask for yes, a point, or the first chance to make a choice.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `career_portrait_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, describe the helper role by voice and avoid claiming the screen shows a person.
 
@@ -88,15 +88,15 @@ The child becomes the firefighter before the smoke-alarm scenario starts.
 
 **Child responses:**
 
-1. (Ideal) The child answers as the firefighter.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child answers as the firefighter and decides whether the team sends help for the alarm.
+2. (Unexpected) Child drops the firefighter role, names another job, or talks about alarms without making the dispatch decision.
+3. (No response) Child looks at the firefighter card and alarm scene without choosing what the team does.
 
 **AI follow-up:**
 
-1. [specific] Confirm the expert response and keep the profession-first frame.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Confirm the firefighter decision, name the safety reason, and keep the alarm scenario moving.
+2. Put the child back in the firefighter role, restate the smoke alarm problem, and offer send help now or check first as bounded choices.
+3. [wait 2s] Model "As the firefighter, I send help," then ask for send help or wait/check.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `career_portrait_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, describe the helper role by voice and avoid claiming the screen shows a person.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -109,15 +109,15 @@ The child becomes the firefighter before the smoke-alarm scenario starts.
 
 **Child responses:**
 
-1. (Ideal) The child chooses a tool.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child chooses the water hose over cooking oil for the fire scene.
+2. (Unexpected) Child picks an unsafe tool, leaves the firefighter role, or asks for a tool unrelated to the fire scene.
+3. (No response) Child looks between the water hose and cooking oil choices without picking a tool.
 
 **AI follow-up:**
 
-1. [specific] Explain why the safe tool fits the role.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Confirm the tool choice, say why it fits a firefighter, and place the tool token beside the scene.
+2. Keep the child in role, name the unsafe tool plainly, and return to the two visible choices.
+3. [wait 2s] Point to the hose, say "Firefighters use water for fire," and ask for hose or oil.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `career_portrait_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, describe the helper role by voice and avoid claiming the screen shows a person.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -130,15 +130,15 @@ The child becomes the firefighter before the smoke-alarm scenario starts.
 
 **Child responses:**
 
-1. (Ideal) The child chooses the safe first action.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child chooses the safer first action: check that people are outside.
+2. (Unexpected) Child chooses to run inside alone, ignores the safety check, or talks about being brave instead of making the first-action choice.
+3. (No response) Child stays on the safety-choice card without picking outside check or run inside.
 
 **AI follow-up:**
 
-1. [specific] Recap the expert decision path.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Affirm the safety-first action, show the people-safe token, and close the firefighter scenario.
+2. Validate wanting to help, then restate that firefighters work with teams and ask for the safe first action.
+3. [wait 2s] Model "I check people are safe first," then ask the child to choose the safe action.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `career_portrait_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, describe the helper role by voice and avoid claiming the screen shows a person.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -151,15 +151,15 @@ The child becomes the firefighter before the smoke-alarm scenario starts.
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child notices how the first safe firefighter action changed the Career Decision Role Play board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Career Decision Role Play payoff or ignores how the saved choice turns connect.
+3. (No response) Child watches the Career Decision Role Play reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Tie the reveal to the child's choice turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Career Decision Role Play reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Career Decision Role Play board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -171,14 +171,14 @@ The child becomes the firefighter before the smoke-alarm scenario starts.
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child names a favorite Career Decision Role Play moment, asks to play again, or watches the career decision recap badge.
+2. (Unexpected) Child shifts topic before the recap names the choice skill or Form and Responsibility.
+3. (No response) Child stays on the Career Decision Role Play recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Offer a next-time variation using the same decide mechanic and the career decision frame.
+2. Close Career Decision Role Play first, name the practiced choice, and then offer one next-round seed.
+3. [wait 2s] Read the Career Decision Role Play badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `decide`, focal attribute `career_decision`, and next-step hint.

@@ -58,6 +58,7 @@ STATUS_ORDER = {
 }
 INTENT_STATUSES = {"aligned", "minor_adaptation", "intent_drift", "needs_product_decision"}
 INTENT_SEVERITIES = {"none", "low", "medium", "high"}
+INTENT_REVIEW_STATUSES = {"intent_drift", "needs_product_decision"}
 
 
 def esc(value: Any) -> str:
@@ -323,9 +324,9 @@ def change_note(status: str, source_cat: str, source_mech: str, generated_cat: s
     if status == "Matches":
         return "Category and mechanic preserved."
     if status == "Mechanic changed":
-        return f"Mechanic changed from {source_mech} to {generated_mech}; source intent is preserved through the generated loop."
+        return f"Mechanic changed from {source_mech} to {generated_mech}."
     if status == "Category changed":
-        return f"Category changed from {source_cat} to {generated_cat}; review whether this runtime framing is acceptable."
+        return f"Category changed from {source_cat} to {generated_cat}."
     if status == "Category + mechanic changed":
         return f"Category {source_cat}->{generated_cat}; mechanic {source_mech}->{generated_mech}."
     if status == "Capability-dependent":
@@ -346,6 +347,48 @@ def intent_label(value: str) -> str:
         "not_audited": "Not audited",
     }
     return labels.get(intent_key(value), norm(value) or "Not audited")
+
+
+def minimum_unblock_assumed_approved(row: dict[str, Any]) -> bool:
+    readiness = norm(row.get("readiness")).lower().replace("-", "_").replace(" ", "_")
+    return row.get("status") == "Capability-dependent" and "minimum_unblock" in readiness
+
+
+def non_minimum_intent_notes(row: dict[str, Any]) -> list[str]:
+    return [
+        note for note in clean_notes(row["intent_drift_notes"])
+        if not (minimum_unblock_assumed_approved(row) and is_minimum_unblock_note(note))
+    ]
+
+
+def category_or_mechanic_changed(row: dict[str, Any]) -> bool:
+    category_changed = bool(
+        row.get("original_category")
+        and row.get("generated_category")
+        and row["original_category"] != row["generated_category"]
+    )
+    mechanic_changed = bool(
+        row.get("original_mechanic")
+        and row.get("generated_mechanic")
+        and row["original_mechanic"] != row["generated_mechanic"]
+    )
+    return category_changed or mechanic_changed
+
+
+def needs_review(row: dict[str, Any]) -> bool:
+    return row.get("status") != "Matches" or row.get("intent_status") in INTENT_REVIEW_STATUSES
+
+
+def needs_review_after_minimum_approval(row: dict[str, Any]) -> bool:
+    if not row.get("activity_id"):
+        return True
+    if row.get("intent_status") in INTENT_REVIEW_STATUSES:
+        return True
+    if category_or_mechanic_changed(row):
+        return True
+    if row.get("status") == "Capability-dependent":
+        return not minimum_unblock_assumed_approved(row)
+    return row.get("status") != "Matches"
 
 
 def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_audit_path: Path | None = None) -> dict[str, Any]:
@@ -423,7 +466,12 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_aud
         }
         rows.append(row)
 
-    intent_review_statuses = {"intent_drift", "needs_product_decision"}
+    for row in rows:
+        row["minimum_unblock_assumed_approved"] = minimum_unblock_assumed_approved(row)
+        row["needs_review"] = needs_review(row)
+        row["needs_review_after_minimum_approval"] = needs_review_after_minimum_approval(row)
+        row["intent_display_status"] = intent_display_status(row)
+
     summary = {
         "source_rows": len(rows),
         "covered_rows": sum(1 for row in rows if row["activity_id"]),
@@ -432,13 +480,11 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_aud
         "mechanic_changed": sum(1 for row in rows if row["status"] in ("Mechanic changed", "Category + mechanic changed")),
         "category_changed": sum(1 for row in rows if row["status"] in ("Category changed", "Category + mechanic changed")),
         "capability_dependent": sum(1 for row in rows if row["status"] == "Capability-dependent"),
-        "intent_drift": sum(1 for row in rows if row["intent_status"] == "intent_drift"),
-        "intent_needs_product_decision": sum(1 for row in rows if row["intent_status"] == "needs_product_decision"),
-        "needs_review": sum(
-            1
-            for row in rows
-            if row["status"] != "Matches" or row["intent_status"] in intent_review_statuses
-        ),
+        "minimum_unblock_assumed_approved": sum(1 for row in rows if row["minimum_unblock_assumed_approved"]),
+        "intent_drift": sum(1 for row in rows if row["intent_display_status"] == "intent_drift"),
+        "intent_needs_product_decision": sum(1 for row in rows if row["intent_display_status"] == "needs_product_decision"),
+        "needs_review": sum(1 for row in rows if row["needs_review"]),
+        "needs_review_after_minimum_approval": sum(1 for row in rows if row["needs_review_after_minimum_approval"]),
     }
     return {
         "run_id": run_dir.name,
@@ -532,13 +578,280 @@ def visual_card(row: dict[str, Any]) -> str:
     """
 
 
+def sentence(value: str) -> str:
+    text = norm(value)
+    if not text:
+        return ""
+    return text if text.endswith((".", "?", "!")) else text + "."
+
+
+def category_mechanic_pair(category: str, mechanic: str) -> str:
+    return f"{category or 'N/A'} / {mechanic or 'N/A'}"
+
+
+def clean_notes(values: list[Any]) -> list[str]:
+    notes = []
+    for value in values:
+        text = norm(value)
+        if text and text.lower().rstrip(".") not in {"none", "none recorded", "n/a"}:
+            notes.append(text)
+    return notes
+
+
+def capability_dependency(row: dict[str, Any]) -> str:
+    flags = [norm(flag) for flag in row.get("product_capability_flags", []) if norm(flag)]
+    if flags:
+        return ", ".join(flags)
+    readiness = norm(row.get("readiness"))
+    normalized_readiness = readiness.lower().replace("-", "_").replace(" ", "_")
+    if "minimum_unblock" in normalized_readiness:
+        return "the reduced-scope minimum contract"
+    return readiness or norm(row.get("assignment_type")) or "unspecified product support"
+
+
+def fidelity_summary(row: dict[str, Any]) -> str:
+    original_pair = category_mechanic_pair(row["original_category"], row["original_mechanic"])
+    generated_pair = category_mechanic_pair(row["generated_category"], row["generated_mechanic"])
+    parts = [
+        f"Original category/mechanic: {original_pair}.",
+        f"Generated category/mechanic: {generated_pair}.",
+    ]
+    if row["status"] == "Matches":
+        parts.append("Difference: no category/mechanic change recorded.")
+    elif row["status"] == "Capability-dependent":
+        parts.append(f"Runtime dependency to approve: {sentence(capability_dependency(row))}")
+    else:
+        parts.append(f"Difference: {sentence(row['what_changed'])}")
+    return " ".join(parts)
+
+
+def is_minimum_unblock_note(text: str) -> bool:
+    note = norm(text).lower()
+    return "minimum" in note and (
+        "reduced-scope" in note
+        or "unsupported product capability" in note
+        or "minimum-unblock" in note
+        or "minimum unblock" in note
+    )
+
+
+def comparison_row(label: str, value: str, changed: bool = False) -> str:
+    changed_class = " compare-value-changed" if changed else ""
+    return f"""
+            <div class="compare-row">
+              <span class="compare-label">{esc(label)}</span>
+              <p class="compare-value{changed_class}">{esc(value)}</p>
+            </div>
+    """
+
+
+def comparison_difference(text: str, tone: str = "neutral", highlight: str = "") -> str:
+    if highlight and highlight in text:
+        before, after = text.split(highlight, 1)
+        content = (
+            esc(before)
+            + f'<mark class="delta-highlight">{esc(highlight)}</mark>'
+            + esc(after)
+        )
+    else:
+        content = f'<mark class="delta-highlight">{esc(highlight or text)}</mark>' if text else ""
+    return f"""
+            <div class="compare-diff compare-diff-{esc(tone)}">
+              <span>Reviewer-facing difference</span>
+              <p>{content}</p>
+            </div>
+    """
+
+
+def fidelity_difference(row: dict[str, Any]) -> tuple[str, str, str]:
+    original_pair = category_mechanic_pair(row["original_category"], row["original_mechanic"])
+    generated_pair = category_mechanic_pair(row["generated_category"], row["generated_mechanic"])
+    if original_pair != generated_pair:
+        return (
+            f"Category/mechanic changed: {original_pair} to {generated_pair}.",
+            "Category/mechanic changed",
+            "warning",
+        )
+    if row["status"] == "Capability-dependent":
+        dependency = capability_dependency(row)
+        if minimum_unblock_assumed_approved(row):
+            return (
+                f"Capability note: approved minimum-unblock fallback covers {dependency}; this is not an intent difference.",
+                "Capability note",
+                "warning",
+            )
+        return (f"Runtime dependency still needs product approval: {dependency}.", "still needs product approval", "warning")
+    return ("No category/mechanic change recorded.", "No category/mechanic change", "good")
+
+
+def fidelity_summary_html(row: dict[str, Any]) -> str:
+    original_pair = category_mechanic_pair(row["original_category"], row["original_mechanic"])
+    generated_pair = category_mechanic_pair(row["generated_category"], row["generated_mechanic"])
+    if original_pair == generated_pair and (row["status"] == "Matches" or minimum_unblock_assumed_approved(row)):
+        return f"""
+          <div class="comparison-block comparison-block-fidelity">
+            {comparison_row("Fidelity", original_pair)}
+          </div>
+    """
+    difference, highlight, tone = fidelity_difference(row)
+    changed = original_pair != generated_pair
+    return f"""
+          <div class="comparison-block comparison-block-fidelity">
+            {comparison_row("Original", original_pair)}
+            {comparison_row("Generated", generated_pair, changed=changed)}
+            {comparison_difference(difference, tone=tone, highlight=highlight)}
+          </div>
+    """
+
+
+def intent_summary(row: dict[str, Any]) -> str:
+    original_frame = row["original_play_frame"] or truncate(row["original_intent"], 95) or "Not audited"
+    generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 95) or "Not generated"
+    frames_match = norm(original_frame) == norm(generated_frame)
+    non_minimum_notes = non_minimum_intent_notes(row)
+    if non_minimum_notes:
+        difference = "; ".join(sentence(note) for note in non_minimum_notes)
+    elif not row["intent_audit_present"]:
+        difference = "Source-intent audit not provided."
+    elif frames_match or minimum_unblock_assumed_approved(row):
+        difference = "No source-intent difference recorded."
+    else:
+        difference = "Play-frame wording differs, with no drift note recorded."
+    recommendation = sentence(row["intent_recommendation"])
+    summary = (
+        f"Original play frame: {sentence(original_frame)} "
+        f"Generated play frame: {sentence(generated_frame)} "
+        f"Difference: {difference}"
+    )
+    return summary + (f" Audit note: {recommendation}" if recommendation else "")
+
+
+def intent_difference(row: dict[str, Any], original_frame: str, generated_frame: str) -> tuple[str, str, str]:
+    frames_match = norm(original_frame) == norm(generated_frame)
+    minimum_approved = minimum_unblock_assumed_approved(row)
+    non_minimum_notes = non_minimum_intent_notes(row)
+    note_text = " ".join(sentence(note) for note in non_minimum_notes)
+
+    if frames_match and not non_minimum_notes:
+        return ("Original and generated play frames match. No source-intent difference is recorded.", "play frames match", "good")
+    if minimum_approved and not non_minimum_notes and row["intent_status"] not in INTENT_REVIEW_STATUSES:
+        return (
+            "No source-intent approval needed: approved minimum-unblock is the only recorded adaptation.",
+            "No source-intent approval needed",
+            "good",
+        )
+    if non_minimum_notes:
+        highlight = "Intent drift" if row["intent_status"] == "intent_drift" else "Audit difference"
+        return (f"{highlight}: {note_text}", highlight, "critical" if row["intent_status"] == "intent_drift" else "warning")
+    if not row["intent_audit_present"]:
+        return ("Source-intent audit is missing for this row; compare the source and generated package manually.", "Source-intent audit is missing", "warning")
+    if frames_match:
+        return ("Original and generated play frames match. No source-intent difference is recorded.", "play frames match", "good")
+    return ("Play-frame wording differs, but no audit drift note was recorded; compare manually before approval.", "Play-frame wording differs", "warning")
+
+
+def intent_display_status(row: dict[str, Any]) -> str:
+    original_frame = row["original_play_frame"] or truncate(row["original_intent"], 95) or "Not audited"
+    generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 95) or "Not generated"
+    non_minimum_notes = non_minimum_intent_notes(row)
+    if norm(original_frame) == norm(generated_frame) and not non_minimum_notes:
+        return "aligned"
+    if minimum_unblock_assumed_approved(row) and not non_minimum_notes and row["intent_status"] not in INTENT_REVIEW_STATUSES:
+        return "aligned"
+    return row["intent_status"]
+
+
+def intent_summary_html(row: dict[str, Any]) -> str:
+    original_frame = row["original_play_frame"] or truncate(row["original_intent"], 95) or "Not audited"
+    generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 95) or "Not generated"
+    if intent_display_status(row) == "aligned":
+        intent_value = original_frame if norm(original_frame) == norm(generated_frame) else generated_frame
+        return f"""
+          <div class="comparison-block comparison-block-intent">
+            {comparison_row("Intent", sentence(intent_value))}
+          </div>
+    """
+    difference, highlight, tone = intent_difference(row, original_frame, generated_frame)
+    changed = intent_display_status(row) != "aligned" and norm(original_frame) != norm(generated_frame)
+    return f"""
+          <div class="comparison-block comparison-block-intent">
+            {comparison_row("Original", sentence(original_frame))}
+            {comparison_row("Generated", sentence(generated_frame), changed=changed)}
+            {comparison_difference(difference, tone=tone, highlight=highlight)}
+          </div>
+    """
+
+
+def intent_detail_notes(row: dict[str, Any]) -> str:
+    notes = clean_notes(row["intent_drift_notes"])
+    if not notes:
+        return "None recorded."
+    non_minimum_notes = non_minimum_intent_notes(row)
+    if minimum_unblock_assumed_approved(row) and not non_minimum_notes:
+        return "Approved minimum-unblock note: fallback is tracked as capability/approval information, not as a source-intent difference."
+    return "; ".join(sentence(note) for note in non_minimum_notes or notes)
+
+
+def approval_summary(row: dict[str, Any]) -> str:
+    original_pair = category_mechanic_pair(row["original_category"], row["original_mechanic"])
+    generated_pair = category_mechanic_pair(row["generated_category"], row["generated_mechanic"])
+    original_frame = row["original_play_frame"] or truncate(row["original_intent"], 80)
+    generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 80)
+    notes = clean_notes(row["intent_drift_notes"])
+    minimum_approved = minimum_unblock_assumed_approved(row)
+    targets = []
+    if original_pair != generated_pair:
+        targets.append(f"category/mechanic {original_pair} to {generated_pair}")
+    if row["intent_audit_present"] and original_frame != generated_frame and (
+        not minimum_approved or row["intent_status"] in INTENT_REVIEW_STATUSES
+    ):
+        targets.append(f"play frame {original_frame or 'not audited'} to {generated_frame or 'not generated'}")
+    elif row["intent_audit_present"] and notes and (
+        not minimum_approved or row["intent_status"] in INTENT_REVIEW_STATUSES
+    ):
+        targets.append(f"fallback/minimum-contract note {'; '.join(sentence(note) for note in notes)}")
+    if row["status"] == "Capability-dependent" and not minimum_approved:
+        targets.append(f"capability dependency {capability_dependency(row)}")
+    if minimum_approved:
+        prefix = f"Minimum-unblock approval is assumed for {capability_dependency(row)}. "
+        if not needs_review_after_minimum_approval(row):
+            return prefix + "No remaining category/mechanic or source-intent delta is flagged; confirm packet readiness only if needed."
+        question = "Review the remaining non-minimum delta."
+    else:
+        prefix = ""
+        question = sentence(row["intent_review_question"] or row["review_question"])
+    if not targets:
+        targets.append("source-intent coverage and reviewer-packet readiness")
+    return f"{prefix}{sentence(question)} Approve: {'; '.join(targets)}."
+
+
+def matrix_summary(text: str, variant: str) -> str:
+    escaped = esc(text)
+    return f"""
+          <p class="matrix-summary matrix-summary-{esc(variant)}">{escaped}</p>
+          <details class="cell-full-text">
+            <summary>View full text</summary>
+            <p>{escaped}</p>
+          </details>
+    """
+
+
+def matrix_summary_html(summary_html: str, full_text: str, variant: str) -> str:
+    return f"""
+          <div class="matrix-summary matrix-summary-{esc(variant)}">{summary_html}</div>
+          <details class="cell-full-text">
+            <summary>View full text</summary>
+            <p>{esc(full_text)}</p>
+          </details>
+    """
+
+
 def table_row(row: dict[str, Any]) -> str:
     packet = (
         f'<a href="{esc(row["reviewer_packet_link"])}">Packet</a>'
         if row["reviewer_packet_link"]
         else '<span class="muted">No packet</span>'
     )
-    product_question = row["intent_review_question"] or row["review_question"]
     details = f"""
       <details>
         <summary>Details</summary>
@@ -548,22 +861,23 @@ def table_row(row: dict[str, Any]) -> str:
           <div><span>Generated core loop</span><p>{esc(row["generated_loop"] or "Not generated.")}</p></div>
           <div><span>Original play frame</span><p>{esc(row["original_play_frame"] or "Not audited.")}</p></div>
           <div><span>Generated play frame</span><p>{esc(row["generated_play_frame"] or "Not audited.")}</p></div>
-          <div><span>Intent drift notes</span><p>{esc("; ".join(row["intent_drift_notes"]) or "None recorded.")}</p></div>
+          <div><span>Audit notes</span><p>{esc(intent_detail_notes(row))}</p></div>
+          <div><span>Audit review question</span><p>{esc(row["intent_review_question"] or row["review_question"] or "None recorded.")}</p></div>
           <div><span>Capability flags</span><p>{esc(", ".join(row["product_capability_flags"]) or "None")}</p></div>
           <div><span>Paths</span><p>{esc(row["package_path"] or "No package")}<br>{esc(row["brief_path"] or "No brief")}</p></div>
         </div>
       </details>
     """
     return f"""
-      <tr data-status="{esc(row["status_key"])}" data-intent-status="{esc(row["intent_status"])}" data-review-needed="{str(row["status"] != "Matches" or row["intent_status"] in ("intent_drift", "needs_product_decision")).lower()}">
+      <tr data-status="{esc(row["status_key"])}" data-intent-status="{esc(row["intent_display_status"])}" data-review-needed="{str(row["needs_review"]).lower()}" data-review-after-minimum="{str(row["needs_review_after_minimum_approval"]).lower()}" data-minimum-unblock-approved="{str(row["minimum_unblock_assumed_approved"]).lower()}">
         <td class="row-number">{esc(row["source_row"])}</td>
         <td><strong>{esc(row["original_name"])}</strong><p>{esc(truncate(row["original_intent"], 130))}</p>{details}</td>
         <td><span>{esc(row["original_category"])}</span><code>{esc(row["original_mechanic"])}</code></td>
         <td><strong>{esc(row["generated_name"] or "Missing")}</strong><p class="activity-id">{esc(row["activity_id"] or "No activity ID")}</p></td>
         <td><span>{esc(row["generated_category"] or "N/A")}</span><code>{esc(row["generated_mechanic"] or "N/A")}</code></td>
-        <td>{status_badge(row["status"])}<p>{esc(row["what_changed"])}</p></td>
-        <td>{intent_badge(row["intent_status"], row["intent_severity"])}<p>{esc(row["intent_recommendation"] or "No source-intent audit note.")}</p></td>
-        <td>{esc(product_question)}</td>
+        <td>{status_badge(row["status"])}{matrix_summary_html(fidelity_summary_html(row), fidelity_summary(row), "fidelity")}</td>
+        <td>{intent_badge(row["intent_display_status"], row["intent_severity"])}{matrix_summary_html(intent_summary_html(row), intent_summary(row), "intent")}</td>
+        <td>{matrix_summary(approval_summary(row), "approval")}</td>
         <td>{packet}</td>
       </tr>
     """
@@ -610,7 +924,7 @@ h1 { margin: 0; max-width: 780px; font-size: 38px; line-height: 1.08; letter-spa
 h2 { margin: 0; font-size: 20px; letter-spacing: 0; }
 h3 { margin: 0; font-size: 16px; letter-spacing: 0; }
 .intro { max-width: 74ch; margin: 12px 0 0; color: var(--muted); }
-.metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.metrics { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
 .metric { min-width: 0; padding: 13px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .metric span { display: block; color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; }
 .metric strong { display: block; margin-top: 4px; font-size: 22px; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -620,9 +934,26 @@ h3 { margin: 0; font-size: 16px; letter-spacing: 0; }
 button { border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: var(--ink); font: inherit; font-weight: 650; padding: 8px 11px; cursor: pointer; }
 button:hover, button.active { border-color: var(--accent); background: var(--accent-soft); }
 .count { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+.review-guide { display: grid; grid-template-columns: .92fr 1.08fr; gap: 12px; margin-top: 18px; }
+.guide-panel { min-width: 0; padding: 13px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.guide-panel h2 { margin-bottom: 10px; }
+.definition-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.definition-grid div { min-width: 0; }
+.definition-grid dt { margin: 0 0 4px; color: var(--ink); font-weight: 760; }
+.definition-grid dd { margin: 0; color: var(--muted); max-width: 42ch; }
+.approval-list { margin: 0; padding-left: 18px; color: var(--muted); }
+.approval-list li { margin: 0 0 7px; }
+.approval-list li:last-child { margin-bottom: 0; }
+.approval-list strong { color: var(--ink); }
+.assumption-panel { margin-top: 12px; background: color-mix(in oklch, var(--accent-soft) 48%, var(--surface)); }
+.assumption-panel p { margin: 0; color: var(--muted); }
+.assumption-panel p + p { margin-top: 8px; }
+.assumption-panel strong { color: var(--ink); }
 .section { margin-top: 22px; }
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
 .section-head p { margin: 0; color: var(--muted); }
+.table-scroll-cue { display: flex; justify-content: flex-end; align-items: center; margin: -2px 0 8px; }
+.table-scroll-cue span { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 740; }
 .visual-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .visual-card { display: grid; grid-template-columns: minmax(210px, .82fr) 1.18fr; gap: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 14px; }
 .visual-copy { display: grid; align-content: start; gap: 9px; min-width: 0; }
@@ -633,10 +964,19 @@ button:hover, button.active { border-color: var(--accent); background: var(--acc
 .visual-media figcaption { margin-top: 5px; color: var(--muted); font-size: 12px; }
 .inline-link { font-weight: 700; }
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
-table { width: 100%; border-collapse: collapse; min-width: 1240px; }
+table { width: 100%; border-collapse: collapse; min-width: 1880px; table-layout: fixed; }
+col.col-row { width: 56px; }
+col.col-original { width: 310px; }
+col.col-original-taxonomy { width: 140px; }
+col.col-package { width: 190px; }
+col.col-generated-taxonomy { width: 140px; }
+col.col-fidelity { width: 300px; }
+col.col-intent { width: 370px; }
+col.col-approval { width: 370px; }
+col.col-packet { width: 90px; }
 th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-th { position: sticky; top: 58px; z-index: 2; background: var(--surface-2); color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
-td p { margin: 6px 0 0; color: var(--muted); max-width: 42ch; }
+th { background: var(--surface-2); color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+td p { margin: 6px 0 0; color: var(--muted); max-width: none; overflow-wrap: anywhere; }
 .row-number { color: var(--muted); font-variant-numeric: tabular-nums; }
 code { display: inline-block; margin-top: 4px; padding: 2px 6px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface-2); color: var(--ink); font-size: 12px; }
 .activity-id { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; overflow-wrap: anywhere; }
@@ -653,6 +993,24 @@ code { display: inline-block; margin-top: 4px; padding: 2px 6px; border: 1px sol
 .intent-not_audited { color: var(--muted); background: var(--surface-2); }
 details { margin-top: 8px; }
 summary { color: var(--accent); cursor: pointer; font-weight: 700; }
+.matrix-summary { margin-top: 8px; overflow: hidden; }
+.matrix-summary-fidelity, .matrix-summary-intent { max-height: 210px; }
+.matrix-summary-approval { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; }
+.comparison-block { display: grid; gap: 7px; }
+.compare-row { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; align-items: start; }
+.compare-label { color: var(--muted); font-size: 10px; font-weight: 760; letter-spacing: .04em; text-transform: uppercase; }
+.compare-value { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
+.compare-value-changed { font-weight: 680; }
+.compare-diff { padding: 8px 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface-2); }
+.compare-diff span { display: block; margin-bottom: 3px; color: var(--muted); font-size: 10px; font-weight: 780; letter-spacing: .04em; text-transform: uppercase; }
+.compare-diff p { margin: 0; color: var(--ink); }
+.compare-diff-good { background: var(--green-soft); }
+.compare-diff-warning { background: var(--amber-soft); }
+.compare-diff-critical { background: var(--red-soft); }
+.delta-highlight { padding: 1px 4px; border-radius: 4px; background: color-mix(in oklch, var(--amber) 20%, var(--surface)); color: var(--ink); font-weight: 780; }
+.cell-full-text { margin-top: 6px; }
+.cell-full-text summary { font-size: 12px; }
+.cell-full-text p { margin-top: 5px; }
 .details-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; padding: 10px; border-radius: 7px; background: var(--surface-2); }
 .details-grid span { display: block; color: var(--muted); font-size: 11px; font-weight: 750; text-transform: uppercase; }
 .details-grid p { max-width: none; overflow-wrap: anywhere; }
@@ -661,7 +1019,8 @@ tr.is-hidden { display: none; }
 @media (max-width: 980px) {
   .hero, .visual-grid, .visual-card { grid-template-columns: 1fr; }
   .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  th { top: 98px; }
+  .review-guide { grid-template-columns: 1fr; }
+  .definition-grid { grid-template-columns: 1fr; }
 }
 """
     js = """
@@ -674,12 +1033,14 @@ function applyFilter(filter) {
     const status = row.dataset.status || '';
     const intentStatus = row.dataset.intentStatus || '';
     const reviewNeeded = row.dataset.reviewNeeded === 'true';
+    const reviewAfterMinimum = row.dataset.reviewAfterMinimum === 'true';
     const show = filter === 'all'
       || (filter === 'changed' && (status.includes('changed')))
       || (filter === 'capability' && status === 'capability-dependent')
       || (filter === 'intent-drift' && intentStatus === 'intent_drift')
       || (filter === 'intent-product' && intentStatus === 'needs_product_decision')
       || (filter === 'needs-review' && reviewNeeded)
+      || (filter === 'post-minimum-review' && reviewAfterMinimum)
       || status === filter;
     row.classList.toggle('is-hidden', !show);
     if (show) visible += 1;
@@ -711,6 +1072,7 @@ applyFilter('all');
         {metric("Source rows", summary["source_rows"])}
         {metric("Covered", summary["covered_rows"], "good")}
         {metric("Needs review", summary["needs_review"], "warn")}
+        {metric("After minimum approval", summary["needs_review_after_minimum_approval"], "warn")}
         {metric("Capability-dependent", summary["capability_dependent"], "warn")}
         {metric("Intent drift", summary["intent_drift"], "warn")}
       </div>
@@ -724,8 +1086,44 @@ applyFilter('all');
       <button type="button" data-filter="intent-drift">Intent drift</button>
       <button type="button" data-filter="intent-product">Intent product decision</button>
       <button type="button" data-filter="needs-review">Needs review</button>
+      <button type="button" data-filter="post-minimum-review">After minimum approval</button>
       <span class="count" data-visible-count></span>
     </nav>
+
+    <section class="review-guide" aria-label="Review guidance">
+      <section class="guide-panel" aria-labelledby="status-definitions-title">
+        <h2 id="status-definitions-title">Status Definitions</h2>
+        <dl class="definition-grid">
+          <div>
+            <dt>Needs review</dt>
+            <dd>Needs review means rows where product should make an explicit approval decision before treating the generated package as accepted.</dd>
+          </div>
+          <div>
+            <dt>Capability-dependent</dt>
+            <dd>Capability-dependent means the generated packet depends on product support, permissions, materials, or runtime behavior that is not yet fully approved.</dd>
+          </div>
+          <div>
+            <dt>Intent drift</dt>
+            <dd>Intent drift means the source-intent audit found a meaningful mismatch between the original play frame and the generated activity flow.</dd>
+          </div>
+        </dl>
+      </section>
+      <section class="guide-panel" aria-labelledby="approval-checklist-title">
+        <h2 id="approval-checklist-title">Approval Checklist</h2>
+        <ul class="approval-list">
+          <li><strong>Approve source-intent coverage:</strong> the generated loop preserves the workbook idea's core child action, role/frame, and learning interaction.</li>
+          <li><strong>Approve category/mechanic changes:</strong> any changed category or mechanic is an accepted runtime realignment, not accidental drift.</li>
+          <li><strong>Approve capability assumptions and minimum contracts:</strong> capability-dependent rows can ship as probes or need product support before runtime use.</li>
+          <li><strong>Approve reviewer-packet readiness:</strong> the standalone packet gives enough runtime beats, branch handling, assets/storyboards, and fallback behavior for review.</li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="guide-panel assumption-panel" aria-labelledby="minimum-approval-title">
+      <h2 id="minimum-approval-title">Minimum Unblock Approval Assumption</h2>
+      <p>For this audit view, product has approved every minimum-unblock contract in the reduced-scope packet. This does not approve the future full runtime capability; it only clears the minimum reviewer packet as an unblock path.</p>
+      <p><strong>{esc(summary["minimum_unblock_assumed_approved"])}</strong> rows carry that assumed minimum approval. After minimum approval, <strong>{esc(summary["needs_review_after_minimum_approval"])}</strong> rows still need review because they have category/mechanic changes, missing generated coverage, or explicit source-intent decisions.</p>
+    </section>
 
     <section class="section" aria-labelledby="visual-examples-title">
       <div class="section-head">
@@ -740,8 +1138,20 @@ applyFilter('all');
         <h2 id="matrix-title">Review Matrix</h2>
         <p>Use changed and capability filters first.</p>
       </div>
+      <div class="table-scroll-cue" role="note"><span>Scroll right for Intent alignment, Approval needed, and Reviewer packet. -&gt;</span></div>
       <div class="table-wrap">
         <table>
+          <colgroup>
+            <col class="col-row">
+            <col class="col-original">
+            <col class="col-original-taxonomy">
+            <col class="col-package">
+            <col class="col-generated-taxonomy">
+            <col class="col-fidelity">
+            <col class="col-intent">
+            <col class="col-approval">
+            <col class="col-packet">
+          </colgroup>
           <thead>
             <tr>
               <th>Row</th>
@@ -751,7 +1161,7 @@ applyFilter('all');
               <th>Generated cat/mechanic</th>
               <th>Fidelity status</th>
               <th>Intent alignment</th>
-              <th>Product question</th>
+              <th>Approval needed</th>
               <th>Reviewer packet</th>
             </tr>
           </thead>
@@ -783,6 +1193,8 @@ def validate_report(report: dict[str, Any]) -> list[str]:
         issues.append("local absolute path leaked into reviewer packet links")
     if summary.get("needs_review", 0) <= 0:
         issues.append("no review-needed rows classified")
+    if summary.get("needs_review_after_minimum_approval", 0) > summary.get("needs_review", 0):
+        issues.append("post-minimum review count exceeds raw review count")
     if report.get("intent_audit_provided"):
         missing_audit = [row for row in rows if not row.get("intent_audit_present")]
         if missing_audit:
@@ -815,6 +1227,37 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         'data-filter="changed"',
         'data-filter="capability"',
         "Reviewer packet",
+        "Status Definitions",
+        "Needs review means rows where product should make an explicit approval decision",
+        "Capability-dependent means the generated packet depends on product support",
+        "Intent drift means the source-intent audit found a meaningful mismatch",
+        "Approval Checklist",
+        "Approve source-intent coverage",
+        "Approve category/mechanic changes",
+        "Approve capability assumptions and minimum contracts",
+        "Approve reviewer-packet readiness",
+        "Minimum Unblock Approval Assumption",
+        "product has approved every minimum-unblock contract",
+        "After minimum approval",
+        "Approval needed",
+        "Original category/mechanic:",
+        "Generated category/mechanic:",
+        "Original play frame:",
+        "Generated play frame:",
+        "Approve:",
+        "<colgroup>",
+        "table-layout: fixed",
+        'class="matrix-summary matrix-summary-intent"',
+        'class="matrix-summary matrix-summary-approval"',
+        'class="comparison-block comparison-block-fidelity"',
+        'class="comparison-block comparison-block-intent"',
+        "Reviewer-facing difference",
+        "delta-highlight",
+        "View full text",
+        "table-scroll-cue",
+        "Scroll right for Intent alignment, Approval needed, and Reviewer packet.",
+        'data-filter="post-minimum-review"',
+        "data-review-after-minimum",
     ]
     if report.get("intent_audit_provided"):
         required.extend(["Intent alignment", 'data-filter="intent-drift"'])
@@ -829,6 +1272,8 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         issues.append("HTML row count does not match source row count")
     if "data:image/png;base64," not in html_text:
         issues.append("HTML does not embed visual example images")
+    if "th { position: sticky" in html_text:
+        issues.append("HTML uses sticky table headers that can overlap the first matrix rows")
     if report.get("intent_audit_provided"):
         for row in report.get("rows", []):
             if not row.get("intent_audit_present"):
@@ -893,6 +1338,7 @@ def main() -> None:
         print(
             f"PASS source comparison review: {report['summary']['source_rows']} source rows, "
             f"{report['summary']['covered_rows']} covered, {report['summary']['needs_review']} needing review, "
+            f"{report['summary']['needs_review_after_minimum_approval']} after minimum approval, "
             f"{report['summary']['intent_drift']} intent drift."
         )
         return

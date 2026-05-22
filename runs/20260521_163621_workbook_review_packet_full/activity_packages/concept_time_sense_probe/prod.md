@@ -45,15 +45,15 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child accepts the time sense challenge player role, notices the starter cue, or names something connected to the first time guess.
+2. (Unexpected) Child asks for another game, starts the plan or prediction before the Time Sense Challenge mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Time Sense Challenge title/trigger card without taking the time sense challenge player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Name the time sense challenge player role, connect it to the starter cue, and preview the first plan or prediction.
+2. Acknowledge the request, return to the Time Sense Challenge promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Time Sense Challenge role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -66,15 +66,15 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child agrees to the plan or prediction loop for Time Sense Challenge or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first time guess, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Time Sense Challenge rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Restate the Time Sense Challenge loop as AI prompt, child plan or prediction, saved token, and show the first response slot.
+2. Keep the rule tied to the first time guess, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Time Sense Challenge rule in one sentence and ask for yes, a point, or the first chance to make a plan or prediction.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -82,21 +82,21 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The child predicts when a short amount of time has passed, then checks the result.. Ask the child to predict or plan in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The child predicts when a short amount of time has passed, then checks the result. Ask the child to predict or plan in the first small turn.
 
 **Example AI line:** "Let us start: The child predicts when a short amount of time has passed, then checks the result. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child makes a plan or prediction for the first time guess and accepts that it can be checked or imagined next.
+2. (Unexpected) Child treats the first time guess as a fixed answer, jumps past the check, or proposes a plan outside the pretend setup.
+3. (No response) Child looks at the first time guess choices without making a prediction or plan.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Record the prediction, say what would make it true, and show how the next step will check or play it out.
+2. Keep the pretend setup, narrow the first time guess to two possible outcomes, and ask which one might happen.
+3. [wait 2s] Model "I think this will happen because.." for the first time guess, then ask for one guess or choice.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -109,15 +109,15 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child makes a plan or prediction for the timer check and accepts that it can be checked or imagined next.
+2. (Unexpected) Child treats the timer check as a fixed answer, jumps past the check, or proposes a plan outside the pretend setup.
+3. (No response) Child looks at the timer check choices without making a prediction or plan.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Record the prediction, say what would make it true, and show how the next step will check or play it out.
+2. Keep the pretend setup, narrow the timer check to two possible outcomes, and ask which one might happen.
+3. [wait 2s] Model "I think this will happen because.." for the timer check, then ask for one guess or choice.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -130,15 +130,15 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child makes a plan or prediction for the new prediction strategy and accepts that it can be checked or imagined next.
+2. (Unexpected) Child treats the new prediction strategy as a fixed answer, jumps past the check, or proposes a plan outside the pretend setup.
+3. (No response) Child looks at the new prediction strategy choices without making a prediction or plan.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Record the prediction, say what would make it true, and show how the next step will check or play it out.
+2. Keep the pretend setup, narrow the new prediction strategy to two possible outcomes, and ask which one might happen.
+3. [wait 2s] Model "I think this will happen because.." for the new prediction strategy, then ask for one guess or choice.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -151,15 +151,15 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child notices how the new prediction strategy changed the Time Sense Challenge board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Time Sense Challenge payoff or ignores how the saved plan or prediction turns connect.
+3. (No response) Child watches the Time Sense Challenge reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Tie the reveal to the child's plan or prediction turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Time Sense Challenge reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Time Sense Challenge board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -171,14 +171,14 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child names a favorite Time Sense Challenge moment, asks to play again, or watches the time sense challenge recap badge.
+2. (Unexpected) Child shifts topic before the recap names the plan or prediction skill or Form and Causation.
+3. (No response) Child stays on the Time Sense Challenge recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Offer a next-time variation using the same predict mechanic and the time sense challenge frame.
+2. Close Time Sense Challenge first, name the practiced plan or prediction, and then offer one next-round seed.
+3. [wait 2s] Read the Time Sense Challenge badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `predict`, focal attribute `time_sense_challenge`, and next-step hint.

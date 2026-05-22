@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 19eaa2bf8f5dc36d48b3612f663f8ba277add4cafaa95b8826cf204f462c2c86
+prompt_sha256: 31a7830e4e1b35b2a7d3c3ae0402c01d540c2b0f7f7d7ce187b34c0b87e282b8
 prompt_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_partial_reveal_deduce/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_partial_reveal_deduce
@@ -19,30 +19,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the clue guess
+    loop for Partial Reveal Guess or asks...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is deduce: Round 1 -- Start The Source Action |
     Preserve the workbook promise: The screen shows one distinctive part of an animal
-    or object, and the child gu... | Ideal: The child gives t...'
+    or object, and the child gu... | Ideal: The child uses th...'
   source: Round 1 -- Start The Source Action
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate the idea, restate the safe rule, and offer
-    one easier choice. | No response:...'
+  caption: 'Ideal: Tie the guess to the visible clue, reveal whether that clue fits,
+    and set up the next evidence step. | Unexpected: Name the clue in the first visible
+    clue, separate it from one distr...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
-    for a second deduce turn with a small variation. | Ideal: The child repeats the
-    same mechanic with a variation. | Une...'
+    for a second deduce turn with a small variation. | Ideal: The child uses the second
+    revealed clue to make or revise a...'
   source: Round 2 -- Repeat With A Variation
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Partial Reveal Guess
+    moment, asks to play again, or watc...'
   source: 'Step 5: Closing + IB Concepts'

@@ -45,15 +45,15 @@ Child names a mood or chooses a color to represent a feeling.
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child accepts the emotion color outfit player role, notices the starter cue, or names something connected to the feeling color.
+2. (Unexpected) Child asks for another game, starts the kind response before the Emotion Color Outfit mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Emotion Color Outfit title/trigger card without taking the emotion color outfit player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Name the emotion color outfit player role, connect it to the starter cue, and preview the first kind response.
+2. Acknowledge the request, return to the Emotion Color Outfit promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Emotion Color Outfit role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Coloring or recoloring UI: Approved minimum contract may describe intended fills or use static preview when live recoloring is unavailable.
@@ -68,15 +68,15 @@ Child names a mood or chooses a color to represent a feeling.
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child agrees to the kind response loop for Emotion Color Outfit or asks for the easiest version.
+2. (Unexpected) Child tries to skip the feeling color, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Emotion Color Outfit rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Restate the Emotion Color Outfit loop as AI prompt, child kind response, saved token, and show the first response slot.
+2. Keep the rule tied to the feeling color, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Emotion Color Outfit rule in one sentence and ask for yes, a point, or the first chance to choose a kind response.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `emotion_color_character_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color conversation without claiming the outfit changed.
 
@@ -84,21 +84,21 @@ Child names a mood or chooses a color to represent a feeling.
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The child uses colors to represent feelings, then sees or imagines a character outfit matching that feeling.. Ask the child to notice a need and help in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The child uses colors to represent feelings, then sees or imagines a character outfit matching that feeling. Ask the child to notice a need and help in the first small turn.
 
 **Example AI line:** "Let us start: The child uses colors to represent feelings, then sees or imagines a character outfit matching that feeling. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child notices the feeling color cue and suggests a fitting feeling, need, or kind action.
+2. (Unexpected) Child judges the person/object, ignores the feeling color cue, or offers help that does not fit the need.
+3. (No response) Child watches the feeling color cue without naming a feeling, need, or helpful action.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state.
+2. Reframe without judging, point to the cue for the feeling color, and offer two gentle help choices.
+3. [wait 2s] Model one caring sentence for the feeling color, then ask the child to choose a feeling or help action.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `emotion_color_character_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color conversation without claiming the outfit changed.
 > RESOLVED BLOCKER: Coloring or recoloring UI: Approved minimum contract may describe intended fills or use static preview when live recoloring is unavailable.
@@ -113,15 +113,15 @@ Child names a mood or chooses a color to represent a feeling.
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child notices the outfit color choice cue and suggests a fitting feeling, need, or kind action.
+2. (Unexpected) Child judges the person/object, ignores the outfit color choice cue, or offers help that does not fit the need.
+3. (No response) Child watches the outfit color choice cue without naming a feeling, need, or helpful action.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state.
+2. Reframe without judging, point to the cue for the outfit color choice, and offer two gentle help choices.
+3. [wait 2s] Model one caring sentence for the outfit color choice, then ask the child to choose a feeling or help action.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `emotion_color_character_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color conversation without claiming the outfit changed.
 > RESOLVED BLOCKER: Coloring or recoloring UI: Approved minimum contract may describe intended fills or use static preview when live recoloring is unavailable.
@@ -136,15 +136,15 @@ Child names a mood or chooses a color to represent a feeling.
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child notices the care-and-color recap cue and suggests a fitting feeling, need, or kind action.
+2. (Unexpected) Child judges the person/object, ignores the care-and-color recap cue, or offers help that does not fit the need.
+3. (No response) Child watches the care-and-color recap cue without naming a feeling, need, or helpful action.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state.
+2. Reframe without judging, point to the cue for the care-and-color recap, and offer two gentle help choices.
+3. [wait 2s] Model one caring sentence for the care-and-color recap, then ask the child to choose a feeling or help action.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `emotion_color_character_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color conversation without claiming the outfit changed.
 > RESOLVED BLOCKER: Coloring or recoloring UI: Approved minimum contract may describe intended fills or use static preview when live recoloring is unavailable.
@@ -159,15 +159,15 @@ Child names a mood or chooses a color to represent a feeling.
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child notices how the care-and-color recap changed the Emotion Color Outfit board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Emotion Color Outfit payoff or ignores how the saved kind response turns connect.
+3. (No response) Child watches the Emotion Color Outfit reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Tie the reveal to the child's kind response turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Emotion Color Outfit reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Emotion Color Outfit board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -179,14 +179,14 @@ Child names a mood or chooses a color to represent a feeling.
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child gives an unrelated answer, unsafe action, or asks to change the task.
-3. (No response) Child stays quiet, waits, or looks at the screen.
+1. (Ideal) The child names a favorite Emotion Color Outfit moment, asks to play again, or watches the emotion color outfit recap badge.
+2. (Unexpected) Child shifts topic before the recap names the kind response skill or Form and Responsibility.
+3. (No response) Child stays on the Emotion Color Outfit recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-3. [wait 2s] [gentle] Model a tiny answer and invite one small try.
+1. Offer a next-time variation using the same care mechanic and the emotion color outfit frame.
+2. Close Emotion Color Outfit first, name the practiced kind response, and then offer one next-round seed.
+3. [wait 2s] Read the Emotion Color Outfit badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `care`, focal attribute `emotion_color_outfit`, and next-step hint.

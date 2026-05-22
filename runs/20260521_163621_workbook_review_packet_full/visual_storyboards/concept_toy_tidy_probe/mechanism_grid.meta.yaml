@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 0449e6eb5d4dc69b30a2b1fc8fd6b57950f1d6833aa038ca837edc569618c7c3
+prompt_sha256: a9e177b515b06f3b2c9fc155c1cb6c2cf96e4675404f37691298af6bf7a65c03
 prompt_path: visual_storyboards/concept_toy_tidy_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_toy_tidy_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_toy_tidy_probe
@@ -18,30 +18,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the sorting move
+    loop for Toy Tidy Challenge or asks...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is sort: Round 1 -- Agree To Tidy | Ask the child
-    to accept a short tidy sprint. | Ideal: The child agrees or asks for a smaller
-    task. | Unexpected: Child gives an unrelated answer, unsaf...'
+    to accept a short tidy sprint. | Ideal: The child places or names an item according
+    to the first tiny tidy target rule. | Unexpected: Chi...'
   source: Round 1 -- Agree To Tidy
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Start the mission and give one organizing tip. | Unexpected:
-    [redirect] Validate the idea, restate the safe rule, and offer one easier choice.
-    | No response: [wait 2s] [ge...'
+  caption: 'Ideal: Name the grouping rule the child used, keep that group visible,
+    and ask for the next item or rule check. | Unexpected: Hold the current groups
+    still, compare two possible rules, and...'
   source: Round 1 -- Agree To Tidy
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Sort One Group | Give a tip while the child physically tidies.
-    | Ideal: The child names or moves a group. | Unexpected: Child gives an unrelated
-    answer, unsafe action, or ask......'
+    | Ideal: The child places or names an item according to the timer tip during the
+    mission rule. | Unexpected: Ch......'
   source: Round 2 -- Sort One Group
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Toy Tidy Challenge
+    moment, asks to play again, or watche...'
   source: 'Step 5: Closing + IB Concepts'
