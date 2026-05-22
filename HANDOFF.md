@@ -13,6 +13,7 @@
 - Renamed the row-level `Product question` matrix column to `Approval needed` so each row presents the concrete product decision to make.
 - Replaced repetitive source-comparison matrix cell text with row-specific original-vs-generated summaries for fidelity status, intent alignment, and approval targets. Visible cells now show original category/mechanic, generated category/mechanic, original play frame, generated play frame, concrete drift/fallback notes, and only the actual approval deltas.
 - Compact source-comparison matrix layout now uses fixed column widths, horizontal table scrolling, clamped fidelity/intent/approval summaries, and closed `View full text` disclosure controls so long intent and approval text no longer expands rows excessively.
+- Added a visible `Scroll right for Intent alignment, Approval needed, and Reviewer packet` cue above the source-comparison matrix so reviewers know the table has additional right-side columns.
 - Tightened source-comparison HTML validation so stale pages missing definitions/approval guidance or still using sticky table headers fail validation.
 - Regenerated `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html` from the workbook and current source-intent audit.
 - Updated `scripts/generate_run_review.py` so runtime branch policies render as a horizontal `Branch / Child behavior / AI follow-up` table and validation fails exact copied unexpected/no-response branch boilerplate, keyword-substitution rows, and repeated Step 3 branch policies within the same package.
@@ -144,7 +145,7 @@
 - `python scripts/generate_source_comparison_review.py runs/20260521_163621_workbook_review_packet_full --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_163621_workbook_review_packet_full/source_comparison/source_intent_audit.yaml --validate`
   - Result: PASS; 40 source rows, 40 covered, 34 needing review, 0 intent drift.
 - Playwright static HTML geometry check for `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html`
-  - Result: PASS; matrix header is static, status definitions and approval checklist are present, `Approval needed` is the row-level decision column, the first row starts below the table header without overlap, fixed-width horizontal table scrolling is active, and sampled matrix rows render around 186-207px tall with clamped long summaries.
+  - Result: PASS; matrix header is static, status definitions and approval checklist are present, `Approval needed` is the row-level decision column, the first row starts below the table header without overlap, fixed-width horizontal table scrolling is active, sampled matrix rows render around 186-207px tall with clamped long summaries, and the right-scroll cue is visible above the table.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260521_163621_workbook_review_packet_full`
   - Result: PASS; 12 assets, 12 activities.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260521_163621_workbook_review_packet_full`

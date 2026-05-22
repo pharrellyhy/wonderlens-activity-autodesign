@@ -727,6 +727,8 @@ button:hover, button.active { border-color: var(--accent); background: var(--acc
 .section { margin-top: 22px; }
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
 .section-head p { margin: 0; color: var(--muted); }
+.table-scroll-cue { display: flex; justify-content: flex-end; align-items: center; margin: -2px 0 8px; }
+.table-scroll-cue span { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 740; }
 .visual-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .visual-card { display: grid; grid-template-columns: minmax(210px, .82fr) 1.18fr; gap: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 14px; }
 .visual-copy { display: grid; align-content: start; gap: 9px; min-width: 0; }
@@ -888,6 +890,7 @@ applyFilter('all');
         <h2 id="matrix-title">Review Matrix</h2>
         <p>Use changed and capability filters first.</p>
       </div>
+      <div class="table-scroll-cue" role="note"><span>Scroll right for Intent alignment, Approval needed, and Reviewer packet. -&gt;</span></div>
       <div class="table-wrap">
         <table>
           <colgroup>
@@ -994,6 +997,8 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         'class="matrix-summary matrix-summary-intent"',
         'class="matrix-summary matrix-summary-approval"',
         "View full text",
+        "table-scroll-cue",
+        "Scroll right for Intent alignment, Approval needed, and Reviewer packet.",
     ]
     if report.get("intent_audit_provided"):
         required.extend(["Intent alignment", 'data-filter="intent-drift"'])

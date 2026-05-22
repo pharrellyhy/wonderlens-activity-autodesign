@@ -278,6 +278,8 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("class=\"matrix-summary matrix-summary-approval\"", html)
         self.assertIn("-webkit-line-clamp: 5", html)
         self.assertIn("View full text", html)
+        self.assertIn("table-scroll-cue", html)
+        self.assertIn("Scroll right for Intent alignment, Approval needed, and Reviewer packet.", html)
         self.assertNotIn("th { position: sticky", html)
         self.assertNotIn(str(workbook.parent), html)
 
