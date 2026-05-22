@@ -272,6 +272,12 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("Approve capability assumptions and minimum contracts", html)
         self.assertIn("Approve reviewer-packet readiness", html)
         self.assertIn("Approval needed", html)
+        self.assertIn("<colgroup>", html)
+        self.assertIn("table-layout: fixed", html)
+        self.assertIn("class=\"matrix-summary matrix-summary-intent\"", html)
+        self.assertIn("class=\"matrix-summary matrix-summary-approval\"", html)
+        self.assertIn("-webkit-line-clamp: 5", html)
+        self.assertIn("View full text", html)
         self.assertNotIn("th { position: sticky", html)
         self.assertNotIn(str(workbook.parent), html)
 

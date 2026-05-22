@@ -615,6 +615,17 @@ def approval_summary(row: dict[str, Any]) -> str:
     return f"{question} Approve: {'; '.join(targets)}."
 
 
+def matrix_summary(text: str, variant: str) -> str:
+    escaped = esc(text)
+    return f"""
+          <p class="matrix-summary matrix-summary-{esc(variant)}">{escaped}</p>
+          <details class="cell-full-text">
+            <summary>View full text</summary>
+            <p>{escaped}</p>
+          </details>
+    """
+
+
 def table_row(row: dict[str, Any]) -> str:
     packet = (
         f'<a href="{esc(row["reviewer_packet_link"])}">Packet</a>'
@@ -643,9 +654,9 @@ def table_row(row: dict[str, Any]) -> str:
         <td><span>{esc(row["original_category"])}</span><code>{esc(row["original_mechanic"])}</code></td>
         <td><strong>{esc(row["generated_name"] or "Missing")}</strong><p class="activity-id">{esc(row["activity_id"] or "No activity ID")}</p></td>
         <td><span>{esc(row["generated_category"] or "N/A")}</span><code>{esc(row["generated_mechanic"] or "N/A")}</code></td>
-        <td>{status_badge(row["status"])}<p>{esc(fidelity_summary(row))}</p></td>
-        <td>{intent_badge(row["intent_status"], row["intent_severity"])}<p>{esc(intent_summary(row))}</p></td>
-        <td>{esc(approval_summary(row))}</td>
+        <td>{status_badge(row["status"])}{matrix_summary(fidelity_summary(row), "fidelity")}</td>
+        <td>{intent_badge(row["intent_status"], row["intent_severity"])}{matrix_summary(intent_summary(row), "intent")}</td>
+        <td>{matrix_summary(approval_summary(row), "approval")}</td>
         <td>{packet}</td>
       </tr>
     """
@@ -726,10 +737,19 @@ button:hover, button.active { border-color: var(--accent); background: var(--acc
 .visual-media figcaption { margin-top: 5px; color: var(--muted); font-size: 12px; }
 .inline-link { font-weight: 700; }
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
-table { width: 100%; border-collapse: collapse; min-width: 1240px; }
+table { width: 100%; border-collapse: collapse; min-width: 1880px; table-layout: fixed; }
+col.col-row { width: 56px; }
+col.col-original { width: 310px; }
+col.col-original-taxonomy { width: 140px; }
+col.col-package { width: 190px; }
+col.col-generated-taxonomy { width: 140px; }
+col.col-fidelity { width: 300px; }
+col.col-intent { width: 370px; }
+col.col-approval { width: 370px; }
+col.col-packet { width: 90px; }
 th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 th { background: var(--surface-2); color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
-td p { margin: 6px 0 0; color: var(--muted); max-width: 42ch; }
+td p { margin: 6px 0 0; color: var(--muted); max-width: none; overflow-wrap: anywhere; }
 .row-number { color: var(--muted); font-variant-numeric: tabular-nums; }
 code { display: inline-block; margin-top: 4px; padding: 2px 6px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface-2); color: var(--ink); font-size: 12px; }
 .activity-id { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; overflow-wrap: anywhere; }
@@ -746,6 +766,11 @@ code { display: inline-block; margin-top: 4px; padding: 2px 6px; border: 1px sol
 .intent-not_audited { color: var(--muted); background: var(--surface-2); }
 details { margin-top: 8px; }
 summary { color: var(--accent); cursor: pointer; font-weight: 700; }
+.matrix-summary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.matrix-summary-intent, .matrix-summary-approval { -webkit-line-clamp: 5; }
+.cell-full-text { margin-top: 6px; }
+.cell-full-text summary { font-size: 12px; }
+.cell-full-text p { margin-top: 5px; }
 .details-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; padding: 10px; border-radius: 7px; background: var(--surface-2); }
 .details-grid span { display: block; color: var(--muted); font-size: 11px; font-weight: 750; text-transform: uppercase; }
 .details-grid p { max-width: none; overflow-wrap: anywhere; }
@@ -865,6 +890,17 @@ applyFilter('all');
       </div>
       <div class="table-wrap">
         <table>
+          <colgroup>
+            <col class="col-row">
+            <col class="col-original">
+            <col class="col-original-taxonomy">
+            <col class="col-package">
+            <col class="col-generated-taxonomy">
+            <col class="col-fidelity">
+            <col class="col-intent">
+            <col class="col-approval">
+            <col class="col-packet">
+          </colgroup>
           <thead>
             <tr>
               <th>Row</th>
@@ -953,6 +989,11 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         "Original play frame:",
         "Generated play frame:",
         "Approve:",
+        "<colgroup>",
+        "table-layout: fixed",
+        'class="matrix-summary matrix-summary-intent"',
+        'class="matrix-summary matrix-summary-approval"',
+        "View full text",
     ]
     if report.get("intent_audit_provided"):
         required.extend(["Intent alignment", 'data-filter="intent-drift"'])
