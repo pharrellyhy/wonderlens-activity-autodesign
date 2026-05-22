@@ -368,6 +368,15 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("Intent alignment", html)
         self.assertIn("data-filter=\"intent-drift\"", html)
         self.assertIn("Revise the generated loop to restore the reveal sequence.", html)
+        self.assertIn("Original category/mechanic: cat1 / enumerate.", html)
+        self.assertIn("Generated category/mechanic: cat1 / deduce.", html)
+        self.assertIn("Original play frame: part reveal guessing.", html)
+        self.assertIn("Generated play frame: deduction from a different clue style.", html)
+        self.assertIn("Difference: Reveal sequence changed.", html)
+        self.assertIn("Approve: category/mechanic cat1 / enumerate to cat1 / deduce; play frame part reveal guessing to deduction from a different clue style.", html)
+        self.assertIn("Runtime dependency to approve: requires_materials.", html)
+        self.assertIn("Approve: play frame paper drawing to paper drawing with capability assumptions; capability dependency requires_materials.", html)
+        self.assertNotIn("category/mechanic cat3 / build to cat3 / build", html)
         self.assertIn("intent_drift", html)
 
     def test_validate_html_rejects_stale_intent_audit_content(self):

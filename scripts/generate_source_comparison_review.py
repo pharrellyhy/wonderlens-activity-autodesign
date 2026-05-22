@@ -323,9 +323,9 @@ def change_note(status: str, source_cat: str, source_mech: str, generated_cat: s
     if status == "Matches":
         return "Category and mechanic preserved."
     if status == "Mechanic changed":
-        return f"Mechanic changed from {source_mech} to {generated_mech}; source intent is preserved through the generated loop."
+        return f"Mechanic changed from {source_mech} to {generated_mech}."
     if status == "Category changed":
-        return f"Category changed from {source_cat} to {generated_cat}; review whether this runtime framing is acceptable."
+        return f"Category changed from {source_cat} to {generated_cat}."
     if status == "Category + mechanic changed":
         return f"Category {source_cat}->{generated_cat}; mechanic {source_mech}->{generated_mech}."
     if status == "Capability-dependent":
@@ -532,13 +532,95 @@ def visual_card(row: dict[str, Any]) -> str:
     """
 
 
+def sentence(value: str) -> str:
+    text = norm(value)
+    if not text:
+        return ""
+    return text if text.endswith((".", "?", "!")) else text + "."
+
+
+def category_mechanic_pair(category: str, mechanic: str) -> str:
+    return f"{category or 'N/A'} / {mechanic or 'N/A'}"
+
+
+def clean_notes(values: list[Any]) -> list[str]:
+    notes = []
+    for value in values:
+        text = norm(value)
+        if text and text.lower().rstrip(".") not in {"none", "none recorded", "n/a"}:
+            notes.append(text)
+    return notes
+
+
+def capability_dependency(row: dict[str, Any]) -> str:
+    flags = [norm(flag) for flag in row.get("product_capability_flags", []) if norm(flag)]
+    return ", ".join(flags) or norm(row.get("readiness")) or norm(row.get("assignment_type")) or "unspecified product support"
+
+
+def fidelity_summary(row: dict[str, Any]) -> str:
+    original_pair = category_mechanic_pair(row["original_category"], row["original_mechanic"])
+    generated_pair = category_mechanic_pair(row["generated_category"], row["generated_mechanic"])
+    parts = [
+        f"Original category/mechanic: {original_pair}.",
+        f"Generated category/mechanic: {generated_pair}.",
+    ]
+    if row["status"] == "Matches":
+        parts.append("Difference: no category/mechanic change recorded.")
+    elif row["status"] == "Capability-dependent":
+        parts.append(f"Runtime dependency to approve: {sentence(capability_dependency(row))}")
+    else:
+        parts.append(f"Difference: {sentence(row['what_changed'])}")
+    return " ".join(parts)
+
+
+def intent_summary(row: dict[str, Any]) -> str:
+    original_frame = row["original_play_frame"] or truncate(row["original_intent"], 95) or "Not audited"
+    generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 95) or "Not generated"
+    notes = clean_notes(row["intent_drift_notes"])
+    if notes:
+        difference = "; ".join(sentence(note) for note in notes)
+    elif not row["intent_audit_present"]:
+        difference = "Source-intent audit not provided."
+    elif original_frame == generated_frame:
+        difference = "No source-intent difference recorded."
+    else:
+        difference = "Play-frame wording differs, with no drift note recorded."
+    recommendation = sentence(row["intent_recommendation"])
+    summary = (
+        f"Original play frame: {sentence(original_frame)} "
+        f"Generated play frame: {sentence(generated_frame)} "
+        f"Difference: {difference}"
+    )
+    return summary + (f" Audit note: {recommendation}" if recommendation else "")
+
+
+def approval_summary(row: dict[str, Any]) -> str:
+    original_pair = category_mechanic_pair(row["original_category"], row["original_mechanic"])
+    generated_pair = category_mechanic_pair(row["generated_category"], row["generated_mechanic"])
+    original_frame = row["original_play_frame"] or truncate(row["original_intent"], 80)
+    generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 80)
+    notes = clean_notes(row["intent_drift_notes"])
+    targets = []
+    if original_pair != generated_pair:
+        targets.append(f"category/mechanic {original_pair} to {generated_pair}")
+    if row["intent_audit_present"] and original_frame != generated_frame:
+        targets.append(f"play frame {original_frame or 'not audited'} to {generated_frame or 'not generated'}")
+    elif row["intent_audit_present"] and notes:
+        targets.append(f"fallback/minimum-contract note {'; '.join(sentence(note) for note in notes)}")
+    if row["status"] == "Capability-dependent":
+        targets.append(f"capability dependency {capability_dependency(row)}")
+    if not targets:
+        targets.append("source-intent coverage and reviewer-packet readiness")
+    question = sentence(row["intent_review_question"] or row["review_question"])
+    return f"{question} Approve: {'; '.join(targets)}."
+
+
 def table_row(row: dict[str, Any]) -> str:
     packet = (
         f'<a href="{esc(row["reviewer_packet_link"])}">Packet</a>'
         if row["reviewer_packet_link"]
         else '<span class="muted">No packet</span>'
     )
-    product_question = row["intent_review_question"] or row["review_question"]
     details = f"""
       <details>
         <summary>Details</summary>
@@ -561,9 +643,9 @@ def table_row(row: dict[str, Any]) -> str:
         <td><span>{esc(row["original_category"])}</span><code>{esc(row["original_mechanic"])}</code></td>
         <td><strong>{esc(row["generated_name"] or "Missing")}</strong><p class="activity-id">{esc(row["activity_id"] or "No activity ID")}</p></td>
         <td><span>{esc(row["generated_category"] or "N/A")}</span><code>{esc(row["generated_mechanic"] or "N/A")}</code></td>
-        <td>{status_badge(row["status"])}<p>{esc(row["what_changed"])}</p></td>
-        <td>{intent_badge(row["intent_status"], row["intent_severity"])}<p>{esc(row["intent_recommendation"] or "No source-intent audit note.")}</p></td>
-        <td>{esc(product_question)}</td>
+        <td>{status_badge(row["status"])}<p>{esc(fidelity_summary(row))}</p></td>
+        <td>{intent_badge(row["intent_status"], row["intent_severity"])}<p>{esc(intent_summary(row))}</p></td>
+        <td>{esc(approval_summary(row))}</td>
         <td>{packet}</td>
       </tr>
     """
@@ -866,6 +948,11 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         "Approve capability assumptions and minimum contracts",
         "Approve reviewer-packet readiness",
         "Approval needed",
+        "Original category/mechanic:",
+        "Generated category/mechanic:",
+        "Original play frame:",
+        "Generated play frame:",
+        "Approve:",
     ]
     if report.get("intent_audit_provided"):
         required.extend(["Intent alignment", 'data-filter="intent-drift"'])

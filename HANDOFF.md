@@ -11,6 +11,7 @@
 - Updated `scripts/generate_source_comparison_review.py` so the product review matrix includes plain definitions for `Needs review`, `Capability-dependent`, and `Intent drift`, and removed sticky table headers that could overlap/cut off the first matrix rows under the sticky filter toolbar.
 - Added an `Approval Checklist` to the source-comparison matrix specifying that product review should approve source-intent coverage, category/mechanic realignments, capability assumptions/minimum contracts, and standalone reviewer-packet readiness.
 - Renamed the row-level `Product question` matrix column to `Approval needed` so each row presents the concrete product decision to make.
+- Replaced repetitive source-comparison matrix cell text with row-specific original-vs-generated summaries for fidelity status, intent alignment, and approval targets. Visible cells now show original category/mechanic, generated category/mechanic, original play frame, generated play frame, concrete drift/fallback notes, and only the actual approval deltas.
 - Tightened source-comparison HTML validation so stale pages missing definitions/approval guidance or still using sticky table headers fail validation.
 - Regenerated `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html` from the workbook and current source-intent audit.
 - Updated `scripts/generate_run_review.py` so runtime branch policies render as a horizontal `Branch / Child behavior / AI follow-up` table and validation fails exact copied unexpected/no-response branch boilerplate, keyword-substitution rows, and repeated Step 3 branch policies within the same package.
@@ -136,7 +137,7 @@
 ## Verification
 
 - `python -m unittest tests.test_source_comparison_review`
-  - Result: PASS; 6 source-comparison tests passed, including status-definition rendering, approval-checklist rendering, and non-sticky table-header regression coverage.
+  - Result: PASS; 6 source-comparison tests passed, including status-definition rendering, approval-checklist rendering, row-specific original/generated comparison text, and non-sticky table-header regression coverage.
 - `python -m py_compile scripts/generate_source_comparison_review.py`
   - Result: PASS.
 - `python scripts/generate_source_comparison_review.py runs/20260521_163621_workbook_review_packet_full --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_163621_workbook_review_packet_full/source_comparison/source_intent_audit.yaml --validate`
