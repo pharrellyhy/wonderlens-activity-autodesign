@@ -620,6 +620,12 @@ h3 { margin: 0; font-size: 16px; letter-spacing: 0; }
 button { border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: var(--ink); font: inherit; font-weight: 650; padding: 8px 11px; cursor: pointer; }
 button:hover, button.active { border-color: var(--accent); background: var(--accent-soft); }
 .count { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+.definitions { margin-top: 18px; padding: 13px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.definitions h2 { margin-bottom: 10px; }
+.definition-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.definition-grid div { min-width: 0; }
+.definition-grid dt { margin: 0 0 4px; color: var(--ink); font-weight: 760; }
+.definition-grid dd { margin: 0; color: var(--muted); max-width: 42ch; }
 .section { margin-top: 22px; }
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
 .section-head p { margin: 0; color: var(--muted); }
@@ -635,7 +641,7 @@ button:hover, button.active { border-color: var(--accent); background: var(--acc
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 table { width: 100%; border-collapse: collapse; min-width: 1240px; }
 th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-th { position: sticky; top: 58px; z-index: 2; background: var(--surface-2); color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+th { background: var(--surface-2); color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
 td p { margin: 6px 0 0; color: var(--muted); max-width: 42ch; }
 .row-number { color: var(--muted); font-variant-numeric: tabular-nums; }
 code { display: inline-block; margin-top: 4px; padding: 2px 6px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface-2); color: var(--ink); font-size: 12px; }
@@ -661,7 +667,7 @@ tr.is-hidden { display: none; }
 @media (max-width: 980px) {
   .hero, .visual-grid, .visual-card { grid-template-columns: 1fr; }
   .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  th { top: 98px; }
+  .definition-grid { grid-template-columns: 1fr; }
 }
 """
     js = """
@@ -726,6 +732,24 @@ applyFilter('all');
       <button type="button" data-filter="needs-review">Needs review</button>
       <span class="count" data-visible-count></span>
     </nav>
+
+    <section class="definitions" aria-labelledby="status-definitions-title">
+      <h2 id="status-definitions-title">Status Definitions</h2>
+      <dl class="definition-grid">
+        <div>
+          <dt>Needs review</dt>
+          <dd>Needs review means rows where product should make an explicit approval decision before treating the generated package as accepted.</dd>
+        </div>
+        <div>
+          <dt>Capability-dependent</dt>
+          <dd>Capability-dependent means the generated packet depends on product support, permissions, materials, or runtime behavior that is not yet fully approved.</dd>
+        </div>
+        <div>
+          <dt>Intent drift</dt>
+          <dd>Intent drift means the source-intent audit found a meaningful mismatch between the original play frame and the generated activity flow.</dd>
+        </div>
+      </dl>
+    </section>
 
     <section class="section" aria-labelledby="visual-examples-title">
       <div class="section-head">
@@ -815,6 +839,10 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         'data-filter="changed"',
         'data-filter="capability"',
         "Reviewer packet",
+        "Status Definitions",
+        "Needs review means rows where product should make an explicit approval decision",
+        "Capability-dependent means the generated packet depends on product support",
+        "Intent drift means the source-intent audit found a meaningful mismatch",
     ]
     if report.get("intent_audit_provided"):
         required.extend(["Intent alignment", 'data-filter="intent-drift"'])
@@ -829,6 +857,8 @@ def validate_html(html_text: str, report: dict[str, Any]) -> list[str]:
         issues.append("HTML row count does not match source row count")
     if "data:image/png;base64," not in html_text:
         issues.append("HTML does not embed visual example images")
+    if "th { position: sticky" in html_text:
+        issues.append("HTML uses sticky table headers that can overlap the first matrix rows")
     if report.get("intent_audit_provided"):
         for row in report.get("rows", []):
             if not row.get("intent_audit_present"):

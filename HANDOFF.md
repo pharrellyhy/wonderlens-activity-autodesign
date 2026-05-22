@@ -2,12 +2,15 @@
 
 ## Current Status
 
-- Status: Branch `fix/review-runtime-branch-policy` patches reviewer runtime branch layout and specificity for the full workbook review packet; exact boilerplate, keyword-substitution rows, and repeated Step 3 branch rows now fail validation; validations are passing locally.
+- Status: Branch `fix/review-runtime-branch-policy` patches reviewer runtime branch layout/specificity and source-comparison matrix clarity for the full workbook review packet; exact boilerplate, keyword-substitution rows, repeated Step 3 branch rows, stale source-comparison definitions, and overlap-prone matrix headers now fail validation; validations are passing locally.
 - Date: 2026-05-22
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/fix/review-runtime-branch-policy`
 
 ## Latest Changes
 
+- Updated `scripts/generate_source_comparison_review.py` so the product review matrix includes plain definitions for `Needs review`, `Capability-dependent`, and `Intent drift`, and removed sticky table headers that could overlap/cut off the first matrix rows under the sticky filter toolbar.
+- Tightened source-comparison HTML validation so stale pages missing those definitions or still using sticky table headers fail validation.
+- Regenerated `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html` from the workbook and current source-intent audit.
 - Updated `scripts/generate_run_review.py` so runtime branch policies render as a horizontal `Branch / Child behavior / AI follow-up` table and validation fails exact copied unexpected/no-response branch boilerplate, keyword-substitution rows, and repeated Step 3 branch policies within the same package.
 - Updated `scripts/export_activity_html.py` so standalone reviewer packets use the same horizontal branch table.
 - Tightened `program.md`, `run.md`, `GOAL.md`, `review_dashboard.md`, and `skills/wonderlens-workbook-to-review-packet/references/generation-run.md` so future full-pass generation must produce beat- and round-specific unexpected/no-response branch policies instead of boilerplate, keyword-substitution rows, or repeated Step 3 rows.
@@ -130,6 +133,14 @@
 
 ## Verification
 
+- `python -m unittest tests.test_source_comparison_review`
+  - Result: PASS; 6 source-comparison tests passed, including status-definition rendering and non-sticky table-header regression coverage.
+- `python -m py_compile scripts/generate_source_comparison_review.py`
+  - Result: PASS.
+- `python scripts/generate_source_comparison_review.py runs/20260521_163621_workbook_review_packet_full --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_163621_workbook_review_packet_full/source_comparison/source_intent_audit.yaml --validate`
+  - Result: PASS; 40 source rows, 40 covered, 34 needing review, 0 intent drift.
+- Playwright static HTML geometry check for `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html`
+  - Result: PASS; matrix header is static, status definitions are present, and the first row starts below the table header without overlap.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260521_163621_workbook_review_packet_full`
   - Result: PASS; 12 assets, 12 activities.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/export_activity_html.py --validate runs/20260521_163621_workbook_review_packet_full`

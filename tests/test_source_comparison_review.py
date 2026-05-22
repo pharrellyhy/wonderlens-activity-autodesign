@@ -262,6 +262,11 @@ class SourceComparisonReviewTest(unittest.TestCase):
         self.assertIn("data:image/png;base64,cG5n", html)
         self.assertIn("Mechanic changed", html)
         self.assertIn("Capability-dependent", html)
+        self.assertIn("Status Definitions", html)
+        self.assertIn("Needs review means rows where product should make an explicit approval decision", html)
+        self.assertIn("Capability-dependent means the generated packet depends on product support", html)
+        self.assertIn("Intent drift means the source-intent audit found a meaningful mismatch", html)
+        self.assertNotIn("th { position: sticky", html)
         self.assertNotIn(str(workbook.parent), html)
 
     def test_validate_report_rejects_missing_coverage_and_visuals(self):
