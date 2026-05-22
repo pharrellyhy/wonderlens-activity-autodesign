@@ -16,6 +16,7 @@
 - Added a visible `Scroll right for Intent alignment, Approval needed, and Reviewer packet` cue above the source-comparison matrix so reviewers know the table has additional right-side columns.
 - Added a `Minimum Unblock Approval Assumption` statement and `After minimum approval` metric/filter to the source-comparison matrix. The current full workbook audit has 34 raw review rows, but after assuming product has approved every minimum-unblock contract, only 7 rows still need review for category/mechanic changes, missing generated coverage, or explicit source-intent decisions.
 - Updated the source-comparison matrix fidelity and intent cells from single dense paragraphs to structured `Original / Generated / Reviewer-facing difference` blocks. Difference phrases are highlighted, and minimum-unblock fallback rows now explain in plain language that the reduced-scope fallback is accepted under the approval assumption rather than being a remaining intent mismatch.
+- Refined source-comparison intent display so approved minimum-unblock notes no longer render as intent differences. The renderer now keeps those fallbacks in fidelity/approval notes, while the intent column displays aligned when no non-minimum source-intent drift is recorded.
 - Tightened source-comparison HTML validation so stale pages missing definitions/approval guidance or still using sticky table headers fail validation.
 - Regenerated `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html` from the workbook and current source-intent audit.
 - Updated `scripts/generate_run_review.py` so runtime branch policies render as a horizontal `Branch / Child behavior / AI follow-up` table and validation fails exact copied unexpected/no-response branch boilerplate, keyword-substitution rows, and repeated Step 3 branch policies within the same package.
@@ -141,7 +142,7 @@
 ## Verification
 
 - `python -m unittest tests.test_source_comparison_review`
-  - Result: PASS; 6 source-comparison tests passed, including status-definition rendering, approval-checklist rendering, row-specific original/generated comparison text, and non-sticky table-header regression coverage.
+  - Result: PASS; 6 source-comparison tests passed, including status-definition rendering, approval-checklist rendering, row-specific original/generated comparison text, approved minimum-unblock intent alignment, and non-sticky table-header regression coverage.
 - `python -m py_compile scripts/generate_source_comparison_review.py`
   - Result: PASS.
 - `python scripts/generate_source_comparison_review.py runs/20260521_163621_workbook_review_packet_full --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_163621_workbook_review_packet_full/source_comparison/source_intent_audit.yaml --validate`
@@ -149,7 +150,7 @@
 - Static matrix scan for `data-review-after-minimum="true"`
   - Result: PASS; 7 post-minimum-approval review rows are marked in `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html`.
 - Static matrix scan for structured comparison blocks
-  - Result: PASS; the regenerated matrix has 40 fidelity comparison blocks, 40 intent comparison blocks, 81 highlighted delta phrases, and 32 plain-language minimum-unblock fallback explanations.
+  - Result: PASS; the regenerated matrix has 40 fidelity comparison blocks, 40 intent comparison blocks, 0 stale minimum-as-intent-difference phrases, 0 raw `Minimum version uses reduced-scope fallback` notes in the HTML, 27 capability notes, 32 approved-minimum audit notes, 7 minimum-only source-intent approval notes, 0 `Play-frame wording differs` warnings, 40 `Audit notes` detail labels, 33 no-intent-difference messages, and 32 aligned low-severity badges.
 - Playwright static HTML geometry check for `runs/20260521_163621_workbook_review_packet_full/source_comparison/product_review_matrix.html`
   - Result: PASS; matrix header is static, status definitions and approval checklist are present, `Approval needed` is the row-level decision column, the first row starts below the table header without overlap, fixed-width horizontal table scrolling is active, sampled matrix rows render around 186-207px tall with clamped long summaries, and the right-scroll cue is visible above the table.
 - `env PATH="$(pyenv root)/versions/3.13.6/bin:$PATH" python3 scripts/integrate_generated_assets.py --validate runs/20260521_163621_workbook_review_packet_full`

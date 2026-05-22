@@ -354,6 +354,13 @@ def minimum_unblock_assumed_approved(row: dict[str, Any]) -> bool:
     return row.get("status") == "Capability-dependent" and "minimum_unblock" in readiness
 
 
+def non_minimum_intent_notes(row: dict[str, Any]) -> list[str]:
+    return [
+        note for note in clean_notes(row["intent_drift_notes"])
+        if not (minimum_unblock_assumed_approved(row) and is_minimum_unblock_note(note))
+    ]
+
+
 def category_or_mechanic_changed(row: dict[str, Any]) -> bool:
     category_changed = bool(
         row.get("original_category")
@@ -463,6 +470,7 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_aud
         row["minimum_unblock_assumed_approved"] = minimum_unblock_assumed_approved(row)
         row["needs_review"] = needs_review(row)
         row["needs_review_after_minimum_approval"] = needs_review_after_minimum_approval(row)
+        row["intent_display_status"] = intent_display_status(row)
 
     summary = {
         "source_rows": len(rows),
@@ -473,8 +481,8 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_aud
         "category_changed": sum(1 for row in rows if row["status"] in ("Category changed", "Category + mechanic changed")),
         "capability_dependent": sum(1 for row in rows if row["status"] == "Capability-dependent"),
         "minimum_unblock_assumed_approved": sum(1 for row in rows if row["minimum_unblock_assumed_approved"]),
-        "intent_drift": sum(1 for row in rows if row["intent_status"] == "intent_drift"),
-        "intent_needs_product_decision": sum(1 for row in rows if row["intent_status"] == "needs_product_decision"),
+        "intent_drift": sum(1 for row in rows if row["intent_display_status"] == "intent_drift"),
+        "intent_needs_product_decision": sum(1 for row in rows if row["intent_display_status"] == "needs_product_decision"),
         "needs_review": sum(1 for row in rows if row["needs_review"]),
         "needs_review_after_minimum_approval": sum(1 for row in rows if row["needs_review_after_minimum_approval"]),
     }
@@ -617,14 +625,6 @@ def fidelity_summary(row: dict[str, Any]) -> str:
     return " ".join(parts)
 
 
-def minimum_unblock_explanation() -> str:
-    return (
-        "Minimum-unblock fallback: this packet intentionally uses a reduced-scope version "
-        "because the full product capability is unavailable. Under the approval assumption, "
-        "this fallback is not a remaining intent mismatch."
-    )
-
-
 def is_minimum_unblock_note(text: str) -> bool:
     note = norm(text).lower()
     return "minimum" in note and (
@@ -676,8 +676,8 @@ def fidelity_difference(row: dict[str, Any]) -> tuple[str, str, str]:
         dependency = capability_dependency(row)
         if minimum_unblock_assumed_approved(row):
             return (
-                f"Runtime dependency is covered by the approved minimum-unblock path: {dependency}.",
-                "approved minimum-unblock path",
+                f"Capability note: approved minimum-unblock fallback covers {dependency}; this is not an intent difference.",
+                "Capability note",
                 "warning",
             )
         return (f"Runtime dependency still needs product approval: {dependency}.", "still needs product approval", "warning")
@@ -701,12 +701,13 @@ def fidelity_summary_html(row: dict[str, Any]) -> str:
 def intent_summary(row: dict[str, Any]) -> str:
     original_frame = row["original_play_frame"] or truncate(row["original_intent"], 95) or "Not audited"
     generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 95) or "Not generated"
-    notes = clean_notes(row["intent_drift_notes"])
-    if notes:
-        difference = "; ".join(sentence(note) for note in notes)
+    frames_match = norm(original_frame) == norm(generated_frame)
+    non_minimum_notes = non_minimum_intent_notes(row)
+    if non_minimum_notes:
+        difference = "; ".join(sentence(note) for note in non_minimum_notes)
     elif not row["intent_audit_present"]:
         difference = "Source-intent audit not provided."
-    elif original_frame == generated_frame:
+    elif frames_match or minimum_unblock_assumed_approved(row):
         difference = "No source-intent difference recorded."
     else:
         difference = "Play-frame wording differs, with no drift note recorded."
@@ -720,15 +721,20 @@ def intent_summary(row: dict[str, Any]) -> str:
 
 
 def intent_difference(row: dict[str, Any], original_frame: str, generated_frame: str) -> tuple[str, str, str]:
-    notes = clean_notes(row["intent_drift_notes"])
-    note_text = " ".join(sentence(note) for note in notes)
-    has_minimum_note = minimum_unblock_assumed_approved(row) or any(is_minimum_unblock_note(note) for note in notes)
     frames_match = norm(original_frame) == norm(generated_frame)
+    minimum_approved = minimum_unblock_assumed_approved(row)
+    non_minimum_notes = non_minimum_intent_notes(row)
+    note_text = " ".join(sentence(note) for note in non_minimum_notes)
 
-    if has_minimum_note:
-        prefix = "Original and generated play frames match. " if frames_match else ""
-        return (prefix + minimum_unblock_explanation(), "Minimum-unblock fallback", "warning")
-    if notes:
+    if frames_match and not non_minimum_notes:
+        return ("Original and generated play frames match. No source-intent difference is recorded.", "play frames match", "good")
+    if minimum_approved and not non_minimum_notes and row["intent_status"] not in INTENT_REVIEW_STATUSES:
+        return (
+            "No source-intent approval needed: approved minimum-unblock is the only recorded adaptation.",
+            "No source-intent approval needed",
+            "good",
+        )
+    if non_minimum_notes:
         highlight = "Intent drift" if row["intent_status"] == "intent_drift" else "Audit difference"
         return (f"{highlight}: {note_text}", highlight, "critical" if row["intent_status"] == "intent_drift" else "warning")
     if not row["intent_audit_present"]:
@@ -738,11 +744,22 @@ def intent_difference(row: dict[str, Any], original_frame: str, generated_frame:
     return ("Play-frame wording differs, but no audit drift note was recorded; compare manually before approval.", "Play-frame wording differs", "warning")
 
 
+def intent_display_status(row: dict[str, Any]) -> str:
+    original_frame = row["original_play_frame"] or truncate(row["original_intent"], 95) or "Not audited"
+    generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 95) or "Not generated"
+    non_minimum_notes = non_minimum_intent_notes(row)
+    if norm(original_frame) == norm(generated_frame) and not non_minimum_notes:
+        return "aligned"
+    if minimum_unblock_assumed_approved(row) and not non_minimum_notes and row["intent_status"] not in INTENT_REVIEW_STATUSES:
+        return "aligned"
+    return row["intent_status"]
+
+
 def intent_summary_html(row: dict[str, Any]) -> str:
     original_frame = row["original_play_frame"] or truncate(row["original_intent"], 95) or "Not audited"
     generated_frame = row["generated_play_frame"] or truncate(row["generated_loop"], 95) or "Not generated"
     difference, highlight, tone = intent_difference(row, original_frame, generated_frame)
-    changed = norm(original_frame) != norm(generated_frame)
+    changed = intent_display_status(row) != "aligned" and norm(original_frame) != norm(generated_frame)
     return f"""
           <div class="comparison-block comparison-block-intent">
             {comparison_row("Original", sentence(original_frame))}
@@ -750,6 +767,16 @@ def intent_summary_html(row: dict[str, Any]) -> str:
             {comparison_difference(difference, tone=tone, highlight=highlight)}
           </div>
     """
+
+
+def intent_detail_notes(row: dict[str, Any]) -> str:
+    notes = clean_notes(row["intent_drift_notes"])
+    if not notes:
+        return "None recorded."
+    non_minimum_notes = non_minimum_intent_notes(row)
+    if minimum_unblock_assumed_approved(row) and not non_minimum_notes:
+        return "Approved minimum-unblock note: fallback is tracked as capability/approval information, not as a source-intent difference."
+    return "; ".join(sentence(note) for note in non_minimum_notes or notes)
 
 
 def approval_summary(row: dict[str, Any]) -> str:
@@ -821,7 +848,7 @@ def table_row(row: dict[str, Any]) -> str:
           <div><span>Generated core loop</span><p>{esc(row["generated_loop"] or "Not generated.")}</p></div>
           <div><span>Original play frame</span><p>{esc(row["original_play_frame"] or "Not audited.")}</p></div>
           <div><span>Generated play frame</span><p>{esc(row["generated_play_frame"] or "Not audited.")}</p></div>
-          <div><span>Intent drift notes</span><p>{esc("; ".join(row["intent_drift_notes"]) or "None recorded.")}</p></div>
+          <div><span>Audit notes</span><p>{esc(intent_detail_notes(row))}</p></div>
           <div><span>Audit review question</span><p>{esc(row["intent_review_question"] or row["review_question"] or "None recorded.")}</p></div>
           <div><span>Capability flags</span><p>{esc(", ".join(row["product_capability_flags"]) or "None")}</p></div>
           <div><span>Paths</span><p>{esc(row["package_path"] or "No package")}<br>{esc(row["brief_path"] or "No brief")}</p></div>
@@ -829,14 +856,14 @@ def table_row(row: dict[str, Any]) -> str:
       </details>
     """
     return f"""
-      <tr data-status="{esc(row["status_key"])}" data-intent-status="{esc(row["intent_status"])}" data-review-needed="{str(row["needs_review"]).lower()}" data-review-after-minimum="{str(row["needs_review_after_minimum_approval"]).lower()}" data-minimum-unblock-approved="{str(row["minimum_unblock_assumed_approved"]).lower()}">
+      <tr data-status="{esc(row["status_key"])}" data-intent-status="{esc(row["intent_display_status"])}" data-review-needed="{str(row["needs_review"]).lower()}" data-review-after-minimum="{str(row["needs_review_after_minimum_approval"]).lower()}" data-minimum-unblock-approved="{str(row["minimum_unblock_assumed_approved"]).lower()}">
         <td class="row-number">{esc(row["source_row"])}</td>
         <td><strong>{esc(row["original_name"])}</strong><p>{esc(truncate(row["original_intent"], 130))}</p>{details}</td>
         <td><span>{esc(row["original_category"])}</span><code>{esc(row["original_mechanic"])}</code></td>
         <td><strong>{esc(row["generated_name"] or "Missing")}</strong><p class="activity-id">{esc(row["activity_id"] or "No activity ID")}</p></td>
         <td><span>{esc(row["generated_category"] or "N/A")}</span><code>{esc(row["generated_mechanic"] or "N/A")}</code></td>
         <td>{status_badge(row["status"])}{matrix_summary_html(fidelity_summary_html(row), fidelity_summary(row), "fidelity")}</td>
-        <td>{intent_badge(row["intent_status"], row["intent_severity"])}{matrix_summary_html(intent_summary_html(row), intent_summary(row), "intent")}</td>
+        <td>{intent_badge(row["intent_display_status"], row["intent_severity"])}{matrix_summary_html(intent_summary_html(row), intent_summary(row), "intent")}</td>
         <td>{matrix_summary(approval_summary(row), "approval")}</td>
         <td>{packet}</td>
       </tr>
