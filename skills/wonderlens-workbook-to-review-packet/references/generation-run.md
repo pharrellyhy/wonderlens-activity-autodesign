@@ -42,7 +42,7 @@ Use a clean activity ID from the workbook/assignment. Strip copied `_rYYYYMMDD_H
 - Preserve source-promise alignment from the workbook row.
 - The child's repeated action must match the canonical mechanic, but the mechanic cannot override the workbook's play frame.
 - For runtime AI behavior, prefer `Runtime AI instruction` plus `Example AI line` when the line should be generated dynamically. Use fixed `AI says` only when exact wording is intentionally required.
-- Make unexpected and no-response branch policies beat-specific. Do not reuse generic text across activities; name the likely off-track or quiet behavior for the current source action and redirect/scaffold back to the current role, challenge, asset/fallback, or screen state.
+- Make unexpected and no-response branch policies beat- and round-specific. Do not reuse generic text across activities, do not keyword-substitute the activity title/mechanic/round title into a stock row, and do not repeat the same Step 3 branch policy across rounds. Name the likely off-track or quiet behavior for the current source action and redirect/scaffold back to the current role, challenge, asset/fallback, screen state, prior consequence, or completion target.
 - Every generated package must have exactly five files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml`.
 - Do not append `results.tsv` or mark an assignment complete until package validation, self-evaluation, and review have passed.
 - Block product-dependent rows only when the product contract does not support them and no minimum acceptable version has been approved.

@@ -13,7 +13,7 @@ Panels:
 1. Setup: Child can sit safely and make a short estimate such as ten seconds or one minute.
 2. Prompt: Step 2: Role And Rules | Explain the rule as an action loop and name any required asset or honest fallback. | Idea...
 3. Child Action: The repeated mechanic is predict: Round 1 -- Start The Source Action | Preserve the workbook promise: The child pr...
-4. Feedback Loop: Ideal: [specific] Confirm the action and name how it matches the source rule. | Unexpected: [redirect] Validate br...
+4. Feedback Loop: Ideal: Record the prediction, say what would make it true, and show how the next step will check or play it out. |...
 5. Variation: Round 2 -- Repeat With A Variation | Keep the same source frame and ask for a second predict turn with a small var...
 6. Completion: Step 5: Closing + IB Concepts | Close with the two key concepts and one parent-reviewable recap. | Ideal: The chil...
 Composition: exactly six equal panels in 3 columns by 2 rows with clean gutters and consistent camera language.
@@ -23,8 +23,8 @@ Constraints: no readable words or UI copy, no logos, no copyrighted characters, 
 ## Panel Captions
 
 - **1. Setup** - Child can sit safely and make a short estimate such as ten seconds or one minute. _(source: Step 1: Transition Bridge)_
-- **2. Prompt** - Step 2: Role And Rules | Explain the rule as an action loop and name any required asset or honest fallback. | Ideal: The child confirms the rule or asks for a smaller version. | Unexpected:... _(source: Step 2: Role And Rules)_
-- **3. Child Action** - The repeated mechanic is predict: Round 1 -- Start The Source Action | Preserve the workbook promise: The child predicts when a short amount of time has passed, then checks the res... | Ideal: The child gives... _(source: Round 1 -- Start The Source Action)_
-- **4. Feedback Loop** - Ideal: [specific] Confirm the action and name how it matches the source rule. | Unexpected: [redirect] Validate briefly, keep the Time Sense Challenge frame, and offer one safe choice that... _(source: Round 1 -- Start The Source Action)_
-- **5. Variation** - Round 2 -- Repeat With A Variation | Keep the same source frame and ask for a second predict turn with a small variation. | Ideal: The child repeats the same mechanic with a variation. | Un... _(source: Round 2 -- Repeat With A Variation)_
-- **6. Completion** - Step 5: Closing + IB Concepts | Close with the two key concepts and one parent-reviewable recap. | Ideal: The child says again, names a favorite part, or quietly watches the recap. | Unexpe... _(source: Step 5: Closing + IB Concepts)_
+- **2. Prompt** - Step 2: Role And Rules | Explain the rule as an action loop and name any required asset or honest fallback. | Ideal: The child agrees to the plan or prediction loop for Time Sense Challenge... _(source: Step 2: Role And Rules)_
+- **3. Child Action** - The repeated mechanic is predict: Round 1 -- Start The Source Action | Preserve the workbook promise: The child predicts when a short amount of time has passed, then checks the res... | Ideal: The child makes... _(source: Round 1 -- Start The Source Action)_
+- **4. Feedback Loop** - Ideal: Record the prediction, say what would make it true, and show how the next step will check or play it out. | Unexpected: Keep the pretend setup, narrow the first time guess to two pos... _(source: Round 1 -- Start The Source Action)_
+- **5. Variation** - Round 2 -- Repeat With A Variation | Keep the same source frame and ask for a second predict turn with a small variation. | Ideal: The child makes a plan or prediction for the timer check a... _(source: Round 2 -- Repeat With A Variation)_
+- **6. Completion** - Step 5: Closing + IB Concepts | Close with the two key concepts and one parent-reviewable recap. | Ideal: The child names a favorite Time Sense Challenge moment, asks to play again, or watc... _(source: Step 5: Closing + IB Concepts)_

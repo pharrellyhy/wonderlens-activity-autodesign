@@ -422,25 +422,58 @@ def paired_branch_followups(child_text: str, followup_text: str) -> list[dict[st
 
 def generic_branch_policy_findings(beats: list[dict[str, Any]]) -> list[str]:
     findings: list[str] = []
+    seen_branch_policy: dict[tuple[str, str, str], list[str]] = {}
     for beat in beats:
+        title = normalize_text(beat.get("title") or "Runtime beat")
         labels: list[str] = []
+        templated_labels: list[str] = []
         for branch in beat.get("branches", []):
             token = branch_token(branch.get("token", "observed"))
             child = normalize_text(branch.get("child"))
             followup = normalize_text(branch.get("followup"))
+            child_lower = child.lower()
+            followup_lower = followup.lower()
+            if token in {"unexpected", "no-response"}:
+                if len(child) >= 48:
+                    seen_branch_policy.setdefault((token, "child", child), []).append(title)
+                if len(followup) >= 48:
+                    seen_branch_policy.setdefault((token, "AI follow-up", followup), []).append(title)
+            if followup_lower.startswith("[specific]") or "source rule" in followup_lower:
+                templated_labels.append(f"{branch_label_for_token(token)} AI follow-up")
             if token == "unexpected":
                 if child == normalize_text(GENERIC_BRANCH_POLICY_PATTERNS["Unexpected child"]):
                     labels.append("Unexpected child")
                 if followup == normalize_text(GENERIC_BRANCH_POLICY_PATTERNS["Unexpected AI follow-up"]):
                     labels.append("Unexpected AI follow-up")
+                if "veers away from" in child_lower and "skips the" in child_lower and "unsafe/out-of-scope" in child_lower:
+                    templated_labels.append("Unexpected child")
+                if (
+                    "validate briefly, keep the" in followup_lower
+                    and "offer one safe choice that still completes" in followup_lower
+                ):
+                    templated_labels.append("Unexpected AI follow-up")
             if token == "no-response":
                 if child == normalize_text(GENERIC_BRANCH_POLICY_PATTERNS["No response child"]):
                     labels.append("No response child")
                 if followup == normalize_text(GENERIC_BRANCH_POLICY_PATTERNS["No response AI follow-up"]):
                     labels.append("No response AI follow-up")
+                if "pauses at" in child_lower and "needs a first tiny" in child_lower and "model" in child_lower:
+                    templated_labels.append("No response child")
+                if "model one tiny" in followup_lower and "invite the child to copy or choose" in followup_lower:
+                    templated_labels.append("No response AI follow-up")
         if labels:
-            title = normalize_text(beat.get("title") or "Runtime beat")
             findings.append(f"{title}: generic branch policy in {', '.join(labels)}")
+        elif templated_labels:
+            findings.append(f"{title}: keyword-substitution branch policy in {', '.join(templated_labels)}")
+    repeated_labels: list[str] = []
+    for (token, field, text), titles in seen_branch_policy.items():
+        distinct_titles = sorted(set(titles))
+        if len(distinct_titles) < 2:
+            continue
+        label = f"{branch_label_for_token(token)} {field}"
+        repeated_labels.append(f"{label} across {len(distinct_titles)} beats")
+    if repeated_labels:
+        findings.append(f"Runtime beat set: repeated branch policy in {', '.join(sorted(repeated_labels))}")
     return findings
 
 
@@ -4276,13 +4309,13 @@ if (previewDialog) {
       <div class="preview-subline">
         <span class="badge badge-metadata" id="preview-kind">Text</span>
         <span class="preview-size muted" id="preview-size"></span>
-        <a class="preview-open" id="preview-open" href="#" target="_blank" rel="noopener">Open file in new tab ↗</a>
+        <a class="preview-open" id="preview-open" href="#" target="_blank" rel="noopener">Open file in new tab</a>
       </div>
     </div>
     <button class="dialog-close" id="preview-close" type="button">Close</button>
   </div>
   <div class="dialog-body preview-body" id="preview-body"></div>
-  <div class="preview-truncated muted hidden" id="preview-truncated">File is larger than the inline-preview limit. Use “Open file in new tab” to read the full contents.</div>
+  <div class="preview-truncated muted hidden" id="preview-truncated">File is larger than the inline-preview limit. Use "Open file in new tab" to read the full contents.</div>
 </dialog>
 {preview_templates_html()}
 <script>{js}</script>

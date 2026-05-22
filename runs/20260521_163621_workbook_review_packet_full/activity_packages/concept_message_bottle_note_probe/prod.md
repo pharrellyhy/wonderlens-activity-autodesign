@@ -45,15 +45,15 @@ Parent starts a writing or kindness-note activity.
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child veers away from "Transition Bridge" in Message Bottle Note, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny care or appreciation model.
+1. (Ideal) The child accepts the message bottle note player role, notices the starter cue, or names something connected to the message recipient.
+2. (Unexpected) Child asks for another game, starts the kind response before the Message Bottle Note mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Message Bottle Note title/trigger card without taking the message bottle note player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate briefly, keep the Message Bottle Note frame, and offer one safe choice that still completes "Transition Bridge".
-3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Transition Bridge", then invite the child to copy or choose.
+1. Name the message bottle note player role, connect it to the starter cue, and preview the first kind response.
+2. Acknowledge the request, return to the Message Bottle Note promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Message Bottle Note role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Cat3 material workflow: Approved minimum contract uses caregiver setup, child self-report, and no-assessment physical-work language.
@@ -68,15 +68,15 @@ Parent starts a writing or kindness-note activity.
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child veers away from "Role And Rules" in Message Bottle Note, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny care or appreciation model.
+1. (Ideal) The child agrees to the kind response loop for Message Bottle Note or asks for the easiest version.
+2. (Unexpected) Child tries to skip the message recipient, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Message Bottle Note rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate briefly, keep the Message Bottle Note frame, and offer one safe choice that still completes "Role And Rules".
-3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Role And Rules", then invite the child to copy or choose.
+1. Restate the Message Bottle Note loop as AI prompt, child kind response, saved token, and show the first response slot.
+2. Keep the rule tied to the message recipient, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Message Bottle Note rule in one sentence and ask for yes, a point, or the first chance to choose a kind response.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -84,21 +84,21 @@ Parent starts a writing or kindness-note activity.
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The child creates a short kindness note or message for someone else.. Ask the child to notice a need and help in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The child creates a short kindness note or message for someone else. Ask the child to notice a need and help in the first small turn.
 
 **Example AI line:** "Let us start: The child creates a short kindness note or message for someone else. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child veers away from "Start The Source Action" in Message Bottle Note, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Start The Source Action", watches the current screen, or needs a first tiny care or appreciation model.
+1. (Ideal) The child notices the message recipient cue and suggests a fitting feeling, need, or kind action.
+2. (Unexpected) Child judges the person/object, ignores the message recipient cue, or offers help that does not fit the need.
+3. (No response) Child watches the message recipient cue without naming a feeling, need, or helpful action.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate briefly, keep the Message Bottle Note frame, and offer one safe choice that still completes "Start The Source Action".
-3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Start The Source Action", then invite the child to copy or choose.
+1. Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state.
+2. Reframe without judging, point to the cue for the message recipient, and offer two gentle help choices.
+3. [wait 2s] Model one caring sentence for the message recipient, then ask the child to choose a feeling or help action.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 > RESOLVED BLOCKER: Cat3 material workflow: Approved minimum contract uses caregiver setup, child self-report, and no-assessment physical-work language.
@@ -113,15 +113,15 @@ Parent starts a writing or kindness-note activity.
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child veers away from "Repeat With A Variation" in Message Bottle Note, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Repeat With A Variation", watches the current screen, or needs a first tiny care or appreciation model.
+1. (Ideal) The child notices the kind note sentence cue and suggests a fitting feeling, need, or kind action.
+2. (Unexpected) Child judges the person/object, ignores the kind note sentence cue, or offers help that does not fit the need.
+3. (No response) Child watches the kind note sentence cue without naming a feeling, need, or helpful action.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate briefly, keep the Message Bottle Note frame, and offer one safe choice that still completes "Repeat With A Variation".
-3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Repeat With A Variation", then invite the child to copy or choose.
+1. Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state.
+2. Reframe without judging, point to the cue for the kind note sentence, and offer two gentle help choices.
+3. [wait 2s] Model one caring sentence for the kind note sentence, then ask the child to choose a feeling or help action.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 > RESOLVED BLOCKER: Cat3 material workflow: Approved minimum contract uses caregiver setup, child self-report, and no-assessment physical-work language.
@@ -136,15 +136,15 @@ Parent starts a writing or kindness-note activity.
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child veers away from "Complete The Loop" in Message Bottle Note, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Complete The Loop", watches the current screen, or needs a first tiny care or appreciation model.
+1. (Ideal) The child notices the bottle send-off cue and suggests a fitting feeling, need, or kind action.
+2. (Unexpected) Child judges the person/object, ignores the bottle send-off cue, or offers help that does not fit the need.
+3. (No response) Child watches the bottle send-off cue without naming a feeling, need, or helpful action.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate briefly, keep the Message Bottle Note frame, and offer one safe choice that still completes "Complete The Loop".
-3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Complete The Loop", then invite the child to copy or choose.
+1. Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state.
+2. Reframe without judging, point to the cue for the bottle send-off, and offer two gentle help choices.
+3. [wait 2s] Model one caring sentence for the bottle send-off, then ask the child to choose a feeling or help action.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 > RESOLVED BLOCKER: Cat3 material workflow: Approved minimum contract uses caregiver setup, child self-report, and no-assessment physical-work language.
@@ -159,15 +159,15 @@ Parent starts a writing or kindness-note activity.
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child veers away from "Magic Moment" in Message Bottle Note, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny care or appreciation model.
+1. (Ideal) The child notices how the bottle send-off changed the Message Bottle Note board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Message Bottle Note payoff or ignores how the saved kind response turns connect.
+3. (No response) Child watches the Message Bottle Note reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate briefly, keep the Message Bottle Note frame, and offer one safe choice that still completes "Magic Moment".
-3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Magic Moment", then invite the child to copy or choose.
+1. Tie the reveal to the child's kind response turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Message Bottle Note reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Message Bottle Note board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -179,14 +179,14 @@ Parent starts a writing or kindness-note activity.
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child veers away from "Closing + IB Concepts" in Message Bottle Note, skips the care or appreciation action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny care or appreciation model.
+1. (Ideal) The child names a favorite Message Bottle Note moment, asks to play again, or watches the message bottle note recap badge.
+2. (Unexpected) Child shifts topic before the recap names the kind response skill or Form and Responsibility.
+3. (No response) Child stays on the Message Bottle Note recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate briefly, keep the Message Bottle Note frame, and offer one safe choice that still completes "Closing + IB Concepts".
-3. [wait 2s] [gentle] Model one tiny care or appreciation step for "Closing + IB Concepts", then invite the child to copy or choose.
+1. Offer a next-time variation using the same care mechanic and the message bottle note frame.
+2. Close Message Bottle Note first, name the practiced kind response, and then offer one next-round seed.
+3. [wait 2s] Read the Message Bottle Note badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `care`, focal attribute `message_bottle_note`, and next-step hint.

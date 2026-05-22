@@ -159,7 +159,7 @@ The dashboard must parse both runtime speech shapes:
 
 - Existing exact dialogue: `AI says`, `Child responses`, `AI follow-up`, and `Screen`.
 - Runtime LLM behavior contract: `Runtime AI instruction`, `Example AI line`, `Child responses`, `AI follow-up policy`, and `Screen/state`.
-- Review dashboards should flag or fail generated packages whose unexpected/no-response branch policies still use copied boilerplate instead of beat-specific behavior.
+- Review dashboards should flag or fail generated packages whose unexpected/no-response branch policies still use copied boilerplate, keyword-substitution rows, or repeated Step 3 round rows instead of beat-specific behavior.
 
 When the contract shape is used, label the beat as a runtime behavior contract in the detail view. The example line should be shown as a sample line, not as the only allowed runtime response. The storyboard still needs to surface source-promise-critical requirements such as story-first narration, profession-first role-play, physical/photo challenge gates, product constraints, and screen/state expectations.
 

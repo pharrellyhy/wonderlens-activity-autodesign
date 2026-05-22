@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 28231271e017baa70eb98c78d91e6d04f470259ac9a11555d156b5bc08a7ac62
+prompt_sha256: b712aae9a408c7f9ce47febe4e961d6bcf8f6879530f4e7d4c872129ab602e13
 prompt_path: visual_storyboards/concept_word_echo_remember/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_word_echo_remember/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_word_echo_remember
@@ -19,30 +19,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the echo or recall
+    loop for Word Echo Practice or as...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is remember: Round 1 -- Start The Source Action
     | Preserve the workbook promise: The AI says a simple word or phrase and the child
-    repeats it back in a playful... | Ideal: The child gives...'
+    repeats it back in a playful... | Ideal: The child repea...'
   source: Round 1 -- Start The Source Action
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate briefly, keep the Word Echo Practice frame,
-    and offer one safe choice that st...'
+  caption: 'Ideal: Repeat back the remembered part, mark the memory token, and cue
+    the next echo or recall. | Unexpected: Slow the first echo word into smaller pieces,
+    accept a partial recall, and ask...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
-    for a second remember turn with a small variation. | Ideal: The child repeats
-    the same mechanic with a variation. | U...'
+    for a second remember turn with a small variation. | Ideal: The child repeats,
+    remembers, or answers the echo variati...'
   source: Round 2 -- Repeat With A Variation
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Word Echo Practice
+    moment, asks to play again, or watche...'
   source: 'Step 5: Closing + IB Concepts'

@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 0ab89a3f456ec3f598ec557e46582843016a59126cdb1e46dbb9ddeb46650685
+prompt_sha256: 989cdbaef25d5cefdc086ec8229120f0dd6398617fff0d0d2f30d47d2c01b263
 prompt_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_story_unlock_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_story_unlock_probe
@@ -19,30 +19,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the story unlock
+    response loop for Story Challenge U...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is imagine: Round 1 -- Unlock The Moon Door | Tell
     the story beat before the task, then pause for a color challenge. | Ideal: The
-    child names or shows a color. | Unexpected: Child veers a...'
+    child names or shows silver, white, or blue for the moon...'
   source: Round 1 -- Unlock The Moon Door
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Narrate the door opening and continue the story. | Unexpected:
-    [redirect] Validate briefly, keep the Story Challenge Unlock frame, and offer
-    one safe choice that still com...'
+  caption: 'Ideal: Open the moon door, narrate the fox stepping through, and save
+    the color token. | Unexpected: Return to the moon-door cliffhanger, repeat the
+    allowed colors, and ask for one named or...'
   source: Round 1 -- Unlock The Moon Door
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Wake The Owl Bridge | Continue the story, then pause for a
-    soft animal sound challenge. | Ideal: The child makes the sound or says hello
-    owl. | Unexpected: Child veers away from...'
+    soft animal sound challenge. | Ideal: The child makes a soft owl sound or says
+    a gentle hello to wake the bridge. | Une...'
   source: Round 2 -- Wake The Owl Bridge
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Story Challenge Unlock
+    moment, asks to play again, or wa...'
   source: 'Step 5: Closing + IB Concepts'

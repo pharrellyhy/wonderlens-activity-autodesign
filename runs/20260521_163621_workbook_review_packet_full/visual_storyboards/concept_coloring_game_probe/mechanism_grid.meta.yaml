@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 4e27e9b44d1b3210a6cba5efec0d2b3e88fbfa8e5e4cea9a35226af83ed1c1ba
+prompt_sha256: 59cda67536a6aef2479ea353fbe04d0bf7b0a0b373a796baec61c3860036a210
 prompt_path: visual_storyboards/concept_coloring_game_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_coloring_game_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_coloring_game_probe
@@ -18,30 +18,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the making step
+    loop for Coloring Game or asks for t...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is build: Round 1 -- Choose A Region | Show a line-art
-    region before asking for a real-world color source. | Ideal: The child provides
-    a color source. | Unexpected: Child veers away from...'
+    region before asking for a real-world color source. | Ideal: The child adds the
+    requested first real-world color choice piece, mark,...'
   source: Round 1 -- Choose A Region
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Record the intended color and region. | Unexpected:
-    [redirect] Validate briefly, keep the Coloring Game frame, and offer one safe
-    choice that still completes "Choose A Reg...'
+  caption: 'Ideal: Name what the child added, show how it changes the creation, and
+    cue the next build step. | Unexpected: Keep the target small, restate the one
+    required first real-world color choice...'
   source: Round 1 -- Choose A Region
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Apply Or Describe The Color | Fill the region only if coloring
-    UI exists; otherwise describe the intended fill. | Ideal: The child confirms or
-    adjusts. | Unexpected: Child veers...'
+    UI exists; otherwise describe the intended fill. | Ideal: The child adds the requested
+    region fill or honest fallba...'
   source: Round 2 -- Apply Or Describe The Color
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Coloring Game moment,
+    asks to play again, or watches the...'
   source: 'Step 5: Closing + IB Concepts'

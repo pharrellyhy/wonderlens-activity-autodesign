@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 99f0d1ff54722fdfb437c6343e69ba6601f194d7d748b1ab27efe8cdbed1dac7
+prompt_sha256: 231aa1924e7bddf83983cd80c9a907eb5ba7c40ebb26a56e3c65ed9875da2c31
 prompt_path: visual_storyboards/concept_current_topic_interview_deduce/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_current_topic_interview_deduce/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_current_topic_interview_deduce
@@ -19,30 +19,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the clue guess
+    loop for Current Topic Interview or a...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is deduce: Round 1 -- Start The Source Action |
     Preserve the workbook promise: The child discusses an age-appropriate topic by
-    giving an opinion and a reason... | Ideal: The child gives t...'
+    giving an opinion and a reason... | Ideal: The child uses th...'
   source: Round 1 -- Start The Source Action
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate briefly, keep the Current Topic Interview
-    frame, and offer one safe choice th...'
+  caption: 'Ideal: Tie the guess to the visible clue, reveal whether that clue fits,
+    and set up the next evidence step. | Unexpected: Name the clue in the first opinion,
+    separate it from one distractin...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
-    for a second deduce turn with a small variation. | Ideal: The child repeats the
-    same mechanic with a variation. | Une...'
+    for a second deduce turn with a small variation. | Ideal: The child uses the reason
+    for the opinion to make or revise...'
   source: Round 2 -- Repeat With A Variation
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Current Topic Interview
+    moment, asks to play again, or w...'
   source: 'Step 5: Closing + IB Concepts'

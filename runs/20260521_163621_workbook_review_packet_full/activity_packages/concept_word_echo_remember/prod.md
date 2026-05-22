@@ -45,15 +45,15 @@ Child enters language-practice mode, asks what an object is called, or photograp
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child veers away from "Transition Bridge" in Word Echo Practice, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny echo or recall model.
+1. (Ideal) The child accepts the echo player role, notices the starter cue, or names something connected to the first echo word.
+2. (Unexpected) Child asks for another game, starts the echo or recall before the Word Echo Practice mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Word Echo Practice title/trigger card without taking the echo player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate briefly, keep the Word Echo Practice frame, and offer one safe choice that still completes "Transition Bridge".
-3. [wait 2s] [gentle] Model one tiny echo or recall step for "Transition Bridge", then invite the child to copy or choose.
+1. Name the echo player role, connect it to the starter cue, and preview the first echo or recall.
+2. Acknowledge the request, return to the Word Echo Practice promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Word Echo Practice role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -66,15 +66,15 @@ Child enters language-practice mode, asks what an object is called, or photograp
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child veers away from "Role And Rules" in Word Echo Practice, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny echo or recall model.
+1. (Ideal) The child agrees to the echo or recall loop for Word Echo Practice or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first echo word, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Word Echo Practice rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate briefly, keep the Word Echo Practice frame, and offer one safe choice that still completes "Role And Rules".
-3. [wait 2s] [gentle] Model one tiny echo or recall step for "Role And Rules", then invite the child to copy or choose.
+1. Restate the Word Echo Practice loop as AI prompt, child echo or recall, saved token, and show the first response slot.
+2. Keep the rule tied to the first echo word, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Word Echo Practice rule in one sentence and ask for yes, a point, or the first chance to echo or recall the prompt.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `word_echo_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
 
@@ -82,21 +82,21 @@ Child enters language-practice mode, asks what an object is called, or photograp
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The AI says a simple word or phrase and the child repeats it back in a playful echo round.. Ask the child to echo or recall in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The AI says a simple word or phrase and the child repeats it back in a playful echo round. Ask the child to echo or recall in the first small turn.
 
 **Example AI line:** "Let us start: The AI says a simple word or phrase and the child repeats it back in a playful echo round. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child veers away from "Start The Source Action" in Word Echo Practice, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Start The Source Action", watches the current screen, or needs a first tiny echo or recall model.
+1. (Ideal) The child repeats, remembers, or answers the first echo word prompt closely enough to keep the memory loop going.
+2. (Unexpected) Child changes the first echo word word/fact, guesses randomly, or turns the echo into unrelated talk.
+3. (No response) Child listens to the first echo word prompt without echoing, answering, or choosing a smaller repeat.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate briefly, keep the Word Echo Practice frame, and offer one safe choice that still completes "Start The Source Action".
-3. [wait 2s] [gentle] Model one tiny echo or recall step for "Start The Source Action", then invite the child to copy or choose.
+1. Repeat back the remembered part, mark the memory token, and cue the next echo or recall.
+2. Slow the first echo word into smaller pieces, accept a partial recall, and ask for just the next word or sound.
+3. [wait 2s] Say the first echo word prompt in two short beats, then invite the child to copy one beat.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `word_echo_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -109,15 +109,15 @@ Child enters language-practice mode, asks what an object is called, or photograp
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child veers away from "Repeat With A Variation" in Word Echo Practice, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Repeat With A Variation", watches the current screen, or needs a first tiny echo or recall model.
+1. (Ideal) The child repeats, remembers, or answers the echo variation prompt closely enough to keep the memory loop going.
+2. (Unexpected) Child changes the echo variation word/fact, guesses randomly, or turns the echo into unrelated talk.
+3. (No response) Child listens to the echo variation prompt without echoing, answering, or choosing a smaller repeat.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate briefly, keep the Word Echo Practice frame, and offer one safe choice that still completes "Repeat With A Variation".
-3. [wait 2s] [gentle] Model one tiny echo or recall step for "Repeat With A Variation", then invite the child to copy or choose.
+1. Repeat back the remembered part, mark the memory token, and cue the next echo or recall.
+2. Slow the echo variation into smaller pieces, accept a partial recall, and ask for just the next word or sound.
+3. [wait 2s] Say the echo variation prompt in two short beats, then invite the child to copy one beat.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `word_echo_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -130,15 +130,15 @@ Child enters language-practice mode, asks what an object is called, or photograp
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child veers away from "Complete The Loop" in Word Echo Practice, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Complete The Loop", watches the current screen, or needs a first tiny echo or recall model.
+1. (Ideal) The child repeats, remembers, or answers the remembered echo pair prompt closely enough to keep the memory loop going.
+2. (Unexpected) Child changes the remembered echo pair word/fact, guesses randomly, or turns the echo into unrelated talk.
+3. (No response) Child listens to the remembered echo pair prompt without echoing, answering, or choosing a smaller repeat.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate briefly, keep the Word Echo Practice frame, and offer one safe choice that still completes "Complete The Loop".
-3. [wait 2s] [gentle] Model one tiny echo or recall step for "Complete The Loop", then invite the child to copy or choose.
+1. Repeat back the remembered part, mark the memory token, and cue the next echo or recall.
+2. Slow the remembered echo pair into smaller pieces, accept a partial recall, and ask for just the next word or sound.
+3. [wait 2s] Say the remembered echo pair prompt in two short beats, then invite the child to copy one beat.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `word_echo_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -151,15 +151,15 @@ Child enters language-practice mode, asks what an object is called, or photograp
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child veers away from "Magic Moment" in Word Echo Practice, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny echo or recall model.
+1. (Ideal) The child notices how the remembered echo pair changed the Word Echo Practice board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Word Echo Practice payoff or ignores how the saved echo or recall turns connect.
+3. (No response) Child watches the Word Echo Practice reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate briefly, keep the Word Echo Practice frame, and offer one safe choice that still completes "Magic Moment".
-3. [wait 2s] [gentle] Model one tiny echo or recall step for "Magic Moment", then invite the child to copy or choose.
+1. Tie the reveal to the child's echo or recall turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Word Echo Practice reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Word Echo Practice board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -171,14 +171,14 @@ Child enters language-practice mode, asks what an object is called, or photograp
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child veers away from "Closing + IB Concepts" in Word Echo Practice, skips the echo or recall action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny echo or recall model.
+1. (Ideal) The child names a favorite Word Echo Practice moment, asks to play again, or watches the word echo practice recap badge.
+2. (Unexpected) Child shifts topic before the recap names the echo or recall skill or Form and Connection.
+3. (No response) Child stays on the Word Echo Practice recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate briefly, keep the Word Echo Practice frame, and offer one safe choice that still completes "Closing + IB Concepts".
-3. [wait 2s] [gentle] Model one tiny echo or recall step for "Closing + IB Concepts", then invite the child to copy or choose.
+1. Offer a next-time variation using the same remember mechanic and the word echo practice frame.
+2. Close Word Echo Practice first, name the practiced echo or recall, and then offer one next-round seed.
+3. [wait 2s] Read the Word Echo Practice badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `remember`, focal attribute `word_echo_practice`, and next-step hint.

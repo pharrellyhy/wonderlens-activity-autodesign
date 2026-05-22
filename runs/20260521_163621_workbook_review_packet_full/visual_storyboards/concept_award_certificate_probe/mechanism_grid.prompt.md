@@ -13,7 +13,7 @@ Panels:
 1. Setup: A family story or photographed object inspires a handmade award such as Best Helper or Best Mom.
 2. Prompt: Step 2: Role And Rules | Explain the rule as an action loop and name any required asset or honest fallback. | Idea...
 3. Child Action: The repeated mechanic is care: Round 1 -- Choose The Person | Ask who receives the award and why. | Ideal: The chi...
-4. Feedback Loop: Ideal: [specific] Reflect the appreciation reason. | Unexpected: [redirect] Validate briefly, keep the Award Certi...
+4. Feedback Loop: Ideal: Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state. | Unexp...
 5. Variation: Round 2 -- Design The Badge | Guide a paper-and-pencil badge with one color and one kind phrase. | Ideal: The chil...
 6. Completion: Step 5: Closing + IB Concepts | Close with the two key concepts and one parent-reviewable recap. | Ideal: The chil...
 Composition: exactly six equal panels in 3 columns by 2 rows with clean gutters and consistent camera language.
@@ -23,8 +23,8 @@ Constraints: no readable words or UI copy, no logos, no copyrighted characters, 
 ## Panel Captions
 
 - **1. Setup** - A family story or photographed object inspires a handmade award such as Best Helper or Best Mom. _(source: Step 1: Transition Bridge)_
-- **2. Prompt** - Step 2: Role And Rules | Explain the rule as an action loop and name any required asset or honest fallback. | Ideal: The child confirms the rule or asks for a smaller version. | Unexpected:... _(source: Step 2: Role And Rules)_
-- **3. Child Action** - The repeated mechanic is care: Round 1 -- Choose The Person | Ask who receives the award and why. | Ideal: The child names a person. | Unexpected: Child veers away from "Choose The Person" in Award Certificate... _(source: Round 1 -- Choose The Person)_
-- **4. Feedback Loop** - Ideal: [specific] Reflect the appreciation reason. | Unexpected: [redirect] Validate briefly, keep the Award Certificate frame, and offer one safe choice that still completes "Choose The Pe... _(source: Round 1 -- Choose The Person)_
-- **5. Variation** - Round 2 -- Design The Badge | Guide a paper-and-pencil badge with one color and one kind phrase. | Ideal: The child draws or names a color. | Unexpected: Child veers away from "Design The B... _(source: Round 2 -- Design The Badge)_
-- **6. Completion** - Step 5: Closing + IB Concepts | Close with the two key concepts and one parent-reviewable recap. | Ideal: The child says again, names a favorite part, or quietly watches the recap. | Unexpe... _(source: Step 5: Closing + IB Concepts)_
+- **2. Prompt** - Step 2: Role And Rules | Explain the rule as an action loop and name any required asset or honest fallback. | Ideal: The child agrees to the kind response loop for Award Certificate or asks... _(source: Step 2: Role And Rules)_
+- **3. Child Action** - The repeated mechanic is care: Round 1 -- Choose The Person | Ask who receives the award and why. | Ideal: The child notices the person to appreciate cue and suggests a fitting feeling, need, or kind action. |... _(source: Round 1 -- Choose The Person)_
+- **4. Feedback Loop** - Ideal: Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state. | Unexpected: Reframe without judging, point to the cue for the person to apprecia... _(source: Round 1 -- Choose The Person)_
+- **5. Variation** - Round 2 -- Design The Badge | Guide a paper-and-pencil badge with one color and one kind phrase. | Ideal: The child notices the award title or badge idea cue and suggests a fitting feeling,... _(source: Round 2 -- Design The Badge)_
+- **6. Completion** - Step 5: Closing + IB Concepts | Close with the two key concepts and one parent-reviewable recap. | Ideal: The child names a favorite Award Certificate moment, asks to play again, or watches... _(source: Step 5: Closing + IB Concepts)_

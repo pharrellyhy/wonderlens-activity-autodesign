@@ -45,15 +45,15 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child veers away from "Transition Bridge" in Travel Planner, skips the prediction or planning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny prediction or planning model.
+1. (Ideal) The child accepts the pretend trip planner role, notices the starter cue, or names something connected to the pack choice.
+2. (Unexpected) Child asks for another game, starts the plan or prediction before the Travel Planner mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Travel Planner title/trigger card without taking the pretend trip planner role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate briefly, keep the Travel Planner frame, and offer one safe choice that still completes "Transition Bridge".
-3. [wait 2s] [gentle] Model one tiny prediction or planning step for "Transition Bridge", then invite the child to copy or choose.
+1. Name the pretend trip planner role, connect it to the starter cue, and preview the first plan or prediction.
+2. Acknowledge the request, return to the Travel Planner promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Travel Planner role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -66,15 +66,15 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child veers away from "Role And Rules" in Travel Planner, skips the prediction or planning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny prediction or planning model.
+1. (Ideal) The child agrees to the plan or prediction loop for Travel Planner or asks for the easiest version.
+2. (Unexpected) Child tries to skip the pack choice, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Travel Planner rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate briefly, keep the Travel Planner frame, and offer one safe choice that still completes "Role And Rules".
-3. [wait 2s] [gentle] Model one tiny prediction or planning step for "Role And Rules", then invite the child to copy or choose.
+1. Restate the Travel Planner loop as AI prompt, child plan or prediction, saved token, and show the first response slot.
+2. Keep the rule tied to the pack choice, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Travel Planner rule in one sentence and ask for yes, a point, or the first chance to make a plan or prediction.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `travel_planning_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only.
 
@@ -82,21 +82,21 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen.. Ask the child to predict or plan in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen. Ask the child to predict or plan in the first small turn.
 
 **Example AI line:** "Let us start: The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child veers away from "Start The Source Action" in Travel Planner, skips the prediction or planning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Start The Source Action", watches the current screen, or needs a first tiny prediction or planning model.
+1. (Ideal) The child makes a plan or prediction for the pack choice and accepts that it can be checked or imagined next.
+2. (Unexpected) Child treats the pack choice as a fixed answer, jumps past the check, or proposes a plan outside the pretend setup.
+3. (No response) Child looks at the pack choice choices without making a prediction or plan.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate briefly, keep the Travel Planner frame, and offer one safe choice that still completes "Start The Source Action".
-3. [wait 2s] [gentle] Model one tiny prediction or planning step for "Start The Source Action", then invite the child to copy or choose.
+1. Record the prediction, say what would make it true, and show how the next step will check or play it out.
+2. Keep the pretend setup, narrow the pack choice to two possible outcomes, and ask which one might happen.
+3. [wait 2s] Model "I think this will happen because.." for the pack choice, then ask for one guess or choice.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `travel_planning_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -109,15 +109,15 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child veers away from "Repeat With A Variation" in Travel Planner, skips the prediction or planning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Repeat With A Variation", watches the current screen, or needs a first tiny prediction or planning model.
+1. (Ideal) The child makes a plan or prediction for the transport or weather choice and accepts that it can be checked or imagined next.
+2. (Unexpected) Child treats the transport or weather choice as a fixed answer, jumps past the check, or proposes a plan outside the pretend setup.
+3. (No response) Child looks at the transport or weather choice choices without making a prediction or plan.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate briefly, keep the Travel Planner frame, and offer one safe choice that still completes "Repeat With A Variation".
-3. [wait 2s] [gentle] Model one tiny prediction or planning step for "Repeat With A Variation", then invite the child to copy or choose.
+1. Record the prediction, say what would make it true, and show how the next step will check or play it out.
+2. Keep the pretend setup, narrow the transport or weather choice to two possible outcomes, and ask which one might happen.
+3. [wait 2s] Model "I think this will happen because.." for the transport or weather choice, then ask for one guess or choice.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `travel_planning_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -130,15 +130,15 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child veers away from "Complete The Loop" in Travel Planner, skips the prediction or planning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Complete The Loop", watches the current screen, or needs a first tiny prediction or planning model.
+1. (Ideal) The child makes a plan or prediction for the what might happen on the trip and accepts that it can be checked or imagined next.
+2. (Unexpected) Child treats the what might happen on the trip as a fixed answer, jumps past the check, or proposes a plan outside the pretend setup.
+3. (No response) Child looks at the what might happen on the trip choices without making a prediction or plan.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate briefly, keep the Travel Planner frame, and offer one safe choice that still completes "Complete The Loop".
-3. [wait 2s] [gentle] Model one tiny prediction or planning step for "Complete The Loop", then invite the child to copy or choose.
+1. Record the prediction, say what would make it true, and show how the next step will check or play it out.
+2. Keep the pretend setup, narrow the what might happen on the trip to two possible outcomes, and ask which one might happen.
+3. [wait 2s] Model "I think this will happen because.." for the what might happen on the trip, then ask for one guess or choice.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `travel_planning_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -151,15 +151,15 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child veers away from "Magic Moment" in Travel Planner, skips the prediction or planning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny prediction or planning model.
+1. (Ideal) The child notices how the what might happen on the trip changed the Travel Planner board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Travel Planner payoff or ignores how the saved plan or prediction turns connect.
+3. (No response) Child watches the Travel Planner reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate briefly, keep the Travel Planner frame, and offer one safe choice that still completes "Magic Moment".
-3. [wait 2s] [gentle] Model one tiny prediction or planning step for "Magic Moment", then invite the child to copy or choose.
+1. Tie the reveal to the child's plan or prediction turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Travel Planner reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Travel Planner board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -171,14 +171,14 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child veers away from "Closing + IB Concepts" in Travel Planner, skips the prediction or planning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny prediction or planning model.
+1. (Ideal) The child names a favorite Travel Planner moment, asks to play again, or watches the travel planner recap badge.
+2. (Unexpected) Child shifts topic before the recap names the plan or prediction skill or Form and Causation.
+3. (No response) Child stays on the Travel Planner recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate briefly, keep the Travel Planner frame, and offer one safe choice that still completes "Closing + IB Concepts".
-3. [wait 2s] [gentle] Model one tiny prediction or planning step for "Closing + IB Concepts", then invite the child to copy or choose.
+1. Offer a next-time variation using the same predict mechanic and the travel planner frame.
+2. Close Travel Planner first, name the practiced plan or prediction, and then offer one next-round seed.
+3. [wait 2s] Read the Travel Planner badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `predict`, focal attribute `travel_planner`, and next-step hint.

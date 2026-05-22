@@ -108,7 +108,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - `spec.md` is decision-useful, not just a scorecard wrapper: it records concrete design intent, assumptions, constraints, scaffold fit, asset/product dependencies, game-feel rationale, and residual risk when relevant.
    - `prod.md` satisfies the migrated package depth floor from `program.md`: every step is runnable, concrete, and specific enough for the prompt composer without relying on old design files.
    - Runtime beats may use existing `AI says` exact dialogue or the newer `Runtime AI instruction` plus `Example AI line` contract. A behavior instruction must preserve source frame, required content, branch policy, safety/product constraints, and screen/state expectation.
-   - Unexpected and no-response branch policies are specific to the current beat. They may share safety principles, but must not reuse generic boilerplate across activities; each redirect or scaffold returns to the current source action, role, challenge, asset/fallback, or screen state.
+   - Unexpected and no-response branch policies are specific to the current beat and Step 3 round. They may share safety principles, but must not reuse generic boilerplate across activities or repeat identical rows across rounds; each redirect or scaffold returns to the current source action, role, challenge, asset/fallback, screen state, prior consequence, or completion target.
    - `prod.md` contains no `## Self-Evaluation Scorecard`.
    - `spec.md` contains exactly one `## Self-Evaluation Scorecard`.
    - Every runtime Step 3 round in `prod.md` is fully expanded.
@@ -146,7 +146,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - A separate reviewer agent checks every generated package against the same 10 dimensions, the migrated package depth floor, mechanic fidelity, asset-brief coherence, and package-file consistency.
    - Reviewers explicitly fail structurally valid but thin/generic packages that do not meet the migrated package depth floor.
    - Any reviewer FAIL or credible uncertainty is repaired before logging; the repaired package is re-reviewed by a fresh separate reviewer agent or by the original reviewer after reading the changed files.
-   - Reviewers fail packages whose unexpected/no-response branch policies are generic clones rather than beat-specific runtime behavior.
+   - Reviewers fail packages whose unexpected/no-response branch policies are generic clones, keyword-substitution rows, or repeated Step 3 round rows rather than beat-specific runtime behavior.
    - `runs/<run_id>/review_notes.md` records reviewer-agent name/id when available, package scope, PASS/FAIL/N/A evidence, repairs made, and final reviewer outcome.
    - `results.tsv` receives one row for each generated package.
    - `runs/<run_id>/generated_activity_ids.txt` includes each generated clean `activity_id`.

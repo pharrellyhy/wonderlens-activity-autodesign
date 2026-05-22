@@ -45,15 +45,15 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child veers away from "Transition Bridge" in Animal Sound Imitation, skips the sound or movement action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny sound or movement model.
+1. (Ideal) The child accepts the animal voice performer role, notices the starter cue, or names something connected to the first animal voice.
+2. (Unexpected) Child asks for another game, starts the safe sound or movement before the Animal Sound Imitation mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Animal Sound Imitation title/trigger card without taking the animal voice performer role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate briefly, keep the Animal Sound Imitation frame, and offer one safe choice that still completes "Transition Bridge".
-3. [wait 2s] [gentle] Model one tiny sound or movement step for "Transition Bridge", then invite the child to copy or choose.
+1. Name the animal voice performer role, connect it to the starter cue, and preview the first safe sound or movement.
+2. Acknowledge the request, return to the Animal Sound Imitation promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Animal Sound Imitation role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -66,15 +66,15 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child veers away from "Role And Rules" in Animal Sound Imitation, skips the sound or movement action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny sound or movement model.
+1. (Ideal) The child agrees to the safe sound or movement loop for Animal Sound Imitation or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first animal voice, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Animal Sound Imitation rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate briefly, keep the Animal Sound Imitation frame, and offer one safe choice that still completes "Role And Rules".
-3. [wait 2s] [gentle] Model one tiny sound or movement step for "Role And Rules", then invite the child to copy or choose.
+1. Restate the Animal Sound Imitation loop as AI prompt, child safe sound or movement, saved token, and show the first response slot.
+2. Keep the rule tied to the first animal voice, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Animal Sound Imitation rule in one sentence and ask for yes, a point, or the first chance to try a safe sound or movement.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `animal_sound_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.
 
@@ -82,21 +82,21 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The AI prompts a familiar animal, and the child imitates its sound or speaks in the animal role.. Ask the child to move or voice safely in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The AI prompts a familiar animal, and the child imitates its sound or speaks in the animal role. Ask the child to move or voice safely in the first small turn.
 
 **Example AI line:** "Let us start: The AI prompts a familiar animal, and the child imitates its sound or speaks in the animal role. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child veers away from "Start The Source Action" in Animal Sound Imitation, skips the sound or movement action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Start The Source Action", watches the current screen, or needs a first tiny sound or movement model.
+1. (Ideal) The child tries the first animal voice with safe volume, space, or body control.
+2. (Unexpected) Child makes the first animal voice too rough/loud, switches to an unrelated performance, or proposes an unsafe movement.
+3. (No response) Child watches the first animal voice cue without moving, sounding, or choosing a smaller version.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate briefly, keep the Animal Sound Imitation frame, and offer one safe choice that still completes "Start The Source Action".
-3. [wait 2s] [gentle] Model one tiny sound or movement step for "Start The Source Action", then invite the child to copy or choose.
+1. Mirror the safe part of the first animal voice, save the performance token, and cue the next variation.
+2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the first animal voice.
+3. [wait 2s] Demonstrate the smallest safe version of the first animal voice, then ask the child to copy just that part.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `animal_sound_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -109,15 +109,15 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child veers away from "Repeat With A Variation" in Animal Sound Imitation, skips the sound or movement action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Repeat With A Variation", watches the current screen, or needs a first tiny sound or movement model.
+1. (Ideal) The child tries the changed animal voice or volume with safe volume, space, or body control.
+2. (Unexpected) Child makes the changed animal voice or volume too rough/loud, switches to an unrelated performance, or proposes an unsafe movement.
+3. (No response) Child watches the changed animal voice or volume cue without moving, sounding, or choosing a smaller version.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate briefly, keep the Animal Sound Imitation frame, and offer one safe choice that still completes "Repeat With A Variation".
-3. [wait 2s] [gentle] Model one tiny sound or movement step for "Repeat With A Variation", then invite the child to copy or choose.
+1. Mirror the safe part of the changed animal voice or volume, save the performance token, and cue the next variation.
+2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the changed animal voice or volume.
+3. [wait 2s] Demonstrate the smallest safe version of the changed animal voice or volume, then ask the child to copy just that part.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `animal_sound_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -130,15 +130,15 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child veers away from "Complete The Loop" in Animal Sound Imitation, skips the sound or movement action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Complete The Loop", watches the current screen, or needs a first tiny sound or movement model.
+1. (Ideal) The child tries the favorite animal-role line with safe volume, space, or body control.
+2. (Unexpected) Child makes the favorite animal-role line too rough/loud, switches to an unrelated performance, or proposes an unsafe movement.
+3. (No response) Child watches the favorite animal-role line cue without moving, sounding, or choosing a smaller version.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate briefly, keep the Animal Sound Imitation frame, and offer one safe choice that still completes "Complete The Loop".
-3. [wait 2s] [gentle] Model one tiny sound or movement step for "Complete The Loop", then invite the child to copy or choose.
+1. Mirror the safe part of the favorite animal-role line, save the performance token, and cue the next variation.
+2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the favorite animal-role line.
+3. [wait 2s] Demonstrate the smallest safe version of the favorite animal-role line, then ask the child to copy just that part.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `animal_sound_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -151,15 +151,15 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child veers away from "Magic Moment" in Animal Sound Imitation, skips the sound or movement action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny sound or movement model.
+1. (Ideal) The child notices how the favorite animal-role line changed the Animal Sound Imitation board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Animal Sound Imitation payoff or ignores how the saved safe sound or movement turns connect.
+3. (No response) Child watches the Animal Sound Imitation reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate briefly, keep the Animal Sound Imitation frame, and offer one safe choice that still completes "Magic Moment".
-3. [wait 2s] [gentle] Model one tiny sound or movement step for "Magic Moment", then invite the child to copy or choose.
+1. Tie the reveal to the child's safe sound or movement turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Animal Sound Imitation reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Animal Sound Imitation board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -171,14 +171,14 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child veers away from "Closing + IB Concepts" in Animal Sound Imitation, skips the sound or movement action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny sound or movement model.
+1. (Ideal) The child names a favorite Animal Sound Imitation moment, asks to play again, or watches the animal sound imitation recap badge.
+2. (Unexpected) Child shifts topic before the recap names the safe sound or movement skill or Form and Perspective.
+3. (No response) Child stays on the Animal Sound Imitation recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate briefly, keep the Animal Sound Imitation frame, and offer one safe choice that still completes "Closing + IB Concepts".
-3. [wait 2s] [gentle] Model one tiny sound or movement step for "Closing + IB Concepts", then invite the child to copy or choose.
+1. Offer a next-time variation using the same motion_voice mechanic and the animal sound imitation frame.
+2. Close Animal Sound Imitation first, name the practiced safe sound or movement, and then offer one next-round seed.
+3. [wait 2s] Read the Animal Sound Imitation badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `motion_voice`, focal attribute `animal_sound_imitation`, and next-step hint.

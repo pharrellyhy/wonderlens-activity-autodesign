@@ -45,15 +45,15 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child veers away from "Transition Bridge" in Toy Tidy Challenge, skips the sorting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny sorting model.
+1. (Ideal) The child accepts the toy tidy challenge player role, notices the starter cue, or names something connected to the first tiny tidy target.
+2. (Unexpected) Child asks for another game, starts the sorting move before the Toy Tidy Challenge mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Toy Tidy Challenge title/trigger card without taking the toy tidy challenge player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate briefly, keep the Toy Tidy Challenge frame, and offer one safe choice that still completes "Transition Bridge".
-3. [wait 2s] [gentle] Model one tiny sorting step for "Transition Bridge", then invite the child to copy or choose.
+1. Name the toy tidy challenge player role, connect it to the starter cue, and preview the first sorting move.
+2. Acknowledge the request, return to the Toy Tidy Challenge promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Toy Tidy Challenge role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -67,15 +67,15 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child veers away from "Role And Rules" in Toy Tidy Challenge, skips the sorting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny sorting model.
+1. (Ideal) The child agrees to the sorting move loop for Toy Tidy Challenge or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first tiny tidy target, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Toy Tidy Challenge rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate briefly, keep the Toy Tidy Challenge frame, and offer one safe choice that still completes "Role And Rules".
-3. [wait 2s] [gentle] Model one tiny sorting step for "Role And Rules", then invite the child to copy or choose.
+1. Restate the Toy Tidy Challenge loop as AI prompt, child sorting move, saved token, and show the first response slot.
+2. Keep the rule tied to the first tiny tidy target, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Toy Tidy Challenge rule in one sentence and ask for yes, a point, or the first chance to place one item by the rule.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -89,15 +89,15 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 
 **Child responses:**
 
-1. (Ideal) The child agrees or asks for a smaller task.
-2. (Unexpected) Child veers away from "Agree To Tidy" in Toy Tidy Challenge, skips the sorting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Agree To Tidy", watches the current screen, or needs a first tiny sorting model.
+1. (Ideal) The child places or names an item according to the first tiny tidy target rule.
+2. (Unexpected) Child mixes rules for the first tiny tidy target, sorts by an invisible reason, or moves items without naming a grouping idea.
+3. (No response) Child looks at the items for the first tiny tidy target without placing or naming one group.
 
 **AI follow-up:**
 
-1. [specific] Start the mission and give one organizing tip.
-2. [redirect] Validate briefly, keep the Toy Tidy Challenge frame, and offer one safe choice that still completes "Agree To Tidy".
-3. [wait 2s] [gentle] Model one tiny sorting step for "Agree To Tidy", then invite the child to copy or choose.
+1. Name the grouping rule the child used, keep that group visible, and ask for the next item or rule check.
+2. Hold the current groups still, compare two possible rules, and ask which one controls the first tiny tidy target.
+3. [wait 2s] Model placing one item by the first tiny tidy target rule, then ask the child to place or name one more.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -111,15 +111,15 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 
 **Child responses:**
 
-1. (Ideal) The child names or moves a group.
-2. (Unexpected) Child veers away from "Sort One Group" in Toy Tidy Challenge, skips the sorting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Sort One Group", watches the current screen, or needs a first tiny sorting model.
+1. (Ideal) The child places or names an item according to the timer tip during the mission rule.
+2. (Unexpected) Child mixes rules for the timer tip during the mission, sorts by an invisible reason, or moves items without naming a grouping idea.
+3. (No response) Child looks at the items for the timer tip during the mission without placing or naming one group.
 
 **AI follow-up:**
 
-1. [specific] Encourage the process without judging the room.
-2. [redirect] Validate briefly, keep the Toy Tidy Challenge frame, and offer one safe choice that still completes "Sort One Group".
-3. [wait 2s] [gentle] Model one tiny sorting step for "Sort One Group", then invite the child to copy or choose.
+1. Name the grouping rule the child used, keep that group visible, and ask for the next item or rule check.
+2. Hold the current groups still, compare two possible rules, and ask which one controls the timer tip during the mission.
+3. [wait 2s] Model placing one item by the timer tip during the mission rule, then ask the child to place or name one more.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -133,15 +133,15 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 
 **Child responses:**
 
-1. (Ideal) The child reports or shows the result.
-2. (Unexpected) Child veers away from "Confirm After State" in Toy Tidy Challenge, skips the sorting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Confirm After State", watches the current screen, or needs a first tiny sorting model.
+1. (Ideal) The child places or names an item according to the after-state confirmation rule.
+2. (Unexpected) Child mixes rules for the after-state confirmation, sorts by an invisible reason, or moves items without naming a grouping idea.
+3. (No response) Child looks at the items for the after-state confirmation without placing or naming one group.
 
 **AI follow-up:**
 
-1. [specific] Celebrate the tidy action without visual-verification claims.
-2. [redirect] Validate briefly, keep the Toy Tidy Challenge frame, and offer one safe choice that still completes "Confirm After State".
-3. [wait 2s] [gentle] Model one tiny sorting step for "Confirm After State", then invite the child to copy or choose.
+1. Name the grouping rule the child used, keep that group visible, and ask for the next item or rule check.
+2. Hold the current groups still, compare two possible rules, and ask which one controls the after-state confirmation.
+3. [wait 2s] Model placing one item by the after-state confirmation rule, then ask the child to place or name one more.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 > RESOLVED BLOCKER: UI state or progress memory: Approved minimum state contract keeps per-round choices visible when supported and uses a stateless fallback when not.
@@ -155,15 +155,15 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child veers away from "Magic Moment" in Toy Tidy Challenge, skips the sorting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny sorting model.
+1. (Ideal) The child notices how the after-state confirmation changed the Toy Tidy Challenge board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Toy Tidy Challenge payoff or ignores how the saved sorting move turns connect.
+3. (No response) Child watches the Toy Tidy Challenge reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate briefly, keep the Toy Tidy Challenge frame, and offer one safe choice that still completes "Magic Moment".
-3. [wait 2s] [gentle] Model one tiny sorting step for "Magic Moment", then invite the child to copy or choose.
+1. Tie the reveal to the child's sorting move turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Toy Tidy Challenge reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Toy Tidy Challenge board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -175,14 +175,14 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child veers away from "Closing + IB Concepts" in Toy Tidy Challenge, skips the sorting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny sorting model.
+1. (Ideal) The child names a favorite Toy Tidy Challenge moment, asks to play again, or watches the toy tidy challenge recap badge.
+2. (Unexpected) Child shifts topic before the recap names the sorting move skill or Form.
+3. (No response) Child stays on the Toy Tidy Challenge recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate briefly, keep the Toy Tidy Challenge frame, and offer one safe choice that still completes "Closing + IB Concepts".
-3. [wait 2s] [gentle] Model one tiny sorting step for "Closing + IB Concepts", then invite the child to copy or choose.
+1. Offer a next-time variation using the same sort mechanic and the toy tidy challenge frame.
+2. Close Toy Tidy Challenge first, name the practiced sorting move, and then offer one next-round seed.
+3. [wait 2s] Read the Toy Tidy Challenge badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `sort`, focal attribute `toy_tidy_challenge`, and next-step hint.

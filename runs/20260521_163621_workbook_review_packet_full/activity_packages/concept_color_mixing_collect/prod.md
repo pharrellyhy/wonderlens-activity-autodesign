@@ -45,15 +45,15 @@ Child notices two colors nearby or selects a color experiment mode.
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child veers away from "Transition Bridge" in Color Mixing Board, skips the finding or matching action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny finding or matching model.
+1. (Ideal) The child accepts the color mixing board player role, notices the starter cue, or names something connected to the first color pair.
+2. (Unexpected) Child asks for another game, starts the matching-item hunt before the Color Mixing Board mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Color Mixing Board title/trigger card without taking the color mixing board player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate briefly, keep the Color Mixing Board frame, and offer one safe choice that still completes "Transition Bridge".
-3. [wait 2s] [gentle] Model one tiny finding or matching step for "Transition Bridge", then invite the child to copy or choose.
+1. Name the color mixing board player role, connect it to the starter cue, and preview the first matching-item hunt.
+2. Acknowledge the request, return to the Color Mixing Board promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Color Mixing Board role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -66,15 +66,15 @@ Child notices two colors nearby or selects a color experiment mode.
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child veers away from "Role And Rules" in Color Mixing Board, skips the finding or matching action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny finding or matching model.
+1. (Ideal) The child agrees to the matching-item hunt loop for Color Mixing Board or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first color pair, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Color Mixing Board rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate briefly, keep the Color Mixing Board frame, and offer one safe choice that still completes "Role And Rules".
-3. [wait 2s] [gentle] Model one tiny finding or matching step for "Role And Rules", then invite the child to copy or choose.
+1. Restate the Color Mixing Board loop as AI prompt, child matching-item hunt, saved token, and show the first response slot.
+2. Keep the rule tied to the first color pair, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Color Mixing Board rule in one sentence and ask for yes, a point, or the first chance to find or show one match.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `color_mixing_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.
 
@@ -82,21 +82,21 @@ Child notices two colors nearby or selects a color experiment mode.
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The child chooses or finds two colors, predicts what they make together, and compares against the mixed result.. Ask the child to find or match in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The child chooses or finds two colors, predicts what they make together, and compares against the mixed result. Ask the child to find or match in the first small turn.
 
 **Example AI line:** "Let us start: The child chooses or finds two colors, predicts what they make together, and compares against the mixed result. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child veers away from "Start The Source Action" in Color Mixing Board, skips the finding or matching action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Start The Source Action", watches the current screen, or needs a first tiny finding or matching model.
+1. (Ideal) The child finds or names something that fits the first color pair and lets it become a collected token.
+2. (Unexpected) Child offers something that does not match the first color pair, changes the hunt rule, or asks for credit without a find.
+3. (No response) Child scans for the first color pair but does not name, point to, or show an item.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate briefly, keep the Color Mixing Board frame, and offer one safe choice that still completes "Start The Source Action".
-3. [wait 2s] [gentle] Model one tiny finding or matching step for "Start The Source Action", then invite the child to copy or choose.
+1. Name the matching evidence for the first color pair, add the token to the collection, and preview what changes next.
+2. Keep the hunt rule visible, contrast one non-match with one allowed example, and ask for a safer match for the first color pair.
+3. [wait 2s] Give one concrete example that would count for the first color pair, then ask the child to point, say, or show one.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_mixing_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -109,15 +109,15 @@ Child notices two colors nearby or selects a color experiment mode.
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child veers away from "Repeat With A Variation" in Color Mixing Board, skips the finding or matching action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Repeat With A Variation", watches the current screen, or needs a first tiny finding or matching model.
+1. (Ideal) The child finds or names something that fits the mixed-color prediction check and lets it become a collected token.
+2. (Unexpected) Child offers something that does not match the mixed-color prediction check, changes the hunt rule, or asks for credit without a find.
+3. (No response) Child scans for the mixed-color prediction check but does not name, point to, or show an item.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate briefly, keep the Color Mixing Board frame, and offer one safe choice that still completes "Repeat With A Variation".
-3. [wait 2s] [gentle] Model one tiny finding or matching step for "Repeat With A Variation", then invite the child to copy or choose.
+1. Name the matching evidence for the mixed-color prediction check, add the token to the collection, and preview what changes next.
+2. Keep the hunt rule visible, contrast one non-match with one allowed example, and ask for a safer match for the mixed-color prediction check.
+3. [wait 2s] Give one concrete example that would count for the mixed-color prediction check, then ask the child to point, say, or show one.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_mixing_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -130,15 +130,15 @@ Child notices two colors nearby or selects a color experiment mode.
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child veers away from "Complete The Loop" in Color Mixing Board, skips the finding or matching action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Complete The Loop", watches the current screen, or needs a first tiny finding or matching model.
+1. (Ideal) The child finds or names something that fits the name for the mixed result and lets it become a collected token.
+2. (Unexpected) Child offers something that does not match the name for the mixed result, changes the hunt rule, or asks for credit without a find.
+3. (No response) Child scans for the name for the mixed result but does not name, point to, or show an item.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate briefly, keep the Color Mixing Board frame, and offer one safe choice that still completes "Complete The Loop".
-3. [wait 2s] [gentle] Model one tiny finding or matching step for "Complete The Loop", then invite the child to copy or choose.
+1. Name the matching evidence for the name for the mixed result, add the token to the collection, and preview what changes next.
+2. Keep the hunt rule visible, contrast one non-match with one allowed example, and ask for a safer match for the name for the mixed result.
+3. [wait 2s] Give one concrete example that would count for the name for the mixed result, then ask the child to point, say, or show one.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_mixing_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -151,15 +151,15 @@ Child notices two colors nearby or selects a color experiment mode.
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child veers away from "Magic Moment" in Color Mixing Board, skips the finding or matching action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny finding or matching model.
+1. (Ideal) The child notices how the name for the mixed result changed the Color Mixing Board board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Color Mixing Board payoff or ignores how the saved matching-item hunt turns connect.
+3. (No response) Child watches the Color Mixing Board reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate briefly, keep the Color Mixing Board frame, and offer one safe choice that still completes "Magic Moment".
-3. [wait 2s] [gentle] Model one tiny finding or matching step for "Magic Moment", then invite the child to copy or choose.
+1. Tie the reveal to the child's matching-item hunt turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Color Mixing Board reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Color Mixing Board board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -171,14 +171,14 @@ Child notices two colors nearby or selects a color experiment mode.
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child veers away from "Closing + IB Concepts" in Color Mixing Board, skips the finding or matching action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny finding or matching model.
+1. (Ideal) The child names a favorite Color Mixing Board moment, asks to play again, or watches the color mixing board recap badge.
+2. (Unexpected) Child shifts topic before the recap names the matching-item hunt skill or Form and Connection.
+3. (No response) Child stays on the Color Mixing Board recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate briefly, keep the Color Mixing Board frame, and offer one safe choice that still completes "Closing + IB Concepts".
-3. [wait 2s] [gentle] Model one tiny finding or matching step for "Closing + IB Concepts", then invite the child to copy or choose.
+1. Offer a next-time variation using the same collect mechanic and the color mixing board frame.
+2. Close Color Mixing Board first, name the practiced matching-item hunt, and then offer one next-round seed.
+3. [wait 2s] Read the Color Mixing Board badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `collect`, focal attribute `color_mixing_board`, and next-step hint.

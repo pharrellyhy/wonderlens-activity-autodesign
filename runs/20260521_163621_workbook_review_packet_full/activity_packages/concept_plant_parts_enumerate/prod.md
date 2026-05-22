@@ -45,15 +45,15 @@ Uploaded or live photo clearly shows a plant with at least two visible parts.
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child veers away from "Transition Bridge" in Plant Parts Explorer, skips the counting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny counting model.
+1. (Ideal) The child accepts the plant parts explorer player role, notices the starter cue, or names something connected to the first visible plant part.
+2. (Unexpected) Child asks for another game, starts the counting or naming step before the Plant Parts Explorer mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Plant Parts Explorer title/trigger card without taking the plant parts explorer player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate briefly, keep the Plant Parts Explorer frame, and offer one safe choice that still completes "Transition Bridge".
-3. [wait 2s] [gentle] Model one tiny counting step for "Transition Bridge", then invite the child to copy or choose.
+1. Name the plant parts explorer player role, connect it to the starter cue, and preview the first counting or naming step.
+2. Acknowledge the request, return to the Plant Parts Explorer promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Plant Parts Explorer role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 
@@ -65,15 +65,15 @@ Uploaded or live photo clearly shows a plant with at least two visible parts.
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child veers away from "Role And Rules" in Plant Parts Explorer, skips the counting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny counting model.
+1. (Ideal) The child agrees to the counting or naming step loop for Plant Parts Explorer or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first visible plant part, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Plant Parts Explorer rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate briefly, keep the Plant Parts Explorer frame, and offer one safe choice that still completes "Role And Rules".
-3. [wait 2s] [gentle] Model one tiny counting step for "Role And Rules", then invite the child to copy or choose.
+1. Restate the Plant Parts Explorer loop as AI prompt, child counting or naming step, saved token, and show the first response slot.
+2. Keep the rule tied to the first visible plant part, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Plant Parts Explorer rule in one sentence and ask for yes, a point, or the first chance to count or name the target set.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -81,21 +81,21 @@ Uploaded or live photo clearly shows a plant with at least two visible parts.
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The child looks at a plant and identifies visible parts such as leaf, stem, flower, fruit, seed, or root.. Ask the child to count or identify in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The child looks at a plant and identifies visible parts such as leaf, stem, flower, fruit, seed, or root. Ask the child to count or identify in the first small turn.
 
 **Example AI line:** "Let us start: The child looks at a plant and identifies visible parts such as leaf, stem, flower, fruit, seed, or root. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child veers away from "Start The Source Action" in Plant Parts Explorer, skips the counting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Start The Source Action", watches the current screen, or needs a first tiny counting model.
+1. (Ideal) The child counts, names, or checks the items required for the first visible plant part.
+2. (Unexpected) Child guesses the first visible plant part without looking, counts unrelated items, or changes the target set.
+3. (No response) Child looks at the first visible plant part display without saying a number, name, or first count.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate briefly, keep the Plant Parts Explorer frame, and offer one safe choice that still completes "Start The Source Action".
-3. [wait 2s] [gentle] Model one tiny counting step for "Start The Source Action", then invite the child to copy or choose.
+1. Repeat the counted evidence, mark the number/name token, and show what set will be checked next.
+2. Return attention to the target set for the first visible plant part, count one item aloud, and ask the child to continue.
+3. [wait 2s] Point to the first item in the first visible plant part, say "one," and invite the child to say the next number or name.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -107,15 +107,15 @@ Uploaded or live photo clearly shows a plant with at least two visible parts.
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child veers away from "Repeat With A Variation" in Plant Parts Explorer, skips the counting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Repeat With A Variation", watches the current screen, or needs a first tiny counting model.
+1. (Ideal) The child counts, names, or checks the items required for the second plant part or location.
+2. (Unexpected) Child guesses the second plant part or location without looking, counts unrelated items, or changes the target set.
+3. (No response) Child looks at the second plant part or location display without saying a number, name, or first count.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate briefly, keep the Plant Parts Explorer frame, and offer one safe choice that still completes "Repeat With A Variation".
-3. [wait 2s] [gentle] Model one tiny counting step for "Repeat With A Variation", then invite the child to copy or choose.
+1. Repeat the counted evidence, mark the number/name token, and show what set will be checked next.
+2. Return attention to the target set for the second plant part or location, count one item aloud, and ask the child to continue.
+3. [wait 2s] Point to the first item in the second plant part or location, say "one," and invite the child to say the next number or name.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -127,15 +127,15 @@ Uploaded or live photo clearly shows a plant with at least two visible parts.
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child veers away from "Complete The Loop" in Plant Parts Explorer, skips the counting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Complete The Loop", watches the current screen, or needs a first tiny counting model.
+1. (Ideal) The child counts, names, or checks the items required for the whole plant recap.
+2. (Unexpected) Child guesses the whole plant recap without looking, counts unrelated items, or changes the target set.
+3. (No response) Child looks at the whole plant recap display without saying a number, name, or first count.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate briefly, keep the Plant Parts Explorer frame, and offer one safe choice that still completes "Complete The Loop".
-3. [wait 2s] [gentle] Model one tiny counting step for "Complete The Loop", then invite the child to copy or choose.
+1. Repeat the counted evidence, mark the number/name token, and show what set will be checked next.
+2. Return attention to the target set for the whole plant recap, count one item aloud, and ask the child to continue.
+3. [wait 2s] Point to the first item in the whole plant recap, say "one," and invite the child to say the next number or name.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -147,15 +147,15 @@ Uploaded or live photo clearly shows a plant with at least two visible parts.
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child veers away from "Magic Moment" in Plant Parts Explorer, skips the counting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny counting model.
+1. (Ideal) The child notices how the whole plant recap changed the Plant Parts Explorer board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Plant Parts Explorer payoff or ignores how the saved counting or naming step turns connect.
+3. (No response) Child watches the Plant Parts Explorer reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate briefly, keep the Plant Parts Explorer frame, and offer one safe choice that still completes "Magic Moment".
-3. [wait 2s] [gentle] Model one tiny counting step for "Magic Moment", then invite the child to copy or choose.
+1. Tie the reveal to the child's counting or naming step turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Plant Parts Explorer reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Plant Parts Explorer board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -167,14 +167,14 @@ Uploaded or live photo clearly shows a plant with at least two visible parts.
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child veers away from "Closing + IB Concepts" in Plant Parts Explorer, skips the counting action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny counting model.
+1. (Ideal) The child names a favorite Plant Parts Explorer moment, asks to play again, or watches the plant parts explorer recap badge.
+2. (Unexpected) Child shifts topic before the recap names the counting or naming step skill or Form.
+3. (No response) Child stays on the Plant Parts Explorer recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate briefly, keep the Plant Parts Explorer frame, and offer one safe choice that still completes "Closing + IB Concepts".
-3. [wait 2s] [gentle] Model one tiny counting step for "Closing + IB Concepts", then invite the child to copy or choose.
+1. Offer a next-time variation using the same enumerate mechanic and the plant parts explorer frame.
+2. Close Plant Parts Explorer first, name the practiced counting or naming step, and then offer one next-round seed.
+3. [wait 2s] Read the Plant Parts Explorer badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `enumerate`, focal attribute `plant_parts_explorer`, and next-step hint.

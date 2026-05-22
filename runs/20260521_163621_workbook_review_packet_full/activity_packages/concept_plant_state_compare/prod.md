@@ -45,15 +45,15 @@ A plant photo shows a clear state, such as blooming, wilting, dried, or after wa
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child veers away from "Transition Bridge" in Plant State Compare, skips the comparison action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny comparison model.
+1. (Ideal) The child accepts the plant state compare player role, notices the starter cue, or names something connected to the first visible plant state.
+2. (Unexpected) Child asks for another game, starts the comparison choice before the Plant State Compare mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Plant State Compare title/trigger card without taking the plant state compare player role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate briefly, keep the Plant State Compare frame, and offer one safe choice that still completes "Transition Bridge".
-3. [wait 2s] [gentle] Model one tiny comparison step for "Transition Bridge", then invite the child to copy or choose.
+1. Name the plant state compare player role, connect it to the starter cue, and preview the first comparison choice.
+2. Acknowledge the request, return to the Plant State Compare promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Plant State Compare role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 
@@ -65,15 +65,15 @@ A plant photo shows a clear state, such as blooming, wilting, dried, or after wa
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child veers away from "Role And Rules" in Plant State Compare, skips the comparison action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny comparison model.
+1. (Ideal) The child agrees to the comparison choice loop for Plant State Compare or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first visible plant state, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Plant State Compare rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate briefly, keep the Plant State Compare frame, and offer one safe choice that still completes "Role And Rules".
-3. [wait 2s] [gentle] Model one tiny comparison step for "Role And Rules", then invite the child to copy or choose.
+1. Restate the Plant State Compare loop as AI prompt, child comparison choice, saved token, and show the first response slot.
+2. Keep the rule tied to the first visible plant state, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Plant State Compare rule in one sentence and ask for yes, a point, or the first chance to compare the visible options.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -81,21 +81,21 @@ A plant photo shows a clear state, such as blooming, wilting, dried, or after wa
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The child compares a plant's visible state, such as sprouting, blooming, wilting, dried, healthy, or fruiting.. Ask the child to compare and choose in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The child compares a plant's visible state, such as sprouting, blooming, wilting, dried, healthy, or fruiting. Ask the child to compare and choose in the first small turn.
 
 **Example AI line:** "Let us start: The child compares a plant's visible state, such as sprouting, blooming, wilting, dried, healthy, or fruiting. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child veers away from "Start The Source Action" in Plant State Compare, skips the comparison action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Start The Source Action", watches the current screen, or needs a first tiny comparison model.
+1. (Ideal) The child compares the visible options for the first visible plant state and chooses or explains one.
+2. (Unexpected) Child responds to only one side of the first visible plant state, changes the comparison rule, or talks about an option that is not visible.
+3. (No response) Child looks between the first visible plant state options without choosing, pointing, or naming a difference.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate briefly, keep the Plant State Compare frame, and offer one safe choice that still completes "Start The Source Action".
-3. [wait 2s] [gentle] Model one tiny comparison step for "Start The Source Action", then invite the child to copy or choose.
+1. Name the comparison evidence, save the selected option, and keep the next comparison state clear.
+2. Restate the two visible options and the comparison lens for the first visible plant state, then ask for left/right or this/that.
+3. [wait 2s] Name one difference in the first visible plant state, model a choice, and invite one point or word.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -107,15 +107,15 @@ A plant photo shows a clear state, such as blooming, wilting, dried, or after wa
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child veers away from "Repeat With A Variation" in Plant State Compare, skips the comparison action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Repeat With A Variation", watches the current screen, or needs a first tiny comparison model.
+1. (Ideal) The child compares the visible options for the second state comparison and chooses or explains one.
+2. (Unexpected) Child responds to only one side of the second state comparison, changes the comparison rule, or talks about an option that is not visible.
+3. (No response) Child looks between the second state comparison options without choosing, pointing, or naming a difference.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate briefly, keep the Plant State Compare frame, and offer one safe choice that still completes "Repeat With A Variation".
-3. [wait 2s] [gentle] Model one tiny comparison step for "Repeat With A Variation", then invite the child to copy or choose.
+1. Name the comparison evidence, save the selected option, and keep the next comparison state clear.
+2. Restate the two visible options and the comparison lens for the second state comparison, then ask for left/right or this/that.
+3. [wait 2s] Name one difference in the second state comparison, model a choice, and invite one point or word.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -127,15 +127,15 @@ A plant photo shows a clear state, such as blooming, wilting, dried, or after wa
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child veers away from "Complete The Loop" in Plant State Compare, skips the comparison action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Complete The Loop", watches the current screen, or needs a first tiny comparison model.
+1. (Ideal) The child compares the visible options for the state clue explanation and chooses or explains one.
+2. (Unexpected) Child responds to only one side of the state clue explanation, changes the comparison rule, or talks about an option that is not visible.
+3. (No response) Child looks between the state clue explanation options without choosing, pointing, or naming a difference.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate briefly, keep the Plant State Compare frame, and offer one safe choice that still completes "Complete The Loop".
-3. [wait 2s] [gentle] Model one tiny comparison step for "Complete The Loop", then invite the child to copy or choose.
+1. Name the comparison evidence, save the selected option, and keep the next comparison state clear.
+2. Restate the two visible options and the comparison lens for the state clue explanation, then ask for left/right or this/that.
+3. [wait 2s] Name one difference in the state clue explanation, model a choice, and invite one point or word.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
 
@@ -147,15 +147,15 @@ A plant photo shows a clear state, such as blooming, wilting, dried, or after wa
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child veers away from "Magic Moment" in Plant State Compare, skips the comparison action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny comparison model.
+1. (Ideal) The child notices how the state clue explanation changed the Plant State Compare board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Plant State Compare payoff or ignores how the saved comparison choice turns connect.
+3. (No response) Child watches the Plant State Compare reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate briefly, keep the Plant State Compare frame, and offer one safe choice that still completes "Magic Moment".
-3. [wait 2s] [gentle] Model one tiny comparison step for "Magic Moment", then invite the child to copy or choose.
+1. Tie the reveal to the child's comparison choice turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Plant State Compare reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Plant State Compare board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -167,14 +167,14 @@ A plant photo shows a clear state, such as blooming, wilting, dried, or after wa
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child veers away from "Closing + IB Concepts" in Plant State Compare, skips the comparison action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny comparison model.
+1. (Ideal) The child names a favorite Plant State Compare moment, asks to play again, or watches the plant state compare recap badge.
+2. (Unexpected) Child shifts topic before the recap names the comparison choice skill or Form and Perspective.
+3. (No response) Child stays on the Plant State Compare recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate briefly, keep the Plant State Compare frame, and offer one safe choice that still completes "Closing + IB Concepts".
-3. [wait 2s] [gentle] Model one tiny comparison step for "Closing + IB Concepts", then invite the child to copy or choose.
+1. Offer a next-time variation using the same compare mechanic and the plant state compare frame.
+2. Close Plant State Compare first, name the practiced comparison choice, and then offer one next-round seed.
+3. [wait 2s] Read the Plant State Compare badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `compare`, focal attribute `plant_state_compare`, and next-step hint.

@@ -166,6 +166,80 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
         self.assertIn("Unexpected", findings[0])
         self.assertIn("No response", findings[0])
 
+    def test_generic_branch_policy_detection_flags_keyword_substitution(self):
+        prod_text = """
+#### Step 3: Start The Source Action
+
+**Runtime AI instruction:** Preserve the workbook promise: the child chooses between two story paths.
+
+**Example AI line:** [story tone] "Do you choose the cave path or the bridge path?"
+
+**Child responses:**
+
+1. (Ideal) The child chooses a path.
+2. (Unexpected) Child veers away from "Start The Source Action" in Branching Choice Story, skips the decision action, or proposes an unsafe/out-of-scope version.
+3. (No response) Child pauses at "Start The Source Action", watches the current screen, or needs a first tiny decision model.
+
+**AI follow-up policy:**
+
+1. (Ideal) Continue the chosen path.
+2. (Unexpected) [redirect] Validate briefly, keep the Branching Choice Story frame, and offer one safe choice that still completes "Start The Source Action".
+3. (No response) [wait 2s] [gentle] Model one tiny decision step for "Start The Source Action", then invite the child to copy or choose.
+
+**Screen/state:** Shows two path tokens.
+"""
+        findings = self.report.generic_branch_policy_findings(self.report.runtime_beats(prod_text))
+        self.assertEqual(1, len(findings))
+        self.assertIn("keyword-substitution", findings[0])
+
+    def test_generic_branch_policy_detection_flags_repeated_round_policy(self):
+        prod_text = """
+#### Step 3: Multi-Round Core Loop
+
+**Round 1 -- Cave Door:**
+
+**Runtime AI instruction:** Ask the child to choose the cave path or bridge path.
+
+**Example AI line:** "Which path should the fox try first?"
+
+**Child responses:**
+
+1. (Ideal) The child chooses the cave path.
+2. (Unexpected) Child invents a third path or talks about the fox without choosing.
+3. (No response) Child studies the two path tokens without picking one.
+
+**AI follow-up policy:**
+
+1. (Ideal) Narrate the cave path opening.
+2. (Unexpected) Restate the two available paths and ask for one choice.
+3. (No response) [wait 2s] Read the path labels again and ask for one tap or word.
+
+**Screen/state:** Two path tokens are visible.
+
+**Round 2 -- Bridge Door:**
+
+**Runtime AI instruction:** Ask the child to choose the owl bridge or moon boat.
+
+**Example AI line:** "Now should the fox cross the bridge or ride the boat?"
+
+**Child responses:**
+
+1. (Ideal) The child chooses the bridge.
+2. (Unexpected) Child invents a third path or talks about the fox without choosing.
+3. (No response) Child studies the two path tokens without picking one.
+
+**AI follow-up policy:**
+
+1. (Ideal) Narrate the bridge path opening.
+2. (Unexpected) Restate the two available paths and ask for one choice.
+3. (No response) [wait 2s] Read the path labels again and ask for one tap or word.
+
+**Screen/state:** Two path tokens are visible.
+"""
+        findings = self.report.generic_branch_policy_findings(self.report.runtime_beats(prod_text))
+        self.assertEqual(1, len(findings))
+        self.assertIn("repeated branch policy", findings[0])
+
 
 if __name__ == "__main__":
     unittest.main()

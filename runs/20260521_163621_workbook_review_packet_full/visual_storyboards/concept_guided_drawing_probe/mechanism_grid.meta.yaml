@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: baf9d868e7762208783f81dd82bf81b3d47bb501db0576ac812853123885ff0b
+prompt_sha256: fc76b64c6a7cb4eb9c2e420447a5533f40042e4507364c1b23fd94862c0d6e3d
 prompt_path: visual_storyboards/concept_guided_drawing_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_guided_drawing_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_guided_drawing_probe
@@ -19,30 +19,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the making step
+    loop for Guided Drawing or asks for...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is build: Round 1 -- Start The Source Action | Preserve
     the workbook promise: The AI guides the child to use paper and pencil to complete
-    a simple drawing s... | Ideal: The child gives th...'
+    a simple drawing s... | Ideal: The child adds the...'
   source: Round 1 -- Start The Source Action
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate briefly, keep the Guided Drawing frame,
-    and offer one safe choice that still...'
+  caption: 'Ideal: Name what the child added, show how it changes the creation, and
+    cue the next build step. | Unexpected: Keep the target small, restate the one
+    required first line or shape step, and...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
-    for a second build turn with a small variation. | Ideal: The child repeats the
-    same mechanic with a variation. | Unex...'
+    for a second build turn with a small variation. | Ideal: The child adds the requested
+    second guided detail piece, mar...'
   source: Round 2 -- Repeat With A Variation
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Guided Drawing moment,
+    asks to play again, or watches th...'
   source: 'Step 5: Closing + IB Concepts'

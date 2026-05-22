@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: b93b7f5abcd68303e00423101990bf42d9aa0ca2565907b833cbdc35fe7cc819
+prompt_sha256: 0fe163162ac90bc920a8285b5692ffdc62cc3856a5ce9b0e7a483b31a320ff93
 prompt_path: visual_storyboards/concept_branching_story_decide/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_branching_story_decide/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_branching_story_decide
@@ -19,30 +19,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the choice loop
+    for Branching Choice Story or asks f...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is decide: Round 1 -- Start The Source Action |
     Preserve the workbook promise: The AI tells a story with choice points, and the
-    child''s choices decide what h... | Ideal: The child gives t...'
+    child''s choices decide what h... | Ideal: The child chooses...'
   source: Round 1 -- Start The Source Action
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate briefly, keep the Branching Choice Story
-    frame, and offer one safe choice tha...'
+  caption: 'Ideal: Lock the first path, narrate the consequence, and place its token
+    at the start of the trail. | Unexpected: Use the idea as story color, then restate
+    the two opening paths and ask for...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
-    for a second decide turn with a small variation. | Ideal: The child repeats the
-    same mechanic with a variation. | Une...'
+    for a second decide turn with a small variation. | Ideal: The child chooses the
+    next branch based on what happened af...'
   source: Round 2 -- Repeat With A Variation
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Branching Choice
+    Story moment, asks to play again, or wa...'
   source: 'Step 5: Closing + IB Concepts'

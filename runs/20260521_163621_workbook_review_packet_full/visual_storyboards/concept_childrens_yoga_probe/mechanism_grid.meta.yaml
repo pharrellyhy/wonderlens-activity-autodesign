@@ -6,7 +6,7 @@ target_model: gpt-image-2
 actual_model: codex-configured image model
 generated_at: '2026-05-21T15:39:18'
 source_image: ''
-prompt_sha256: 0b76c841228a95438e81795b94d82681ac56d0a8a0758d94e9040ecf4475905c
+prompt_sha256: 8cf6e66f3dc2993b6eeed97a39ad53a4bd19ed63a77456b69427a1923ef66486
 prompt_path: visual_storyboards/concept_childrens_yoga_probe/mechanism_grid.prompt.md
 image_path: visual_storyboards/concept_childrens_yoga_probe/mechanism_grid.png
 package_path: runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_childrens_yoga_probe
@@ -18,30 +18,30 @@ panel_captions:
 - number: '2'
   title: Prompt
   caption: 'Step 2: Role And Rules | Explain the rule as an action loop and name any
-    required asset or honest fallback. | Ideal: The child confirms the rule or asks
-    for a smaller version. | Unexpected:...'
+    required asset or honest fallback. | Ideal: The child agrees to the safe sound
+    or movement loop for Children''s Yoga...'
   source: 'Step 2: Role And Rules'
 - number: '3'
   title: Child Action
   caption: 'The repeated mechanic is motion_voice: Round 1 -- Start The Source Action
     | Preserve the workbook promise: The AI guides a short, child-safe pose routine
-    using animal or object metaphor... | Ideal: The child g...'
+    using animal or object metaphor... | Ideal: The child t...'
   source: Round 1 -- Start The Source Action
 - number: '4'
   title: Feedback Loop
-  caption: 'Ideal: [specific] Confirm the action and name how it matches the source
-    rule. | Unexpected: [redirect] Validate briefly, keep the Children''s Yoga frame,
-    and offer one safe choice that still...'
+  caption: 'Ideal: Mirror the safe part of the first child-safe pose, save the performance
+    token, and cue the next variation. | Unexpected: Name the safety boundary, shrink
+    the action to a safer versio...'
   source: Round 1 -- Start The Source Action
 - number: '5'
   title: Variation
   caption: 'Round 2 -- Repeat With A Variation | Keep the same source frame and ask
-    for a second motion_voice turn with a small variation. | Ideal: The child repeats
-    the same mechanic with a variation....'
+    for a second motion_voice turn with a small variation. | Ideal: The child tries
+    the second pose with a small variatio...'
   source: Round 2 -- Repeat With A Variation
 - number: '6'
   title: Completion
   caption: 'Step 5: Closing + IB Concepts | Close with the two key concepts and one
-    parent-reviewable recap. | Ideal: The child says again, names a favorite part,
-    or quietly watches the recap. | Unexpe...'
+    parent-reviewable recap. | Ideal: The child names a favorite Children''s Yoga
+    moment, asks to play again, or watches t...'
   source: 'Step 5: Closing + IB Concepts'

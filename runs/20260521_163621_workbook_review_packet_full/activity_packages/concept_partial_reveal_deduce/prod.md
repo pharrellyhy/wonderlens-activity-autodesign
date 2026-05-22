@@ -45,15 +45,15 @@ Child photographs an animal toy, animal picture, or enters partial-reveal guessi
 
 **Child responses:**
 
-1. (Ideal) The child accepts, asks what to do, or names a related object or idea.
-2. (Unexpected) Child veers away from "Transition Bridge" in Partial Reveal Guess, skips the clue reasoning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Transition Bridge", watches the current screen, or needs a first tiny clue reasoning model.
+1. (Ideal) The child accepts the picture clue detective role, notices the starter cue, or names something connected to the first visible clue.
+2. (Unexpected) Child asks for another game, starts the clue guess before the Partial Reveal Guess mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Partial Reveal Guess title/trigger card without taking the picture clue detective role yet.
 
 **AI follow-up:**
 
-1. [specific] Confirm the role and preview the first action without turning it into a quiz.
-2. [redirect] Validate briefly, keep the Partial Reveal Guess frame, and offer one safe choice that still completes "Transition Bridge".
-3. [wait 2s] [gentle] Model one tiny clue reasoning step for "Transition Bridge", then invite the child to copy or choose.
+1. Name the picture clue detective role, connect it to the starter cue, and preview the first clue guess.
+2. Acknowledge the request, return to the Partial Reveal Guess promise, and offer the smallest supported first action.
+3. [wait 2s] Point to the Partial Reveal Guess role card and first token, then model one tiny in-frame response.
 
 **Screen:** Shows title, child role, source trigger, and empty progress tokens.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -66,15 +66,15 @@ Child photographs an animal toy, animal picture, or enters partial-reveal guessi
 
 **Child responses:**
 
-1. (Ideal) The child confirms the rule or asks for a smaller version.
-2. (Unexpected) Child veers away from "Role And Rules" in Partial Reveal Guess, skips the clue reasoning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Role And Rules", watches the current screen, or needs a first tiny clue reasoning model.
+1. (Ideal) The child agrees to the clue guess loop for Partial Reveal Guess or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first visible clue, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Partial Reveal Guess rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [specific] Offer the smallest safe version and keep the source play frame intact.
-2. [redirect] Validate briefly, keep the Partial Reveal Guess frame, and offer one safe choice that still completes "Role And Rules".
-3. [wait 2s] [gentle] Model one tiny clue reasoning step for "Role And Rules", then invite the child to copy or choose.
+1. Restate the Partial Reveal Guess loop as AI prompt, child clue guess, saved token, and show the first response slot.
+2. Keep the rule tied to the first visible clue, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Partial Reveal Guess rule in one sentence and ask for yes, a point, or the first chance to make a clue-based guess.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `partial_reveal_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture.
 
@@ -82,21 +82,21 @@ Child photographs an animal toy, animal picture, or enters partial-reveal guessi
 
 **Round 1 -- Start The Source Action:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The screen shows one distinctive part of an animal or object, and the child guesses the whole thing from visible clues.. Ask the child to use clues to infer in the first small turn.
+**Runtime AI instruction:** Preserve the workbook promise: The screen shows one distinctive part of an animal or object, and the child guesses the whole thing from visible clues. Ask the child to use clues to infer in the first small turn.
 
 **Example AI line:** "Let us start: The screen shows one distinctive part of an animal or object, and the child guesses the whole thing from visible clues. What is your first try?"
 
 **Child responses:**
 
-1. (Ideal) The child gives the first source-aligned action.
-2. (Unexpected) Child veers away from "Start The Source Action" in Partial Reveal Guess, skips the clue reasoning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Start The Source Action", watches the current screen, or needs a first tiny clue reasoning model.
+1. (Ideal) The child uses the first visible clue to make or revise a plausible guess.
+2. (Unexpected) Child guesses without using the first visible clue, asks for the answer, or follows a detail that is not evidence yet.
+3. (No response) Child studies the first visible clue clue area without offering a maybe-guess.
 
 **AI follow-up:**
 
-1. [specific] Confirm the action and name how it matches the source rule.
-2. [redirect] Validate briefly, keep the Partial Reveal Guess frame, and offer one safe choice that still completes "Start The Source Action".
-3. [wait 2s] [gentle] Model one tiny clue reasoning step for "Start The Source Action", then invite the child to copy or choose.
+1. Tie the guess to the visible clue, reveal whether that clue fits, and set up the next evidence step.
+2. Name the clue in the first visible clue, separate it from one distracting detail, and ask for one maybe-guess.
+3. [wait 2s] Point to one visible clue for the first visible clue, model a "maybe it is" guess, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `partial_reveal_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -109,15 +109,15 @@ Child photographs an animal toy, animal picture, or enters partial-reveal guessi
 
 **Child responses:**
 
-1. (Ideal) The child repeats the same mechanic with a variation.
-2. (Unexpected) Child veers away from "Repeat With A Variation" in Partial Reveal Guess, skips the clue reasoning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Repeat With A Variation", watches the current screen, or needs a first tiny clue reasoning model.
+1. (Ideal) The child uses the second revealed clue to make or revise a plausible guess.
+2. (Unexpected) Child guesses without using the second revealed clue, asks for the answer, or follows a detail that is not evidence yet.
+3. (No response) Child studies the second revealed clue clue area without offering a maybe-guess.
 
 **AI follow-up:**
 
-1. [specific] Connect the variation back to the same play frame.
-2. [redirect] Validate briefly, keep the Partial Reveal Guess frame, and offer one safe choice that still completes "Repeat With A Variation".
-3. [wait 2s] [gentle] Model one tiny clue reasoning step for "Repeat With A Variation", then invite the child to copy or choose.
+1. Tie the guess to the visible clue, reveal whether that clue fits, and set up the next evidence step.
+2. Name the clue in the second revealed clue, separate it from one distracting detail, and ask for one maybe-guess.
+3. [wait 2s] Point to one visible clue for the second revealed clue, model a "maybe it is" guess, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `partial_reveal_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -130,15 +130,15 @@ Child photographs an animal toy, animal picture, or enters partial-reveal guessi
 
 **Child responses:**
 
-1. (Ideal) The child recaps or reacts.
-2. (Unexpected) Child veers away from "Complete The Loop" in Partial Reveal Guess, skips the clue reasoning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Complete The Loop", watches the current screen, or needs a first tiny clue reasoning model.
+1. (Ideal) The child uses the final whole-object guess to make or revise a plausible guess.
+2. (Unexpected) Child guesses without using the final whole-object guess, asks for the answer, or follows a detail that is not evidence yet.
+3. (No response) Child studies the final whole-object guess clue area without offering a maybe-guess.
 
 **AI follow-up:**
 
-1. [specific] Summarize the child action and source-specific payoff.
-2. [redirect] Validate briefly, keep the Partial Reveal Guess frame, and offer one safe choice that still completes "Complete The Loop".
-3. [wait 2s] [gentle] Model one tiny clue reasoning step for "Complete The Loop", then invite the child to copy or choose.
+1. Tie the guess to the visible clue, reveal whether that clue fits, and set up the next evidence step.
+2. Name the clue in the final whole-object guess, separate it from one distracting detail, and ask for one maybe-guess.
+3. [wait 2s] Point to one visible clue for the final whole-object guess, model a "maybe it is" guess, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and source-intent cue. Use `partial_reveal_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture.
 > RESOLVED BLOCKER: Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
@@ -151,15 +151,15 @@ Child photographs an animal toy, animal picture, or enters partial-reveal guessi
 
 **Child responses:**
 
-1. (Ideal) The child reacts, names a favorite turn, or asks to revise one part.
-2. (Unexpected) Child veers away from "Magic Moment" in Partial Reveal Guess, skips the clue reasoning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Magic Moment", watches the current screen, or needs a first tiny clue reasoning model.
+1. (Ideal) The child notices how the final whole-object guess changed the Partial Reveal Guess board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Partial Reveal Guess payoff or ignores how the saved clue guess turns connect.
+3. (No response) Child watches the Partial Reveal Guess reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [specific] Tie the reveal directly to the child action and invite one short reflection.
-2. [redirect] Validate briefly, keep the Partial Reveal Guess frame, and offer one safe choice that still completes "Magic Moment".
-3. [wait 2s] [gentle] Model one tiny clue reasoning step for "Magic Moment", then invite the child to copy or choose.
+1. Tie the reveal to the child's clue guess turns, name one concrete saved token, and invite a short reflection.
+2. Hold the Partial Reveal Guess reveal, point to the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Partial Reveal Guess board, then offer two favorite-turn choices.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
 
@@ -171,14 +171,14 @@ Child photographs an animal toy, animal picture, or enters partial-reveal guessi
 
 **Child responses:**
 
-1. (Ideal) The child says again, names a favorite part, or quietly watches the recap.
-2. (Unexpected) Child veers away from "Closing + IB Concepts" in Partial Reveal Guess, skips the clue reasoning action, or proposes an unsafe/out-of-scope version.
-3. (No response) Child pauses at "Closing + IB Concepts", watches the current screen, or needs a first tiny clue reasoning model.
+1. (Ideal) The child names a favorite Partial Reveal Guess moment, asks to play again, or watches the partial reveal guess recap badge.
+2. (Unexpected) Child shifts topic before the recap names the clue guess skill or Form and Causation.
+3. (No response) Child stays on the Partial Reveal Guess recap badge without responding.
 
 **AI follow-up:**
 
-1. [specific] Offer a next-time variation that keeps the same source mechanic.
-2. [redirect] Validate briefly, keep the Partial Reveal Guess frame, and offer one safe choice that still completes "Closing + IB Concepts".
-3. [wait 2s] [gentle] Model one tiny clue reasoning step for "Closing + IB Concepts", then invite the child to copy or choose.
+1. Offer a next-time variation using the same deduce mechanic and the partial reveal guess frame.
+2. Close Partial Reveal Guess first, name the practiced clue guess, and then offer one next-round seed.
+3. [wait 2s] Read the Partial Reveal Guess badge in one sentence and end with one concrete next-time invitation.
 
 **Screen:** Recap badge lists title, mechanic `deduce`, focal attribute `partial_reveal_guess`, and next-step hint.
