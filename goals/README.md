@@ -23,4 +23,4 @@ files remain under `goals/` and are not backfilled here.
 
 | Goal | Status | Notes |
 |---|---|---|
-| [2026-05-26-runtime-conversion-parity-goal.md](2026-05-26-runtime-conversion-parity-goal.md) | Planned | Executes the runtime conversion, consumer adapters, and parity validation plan. |
+| [2026-05-26-runtime-conversion-parity-goal.md](2026-05-26-runtime-conversion-parity-goal.md) | Planned | Refreshed for current plan-goal workflow; executes the runtime conversion, consumer adapters, and parity validation plan. |

@@ -4,6 +4,12 @@ Date: 2026-05-26
 
 Status: Planned
 
+Refresh note: This plan was refreshed to match the current
+`plan-goal-creator` workflow. The plan is the design source and should stay
+code-light. The paired goal is the execution contract. File paths and commands
+below are current evidence and validation targets; an executor must still
+inspect the target repos before editing.
+
 ## Goal
 
 Create a repeatable runtime conversion path that lets WonderLens activity
@@ -23,6 +29,21 @@ The plan has three phases:
 
 This is an umbrella plan. It should guide future implementation across repos,
 but it does not itself change runtime behavior.
+
+## Execution Boundary
+
+This plan lives in `wonderlens-activity-autodesign` because that repo owns the
+activity-package source material and cross-repo conversion requirements.
+Implementation will mostly happen elsewhere:
+
+| Repo | Expected ownership |
+|---|---|
+| `wonderlens-activity-autodesign` | Source packages, run-output fixtures, conversion contract documentation, optional exported fixture inputs. |
+| `wonderlens-ai` | Canonical runtime YAML generator, validation, package adapter checks, optional parity harness. |
+| `wonderlens-activity-fullstack-demo` | Baseline parser/runtime reference, generated frontmatter fixtures only when intentionally reviewed, later UI/runtime extensions if Phase 3 is authorized. |
+
+Do not assume these paths are the only possible implementation locations. They
+describe the current architecture and should be verified at execution time.
 
 ## Current Evidence
 
@@ -265,14 +286,15 @@ If no honest mapping exists, the activity should export as
 Phase 1 should incorporate and update the existing `wonderlens-ai` plan rather
 than create a competing converter.
 
-Expected implementation home:
+Current likely implementation home, based on the existing `wonderlens-ai`
+plan and code layout:
 
 ```text
 /Users/pharrelly/codebase/gitlab/wonderlens-ai/app/modules/activity/packages/runtime_generator.py
 /Users/pharrelly/codebase/gitlab/wonderlens-ai/scripts/generate_activity_runtime.py
 ```
 
-Phase 1 tasks:
+Phase 1 task areas:
 
 - Implement deterministic package parsing and runtime YAML generation.
 - Add a small override system with stable merge semantics.
@@ -335,8 +357,8 @@ shape:
 /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/<activity_id>.md
 ```
 
-Phase 2 should avoid modifying fullstack-demo runtime code. The adapter must
-instead emit:
+Phase 2 should avoid modifying fullstack-demo runtime code. The adapter should
+emit:
 
 - `activity_type`, `entity_name`, `category`, `display_label`, `tier`;
 - `creative_slots` compatible with current Pydantic schemas;
@@ -451,6 +473,28 @@ credentials.
 
 If live credentials or provider access are unavailable, record the parity check
 as blocked and still complete deterministic validation.
+
+## Validation Strategy
+
+Validation is layered. Deterministic checks are mandatory before live provider
+checks. Live provider parity is valuable but must not replace schema, parser,
+golden fixture, and quality-gate tests.
+
+Deterministic validation must prove:
+
+- generated runtime data validates against the target model;
+- generated artifacts are stable across runs;
+- fullstack exports parse through the existing loader/parser;
+- unsupported mechanics fail honestly;
+- branch policy, judgment policy, and asset fallback behavior are not dropped.
+
+Live parity validation must prove:
+
+- `wonderlens-ai` response quality is comparable to the fullstack baseline for
+  equivalent activity instructions;
+- differences are judged by behavior and quality criteria, not exact wording;
+- missing credentials or provider access are documented as a live-check blocker
+  rather than hidden behind deterministic test success.
 
 ## Required Validation Commands
 

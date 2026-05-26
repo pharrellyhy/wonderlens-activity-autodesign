@@ -23,4 +23,4 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
-| [2026-05-26-runtime-conversion-parity.md](2026-05-26-runtime-conversion-parity.md) | Planned | Umbrella three-phase plan for canonical activity runtime conversion, fullstack export, and live parity validation. |
+| [2026-05-26-runtime-conversion-parity.md](2026-05-26-runtime-conversion-parity.md) | Planned | Refreshed for current plan-goal workflow; umbrella three-phase plan for canonical activity runtime conversion, fullstack export, and live parity validation. |
