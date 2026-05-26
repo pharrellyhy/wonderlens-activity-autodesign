@@ -131,6 +131,9 @@ adapts only executable `cat1` and `cat5` packages.
   be made playable with existing primitives.
 - Run live server/API parity checks as release validation, not as the first
   deterministic test gate.
+- Delegated agents are explicitly authorized for this goal, but only for
+  independent work with disjoint ownership such as fixture inspection,
+  implementation slices, verification, or code review.
 
 ## Non-Goals
 

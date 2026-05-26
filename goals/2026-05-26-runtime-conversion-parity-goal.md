@@ -64,6 +64,13 @@ conflict before changing behavior.
 - Preserve unrelated user changes and commit only intended files.
 - Use conventional commits in each touched repo.
 
+## Delegated-Agent Rule
+
+The user explicitly authorizes delegated agents for this goal. Use them only
+for independent exploration, fixture inspection, implementation, verification,
+or code review with disjoint file ownership. Keep tightly coupled converter,
+schema, and API-contract work local unless the ownership boundary is clear.
+
 ## Mandatory Ordering
 
 1. Implement deterministic converter and schema/golden tests first.
