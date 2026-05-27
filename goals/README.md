@@ -1,6 +1,6 @@
 # Goal Status Index
 
-> **Last checked:** 2026-05-26
+> **Last checked:** 2026-05-27
 
 ## Status Definitions
 
@@ -23,4 +23,5 @@ files remain under `goals/` and are not backfilled here.
 
 | Goal | Status | Notes |
 |---|---|---|
+| [2026-05-27-demo-package-contract-assets-goal.md](2026-05-27-demo-package-contract-assets-goal.md) | Planned | Implements demo support metadata, runtime asset manifest contract, device asset style, and unsupported mechanic gates. |
 | [2026-05-26-runtime-conversion-parity-goal.md](2026-05-26-runtime-conversion-parity-goal.md) | Planned | Refreshed for current plan-goal workflow; executes the runtime conversion, consumer adapters, and parity validation plan. |

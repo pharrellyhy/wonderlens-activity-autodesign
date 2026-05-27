@@ -1,6 +1,6 @@
 # Plan Status Index
 
-> **Last checked:** 2026-05-26
+> **Last checked:** 2026-05-27
 
 ## Status Definitions
 
@@ -23,4 +23,5 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
+| [2026-05-27-demo-package-contract-assets.md](2026-05-27-demo-package-contract-assets.md) | Planned | Defines demo support metadata, runtime asset manifests, device asset style, and unsupported mechanic gates for generated packages. |
 | [2026-05-26-runtime-conversion-parity.md](2026-05-26-runtime-conversion-parity.md) | Planned | Refreshed for current plan-goal workflow; umbrella three-phase plan for canonical activity runtime conversion, fullstack export, and live parity validation. |
