@@ -1,0 +1,28 @@
+activity_id: invalid_missing_asset_entity_id
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: "1:1"
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+assets:
+  - id: entity_hero
+    role: entity
+    label: Cat
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: Soft 3D educational toy illustration of a cat, no text, no watermark.
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path:
+    fallback_behavior: Show the Cat label.

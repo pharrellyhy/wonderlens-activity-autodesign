@@ -11,8 +11,8 @@ Entity mapping root: `MAPPING_ROOT=data/mappings_dev20_0318` (repo-relative). Us
 2. Read `program.md` fully - constraints, migrated package format, rubric, and seed exemplars.
 3. Read `templates.md` fully - Template 0 reference, mechanic adapters, Cat1/Cat5 category modifiers, and pillar/style scaffolds.
 4. Read `docs/game_styles.md` - game style taxonomy reference.
-5. Read `activities/README.md` - required five-file package layout.
-6. Read `activities/_schema/tag_block.schema.json` and `docs/activity_vocabulary.md` - tag-block schema and current enum vocabulary.
+5. Read `activities/README.md` - five required package files and optional demo-extension contract.
+6. Read `activities/_schema/tag_block.schema.json`, `activities/_schema/demo_support.schema.json`, `activities/_schema/asset_manifest.schema.json`, and `docs/activity_vocabulary.md` - tag-block schema, demo-extension schemas, and current enum vocabulary.
 7. Read `docs/activity_tag_block_usage.md` and `docs/activity_tag_block_progression_guide.md` - field ownership, recap/dashboard usage, and progression guidance.
 8. Read `entity_guidance.md` and `conversation_bridge.md` when an assignment is mapping-informed or requests warm/cold bridge handling.
 9. Read `assignments.md` - work queue.
@@ -56,6 +56,7 @@ source:
   assignment_snapshot: runs/<run_id>/assignment_snapshot.md
   assignment_scope: "<all unchecked rows or explicit user scope>"
   product_contract_override: "<none|minimum_unblock_allowed>"
+  asset_build: "<none|manifest_only|generate_illustrative|curate_reference|generate_and_curate>"
   mapping_root: data/mappings_dev20_0318
 summary:
   pending_at_start: <N>
@@ -76,6 +77,8 @@ notes:
   - "Fresh assignment generation writes run-local packages under runs/<run_id>/activity_packages/<base_activity_id>/ with clean activity_id values."
   - "Existing checked-package enrichment may update canonical activities/<activity_id>/ packages in place, but unchecked generation-ready rows must not reuse old canonical package directories."
   - "If product_contract_override=minimum_unblock_allowed is active, formerly blocking dependencies generate as resolved blocker annotations instead of blocked rows."
+  - "Full GOAL.md runs default demo_export=true unless explicitly disabled; generated packages add demo_support.yaml and asset_manifest.yaml as optional extension files while the five canonical files remain required."
+  - "Default asset_build=manifest_only; binary image assets are created only by an explicit post-package asset build phase."
 ```
 
 15. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Run id: <run_id>. Starting activity package loop."
@@ -97,7 +100,7 @@ For each scoped package:
 2. Audit against the current package checks in this runbook, not only against the standard that existed when the package was first generated.
 3. Spawn separate reviewer agents for package-quality review. When more than one package is in scope, partition packages into disjoint directory sets so reviewers can work in parallel without touching the same files.
 4. Reviewer agents may make direct, minimal quality repairs inside their assigned package directories when the scope is explicit. They must not edit `assignments.md`, `results.tsv`, run manifests, or unrelated docs.
-5. If the package is structurally valid but thin, enrich it in place. Preserve `activity_id`, directory name, tag-block enum values, recap/dashboard placeholders, stable asset IDs, and the five-file package contract.
+5. If the package is structurally valid but thin, enrich it in place. Preserve `activity_id`, directory name, tag-block enum values, recap/dashboard placeholders, stable asset IDs, and the five-required-file package contract.
 6. For `spec.md`, add or update reviewer-facing detail that explains concrete design intent, scaffold fit, assumptions, constraints, product/asset dependency, game-feel rationale, and residual risk. A `## Runtime Detail Floor Notes` section is an acceptable way to record this when the existing file lacks an equivalent audit trail.
 7. For `prod.md`, enrich runnable runtime detail: executable Step 1/2/4/5 dialogue, branch-specific follow-ups, non-generic screen states, distinct Step 3 objectives, child actions that match the mechanic, and a magic moment earned by repeated child action.
 8. Do not append `results.tsv`, change completed assignment checkboxes, or create a duplicate `generated_activities` entry for enrichment-only work.
@@ -137,7 +140,7 @@ For each assignment in the run-start `assignment_snapshot.md` that is marked `- 
 
 ### Step 1: Parse the assignment
 
-Extract: assignment_type (if provided), activity_concept (if provided), legacy concept alias (if provided), concept_source (if provided), description/notes (if provided), source-promise cues (original play frame, child role, interaction sequence, required child actions, non-negotiable source elements), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), start type (if provided), and output activity_id (if provided). Normalize any legacy concept alias to `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared.
+Extract: assignment_type (if provided), activity_concept (if provided), legacy concept alias (if provided), concept_source (if provided), description/notes (if provided), source-promise cues (original play frame, child role, interaction sequence, required child actions, non-negotiable source elements), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), demo_export / demo_support hints (if provided), asset_build override (if provided), start type (if provided), and output activity_id (if provided). Normalize any legacy concept alias to `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared. For full GOAL.md runs, default `demo_export` to `true` unless the user or assignment explicitly sets it to `false`; default `asset_build` to `manifest_only` unless the user or assignment explicitly sets another supported value.
 
 For unchecked generation-ready rows, treat `activity_id=` as `base_activity_id`. If the base value already ends in `_rYYYYMMDD_HHMMSS` because a prior run row was copied, strip that suffix first. The final package `activity_id` stays the clean `<base_activity_id>`, and the run-specific identity comes from the package path `runs/<run_id>/activity_packages/<base_activity_id>/`. This prevents fresh reruns from silently linking back to old canonical `activities/` package directories while keeping package IDs clean. The only exception is enrichment/audit of already checked rows, which intentionally uses the existing canonical package ID in place.
 
@@ -163,6 +166,10 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
 3. Identify `canonical_mechanic` and `mechanic_confidence`. If `mechanic=` is specified, it wins unless it is outside the current enum. The mechanic cannot override the original source play frame; it only labels the repeated child action.
 4. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
 5. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
+   - When `demo_export=true`, each normalized asset row should include `asset_role`, `style_id`, `accuracy_mode`, `source_strategy`, `transformation_policy`, `screen_targets`, `target_variants`, fallback behavior, and nullable path slots for the future asset pipeline.
+   - Use `style_id: wonderlens_device_mint_soft_3d` unless the source explicitly provides an approved override.
+   - Mark real-world factual/reference assets as `accuracy_mode: reference_bound` and require source/provenance plus verification behavior. Do not accept arbitrary generated approximations for constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, or famous structures.
+   - For reference-bound assets, candidate proposal may use an agent/LLM, but final accepted sources must come from approved public-domain, official, licensed/internal, or verified educational/scientific sources. Record `source_strategy` and `transformation_policy`; never use `source_strategy: generated_illustrative` or `transformation_policy: generate_new` for reference-bound assets.
 6. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
 7. If `readiness=blocked_until_product_decision`, first check whether the run has `product_contract_override=minimum_unblock_allowed`.
    - Without the override, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> -- <what product/design decision is needed>`. Use the same blocker reason consistently when one missing product decision affects multiple beats; each inline marker is an occurrence, not a separate missing decision. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `runs/<run_id>/activity_packages/` or `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
@@ -171,6 +178,11 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
 9. If assets are optional or required but generation proceeds, carry the normalized asset rows into `spec.md` `## Asset Brief`. `prod.md` may reference asset IDs and fallback behavior, but should not include raw image prompts.
 10. For any prebuilt, displayed, or runtime-generated image dependency, also create `spec.md` `## Asset Usage Timeline` rows that make the image flow reviewable: `asset_id`, prebuilt/runtime timing, load or generation moment, first display step, visible step/round range, screen location, interaction/use, prompt/source summary, persistence or hide behavior, and fallback.
 11. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
+12. If `demo_export=true`, classify demo readiness:
+   - `supported` / `cat1_dialogue` for Cat1 dialogue, riddle, voice acting, prediction, imagination, or simple enumeration playable in the current demo.
+   - `supported` / `cat5_collection` for simple Cat5 visible-property collection playable with catalog candidates.
+   - `degraded` / `cat5_judgment` for Cat5 activities that need runtime judgment, such as beginning sound or semantic category, and must disclose catalog/text-simulated judgment.
+   - `unsupported` / `none` for drawing, coloring, physical building, sorting/grouping UI, tournament, certificate, complex Cat3, or any unimplemented UI/runtime dependency.
 
 ### Step 1.5: Load entity mapping (when required or available)
 
@@ -216,7 +228,7 @@ Resolve the final package ID before writing files:
 5. If `package_dir` already exists in the current run, stop and choose a non-conflicting clean slug before writing. Do not merge into or overwrite an existing package directory.
 6. Record `base_activity_id`, `activity_id`, `activity_path`, `package_scope: run_local`, and `generation_policy: fresh_run_local_package` in `run_manifest.yaml`.
 
-Create a complete `runs/<run_id>/activity_packages/<activity_id>/` package with exactly five files:
+Create a complete `runs/<run_id>/activity_packages/<activity_id>/` package with the five required files:
 
 ```
 runs/<run_id>/activity_packages/<activity_id>/
@@ -234,6 +246,8 @@ Rules:
 - `tag_block.yaml`: structured metadata matching `activities/_schema/tag_block.schema.json`.
 - `recap.template.yaml`: child recap payload using the same focal attribute, role/badge, and next-step direction.
 - `dashboard.template.yaml`: parent dashboard fragment using the same focal attribute and progression axis.
+- `demo_support.yaml`: default extension for full GOAL.md runs unless demo export is explicitly disabled; declares status, UI template, support level, explicit entity binding, requirements, unsupported/degraded reasons, and consumer notes.
+- `asset_manifest.yaml`: default extension for full GOAL.md runs unless demo export is explicitly disabled; declares separate runtime assets, `wonderlens_device_mint_soft_3d` style, screen targets, round safe area, roles, prompts/sources, variants, nullable file paths, and fallback behavior.
 
 Runtime completeness rule:
 
@@ -251,6 +265,8 @@ Runtime completeness rule:
 - Generic warmth is insufficient. Fail and repair lines like "Great job," "try again," or "screen updates" when they are not tied to specific evidence, consequence, progress, or payoff.
 - If `start=warm+cold`, document the bridge logic in `spec.md`; the runtime `prod.md` should still have a single converged Step 1 unless the assignment explicitly asks for both starts at runtime.
 - Do not generate image files as part of this loop. When an activity uses AI-generated or displayed images, author the dependency in `spec.md` `## Asset Brief`, add a skimmable `## Asset Usage Timeline`, and reference the stable `asset_id` plus display location from the relevant screen description in `prod.md`.
+- Do not make contact sheets the runtime asset contract. For demo export, write separate asset entries in `asset_manifest.yaml`; contact sheets may remain review-only artifacts under pilot asset workflows.
+- For reference-bound assets, include approved source/provenance and verification notes in `asset_manifest.yaml`. If source/provenance is missing, mark demo support `degraded` with a limitation, `unsupported`, or leave demo export incomplete rather than pretending a random generated image is correct.
 
 ### Step 4: Self-evaluate and repair
 
@@ -275,7 +291,7 @@ Reviewer instructions:
 - Read `templates.md`, `activities/README.md`, `activities/_schema/tag_block.schema.json`, and `docs/activity_vocabulary.md`.
 - If the assignment has `mapping=`, also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`.
 - Evaluate the package files directly, not the authoring agent's claimed scorecard.
-- Return PASS/FAIL/N/A for each dimension with brief evidence and concrete file/section references for any issue. For Dimension 10, explicitly confirm that Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic` and the adaptation brief's `canonical_mechanic` when present. When assets are referenced, also confirm the package contains a coherent `## Asset Brief`, that every referenced `asset_id` is defined, and that required assets have prompts/source, use steps, display behavior, and fallback behavior.
+- Return PASS/FAIL/N/A for each dimension with brief evidence and concrete file/section references for any issue. For Dimension 10, explicitly confirm that Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic` and the adaptation brief's `canonical_mechanic` when present. When assets are referenced, also confirm the package contains a coherent `## Asset Brief`, that every referenced `asset_id` is defined, and that required assets have prompts/source, use steps, display behavior, and fallback behavior. When demo extension files are present, also confirm `demo_support.yaml` honestly gates supported/degraded/unsupported mechanics and `asset_manifest.yaml` uses separate runtime assets with round-screen safe areas, fallbacks, and reference-bound provenance where needed.
 - Fail structurally valid but thin packages. The reviewer should explicitly check whether `spec.md` is decision-useful and whether `prod.md` contains enough concrete dialogue, branch reactions, screen state, game-feel payoff, and source-promise detail to run the activity without filling gaps.
 - Fail packages whose unexpected/no-response branch policies are generic clones. The reviewer should confirm those branches are tied to the current mechanic and source frame, not repeated run-level filler.
 
@@ -305,6 +321,25 @@ Before logging or committing, verify:
 - `runs/<run_id>/review_notes.md` contains independent reviewer-agent evidence for the package, including final PASS status or the unresolved issue that prevents logging.
 - Concept-led and parameterized packages include `spec.md` `## Extensibility Notes`, and `run_manifest.yaml` records `extensibility_summary` / `extensibility_notes` for dashboard review.
 - Product-contract override packages include resolved blocker notes in `spec.md`, affected `prod.md` beats, and `run_manifest.yaml`.
+- If `demo_support.yaml` and `asset_manifest.yaml` are present, `python3 scripts/validate_demo_package_contract.py <package_dir>` passes.
+- In full GOAL.md runs, `demo_support.yaml` and `asset_manifest.yaml` are required for every generated package unless demo export was explicitly disabled for the run or assignment.
+- If `demo_support.status` is `supported`, the UI template is not `none`, entity binding is explicit, and unsupported/degraded reasons are not hiding a missing runtime.
+- If `demo_support.status` is `degraded`, degraded reasons explain exactly what is simulated or limited.
+- If `demo_support.status` is `unsupported`, the package is not logged as demo-playable and unsupported reasons name the missing UI/runtime/mechanic support.
+- `asset_manifest.yaml` contains separate runtime asset entries, not a contact sheet as the runtime asset.
+- `reference_bound` assets include sources/provenance and verification requirements.
+- `reference_bound` assets declare an approved `source_strategy` and `transformation_policy`, and never rely on random generated approximations.
+- If `asset_build` is `manifest_only` or `none`, no binary image paths are required. If `asset_build` requests generated/curated files and no implemented asset builder exists, record the missing builder as a residual risk or mark affected demo support degraded/unsupported rather than fabricating paths.
+
+### Step 5.5: Optional asset build phase
+
+Run this phase only after every generated package has passed package validation and only when `source.asset_build` is not `none` or `manifest_only`.
+
+- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; write outputs under `runs/<run_id>/generated_assets/<activity_id>/` and summarize them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
+- `curate_reference`: for `reference_bound` assets, let an agent propose candidate sources, then verify provenance through approved public-domain, official, licensed/internal, or verified educational/scientific sources before accepting. Do not use random web-image results as sources.
+- `generate_and_curate`: run both behaviors.
+
+If no asset builder implementation is available for the requested mode, do not generate placeholder files or edit package manifests to pretend assets exist. Record the unavailable asset build in `run_manifest.yaml` `checks` / `notes`, keep nullable paths in `asset_manifest.yaml`, and rely on `demo_support.yaml` degraded/unsupported gates.
 
 ### Step 6: Log the result
 
@@ -345,6 +380,13 @@ For every generated package:
       prompt_or_source: "<short prompt/source summary for reviewer traceability>"
       display_behavior: "<how/when the asset appears and persists>"
       fallback_behavior: "<what runtime does if unavailable>"
+  demo_support:
+    status: "<supported|degraded|unsupported>"
+    ui_template: "<cat1_dialogue|cat5_collection|cat5_judgment|none>"
+    support_level: "<full|catalog_simulated_judgment|unsupported|...>"
+    extension_files:
+      - runs/<run_id>/activity_packages/<activity_id>/demo_support.yaml
+      - runs/<run_id>/activity_packages/<activity_id>/asset_manifest.yaml
   extensibility_summary: "<how this activity can be retargeted, or why not>"
   extensibility_notes:
     - "<reusable entity/property/asset-set slot or limitation>"
@@ -356,7 +398,7 @@ For every generated package:
 
 For enrichment-only package maintenance, keep changed packages under `enriched_activities` and do not append `results.tsv`. Keep audited packages that passed without edits under `audited_activities` so `review.html` shows all reviewer-covered packages, not only packages that changed.
 
-For blocked assignments, keep the entry under `blocked_assignments`, include `brief_path` and `design_preview`, do not append `results.tsv`, leave the assignment row unchecked, and continue to the next unchecked row. If the constraints are later resolved, rerun or promote the design preview into a normal five-file package, remove or resolve the blocked-element comments, then send it through the standard self-evaluation, reviewer-agent, validation, `results.tsv`, and checkoff gates.
+For blocked assignments, keep the entry under `blocked_assignments`, include `brief_path` and `design_preview`, do not append `results.tsv`, leave the assignment row unchecked, and continue to the next unchecked row. If the constraints are later resolved, rerun or promote the design preview into a normal package with the five required files plus any enabled demo extensions, remove or resolve the blocked-element comments, then send it through the standard self-evaluation, reviewer-agent, validation, `results.tsv`, and checkoff gates.
 
 For product-contract override assignments, do not create a `blocked_assignments` entry for dependencies covered by `minimum_unblock_allowed`. Keep the row under `generated_activities`, add `resolved_blockers` and `resolved_blocker_types`, and ensure the dashboard reports the former blockers as resolved contract items.
 

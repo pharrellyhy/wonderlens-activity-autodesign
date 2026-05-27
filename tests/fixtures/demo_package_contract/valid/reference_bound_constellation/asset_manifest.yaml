@@ -1,0 +1,48 @@
+activity_id: concept_constellation_star_count_enumerate
+entity_id: approved_star_pattern_card
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: "1:1"
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: "16:9"
+    master_size: 1280x720
+assets:
+  - id: orion_reference_card
+    role: story_scene
+    label: Orion constellation reference
+    requiredness: required
+    accuracy_mode: reference_bound
+    source_strategy: redraw_from_verified_data
+    transformation_policy: simplified_redraw
+    prompt_en: Device-style educational illustration of the Orion constellation that preserves the approved star arrangement exactly, simple mint and porcelain accents, no labels or extra stars, no text, no watermark.
+    reference_policy:
+      source_required: true
+      allowed_sources:
+        - approved_internal_reference
+      verification_required: true
+      verification_notes: Must preserve the approved Orion star arrangement before applying the mint soft 3D style.
+    sources:
+      - label: Approved internal Orion reference chart
+        uri: internal://reference/astronomy/orion_constellation
+        license: approved_internal_reference
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path:
+      - id: landscape_1280x720
+        target: horizontal_debug_screen
+        size: 1280x720
+        path:
+    fallback_behavior: Use a simplified approved fictional star pattern and do not claim it is Orion.

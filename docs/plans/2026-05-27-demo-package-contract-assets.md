@@ -2,7 +2,7 @@
 
 Date: 2026-05-27
 
-Status: Planned
+Status: Completed
 
 ## Goal
 
@@ -236,6 +236,8 @@ Reference-bound asset entries should include:
 
 ```yaml
 accuracy_mode: reference_bound
+source_strategy: redraw_from_verified_data
+transformation_policy: simplified_redraw
 reference_policy:
   source_required: true
   allowed_sources:
@@ -255,6 +257,17 @@ If a reference-bound asset lacks approved source material, the package should
 not claim the asset is ready. It should either block demo readiness, mark the
 asset as missing with fallback behavior, or request a verified source before
 generation.
+
+Future asset builds should use run-level `asset_build` modes:
+
+- `none`: skip image generation/curation.
+- `manifest_only`: default; emit manifests with nullable paths only.
+- `generate_illustrative`: generate only illustrative assets.
+- `curate_reference`: use agent-proposed candidates only as search leads, then
+  accept verified public-domain, official, licensed/internal, or scientific
+  sources.
+- `generate_and_curate`: run both illustrative generation and reference
+  curation/build.
 
 ## Device Visual Style Contract
 

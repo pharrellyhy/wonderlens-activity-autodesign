@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wonderlens.local/schemas/demo_support.schema.json",
+  "title": "WonderLens demo_support.yaml",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["activity_id", "version", "demo_support"],
+  "properties": {
+    "activity_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "demo_support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "ui_template",
+        "support_level",
+        "entity_bindings",
+        "requires",
+        "unsupported_reasons",
+        "degraded_reasons",
+        "consumer_notes"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["supported", "degraded", "unsupported"]
+        },
+        "ui_template": {
+          "type": "string",
+          "enum": ["cat1_dialogue", "cat5_collection", "cat5_judgment", "none"]
+        },
+        "support_level": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entity_bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["entity_id", "display_label", "source_entity_exemplar", "default"],
+            "properties": {
+              "entity_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "display_label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source_entity_exemplar": {
+                "type": "string",
+                "minLength": 1
+              },
+              "default": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "requires": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["generated_assets", "real_camera", "runtime_judgment", "device_round_screen"],
+          "properties": {
+            "generated_assets": {
+              "type": "boolean"
+            },
+            "real_camera": {
+              "type": "boolean"
+            },
+            "runtime_judgment": {
+              "type": "boolean"
+            },
+            "device_round_screen": {
+              "type": "boolean"
+            }
+          }
+        },
+        "unsupported_reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "degraded_reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "consumer_notes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "demo_support": {
+            "properties": {
+              "status": {
+                "const": "supported"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "demo_support": {
+            "properties": {
+              "ui_template": {
+                "enum": ["cat1_dialogue", "cat5_collection"]
+              },
+              "entity_bindings": {
+                "minItems": 1
+              },
+              "unsupported_reasons": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "demo_support": {
+            "properties": {
+              "status": {
+                "const": "degraded"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "demo_support": {
+            "properties": {
+              "ui_template": {
+                "enum": ["cat1_dialogue", "cat5_collection", "cat5_judgment"]
+              },
+              "entity_bindings": {
+                "minItems": 1
+              },
+              "degraded_reasons": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "demo_support": {
+            "properties": {
+              "status": {
+                "const": "unsupported"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "demo_support": {
+            "properties": {
+              "ui_template": {
+                "const": "none"
+              },
+              "unsupported_reasons": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

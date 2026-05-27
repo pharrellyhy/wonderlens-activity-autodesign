@@ -25,6 +25,7 @@ The generator reads:
 - `runs/<run_id>/blocked_designs/*.md` when present
 - `run_manifest.yaml` generated-activity fields such as `resolved_blockers`, `resolved_blocker_types`, `extensibility_summary`, and `extensibility_notes` when a run used a product-contract override or reusable-entity review
 - `spec.md` `## Asset Brief` and `## Asset Usage Timeline`, plus `run_manifest.yaml` `asset_usage` entries when present, for packages that use prebuilt, displayed, or runtime-generated images. Treat these rows as asset dependencies, not necessarily one image per row.
+- `runs/<run_id>/generated_assets/asset_outputs.yaml` when an explicit `asset_build` mode produced or curated image files.
 
 If a value cannot be derived from those inputs, show `Unknown` or omit the field instead of inventing content.
 
@@ -38,6 +39,7 @@ If a value cannot be derived from those inputs, show `Unknown` or omit the field
 - Resolved contract items: when a run assumes minimum-to-unblock decisions are allowed by the product contract, list the formerly blocking activity elements as resolved blocker annotations. These are review callouts, not run failures.
 - Extensibility overview: for every generated, enriched, or audited package with reusable-entity potential, show whether the package is entity-specific, entity-agnostic, or parameterized; list reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, or asset-set IDs; and summarize how the activity can be extended by replacing the current entity, property, or approved asset set.
 - Activity HTML exports: when `activity_exports/export_manifest.yaml` exists, show a visible section with one direct link per standalone reviewer packet.
+- Asset build status: when `source.asset_build` is present, show the selected mode, whether outputs exist, missing/fallback assets, and reference-bound assets still waiting for approved sources.
 - Activity cards: one concise card per generated, enriched, or audited no-op package. A checked package that passes audit without edits must still appear as a card with `PASS / no changes` or equivalent status.
 - Blocked assignment cards: one concise card per blocked assignment.
 - Reviewer coverage summary: reviewer names/IDs when available, package scope, PASS/FAIL/N/A evidence, repairs made, and unresolved concerns.
@@ -181,11 +183,12 @@ These commands assume `python3` resolves to an environment with PyYAML available
 Workflow:
 
 1. Finish package generation, reviewer evidence, package checks, blocked briefs/previews, and manifest outputs first.
-2. When generated prebuilt contact sheets are being accepted into the run, run `python3 scripts/integrate_generated_assets.py runs/<run_id>` and `python3 scripts/integrate_generated_assets.py --validate runs/<run_id>` to create and validate `integrated_assets/asset_bindings.yaml`.
-3. When integrated activities need standalone reviewer packets, run `python3 scripts/export_activity_html.py runs/<run_id>` and `python3 scripts/export_activity_html.py --validate runs/<run_id>` to create one self-contained static HTML file per integrated activity under `activity_exports/`. Each packet embeds the integrated contact sheet and the review-only mechanism storyboard. The storyboard must be labeled as review context, not child-facing runtime UI.
-4. Run `python3 scripts/generate_run_review.py runs/<run_id>` to generate the self-contained HTML from `run_manifest.yaml`, `review_notes.md`, `results.tsv`, packages, blocked briefs, blocked design previews, and run-local asset artifacts.
-5. Run `python3 scripts/generate_run_review.py --validate runs/<run_id>` before reporting completion.
-6. Keep generated HTML files as derived artifacts. Fix source run/package files or the generator, then regenerate; do not hand-edit `review.html` or `activity_exports/*.html` as source of truth.
+2. If `source.asset_build` requests generated or curated runtime images and an asset builder exists, run that builder before asset integration, write outputs under `generated_assets/`, and validate `generated_assets/asset_outputs.yaml`. If no builder exists, record the limitation and keep package manifests with nullable paths.
+3. When generated prebuilt contact sheets are being accepted into the run, run `python3 scripts/integrate_generated_assets.py runs/<run_id>` and `python3 scripts/integrate_generated_assets.py --validate runs/<run_id>` to create and validate `integrated_assets/asset_bindings.yaml`.
+4. When integrated activities need standalone reviewer packets, run `python3 scripts/export_activity_html.py runs/<run_id>` and `python3 scripts/export_activity_html.py --validate runs/<run_id>` to create one self-contained static HTML file per integrated activity under `activity_exports/`. Each packet embeds the integrated contact sheet and the review-only mechanism storyboard. The storyboard must be labeled as review context, not child-facing runtime UI.
+5. Run `python3 scripts/generate_run_review.py runs/<run_id>` to generate the self-contained HTML from `run_manifest.yaml`, `review_notes.md`, `results.tsv`, packages, blocked briefs, blocked design previews, and run-local asset artifacts.
+6. Run `python3 scripts/generate_run_review.py --validate runs/<run_id>` before reporting completion.
+7. Keep generated HTML files as derived artifacts. Fix source run/package files or the generator, then regenerate; do not hand-edit `review.html` or `activity_exports/*.html` as source of truth.
 
 After writing `review.html`:
 

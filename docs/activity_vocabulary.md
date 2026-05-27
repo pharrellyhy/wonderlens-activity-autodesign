@@ -4,7 +4,7 @@
 
 For field ownership and authoring guidance across upstream matcher, runtime presentation, child recap, and parent dashboard, see `docs/activity_tag_block_usage.md`.
 
-**Version:** 2.1 · 2026-05-12
+**Version:** 2.2 · 2026-05-27
 
 ## Scope boundary
 
@@ -23,8 +23,13 @@ The mechanic-first authoring workflow also uses authoring-only fields that are *
 | `assignment_type` | `entity_activity`, `activity_concept`, `match_pattern`, `capability_probe` | `GOAL.md`, `program.md`, `run.md` |
 | `adaptation_brief.input_mode` | `mapping_informed`, `parameterized`, `concept_only` | `program.md` Phase 0 |
 | `asset_policy` | `no_assets`, `optional_support`, `required_prebuilt`, `runtime_generated`, `blocked` | `program.md` Phase 0, `README.md` Input Data Sources |
+| `demo_support.status` | `supported`, `degraded`, `unsupported` | `activities/_schema/demo_support.schema.json`, `activities/README.md`, `program.md`, `run.md` |
+| `demo_support.ui_template` | `cat1_dialogue`, `cat5_collection`, `cat5_judgment`, `none` | `activities/_schema/demo_support.schema.json`, `activities/README.md`, `program.md`, `run.md` |
+| `asset_manifest.style_id` | `wonderlens_device_mint_soft_3d` | `activities/_schema/asset_manifest.schema.json`, `activities/README.md`, `program.md`, `run.md` |
+| `asset_manifest.assets[].role` | `entity`, `activity_preview`, `collection_correct`, `collection_distractor`, `badge`, `story_scene`, `ui_overlay` | `activities/_schema/asset_manifest.schema.json`, `activities/README.md`, `program.md`, `run.md` |
+| `asset_manifest.assets[].accuracy_mode` | `illustrative`, `reference_bound` | `activities/_schema/asset_manifest.schema.json`, `activities/README.md`, `program.md`, `run.md` |
 
-Do not mirror authoring-only values into consumer runtime enum code unless a future schema change explicitly promotes them into `tag_block.yaml`. Because `template_type` is a runtime schema field and now includes Cat3 after the unblocked product-contract update, downstream consumers that validate tag blocks must mirror that enum change.
+Do not mirror authoring-only values into tag-block enum code unless a future schema change explicitly promotes them into `tag_block.yaml`. Demo extension vocabularies above are consumer-facing for optional `demo_support.yaml` and `asset_manifest.yaml`, but they are not activity-signature enums. Because `template_type` is a runtime schema field and now includes Cat3 after the unblocked product-contract update, downstream consumers that validate tag blocks must mirror that enum change.
 
 ---
 
@@ -230,6 +235,7 @@ Drift test compares parsed tables above against enum members; failure = CI block
 
 ## Revnote
 
+- **v2.2 · 2026-05-27** — Records optional demo-extension vocabularies for `demo_support.yaml` and `asset_manifest.yaml`; no tag-block enum change.
 - **v2.0 · 2026-05-09** — Expands `mechanic` from 10 to 12 values; adds `decide`, `remember`, and `motion_voice`; renames `voice` to `motion_voice` and `narrate` to `imagine`; broadens each mechanic definition to cover source-concept verb families.
 - **v1.5 · 2026-05-09** — Adds authoring-only `asset_policy` values for the activity concept asset dependency layer; no runtime enum or schema change.
 - **v1.4 · 2026-05-08** — Clarifies that `assignment_type` and `adaptation_brief.input_mode` are authoring-only workflow fields, not runtime tag-block enums; documents mechanic-first priority for concept-led assignments.
