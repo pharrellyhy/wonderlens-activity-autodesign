@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.27 | **Date**: 2026-05-22
+> **Version**: 1.29 | **Date**: 2026-05-27
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.29 — 2026-05-27**: Add optional direct-demo package extensions: `demo_support.yaml` for support/degraded/unsupported gating and explicit entity binding, plus `asset_manifest.yaml` for separate runtime assets, prototype-device visual style, round-screen safe areas, and reference-bound source/provenance rules. Contact sheets remain review-only artifacts.
 > **v1.28 — 2026-05-22**: Tighten reviewer-ready branch policy specificity. Unexpected and no-response branches must be beat- and round-specific; keyword-substitution rows and repeated Step 3 branch policies fail review.
 > **v1.27 — 2026-05-22**: Tighten branch policy specificity. Unexpected and no-response branches must be beat-specific to the current source action, role, challenge, asset/fallback, and screen state; shared safety principles are allowed, but copied boilerplate branch text fails review.
 > **v1.26 — 2026-05-21**: Add source-promise alignment as a generation and review gate. Phase 0 must capture the original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, and product dependencies. The original source design controls over a lossy normalized paraphrase when they conflict. Future runtime beats may use `Runtime AI instruction` plus `Example AI line` as a constrained behavior contract, while existing `AI says` exact-dialogue beats remain valid.
@@ -107,6 +108,7 @@ Concept row fields:
 | `asset_policy` | Recommended | `no_assets`, `optional_support`, `required_prebuilt`, `runtime_generated`, or `blocked`. |
 | `asset_requirements` | Required when assets are not `no_assets` | Reference to companion asset table rows for this concept, preferably `file#asset_id`. |
 | `product_capabilities` | Optional | Explicit capability assumptions or blockers, such as `requires_asset_display` or `requires_ui_state`. |
+| `demo_export` | Optional | `true` only when the generated package should also emit `demo_support.yaml` and `asset_manifest.yaml`. |
 
 Asset requirement row fields:
 
@@ -125,8 +127,14 @@ Asset requirement row fields:
 | `display_behavior` | Required when shown on screen | How the runtime presents the asset. |
 | `fallback_behavior` | Required for generation-ready packages | What the activity does when the asset is unavailable. |
 | `safety_constraints` | Recommended | Visual safety, privacy, realism, or age-appropriateness constraints. |
+| `asset_role` | Required for demo export | Runtime role: `entity`, `activity_preview`, `collection_correct`, `collection_distractor`, `badge`, `story_scene`, or `ui_overlay`. |
+| `style_id` | Required for demo export | `wonderlens_device_mint_soft_3d` unless a future schema adds another approved style. |
+| `screen_targets` | Required for demo export | Target display slots such as `round_device_screen`, `horizontal_debug_screen`, or `catalog_grid`, with aspect ratio, master size, and safe area. |
+| `target_variants` | Required for demo export | Variant IDs, sizes, nullable file paths, and target screens, for example `round_512`, `icon_256`, `landscape_1280x720`. |
+| `accuracy_mode` | Required for demo export | `illustrative` for ordinary generated art; `reference_bound` when real-world correctness matters. |
+| `reference_policy` / `sources` | Required for `reference_bound` assets | Approved source/provenance, license/source type, and verification requirement before generation is accepted. |
 
-Inline assignment rows may include `asset_policy=...`, but non-trivial assets should live in the companion asset table or YAML block. If an assignment includes `concept_source=file#concept_id` or `asset_requirements=file#asset_id`, load those referenced rows before Phase 0 and treat them as source / asset context. The activity generator should copy explicit asset requirements into Phase 0 in English; it should not generate image files directly unless a future product workflow explicitly adds an asset build stage.
+Inline assignment rows may include `asset_policy=...`, but non-trivial assets should live in the companion asset table or YAML block. If an assignment includes `concept_source=file#concept_id` or `asset_requirements=file#asset_id`, load those referenced rows before Phase 0 and treat them as source / asset context. The activity generator should copy explicit asset requirements into Phase 0 in English; it should not generate image files directly unless a future product workflow explicitly adds an asset build stage. When `demo_export=true`, request separate per-role runtime assets through `asset_manifest.yaml`; do not request one contact sheet as the runtime asset.
 
 ### 0.2 Input modes
 
@@ -181,15 +189,51 @@ adaptation_brief:
     assets:
       - asset_id: "<stable id or none>"
         asset_type: <reference_image|character_image|scene_background|line_art|card_set|icon|ui_overlay>
+        asset_role: <entity|activity_preview|collection_correct|collection_distractor|badge|story_scene|ui_overlay>
         requiredness: <required|optional|fallback>
         generation_timing: <pre_generated|runtime_generated|display_existing|none>
+        style_id: <wonderlens_device_mint_soft_3d|none>
+        accuracy_mode: <illustrative|reference_bound>
         use_step: "<where the asset appears, e.g. prod.step_2>"
         display_location: "<screen slot / region where the asset appears>"
+        screen_targets: ["round_device_screen", "horizontal_debug_screen", "catalog_grid"]
+        target_variants:
+          - id: "<round_512|icon_256|badge_512|landscape_1280x720>"
+            target: "<screen target>"
+            size: "<WIDTHxHEIGHT>"
+            path: null
         prompt_en: "<directly usable English image prompt, if generated>"
         source: "<existing source or approved library ref, if not generated>"
+        reference_policy:
+          source_required: <true|false>
+          allowed_sources: [licensed_asset, public_domain_reference, approved_internal_reference, verified_source_url]
+          verification_required: <true|false>
+          verification_notes: "<what must remain correct before style is applied>"
+        sources:
+          - label: "<source/provenance label>"
+            uri: "<approved source URL, asset-library URI, or internal reference URI>"
+            license: "<license or approval status>"
         display_behavior: "<how screen uses it>"
         fallback_behavior: "<what happens if unavailable>"
     missing_asset_risk: <none|low|medium|high>
+
+  demo_support:
+    export_requested: <true|false>
+    status: <supported|degraded|unsupported|not_requested>
+    ui_template: <cat1_dialogue|cat5_collection|cat5_judgment|none>
+    support_level: "<full, catalog_simulated_judgment, unsupported, or other concise level>"
+    entity_bindings:
+      - entity_id: "<bound demo entity or runtime placeholder>"
+        display_label: "<child/reviewer label>"
+        source_entity_exemplar: "<source exemplar>"
+        default: true
+    requires:
+      generated_assets: <true|false>
+      real_camera: <true|false>
+      runtime_judgment: <true|false>
+      device_round_screen: <true|false>
+    unsupported_reasons: []
+    degraded_reasons: []
 
   scaffold_choice:
     pillar: <Discovery|Performance|Mystery|Creation|Adventure|Nurture>
@@ -217,6 +261,23 @@ adaptation_brief:
 - `asset_policy=blocked`: mark the assignment `readiness=blocked_until_product_decision`.
 - Required visual assets must be treated as dependencies, not as narrative flavor. If an activity cannot work without the asset and the asset pipeline is not defined, mark that assignment blocked at the adaptation brief and call out the dependency in the constrained design preview.
 - `prod.md` should reference asset IDs and runtime behavior, not raw image prompts. `spec.md` owns the author-facing `## Asset Brief` with image prompts and dependency rationale.
+- Demo-targeted packages use `asset_manifest.yaml` for the consumer-facing asset contract. It must define separate assets by runtime role, not a single contact sheet. Each asset needs role, requiredness, accuracy mode, prompt or source, variants, nullable file path slots, and fallback behavior.
+- Use `style_id: wonderlens_device_mint_soft_3d` unless a future schema approves another style. The base prompt is: "Soft 3D educational toy illustration, mint green and warm porcelain palette, rounded friendly shapes, subtle plastic material, clean centered subject, gentle studio lighting, no text, no watermark, designed for a small round screen."
+- Round-device variants must be designed first: `aspect_ratio: "1:1"`, `crop_shape: circle`, and important detail inside the central 70 to 75 percent circle. Horizontal debug variants are optional web-demo companions.
+- Assets that depict real-world factual/reference material, including constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, and famous structures, must use `accuracy_mode: reference_bound`, include approved source/provenance, and require verification before generation is accepted. Do not request random or arbitrary generated approximations for these assets.
+
+### 0.4.1 Demo support classification
+
+When `demo_export=true`, classify demo readiness deterministically from category, mechanic, runtime beats, asset requirements, and product capability flags:
+
+| Activity shape | `demo_support.status` | `ui_template` |
+|---|---|---|
+| Cat1 dialogue, riddle, voice acting, prediction, imagination, or simple enumeration that runs through speech plus screen state | `supported` | `cat1_dialogue` |
+| Cat5 simple visual collection such as fluffy, dots, color, shape, or another catalogable visible property | `supported` | `cat5_collection` |
+| Cat5 requiring runtime judgment such as beginning sound, semantic category, or open-ended child naming | `degraded` | `cat5_judgment` |
+| Drawing, coloring, physical building, sorting/grouping UI, tournament, certificate, complex Cat3, or any unimplemented mechanic/UI dependency | `unsupported` | `none` |
+
+Supported and degraded demo packages must declare at least one `entity_bindings` entry and exactly one default binding. Unsupported packages may still include a binding for review context, but consumers must not show them as playable. A degraded package must explain the limitation, such as "catalog simulated judgment, not real camera validation." Do not hide an unsupported mechanic behind a Cat1 or Cat5 scaffold.
 
 ### 0.5 Readiness rules
 
@@ -226,6 +287,7 @@ adaptation_brief:
 - If category/mechanic labels are preserved but the child role, interaction sequence, story frame, or required child action changes materially, set `source_promise_alignment.alignment_status=intent_drift` and repair before finalization unless product explicitly approves the adaptation.
 - `blocked_until_product_decision`: write a blocked brief and a constrained design preview for this row, do not create a valid runtime package under `activities/`, append `results.tsv`, or mark the assignment complete, then continue to the next unchecked row. Use this for unsupported categories, required assets/UI state/material workflow/motion safety, OCR risk, pose risk, before/after state verification, or a mechanic that cannot be represented by current workflow without distorting the activity concept. The preview should be detailed enough to review the proposed activity, but every blocked assumption must be called out inline with `BLOCKED ELEMENT: <reason>` so the design can become valid only after those constraints are resolved.
 - `minimum_unblock_allowed` override: if the run manifest records this product-contract override, dependencies that previously caused `blocked_until_product_decision` may generate as normal packages. The package still must show those dependencies in `spec.md` `## Resolved Product Contract Notes`, inline `prod.md` `RESOLVED BLOCKER` comments near affected beats, and `run_manifest.yaml` `resolved_blockers`. Dimension 1 passes because the product contract now authorizes the minimum behavior; the annotations remain for review and implementation traceability.
+- Demo support status does not override package readiness. A package can be a valid five-file activity and still have `demo_support.status: unsupported` because the current fullstack demo lacks the needed UI/runtime primitive.
 
 ### 0.6 Entity mapping use
 
@@ -515,6 +577,8 @@ The three closed enums under `activity_signature` are owned by `docs/activity_vo
 - **Matcher/selector** reads `tag_block.yaml`; values must validate against `activities/_schema/tag_block.schema.json`.
 - **Child recap renderer** reads `recap.template.yaml`; the focal attribute token and reward language must match the runtime activity.
 - **Parent dashboard renderer** reads `dashboard.template.yaml`; `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.activity_signature.focal_attribute`.
+- **Demo importer** reads optional `demo_support.yaml`; it must declare `supported`, `degraded`, or `unsupported`, a concrete UI template, explicit entity binding, product/runtime requirements, and limitation notes.
+- **Asset pipeline / demo importer** reads optional `asset_manifest.yaml`; it must declare separate runtime assets, screen targets, prompt/source, variants, nullable file path slots, fallback behavior, and reference-bound provenance.
 
 #### Migrated package depth floor
 
@@ -531,7 +595,7 @@ The migrated five-file package intentionally moves metadata and recap/dashboard 
 
 Before emitting a completed migrated package, verify:
 
-- [ ] The package has exactly these five files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, `dashboard.template.yaml`.
+- [ ] The package has the five required files: `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, `dashboard.template.yaml`.
 - [ ] Directory name equals `tag_block.yaml` `activity_id`.
 - [ ] `tag_block.yaml` validates against `activities/_schema/tag_block.schema.json`.
 - [ ] `tag_block.yaml` uses current field names: `game_style` (not `style`), `tier_range` (not `tier` / `tier_variants`), and `activity_signature.focal_attribute`.
@@ -544,6 +608,8 @@ Before emitting a completed migrated package, verify:
 - [ ] `recap.template.yaml` and `dashboard.template.yaml` use the same focal attribute / badge / activity identity as `tag_block.yaml` and `prod.md`.
 - [ ] `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` exactly equals `tag_block.yaml` `activity_signature.focal_attribute`.
 - [ ] No field value is a placeholder, ellipsis, or instruction-shaped string ("pick one of...", "see mapping", etc.).
+- [ ] If `demo_support.yaml` is present, it validates against `activities/_schema/demo_support.schema.json` or the focused validator, and its status/template honestly match the current demo support gate.
+- [ ] If `asset_manifest.yaml` is present, it validates against `activities/_schema/asset_manifest.schema.json` or the focused validator, uses separate runtime assets rather than contact sheets, and requires source/provenance for reference-bound assets.
 
 If any box fails, fix the package and re-run both the 10-dimension rubric and this self-check. Do **not** emit a package with incomplete metadata or condensed runtime steps — downstream surfaces will silently fall back to generic copy or lose runtime behavior.
 
@@ -553,11 +619,11 @@ If any box fails, fix the package and re-run both the 10-dimension rubric and th
 
 ## Phase 2: Output Format — Exact Structure Required
 
-Generate the migrated activity package in this EXACT structure. Do not skip files, do not reorder sections, and do not abbreviate runtime rounds.
+Generate the migrated activity package with the five required files in this exact structure. Do not skip required files, do not reorder required sections, and do not abbreviate runtime rounds. Add optional demo extension files only when the assignment or run requests direct demo export.
 
 For fresh `/goal` generation, `<package_dir>` is `runs/<run_id>/activity_packages/<activity_id>/`. For canonical/promoted package maintenance, `<package_dir>` may be `activities/<activity_id>/`.
 
-The five files are:
+The five required files are:
 
 ```text
 <package_dir>/
@@ -567,6 +633,16 @@ The five files are:
 ├── recap.template.yaml
 └── dashboard.template.yaml
 ```
+
+When `demo_export=true`, also add:
+
+```text
+<package_dir>/
+├── demo_support.yaml
+└── asset_manifest.yaml
+```
+
+These extension files do not replace the five-file package contract. A package without them remains structurally valid, but it is not direct-demo-import ready.
 
 `prod.md` is the runtime prompt source and must use this structure:
 
@@ -665,7 +741,7 @@ Existing `AI says` exact-dialogue steps remain valid. Do not use a single fixed 
 [celebration first, then naturally names the Key Concepts the child explored; include child responses, AI follow-up, and Screen]
 ```
 
-`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`. For concept-led assignments, include an `## Adaptation Rationale` section before the scorecard summarizing the Phase 0 brief: core promise, source-promise alignment, canonical mechanic, input mode, readiness, trigger condition, mapping use, asset dependency, product-capability flags, scaffold fit, and assumptions. When `product_contract_override=minimum_unblock_allowed` applies, include `## Resolved Product Contract Notes` before the scorecard and list every formerly blocking dependency. When the concept can be reused with other entities, properties, or asset sets, include `## Extensibility Notes` before the scorecard with concrete reusable slots and retargeting guidance. When `asset_dependency.policy` is not `no_assets`, also include an `## Asset Brief` section before the scorecard with one row per asset requirement: `asset_id`, `asset_type`, requiredness, generation timing, use step, display location, purpose, `prompt_en` or source, display behavior, fallback behavior, and safety constraints. Add `## Asset Usage Timeline` before the scorecard for any prebuilt, displayed, or runtime-generated image dependency; each row must make it easy to see the asset ID, whether it is prebuilt or runtime-generated, exactly when it is loaded/generated, where it appears on screen, which step/round uses it, the prompt/source summary, whether it persists or is hidden, and the fallback. Keep it concise, but not skeletal: include enough specifics that a reviewer can identify what makes this activity different from a generic template.
+`spec.md` is the author/reviewer reference. It should summarize premise, target, rationale, selection trigger, pillar/game style, and then end with exactly one `## Self-Evaluation Scorecard`. For concept-led assignments, include an `## Adaptation Rationale` section before the scorecard summarizing the Phase 0 brief: core promise, source-promise alignment, canonical mechanic, input mode, readiness, trigger condition, mapping use, asset dependency, product-capability flags, scaffold fit, and assumptions. When `product_contract_override=minimum_unblock_allowed` applies, include `## Resolved Product Contract Notes` before the scorecard and list every formerly blocking dependency. When the concept can be reused with other entities, properties, or asset sets, include `## Extensibility Notes` before the scorecard with concrete reusable slots and retargeting guidance. When `asset_dependency.policy` is not `no_assets`, also include an `## Asset Brief` section before the scorecard with one row per asset requirement: `asset_id`, `asset_type`, requiredness, generation timing, use step, display location, purpose, `prompt_en` or source, display behavior, fallback behavior, and safety constraints. Add `## Asset Usage Timeline` before the scorecard for any prebuilt, displayed, or runtime-generated image dependency; each row must make it easy to see the asset ID, whether it is prebuilt or runtime-generated, exactly when it is loaded/generated, where it appears on screen, which step/round uses it, the prompt/source summary, whether it persists or is hidden, and the fallback. For demo-targeted packages, mirror the consumer-facing asset contract in `asset_manifest.yaml`; `spec.md` may explain rationale, but `asset_manifest.yaml` owns separate runtime assets, role, style, variants, file path slots, fallbacks, and reference-bound source/provenance. Keep it concise, but not skeletal: include enough specifics that a reviewer can identify what makes this activity different from a generic template.
 
 ### Format Rules
 
@@ -681,7 +757,7 @@ Existing `AI says` exact-dialogue steps remain valid. Do not use a single fixed 
 - **Closing speech** must celebrate FIRST, then naturally name Key Concepts. Concepts feel like praise, not vocabulary lessons.
 - **All AI dialogue is in English.** Use age-appropriate, warm, playful language.
 - **Scorecard placement**: `spec.md` includes the scorecard; `prod.md` does not.
-- **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `spec.md` must include `## Asset Usage Timeline` for any prebuilt, displayed, or runtime-generated image dependency. `prod.md` references asset IDs, display location, and fallback behavior only. Review outputs must distinguish `Asset dependencies` from `Display beats` and `Image items`; do not treat one asset row or card set as one image when it is displayed across multiple steps. Do not generate or store image files as part of package generation unless a future asset pipeline explicitly requires it.
+- **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `spec.md` must include `## Asset Usage Timeline` for any prebuilt, displayed, or runtime-generated image dependency. For demo export, `asset_manifest.yaml` owns the machine-readable runtime asset contract: separate asset roles, style ID, screen targets, variants, nullable file paths, prompt/source, fallback behavior, and reference provenance. `prod.md` references asset IDs, display location, and fallback behavior only. Review outputs must distinguish `Asset dependencies` from `Display beats` and `Image items`; do not treat one asset row or card set as one image when it is displayed across multiple steps. Do not generate or store image files as part of package generation unless a future asset pipeline explicitly requires it. Contact sheets are review-only artifacts, not runtime asset manifests.
 - **Resolved blocker placement**: product-contract override runs use `RESOLVED BLOCKER` comments in `prod.md` where the formerly unsupported behavior affects a runtime beat. These comments are review annotations and do not make the package invalid when the run manifest records the override.
 - **Extensibility placement**: concept-led and parameterized packages should name reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, `{matched_shape}`, or approved asset-set IDs in `spec.md` `## Extensibility Notes`.
 - **Package alignment**: `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` must describe the same pillar, game style, focal attribute, badge, and next-step direction as `spec.md` and `prod.md`.
@@ -707,6 +783,8 @@ Check every step for dependency on blocked capabilities:
 - Does any step require detecting non-speech audio (clapping, tapping)? → If yes, is it replaced with dialogue workaround? If not → FAIL
 - Note: Multi-photo workflows (child takes several photos across steps) are ALLOWED. What's blocked is computational comparison between photos to detect differences.
 - Exception: in a run with `product_contract_override=minimum_unblock_allowed`, a formerly blocked dependency may PASS only when the package records it as a resolved blocker in `spec.md`, `prod.md`, and `run_manifest.yaml`. If the dependency is used silently, Dimension 1 still FAILS.
+- For demo-targeted packages, does `demo_support.yaml` claim `supported` only when the current Cat1/Cat5 demo primitive can play it, and `degraded` only when the limitation is explicit? → Must be YES
+- Does every unsupported demo mechanic/UI/runtime dependency use `demo_support.status: unsupported` instead of pretending it is playable? → Must be YES
 
 ### Dimension 2: Hook & Transition (PASS/FAIL)
 
@@ -757,6 +835,8 @@ For the target tier, check:
 - Do screen elements match what's happening in the dialogue? → Must be YES
 - Are animations/visual effects described concretely (not just "animation plays")? → Must be YES
 - Does each screen description identify what persists, what changes, and how progress/payoff is represented? → Must be YES
+- If `asset_manifest.yaml` is present, do declared variants include the round-device screen target, safe-area rules, and fallback behavior for missing assets? → Must be YES
+- For reference-bound assets, does the manifest include approved source/provenance and verification behavior before applying device style? → Must be YES
 
 ### Dimension 8: Entity Mapping Alignment (PASS/FAIL) — mapping-informed designs only
 
@@ -790,6 +870,7 @@ Does the design preserve the child action promised by the assignment or Phase 0 
 - Does the selected pillar/style support the mechanic without distorting the activity concept or entity intent? → Must be YES
 - If `scaffold_fit` is `weak` or `generate_with_assumptions`, does `spec.md` disclose the scaffold compromise and assumptions in `## Adaptation Rationale`? → Must be YES
 - Does the package avoid forcing unsupported mechanics, product capabilities, or categories into a misleading current style? → Must be YES
+- If the full activity is valid but not playable in the current demo, does `demo_support.yaml` mark it `unsupported` with concrete missing UI/runtime reasons? → Must be YES when demo export is requested
 - Does the design still deliver a clear emotional payoff / magic moment consistent with its chosen pillar? → Must be YES
 
 ### Rubric Scorecard (append at end of every `spec.md`)
@@ -917,7 +998,7 @@ If the human gives multiple assignments at once, design each one fully before mo
 ### After Generating
 
 Always end with:
-1. A complete `<package_dir>/` package with five files.
+1. A complete `<package_dir>/` package with the five required files, plus `demo_support.yaml` and `asset_manifest.yaml` when direct demo export is requested.
 2. The self-evaluation scorecard at the end of `spec.md` only.
 3. A one-line summary: "Ready for curriculum review" or "N issues found and fixed during self-evaluation"
 

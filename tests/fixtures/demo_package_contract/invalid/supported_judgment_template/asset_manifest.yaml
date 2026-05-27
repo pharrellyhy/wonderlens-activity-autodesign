@@ -1,0 +1,28 @@
+activity_id: invalid_supported_judgment_template
+entity_id: ball
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: "1:1"
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+assets:
+  - id: ball_sound_card
+    role: collection_correct
+    label: Ball
+    collection_catalog_id: ball
+    requiredness: required
+    accuracy_mode: illustrative
+    prompt_en: Soft 3D educational toy illustration of a simple ball, no text, no watermark.
+    variants:
+      - id: icon_256
+        target: round_device_screen
+        size: 256x256
+        path:
+    fallback_behavior: Use voice-only prompt.

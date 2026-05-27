@@ -1,0 +1,20 @@
+activity_id: invalid_missing_asset_entity_id
+version: 1
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: full
+  entity_bindings:
+    - entity_id: cat
+      display_label: Cat
+      source_entity_exemplar: cat
+      default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Invalid fixture.
