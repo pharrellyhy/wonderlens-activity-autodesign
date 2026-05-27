@@ -54,6 +54,26 @@ behavior.
 - Validate at least one Cat1 sample, one simple Cat5 sample, and one
   unsupported or degraded example.
 
+## Delegated Agent Rule
+
+The user explicitly requested delegated-agent rules for this goal.
+
+Use sub-agents only for independent exploration, implementation, verification,
+or code review with disjoint ownership. Keep tightly coupled package-contract,
+schema, and generation-instruction decisions local to the main agent unless
+the ownership boundary is clear. The main agent remains responsible for
+sequencing, integrating returned work, resolving conflicts, running final
+checks, committing, and reporting.
+
+Good delegation candidates:
+
+- audit existing packages for Cat1, simple Cat5, degraded Cat5, and
+  unsupported examples;
+- inspect current asset brief and contact-sheet workflows;
+- draft fixture coverage and schema validation cases;
+- independently review reference-bound asset and unsupported-mechanic rules;
+- verify validation commands and final diffs.
+
 ## Execution Rules
 
 - Work in `wonderlens-activity-autodesign`.
@@ -146,5 +166,5 @@ remaining risks, and commit hashes.
 ## Goal Invocation
 
 ```text
-/goal Implement goals/2026-05-27-demo-package-contract-assets-goal.md. Stop only when its completion gate is satisfied or a blocker is documented.
+/goal Implement goals/2026-05-27-demo-package-contract-assets-goal.md. The user explicitly requests delegated-agent work for independent exploration, implementation, verification, and code review where ownership is disjoint. Stop only when its completion gate is satisfied or a blocker is documented.
 ```
