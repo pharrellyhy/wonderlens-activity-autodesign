@@ -65,6 +65,10 @@ The fullstack demo currently needs a concrete, machine-readable handoff:
 - Generate or request separate assets per runtime role: entity hero, Cat5
   correct item, Cat5 distractor, badge, story scene, and optional activity
   thumbnail.
+- Assets that represent real-world facts or references, such as constellations,
+  artworks, maps, scientific diagrams, cultural artifacts, species, historical
+  objects, or named places, must be reference-bound. They need verified source
+  material or provenance and must not be arbitrary generated approximations.
 - Use the prototype device as the style anchor: porcelain/off-white shell,
   dark round screen, mint controls, soft 3D toy-like educational assets, and
   child-safe simple subjects.
@@ -178,6 +182,7 @@ assets:
     role: entity
     label: Dandelion
     requiredness: required
+    accuracy_mode: illustrative
     prompt_en: "Soft 3D educational toy illustration..."
     variants:
       - id: round_512
@@ -194,6 +199,7 @@ assets:
     label: Fuzzy moss
     collection_catalog_id: fuzzy_moss
     requiredness: required
+    accuracy_mode: illustrative
     prompt_en: "Soft 3D educational toy illustration..."
     variants:
       - id: icon_256
@@ -215,6 +221,40 @@ Asset role vocabulary for MVP:
 - `badge`
 - `story_scene`
 - `ui_overlay`
+
+Asset accuracy modes:
+
+- `illustrative`: the asset may be generated from the activity prompt as long
+  as it satisfies the style, safety, and recognizability constraints.
+- `reference_bound`: the asset depicts a real-world reference where correctness
+  matters. Examples include constellations, artworks, maps, scientific
+  diagrams, cultural artifacts, species, historical objects, named places, and
+  famous structures. These assets must include source material or provenance,
+  and generated variants must be checked against the reference.
+
+Reference-bound asset entries should include:
+
+```yaml
+accuracy_mode: reference_bound
+reference_policy:
+  source_required: true
+  allowed_sources:
+    - licensed_asset
+    - public_domain_reference
+    - approved_internal_reference
+    - verified_source_url
+  verification_required: true
+  verification_notes: "Must preserve the real star arrangement for Orion."
+sources:
+  - label: "IAU Orion constellation reference"
+    uri: "https://example.invalid/reference"
+    license: "public_domain_or_approved"
+```
+
+If a reference-bound asset lacks approved source material, the package should
+not claim the asset is ready. It should either block demo readiness, mark the
+asset as missing with fallback behavior, or request a verified source before
+generation.
 
 ## Device Visual Style Contract
 
@@ -246,6 +286,10 @@ Visual constraints:
 - Keep backgrounds simple enough to crop to a circular screen.
 - Do not use the old warm storybook or photo-realistic Cat5 prompts as the
   default for device assets. Those can remain references only.
+- Reference-bound assets must preserve the real-world structure or identity
+  before applying device style. For example, a constellation must keep the
+  correct star layout, and a named artwork must use an approved source image or
+  public-domain reference rather than a random generated composition.
 
 Recommended masters and variants:
 
@@ -307,6 +351,8 @@ Expected outcome:
 - Demo support status and UI template values are schema-validated.
 - Asset manifests validate required roles, sizes, safe-area metadata, prompts,
   fallback behavior, and catalog ID references.
+- Reference-bound assets validate source/provenance fields and cannot pass as
+  generated random approximations.
 - Packages cannot claim `supported` if required assets are absent and no prompt
   or fallback exists.
 

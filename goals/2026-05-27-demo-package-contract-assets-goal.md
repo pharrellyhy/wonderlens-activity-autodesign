@@ -29,6 +29,9 @@ behavior.
 - Add demo and asset data as optional package-local extension files, not as raw
   prose in `prod.md`.
 - Do not make contact sheets the runtime asset format.
+- Do not allow real-world factual/reference assets, such as constellations,
+  artworks, maps, scientific diagrams, cultural artifacts, species, historical
+  objects, or named places, to be represented by arbitrary generated images.
 - Do not claim unsupported mechanics are playable.
 - Do not implement fullstack demo code in this repo.
 - Do not edit secrets, credentials, production data, or machine-local config.
@@ -44,6 +47,8 @@ behavior.
   separate assets, not a single prebuilt contact sheet.
 - Define the `wonderlens_device_mint_soft_3d` visual style, palette, sizes,
   variants, and round-screen safe-area rules.
+- Define reference-bound asset rules for real-world factual assets, including
+  source/provenance requirements and verification behavior.
 - Add deterministic support classification for `supported`, `degraded`, and
   `unsupported` demo mechanics.
 - Validate at least one Cat1 sample, one simple Cat5 sample, and one
@@ -88,6 +93,8 @@ only the intended files for this goal.
 - `asset_manifest.yaml` has a documented and validated shape.
 - The asset contract defines separate runtime assets, roles, prompts, target
   variants, file path slots, fallback behavior, and round-screen safe areas.
+- Reference-bound assets require approved sources or provenance and cannot pass
+  validation as random generated approximations.
 - The prototype-device visual style is expressed in generation instructions.
 - Support gating distinguishes supported Cat1/Cat5, degraded Cat5 judgment,
   and unsupported UI-heavy mechanics.
