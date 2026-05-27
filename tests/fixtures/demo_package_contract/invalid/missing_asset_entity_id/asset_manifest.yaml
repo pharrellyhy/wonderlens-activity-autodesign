@@ -17,6 +17,8 @@ assets:
     label: Cat
     requiredness: required
     accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
     prompt_en: Soft 3D educational toy illustration of a cat, no text, no watermark.
     variants:
       - id: round_512

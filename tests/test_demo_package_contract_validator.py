@@ -31,6 +31,14 @@ class DemoPackageContractValidatorTest(unittest.TestCase):
 
         self.assertIn("reference_bound asset must declare at least one source", "\n".join(issues))
 
+    def test_reference_bound_asset_rejects_generate_new_policy(self):
+        validator = load_validator()
+
+        issues = validator.validate_roots([FIXTURE_ROOT / "invalid" / "reference_bound_generate_new"])
+
+        self.assertIn("reference_bound asset must use an approved reference source_strategy", "\n".join(issues))
+        self.assertIn("reference_bound asset must not use generate_new transformation_policy", "\n".join(issues))
+
     def test_supported_package_requires_entity_binding(self):
         validator = load_validator()
 

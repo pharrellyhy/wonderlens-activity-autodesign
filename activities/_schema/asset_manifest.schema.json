@@ -122,7 +122,7 @@
     "asset": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "role", "label", "requiredness", "accuracy_mode", "variants", "fallback_behavior"],
+      "required": ["id", "role", "label", "requiredness", "accuracy_mode", "source_strategy", "transformation_policy", "variants", "fallback_behavior"],
       "properties": {
         "id": {
           "type": "string",
@@ -155,6 +155,26 @@
         "accuracy_mode": {
           "type": "string",
           "enum": ["illustrative", "reference_bound"]
+        },
+        "source_strategy": {
+          "type": "string",
+          "enum": [
+            "generated_illustrative",
+            "curated_original",
+            "redraw_from_verified_data",
+            "licensed_reference",
+            "approved_internal_reference"
+          ]
+        },
+        "transformation_policy": {
+          "type": "string",
+          "enum": [
+            "generate_new",
+            "crop_resize_only",
+            "simplified_redraw",
+            "style_preserving_redraw",
+            "no_derivative_generation"
+          ]
         },
         "prompt_en": {
           "type": "string"
@@ -189,8 +209,24 @@
             }
           },
           "then": {
-            "required": ["reference_policy", "sources"],
+            "required": ["source_strategy", "transformation_policy", "reference_policy", "sources"],
             "properties": {
+              "source_strategy": {
+                "enum": [
+                  "curated_original",
+                  "redraw_from_verified_data",
+                  "licensed_reference",
+                  "approved_internal_reference"
+                ]
+              },
+              "transformation_policy": {
+                "enum": [
+                  "crop_resize_only",
+                  "simplified_redraw",
+                  "style_preserving_redraw",
+                  "no_derivative_generation"
+                ]
+              },
               "sources": {
                 "minItems": 1
               }
@@ -209,7 +245,15 @@
             }
           },
           "then": {
-            "required": ["prompt_en"]
+            "required": ["source_strategy", "transformation_policy", "prompt_en"],
+            "properties": {
+              "source_strategy": {
+                "const": "generated_illustrative"
+              },
+              "transformation_policy": {
+                "const": "generate_new"
+              }
+            }
           }
         }
       ]

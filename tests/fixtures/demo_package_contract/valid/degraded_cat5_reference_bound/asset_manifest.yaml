@@ -24,6 +24,8 @@ assets:
     collection_catalog_id: ball
     requiredness: required
     accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
     prompt_en: Soft 3D educational toy illustration of a simple ball, mint green and warm porcelain palette, centered for a small round screen, no letters, no watermark.
     variants:
       - id: icon_256

@@ -18,6 +18,8 @@ assets:
     label: Orion constellation reference
     requiredness: required
     accuracy_mode: reference_bound
+    source_strategy: redraw_from_verified_data
+    transformation_policy: simplified_redraw
     prompt_en: Random cute constellation image in mint style.
     reference_policy:
       source_required: true

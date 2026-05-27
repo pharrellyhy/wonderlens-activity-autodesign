@@ -23,6 +23,8 @@ assets:
     label: Cat
     requiredness: required
     accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
     prompt_en: Soft 3D educational toy illustration of a peaceful sleepy cat, mint green and warm porcelain palette, rounded friendly shapes, subtle plastic material, clean centered subject, gentle studio lighting, no text, no watermark, designed for a small round screen.
     variants:
       - id: round_512
@@ -39,6 +41,8 @@ assets:
     label: Dream Whisperer badge
     requiredness: optional
     accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
     prompt_en: Soft 3D mint-and-porcelain toy badge with a tiny sleeping cat silhouette and moon shape, centered for a round device screen, no text, no watermark.
     variants:
       - id: badge_512

@@ -75,7 +75,7 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 | `fallback_behavior` | What runtime does if it is missing. |
 | `safety_constraints` | Visual safety and content constraints. |
 
-Current package generation does not create image files. Demo-targeted packages request separate runtime assets through `asset_manifest.yaml`; contact sheets are review artifacts only and must not be treated as runtime assets.
+Current package generation does not create image files by default. Demo-targeted packages request separate runtime assets through `asset_manifest.yaml`; contact sheets are review artifacts only and must not be treated as runtime assets. A later asset build phase may consume these manifests and write generated files plus `generated_assets/asset_outputs.yaml`, but the source package contract remains the manifest.
 
 `## Asset Usage Timeline` should restate the operational view in a compact table: `asset_id`, `generation_timing`, load/generate moment, first display step, visible step/round range, display location, interaction/use, persistence/hide behavior, and fallback. This section is optimized for `review.html`, not for asset generation.
 
@@ -105,6 +105,8 @@ Current package generation does not create image files. Demo-targeted packages r
 | `screen_targets` | At minimum `round_device_screen` with `aspect_ratio: "1:1"`, `crop_shape: circle`, master size, and a central percent-circle safe area. |
 | `assets[].role` | `entity`, `activity_preview`, `collection_correct`, `collection_distractor`, `badge`, `story_scene`, or `ui_overlay`. |
 | `assets[].accuracy_mode` | `illustrative` or `reference_bound`. |
+| `assets[].source_strategy` | `generated_illustrative`, `curated_original`, `redraw_from_verified_data`, `licensed_reference`, or `approved_internal_reference`. |
+| `assets[].transformation_policy` | `generate_new`, `crop_resize_only`, `simplified_redraw`, `style_preserving_redraw`, or `no_derivative_generation`. |
 | `assets[].prompt_en` | Required for generated illustrative assets; must be English and directly usable by an asset pipeline. |
 | `assets[].variants` | Per-target variants such as `round_512`, `icon_256`, `badge_512`, `landscape_1280x720`, with nullable `path` slots before files exist. |
 | `assets[].fallback_behavior` | What the runtime does when the asset is unavailable. |
@@ -120,7 +122,23 @@ screen.
 
 Round-screen variants must keep important detail inside the central 70 to 75 percent circle and remain recognizable at 144 px. The horizontal debug-screen variant may exist for web demos, but the round device screen is the primary design target.
 
-Reference-bound assets represent real-world facts or identities, such as constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, and famous structures. They must include `reference_policy` and at least one source/provenance entry. Prompts must preserve the approved reference first, then apply device style. Random or arbitrary generated approximations do not validate.
+Reference-bound assets represent real-world facts or identities, such as constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, and famous structures. They must include `source_strategy`, `transformation_policy`, `reference_policy`, and at least one source/provenance entry. Prompts must preserve the approved reference first, then apply device style. Random or arbitrary generated approximations do not validate.
+
+For reference-bound assets, agents may propose candidate references, but accepted manifests must record only verified sources. Do not scrape or use arbitrary web-image results. Use approved source types only: public-domain museum/archive sources, official or verified source URLs, licensed/internal asset libraries, verified educational/scientific sources, or structured data that can be redrawn accurately. Famous public-domain artwork should normally use `source_strategy: curated_original` with `transformation_policy: crop_resize_only` or `no_derivative_generation`; constellations and diagrams should normally use `source_strategy: redraw_from_verified_data` with `transformation_policy: simplified_redraw`.
+
+## Asset build modes
+
+`demo_export` controls whether packages emit `demo_support.yaml` and `asset_manifest.yaml`. `asset_build` controls whether a run attempts to create image files from those manifests.
+
+| `asset_build` | Behavior |
+|---|---|
+| `none` | Do not run asset generation or curation; packages may still be valid but are not asset-complete. |
+| `manifest_only` | Default. Emit and validate manifests with nullable asset paths; do not create binary image files. |
+| `generate_illustrative` | Generate only `accuracy_mode: illustrative` assets; leave reference-bound assets missing unless approved sources already exist. |
+| `curate_reference` | Search/curate approved sources for `reference_bound` assets and record provenance; do not generate arbitrary substitutes. |
+| `generate_and_curate` | Generate illustrative assets and curate/reference-build approved reference-bound assets in one post-package phase. |
+
+When image files are built, write them under `runs/<run_id>/generated_assets/<activity_id>/` and record actual outputs in `runs/<run_id>/generated_assets/asset_outputs.yaml`. Do not overwrite `asset_manifest.yaml` paths unless an explicit promotion/integration step chooses to bind built files back into the package.
 
 ## Canonical vocabulary
 

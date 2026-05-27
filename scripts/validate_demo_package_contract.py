@@ -30,6 +30,32 @@ ASSET_ROLES = {
 REQUIREDNESS = {"required", "optional", "fallback"}
 ACCURACY_MODES = {"illustrative", "reference_bound"}
 STYLE_IDS = {"wonderlens_device_mint_soft_3d"}
+SOURCE_STRATEGIES = {
+    "generated_illustrative",
+    "curated_original",
+    "redraw_from_verified_data",
+    "licensed_reference",
+    "approved_internal_reference",
+}
+REFERENCE_SOURCE_STRATEGIES = {
+    "curated_original",
+    "redraw_from_verified_data",
+    "licensed_reference",
+    "approved_internal_reference",
+}
+TRANSFORMATION_POLICIES = {
+    "generate_new",
+    "crop_resize_only",
+    "simplified_redraw",
+    "style_preserving_redraw",
+    "no_derivative_generation",
+}
+REFERENCE_TRANSFORMATION_POLICIES = {
+    "crop_resize_only",
+    "simplified_redraw",
+    "style_preserving_redraw",
+    "no_derivative_generation",
+}
 REFERENCE_SOURCE_TYPES = {
     "licensed_asset",
     "public_domain_reference",
@@ -176,23 +202,47 @@ def validate_screen_targets(package_dir: Path, manifest: dict[str, Any]) -> list
 def validate_asset(package_dir: Path, asset: dict[str, Any], targets: dict[str, Any], index: int) -> list[str]:
     label = f"{package_dir}: assets[{index}]"
     issues: list[str] = []
-    add_required(issues, label, asset, ("id", "role", "label", "requiredness", "accuracy_mode", "fallback_behavior"))
+    add_required(
+        issues,
+        label,
+        asset,
+        (
+            "id",
+            "role",
+            "label",
+            "requiredness",
+            "accuracy_mode",
+            "source_strategy",
+            "transformation_policy",
+            "fallback_behavior",
+        ),
+    )
 
     role = norm(asset.get("role"))
     requiredness = norm(asset.get("requiredness"))
     accuracy_mode = norm(asset.get("accuracy_mode"))
+    source_strategy = norm(asset.get("source_strategy"))
+    transformation_policy = norm(asset.get("transformation_policy"))
     if role and role not in ASSET_ROLES:
         issues.append(f"{label}: role {role!r} is not allowed")
     if requiredness and requiredness not in REQUIREDNESS:
         issues.append(f"{label}: requiredness {requiredness!r} is not allowed")
     if accuracy_mode and accuracy_mode not in ACCURACY_MODES:
         issues.append(f"{label}: accuracy_mode {accuracy_mode!r} is not allowed")
+    if source_strategy and source_strategy not in SOURCE_STRATEGIES:
+        issues.append(f"{label}: source_strategy {source_strategy!r} is not allowed")
+    if transformation_policy and transformation_policy not in TRANSFORMATION_POLICIES:
+        issues.append(f"{label}: transformation_policy {transformation_policy!r} is not allowed")
     if role in {"collection_correct", "collection_distractor"} and not norm(asset.get("collection_catalog_id")):
         issues.append(f"{label}: collection asset must declare collection_catalog_id")
 
     if accuracy_mode == "illustrative" and requiredness in {"required", "optional"}:
         if not norm(asset.get("prompt_en")):
             issues.append(f"{label}: illustrative required/optional asset must declare prompt_en")
+        if source_strategy != "generated_illustrative":
+            issues.append(f"{label}: illustrative required/optional asset must use source_strategy generated_illustrative")
+        if transformation_policy != "generate_new":
+            issues.append(f"{label}: illustrative required/optional asset must use transformation_policy generate_new")
 
     variants = as_list(asset.get("variants"))
     if requiredness in {"required", "optional"} and not variants:
@@ -206,6 +256,10 @@ def validate_asset(package_dir: Path, asset: dict[str, Any], targets: dict[str, 
             issues.append(f"{variant_label}: target {target!r} is not declared in screen_targets")
 
     if accuracy_mode == "reference_bound":
+        if source_strategy not in REFERENCE_SOURCE_STRATEGIES:
+            issues.append(f"{label}: reference_bound asset must use an approved reference source_strategy")
+        if transformation_policy not in REFERENCE_TRANSFORMATION_POLICIES:
+            issues.append(f"{label}: reference_bound asset must not use generate_new transformation_policy")
         reference_policy = as_dict(asset.get("reference_policy"))
         sources = as_list(asset.get("sources"))
         if reference_policy.get("source_required") is not True:

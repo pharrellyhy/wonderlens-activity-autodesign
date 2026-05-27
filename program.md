@@ -109,6 +109,7 @@ Concept row fields:
 | `asset_requirements` | Required when assets are not `no_assets` | Reference to companion asset table rows for this concept, preferably `file#asset_id`. |
 | `product_capabilities` | Optional | Explicit capability assumptions or blockers, such as `requires_asset_display` or `requires_ui_state`. |
 | `demo_export` | Optional | Full `GOAL.md` generation runs default to `true`; set `false` only when the user explicitly disables direct demo export. |
+| `asset_build` | Optional run/assignment override | `none`, `manifest_only`, `generate_illustrative`, `curate_reference`, or `generate_and_curate`. Default is `manifest_only`; this controls post-package image building, not whether `asset_manifest.yaml` is emitted. |
 
 Asset requirement row fields:
 
@@ -132,6 +133,8 @@ Asset requirement row fields:
 | `screen_targets` | Required for demo export | Target display slots such as `round_device_screen`, `horizontal_debug_screen`, or `catalog_grid`, with aspect ratio, master size, and safe area. |
 | `target_variants` | Required for demo export | Variant IDs, sizes, nullable file paths, and target screens, for example `round_512`, `icon_256`, `landscape_1280x720`. |
 | `accuracy_mode` | Required for demo export | `illustrative` for ordinary generated art; `reference_bound` when real-world correctness matters. |
+| `source_strategy` | Required for demo export | `generated_illustrative`, `curated_original`, `redraw_from_verified_data`, `licensed_reference`, or `approved_internal_reference`. |
+| `transformation_policy` | Required for demo export | `generate_new`, `crop_resize_only`, `simplified_redraw`, `style_preserving_redraw`, or `no_derivative_generation`. |
 | `reference_policy` / `sources` | Required for `reference_bound` assets | Approved source/provenance, license/source type, and verification requirement before generation is accepted. |
 
 Inline assignment rows may include `asset_policy=...`, but non-trivial assets should live in the companion asset table or YAML block. If an assignment includes `concept_source=file#concept_id` or `asset_requirements=file#asset_id`, load those referenced rows before Phase 0 and treat them as source / asset context. The activity generator should copy explicit asset requirements into Phase 0 in English; it should not generate image files directly unless a future product workflow explicitly adds an asset build stage. In full `GOAL.md` generation runs, treat `demo_export=true` by default unless the user explicitly disables it; request separate per-role runtime assets through `asset_manifest.yaml`, not one contact sheet as the runtime asset.
@@ -194,6 +197,8 @@ adaptation_brief:
         generation_timing: <pre_generated|runtime_generated|display_existing|none>
         style_id: <wonderlens_device_mint_soft_3d|none>
         accuracy_mode: <illustrative|reference_bound>
+        source_strategy: <generated_illustrative|curated_original|redraw_from_verified_data|licensed_reference|approved_internal_reference>
+        transformation_policy: <generate_new|crop_resize_only|simplified_redraw|style_preserving_redraw|no_derivative_generation>
         use_step: "<where the asset appears, e.g. prod.step_2>"
         display_location: "<screen slot / region where the asset appears>"
         screen_targets: ["round_device_screen", "horizontal_debug_screen", "catalog_grid"]
@@ -219,6 +224,7 @@ adaptation_brief:
 
   demo_support:
     export_requested: <true|false>
+    asset_build: <none|manifest_only|generate_illustrative|curate_reference|generate_and_curate>
     status: <supported|degraded|unsupported|not_requested>
     ui_template: <cat1_dialogue|cat5_collection|cat5_judgment|none>
     support_level: "<full, catalog_simulated_judgment, unsupported, or other concise level>"
@@ -262,11 +268,27 @@ adaptation_brief:
 - Required visual assets must be treated as dependencies, not as narrative flavor. If an activity cannot work without the asset and the asset pipeline is not defined, mark that assignment blocked at the adaptation brief and call out the dependency in the constrained design preview.
 - `prod.md` should reference asset IDs and runtime behavior, not raw image prompts. `spec.md` owns the author-facing `## Asset Brief` with image prompts and dependency rationale.
 - Demo-targeted packages use `asset_manifest.yaml` for the consumer-facing asset contract. It must define separate assets by runtime role, not a single contact sheet. Each asset needs role, requiredness, accuracy mode, prompt or source, variants, nullable file path slots, and fallback behavior.
+- Demo-targeted asset rows must declare `source_strategy` and `transformation_policy`. Illustrative required/optional assets use `source_strategy: generated_illustrative` and `transformation_policy: generate_new`. Reference-bound assets must not use `generate_new`; they use `curated_original`, `redraw_from_verified_data`, `licensed_reference`, or `approved_internal_reference` with `crop_resize_only`, `simplified_redraw`, `style_preserving_redraw`, or `no_derivative_generation`.
 - Use `style_id: wonderlens_device_mint_soft_3d` unless a future schema approves another style. The base prompt is: "Soft 3D educational toy illustration, mint green and warm porcelain palette, rounded friendly shapes, subtle plastic material, clean centered subject, gentle studio lighting, no text, no watermark, designed for a small round screen."
 - Round-device variants must be designed first: `aspect_ratio: "1:1"`, `crop_shape: circle`, and important detail inside the central 70 to 75 percent circle. Horizontal debug variants are optional web-demo companions.
 - Assets that depict real-world factual/reference material, including constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, and famous structures, must use `accuracy_mode: reference_bound`, include approved source/provenance, and require verification before generation is accepted. Do not request random or arbitrary generated approximations for these assets.
+- Reference-bound candidate discovery is allowed only as a pre-acceptance step. The final manifest must cite verified sources, not search-result thumbnails or arbitrary web images. Famous public-domain artwork normally uses the original image with crop/resize or no derivative generation; constellations and diagrams normally redraw from verified source data.
 
-### 0.4.1 Demo support classification
+### 0.4.1 Asset build runtime option
+
+`asset_build` is a run-time option for an optional post-package phase. It never changes the activity mechanic or runtime dialogue and must not rewrite package prose just to fit generated images.
+
+| `asset_build` | Behavior |
+|---|---|
+| `none` | Skip asset generation/curation entirely. |
+| `manifest_only` | Default. Emit and validate `asset_manifest.yaml` with nullable paths; create no binary image files. |
+| `generate_illustrative` | Generate only illustrative assets from approved prompts and style/screen targets. Reference-bound assets remain unbuilt unless sources already exist. |
+| `curate_reference` | Let an agent propose candidates, then use web/source search and provenance verification to accept only approved originals or verified data; no random substitutes. |
+| `generate_and_curate` | Run both illustrative generation and reference curation/build after all packages validate. |
+
+Asset build outputs, when implemented, go under `runs/<run_id>/generated_assets/` with `asset_outputs.yaml`. Missing generated files should degrade or gate demo playback according to `demo_support.yaml`; do not fake paths or claim unavailable assets are displayed.
+
+### 0.4.2 Demo support classification
 
 When `demo_export=true`, which is the default for full `GOAL.md` generation runs, classify demo readiness deterministically from category, mechanic, runtime beats, asset requirements, and product capability flags:
 

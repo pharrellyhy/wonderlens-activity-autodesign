@@ -56,6 +56,7 @@ source:
   assignment_snapshot: runs/<run_id>/assignment_snapshot.md
   assignment_scope: "<all unchecked rows or explicit user scope>"
   product_contract_override: "<none|minimum_unblock_allowed>"
+  asset_build: "<none|manifest_only|generate_illustrative|curate_reference|generate_and_curate>"
   mapping_root: data/mappings_dev20_0318
 summary:
   pending_at_start: <N>
@@ -77,6 +78,7 @@ notes:
   - "Existing checked-package enrichment may update canonical activities/<activity_id>/ packages in place, but unchecked generation-ready rows must not reuse old canonical package directories."
   - "If product_contract_override=minimum_unblock_allowed is active, formerly blocking dependencies generate as resolved blocker annotations instead of blocked rows."
   - "Full GOAL.md runs default demo_export=true unless explicitly disabled; generated packages add demo_support.yaml and asset_manifest.yaml as optional extension files while the five canonical files remain required."
+  - "Default asset_build=manifest_only; binary image assets are created only by an explicit post-package asset build phase."
 ```
 
 15. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Run id: <run_id>. Starting activity package loop."
@@ -138,7 +140,7 @@ For each assignment in the run-start `assignment_snapshot.md` that is marked `- 
 
 ### Step 1: Parse the assignment
 
-Extract: assignment_type (if provided), activity_concept (if provided), legacy concept alias (if provided), concept_source (if provided), description/notes (if provided), source-promise cues (original play frame, child role, interaction sequence, required child actions, non-negotiable source elements), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), demo_export / demo_support hints (if provided), start type (if provided), and output activity_id (if provided). Normalize any legacy concept alias to `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared. For full GOAL.md runs, default `demo_export` to `true` unless the user or assignment explicitly sets it to `false`.
+Extract: assignment_type (if provided), activity_concept (if provided), legacy concept alias (if provided), concept_source (if provided), description/notes (if provided), source-promise cues (original play frame, child role, interaction sequence, required child actions, non-negotiable source elements), entity, category, tier, mechanic (if provided), pillar (if provided), style (if provided), scene (if provided), trigger_condition (if provided), mapping (if provided), asset_policy (if provided), asset_requirements / companion asset rows (if provided), product_capabilities (if provided), demo_export / demo_support hints (if provided), asset_build override (if provided), start type (if provided), and output activity_id (if provided). Normalize any legacy concept alias to `activity_concept=` and infer `assignment_type=activity_concept` unless a more specific type is declared. For full GOAL.md runs, default `demo_export` to `true` unless the user or assignment explicitly sets it to `false`; default `asset_build` to `manifest_only` unless the user or assignment explicitly sets another supported value.
 
 For unchecked generation-ready rows, treat `activity_id=` as `base_activity_id`. If the base value already ends in `_rYYYYMMDD_HHMMSS` because a prior run row was copied, strip that suffix first. The final package `activity_id` stays the clean `<base_activity_id>`, and the run-specific identity comes from the package path `runs/<run_id>/activity_packages/<base_activity_id>/`. This prevents fresh reruns from silently linking back to old canonical `activities/` package directories while keeping package IDs clean. The only exception is enrichment/audit of already checked rows, which intentionally uses the existing canonical package ID in place.
 
@@ -164,9 +166,10 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
 3. Identify `canonical_mechanic` and `mechanic_confidence`. If `mechanic=` is specified, it wins unless it is outside the current enum. The mechanic cannot override the original source play frame; it only labels the repeated child action.
 4. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
 5. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
-   - When `demo_export=true`, each normalized asset row should include `asset_role`, `style_id`, `accuracy_mode`, `screen_targets`, `target_variants`, fallback behavior, and nullable path slots for the future asset pipeline.
+   - When `demo_export=true`, each normalized asset row should include `asset_role`, `style_id`, `accuracy_mode`, `source_strategy`, `transformation_policy`, `screen_targets`, `target_variants`, fallback behavior, and nullable path slots for the future asset pipeline.
    - Use `style_id: wonderlens_device_mint_soft_3d` unless the source explicitly provides an approved override.
    - Mark real-world factual/reference assets as `accuracy_mode: reference_bound` and require source/provenance plus verification behavior. Do not accept arbitrary generated approximations for constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, or famous structures.
+   - For reference-bound assets, candidate proposal may use an agent/LLM, but final accepted sources must come from approved public-domain, official, licensed/internal, or verified educational/scientific sources. Record `source_strategy` and `transformation_policy`; never use `source_strategy: generated_illustrative` or `transformation_policy: generate_new` for reference-bound assets.
 6. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
 7. If `readiness=blocked_until_product_decision`, first check whether the run has `product_contract_override=minimum_unblock_allowed`.
    - Without the override, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> -- <what product/design decision is needed>`. Use the same blocker reason consistently when one missing product decision affects multiple beats; each inline marker is an occurrence, not a separate missing decision. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `runs/<run_id>/activity_packages/` or `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
@@ -325,6 +328,18 @@ Before logging or committing, verify:
 - If `demo_support.status` is `unsupported`, the package is not logged as demo-playable and unsupported reasons name the missing UI/runtime/mechanic support.
 - `asset_manifest.yaml` contains separate runtime asset entries, not a contact sheet as the runtime asset.
 - `reference_bound` assets include sources/provenance and verification requirements.
+- `reference_bound` assets declare an approved `source_strategy` and `transformation_policy`, and never rely on random generated approximations.
+- If `asset_build` is `manifest_only` or `none`, no binary image paths are required. If `asset_build` requests generated/curated files and no implemented asset builder exists, record the missing builder as a residual risk or mark affected demo support degraded/unsupported rather than fabricating paths.
+
+### Step 5.5: Optional asset build phase
+
+Run this phase only after every generated package has passed package validation and only when `source.asset_build` is not `none` or `manifest_only`.
+
+- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; write outputs under `runs/<run_id>/generated_assets/<activity_id>/` and summarize them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
+- `curate_reference`: for `reference_bound` assets, let an agent propose candidate sources, then verify provenance through approved public-domain, official, licensed/internal, or verified educational/scientific sources before accepting. Do not use random web-image results as sources.
+- `generate_and_curate`: run both behaviors.
+
+If no asset builder implementation is available for the requested mode, do not generate placeholder files or edit package manifests to pretend assets exist. Record the unavailable asset build in `run_manifest.yaml` `checks` / `notes`, keep nullable paths in `asset_manifest.yaml`, and rely on `demo_support.yaml` degraded/unsupported gates.
 
 ### Step 6: Log the result
 

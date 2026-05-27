@@ -26,6 +26,8 @@ assets:
     label: Dandelion puff
     requiredness: required
     accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
     prompt_en: Soft 3D educational toy illustration of a white dandelion puff, mint green and warm porcelain palette, rounded friendly shapes, clean centered subject, gentle studio lighting, no text, no watermark, designed for a small round screen.
     variants:
       - id: round_512
@@ -39,6 +41,8 @@ assets:
     collection_catalog_id: fuzzy_moss
     requiredness: required
     accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
     prompt_en: Soft 3D educational toy illustration of a small fuzzy moss patch, mint green and warm porcelain palette, large centered subject, no text, no watermark.
     variants:
       - id: icon_256
@@ -56,6 +60,8 @@ assets:
     collection_catalog_id: smooth_pebble
     requiredness: optional
     accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
     prompt_en: Soft 3D educational toy illustration of a smooth gray pebble, warm porcelain and mint palette, centered simple object, no text, no watermark.
     variants:
       - id: icon_256

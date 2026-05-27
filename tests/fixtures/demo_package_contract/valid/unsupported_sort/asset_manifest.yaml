@@ -20,6 +20,8 @@ assets:
     label: Tiny Curator placeholder badge
     requiredness: fallback
     accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
     prompt_en: Soft 3D mint-and-porcelain placeholder badge with simple grouped object shapes, no text, no watermark.
     variants:
       - id: badge_512
