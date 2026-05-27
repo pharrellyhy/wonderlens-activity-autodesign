@@ -2,15 +2,15 @@
 
 Prompt, template, and activity-package repository for generating and maintaining WonderLens educational activities.
 
-The current runtime format is the migrated five-file activity package. Canonical/promoted packages live under `activities/<activity_id>/`; fresh `/goal` generation writes actual packages under `runs/<run_id>/activity_packages/<activity_id>/`.
+The current runtime format is the migrated activity package: five required files plus optional demo/export extension files. Canonical/promoted packages live under `activities/<activity_id>/`; fresh `/goal` generation writes actual packages under `runs/<run_id>/activity_packages/<activity_id>/`.
 
 Fresh `/goal` generation runs keep clean base IDs. An assignment `activity_id=` is treated as a base slug; the generated package uses `runs/<run_id>/activity_packages/<base_activity_id>/`, and `tag_block.yaml` keeps `activity_id: <base_activity_id>`. Existing checked-package enrichment may still update an explicit `package_path=` or canonical `activities/<activity_id>/` package in place.
 
-Each autonomous `/goal` run creates a provenance directory under `runs/<run_id>/`. The run directory records the generated packages, assignment snapshot, adaptation briefs, blocked briefs, constrained blocked design previews, generated activity IDs, review notes, a static `review.html` dashboard, and a run manifest. When a run is scoped to a batch or the user declares `product_contract_override=minimum_unblock_allowed`, the scope and override are recorded in that manifest so reruns are reproducible.
+Each autonomous `/goal` run creates a provenance directory under `runs/<run_id>/`. The run directory records the generated packages, assignment snapshot, adaptation briefs, blocked briefs, constrained blocked design previews, generated activity IDs, review notes, a static `review.html` dashboard, and a run manifest. When a run is scoped to a batch, declares `product_contract_override=minimum_unblock_allowed`, or uses a non-default `asset_build` mode, the scope, override, and asset mode are recorded in that manifest so reruns are reproducible.
 
 ## How It Works
 
-The agent reads the authoring contract, runs a mechanic-first adaptation brief when the input is a concept-led assignment, carries any explicit asset dependency into the brief, composes a Template 0 spine with a mechanic adapter, Cat1/Cat3/Cat5 category modifier, and pillar/style scaffold, then writes a complete five-file activity package:
+The agent reads the authoring contract, runs a mechanic-first adaptation brief when the input is a concept-led assignment, carries any explicit asset dependency into the brief, composes a Template 0 spine with a mechanic adapter, Cat1/Cat3/Cat5 category modifier, and pillar/style scaffold, then writes a complete package with five required files:
 
 ```text
 runs/<run_id>/activity_packages/<activity_id>/   # fresh runs use clean base IDs
@@ -20,6 +20,16 @@ runs/<run_id>/activity_packages/<activity_id>/   # fresh runs use clean base IDs
 ├── recap.template.yaml
 └── dashboard.template.yaml
 ```
+
+Full `GOAL.md` generation defaults to `demo_export=true`, so generation-ready packages also include package-local demo extension files unless the user explicitly disables demo export:
+
+```text
+runs/<run_id>/activity_packages/<activity_id>/
+├── demo_support.yaml
+└── asset_manifest.yaml
+```
+
+`demo_support.yaml` declares whether the current demo can play the activity as `supported`, `degraded`, or `unsupported`, which UI template to use, and the explicit entity binding. `asset_manifest.yaml` declares separate runtime assets, device style, round-screen targets, source/provenance rules, nullable output paths, and fallbacks. These extension files do not replace the five required package files; they make a generated package direct-demo-import ready.
 
 The same run writes provenance files separately:
 
@@ -32,6 +42,7 @@ runs/<run_id>/
 ├── adaptation_briefs/
 ├── blocked_briefs/
 ├── blocked_designs/
+├── generated_assets/        # optional, only when an asset build phase runs
 ├── review_notes.md
 └── review.html
 ```
@@ -48,9 +59,15 @@ runs/README.md                     Run provenance directory contract
 skills/wonderlens-workbook-to-review-packet/
                                    Repo-local Codex workflow skill for workbook-to-review-packet runs
 scripts/generate_run_review.py     Static run review dashboard generator and validator
-activities/README.md               Five-file package rules and runtime invariants
+scripts/validate_demo_package_contract.py
+                                   Validator for demo_support.yaml and asset_manifest.yaml
+activities/README.md               Five-required-file package rules, demo extension contract, runtime invariants
 activities/_schema/tag_block.schema.json
                                    Schema for tag_block.yaml
+activities/_schema/demo_support.schema.json
+                                   Schema for demo_support.yaml
+activities/_schema/asset_manifest.schema.json
+                                   Schema for asset_manifest.yaml
 docs/activity_vocabulary.md        Closed enums for activity_signature fields
 docs/game_styles.md                12 game styles under 6 experience pillars
 entity_guidance.md                 Mapping schema and selection rules
@@ -69,9 +86,41 @@ results.tsv                        Assignment and rubric log
 - Do not use condensed runtime placeholders such as "same structure," "AI gives a riddle," or one-line later-round summaries in migrated `prod.md` files.
 - Every generated package must receive independent reviewer-agent PASS evidence before `results.tsv` logging or assignment checkoff; reviewer FAILs must be repaired and re-reviewed.
 - If an activity uses pre-generated, displayed, or runtime-generated images, `spec.md` owns `## Asset Brief` plus `## Asset Usage Timeline` with asset IDs, generation/display timing, exact use steps, screen location, display behavior, persistence or hide behavior, and fallback behavior. `prod.md` references asset IDs, display locations, and fallback behavior only.
+- Demo-targeted packages mirror visual asset requirements in `asset_manifest.yaml`; contact sheets are review artifacts and must not be treated as runtime assets.
+- Reference-bound assets such as constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, and famous structures must include approved source/provenance, `source_strategy`, `transformation_policy`, and verification requirements. Random generated approximations fail the contract.
 - `tag_block.yaml` must validate against `activities/_schema/tag_block.schema.json`.
+- If present, `demo_support.yaml` and `asset_manifest.yaml` must pass `scripts/validate_demo_package_contract.py`.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` must equal `tag_block.yaml` `activity_signature.focal_attribute`.
 - `recap.template.yaml`, `dashboard.template.yaml`, `tag_block.yaml`, `spec.md`, and `prod.md` must describe the same mechanic, pillar, game style, focal attribute, badge/reward, and next-step direction.
+
+## Demo and Asset Workflow
+
+Use two separate switches:
+
+| Switch | Default | Purpose |
+|---|---|---|
+| `demo_export` | `true` for full `GOAL.md` runs | Emits and validates `demo_support.yaml` plus `asset_manifest.yaml`. |
+| `asset_build` | `manifest_only` | Controls whether a post-package phase creates or curates image files. |
+
+`asset_build` modes:
+
+| Mode | Behavior |
+|---|---|
+| `none` | Skip image generation/curation entirely. |
+| `manifest_only` | Default. Emit manifests with nullable paths; create no binary image files. |
+| `generate_illustrative` | Generate only `accuracy_mode: illustrative` assets from approved prompts and device targets. |
+| `curate_reference` | Let an agent propose candidates, then accept only verified public-domain, official, licensed/internal, or scientific/educational sources for `reference_bound` assets. |
+| `generate_and_curate` | Run both illustrative generation and reference curation/build after package validation. |
+
+Generated or curated files, when that pipeline is implemented and requested, belong under:
+
+```text
+runs/<run_id>/generated_assets/
+├── asset_outputs.yaml
+└── <activity_id>/<asset_id>/<variant>.png
+```
+
+Keep `asset_manifest.yaml` as the stable source request. Do not fake file paths or claim unavailable assets are displayed; use `demo_support.yaml` degraded/unsupported gates and fallback behavior instead.
 
 ## Quick Start
 
@@ -81,7 +130,20 @@ results.tsv                        Assignment and rubric log
 
 `GOAL.md` defines the run objective, success criteria, and completion contract. `run.md` defines the step-by-step execution loop.
 
-For generation-ready assignments, the loop creates one complete run-local package under `runs/<run_id>/activity_packages/<activity_id>/`, self-evaluates against the 10-dimension rubric, gets independent reviewer-agent PASS evidence, updates `results.tsv`, adds `package_path=` to the completed assignment row, and records both `base_activity_id` and `activity_path` in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/` and a constrained design preview under `runs/<run_id>/blocked_designs/`. These previews still show detailed proposed runtime steps with inline `BLOCKED ELEMENT` comments, but they are not logged, packaged, or marked complete until the constraints are resolved. They no longer halt the rest of the batch.
+For generation-ready assignments, the loop creates one complete run-local package under `runs/<run_id>/activity_packages/<activity_id>/`, adds demo extension files by default, self-evaluates against the 10-dimension rubric, gets independent reviewer-agent PASS evidence, updates `results.tsv`, adds `package_path=` to the completed assignment row, and records both `base_activity_id` and `activity_path` in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/` and a constrained design preview under `runs/<run_id>/blocked_designs/`. These previews still show detailed proposed runtime steps with inline `BLOCKED ELEMENT` comments, but they are not logged, packaged, or marked complete until the constraints are resolved. They no longer halt the rest of the batch.
+
+Common invocations:
+
+```text
+# Normal package + demo-manifest run. Does not create image files.
+/goal Execute GOAL.md end to end using run.md.
+
+# Disable direct demo export for a special authoring-only run.
+/goal Execute GOAL.md end to end using run.md with demo_export=false.
+
+# Request a future post-package illustrative asset build when the asset builder exists.
+/goal Execute GOAL.md end to end using run.md with asset_build=generate_illustrative.
+```
 
 ## Run Provenance
 
@@ -92,7 +154,8 @@ Use `runs/<run_id>/` to distinguish one autonomous generation session from anoth
 - `adaptation_briefs/` stores Phase 0 briefs for generated concept-led or underspecified assignments.
 - `blocked_briefs/` stores briefs for assignments that reach `readiness=blocked_until_product_decision`.
 - `blocked_designs/` stores constrained design previews for blocked assignments; these are human-review artifacts, not valid runtime packages.
-- `activity_packages/` stores five-file packages created by that run, using clean base IDs.
+- `activity_packages/` stores packages created by that run, using clean base IDs and the five-required-file contract.
+- `generated_assets/` stores optional runtime-ready asset outputs and `asset_outputs.yaml` when an explicit asset build phase runs.
 - `generated_activity_ids.txt` lists generated clean activity IDs in completion order.
 - `review_notes.md` stores independent reviewer-agent coverage, repair notes, no-op audit decisions, and residual risks for generated, enriched, and audited packages.
 - `review.html` is the static human review dashboard generated by `scripts/generate_run_review.py` according to `review_dashboard.md`; it includes concise clickable cards for generated, enriched, and audited no-op packages, blocked-assignment cards, full detail dialogs, grouped tag colors, sortable/filterable views, asset usage timelines for image/display dependencies, constrained preview links, reviewer coverage, 10-dimension criteria and package scorecard results, blocked-preview scorecards, checks, classified blocked reasons, colored inline blocked marker chips, and a reason guide explaining what each blocker means.
@@ -116,7 +179,7 @@ MAPPING_ROOT=data/mappings_dev20_0318
 |---|---|---|---|
 | `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `concept_source`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `asset_policy`, `asset_requirements`, `product_capabilities` | Always. This is the execution queue the loop reads. | Normalizes the request, loads referenced concept/asset rows when present, runs Phase 0 when needed, then either generates a package or records a blocked brief plus constrained design preview and continues. |
 | Activity Concept Brief | concept row plus optional companion asset requirement rows | The starting point is a source/curriculum/design concept rather than a full entity package request. This is the preferred source for concept-led work. | Produces an English `adaptation_brief` first. The brief decides input mode, readiness, trigger fit, asset dependency, mapping use, and scaffold fit. |
-| Asset Requirements table | `asset_id`, `concept_ref`, `asset_type`, `requiredness`, `generation_timing`, `use_step`, `display_location`, `purpose`, `prompt_en`, `source`, `display_behavior`, `fallback_behavior`, `safety_constraints` | The idea mentions or requires AI-generated images, screen-displayed reference images, line art, cards, icons, overlays, or visual supports. | Avoids asset inference from prose. Phase 0 copies the rows into `asset_dependency`; `spec.md` records an `## Asset Brief` and `## Asset Usage Timeline`; `prod.md` references stable asset IDs. |
+| Asset Requirements table | `asset_id`, `concept_ref`, `asset_type`, `requiredness`, `generation_timing`, `use_step`, `display_location`, `purpose`, `prompt_en`, `source`, `display_behavior`, `fallback_behavior`, `safety_constraints`, `accuracy_mode`, `source_strategy`, `transformation_policy` | The idea mentions or requires AI-generated images, screen-displayed reference images, line art, cards, icons, overlays, or visual supports. | Avoids asset inference from prose. Phase 0 copies the rows into `asset_dependency`; `spec.md` records an `## Asset Brief` and `## Asset Usage Timeline`; `asset_manifest.yaml` records the consumer-facing runtime asset contract; `prod.md` references stable asset IDs. |
 | Entity mapping YAML | `mapping=<entity_id>` resolved through `MAPPING_ROOT/_index.yaml` | Required only for mapping-informed packages, entity-specific factual claims, warm/cold bridge grounding, mapping-grounded Key Concepts, or matcher-ready entity routing. | Grounds visible attributes, tier language, IB concepts, related concepts, bridge prerequisites, trigger fit, and matchability. |
 | Runtime matcher placeholders | `{matched_color}`, `{matched_shape}`, `{entity_class}`, or similar placeholders | Activity concept is property/category driven but no specific photographed entity is supplied. | Supports `parameterized` briefs and packages that can be matched later across many entities without inventing entity-specific facts. |
 | Product capability notes | `product_capabilities=...`, concept comments, or explicit UI/material/runtime-generation assumptions | The idea depends on UI state, runtime image generation, materials, motion safety, OCR, pose detection, or before/after state. | Sets `product_capability_flags`; unsupported dependencies should produce `readiness=blocked_until_product_decision`, a blocked brief, and a constrained design preview instead of a forced package. |
@@ -158,6 +221,9 @@ Asset requirements table:
 | `purpose` | `Give the child visible animal silhouette evidence to inspect.` |
 | `prompt_en` | `Create a set of animal silhouette cards for children ages 4-6. Use a plain white background, clear black silhouettes, recognizable animal outlines, no text, and a non-scary style.` |
 | `source` | `new_ai_generated_asset` |
+| `accuracy_mode` | `illustrative` |
+| `source_strategy` | `generated_illustrative` |
+| `transformation_policy` | `generate_new` |
 | `display_behavior` | `Show one silhouette card full screen each round while the AI gives one voice clue.` |
 | `fallback_behavior` | `If cards are unavailable, switch to a voice-only animal riddle and do not claim the screen is showing a picture.` |
 | `safety_constraints` | `No scary mood, no real child photos, and no text in the image.` |
@@ -172,7 +238,7 @@ Asset requirements table:
 | `runtime_generated` | Activity depends on image generation during the session. | Block unless product support is explicitly declared. |
 | `blocked` | Source or design owner knows the idea needs unresolved asset/product work. | Write a blocked brief and constrained design preview; keep it out of valid packages until resolved. |
 
-The activity package loop does **not** generate image files. It writes directly usable English prompts into `spec.md` `## Asset Brief` and a reviewable `## Asset Usage Timeline` so a separate asset pipeline can create or approve visuals later and product reviewers can see exactly when and where each image is displayed.
+The activity package loop defaults to **not** generating image files. It writes directly usable English prompts, source/provenance policy, and nullable output paths into `asset_manifest.yaml`, plus reviewer-facing detail in `spec.md` `## Asset Brief` and `## Asset Usage Timeline`. A separate asset build phase can create or approve visuals later and product reviewers can see exactly when and where each image is displayed.
 
 Use these assignment types in new rows:
 
@@ -239,6 +305,8 @@ Optional:
 - `activity_id=` when you need a stable base slug. Fresh `/goal` runs keep this as the clean package ID and write the package under `runs/<run_id>/activity_packages/<activity_id>/`; copied rerun rows should not stack old run suffixes because the loop strips an existing trailing run suffix first.
 - `asset_requirements=file#asset_id` when an assignment row points to a companion asset table/YAML block.
 - `product_capabilities=` when an idea depends on asset display, runtime image generation, UI state, material workflows, motion safety, OCR, pose detection, or before/after state.
+- `demo_export=false` only when you intentionally do not want package-local demo extension files.
+- `asset_build=...` when you want to override the default `manifest_only` behavior for image generation/curation.
 
 Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas also get a constrained design preview with inline blocked-element comments instead of forcing package generation, and the loop continues to later unchecked rows. If a scoped run declares `product_contract_override=minimum_unblock_allowed`, formerly blocking minimum-to-unblock decisions generate as normal packages with resolved blocker annotations and review-dashboard callouts. Legacy concept aliases should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
 
@@ -266,6 +334,7 @@ To rerun an assignment, change its checkbox back to `- [ ]` or copy it into a fr
 │       ├── adaptation_briefs/
 │       ├── blocked_briefs/
 │       ├── blocked_designs/
+│       ├── generated_assets/
 │       ├── review_notes.md
 │       └── review.html
 ├── skills/
@@ -273,7 +342,8 @@ To rerun an assignment, change its checkbox back to `- [ ]` or copy it into a fr
 │       ├── SKILL.md
 │       └── references/
 ├── scripts/
-│   └── generate_run_review.py
+│   ├── generate_run_review.py
+│   └── validate_demo_package_contract.py
 ├── entity_guidance.md
 ├── conversation_bridge.md
 ├── examples/
@@ -285,13 +355,17 @@ To rerun an assignment, change its checkbox back to `- [ ]` or copy it into a fr
 ├── activities/
 │   ├── README.md
 │   ├── _schema/
-│   │   └── tag_block.schema.json
+│   │   ├── tag_block.schema.json
+│   │   ├── demo_support.schema.json
+│   │   └── asset_manifest.schema.json
 │   └── <activity_id>/
 │       ├── spec.md
 │       ├── prod.md
 │       ├── tag_block.yaml
 │       ├── recap.template.yaml
-│       └── dashboard.template.yaml
+│       ├── dashboard.template.yaml
+│       ├── demo_support.yaml
+│       └── asset_manifest.yaml      # optional demo/export extension files
 ├── designs/
 │   ├── cat1/
 │   └── cat5/
@@ -322,10 +396,10 @@ See `docs/game_styles.md` for definitions, migration notes, and coverage.
 
 ## Current Coverage
 
-- Canonical/promoted activity packages: 28 five-file directories in `activities/`.
+- Canonical/promoted activity packages: 32 five-required-file directories in `activities/`.
 - Fresh run-local activity packages: stored under `runs/<run_id>/activity_packages/`.
 - Legacy/reference designs: existing Cat1 and Cat5 prod/spec files under `designs/`.
-- Backend consumers may support both during migration, but fresh `/goal` generation should use run-local `activity_packages/` and promote selected packages to `activities/` only when explicitly requested.
+- Backend consumers may support both during migration, but fresh `/goal` generation should use run-local `activity_packages/` and promote selected packages to `activities/` only when explicitly requested. Demo-ready consumers should use `demo_support.yaml` and `asset_manifest.yaml` instead of inferring playability or visuals from prose.
 
 ## Validation
 
@@ -367,6 +441,14 @@ rg -n 'Same structure|AI gives riddle|later rounds follow|Only played if child i
 ```
 
 No output from the runtime completeness scan means no known condensed-round placeholder was found.
+
+Validate demo extension files:
+
+```bash
+python3 scripts/validate_demo_package_contract.py activities
+python3 scripts/validate_demo_package_contract.py runs/<run_id>/activity_packages
+python3 scripts/validate_demo_package_contract.py tests/fixtures/demo_package_contract/valid
+```
 
 ## Legacy Transform Workflow
 
