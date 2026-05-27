@@ -1,0 +1,57 @@
+activity_id: asset_smoke
+entity_id: moss
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    master_size: 512
+assets:
+- id: moss_icon
+  role: collection_correct
+  label: Fuzzy moss
+  collection_catalog_id: moss
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: Soft 3D educational toy illustration of a fuzzy moss patch, no text.
+  variants:
+  - id: icon_64
+    target: catalog_grid
+    size: 64x64
+    path: assets/moss_icon__icon_64.png
+  fallback_behavior: Use a spoken moss clue.
+- id: orion_card
+  role: story_scene
+  label: Orion card
+  requiredness: required
+  accuracy_mode: reference_bound
+  source_strategy: curated_original
+  transformation_policy: crop_resize_only
+  prompt_en: Preserve the approved Orion star layout exactly; add no extra stars.
+  reference_policy:
+    source_required: true
+    allowed_sources:
+    - approved_internal_reference
+    verification_required: true
+    verification_notes: Must preserve the approved Orion star arrangement.
+  sources:
+  - label: Approved internal Orion chart
+    uri: internal://reference/astronomy/orion
+    license: approved_internal_reference
+  variants:
+  - id: round_64
+    target: round_device_screen
+    size: 64x64
+    path: assets/orion_card__round_64.png
+  fallback_behavior: Do not claim Orion if the approved source is unavailable.

@@ -2,7 +2,7 @@
 
 Date: 2026-05-28
 
-Status: Planned
+Status: Completed
 
 ## Goal
 
@@ -69,8 +69,10 @@ runs/<run_id>/generated_assets/
 
 - Reference-bound assets store both final runtime assets and verified source
   material under package-local `assets/sources/` when the source license allows
-  local storage. If a source cannot be stored or verified, it is not accepted for
-  V1.
+  local storage. The deterministic builder consumes preaccepted source originals
+  plus reviewer-approved source metadata; it must not create its own accepted
+  provenance record. If a source cannot be stored or verified, it is not
+  accepted for V1.
 - Reference-bound candidate discovery may use agent-suggested leads and web
   search, but final accepted assets must come from approved originals, licensed
   or internal sources, official/verified URLs, or verified data/redraws.
@@ -242,14 +244,18 @@ For `accuracy_mode: reference_bound` assets:
 
 1. Read the manifest's `reference_policy`, `sources`, `source_strategy`, and
    `transformation_policy`.
-2. If approved sources are already present and verifiable, use them.
+2. If an approved source original and accepted source metadata are already
+   present and verifiable under package-local `assets/sources/`, use them.
 3. If sources are missing and the asset build mode allows curation, an agent may
    propose candidate leads and search for official, public-domain, licensed,
    approved internal, educational, scientific, or otherwise verified sources.
 4. Accept only sources that satisfy the manifest policy and can be documented in
    `reference_sources.yaml`.
 5. Store the accepted source original and source metadata under
-   `assets/sources/` when the license allows local storage.
+   `assets/sources/` when the license allows local storage. Source metadata
+   must include accepted source type, verified license, storage permission,
+   accepted verification status, matching sha256, verification timestamp, and
+   reviewer agent.
 6. Produce the runtime variant using the declared transformation policy:
    `crop_resize_only`, `simplified_redraw`, `style_preserving_redraw`, or
    `no_derivative_generation`.

@@ -1,0 +1,14 @@
+run_id: valid_generate_and_curate
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-28T01:42:33+08:00'
+entries:
+- activity_id: asset_smoke
+  asset_id: moss_icon
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: asset_smoke
+  asset_id: orion_card
+  status: curated
+  qa_notes:
+  - Built package-local runtime asset variants.

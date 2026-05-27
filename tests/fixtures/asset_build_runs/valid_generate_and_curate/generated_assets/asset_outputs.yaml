@@ -1,0 +1,50 @@
+run_id: valid_generate_and_curate
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-28T01:42:33+08:00'
+package_count: 1
+asset_count: 2
+built_count: 2
+required_failures: 0
+entries:
+- activity_id: asset_smoke
+  asset_id: moss_icon
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/asset_smoke
+  work_item_path: generated_assets/work_items/asset_smoke__moss_icon.md
+  output_variants:
+  - variant_id: icon_64
+    path: assets/moss_icon__icon_64.png
+    size: 64x64
+    sha256: bcba560f5e8a0bd31789fe0987a6e417f6c41d137261d8db712682b8305db1c2
+    byte_count: 185
+    mime_type: image/png
+    source_asset_id: moss_icon
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: asset_smoke
+  asset_id: orion_card
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: curated_original
+  transformation_policy: crop_resize_only
+  status: curated
+  package_path: activity_packages/asset_smoke
+  work_item_path: generated_assets/work_items/asset_smoke__orion_card.md
+  output_variants:
+  - variant_id: round_64
+    path: assets/orion_card__round_64.png
+    size: 64x64
+    sha256: bcba560f5e8a0bd31789fe0987a6e417f6c41d137261d8db712682b8305db1c2
+    byte_count: 185
+    mime_type: image/png
+    source_asset_id: orion_card
+  source_metadata_path: activity_packages/asset_smoke/assets/sources/orion_card__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.
