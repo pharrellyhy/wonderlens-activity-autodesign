@@ -1,0 +1,19 @@
+run_id: 20260528_094915_asset_pipeline_smoke
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-28T09:56:17+08:00'
+entries:
+- activity_id: smoke_asset_pipeline_collect
+  asset_id: orion_card
+  status: accepted
+  source_label: NSF NOIRLab Orion chart, based on IAU and Sky & Telescope artwork
+  source_uri: https://noirlab.edu/public/media/archives/images/large/ori.jpg
+  source_type: licensed_asset
+  license: CC BY 4.0
+  storage_allowed: true
+  source_original_path: assets/sources/orion_card__source_original.jpg
+  source_metadata_path: assets/sources/orion_card__source_metadata.yaml
+  sha256: cad1ce28e52677ad52f25b542fe3e3c9407c6fae8366539bd85d05943793870b
+  verified_at: '2026-05-28T09:55:00+08:00'
+  reviewer_agent: codex-smoke-source-review
+  verification_notes: Source is the NSF NOIRLab Orion chart based on IAU and Sky &
+    Telescope constellation artwork; preserve star-chart layout when resizing.

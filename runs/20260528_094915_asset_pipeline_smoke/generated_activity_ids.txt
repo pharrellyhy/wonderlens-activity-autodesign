@@ -1,0 +1,1 @@
+smoke_asset_pipeline_collect

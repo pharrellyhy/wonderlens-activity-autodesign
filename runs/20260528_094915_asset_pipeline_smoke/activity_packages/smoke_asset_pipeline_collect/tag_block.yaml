@@ -1,0 +1,67 @@
+activity_id: smoke_asset_pipeline_collect
+version: 1
+template_type: cat5
+pillar: Discovery
+game_style: scavenger_hunt
+entity: moss
+entity_class:
+- plant
+- constellation_card
+entity_binding: bound
+source_entity_exemplar: moss
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed smoke scope
+category: cat5
+attributes:
+- texture
+- pattern
+key_concepts:
+- Form
+- Connection
+related_concepts:
+- texture
+- pattern
+- evidence
+atl_skills:
+- observing
+- describing
+- connecting
+transdisciplinary_theme: How the world works
+kud:
+  know:
+  - Moss can look soft, fuzzy, and green.
+  understand:
+  - A collected clue can unlock a related reward.
+  do:
+  - Notice one visible detail and answer one simple visual clue.
+progression:
+  topic_axis: form
+  difficulty_level: 1
+  next_step_hint: Try a second source-faithful card after the importer supports multiple collection rewards.
+  reward_hook: Open the Orion card after collecting the moss token.
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: texture
+  mechanic: collect
+  entity_role: subject
+  focal_attribute: fuzzy texture
+  intro: The child captures one real-world moss-like clue to collect the moss token, then opens an accurate Orion card.
+  bridge_prerequisites:
+    primary:
+    - texture
+    secondary:
+    - pattern
+  preview_label: Moss token unlock
+  preview_prompt: Capture one real-world moss clue to open the Orion card.
+  role_pivot_note: Smoke package uses moss as the collection subject and Orion as the reference-bound reward.
+matchability:
+  entity_class_filter:
+  - plant
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

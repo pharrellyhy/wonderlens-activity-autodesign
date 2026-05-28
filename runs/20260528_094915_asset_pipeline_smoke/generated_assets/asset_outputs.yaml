@@ -1,0 +1,57 @@
+run_id: 20260528_094915_asset_pipeline_smoke
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-28T09:56:17+08:00'
+package_count: 1
+asset_count: 2
+built_count: 2
+required_failures: 0
+entries:
+- activity_id: smoke_asset_pipeline_collect
+  asset_id: moss_token
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/smoke_asset_pipeline_collect
+  work_item_path: generated_assets/work_items/smoke_asset_pipeline_collect__moss_token.md
+  output_variants:
+  - variant_id: round_128
+    path: assets/moss_token__round_128.png
+    size: 128x128
+    sha256: 9ebe37080ff85d47862b5fdf787c9a59dc125dea82911781085aa812a3d42188
+    byte_count: 25958
+    mime_type: image/png
+    source_asset_id: moss_token
+  - variant_id: icon_64
+    path: assets/moss_token__icon_64.png
+    size: 64x64
+    sha256: 57030f41ab00eb8559a1f66ff68c5f171c8c798aa71a8936cead11d3ecf4a45d
+    byte_count: 7062
+    mime_type: image/png
+    source_asset_id: moss_token
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: smoke_asset_pipeline_collect
+  asset_id: orion_card
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: licensed_reference
+  transformation_policy: crop_resize_only
+  status: curated
+  package_path: activity_packages/smoke_asset_pipeline_collect
+  work_item_path: generated_assets/work_items/smoke_asset_pipeline_collect__orion_card.md
+  output_variants:
+  - variant_id: round_128
+    path: assets/orion_card__round_128.png
+    size: 128x128
+    sha256: c86eca85858de28df9f9af8ee290f96e7b1d3350495307a9311d41f6462474bf
+    byte_count: 21484
+    mime_type: image/png
+    source_asset_id: orion_card
+  source_metadata_path: activity_packages/smoke_asset_pipeline_collect/assets/sources/orion_card__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.

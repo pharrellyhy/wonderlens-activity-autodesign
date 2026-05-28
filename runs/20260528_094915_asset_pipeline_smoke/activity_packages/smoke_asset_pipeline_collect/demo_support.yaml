@@ -1,0 +1,22 @@
+activity_id: smoke_asset_pipeline_collect
+version: 1
+demo_support:
+  status: supported
+  ui_template: cat5_collection
+  support_level: full
+  entity_bindings:
+  - entity_id: moss
+    display_label: Moss token
+    source_entity_exemplar: moss
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: true
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Use existing Cat5 collection UI with one real camera capture slot, one generated guide token, and one reward card.
+    wonderlens_ai: Import prod.md runtime beats, camera timing, and asset_manifest.yaml paths without inventing assets.
+    smoke_scope: Feature-branch smoke package, not a production curriculum activity.
