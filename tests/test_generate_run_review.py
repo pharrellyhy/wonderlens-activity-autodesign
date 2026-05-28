@@ -2,6 +2,7 @@ import importlib.util
 from pathlib import Path
 import re
 import sys
+import tempfile
 import unittest
 
 
@@ -109,6 +110,108 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
         self.assertIn("Runtime behavior contract", rendered_map)
         self.assertIn("Example AI line", rendered_map)
         self.assertIn("Screen/state", rendered_detail)
+
+    def test_runtime_contract_quality_flags_thin_instructions(self):
+        prod_text = """
+#### Step 1: Thin Prompt
+
+**Runtime AI instruction:** Ask about the picture.
+
+**Child responses:**
+
+1. (Ideal) Child answers.
+2. (Unexpected) Child talks about something else.
+3. (No response) Child is quiet.
+
+**AI follow-up policy:**
+
+1. (Ideal) Continue.
+2. (Unexpected) Redirect gently.
+3. (No response) Offer a model.
+
+**Screen/state:** Show the activity start.
+"""
+        findings = self.report.runtime_contract_quality_findings(self.report.runtime_beats(prod_text))
+
+        self.assertEqual(1, len(findings))
+        self.assertIn("Thin Prompt", findings[0])
+        self.assertIn("missing Example AI line", findings[0])
+        self.assertIn("missing runtime contract cues", findings[0])
+
+    def test_runtime_contract_quality_accepts_fullstack_style_instructions(self):
+        prod_text = """
+#### Step 1: Fluffy Dandelion Hook
+
+**Runtime AI instruction:** Goal: react with wonder to the dandelion's white fluffy seeds as tiny parachutes, then ask one imaginative question about where they might fly. Constraint: T0 max 2 sentences, build from the child's photo, preserve the dandelion-first source frame, and do not turn it into a counting quiz. Emotion/tone: excited and curious. Child progress evidence: the child says, points, blows, or gestures where the seeds might go. Branch behavior: for ideal responses, echo the child's imagined direction and bridge toward finding more soft things; for unexpected flower/color comments, validate the observation and return to fluffiness; for no response, wait briefly and model one tiny-cloud idea.
+
+**Example AI line:** [delighted gasp] "Ooh, look at those tiny fluffy parachutes! Where do you think they want to fly?"
+
+**Child responses:**
+
+1. (Ideal) Child says the seeds fly up, away, to the sky, or blows gently.
+2. (Unexpected) Child says it is a flower, names the color, or wants to pick it.
+3. (No response) Child quietly looks at the dandelion photo.
+
+**AI follow-up policy:**
+
+1. (Ideal) Echo the child's imagined seed direction, then wonder whether more soft treasures are nearby.
+2. (Unexpected) Accept the flower/color comment, name the soft seeds, then invite one fluffy observation.
+3. (No response) [wait 2s] Offer "tiny clouds" as a model, then ask for one small look or touch.
+
+**Screen/state:** Dandelion photo remains centered; seed-head sparkles pulse gently while the first mission slot waits.
+"""
+        findings = self.report.runtime_contract_quality_findings(self.report.runtime_beats(prod_text))
+
+        self.assertEqual([], findings)
+
+    def test_review_validation_fails_thin_runtime_contracts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            run_dir = root / "runs" / "quality_smoke"
+            package_dir = run_dir / "activity_packages" / "quality_smoke"
+            package_dir.mkdir(parents=True)
+            (run_dir / "run_manifest.yaml").write_text(
+                "run_id: quality_smoke\n"
+                "outputs:\n"
+                "  generated_activities:\n"
+                "    - activity_id: quality_smoke\n"
+                "      activity_path: runs/quality_smoke/activity_packages/quality_smoke\n"
+            )
+            (run_dir / "review_notes.md").write_text("# Review Notes\n")
+            (run_dir / "assignment_snapshot.md").write_text("# Assignments\n")
+            (run_dir / "generated_activity_ids.txt").write_text("quality_smoke\n")
+            (package_dir / "spec.md").write_text(
+                "## Self-Evaluation Scorecard\n\n"
+                "| # | Dimension | Score | Notes |\n"
+                "|---|---|---|---|\n"
+                + "".join(f"| {i} | D{i} | PASS | ok |\n" for i in range(1, 11))
+            )
+            (package_dir / "prod.md").write_text(
+                "## Quality Smoke\n\n"
+                "#### Step 1: Thin Prompt\n\n"
+                "**Runtime AI instruction:** Ask about the picture.\n\n"
+                "**Child responses:**\n\n"
+                "1. (Ideal) Child answers.\n"
+                "2. (Unexpected) Child talks about something else.\n"
+                "3. (No response) Child is quiet.\n\n"
+                "**AI follow-up policy:**\n\n"
+                "1. (Ideal) Continue.\n"
+                "2. (Unexpected) Redirect gently.\n"
+                "3. (No response) Offer a model.\n\n"
+                "**Screen/state:** Show the activity start.\n"
+            )
+            (package_dir / "tag_block.yaml").write_text(
+                "activity_name: Quality Smoke\n"
+                "template_type: cat1\n"
+                "activity_signature:\n"
+                "  mechanic: describe\n"
+            )
+            (package_dir / "recap.template.yaml").write_text("{}\n")
+            (package_dir / "dashboard.template.yaml").write_text("{}\n")
+            (run_dir / "review.html").write_text(self.report.build_html(root, run_dir))
+
+            with self.assertRaisesRegex(SystemExit, "runtime_contract_quality"):
+                self.report.validate(root, run_dir)
 
     def test_runtime_branch_policy_renders_as_horizontal_table(self):
         prod_text = """

@@ -63,6 +63,11 @@ behavior.
   random generated approximations.
 - Do not claim autodesign directly emits WonderLens AI `runtime.yaml`; verify
   `runtime.yaml` through the WonderLens AI converter.
+- Do not accept thin `Runtime AI instruction` prose as runtime-ready. Runtime
+  behavior contracts must be rich enough to convert into fullstack-demo-style
+  `step_instructions`: goal/action, tier or length constraint, emotion/tone,
+  child progress evidence, branch behavior, source/activity frame guardrail,
+  concrete example line, and specific screen/state behavior.
 - Do not make unsupported mechanics playable to make the demo pass.
 - Do not implement broad downstream fixes inside this validation goal. Record
   substantial issues as blockers or follow-up goals with owning repo evidence.
@@ -208,6 +213,8 @@ test -f app/modules/activity/packages/runtime_generator.py
   follow the WonderLens activity style, distinguish target/distractor roles
   where relevant, and are referenced from runtime screen states.
 - Autodesign `review.html` validates and links package-local assets.
+- Autodesign `review.html` validation passes the runtime contract quality gate
+  for any `Runtime AI instruction` beats.
 - Fullstack-demo imports supported/degraded packages and gates unsupported
   packages according to `demo_support.yaml`.
 - Fullstack-demo copied assets resolve through browser-safe URLs, including

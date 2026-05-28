@@ -2,12 +2,15 @@
 
 ## Current Status
 
-- Status: `main` now contains the strict workbook-backed source-intent audit path for full `GOAL.md` runs, plus the explicit `asset_build=generate_and_curate` runtime asset pipeline and repo-local WonderLens activity asset style contract.
+- Status: branch `fix/runtime-beat-contract-quality` tightens runtime behavior contracts so `Runtime AI instruction` beats must be strong enough to convert into downstream fullstack-demo-style `step_instructions` before the E2E subset validation run.
 - Date: 2026-05-28
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
 
+- Added `runtime_contract_quality` validation to `scripts/generate_run_review.py --validate`. Runtime-contract beats now fail review when they lack a concrete example line, goal/action, tier/length constraint, emotion/tone, child progress evidence, branch behavior, source/activity frame guardrail, branch rows, or specific screen/state behavior.
+- Updated `program.md`, `run.md`, `GOAL.md`, `review_dashboard.md`, and the 2026-05-28 E2E validation plan/goal so future full-pass runs treat downstream `step_instructions` parity as an authoring quality bar, not a downstream inference problem.
+- Upgraded the committed `valid_generate_and_curate` fixture package and regenerated its `review.html` so it remains valid under the stricter runtime-contract gate.
 - Added `--strict-workbook-intent` to `scripts/generate_source_comparison_review.py`; strict mode fails validation when any workbook source-intent audit entry lacks `workbook_evidence`. The source comparison matrix now renders workbook evidence in row details.
 - Updated `GOAL.md`, `run.md`, and the workbook-to-review-packet skill references so full-pass workbook audits must derive source-promise from the original workbook row first, use normalized source rows only as helpers, and validate matrices with `--strict-workbook-intent`.
 - Inspected the latest full workbook review packet for the same flow-drift class. The source-intent audit for `runs/20260521_163621_workbook_review_packet_full` now records workbook evidence for all 40 rows and flags 6 high-severity `intent_drift` rows: plant parts, plant state, constellation star count, message bottle note, how-many guess, and recognition pop. It also records 2 medium-risk `minor_adaptation` rows: color mixing and word-build guessing.

@@ -118,6 +118,11 @@ For every generated package:
   they are considered ready;
 - `prod.md` references stable `asset_id` values and fallback behavior, not raw
   local file paths;
+- any `Runtime AI instruction` beat is rich enough to convert into
+  fullstack-demo-style `step_instructions`: goal/action, tier or length
+  constraint, emotion/tone, child progress evidence, branch behavior,
+  source/activity frame guardrail, concrete example line, and specific
+  screen/state behavior;
 - support state is honest: `supported`, `degraded`, or `unsupported`;
 - the run manifest records `asset_build=generate_and_curate`;
 - `review.html` links to package-local assets and shows support/readiness

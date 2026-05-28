@@ -1526,75 +1526,85 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="runtime-step-body">
     <div class="runtime-map-head"><strong>Step 1: Hello</strong><span>setup</span></div>
     <div class="runtime-lanes">
-      <div class="runtime-lane runtime-lane-ai"><span>Runtime behavior contract</span><p>Greet the child.</p></div>
-      <div class="runtime-lane runtime-lane-example"><span>Example AI line</span><p>Unknown</p></div>
+      <div class="runtime-lane runtime-lane-ai"><span>Runtime behavior contract</span><p>Goal: greet the child as a careful nature explorer and invite them to look closely at the moss starting point. Constraint: T1 max 2 short sentences, begin from the visible moss asset, and do not turn the opening into a generic hello. Emotion/tone: warm and curious. Child progress evidence: the child answers, points, or names one soft green thing they notice. Branch behavior: for ideal responses, echo the noticed moss detail; for unexpected comments, accept them and return to looking closely; for no response, wait briefly and model one tiny observation.</p></div>
+      <div class="runtime-lane runtime-lane-example"><span>Example AI line</span><p>[warm curious tone] &quot;Hello, moss explorer! What tiny green detail do you notice first?&quot;</p></div>
       <div class="runtime-lane runtime-lane-followup"><span>Child branches and AI follow-up policy</span><div class="branch-followup-table-wrap"><table class="branch-followup-table"><thead><tr><th>Branch</th><th>Child behavior</th><th>AI follow-up</th></tr></thead><tbody>
     <tr class="branch-followup-ideal">
       <td><span class="branch-chip branch-chip-ideal">Ideal</span></td>
-      <td>Child answers.</td>
-      <td>Continue.</td>
+      <td>Child names moss, green color, softness, or a tiny texture.</td>
+      <td>Echo the exact moss detail and say it will help with the picture mission.</td>
     </tr>
     <tr class="branch-followup-unexpected">
       <td><span class="branch-chip branch-chip-unexpected">Unexpected</span></td>
-      <td>Child talks about something else.</td>
-      <td>Redirect gently.</td>
+      <td>Child talks about another object or asks what the picture is.</td>
+      <td>Accept the comment, point back to the moss, and ask for one visible detail.</td>
     </tr>
     <tr class="branch-followup-no-response">
       <td><span class="branch-chip branch-chip-no-response">No response</span></td>
-      <td>Child is quiet.</td>
-      <td>Offer a model.</td>
+      <td>Child quietly looks at the moss start screen.</td>
+      <td>[wait 2s] Model &quot;I see tiny green fuzz,&quot; then invite the child to copy or point.</td>
     </tr></tbody></table></div></div>
     </div>
 
-    <div class="screen-strip"><span>Screen/state</span><p>Show the activity start.</p></div>
+    <div class="screen-strip"><span>Screen/state</span><p>Show the moss start card centered with a soft green highlight around moss_icon; the first progress dot stays empty.</p></div>
   </div>
 </li><li class="runtime-map-node runtime-map-node-prompt">
   <div class="runtime-step-marker"><span>02</span></div>
   <div class="runtime-step-body">
     <div class="runtime-map-head"><strong>Step 2: Moss Icon</strong><span>prompt</span></div>
     <div class="runtime-lanes">
-      <div class="runtime-lane runtime-lane-ai"><span>Runtime behavior contract</span><p>Ask about moss_icon.</p></div>
-      <div class="runtime-lane runtime-lane-example"><span>Example AI line</span><p>Unknown</p></div>
-      <div class="runtime-lane runtime-lane-followup"><span>Child branches and AI follow-up policy</span>
-<div class="branch-followup-table-wrap">
-  <table class="branch-followup-table">
-    <thead><tr><th>Branch</th><th>Child behavior</th><th>AI follow-up</th></tr></thead>
-    <tbody><tr class="branch-followup-observed">
-      <td><span class="branch-chip branch-chip-observed">Observed</span></td>
-      <td>Unknown</td>
-      <td>Unknown</td>
-    </tr></tbody>
-  </table>
-</div></div>
+      <div class="runtime-lane runtime-lane-ai"><span>Runtime behavior contract</span><p>Goal: use moss_icon as the first concrete reference image and ask the child to describe its texture before moving on. Constraint: T1 max 2 sentences, name the icon, ask for one sensory word, and keep the asset-smoke mission anchored to the displayed moss. Emotion/tone: encouraging. Child progress evidence: the child says fuzzy, soft, green, tiny, bumpy, or points to the icon. Branch behavior: for ideal responses, connect the texture word to the next card; for unexpected answers, validate and offer two texture choices; for no response, model one texture word without claiming the child said it.</p></div>
+      <div class="runtime-lane runtime-lane-example"><span>Example AI line</span><p>[encouraging tone] &quot;Here is moss_icon, our tiny moss card. Does it look fuzzy, soft, or bumpy?&quot;</p></div>
+      <div class="runtime-lane runtime-lane-followup"><span>Child branches and AI follow-up policy</span><div class="branch-followup-table-wrap"><table class="branch-followup-table"><thead><tr><th>Branch</th><th>Child behavior</th><th>AI follow-up</th></tr></thead><tbody>
+    <tr class="branch-followup-ideal">
+      <td><span class="branch-chip branch-chip-ideal">Ideal</span></td>
+      <td>Child gives a texture word, color word, or points to the moss icon.</td>
+      <td>Repeat the child&#x27;s word and say the next card needs the same careful looking.</td>
+    </tr>
+    <tr class="branch-followup-unexpected">
+      <td><span class="branch-chip branch-chip-unexpected">Unexpected</span></td>
+      <td>Child names a different plant, asks to skip, or talks about the screen.</td>
+      <td>Accept the comment, offer &quot;fuzzy or bumpy?&quot; and keep moss_icon visible.</td>
+    </tr>
+    <tr class="branch-followup-no-response">
+      <td><span class="branch-chip branch-chip-no-response">No response</span></td>
+      <td>Child keeps looking at moss_icon without answering.</td>
+      <td>[wait 2s] Say &quot;I might call it fuzzy,&quot; then ask the child to point if that fits.</td>
+    </tr></tbody></table></div></div>
     </div>
 
-    <div class="screen-strip"><span>Screen/state</span><p>Show moss_icon.</p></div>
+    <div class="screen-strip"><span>Screen/state</span><p>Show moss_icon enlarged in the center with a label-free soft highlight; the moss progress dot fills after the response.</p></div>
   </div>
 </li><li class="runtime-map-node runtime-map-node-beat">
   <div class="runtime-step-marker"><span>03</span></div>
   <div class="runtime-step-body">
     <div class="runtime-map-head"><strong>Step 3: Orion Card</strong><span>beat</span></div>
     <div class="runtime-lanes">
-      <div class="runtime-lane runtime-lane-ai"><span>Runtime behavior contract</span><p>Ask about orion_card.</p></div>
-      <div class="runtime-lane runtime-lane-example"><span>Example AI line</span><p>Unknown</p></div>
-      <div class="runtime-lane runtime-lane-followup"><span>Child branches and AI follow-up policy</span>
-<div class="branch-followup-table-wrap">
-  <table class="branch-followup-table">
-    <thead><tr><th>Branch</th><th>Child behavior</th><th>AI follow-up</th></tr></thead>
-    <tbody><tr class="branch-followup-observed">
-      <td><span class="branch-chip branch-chip-observed">Observed</span></td>
-      <td>Unknown</td>
-      <td>Unknown</td>
-    </tr></tbody>
-  </table>
-</div></div>
+      <div class="runtime-lane runtime-lane-ai"><span>Runtime behavior contract</span><p>Goal: show the approved reference-bound orion_card and ask the child to notice the star pattern without inventing a different constellation. Constraint: T1 max 2 sentences, preserve the approved Orion source arrangement, and do not ask the child to count random stars. Emotion/tone: hushed and wondering. Child progress evidence: the child names stars, points to the belt pattern, says there are bright dots, or asks about Orion. Branch behavior: for ideal responses, affirm the observed pattern and name it as Orion; for unexpected guesses, accept the idea but return to the displayed star pattern; for no response, wait briefly and model noticing the three-star belt.</p></div>
+      <div class="runtime-lane runtime-lane-example"><span>Example AI line</span><p>[hushed wonder tone] &quot;Now look at orion_card like a sky detective. Can you spot the three bright stars in a row?&quot;</p></div>
+      <div class="runtime-lane runtime-lane-followup"><span>Child branches and AI follow-up policy</span><div class="branch-followup-table-wrap"><table class="branch-followup-table"><thead><tr><th>Branch</th><th>Child behavior</th><th>AI follow-up</th></tr></thead><tbody>
+    <tr class="branch-followup-ideal">
+      <td><span class="branch-chip branch-chip-ideal">Ideal</span></td>
+      <td>Child points to the row, says stars, names Orion, or notices bright dots.</td>
+      <td>Affirm the noticed row and explain that this real star pattern is called Orion.</td>
+    </tr>
+    <tr class="branch-followup-unexpected">
+      <td><span class="branch-chip branch-chip-unexpected">Unexpected</span></td>
+      <td>Child guesses another picture, asks about space, or starts counting all dots.</td>
+      <td>Accept the space comment, steer back to the three-star row, and avoid confirming invented constellations.</td>
+    </tr>
+    <tr class="branch-followup-no-response">
+      <td><span class="branch-chip branch-chip-no-response">No response</span></td>
+      <td>Child silently studies the Orion card.</td>
+      <td>[wait 2s] Model &quot;I see three stars in a little line,&quot; then invite the child to point.</td>
+    </tr></tbody></table></div></div>
     </div>
 
-    <div class="screen-strip"><span>Screen/state</span><p>Show orion_card.</p></div>
+    <div class="screen-strip"><span>Screen/state</span><p>Show orion_card from the approved source with a gentle highlight around the three-star belt; no random generated star layout replaces it.</p></div>
   </div>
 </li></ol>
     <div class="runtime-source-label">Extracted source detail</div>
-    <ol class="beat-list"><li><strong>Step 1: Hello</strong><div class="beat-field"><span>Runtime behavior contract</span><p>Greet the child.</p></div><div class="beat-field"><span>Example AI line</span><p>Unknown</p></div><div class="beat-field"><span>Child</span><p>Ideal: Child answers. | Unexpected: Child talks about something else. | No response: Child is quiet.</p></div><div class="beat-field"><span>Follow-up policy</span><p>Ideal: Continue. | Unexpected: Redirect gently. | No response: Offer a model.</p></div><div class="beat-field"><span>Screen/state</span><p>Show the activity start.</p></div></li><li><strong>Step 2: Moss Icon</strong><div class="beat-field"><span>Runtime behavior contract</span><p>Ask about moss_icon.</p></div><div class="beat-field"><span>Example AI line</span><p>Unknown</p></div><div class="beat-field"><span>Child</span><p>Unknown</p></div><div class="beat-field"><span>Follow-up policy</span><p>Unknown</p></div><div class="beat-field"><span>Screen/state</span><p>Show moss_icon.</p></div></li><li><strong>Step 3: Orion Card</strong><div class="beat-field"><span>Runtime behavior contract</span><p>Ask about orion_card.</p></div><div class="beat-field"><span>Example AI line</span><p>Unknown</p></div><div class="beat-field"><span>Child</span><p>Unknown</p></div><div class="beat-field"><span>Follow-up policy</span><p>Unknown</p></div><div class="beat-field"><span>Screen/state</span><p>Show orion_card.</p></div></li></ol>
+    <ol class="beat-list"><li><strong>Step 1: Hello</strong><div class="beat-field"><span>Runtime behavior contract</span><p>Goal: greet the child as a careful nature explorer and invite them to look closely at the moss starting point. Constraint: T1 max 2 short sentences, begin from the visible moss asset, and do not turn the opening into a generic hello. Emotion/tone: warm and curious. Child progress evidence: the child answers, points, or names one soft green thing they notice. Branch behavior: for ideal responses, echo the noticed moss detail; for unexpected comments, accept them and return to looking closely; for no response, wait briefly and model one tiny observation.</p></div><div class="beat-field"><span>Example AI line</span><p>[warm curious tone] &quot;Hello, moss explorer! What tiny green detail do you notice first?&quot;</p></div><div class="beat-field"><span>Child</span><p>Ideal: Child names moss, green color, softness, or a tiny texture. | Unexpected: Child talks about another object or asks what the picture is. | No response: Child quietly looks at the moss start screen.</p></div><div class="beat-field"><span>Follow-up policy</span><p>Ideal: Echo the exact moss detail and say it will help with the picture mission. | Unexpected: Accept the comment, point back to the moss, and ask for one visible detail. | No response: [wait 2s] Model &quot;I see tiny green fuzz,&quot; then invite the child to copy or point.</p></div><div class="beat-field"><span>Screen/state</span><p>Show the moss start card centered with a soft green highlight around moss_icon; the first progress dot stays empty.</p></div></li><li><strong>Step 2: Moss Icon</strong><div class="beat-field"><span>Runtime behavior contract</span><p>Goal: use moss_icon as the first concrete reference image and ask the child to describe its texture before moving on. Constraint: T1 max 2 sentences, name the icon, ask for one sensory word, and keep the asset-smoke mission anchored to the displayed moss. Emotion/tone: encouraging. Child progress evidence: the child says fuzzy, soft, green, tiny, bumpy, or points to the icon. Branch behavior: for ideal responses, connect the texture word to the next card; for unexpected answers, validate and offer two texture choices; for no response, model one texture word without claiming the child said it.</p></div><div class="beat-field"><span>Example AI line</span><p>[encouraging tone] &quot;Here is moss_icon, our tiny moss card. Does it look fuzzy, soft, or bumpy?&quot;</p></div><div class="beat-field"><span>Child</span><p>Ideal: Child gives a texture word, color word, or points to the moss icon. | Unexpected: Child names a different plant, asks to skip, or talks about the screen. | No response: Child keeps looking at moss_icon without answering.</p></div><div class="beat-field"><span>Follow-up policy</span><p>Ideal: Repeat the child&#x27;s word and say the next card needs the same careful looking. | Unexpected: Accept the comment, offer &quot;fuzzy or bumpy?&quot; and keep moss_icon visible. | No response: [wait 2s] Say &quot;I might call it fuzzy,&quot; then ask the child to point if that fits.</p></div><div class="beat-field"><span>Screen/state</span><p>Show moss_icon enlarged in the center with a label-free soft highlight; the moss progress dot fills after the response.</p></div></li><li><strong>Step 3: Orion Card</strong><div class="beat-field"><span>Runtime behavior contract</span><p>Goal: show the approved reference-bound orion_card and ask the child to notice the star pattern without inventing a different constellation. Constraint: T1 max 2 sentences, preserve the approved Orion source arrangement, and do not ask the child to count random stars. Emotion/tone: hushed and wondering. Child progress evidence: the child names stars, points to the belt pattern, says there are bright dots, or asks about Orion. Branch behavior: for ideal responses, affirm the observed pattern and name it as Orion; for unexpected guesses, accept the idea but return to the displayed star pattern; for no response, wait briefly and model noticing the three-star belt.</p></div><div class="beat-field"><span>Example AI line</span><p>[hushed wonder tone] &quot;Now look at orion_card like a sky detective. Can you spot the three bright stars in a row?&quot;</p></div><div class="beat-field"><span>Child</span><p>Ideal: Child points to the row, says stars, names Orion, or notices bright dots. | Unexpected: Child guesses another picture, asks about space, or starts counting all dots. | No response: Child silently studies the Orion card.</p></div><div class="beat-field"><span>Follow-up policy</span><p>Ideal: Affirm the noticed row and explain that this real star pattern is called Orion. | Unexpected: Accept the space comment, steer back to the three-star row, and avoid confirming invented constellations. | No response: [wait 2s] Model &quot;I see three stars in a little line,&quot; then invite the child to point.</p></div><div class="beat-field"><span>Screen/state</span><p>Show orion_card from the approved source with a gentle highlight around the three-star belt; no random generated star layout replaces it.</p></div></li></ol>
   </section>
   <section class="dialog-wide">
     <h4>Asset Usage Timeline</h4>
@@ -1832,37 +1842,67 @@ Fixture package for asset build validation.
 | 8 | D8 | PASS | ok |
 | 9 | D9 | PASS | ok |
 | 10 | D10 | PASS | ok |</template>
-<template id="preview-activity-packages-asset-smoke-prod-md" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/activity_packages/asset_smoke/prod.md" data-href="activity_packages/asset_smoke/prod.md" data-kind="Markdown" data-truncated="false" data-size="599">## Asset Smoke
+<template id="preview-activity-packages-asset-smoke-prod-md" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/activity_packages/asset_smoke/prod.md" data-href="activity_packages/asset_smoke/prod.md" data-kind="Markdown" data-truncated="false" data-size="4512">## Asset Smoke
 
 #### Step 1: Hello
 
-**Runtime AI instruction:** Greet the child.
+**Runtime AI instruction:** Goal: greet the child as a careful nature explorer and invite them to look closely at the moss starting point. Constraint: T1 max 2 short sentences, begin from the visible moss asset, and do not turn the opening into a generic hello. Emotion/tone: warm and curious. Child progress evidence: the child answers, points, or names one soft green thing they notice. Branch behavior: for ideal responses, echo the noticed moss detail; for unexpected comments, accept them and return to looking closely; for no response, wait briefly and model one tiny observation.
+
+**Example AI line:** [warm curious tone] &quot;Hello, moss explorer! What tiny green detail do you notice first?&quot;
 
 **Child responses:**
 
-1. (Ideal) Child answers.
-2. (Unexpected) Child talks about something else.
-3. (No response) Child is quiet.
+1. (Ideal) Child names moss, green color, softness, or a tiny texture.
+2. (Unexpected) Child talks about another object or asks what the picture is.
+3. (No response) Child quietly looks at the moss start screen.
 
 **AI follow-up policy:**
 
-1. (Ideal) Continue.
-2. (Unexpected) Redirect gently.
-3. (No response) Offer a model.
+1. (Ideal) Echo the exact moss detail and say it will help with the picture mission.
+2. (Unexpected) Accept the comment, point back to the moss, and ask for one visible detail.
+3. (No response) [wait 2s] Model &quot;I see tiny green fuzz,&quot; then invite the child to copy or point.
 
-**Screen/state:** Show the activity start.
+**Screen/state:** Show the moss start card centered with a soft green highlight around `moss_icon`; the first progress dot stays empty.
 
 #### Step 2: Moss Icon
 
-**Runtime AI instruction:** Ask about `moss_icon`.
+**Runtime AI instruction:** Goal: use `moss_icon` as the first concrete reference image and ask the child to describe its texture before moving on. Constraint: T1 max 2 sentences, name the icon, ask for one sensory word, and keep the asset-smoke mission anchored to the displayed moss. Emotion/tone: encouraging. Child progress evidence: the child says fuzzy, soft, green, tiny, bumpy, or points to the icon. Branch behavior: for ideal responses, connect the texture word to the next card; for unexpected answers, validate and offer two texture choices; for no response, model one texture word without claiming the child said it.
 
-**Screen/state:** Show `moss_icon`.
+**Example AI line:** [encouraging tone] &quot;Here is `moss_icon`, our tiny moss card. Does it look fuzzy, soft, or bumpy?&quot;
+
+**Child responses:**
+
+1. (Ideal) Child gives a texture word, color word, or points to the moss icon.
+2. (Unexpected) Child names a different plant, asks to skip, or talks about the screen.
+3. (No response) Child keeps looking at `moss_icon` without answering.
+
+**AI follow-up policy:**
+
+1. (Ideal) Repeat the child&#x27;s word and say the next card needs the same careful looking.
+2. (Unexpected) Accept the comment, offer &quot;fuzzy or bumpy?&quot; and keep `moss_icon` visible.
+3. (No response) [wait 2s] Say &quot;I might call it fuzzy,&quot; then ask the child to point if that fits.
+
+**Screen/state:** Show `moss_icon` enlarged in the center with a label-free soft highlight; the moss progress dot fills after the response.
 
 #### Step 3: Orion Card
 
-**Runtime AI instruction:** Ask about `orion_card`.
+**Runtime AI instruction:** Goal: show the approved reference-bound `orion_card` and ask the child to notice the star pattern without inventing a different constellation. Constraint: T1 max 2 sentences, preserve the approved Orion source arrangement, and do not ask the child to count random stars. Emotion/tone: hushed and wondering. Child progress evidence: the child names stars, points to the belt pattern, says there are bright dots, or asks about Orion. Branch behavior: for ideal responses, affirm the observed pattern and name it as Orion; for unexpected guesses, accept the idea but return to the displayed star pattern; for no response, wait briefly and model noticing the three-star belt.
 
-**Screen/state:** Show `orion_card`.</template>
+**Example AI line:** [hushed wonder tone] &quot;Now look at `orion_card` like a sky detective. Can you spot the three bright stars in a row?&quot;
+
+**Child responses:**
+
+1. (Ideal) Child points to the row, says stars, names Orion, or notices bright dots.
+2. (Unexpected) Child guesses another picture, asks about space, or starts counting all dots.
+3. (No response) Child silently studies the Orion card.
+
+**AI follow-up policy:**
+
+1. (Ideal) Affirm the noticed row and explain that this real star pattern is called Orion.
+2. (Unexpected) Accept the space comment, steer back to the three-star row, and avoid confirming invented constellations.
+3. (No response) [wait 2s] Model &quot;I see three stars in a little line,&quot; then invite the child to point.
+
+**Screen/state:** Show `orion_card` from the approved source with a gentle highlight around the three-star belt; no random generated star layout replaces it.</template>
 <template id="preview-activity-packages-asset-smoke-tag-block-yaml" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/activity_packages/asset_smoke/tag_block.yaml" data-href="activity_packages/asset_smoke/tag_block.yaml" data-kind="YAML" data-truncated="false" data-size="87">activity_name: Asset Smoke
 template_type: cat5
 activity_signature:
