@@ -1,0 +1,18 @@
+run_id: valid_generate_and_curate
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-28T10:35:17+08:00'
+entries:
+- activity_id: asset_smoke
+  asset_id: orion_card
+  status: accepted
+  source_label: Approved internal Orion chart
+  source_uri: internal://reference/astronomy/orion
+  source_type: approved_internal_reference
+  license: approved_internal_reference
+  storage_allowed: true
+  source_original_path: assets/sources/orion_card__source_original.png
+  source_metadata_path: assets/sources/orion_card__source_metadata.yaml
+  sha256: 0db9564703beb8b69b21ddba77f23fb0474b0ab6de6a7edb63e48d82ec8c2139
+  verified_at: '2026-05-28T01:03:59+08:00'
+  reviewer_agent: fixture-reviewer
+  verification_notes: Must preserve the approved Orion star arrangement.

@@ -185,9 +185,9 @@ assets:
     accuracy_mode: illustrative
     prompt_en: "Soft 3D educational toy illustration..."
     variants:
-      - id: round_512
+      - id: round_1024
         target: round_device_screen
-        size: "512x512"
+        size: "1024x1024"
         path: null
       - id: landscape_1280x720
         target: horizontal_debug_screen
@@ -202,13 +202,13 @@ assets:
     accuracy_mode: illustrative
     prompt_en: "Soft 3D educational toy illustration..."
     variants:
-      - id: icon_256
+      - id: catalog_512
         target: catalog_grid
-        size: "256x256"
-        path: null
-      - id: round_512
-        target: round_device_screen
         size: "512x512"
+        path: null
+      - id: round_1024
+        target: round_device_screen
+        size: "1024x1024"
         path: null
 ```
 
@@ -292,7 +292,8 @@ screen.
 Visual constraints:
 
 - No embedded text, letters, labels, watermarks, UI chrome, or speech bubbles.
-- The subject must be recognizable at 144 px display size.
+- The subject must be generated and stored at high runtime quality first: required assets need at least one variant with minimum edge >= 512 px, and prototype round-screen assets should use `round_1024` when possible.
+- The subject must remain recognizable when a UI derives a 144 px display thumbnail from the high-resolution runtime asset.
 - The round-screen variant must keep all important detail inside the central
   70 to 75 percent circle.
 - Use soft mint and warm porcelain accents that match the prototype device.
@@ -308,9 +309,9 @@ Recommended masters and variants:
 
 | Asset role | Master | Required variants |
 |---|---:|---|
-| Entity hero | `1024x1024` | `round_512`, optional `landscape_1280x720` |
-| Catalog item | `512x512` or `1024x1024` | `icon_256`, `round_512` |
-| Badge | `1024x1024` transparent-safe | `badge_512`, `round_512` |
+| Entity hero | `1024x1024` | `round_1024`, optional `landscape_1280x720` |
+| Catalog item | `512x512` or `1024x1024` | `catalog_512`, optional `round_1024` |
+| Badge | `1024x1024` transparent-safe | `badge_512`, `round_1024` |
 | Story scene | `1280x720` plus optional `1024x1024` | horizontal and round |
 | Activity preview | `1024x1024` | `preview_512` |
 

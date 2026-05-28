@@ -1,0 +1,7 @@
+recap:
+  title: Moss Token Unlock
+  child_summary: "{child_name} captured one real-world moss clue, collected the moss token, and opened an Orion card."
+  evidence:
+  - Captured one real-world clue photo and named the matching moss clue.
+  - Looked at an accurate Orion card without changing the star layout.
+  next_prompt: Try another tiny collection with one real reference card.

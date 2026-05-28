@@ -1,0 +1,16 @@
+run_id: valid_generate_and_curate
+status: completed
+started_at: 2026-05-28T00:00:00+08:00
+completed_at: 2026-05-28T00:01:00+08:00
+source:
+  asset_build: generate_and_curate
+outputs:
+  generated_activities:
+    - activity_id: asset_smoke
+      activity_path: tests/fixtures/asset_build_runs/valid_generate_and_curate/activity_packages/asset_smoke
+summary:
+  generated_count: 1
+  blocked_count: 0
+checks:
+  - command: python3 scripts/build_activity_assets.py tests/fixtures/asset_build_runs/valid_generate_and_curate --mode generate_and_curate
+    result: PASS

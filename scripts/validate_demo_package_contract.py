@@ -63,6 +63,7 @@ REFERENCE_SOURCE_TYPES = {
     "verified_source_url",
 }
 RANDOM_REFERENCE_WORDS = ("random", "arbitrary", "made-up", "made up", "hallucinated")
+MIN_REQUIRED_RUNTIME_EDGE = 512
 
 
 def norm(value: Any) -> str:
@@ -91,6 +92,17 @@ def as_dict(value: Any) -> dict[str, Any]:
 
 def as_list(value: Any) -> list[Any]:
     return value if isinstance(value, list) else []
+
+
+def parse_size(value: Any) -> tuple[int, int] | None:
+    text = norm(value)
+    if "x" not in text:
+        return None
+    left, right = text.lower().split("x", 1)
+    try:
+        return int(left), int(right)
+    except ValueError:
+        return None
 
 
 def add_required(issue_list: list[str], label: str, data: dict[str, Any], fields: tuple[str, ...]) -> None:
@@ -247,6 +259,7 @@ def validate_asset(package_dir: Path, asset: dict[str, Any], targets: dict[str, 
     variants = as_list(asset.get("variants"))
     if requiredness in {"required", "optional"} and not variants:
         issues.append(f"{label}: required/optional asset must declare variants")
+    has_high_resolution_variant = False
     for variant_index, variant in enumerate(variants):
         variant_data = as_dict(variant)
         variant_label = f"{label}.variants[{variant_index}]"
@@ -254,6 +267,17 @@ def validate_asset(package_dir: Path, asset: dict[str, Any], targets: dict[str, 
         target = norm(variant_data.get("target"))
         if target and target not in targets:
             issues.append(f"{variant_label}: target {target!r} is not declared in screen_targets")
+        size = parse_size(variant_data.get("size"))
+        if norm(variant_data.get("size")) and size is None:
+            issues.append(f"{variant_label}: size must use WIDTHxHEIGHT pixels")
+        elif size and min(size) >= MIN_REQUIRED_RUNTIME_EDGE:
+            has_high_resolution_variant = True
+
+    if requiredness == "required" and variants and not has_high_resolution_variant:
+        issues.append(
+            f"{label}: required asset must include at least one high-resolution runtime variant "
+            f"with minimum edge >= {MIN_REQUIRED_RUNTIME_EDGE}px; thumbnails may only be secondary variants"
+        )
 
     if accuracy_mode == "reference_bound":
         if source_strategy not in REFERENCE_SOURCE_STRATEGIES:

@@ -1,0 +1,14 @@
+run_id: 20260528_094915_asset_pipeline_smoke
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-28T10:36:23+08:00'
+entries:
+- activity_id: smoke_asset_pipeline_collect
+  asset_id: moss_token
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: smoke_asset_pipeline_collect
+  asset_id: orion_card
+  status: curated
+  qa_notes:
+  - Built package-local runtime asset variants.

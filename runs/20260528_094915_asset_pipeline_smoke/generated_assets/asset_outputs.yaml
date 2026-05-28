@@ -1,0 +1,57 @@
+run_id: 20260528_094915_asset_pipeline_smoke
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-28T10:36:23+08:00'
+package_count: 1
+asset_count: 2
+built_count: 2
+required_failures: 0
+entries:
+- activity_id: smoke_asset_pipeline_collect
+  asset_id: moss_token
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/smoke_asset_pipeline_collect
+  work_item_path: generated_assets/work_items/smoke_asset_pipeline_collect__moss_token.md
+  output_variants:
+  - variant_id: round_1024
+    path: assets/moss_token__round_1024.png
+    size: 1024x1024
+    sha256: 1dc03d64faaae442c5e73f0d1a4060d12425e2b1036c9a42f97b270742169c3e
+    byte_count: 1753886
+    mime_type: image/png
+    source_asset_id: moss_token
+  - variant_id: catalog_512
+    path: assets/moss_token__catalog_512.png
+    size: 512x512
+    sha256: a428a3684a8c4a59d87cc80816931c78e08b6536ac3b7272852295476a93cea9
+    byte_count: 450334
+    mime_type: image/png
+    source_asset_id: moss_token
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: smoke_asset_pipeline_collect
+  asset_id: orion_card
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: licensed_reference
+  transformation_policy: crop_resize_only
+  status: curated
+  package_path: activity_packages/smoke_asset_pipeline_collect
+  work_item_path: generated_assets/work_items/smoke_asset_pipeline_collect__orion_card.md
+  output_variants:
+  - variant_id: round_1024
+    path: assets/orion_card__round_1024.png
+    size: 1024x1024
+    sha256: 7d717a457f379878cea784a26b30ada32d49ddd6c0aa308fa9fcf3f16fc3bf31
+    byte_count: 357394
+    mime_type: image/png
+    source_asset_id: orion_card
+  source_metadata_path: activity_packages/smoke_asset_pipeline_collect/assets/sources/orion_card__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.

@@ -1,0 +1,16 @@
+activity_id: asset_smoke
+version: 1
+demo_support:
+  status: supported
+  ui_template: cat5_collection
+  support_level: full
+  entity_bindings:
+  - entity_id: moss
+    display_label: Moss
+    source_entity_exemplar: moss
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: true
+    runtime_judgment: false
+    device_round_screen: true

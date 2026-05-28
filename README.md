@@ -61,6 +61,9 @@ skills/wonderlens-workbook-to-review-packet/
 scripts/generate_run_review.py     Static run review dashboard generator and validator
 scripts/validate_demo_package_contract.py
                                    Validator for demo_support.yaml and asset_manifest.yaml
+scripts/build_activity_assets.py   Asset-only runtime PNG builder for explicit asset_build modes
+scripts/validate_asset_build_outputs.py
+                                   Validator for package-local asset outputs and run audit files
 activities/README.md               Five-required-file package rules, demo extension contract, runtime invariants
 activities/_schema/tag_block.schema.json
                                    Schema for tag_block.yaml
@@ -108,19 +111,40 @@ Use two separate switches:
 |---|---|
 | `none` | Skip image generation/curation entirely. |
 | `manifest_only` | Default. Emit manifests with nullable paths; create no binary image files. |
-| `generate_illustrative` | Generate only `accuracy_mode: illustrative` assets from approved prompts and device targets. |
-| `curate_reference` | Let an agent propose candidates, then accept only verified public-domain, official, licensed/internal, or scientific/educational sources for `reference_bound` assets. |
+| `generate_illustrative` | Generate only `accuracy_mode: illustrative` assets from approved prompts and device targets. The deterministic builder consumes agent-generated PNGs from `generated_assets/inbox/`. |
+| `curate_reference` | Let an agent propose candidates, then accept only verified public-domain, official, licensed/internal, or scientific/educational sources for `reference_bound` assets. Accepted source originals and reviewer-approved metadata live under package-local `assets/sources/`; the deterministic builder validates that metadata but does not self-certify sources. |
 | `generate_and_curate` | Run both illustrative generation and reference curation/build after package validation. |
 
-Generated or curated files, when that pipeline is implemented and requested, belong under:
+Generated or curated runtime files, when requested, are written back into each package and audited at run level:
 
 ```text
+runs/<run_id>/activity_packages/<activity_id>/
+├── asset_manifest.yaml          # variant paths updated to package-relative assets/...
+└── assets/
+    ├── <asset_id>__<variant_id>.png
+    └── sources/
+        ├── <asset_id>__source_original.<ext>
+        └── <asset_id>__source_metadata.yaml
+
 runs/<run_id>/generated_assets/
 ├── asset_outputs.yaml
-└── <activity_id>/<asset_id>/<variant>.png
+├── reference_sources.yaml
+├── qa_notes.yaml
+└── work_items/*.md
 ```
 
 Keep `asset_manifest.yaml` as the stable source request. Do not fake file paths or claim unavailable assets are displayed; use `demo_support.yaml` degraded/unsupported gates and fallback behavior instead.
+
+Required assets must include at least one high-resolution runtime variant with a minimum edge of `512px`; use `round_1024` for the prototype round screen when possible and `catalog_512` for catalog or activity-selection surfaces. Smaller `64px`/`128px` files are thumbnails only and must not be the only playable asset output.
+
+Before running the asset builder, place illustrative source PNGs in `generated_assets/inbox/<activity_id>/<asset_id>.png`. For reference-bound assets, place both `assets/sources/<asset_id>__source_original.<ext>` and `assets/sources/<asset_id>__source_metadata.yaml` in the package. Source metadata must include accepted `source_type`, verified `license`, `storage_allowed: true`, `verification_status: accepted`, matching `sha256`, `verified_at`, and `reviewer_agent`.
+
+Asset-only rerun command for an existing run:
+
+```bash
+python3 scripts/build_activity_assets.py runs/<run_id> --mode generate_and_curate
+python3 scripts/validate_asset_build_outputs.py runs/<run_id>
+```
 
 ## Quick Start
 
@@ -238,7 +262,7 @@ Asset requirements table:
 | `runtime_generated` | Activity depends on image generation during the session. | Block unless product support is explicitly declared. |
 | `blocked` | Source or design owner knows the idea needs unresolved asset/product work. | Write a blocked brief and constrained design preview; keep it out of valid packages until resolved. |
 
-The activity package loop defaults to **not** generating image files. It writes directly usable English prompts, source/provenance policy, and nullable output paths into `asset_manifest.yaml`, plus reviewer-facing detail in `spec.md` `## Asset Brief` and `## Asset Usage Timeline`. A separate asset build phase can create or approve visuals later and product reviewers can see exactly when and where each image is displayed.
+The activity package loop defaults to **not** generating image files. It writes directly usable English prompts, source/provenance policy, and nullable output paths into `asset_manifest.yaml`, plus reviewer-facing detail in `spec.md` `## Asset Brief` and `## Asset Usage Timeline`. The asset build phase can later consume generated illustrative PNGs and verified reference originals, write final package-local runtime assets, and make product reviewers see exactly when and where each image is displayed.
 
 Use these assignment types in new rows:
 

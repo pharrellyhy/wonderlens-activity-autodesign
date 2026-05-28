@@ -2,11 +2,29 @@
 
 ## Current Status
 
+- Status: Branch `feat/generate-and-curate-asset-pipeline` implements the explicit `asset_build=generate_and_curate` runtime asset pipeline. The builder consumes delegated-agent/imagegen inputs, validates preaccepted reference source metadata, writes package-local runtime PNGs, updates `asset_manifest.yaml` variant paths, validates outputs, and surfaces runtime asset status in `review.html`.
+- Date: 2026-05-28
+- Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/generate-and-curate-asset-pipeline`
+
+## Latest Changes
+
+- Added `scripts/build_activity_assets.py` for asset-only reruns and post-package asset builds. It validates packages first, rejects unsafe IDs before writing, prepares `generated_assets/work_items/*.md`, consumes illustrative PNGs from `generated_assets/inbox/<activity_id>/<asset_id>.png`, consumes accepted reference originals plus reviewer-approved metadata under package-local `assets/sources/`, writes final package-local variants under `assets/`, updates package-relative variant paths, and preserves reviewed outputs unless `--force` is used.
+- Added `scripts/validate_asset_build_outputs.py` to verify package-local runtime asset paths, PNG dimensions, accepted reference source metadata/originals, source hashes, run audit files, path safety, and absence of unsafe absolute contract paths.
+- Extended `scripts/generate_run_review.py` and `review_dashboard.md` so dashboards show `Generated Runtime Assets`, `asset_outputs.yaml`, `reference_sources.yaml`, `qa_notes.yaml`, source metadata, work items, built variants, and missing/fallback asset status separately from pilot contact sheets. Requested asset builds now appear in `review.html` even when `asset_outputs.yaml` is missing.
+- Added focused tests in `tests/test_generate_and_curate_asset_pipeline.py` plus fixture run `tests/fixtures/asset_build_runs/valid_generate_and_curate` with built illustrative and reference-bound runtime assets.
+- Updated `GOAL.md`, `run.md`, `program.md`, and `README.md` with executable asset build commands and package-local output rules.
+- Marked the generate-and-curate asset pipeline plan and goal as completed in `docs/plans/README.md` and `goals/README.md`.
+- Validation used `/Users/pharrelly/.pyenv/versions/3.13.6/bin/python` because the default Homebrew `python3` lacks pytest, PyYAML, jsonschema, and Pillow.
+- Required automated checks passed: focused pytest set, demo package validator, asset output validator, fixture dashboard generation/validation, and `git diff --check`.
+- Bitmap smoke passed at `/tmp/wonderlens_asset_smoke_20260528`: one built-in imagegen moss PNG was copied into the builder inbox, an Orion reference source and accepted metadata were stored under package-local `assets/sources/`, both runtime variants were built at 64x64, and both validators passed. The downloaded source image was large enough to trigger Pillow's decompression warning during manual inspection, but validation completed successfully.
+
+## Previous Status
+
 - Status: Branch `fix/review-runtime-branch-policy` patches reviewer runtime branch layout/specificity and source-comparison matrix clarity for the full workbook review packet; exact boilerplate, keyword-substitution rows, repeated Step 3 branch rows, stale source-comparison definitions/approval guidance, overlap-prone matrix headers, and missing minimum-unblock approval assumptions now fail validation; validations are passing locally.
 - Date: 2026-05-22
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/fix/review-runtime-branch-policy`
 
-## Latest Changes
+## Previous Changes
 
 - Updated `scripts/generate_source_comparison_review.py` so the product review matrix includes plain definitions for `Needs review`, `Capability-dependent`, and `Intent drift`, and removed sticky table headers that could overlap/cut off the first matrix rows under the sticky filter toolbar.
 - Added an `Approval Checklist` to the source-comparison matrix specifying that product review should approve source-intent coverage, category/mechanic realignments, capability assumptions/minimum contracts, and standalone reviewer-packet readiness.

@@ -1,0 +1,51 @@
+run_id: 20260528_094915_asset_pipeline_smoke
+status: complete
+started_at: '2026-05-28T09:49:15+08:00'
+completed_at: '2026-05-28T10:09:51+08:00'
+source:
+  goal_file: GOAL.md
+  runbook: run.md
+  assignments_file: assignments.md
+  assignment_snapshot: runs/20260528_094915_asset_pipeline_smoke/assignment_snapshot.md
+  assignment_scope: Asset Pipeline Smoke
+  product_contract_override: none
+  asset_build: generate_and_curate
+  mapping_root: data/mappings_dev20_0318
+summary:
+  pending_at_start: 1
+  enrichment_audited_count: 0
+  enrichment_noop_count: 0
+  enriched_count: 0
+  generated_count: 1
+  blocked_count: 0
+  failed_count: 0
+outputs:
+  enriched_activities: []
+  audited_activities: []
+  generated_activities:
+  - assignment_index: 1
+    assignment: '- [ ] assignment_type=activity_concept, activity_concept=Asset Pipeline Smoke, description=Child helps a moss explorer collect one soft moss token, then opens an accurate Orion constellation card as the story reward, mechanic=collect, category=cat5, tier=T1, asset_policy=required_prebuilt, asset_build=generate_and_curate, activity_id=smoke_asset_pipeline_collect, trigger_condition=Operator selects the asset pipeline smoke test'
+    base_activity_id: smoke_asset_pipeline_collect
+    activity_id: smoke_asset_pipeline_collect
+    activity_path: runs/20260528_094915_asset_pipeline_smoke/activity_packages/smoke_asset_pipeline_collect
+    package_scope: run_local
+    generation_policy: fresh_run_local_package
+    adaptation_brief: runs/20260528_094915_asset_pipeline_smoke/adaptation_briefs/001_smoke_asset_pipeline_collect.yaml
+    asset_build: generate_and_curate
+  blocked_assignments: []
+  review_dashboard: runs/20260528_094915_asset_pipeline_smoke/review.html
+checks:
+- command: python3 scripts/validate_demo_package_contract.py runs/20260528_094915_asset_pipeline_smoke/activity_packages
+  result: PASS
+- command: python3 scripts/validate_asset_build_outputs.py runs/20260528_094915_asset_pipeline_smoke
+  result: PASS
+- command: python3 scripts/generate_run_review.py runs/20260528_094915_asset_pipeline_smoke
+  result: PASS
+- command: python3 scripts/generate_run_review.py --validate runs/20260528_094915_asset_pipeline_smoke
+  result: PASS
+- command: independent reviewer agent 019e6c53-e6cf-7012-8794-6e725e8718c3
+  result: PASS
+notes:
+- Fresh assignment generation writes run-local packages under runs/<run_id>/activity_packages/<base_activity_id>/ with clean activity_id values.
+- Scope is intentionally limited to Asset Pipeline Smoke.
+- Binary image assets are created by the explicit post-package asset build phase.

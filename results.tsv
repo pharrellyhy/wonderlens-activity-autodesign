@@ -130,3 +130,4 @@ Word Build Guess	word_build_guess	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260512_1
 Art Critic Tournament	art_critic_tournament	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260512_172135_batch5_unblocked/activity_packages/concept_art_critic_tournament_probe	2026-05-12T17:21:35+08:00
 Color In Famous Art	color_famous_art	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260512_172135_batch5_unblocked/activity_packages/concept_color_famous_art_probe	2026-05-12T17:21:35+08:00
 Simple Body Movement Guide	body_movement	cat1	T0	PASS	P	P	P	P	P	P	P	P	N	runs/20260512_172135_batch5_unblocked/activity_packages/concept_body_movement_probe	2026-05-12T17:21:35+08:00
+Asset Pipeline Smoke	asset_pipeline_smoke	cat5	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260528_094915_asset_pipeline_smoke/activity_packages/smoke_asset_pipeline_collect	2026-05-28T10:09:51+08:00

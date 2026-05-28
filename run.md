@@ -169,7 +169,7 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
    - When `demo_export=true`, each normalized asset row should include `asset_role`, `style_id`, `accuracy_mode`, `source_strategy`, `transformation_policy`, `screen_targets`, `target_variants`, fallback behavior, and nullable path slots for the future asset pipeline.
    - Use `style_id: wonderlens_device_mint_soft_3d` unless the source explicitly provides an approved override.
    - Mark real-world factual/reference assets as `accuracy_mode: reference_bound` and require source/provenance plus verification behavior. Do not accept arbitrary generated approximations for constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, or famous structures.
-   - For reference-bound assets, candidate proposal may use an agent/LLM, but final accepted sources must come from approved public-domain, official, licensed/internal, or verified educational/scientific sources. Record `source_strategy` and `transformation_policy`; never use `source_strategy: generated_illustrative` or `transformation_policy: generate_new` for reference-bound assets.
+   - For reference-bound assets, candidate proposal may use an agent/LLM, but final accepted sources must come from approved public-domain, official, licensed/internal, or verified educational/scientific sources. Record `source_strategy` and `transformation_policy`; never use `source_strategy: generated_illustrative` or `transformation_policy: generate_new` for reference-bound assets. The asset builder requires preaccepted package-local source metadata and must not create its own accepted provenance record.
 6. Write the normalized adaptation brief to `runs/<run_id>/adaptation_briefs/<ordinal>_<assignment_slug>.yaml` if generation may proceed, or to `runs/<run_id>/blocked_briefs/<ordinal>_<assignment_slug>.yaml` if blocked.
 7. If `readiness=blocked_until_product_decision`, first check whether the run has `product_contract_override=minimum_unblock_allowed`.
    - Without the override, block only this assignment but still create a constrained design preview at `runs/<run_id>/blocked_designs/<ordinal>_<assignment_slug>.md`. The preview should follow the activity's likely `prod.md` step shape closely enough for human review, including detailed Step 1-5 and Step 3 rounds when applicable. Add short inline comments exactly where unsupported behavior appears, using this format: `> BLOCKED ELEMENT: <reason> -- <what product/design decision is needed>`. Use the same blocker reason consistently when one missing product decision affects multiple beats; each inline marker is an occurrence, not a separate missing decision. Update `run_manifest.yaml` with a `blocked_assignments` entry, including both `brief_path` and `design_preview`, and increment `summary.blocked_count`; do not create valid package files under `runs/<run_id>/activity_packages/` or `activities/`, append `results.tsv`, mark the assignment complete, or commit mid-row. Continue to the next unchecked assignment unless this revealed a hard workflow failure that prevents safe processing of later rows.
@@ -267,6 +267,7 @@ Runtime completeness rule:
 - Do not generate image files as part of this loop. When an activity uses AI-generated or displayed images, author the dependency in `spec.md` `## Asset Brief`, add a skimmable `## Asset Usage Timeline`, and reference the stable `asset_id` plus display location from the relevant screen description in `prod.md`.
 - Do not make contact sheets the runtime asset contract. For demo export, write separate asset entries in `asset_manifest.yaml`; contact sheets may remain review-only artifacts under pilot asset workflows.
 - For reference-bound assets, include approved source/provenance and verification notes in `asset_manifest.yaml`. If source/provenance is missing, mark demo support `degraded` with a limitation, `unsupported`, or leave demo export incomplete rather than pretending a random generated image is correct.
+- For required assets, include at least one high-resolution runtime variant with minimum edge >= 512px. Prefer `round_1024` for the prototype round screen and `catalog_512` for catalog or selection surfaces. Tiny `64px`/`128px` variants are allowed only as secondary thumbnails, never as the only playable runtime output.
 
 ### Step 4: Self-evaluate and repair
 
@@ -329,17 +330,25 @@ Before logging or committing, verify:
 - `asset_manifest.yaml` contains separate runtime asset entries, not a contact sheet as the runtime asset.
 - `reference_bound` assets include sources/provenance and verification requirements.
 - `reference_bound` assets declare an approved `source_strategy` and `transformation_policy`, and never rely on random generated approximations.
-- If `asset_build` is `manifest_only` or `none`, no binary image paths are required. If `asset_build` requests generated/curated files and no implemented asset builder exists, record the missing builder as a residual risk or mark affected demo support degraded/unsupported rather than fabricating paths.
+- Accepted reference-bound sources include `assets/sources/<asset_id>__source_original.<ext>` plus `assets/sources/<asset_id>__source_metadata.yaml` with accepted `source_type`, verified `license`, `storage_allowed: true`, `verification_status: accepted`, matching `sha256`, `verified_at`, and `reviewer_agent`.
+- If `asset_build` is `manifest_only` or `none`, no binary image paths are required. If `asset_build` requests generated/curated files, run the implemented asset builder after package validation and never fabricate paths for assets whose inputs are missing.
 
 ### Step 5.5: Optional asset build phase
 
 Run this phase only after every generated package has passed package validation and only when `source.asset_build` is not `none` or `manifest_only`.
 
-- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; write outputs under `runs/<run_id>/generated_assets/<activity_id>/` and summarize them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
-- `curate_reference`: for `reference_bound` assets, let an agent propose candidate sources, then verify provenance through approved public-domain, official, licensed/internal, or verified educational/scientific sources before accepting. Do not use random web-image results as sources.
+- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; the deterministic builder consumes agent-generated PNGs from `runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png`, writes final variants under each package's `assets/`, updates package-relative variant paths, and summarizes them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
+- `curate_reference`: for `reference_bound` assets, let an agent propose candidate sources, then verify provenance through approved public-domain, official, licensed/internal, or verified educational/scientific sources before accepting. Store accepted source originals and reviewer-approved metadata under package-local `assets/sources/`; do not use random web-image results as sources. The deterministic builder validates this metadata and leaves paths null if accepted provenance is missing or weak.
 - `generate_and_curate`: run both behaviors.
 
-If no asset builder implementation is available for the requested mode, do not generate placeholder files or edit package manifests to pretend assets exist. Record the unavailable asset build in `run_manifest.yaml` `checks` / `notes`, keep nullable paths in `asset_manifest.yaml`, and rely on `demo_support.yaml` degraded/unsupported gates.
+Asset-only rerun command:
+
+```bash
+python3 scripts/build_activity_assets.py runs/<run_id> --mode generate_and_curate
+python3 scripts/validate_asset_build_outputs.py runs/<run_id>
+```
+
+The builder prepares `generated_assets/work_items/*.md` for delegated agents, preserves existing package-local runtime assets unless `--force` is supplied, leaves missing variants as null, and records failures in `asset_outputs.yaml` / `qa_notes.yaml` rather than pretending unavailable files exist.
 
 ### Step 6: Log the result
 

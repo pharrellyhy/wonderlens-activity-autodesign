@@ -1,0 +1,69 @@
+activity_id: smoke_asset_pipeline_collect
+entity_id: moss
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: gentle coral
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+assets:
+- id: moss_token
+  role: collection_correct
+  label: Fuzzy moss token
+  collection_catalog_id: moss
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: Soft 3D educational toy illustration of one fuzzy green moss patch token,
+    mint highlights, warm porcelain background, no text, no watermark, centered with
+    safe circular crop padding.
+  variants:
+  - id: round_1024
+    target: round_device_screen
+    size: 1024x1024
+    path: assets/moss_token__round_1024.png
+  - id: catalog_512
+    target: catalog_grid
+    size: 512x512
+    path: assets/moss_token__catalog_512.png
+  fallback_behavior: If the moss token image is missing, describe the token aloud
+    and mark the demo degraded.
+- id: orion_card
+  role: story_scene
+  label: Orion reward card
+  requiredness: required
+  accuracy_mode: reference_bound
+  source_strategy: licensed_reference
+  transformation_policy: crop_resize_only
+  prompt_en: Preserve the accepted Orion source image layout when resizing. Do not
+    add, remove, or stylize stars.
+  reference_policy:
+    source_required: true
+    allowed_sources:
+    - licensed_asset
+    verification_required: true
+    verification_notes: Source must be a verified Orion chart from NSF NOIRLab / IAU
+      and Sky & Telescope; preserve constellation layout when resizing.
+  sources:
+  - label: NSF NOIRLab Orion chart, based on IAU and Sky & Telescope artwork
+    uri: https://noirlab.edu/public/media/archives/images/large/ori.jpg
+    license: CC BY 4.0
+  variants:
+  - id: round_1024
+    target: round_device_screen
+    size: 1024x1024
+    path: assets/orion_card__round_1024.png
+  fallback_behavior: If the accepted source is missing, do not display or claim the
+    Orion card.

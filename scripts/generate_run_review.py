@@ -250,6 +250,10 @@ def read_text(path: Path) -> str:
     return path.read_text() if path.exists() else ""
 
 
+def strip_trailing_whitespace(text: str) -> str:
+    return "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
+
+
 def section(text: str, heading: str, level: int = 2) -> str:
     marks = "#" * level
     pattern = re.compile(
@@ -1659,6 +1663,158 @@ def prebuilt_asset_pilot_section(entries: list[dict[str, Any]]) -> str:
 """
 
 
+def runtime_asset_output_entries(run_dir: Path) -> list[dict[str, Any]]:
+    manifest_path = run_dir / "generated_assets" / "asset_outputs.yaml"
+    manifest = load_yaml(manifest_path)
+    raw_entries = manifest.get("entries", [])
+    if not isinstance(raw_entries, list):
+        return []
+    reference_sources = load_yaml(run_dir / "generated_assets" / "reference_sources.yaml")
+    sources_by_key: dict[tuple[str, str], dict[str, Any]] = {}
+    for source in reference_sources.get("entries", []) if isinstance(reference_sources.get("entries"), list) else []:
+        if not isinstance(source, dict):
+            continue
+        key = (normalize_text(source.get("activity_id")), normalize_text(source.get("asset_id")))
+        if key[0] and key[1]:
+            sources_by_key[key] = source
+    entries: list[dict[str, Any]] = []
+    for raw_entry in raw_entries:
+        if not isinstance(raw_entry, dict):
+            continue
+        activity_id = normalize_text(raw_entry.get("activity_id"))
+        asset_id = normalize_text(raw_entry.get("asset_id"))
+        if not activity_id or not asset_id:
+            continue
+        source = sources_by_key.get((activity_id, asset_id), {})
+        output_variants = raw_entry.get("output_variants", [])
+        if not isinstance(output_variants, list):
+            output_variants = []
+        variant_links = []
+        for variant in output_variants:
+            if not isinstance(variant, dict):
+                continue
+            package_path = normalize_text(raw_entry.get("package_path"))
+            variant_path = normalize_text(variant.get("path"))
+            href = f"{package_path}/{variant_path}" if package_path and variant_path else ""
+            variant_links.append(
+                {
+                    "variant_id": normalize_text(variant.get("variant_id")),
+                    "path": variant_path,
+                    "href": href,
+                    "size": normalize_text(variant.get("size")),
+                    "exists": bool(href and (run_dir / href).exists()),
+                }
+            )
+        source_metadata_path = normalize_text(source.get("source_metadata_path"))
+        source_original_path = normalize_text(source.get("source_original_path"))
+        package_path = normalize_text(raw_entry.get("package_path"))
+        entries.append(
+            {
+                "activity_id": activity_id,
+                "asset_id": asset_id,
+                "role": normalize_text(raw_entry.get("role")),
+                "accuracy_mode": normalize_text(raw_entry.get("accuracy_mode")),
+                "requiredness": normalize_text(raw_entry.get("requiredness")),
+                "source_strategy": normalize_text(raw_entry.get("source_strategy")),
+                "transformation_policy": normalize_text(raw_entry.get("transformation_policy")),
+                "status": normalize_text(raw_entry.get("status")),
+                "package_path": package_path,
+                "work_item_path": normalize_text(raw_entry.get("work_item_path")),
+                "work_item_exists": bool(raw_entry.get("work_item_path") and (run_dir / normalize_text(raw_entry.get("work_item_path"))).exists()),
+                "variants": variant_links,
+                "source_label": normalize_text(source.get("source_label")),
+                "source_uri": normalize_text(source.get("source_uri")),
+                "license": normalize_text(source.get("license")),
+                "source_metadata_href": f"{package_path}/{source_metadata_path}" if package_path and source_metadata_path else "",
+                "source_original_href": f"{package_path}/{source_original_path}" if package_path and source_original_path else "",
+                "qa_notes": compact_list(raw_entry.get("qa_notes"), limit=4),
+            }
+        )
+    return entries
+
+
+def requested_runtime_asset_mode(manifest: dict[str, Any]) -> str:
+    source = manifest.get("source", {}) if isinstance(manifest.get("source"), dict) else {}
+    mode = normalize_text(source.get("asset_build")).lower()
+    if mode and mode not in {"none", "manifest_only"}:
+        return mode
+    return ""
+
+
+def runtime_asset_output_card(entry: dict[str, Any]) -> str:
+    variant_links = []
+    for variant in entry.get("variants", []):
+        if not isinstance(variant, dict):
+            continue
+        label = f"{variant.get('variant_id') or 'variant'} {variant.get('size') or ''}".strip()
+        if variant.get("exists"):
+            variant_links.append(
+                f'<a href="{esc(variant["href"])}" target="_blank" rel="noopener">{esc(label)}: {esc(variant["path"])}</a>'
+            )
+        elif variant.get("path"):
+            variant_links.append(f'<span class="missing">{esc(label)} missing at {esc(variant["path"])}</span>')
+    if not variant_links:
+        variant_links.append('<span class="muted">No runtime variant paths recorded.</span>')
+    source_links = []
+    if entry.get("source_label"):
+        source_links.append(f'<span>{esc(entry["source_label"])}</span>')
+    if entry.get("source_metadata_href"):
+        source_links.append(preview_anchor(entry["source_metadata_href"], "source metadata"))
+    if entry.get("source_original_href"):
+        source_links.append(f'<a href="{esc(entry["source_original_href"])}" target="_blank" rel="noopener">source original</a>')
+    if entry.get("work_item_path"):
+        source_links.append(preview_anchor(entry["work_item_path"], "work item"))
+    qa = "; ".join(entry.get("qa_notes") or [])
+    return f"""
+<article class="runtime-asset-card" data-status="{esc(entry['status'])}">
+  <div class="asset-pilot-copy">
+    <div class="eyebrow">Generated runtime asset</div>
+    <h3>{esc(entry['asset_id'])}</h3>
+    <p class="activity-id">{esc(entry['activity_id'])}</p>
+    <div class="tag-row">
+      {group_badge(entry['status'], 'status')}
+      {group_badge(entry['accuracy_mode'], 'asset')}
+      {group_badge(entry['requiredness'], 'kind')}
+      {group_badge(entry['role'], 'metadata')}
+    </div>
+    <div class="inline-fields asset-pilot-fields">
+      <div><span>Source strategy</span><strong>{esc(entry['source_strategy'])}</strong></div>
+      <div><span>Transform</span><strong>{esc(entry['transformation_policy'])}</strong></div>
+    </div>
+    <div class="asset-placement">
+      <p><span>Runtime variants</span>{'<br>'.join(variant_links)}</p>
+      <p><span>Reference/source</span>{' '.join(source_links) if source_links else 'No reference source recorded.'}</p>
+      <p><span>QA</span>{esc(qa or 'No QA note recorded.')}</p>
+    </div>
+  </div>
+</article>"""
+
+
+def runtime_asset_output_section(run_dir: Path, entries: list[dict[str, Any]], requested_mode: str = "") -> str:
+    asset_outputs_path = run_dir / "generated_assets" / "asset_outputs.yaml"
+    manifest = load_yaml(asset_outputs_path)
+    mode = normalize_text(manifest.get("asset_build_mode") or requested_mode or "unknown")
+    if not entries:
+        if not requested_mode:
+            return ""
+        message = "Missing asset_outputs.yaml" if not asset_outputs_path.exists() else "No asset output entries recorded"
+        return f"""
+  <section class="panel" id="runtime-assets">
+    <div class="panel-head"><h2>Generated Runtime Assets</h2><span class="muted">0 assets built</span></div>
+    <div class="criteria-note">Asset build mode `{esc(mode)}` was requested, but {esc(message)}. Run `python3 scripts/build_activity_assets.py runs/{esc(run_dir.name)} --mode {esc(mode)}` and regenerate this dashboard.</div>
+  </section>
+"""
+    built = sum(1 for entry in entries if entry.get("status") in {"generated", "curated"})
+    cards = "\n".join(runtime_asset_output_card(entry) for entry in entries)
+    return f"""
+  <section class="panel" id="runtime-assets">
+    <div class="panel-head"><h2>Generated Runtime Assets</h2><span class="muted">{esc(built)} of {esc(len(entries))} assets built</span></div>
+    <div class="criteria-note">Asset build mode `{esc(mode)}` writes separate package-local runtime assets and source metadata. Contact sheets remain review-only artifacts.</div>
+    <div class="asset-pilot-grid">{cards}</div>
+  </section>
+"""
+
+
 def activity_export_card(entry: dict[str, Any]) -> str:
     activity_id = normalize_text(entry.get("activity_id"))
     activity_name = normalize_text(entry.get("activity_name") or activity_id)
@@ -2383,6 +2539,8 @@ def dashboard_workflow(run_id: str) -> str:
       <li><strong>Collect run inputs</strong><span>Read `run_manifest.yaml`, `review_notes.md`, `results.tsv`, generated or enriched package files, blocked briefs, and blocked design previews.</span></li>
       <li><strong>Prepare mechanism storyboard prompts</strong><code>python3 scripts/generate_storyboard_prompts.py {esc(run_path)}</code></li>
       <li><strong>Generate review-only storyboard images</strong><span>Use Codex image generation with the prompt files under `visual_storyboards/&lt;activity_id&gt;/`, then copy each final PNG to `mechanism_grid.png` and rerun the prompt script to refresh metadata. Prompt-only storyboard experiments are ignored when generated v1 images are present.</span></li>
+      <li><strong>Build runtime assets when requested</strong><code>python3 scripts/build_activity_assets.py {esc(run_path)} --mode generate_and_curate</code><span>Use agent-generated illustrative PNGs and verified reference originals as inputs; write final runtime assets back into package-local `assets/` directories.</span></li>
+      <li><strong>Validate runtime asset outputs</strong><code>python3 scripts/validate_asset_build_outputs.py {esc(run_path)}</code></li>
       <li><strong>Prepare prebuilt asset prompts</strong><code>python3 scripts/generate_asset_pilot_prompts.py {esc(run_path)}</code></li>
       <li><strong>Generate prebuilt contact sheets</strong><span>Use Codex image generation with `generated_assets_pilot/&lt;activity_id&gt;/&lt;asset_id&gt;/contact_sheet.prompt.md`, copy the selected PNG to `contact_sheet.png`, then rerun the prompt script so `asset.meta.yaml` and `asset_manifest.yaml` record status, timing, placement, fallback, and provenance.</span></li>
       <li><strong>Integrate generated assets</strong><code>python3 scripts/integrate_generated_assets.py {esc(run_path)}</code></li>
@@ -2496,6 +2654,8 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
             package["result_summary"] = "Not logged"
     blocked = [collect_blocked(repo_root, entry) for entry in outputs.get("blocked_assignments", [])]
     asset_pilot_entries = prebuilt_asset_pilot_entries(run_dir)
+    runtime_asset_entries = runtime_asset_output_entries(run_dir)
+    requested_runtime_mode = requested_runtime_asset_mode(manifest)
     export_manifest = load_yaml(run_dir / "activity_exports" / "export_manifest.yaml")
     export_entries = export_manifest.get("entries", []) if isinstance(export_manifest.get("entries"), list) else []
     summary = manifest.get("summary", {}) if isinstance(manifest.get("summary"), dict) else {}
@@ -2517,6 +2677,12 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     if active_storyboard_root:
         label = "storyboard_manifest_v2.yaml" if active_storyboard_root.endswith("_v2") else "storyboard_manifest.yaml"
         run_links.insert(4, (label, f"{active_storyboard_root}/storyboard_manifest.yaml"))
+    if (run_dir / "generated_assets" / "asset_outputs.yaml").exists():
+        run_links.insert(5, ("asset_outputs.yaml", "generated_assets/asset_outputs.yaml"))
+    if (run_dir / "generated_assets" / "reference_sources.yaml").exists():
+        run_links.insert(6, ("reference_sources.yaml", "generated_assets/reference_sources.yaml"))
+    if (run_dir / "generated_assets" / "qa_notes.yaml").exists():
+        run_links.insert(7, ("qa_notes.yaml", "generated_assets/qa_notes.yaml"))
     if (run_dir / "generated_assets_pilot" / "asset_manifest.yaml").exists():
         run_links.insert(5, ("asset_manifest.yaml", "generated_assets_pilot/asset_manifest.yaml"))
     if (run_dir / "activity_exports" / "export_manifest.yaml").exists():
@@ -2542,6 +2708,7 @@ def build_html(repo_root: Path, run_dir: Path) -> str:
     resolved_contract_html = resolved_contract_summary(packages).strip()
     extensibility_html = extensibility_summary(packages).strip()
     asset_pilot_html = prebuilt_asset_pilot_section(asset_pilot_entries).strip()
+    runtime_asset_html = runtime_asset_output_section(run_dir, runtime_asset_entries, requested_runtime_mode).strip()
     activity_export_html = activity_export_section(export_entries).strip()
     criteria_guide_html = criteria_guide().strip()
     manifest_checks = manifest.get("checks", [])
@@ -4168,12 +4335,15 @@ if (previewDialog) {
         sidebar_links.insert(4, ("extensibility-overview", "Extensibility"))
     if asset_pilot_html:
         sidebar_links.insert(5, ("generated-assets", "Generated Assets"))
+    if runtime_asset_html:
+        sidebar_links.insert(5, ("runtime-assets", "Runtime Assets"))
     if activity_export_html:
         sidebar_links.insert(6, ("activity-html-exports", "HTML Exports"))
     sidebar_link_html = "\n".join(f'      <a href="#{anchor}">{label}</a>' for anchor, label in sidebar_links)
     sidebar_stats = [
         ("Review cards", len(packages)),
         ("Blocked", len(blocked)),
+        ("Runtime assets", len(runtime_asset_entries)),
         ("Asset sheets", len(asset_pilot_entries)),
         ("Failed", summary.get("failed_count", 0)),
         ("Checks", len(manifest_checks) if isinstance(manifest_checks, list) else 0),
@@ -4235,6 +4405,8 @@ if (previewDialog) {
 	{extensibility_html}
 
 	{asset_pilot_html}
+
+	{runtime_asset_html}
 
 	{activity_export_html}
 
@@ -4373,12 +4545,22 @@ def validate(repo_root: Path, run_dir: Path) -> None:
     ]
     storyboard_requires_images = bool(expected_storyboard_images) and any(path.exists() for path in expected_storyboard_images)
     asset_pilot_entries = prebuilt_asset_pilot_entries(run_dir)
+    runtime_asset_entries = runtime_asset_output_entries(run_dir)
+    requested_runtime_mode = requested_runtime_asset_mode(manifest)
+    runtime_asset_manifest = load_yaml(run_dir / "generated_assets" / "asset_outputs.yaml")
+    actual_runtime_mode = normalize_text(runtime_asset_manifest.get("asset_build_mode") or requested_runtime_mode)
     export_manifest = load_yaml(run_dir / "activity_exports" / "export_manifest.yaml")
     export_entries = export_manifest.get("entries", []) if isinstance(export_manifest.get("entries"), list) else []
     expected_asset_images = [
         run_dir / normalize_text(entry.get("image_href"))
         for entry in asset_pilot_entries
         if normalize_text(entry.get("image_href"))
+    ]
+    expected_runtime_asset_images = [
+        run_dir / normalize_text(variant.get("href"))
+        for entry in runtime_asset_entries
+        for variant in entry.get("variants", [])
+        if isinstance(variant, dict) and normalize_text(variant.get("href"))
     ]
     reviewer_map = reviewer_by_activity(read_text(run_dir / "review_notes.md"))
     package_ids = {normalize_text(entry.get("activity_id")) for entry in package_entries}
@@ -4485,6 +4667,8 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         and "Mechanic Fidelity + Scaffold Honesty" in text,
         "dashboard_workflow": "Review Dashboard Workflow" in text
         and f"python3 scripts/generate_storyboard_prompts.py runs/{run_dir.name}" in text
+        and f"python3 scripts/build_activity_assets.py runs/{run_dir.name} --mode generate_and_curate" in text
+        and f"python3 scripts/validate_asset_build_outputs.py runs/{run_dir.name}" in text
         and f"python3 scripts/generate_asset_pilot_prompts.py runs/{run_dir.name}" in text
         and f"python3 scripts/generate_run_review.py runs/{run_dir.name}" in text
         and f"python3 scripts/generate_run_review.py --validate runs/{run_dir.name}" in text,
@@ -4510,6 +4694,31 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             and "When to display" in text
             and "Consistency" in text
             and all(path.exists() for path in expected_asset_images)
+        ),
+        "runtime_asset_outputs": (
+            not runtime_asset_entries
+            and not requested_runtime_mode
+        )
+        or (
+            requested_runtime_mode
+            and not runtime_asset_entries
+            and "Generated Runtime Assets" in text
+            and requested_runtime_mode in text
+            and (
+                "Missing asset_outputs.yaml" in text
+                or "No asset output entries recorded" in text
+            )
+        )
+        or (
+            "Generated Runtime Assets" in text
+            and (not actual_runtime_mode or actual_runtime_mode in text)
+            and text.count('class="runtime-asset-card"') == len(runtime_asset_entries)
+            and "asset_outputs.yaml" in text
+            and "reference_sources.yaml" in text
+            and "qa_notes.yaml" in text
+            and "source metadata" in text
+            and "work item" in text
+            and all(path.exists() for path in expected_runtime_asset_images)
         ),
         "activity_html_exports": not export_entries
         or (
@@ -4574,7 +4783,13 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             and "Image items" in text
             and (not any(asset_usage_sets) or "asset-usage-table" in text)
         ),
-        "reason_guide_descriptions": "Blocking Reason Guide" in text and "What it means" in text and "Why it blocks validity" in text and "Minimum to unblock" in text,
+        "reason_guide_descriptions": (expected_blocked == 0 and not expected_reason_labels)
+        or (
+            "Blocking Reason Guide" in text
+            and "What it means" in text
+            and "Why it blocks validity" in text
+            and "Minimum to unblock" in text
+        ),
         "resolved_blocker_reason_coverage": not expected_reason_labels
         or all(f">{label}</span>" in text for label in expected_reason_labels),
         "resolved_blocker_annotations": not has_resolved_blockers
@@ -4636,7 +4851,7 @@ def main() -> None:
     if args.validate:
         validate(repo_root, run_dir)
         return
-    html_text = build_html(repo_root, run_dir)
+    html_text = strip_trailing_whitespace(build_html(repo_root, run_dir))
     out = run_dir / "review.html"
     out.write_text(html_text)
     print(f"Wrote {out.relative_to(repo_root)}")
