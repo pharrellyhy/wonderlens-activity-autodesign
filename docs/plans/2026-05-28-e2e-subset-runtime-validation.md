@@ -63,7 +63,7 @@ The subset should cover:
 | Slice | Expected outcome |
 |---|---|
 | Cat1 simple | Supported and playable in fullstack-demo and WonderLens AI. |
-| Cat5 simple collection | Supported and playable with real camera/photo capture semantics. |
+| Cat5 simple collection | Supported and playable with on-device selectable item/card assets plus real camera/photo capture semantics. |
 | Cat5 with runtime judgment | Degraded or supported only if runtime judgment is truly available; reasons must be visible. |
 | Unsupported UI-heavy mechanic | Not imported as playable; selection/start must gate it. |
 | Reference-bound asset case | Requires verified source metadata and high-resolution runtime assets; random generated approximations fail. |
@@ -77,8 +77,8 @@ Suggested activity concepts if fresh assignments are needed:
 
 - Cat1 simple: short in-device storytelling or prediction with one generated
   entity hero asset.
-- Cat5 simple collection: one-criterion real-world collection with a generated
-  guide token.
+- Cat5 simple collection: one-criterion real-world collection with generated
+  selectable item/card assets on the device screen.
 - Cat5 runtime judgment: collection where the runtime must judge a visual or
   spoken property beyond a fixed catalog match.
 - Unsupported UI-heavy: sorting, drawing, coloring, tournament, or certificate
@@ -106,6 +106,14 @@ For every generated package:
   square edges, and no baked-in circular mask, lens border, rim, vignette,
   black corners, transparent margin, white margin, readable text, letters,
   numbers, logos, watermarks, contact sheets, or UI labels;
+- Cat5 collection packages declare the selectable on-device item/card assets in
+  `asset_manifest.yaml`, using roles such as `collection_correct`,
+  `collection_distractor`, `card_set`, or `icon` as appropriate;
+- Cat5 selectable cards/items follow the same WonderLens activity asset style
+  and are referenced from `prod.md` Step 2 or Step 3 screen states by stable
+  `asset_id`;
+- Cat5 selectable cards/items guide the child before or around capture, but do
+  not replace real camera capture or the downstream `photo_id` handoff;
 - reference-bound assets include accepted package-local source metadata before
   they are considered ready;
 - `prod.md` references stable `asset_id` values and fallback behavior, not raw
@@ -132,6 +140,8 @@ The importer should:
 - convert supported Cat1 and simple Cat5 packages into parseable game
   frontmatter;
 - copy package-local assets into browser-safe activity asset paths;
+- copy and render Cat5 selectable item/card assets before or around photo
+  capture;
 - preserve explicit entity binding;
 - expose support/degraded/unsupported state in entity selection metadata;
 - gate unsupported packages from playable start;
@@ -140,7 +150,9 @@ The importer should:
 Browser or API smoke should verify at least:
 
 - imported Cat1 starts;
-- imported Cat5 starts and reaches the collection loop;
+- imported Cat5 starts, shows selectable item/card assets, reaches the
+  collection loop, sends or simulates `photo_id`, and continues into the
+  detail/text response phase;
 - degraded Cat5 is visible with reasons and behaves according to its configured
   support state;
 - unsupported UI-heavy package is not selectable or does not start as playable;
@@ -170,6 +182,8 @@ Then verify:
 - degraded packages carry reasons and are executable only when the runtime can
   honestly support the limitation;
 - package-local assets resolve through safe server URLs;
+- Cat5 runtime state preserves the selectable card/item context while still
+  treating `photo_id` as the real captured input;
 - Activity API or Activity WS behavior follows the generated runtime beats
   closely enough to match the autodesign `prod.md` guidance.
 

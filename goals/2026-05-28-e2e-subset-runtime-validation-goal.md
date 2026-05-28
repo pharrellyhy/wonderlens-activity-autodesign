@@ -50,9 +50,15 @@ behavior.
 - Do not bake in device chrome: no circular or oval mask, lens border, rim,
   vignette, black corners, transparent margin, white margin, readable text,
   letters, numbers, logos, watermark, contact sheet, or UI labels.
-- Ignore the fullstack-demo style file's save-location workflow. Keep generated
-  assets in the current autodesign package-local locations and reference them
-  through `asset_manifest.yaml`.
+- Keep generated assets in the current autodesign package-local locations and
+  reference them through `asset_manifest.yaml`.
+- Cat5 collection packages must declare the selectable on-device item/card
+  assets in `asset_manifest.yaml`, using roles such as `collection_correct`,
+  `collection_distractor`, `card_set`, or `icon` as appropriate.
+- Cat5 selectable cards/items must use the same WonderLens activity asset
+  style, be referenced from `prod.md` Step 2 or Step 3 screen states by stable
+  `asset_id`, and guide the child before or around capture without replacing
+  real camera capture or the downstream `photo_id` handoff.
 - Reference-bound assets must use verified source metadata and must not be
   random generated approximations.
 - Do not claim autodesign directly emits WonderLens AI `runtime.yaml`; verify
@@ -79,6 +85,8 @@ For the subset, verify:
 
 - autodesign package files, demo support, asset manifest, generated assets, and
   review dashboard;
+- Cat5 selectable item/card assets, correct/distractor roles where relevant,
+  `prod.md` screen references, and `photo_id` handoff semantics;
 - fullstack-demo package import, asset copy, entity binding, selection gating,
   playable starts, and unsupported/degraded visibility;
 - WonderLens AI runtime generation, package loading, support/asset readiness,
@@ -196,12 +204,18 @@ test -f app/modules/activity/packages/runtime_generator.py
 - Autodesign generated packages pass demo package contract validation.
 - Autodesign generated assets pass asset output validation and include
   high-resolution runtime variants.
+- Cat5 generated packages include selectable on-device item/card assets that
+  follow the WonderLens activity style, distinguish target/distractor roles
+  where relevant, and are referenced from runtime screen states.
 - Autodesign `review.html` validates and links package-local assets.
 - Fullstack-demo imports supported/degraded packages and gates unsupported
   packages according to `demo_support.yaml`.
-- Fullstack-demo copied assets resolve through browser-safe URLs.
+- Fullstack-demo copied assets resolve through browser-safe URLs, including
+  Cat5 selectable item/card assets shown before or around capture.
 - WonderLens AI generates or validates `runtime.yaml` for executable packages.
 - WonderLens AI rejects or gates unsupported and asset-blocked packages.
+- WonderLens AI preserves Cat5 selectable card/item context while treating
+  `photo_id` as the real captured input for the detail/text response phase.
 - Runtime behavior in both consumers is compared against the autodesign
   `prod.md` beats and differences are explained.
 - Live smoke evidence is recorded, or missing credentials/provider blockers are
