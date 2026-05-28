@@ -39,7 +39,7 @@ Use a clean activity ID from the workbook/assignment. Strip copied `_rYYYYMMDD_H
 ## Generation Rules
 
 - Run Phase 0 adaptation before package writing.
-- Preserve source-promise alignment from the workbook row.
+- Preserve source-promise alignment from the workbook row. Treat normalized source snapshots as helpers, not source-of-truth, when they omit workbook sequence, role, real/reference asset requirements, or background/context requirements.
 - The child's repeated action must match the canonical mechanic, but the mechanic cannot override the workbook's play frame.
 - For runtime AI behavior, prefer `Runtime AI instruction` plus `Example AI line` when the line should be generated dynamically. Use fixed `AI says` only when exact wording is intentionally required.
 - Make unexpected and no-response branch policies beat- and round-specific. Do not reuse generic text across activities, do not keyword-substitute the activity title/mechanic/round title into a stock row, and do not repeat the same Step 3 branch policy across rounds. Name the likely off-track or quiet behavior for the current source action and redirect/scaffold back to the current role, challenge, asset/fallback, screen state, prior consequence, or completion target.
@@ -52,9 +52,11 @@ Use a clean activity ID from the workbook/assignment. Strip copied `_rYYYYMMDD_H
 
 ## Full-Pass Audit Requirement
 
-Every new generation run from a workbook must include a full source-intent audit after package generation and before final completion. Do not rely only on the generation rubric; compare the runtime beats back to the original workbook intent.
+Every new generation run from a workbook must include a full source-intent audit after package generation and before final completion. Do not rely only on the generation rubric or normalized source text; compare the runtime beats back to the original workbook intent. Every audit entry must include `workbook_evidence`, a short English note naming the workbook detail used to judge the original play frame.
 
 Under `minimum_unblock_allowed`, the audit should not classify a row as `needs_product_decision` merely because it used an approved reduced-scope implementation. Classify it by source-intent fidelity: `aligned`, `minor_adaptation`, or `intent_drift`, unless the minimum version still leaves a real unresolved product question.
+
+Validate workbook audits with `--strict-workbook-intent`.
 
 ## Checks
 

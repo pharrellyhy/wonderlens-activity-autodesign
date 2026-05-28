@@ -5,13 +5,15 @@ scope: all 40 workbook source rows
 method: agent judgment pass recorded as YAML; renderer script only validates and displays
   the matrix
 summary:
-  aligned: 7
-  minor_adaptation: 32
-  intent_drift: 1
+  aligned: 5
+  minor_adaptation: 29
+  intent_drift: 6
   needs_product_decision: 0
 entries:
 - source_row: 1
   activity_id: concept_scavenger_hunt_collect
+  workbook_evidence: Workbook row asks the child to find X objects sharing a common
+    property such as color, shape, or category, with extensions for higher tiers.
   original_play_frame: Find several things that share a color, shape, or category.
   generated_play_frame: Find several things that share a color, shape, or category.
   preserved:
@@ -25,6 +27,8 @@ entries:
   product_review_question: ''
 - source_row: 2
   activity_id: concept_phoneme_hunt_collect
+  workbook_evidence: Workbook row asks for a treasure whose word starts with a target
+    sound such as /b/, with optional letter display.
   original_play_frame: The AI introduces a target sound, then the child finds an object
     whose word starts with that sound.
   generated_play_frame: The AI introduces a target sound, then the child finds an
@@ -46,6 +50,8 @@ entries:
     for this reviewer packet.
 - source_row: 3
   activity_id: concept_branching_story_decide
+  workbook_evidence: Workbook row describes story checkpoints where the child chooses
+    and the choice determines the later story path.
   original_play_frame: The AI tells a story with choice points, and the child's choices
     decide what happens next.
   generated_play_frame: The AI tells a story with choice points, and the child's choices
@@ -61,6 +67,8 @@ entries:
   product_review_question: ''
 - source_row: 4
   activity_id: concept_guided_drawing_probe
+  workbook_evidence: Workbook row asks AI to guide paper-and-pencil drawing step by
+    step, then let the child show the finished work without quality judgment.
   original_play_frame: The AI guides the child to use paper and pencil to complete
     a simple drawing step by step.
   generated_play_frame: The AI guides the child to use paper and pencil to complete
@@ -82,6 +90,8 @@ entries:
     for this reviewer packet.
 - source_row: 5
   activity_id: concept_word_echo_remember
+  workbook_evidence: Workbook row is pure repeat-after-me language practice, with
+    optional second-language variants.
   original_play_frame: The AI says a simple word or phrase and the child repeats it
     back in a playful echo round.
   generated_play_frame: The AI says a simple word or phrase and the child repeats
@@ -103,6 +113,8 @@ entries:
     for this reviewer packet.
 - source_row: 6
   activity_id: concept_building_challenge_probe
+  workbook_evidence: Workbook row starts from photographed cushions, clay, or blocks,
+    guides a physical build, and celebrates or shows the result.
   original_play_frame: The child uses blocks, bricks, or household materials to build
     a simple target.
   generated_play_frame: The child uses blocks, bricks, or household materials to build
@@ -124,6 +136,8 @@ entries:
     for this reviewer packet.
 - source_row: 7
   activity_id: concept_story_unlock_probe
+  workbook_evidence: Workbook row tells a fixed adventure story, pauses at gates,
+    and unlocks the next beat only after a quick child challenge.
   original_play_frame: 'Preserve the sequence: story beat, paused gate, small child
     challenge such as finding a color, making an animal sound, or echoing a word,
     then unlocked next story beat. Do not generate standalone challenges without story
@@ -147,6 +161,8 @@ entries:
     for this reviewer packet.
 - source_row: 8
   activity_id: concept_coloring_game_probe
+  workbook_evidence: Workbook row shows line art, asks the child to photograph real-world
+    colors for regions, then reveals the evolving colored artwork.
   original_play_frame: 'Preserve the sequence: show fillable line art, ask the child
     to photograph a color source, map that real-world color to one or more regions,
     then reveal the evolving artwork.'
@@ -170,6 +186,8 @@ entries:
     for this reviewer packet.
 - source_row: 9
   activity_id: concept_classic_music_movement_probe
+  workbook_evidence: Workbook row references classic Freeze Dance and Floor Is Lava
+    movement games, subject to music rights and safety constraints.
   original_play_frame: The child moves their body in response to music mood or rhythm
     cues.
   generated_play_frame: The child moves their body in response to music mood or rhythm
@@ -191,6 +209,8 @@ entries:
     for this reviewer packet.
 - source_row: 10
   activity_id: concept_childrens_yoga_probe
+  workbook_evidence: Workbook row shows several children's yoga pose images and asks
+    the child to imitate them without camera-based quality checking.
   original_play_frame: The AI guides a short, child-safe pose routine using animal
     or object metaphors.
   generated_play_frame: The AI guides a short, child-safe pose routine using animal
@@ -212,6 +232,8 @@ entries:
     for this reviewer packet.
 - source_row: 11
   activity_id: concept_partial_reveal_deduce
+  workbook_evidence: Workbook row shows half an animal or a key part and asks the
+    child to guess the whole animal.
   original_play_frame: The screen shows one distinctive part of an animal or object,
     and the child guesses the whole thing from visible clues.
   generated_play_frame: The screen shows one distinctive part of an animal or object,
@@ -233,6 +255,8 @@ entries:
     for this reviewer packet.
 - source_row: 12
   activity_id: concept_emotion_reader_care
+  workbook_evidence: Workbook row places an object or animal in a scene and asks the
+    child to infer a feeling from expression or context.
   original_play_frame: The child notices an obvious expression or body cue and thinks
     about what feeling or help might fit.
   generated_play_frame: The child notices an obvious expression or body cue and thinks
@@ -254,6 +278,8 @@ entries:
     for this reviewer packet.
 - source_row: 13
   activity_id: concept_animal_sound_motion_voice
+  workbook_evidence: Workbook row uses animal sound flashcards or prompts so the child
+    imitates, names, or requests familiar animal sounds.
   original_play_frame: The AI prompts a familiar animal, and the child imitates its
     sound or speaks in the animal role.
   generated_play_frame: The AI prompts a familiar animal, and the child imitates its
@@ -275,6 +301,8 @@ entries:
     for this reviewer packet.
 - source_row: 14
   activity_id: concept_tiny_curator_sort
+  workbook_evidence: Workbook row asks the child to find three or four objects that
+    belong together, arrange a tiny exhibition, and explain their grouping rule.
   original_play_frame: The child finds three or four objects they think belong together,
     arranges them as a tiny exhibition, and explains their grouping rule.
   generated_play_frame: The child finds three or four objects they think belong together,
@@ -290,36 +318,53 @@ entries:
   product_review_question: ''
 - source_row: 15
   activity_id: concept_plant_parts_enumerate
-  original_play_frame: The child looks at a plant and identifies visible parts such
-    as leaf, stem, flower, fruit, seed, or root.
+  workbook_evidence: Workbook row asks the child to photograph different plant positions
+    such as leaf, flower, or stamen, then hear fun introductions to the parts and
+    their functions.
+  original_play_frame: The child captures or looks at different plant positions, names
+    visible plant parts, and hears a simple function/background note for each part.
   generated_play_frame: The child looks at a plant and identifies visible parts such
     as leaf, stem, flower, fruit, seed, or root.
   preserved:
-  - Original play frame preserved.
-  - Child role and repeated action preserved.
-  - Runtime sequence follows the source intent lock.
-  drift: []
-  status: aligned
-  severity: none
-  recommendation: accept
-  product_review_question: ''
+  - Plant-part observation.
+  - Naming visible parts.
+  drift:
+  - Workbook photo-position sequence is reduced to generic plant looking.
+  - Required part-function/background introduction is missing from the generated loop.
+  - Runtime rounds use generic count/name language instead of plant-part function talk.
+  status: intent_drift
+  severity: high
+  recommendation: Repair to a photo-based plant-parts exploration with visible part
+    names and one simple function/background note per part.
+  product_review_question: Approve the generic plant-part naming adaptation, or restore
+    the workbook photo-position plus function-introduction flow?
 - source_row: 16
   activity_id: concept_plant_state_compare
-  original_play_frame: The child compares a plant's visible state, such as sprouting,
-    blooming, wilting, dried, healthy, or fruiting.
+  workbook_evidence: Workbook row asks the child to photograph plant leaves in states
+    such as green, yellowing, or damaged, then hear about state changes and simple
+    care ideas.
+  original_play_frame: The child notices visible plant states in a photo, compares
+    those states, hears a simple state-change explanation, and receives one plant-care
+    idea.
   generated_play_frame: The child compares a plant's visible state, such as sprouting,
     blooming, wilting, dried, healthy, or fruiting.
   preserved:
-  - Original play frame preserved.
-  - Child role and repeated action preserved.
-  - Runtime sequence follows the source intent lock.
-  drift: []
-  status: aligned
-  severity: none
-  recommendation: accept
-  product_review_question: ''
+  - Visible plant-state comparison.
+  drift:
+  - Workbook photo-state sequence is reduced to generic visible-state comparison.
+  - Required explanation of state change and simple plant-care guidance is missing
+    from the generated loop.
+  status: intent_drift
+  severity: high
+  recommendation: Repair to include photo-based plant state comparison, a child-safe
+    state-change explanation, and one simple care idea.
+  product_review_question: Approve the generic plant-state comparison adaptation,
+    or restore state-change and care guidance?
 - source_row: 17
   activity_id: concept_emotion_color_outfit_probe
+  workbook_evidence: Workbook row shows a character with a white outfit and changing
+    expressions; the child chooses a clothing color that fits each emotion, then
+    the outfit is colored.
   original_play_frame: The child uses colors to represent feelings, then sees or imagines
     a character outfit matching that feeling.
   generated_play_frame: The child uses colors to represent feelings, then sees or
@@ -341,6 +386,9 @@ entries:
     for this reviewer packet.
 - source_row: 18
   activity_id: concept_guess_in_10_deduce
+  workbook_evidence: Workbook row references the Guess in 10 game pattern where AI
+    gives several clues and the child guesses an animal or other object, with optional
+    picture support.
   original_play_frame: The AI gives clues one by one, and the child guesses an animal
     or object from the evidence.
   generated_play_frame: The AI gives clues one by one, and the child guesses an animal
@@ -362,27 +410,32 @@ entries:
     for this reviewer packet.
 - source_row: 19
   activity_id: concept_color_mixing_collect
-  original_play_frame: The child chooses or finds two colors, predicts what they make
-    together, and compares against the mixed result.
+  workbook_evidence: Workbook row frames this as a Scavenger variant where the child
+    photographs two or three objects in specified colors, then learns what the colors
+    make when mixed, including primary/secondary language when appropriate.
+  original_play_frame: The child finds or photographs real objects with target colors,
+    then learns what those colors make when mixed.
   generated_play_frame: The child chooses or finds two colors, predicts what they
     make together, and compares against the mixed result.
   preserved:
-  - Original play frame preserved.
-  - Child role and repeated action preserved.
-  - Runtime sequence follows the source intent lock.
+  - Color-pair selection.
+  - Mixing prediction and result comparison.
   - Former product dependencies are recorded as resolved minimum-contract assumptions
     with honest fallbacks.
   drift:
-  - Minimum version uses reduced-scope fallback where unsupported product capability
-    is not available.
+  - Photographing target-colored objects is weakened to choosing or finding colors.
+  - Primary/secondary color introduction is not explicit in the generated loop.
   status: minor_adaptation
-  severity: low
-  recommendation: accept for product review; verify minimum-contract assumptions where
-    listed
-  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
-    for this reviewer packet.
+  severity: medium
+  recommendation: Keep only if product approves abstract color choice as a V1 adaptation;
+    otherwise restore real-world color-object evidence before the mixing explanation.
+  product_review_question: Approve choosing/finding colors without photographed color
+    objects, or restore the scavenger-to-mixing frame?
 - source_row: 20
   activity_id: concept_constellation_star_count_enumerate
+  workbook_evidence: Workbook row requires a prebuilt list of real common constellations
+    and star counts; the child chooses between two numbers, then sees a matching
+    constellation and hears a simple introduction.
   original_play_frame: The child chooses between two possible star-count numbers,
     then sees a real approved constellation matching the selected number and hears
     a short background introduction.
@@ -406,6 +459,8 @@ entries:
     the source count-choice constellation reveal?
 - source_row: 21
   activity_id: concept_toy_tidy_probe
+  workbook_evidence: Workbook row starts with toy and toy-room photos, asks whether
+    the child will tidy, runs a two-minute cleanup, then asks for an after photo.
   original_play_frame: 'Preserve the sequence: initial toy context, child agrees to
     tidy, short timed cleanup, organizing tips during the timer, and after-state confirmation.
     Do not reduce this to a purely verbal category-sorting game.'
@@ -428,6 +483,9 @@ entries:
     for this reviewer packet.
 - source_row: 22
   activity_id: concept_time_sense_probe
+  workbook_evidence: Workbook row asks the child to feel how long 30 seconds or one
+    minute is, either by quietly sensing time or by saying stop during a timer and
+    hearing the elapsed seconds.
   original_play_frame: The child predicts when a short amount of time has passed,
     then checks the result.
   generated_play_frame: The child predicts when a short amount of time has passed,
@@ -449,6 +507,8 @@ entries:
     for this reviewer packet.
 - source_row: 23
   activity_id: concept_one_line_drawing_probe
+  workbook_evidence: Workbook row asks the child to copy simple one-line drawing
+    images from the screen using paper and pen, then photograph the finished work.
   original_play_frame: The child tries to draw a target without lifting the pencil
     or finger.
   generated_play_frame: The child tries to draw a target without lifting the pencil
@@ -470,27 +530,34 @@ entries:
     for this reviewer packet.
 - source_row: 24
   activity_id: concept_message_bottle_note_probe
-  original_play_frame: The child creates a short kindness note or message for someone
+  workbook_evidence: Workbook row starts from something the child photographed, tells
+    a warm story, then asks the child to write or draw a note and place it somewhere
+    for a parent or friend.
+  original_play_frame: The child starts from a photographed or chosen inspiration,
+    hears a warm story, writes or draws a kindness note, and places it for someone
     else.
   generated_play_frame: The child creates a short kindness note or message for someone
     else.
   preserved:
-  - Original play frame preserved.
-  - Child role and repeated action preserved.
-  - Runtime sequence follows the source intent lock.
+  - Kindness-note intent.
   - Former product dependencies are recorded as resolved minimum-contract assumptions
     with honest fallbacks.
   drift:
-  - Minimum version uses reduced-scope fallback where unsupported product capability
-    is not available.
-  status: minor_adaptation
-  severity: low
-  recommendation: accept for product review; verify minimum-contract assumptions where
-    listed
-  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
-    for this reviewer packet.
+  - Photographed-object story trigger is missing.
+  - Physical note writing/drawing and placement are weakened to a generic kindness
+    message loop.
+  - Final note-capture/showing behavior is replaced by confirmation-only fallback.
+  status: intent_drift
+  severity: high
+  recommendation: Repair to preserve the warm photographed-inspiration story and
+    physical-note placement flow, or leave as product-approved verbal adaptation.
+  product_review_question: Approve the generic kindness-message adaptation, or restore
+    the workbook physical note and placement sequence?
 - source_row: 25
   activity_id: concept_award_certificate_probe
+  workbook_evidence: Workbook row starts from a photographed object and warm story,
+    shows badge inspiration such as "best mom", then guides the child to draw a
+    paper award for family or a friend.
   original_play_frame: The child makes or designs an award for someone who helped,
     tried hard, or deserves appreciation.
   generated_play_frame: The child designs a paper award for someone they appreciate,
@@ -512,6 +579,9 @@ entries:
     for this reviewer packet.
 - source_row: 26
   activity_id: concept_career_decision_decide
+  workbook_evidence: Workbook row assigns the child a profession first, places them
+    in a concrete work scenario, then asks yes/no or two-choice expert decisions
+    such as firefighter choices.
   original_play_frame: 'Preserve the sequence: assign the child a profession, place
     them inside a concrete work scenario, ask a simple expert decision, then respond
     to the decision. Do not turn this into choosing which profession matches a scenario.'
@@ -534,6 +604,8 @@ entries:
     for this reviewer packet.
 - source_row: 27
   activity_id: concept_vegetable_sort_sort
+  workbook_evidence: Workbook row introduces vegetable categories such as leafy,
+    stem, and root vegetables, then shows common vegetables for the child to classify.
   original_play_frame: The child sorts vegetable cards or photographed vegetables
     by a visible or meaningful rule.
   generated_play_frame: The child sorts vegetable cards or photographed vegetables
@@ -555,27 +627,31 @@ entries:
     for this reviewer packet.
 - source_row: 28
   activity_id: concept_how_many_guess_enumerate
-  original_play_frame: The child estimates how many objects are visible, then counts
-    together with the AI.
+  workbook_evidence: Workbook row asks quantity-feature questions such as how many
+    legs an animal has, with optional image support, not generic pile counting.
+  original_play_frame: The child answers how many of a meaningful feature an animal
+    or object has, such as legs, wheels, petals, or buttons.
   generated_play_frame: The child estimates how many objects are visible, then counts
     together with the AI.
   preserved:
-  - Original play frame preserved.
-  - Child role and repeated action preserved.
-  - Runtime sequence follows the source intent lock.
+  - Number sense.
+  - Count/check loop.
   - Former product dependencies are recorded as resolved minimum-contract assumptions
     with honest fallbacks.
   drift:
-  - Minimum version uses reduced-scope fallback where unsupported product capability
-    is not available.
-  status: minor_adaptation
-  severity: low
-  recommendation: accept for product review; verify minimum-contract assumptions where
-    listed
-  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
-    for this reviewer packet.
+  - Meaningful quantity-feature questions are reduced to estimating visible object
+    counts.
+  - Animal/object attribute context, such as legs, is missing.
+  status: intent_drift
+  severity: high
+  recommendation: Repair to ask feature-count questions tied to animals or objects,
+    using generic counting cards only if product approves that adaptation.
+  product_review_question: Approve generic estimate-and-count cards, or restore the
+    quantity-attribute question frame?
 - source_row: 29
   activity_id: concept_flashcards_enumerate
+  workbook_evidence: Workbook row describes flashcards as a basic reusable play pattern
+    across categories such as colors and animals.
   original_play_frame: The child recognizes a picture card, names what they see, and
     answers one tiny follow-up.
   generated_play_frame: The child recognizes a picture card, names what they see,
@@ -597,6 +673,9 @@ entries:
     for this reviewer packet.
 - source_row: 30
   activity_id: concept_trivia_game_remember
+  workbook_evidence: Workbook row describes a playful quiz after the child has received
+    a short content output tied to a photographed or asked-about topic, avoiding
+    test pressure.
   original_play_frame: The child answers short memory or knowledge questions and receives
     a simple explanation.
   generated_play_frame: The child answers short memory or knowledge questions and
@@ -618,48 +697,54 @@ entries:
     for this reviewer packet.
 - source_row: 31
   activity_id: concept_recognition_pop_probe
-  original_play_frame: The child quickly chooses matching target pictures from a changing
-    set.
+  workbook_evidence: Workbook row starts from a photographed dog, introduces visually
+    similar animals such as fox or wolf, then shows changing real animal photos where
+    the child says "dog" only when dog appears and stays quiet otherwise.
+  original_play_frame: The child responds when the target picture appears in a changing
+    stream and stays quiet for visually similar distractors.
   generated_play_frame: The child quickly chooses matching target pictures from a
     changing set.
   preserved:
-  - Original play frame preserved.
-  - Child role and repeated action preserved.
-  - Runtime sequence follows the source intent lock.
+  - Recognition of target pictures among distractors.
   - Former product dependencies are recorded as resolved minimum-contract assumptions
     with honest fallbacks.
   drift:
-  - Minimum version uses reduced-scope fallback where unsupported product capability
-    is not available.
-  status: minor_adaptation
-  severity: low
-  recommendation: accept for product review; verify minimum-contract assumptions where
-    listed
-  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
-    for this reviewer packet.
+  - Source-photo intro and similar-animal teaching are missing.
+  - Target-vs-distractor timing rule is reduced to ordinary matching choices.
+  - Child action changes from speak target / stay quiet to choose matching pictures.
+  status: intent_drift
+  severity: high
+  recommendation: Repair to target-pop recognition with approved target/distractor
+    images and speak-or-stay-quiet behavior, or keep flagged for product approval.
+  product_review_question: Approve ordinary matching, or restore the recognition-pop
+    target/distractor timing rule?
 - source_row: 32
   activity_id: concept_word_build_guess_probe
-  original_play_frame: The child chooses letters or answers clues to reveal a word
-    step by step.
+  workbook_evidence: Workbook row describes a hangman-like word game where the child
+    says letters until a word related to the photographed or asked-about object is
+    completed, using a warm non-punitive metaphor.
+  original_play_frame: The child says letters to reveal a hidden word related to the
+    child's photographed or asked-about object.
   generated_play_frame: The child chooses letters or answers clues to reveal a word
     step by step.
   preserved:
-  - Original play frame preserved.
-  - Child role and repeated action preserved.
-  - Runtime sequence follows the source intent lock.
+  - Constructive word reveal.
+  - Letter choices remain allowed.
   - Former product dependencies are recorded as resolved minimum-contract assumptions
     with honest fallbacks.
   drift:
-  - Minimum version uses reduced-scope fallback where unsupported product capability
-    is not available.
+  - Object/photo relationship for the hidden word is not explicit.
+  - Generic clue answering may replace the source's letter-guessing loop.
   status: minor_adaptation
-  severity: low
-  recommendation: accept for product review; verify minimum-contract assumptions where
-    listed
-  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
-    for this reviewer packet.
+  severity: medium
+  recommendation: Keep only if product approves clue answers as a V1 simplification;
+    otherwise restore object-tied letter guessing.
+  product_review_question: Approve clue-answer simplification, or restore object-tied
+    letter guessing?
 - source_row: 33
   activity_id: concept_would_you_rather_compare
+  workbook_evidence: Workbook row describes a voice-led series of funny two-choice
+    Would You Rather questions where the child chooses one option.
   original_play_frame: The child chooses between two playful options and explains
     the preference or tradeoff.
   generated_play_frame: The child chooses between two playful options and explains
@@ -675,6 +760,9 @@ entries:
   product_review_question: ''
 - source_row: 34
   activity_id: concept_art_critic_tournament_probe
+  workbook_evidence: Workbook row uses a tournament or bubble-sort style art comparison where
+    show two artworks, keep the child's preferred winner, compare it with the next
+    artwork, and finish with one favorite.
   original_play_frame: The child compares two approved artworks at a time and chooses
     a favorite until one wins.
   generated_play_frame: The child compares two approved artworks at a time, chooses
@@ -696,6 +784,8 @@ entries:
     for this reviewer packet.
 - source_row: 35
   activity_id: concept_color_famous_art_probe
+  workbook_evidence: Workbook row starts from a color photographed by the child, shows
+    several artworks dominated by that color, then gives a simple background introduction.
   original_play_frame: 'Preserve the sequence: child captures or chooses a real-world
     color, the system shows several artworks dominated by that color, then the AI
     gives a simple child-safe background introduction. Do not reduce this to studying
@@ -719,6 +809,8 @@ entries:
     for this reviewer packet.
 - source_row: 36
   activity_id: concept_body_movement_probe
+  workbook_evidence: Workbook row shows relevant pictures for simple animal-like
+    body movements, then asks the child to imitate safe stretches or simple movements.
   original_play_frame: The AI guides one simple body movement at a time with safety
     limits.
   generated_play_frame: The AI guides one simple body movement at a time with safety
@@ -740,6 +832,9 @@ entries:
     for this reviewer packet.
 - source_row: 37
   activity_id: concept_current_topic_interview_deduce
+  workbook_evidence: Workbook row targets older children, uses a photographed object
+    or question to introduce a social or funny topic, then runs a mini interview
+    where the child gives an opinion.
   original_play_frame: The child discusses an age-appropriate topic by giving an opinion
     and a reason.
   generated_play_frame: The child discusses an age-appropriate topic by giving an
@@ -755,6 +850,9 @@ entries:
   product_review_question: ''
 - source_row: 38
   activity_id: concept_little_poem_build
+  workbook_evidence: Workbook row says the AI can generate a warm or funny rhyming
+    poem from something the child photographed and read it back as the child's small
+    achievement.
   original_play_frame: The child contributes words, images, or feelings and co-creates
     a short poem with the AI.
   generated_play_frame: The child contributes words, images, or feelings and co-creates
@@ -770,6 +868,9 @@ entries:
   product_review_question: ''
 - source_row: 39
   activity_id: concept_travel_planner_predict
+  workbook_evidence: Workbook row frames planning as project-style learning where a photographed
+    toy goes on a trip, and the child helps decide what to pack, such as whether
+    to bring an umbrella for rain.
   original_play_frame: The child helps plan a pretend trip by choosing what to pack,
     how to travel, and what might happen.
   generated_play_frame: The child helps plan a pretend trip by choosing what to pack,
@@ -791,6 +892,8 @@ entries:
     for this reviewer packet.
 - source_row: 40
   activity_id: concept_quick_silly_decide
+  workbook_evidence: Workbook row describes five to seven quick silly yes/no or two-choice
+    prompts, optionally with a 3-2-1 countdown, focused on fast playful reactions.
   original_play_frame: The child answers very short playful choice questions during
     a transition or warm-up.
   generated_play_frame: The child answers very short playful choice questions during

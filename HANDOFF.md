@@ -2,12 +2,16 @@
 
 ## Current Status
 
-- Status: `main` now contains the explicit `asset_build=generate_and_curate` runtime asset pipeline, plus a repo-local WonderLens activity asset style contract for full `GOAL.md` runs. Future image-asset runs no longer need an external style prompt file.
+- Status: `main` now contains the strict workbook-backed source-intent audit path for full `GOAL.md` runs, plus the explicit `asset_build=generate_and_curate` runtime asset pipeline and repo-local WonderLens activity asset style contract.
 - Date: 2026-05-28
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
 
+- Added `--strict-workbook-intent` to `scripts/generate_source_comparison_review.py`; strict mode fails validation when any workbook source-intent audit entry lacks `workbook_evidence`. The source comparison matrix now renders workbook evidence in row details.
+- Updated `GOAL.md`, `run.md`, and the workbook-to-review-packet skill references so full-pass workbook audits must derive source-promise from the original workbook row first, use normalized source rows only as helpers, and validate matrices with `--strict-workbook-intent`.
+- Inspected the latest full workbook review packet for the same flow-drift class. The source-intent audit for `runs/20260521_163621_workbook_review_packet_full` now records workbook evidence for all 40 rows and flags 6 high-severity `intent_drift` rows: plant parts, plant state, constellation star count, message bottle note, how-many guess, and recognition pop. It also records 2 medium-risk `minor_adaptation` rows: color mixing and word-build guessing.
+- Added stricter source intent locks in `inputs/source_activity_concepts.md` for other drift-prone concepts where the workbook sequence or material/asset behavior was easy to weaken: building challenge, children's yoga, plant parts, plant state, color mixing, message bottle note, award certificate, how-many guess, recognition pop, and word-build guessing.
 - Repaired the constellation source-intent false positive. `source_constellation_star_count` now preserves the workbook flow: child chooses between two star-count numbers, the device reveals a real approved constellation matching the selected number, and the runtime gives a short background introduction. The row now carries a `source_intent_lock_en` that forbids reducing it to direct image counting or fictional star patterns presented as real constellations.
 - Updated the canonical `activities/concept_constellation_star_count_enumerate` package from `Star Pattern Counter` to `Constellation Number Reveal`, including `spec.md`, `prod.md`, `tag_block.yaml`, recap, and dashboard metadata. The repaired flow uses selected number -> approved card reveal -> background clue, with approved asset metadata as the only source for constellation names, star counts, and facts.
 - Reclassified constellation row 20 as high-severity `intent_drift` in the tracked source-intent audits for `runs/20260512_172135_batch5_unblocked`, `runs/20260521_154053_workbook_review_packet`, and `runs/20260521_163621_workbook_review_packet_full`, then regenerated and validated the corresponding source comparison matrices.
@@ -167,6 +171,10 @@
 
 ## Verification
 
+- `python3 -m unittest tests/test_source_comparison_review.py -v`
+  - Result: PASS; 7 source-comparison tests passed, including strict workbook-evidence validation.
+- `python3 scripts/generate_source_comparison_review.py runs/20260521_163621_workbook_review_packet_full --workbook /Users/pharrelly/Downloads/活动库内部初版.xlsx --intent-audit runs/20260521_163621_workbook_review_packet_full/source_comparison/source_intent_audit.yaml --strict-workbook-intent --validate`
+  - Result: PASS; 40 source rows, 40 covered, 36 needing review, 13 after minimum approval, 6 intent drift.
 - `python -m unittest tests.test_source_comparison_review`
   - Result: PASS; 6 source-comparison tests passed, including status-definition rendering, approval-checklist rendering, row-specific original/generated comparison text, approved minimum-unblock intent alignment, and non-sticky table-header regression coverage.
 - `python -m py_compile scripts/generate_source_comparison_review.py`

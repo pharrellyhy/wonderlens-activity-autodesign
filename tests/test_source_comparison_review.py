@@ -224,6 +224,7 @@ def write_intent_audit(path, entries):
                 f"    activity_id: {entry['activity_id']}",
                 f"    original_play_frame: {entry['original_play_frame']}",
                 f"    generated_play_frame: {entry['generated_play_frame']}",
+                f"    workbook_evidence: {entry.get('workbook_evidence', '')}",
                 "    preserved:",
                 "      - Mechanic",
                 "    drift:",
@@ -486,3 +487,64 @@ Old repair recommendation.
         self.assertIn("invalid intent status", joined)
         self.assertIn("invalid intent severity", joined)
         self.assertIn("activity_id mismatch", joined)
+
+    def test_strict_workbook_intent_requires_audit_evidence(self):
+        comparison = load_script("generate_source_comparison_review")
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = pathlib.Path(tmp) / "repo"
+            repo_root.mkdir()
+            workbook = pathlib.Path(tmp) / "活动库内部初版.xlsx"
+            write_source_workbook(workbook)
+            run_dir = write_fixture(repo_root)
+            audit_path = run_dir / "source_comparison" / "source_intent_audit.yaml"
+            write_intent_audit(
+                audit_path,
+                [
+                    {
+                        "source_row": 1,
+                        "activity_id": "concept_phoneme_hunt_collect",
+                        "original_play_frame": "sound hunt first",
+                        "generated_play_frame": "sound hunt first",
+                        "drift": "None",
+                        "status": "aligned",
+                        "severity": "none",
+                        "recommendation": "No repair needed.",
+                        "product_review_question": "Confirm alignment.",
+                    },
+                    {
+                        "source_row": 2,
+                        "activity_id": "concept_partial_reveal_deduce",
+                        "original_play_frame": "part reveal guessing",
+                        "generated_play_frame": "part reveal guessing",
+                        "workbook_evidence": "Workbook row asks the child to guess from a revealed part.",
+                        "drift": "None",
+                        "status": "aligned",
+                        "severity": "none",
+                        "recommendation": "No repair needed.",
+                        "product_review_question": "Confirm alignment.",
+                    },
+                    {
+                        "source_row": 3,
+                        "activity_id": "concept_guided_drawing_probe",
+                        "original_play_frame": "paper drawing",
+                        "generated_play_frame": "paper drawing",
+                        "workbook_evidence": "Workbook row asks for paper-and-pencil drawing.",
+                        "drift": "None",
+                        "status": "aligned",
+                        "severity": "none",
+                        "recommendation": "No repair needed.",
+                        "product_review_question": "Confirm alignment.",
+                    },
+                ],
+            )
+
+            report = comparison.build_report(
+                repo_root,
+                run_dir,
+                workbook,
+                intent_audit_path=audit_path,
+                strict_workbook_intent=True,
+            )
+            issues = comparison.validate_report(report)
+
+        self.assertIn("missing workbook evidence for source row 1", "\n".join(issues))

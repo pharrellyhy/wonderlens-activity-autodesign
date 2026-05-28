@@ -21,6 +21,7 @@ Create or update `runs/<run_id>/source_comparison/source_intent_audit.yaml` with
 ```yaml
 - source_row: <sheet/row or stable id>
   activity_id: <generated id or blank>
+  workbook_evidence: <short English evidence from the original workbook row>
   original_play_frame: <source design intent>
   generated_play_frame: <runtime behavior summary>
   preserved:
@@ -35,9 +36,9 @@ Create or update `runs/<run_id>/source_comparison/source_intent_audit.yaml` with
 
 ## Classification
 
-- `aligned`: generated runtime preserves the workbook play frame, child role, sequence, and required child action.
+- `aligned`: generated runtime preserves the workbook play frame, child role, sequence, required child action, required real/reference asset behavior, and required context/background information.
 - `minor_adaptation`: surface framing or implementation changed, but source intent and coverage remain intact.
-- `intent_drift`: category/mechanic may be similar, but child role, sequence, story frame, or required child action materially changed.
+- `intent_drift`: category/mechanic may be similar, but child role, sequence, story frame, required child action, required real/reference asset behavior, or required context/background information materially changed.
 - `needs_product_decision`: source requires unsupported or unresolved product capability, asset policy, safety decision, or evidence rule, and no accepted minimum version covers it.
 
 When `product_contract_override=minimum_unblock_allowed` is active, do not use `needs_product_decision` for dependencies covered by the accepted minimum version. Instead, record the reduced behavior in `preserved`, `drift`, or the recommendation, then classify by whether source intent was preserved.
@@ -60,8 +61,8 @@ Examples of accepted minimum versions that can still be audit-aligned:
 After the YAML audit is complete, run:
 
 ```bash
-python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml
-python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml --validate
+python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml --strict-workbook-intent
+python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml --strict-workbook-intent --validate
 ```
 
 Record audit counts, commands, high-severity findings, and matrix path in `run_manifest.yaml`, `review_notes.md`, or `HANDOFF.md` as appropriate.

@@ -200,6 +200,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | building_reference_cards_01 |
 | product_capabilities | requires_materials, requires_asset_display, before_after_risk |
 | trigger_condition_en | Parent or child selects a hands-on build mode and has blocks, bricks, or recyclable materials available. |
+| source_intent_lock_en | Preserve the photo/material-specific construction frame: child starts from a visible material such as cushions, clay, or blocks; AI suggests a small build target suited to that material; child builds physically; child shows or confirms the final result without quality judgment. Do not reduce this to generic verbal planning. |
 | adaptation_notes_en | Stop at Phase 0 unless product support exists for material setup, before/after capture, and build review. |
 
 ### source_story_challenge_unlock
@@ -256,6 +257,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | childrens_yoga_pose_cards_01 |
 | product_capabilities | requires_asset_display, requires_motion_safety |
 | trigger_condition_en | Parent selects a calm movement routine and the child has enough space. |
+| source_intent_lock_en | Preserve the screen-supported imitation frame: show approved child-safe pose cards, invite the child to copy each pose, leave enough time, and do not require camera or motion-quality judgment. |
 | adaptation_notes_en | Stop at Phase 0 unless the product declares motion safety constraints and an approved pose library. |
 
 ### source_emotion_reader
@@ -290,6 +292,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | category | cat5 |
 | asset_policy | no_assets |
 | trigger_condition_en | Uploaded or live photo clearly shows a plant with at least two visible parts. |
+| source_intent_lock_en | Preserve the photo-based plant exploration frame: the child captures or looks at different plant positions such as leaf, flower, or stamen, names visible parts, and hears a simple function/background note for each part. Do not reduce this to generic counting or naming without plant-part function talk. |
 | adaptation_notes_en | Use mapping to ground visible parts and tier language when available. If mapping is absent, avoid species-specific facts. |
 
 ### source_plant_state_compare
@@ -306,6 +309,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | category | cat5 |
 | asset_policy | no_assets |
 | trigger_condition_en | A plant photo shows a clear state, such as blooming, wilting, dried, or after watering. |
+| source_intent_lock_en | Preserve the photo-based state-and-care frame: the child notices visible plant states such as green, yellowing, damaged, blooming, or wilting; AI compares the states, explains a likely change in child-safe language, and gives one simple plant-care idea without overclaiming invisible health. |
 | adaptation_notes_en | Mapping improves vocabulary and lifecycle facts, but the child action should remain compare, describe evidence, and explain a likely state. |
 
 ### source_emotion_color_outfit
@@ -342,6 +346,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | color_mixing_board_01 |
 | product_capabilities | requires_asset_display |
 | trigger_condition_en | Child notices two colors nearby or selects a color experiment mode. |
+| source_intent_lock_en | Preserve the scavenger-to-mixing frame: guide the child to find or photograph objects with the target colors, then introduce what those colors make when mixed, including simple primary/secondary color language when tier-appropriate. Do not reduce this to choosing abstract colors without real-world color evidence unless product explicitly approves that adaptation. |
 | adaptation_notes_en | Use a collect-and-predict loop around color pairs. If the board asset is unavailable, describe the result verbally. |
 
 ### source_constellation_star_count
@@ -433,6 +438,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_policy | no_assets |
 | product_capabilities | requires_materials, before_after_risk, ocr_risk |
 | trigger_condition_en | Parent starts a writing or kindness-note activity. |
+| source_intent_lock_en | Preserve the warm physical-note frame: start from the child's photographed object or chosen inspiration, tell a short warm story, invite the child to write or draw a kindness note for a parent or friend, and suggest a real placement such as pillow, desk, or school bag. Do not reduce this to only naming a recipient or saying kind words. |
 | adaptation_notes_en | Stop at Phase 0 unless material workflow and note-capture behavior are defined. |
 
 ### source_award_certificate
@@ -451,6 +457,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | award_inspiration_badges_01 |
 | product_capabilities | requires_materials, requires_asset_display, before_after_risk |
 | trigger_condition_en | Child names someone who helped, tried hard, or deserves appreciation. |
+| source_intent_lock_en | Preserve the warm certificate-making frame: start from a photographed object or family/friend story when available, show simple badge/certificate inspiration, then guide the child to draw or make an award on paper for someone. Do not reduce this to verbal appreciation only unless product explicitly approves a no-material adaptation. |
 | adaptation_notes_en | Stop at Phase 0 unless product supports printable/editable certificates or a material workflow. |
 
 ### source_career_decision
@@ -508,6 +515,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | how_many_count_cards_01 |
 | product_capabilities | requires_asset_display |
 | trigger_condition_en | Screen can show a small set of objects or the camera sees countable items. |
+| source_intent_lock_en | Preserve the quantity-attribute frame: ask how many of a meaningful feature an animal or object has, such as animal legs, wheels, petals, or buttons. Do not reduce this to estimating a pile of visible unrelated objects unless product explicitly approves the generic counting-card adaptation. |
 | adaptation_notes_en | The repeated action is estimate, count, and check. |
 
 ### source_flashcards
@@ -562,6 +570,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | recognition_challenge_cards_01 |
 | product_capabilities | requires_asset_display, requires_ui_state |
 | trigger_condition_en | Product has a tap-based recognition game surface. |
+| source_intent_lock_en | Preserve the recognition-pop frame: after a source object such as dog, introduce visually similar approved targets/distractors, then show changing real/approved pictures where the child responds only when the target appears and stays quiet for non-targets. Do not reduce this to ordinary left/right matching without the target-vs-distractor timing rule. |
 | adaptation_notes_en | Do not force this into a pure dialogue package. Stop at Phase 0 until UI support is declared. |
 
 ### source_word_build_guess
@@ -580,6 +589,7 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | word_growth_ui_01 |
 | product_capabilities | requires_asset_display, requires_ui_state |
 | trigger_condition_en | Product has a text-aware word puzzle mode with parent approval for reading level. |
+| source_intent_lock_en | Preserve the constructive hangman-like frame without punitive imagery: the hidden word is related to the child's photographed or asked-about object, the child says letters until the word is completed, and the UI reveals progress through a warm metaphor such as a growing tree. Do not replace letter guessing with generic clue answering unless product explicitly approves that simplification. |
 | adaptation_notes_en | Stop at Phase 0 until word state, letter UI, and reading-level constraints are declared. |
 
 ### source_would_you_rather

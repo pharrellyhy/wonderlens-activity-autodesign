@@ -391,7 +391,13 @@ def needs_review_after_minimum_approval(row: dict[str, Any]) -> bool:
     return row.get("status") != "Matches"
 
 
-def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_audit_path: Path | None = None) -> dict[str, Any]:
+def build_report(
+    repo_root: Path,
+    run_dir: Path,
+    workbook_path: Path,
+    intent_audit_path: Path | None = None,
+    strict_workbook_intent: bool = False,
+) -> dict[str, Any]:
     workbook_rows = read_source_workbook(workbook_path)
     source_rows = source_markdown_by_row(repo_root)
     generated_by_source = generated_entries_by_source(run_dir)
@@ -457,6 +463,7 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_aud
             "intent_severity": norm(audit_entry.get("severity")),
             "original_play_frame": norm(audit_entry.get("original_play_frame")),
             "generated_play_frame": norm(audit_entry.get("generated_play_frame")),
+            "workbook_evidence": norm(audit_entry.get("workbook_evidence")),
             "intent_preserved": audit_entry.get("preserved") if isinstance(audit_entry.get("preserved"), list) else [],
             "intent_drift_notes": audit_entry.get("drift") if isinstance(audit_entry.get("drift"), list) else [],
             "intent_recommendation": norm(audit_entry.get("recommendation")),
@@ -495,6 +502,7 @@ def build_report(repo_root: Path, run_dir: Path, workbook_path: Path, intent_aud
         "visual_examples": select_visual_examples(rows),
         "intent_audit_provided": bool(intent_audit_path),
         "intent_audit_path": norm(intent_audit_path),
+        "strict_workbook_intent": strict_workbook_intent,
     }
 
 
@@ -860,6 +868,7 @@ def table_row(row: dict[str, Any]) -> str:
           <div><span>Source screen dependency</span><p>{esc(row["screen_dependency"] or "None recorded.")}</p></div>
           <div><span>Generated core loop</span><p>{esc(row["generated_loop"] or "Not generated.")}</p></div>
           <div><span>Original play frame</span><p>{esc(row["original_play_frame"] or "Not audited.")}</p></div>
+          <div><span>Workbook evidence</span><p>{esc(row.get("workbook_evidence") or "Not recorded.")}</p></div>
           <div><span>Generated play frame</span><p>{esc(row["generated_play_frame"] or "Not audited.")}</p></div>
           <div><span>Audit notes</span><p>{esc(intent_detail_notes(row))}</p></div>
           <div><span>Audit review question</span><p>{esc(row["intent_review_question"] or row["review_question"] or "None recorded.")}</p></div>
@@ -1215,6 +1224,8 @@ def validate_report(report: dict[str, Any]) -> list[str]:
                     f"activity_id mismatch for source row {row.get('source_row')}: "
                     f"audit={audit_activity_id or 'missing'} generated={activity_id or 'missing'}"
                 )
+            if report.get("strict_workbook_intent") and not norm(row.get("workbook_evidence")):
+                issues.append(f"missing workbook evidence for source row {row.get('source_row')}")
     return issues
 
 
@@ -1297,8 +1308,15 @@ def write_report(
     workbook_path: Path,
     output_rel: str = DEFAULT_OUTPUT,
     intent_audit_path: Path | None = None,
+    strict_workbook_intent: bool = False,
 ) -> Path:
-    report = build_report(repo_root, run_dir, workbook_path, intent_audit_path=intent_audit_path)
+    report = build_report(
+        repo_root,
+        run_dir,
+        workbook_path,
+        intent_audit_path=intent_audit_path,
+        strict_workbook_intent=strict_workbook_intent,
+    )
     issues = validate_report(report)
     if issues:
         raise SystemExit("Source comparison validation failed before render:\n" + "\n".join(f"- {issue}" for issue in issues))
@@ -1318,12 +1336,19 @@ def main() -> None:
     parser.add_argument("--workbook", type=Path, required=True)
     parser.add_argument("--output", default=DEFAULT_OUTPUT)
     parser.add_argument("--intent-audit", type=Path)
+    parser.add_argument("--strict-workbook-intent", action="store_true")
     parser.add_argument("--validate", action="store_true")
     args = parser.parse_args()
 
     repo_root = Path.cwd()
     if args.validate:
-        report = build_report(repo_root, args.run_dir, args.workbook, intent_audit_path=args.intent_audit)
+        report = build_report(
+            repo_root,
+            args.run_dir,
+            args.workbook,
+            intent_audit_path=args.intent_audit,
+            strict_workbook_intent=args.strict_workbook_intent,
+        )
         issues = validate_report(report)
         output_path = args.run_dir / args.output
         if output_path.exists():
@@ -1343,7 +1368,14 @@ def main() -> None:
         )
         return
 
-    output_path = write_report(repo_root, args.run_dir, args.workbook, args.output, intent_audit_path=args.intent_audit)
+    output_path = write_report(
+        repo_root,
+        args.run_dir,
+        args.workbook,
+        args.output,
+        intent_audit_path=args.intent_audit,
+        strict_workbook_intent=args.strict_workbook_intent,
+    )
     print(f"Wrote {output_path}")
 
 

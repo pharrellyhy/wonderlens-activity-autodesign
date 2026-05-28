@@ -15,7 +15,7 @@ Patch the current run artifacts with the smallest safe changes. Do not regenerat
    - package files referenced by the manifest;
    - existing `activity_exports/`, `source_comparison/`, integrated assets, storyboard/contact-sheet artifacts when present.
 3. Load the original workbook and source-row mapping.
-4. Run a source-intent audit for every scoped workbook row.
+4. Run a source-intent audit for every scoped workbook row. Each entry must include `workbook_evidence` from the original workbook row, not only a normalized source paraphrase.
 5. Classify each row as `aligned`, `minor_adaptation`, `intent_drift`, or `needs_product_decision`.
 6. If the existing run has `product_contract_override: minimum_unblock_allowed`, treat capability-probe dependencies covered by the accepted minimum version as resolved assumptions, not unresolved product-decision blockers.
 7. For high-severity `intent_drift`, choose the smallest repair:
@@ -37,7 +37,7 @@ Patch the current run artifacts with the smallest safe changes. Do not regenerat
 Run the narrow validation for what changed:
 
 ```bash
-python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml --validate
+python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml --strict-workbook-intent --validate
 python3 scripts/export_activity_html.py --validate runs/<run_id>
 python3 scripts/generate_run_review.py --validate runs/<run_id>
 git diff --check
