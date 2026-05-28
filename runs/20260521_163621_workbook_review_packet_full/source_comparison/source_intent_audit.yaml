@@ -5,9 +5,9 @@ scope: all 40 workbook source rows
 method: agent judgment pass recorded as YAML; renderer script only validates and displays
   the matrix
 summary:
-  aligned: 8
+  aligned: 7
   minor_adaptation: 32
-  intent_drift: 0
+  intent_drift: 1
   needs_product_decision: 0
 entries:
 - source_row: 1
@@ -383,25 +383,27 @@ entries:
     for this reviewer packet.
 - source_row: 20
   activity_id: concept_constellation_star_count_enumerate
-  original_play_frame: The child counts visible stars in a constellation card or simplified
-    star pattern.
+  original_play_frame: The child chooses between two possible star-count numbers,
+    then sees a real approved constellation matching the selected number and hears
+    a short background introduction.
   generated_play_frame: The child counts visible stars in a constellation card or
     simplified star pattern.
   preserved:
-  - Original play frame preserved.
-  - Child role and repeated action preserved.
-  - Runtime sequence follows the source intent lock.
-  - Former product dependencies are recorded as resolved minimum-contract assumptions
-    with honest fallbacks.
+  - Constellation star-count number sense.
+  - Prebuilt constellation visuals.
   drift:
-  - Minimum version uses reduced-scope fallback where unsupported product capability
-    is not available.
-  status: minor_adaptation
-  severity: low
-  recommendation: accept for product review; verify minimum-contract assumptions where
-    listed
-  product_review_question: Confirm that the reduced-scope minimum contract is acceptable
-    for this reviewer packet.
+  - Source uses two-choice number selection before reveal; generated loop asks the
+    child to count the already visible image.
+  - Source reveal must use a real approved constellation matching the selected number;
+    generated loop allows simplified or fictional star patterns.
+  - Source includes a short constellation background introduction; generated loop
+    omits that content.
+  status: intent_drift
+  severity: high
+  recommendation: Repair to the source sequence, or keep this row flagged until product
+    explicitly approves the direct-counting adaptation.
+  product_review_question: Approve the direct star-counting adaptation, or restore
+    the source count-choice constellation reveal?
 - source_row: 21
   activity_id: concept_toy_tidy_probe
   original_play_frame: 'Preserve the sequence: initial toy context, child agrees to

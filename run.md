@@ -443,16 +443,17 @@ After writing `review.html`:
 Use this step when the generated packages already exist and the user asks for audit/review coverage rather than a full generation rerun. Do not regenerate activities, assets, or exported reviewer packets unless the audit identifies a package that must be repaired.
 
 1. Create or update `runs/<run_id>/source_comparison/source_intent_audit.yaml` with one entry per source workbook row. Each entry records `source_row`, `activity_id`, `original_play_frame`, `generated_play_frame`, `preserved`, `drift`, `status`, `severity`, `recommendation`, and `product_review_question`.
-2. Classify `status` as `aligned`, `minor_adaptation`, `intent_drift`, or `needs_product_decision`. Use `intent_drift` when the category/mechanic token is preserved but child role, interaction sequence, story frame, or required child action materially changes.
-3. Regenerate the source review matrix from existing run artifacts:
+2. Derive `original_play_frame` from the original workbook row, not from `inputs/source_activity_concepts.md` or an adaptation brief. Use the normalized source snapshot only as a cross-check. If the normalized row has weakened the workbook's child role, sequence, required asset, or background-information requirement, repair the normalized row first or record the generated package as drift.
+3. Classify `status` as `aligned`, `minor_adaptation`, `intent_drift`, or `needs_product_decision`. Use `intent_drift` when the category/mechanic token is preserved but child role, interaction sequence, story frame, required child action, real-vs-fictional asset requirement, or required background/context content materially changes.
+4. Regenerate the source review matrix from existing run artifacts:
 
 ```bash
 python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml
 python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml --validate
 ```
 
-4. Record `outputs.source_intent_audit`, `outputs.source_comparison_review`, audit counts, commands, and residual high-severity findings in `run_manifest.yaml` and `review_notes.md` or `HANDOFF.md`.
-5. If an entry is high-severity `intent_drift`, either repair only that activity package and regenerate the affected review artifacts, or leave it explicitly flagged as a product-review finding. Do not perform a full rerun merely to create the audit.
+5. Record `outputs.source_intent_audit`, `outputs.source_comparison_review`, audit counts, commands, and residual high-severity findings in `run_manifest.yaml` and `review_notes.md` or `HANDOFF.md`.
+6. If an entry is high-severity `intent_drift`, either repair only that activity package and regenerate the affected review artifacts, or leave it explicitly flagged as a product-review finding. Do not perform a full rerun merely to create the audit.
 
 ### Step 7: Mark generated assignment complete
 

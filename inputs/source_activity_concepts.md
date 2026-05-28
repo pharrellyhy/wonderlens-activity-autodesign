@@ -350,8 +350,8 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 |---|---|
 | source_row | 20 |
 | activity_concept | Constellation Star Count |
-| normalized_description_en | The child counts visible stars in a constellation card or simplified star pattern. |
-| normalized_notes_en | Works only with approved constellation visuals or simplified fictional star patterns. |
+| normalized_description_en | The child chooses between two possible star-count numbers, then the device reveals a real approved constellation matching the selected number and gives a short background introduction. |
+| normalized_notes_en | Requires a prebuilt list of approved real constellations with visible guide-star count metadata and child-safe intro text. Multiple constellations may share a count, so runtime may choose one matching card. Exclude dense counts unless the visual remains clear. |
 | assignment_type | activity_concept |
 | input_mode_hint | concept_only |
 | mechanic | enumerate |
@@ -360,7 +360,8 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | asset_requirements | constellation_count_cards_01 |
 | product_capabilities | requires_asset_display |
 | trigger_condition_en | Child chooses a space theme or the screen can show an approved constellation card. |
-| adaptation_notes_en | Keep the counting task concrete and avoid astronomy claims unless asset metadata supplies them. |
+| adaptation_notes_en | Use a count-choice reveal loop. Practice number sense by linking the selected number to a real constellation visual and approved background fact. |
+| source_intent_lock_en | Preserve the sequence: present two star-count choices, child chooses one number, reveal a real approved constellation associated with that number, show the constellation name label when available, then share simple background information. Do not reduce this to asking the child to count stars already shown, and do not present fictional or simplified patterns as real constellations. |
 
 ### source_toy_tidy_challenge
 
@@ -955,12 +956,12 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | requiredness | required |
 | generation_timing | pre_generated |
 | use_step | prod.step_2; prod.step_3.round_1-4 |
-| purpose_en | Provide clear star patterns for counting and simple constellation talk. |
-| prompt_en | Create a set of child-friendly constellation counting cards. Each card shows 4 to 10 bright stars connected by simple thin lines on a dark blue sky background, one pattern per card, no text, no real astronomy labels, no clutter, and high contrast for counting. |
-| source | new_ai_generated_asset_or_approved_constellation_set |
-| display_behavior_en | Show one card each round so the child can count visible stars. |
-| fallback_behavior_en | If cards are unavailable, use a voice-only imaginary star-counting riddle and do not claim a constellation is displayed. |
-| safety_constraints_en | No scientific claims unless backed by approved metadata, no scary space imagery, and no dense star fields. |
+| purpose_en | Provide approved real constellation cards keyed by visible guide-star count, with a name label and child-safe background fact. |
+| prompt_en | Curate or redraw child-friendly real constellation cards from verified star-chart data. Each card includes one common constellation, visible key stars, thin connecting guide lines, optional name label, star_count metadata, and one short child-safe background fact. Preserve the approved star layout; do not invent fictional constellations. |
+| source | approved_constellation_reference_set_or_verified_star_chart_redraw |
+| display_behavior_en | After the child chooses a count, show one approved real constellation card whose metadata matches that selected number. If multiple cards share the count, choose one at random. |
+| fallback_behavior_en | If approved real constellation cards or metadata are unavailable, do not run a direct star-counting image game. Use a voice-only number-to-constellation reveal without claiming a card is visible, or keep the assignment blocked until approved assets exist. |
+| safety_constraints_en | No unsupported astronomy facts, no arbitrary AI-invented constellation layouts, no scary space imagery, and no dense star fields that make the guide-star count unclear. |
 
 ### one_line_drawing_cards_01
 

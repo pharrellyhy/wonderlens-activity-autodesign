@@ -4,7 +4,7 @@ dashboard_fragment:
     angle: quantity
     mechanic: enumerate
     entity_role: reference
-    focal_attribute: visible_star_count
+    focal_attribute: selected_star_count
     entry_rung: '{runtime_entry_rung}'
     exit_rung: '{runtime_exit_rung}'
     outcome: '{runtime_outcome}'

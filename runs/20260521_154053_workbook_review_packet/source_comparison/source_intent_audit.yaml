@@ -11,8 +11,8 @@ status_values:
 summary:
   source_rows: 40
   aligned: 15
-  minor_adaptation: 25
-  intent_drift: 0
+  minor_adaptation: 24
+  intent_drift: 1
   needs_product_decision: 0
 entries:
 - source_row: 1
@@ -311,17 +311,19 @@ entries:
 - source_row: 20
   activity_id: concept_constellation_star_count_enumerate
   original_play_frame: Child chooses between two possible star counts, then sees the constellation matching that number with
-    a short introduction.
+    a short background introduction.
   generated_play_frame: Child counts visible stars in a constellation card or simplified star pattern.
   preserved:
   - Constellation star-count number sense.
   - Prebuilt constellation visuals.
   drift:
   - Source uses two-choice number guessing before reveal; generated loop emphasizes direct counting.
-  status: minor_adaptation
-  severity: medium
-  recommendation: Consider restoring the two-number choice and reveal flow if product wants the original guessing format.
-  product_review_question: Approve direct star counting instead of choosing between two possible counts?
+  - Source reveal must use a real approved constellation matching the selected number; generated loop allows simplified or fictional patterns.
+  - Source includes a short constellation background introduction; generated loop omits that content.
+  status: intent_drift
+  severity: high
+  recommendation: Repair to the source sequence, or keep this row flagged until product explicitly approves the direct-counting adaptation.
+  product_review_question: Approve the direct star-counting adaptation, or restore the source count-choice constellation reveal?
 - source_row: 21
   activity_id: concept_toy_tidy_probe
   original_play_frame: Child photographs a toy-room mess, tidies for a short timed challenge, then photographs the after state

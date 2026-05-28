@@ -1,6 +1,6 @@
 activity_id: concept_constellation_star_count_enumerate
 version: 1
-source_entity_exemplar: approved_star_pattern_card
+source_entity_exemplar: approved_constellation_card
 template_type: cat1
 pillar: Discovery
 game_style: field_experiment
@@ -16,40 +16,41 @@ tier_range:
   elasticity: neighbor
 category: category_1
 attributes:
-- visible_star_count
+- selected_star_count
+- constellation_name
 - quantity
 key_concepts:
 - Form
 - Connection
 related_concepts:
 - count
+- constellation
 - pattern
-- group
 - evidence
 atl_skills:
-- counting
+- number choice
 - observation
-- focus
+- listening
 transdisciplinary_theme: How_The_World_Works
 subject_tags:
 - math
 - science
 kud:
   know:
-  - A star pattern can be estimated, counted, and checked by position
-  - visible_star_count is the focus of the activity
+  - An approved constellation card can have a name and visible guide-star count
+  - selected_star_count is the focus of the activity
   understand:
-  - Form helps children count each visible star in the pattern
-  - Connection helps children compare estimate, final count, and top-bottom grouping
+  - Form helps children notice the approved constellation card's star pattern
+  - Connection helps children link a chosen number, constellation name, and background clue
   do:
-  - make a quick estimate
-  - count visible stars one by one
-  - compare which part of the pattern has more
+  - choose between two star-count numbers
+  - reveal a matching approved constellation card
+  - repeat the selected number, constellation name, or one background clue
 progression:
   topic_axis: form
   difficulty_level: 2
-  next_step_hint: Try one new answer or explain the reason in more detail next time.
-  reward_hook: Earned the Star Count Scout badge
+  next_step_hint: Try a new star number and remember one constellation clue next time.
+  reward_hook: Earned the Constellation Number Scout badge
 caregiver_role:
 - scaffold
 - co-explorer
@@ -63,10 +64,10 @@ activity_signature:
     secondary:
     - form
     - enumerate
-  focal_attribute: visible_star_count
-  intro: The child practices enumerate through Star Pattern Counter.
-  preview_label: Star Pattern Counter
-  preview_prompt: Ready to be the Star Count Scout?
+  focal_attribute: selected_star_count
+  intro: The child practices enumerate through Constellation Number Reveal.
+  preview_label: Constellation Number Reveal
+  preview_prompt: Ready to pick a star number and reveal a constellation?
   role_pivot_note: The runtime entity starts the activity but the package remains
     concept-led and parameterized.
 matchability:

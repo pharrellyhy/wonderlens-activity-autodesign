@@ -11,8 +11,8 @@ status_values:
 summary:
   source_rows: 40
   aligned: 9
-  minor_adaptation: 16
-  intent_drift: 4
+  minor_adaptation: 15
+  intent_drift: 5
   needs_product_decision: 11
 entries:
 - source_row: 1
@@ -282,17 +282,19 @@ entries:
   product_review_question: "Should Color Mixing Board stay photo-based, or is the in-device prediction-wheel adaptation acceptable?"
 - source_row: 20
   activity_id: concept_constellation_star_count_enumerate
-  original_play_frame: "Child chooses between two possible star counts, then sees the constellation matching that number with a short introduction."
+  original_play_frame: "Child chooses between two possible star counts, then sees a real approved constellation matching that number with a short background introduction."
   generated_play_frame: "Child counts visible stars in a constellation card or simplified star pattern."
   preserved:
   - "Constellation star-count number sense."
   - "Prebuilt constellation visuals."
   drift:
   - "Source uses two-choice number guessing before reveal; generated loop emphasizes direct counting."
-  status: minor_adaptation
-  severity: medium
-  recommendation: "Consider restoring the two-number choice and reveal flow if product wants the original guessing format."
-  product_review_question: "Approve direct star counting instead of choosing between two possible counts?"
+  - "Source reveal must use a real approved constellation matching the selected number; generated loop allows simplified or fictional patterns."
+  - "Source includes a short constellation background introduction; generated loop omits that content."
+  status: intent_drift
+  severity: high
+  recommendation: "Repair to the source sequence: two number choices, child selects one, approved real constellation matching the count is revealed, then a short background clue is given."
+  product_review_question: "Approve the direct star-counting adaptation, or restore the source count-choice constellation reveal?"
 - source_row: 21
   activity_id: concept_toy_tidy_probe
   original_play_frame: "Child photographs a toy-room mess, tidies for a short timed challenge, then photographs the after state while AI gives organizing tips during the process."
