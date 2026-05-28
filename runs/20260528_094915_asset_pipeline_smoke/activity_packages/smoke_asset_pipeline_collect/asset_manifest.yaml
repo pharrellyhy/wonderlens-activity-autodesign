@@ -30,14 +30,14 @@ assets:
     mint highlights, warm porcelain background, no text, no watermark, centered with
     safe circular crop padding.
   variants:
-  - id: round_128
+  - id: round_1024
     target: round_device_screen
-    size: 128x128
-    path: assets/moss_token__round_128.png
-  - id: icon_64
+    size: 1024x1024
+    path: assets/moss_token__round_1024.png
+  - id: catalog_512
     target: catalog_grid
-    size: 64x64
-    path: assets/moss_token__icon_64.png
+    size: 512x512
+    path: assets/moss_token__catalog_512.png
   fallback_behavior: If the moss token image is missing, describe the token aloud
     and mark the demo degraded.
 - id: orion_card
@@ -61,9 +61,9 @@ assets:
     uri: https://noirlab.edu/public/media/archives/images/large/ori.jpg
     license: CC BY 4.0
   variants:
-  - id: round_128
+  - id: round_1024
     target: round_device_screen
-    size: 128x128
-    path: assets/orion_card__round_128.png
+    size: 1024x1024
+    path: assets/orion_card__round_1024.png
   fallback_behavior: If the accepted source is missing, do not display or claim the
     Orion card.

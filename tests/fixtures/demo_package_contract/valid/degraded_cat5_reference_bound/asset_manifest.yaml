@@ -28,8 +28,8 @@ assets:
     transformation_policy: generate_new
     prompt_en: Soft 3D educational toy illustration of a simple ball, mint green and warm porcelain palette, centered for a small round screen, no letters, no watermark.
     variants:
-      - id: icon_256
+      - id: catalog_512
         target: catalog_grid
-        size: 256x256
+        size: 512x512
         path:
     fallback_behavior: Use the spoken word "ball" without showing a card.

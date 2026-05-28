@@ -26,10 +26,14 @@ assets:
   transformation_policy: generate_new
   prompt_en: Soft 3D educational toy illustration of a fuzzy moss patch, no text.
   variants:
-  - id: icon_64
+  - id: round_1024
+    target: round_device_screen
+    size: 1024x1024
+    path: assets/moss_icon__round_1024.png
+  - id: catalog_512
     target: catalog_grid
-    size: 64x64
-    path: assets/moss_icon__icon_64.png
+    size: 512x512
+    path: assets/moss_icon__catalog_512.png
   fallback_behavior: Use a spoken moss clue.
 - id: orion_card
   role: story_scene
@@ -50,8 +54,8 @@ assets:
     uri: internal://reference/astronomy/orion
     license: approved_internal_reference
   variants:
-  - id: round_64
+  - id: round_1024
     target: round_device_screen
-    size: 64x64
-    path: assets/orion_card__round_64.png
+    size: 1024x1024
+    path: assets/orion_card__round_1024.png
   fallback_behavior: Do not claim Orion if the approved source is unavailable.

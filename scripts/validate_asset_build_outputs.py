@@ -49,6 +49,7 @@ REFERENCE_METADATA_REQUIRED_FIELDS = (
     "verified_at",
     "reviewer_agent",
 )
+MIN_REQUIRED_RUNTIME_EDGE = 512
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -254,6 +255,7 @@ def validate_asset(
     accuracy_mode = norm(asset.get("accuracy_mode"))
     issues: list[str] = []
     built_paths: list[str] = []
+    built_sizes: list[tuple[int, int]] = []
     for variant in as_list(asset.get("variants")):
         if not isinstance(variant, dict):
             continue
@@ -267,6 +269,8 @@ def validate_asset(
         expected_size = parse_size(variant.get("size"))
         issues.extend(validate_png(package_dir / rel_path, expected_size))
         built_paths.append(rel_path)
+        if expected_size is not None:
+            built_sizes.append(expected_size)
 
     audit = audits.get((activity_id, asset_id))
     if not audit:
@@ -291,6 +295,13 @@ def validate_asset(
 
     if requiredness == "required" and not built_paths:
         issues.append(f"{label}: required asset has no built variant path")
+    if requiredness == "required" and built_paths and not any(
+        min(size) >= MIN_REQUIRED_RUNTIME_EDGE for size in built_sizes
+    ):
+        issues.append(
+            f"{label}: required asset has no high-resolution runtime variant "
+            f"with minimum edge >= {MIN_REQUIRED_RUNTIME_EDGE}px; thumbnails cannot be the only built output"
+        )
     if built_paths and accuracy_mode == "reference_bound":
         issues.extend(validate_reference_source(package_dir, activity_id, asset, references))
     return issues

@@ -1,4 +1,5 @@
 import importlib.util
+import copy
 import pathlib
 import tempfile
 import unittest
@@ -59,6 +60,23 @@ class DemoPackageContractValidatorTest(unittest.TestCase):
         issues = validator.validate_roots([FIXTURE_ROOT / "invalid" / "missing_asset_entity_id"])
 
         self.assertIn("missing required field entity_id", "\n".join(issues))
+
+    def test_required_asset_rejects_thumbnail_only_variants(self):
+        validator = load_validator()
+        manifest = validator.load_yaml(FIXTURE_ROOT / "valid" / "supported_cat5" / "asset_manifest.yaml")
+        asset = copy.deepcopy(manifest["assets"][1])
+        asset["variants"] = [
+            {
+                "id": "round_128",
+                "target": "round_device_screen",
+                "size": "128x128",
+                "path": None,
+            }
+        ]
+
+        issues = validator.validate_asset(pathlib.Path("package"), asset, manifest["screen_targets"], 0)
+
+        self.assertIn("required asset must include at least one high-resolution runtime variant", "\n".join(issues))
 
     def test_root_with_no_demo_extensions_passes(self):
         validator = load_validator()

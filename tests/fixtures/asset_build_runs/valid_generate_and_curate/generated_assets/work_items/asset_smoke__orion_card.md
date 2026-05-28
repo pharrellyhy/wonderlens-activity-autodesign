@@ -18,7 +18,7 @@ Preserve the approved Orion star layout exactly; add no extra stars.
 
 ## Variants
 
-- `round_64`: round_device_screen, 64x64
+- `round_1024`: round_device_screen, 1024x1024
 
 ## Agent Instructions
 

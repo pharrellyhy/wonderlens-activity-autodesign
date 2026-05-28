@@ -18,7 +18,8 @@ Soft 3D educational toy illustration of a fuzzy moss patch, no text.
 
 ## Variants
 
-- `icon_64`: catalog_grid, 64x64
+- `round_1024`: round_device_screen, 1024x1024
+- `catalog_512`: catalog_grid, 512x512
 
 ## Agent Instructions
 

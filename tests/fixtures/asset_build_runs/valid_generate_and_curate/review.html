@@ -1412,7 +1412,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
       <div><span>Transform</span><strong>generate_new</strong></div>
     </div>
     <div class="asset-placement">
-      <p><span>Runtime variants</span><a href="activity_packages/asset_smoke/assets/moss_icon__icon_64.png" target="_blank" rel="noopener">icon_64 64x64: assets/moss_icon__icon_64.png</a></p>
+      <p><span>Runtime variants</span><a href="activity_packages/asset_smoke/assets/moss_icon__round_1024.png" target="_blank" rel="noopener">round_1024 1024x1024: assets/moss_icon__round_1024.png</a><br><a href="activity_packages/asset_smoke/assets/moss_icon__catalog_512.png" target="_blank" rel="noopener">catalog_512 512x512: assets/moss_icon__catalog_512.png</a></p>
       <p><span>Reference/source</span><a href="generated_assets/work_items/asset_smoke__moss_icon.md" data-preview-id="preview-generated-assets-work-items-asset-smoke--moss-icon-md">work item</a></p>
       <p><span>QA</span>Built package-local runtime asset variants.</p>
     </div>
@@ -1435,7 +1435,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
       <div><span>Transform</span><strong>crop_resize_only</strong></div>
     </div>
     <div class="asset-placement">
-      <p><span>Runtime variants</span><a href="activity_packages/asset_smoke/assets/orion_card__round_64.png" target="_blank" rel="noopener">round_64 64x64: assets/orion_card__round_64.png</a></p>
+      <p><span>Runtime variants</span><a href="activity_packages/asset_smoke/assets/orion_card__round_1024.png" target="_blank" rel="noopener">round_1024 1024x1024: assets/orion_card__round_1024.png</a></p>
       <p><span>Reference/source</span><span>Approved internal Orion chart</span> <a href="activity_packages/asset_smoke/assets/sources/orion_card__source_metadata.yaml" data-preview-id="preview-activity-packages-asset-smoke-assets-sources-orion-card--source-metadata-yaml">source metadata</a> <a href="activity_packages/asset_smoke/assets/sources/orion_card__source_original.png" target="_blank" rel="noopener">source original</a> <a href="generated_assets/work_items/asset_smoke__orion_card.md" data-preview-id="preview-generated-assets-work-items-asset-smoke--orion-card-md">work item</a></p>
       <p><span>QA</span>Built package-local runtime asset variants.</p>
     </div>
@@ -1718,9 +1718,9 @@ checks:
 
 - [x] assignment_type=activity_concept, activity_concept=Asset Smoke, activity_id=asset_smoke, demo_export=true, asset_build=generate_and_curate</template>
 <template id="preview-generated-activity-ids-txt" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/generated_activity_ids.txt" data-href="generated_activity_ids.txt" data-kind="Text" data-truncated="false" data-size="12">asset_smoke</template>
-<template id="preview-generated-assets-asset-outputs-yaml" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/generated_assets/asset_outputs.yaml" data-href="generated_assets/asset_outputs.yaml" data-kind="YAML" data-truncated="false" data-size="1640">run_id: valid_generate_and_curate
+<template id="preview-generated-assets-asset-outputs-yaml" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/generated_assets/asset_outputs.yaml" data-href="generated_assets/asset_outputs.yaml" data-kind="YAML" data-truncated="false" data-size="1904">run_id: valid_generate_and_curate
 asset_build_mode: generate_and_curate
-generated_at: &#x27;2026-05-28T01:42:33+08:00&#x27;
+generated_at: &#x27;2026-05-28T10:35:17+08:00&#x27;
 package_count: 1
 asset_count: 2
 built_count: 2
@@ -1737,11 +1737,18 @@ entries:
   package_path: activity_packages/asset_smoke
   work_item_path: generated_assets/work_items/asset_smoke__moss_icon.md
   output_variants:
-  - variant_id: icon_64
-    path: assets/moss_icon__icon_64.png
-    size: 64x64
-    sha256: bcba560f5e8a0bd31789fe0987a6e417f6c41d137261d8db712682b8305db1c2
-    byte_count: 185
+  - variant_id: round_1024
+    path: assets/moss_icon__round_1024.png
+    size: 1024x1024
+    sha256: 7206c9799ed69a3b0e71e87dd9f38e741778275640982fa44aba3bc725be11d5
+    byte_count: 6493
+    mime_type: image/png
+    source_asset_id: moss_icon
+  - variant_id: catalog_512
+    path: assets/moss_icon__catalog_512.png
+    size: 512x512
+    sha256: e9354c1b5b318bf46149da0da34d513239b2734865b7a0cb3e3442d2b4847f4c
+    byte_count: 2203
     mime_type: image/png
     source_asset_id: moss_icon
   source_metadata_path: &#x27;&#x27;
@@ -1758,11 +1765,11 @@ entries:
   package_path: activity_packages/asset_smoke
   work_item_path: generated_assets/work_items/asset_smoke__orion_card.md
   output_variants:
-  - variant_id: round_64
-    path: assets/orion_card__round_64.png
-    size: 64x64
-    sha256: bcba560f5e8a0bd31789fe0987a6e417f6c41d137261d8db712682b8305db1c2
-    byte_count: 185
+  - variant_id: round_1024
+    path: assets/orion_card__round_1024.png
+    size: 1024x1024
+    sha256: 7206c9799ed69a3b0e71e87dd9f38e741778275640982fa44aba3bc725be11d5
+    byte_count: 6493
     mime_type: image/png
     source_asset_id: orion_card
   source_metadata_path: activity_packages/asset_smoke/assets/sources/orion_card__source_metadata.yaml
@@ -1770,7 +1777,7 @@ entries:
   - Built package-local runtime asset variants.</template>
 <template id="preview-generated-assets-reference-sources-yaml" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/generated_assets/reference_sources.yaml" data-href="generated_assets/reference_sources.yaml" data-kind="YAML" data-truncated="false" data-size="764">run_id: valid_generate_and_curate
 asset_build_mode: generate_and_curate
-generated_at: &#x27;2026-05-28T01:42:33+08:00&#x27;
+generated_at: &#x27;2026-05-28T10:35:17+08:00&#x27;
 entries:
 - activity_id: asset_smoke
   asset_id: orion_card
@@ -1788,7 +1795,7 @@ entries:
   verification_notes: Must preserve the approved Orion star arrangement.</template>
 <template id="preview-generated-assets-qa-notes-yaml" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/generated_assets/qa_notes.yaml" data-href="generated_assets/qa_notes.yaml" data-kind="YAML" data-truncated="false" data-size="380">run_id: valid_generate_and_curate
 asset_build_mode: generate_and_curate
-generated_at: &#x27;2026-05-28T01:42:33+08:00&#x27;
+generated_at: &#x27;2026-05-28T10:35:17+08:00&#x27;
 entries:
 - activity_id: asset_smoke
   asset_id: moss_icon
@@ -1862,7 +1869,7 @@ activity_signature:
   mechanic: collect</template>
 <template id="preview-activity-packages-asset-smoke-recap-template-yaml" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/activity_packages/asset_smoke/recap.template.yaml" data-href="activity_packages/asset_smoke/recap.template.yaml" data-kind="YAML" data-truncated="false" data-size="3">{}</template>
 <template id="preview-activity-packages-asset-smoke-dashboard-template-yaml" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/activity_packages/asset_smoke/dashboard.template.yaml" data-href="activity_packages/asset_smoke/dashboard.template.yaml" data-kind="YAML" data-truncated="false" data-size="3">{}</template>
-<template id="preview-generated-assets-work-items-asset-smoke--moss-icon-md" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/generated_assets/work_items/asset_smoke__moss_icon.md" data-href="generated_assets/work_items/asset_smoke__moss_icon.md" data-kind="Markdown" data-truncated="false" data-size="772"># Asset Work Item: asset_smoke/moss_icon
+<template id="preview-generated-assets-work-items-asset-smoke--moss-icon-md" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/generated_assets/work_items/asset_smoke__moss_icon.md" data-href="generated_assets/work_items/asset_smoke__moss_icon.md" data-kind="Markdown" data-truncated="false" data-size="825"># Asset Work Item: asset_smoke/moss_icon
 
 Mode: `generate_and_curate`
 Package: `activity_packages/asset_smoke`
@@ -1882,7 +1889,8 @@ Soft 3D educational toy illustration of a fuzzy moss patch, no text.
 
 ## Variants
 
-- `icon_64`: catalog_grid, 64x64
+- `round_1024`: round_device_screen, 1024x1024
+- `catalog_512`: catalog_grid, 512x512
 
 ## Agent Instructions
 
@@ -1904,7 +1912,7 @@ source_original_path: assets/sources/orion_card__source_original.png
 sha256: 0db9564703beb8b69b21ddba77f23fb0474b0ab6de6a7edb63e48d82ec8c2139
 verified_at: &#x27;2026-05-28T01:03:59+08:00&#x27;
 reviewer_agent: fixture-reviewer</template>
-<template id="preview-generated-assets-work-items-asset-smoke--orion-card-md" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/generated_assets/work_items/asset_smoke__orion_card.md" data-href="generated_assets/work_items/asset_smoke__orion_card.md" data-kind="Markdown" data-truncated="false" data-size="948"># Asset Work Item: asset_smoke/orion_card
+<template id="preview-generated-assets-work-items-asset-smoke--orion-card-md" data-label="tests/fixtures/asset_build_runs/valid_generate_and_curate/generated_assets/work_items/asset_smoke__orion_card.md" data-href="generated_assets/work_items/asset_smoke__orion_card.md" data-kind="Markdown" data-truncated="false" data-size="954"># Asset Work Item: asset_smoke/orion_card
 
 Mode: `generate_and_curate`
 Package: `activity_packages/asset_smoke`
@@ -1924,7 +1932,7 @@ Preserve the approved Orion star layout exactly; add no extra stars.
 
 ## Variants
 
-- `round_64`: round_device_screen, 64x64
+- `round_1024`: round_device_screen, 1024x1024
 
 ## Agent Instructions
 

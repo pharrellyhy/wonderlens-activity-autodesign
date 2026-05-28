@@ -25,7 +25,7 @@ def load_script(name):
     return module
 
 
-def write_png(path, size=(32, 32), color=(117, 207, 151, 255)):
+def write_png(path, size=(1024, 1024), color=(117, 207, 151, 255)):
     path.parent.mkdir(parents=True, exist_ok=True)
     image = Image.new("RGBA", size, color)
     image.save(path, format="PNG")
@@ -195,9 +195,15 @@ def base_run(run_dir):
                     "prompt_en": "Soft 3D educational toy illustration of a fuzzy moss patch, no text.",
                     "variants": [
                         {
-                            "id": "icon_64",
+                            "id": "round_1024",
+                            "target": "round_device_screen",
+                            "size": "1024x1024",
+                            "path": None,
+                        },
+                        {
+                            "id": "catalog_512",
                             "target": "catalog_grid",
-                            "size": "64x64",
+                            "size": "512x512",
                             "path": None,
                         }
                     ],
@@ -227,9 +233,9 @@ def base_run(run_dir):
                     ],
                     "variants": [
                         {
-                            "id": "round_64",
+                            "id": "round_1024",
                             "target": "round_device_screen",
-                            "size": "64x64",
+                            "size": "1024x1024",
                             "path": None,
                         }
                     ],
@@ -260,14 +266,17 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
             self.assertEqual(0, result["required_failures"])
             self.assertEqual([], issues)
             self.assertEqual(
-                "assets/moss_icon__icon_64.png",
+                "assets/moss_icon__round_1024.png",
                 manifest["assets"][0]["variants"][0]["path"],
             )
             self.assertEqual(
-                "assets/orion_card__round_64.png",
+                "assets/orion_card__round_1024.png",
                 manifest["assets"][1]["variants"][0]["path"],
             )
-            self.assertEqual((64, 64), Image.open(package_dir / "assets" / "moss_icon__icon_64.png").size)
+            with Image.open(package_dir / "assets" / "moss_icon__round_1024.png") as image:
+                self.assertEqual((1024, 1024), image.size)
+            with Image.open(package_dir / "assets" / "moss_icon__catalog_512.png") as image:
+                self.assertEqual((512, 512), image.size)
             self.assertTrue((package_dir / "assets" / "sources" / "orion_card__source_metadata.yaml").exists())
             statuses = {(entry["asset_id"], entry["status"]) for entry in asset_outputs["entries"]}
             self.assertIn(("moss_icon", "generated"), statuses)
@@ -301,7 +310,7 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
             write_reference_metadata(package_dir)
 
             first = builder.build_assets(run_dir, mode="generate_and_curate")
-            output = package_dir / "assets" / "moss_icon__icon_64.png"
+            output = package_dir / "assets" / "moss_icon__round_1024.png"
             metadata_path = package_dir / "assets" / "sources" / "orion_card__source_metadata.yaml"
             first_metadata = metadata_path.read_text()
             output.write_bytes(b"reviewed-output")
@@ -382,6 +391,53 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
 
         self.assertIn("unsafe variant path", "\n".join(issues))
 
+    def test_validator_rejects_required_built_thumbnail_only_asset(self):
+        validator = load_script("validate_asset_build_outputs")
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = pathlib.Path(tmp) / "runs" / "test_run"
+            package_dir = base_run(run_dir)
+            manifest = read_yaml(package_dir / "asset_manifest.yaml")
+            manifest["assets"] = [manifest["assets"][0]]
+            manifest["assets"][0]["variants"] = [
+                {
+                    "id": "icon_64",
+                    "target": "catalog_grid",
+                    "size": "64x64",
+                    "path": "assets/moss_icon__icon_64.png",
+                }
+            ]
+            write_yaml(package_dir / "asset_manifest.yaml", manifest)
+            write_png(package_dir / "assets" / "moss_icon__icon_64.png", size=(64, 64))
+            work_item = run_dir / "generated_assets" / "work_items" / "asset_smoke__moss_icon.md"
+            work_item.parent.mkdir(parents=True, exist_ok=True)
+            work_item.write_text("# moss work item\n")
+            write_yaml(
+                run_dir / "generated_assets" / "asset_outputs.yaml",
+                {
+                    "entries": [
+                        {
+                            "activity_id": "asset_smoke",
+                            "asset_id": "moss_icon",
+                            "status": "generated",
+                            "work_item_path": "generated_assets/work_items/asset_smoke__moss_icon.md",
+                            "output_variants": [
+                                {
+                                    "variant_id": "icon_64",
+                                    "path": "assets/moss_icon__icon_64.png",
+                                    "size": "64x64",
+                                }
+                            ],
+                        }
+                    ]
+                },
+            )
+            write_yaml(run_dir / "generated_assets" / "reference_sources.yaml", {"entries": []})
+            write_yaml(run_dir / "generated_assets" / "qa_notes.yaml", {"entries": []})
+
+            issues = validator.validate_run(run_dir)
+
+        self.assertIn("required asset has no high-resolution runtime variant", "\n".join(issues))
+
     def test_dashboard_shows_runtime_asset_outputs(self):
         builder = load_script("build_activity_assets")
         report = load_script("generate_run_review")
@@ -397,7 +453,7 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
 
         self.assertIn("Generated Runtime Assets", html)
         self.assertIn("generate_and_curate", html)
-        self.assertIn("assets/moss_icon__icon_64.png", html)
+        self.assertIn("assets/moss_icon__round_1024.png", html)
         self.assertIn("Approved internal Orion chart", html)
         self.assertIn("asset_smoke__orion_card.md", html)
 
@@ -455,7 +511,7 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
             self.assertEqual("", result.stderr)
             self.assertEqual(0, result.returncode, result.stdout)
             self.assertIn("built=2", result.stdout)
-            self.assertTrue((package_dir / "assets" / "orion_card__round_64.png").exists())
+            self.assertTrue((package_dir / "assets" / "orion_card__round_1024.png").exists())
 
 
 if __name__ == "__main__":

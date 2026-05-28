@@ -18,7 +18,7 @@ Preserve the accepted Orion source image layout when resizing. Do not add, remov
 
 ## Variants
 
-- `round_128`: round_device_screen, 128x128
+- `round_1024`: round_device_screen, 1024x1024
 
 ## Agent Instructions
 

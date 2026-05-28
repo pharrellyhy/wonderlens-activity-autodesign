@@ -267,6 +267,7 @@ Runtime completeness rule:
 - Do not generate image files as part of this loop. When an activity uses AI-generated or displayed images, author the dependency in `spec.md` `## Asset Brief`, add a skimmable `## Asset Usage Timeline`, and reference the stable `asset_id` plus display location from the relevant screen description in `prod.md`.
 - Do not make contact sheets the runtime asset contract. For demo export, write separate asset entries in `asset_manifest.yaml`; contact sheets may remain review-only artifacts under pilot asset workflows.
 - For reference-bound assets, include approved source/provenance and verification notes in `asset_manifest.yaml`. If source/provenance is missing, mark demo support `degraded` with a limitation, `unsupported`, or leave demo export incomplete rather than pretending a random generated image is correct.
+- For required assets, include at least one high-resolution runtime variant with minimum edge >= 512px. Prefer `round_1024` for the prototype round screen and `catalog_512` for catalog or selection surfaces. Tiny `64px`/`128px` variants are allowed only as secondary thumbnails, never as the only playable runtime output.
 
 ### Step 4: Self-evaluate and repair
 
