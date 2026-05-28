@@ -45,6 +45,82 @@ GENERIC_BRANCH_POLICY_PATTERNS = {
     "No response AI follow-up": "[wait 2s] [gentle] Model a tiny answer and invite one small try.",
 }
 
+RUNTIME_CONTRACT_CUE_GROUPS = {
+    "goal/action": (
+        "goal:",
+        "ask",
+        "build",
+        "celebrate",
+        "close",
+        "explain",
+        "frame",
+        "guide",
+        "invite",
+        "react",
+        "teach",
+        "tell",
+    ),
+    "constraint": (
+        "constraint:",
+        "avoid",
+        "do not",
+        "limit",
+        "max",
+        "must",
+        "sentence",
+        "tier",
+    ),
+    "emotion/tone": (
+        "emotion",
+        "tone",
+        "curious",
+        "excited",
+        "gentle",
+        "mysterious",
+        "playful",
+        "proud",
+        "warm",
+        "wonder",
+    ),
+    "child progress evidence": (
+        "child progress",
+        "progress evidence",
+        "child",
+        "chooses",
+        "captures",
+        "describes",
+        "evidence",
+        "finds",
+        "names",
+        "photo",
+        "points",
+        "says",
+        "tap",
+    ),
+    "branch behavior": (
+        "branch",
+        "ideal",
+        "no response",
+        "off-track",
+        "silence",
+        "unexpected",
+    ),
+    "activity/source frame": (
+        "activity",
+        "build from",
+        "child role",
+        "do not skip",
+        "do not turn",
+        "frame",
+        "mission",
+        "preserve",
+        "promise",
+        "role",
+        "source",
+        "story",
+    ),
+}
+
 RUBRIC_CRITERIA = [
     {
         "number": "1",
@@ -478,6 +554,55 @@ def generic_branch_policy_findings(beats: list[dict[str, Any]]) -> list[str]:
         repeated_labels.append(f"{label} across {len(distinct_titles)} beats")
     if repeated_labels:
         findings.append(f"Runtime beat set: repeated branch policy in {', '.join(sorted(repeated_labels))}")
+    return findings
+
+
+def runtime_contract_quality_findings(beats: list[dict[str, Any]]) -> list[str]:
+    findings: list[str] = []
+    for beat in beats:
+        if beat.get("speech_mode") != "runtime_contract":
+            continue
+        title = normalize_text(beat.get("title") or "Runtime beat")
+        instruction = normalize_text(beat.get("runtime_instruction"))
+        instruction_lower = instruction.lower()
+        example = normalize_text(beat.get("example_ai_line"))
+        screen = normalize_text(beat.get("screen"))
+        missing: list[str] = []
+        if not example:
+            missing.append("missing Example AI line")
+        elif not re.match(r"^\[[^\]]+\]", example):
+            missing.append("Example AI line lacks leading tone marker")
+
+        missing_cues = [
+            label
+            for label, cues in RUNTIME_CONTRACT_CUE_GROUPS.items()
+            if not any(cue in instruction_lower for cue in cues)
+        ]
+        if len(instruction) < 160:
+            missing_cues.append("fullstack-style detail")
+        if missing_cues:
+            missing.append("missing runtime contract cues: " + ", ".join(dict.fromkeys(missing_cues)))
+
+        branch_rows = beat.get("branches", [])
+        branch_by_token = {
+            branch.get("token"): branch
+            for branch in branch_rows
+            if normalize_text(branch.get("child")) or normalize_text(branch.get("followup"))
+        }
+        missing_branches = [
+            branch_label_for_token(token)
+            for _, token in BRANCH_LABELS
+            if not normalize_text(branch_by_token.get(token, {}).get("child"))
+            or not normalize_text(branch_by_token.get(token, {}).get("followup"))
+        ]
+        if missing_branches:
+            missing.append("missing branch-specific child/follow-up rows: " + ", ".join(missing_branches))
+
+        if not screen or len(screen) < 40 or screen.lower() in {"show the activity start.", "screen updates."}:
+            missing.append("missing specific screen/state behavior")
+
+        if missing:
+            findings.append(f"{title}: " + "; ".join(missing))
     return findings
 
 
@@ -4593,6 +4718,11 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         for beats in runtime_sets
         for finding in generic_branch_policy_findings(beats)
     ]
+    runtime_quality_findings = [
+        finding
+        for beats in runtime_sets
+        for finding in runtime_contract_quality_findings(beats)
+    ]
     expected_branch_followups = sum(
         len(beat.get("branches", []))
         for beats in runtime_sets
@@ -4656,6 +4786,7 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             )
         ),
         "branch_policy_specificity": not generic_policy_findings,
+        "runtime_contract_quality": not runtime_quality_findings,
         "photo_capture_timing": expected_photo_timing == 0
         or (
             text.count('class="photo-timing-strip"') >= expected_photo_timing
@@ -4835,6 +4966,8 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         print("missing_links=" + ", ".join(missing_links[:20]))
     if product_capability_gaps:
         print("product_capability_gaps=" + ", ".join(product_capability_gaps))
+    if runtime_quality_findings:
+        print("runtime_contract_quality_findings=" + " | ".join(runtime_quality_findings[:20]))
     if failed:
         raise SystemExit("FAIL review dashboard validation: " + ", ".join(failed))
 

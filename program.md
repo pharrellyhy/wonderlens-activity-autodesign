@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.30 | **Date**: 2026-05-28
+> **Version**: 1.31 | **Date**: 2026-05-28
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.31 — 2026-05-28**: Raise `Runtime AI instruction` quality to the downstream `step_instructions` bar used by fullstack-demo. Runtime contracts must be convertible into useful hook/transition/round/celebrate/closing guidance: goal/action, tier/length constraint, emotion/tone, child progress evidence, branch behavior, source/activity frame guardrail, concrete example line, and specific screen/state behavior.
 > **v1.30 — 2026-05-28**: Make the WonderLens activity asset style self-contained for full `GOAL.md` runs: square 512x512 runtime PNGs by default, central circular safe area, soft 3D toy illustration matching the mint/white prototype device, and no baked-in device chrome, text, labels, logos, masks, borders, or contact sheets.
 > **v1.29 — 2026-05-27**: Add optional direct-demo package extensions: `demo_support.yaml` for support/degraded/unsupported gating and explicit entity binding, plus `asset_manifest.yaml` for separate runtime assets, prototype-device visual style, round-screen safe areas, and reference-bound source/provenance rules. Contact sheets remain review-only artifacts.
 > **v1.28 — 2026-05-22**: Tighten reviewer-ready branch policy specificity. Unexpected and no-response branches must be beat- and round-specific; keyword-substitution rows and repeated Step 3 branch policies fail review.
@@ -474,7 +475,7 @@ Every generated package must still include one of the required `pillar` values a
    - ✅ "That's such an interesting idea! I love how you described it."
    - ❌ "That's wrong. Try again."
 
-4. **Concrete Runtime Speech Contract**: Older packages may use `AI says` with actual dialogue and tone/emotion markers. New packages may use `Runtime AI instruction` plus `Example AI line` when the live LLM should generate wording at runtime. The instruction must constrain role, sequence, required content, safety/product limits, branch behavior, and source-promise alignment; the example line shows acceptable tone and wording but is not the only allowed runtime response. Never write vague summaries such as "AI guides the child."
+4. **Concrete Runtime Speech Contract**: Older packages may use `AI says` with actual dialogue and tone/emotion markers. New packages may use `Runtime AI instruction` plus `Example AI line` when the live LLM should generate wording at runtime. The instruction must be strong enough to convert into downstream `step_instructions`: include the beat goal/action, tier or length constraint, emotion/tone, required child progress evidence, branch behavior, source/activity frame guardrail, safety/product limits, and source-promise alignment. The example line shows acceptable tone and wording but is not the only allowed runtime response. Never write vague summaries such as "AI guides the child."
 
 5. **Edge Case Coverage**: Every step must anticipate AT LEAST 3 child response types:
    - (Ideal) Child responds as hoped
@@ -732,7 +733,7 @@ These extension files do not replace the five-required-file package contract. A 
 For new runtime-LLM packages, a step or round may replace `AI says` with a behavior contract:
 
 ```markdown
-**Runtime AI instruction:** [what the runtime LLM must do, including source play frame, required content, branch behavior, safety/product constraints, and what must not be skipped]
+**Runtime AI instruction:** [what the runtime LLM must do, including beat goal/action, source play frame, tier/length constraint, emotion/tone, required content, child progress evidence, branch behavior, safety/product constraints, and what must not be skipped]
 
 **Example AI line:** [tone/emotion marker] "[one concrete acceptable line]"
 ```
@@ -773,7 +774,7 @@ Existing `AI says` exact-dialogue steps remain valid. Do not use a single fixed 
 - **Tone markers** are always in square brackets at the start of AI dialogue: `[excited discovery tone]`, `[mysterious whisper]`, `[warm celebration]`, etc.
 - **Every runtime round must be fully expanded** in `prod.md`. Never write "same structure," "AI gives a riddle," "later rounds follow," or any one-line summary for a runtime round.
 - **All runtime steps must be executable.** Do not reserve full detail only for Step 3; Steps 1, 2, 4, and 5 also need concrete dialogue branches, follow-ups, and screen states unless a branch is genuinely inapplicable.
-- **Runtime behavior contracts** must pair `Runtime AI instruction` with `Example AI line`, and must preserve source-promise alignment. A behavior instruction is not acceptable if it omits the story setup, profession role-play, physical challenge, photo collection, UI state, or other source element that makes the activity what it is.
+- **Runtime behavior contracts** must pair `Runtime AI instruction` with `Example AI line`, and must preserve source-promise alignment. A behavior instruction is not acceptable if it omits the downstream `step_instructions` essentials: goal/action, tier/length constraint, emotion/tone, child progress evidence, branch behavior, source/activity frame guardrail, concrete example line, and specific screen/state behavior. It is also not acceptable if it omits the story setup, profession role-play, physical challenge, photo collection, UI state, or other source element that makes the activity what it is.
 - **Branch policies must be beat- and round-specific.** Do not reuse boilerplate such as "Child gives an unrelated answer, unsafe action, or asks to change the task", "Validate the idea, restate the safe rule", or "Model a tiny answer" across activities. Do not keyword-substitute a generic row with the activity title, round title, or mechanic name. Unexpected and no-response branches must name what the child is likely to do in this exact beat and how the AI preserves the current mechanic, source frame, asset/fallback, and screen state.
 - **Step 3 branch rows must not repeat across rounds.** If Round 1, Round 2, and Round 3 share the same unexpected/no-response child behavior or AI follow-up text, repair the package before review. Each round should reference the current clue, choice, challenge, asset state, prior consequence, or completion target.
 - **Specificity beats brevity.** Distinguish rounds, screen states, and follow-ups with concrete clues, actions, labels, consequences, or child evidence. A compact migrated package still needs enough detail to match the older quality floor.
@@ -846,7 +847,7 @@ For the target tier, check:
 ### Dimension 6: Dialogue Specificity (PASS/FAIL)
 
 - For exact-dialogue beats, is every `AI says` / follow-up line actual, concrete dialogue (not "AI guides the child to...")? → Must be YES
-- For runtime-contract beats, does every `Runtime AI instruction` include required content, source frame, branch behavior, safety/product constraints, and a concrete `Example AI line`? → Must be YES
+- For runtime-contract beats, does every `Runtime AI instruction` include goal/action, tier/length constraint, emotion/tone, child progress evidence, branch behavior, source/activity frame guardrail, safety/product constraints, specific screen/state behavior, and a concrete `Example AI line`? → Must be YES
 - Does every exact AI line or example AI line include a tone/emotion marker? → Must be YES
 - Are AI responses or runtime behavior constraints warm, playful, and child-appropriate? → Must be YES
 - Is there zero use of abstract instructions like "AI encourages" or "AI provides feedback"? → Must be YES
