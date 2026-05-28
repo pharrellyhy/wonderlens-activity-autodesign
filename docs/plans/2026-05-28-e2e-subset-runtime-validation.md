@@ -41,6 +41,17 @@ have package-local `demo_support.yaml` and `asset_manifest.yaml`. Therefore this
 validation should generate a fresh scoped subset rather than reuse the old
 `runs/20260521_163621_workbook_review_packet_full` packages directly.
 
+The current visual style reference is:
+
+```text
+/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/wonderlens-activity-style.md
+```
+
+Use its WonderLens activity asset style, composition, palette, and image
+constraints when generating subset image assets. Ignore its save-location
+workflow for this repo: generated assets must stay in the current autodesign
+package-local locations and be referenced through `asset_manifest.yaml`.
+
 Downstream current heads inspected before this plan:
 
 - fullstack demo: `32650f8`
@@ -90,8 +101,17 @@ For every generated package:
 - `demo_support.yaml` exists unless the package is an explicitly blocked
   preview;
 - `asset_manifest.yaml` exists for every demo-export package;
-- required assets include at least one runtime variant with minimum edge
-  `>=512px`, with `round_1024` preferred for round-screen display;
+- required assets include at least one final runtime PNG at `512x512` or larger,
+  with `512x512` preferred for this validation unless the current asset
+  manifest requires an additional larger variant;
+- generated image assets follow the WonderLens activity style: soft 3D toy
+  illustration, warm whites, mint green accents, soft sky blue, gentle coral,
+  pale yellow, rounded clay/plastic forms, and gentle studio lighting;
+- generated image assets are square source art with the primary subject inside
+  a central circular safe area, simple full-bleed background continued to the
+  square edges, and no baked-in circular mask, lens border, rim, vignette,
+  black corners, transparent margin, white margin, readable text, letters,
+  numbers, logos, watermarks, contact sheets, or UI labels;
 - reference-bound assets include accepted package-local source metadata before
   they are considered ready;
 - `prod.md` references stable `asset_id` values and fallback behavior, not raw

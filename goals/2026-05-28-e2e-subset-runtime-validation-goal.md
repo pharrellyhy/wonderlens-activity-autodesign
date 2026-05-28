@@ -25,6 +25,7 @@ Related context:
 - `run.md`
 - `README.md`
 - `docs/plans/2026-05-28-generate-and-curate-asset-pipeline.md`
+- `/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/wonderlens-activity-style.md`
 - `/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/goals/2026-05-27-autodesign-package-demo-import-goal.md`
 - `/Users/pharrelly/codebase/gitlab/wonderlens-ai/goals/2026-05-27-autodesign-demo-package-ingestion-goal.md`
 
@@ -39,8 +40,20 @@ behavior.
 - Use a fresh scoped autodesign run, not only old fixtures.
 - Use `demo_export=true` and `asset_build=generate_and_curate`.
 - Validate package-local assets, not contact sheets.
-- Required assets must have at least one runtime variant with minimum edge
-  `>=512px`.
+- Required assets must have at least one final runtime PNG at `512x512` or
+  larger, with `512x512` preferred for this validation unless the current
+  manifest requires an additional larger variant.
+- Generate image assets in the WonderLens activity style from the fullstack
+  demo prompt reference: soft 3D toy illustration, warm white and mint device
+  palette, sky blue, coral, pale yellow, rounded clay/plastic forms, gentle
+  studio lighting, square source art, primary subject inside the central
+  circular safe area, and simple full-bleed background to every square edge.
+- Do not bake in device chrome: no circular or oval mask, lens border, rim,
+  vignette, black corners, transparent margin, white margin, readable text,
+  letters, numbers, logos, watermark, contact sheet, or UI labels.
+- Ignore the fullstack-demo style file's save-location workflow. Keep generated
+  assets in the current autodesign package-local locations and reference them
+  through `asset_manifest.yaml`.
 - Reference-bound assets must use verified source metadata and must not be
   random generated approximations.
 - Do not claim autodesign directly emits WonderLens AI `runtime.yaml`; verify
