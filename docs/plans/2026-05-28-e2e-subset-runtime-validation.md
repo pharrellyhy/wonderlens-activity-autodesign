@@ -41,16 +41,10 @@ have package-local `demo_support.yaml` and `asset_manifest.yaml`. Therefore this
 validation should generate a fresh scoped subset rather than reuse the old
 `runs/20260521_163621_workbook_review_packet_full` packages directly.
 
-The current visual style reference is:
-
-```text
-/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/wonderlens-activity-style.md
-```
-
-Use its WonderLens activity asset style, composition, palette, and image
-constraints when generating subset image assets. Ignore its save-location
-workflow for this repo: generated assets must stay in the current autodesign
-package-local locations and be referenced through `asset_manifest.yaml`.
+Use the repo-local WonderLens activity asset style now embedded in `GOAL.md`,
+`program.md`, and `run.md` when generating subset image assets. Generated assets
+must stay in the current autodesign package-local locations and be referenced
+through `asset_manifest.yaml`.
 
 Downstream current heads inspected before this plan:
 

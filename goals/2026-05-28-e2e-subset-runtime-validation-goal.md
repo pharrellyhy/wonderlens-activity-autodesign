@@ -25,7 +25,6 @@ Related context:
 - `run.md`
 - `README.md`
 - `docs/plans/2026-05-28-generate-and-curate-asset-pipeline.md`
-- `/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/wonderlens-activity-style.md`
 - `/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/goals/2026-05-27-autodesign-package-demo-import-goal.md`
 - `/Users/pharrelly/codebase/gitlab/wonderlens-ai/goals/2026-05-27-autodesign-demo-package-ingestion-goal.md`
 
@@ -43,8 +42,8 @@ behavior.
 - Required assets must have at least one final runtime PNG at `512x512` or
   larger, with `512x512` preferred for this validation unless the current
   manifest requires an additional larger variant.
-- Generate image assets in the WonderLens activity style from the fullstack
-  demo prompt reference: soft 3D toy illustration, warm white and mint device
+- Generate image assets in the repo-local WonderLens activity style from
+  `GOAL.md` / `program.md`: soft 3D toy illustration, warm white and mint device
   palette, sky blue, coral, pale yellow, rounded clay/plastic forms, gentle
   studio lighting, square source art, primary subject inside the central
   circular safe area, and simple full-bleed background to every square edge.

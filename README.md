@@ -135,7 +135,9 @@ runs/<run_id>/generated_assets/
 
 Keep `asset_manifest.yaml` as the stable source request. Do not fake file paths or claim unavailable assets are displayed; use `demo_support.yaml` degraded/unsupported gates and fallback behavior instead.
 
-Required assets must include at least one high-resolution runtime variant with a minimum edge of `512px`; use `round_1024` for the prototype round screen when possible and `catalog_512` for catalog or activity-selection surfaces. Smaller `64px`/`128px` files are thumbnails only and must not be the only playable asset output.
+Illustrative image assets use the repo-local WonderLens activity asset style from `GOAL.md` / `program.md`: soft 3D toy illustration, warm white and mint prototype-device palette, soft sky blue, gentle coral, pale yellow, rounded clay/plastic forms, gentle studio lighting, square source art, central circular safe area, and simple full-bleed background scenery to every square edge. Do not bake in device chrome or review layout: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, white margin, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels.
+
+Required assets must include at least one final runtime PNG at `512x512` or larger, with `512x512` preferred unless the manifest explicitly requests an additional larger variant. Smaller `64px`/`128px` files are thumbnails only and must not be the only playable asset output.
 
 Before running the asset builder, place illustrative source PNGs in `generated_assets/inbox/<activity_id>/<asset_id>.png`. For reference-bound assets, place both `assets/sources/<asset_id>__source_original.<ext>` and `assets/sources/<asset_id>__source_metadata.yaml` in the package. Source metadata must include accepted `source_type`, verified `license`, `storage_allowed: true`, `verification_status: accepted`, matching `sha256`, `verified_at`, and `reviewer_agent`.
 

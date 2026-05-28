@@ -85,26 +85,22 @@ runs/<run_id>/generated_assets/
 ## Visual Target For Illustrative Assets
 
 Illustrative assets should use the `wonderlens_device_mint_soft_3d` style
-already documented in `program.md` and the demo package contract.
+documented in `GOAL.md`, `program.md`, and the demo package contract:
 
-The acceptable target resembles the inspected generated visual references under:
-
-```text
-/Users/pharrelly/.codex/generated_images/019e6796-207e-78b1-99ac-215bbe71abf1/
-```
-
-The round toy-scene references in that folder are appropriate as style
-direction:
-
-- soft 3D educational toy material;
-- mint green, pale sage, warm porcelain, and gentle coral accents;
-- clean centered subjects;
+- soft 3D educational toy illustration;
+- warm white and mint prototype-device palette;
+- soft sky blue, gentle coral, pale yellow, and activity-specific small
+  highlights;
+- rounded clay/plastic forms;
 - gentle studio lighting;
-- no text and no watermark;
-- enough padding for a circular screen crop.
+- cohesive square source art;
+- primary subject inside a central circular safe area;
+- simple full-bleed background scenery continued to every square edge.
 
-The UI mockup images in that folder are design references only. They should not
-be emitted as runtime assets.
+Do not bake device chrome or review layout into runtime assets: no circular or
+oval mask, lens border, rim, vignette, black corners, transparent margin, white
+margin, readable text, letters, numbers, logos, watermark, contact sheet, or UI
+labels.
 
 Runtime asset roles should stay distinct:
 
@@ -117,8 +113,10 @@ Runtime asset roles should stay distinct:
   static image unless the manifest explicitly requests it.
 
 Round-device variants are the primary target. Keep all important detail inside
-the central 70 to 75 percent circle. Horizontal debug variants are secondary
-companions when requested by the manifest.
+the central circular safe area. Horizontal debug variants are secondary
+companions when requested by the manifest. Final runtime PNGs should be
+`512x512` unless the manifest explicitly requests another or additional larger
+variant.
 
 ## Output Contract
 
@@ -224,8 +222,7 @@ For `accuracy_mode: illustrative` assets:
 - Use the manifest `prompt_en` as the source requirement.
 - Add the shared `wonderlens_device_mint_soft_3d` style prompt and screen-target
   constraints.
-- Generate the master asset at a large square size when possible, then derive
-  declared variants.
+- Generate cohesive square source art, then derive declared variants.
 - Do not generate text, watermarks, brand marks, copyrighted characters,
   photoreal child faces, unsafe props, or dense UI.
 - Prefer separate subject assets over multi-object scenes unless the role is

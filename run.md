@@ -267,7 +267,9 @@ Runtime completeness rule:
 - Do not generate image files as part of this loop. When an activity uses AI-generated or displayed images, author the dependency in `spec.md` `## Asset Brief`, add a skimmable `## Asset Usage Timeline`, and reference the stable `asset_id` plus display location from the relevant screen description in `prod.md`.
 - Do not make contact sheets the runtime asset contract. For demo export, write separate asset entries in `asset_manifest.yaml`; contact sheets may remain review-only artifacts under pilot asset workflows.
 - For reference-bound assets, include approved source/provenance and verification notes in `asset_manifest.yaml`. If source/provenance is missing, mark demo support `degraded` with a limitation, `unsupported`, or leave demo export incomplete rather than pretending a random generated image is correct.
-- For required assets, include at least one high-resolution runtime variant with minimum edge >= 512px. Prefer `round_1024` for the prototype round screen and `catalog_512` for catalog or selection surfaces. Tiny `64px`/`128px` variants are allowed only as secondary thumbnails, never as the only playable runtime output.
+- For illustrative assets, use the built-in WonderLens activity asset style from `GOAL.md` / `program.md`: soft 3D toy illustration, warm white and mint prototype-device palette, soft sky blue, gentle coral, pale yellow, rounded clay/plastic forms, gentle studio lighting, central circular safe area, and full-bleed square background to the edges.
+- Do not bake device chrome or review layout into generated assets: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, white margin, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels.
+- For required assets, include at least one final runtime PNG at `512x512` or larger, with `512x512` preferred unless the manifest explicitly requests an additional larger variant. Tiny `64px`/`128px` variants are allowed only as secondary thumbnails, never as the only playable runtime output.
 
 ### Step 4: Self-evaluate and repair
 
@@ -337,7 +339,7 @@ Before logging or committing, verify:
 
 Run this phase only after every generated package has passed package validation and only when `source.asset_build` is not `none` or `manifest_only`.
 
-- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; the deterministic builder consumes agent-generated PNGs from `runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png`, writes final variants under each package's `assets/`, updates package-relative variant paths, and summarizes them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
+- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; the agent-generated source PNGs must follow the built-in WonderLens activity asset style, and the deterministic builder consumes them from `runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png`, writes final variants under each package's `assets/`, updates package-relative variant paths, and summarizes them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
 - `curate_reference`: for `reference_bound` assets, let an agent propose candidate sources, then verify provenance through approved public-domain, official, licensed/internal, or verified educational/scientific sources before accepting. Store accepted source originals and reviewer-approved metadata under package-local `assets/sources/`; do not use random web-image results as sources. The deterministic builder validates this metadata and leaves paths null if accepted provenance is missing or weak.
 - `generate_and_curate`: run both behaviors.
 

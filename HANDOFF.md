@@ -2,9 +2,9 @@
 
 ## Current Status
 
-- Status: Branch `feat/generate-and-curate-asset-pipeline` implements the explicit `asset_build=generate_and_curate` runtime asset pipeline. The builder consumes delegated-agent/imagegen inputs, validates preaccepted reference source metadata, writes package-local runtime PNGs, updates `asset_manifest.yaml` variant paths, validates outputs, and surfaces runtime asset status in `review.html`.
+- Status: `main` now contains the explicit `asset_build=generate_and_curate` runtime asset pipeline, plus a repo-local WonderLens activity asset style contract for full `GOAL.md` runs. Future image-asset runs no longer need an external style prompt file.
 - Date: 2026-05-28
-- Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/generate-and-curate-asset-pipeline`
+- Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes
 
@@ -12,6 +12,8 @@
 - Added `scripts/validate_asset_build_outputs.py` to verify package-local runtime asset paths, PNG dimensions, accepted reference source metadata/originals, source hashes, run audit files, path safety, and absence of unsafe absolute contract paths.
 - Extended `scripts/generate_run_review.py` and `review_dashboard.md` so dashboards show `Generated Runtime Assets`, `asset_outputs.yaml`, `reference_sources.yaml`, `qa_notes.yaml`, source metadata, work items, built variants, and missing/fallback asset status separately from pilot contact sheets. Requested asset builds now appear in `review.html` even when `asset_outputs.yaml` is missing.
 - Added focused tests in `tests/test_generate_and_curate_asset_pipeline.py` plus fixture run `tests/fixtures/asset_build_runs/valid_generate_and_curate` with built illustrative and reference-bound runtime assets.
+- Embedded the WonderLens activity asset style in `GOAL.md`, `program.md`, `run.md`, and `README.md`: soft 3D toy illustration, mint/white prototype-device palette, square 512x512 runtime PNGs by default, central circular safe area, full-bleed square background, no baked-in device chrome/text/logos/contact sheets, and package-local output locations from `asset_manifest.yaml`.
+- Updated the E2E subset validation plan/goal and the asset-pipeline plan to reference the repo-local style contract instead of an external style prompt file.
 - Updated `GOAL.md`, `run.md`, `program.md`, and `README.md` with executable asset build commands and package-local output rules.
 - Marked the generate-and-curate asset pipeline plan and goal as completed in `docs/plans/README.md` and `goals/README.md`.
 - Validation used `/Users/pharrelly/.pyenv/versions/3.13.6/bin/python` because the default Homebrew `python3` lacks pytest, PyYAML, jsonschema, and Pillow.
