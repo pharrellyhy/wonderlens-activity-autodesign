@@ -1,0 +1,71 @@
+activity_id: e2e_soft_shape_collect
+version: 1
+template_type: cat5
+pillar: Adventure
+game_style: quest_collector
+entity: soft shape
+entity_class: &id001
+- shape
+- household_object
+entity_binding: bound
+source_entity_exemplar: soft shape
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed e2e validation scope
+category: cat5
+attributes:
+- shape
+- soft or round visible shape
+key_concepts:
+- Form
+- Connection
+related_concepts:
+- round
+- corner
+- long
+- photo evidence
+atl_skills:
+- observing
+- describing
+- matching
+transdisciplinary_theme: How the world works
+kud:
+  know:
+  - soft shape can be noticed through soft or round visible shape.
+  understand:
+  - A good activity keeps the promised child action and evidence source intact.
+  do:
+  - Respond to the runtime prompt with one concrete choice, observation, capture,
+    or explanation.
+progression:
+  topic_axis: form
+  difficulty_level: 1
+  next_step_hint: Reuse the same mechanic with a new entity only after consumer support
+    matches this contract.
+  reward_hook: Soft shape hunt
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: shape
+  mechanic: collect
+  entity_role: exemplar
+  focal_attribute: soft or round visible shape
+  intro: The child uses guide cards to choose a shape clue, then captures a real-world
+    photo as the collection evidence.
+  bridge_prerequisites:
+    primary:
+    - shape
+    secondary:
+    - round
+    - corner
+  preview_label: Soft shape hunt
+  preview_prompt: Pick a guide card, find one real matching shape, and capture it.
+  role_pivot_note: No role pivot; package is bound to the declared validation entity.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

@@ -1,0 +1,72 @@
+activity_id: e2e_orion_number_reveal
+version: 1
+template_type: cat1
+pillar: Adventure
+game_style: time_traveler
+entity: Orion constellation
+entity_class: &id001
+- constellation
+- reference_chart
+entity_binding: bound
+source_entity_exemplar: Orion constellation
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed e2e validation scope
+category: cat1
+attributes:
+- quantity
+- chosen number reveals the seven-star Orion card
+key_concepts:
+- Form
+- Perspective
+related_concepts:
+- quantity
+- source fidelity
+- background information
+atl_skills:
+- choosing
+- observing
+- listening
+transdisciplinary_theme: How we express ourselves
+kud:
+  know:
+  - Orion constellation can be noticed through chosen number reveals the seven-star
+    Orion card.
+  understand:
+  - A good activity keeps the promised child action and evidence source intact.
+  do:
+  - Respond to the runtime prompt with one concrete choice, observation, capture,
+    or explanation.
+progression:
+  topic_axis: form
+  difficulty_level: 1
+  next_step_hint: Reuse the same mechanic with a new entity only after consumer support
+    matches this contract.
+  reward_hook: Orion number reveal
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: quantity
+  mechanic: decide
+  entity_role: reference
+  focal_attribute: chosen number reveals the seven-star Orion card
+  intro: The child chooses a number before reveal, then sees a source-faithful Orion
+    card and hears background information.
+  bridge_prerequisites:
+    primary:
+    - quantity
+    secondary:
+    - quantity
+    - source fidelity
+  preview_label: Orion number reveal
+  preview_prompt: Choose a number, reveal the real Orion guide stars, and hear one
+    background fact.
+  role_pivot_note: No role pivot; package is bound to the declared validation entity.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

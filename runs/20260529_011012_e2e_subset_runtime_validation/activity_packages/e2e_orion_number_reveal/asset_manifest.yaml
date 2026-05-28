@@ -1,0 +1,48 @@
+activity_id: e2e_orion_number_reveal
+entity_id: Orion_constellation
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: soft sky blue
+  primary_accent: mint green
+  secondary_accent: gentle coral
+  shadow: soft lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: orion_seven_star_card
+  role: story_scene
+  label: Seven-star Orion reference card
+  requiredness: required
+  accuracy_mode: reference_bound
+  source_strategy: licensed_reference
+  transformation_policy: simplified_redraw
+  prompt_en: Create a simplified redraw from the verified Orion source data. Preserve
+    the seven guide-star layout used for Orion, draw only those seven countable stars
+    plus simple connecting guide lines, and do not add background stars, labels, numbers,
+    text, or invented constellations.
+  reference_policy:
+    source_required: true
+    allowed_sources:
+    - licensed_asset
+    verification_required: true
+    verification_notes: Use the accepted NSF NOIRLab Orion chart source for provenance;
+      the runtime asset is a simplified, child-safe redraw with exactly seven prominent
+      guide stars.
+  sources:
+  - label: NSF NOIRLab Orion chart based on IAU and Sky & Telescope artwork
+    uri: https://noirlab.edu/public/media/archives/images/large/ori.jpg
+    license: CC BY 4.0
+    source_type: licensed_asset
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/orion_seven_star_card__round_512.png
+  fallback_behavior: If the accepted Orion source or simplified redraw is unavailable,
+    do not reveal or describe the constellation card.

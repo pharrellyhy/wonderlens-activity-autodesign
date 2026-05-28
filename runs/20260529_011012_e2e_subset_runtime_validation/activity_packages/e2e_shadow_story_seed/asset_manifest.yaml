@@ -1,0 +1,37 @@
+activity_id: e2e_shadow_story_seed
+entity_id: shadow_seed
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: soft sky blue
+  primary_accent: mint green
+  secondary_accent: gentle coral
+  shadow: soft lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: shadow_seed_scene
+  role: story_scene
+  label: soft seed-shaped shadow prompt
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration in the WonderLens activity style:
+    warm white and mint prototype-device palette, soft sky blue, gentle coral, pale
+    yellow, rounded clay or plastic forms, gentle studio lighting, square source art,
+    primary subject inside the central circular safe area, simple full-bleed background
+    to every edge, no text, no labels, no logo, no watermark, no device chrome, no
+    circular mask, no border. Subject: soft seed-shaped shadow prompt.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/shadow_seed_scene__round_512.png
+  fallback_behavior: If shadow_seed_scene is unavailable, keep the package gated or
+    degraded instead of showing a substitute image.

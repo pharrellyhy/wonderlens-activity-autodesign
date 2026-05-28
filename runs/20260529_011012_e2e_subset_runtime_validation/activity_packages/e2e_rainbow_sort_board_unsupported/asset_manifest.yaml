@@ -1,0 +1,17 @@
+activity_id: e2e_rainbow_sort_board_unsupported
+entity_id: rainbow_tiles
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: soft sky blue
+  primary_accent: mint green
+  secondary_accent: gentle coral
+  shadow: soft lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets: []

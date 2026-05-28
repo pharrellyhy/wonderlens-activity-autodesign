@@ -1,0 +1,7 @@
+dashboard_fragment:
+  session:
+    focal_attribute: soft or round visible shape
+    summary: Used generated shape cards as guidance, then preserved the real photo
+      as collection evidence.
+  caregiver:
+    note: Generated for the scoped E2E runtime validation subset.

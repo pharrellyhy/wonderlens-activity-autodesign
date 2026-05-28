@@ -1,0 +1,5 @@
+e2e_shadow_story_seed
+e2e_soft_shape_collect
+e2e_b_sound_treasure_collect
+e2e_rainbow_sort_board_unsupported
+e2e_orion_number_reveal

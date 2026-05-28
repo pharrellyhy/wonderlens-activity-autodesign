@@ -1,0 +1,101 @@
+activity_id: e2e_b_sound_treasure_collect
+entity_id: B_sound_object
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: soft sky blue
+  primary_accent: mint green
+  secondary_accent: gentle coral
+  shadow: soft lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: ball
+  role: collection_correct
+  label: round ball B-sound card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration in the WonderLens activity style:
+    warm white and mint prototype-device palette, soft sky blue, gentle coral, pale
+    yellow, rounded clay or plastic forms, gentle studio lighting, square source art,
+    primary subject inside the central circular safe area, simple full-bleed background
+    to every edge, no text, no labels, no logo, no watermark, no device chrome, no
+    circular mask, no border. Subject: round ball B-sound card.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/ball__round_512.png
+  fallback_behavior: If ball is unavailable, keep the package gated or degraded instead
+    of showing a substitute image.
+  collection_catalog_id: ball
+- id: book
+  role: collection_correct
+  label: closed book B-sound card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration in the WonderLens activity style:
+    warm white and mint prototype-device palette, soft sky blue, gentle coral, pale
+    yellow, rounded clay or plastic forms, gentle studio lighting, square source art,
+    primary subject inside the central circular safe area, simple full-bleed background
+    to every edge, no text, no labels, no logo, no watermark, no device chrome, no
+    circular mask, no border. Subject: closed book B-sound card.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/book__round_512.png
+  fallback_behavior: If book is unavailable, keep the package gated or degraded instead
+    of showing a substitute image.
+  collection_catalog_id: book
+- id: banana
+  role: collection_correct
+  label: curved banana B-sound card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration in the WonderLens activity style:
+    warm white and mint prototype-device palette, soft sky blue, gentle coral, pale
+    yellow, rounded clay or plastic forms, gentle studio lighting, square source art,
+    primary subject inside the central circular safe area, simple full-bleed background
+    to every edge, no text, no labels, no logo, no watermark, no device chrome, no
+    circular mask, no border. Subject: curved banana B-sound card.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/banana__round_512.png
+  fallback_behavior: If banana is unavailable, keep the package gated or degraded
+    instead of showing a substitute image.
+  collection_catalog_id: banana
+- id: cup
+  role: collection_distractor
+  label: plain cup non-B distractor card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration in the WonderLens activity style:
+    warm white and mint prototype-device palette, soft sky blue, gentle coral, pale
+    yellow, rounded clay or plastic forms, gentle studio lighting, square source art,
+    primary subject inside the central circular safe area, simple full-bleed background
+    to every edge, no text, no labels, no logo, no watermark, no device chrome, no
+    circular mask, no border. Subject: plain cup non-B distractor card.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/cup__round_512.png
+  fallback_behavior: If cup is unavailable, keep the package gated or degraded instead
+    of showing a substitute image.
+  collection_catalog_id: cup

@@ -131,3 +131,8 @@ Art Critic Tournament	art_critic_tournament	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	runs/
 Color In Famous Art	color_famous_art	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260512_172135_batch5_unblocked/activity_packages/concept_color_famous_art_probe	2026-05-12T17:21:35+08:00
 Simple Body Movement Guide	body_movement	cat1	T0	PASS	P	P	P	P	P	P	P	P	N	runs/20260512_172135_batch5_unblocked/activity_packages/concept_body_movement_probe	2026-05-12T17:21:35+08:00
 Asset Pipeline Smoke	asset_pipeline_smoke	cat5	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260528_094915_asset_pipeline_smoke/activity_packages/smoke_asset_pipeline_collect	2026-05-28T10:09:51+08:00
+Shadow Story Seed	shadow_story_seed	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_shadow_story_seed	2026-05-29T01:39:26+08:00
+Soft Shape Collect	soft_shape_collect	cat5	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_soft_shape_collect	2026-05-29T01:39:26+08:00
+B-Sound Treasure Collect	b_sound_treasure	cat5	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_b_sound_treasure_collect	2026-05-29T01:39:26+08:00
+Rainbow Sort Board	rainbow_sort_board	cat5	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_rainbow_sort_board_unsupported	2026-05-29T01:39:26+08:00
+Orion Number Reveal	orion_number_reveal	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_orion_number_reveal	2026-05-29T01:39:26+08:00

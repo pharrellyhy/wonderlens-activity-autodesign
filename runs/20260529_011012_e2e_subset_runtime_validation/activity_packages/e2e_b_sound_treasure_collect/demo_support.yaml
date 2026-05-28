@@ -1,0 +1,27 @@
+activity_id: e2e_b_sound_treasure_collect
+version: 1
+demo_support:
+  status: degraded
+  ui_template: cat5_judgment
+  support_level: partial
+  entity_bindings:
+  - entity_id: B_sound_object
+    display_label: B-Sound Object
+    source_entity_exemplar: B-sound object
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: true
+    runtime_judgment: true
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons:
+  - The current demo cannot honestly judge whether a photographed object name begins
+    with the B sound from image data alone.
+  - The package requires child speech or typed/name evidence in addition to the real
+    photo_id handoff.
+  consumer_notes:
+    fullstack_demo: Import this package through scripts/import_autodesign_package.py
+      and preserve support gating from demo_support.yaml.
+    wonderlens_ai: Convert prod.md through scripts/generate_activity_runtime.py; runtime.yaml
+      is a downstream artifact, not emitted by autodesign.
