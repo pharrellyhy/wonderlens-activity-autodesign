@@ -1,0 +1,39 @@
+activity_id: concept_career_decision_decide
+entity_id: firefighter_expert_role
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: firefighter_role_card
+  role: entity
+  label: inclusive firefighter helper role card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: One inclusive adult firefighter helper character with
+    a simple safe tool, friendly and non-emergency, no flames or danger.. Style: Flat
+    Nordic children''s illustration matching the quiet white WonderLens prototype;
+    broad flat color fills, sparse pencil texture, muted sage, dusty teal-blue, soft
+    terracotta, oatmeal, ochre, blush; square 512x512 source art with important detail
+    inside central circular safe area; no readable text, letters, numbers, labels,
+    logo, watermark, border, contact sheet, device frame, circular mask, or vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/firefighter_role_card__round_512.png
+  fallback_behavior: If firefighter_role_card is unavailable, preserve support honesty
+    and do not claim this asset is visible.

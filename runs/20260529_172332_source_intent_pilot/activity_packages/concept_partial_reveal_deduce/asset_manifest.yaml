@@ -1,0 +1,83 @@
+activity_id: concept_partial_reveal_deduce
+entity_id: partial_animal_reveal_cards
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: rabbit_ears_reveal_card
+  role: story_scene
+  label: rabbit ears partial reveal card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: Partial-reveal animal guessing card showing only two long
+    rabbit ears and a tiny top-of-head hint, not the full animal.. Style: Flat Nordic
+    children''s illustration matching the quiet white WonderLens prototype; broad
+    flat color fills, sparse pencil texture, muted sage, dusty teal-blue, soft terracotta,
+    oatmeal, ochre, blush; square 512x512 source art with important detail inside
+    central circular safe area; no readable text, letters, numbers, labels, logo,
+    watermark, border, contact sheet, device frame, circular mask, or vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rabbit_ears_reveal_card__round_512.png
+  fallback_behavior: If rabbit_ears_reveal_card is unavailable, preserve support honesty
+    and do not claim this asset is visible.
+- id: tiger_tail_reveal_card
+  role: story_scene
+  label: tiger tail partial reveal card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: Partial-reveal animal guessing card showing only an orange
+    striped tiger tail curling into view, not the full animal.. Style: Flat Nordic
+    children''s illustration matching the quiet white WonderLens prototype; broad
+    flat color fills, sparse pencil texture, muted sage, dusty teal-blue, soft terracotta,
+    oatmeal, ochre, blush; square 512x512 source art with important detail inside
+    central circular safe area; no readable text, letters, numbers, labels, logo,
+    watermark, border, contact sheet, device frame, circular mask, or vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/tiger_tail_reveal_card__round_512.png
+  fallback_behavior: If tiger_tail_reveal_card is unavailable, preserve support honesty
+    and do not claim this asset is visible.
+- id: elephant_trunk_reveal_card
+  role: story_scene
+  label: elephant trunk partial reveal card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: Partial-reveal animal guessing card showing only a gentle
+    elephant trunk and one soft ear edge, not the full animal.. Style: Flat Nordic
+    children''s illustration matching the quiet white WonderLens prototype; broad
+    flat color fills, sparse pencil texture, muted sage, dusty teal-blue, soft terracotta,
+    oatmeal, ochre, blush; square 512x512 source art with important detail inside
+    central circular safe area; no readable text, letters, numbers, labels, logo,
+    watermark, border, contact sheet, device frame, circular mask, or vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/elephant_trunk_reveal_card__round_512.png
+  fallback_behavior: If elephant_trunk_reveal_card is unavailable, preserve support
+    honesty and do not claim this asset is visible.

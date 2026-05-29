@@ -1,0 +1,74 @@
+activity_id: concept_career_decision_decide
+version: 1
+template_type: cat1
+pillar: Performance
+game_style: expert_choice
+entity: firefighter expert role
+entity_class: &id001
+- profession
+- helper_role
+entity_binding: bound
+source_entity_exemplar: firefighter expert role
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed source-intent pilot scope
+category: cat1
+attributes:
+- function
+- responsibility
+- decision
+key_concepts:
+- Function
+- Responsibility
+related_concepts:
+- expert role
+- work scenario
+- safe choice
+atl_skills:
+- decision-making
+- explaining
+- role-play
+transdisciplinary_theme: How we organize ourselves
+kud:
+  know:
+  - firefighter expert role can be explored through child-as-professional work decision.
+  understand:
+  - The child role, device role, sequence, evidence source, and context promise must
+    stay connected.
+  do:
+  - Respond with the promised choice, observation, capture, explanation, or material
+    action.
+progression:
+  topic_axis: responsibility
+  difficulty_level: 2
+  next_step_hint: Scale only after source-intent audit, asset validation, and downstream
+    conversion pass.
+  reward_hook: Expert Decision Maker
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: function
+  mechanic: decide
+  entity_role: catalyst
+  focal_attribute: child-as-professional work decision
+  intro: The child is placed in a professional helper role, faces a concrete work
+    scenario, and makes simple expert decisions.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - expert role
+    - work scenario
+    - safe choice
+  preview_label: Expert choice shift
+  preview_prompt: Pretend you are the helper expert and choose what to do.
+  role_pivot_note: No role pivot unless the source explicitly assigns the child a
+    role.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

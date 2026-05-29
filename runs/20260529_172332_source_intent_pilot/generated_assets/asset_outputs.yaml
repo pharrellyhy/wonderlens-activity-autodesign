@@ -1,0 +1,176 @@
+run_id: 20260529_172332_source_intent_pilot
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-29T17:48:29+08:00'
+package_count: 7
+asset_count: 8
+built_count: 8
+required_failures: 0
+entries:
+- activity_id: concept_career_decision_decide
+  asset_id: firefighter_role_card
+  role: entity
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_career_decision_decide
+  work_item_path: generated_assets/work_items/concept_career_decision_decide__firefighter_role_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/firefighter_role_card__round_512.png
+    size: 512x512
+    sha256: 26e23537e0212542b8bae03d25bc3b5b5dfe163934d27243fa97a7a7b8751d8f
+    byte_count: 254601
+    mime_type: image/png
+    source_asset_id: firefighter_role_card
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: cassiopeia_five_star_card
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: approved_internal_reference
+  transformation_policy: crop_resize_only
+  status: curated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__cassiopeia_five_star_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/cassiopeia_five_star_card__round_512.png
+    size: 512x512
+    sha256: dd92614634e7479e96750dca05f4341a4f64811967d5e9dba06c3ac090de7e36
+    byte_count: 3986
+    mime_type: image/png
+    source_asset_id: cassiopeia_five_star_card
+  source_metadata_path: activity_packages/concept_constellation_star_count_enumerate/assets/sources/cassiopeia_five_star_card__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: orion_seven_star_card
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: approved_internal_reference
+  transformation_policy: crop_resize_only
+  status: curated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__orion_seven_star_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/orion_seven_star_card__round_512.png
+    size: 512x512
+    sha256: 82d867bdb80014d8c1594855aaba2abae0b06b19ac9ca47fc6652d9b9fed5727
+    byte_count: 4512
+    mime_type: image/png
+    source_asset_id: orion_seven_star_card
+  source_metadata_path: activity_packages/concept_constellation_star_count_enumerate/assets/sources/orion_seven_star_card__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: rabbit_ears_reveal_card
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_partial_reveal_deduce
+  work_item_path: generated_assets/work_items/concept_partial_reveal_deduce__rabbit_ears_reveal_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/rabbit_ears_reveal_card__round_512.png
+    size: 512x512
+    sha256: cebc801121f63d6cd7e4a5fe7e180d8e2122107698921447624729981603a5ae
+    byte_count: 296984
+    mime_type: image/png
+    source_asset_id: rabbit_ears_reveal_card
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: tiger_tail_reveal_card
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_partial_reveal_deduce
+  work_item_path: generated_assets/work_items/concept_partial_reveal_deduce__tiger_tail_reveal_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/tiger_tail_reveal_card__round_512.png
+    size: 512x512
+    sha256: 0dd6707acc7bacea599662b96f4652826d715c49bd75a391b0ad1c870d866231
+    byte_count: 269940
+    mime_type: image/png
+    source_asset_id: tiger_tail_reveal_card
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: elephant_trunk_reveal_card
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_partial_reveal_deduce
+  work_item_path: generated_assets/work_items/concept_partial_reveal_deduce__elephant_trunk_reveal_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/elephant_trunk_reveal_card__round_512.png
+    size: 512x512
+    sha256: 3aa5a8a20185fd008108eda167277e0705e2d7064942111dc4c39bb83979fbe7
+    byte_count: 301336
+    mime_type: image/png
+    source_asset_id: elephant_trunk_reveal_card
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: ball_b_sound_clue
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__ball_b_sound_clue.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/ball_b_sound_clue__round_512.png
+    size: 512x512
+    sha256: 74a135bf5d0d149c0f71782b48663c65a3ced61ecb41ce4ab38a16e2620b6331
+    byte_count: 324462
+    mime_type: image/png
+    source_asset_id: ball_b_sound_clue
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: banana_b_sound_clue
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__banana_b_sound_clue.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/banana_b_sound_clue__round_512.png
+    size: 512x512
+    sha256: 4be7d872f77e608568d7cb69d2a1a4533e2e111b1459b0489908f4ac6e21a3ea
+    byte_count: 244385
+    mime_type: image/png
+    source_asset_id: banana_b_sound_clue
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.

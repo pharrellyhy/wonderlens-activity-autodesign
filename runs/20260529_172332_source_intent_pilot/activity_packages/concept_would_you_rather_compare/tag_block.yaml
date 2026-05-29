@@ -1,0 +1,74 @@
+activity_id: concept_would_you_rather_compare
+version: 1
+template_type: cat1
+pillar: Performance
+game_style: choice_chain
+entity: silly two-choice prompt
+entity_class: &id001
+- conversation
+- choice_prompt
+entity_binding: agnostic
+source_entity_exemplar: silly two-choice prompt
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed source-intent pilot scope
+category: cat1
+attributes:
+- perspective
+- preference
+- reason
+key_concepts:
+- Perspective
+- Responsibility
+related_concepts:
+- preference
+- tradeoff
+- short question
+atl_skills:
+- choosing
+- explaining
+- listening
+transdisciplinary_theme: How we express ourselves
+kud:
+  know:
+  - silly two-choice prompt can be explored through short silly two-choice comparison.
+  understand:
+  - The child role, device role, sequence, evidence source, and context promise must
+    stay connected.
+  do:
+  - Respond with the promised choice, observation, capture, explanation, or material
+    action.
+progression:
+  topic_axis: perspective
+  difficulty_level: 1
+  next_step_hint: Scale only after source-intent audit, asset validation, and downstream
+    conversion pass.
+  reward_hook: Choice Chain Champion
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: emotion
+  mechanic: compare
+  entity_role: catalyst
+  focal_attribute: short silly two-choice comparison
+  intro: The child answers short playful Would You Rather questions and gives a tiny
+    preference reason.
+  bridge_prerequisites:
+    primary:
+    - emotion
+    secondary:
+    - preference
+    - tradeoff
+    - short question
+  preview_label: Silly choice chain
+  preview_prompt: Choose between two funny options and say why.
+  role_pivot_note: No role pivot unless the source explicitly assigns the child a
+    role.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

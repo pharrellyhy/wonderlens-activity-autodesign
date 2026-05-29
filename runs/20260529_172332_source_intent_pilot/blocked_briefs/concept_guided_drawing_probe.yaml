@@ -1,0 +1,10 @@
+run_id: 20260529_172332_source_intent_pilot
+activity_id: concept_guided_drawing_probe
+source_row: 4
+status: unsupported_gated
+reason: Cat3 material workflow requires product-approved paper drawing steps, timed
+  waiting, and final-work photo celebration.
+not_allowed_adaptations:
+- voice-only Cat1 drawing talk
+- generic draw-anything prompt
+- quality grading of child artwork

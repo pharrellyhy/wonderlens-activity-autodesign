@@ -1,0 +1,75 @@
+activity_id: concept_partial_reveal_deduce
+version: 1
+template_type: cat1
+pillar: Mystery
+game_style: clue_detective
+entity: partial animal reveal cards
+entity_class: &id001
+- animal
+- partial_reveal_card
+entity_binding: bound
+source_entity_exemplar: partial animal reveal cards
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed source-intent pilot scope
+category: cat1
+attributes:
+- shape
+- pattern
+- visible evidence
+key_concepts:
+- Form
+- Causation
+related_concepts:
+- visible part
+- whole animal
+- evidence
+atl_skills:
+- observing
+- inferring
+- explaining
+transdisciplinary_theme: How the world works
+kud:
+  know:
+  - partial animal reveal cards can be explored through visible part reveals the whole
+    animal.
+  understand:
+  - The child role, device role, sequence, evidence source, and context promise must
+    stay connected.
+  do:
+  - Respond with the promised choice, observation, capture, explanation, or material
+    action.
+progression:
+  topic_axis: form
+  difficulty_level: 2
+  next_step_hint: Scale only after source-intent audit, asset validation, and downstream
+    conversion pass.
+  reward_hook: Evidence Detective
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: shape
+  mechanic: deduce
+  entity_role: reference
+  focal_attribute: visible part reveals the whole animal
+  intro: The screen shows a distinctive animal part and the child guesses the whole
+    animal from visible evidence.
+  bridge_prerequisites:
+    primary:
+    - shape
+    secondary:
+    - visible part
+    - whole animal
+    - evidence
+  preview_label: Part mystery
+  preview_prompt: Look at the visible part and guess the whole animal.
+  role_pivot_note: No role pivot unless the source explicitly assigns the child a
+    role.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

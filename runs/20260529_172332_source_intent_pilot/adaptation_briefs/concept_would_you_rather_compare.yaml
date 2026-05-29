@@ -1,0 +1,15 @@
+run_id: 20260529_172332_source_intent_pilot
+activity_id: concept_would_you_rather_compare
+title: Would You Rather
+source_snapshot: source_snapshots/selected_source_rows.md
+source_promise_lock: Child repeatedly compares two short playful options, chooses
+  one, and gives a tiny reason.
+demo_support_status: supported
+asset_build: generate_and_curate
+must_preserve:
+- child role
+- device role
+- interaction sequence
+- required child action
+- background/context when promised
+- support honesty

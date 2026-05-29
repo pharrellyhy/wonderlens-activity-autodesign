@@ -1,0 +1,79 @@
+activity_id: concept_constellation_star_count_enumerate
+entity_id: approved_constellation_count_card
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: cassiopeia_five_star_card
+  role: story_scene
+  label: Cassiopeia five-guide-star card
+  requiredness: required
+  accuracy_mode: reference_bound
+  source_strategy: approved_internal_reference
+  transformation_policy: crop_resize_only
+  prompt_en: Use the accepted package-local Cassiopeia teaching chart. Preserve exactly
+    5 prominent guide stars and approved guide-line shape. Do not add extra stars,
+    text, labels, numbers, or fictional geometry.
+  reference_policy:
+    source_required: true
+    allowed_sources:
+    - approved_internal_reference
+    verification_required: true
+    verification_notes: Package-local approved Cassiopeia guide-star chart with 5
+      visible guide stars.
+  sources:
+  - label: Approved internal Cassiopeia 5-guide-star teaching chart
+    uri: internal://approved-constellation-reference/cassiopeia-5-guide-stars-v1
+    license: Approved internal educational reference
+    source_type: approved_internal_reference
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/cassiopeia_five_star_card__round_512.png
+  fallback_behavior: If the accepted Cassiopeia source is unavailable, do not reveal
+    or describe the constellation card.
+  star_count: 5
+  constellation_name: Cassiopeia
+- id: orion_seven_star_card
+  role: story_scene
+  label: Orion seven-guide-star card
+  requiredness: required
+  accuracy_mode: reference_bound
+  source_strategy: approved_internal_reference
+  transformation_policy: crop_resize_only
+  prompt_en: Use the accepted package-local Orion teaching chart. Preserve exactly
+    7 prominent guide stars and approved guide-line shape. Do not add extra stars,
+    text, labels, numbers, or fictional geometry.
+  reference_policy:
+    source_required: true
+    allowed_sources:
+    - approved_internal_reference
+    verification_required: true
+    verification_notes: Package-local approved Orion guide-star chart with 7 visible
+      guide stars.
+  sources:
+  - label: Approved internal Orion 7-guide-star teaching chart
+    uri: internal://approved-constellation-reference/orion-7-guide-stars-v1
+    license: Approved internal educational reference
+    source_type: approved_internal_reference
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/orion_seven_star_card__round_512.png
+  fallback_behavior: If the accepted Orion source is unavailable, do not reveal or
+    describe the constellation card.
+  star_count: 7
+  constellation_name: Orion

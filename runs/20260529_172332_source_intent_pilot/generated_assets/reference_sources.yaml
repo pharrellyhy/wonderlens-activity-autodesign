@@ -1,0 +1,35 @@
+run_id: 20260529_172332_source_intent_pilot
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-29T17:48:29+08:00'
+entries:
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: cassiopeia_five_star_card
+  status: accepted
+  source_label: Approved internal Cassiopeia 5-guide-star teaching chart
+  source_uri: internal://approved-constellation-reference/cassiopeia-5-guide-stars-v1
+  source_type: approved_internal_reference
+  license: Approved internal educational reference
+  storage_allowed: true
+  source_original_path: assets/sources/cassiopeia_five_star_card__source_original.png
+  source_metadata_path: assets/sources/cassiopeia_five_star_card__source_metadata.yaml
+  sha256: 789c5989537ea8e12550a2f07adcd80d9feda2389ec566d406734a719e3e1497
+  verified_at: '2026-05-29T17:42:55+08:00'
+  reviewer_agent: main_agent_reference_curation_pending_visual_subagent_review
+  verification_notes: Pilot-internal reference chart preserves 5 prominent guide-star
+    positions for Cassiopeia; no fictional constellation name or random star field
+    is used.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: orion_seven_star_card
+  status: accepted
+  source_label: Approved internal Orion 7-guide-star teaching chart
+  source_uri: internal://approved-constellation-reference/orion-7-guide-stars-v1
+  source_type: approved_internal_reference
+  license: Approved internal educational reference
+  storage_allowed: true
+  source_original_path: assets/sources/orion_seven_star_card__source_original.png
+  source_metadata_path: assets/sources/orion_seven_star_card__source_metadata.yaml
+  sha256: baef70ad460a57d5a0c9a783d692f3a234c36707e027c0121a53e0dc7a4d63ce
+  verified_at: '2026-05-29T17:42:55+08:00'
+  reviewer_agent: main_agent_reference_curation_pending_visual_subagent_review
+  verification_notes: Pilot-internal reference chart preserves 7 prominent guide-star
+    positions for Orion; no fictional constellation name or random star field is used.

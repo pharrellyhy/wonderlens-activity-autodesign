@@ -1,0 +1,10 @@
+run_id: 20260529_172332_source_intent_pilot
+activity_id: concept_plant_parts_enumerate
+source_row: 15
+status: unsupported_gated
+reason: Downstream runtime templates do not currently support source-faithful Cat5
+  enumerate/photo plant-part workflows.
+not_allowed_adaptations:
+- change mechanic to collect just to pass runtime adapter
+- generic plant naming/counting without part-function context
+- voice-only plant facts without photo-based part exploration
