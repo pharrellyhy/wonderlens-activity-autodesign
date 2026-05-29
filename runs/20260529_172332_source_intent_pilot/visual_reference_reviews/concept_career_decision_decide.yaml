@@ -1,0 +1,41 @@
+run_id: 20260529_172332_source_intent_pilot
+package_id: concept_career_decision_decide
+reviewer_role: independent_visual_reference_qa
+reviewed_at: '2026-05-29T18:05:06+08:00'
+workflow_reference: docs/activity_asset_generation_workflow.md
+overall_status: fail
+review_scope:
+  inspected_generated_inbox: true
+  inspected_runtime_assets: true
+  inspected_reference_sources: false
+  package_asset_manifest: activity_packages/concept_career_decision_decide/asset_manifest.yaml
+checks:
+  png_dimensions: pass
+  central_framing_safe_area: fail
+  no_text_logos_device_chrome_contact_sheet: pass
+  style_consistency: pass
+assets:
+  - asset_id: firefighter_role_card
+    accuracy_mode: illustrative
+    source_png: generated_assets/inbox/concept_career_decision_decide/firefighter_role_card.png
+    runtime_png: activity_packages/concept_career_decision_decide/assets/firefighter_role_card__round_512.png
+    dimensions:
+      source_png: 1254x1254
+      runtime_png: 512x512
+    visual_checks:
+      square_and_minimum_512: pass
+      final_runtime_512: pass
+      central_framing_safe_area: fail
+      no_readable_text: pass
+      no_logo_or_watermark: pass
+      no_device_chrome_or_contact_sheet: pass
+      style_matches_flat_nordic_target: pass
+    notes:
+      - The asset is a single friendly firefighter helper with safe tools and no emergency scene.
+      - The full-body figure nearly spans the full square from hair to boots; boots and lower legs sit too close to the bottom edge for the declared central 72 percent round-screen safe area.
+      - The source also lacks generous top/bottom padding, so this is a source framing issue rather than a build-only crop issue.
+failures:
+  - code: firefighter_safe_area_overfill
+    severity: blocking
+    asset_id: firefighter_role_card
+    finding: Full-body character is too tall for the round-device safe area and should be regenerated or reframed with more vertical padding.

@@ -1,0 +1,63 @@
+run_id: 20260529_172332_source_intent_pilot
+reviewer_role: independent_visual_reference_qa
+reviewed_at: '2026-05-29T18:05:06+08:00'
+workflow_reference: docs/activity_asset_generation_workflow.md
+overall_status: fail
+scope:
+  generated_inbox_dir: generated_assets/inbox
+  activity_packages_dir: activity_packages
+  constellation_source_dir: activity_packages/concept_constellation_star_count_enumerate/assets/sources
+  packages_with_assets_reviewed: 4
+  generated_inbox_pngs_reviewed: 6
+  runtime_pngs_reviewed: 8
+  constellation_source_original_pngs_reviewed: 2
+review_files:
+  - visual_reference_reviews/concept_career_decision_decide.yaml
+  - visual_reference_reviews/concept_constellation_star_count_enumerate.yaml
+  - visual_reference_reviews/concept_partial_reveal_deduce.yaml
+  - visual_reference_reviews/concept_phoneme_hunt_collect.yaml
+package_results:
+  - package_id: concept_career_decision_decide
+    status: fail
+    blocking_failures:
+      - firefighter_safe_area_overfill
+  - package_id: concept_constellation_star_count_enumerate
+    status: fail
+    blocking_failures:
+      - constellation_extra_star_like_marks
+  - package_id: concept_partial_reveal_deduce
+    status: warn
+    warnings:
+      - partial_reveal_safe_area_margin
+  - package_id: concept_phoneme_hunt_collect
+    status: pass
+blocking_failures:
+  - package_id: concept_career_decision_decide
+    asset_id: firefighter_role_card
+    code: firefighter_safe_area_overfill
+    finding: Full-body character nearly fills the square and is too tall for the declared central 72 percent round-screen safe area.
+  - package_id: concept_constellation_star_count_enumerate
+    asset_id: cassiopeia_five_star_card
+    code: constellation_extra_star_like_marks
+    finding: Card preserves five prominent guide stars but includes extra faint star-like marks that can confuse enumeration.
+  - package_id: concept_constellation_star_count_enumerate
+    asset_id: orion_seven_star_card
+    code: constellation_extra_star_like_marks
+    finding: Card preserves seven prominent guide stars but includes extra faint star-like marks that can confuse enumeration.
+non_blocking_warnings:
+  - package_id: concept_partial_reveal_deduce
+    assets:
+      - rabbit_ears_reveal_card
+      - elephant_trunk_reveal_card
+    code: partial_reveal_safe_area_margin
+    finding: Partial reveal cards are readable but place important shapes close to the round-screen crop zone.
+passes:
+  - All reviewed PNGs are square and at least 512x512.
+  - All package-local runtime PNGs are 512x512.
+  - No reviewed asset contains readable text, logos, watermarks, device chrome, or contact-sheet layout.
+  - Constellation source metadata is present, storage_allowed is true, verification_status is accepted, and source SHA-256 values match metadata.
+  - Constellation runtime cards are pixel-equivalent to the accepted source originals according to magick compare -metric AE.
+tooling_notes:
+  - PNG dimensions and hashes were checked with ImageMagick identify and shasum.
+  - Visual checks were performed by inspecting source, runtime, and constellation reference images directly.
+  - scripts/validate_asset_build_outputs.py was attempted but not used because the active Python environment is missing PyYAML; no dependency was installed.

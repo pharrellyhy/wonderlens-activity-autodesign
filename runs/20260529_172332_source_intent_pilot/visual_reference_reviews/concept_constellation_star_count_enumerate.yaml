@@ -1,0 +1,98 @@
+run_id: 20260529_172332_source_intent_pilot
+package_id: concept_constellation_star_count_enumerate
+reviewer_role: independent_visual_reference_qa
+reviewed_at: '2026-05-29T18:05:06+08:00'
+workflow_reference: docs/activity_asset_generation_workflow.md
+overall_status: fail
+review_scope:
+  inspected_generated_inbox: false
+  inspected_runtime_assets: true
+  inspected_reference_sources: true
+  package_asset_manifest: activity_packages/concept_constellation_star_count_enumerate/asset_manifest.yaml
+checks:
+  png_dimensions: pass
+  central_framing_safe_area: pass
+  no_text_logos_device_chrome_contact_sheet: pass
+  style_consistency: pass_with_reference_bound_exception
+  reference_bound_provenance: pass
+  reference_bound_count_fidelity: fail
+reference_bound_summary:
+  source_metadata_files_present: pass
+  metadata_verification_status: accepted
+  storage_allowed: true
+  source_sha256_matches_metadata: pass
+  runtime_visual_matches_source: pass
+  runtime_compare_command: magick compare -metric AE
+  runtime_compare_result: '0 differing pixels for both cards'
+assets:
+  - asset_id: cassiopeia_five_star_card
+    accuracy_mode: reference_bound
+    source_png: activity_packages/concept_constellation_star_count_enumerate/assets/sources/cassiopeia_five_star_card__source_original.png
+    source_metadata: activity_packages/concept_constellation_star_count_enumerate/assets/sources/cassiopeia_five_star_card__source_metadata.yaml
+    runtime_png: activity_packages/concept_constellation_star_count_enumerate/assets/cassiopeia_five_star_card__round_512.png
+    dimensions:
+      source_png: 512x512
+      runtime_png: 512x512
+    provenance:
+      source_type: approved_internal_reference
+      license: Approved internal educational reference
+      verification_status: accepted
+      storage_allowed: true
+      metadata_sha256: 789c5989537ea8e12550a2f07adcd80d9feda2389ec566d406734a719e3e1497
+      source_sha256_verified: pass
+      runtime_matches_source_pixels: pass
+    visual_checks:
+      square_and_minimum_512: pass
+      final_runtime_512: pass
+      central_framing_safe_area: pass
+      no_readable_text: pass
+      no_logo_or_watermark: pass
+      no_device_chrome_or_contact_sheet: pass
+      prominent_guide_star_count: pass
+      expected_prominent_guide_stars: 5
+      observed_prominent_guide_stars: 5
+      extra_star_like_marks: fail
+    notes:
+      - The five connected guide stars are visually preserved and match the package metadata.
+      - Several faint extra star-like dots remain in the blue field outside the connected guide-star path.
+      - Because this activity asks the child to enumerate stars, those extra dots violate the "Do not add extra stars" intent and make the count less clean.
+  - asset_id: orion_seven_star_card
+    accuracy_mode: reference_bound
+    source_png: activity_packages/concept_constellation_star_count_enumerate/assets/sources/orion_seven_star_card__source_original.png
+    source_metadata: activity_packages/concept_constellation_star_count_enumerate/assets/sources/orion_seven_star_card__source_metadata.yaml
+    runtime_png: activity_packages/concept_constellation_star_count_enumerate/assets/orion_seven_star_card__round_512.png
+    dimensions:
+      source_png: 512x512
+      runtime_png: 512x512
+    provenance:
+      source_type: approved_internal_reference
+      license: Approved internal educational reference
+      verification_status: accepted
+      storage_allowed: true
+      metadata_sha256: baef70ad460a57d5a0c9a783d692f3a234c36707e027c0121a53e0dc7a4d63ce
+      source_sha256_verified: pass
+      runtime_matches_source_pixels: pass
+    visual_checks:
+      square_and_minimum_512: pass
+      final_runtime_512: pass
+      central_framing_safe_area: pass
+      no_readable_text: pass
+      no_logo_or_watermark: pass
+      no_device_chrome_or_contact_sheet: pass
+      prominent_guide_star_count: pass
+      expected_prominent_guide_stars: 7
+      observed_prominent_guide_stars: 7
+      extra_star_like_marks: fail
+    notes:
+      - The seven connected guide stars are visually preserved and match the package metadata.
+      - Several faint extra star-like dots remain in the blue field outside the connected guide-star path.
+      - Because this activity asks the child to enumerate stars, those extra dots violate the "Do not add extra stars" intent and make the count less clean.
+failures:
+  - code: constellation_extra_star_like_marks
+    severity: blocking
+    asset_id: cassiopeia_five_star_card
+    finding: Source and runtime card contain extra faint star-like marks beyond the five prominent guide stars.
+  - code: constellation_extra_star_like_marks
+    severity: blocking
+    asset_id: orion_seven_star_card
+    finding: Source and runtime card contain extra faint star-like marks beyond the seven prominent guide stars.
