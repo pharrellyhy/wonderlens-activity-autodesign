@@ -1,0 +1,47 @@
+activity_id: concept_phoneme_hunt_collect
+inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_phoneme_hunt_collect/prod.md
+quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+beat_count: 5
+labels_present:
+  goal: all_5
+  constraint: all_5
+  tone: all_5
+  progress_evidence: all_5
+  branch_behavior: all_5_label_present_but_generic
+  source_guardrail: all_5
+  concrete_child_action: partial_all_5
+  screen_state: all_5
+  example_ai_line: all_5
+step_instruction_conversion_readiness: "partial: the photo-plus-name evidence contract is clear, but acceptance and repair behavior for non-B evidence must be concrete before runtime use."
+quality_floor_comparison:
+  status: below_floor
+  summary: "The package has strong source guardrails for Cat5 sound collection and degraded honesty. It lacks the quality floor's concrete per-branch follow-ups, especially around accepting, rejecting, or repairing the sound evidence."
+  strengths:
+    - "Step 3 explicitly requires both photo_id and child name evidence."
+    - "The file does not imply photo-only phoneme inference."
+    - "Screen states preserve clue assets, captured photo_id, and collection state."
+  gaps:
+    - "Non-B item handling is not concretely specified."
+    - "Step 4 assumes acceptance but does not define what happens when the name evidence fails."
+    - "Child response branches do not name expected valid or invalid examples."
+findings:
+  - id: missing_negative_sound_branch
+    severity: major
+    beat_scope: steps_3_4
+    issue: "The runtime needs explicit behavior for a photographed object whose spoken name does not start with /b/."
+    evidence: "Step 3 states do not accept image-only evidence, and Step 4 celebrates the accepted object, but neither gives a concrete repair line for a non-B name."
+    repair: "Add branches for valid B names, invalid names, unknown names, and no name; keep the tray uncollected until valid name evidence exists."
+  - id: generic_branch_scaffolding
+    severity: major
+    beat_scope: all_beats
+    issue: "Branch behavior is label-present but policy-only."
+    evidence: "Each follow-up policy uses the same confirm/repair/scaffold wording instead of sound-hunt-specific lines."
+    repair: "Author concrete follow-ups for repeating /b/, choosing a clue, taking a photo, naming the object, and closing the tray."
+  - id: concrete_child_action_partly_implicit
+    severity: minor
+    beat_scope: steps_1_5
+    issue: "The key action is understandable from the goals, but the child-response examples are not executable."
+    evidence: "Expected actions such as repeat /b/, choose ball, photograph book, and say the name appear in progress evidence, not in the child-response branches."
+    repair: "Move those expected actions into explicit branch examples."
+verdict: fail
+repair_required: true

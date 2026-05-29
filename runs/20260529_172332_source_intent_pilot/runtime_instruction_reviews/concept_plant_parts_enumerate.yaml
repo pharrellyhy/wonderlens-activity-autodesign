@@ -1,0 +1,47 @@
+activity_id: concept_plant_parts_enumerate
+inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_plant_parts_enumerate/prod.md
+quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+beat_count: 5
+labels_present:
+  goal: all_5
+  constraint: all_5
+  tone: all_5
+  progress_evidence: all_5
+  branch_behavior: all_5_label_present_but_generic
+  source_guardrail: all_5
+  concrete_child_action: partial_all_5
+  screen_state: all_5
+  example_ai_line: all_5
+step_instruction_conversion_readiness: "partial: the capture sequence is clear, but function facts, repeated-part repair, and photo-evidence limits need concrete runtime handling."
+quality_floor_comparison:
+  status: below_floor
+  summary: "The file covers the required labels and screen states, but the quality floor gives richer per-round scaffolding and concrete follow-ups. This package needs more operational detail around plant-part recognition and function notes."
+  strengths:
+    - "Photo capture timing is explicit for the two capture beats."
+    - "The source guardrail keeps the activity as plant-part exploration, not generic plant naming."
+    - "Screen states preserve captured photo thumbnails and part badges."
+  gaps:
+    - "The function/background content is too generic to reliably teach leaf, stem, flower, seed, fruit, or root jobs."
+    - "The runtime does not get a concrete repair path for a repeated same part, non-plant photo, or unknown part."
+    - "Progress evidence can be photo_id only, but the file does not clarify whether runtime vision exists or whether child naming is required."
+findings:
+  - id: function_notes_need_mapping
+    severity: major
+    beat_scope: steps_2_4
+    issue: "The promised function/background note is not mapped to likely visible part names."
+    evidence: "Step 4 example says leaves, stems, and flowers are plant helpers, each doing a different job."
+    repair: "Add simple safe facts for leaf, stem, flower, seed, fruit, and unknown visible part, and select only facts supported by child evidence."
+  - id: missing_invalid_or_duplicate_photo_branch
+    severity: major
+    beat_scope: steps_2_3
+    issue: "The child may photograph the same part twice, a non-plant object, or an unclear photo; the branch behavior does not say how to recover."
+    evidence: "Unexpected branches use the generic restore-the-sequence policy."
+    repair: "Add concrete repair lines for same part, non-plant, unclear photo, and no capture."
+  - id: photo_evidence_contract_unclear
+    severity: major
+    beat_scope: steps_2_3
+    issue: "The activity depends on photos, but the runtime instruction does not state whether classification comes from child naming, vision, or manual choice."
+    evidence: "Progress evidence says photo_id of leaf, flower, stem, seed, fruit, or another visible part."
+    repair: "State that the child should name or choose the part unless the runtime has verified plant-part recognition."
+verdict: fail
+repair_required: true

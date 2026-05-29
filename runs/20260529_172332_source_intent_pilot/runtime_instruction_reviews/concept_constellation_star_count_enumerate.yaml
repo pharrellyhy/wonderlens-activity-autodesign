@@ -1,0 +1,47 @@
+activity_id: concept_constellation_star_count_enumerate
+inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_constellation_star_count_enumerate/prod.md
+quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+beat_count: 5
+labels_present:
+  goal: all_5
+  constraint: all_5
+  tone: all_5
+  progress_evidence: all_5
+  branch_behavior: all_5_label_present_but_generic
+  source_guardrail: all_5
+  concrete_child_action: partial_all_5
+  screen_state: all_5
+  example_ai_line: all_5
+step_instruction_conversion_readiness: "partial: the number-before-reveal contract is clear, but conversion needs concrete chosen-count branches and source-specific background facts."
+quality_floor_comparison:
+  status: below_floor
+  summary: "The file has the required instruction labels and strong source guardrails, but it is thinner than the quality floor in branch detail, child response examples, and content specificity after the reveal."
+  strengths:
+    - "The no-counting-before-reveal and no-fictional-constellation guardrails are repeated clearly."
+    - "Screen states tell the runtime when assets must be hidden, revealed, held, and saved."
+    - "The approved count-to-asset mapping is explicit in Step 2."
+  gaps:
+    - "The chosen 5 or 7 branch is not carried into concrete follow-up lines."
+    - "Background information is generic and does not branch to Cassiopeia or Orion."
+    - "Unexpected/no-response handling is a policy reference, not runnable branch behavior."
+findings:
+  - id: missing_count_specific_branches
+    severity: major
+    beat_scope: steps_1_5
+    issue: "The runtime does not get concrete branches for the two legal choices."
+    evidence: "Step 2 maps 5 to cassiopeia_five_star_card and 7 to orion_seven_star_card, but later examples say only real constellation card or approved pattern."
+    repair: "Add child and AI branches for 5/Cassiopeia and 7/Orion, including exact screen-state selection and recap wording."
+  - id: background_fact_too_generic
+    severity: major
+    beat_scope: step_3
+    issue: "The required background fact is not specific to the selected real constellation."
+    evidence: "Example AI line: Constellations are star patterns people use to find shapes in the night sky."
+    repair: "Provide one child-safe stable fact for Cassiopeia and one for Orion, with instructions to choose the fact matching the revealed asset."
+  - id: generic_branch_scaffolding
+    severity: major
+    beat_scope: all_beats
+    issue: "Ideal, unexpected, and no-response branches are templated and do not show how to recover while preserving reference-bound assets."
+    evidence: "Each follow-up policy uses the same confirm/repair/scaffold template."
+    repair: "Replace policy-only text with concrete examples for invalid numbers, child tries to count stars, no response, and child asks for a different constellation."
+verdict: fail
+repair_required: true

@@ -1,0 +1,47 @@
+activity_id: concept_partial_reveal_deduce
+inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_partial_reveal_deduce/prod.md
+quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+beat_count: 5
+labels_present:
+  goal: all_5
+  constraint: all_5
+  tone: all_5
+  progress_evidence: all_5
+  branch_behavior: all_5_label_present_but_generic
+  source_guardrail: all_5
+  concrete_child_action: partial_all_5
+  screen_state: all_5
+  example_ai_line: all_5
+step_instruction_conversion_readiness: "partial: visual asset sequencing is strong, but guessing outcomes and branch repairs need concrete runtime lines."
+quality_floor_comparison:
+  status: below_floor
+  summary: "This is one of the stronger playable packages because asset IDs and screen states are concrete. It still falls below the floor because the floor gives direct branch examples and follow-up lines, while this package leaves wrong guesses and no-response handling generic."
+  strengths:
+    - "Each mystery clue has a concrete asset_id and a visible-evidence guardrail."
+    - "The flow prevents answer reveal before the child guesses."
+    - "Closing recap names the evidence logic."
+  gaps:
+    - "Correct, incorrect, partial, and no-response guess handling is not concretely authored."
+    - "The runtime is not told exactly when to reveal or confirm the animal answer after a guess."
+    - "Child response examples do not list the actual expected guesses per card."
+findings:
+  - id: guessing_branch_outcomes_missing
+    severity: major
+    beat_scope: steps_2_4
+    issue: "A deduction game needs explicit correct/incorrect/partial guess behavior for each card."
+    evidence: "The current follow-up policy says to confirm, repair, or scaffold, but does not say how to handle rabbit vs bunny, cat for tiger, or trunk without elephant."
+    repair: "Add concrete branches for each asset: accepted answers, near misses, evidence prompts, and reveal timing."
+  - id: generic_child_responses
+    severity: major
+    beat_scope: all_beats
+    issue: "Child response branches are templated rather than clue-specific."
+    evidence: "Every ideal branch says the child completes the step with the promised choice, capture, word, or observation."
+    repair: "Name the actual child actions: ask to see the part, guess rabbit, point to stripes, say elephant, and name one clue in closing."
+  - id: source_guardrail_good_but_not_operationalized
+    severity: minor
+    beat_scope: steps_1_5
+    issue: "The source guardrail says visible evidence is required, but branch instructions do not state what to do if the asset fails to load."
+    evidence: "Step 1 says no voice-only clues before the first card appears; later screen states assume each asset appears."
+    repair: "Add a fallback that pauses or gates the round if the required reveal asset is unavailable."
+verdict: fail
+repair_required: true
