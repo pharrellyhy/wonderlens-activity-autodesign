@@ -62,7 +62,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - A `run_id` is created in `YYYYMMDD_HHMMSS_<short_label>` format.
    - `runs/<run_id>/run_manifest.yaml` exists with `status: in_progress`, source files, mapping root, output lists, and summary counters.
    - `runs/<run_id>/assignment_snapshot.md` preserves unchecked assignment rows pending at run start.
-   - `runs/<run_id>/generated_activity_ids.txt`, `activity_packages/`, `adaptation_briefs/`, `blocked_briefs/`, `blocked_designs/`, and `review_notes.md` are initialized.
+   - `runs/<run_id>/generated_activity_ids.txt`, `activity_packages/`, `adaptation_briefs/`, `blocked_briefs/`, `blocked_designs/`, `source_snapshots/`, `source_intent_audits/`, and `review_notes.md` are initialized.
    - Any user-specified batch/scope filter, product-contract override, and `asset_build` mode are recorded in `run_manifest.yaml` `source` or `notes`.
 
 3. Assignment rows are processed in order:
@@ -179,6 +179,9 @@ The goal is complete only when all of the applicable criteria below are met.
 12. Review and logging are complete for generated packages:
    - The package passes the 10-dimension rubric in `program.md`.
    - A separate reviewer agent checks every generated package against the same 10 dimensions, the migrated package depth floor, mechanic fidelity, asset-brief coherence, and package-file consistency.
+   - A separate source-intent auditor agent checks every source-derived, concept-led, workbook-derived, and pilot-validation package or blocked/degraded artifact against the original source row or run-local source snapshot.
+   - `runs/<run_id>/source_intent_audits/` contains one audit file per audited row, recording original play frame, child role, device role/action, interaction sequence, required child actions, real/reference asset requirement, required background/context information, generated-package evidence, downstream conversion evidence when available, verdict, repair requirement, and re-review outcome.
+   - No accepted package has unresolved source-intent `intent_drift`. Drift is either repaired and re-reviewed or explicitly left as a product-review finding that prevents generated package acceptance/checkoff for that row.
    - Reviewers explicitly fail structurally valid but thin/generic packages that do not meet the migrated package depth floor.
    - Any reviewer FAIL or credible uncertainty is repaired before logging; the repaired package is re-reviewed by a fresh separate reviewer agent or by the original reviewer after reading the changed files.
    - Reviewers fail packages whose unexpected/no-response branch policies are generic clones, keyword-substitution rows, or repeated Step 3 round rows rather than beat-specific runtime behavior.

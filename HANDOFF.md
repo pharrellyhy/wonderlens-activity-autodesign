@@ -43,6 +43,21 @@ success criteria.
 
 Verification: `git diff --check` passed for the Markdown/doc changes.
 
+## 2026-05-29 - Pilot Execution Started
+
+Problem: The pilot goal required an explicit standalone source-intent auditor
+gate for every accepted package or blocked/degraded pilot artifact before
+running generation.
+
+Solution: Started execution on branch `feat/source-intent-pilot` in
+`.worktrees/feat/source-intent-pilot`; added run-local
+`source_snapshots/` and `source_intent_audits/` artifacts plus a mandatory
+independent source-intent audit gate in `run.md`, `GOAL.md`, and `program.md`.
+
+Edits: Marked the 2026-05-29 pilot plan and goal indexes `Active`.
+
+Verification: `git diff --check` passed for the Markdown/doc changes.
+
 ---
 
 ## 2026-05-29 - E2E subset runtime validation
