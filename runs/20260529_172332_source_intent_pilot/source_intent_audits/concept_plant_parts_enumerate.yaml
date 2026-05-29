@@ -50,7 +50,7 @@ generated_package_evidence:
   demo_support:
     path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_plant_parts_enumerate/demo_support.yaml
     observations:
-      - "status is supported with real_camera true and generated_assets false."
+      - "status is unsupported with ui_template none, preserving the Cat5 enumerate/photo-part mechanic instead of converting it to a playable Cat5 collect activity."
   asset_manifest:
     path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_plant_parts_enumerate/asset_manifest.yaml
     observations:

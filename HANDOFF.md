@@ -1,5 +1,28 @@
 # HANDOFF
 
+## 2026-05-29 - Source Intent Pilot Completed
+
+Problem: The source-intent pilot needed end-to-end evidence that new activity
+designs preserve workbook intent, produce runtime-ready AI instructions, build
+PNG assets, and convert/load in both consumer repos.
+
+Solution: Completed run `runs/20260529_172332_source_intent_pilot` on branch
+`feat/source-intent-pilot` with seven original workbook rows: Phoneme Treasure
+Hunt, Guided Drawing, Constellation Star Count, Plant Parts Explorer, Career
+Decision, Partial Reveal Guess, and Would You Rather.
+
+Edits: Added run-local packages, source snapshots, adaptation/blocked briefs,
+runtime PNG assets, source-intent audits, runtime-instruction reviews,
+visual/reference reviews, downstream fullstack and WonderLens AI reports, and
+`source_intent_pilot_validation.md`. Marked the 2026-05-29 pilot plan/goal
+indexes `Completed`.
+
+Verification: Autodesign package contract, tag-block schema, asset build
+validation, run dashboard validation, source-intent YAML parsing, fullstack
+import/focused tests, and WonderLens AI runtime generation/load/focused tests
+passed. Remaining risks are non-blocking: Guided Drawing and Plant Parts remain
+honestly gated, and Partial Reveal has a visual safe-area warning.
+
 ## 2026-05-29 - Workbook TSV source baseline
 
 Problem: Future `GOAL.md` / `run.md` executions needed a committed original-workbook source baseline so normalized concept rows cannot silently drift from the workbook play frame.

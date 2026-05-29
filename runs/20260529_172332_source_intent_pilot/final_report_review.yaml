@@ -1,0 +1,23 @@
+verdict: pass
+missing_items: []
+inaccuracies:
+  - file: runs/20260529_172332_source_intent_pilot/source_intent_audits/concept_plant_parts_enumerate.yaml
+    severity: non_blocking
+    issue: The audit evidence note says demo_support status is supported, but the actual package demo_support.yaml, run_manifest.yaml, fullstack report, WonderLens AI report, and final report all classify Plant Parts Explorer as unsupported/gated.
+    impact: The final report itself correctly assigns Plant Parts Explorer to unsupported/gated behavior and records the Cat5 enumerate/photo-part runtime gap as a risk, so this stale audit observation does not hide unresolved source-intent drift.
+checked_files:
+  - goals/2026-05-29-source-intent-pilot-validation-goal.md
+  - runs/20260529_172332_source_intent_pilot/source_intent_pilot_validation.md
+  - runs/20260529_172332_source_intent_pilot/run_manifest.yaml
+  - runs/20260529_172332_source_intent_pilot/review_notes.md
+  - runs/20260529_172332_source_intent_pilot/generated_activity_ids.txt
+  - runs/20260529_172332_source_intent_pilot/generated_assets/asset_outputs.yaml
+  - runs/20260529_172332_source_intent_pilot/generated_assets/reference_sources.yaml
+  - runs/20260529_172332_source_intent_pilot/generated_assets/qa_notes.yaml
+  - runs/20260529_172332_source_intent_pilot/source_intent_audits/
+  - runs/20260529_172332_source_intent_pilot/runtime_instruction_reviews/
+  - runs/20260529_172332_source_intent_pilot/visual_reference_reviews/
+  - runs/20260529_172332_source_intent_pilot/downstream_reports/fullstack_import_review.yaml
+  - runs/20260529_172332_source_intent_pilot/downstream_reports/wonderlens_ai_runtime_review.yaml
+  - runs/20260529_172332_source_intent_pilot/activity_packages/*/demo_support.yaml
+required_repair: false

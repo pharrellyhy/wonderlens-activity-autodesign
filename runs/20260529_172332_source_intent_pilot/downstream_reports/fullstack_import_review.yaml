@@ -1,0 +1,152 @@
+verdict: pass
+reviewed_at: "2026-05-29"
+source:
+  autodesign_worktree: /Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/source-intent-pilot
+  run_dir: runs/20260529_172332_source_intent_pilot
+  source_commit: cc3d4271c8af956eb392b62e33bacbae5c042fe3
+  generated_activity_ids:
+    - concept_phoneme_hunt_collect
+    - concept_guided_drawing_probe
+    - concept_constellation_star_count_enumerate
+    - concept_plant_parts_enumerate
+    - concept_career_decision_decide
+    - concept_partial_reveal_deduce
+    - concept_would_you_rather_compare
+fullstack:
+  validation_worktree: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/chore/source-intent-pilot-fullstack
+  head_commit: 9e6a6d2b18b65591c62b03e84db6b1818bc4db6d
+commands:
+  - name: import_autodesign_packages
+    cwd: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/chore/source-intent-pilot-fullstack
+    shell: /bin/zsh
+    command: |-
+      AUTODESIGN='/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/source-intent-pilot'
+      RUN_DIR='runs/20260529_172332_source_intent_pilot'
+      SOURCE_COMMIT=$(git -C "$AUTODESIGN" rev-parse HEAD)
+      PACKAGE_ARGS=()
+      while IFS= read -r id; do
+        [[ -n "$id" ]] && PACKAGE_ARGS+=("$AUTODESIGN/$RUN_DIR/activity_packages/$id")
+      done < "$AUTODESIGN/$RUN_DIR/generated_activity_ids.txt"
+      uv run python scripts/import_autodesign_package.py "${PACKAGE_ARGS[@]}" --source-commit "$SOURCE_COMMIT"
+    exit_status: 0
+    result: imported five playable/degraded packages and skipped two unsupported packages
+  - name: focused_fullstack_tests
+    cwd: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/chore/source-intent-pilot-fullstack
+    shell: /bin/zsh
+    command: uv run pytest tests/test_autodesign_importer.py tests/test_entity_registry.py tests/test_api.py
+    exit_status: 0
+    result: "83 passed, 1 skipped in 2.37s"
+  - name: generated_game_frontmatter_inspection
+    cwd: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/chore/source-intent-pilot-fullstack
+    shell: /bin/zsh
+    command: |-
+      uv run python - <<'PY'
+      from pathlib import Path
+      import yaml
+
+      paths = [
+          Path('backend/games/concept_phoneme_hunt_collect__b_sound_treasure.md'),
+          Path('backend/games/concept_constellation_star_count_enumerate__approved_constellation_count_card.md'),
+          Path('backend/games/concept_career_decision_decide__firefighter_expert_role.md'),
+          Path('backend/games/concept_partial_reveal_deduce__partial_animal_reveal_cards.md'),
+          Path('backend/games/concept_would_you_rather_compare__silly_choice_prompt.md'),
+      ]
+      for path in paths:
+          text = path.read_text(encoding='utf-8')
+          data = yaml.safe_load(text.split('---', 2)[1])
+          instructions = data['step_instructions']
+          print(path.name, data['autodesign']['source_commit'], data['demo_support']['status'], len(instructions['rounds']))
+      for stem in ['concept_guided_drawing_probe', 'concept_plant_parts_enumerate']:
+          print(stem, sorted(Path('backend/games').glob(f'{stem}*.md')))
+      PY
+    exit_status: 0
+    result: generated game frontmatter parsed; skipped unsupported package filenames absent from backend/games
+import_results:
+  imported:
+    - activity_id: concept_phoneme_hunt_collect
+      status: degraded
+      demo_id: concept_phoneme_hunt_collect__b_sound_treasure
+      game_path: backend/games/concept_phoneme_hunt_collect__b_sound_treasure.md
+      asset_readiness: ready
+      source_commit_in_frontmatter: cc3d4271c8af956eb392b62e33bacbae5c042fe3
+    - activity_id: concept_constellation_star_count_enumerate
+      status: supported
+      demo_id: concept_constellation_star_count_enumerate__approved_constellation_count_card
+      game_path: backend/games/concept_constellation_star_count_enumerate__approved_constellation_count_card.md
+      asset_readiness: ready
+      source_commit_in_frontmatter: cc3d4271c8af956eb392b62e33bacbae5c042fe3
+    - activity_id: concept_career_decision_decide
+      status: supported
+      demo_id: concept_career_decision_decide__firefighter_expert_role
+      game_path: backend/games/concept_career_decision_decide__firefighter_expert_role.md
+      asset_readiness: ready
+      source_commit_in_frontmatter: cc3d4271c8af956eb392b62e33bacbae5c042fe3
+    - activity_id: concept_partial_reveal_deduce
+      status: supported
+      demo_id: concept_partial_reveal_deduce__partial_animal_reveal_cards
+      game_path: backend/games/concept_partial_reveal_deduce__partial_animal_reveal_cards.md
+      asset_readiness: ready
+      source_commit_in_frontmatter: cc3d4271c8af956eb392b62e33bacbae5c042fe3
+    - activity_id: concept_would_you_rather_compare
+      status: supported
+      demo_id: concept_would_you_rather_compare__silly_choice_prompt
+      game_path: backend/games/concept_would_you_rather_compare__silly_choice_prompt.md
+      asset_readiness: ready
+      source_commit_in_frontmatter: cc3d4271c8af956eb392b62e33bacbae5c042fe3
+  skipped:
+    - activity_id: concept_guided_drawing_probe
+      status: unsupported
+      reason:
+        - Cat3 material workflow support is not approved in the current runtime contract.
+        - The source requires timed paper-and-pencil steps plus final-work photo celebration, which must not be faked as a voice-only activity.
+      backend_game_matches: []
+    - activity_id: concept_plant_parts_enumerate
+      status: unsupported
+      reason:
+        - Current downstream runtime templates do not support a source-faithful Cat5 enumerate flow where the child photographs different plant parts and receives part-function context.
+        - Converting this source to Cat5 collect would make it playable by changing the original mechanic, so the package must be gated until Cat5 enumerate/photo-part support exists.
+      backend_game_matches: []
+step_instruction_observations:
+  - activity_id: concept_phoneme_hunt_collect
+    demo_id: concept_phoneme_hunt_collect__b_sound_treasure
+    status: degraded
+    ui_template: cat5_judgment
+    play_rounds: 2
+    observation: Runtime AI instruction conversion is source-faithful and not a generic appended Cat5 round.
+    evidence:
+      - Round 1 scenario is "B-Sound Evidence Check"; goal requires a real object photo plus a supplied name such as ball, banana, bag, book, or box.
+      - Round 1 constraint says not to accept image-only evidence and to accept only photo plus B-starting name.
+      - Round 2 scenario is "B-Sound Name Check"; goal explicitly separates name evidence from photo capture and says it is not a second photo hunt.
+      - Closing guardrail preserves phoneme treasure hunt rather than generic object counting.
+  - activity_id: concept_constellation_star_count_enumerate
+    demo_id: concept_constellation_star_count_enumerate__approved_constellation_count_card
+    status: supported
+    ui_template: cat1_dialogue
+    play_rounds: 1
+    observation: Step instructions preserve choose-number-before-reveal flow, approved constellation asset selection, and real/background context rather than star-counting or fictional constellations.
+  - activity_id: concept_career_decision_decide
+    demo_id: concept_career_decision_decide__firefighter_expert_role
+    status: supported
+    ui_template: cat1_dialogue
+    play_rounds: 1
+    observation: Step instructions keep child-as-professional role play and a simple firefighter decision loop.
+  - activity_id: concept_partial_reveal_deduce
+    demo_id: concept_partial_reveal_deduce__partial_animal_reveal_cards
+    status: supported
+    ui_template: cat1_dialogue
+    play_rounds: 1
+    observation: Step instructions keep visible partial-reveal evidence central across rabbit, tiger, and elephant clues instead of generic animal trivia.
+  - activity_id: concept_would_you_rather_compare
+    demo_id: concept_would_you_rather_compare__silly_choice_prompt
+    status: supported
+    ui_template: cat1_dialogue
+    play_rounds: 1
+    observation: Step instructions preserve short compare/choose/reason turns rather than trivia or long dilemmas.
+failures: []
+warnings:
+  - The fullstack validation worktree already contained untracked imported pilot outputs before this review; the importer was rerun and refreshed those temporary validation outputs.
+  - Validation was limited to the requested focused pytest targets, not the full fullstack test suite.
+write_scope:
+  autodesign_files_written:
+    - runs/20260529_172332_source_intent_pilot/downstream_reports/fullstack_import_review.yaml
+  commits_created: false

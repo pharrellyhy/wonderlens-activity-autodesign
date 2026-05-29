@@ -1,0 +1,219 @@
+verdict: pass
+reviewed_at: "2026-05-29"
+scope:
+  autodesign_worktree: /Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/source-intent-pilot
+  run_dir: runs/20260529_172332_source_intent_pilot
+  wonderlens_ai_repo: /Users/pharrelly/codebase/gitlab/wonderlens-ai
+  source_package_root: /Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/source-intent-pilot/runs/20260529_172332_source_intent_pilot/activity_packages
+  generated_artifact_root: /Users/pharrelly/codebase/gitlab/wonderlens-ai/validation_artifacts/source_intent_pilot_runtime_20260529_172332
+  generated_activity_root: /Users/pharrelly/codebase/gitlab/wonderlens-ai/validation_artifacts/source_intent_pilot_runtime_20260529_172332/generated_activities
+  generator_report_json: /Users/pharrelly/codebase/gitlab/wonderlens-ai/validation_artifacts/source_intent_pilot_runtime_20260529_172332/runtime_generation_report.json
+git_state:
+  autodesign_before:
+    command: git status --short
+    exit_status: 0
+    output: ""
+  wonderlens_ai_before:
+    command: git status --short
+    exit_status: 0
+    output: ""
+  wonderlens_ai_after:
+    command: git status --short
+    exit_status: 0
+    output: "?? validation_artifacts/"
+commands:
+  - id: ambient_python_probe
+    cwd: /Users/pharrelly/codebase/gitlab/wonderlens-ai
+    command: python3 scripts/generate_activity_runtime.py --help
+    exit_status: 1
+    result: blocked in ambient Python because PyYAML is not installed there; project .venv was used for validation.
+    stderr_excerpt: "ModuleNotFoundError: No module named 'yaml'"
+  - id: venv_generator_help
+    cwd: /Users/pharrelly/codebase/gitlab/wonderlens-ai
+    command: .venv/bin/python scripts/generate_activity_runtime.py --help
+    exit_status: 0
+  - id: generate_runtime_artifacts
+    cwd: /Users/pharrelly/codebase/gitlab/wonderlens-ai
+    command: .venv/bin/python scripts/generate_activity_runtime.py --source /Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/source-intent-pilot/runs/20260529_172332_source_intent_pilot/activity_packages --dest /Users/pharrelly/codebase/gitlab/wonderlens-ai/validation_artifacts/source_intent_pilot_runtime_20260529_172332/generated_activities --write --force --report-json /Users/pharrelly/codebase/gitlab/wonderlens-ai/validation_artifacts/source_intent_pilot_runtime_20260529_172332/runtime_generation_report.json
+    exit_status: 0
+    stdout_summary:
+      - OK concept_career_decision_decide warnings=0
+      - OK concept_constellation_star_count_enumerate warnings=0
+      - OK concept_guided_drawing_probe warnings=0
+      - OK concept_partial_reveal_deduce warnings=0
+      - OK concept_phoneme_hunt_collect warnings=0
+      - OK concept_plant_parts_enumerate warnings=0
+      - OK concept_would_you_rather_compare warnings=0
+  - id: focused_tests
+    cwd: /Users/pharrelly/codebase/gitlab/wonderlens-ai
+    command: .venv/bin/python -m pytest tests/unit/activity/test_activity_package_models.py tests/unit/activity/test_activity_package_loader.py tests/unit/activity/test_runtime_generator.py tests/unit/scripts/test_generate_activity_runtime.py -v
+    exit_status: 0
+    result: 45 passed in 0.38s
+  - id: generated_load_and_gate_verification
+    cwd: /Users/pharrelly/codebase/gitlab/wonderlens-ai
+    command: |
+      .venv/bin/python - <<'PY'
+      from pathlib import Path
+      import json
+
+      from app.modules.activity.packages.adapter import ActivityPackageAdapterError, game_definition_from_package
+      from app.modules.activity.packages.loader import load_activity_packages
+
+      root = Path('validation_artifacts/source_intent_pilot_runtime_20260529_172332/generated_activities')
+      expected_supported_or_degraded = {
+          'concept_career_decision_decide',
+          'concept_constellation_star_count_enumerate',
+          'concept_partial_reveal_deduce',
+          'concept_phoneme_hunt_collect',
+          'concept_would_you_rather_compare',
+      }
+      expected_unsupported = {
+          'concept_guided_drawing_probe',
+          'concept_plant_parts_enumerate',
+      }
+      packages = load_activity_packages(root)
+      summary = {
+          'root': str(root),
+          'loaded_count': len(packages),
+          'loaded_ids': [package.activity_id for package in packages],
+          'packages': [],
+          'errors': [],
+      }
+      for package in packages:
+          runtime_support = (package.runtime.model_extra or {}).get('runtime_support') or {}
+          entry = {
+              'activity_id': package.activity_id,
+              'template_type': package.runtime.template_type,
+              'support_status': package.package_readiness.support_status,
+              'support_level': package.package_readiness.support_level,
+              'asset_readiness': package.package_readiness.asset_readiness,
+              'required_missing_asset_ids': list(package.package_readiness.required_missing_asset_ids),
+              'runtime_requires_extension': bool(runtime_support.get('requires_runtime_extension')),
+              'runtime_extension_reasons': list(runtime_support.get('extension_reasons') or []),
+          }
+          try:
+              game = game_definition_from_package(package)
+              entry['adapter_status'] = 'executable'
+              entry['game_activity_type'] = game.activity_type
+          except ActivityPackageAdapterError as exc:
+              entry['adapter_status'] = 'gated'
+              entry['adapter_error'] = str(exc)
+          summary['packages'].append(entry)
+
+      loaded_ids = set(summary['loaded_ids'])
+      if loaded_ids != expected_supported_or_degraded | expected_unsupported:
+          summary['errors'].append(f"loaded IDs mismatch: {sorted(loaded_ids)}")
+      for entry in summary['packages']:
+          activity_id = entry['activity_id']
+          if activity_id in expected_supported_or_degraded:
+              if entry['adapter_status'] != 'executable':
+                  summary['errors'].append(f"{activity_id} expected executable but was {entry['adapter_status']}: {entry.get('adapter_error')}")
+              if entry['support_status'] not in {'supported', 'degraded'}:
+                  summary['errors'].append(f"{activity_id} support_status drifted to {entry['support_status']}")
+          if activity_id in expected_unsupported:
+              if entry['adapter_status'] != 'gated':
+                  summary['errors'].append(f"{activity_id} expected gated but was executable")
+              if entry['support_status'] != 'unsupported':
+                  summary['errors'].append(f"{activity_id} support_status drifted to {entry['support_status']}")
+
+      summary['verdict'] = 'pass' if not summary['errors'] else 'fail'
+      print(json.dumps(summary, indent=2, sort_keys=True))
+      raise SystemExit(0 if not summary['errors'] else 1)
+      PY
+    exit_status: 0
+    result: loaded 7 packages; supported/degraded packages executable; unsupported packages gated.
+generated_packages:
+  count: 7
+  ids:
+    - concept_career_decision_decide
+    - concept_constellation_star_count_enumerate
+    - concept_guided_drawing_probe
+    - concept_partial_reveal_deduce
+    - concept_phoneme_hunt_collect
+    - concept_plant_parts_enumerate
+    - concept_would_you_rather_compare
+support_matrix:
+  concept_career_decision_decide:
+    template_type: cat1
+    demo_support: supported
+    support_level: full
+    asset_readiness: ready
+    generation_warnings: 0
+    runtime_requires_extension: false
+    adapter_status: executable
+  concept_constellation_star_count_enumerate:
+    template_type: cat1
+    demo_support: supported
+    support_level: full
+    asset_readiness: ready
+    generation_warnings: 0
+    runtime_requires_extension: false
+    adapter_status: executable
+  concept_guided_drawing_probe:
+    template_type: cat3
+    demo_support: unsupported
+    support_level: unsupported
+    asset_readiness: ready
+    generation_warnings: 0
+    runtime_requires_extension: true
+    runtime_extension_reasons:
+      - ui_heavy_mechanic
+      - unsupported_template
+    adapter_status: gated
+    adapter_error: "Activity concept_guided_drawing_probe requires runtime extension: ui_heavy_mechanic, unsupported_template"
+  concept_partial_reveal_deduce:
+    template_type: cat1
+    demo_support: supported
+    support_level: full
+    asset_readiness: ready
+    generation_warnings: 0
+    runtime_requires_extension: false
+    adapter_status: executable
+  concept_phoneme_hunt_collect:
+    template_type: cat5
+    demo_support: degraded
+    support_level: partial
+    asset_readiness: ready
+    generation_warnings: 0
+    runtime_requires_extension: false
+    adapter_status: executable
+    degraded_reasons:
+      - The demo cannot honestly judge initial phoneme from image data alone.
+      - The package requires child speech or typed/name evidence with the real photo_id.
+  concept_plant_parts_enumerate:
+    template_type: cat5
+    demo_support: unsupported
+    support_level: unsupported
+    asset_readiness: ready
+    generation_warnings: 0
+    runtime_requires_extension: true
+    runtime_extension_reasons:
+      - unsupported_mechanic
+    adapter_status: gated
+    adapter_error: "Activity concept_plant_parts_enumerate requires runtime extension: unsupported_mechanic"
+  concept_would_you_rather_compare:
+    template_type: cat1
+    demo_support: supported
+    support_level: full
+    asset_readiness: ready
+    generation_warnings: 0
+    runtime_requires_extension: false
+    adapter_status: executable
+unsupported_package_handling:
+  guided_drawing:
+    activity_id: concept_guided_drawing_probe
+    confirmed: gated, not falsely playable
+    reason: requires runtime extension for UI-heavy Cat3 guided drawing flow.
+  plant_parts:
+    activity_id: concept_plant_parts_enumerate
+    confirmed: gated, not falsely playable
+    reason: requires runtime extension for unsupported enumerate/photo-part mechanic.
+failures_warnings:
+  generator_warnings: none
+  focused_test_failures: none
+  load_verification_errors: none
+  environment_notes:
+    - Ambient python3 lacked PyYAML; the project .venv command path succeeded and was used for all validation.
+final_verdict:
+  status: pass
+  rationale: Generated runtimes were written and reported successfully, focused AI tests passed, all generated packages load from the generated destination, supported/degraded packages adapt as executable, and guided drawing plus plant parts remain gated by runtime-extension checks.
