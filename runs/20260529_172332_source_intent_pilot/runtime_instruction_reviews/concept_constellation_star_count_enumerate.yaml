@@ -1,47 +1,37 @@
 activity_id: concept_constellation_star_count_enumerate
 inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_constellation_star_count_enumerate/prod.md
 quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+review_round: rereview_after_runtime_branch_repair
 beat_count: 5
 labels_present:
   goal: all_5
   constraint: all_5
   tone: all_5
   progress_evidence: all_5
-  branch_behavior: all_5_label_present_but_generic
+  branch_behavior: all_5_concrete
   source_guardrail: all_5
-  concrete_child_action: partial_all_5
+  concrete_child_action: all_5
   screen_state: all_5
   example_ai_line: all_5
-step_instruction_conversion_readiness: "partial: the number-before-reveal contract is clear, but conversion needs concrete chosen-count branches and source-specific background facts."
+step_instruction_conversion_readiness: "ready: count-first, asset reveal, background fact, celebration, and closing beats now have concrete child branches and source-bound guardrails."
 quality_floor_comparison:
-  status: below_floor
-  summary: "The file has the required instruction labels and strong source guardrails, but it is thinner than the quality floor in branch detail, child response examples, and content specificity after the reveal."
+  status: meets_floor
+  summary: "The repaired file now reaches the quality floor for runtime instruction conversion. The legal count choices, approved asset mapping, background fact branch, and no-counting/no-fiction guardrails are operationalized."
   strengths:
-    - "The no-counting-before-reveal and no-fictional-constellation guardrails are repeated clearly."
-    - "Screen states tell the runtime when assets must be hidden, revealed, held, and saved."
-    - "The approved count-to-asset mapping is explicit in Step 2."
-  gaps:
-    - "The chosen 5 or 7 branch is not carried into concrete follow-up lines."
-    - "Background information is generic and does not branch to Cassiopeia or Orion."
-    - "Unexpected/no-response handling is a policy reference, not runnable branch behavior."
+    - "Five opens Cassiopeia and seven opens Orion are carried through branch behavior and recap language."
+    - "Step 3 now directs the runtime to choose Cassiopeia or Orion facts according to the revealed asset."
+    - "Unexpected and silence branches preserve the reference-bound sequence instead of falling back to generic policy text."
+  residual_notes:
+    - "The Step 3 example AI line remains generic, but the runtime instruction and follow-up policy supply the asset-specific fact behavior."
 findings:
   - id: missing_count_specific_branches
-    severity: major
-    beat_scope: steps_1_5
-    issue: "The runtime does not get concrete branches for the two legal choices."
-    evidence: "Step 2 maps 5 to cassiopeia_five_star_card and 7 to orion_seven_star_card, but later examples say only real constellation card or approved pattern."
-    repair: "Add child and AI branches for 5/Cassiopeia and 7/Orion, including exact screen-state selection and recap wording."
+    status: resolved
+    evidence: "Step 1 and later follow-ups now name five/Cassiopeia and seven/Orion explicitly."
   - id: background_fact_too_generic
-    severity: major
-    beat_scope: step_3
-    issue: "The required background fact is not specific to the selected real constellation."
-    evidence: "Example AI line: Constellations are star patterns people use to find shapes in the night sky."
-    repair: "Provide one child-safe stable fact for Cassiopeia and one for Orion, with instructions to choose the fact matching the revealed asset."
+    status: resolved
+    evidence: "Step 3 branch behavior now maps Cassiopeia to a W-like sky shape and Orion to a bright belt area."
   - id: generic_branch_scaffolding
-    severity: major
-    beat_scope: all_beats
-    issue: "Ideal, unexpected, and no-response branches are templated and do not show how to recover while preserving reference-bound assets."
-    evidence: "Each follow-up policy uses the same confirm/repair/scaffold template."
-    repair: "Replace policy-only text with concrete examples for invalid numbers, child tries to count stars, no response, and child asks for a different constellation."
-verdict: fail
-repair_required: true
+    status: resolved
+    evidence: "Invalid number, pre-reveal counting, star-moving, recounting, and extra-card requests now have concrete repair/boundary lines."
+verdict: pass
+repair_required: false

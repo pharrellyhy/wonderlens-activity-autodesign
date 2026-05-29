@@ -1,47 +1,37 @@
 activity_id: concept_career_decision_decide
 inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_career_decision_decide/prod.md
 quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+review_round: rereview_after_runtime_branch_repair
 beat_count: 5
 labels_present:
   goal: all_5
   constraint: all_5
   tone: all_5
   progress_evidence: all_5
-  branch_behavior: all_5_label_present_but_generic
+  branch_behavior: all_5_concrete
   source_guardrail: all_5
-  concrete_child_action: partial_all_5
+  concrete_child_action: all_5
   screen_state: all_5
   example_ai_line: all_5
-step_instruction_conversion_readiness: "partial: label coverage is complete, but branch behavior and child action evidence need concrete runtime wording before this reaches the quality floor."
+step_instruction_conversion_readiness: "ready: repaired rows now provide concrete role-specific child actions, branch behavior, follow-up lines, and screen states for each runtime beat."
 quality_floor_comparison:
-  status: below_floor
-  summary: "The package mirrors the floor's core labels and screen-state placement, but the floor provides concrete ideal/unexpected/no-response branches and follow-up lines per beat. This file mostly delegates to generic policies."
+  status: meets_floor
+  summary: "The repaired package now matches the quality floor's operational shape: each beat has a goal, constraint, tone, progress evidence, concrete branch handling, source guardrail, example AI line, child response examples, and screen state."
   strengths:
     - "Role-first source guardrail is explicit in every beat."
-    - "Screen states avoid unsupported scoring and preserve the firefighter role card."
-    - "Example AI lines are short and age-appropriate."
-  gaps:
-    - "Child response examples are templated rather than role-specific."
-    - "Branch behavior says to handle cases but does not supply concrete repair/scaffold lines."
-    - "Some progress evidence leaks options from a later beat into an earlier beat."
+    - "Firefighter-specific ideal, unexpected, and no-response branches replaced the generic templates."
+    - "Step 3 option leakage is repaired; send/wait stays in Step 3 and water/oil stays in Step 4."
+  residual_notes:
+    - "No active runtime-instruction blocker found in this re-review."
 findings:
   - id: generic_branch_scaffolding
-    severity: major
-    beat_scope: all_beats
-    issue: "The ideal, unexpected, and no-response branches use reusable placeholder text instead of firefighter-specific responses."
-    evidence: "Each child-response block says the child completes the named step with the promised choice, capture, word, or observation."
-    repair: "Write concrete branch examples for accepting the role, choosing send/wait, choosing a safe tool/action, and closing the pretend expert shift."
+    status: resolved
+    evidence: "Each beat now names firefighter-specific child responses and concrete follow-up lines."
   - id: child_action_not_separate_enough
-    severity: major
-    beat_scope: steps_1_5
-    issue: "Concrete child action is mostly implicit in progress evidence, not consistently stated as an executable child action."
-    evidence: "The runtime instruction has progress evidence, but the child-response branches do not name the actual response options for each beat."
-    repair: "Add explicit action prompts such as say firefighter, choose send or wait, choose water, and repeat one expert decision."
+    status: resolved
+    evidence: "Child actions now include accepting the role, choosing send/wait, choosing water/hose/helpers, and closing with firefighter/truck/water language."
   - id: cross_beat_option_leakage
-    severity: minor
-    beat_scope: step_3
-    issue: "Step 3 progress evidence includes water/oil even though the example question is send truck now or wait."
-    evidence: "Progress evidence: child chooses yes/no, water/oil, or another simple option."
-    repair: "Keep Step 3 evidence to send/wait or yes/no; reserve water/oil for Step 4."
-verdict: fail
-repair_required: true
+    status: resolved
+    evidence: "Step 3 progress evidence now only includes send now, wait, yes, or no."
+verdict: pass
+repair_required: false

@@ -1,6 +1,7 @@
 activity_id: concept_guided_drawing_probe
 inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_guided_drawing_probe/prod.md
 quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+review_round: rereview_after_runtime_branch_repair
 beat_count: 5
 labels_present:
   goal: all_5
@@ -12,29 +13,22 @@ labels_present:
   concrete_child_action: intentionally_absent_for_unsupported_gate
   screen_state: all_5
   example_ai_line: all_5
-step_instruction_conversion_readiness: "gate_ready: not ready for playable step-instruction conversion, but ready as an unsupported product-capability gate if demo_support.status remains unsupported."
+step_instruction_conversion_readiness: "gate_ready: still not playable, but ready as an unsupported product-capability gate if demo_support.status remains unsupported."
 quality_floor_comparison:
-  status: intentionally_out_of_playable_floor
-  summary: "The quality floor is a playable activity with concrete child action and screen frames. This package correctly refuses a playable conversion because the required paper workflow and final artwork photo are unsupported."
+  status: unsupported_gate_pass
+  summary: "This package remains outside the playable quality floor by design. It correctly preserves source intent by refusing a paper-and-pencil workflow conversion that the current runtime cannot support."
   strengths:
-    - "The gate explains why the activity must not be faked as voice-only play."
-    - "Required future capabilities are named: material steps, drawing time, final photo, and no quality grading."
-    - "Screen states consistently say no playable runtime surface or no asset claim."
-  gaps:
-    - "The generic child-response and follow-up blocks are misleading if rendered to a child."
-    - "The file should rely on unsupported gating rather than on the same branch model used for playable packages."
+    - "The gate explains why voice-only play would misrepresent the source activity."
+    - "Required future capabilities remain explicit: material steps, drawing time, final photo, and no quality grading."
+    - "Screen states consistently deny playable launch and asset claims."
+  residual_notes:
+    - "Generic child-response rows remain, but they are not treated as a blocker because the package is an unsupported gate rather than a playable runtime flow."
 findings:
   - id: unsupported_gate_is_correct
-    severity: info
-    beat_scope: all_beats
-    issue: "This package should not be compared as a playable child flow."
-    evidence: "Every beat states no playable screen, blocked runtime launch, or unsupported gate summary."
-    repair: "No repair required if consumers preserve demo_support.status unsupported and skip launch."
+    status: still_valid
+    evidence: "The file continues to block runtime launch and document product capability requirements."
   - id: child_response_template_should_not_surface
-    severity: minor
-    beat_scope: steps_1_5
-    issue: "Generic child response scaffolds conflict with the unsupported gate stance."
-    evidence: "Child responses say the child completes each gate step even though the screen state says no child play surface."
-    repair: "If this file is cleaned up later, replace child-response sections with reviewer/operator outcomes rather than child branches."
+    status: accepted_nonblocking
+    evidence: "The generic rows should not surface to children while demo_support.status is unsupported."
 verdict: pass
 repair_required: false
