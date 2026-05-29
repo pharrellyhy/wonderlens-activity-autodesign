@@ -28,6 +28,7 @@ The mechanic-first authoring workflow also uses authoring-only fields that are *
 | `asset_manifest.style_id` | `wonderlens_device_mint_soft_3d` | `activities/_schema/asset_manifest.schema.json`, `activities/README.md`, `program.md`, `run.md` |
 | `asset_manifest.assets[].role` | `entity`, `activity_preview`, `collection_correct`, `collection_distractor`, `badge`, `story_scene`, `ui_overlay` | `activities/_schema/asset_manifest.schema.json`, `activities/README.md`, `program.md`, `run.md` |
 | `asset_manifest.assets[].accuracy_mode` | `illustrative`, `reference_bound` | `activities/_schema/asset_manifest.schema.json`, `activities/README.md`, `program.md`, `run.md` |
+| `asset_manifest.assets[].sources[].source_type` | `licensed_asset`, `public_domain_reference`, `approved_internal_reference`, `verified_source_url` | `activities/_schema/asset_manifest.schema.json`, `program.md`, `run.md` |
 
 Do not mirror authoring-only values into tag-block enum code unless a future schema change explicitly promotes them into `tag_block.yaml`. Demo extension vocabularies above are consumer-facing for optional `demo_support.yaml` and `asset_manifest.yaml`, but they are not activity-signature enums. Because `template_type` is a runtime schema field and now includes Cat3 after the unblocked product-contract update, downstream consumers that validate tag blocks must mirror that enum change.
 

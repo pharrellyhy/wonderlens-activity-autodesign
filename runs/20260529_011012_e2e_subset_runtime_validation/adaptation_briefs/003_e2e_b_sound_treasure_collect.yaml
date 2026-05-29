@@ -1,0 +1,105 @@
+activity_id: e2e_b_sound_treasure_collect
+assignment_type: activity_concept
+input_mode: concept_only
+activity_concept: B-Sound Treasure Collect
+source_promise_alignment:
+  alignment_status: minor_adaptation
+  original_play_frame: The child uses B-sound cards as clues, captures a real object,
+    and says the object name for runtime judgment.
+  child_role: child participant in the declared activity frame
+  interaction_sequence:
+  - AI frames the activity and shows any required package-local guide asset.
+  - 'Child performs the promised action: choose, collect, judge, sort, or notice.'
+  - Runtime branches on ideal, unexpected, and no-response evidence without changing
+    the mechanic.
+  - AI celebrates or gates honestly according to support state.
+  required_child_actions:
+  - collect
+  - answer or act with concrete evidence
+  non_negotiable_elements:
+  - Do not change the canonical mechanic.
+  - Do not invent runtime capabilities absent from demo_support.yaml.
+  - Do not use random approximations for reference-bound assets.
+  allowed_v1_adaptations:
+  - Use approved pillar and game_style as secondary scaffold metadata.
+  - Condense the story to one short validation round.
+  - Represent unsupported UI-heavy mechanics as gated package previews.
+  product_dependencies:
+  - Cat1 dialogue primitive
+  - Cat5 collection primitive where applicable
+  - Package-local asset serving
+  core_promise: child uses B-sound cards, captures a real object, and says/enters
+    the object name so runtime can judge initial sound.
+  alignment_note: The collection flow is preserved, but support is degraded because
+    B-sound judgment requires child name/speech evidence beyond image capture.
+canonical_mechanic: collect
+selected_pillar: Adventure
+selected_game_style: quest_collector
+scaffold_fit:
+  fit: strong
+  notes: Mechanic remains primary; selected style supplies emotional frame without
+    replacing the child action.
+demo_export: true
+asset_build: generate_and_curate
+demo_support:
+  status: degraded
+  ui_template: cat5_judgment
+  support_level: partial
+  entity_bindings:
+  - entity_id: B_sound_object
+    display_label: B-Sound Object
+    source_entity_exemplar: B-sound object
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: true
+    runtime_judgment: true
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons:
+  - The current demo cannot honestly judge whether a photographed object name begins
+    with the B sound from image data alone.
+  - The package requires child speech or typed/name evidence in addition to the real
+    photo_id handoff.
+asset_dependency:
+  policy: required_prebuilt
+  assets:
+  - ball
+  - book
+  - banana
+  - cup
+  detail: three B-sound correct cards plus one non-B distractor card; acceptance requires
+    real photo_id plus spoken/name evidence
+  required_asset_count: 4
+  manifest_path: runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_b_sound_treasure_collect/asset_manifest.yaml
+runtime_contract_requirements:
+- Every Runtime AI instruction includes goal/action, tone, constraint, progress evidence,
+  branch behavior, and frame guardrail.
+- Every screen state names the exact asset_id or gated state that should be visible.
+- Cat5 capture steps preserve real photo evidence and photo_id handoff semantics.
+source_intent_guardrails:
+- Never turn Orion into a count-the-image task.
+- Never turn Cat5 cards into replacements for real capture.
+- Never make the unsupported sorting board playable through dialogue.
+assignment_index: 3
+readiness: generate_with_assumptions
+trigger_condition: Operator selects Cat5 runtime-judgment validation slice.
+mapping_use: not mapping-informed; B-sound clue cards are concept-authored validation
+  assets
+product_capability_flags:
+- cat5_judgment
+- real_camera
+- photo_id_handoff
+- child_speech_or_name_evidence
+assumptions:
+- The current demo cannot infer initial phoneme from image alone.
+- The activity is executable only when child name/speech evidence is collected.
+extensibility:
+  reusable_slots:
+  - Retarget to another initial sound only if speech/name evidence stays required.
+  - Keep degraded status unless runtime has honest phoneme judgment.
+  - Preserve distractor to show judgment boundary.
+  non_reusable_parts:
+  - activity_id
+  - validation slice coverage
+  - support honesty constraints

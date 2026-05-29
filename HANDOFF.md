@@ -1,5 +1,20 @@
 # HANDOFF
 
+
+---
+
+## 2026-05-29 - E2E subset runtime validation
+
+Problem: Fresh autodesign packages needed cross-repo runtime validation across autodesign, fullstack-demo, and WonderLens AI.
+
+Solution: Generated `runs/20260529_011012_e2e_subset_runtime_validation` with five validation packages, package-local 512px assets, accepted Orion source metadata, review dashboard, downstream compatibility fixes, and final completed report.
+
+Edits: Added run artifacts, updated asset manifest source schema/vocabulary for `source_type`, appended validation assignment/results rows, and marked the plan/goal Completed in indexes.
+
+NOT Changed: No downstream repo commits; fullstack and WonderLens AI worktrees contain only transient validation imports/artifacts.
+
+Verification: Autodesign validators and delegated reviews passed. Fullstack import/API/frontend checks pass after local fix `ce0cdc6` converts Runtime AI instruction beats into `step_instructions` and relaxes brittle exact-list tests. WonderLens AI runtime generation, package loading, executable game exposure, unsupported gating, and package asset serving pass after local fix `ca474e3` accepts `activity_signature.intro`.
+
 ## Current Status
 
 - Status: branch `fix/runtime-beat-contract-quality` tightens runtime behavior contracts so `Runtime AI instruction` beats must be strong enough to convert into downstream fullstack-demo-style `step_instructions` before the E2E subset validation run.

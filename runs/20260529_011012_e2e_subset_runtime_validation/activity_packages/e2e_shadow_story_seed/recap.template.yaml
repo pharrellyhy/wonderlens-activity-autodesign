@@ -1,0 +1,9 @@
+recap:
+  title: Shadow Story Seed
+  child_summary: '{child_name} chose a shadow seed, added one story detail, and heard
+    a tiny scene grow from it.'
+  evidence:
+  - Runtime behavior preserved the source activity frame.
+  - Support status and asset readiness followed demo_support.yaml and asset_manifest.yaml.
+  next_prompt: Try the same mechanic with another entity after consumer support is
+    verified.

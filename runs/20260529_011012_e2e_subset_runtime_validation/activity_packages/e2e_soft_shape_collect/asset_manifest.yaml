@@ -1,0 +1,80 @@
+activity_id: e2e_soft_shape_collect
+entity_id: soft_shape
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: soft sky blue
+  primary_accent: mint green
+  secondary_accent: gentle coral
+  shadow: soft lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: round_shape
+  role: collection_correct
+  label: round soft pebble guide card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration in the WonderLens activity style:
+    warm white and mint prototype-device palette, soft sky blue, gentle coral, pale
+    yellow, rounded clay or plastic forms, gentle studio lighting, square source art,
+    primary subject inside the central circular safe area, simple full-bleed background
+    to every edge, no text, no labels, no logo, no watermark, no device chrome, no
+    circular mask, no border. Subject: round soft pebble guide card.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_shape__round_512.png
+  fallback_behavior: If round_shape is unavailable, keep the package gated or degraded
+    instead of showing a substitute image.
+  collection_catalog_id: round_shape
+- id: corner_shape
+  role: collection_distractor
+  label: corner block distractor card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration in the WonderLens activity style:
+    warm white and mint prototype-device palette, soft sky blue, gentle coral, pale
+    yellow, rounded clay or plastic forms, gentle studio lighting, square source art,
+    primary subject inside the central circular safe area, simple full-bleed background
+    to every edge, no text, no labels, no logo, no watermark, no device chrome, no
+    circular mask, no border. Subject: corner block distractor card.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/corner_shape__round_512.png
+  fallback_behavior: If corner_shape is unavailable, keep the package gated or degraded
+    instead of showing a substitute image.
+  collection_catalog_id: corner_shape
+- id: long_shape
+  role: collection_distractor
+  label: long ribbon distractor card
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration in the WonderLens activity style:
+    warm white and mint prototype-device palette, soft sky blue, gentle coral, pale
+    yellow, rounded clay or plastic forms, gentle studio lighting, square source art,
+    primary subject inside the central circular safe area, simple full-bleed background
+    to every edge, no text, no labels, no logo, no watermark, no device chrome, no
+    circular mask, no border. Subject: long ribbon distractor card.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/long_shape__round_512.png
+  fallback_behavior: If long_shape is unavailable, keep the package gated or degraded
+    instead of showing a substitute image.
+  collection_catalog_id: long_shape

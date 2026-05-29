@@ -1,0 +1,9 @@
+recap:
+  title: Rainbow Sort Board
+  child_summary: '{child_name} reviewed a gated rainbow sorting concept that was not
+    made playable.'
+  evidence:
+  - Runtime behavior preserved the source activity frame.
+  - Support status and asset readiness followed demo_support.yaml and asset_manifest.yaml.
+  next_prompt: Try the same mechanic with another entity after consumer support is
+    verified.

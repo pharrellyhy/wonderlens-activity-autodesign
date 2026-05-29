@@ -1,0 +1,70 @@
+activity_id: e2e_rainbow_sort_board_unsupported
+version: 1
+template_type: cat5
+pillar: Discovery
+game_style: field_experiment
+entity: rainbow tiles
+entity_class: &id001
+- color
+- sorting_board
+entity_binding: bound
+source_entity_exemplar: rainbow tiles
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed e2e validation scope
+category: cat5
+attributes:
+- color
+- color grouping into lanes
+key_concepts:
+- Form
+- Connection
+related_concepts:
+- color lanes
+- grouping
+- persistent board
+atl_skills:
+- sorting
+- comparing
+- explaining
+transdisciplinary_theme: How the world works
+kud:
+  know:
+  - rainbow tiles can be noticed through color grouping into lanes.
+  understand:
+  - A good activity keeps the promised child action and evidence source intact.
+  do:
+  - Respond to the runtime prompt with one concrete choice, observation, capture,
+    or explanation.
+progression:
+  topic_axis: form
+  difficulty_level: 2
+  next_step_hint: Reuse the same mechanic with a new entity only after consumer support
+    matches this contract.
+  reward_hook: Rainbow sort board
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: color
+  mechanic: sort
+  entity_role: subject
+  focal_attribute: color grouping into lanes
+  intro: The child would sort several color tiles into persistent rainbow lanes, but
+    the current demo must gate it.
+  bridge_prerequisites:
+    primary:
+    - color
+    secondary:
+    - color lanes
+    - grouping
+  preview_label: Rainbow sort board
+  preview_prompt: Needs a persistent drag/drop sorting board before it can run.
+  role_pivot_note: No role pivot; package is bound to the declared validation entity.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

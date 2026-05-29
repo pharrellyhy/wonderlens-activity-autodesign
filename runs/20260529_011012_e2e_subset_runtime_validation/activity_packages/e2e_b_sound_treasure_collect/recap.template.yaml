@@ -1,0 +1,9 @@
+recap:
+  title: B-Sound Treasure Collect
+  child_summary: '{child_name} used B-sound clue cards, captured a real photo_id,
+    and supplied spoken/name evidence for runtime judgment.'
+  evidence:
+  - Runtime behavior preserved the source activity frame.
+  - Support status and asset readiness followed demo_support.yaml and asset_manifest.yaml.
+  next_prompt: Try the same mechanic with another entity after consumer support is
+    verified.

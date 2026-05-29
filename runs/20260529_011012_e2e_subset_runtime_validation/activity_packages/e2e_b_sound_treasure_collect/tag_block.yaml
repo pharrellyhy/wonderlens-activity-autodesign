@@ -1,0 +1,71 @@
+activity_id: e2e_b_sound_treasure_collect
+version: 1
+template_type: cat5
+pillar: Adventure
+game_style: quest_collector
+entity: B-sound object
+entity_class: &id001
+- sound_object
+- household_object
+entity_binding: bound
+source_entity_exemplar: B-sound object
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed e2e validation scope
+category: cat5
+attributes:
+- function
+- name begins with B sound
+key_concepts:
+- Form
+- Function
+related_concepts:
+- initial sound
+- spoken evidence
+- photo_id
+atl_skills:
+- listening
+- describing
+- evidence
+transdisciplinary_theme: How the world works
+kud:
+  know:
+  - B-sound object can be noticed through name begins with B sound.
+  understand:
+  - A good activity keeps the promised child action and evidence source intact.
+  do:
+  - Respond to the runtime prompt with one concrete choice, observation, capture,
+    or explanation.
+progression:
+  topic_axis: function
+  difficulty_level: 2
+  next_step_hint: Reuse the same mechanic with a new entity only after consumer support
+    matches this contract.
+  reward_hook: B-sound treasure
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: function
+  mechanic: collect
+  entity_role: exemplar
+  focal_attribute: name begins with B sound
+  intro: The child uses B-sound cards as clues, captures a real object, and says the
+    object name for runtime judgment.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - initial sound
+    - spoken evidence
+  preview_label: B-sound treasure
+  preview_prompt: Find a real object and say its name to check whether it starts like
+    B.
+  role_pivot_note: No role pivot; package is bound to the declared validation entity.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

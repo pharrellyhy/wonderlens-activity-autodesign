@@ -1,0 +1,23 @@
+activity_id: e2e_soft_shape_collect
+version: 1
+demo_support:
+  status: supported
+  ui_template: cat5_collection
+  support_level: full
+  entity_bindings:
+  - entity_id: soft_shape
+    display_label: Soft Shape
+    source_entity_exemplar: soft shape
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: true
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Import this package through scripts/import_autodesign_package.py
+      and preserve support gating from demo_support.yaml.
+    wonderlens_ai: Convert prod.md through scripts/generate_activity_runtime.py; runtime.yaml
+      is a downstream artifact, not emitted by autodesign.

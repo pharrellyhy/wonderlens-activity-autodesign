@@ -1,0 +1,9 @@
+recap:
+  title: Orion Number Reveal
+  child_summary: '{child_name} chose a number before seeing the real Orion card and
+    heard one background detail.'
+  evidence:
+  - Runtime behavior preserved the source activity frame.
+  - Support status and asset readiness followed demo_support.yaml and asset_manifest.yaml.
+  next_prompt: Try the same mechanic with another entity after consumer support is
+    verified.

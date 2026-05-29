@@ -1,0 +1,7 @@
+dashboard_fragment:
+  session:
+    focal_attribute: chosen number reveals the seven-star Orion card
+    summary: 'Reference-bound slice: number choice happens before reveal, then the
+      real Orion layout and background information are preserved.'
+  caregiver:
+    note: Generated for the scoped E2E runtime validation subset.

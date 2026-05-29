@@ -1,6 +1,6 @@
 # Goal Status Index
 
-> **Last checked:** 2026-05-28
+> **Last checked:** 2026-05-29
 
 ## Status Definitions
 
@@ -23,7 +23,7 @@ files remain under `goals/` and are not backfilled here.
 
 | Goal | Status | Notes |
 |---|---|---|
-| [2026-05-28-e2e-subset-runtime-validation-goal.md](2026-05-28-e2e-subset-runtime-validation-goal.md) | Planned | Executes the fresh cross-repo subset validation for autodesign packages, fullstack-demo import/play/gating, WonderLens AI runtime conversion, and live smoke evidence. |
+| [2026-05-28-e2e-subset-runtime-validation-goal.md](2026-05-28-e2e-subset-runtime-validation-goal.md) | Completed | Fresh subset/autodesign assets, fullstack import/play/gate behavior, fullstack runtime-beat conversion, and WonderLens AI runtime conversion/load/asset serving were validated; unsupported sorting remains correctly gated. |
 | [2026-05-28-generate-and-curate-asset-pipeline-goal.md](2026-05-28-generate-and-curate-asset-pipeline-goal.md) | Completed | Added the runtime asset builder, output validator, dashboard integration, tests/fixtures, docs workflow updates, and real bitmap/reference smoke evidence. |
 | [2026-05-27-demo-package-contract-assets-goal.md](2026-05-27-demo-package-contract-assets-goal.md) | Completed | Implemented demo support metadata, runtime asset manifest contract, device asset style, unsupported mechanic gates, schemas, validator, and fixtures. |
 | [2026-05-26-runtime-conversion-parity-goal.md](2026-05-26-runtime-conversion-parity-goal.md) | Planned | Refreshed for current plan-goal workflow; executes the runtime conversion, consumer adapters, and parity validation plan. |

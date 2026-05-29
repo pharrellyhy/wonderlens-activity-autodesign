@@ -1,0 +1,7 @@
+dashboard_fragment:
+  session:
+    focal_attribute: color grouping into lanes
+    summary: 'Unsupported slice: persistent multi-lane sorting is honestly gated,
+      not simulated with dialogue or photo capture.'
+  caregiver:
+    note: Generated for the scoped E2E runtime validation subset.

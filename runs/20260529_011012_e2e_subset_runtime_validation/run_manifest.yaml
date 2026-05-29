@@ -1,0 +1,198 @@
+run_id: 20260529_011012_e2e_subset_runtime_validation
+status: completed
+started_at: '2026-05-29T01:25:04+08:00'
+completed_at: '2026-05-29T09:40:03+08:00'
+source:
+  goal_file: goals/2026-05-28-e2e-subset-runtime-validation-goal.md
+  plan_file: docs/plans/2026-05-28-e2e-subset-runtime-validation.md
+  runbook: run.md
+  assignments_file: assignments.md
+  assignment_snapshot: runs/20260529_011012_e2e_subset_runtime_validation/assignment_snapshot.md
+  assignment_scope: E2E subset runtime validation
+  product_contract_override: none
+  asset_build: generate_and_curate
+baselines:
+  autodesign:
+    repo: wonderlens-activity-autodesign
+    commit: 26aa41a3c7c9fa832819c56a8a362782c8e05e2c
+    state: clean validation worktree at start
+  fullstack_demo:
+    repo: wonderlens-activity-fullstack-demo
+    commit: 32650f81d12cec8e0ee8f3899b91aef42c67b8d8
+    state: clean validation worktree at start
+  wonderlens_ai:
+    repo: wonderlens-ai
+    commit: beb1aec65d83909154bce8def5bf14ec94813159
+    state: clean validation worktree at start
+summary:
+  pending_at_start: 5
+  generated_count: 5
+  blocked_count: 0
+  failed_count: 0
+  blocked_count_note: Assignment-level blocked package count only; unsupported runtime
+    mechanics are represented by demo_support gating instead of failed assignments.
+outputs:
+  generated_activities:
+  - assignment_index: 1
+    assignment: '- [ ] assignment_type=activity_concept, activity_concept=Shadow Story
+      Seed, description=Child chooses one seed-like shadow on the device and adds
+      one story detail before the AI weaves a tiny scene, mechanic=imagine, category=cat1,
+      tier=T1, asset_policy=required_prebuilt, asset_build=generate_and_curate, activity_id=e2e_shadow_story_seed'
+    base_activity_id: e2e_shadow_story_seed
+    activity_id: e2e_shadow_story_seed
+    activity_path: runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_shadow_story_seed
+    package_scope: run_local
+    generation_policy: fresh_run_local_package
+    adaptation_brief: runs/20260529_011012_e2e_subset_runtime_validation/adaptation_briefs/001_e2e_shadow_story_seed.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: supported
+      ui_template: cat1_dialogue
+    reviewer: package_quality_passed
+  - assignment_index: 2
+    assignment: '- [ ] assignment_type=activity_concept, activity_concept=Soft Shape
+      Collect, description=Child picks a round/soft guide card, captures one real-world
+      shape photo, and names the matching clue; selectable cards guide but do not
+      replace photo evidence, mechanic=collect, category=cat5, tier=T1, asset_policy=required_prebuilt,
+      asset_build=generate_and_curate, activity_id=e2e_soft_shape_collect'
+    base_activity_id: e2e_soft_shape_collect
+    activity_id: e2e_soft_shape_collect
+    activity_path: runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_soft_shape_collect
+    package_scope: run_local
+    generation_policy: fresh_run_local_package
+    adaptation_brief: runs/20260529_011012_e2e_subset_runtime_validation/adaptation_briefs/002_e2e_soft_shape_collect.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: supported
+      ui_template: cat5_collection
+    reviewer: package_quality_passed
+  - assignment_index: 3
+    assignment: '- [ ] assignment_type=activity_concept, activity_concept=B-Sound
+      Treasure Collect, description=Child sees B-sound treasure cards, captures or
+      chooses a real object, and must name it so runtime can judge spoken/name evidence;
+      demo is degraded because image-only B-sound judgment is unsupported, mechanic=collect,
+      category=cat5, tier=T1, asset_policy=required_prebuilt, asset_build=generate_and_curate,
+      activity_id=e2e_b_sound_treasure_collect'
+    base_activity_id: e2e_b_sound_treasure_collect
+    activity_id: e2e_b_sound_treasure_collect
+    activity_path: runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_b_sound_treasure_collect
+    package_scope: run_local
+    generation_policy: fresh_run_local_package
+    adaptation_brief: runs/20260529_011012_e2e_subset_runtime_validation/adaptation_briefs/003_e2e_b_sound_treasure_collect.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: degraded
+      ui_template: cat5_judgment
+    reviewer: package_quality_passed
+  - assignment_index: 4
+    assignment: '- [ ] assignment_type=activity_concept, activity_concept=Rainbow
+      Sort Board, description=Child drags multiple color tiles into persistent rainbow
+      lanes; current Cat1/Cat5 demo lacks a sortable board and must gate instead of
+      faking play, mechanic=sort, category=cat5, tier=T1, asset_policy=no_assets,
+      asset_build=generate_and_curate, activity_id=e2e_rainbow_sort_board_unsupported'
+    base_activity_id: e2e_rainbow_sort_board_unsupported
+    activity_id: e2e_rainbow_sort_board_unsupported
+    activity_path: runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_rainbow_sort_board_unsupported
+    package_scope: run_local
+    generation_policy: fresh_run_local_package
+    adaptation_brief: runs/20260529_011012_e2e_subset_runtime_validation/adaptation_briefs/004_e2e_rainbow_sort_board_unsupported.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: unsupported
+      ui_template: none
+    reviewer: package_quality_passed
+  - assignment_index: 5
+    assignment: '- [ ] assignment_type=activity_concept, activity_concept=Orion Number
+      Reveal, description=Child first chooses a number, then the device reveals a
+      real Orion seven-star constellation card and tells a short background fact;
+      must not drift into asking the child to count random stars, mechanic=decide,
+      category=cat1, tier=T1, asset_policy=reference_bound, asset_build=generate_and_curate,
+      activity_id=e2e_orion_number_reveal'
+    base_activity_id: e2e_orion_number_reveal
+    activity_id: e2e_orion_number_reveal
+    activity_path: runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_orion_number_reveal
+    package_scope: run_local
+    generation_policy: fresh_run_local_package
+    adaptation_brief: runs/20260529_011012_e2e_subset_runtime_validation/adaptation_briefs/005_e2e_orion_number_reveal.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: supported
+      ui_template: cat1_dialogue
+    reviewer: package_quality_passed
+  blocked_assignments: []
+  review_dashboard: runs/20260529_011012_e2e_subset_runtime_validation/review.html
+  final_report: runs/20260529_011012_e2e_subset_runtime_validation/e2e_subset_validation.md
+checks:
+- command: python scripts/validate_demo_package_contract.py runs/20260529_011012_e2e_subset_runtime_validation/activity_packages
+  result: PASS
+- command: python scripts/build_activity_assets.py runs/20260529_011012_e2e_subset_runtime_validation
+    --mode generate_and_curate --force
+  result: PASS
+- command: python scripts/validate_asset_build_outputs.py runs/20260529_011012_e2e_subset_runtime_validation
+  result: PASS
+- command: python scripts/generate_run_review.py runs/20260529_011012_e2e_subset_runtime_validation
+  result: PASS
+- command: python scripts/generate_run_review.py --validate runs/20260529_011012_e2e_subset_runtime_validation
+  result: PASS
+- command: tag_block schema validation for run-local package tag_block.yaml files
+  result: PASS
+- command: asset_manifest schema validation for run-local package asset_manifest.yaml
+    files
+  result: PASS
+- command: fullstack-demo import_autodesign_package.py for five package dirs
+  result: PASS - four written, unsupported package skipped
+- command: fullstack-demo PYTHONDONTWRITEBYTECODE=1 uv run pytest tests/test_autodesign_importer.py
+    tests/test_entity_registry.py tests/test_api.py -q -p no:cacheprovider
+  result: PASS - 83 tests passed, 1 skipped after importer/test fixture fix ce0cdc6
+- command: fullstack-demo PYTHONDONTWRITEBYTECODE=1 uv run ruff check backend/autodesign_importer.py
+    tests/test_autodesign_importer.py tests/test_entity_registry.py
+  result: PASS
+- command: fullstack-demo frontend npm test -- --run
+  result: PASS - 31 tests
+- command: fullstack-demo live smoke on ports 8011/5176
+  result: PASS for health, entity visibility, asset URLs, supported/degraded starts;
+    unsupported absent from selector
+- command: wonderlens-ai unit package/runtime/loader/generator tests
+  result: PASS - 51 tests after ActivitySignature intro regression ca474e3
+- command: wonderlens-ai asset manifest/API package tests
+  result: PASS - 20 tests
+- command: wonderlens-ai uv run ruff check app/modules/activity/packages/models.py
+    tests/unit/activity/test_activity_package_models.py and uv run ty check app/modules/activity/packages/models.py
+  result: PASS
+- command: wonderlens-ai generate_activity_runtime.py --write/--check
+  result: PASS - runtime.yaml generated for all five, warnings=0
+- command: wonderlens-ai WONDERLENS_ACTIVITY_PACKAGE_DIR=.artifacts/e2e-subset-runtime/activities
+    load_activity_packages()
+  result: PASS - loaded all five packages; unsupported sorting package remains gated
+- command: wonderlens-ai load_all_games() and package asset route smoke
+  result: PASS - four e2e executable games exposed; unsupported package skipped; soft-shape
+    and Orion PNGs served as image/png
+- command: final report reviewer Hilbert (019e6fab-985f-7241-b788-13b668892251)
+  result: 'FAIL then repaired: final_report status, exact command placeholders, blocked_count
+    clarification, delegated evidence detail'
+delegated_reviews:
+  package_quality: PASS - Parfit final re-review passed Phase 0/spec metadata and
+    Step 3 round format
+  visual_reference: PASS - Curie verified 512x512 runtime PNGs, Cat5 distinctions,
+    no text/chrome/masks, and Orion seven-star fidelity
+  fullstack_demo: PASS evidence from Plato sidecar plus local aggregate/API/frontend
+    checks after importer runtime-beat conversion fix ce0cdc6
+  wonderlens_ai: PASS after conversion and package-loading compatibility fix ca474e3
+  final_report: REVIEWED - Hilbert final report review found four documentation issues;
+    main agent repaired them before commit.
+notes:
+- Fresh scoped run for the E2E subset runtime validation goal.
+- Direct demo export enabled with asset_build=generate_and_curate.
+- Package-local runtime assets are built from generated_assets/inbox and accepted
+  reference metadata.
+- WonderLens AI conversion, package loading, runtime game exposure, unsupported gating,
+  and package asset serving pass after local downstream fix ca474e3.
+- Fullstack demo import/play/gate evidence and runtime-beat step_instructions conversion
+  pass after local downstream fix ce0cdc6.
+blockers: []
+follow_ups:
+- owner: product
+  severity: product-scope
+  summary: Persistent drag/drop rainbow sorting remains unsupported and correctly gated.
+  evidence: e2e_rainbow_sort_board_unsupported has demo_support.status=unsupported
+    and WonderLens AI skips it because runtime_support.requires_runtime_extension is true.

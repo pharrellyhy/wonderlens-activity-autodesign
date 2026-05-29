@@ -1,0 +1,7 @@
+dashboard_fragment:
+  session:
+    focal_attribute: shadow shape as story prompt
+    summary: Chose a seed-like shadow and turned one child detail into a short story
+      beat.
+  caregiver:
+    note: Generated for the scoped E2E runtime validation subset.

@@ -211,3 +211,15 @@
 > Small scoped run for validating `asset_build=generate_and_curate` on the feature branch. This is not a production curriculum batch.
 
 - [x] assignment_type=activity_concept, activity_concept=Asset Pipeline Smoke, description=Child helps a moss explorer collect one soft moss token, then opens an accurate Orion constellation card as the story reward, mechanic=collect, category=cat5, tier=T1, asset_policy=required_prebuilt, asset_build=generate_and_curate, activity_id=smoke_asset_pipeline_collect, trigger_condition=Operator selects the asset pipeline smoke test, package_path=runs/20260528_094915_asset_pipeline_smoke/activity_packages/smoke_asset_pipeline_collect
+
+---
+
+## E2E Subset Runtime Validation
+
+> Scoped validation run for `goals/2026-05-28-e2e-subset-runtime-validation-goal.md`. Autodesign packages passed local and delegated review; cross-repo validation now passes after downstream WonderLens AI schema compatibility and fullstack runtime-beat conversion fixes.
+
+- [x] assignment_type=activity_concept, activity_concept=Shadow Story Seed, description=Cat1 simple supported, category=cat1, tier=T1, demo_support=supported, asset_build=generate_and_curate, activity_id=e2e_shadow_story_seed, package_path=runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_shadow_story_seed
+- [x] assignment_type=activity_concept, activity_concept=Soft Shape Collect, description=Cat5 simple collection supported, category=cat5, tier=T1, demo_support=supported, asset_build=generate_and_curate, activity_id=e2e_soft_shape_collect, package_path=runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_soft_shape_collect
+- [x] assignment_type=activity_concept, activity_concept=B-Sound Treasure Collect, description=Cat5 runtime-judgment degraded, category=cat5, tier=T1, demo_support=degraded, asset_build=generate_and_curate, activity_id=e2e_b_sound_treasure_collect, package_path=runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_b_sound_treasure_collect
+- [x] assignment_type=activity_concept, activity_concept=Rainbow Sort Board, description=Unsupported UI-heavy mechanic, category=cat5, tier=T1, demo_support=unsupported, asset_build=generate_and_curate, activity_id=e2e_rainbow_sort_board_unsupported, package_path=runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_rainbow_sort_board_unsupported
+- [x] assignment_type=activity_concept, activity_concept=Orion Number Reveal, description=Reference-bound asset case, category=cat1, tier=T1, demo_support=supported, asset_build=generate_and_curate, activity_id=e2e_orion_number_reveal, package_path=runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_orion_number_reveal

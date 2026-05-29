@@ -1,0 +1,9 @@
+recap:
+  title: Soft Shape Collect
+  child_summary: '{child_name} picked a shape guide card, captured one real-world
+    photo_id, and named the matching clue.'
+  evidence:
+  - Runtime behavior preserved the source activity frame.
+  - Support status and asset readiness followed demo_support.yaml and asset_manifest.yaml.
+  next_prompt: Try the same mechanic with another entity after consumer support is
+    verified.

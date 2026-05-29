@@ -1,0 +1,197 @@
+run_id: 20260529_011012_e2e_subset_runtime_validation
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-29T01:25:26+08:00'
+package_count: 5
+asset_count: 9
+built_count: 9
+required_failures: 0
+entries:
+- activity_id: e2e_b_sound_treasure_collect
+  asset_id: ball
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/e2e_b_sound_treasure_collect
+  work_item_path: generated_assets/work_items/e2e_b_sound_treasure_collect__ball.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/ball__round_512.png
+    size: 512x512
+    sha256: f8eba1d0966e6310048b96ba768b91c39f4cb026b3dcfaed9473183590ffdc55
+    byte_count: 20925
+    mime_type: image/png
+    source_asset_id: ball
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: e2e_b_sound_treasure_collect
+  asset_id: book
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/e2e_b_sound_treasure_collect
+  work_item_path: generated_assets/work_items/e2e_b_sound_treasure_collect__book.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/book__round_512.png
+    size: 512x512
+    sha256: 60aaba0bc4ea3f05e385241eb236295754021adb13c92999466da959d64745c8
+    byte_count: 10032
+    mime_type: image/png
+    source_asset_id: book
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: e2e_b_sound_treasure_collect
+  asset_id: banana
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/e2e_b_sound_treasure_collect
+  work_item_path: generated_assets/work_items/e2e_b_sound_treasure_collect__banana.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/banana__round_512.png
+    size: 512x512
+    sha256: 64b65a18ce4801f9214ff451ccb6662158654c2c4d941223581099d83e476314
+    byte_count: 12545
+    mime_type: image/png
+    source_asset_id: banana
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: e2e_b_sound_treasure_collect
+  asset_id: cup
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/e2e_b_sound_treasure_collect
+  work_item_path: generated_assets/work_items/e2e_b_sound_treasure_collect__cup.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/cup__round_512.png
+    size: 512x512
+    sha256: e049baed0722330c04dcc4aa85592dc2f6e9786ea12fda12651124ccbcd98153
+    byte_count: 12689
+    mime_type: image/png
+    source_asset_id: cup
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: e2e_orion_number_reveal
+  asset_id: orion_seven_star_card
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: licensed_reference
+  transformation_policy: simplified_redraw
+  status: curated
+  package_path: activity_packages/e2e_orion_number_reveal
+  work_item_path: generated_assets/work_items/e2e_orion_number_reveal__orion_seven_star_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/orion_seven_star_card__round_512.png
+    size: 512x512
+    sha256: 5f723a788ac599f1e6254bf183f085c501d954e433fd98b99a2d7c58f2877690
+    byte_count: 38838
+    mime_type: image/png
+    source_asset_id: orion_seven_star_card
+  source_metadata_path: activity_packages/e2e_orion_number_reveal/assets/sources/orion_seven_star_card__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: e2e_shadow_story_seed
+  asset_id: shadow_seed_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/e2e_shadow_story_seed
+  work_item_path: generated_assets/work_items/e2e_shadow_story_seed__shadow_seed_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/shadow_seed_scene__round_512.png
+    size: 512x512
+    sha256: eb6ce4b04463d16ce41d3b6684a4ce4fc10a69b3f3a9abea6375c4f60f8e2e98
+    byte_count: 21516
+    mime_type: image/png
+    source_asset_id: shadow_seed_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: e2e_soft_shape_collect
+  asset_id: round_shape
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/e2e_soft_shape_collect
+  work_item_path: generated_assets/work_items/e2e_soft_shape_collect__round_shape.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_shape__round_512.png
+    size: 512x512
+    sha256: a1475a2ffd06da5d222d642bb9c25c24839ae072a2aa112a7e721eca74d62732
+    byte_count: 16656
+    mime_type: image/png
+    source_asset_id: round_shape
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: e2e_soft_shape_collect
+  asset_id: corner_shape
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/e2e_soft_shape_collect
+  work_item_path: generated_assets/work_items/e2e_soft_shape_collect__corner_shape.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/corner_shape__round_512.png
+    size: 512x512
+    sha256: 0a5b578b0ff04d0d027fb4da3a4fa9c5c1349f15a2dab4437825a097b11e3963
+    byte_count: 8381
+    mime_type: image/png
+    source_asset_id: corner_shape
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: e2e_soft_shape_collect
+  asset_id: long_shape
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/e2e_soft_shape_collect
+  work_item_path: generated_assets/work_items/e2e_soft_shape_collect__long_shape.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/long_shape__round_512.png
+    size: 512x512
+    sha256: 118706b281d2f5216a8e952650e767828715c150a5ff1ff9172b22a8a1fc5e1d
+    byte_count: 10733
+    mime_type: image/png
+    source_asset_id: long_shape
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.

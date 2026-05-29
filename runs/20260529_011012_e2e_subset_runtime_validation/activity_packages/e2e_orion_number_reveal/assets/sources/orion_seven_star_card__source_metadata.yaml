@@ -1,0 +1,14 @@
+activity_id: e2e_orion_number_reveal
+asset_id: orion_seven_star_card
+source_label: NSF NOIRLab Orion chart based on IAU and Sky & Telescope artwork
+source_uri: https://noirlab.edu/public/media/archives/images/large/ori.jpg
+source_type: licensed_asset
+license: CC BY 4.0
+storage_allowed: true
+verification_status: accepted
+verification_notes: Accepted as provenance for simplified redraw; runtime card keeps
+  only seven guide stars and no labels.
+source_original_path: assets/sources/orion_seven_star_card__source_original.jpg
+sha256: cad1ce28e52677ad52f25b542fe3e3c9407c6fae8366539bd85d05943793870b
+verified_at: '2026-05-29T01:25:04+08:00'
+reviewer_agent: main_agent_reference_curation

@@ -1,0 +1,97 @@
+activity_id: e2e_orion_number_reveal
+assignment_type: activity_concept
+input_mode: concept_only
+activity_concept: Orion Number Reveal
+source_promise_alignment:
+  alignment_status: aligned
+  original_play_frame: The child chooses a number before reveal, then sees a source-faithful
+    Orion card and hears background information.
+  child_role: child participant in the declared activity frame
+  interaction_sequence:
+  - AI frames the activity and shows any required package-local guide asset.
+  - 'Child performs the promised action: choose, collect, judge, sort, or notice.'
+  - Runtime branches on ideal, unexpected, and no-response evidence without changing
+    the mechanic.
+  - AI celebrates or gates honestly according to support state.
+  required_child_actions:
+  - decide
+  - answer or act with concrete evidence
+  non_negotiable_elements:
+  - Do not change the canonical mechanic.
+  - Do not invent runtime capabilities absent from demo_support.yaml.
+  - Do not use random approximations for reference-bound assets.
+  allowed_v1_adaptations:
+  - Use approved pillar and game_style as secondary scaffold metadata.
+  - Condense the story to one short validation round.
+  - Represent unsupported UI-heavy mechanics as gated package previews.
+  product_dependencies:
+  - Cat1 dialogue primitive
+  - Cat5 collection primitive where applicable
+  - Package-local asset serving
+  core_promise: child chooses a number first, then sees the real Orion guide-star
+    card and hears one background fact.
+  alignment_note: The generated package preserves the stated child action, evidence
+    source, and runtime sequence.
+canonical_mechanic: decide
+selected_pillar: Adventure
+selected_game_style: time_traveler
+scaffold_fit:
+  fit: usable_weak
+  notes: Mechanic remains primary; selected style supplies emotional frame without
+    replacing the child action.
+demo_export: true
+asset_build: generate_and_curate
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: full
+  entity_bindings:
+  - entity_id: Orion_constellation
+    display_label: Orion Constellation
+    source_entity_exemplar: Orion constellation
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+asset_dependency:
+  policy: reference_bound
+  assets:
+  - orion_seven_star_card
+  detail: one reference_bound story_scene asset with accepted source metadata, licensed
+    source_type, and exactly seven visible guide-star components
+  required_asset_count: 1
+  manifest_path: runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_orion_number_reveal/asset_manifest.yaml
+runtime_contract_requirements:
+- Every Runtime AI instruction includes goal/action, tone, constraint, progress evidence,
+  branch behavior, and frame guardrail.
+- Every screen state names the exact asset_id or gated state that should be visible.
+- Cat5 capture steps preserve real photo evidence and photo_id handoff semantics.
+source_intent_guardrails:
+- Never turn Orion into a count-the-image task.
+- Never turn Cat5 cards into replacements for real capture.
+- Never make the unsupported sorting board playable through dialogue.
+assignment_index: 5
+readiness: ready_to_generate
+trigger_condition: Operator selects reference-bound asset validation slice.
+mapping_use: not mapping-informed; reference provenance is package-local source metadata
+product_capability_flags:
+- cat1_dialogue
+- reference_bound_asset_display
+- runtime_contract_conversion
+assumptions:
+- Number choice is an opener before reveal, not a promise to match star count.
+- The accepted NOIRLab source can be used as provenance for a simplified seven-guide-star
+  redraw.
+extensibility:
+  reusable_slots:
+  - Retarget to another constellation only with accepted source metadata.
+  - Keep choose-before-reveal order.
+  - Do not add count-the-image prompts or random background stars.
+  non_reusable_parts:
+  - activity_id
+  - validation slice coverage
+  - support honesty constraints

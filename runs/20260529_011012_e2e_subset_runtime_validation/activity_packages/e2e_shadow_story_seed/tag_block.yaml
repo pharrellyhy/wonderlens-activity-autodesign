@@ -1,0 +1,70 @@
+activity_id: e2e_shadow_story_seed
+version: 1
+template_type: cat1
+pillar: Adventure
+game_style: time_traveler
+entity: shadow seed
+entity_class: &id001
+- shadow
+- story_prompt
+entity_binding: bound
+source_entity_exemplar: shadow seed
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed e2e validation scope
+category: cat1
+attributes:
+- shape
+- shadow shape as story prompt
+key_concepts:
+- Perspective
+- Change
+related_concepts:
+- shape
+- story detail
+- sequence
+atl_skills:
+- imagining
+- describing
+- turn-taking
+transdisciplinary_theme: How we express ourselves
+kud:
+  know:
+  - shadow seed can be noticed through shadow shape as story prompt.
+  understand:
+  - A good activity keeps the promised child action and evidence source intact.
+  do:
+  - Respond to the runtime prompt with one concrete choice, observation, capture,
+    or explanation.
+progression:
+  topic_axis: perspective
+  difficulty_level: 1
+  next_step_hint: Reuse the same mechanic with a new entity only after consumer support
+    matches this contract.
+  reward_hook: Shadow story seed
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: shape
+  mechanic: imagine
+  entity_role: catalyst
+  focal_attribute: shadow shape as story prompt
+  intro: The child chooses one seed-like shadow and adds one story detail before hearing
+    a tiny woven scene.
+  bridge_prerequisites:
+    primary:
+    - shape
+    secondary:
+    - shape
+    - story detail
+  preview_label: Shadow story seed
+  preview_prompt: Choose a soft shadow shape and grow one tiny story from it.
+  role_pivot_note: No role pivot; package is bound to the declared validation entity.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false
