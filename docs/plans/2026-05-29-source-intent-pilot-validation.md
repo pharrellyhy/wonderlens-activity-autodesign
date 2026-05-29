@@ -167,12 +167,13 @@ Expected asset behavior:
 - `scripts/validate_asset_build_outputs.py` passes before final review;
 - missing required sources are recorded as failures instead of fake paths.
 
-Generated illustrative PNGs must follow the built-in WonderLens activity asset
-style from `GOAL.md` and `program.md`: soft 3D educational toy illustration,
-warm white and mint prototype-device palette, soft sky blue, gentle coral, pale
-yellow, rounded clay/plastic forms, gentle studio lighting, square full-bleed
-art, central round-screen safe area, no text, no logo, no watermark, and no
-baked-in device chrome.
+Generated illustrative PNGs must follow the current WonderLens activity asset
+workflow and style in `docs/activity_asset_generation_workflow.md`: flat Nordic
+children's illustration, quiet white prototype fit, broad flat color fills,
+sparse arc-eye/texture linework, restrained boho pastels, square 512x512 source
+art, full-bleed scene assets, separate centered item/object/character PNGs with
+clean white padding, no text, no letters or numbers, no logo, no watermark, no
+mask, no border, no contact sheet, and no baked-in device chrome.
 
 ## Runtime Instruction Quality
 

@@ -100,8 +100,8 @@ Current package generation does not create image files by default. Demo-targeted
 | Field | Purpose |
 |---|---|
 | `activity_id`, `entity_id`, `version` | Identity for the package and bound demo entity. |
-| `style_id` | Must be `wonderlens_device_mint_soft_3d` unless a future schema adds another approved style. |
-| `palette` | Prototype-aligned colors: warm porcelain shell, green-tinted near-black screen, soft mint primary accent, optional pale sage/shadow accents. |
+| `style_id` | Must be `wonderlens_device_mint_soft_3d` unless a future schema adds another approved style. This remains the compatibility identifier for the current flat Nordic nursery style. |
+| `palette` | Clean white or barely tinted white background with restrained boho pastels inside subjects: oatmeal beige, muted sage, dusty teal-blue, soft terracotta/salmon, warm brown, mustard/ochre, blush pink, pale leaf green, and muted sky accents. |
 | `screen_targets` | At minimum `round_device_screen` with `aspect_ratio: "1:1"`, `crop_shape: circle`, master size, and a central percent-circle safe area. |
 | `assets[].role` | `entity`, `activity_preview`, `collection_correct`, `collection_distractor`, `badge`, `story_scene`, or `ui_overlay`. |
 | `assets[].accuracy_mode` | `illustrative` or `reference_bound`. |
@@ -111,16 +111,18 @@ Current package generation does not create image files by default. Demo-targeted
 | `assets[].variants` | Per-target variants such as `round_512`, `icon_256`, `badge_512`, `landscape_1280x720`, with nullable `path` slots before files exist. |
 | `assets[].fallback_behavior` | What the runtime does when the asset is unavailable. |
 
-Use style `wonderlens_device_mint_soft_3d` for demo assets:
+Use style `wonderlens_device_mint_soft_3d` for demo assets, following
+`docs/activity_asset_generation_workflow.md`:
 
 ```text
-Soft 3D educational toy illustration, mint green and warm porcelain palette,
-rounded friendly shapes, subtle plastic material, clean centered subject,
-gentle studio lighting, no text, no watermark, designed for a small round
-screen.
+Flat Nordic children's illustration matching the quiet white WonderLens
+prototype; broad flat color fills, sparse arc-eye and texture linework,
+restrained boho pastels, generous negative space, square 512x512 source art,
+no readable text, no letters or numbers, no logos, no watermark, no masks, no
+borders, and no baked UI chrome.
 ```
 
-Round-screen variants must keep important detail inside the central 70 to 75 percent circle and remain recognizable at 144 px. The horizontal debug-screen variant may exist for web demos, but the round device screen is the primary design target.
+Round-screen variants must keep important detail inside the central 70 to 75 percent circle and remain recognizable at 144 px. Background scene assets are full-bleed square images that can be clipped by the round lens. Item, object, and character assets are separate centered PNGs with generous clean white padding. The horizontal debug-screen variant may exist for web demos, but the round device screen is the primary design target.
 
 Reference-bound assets represent real-world facts or identities, such as constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, and famous structures. They must include `source_strategy`, `transformation_policy`, `reference_policy`, and at least one source/provenance entry. Prompts must preserve the approved reference first, then apply device style. Random or arbitrary generated approximations do not validate.
 

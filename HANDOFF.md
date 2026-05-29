@@ -10,6 +10,23 @@ Edits: Updated `GOAL.md`, `run.md`, and `program.md` to cite the TSV during work
 
 Verification: `git diff --check` passed for the Markdown/doc changes.
 
+## 2026-05-29 - Activity Asset Workflow
+
+Problem: The active autodesign docs still described the previous soft-3D asset
+style, while the latest fullstack-demo style prompt now uses a flat Nordic
+nursery illustration target.
+
+Solution: Added `docs/activity_asset_generation_workflow.md` as the canonical
+runtime PNG workflow and updated the active generation contracts to use that
+style while keeping `style_id: wonderlens_device_mint_soft_3d` as the
+compatibility identifier.
+
+Edits: Updated `GOAL.md`, `run.md`, `program.md`, `README.md`,
+`activities/README.md`, the 2026-05-29 pilot plan, and the pilot goal
+preconditions.
+
+Verification: `git diff --check` passed for the Markdown/doc changes.
+
 ---
 
 ## 2026-05-29 - E2E subset runtime validation

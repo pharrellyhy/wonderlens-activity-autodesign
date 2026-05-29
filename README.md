@@ -56,6 +56,8 @@ templates.md                       Template 0 reference, mechanic adapters, pill
 run.md                             Autonomous activity-package loop
 review_dashboard.md                Static review dashboard contract and UI requirements
 runs/README.md                     Run provenance directory contract
+docs/activity_asset_generation_workflow.md
+                                   Runtime PNG generation, curation, style, and validation workflow
 skills/wonderlens-workbook-to-review-packet/
                                    Repo-local Codex workflow skill for workbook-to-review-packet runs
 scripts/generate_run_review.py     Static run review dashboard generator and validator
@@ -135,7 +137,7 @@ runs/<run_id>/generated_assets/
 
 Keep `asset_manifest.yaml` as the stable source request. Do not fake file paths or claim unavailable assets are displayed; use `demo_support.yaml` degraded/unsupported gates and fallback behavior instead.
 
-Illustrative image assets use the repo-local WonderLens activity asset style from `GOAL.md` / `program.md`: soft 3D toy illustration, warm white and mint prototype-device palette, soft sky blue, gentle coral, pale yellow, rounded clay/plastic forms, gentle studio lighting, square source art, central circular safe area, and simple full-bleed background scenery to every square edge. Do not bake in device chrome or review layout: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, white margin, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels.
+Illustrative image assets use the current WonderLens activity asset workflow and style in `docs/activity_asset_generation_workflow.md`: flat Nordic children's illustration, quiet white prototype fit, broad flat color fills, sparse arc-eye/texture linework, restrained boho pastels, square 512x512 source art, full-bleed scene assets, separate centered item/object/character PNGs, and no baked UI chrome, masks, borders, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels.
 
 Required assets must include at least one final runtime PNG at `512x512` or larger, with `512x512` preferred unless the manifest explicitly requests an additional larger variant. Smaller `64px`/`128px` files are thumbnails only and must not be the only playable asset output.
 

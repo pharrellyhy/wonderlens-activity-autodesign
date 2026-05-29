@@ -11,19 +11,20 @@ Entity mapping root: `MAPPING_ROOT=data/mappings_dev20_0318` (repo-relative). Us
 2. Read `program.md` fully - constraints, migrated package format, rubric, and seed exemplars.
 3. Read `templates.md` fully - Template 0 reference, mechanic adapters, Cat1/Cat5 category modifiers, and pillar/style scaffolds.
 4. Read `docs/game_styles.md` - game style taxonomy reference.
-5. Read `activities/README.md` - five required package files and optional demo-extension contract.
-6. Read `activities/_schema/tag_block.schema.json`, `activities/_schema/demo_support.schema.json`, `activities/_schema/asset_manifest.schema.json`, and `docs/activity_vocabulary.md` - tag-block schema, demo-extension schemas, and current enum vocabulary.
-7. Read `docs/activity_tag_block_usage.md` and `docs/activity_tag_block_progression_guide.md` - field ownership, recap/dashboard usage, and progression guidance.
-8. Read `entity_guidance.md` and `conversation_bridge.md` when an assignment is mapping-informed or requests warm/cold bridge handling.
-9. Read `assignments.md` - work queue.
-10. Verify `activities/` exists with `_schema/tag_block.schema.json`.
-11. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
+5. Read `docs/activity_asset_generation_workflow.md` - runtime PNG workflow, reference curation rules, and current illustrative style contract.
+6. Read `activities/README.md` - five required package files and optional demo-extension contract.
+7. Read `activities/_schema/tag_block.schema.json`, `activities/_schema/demo_support.schema.json`, `activities/_schema/asset_manifest.schema.json`, and `docs/activity_vocabulary.md` - tag-block schema, demo-extension schemas, and current enum vocabulary.
+8. Read `docs/activity_tag_block_usage.md` and `docs/activity_tag_block_progression_guide.md` - field ownership, recap/dashboard usage, and progression guidance.
+9. Read `entity_guidance.md` and `conversation_bridge.md` when an assignment is mapping-informed or requests warm/cold bridge handling.
+10. Read `assignments.md` - work queue.
+11. Verify `activities/` exists with `_schema/tag_block.schema.json`.
+12. Verify `results.tsv` exists and has the current header. If it is missing, create it with this header:
 
 ```
 assignment	entity	category	tier	pillar	style	status	d1_tech	d2_hook_transition	d3_edge	d4_ib	d5_tier	d6_dialogue	d7_screen	d8_mapping	d9_game_feel	d10_pillar_fidelity	filename	timestamp
 ```
 
-12. Create a run provenance directory before processing the first assignment:
+13. Create a run provenance directory before processing the first assignment:
 
 ```
 runs/<run_id>/
@@ -40,9 +41,9 @@ runs/<run_id>/
 
 Use `run_id=YYYYMMDD_HHMMSS_<short_label>`, for example `20260509_113000_activity_concepts`. If the user supplies a run label, slugify it for `<short_label>`; otherwise infer a short label from the assignment batch, such as `activity_concepts`, `mapping_batch`, or `mixed_assignments`.
 
-13. Write `assignment_snapshot.md` with the unchecked `- [ ]` rows that are pending at run start, preserving their original order and section headings where practical. If the user explicitly scoped the run to a batch or named assignment subset, include only that scoped subset in the snapshot and record the scope in `run_manifest.yaml`.
+14. Write `assignment_snapshot.md` with the unchecked `- [ ]` rows that are pending at run start, preserving their original order and section headings where practical. If the user explicitly scoped the run to a batch or named assignment subset, include only that scoped subset in the snapshot and record the scope in `run_manifest.yaml`.
 
-14. Initialize `run_manifest.yaml`:
+15. Initialize `run_manifest.yaml`:
 
 ```yaml
 run_id: <run_id>
@@ -81,7 +82,7 @@ notes:
   - "Default asset_build=manifest_only; binary image assets are created only by an explicit post-package asset build phase."
 ```
 
-15. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Run id: <run_id>. Starting activity package loop."
+16. Confirm setup is complete, then say: "Setup complete. [N] assignments pending. Run id: <run_id>. Starting activity package loop."
 
 ## Existing Package Enrichment Pass (do before unchecked assignment processing)
 
@@ -269,8 +270,8 @@ Runtime completeness rule:
 - Do not generate image files as part of this loop. When an activity uses AI-generated or displayed images, author the dependency in `spec.md` `## Asset Brief`, add a skimmable `## Asset Usage Timeline`, and reference the stable `asset_id` plus display location from the relevant screen description in `prod.md`.
 - Do not make contact sheets the runtime asset contract. For demo export, write separate asset entries in `asset_manifest.yaml`; contact sheets may remain review-only artifacts under pilot asset workflows.
 - For reference-bound assets, include approved source/provenance and verification notes in `asset_manifest.yaml`. If source/provenance is missing, mark demo support `degraded` with a limitation, `unsupported`, or leave demo export incomplete rather than pretending a random generated image is correct.
-- For illustrative assets, use the built-in WonderLens activity asset style from `GOAL.md` / `program.md`: soft 3D toy illustration, warm white and mint prototype-device palette, soft sky blue, gentle coral, pale yellow, rounded clay/plastic forms, gentle studio lighting, central circular safe area, and full-bleed square background to the edges.
-- Do not bake device chrome or review layout into generated assets: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, white margin, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels.
+- For illustrative assets, use the current WonderLens activity asset style from `docs/activity_asset_generation_workflow.md`: flat Nordic children's illustration, broad flat fills, sparse arc-eye/texture linework, restrained boho pastels, generous negative space, square source art, full-bleed scenes, and separate centered item/object/character PNGs with clean white padding.
+- Do not bake device chrome or review layout into generated assets: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, colored border, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels.
 - For required assets, include at least one final runtime PNG at `512x512` or larger, with `512x512` preferred unless the manifest explicitly requests an additional larger variant. Tiny `64px`/`128px` variants are allowed only as secondary thumbnails, never as the only playable runtime output.
 
 ### Step 4: Self-evaluate and repair
@@ -341,7 +342,7 @@ Before logging or committing, verify:
 
 Run this phase only after every generated package has passed package validation and only when `source.asset_build` is not `none` or `manifest_only`.
 
-- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; the agent-generated source PNGs must follow the built-in WonderLens activity asset style, and the deterministic builder consumes them from `runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png`, writes final variants under each package's `assets/`, updates package-relative variant paths, and summarizes them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
+- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; the agent-generated source PNGs must follow `docs/activity_asset_generation_workflow.md`, and the deterministic builder consumes them from `runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png`, writes final variants under each package's `assets/`, updates package-relative variant paths, and summarizes them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
 - `curate_reference`: for `reference_bound` assets, let an agent propose candidate sources, then verify provenance through approved public-domain, official, licensed/internal, or verified educational/scientific sources before accepting. Store accepted source originals and reviewer-approved metadata under package-local `assets/sources/`; do not use random web-image results as sources. The deterministic builder validates this metadata and leaves paths null if accepted provenance is missing or weak.
 - `generate_and_curate`: run both behaviors.
 

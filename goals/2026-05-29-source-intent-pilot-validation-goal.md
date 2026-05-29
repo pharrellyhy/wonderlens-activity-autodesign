@@ -25,6 +25,7 @@ Related context:
 - `GOAL.md`
 - `run.md`
 - `program.md`
+- `docs/activity_asset_generation_workflow.md`
 - `inputs/original_activity_concepts_2026-05-29.tsv`
 - `inputs/source_activity_concepts.md`
 - `docs/plans/2026-05-28-e2e-subset-runtime-validation.md`
@@ -175,6 +176,7 @@ git status --short --branch
 test -f GOAL.md
 test -f run.md
 test -f program.md
+test -f docs/activity_asset_generation_workflow.md
 test -f inputs/original_activity_concepts_2026-05-29.tsv
 test -f inputs/source_activity_concepts.md
 test -f scripts/build_activity_assets.py
