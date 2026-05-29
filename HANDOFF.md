@@ -1,5 +1,14 @@
 # HANDOFF
 
+## 2026-05-29 - Workbook TSV source baseline
+
+Problem: Future `GOAL.md` / `run.md` executions needed a committed original-workbook source baseline so normalized concept rows cannot silently drift from the workbook play frame.
+
+Solution: Treat `inputs/original_activity_concepts_2026-05-29.tsv` as the current workbook-derived source-intent baseline, with `inputs/source_activity_concepts.md` documented as a normalized helper only.
+
+Edits: Updated `GOAL.md`, `run.md`, and `program.md` to cite the TSV during workbook-derived source-promise extraction, adaptation-brief evidence, readiness checks, and source-intent audits. Kept the existing source-comparison command documented with `--workbook <source.xlsx>` because `scripts/generate_source_comparison_review.py` currently parses XLSX, not TSV.
+
+Verification: `git diff --check` passed for the Markdown/doc changes.
 
 ---
 
@@ -17,8 +26,8 @@ Verification: Autodesign validators and delegated reviews passed. Fullstack impo
 
 ## Current Status
 
-- Status: branch `fix/runtime-beat-contract-quality` tightens runtime behavior contracts so `Runtime AI instruction` beats must be strong enough to convert into downstream fullstack-demo-style `step_instructions` before the E2E subset validation run.
-- Date: 2026-05-28
+- Status: branch `main` now has the original workbook TSV committed and the main generation docs updated to use it as the current workbook source-intent baseline.
+- Date: 2026-05-29
 - Workspace: `/Users/pharrelly/codebase/github/wonderlens-activity-autodesign`
 
 ## Latest Changes

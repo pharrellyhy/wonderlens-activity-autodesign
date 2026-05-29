@@ -146,6 +146,8 @@ For unchecked generation-ready rows, treat `activity_id=` as `base_activity_id`.
 
 If `concept_source=` points to `file#concept_id`, read that repo-relative file and load the matching concept section before Phase 0. If `asset_requirements=` points to `file#asset_id`, read the same or referenced file and load the matching asset requirement section. Use the assignment row as the execution source of truth, and use the companion file as richer source / asset context. When a workbook row, source concept, and normalized assignment paraphrase disagree, preserve the original source design's play frame unless product explicitly approves the adaptation.
 
+For the current workbook-derived concept batch, use `inputs/original_activity_concepts_2026-05-29.tsv` as the committed workbook source-intent baseline. Use `inputs/source_activity_concepts.md` only as a normalized helper for English naming, mechanic labels, capability notes, and asset hints. If the normalized helper or assignment paraphrase weakens the TSV row's child role, interaction sequence, required child action, real/reference asset requirement, or background/context requirement, repair the helper/assignment interpretation first or record an explicit product-approved adaptation before generation.
+
 Source concepts may arrive in Chinese or mixed language. Before writing an adaptation brief or package, normalize the concept name, description, trigger, assumptions, asset rows, and generated copy to English. Do not copy Chinese source prose into generated activity artifacts.
 
 If `assignment_type` is not specified, infer it:
@@ -162,7 +164,7 @@ If tier is not specified, infer it per `program.md` rules. If scene is not speci
 Run `program.md` Phase 0 before scaffold composition. This is required for `activity_concept`, `match_pattern`, `capability_probe`, legacy concept aliases, and underspecified rows; it is allowed for normal `entity_activity` rows.
 
 1. Classify `input_mode` as `mapping_informed`, `parameterized`, or `concept_only`.
-2. Identify `source_promise_alignment`: original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, product dependencies, and alignment status. This is a required review field for concept-led rows and should be included whenever a source concept is richer than a simple entity/category assignment.
+2. Identify `source_promise_alignment`: original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, product dependencies, and alignment status. This is a required review field for concept-led rows and should be included whenever a source concept is richer than a simple entity/category assignment. For current workbook-derived rows, cite `inputs/original_activity_concepts_2026-05-29.tsv` evidence before normalized helper evidence.
 3. Identify `canonical_mechanic` and `mechanic_confidence`. If `mechanic=` is specified, it wins unless it is outside the current enum. The mechanic cannot override the original source play frame; it only labels the repeated child action.
 4. Decide `category_decision`, `readiness`, `trigger_condition`, `entity_role`, `observation_angle`, `focal_attribute`, mapping usefulness, asset dependency, product capability flags, and scaffold fit.
 5. If `asset_policy` is provided, copy it into `adaptation_brief.asset_dependency.policy` instead of inferring asset need from prose. If companion asset rows are provided, normalize them into `adaptation_brief.asset_dependency.assets`.
@@ -443,7 +445,7 @@ After writing `review.html`:
 Use this step when the generated packages already exist and the user asks for audit/review coverage rather than a full generation rerun. Do not regenerate activities, assets, or exported reviewer packets unless the audit identifies a package that must be repaired.
 
 1. Create or update `runs/<run_id>/source_comparison/source_intent_audit.yaml` with one entry per source workbook row. Each entry records `source_row`, `activity_id`, `workbook_evidence`, `original_play_frame`, `generated_play_frame`, `preserved`, `drift`, `status`, `severity`, `recommendation`, and `product_review_question`.
-2. Derive `original_play_frame` from the original workbook row, not from `inputs/source_activity_concepts.md` or an adaptation brief. Use the normalized source snapshot only as a cross-check. If the normalized row has weakened the workbook's child role, sequence, required asset, or background-information requirement, repair the normalized row first or record the generated package as drift.
+2. Derive `original_play_frame` from the original workbook row, not from `inputs/source_activity_concepts.md` or an adaptation brief. For the current workbook batch, use `inputs/original_activity_concepts_2026-05-29.tsv` as the committed workbook export for source-intent evidence. Use the normalized source snapshot only as a cross-check. If the normalized row has weakened the workbook's child role, sequence, required asset, or background-information requirement, repair the normalized row first or record the generated package as drift.
 3. Classify `status` as `aligned`, `minor_adaptation`, `intent_drift`, or `needs_product_decision`. Use `intent_drift` when the category/mechanic token is preserved but child role, interaction sequence, story frame, required child action, real-vs-fictional asset requirement, or required background/context content materially changes.
 4. Regenerate the source review matrix from existing run artifacts:
 
@@ -451,6 +453,8 @@ Use this step when the generated packages already exist and the user asks for au
 python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml --strict-workbook-intent
 python3 scripts/generate_source_comparison_review.py runs/<run_id> --workbook <source.xlsx> --intent-audit runs/<run_id>/source_comparison/source_intent_audit.yaml --strict-workbook-intent --validate
 ```
+
+The source-comparison script currently reads XLSX workbooks for `--workbook`; keep using the original XLSX there when generating the matrix, while citing the committed TSV export in audit evidence and generation briefs. Do not replace the `--workbook` argument with the TSV unless the script is extended to support TSV input first.
 
 5. Record `outputs.source_intent_audit`, `outputs.source_comparison_review`, audit counts, commands, and residual high-severity findings in `run_manifest.yaml` and `review_notes.md` or `HANDOFF.md`.
 6. If an entry is high-severity `intent_drift`, either repair only that activity package and regenerate the affected review artifacts, or leave it explicitly flagged as a product-review finding. Do not perform a full rerun merely to create the audit.
