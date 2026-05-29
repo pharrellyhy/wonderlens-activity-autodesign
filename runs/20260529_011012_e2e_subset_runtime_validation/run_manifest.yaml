@@ -1,7 +1,7 @@
 run_id: 20260529_011012_e2e_subset_runtime_validation
-status: blocked
+status: completed
 started_at: '2026-05-29T01:25:04+08:00'
-completed_at: '2026-05-29T01:39:26+08:00'
+completed_at: '2026-05-29T09:40:03+08:00'
 source:
   goal_file: goals/2026-05-28-e2e-subset-runtime-validation-goal.md
   plan_file: docs/plans/2026-05-28-e2e-subset-runtime-validation.md
@@ -29,8 +29,8 @@ summary:
   generated_count: 5
   blocked_count: 0
   failed_count: 0
-  blocked_count_note: Assignment-level blocked package count only; goal-level status
-    is blocked by downstream WonderLens AI package-loading compatibility.
+  blocked_count_note: Assignment-level blocked package count only; unsupported runtime
+    mechanics are represented by demo_support gating instead of failed assignments.
 outputs:
   generated_activities:
   - assignment_index: 1
@@ -143,23 +143,30 @@ checks:
   result: PASS - four written, unsupported package skipped
 - command: fullstack-demo PYTHONDONTWRITEBYTECODE=1 uv run pytest tests/test_autodesign_importer.py
     tests/test_entity_registry.py tests/test_api.py -q -p no:cacheprovider
-  result: FAIL - 2 exact-list entity fixture assertions include fresh imported IDs
-- command: fullstack-demo focused importer/API checks
-  result: PASS - 8 importer tests and 7 API tests
+  result: PASS - 83 tests passed, 1 skipped after importer/test fixture fix ce0cdc6
+- command: fullstack-demo PYTHONDONTWRITEBYTECODE=1 uv run ruff check backend/autodesign_importer.py
+    tests/test_autodesign_importer.py tests/test_entity_registry.py
+  result: PASS
 - command: fullstack-demo frontend npm test -- --run
   result: PASS - 31 tests
 - command: fullstack-demo live smoke on ports 8011/5176
   result: PASS for health, entity visibility, asset URLs, supported/degraded starts;
     unsupported absent from selector
 - command: wonderlens-ai unit package/runtime/loader/generator tests
-  result: PASS - 50 tests
+  result: PASS - 51 tests after ActivitySignature intro regression ca474e3
 - command: wonderlens-ai asset manifest/API package tests
   result: PASS - 20 tests
+- command: wonderlens-ai uv run ruff check app/modules/activity/packages/models.py
+    tests/unit/activity/test_activity_package_models.py and uv run ty check app/modules/activity/packages/models.py
+  result: PASS
 - command: wonderlens-ai generate_activity_runtime.py --write/--check
   result: PASS - runtime.yaml generated for all five, warnings=0
 - command: wonderlens-ai WONDERLENS_ACTIVITY_PACKAGE_DIR=.artifacts/e2e-subset-runtime/activities
     load_activity_packages()
-  result: FAIL - ActivitySignature forbids required autodesign activity_signature.intro
+  result: PASS - loaded all five packages; unsupported sorting package remains gated
+- command: wonderlens-ai load_all_games() and package asset route smoke
+  result: PASS - four e2e executable games exposed; unsupported package skipped; soft-shape
+    and Orion PNGs served as image/png
 - command: final report reviewer Hilbert (019e6fab-985f-7241-b788-13b668892251)
   result: 'FAIL then repaired: final_report status, exact command placeholders, blocked_count
     clarification, delegated evidence detail'
@@ -168,10 +175,9 @@ delegated_reviews:
     Step 3 round format
   visual_reference: PASS - Curie verified 512x512 runtime PNGs, Cat5 distinctions,
     no text/chrome/masks, and Orion seven-star fidelity
-  fullstack_demo: PASS evidence from Plato sidecar plus local focused checks; aggregate
-    has fixture exact-list failures
-  wonderlens_ai: 'BLOCKED after conversion: generated runtime.yaml passes, package
-    loader rejects autodesign tag_block activity_signature.intro'
+  fullstack_demo: PASS evidence from Plato sidecar plus local aggregate/API/frontend
+    checks after importer runtime-beat conversion fix ce0cdc6
+  wonderlens_ai: PASS after conversion and package-loading compatibility fix ca474e3
   final_report: REVIEWED - Hilbert final report review found four documentation issues;
     main agent repaired them before commit.
 notes:
@@ -179,26 +185,14 @@ notes:
 - Direct demo export enabled with asset_build=generate_and_curate.
 - Package-local runtime assets are built from generated_assets/inbox and accepted
   reference metadata.
-- Run is marked blocked because WonderLens AI conversion succeeds but package loading
-  fails on a downstream schema mismatch.
-- Fullstack demo import/play/gate evidence is recorded, with step_instructions conversion
-  quality listed as follow-up.
-blockers:
-- owner: wonderlens-ai
-  severity: blocking
-  summary: Converted packages cannot load because ActivitySignature has extra=forbid
-    and omits autodesign schema field activity_signature.intro.
-  evidence: load_activity_packages() fails for all five generated packages with activity_signature.intro
-    Extra inputs are not permitted.
-- owner: wonderlens-activity-fullstack-demo
-  severity: follow-up
-  summary: Fresh imports use generic default step_instructions instead of converting
-    prod.md Runtime AI instruction beats.
-  evidence: Generated e2e_* game frontmatter hook/transition/round goals are generic
-    defaults; Orion becomes imaginative-question flow instead of number-first reveal.
-- owner: wonderlens-activity-fullstack-demo
-  severity: test-fixture
-  summary: Required aggregate test exact-lists category IDs and fails after legitimate
-    fresh imports.
-  evidence: tests/test_entity_registry.py cat1/cat5 assertions report the new e2e
-    IDs as extra items.
+- WonderLens AI conversion, package loading, runtime game exposure, unsupported gating,
+  and package asset serving pass after local downstream fix ca474e3.
+- Fullstack demo import/play/gate evidence and runtime-beat step_instructions conversion
+  pass after local downstream fix ce0cdc6.
+blockers: []
+follow_ups:
+- owner: product
+  severity: product-scope
+  summary: Persistent drag/drop rainbow sorting remains unsupported and correctly gated.
+  evidence: e2e_rainbow_sort_board_unsupported has demo_support.status=unsupported
+    and WonderLens AI skips it because runtime_support.requires_runtime_extension is true.

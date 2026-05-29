@@ -23,7 +23,7 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
-| [2026-05-28-e2e-subset-runtime-validation.md](2026-05-28-e2e-subset-runtime-validation.md) | Blocked | Fresh subset/autodesign assets and runtime conversion were validated, but WonderLens AI package loading rejects current autodesign `activity_signature.intro`; fullstack also needs runtime-instruction conversion follow-up. |
+| [2026-05-28-e2e-subset-runtime-validation.md](2026-05-28-e2e-subset-runtime-validation.md) | Completed | Fresh subset/autodesign assets, fullstack import/play/gate behavior, fullstack runtime-beat conversion, and WonderLens AI runtime conversion/load/asset serving were validated; unsupported sorting remains correctly gated. |
 | [2026-05-28-generate-and-curate-asset-pipeline.md](2026-05-28-generate-and-curate-asset-pipeline.md) | Completed | Implemented `generate_and_curate` asset build scripts, package-local runtime assets, source curation metadata, validation, dashboard visibility, fixture coverage, and bitmap smoke. |
 | [2026-05-27-demo-package-contract-assets.md](2026-05-27-demo-package-contract-assets.md) | Completed | Added demo support metadata, runtime asset manifests, device asset style, unsupported mechanic gates, schemas, validator, and fixtures. |
 | [2026-05-26-runtime-conversion-parity.md](2026-05-26-runtime-conversion-parity.md) | Planned | Refreshed for current plan-goal workflow; umbrella three-phase plan for canonical activity runtime conversion, fullstack export, and live parity validation. |

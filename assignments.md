@@ -216,7 +216,7 @@
 
 ## E2E Subset Runtime Validation
 
-> Scoped validation run for `goals/2026-05-28-e2e-subset-runtime-validation-goal.md`. Autodesign packages passed local and delegated review; cross-repo run is blocked by WonderLens AI package-loading schema compatibility.
+> Scoped validation run for `goals/2026-05-28-e2e-subset-runtime-validation-goal.md`. Autodesign packages passed local and delegated review; cross-repo validation now passes after downstream WonderLens AI schema compatibility and fullstack runtime-beat conversion fixes.
 
 - [x] assignment_type=activity_concept, activity_concept=Shadow Story Seed, description=Cat1 simple supported, category=cat1, tier=T1, demo_support=supported, asset_build=generate_and_curate, activity_id=e2e_shadow_story_seed, package_path=runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_shadow_story_seed
 - [x] assignment_type=activity_concept, activity_concept=Soft Shape Collect, description=Cat5 simple collection supported, category=cat5, tier=T1, demo_support=supported, asset_build=generate_and_curate, activity_id=e2e_soft_shape_collect, package_path=runs/20260529_011012_e2e_subset_runtime_validation/activity_packages/e2e_soft_shape_collect

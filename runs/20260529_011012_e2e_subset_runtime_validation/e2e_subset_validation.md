@@ -1,8 +1,8 @@
 # E2E Subset Runtime Validation Report
 
-Run: `runs/20260529_011012_e2e_subset_runtime_validation`  
-Status: **Blocked**  
-Completed at: `2026-05-29T01:39:26+08:00`
+Run: `runs/20260529_011012_e2e_subset_runtime_validation`
+Status: **Completed**
+Completed at: `2026-05-29T09:40:03+08:00`
 
 ## Selected Packages
 
@@ -30,27 +30,21 @@ Import refreshed from current package files:
 - Live smoke: `/api/health` OK; `/api/entities` lists two Cat1 e2e supported packages, one Cat5 supported package, one Cat5 degraded package; unsupported rainbow package is absent.
 - Browser-safe assets resolved through Vite: `/activity-assets/e2e_soft_shape_collect__soft_shape/round_shape__round_512.png` and `/activity-assets/e2e_orion_number_reveal__orion_constellation/orion_seven_star_card__round_512.png` returned `200 image/png`.
 - `/api/start` returned sessions for Cat1, Cat5 supported, and Cat5 degraded imported filenames.
-
-Fullstack follow-ups:
-
-- The required aggregate backend check fails two exact-list fixture assertions in `tests/test_entity_registry.py` because fresh imported e2e IDs are legitimately present.
-- Fresh imported packages still receive generic default `step_instructions`; fullstack does not convert rich `prod.md` Runtime AI instruction beats into fullstack-style step instructions. This affects behavior quality, especially the Orion number-first reveal.
+- Downstream local fix `ce0cdc6` makes `scripts/import_autodesign_package.py` convert rich `prod.md` Runtime AI instruction beats into fullstack `step_instructions`.
+- Refreshed fullstack imports preserve the Orion number-first reveal, source-faithful asset reveal, background information beat, and Cat5 guide-card-to-real-`photo_id` guardrails.
+- Required backend aggregate now passes with the imported e2e packages present.
 
 ## WonderLens AI Evidence
 
-Deterministic package/runtime tests pass. Runtime conversion also passes:
+Deterministic package/runtime tests pass. Runtime conversion and package loading also pass:
 
 - `runtime.yaml` generated for all five packages with `warnings=0`.
 - Generated runtime data preserves one Step 3 runtime round per package with branch policy keys `hook`, `transition`, `round_1`, `celebrate`, and `closing`.
 - Report path in downstream worktree: `.artifacts/e2e-subset-runtime/report.json`.
-
-Blocking failure:
-
-- Loading the converted packages with `WONDERLENS_ACTIVITY_PACKAGE_DIR=.artifacts/e2e-subset-runtime/activities` fails for all five packages.
-- Owner: `wonderlens-ai`.
-- Root cause: `ActivitySignature` forbids extra fields and does not accept autodesign-required `activity_signature.intro` from `tag_block.yaml`.
-- Evidence: `load_activity_packages()` raises `ActivityPackageLoadError` with `activity_signature.intro Extra inputs are not permitted` for each generated package.
-- Recommendation: update WonderLens AI package models or converter copy step to tolerate/mirror the current autodesign tag-block schema before live WS/package asset smoke can run.
+- Downstream local fix `ca474e3` adds optional `activity_signature.intro` support while preserving strict validation for unrelated extra signature fields.
+- `load_activity_packages()` loads all five converted packages: four executable supported/degraded packages and one unsupported package gated by `requires_runtime_extension`.
+- `load_all_games()` exposes the four executable e2e games and skips `e2e_rainbow_sort_board_unsupported`.
+- Package asset routes serve the soft-shape and Orion PNGs through `/activity-assets/packages/...` with `200 image/png`.
 
 
 Exact WonderLens AI conversion commands run from the WonderLens AI validation worktree. `AUTODESIGN_RUN` was set to the relative source path below to avoid recording a machine-local absolute path:
@@ -75,14 +69,16 @@ uv run python scripts/generate_activity_runtime.py --source "$AUTODESIGN_RUN" --
 | Autodesign | `python scripts/build_activity_assets.py runs/20260529_011012_e2e_subset_runtime_validation --mode generate_and_curate --force` | PASS |
 | Autodesign | `python scripts/validate_asset_build_outputs.py runs/20260529_011012_e2e_subset_runtime_validation` | PASS |
 | Autodesign | `python scripts/generate_run_review.py --validate runs/20260529_011012_e2e_subset_runtime_validation` | PASS |
-| Fullstack | `PYTHONDONTWRITEBYTECODE=1 uv run pytest tests/test_autodesign_importer.py tests/test_entity_registry.py tests/test_api.py -q -p no:cacheprovider` | FAIL: exact-list fixtures only |
-| Fullstack | focused importer/API tests | PASS |
+| Fullstack | `PYTHONDONTWRITEBYTECODE=1 uv run ruff check backend/autodesign_importer.py tests/test_autodesign_importer.py tests/test_entity_registry.py` | PASS |
+| Fullstack | `PYTHONDONTWRITEBYTECODE=1 uv run pytest tests/test_autodesign_importer.py tests/test_entity_registry.py tests/test_api.py -q -p no:cacheprovider` | PASS: 83 passed, 1 skipped |
 | Fullstack | `cd frontend && npm test -- --run` | PASS |
 | WonderLens AI | package/runtime/loader/generator unit tests | PASS |
 | WonderLens AI | asset manifest/API package tests | PASS |
+| WonderLens AI | `uv run ruff check app/modules/activity/packages/models.py tests/unit/activity/test_activity_package_models.py` and `uv run ty check app/modules/activity/packages/models.py` | PASS |
 | WonderLens AI | `AUTODESIGN_RUN=../../../../../github/wonderlens-activity-autodesign/.worktrees/chore/e2e-subset-runtime-validation/runs/20260529_011012_e2e_subset_runtime_validation/activity_packages; uv run python scripts/generate_activity_runtime.py --source "$AUTODESIGN_RUN" --dest .artifacts/e2e-subset-runtime/activities --write --force --report-json .artifacts/e2e-subset-runtime/report.json` and `uv run python scripts/generate_activity_runtime.py --source "$AUTODESIGN_RUN" --dest .artifacts/e2e-subset-runtime/activities --check --report-json .artifacts/e2e-subset-runtime/check-report.json` | PASS |
-| WonderLens AI | `load_activity_packages()` with generated package root | FAIL: `activity_signature.intro` schema mismatch |
+| WonderLens AI | `load_activity_packages()` with generated package root | PASS: 5 packages loaded; unsupported package gated |
+| WonderLens AI | `load_all_games()` and package asset route smoke | PASS: 4 e2e games exposed; unsupported package skipped; soft-shape and Orion PNGs served |
 
 ## Final Classification
 
-This validation is **blocked**, not failed at autodesign. Autodesign generated the required package subset, assets, review dashboard, and runtime-ready instructions. The remaining blocker is a WonderLens AI schema compatibility issue after successful runtime conversion. Fullstack demo has import/play/gate evidence, but still needs a follow-up to convert rich Runtime AI instruction beats into `step_instructions` instead of defaults.
+This validation is **completed**. Autodesign generated the required package subset, package-local assets, review dashboard, and runtime-ready instructions. Fullstack demo imports supported/degraded packages, gates the unsupported sorting package, serves assets, starts playable packages, and now converts Runtime AI instruction beats into `step_instructions`. WonderLens AI generates `runtime.yaml`, loads the converted packages, gates the unsupported package, exposes executable runtime games, and serves package assets.
