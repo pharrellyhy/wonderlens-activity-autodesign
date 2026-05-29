@@ -6,9 +6,9 @@ Status: Planned
 
 ## Goal
 
-Run a focused 3 to 5 activity pilot from user-supplied source designs before
-scaling to a larger or full pass. The pilot must prove that the generation
-workflow preserves the original activity intent, produces runtime AI
+Run a focused 3 to 5 activity pilot selected from the original source-design
+inputs before scaling to a larger or full pass. The pilot must prove that the
+generation workflow preserves the original activity intent, produces runtime AI
 instructions that can become strong downstream `step_instructions`, generates
 runtime PNG assets when requested, and loads cleanly in both consumer repos.
 
@@ -38,12 +38,29 @@ The pilot should intentionally include examples where drift is easy to miss,
 such as factual/reference assets, required background information, multi-step
 child action, and asset-dependent screens.
 
+The current original source-design input is:
+
+```text
+inputs/source_activity_concepts.md
+```
+
+Assignment rows in `assignments.md` Batch 4 already point into this file with
+`concept_source=inputs/source_activity_concepts.md#source_*`. Historical
+source-intent audit evidence also exists under run-local
+`source_comparison/source_intent_audit.yaml` files and can help prioritize
+high-risk rows.
+
 ## Source Designs
 
-Use 3 to 5 new activity designs that the user actually cares about. If the user
-provides designs in chat, capture a stable source snapshot before generation
-under the run directory or another explicit input file so reviewers can compare
-the generated package against the original wording.
+Select 3 to 5 activity designs from the original source-design inputs. If the
+user names specific designs, use those first. Otherwise, choose representative
+high-risk rows from `inputs/source_activity_concepts.md` and record the
+selection rationale before generation.
+
+If the user provides additional designs in chat or another non-versioned form,
+capture a stable source snapshot before generation under the run directory or
+another explicit input file so reviewers can compare the generated package
+against the original wording.
 
 Preferred coverage:
 
@@ -57,6 +74,16 @@ Preferred coverage:
 
 One design may cover more than one slice, but the final report must explain the
 overlap. Do not use only old fixtures or previously accepted packages.
+
+Default candidate set if the user does not override:
+
+| Concept source | Activity | Why this belongs in the pilot |
+|---|---|---|
+| `inputs/source_activity_concepts.md#source_constellation_star_count` | Constellation Star Count | Known high-risk source-intent case: child chooses a number, device reveals a real matching constellation, and AI gives background information. Requires reference-bound assets and must not become arbitrary star counting. |
+| `inputs/source_activity_concepts.md#source_plant_parts_explorer` | Plant Parts Explorer | Tests whether generated beats preserve photo-based plant-part exploration and required part-function/background notes instead of generic naming/counting. |
+| `inputs/source_activity_concepts.md#source_career_decision` | Career Decision | Tests child-role and sequence fidelity: the child must be placed into a profession role and make expert decisions, not merely match professions to scenarios. |
+| `inputs/source_activity_concepts.md#source_partial_reveal_guess` | Partial Reveal Guess | Tests required visual-asset flow: the screen shows a distinctive part, the child guesses the whole, and the AI follows visible evidence rather than voice-only generic clues unless fallback is explicit. |
+| `inputs/source_activity_concepts.md#source_would_you_rather` | Would You Rather | Simple control activity with no asset dependency, useful for proving the stricter audit does not overfit only hard/reference cases. |
 
 ## Contract Hardening
 

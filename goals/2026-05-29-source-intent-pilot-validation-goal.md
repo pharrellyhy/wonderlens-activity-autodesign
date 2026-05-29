@@ -8,7 +8,8 @@ Use this file as the Codex goal-mode execution contract.
 
 ## Objective
 
-Run a fresh 3 to 5 activity pilot from user-supplied source designs. Prove that
+Run a fresh 3 to 5 activity pilot selected from the original source-design
+inputs, with user-named rows taking priority when provided. Prove that
 autodesign preserves source intent, generates runtime-ready AI instructions,
 builds actual PNG assets with `asset_build=generate_and_curate`, and that both
 fullstack-demo and WonderLens AI convert/load the packages cleanly.
@@ -24,6 +25,7 @@ Related context:
 - `GOAL.md`
 - `run.md`
 - `program.md`
+- `inputs/source_activity_concepts.md`
 - `docs/plans/2026-05-28-e2e-subset-runtime-validation.md`
 - `/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md`
 - `/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo`
@@ -36,9 +38,12 @@ goal conflict, stop and document the conflict before changing behavior.
 
 ## Hard Constraints
 
-- Use 3 to 5 new source designs the user actually cares about.
-- Capture a stable source snapshot before generation if the source designs are
-  supplied in chat or another non-versioned form.
+- Select 3 to 5 pilot designs from the original source-design inputs. If the
+  user names specific designs, use those first; otherwise use the default
+  high-risk candidate set in the source plan.
+- Capture a stable source snapshot before generation, either by referencing
+  exact committed source sections or by writing a run-local copy when the input
+  comes from chat or another non-versioned form.
 - Execute the scoped generation through `GOAL.md` / `run.md`; do not handwrite
   final packages outside the workflow.
 - Set the run to `demo_export=true` and `asset_build=generate_and_curate`.
@@ -122,18 +127,21 @@ before it is accepted. Reviewer evidence must include a verdict of `aligned`,
 1. Record current commit SHA and clean/dirty state for all three repos.
 2. Confirm or add the explicit source-intent auditor gate in `GOAL.md`,
    `run.md`, and `program.md`.
-3. Capture the 3 to 5 source designs as stable pilot input.
-4. Run scoped autodesign generation with `demo_export=true` and
+3. Select 3 to 5 source designs from `inputs/source_activity_concepts.md`,
+   using user-named rows first and otherwise the plan's default high-risk
+   candidate set.
+4. Capture the selected source designs as stable pilot input.
+5. Run scoped autodesign generation with `demo_export=true` and
    `asset_build=generate_and_curate`.
-5. Build and validate package-local PNG assets.
-6. Run independent source-intent, package-depth, runtime-instruction, and
+6. Build and validate package-local PNG assets.
+7. Run independent source-intent, package-depth, runtime-instruction, and
    visual/reference reviews; repair and re-review failures.
-7. Import the generated packages into fullstack-demo and inspect converted
+8. Import the generated packages into fullstack-demo and inspect converted
    `step_instructions`.
-8. Convert/load the generated packages in WonderLens AI and inspect runtime
+9. Convert/load the generated packages in WonderLens AI and inspect runtime
    behavior.
-9. Write `runs/<run_id>/source_intent_pilot_validation.md`.
-10. Update plan/goal indexes to `Completed` or `Blocked`, then commit intended
+10. Write `runs/<run_id>/source_intent_pilot_validation.md`.
+11. Update plan/goal indexes to `Completed` or `Blocked`, then commit intended
     autodesign changes and artifacts.
 
 ## Live Provider Credential Rule
@@ -161,6 +169,7 @@ git status --short --branch
 test -f GOAL.md
 test -f run.md
 test -f program.md
+test -f inputs/source_activity_concepts.md
 test -f scripts/build_activity_assets.py
 test -f scripts/validate_asset_build_outputs.py
 test -f scripts/validate_demo_package_contract.py
@@ -185,7 +194,8 @@ test -f scripts/generate_activity_runtime.py
 
 ## Success Criteria
 
-- The pilot uses 3 to 5 new source designs and records a stable source snapshot.
+- The pilot uses 3 to 5 designs from the original source-design inputs and
+  records a stable source snapshot.
 - The run records `asset_build=generate_and_curate`.
 - Required assets have package-local runtime PNG variants and asset validation
   passes.
@@ -258,5 +268,5 @@ review summary, remaining risks, and commit hashes.
 Use from the `wonderlens-activity-autodesign` repo or validation worktree:
 
 ```text
-/goal Implement goals/2026-05-29-source-intent-pilot-validation-goal.md. Use the 3 to 5 source activity designs supplied by the user, set asset_build=generate_and_curate so runtime PNGs are generated, and use delegated agents for independent source-intent, runtime-instruction, visual/reference, fullstack, WonderLens AI, and final-report verification where ownership is disjoint. Stop only when the completion gate is satisfied or a blocker is documented.
+/goal Implement goals/2026-05-29-source-intent-pilot-validation-goal.md. Select 3 to 5 pilot source activity designs from the original source-design inputs, using user-named rows first and otherwise the plan's default high-risk candidates; set asset_build=generate_and_curate so runtime PNGs are generated; and use delegated agents for independent source-intent, runtime-instruction, visual/reference, fullstack, WonderLens AI, and final-report verification where ownership is disjoint. Stop only when the completion gate is satisfied or a blocker is documented.
 ```
