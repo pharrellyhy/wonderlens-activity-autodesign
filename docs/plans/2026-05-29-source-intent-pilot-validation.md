@@ -6,7 +6,7 @@ Status: Planned
 
 ## Goal
 
-Run a focused 3 to 5 activity pilot selected from the original source-design
+Run a focused 5 to 7 activity pilot selected from the original source-design
 inputs before scaling to a larger or full pass. The pilot must prove that the
 generation workflow preserves the original activity intent, produces runtime AI
 instructions that can become strong downstream `step_instructions`, generates
@@ -36,7 +36,8 @@ Recent downstream validation showed that:
 
 The pilot should intentionally include examples where drift is easy to miss,
 such as factual/reference assets, required background information, multi-step
-child action, and asset-dependent screens.
+child action, sound-based collection, material/drawing workflows, and
+asset-dependent screens.
 
 The current original workbook export is the primary source of truth for source
 intent:
@@ -64,12 +65,13 @@ high-risk rows.
 
 ## Source Designs
 
-Select 3 to 5 activity designs from
-`inputs/original_activity_concepts_2026-05-29.tsv`. If the user names specific
-designs, use those first. Otherwise, choose representative high-risk rows from
-the TSV and use `inputs/source_activity_concepts.md` only as the normalized
-helper for generation metadata. Record the selection rationale before
-generation.
+Select 5 to 7 activity designs from
+`inputs/original_activity_concepts_2026-05-29.tsv`. The pilot must include the
+user-requested Phoneme Treasure Hunt and Guided Drawing rows. If the user names
+additional specific designs, use those first, then fill remaining slots with
+representative high-risk rows from the TSV. Use
+`inputs/source_activity_concepts.md` only as the normalized helper for
+generation metadata. Record the selection rationale before generation.
 
 If the user provides additional designs in chat or another non-versioned form,
 capture a stable source snapshot before generation under the run directory or
@@ -83,6 +85,8 @@ Preferred coverage:
 | Factual/reference asset | Prevents arbitrary generated approximations, especially constellations, maps, diagrams, artworks, named places, or species. |
 | Required background information | Catches cases where a generated activity keeps the mechanic but drops the teaching/context promise. |
 | Multi-step child action | Catches sequence drift and child-role drift. |
+| Sound-based collection | Verifies phoneme/letter support stays playful and does not become formal assessment or generic scavenger hunt. |
+| Material/drawing capability probe | Verifies unsupported Cat3 material workflows block or degrade honestly instead of being forced into Cat1/Cat5. |
 | Asset-dependent scene/character/object | Verifies `asset_manifest.yaml`, generated PNGs, screen references, and fallback behavior. |
 | Simple control activity | Confirms the stricter audit does not overfit only hard cases. |
 
@@ -93,6 +97,8 @@ Default candidate set if the user does not override:
 
 | Original TSV row | Normalized helper | Activity | Why this belongs in the pilot |
 |---|---|---|---|
+| 2 | `inputs/source_activity_concepts.md#source_phoneme_hunt` | Phoneme Treasure Hunt | User-requested Cat5 sound-based collection case: child finds and photographs an object whose word starts with the target sound. Tests that the target sound remains the collection criterion and any letter card is support, not a replacement for the child search. |
+| 4 | `inputs/source_activity_concepts.md#source_guided_drawing` | Guided Drawing | User-requested Cat3 material workflow case: AI guides paper-and-pencil drawing step by step, leaves time for the process, and celebrates a final photo without quality grading. Should block or degrade honestly unless product support for material workflow/final-work capture is approved. |
 | 20 | `inputs/source_activity_concepts.md#source_constellation_star_count` | Constellation Star Count | Known high-risk source-intent case: child chooses a number, device reveals a real matching constellation, and AI gives background information. Requires reference-bound assets and must not become arbitrary star counting. |
 | 15 | `inputs/source_activity_concepts.md#source_plant_parts_explorer` | Plant Parts Explorer | Tests whether generated beats preserve photo-based plant-part exploration and required part-function/background notes instead of generic naming/counting. |
 | 26 | `inputs/source_activity_concepts.md#source_career_decision` | Career Decision | Tests child-role and sequence fidelity: the child must be placed into a profession role and make expert decisions, not merely match professions to scenarios. |

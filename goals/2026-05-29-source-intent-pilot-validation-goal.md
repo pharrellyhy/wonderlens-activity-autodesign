@@ -8,8 +8,9 @@ Use this file as the Codex goal-mode execution contract.
 
 ## Objective
 
-Run a fresh 3 to 5 activity pilot selected from the original source-design
-inputs, with user-named rows taking priority when provided. Prove that
+Run a fresh 5 to 7 activity pilot selected from the original source-design
+inputs, including the user-requested Phoneme Treasure Hunt and Guided Drawing
+rows. Prove that
 autodesign preserves source intent, generates runtime-ready AI instructions,
 builds actual PNG assets with `asset_build=generate_and_curate`, and that both
 fullstack-demo and WonderLens AI convert/load the packages cleanly.
@@ -40,10 +41,12 @@ goal conflict, stop and document the conflict before changing behavior.
 
 ## Hard Constraints
 
-- Select 3 to 5 pilot designs from
-  `inputs/original_activity_concepts_2026-05-29.tsv`. If the user names
-  specific designs, use those first; otherwise use the default high-risk
-  candidate set in the source plan.
+- Select 5 to 7 pilot designs from
+  `inputs/original_activity_concepts_2026-05-29.tsv`. Include the
+  user-requested TSV row 2 Phoneme Treasure Hunt
+  (`source_phoneme_hunt`) and TSV row 4 Guided Drawing
+  (`source_guided_drawing`), then include the default high-risk candidate set in
+  the source plan unless the user explicitly overrides it.
 - Capture a stable source snapshot before generation, either by referencing
   exact committed source sections or by writing a run-local copy when the input
   comes from chat or another non-versioned form.
@@ -73,15 +76,17 @@ goal conflict, stop and document the conflict before changing behavior.
 
 ## Required Scope
 
-The pilot should cover, across 3 to 5 designs:
+The pilot should cover, across 5 to 7 designs:
 
 - one factual or reference-bound asset case;
 - one activity with required background/context information;
 - one multi-step child-action sequence;
+- one sound-based Cat5 collection case;
+- one material/drawing capability-probe case;
 - one asset-dependent scene, character, or object case;
 - one simpler control activity.
 
-For each generated package, verify:
+For each generated package or blocked/degraded pilot artifact, verify:
 
 - source-intent preservation;
 - package depth and mechanic fidelity;
@@ -134,9 +139,10 @@ before it is accepted. Reviewer evidence must include a verdict of `aligned`,
 1. Record current commit SHA and clean/dirty state for all three repos.
 2. Confirm or add the explicit source-intent auditor gate in `GOAL.md`,
    `run.md`, and `program.md`.
-3. Select 3 to 5 source designs from
-   `inputs/original_activity_concepts_2026-05-29.tsv`, using user-named rows
-   first and otherwise the plan's default high-risk candidate set.
+3. Select 5 to 7 source designs from
+   `inputs/original_activity_concepts_2026-05-29.tsv`, including TSV row 2
+   Phoneme Treasure Hunt and TSV row 4 Guided Drawing, then the plan's default
+   high-risk candidate set unless the user explicitly overrides it.
 4. Capture the selected source designs as stable pilot input.
 5. Run scoped autodesign generation with `demo_export=true` and
    `asset_build=generate_and_curate`.
@@ -203,9 +209,11 @@ test -f scripts/generate_activity_runtime.py
 
 ## Success Criteria
 
-- The pilot uses 3 to 5 designs from
+- The pilot uses 5 to 7 designs from
   `inputs/original_activity_concepts_2026-05-29.tsv` and records a stable
   source snapshot.
+- The selected set includes TSV row 2 Phoneme Treasure Hunt and TSV row 4
+  Guided Drawing.
 - The run records `asset_build=generate_and_curate`.
 - Required assets have package-local runtime PNG variants and asset validation
   passes.
@@ -278,5 +286,5 @@ review summary, remaining risks, and commit hashes.
 Use from the `wonderlens-activity-autodesign` repo or validation worktree:
 
 ```text
-/goal Implement goals/2026-05-29-source-intent-pilot-validation-goal.md. Select 3 to 5 pilot source activity designs from inputs/original_activity_concepts_2026-05-29.tsv, using user-named rows first and otherwise the plan's default high-risk candidates; set asset_build=generate_and_curate so runtime PNGs are generated; and use delegated agents for independent source-intent, runtime-instruction, visual/reference, fullstack, WonderLens AI, and final-report verification where ownership is disjoint. Stop only when the completion gate is satisfied or a blocker is documented.
+/goal Implement goals/2026-05-29-source-intent-pilot-validation-goal.md. Select 5 to 7 pilot source activity designs from inputs/original_activity_concepts_2026-05-29.tsv, including TSV row 2 Phoneme Treasure Hunt and TSV row 4 Guided Drawing, then the plan's default high-risk candidates unless explicitly overridden; set asset_build=generate_and_curate so runtime PNGs are generated; and use delegated agents for independent source-intent, runtime-instruction, visual/reference, fullstack, WonderLens AI, and final-report verification where ownership is disjoint. Stop only when the completion gate is satisfied or a blocker is documented.
 ```

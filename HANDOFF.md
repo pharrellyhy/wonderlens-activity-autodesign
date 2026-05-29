@@ -27,6 +27,22 @@ preconditions.
 
 Verification: `git diff --check` passed for the Markdown/doc changes.
 
+## 2026-05-29 - Expanded Source Intent Pilot
+
+Problem: The pilot set needed to include the user-requested Phoneme Treasure
+Hunt and Guided Drawing activities in addition to the existing high-risk source
+intent candidates.
+
+Solution: Expanded the pilot scope from 3-5 designs to 5-7 designs, requiring
+TSV row 2 `source_phoneme_hunt` and TSV row 4 `source_guided_drawing`.
+Guided Drawing remains a capability-probe/material-workflow case that should
+block or degrade honestly unless product support is approved.
+
+Edits: Updated the 2026-05-29 source-intent pilot plan and goal invocation /
+success criteria.
+
+Verification: `git diff --check` passed for the Markdown/doc changes.
+
 ---
 
 ## 2026-05-29 - E2E subset runtime validation
