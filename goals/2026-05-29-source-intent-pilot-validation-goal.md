@@ -25,6 +25,7 @@ Related context:
 - `GOAL.md`
 - `run.md`
 - `program.md`
+- `inputs/original_activity_concepts_2026-05-29.tsv`
 - `inputs/source_activity_concepts.md`
 - `docs/plans/2026-05-28-e2e-subset-runtime-validation.md`
 - `/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md`
@@ -38,12 +39,17 @@ goal conflict, stop and document the conflict before changing behavior.
 
 ## Hard Constraints
 
-- Select 3 to 5 pilot designs from the original source-design inputs. If the
-  user names specific designs, use those first; otherwise use the default
-  high-risk candidate set in the source plan.
+- Select 3 to 5 pilot designs from
+  `inputs/original_activity_concepts_2026-05-29.tsv`. If the user names
+  specific designs, use those first; otherwise use the default high-risk
+  candidate set in the source plan.
 - Capture a stable source snapshot before generation, either by referencing
   exact committed source sections or by writing a run-local copy when the input
   comes from chat or another non-versioned form.
+- Treat `inputs/source_activity_concepts.md` as a normalized helper for English
+  fields, mechanics, asset requirements, and product-capability flags. If it
+  disagrees with the original TSV row, the TSV row wins unless the final report
+  records an explicit product-approved source change.
 - Execute the scoped generation through `GOAL.md` / `run.md`; do not handwrite
   final packages outside the workflow.
 - Set the run to `demo_export=true` and `asset_build=generate_and_curate`.
@@ -127,9 +133,9 @@ before it is accepted. Reviewer evidence must include a verdict of `aligned`,
 1. Record current commit SHA and clean/dirty state for all three repos.
 2. Confirm or add the explicit source-intent auditor gate in `GOAL.md`,
    `run.md`, and `program.md`.
-3. Select 3 to 5 source designs from `inputs/source_activity_concepts.md`,
-   using user-named rows first and otherwise the plan's default high-risk
-   candidate set.
+3. Select 3 to 5 source designs from
+   `inputs/original_activity_concepts_2026-05-29.tsv`, using user-named rows
+   first and otherwise the plan's default high-risk candidate set.
 4. Capture the selected source designs as stable pilot input.
 5. Run scoped autodesign generation with `demo_export=true` and
    `asset_build=generate_and_curate`.
@@ -169,6 +175,7 @@ git status --short --branch
 test -f GOAL.md
 test -f run.md
 test -f program.md
+test -f inputs/original_activity_concepts_2026-05-29.tsv
 test -f inputs/source_activity_concepts.md
 test -f scripts/build_activity_assets.py
 test -f scripts/validate_asset_build_outputs.py
@@ -194,8 +201,9 @@ test -f scripts/generate_activity_runtime.py
 
 ## Success Criteria
 
-- The pilot uses 3 to 5 designs from the original source-design inputs and
-  records a stable source snapshot.
+- The pilot uses 3 to 5 designs from
+  `inputs/original_activity_concepts_2026-05-29.tsv` and records a stable
+  source snapshot.
 - The run records `asset_build=generate_and_curate`.
 - Required assets have package-local runtime PNG variants and asset validation
   passes.
@@ -268,5 +276,5 @@ review summary, remaining risks, and commit hashes.
 Use from the `wonderlens-activity-autodesign` repo or validation worktree:
 
 ```text
-/goal Implement goals/2026-05-29-source-intent-pilot-validation-goal.md. Select 3 to 5 pilot source activity designs from the original source-design inputs, using user-named rows first and otherwise the plan's default high-risk candidates; set asset_build=generate_and_curate so runtime PNGs are generated; and use delegated agents for independent source-intent, runtime-instruction, visual/reference, fullstack, WonderLens AI, and final-report verification where ownership is disjoint. Stop only when the completion gate is satisfied or a blocker is documented.
+/goal Implement goals/2026-05-29-source-intent-pilot-validation-goal.md. Select 3 to 5 pilot source activity designs from inputs/original_activity_concepts_2026-05-29.tsv, using user-named rows first and otherwise the plan's default high-risk candidates; set asset_build=generate_and_curate so runtime PNGs are generated; and use delegated agents for independent source-intent, runtime-instruction, visual/reference, fullstack, WonderLens AI, and final-report verification where ownership is disjoint. Stop only when the completion gate is satisfied or a blocker is documented.
 ```

@@ -38,24 +38,38 @@ The pilot should intentionally include examples where drift is easy to miss,
 such as factual/reference assets, required background information, multi-step
 child action, and asset-dependent screens.
 
-The current original source-design input is:
+The current original workbook export is the primary source of truth for source
+intent:
+
+```text
+inputs/original_activity_concepts_2026-05-29.tsv
+```
+
+The normalized helper is:
 
 ```text
 inputs/source_activity_concepts.md
 ```
 
-Assignment rows in `assignments.md` Batch 4 already point into this file with
-`concept_source=inputs/source_activity_concepts.md#source_*`. Historical
-source-intent audit evidence also exists under run-local
+Assignment rows in `assignments.md` Batch 4 point into the normalized helper
+with `concept_source=inputs/source_activity_concepts.md#source_*`. Use that file
+for English normalization, mechanics, asset requirements, product capability
+flags, and source-intent locks. Use the TSV workbook export for original
+activity intent. If the TSV and normalized helper disagree, the TSV wins unless
+the final report records an explicit product-approved source change.
+
+Historical source-intent audit evidence also exists under run-local
 `source_comparison/source_intent_audit.yaml` files and can help prioritize
 high-risk rows.
 
 ## Source Designs
 
-Select 3 to 5 activity designs from the original source-design inputs. If the
-user names specific designs, use those first. Otherwise, choose representative
-high-risk rows from `inputs/source_activity_concepts.md` and record the
-selection rationale before generation.
+Select 3 to 5 activity designs from
+`inputs/original_activity_concepts_2026-05-29.tsv`. If the user names specific
+designs, use those first. Otherwise, choose representative high-risk rows from
+the TSV and use `inputs/source_activity_concepts.md` only as the normalized
+helper for generation metadata. Record the selection rationale before
+generation.
 
 If the user provides additional designs in chat or another non-versioned form,
 capture a stable source snapshot before generation under the run directory or
@@ -77,13 +91,13 @@ overlap. Do not use only old fixtures or previously accepted packages.
 
 Default candidate set if the user does not override:
 
-| Concept source | Activity | Why this belongs in the pilot |
-|---|---|---|
-| `inputs/source_activity_concepts.md#source_constellation_star_count` | Constellation Star Count | Known high-risk source-intent case: child chooses a number, device reveals a real matching constellation, and AI gives background information. Requires reference-bound assets and must not become arbitrary star counting. |
-| `inputs/source_activity_concepts.md#source_plant_parts_explorer` | Plant Parts Explorer | Tests whether generated beats preserve photo-based plant-part exploration and required part-function/background notes instead of generic naming/counting. |
-| `inputs/source_activity_concepts.md#source_career_decision` | Career Decision | Tests child-role and sequence fidelity: the child must be placed into a profession role and make expert decisions, not merely match professions to scenarios. |
-| `inputs/source_activity_concepts.md#source_partial_reveal_guess` | Partial Reveal Guess | Tests required visual-asset flow: the screen shows a distinctive part, the child guesses the whole, and the AI follows visible evidence rather than voice-only generic clues unless fallback is explicit. |
-| `inputs/source_activity_concepts.md#source_would_you_rather` | Would You Rather | Simple control activity with no asset dependency, useful for proving the stricter audit does not overfit only hard/reference cases. |
+| Original TSV row | Normalized helper | Activity | Why this belongs in the pilot |
+|---|---|---|---|
+| 20 | `inputs/source_activity_concepts.md#source_constellation_star_count` | Constellation Star Count | Known high-risk source-intent case: child chooses a number, device reveals a real matching constellation, and AI gives background information. Requires reference-bound assets and must not become arbitrary star counting. |
+| 15 | `inputs/source_activity_concepts.md#source_plant_parts_explorer` | Plant Parts Explorer | Tests whether generated beats preserve photo-based plant-part exploration and required part-function/background notes instead of generic naming/counting. |
+| 26 | `inputs/source_activity_concepts.md#source_career_decision` | Career Decision | Tests child-role and sequence fidelity: the child must be placed into a profession role and make expert decisions, not merely match professions to scenarios. |
+| 11 | `inputs/source_activity_concepts.md#source_partial_reveal_guess` | Partial Reveal Guess | Tests required visual-asset flow: the screen shows a distinctive part, the child guesses the whole, and the AI follows visible evidence rather than voice-only generic clues unless fallback is explicit. |
+| 33 | `inputs/source_activity_concepts.md#source_would_you_rather` | Would You Rather | Simple control activity with no asset dependency, useful for proving the stricter audit does not overfit only hard/reference cases. |
 
 ## Contract Hardening
 
@@ -97,9 +111,10 @@ source documents if it is not already present:
 - `program.md`: add the reusable generation/review rule so new designs outside
   the exact pilot still inherit the quality bar.
 
-The source-intent auditor must compare the original source design against the
-adaptation brief, `spec.md`, `prod.md`, `tag_block.yaml`, `asset_manifest.yaml`,
-and downstream conversion artifacts when available.
+The source-intent auditor must compare the original TSV workbook row against
+the normalized helper, adaptation brief, `spec.md`, `prod.md`,
+`tag_block.yaml`, `asset_manifest.yaml`, and downstream conversion artifacts
+when available.
 
 Required checklist fields:
 
