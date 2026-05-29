@@ -1,0 +1,60 @@
+activity_id: concept_plant_parts_enumerate
+source_row:
+  snapshot_file: runs/20260529_172332_source_intent_pilot/source_snapshots/selected_source_rows.md
+  tsv_row: 15
+  original_activity_name: "植物不同部位"
+  normalized_helper: inputs/source_activity_concepts.md#source_plant_parts_explorer
+  source_category: "Cat 5. 需结合拍照"
+  source_scene: "室内,户外"
+  source_mechanic: "1. 识别/计数 Enumerate/Identify/Count/Measure"
+  screen_dependency: "低"
+  source_excerpt: "Guide the child to photograph different plant positions, then introduce plant parts and their functions in a fun way."
+original_play_frame: "A photo-based plant-part exploration where the child captures different visible plant locations and hears playful notes about what those parts do."
+child_role: "Field explorer who photographs more than one visible plant part and notices differences between parts."
+device_role_action: "Prompts one plant-part capture at a time, keeps captures tied to visible evidence, and gives simple fun function/background notes."
+interaction_sequence:
+  - "Invite the child to explore one plant."
+  - "Ask for a first visible plant-part photo."
+  - "Ask for a different plant-part photo."
+  - "Give playful function/background context for the captured parts."
+  - "Recap the explored parts."
+required_child_actions:
+  - "Locate a real plant or visible plant sample."
+  - "Photograph one plant part."
+  - "Find and photograph a different plant part."
+  - "Optionally name or point to the part."
+real_or_reference_asset_requirement: "Real camera photos of plant parts are required. No generated/reference asset is required by the source."
+required_background_context: "Introduce different plant parts and their functions in a varied, interesting, child-safe way."
+non_negotiable_source_elements:
+  - "Cat5 photo-coupled exploration."
+  - "Different plant positions or parts, not a single generic plant photo."
+  - "Function/background context after observation."
+  - "No species identification requirement."
+allowed_v1_adaptations:
+  - "Limit the runtime loop to two photographed parts for a T1 pilot."
+  - "Use visible common parts such as leaf, flower, stem, seed, or fruit instead of requiring a specialized part like stamen."
+  - "Avoid generated assets and rely on camera evidence."
+generated_package_evidence:
+  spec:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_plant_parts_enumerate/spec.md
+    observations:
+      - "Premise preserves photographing different plant positions and hearing simple function/background notes."
+      - "Asset dependency is zero and product capability requires real_camera."
+  prod:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_plant_parts_enumerate/prod.md
+    observations:
+      - "Step 1 invites exploration of different visible positions on one plant."
+      - "Step 2 asks for a photo of a visible plant part without species identification."
+      - "Step 3 asks for a different part from another location on the same plant."
+      - "Step 4 requires a brief function or background note and warns not to skip context."
+  demo_support:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_plant_parts_enumerate/demo_support.yaml
+    observations:
+      - "status is supported with real_camera true and generated_assets false."
+  asset_manifest:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_plant_parts_enumerate/asset_manifest.yaml
+    observations:
+      - "assets is an empty list, matching the source's camera-first form."
+verdict: aligned
+repair_required: false
+re_review_outcome: "Not required. The package preserves the source Cat5 plant-part/photo/function loop."

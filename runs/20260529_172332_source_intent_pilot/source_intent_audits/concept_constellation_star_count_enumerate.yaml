@@ -1,0 +1,61 @@
+activity_id: concept_constellation_star_count_enumerate
+source_row:
+  snapshot_file: runs/20260529_172332_source_intent_pilot/source_snapshots/selected_source_rows.md
+  tsv_row: 20
+  original_activity_name: "星座的恒星数量"
+  normalized_helper: inputs/source_activity_concepts.md#source_constellation_star_count
+  source_category: "Cat 1. 纯语音（含屏幕显示及互动）"
+  source_scene: "室内,户外"
+  source_mechanic: "1. 识别/计数 Enumerate/Identify/Count/Measure"
+  screen_dependency: "中"
+  source_excerpt: "Child chooses between two numbers, then sees the constellation matching the chosen count and hears a simple introduction."
+original_play_frame: "A number-choice reveal: the child first chooses one of two star counts, then the device reveals a prebuilt constellation card matching that count and gives brief background information."
+child_role: "Number chooser and observer of the revealed constellation card."
+device_role_action: "Offers two count choices, maps the selected count to a prebuilt/reference constellation asset, reveals it after the choice, and provides simple constellation context."
+interaction_sequence:
+  - "Offer two count choices before any constellation appears."
+  - "Accept the child's number choice."
+  - "Reveal a matching prebuilt/reference constellation card."
+  - "Give a short background introduction."
+  - "Close by connecting chosen number, revealed card, and context."
+required_child_actions:
+  - "Choose one of the offered counts."
+  - "Observe the revealed star pattern."
+  - "Optionally repeat or notice the constellation name/count."
+real_or_reference_asset_requirement: "Required prebuilt/reference constellation cards with clear guide-star points. The generated package must not invent fictional constellations or alter star counts."
+required_background_context: "The device should give simple background about the revealed constellation, not only ask for counting."
+non_negotiable_source_elements:
+  - "Choice happens before reveal."
+  - "The revealed constellation must correspond to the selected count."
+  - "Assets must make star points clear enough for number sense."
+  - "Constellation background/introduction must be included."
+  - "The activity must not become a generic direct-counting quiz."
+allowed_v1_adaptations:
+  - "Pilot may limit the prebuilt list to a small approved set."
+  - "Use approved internal reference assets and crop/resize them for the round screen."
+  - "Omit text labels on assets if runtime voice supplies names and the no-text asset rule applies."
+generated_package_evidence:
+  spec:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_constellation_star_count_enumerate/spec.md
+    observations:
+      - "Premise preserves choosing between two numbers before revealing a real approved matching constellation."
+      - "Asset brief requires Cassiopeia five-guide-star and Orion seven-guide-star cards from approved internal references."
+  prod:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_constellation_star_count_enumerate/prod.md
+    observations:
+      - "Step 1 offers exactly 5 or 7 before any stars are visible."
+      - "Step 2 maps 5 to cassiopeia_five_star_card and 7 to orion_seven_star_card."
+      - "Step 3 requires one short background fact and keeps the selected asset visible."
+      - "Guardrails prevent fictional constellations, direct recounting, or random generation."
+  demo_support:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_constellation_star_count_enumerate/demo_support.yaml
+    observations:
+      - "status is supported with generated_assets and device_round_screen required."
+  asset_manifest:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_constellation_star_count_enumerate/asset_manifest.yaml
+    observations:
+      - "Both assets use accuracy_mode reference_bound, approved_internal_reference, and crop_resize_only."
+      - "Asset metadata records star_count 5 for Cassiopeia and 7 for Orion."
+verdict: aligned
+repair_required: false
+re_review_outcome: "Not required. The package narrows the list to two approved pilot cards, but preserves the source sequence and reference-bound count mapping."

@@ -39,38 +39,38 @@ Recommended Tier: T1
 
 #### Step 1: Give The Child The Expert Role
 
-**Runtime AI instruction:** Goal: tell the child they are the professional expert before any scenario question. Constraint: T1 max two sentences; role-first, not profession-matching. Tone: proud and invitational. Progress evidence: child accepts the role, says firefighter, or asks what to do. Branch behavior: handle ideal, unexpected, and no-response cases with the follow-up policies. Frame/source guardrail: preserve child-as-professional role play.
+**Runtime AI instruction:** Goal: tell the child they are the professional expert before any scenario question. Constraint: T1 max two sentences; role-first, not profession-matching. Tone: proud and invitational. Progress evidence: child accepts the role, says firefighter, or asks what to do. Branch behavior: if the child accepts, start the work problem; if they try to guess the job, restate that they are the expert; if quiet, model putting on the pretend helmet. Frame/source guardrail: preserve child-as-professional role play.
 
 **Example AI line:** [proud] "Today you are the firefighter expert. Ready to help decide what our team should do?"
 
 **Child responses:**
-1. (Ideal) Child completes Career Decision / Step 1: Give The Child The Expert Role with the promised choice, capture, word, or observation.
-2. (Unexpected) Child tries to change Step 1: Give The Child The Expert Role into a different game, skips the required evidence, or asks for a thinner shortcut.
-3. (No response) Child pauses during Step 1: Give The Child The Expert Role before giving the required evidence, choice, or observation.
+1. (Ideal) Child says "I am the firefighter", "ready", or asks what the team should do.
+2. (Unexpected) Child tries to guess which profession is shown instead of taking the role.
+3. (No response) Child watches the firefighter role card without answering.
 
 **AI follow-up policy:**
-1. (Ideal) [confirm] Name the concrete evidence from Step 1: Give The Child The Expert Role and move to the next preserved source step.
-2. (Unexpected) [repair] For Step 1: Give The Child The Expert Role, acknowledge the attempt, restore the original sequence, and offer one valid action that keeps the promise.
-3. (No response) [scaffold] For Step 1: Give The Child The Expert Role, give one short example tied to the current screen state and invite the child to repeat or choose.
+1. (Ideal) [start] "Expert helmet on. You are the firefighter, so the next choice is yours."
+2. (Unexpected) [repair] "This is not a job-guessing card; you are the firefighter expert today."
+3. (No response) [model] "I will pretend you put on the firefighter helmet. Now you can make the expert choice."
 
 **Photo capture timing:** No photo capture in this beat.
 
 **Screen/state:** Show asset_id=firefighter_role_card as role support; if missing, keep voice-only role play honest.
 #### Step 2: Present A Concrete Work Scenario
 
-**Runtime AI instruction:** Goal: describe one simple firefighter scenario with two safe choices. Constraint: no scary detail; child chooses yes/no or A/B. Tone: calm and important. Progress evidence: child listens, points, or asks for choices again. Branch behavior: handle ideal, unexpected, and no-response cases with the follow-up policies. Frame/source guardrail: child must make a work decision in role, not match profession to scenario.
+**Runtime AI instruction:** Goal: describe one simple firefighter scenario with two safe choices. Constraint: no scary detail; child chooses yes/no or A/B. Tone: calm and important. Progress evidence: child listens, points, or asks for choices again. Branch behavior: ask send-now versus wait, calm worry, and repeat the two choices after silence. Frame/source guardrail: child must make a work decision in role, not match profession to scenario.
 
 **Example AI line:** [calm] "Our team sees smoke from a building. Should we send the fire truck now, yes or no?"
 
 **Child responses:**
-1. (Ideal) Child completes Career Decision / Step 2: Present A Concrete Work Scenario with the promised choice, capture, word, or observation.
-2. (Unexpected) Child tries to change Step 2: Present A Concrete Work Scenario into a different game, skips the required evidence, or asks for a thinner shortcut.
-3. (No response) Child pauses during Step 2: Present A Concrete Work Scenario before giving the required evidence, choice, or observation.
+1. (Ideal) Child listens and says "send the truck", "yes", "wait", or asks to hear choices again.
+2. (Unexpected) Child becomes worried by smoke or asks about scary emergency details.
+3. (No response) Child gives no yes/no after the scenario.
 
 **AI follow-up policy:**
-1. (Ideal) [confirm] Name the concrete evidence from Step 2: Present A Concrete Work Scenario and move to the next preserved source step.
-2. (Unexpected) [repair] For Step 2: Present A Concrete Work Scenario, acknowledge the attempt, restore the original sequence, and offer one valid action that keeps the promise.
-3. (No response) [scaffold] For Step 2: Present A Concrete Work Scenario, give one short example tied to the current screen state and invite the child to repeat or choose.
+1. (Ideal) [decision] "Good, you are choosing as the firefighter expert."
+2. (Unexpected) [soothe] "This is pretend safety practice. We keep it calm and choose what helpers should do."
+3. (No response) [choice] "Expert, choose one: send the truck now, or wait?"
 
 **Photo capture timing:** No photo capture in this beat.
 
@@ -79,57 +79,57 @@ Recommended Tier: T1
 
 **Round 1 -- Expert Action Decision:**
 
-**Runtime AI instruction:** Goal: accept the child decision and explain why it helps. Constraint: one short explanation; do not punish wrong answers. Tone: respectful coach. Progress evidence: child chooses yes/no, water/oil, or another simple option. Branch behavior: handle ideal, unexpected, and no-response cases with the follow-up policies. Frame/source guardrail: decision is made by the child as expert.
+**Runtime AI instruction:** Goal: accept the child decision and explain why it helps. Constraint: one short explanation; do not punish wrong answers. Tone: respectful coach. Progress evidence: child chooses send now, wait, yes, or no. Branch behavior: explain why send-now is safer, repair wait without shame, and model send-now after silence. Frame/source guardrail: decision is made by the child as expert.
 
 **Example AI line:** [coach] "What is your expert decision: send the truck now, or wait?"
 
 **Child responses:**
-1. (Ideal) Child completes Career Decision / Step 3: Decide The Expert Action with the promised choice, capture, word, or observation.
-2. (Unexpected) Child tries to change Step 3: Decide The Expert Action into a different game, skips the required evidence, or asks for a thinner shortcut.
-3. (No response) Child pauses during Step 3: Decide The Expert Action before giving the required evidence, choice, or observation.
+1. (Ideal) Child chooses "send the truck now" or says yes to quick help.
+2. (Unexpected) Child chooses wait, gives no reason, or says the grown-ups should decide instead.
+3. (No response) Child stays quiet at the send/wait decision.
 
 **AI follow-up policy:**
-1. (Ideal) [confirm] Name the concrete evidence from Step 3: Decide The Expert Action and move to the next preserved source step.
-2. (Unexpected) [repair] For Step 3: Decide The Expert Action, acknowledge the attempt, restore the original sequence, and offer one valid action that keeps the promise.
-3. (No response) [scaffold] For Step 3: Decide The Expert Action, give one short example tied to the current screen state and invite the child to repeat or choose.
+1. (Ideal) [explain] "Good expert call: quick trained help keeps people safer in our pretend scenario."
+2. (Unexpected) [repair] "Waiting can let danger grow, so the safer expert choice is to send trained help now."
+3. (No response) [model] "I will choose send the truck now for our pretend safety practice."
 
 **Photo capture timing:** No photo capture.
 
 **Screen/state:** Show a decision stamp state beside firefighter_role_card; no scoring meter.
 #### Step 4: Give A Second Tiny Expert Choice
 
-**Runtime AI instruction:** Goal: ask one more simple tool/action choice to keep the work role active. Constraint: binary choice, safe and short. Tone: focused and proud. Progress evidence: child chooses water, hose, call for help, or another safe action. Branch behavior: handle ideal, unexpected, and no-response cases with the follow-up policies. Frame/source guardrail: keep child in professional role through the sequence.
+**Runtime AI instruction:** Goal: ask one more simple tool/action choice to keep the work role active. Constraint: binary choice, safe and short. Tone: focused and proud. Progress evidence: child chooses water, trained helpers, hose, or another safe action. Branch behavior: accept water/safe helper choices, correct oil gently, and scaffold with water after silence. Frame/source guardrail: keep child in professional role through the sequence.
 
 **Example AI line:** [focused] "Expert choice two: for a small pretend fire, should helpers use water or oil?"
 
 **Child responses:**
-1. (Ideal) Child completes Career Decision / Step 4: Give A Second Tiny Expert Choice with the promised choice, capture, word, or observation.
-2. (Unexpected) Child tries to change Step 4: Give A Second Tiny Expert Choice into a different game, skips the required evidence, or asks for a thinner shortcut.
-3. (No response) Child pauses during Step 4: Give A Second Tiny Expert Choice before giving the required evidence, choice, or observation.
+1. (Ideal) Child chooses water, hose, or trained helpers for the pretend fire.
+2. (Unexpected) Child chooses oil, a toy sword, or another unsafe tool.
+3. (No response) Child does not answer the water/oil choice.
 
 **AI follow-up policy:**
-1. (Ideal) [confirm] Name the concrete evidence from Step 4: Give A Second Tiny Expert Choice and move to the next preserved source step.
-2. (Unexpected) [repair] For Step 4: Give A Second Tiny Expert Choice, acknowledge the attempt, restore the original sequence, and offer one valid action that keeps the promise.
-3. (No response) [scaffold] For Step 4: Give A Second Tiny Expert Choice, give one short example tied to the current screen state and invite the child to repeat or choose.
+1. (Ideal) [praise] "Water and trained helpers are safer practice choices for this pretend fire."
+2. (Unexpected) [teach] "Oil can make fire worse, so firefighters use safer tools like water and hoses."
+3. (No response) [scaffold] "I will choose water for the safe practice answer."
 
 **Photo capture timing:** No photo capture in this beat.
 
 **Screen/state:** Role card remains visible; the safe choice is highlighted in runtime state.
 #### Step 5: Close The Expert Shift
 
-**Runtime AI instruction:** Goal: celebrate the child professional decision-making and recap the scenario choices. Constraint: max two sentences; avoid claiming real emergency competence. Tone: proud and safe. Progress evidence: child repeats firefighter, water, truck, or listens. Branch behavior: handle ideal, unexpected, and no-response cases with the follow-up policies. Frame/source guardrail: maintain professional agency without overclaiming.
+**Runtime AI instruction:** Goal: celebrate the child professional decision-making and recap the scenario choices. Constraint: max two sentences; avoid claiming real emergency competence. Tone: proud and safe. Progress evidence: child repeats firefighter, water, truck, or listens. Branch behavior: close with pretend expert pride, separate pretend practice from real emergencies, and save quietly if no reply. Frame/source guardrail: maintain professional agency without overclaiming.
 
 **Example AI line:** [proud] "Firefighter expert shift complete: you made quick, safe pretend-work choices."
 
 **Child responses:**
-1. (Ideal) Child completes Career Decision / Step 5: Close The Expert Shift with the promised choice, capture, word, or observation.
-2. (Unexpected) Child tries to change Step 5: Close The Expert Shift into a different game, skips the required evidence, or asks for a thinner shortcut.
-3. (No response) Child pauses during Step 5: Close The Expert Shift before giving the required evidence, choice, or observation.
+1. (Ideal) Child says firefighter, truck, water, or "I helped".
+2. (Unexpected) Child asks whether they can fight a real fire.
+3. (No response) Child gives no closing response.
 
 **AI follow-up policy:**
-1. (Ideal) [confirm] Name the concrete evidence from Step 5: Close The Expert Shift and move to the next preserved source step.
-2. (Unexpected) [repair] For Step 5: Close The Expert Shift, acknowledge the attempt, restore the original sequence, and offer one valid action that keeps the promise.
-3. (No response) [scaffold] For Step 5: Close The Expert Shift, give one short example tied to the current screen state and invite the child to repeat or choose.
+1. (Ideal) [badge] "Expert shift saved: you chose quick help and a safer tool."
+2. (Unexpected) [safety] "Real fires are for trained adults. You practiced pretend expert choices today."
+3. (No response) [quiet close] "I will save your firefighter expert badge."
 
 **Photo capture timing:** No photo capture in this beat.
 

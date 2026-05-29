@@ -1,0 +1,62 @@
+activity_id: concept_phoneme_hunt_collect
+source_row:
+  snapshot_file: runs/20260529_172332_source_intent_pilot/source_snapshots/selected_source_rows.md
+  tsv_row: 2
+  original_activity_name: "音素寻宝"
+  normalized_helper: inputs/source_activity_concepts.md#source_phoneme_hunt
+  source_category: "Cat 5. 需结合拍照"
+  source_scene: "室内"
+  source_mechanic: "3. 收集/配对 Collect/Match/Pair/Associate/Generalize"
+  screen_dependency: "低"
+  source_excerpt: "AI is hungry for words starting with /b/ and asks the child to find and show a matching treasure."
+original_play_frame: "A phoneme scavenger hunt: the device gives the /b/ target, the child finds a real object whose spoken name starts with /b/, and the result is collected as a treasure."
+child_role: "Sound treasure hunter who searches the real environment, captures one real object, and gives its name as phoneme evidence."
+device_role_action: "Announces the target sound, optionally gives visual/letter support, asks for a photo plus name evidence, and celebrates only when the initial sound criterion is preserved."
+interaction_sequence:
+  - "Introduce the hungry /b/ target."
+  - "Provide support for what counts as a /b/-starting word."
+  - "Child finds and photographs a real object."
+  - "Child supplies the object name so the sound can be checked."
+  - "Device celebrates the collected sound treasure."
+required_child_actions:
+  - "Listen to or repeat the /b/ target."
+  - "Find a real object, not just choose a screen card."
+  - "Take or provide a photo of the object."
+  - "Say or otherwise provide the object name as initial-sound evidence."
+real_or_reference_asset_requirement: "Real-world object photo is required. Source permits simple screen support such as a corresponding letter; generated clue images may support the hunt but must not replace the real object."
+required_background_context: "The collection rule is the initial phoneme /b/; the activity is not generic object finding or photo collection."
+non_negotiable_source_elements:
+  - "Cat5 photo-coupled scavenger format."
+  - "Target initial sound remains /b/."
+  - "Real object search remains required."
+  - "A collected item must be tied to its spoken/name evidence."
+  - "Screen support must stay subordinate to the real-world hunt."
+allowed_v1_adaptations:
+  - "Require child speech or typed/name evidence because the demo cannot honestly infer the initial phoneme from a photo alone."
+  - "Use generated ball/banana clue cards as optional support instead of a literal letter card, as long as the real hunt remains required."
+  - "Mark demo support as degraded to preserve runtime honesty."
+generated_package_evidence:
+  spec:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_phoneme_hunt_collect/spec.md
+    observations:
+      - "Premise preserves hearing a target sound, finding a real object, photographing it, and supplying name evidence."
+      - "Adaptation rationale states that B-sound support and child name evidence remain the collection criterion."
+  prod:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_phoneme_hunt_collect/prod.md
+    observations:
+      - "Step 1 frames the hungry /b/ quest."
+      - "Step 2 says clue cards do not replace the real treasure."
+      - "Step 3 requires real camera capture plus object name evidence and explicitly rejects image-only evidence."
+      - "Step 4 celebrates both the photo and the name, not the photo alone."
+  demo_support:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_phoneme_hunt_collect/demo_support.yaml
+    observations:
+      - "status is degraded with real_camera and runtime_judgment required."
+      - "degraded_reasons disclose that initial phoneme cannot be judged from image data alone."
+  asset_manifest:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_phoneme_hunt_collect/asset_manifest.yaml
+    observations:
+      - "ball_b_sound_clue and banana_b_sound_clue are generated illustrative support assets, not source-of-truth evidence."
+verdict: minor_adaptation
+repair_required: false
+re_review_outcome: "Accepted minor V1 adaptation: the package preserves source intent while honestly degrading phoneme judgment to require child name evidence."

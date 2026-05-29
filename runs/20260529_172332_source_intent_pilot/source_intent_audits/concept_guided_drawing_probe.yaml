@@ -1,0 +1,63 @@
+activity_id: concept_guided_drawing_probe
+source_row:
+  snapshot_file: runs/20260529_172332_source_intent_pilot/source_snapshots/selected_source_rows.md
+  tsv_row: 4
+  original_activity_name: "画画"
+  normalized_helper: inputs/source_activity_concepts.md#source_guided_drawing
+  source_category: "Cat 3. 需借助外部材料"
+  source_scene: "室内"
+  source_mechanic: "6. 搭建/创意 Build/Create/Assemble/Transform/Experiment/Invent"
+  screen_dependency: "高"
+  source_excerpt: "AI guides the child to use paper and pencil, complete a simple drawing step by step, then photograph the whole work for celebration."
+original_play_frame: "A paper-and-pencil guided drawing workflow, with AI pacing simple sketch steps, allowing enough drawing time, and ending with a final whole-artwork photo celebration rather than quality grading."
+child_role: "Creator using external paper and pencil materials to follow a step sequence and produce a simple drawing."
+device_role_action: "Guides the drawing process, leaves time instead of requiring every-step confirmation, asks for a final whole-work photo, and celebrates the process without judging drawing quality."
+interaction_sequence:
+  - "Ask the child to get paper and pencil."
+  - "Guide a simple sketch through ordered steps."
+  - "Allow enough time for drawing without per-step verification pressure."
+  - "Ask the child to photograph the finished whole drawing."
+  - "Celebrate completion and process effort without quality scoring."
+required_child_actions:
+  - "Use external paper and pencil."
+  - "Follow the step-by-step drawing prompts."
+  - "Spend time drawing between prompts."
+  - "Capture the final whole artwork."
+real_or_reference_asset_requirement: "External materials are required. Optional step-card templates may exist later, but the source cannot be reduced to a voice-only or screen-only activity."
+required_background_context: "The purpose is process creation, simple sketching, and celebration; no drawing-quality assessment should be introduced."
+non_negotiable_source_elements:
+  - "Cat3 material workflow must remain explicit."
+  - "Paper-and-pencil creation is required."
+  - "Step-by-step AI guidance is required."
+  - "Final whole-artwork photo is required for the intended playable version."
+  - "No quality grading; encouragement and small celebration are the intended close."
+allowed_v1_adaptations:
+  - "Mark as unsupported and gate runtime launch if Cat3 material workflow support is not approved."
+  - "Record future product requirements instead of pretending the activity is playable."
+  - "Use no runtime assets while blocked."
+generated_package_evidence:
+  spec:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_guided_drawing_probe/spec.md
+    observations:
+      - "Premise names paper and pencil, step-by-step AI guidance, and final photo celebration."
+      - "Demo support status is unsupported and readiness is blocked_until_product_decision."
+      - "Unsupported contract notes instruct consumers to gate rather than convert to thinner Cat1 or Cat5 play."
+  prod:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_guided_drawing_probe/prod.md
+    observations:
+      - "Step 1 gates the paper drawing workflow and says not to invite play without product support."
+      - "Step 2 preserves required capabilities: step timing, final photo, and no quality grading."
+      - "Step 3 blocks runtime launch with ui_template none."
+      - "Step 4 records the future preview shape without executing it."
+  demo_support:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_guided_drawing_probe/demo_support.yaml
+    observations:
+      - "status is unsupported, ui_template is none, and support_level is unsupported."
+      - "unsupported_reasons call out Cat3 material workflow and timed paper-and-pencil steps plus final-work photo celebration."
+  asset_manifest:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_guided_drawing_probe/asset_manifest.yaml
+    observations:
+      - "assets is an empty list, matching the unsupported gate."
+verdict: aligned
+repair_required: false
+re_review_outcome: "Aligned because unsupported/gated status preserves the Cat3 paper-material workflow instead of converting it into an unsupported playable activity."

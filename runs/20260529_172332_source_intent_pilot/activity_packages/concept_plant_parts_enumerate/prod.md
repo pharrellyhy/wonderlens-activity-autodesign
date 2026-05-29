@@ -39,19 +39,19 @@ Recommended Tier: T1
 
 #### Step 1: Start The Plant Parts Mission
 
-**Runtime AI instruction:** Goal: invite the child to explore different visible positions on one plant through photos. Constraint: T1 max two sentences; ask for one plant part at a time. Tone: curious field guide. Progress evidence: child points to a plant or agrees to photograph a part. Branch behavior: handle ideal, unexpected, and no-response cases with the follow-up policies. Frame/source guardrail: preserve photo-based plant part exploration and function/background notes.
+**Runtime AI instruction:** Goal: invite the child to explore different visible positions on one plant through photos. Constraint: T1 max two sentences; ask for one plant part at a time. Tone: curious field guide. Progress evidence: child points to a plant or agrees to photograph a part. Branch behavior: start with a visible leaf/flower/stem, redirect whole-plant naming into part exploration, and model leaf after silence. Frame/source guardrail: preserve photo-based plant part exploration and function/background notes.
 
 **Example AI line:** [curious] "Let us visit one plant like tiny scientists. First, can you show me one part, maybe a leaf or flower?"
 
 **Child responses:**
-1. (Ideal) Child completes Plant Parts Explorer / Step 1: Start The Plant Parts Mission with the promised choice, capture, word, or observation.
-2. (Unexpected) Child tries to change Step 1: Start The Plant Parts Mission into a different game, skips the required evidence, or asks for a thinner shortcut.
-3. (No response) Child pauses during Step 1: Start The Plant Parts Mission before giving the required evidence, choice, or observation.
+1. (Ideal) Child points to a plant, says leaf/flower/stem, or gets ready to take the first part photo.
+2. (Unexpected) Child only says the whole plant name, or points to a non-plant object.
+3. (No response) Child looks at the live photo slot without choosing a part.
 
 **AI follow-up policy:**
-1. (Ideal) [confirm] Name the concrete evidence from Step 1: Start The Plant Parts Mission and move to the next preserved source step.
-2. (Unexpected) [repair] For Step 1: Start The Plant Parts Mission, acknowledge the attempt, restore the original sequence, and offer one valid action that keeps the promise.
-3. (No response) [scaffold] For Step 1: Start The Plant Parts Mission, give one short example tied to the current screen state and invite the child to repeat or choose.
+1. (Ideal) [ready] "Great, one plant part first. Show me the leaf, flower, stem, seed, fruit, or another visible part."
+2. (Unexpected) [redirect] "The whole plant matters, but this mission studies one visible part at a time."
+3. (No response) [model] "A leaf is a good first plant part to show if you can see one."
 
 **Photo capture timing:** No photo capture in this beat.
 
@@ -60,19 +60,19 @@ Recommended Tier: T1
 
 **Round 1 -- First Plant Part:**
 
-**Runtime AI instruction:** Goal: ask for a photo of a visible plant part and name it if the child can. Constraint: do not require species identification; use visible evidence only. Tone: encouraging. Progress evidence: photo_id of leaf, flower, stem, seed, fruit, or another visible part. Branch behavior: handle ideal, unexpected, and no-response cases with the follow-up policies. Frame/source guardrail: each captured part should get a playful function/background note.
+**Runtime AI instruction:** Goal: ask for a photo of a visible plant part and name it if the child can. Constraint: do not require species identification; use visible evidence only and ask the child to name or choose the part unless verified plant-part recognition exists. Tone: encouraging. Progress evidence: photo_id plus child name/choice such as leaf, flower, stem, seed, fruit, root, or unknown visible part. Branch behavior: give a safe fact for a named part, repair unclear/non-plant photos, and offer two part choices after silence. Frame/source guardrail: each captured part should get a playful function/background note.
 
 **Example AI line:** [encouraging] "Show me the first plant part. Is it a leaf, flower, or stem?"
 
 **Child responses:**
-1. (Ideal) Child completes Plant Parts Explorer / Step 2: Capture The First Visible Part with the promised choice, capture, word, or observation.
-2. (Unexpected) Child tries to change Step 2: Capture The First Visible Part into a different game, skips the required evidence, or asks for a thinner shortcut.
-3. (No response) Child pauses during Step 2: Capture The First Visible Part before giving the required evidence, choice, or observation.
+1. (Ideal) Child captures a visible part and says leaf, flower, stem, seed, fruit, root, or "I am not sure".
+2. (Unexpected) Photo is unclear, shows the same whole plant only, or shows a non-plant object.
+3. (No response) A photo_id appears but child does not name or choose the plant part.
 
 **AI follow-up policy:**
-1. (Ideal) [confirm] Name the concrete evidence from Step 2: Capture The First Visible Part and move to the next preserved source step.
-2. (Unexpected) [repair] For Step 2: Capture The First Visible Part, acknowledge the attempt, restore the original sequence, and offer one valid action that keeps the promise.
-3. (No response) [scaffold] For Step 2: Capture The First Visible Part, give one short example tied to the current screen state and invite the child to repeat or choose.
+1. (Ideal) [teach lightly] "If it is a leaf, it can help catch sunlight; if it is a stem, it can help hold the plant up."
+2. (Unexpected) [repair] "I need one clear plant part. Try a closer photo of a leaf, flower, stem, seed, or fruit."
+3. (No response) [choice] "Does the photo look more like a leaf or a stem? You can also say not sure."
 
 **Photo capture timing:** Real camera capture happens here.
 
@@ -81,57 +81,57 @@ Recommended Tier: T1
 
 **Round 1 -- Second Plant Part:**
 
-**Runtime AI instruction:** Goal: guide the child to photograph a different part from another location on the same plant. Constraint: ask for contrast with the previous part; no generic counting. Tone: exploratory. Progress evidence: second photo_id shows another part or child names a different part. Branch behavior: handle ideal, unexpected, and no-response cases with the follow-up policies. Frame/source guardrail: repeated action is explore different plant positions and hear part-function context.
+**Runtime AI instruction:** Goal: guide the child to photograph a different part from another location on the same plant. Constraint: ask for contrast with the previous part; no generic counting, and ask the child to name or choose the part unless verified recognition exists. Tone: exploratory. Progress evidence: second photo_id plus a different part name/choice. Branch behavior: accept a different part, repair duplicate or unclear photos, and suggest flower/stem after silence. Frame/source guardrail: repeated action is explore different plant positions and hear part-function context.
 
 **Example AI line:** [exploratory] "Now look somewhere different on the plant. Can you find a part that does a different job?"
 
 **Child responses:**
-1. (Ideal) Child completes Plant Parts Explorer / Step 3: Find A Different Plant Part with the promised choice, capture, word, or observation.
-2. (Unexpected) Child tries to change Step 3: Find A Different Plant Part into a different game, skips the required evidence, or asks for a thinner shortcut.
-3. (No response) Child pauses during Step 3: Find A Different Plant Part before giving the required evidence, choice, or observation.
+1. (Ideal) Child captures a different part, such as flower after leaf or stem after flower, and names or chooses it.
+2. (Unexpected) Child photographs the same part again, a non-plant object, or an unclear blur.
+3. (No response) Child does not capture or name a second part.
 
 **AI follow-up policy:**
-1. (Ideal) [confirm] Name the concrete evidence from Step 3: Find A Different Plant Part and move to the next preserved source step.
-2. (Unexpected) [repair] For Step 3: Find A Different Plant Part, acknowledge the attempt, restore the original sequence, and offer one valid action that keeps the promise.
-3. (No response) [scaffold] For Step 3: Find A Different Plant Part, give one short example tied to the current screen state and invite the child to repeat or choose.
+1. (Ideal) [compare] "This part is different, so it may do a different plant job."
+2. (Unexpected) [redirect] "That repeats our first part. Look for a different plant spot: stem, flower, seed, fruit, or another leaf shape."
+3. (No response) [hint] "Try moving your camera to a stem or flower if one is visible."
 
 **Photo capture timing:** Second camera capture happens here.
 
 **Screen/state:** Fill the second part badge and keep the first photo visible for comparison.
 #### Step 4: Add One Fun Function Fact
 
-**Runtime AI instruction:** Goal: tell a brief interesting function or background note about the parts the child captured. Constraint: child-safe, visible-evidence based, no species-specific claims unless known. Tone: playful science guide. Progress evidence: child repeats a part name, points, asks why, or listens. Branch behavior: handle ideal, unexpected, and no-response cases with the follow-up policies. Frame/source guardrail: required background/context information must not be skipped.
+**Runtime AI instruction:** Goal: tell a brief interesting function or background note about the parts the child captured. Constraint: child-safe, visible-evidence based, no species-specific claims unless known; choose facts only for named/selected parts. Tone: playful science guide. Progress evidence: child repeats a part name, points, asks why, or listens. Branch behavior: map leaf/stem/flower/seed/fruit/root to safe facts, use unknown-part language when unsure, and avoid invisible claims. Frame/source guardrail: required background/context information must not be skipped.
 
 **Example AI line:** [playful] "Leaves, stems, and flowers are like plant helpers, each doing a different job."
 
 **Child responses:**
-1. (Ideal) Child completes Plant Parts Explorer / Step 4: Add One Fun Function Fact with the promised choice, capture, word, or observation.
-2. (Unexpected) Child tries to change Step 4: Add One Fun Function Fact into a different game, skips the required evidence, or asks for a thinner shortcut.
-3. (No response) Child pauses during Step 4: Add One Fun Function Fact before giving the required evidence, choice, or observation.
+1. (Ideal) Child repeats a captured part name or asks what leaf, stem, flower, seed, fruit, or root does.
+2. (Unexpected) Child asks for hidden species facts or says every plant part has the same job.
+3. (No response) Child listens while the two part badges stay visible.
 
 **AI follow-up policy:**
-1. (Ideal) [confirm] Name the concrete evidence from Step 4: Add One Fun Function Fact and move to the next preserved source step.
-2. (Unexpected) [repair] For Step 4: Add One Fun Function Fact, acknowledge the attempt, restore the original sequence, and offer one valid action that keeps the promise.
-3. (No response) [scaffold] For Step 4: Add One Fun Function Fact, give one short example tied to the current screen state and invite the child to repeat or choose.
+1. (Ideal) [fact] "Leaf catches light, stem holds things up, flower can help make seeds, seed can start a new plant, and fruit can protect seeds."
+2. (Unexpected) [honest] "We talk about the parts we can see; hidden plant facts need more evidence."
+3. (No response) [model] "I will save one safe job for each part we photographed."
 
 **Photo capture timing:** No photo capture in this beat.
 
 **Screen/state:** Show two captured photo thumbnails with simple part-job badges.
 #### Step 5: Close The Plant Part Explorer
 
-**Runtime AI instruction:** Goal: recap the captured plant positions and their simple functions. Constraint: max two sentences; no new capture. Tone: warm and proud. Progress evidence: child says leaf, flower, stem, or listens. Branch behavior: handle ideal, unexpected, and no-response cases with the follow-up policies. Frame/source guardrail: close as plant-part exploration, not generic plant naming/counting.
+**Runtime AI instruction:** Goal: recap the captured plant positions and their simple functions. Constraint: max two sentences; no new capture. Tone: warm and proud. Progress evidence: child says leaf, flower, stem, or listens. Branch behavior: save the named part badges, defer extra photos to later, and close quietly if no reply. Frame/source guardrail: close as plant-part exploration, not generic plant naming/counting.
 
 **Example AI line:** [warm] "You explored different plant parts and learned that parts can do different jobs."
 
 **Child responses:**
-1. (Ideal) Child completes Plant Parts Explorer / Step 5: Close The Plant Part Explorer with the promised choice, capture, word, or observation.
-2. (Unexpected) Child tries to change Step 5: Close The Plant Part Explorer into a different game, skips the required evidence, or asks for a thinner shortcut.
-3. (No response) Child pauses during Step 5: Close The Plant Part Explorer before giving the required evidence, choice, or observation.
+1. (Ideal) Child names one captured part or repeats a part job.
+2. (Unexpected) Child asks to switch to whole-plant trivia or keep taking unlimited photos.
+3. (No response) Child gives no closing response.
 
 **AI follow-up policy:**
-1. (Ideal) [confirm] Name the concrete evidence from Step 5: Close The Plant Part Explorer and move to the next preserved source step.
-2. (Unexpected) [repair] For Step 5: Close The Plant Part Explorer, acknowledge the attempt, restore the original sequence, and offer one valid action that keeps the promise.
-3. (No response) [scaffold] For Step 5: Close The Plant Part Explorer, give one short example tied to the current screen state and invite the child to repeat or choose.
+1. (Ideal) [celebrate] "Plant Part Explorer badge saved with your photos and part jobs."
+2. (Unexpected) [boundary] "More parts can be another round; this one closes with the parts we studied."
+3. (No response) [quiet close] "I will save the plant part photos and simple job notes."
 
 **Photo capture timing:** No photo capture in this beat.
 

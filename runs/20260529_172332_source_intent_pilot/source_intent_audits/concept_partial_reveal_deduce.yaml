@@ -1,0 +1,60 @@
+activity_id: concept_partial_reveal_deduce
+source_row:
+  snapshot_file: runs/20260529_172332_source_intent_pilot/source_snapshots/selected_source_rows.md
+  tsv_row: 11
+  original_activity_name: "看部分，猜一猜"
+  normalized_helper: inputs/source_activity_concepts.md#source_partial_reveal_guess
+  source_category: "Cat 1. 纯语音（含屏幕显示及互动）"
+  source_scene: "室内,户外"
+  source_mechanic: "1. 识别/计数 Enumerate/Identify/Count/Measure"
+  screen_dependency: "高"
+  source_excerpt: "Show half of an animal or a key part and ask the child to guess the animal."
+original_play_frame: "A visual deduction game where the screen shows one animal part or partial image and the child guesses the whole animal from the visible evidence."
+child_role: "Observer-detective who infers the whole animal from a visible part."
+device_role_action: "Displays prebuilt partial-reveal animal cards, withholds the answer until the child guesses, and ties feedback to visible evidence."
+interaction_sequence:
+  - "Frame the game as evidence guessing from a partial image."
+  - "Show the first partial animal card."
+  - "Ask the child to guess the whole animal."
+  - "Repeat with additional partial cards."
+  - "Recap the visible parts and solved animals."
+required_child_actions:
+  - "Look at the screen clue."
+  - "Guess the whole animal."
+  - "Optionally name the visible evidence supporting the guess."
+real_or_reference_asset_requirement: "Required prebuilt/generated partial-reveal images, typically 3-5 challenges, with consistent style and no full animal reveal before the guess."
+required_background_context: "No extra factual background is required; the visible partial image is the required context."
+non_negotiable_source_elements:
+  - "High screen dependence: the partial image is essential."
+  - "Animal part or half-animal clue is shown before the answer."
+  - "Child guesses the whole animal."
+  - "Multiple prebuilt challenges are used."
+  - "The activity must not degrade into voice-only riddles or generic animal trivia."
+allowed_v1_adaptations:
+  - "Use exactly three animal cards for this pilot."
+  - "Use generated illustrative partial-reveal cards if they keep the full animal hidden."
+  - "Ask for one evidence detail after the guess to reinforce deduction."
+generated_package_evidence:
+  spec:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_partial_reveal_deduce/spec.md
+    observations:
+      - "Premise preserves a distinctive animal part on screen and whole-animal guessing from visible evidence."
+      - "Asset brief declares rabbit ears, tiger tail, and elephant trunk partial-reveal cards."
+  prod:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_partial_reveal_deduce/prod.md
+    observations:
+      - "Step 1 says no voice-only clues before the first card appears."
+      - "Steps 2-4 show rabbit_ears_reveal_card, tiger_tail_reveal_card, and elephant_trunk_reveal_card."
+      - "Each clue asks for the whole animal from the visible part and forbids revealing the answer first."
+      - "Step 5 recaps ears, stripes, and trunk as evidence."
+  demo_support:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_partial_reveal_deduce/demo_support.yaml
+    observations:
+      - "status is supported and generated_assets is required."
+  asset_manifest:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_partial_reveal_deduce/asset_manifest.yaml
+    observations:
+      - "All three assets are generated illustrative partial-reveal cards and prompt text explicitly says not the full animal."
+verdict: aligned
+repair_required: false
+re_review_outcome: "Not required. The package preserves the screen-dependent partial-reveal guessing mechanic."

@@ -1,0 +1,61 @@
+activity_id: concept_career_decision_decide
+source_row:
+  snapshot_file: runs/20260529_172332_source_intent_pilot/source_snapshots/selected_source_rows.md
+  tsv_row: 26
+  original_activity_name: "职业决策"
+  normalized_helper: inputs/source_activity_concepts.md#source_career_decision
+  source_category: "Cat 1. 纯语音（含屏幕显示及互动）"
+  source_scene: "室内,户外"
+  source_mechanic: "8. 选择/决策 Decide/Choose/Correct"
+  screen_dependency: "低"
+  source_excerpt: "Tell the child they are a professional, give a concrete work scenario, and ask simple yes/no or A/B decisions."
+original_play_frame: "A role-first professional decision activity where the child acts as an expert and makes simple work choices in a concrete scenario."
+child_role: "Pretend professional expert who chooses safe actions for the scenario."
+device_role_action: "Assigns the professional identity, presents concrete work decisions, optionally shows a career portrait, and celebrates professional agency without overclaiming real competence."
+interaction_sequence:
+  - "Give the child the professional role before the scenario."
+  - "Present a simple concrete work situation."
+  - "Ask a yes/no or A/B decision."
+  - "Optionally ask another tiny expert choice."
+  - "Celebrate the child's expert-role decision-making."
+required_child_actions:
+  - "Accept or inhabit the professional role."
+  - "Choose between simple safe options."
+  - "Optionally explain or repeat the decision."
+real_or_reference_asset_requirement: "Optional prebuilt career portrait or role card may support the screen. No reference-bound real-world asset is required."
+required_background_context: "The work scenario must be concrete enough to make the child feel like the expert making a decision, not a matching or trivia activity."
+non_negotiable_source_elements:
+  - "Professional role is assigned before the decision."
+  - "Child makes the decision as the expert."
+  - "Questions remain simple yes/no or binary choices."
+  - "Scenario is concrete and age-safe."
+  - "The role frame should create professional pride."
+allowed_v1_adaptations:
+  - "Use one firefighter scenario for the pilot instead of a full profession question bank."
+  - "Use a generated illustrative role card for display support."
+  - "Soften emergency details for child safety while preserving the firefighter decision frame."
+generated_package_evidence:
+  spec:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_career_decision_decide/spec.md
+    observations:
+      - "Premise places the child in a professional helper role and asks simple expert decisions."
+      - "Asset brief declares one firefighter role card as display support."
+  prod:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_career_decision_decide/prod.md
+    observations:
+      - "Step 1 gives the child the firefighter expert role before any scenario."
+      - "Step 2 presents the concrete smoke/fire-truck yes/no decision."
+      - "Step 3 asks for the expert action decision."
+      - "Step 4 asks the water-versus-oil binary choice from the source example."
+      - "Step 5 celebrates pretend-work choices without claiming real emergency competence."
+  demo_support:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_career_decision_decide/demo_support.yaml
+    observations:
+      - "status is supported with generated_assets true and real_camera false."
+  asset_manifest:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_career_decision_decide/asset_manifest.yaml
+    observations:
+      - "firefighter_role_card is a required generated illustrative entity asset with no flames or danger."
+verdict: aligned
+repair_required: false
+re_review_outcome: "Not required. The package preserves role-first expert decision intent and uses only safe display support."

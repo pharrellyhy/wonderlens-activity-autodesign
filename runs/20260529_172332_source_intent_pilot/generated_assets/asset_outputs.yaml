@@ -1,6 +1,6 @@
 run_id: 20260529_172332_source_intent_pilot
 asset_build_mode: generate_and_curate
-generated_at: '2026-05-29T17:48:29+08:00'
+generated_at: '2026-05-29T18:16:05+08:00'
 package_count: 7
 asset_count: 8
 built_count: 8
@@ -20,8 +20,8 @@ entries:
   - variant_id: round_512
     path: assets/firefighter_role_card__round_512.png
     size: 512x512
-    sha256: 26e23537e0212542b8bae03d25bc3b5b5dfe163934d27243fa97a7a7b8751d8f
-    byte_count: 254601
+    sha256: a3c94516e8da6237511fd7edd4e14545b7fd24614c2621f6ba82971a4f9d32be
+    byte_count: 140060
     mime_type: image/png
     source_asset_id: firefighter_role_card
   source_metadata_path: ''
@@ -41,8 +41,8 @@ entries:
   - variant_id: round_512
     path: assets/cassiopeia_five_star_card__round_512.png
     size: 512x512
-    sha256: dd92614634e7479e96750dca05f4341a4f64811967d5e9dba06c3ac090de7e36
-    byte_count: 3986
+    sha256: 72ad360bd37aaefd1b076df6607e77cf16ce48cb4b932e76ec302e6cc3dfe8f8
+    byte_count: 7487
     mime_type: image/png
     source_asset_id: cassiopeia_five_star_card
   source_metadata_path: activity_packages/concept_constellation_star_count_enumerate/assets/sources/cassiopeia_five_star_card__source_metadata.yaml
@@ -62,8 +62,8 @@ entries:
   - variant_id: round_512
     path: assets/orion_seven_star_card__round_512.png
     size: 512x512
-    sha256: 82d867bdb80014d8c1594855aaba2abae0b06b19ac9ca47fc6652d9b9fed5727
-    byte_count: 4512
+    sha256: cac8ca120709d8c4e0f95d1534a329b85eafeca4a623f642d577b6205f4b1c3d
+    byte_count: 11787
     mime_type: image/png
     source_asset_id: orion_seven_star_card
   source_metadata_path: activity_packages/concept_constellation_star_count_enumerate/assets/sources/orion_seven_star_card__source_metadata.yaml

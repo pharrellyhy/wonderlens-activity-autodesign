@@ -1,0 +1,59 @@
+activity_id: concept_would_you_rather_compare
+source_row:
+  snapshot_file: runs/20260529_172332_source_intent_pilot/source_snapshots/selected_source_rows.md
+  tsv_row: 33
+  original_activity_name: "Would you rather"
+  normalized_helper: inputs/source_activity_concepts.md#source_would_you_rather
+  source_category: "Cat 1. 纯语音（含屏幕显示及互动）"
+  source_scene: "室内,户外"
+  source_mechanic: "2. 比较/对比 Compare/Contrast"
+  screen_dependency: "低"
+  source_excerpt: "A classic mostly voice-led game that continuously asks funny short binary-choice questions."
+original_play_frame: "A simple voice-led Would You Rather chain: the device asks short funny two-option questions and the child chooses one option each round."
+child_role: "Preference chooser comparing two playful options."
+device_role_action: "Asks short age-safe binary prompts, keeps the sequence moving, and avoids long setups or asset dependence."
+interaction_sequence:
+  - "Open the short silly choice format."
+  - "Ask a first two-option question."
+  - "Ask additional short two-option questions."
+  - "Let the child choose each time."
+  - "Close by recapping the choice chain."
+required_child_actions:
+  - "Choose one option from each pair."
+  - "Optionally give a tiny reason when prompted."
+real_or_reference_asset_requirement: "No real, generated, or reference asset is required; the source is primarily voice-led."
+required_background_context: "The humor and comparison frame are the context. Questions should be short, funny, and child-safe."
+non_negotiable_source_elements:
+  - "Binary Would You Rather choices."
+  - "Repeated prompt chain rather than a single standalone question."
+  - "Questions remain short."
+  - "Tone remains funny/playful."
+  - "No photo or asset dependency is introduced."
+allowed_v1_adaptations:
+  - "Ask for a tiny reason after a choice, as long as the choice remains the primary action."
+  - "Limit the pilot to three prompts."
+  - "Use simple runtime state slots/counters without generated images."
+generated_package_evidence:
+  spec:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_would_you_rather_compare/spec.md
+    observations:
+      - "Premise keeps short playful Would You Rather questions and tiny preference reasons."
+      - "Asset dependency is zero."
+  prod:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_would_you_rather_compare/prod.md
+    observations:
+      - "Step 1 introduces a tiny Would You Rather and asks the child to pick one silly choice."
+      - "Step 2 uses the source example: ketchup toothbrush or chocolate-milk hair."
+      - "Steps 3-4 add two more short child-safe binary prompts."
+      - "Step 5 recaps three choices and reasons with no new asset or photo."
+  demo_support:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_would_you_rather_compare/demo_support.yaml
+    observations:
+      - "status is supported with generated_assets false and real_camera false."
+  asset_manifest:
+    path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_would_you_rather_compare/asset_manifest.yaml
+    observations:
+      - "assets is an empty list, matching the voice-led source."
+verdict: minor_adaptation
+repair_required: false
+re_review_outcome: "Accepted minor V1 adaptation: the package adds optional tiny reasons, but preserves short repeated binary-choice play."
