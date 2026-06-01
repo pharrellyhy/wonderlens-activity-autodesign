@@ -152,20 +152,39 @@ python3 scripts/validate_asset_build_outputs.py runs/<run_id>
 
 ## Full-Pass Agentic Pipeline
 
-A larger/full production pass is stricter than ordinary scoped generation. Set
-`asset_build=generate_and_curate` and treat the main agent as the master
-orchestrator. It should delegate disjoint evidence work: source-intent audit,
-text-only package writing, image-only asset generation, fullstack import
-validation, WonderLens AI runtime validation, fullstack/WonderLens AI dialogue
-QA, image QA, repair loops, and final independent review.
+Use the full-pass agentic pipeline when moving from a pilot or small scoped run
+to a larger production pass where autodesign must generate complete activity
+packages, runtime PNG assets, and downstream validation evidence in one
+orchestrated workflow. Ordinary scoped package generation can keep the default
+`asset_build=manifest_only`; full-pass production runs must set
+`asset_build=generate_and_curate` and `full_pass_pipeline=true`.
 
-Fullstack-demo and WonderLens AI are direct consumers. They should load or
-generate runtime artifacts from package content as provided, not improve weak
-activity content downstream. Full-pass acceptance requires converted
-`step_instructions` or WonderLens AI `runtime.yaml` prompts to preserve every
-machine-convertible `Runtime AI instruction`, assets to pass independent image
-QA, and transcript failures to be routed by owner: package, image, fullstack,
-WonderLens AI, or product capability.
+Recommended invocation:
+
+```text
+/goal Execute GOAL.md end to end using run.md with asset_build=generate_and_curate full_pass_pipeline=true.
+```
+
+The detailed contract lives in
+`docs/plans/2026-06-01-full-pass-agentic-pipeline.md`; the executable goal file
+lives in `goals/2026-06-01-full-pass-agentic-pipeline-goal.md`. `GOAL.md`,
+`run.md`, and `program.md` remain the runtime procedure that a full pass must
+obey.
+
+In this mode the main agent is the master orchestrator and should delegate
+disjoint evidence work: source-intent audit, text-only package writing,
+image-only asset generation, fullstack import validation, WonderLens AI runtime
+validation, fullstack/WonderLens AI dialogue QA, image QA, repair loops, and
+final independent review.
+
+Fullstack-demo and WonderLens AI are direct consumers, not content-improvement
+steps. They should load or generate runtime artifacts from package content as
+provided. Full-pass acceptance requires converted `step_instructions` or
+WonderLens AI `runtime.yaml` prompts to preserve every machine-convertible
+`Runtime AI instruction`, assets to pass independent image QA, runtime-facing
+`prod.md` files to pass the marker-free precondition, and transcript failures to
+be routed by owner: package, image, fullstack, WonderLens AI, or product
+capability.
 
 ## Quick Start
 
