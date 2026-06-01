@@ -1,0 +1,256 @@
+run_id: "20260601_155917_full_pass_agentic_tsv"
+auditor_role: "fresh_independent_image_quality_validator"
+audited_at: "2026-06-01T18:35:00+08:00"
+audited_after_commit: "58f3d11"
+overall_verdict: "pass"
+asset_count: 34
+counts:
+  pass: 34
+  needs_repair: 0
+  product_decision: 0
+evidence:
+  contact_sheet: "visual_reference_reviews/image_quality_reaudit_contact_sheet.png"
+  built_runtime_png_glob: "activity_packages/*/assets/*__round_512.png"
+  required_validator:
+    command: "/Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/validate_asset_build_outputs.py runs/20260601_155917_full_pass_agentic_tsv"
+    exit_code: 0
+    output: "OK asset build outputs: runs/20260601_155917_full_pass_agentic_tsv"
+  dimension_count_check:
+    command: "/Users/pharrelly/.pyenv/versions/3.13.6/bin/python - <<'PY' ... dimension/count check over activity_packages/*/assets/*__round_512.png"
+    exit_code: 0
+    output:
+      - "count=34"
+      - "all_dimensions=512x512"
+  prod_reference_check:
+    command: "parsed asset_manifest.yaml files and checked each built asset id appears in its package prod.md"
+    exit_code: 0
+    output: "assets_missing_literal_prod_reference=0"
+  reference_metadata_check:
+    command: "parsed package-local source metadata and recomputed source original sha256 values"
+    exit_code: 0
+    output:
+      - "5 source metadata files found"
+      - "all reference-bound source metadata records have verification_status=accepted"
+      - "all reference-bound source metadata records have storage_allowed=true"
+      - "all package-local source_original sha256 values match metadata"
+  focused_repair_checks:
+    artwork_tournament_set_01: "pass: runtime crop has no visible cartouche text and no baked source border."
+    artwork_tournament_challenger_01: "pass: approved reference-bound asset with accepted CC0 Cleveland Museum of Art metadata and matching sha256."
+    recognition_pop_cards: "pass: runtime package now has separate dog, fox, and wolf cards; stale recognition_challenge_cards_01 runtime composite is absent."
+criteria:
+  - "built package-local runtime PNG exists"
+  - "runtime PNG is 512x512"
+  - "readable at runtime size"
+  - "important content remains usable in the round-screen safe area"
+  - "flat Nordic WonderLens style for illustrative assets"
+  - "manifest and prod dialogue alignment"
+  - "no readable text, letters, numbers, labels, watermarks, contact sheets, borders, masks, or device chrome baked into runtime assets"
+  - "accepted source originals and metadata for reference-bound assets"
+entries:
+  - activity_id: "concept_animal_sound_motion_voice"
+    asset_id: "animal_sound_cards_01"
+    path: "activity_packages/concept_animal_sound_motion_voice/assets/animal_sound_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Readable centered dog cue matches the animal imitation preview and flat Nordic style; no text or forbidden framing."
+  - activity_id: "concept_art_critic_tournament_probe"
+    asset_id: "artwork_tournament_challenger_01"
+    path: "activity_packages/concept_art_critic_tournament_probe/assets/artwork_tournament_challenger_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Approved Van Gogh public-domain reference is accepted, sha256-matched, readable for side-by-side comparison, and has no labels, watermark, or baked border."
+  - activity_id: "concept_art_critic_tournament_probe"
+    asset_id: "artwork_tournament_set_01"
+    path: "activity_packages/concept_art_critic_tournament_probe/assets/artwork_tournament_set_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Accepted Hokusai source crop removes the prior visible cartouche text and border while preserving the artwork for tournament comparison."
+  - activity_id: "concept_award_certificate_probe"
+    asset_id: "award_inspiration_badges_01"
+    path: "activity_packages/concept_award_certificate_probe/assets/award_inspiration_badges_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Badge ideas are clear, centered, child-safe, and style-aligned; no text, labels, or logos."
+  - activity_id: "concept_body_movement_probe"
+    asset_id: "body_movement_cards_01"
+    path: "activity_packages/concept_body_movement_probe/assets/body_movement_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Simple movement pose is readable and aligns with safe movement prompts; important content is in the round-safe center."
+  - activity_id: "concept_building_challenge_probe"
+    asset_id: "building_reference_cards_01"
+    path: "activity_packages/concept_building_challenge_probe/assets/building_reference_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Block-build target is centered, simple, and matches the hands-on construction cue without labels or device chrome."
+  - activity_id: "concept_career_decision_decide"
+    asset_id: "firefighter_role_card"
+    path: "activity_packages/concept_career_decision_decide/assets/firefighter_role_card__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Inclusive firefighter helper character is non-emergency, readable, and style-aligned; no text or logos."
+  - activity_id: "concept_childrens_yoga_probe"
+    asset_id: "childrens_yoga_pose_cards_01"
+    path: "activity_packages/concept_childrens_yoga_probe/assets/childrens_yoga_pose_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Calm seated pose matches age-safe yoga support and stays centered with clean negative space."
+  - activity_id: "concept_color_famous_art_probe"
+    asset_id: "color_artwork_set_01"
+    path: "activity_packages/concept_color_famous_art_probe/assets/color_artwork_set_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Accepted public-domain artwork source is used without visible labels, watermark, border, or invented factual content."
+  - activity_id: "concept_color_mixing_collect"
+    asset_id: "color_mixing_board_01"
+    path: "activity_packages/concept_color_mixing_collect/assets/color_mixing_board_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Two color spots visibly combine into a result spot, matching the prediction beat; no text or UI labels."
+  - activity_id: "concept_coloring_game_probe"
+    asset_id: "runtime_coloring_line_art_01"
+    path: "activity_packages/concept_coloring_game_probe/assets/runtime_coloring_line_art_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Line-art plant and palette cue support the coloring beat; content is readable and centrally safe."
+  - activity_id: "concept_constellation_star_count_enumerate"
+    asset_id: "cassiopeia_five_star_card"
+    path: "activity_packages/concept_constellation_star_count_enumerate/assets/cassiopeia_five_star_card__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Accepted internal reference preserves exactly five prominent guide stars and guide-line geometry with no labels or extra marks."
+  - activity_id: "concept_constellation_star_count_enumerate"
+    asset_id: "orion_seven_star_card"
+    path: "activity_packages/concept_constellation_star_count_enumerate/assets/orion_seven_star_card__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Accepted internal reference preserves exactly seven prominent guide stars and guide-line geometry with no labels or extra marks."
+  - activity_id: "concept_emotion_color_outfit_probe"
+    asset_id: "emotion_color_character_01"
+    path: "activity_packages/concept_emotion_color_outfit_probe/assets/emotion_color_character_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Character and color swatches support the emotion-color outfit beat while staying text-free and style-aligned."
+  - activity_id: "concept_emotion_reader_care"
+    asset_id: "emotion_expression_cards_01"
+    path: "activity_packages/concept_emotion_reader_care/assets/emotion_expression_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Facial expression cue is clear at runtime size and aligns with evidence-based emotion reading."
+  - activity_id: "concept_flashcards_enumerate"
+    asset_id: "generic_flashcard_library_01"
+    path: "activity_packages/concept_flashcards_enumerate/assets/generic_flashcard_library_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Picture-first apple flashcard is simple, readable, and intentionally framed as a card object with no text."
+  - activity_id: "concept_guess_in_10_deduce"
+    asset_id: "guess_reference_cards_01"
+    path: "activity_packages/concept_guess_in_10_deduce/assets/guess_reference_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Turtle reference picture is readable and suitable for optional clue support; no labels or distracting UI."
+  - activity_id: "concept_how_many_guess_enumerate"
+    asset_id: "how_many_count_cards_01"
+    path: "activity_packages/concept_how_many_guess_enumerate/assets/how_many_count_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Vehicle card provides a meaningful count-feature target, with wheels visible and no unrelated icon piles."
+  - activity_id: "concept_one_line_drawing_probe"
+    asset_id: "one_line_drawing_cards_01"
+    path: "activity_packages/concept_one_line_drawing_probe/assets/one_line_drawing_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Single-line snail target is centered, clean, and readable for a drawing prompt."
+  - activity_id: "concept_partial_reveal_deduce"
+    asset_id: "elephant_trunk_reveal_card"
+    path: "activity_packages/concept_partial_reveal_deduce/assets/elephant_trunk_reveal_card__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Partial elephant trunk and ear-edge clue match the final reveal beat without showing the full animal."
+  - activity_id: "concept_partial_reveal_deduce"
+    asset_id: "rabbit_ears_reveal_card"
+    path: "activity_packages/concept_partial_reveal_deduce/assets/rabbit_ears_reveal_card__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Rabbit ears and small head hint match the partial-reveal prompt and remain inside the safe area."
+  - activity_id: "concept_partial_reveal_deduce"
+    asset_id: "tiger_tail_reveal_card"
+    path: "activity_packages/concept_partial_reveal_deduce/assets/tiger_tail_reveal_card__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Striped tail clue is the only animal evidence shown and supports the tiger deduction beat."
+  - activity_id: "concept_phoneme_hunt_collect"
+    asset_id: "ball_b_sound_clue"
+    path: "activity_packages/concept_phoneme_hunt_collect/assets/ball_b_sound_clue__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Single ball object clue is centered, readable, and letter-free for the B-sound hunt."
+  - activity_id: "concept_phoneme_hunt_collect"
+    asset_id: "banana_b_sound_clue"
+    path: "activity_packages/concept_phoneme_hunt_collect/assets/banana_b_sound_clue__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Single banana object clue is centered, readable, and letter-free for the B-sound hunt."
+  - activity_id: "concept_quick_silly_decide"
+    asset_id: "quick_silly_countdown_01"
+    path: "activity_packages/concept_quick_silly_decide/assets/quick_silly_countdown_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Hourglass countdown cue is playful, text-free, and does not include numbers or UI labels."
+  - activity_id: "concept_recognition_pop_probe"
+    asset_id: "recognition_distractor_fox_card"
+    path: "activity_packages/concept_recognition_pop_probe/assets/recognition_distractor_fox_card__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Separate centered fox distractor card replaces the former composite and supports quiet-card timing; no text, label, border, mask, or device chrome."
+  - activity_id: "concept_recognition_pop_probe"
+    asset_id: "recognition_distractor_wolf_card"
+    path: "activity_packages/concept_recognition_pop_probe/assets/recognition_distractor_wolf_card__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Separate centered wolf distractor card supports quiet-card timing and is visually distinct from the dog target; no text, label, border, mask, or device chrome."
+  - activity_id: "concept_recognition_pop_probe"
+    asset_id: "recognition_target_dog_card"
+    path: "activity_packages/concept_recognition_pop_probe/assets/recognition_target_dog_card__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Separate centered dog target card supports say-target timing and replaces the former composite; no text, label, border, mask, or device chrome."
+  - activity_id: "concept_story_unlock_probe"
+    asset_id: "story_unlock_cards_01"
+    path: "activity_packages/concept_story_unlock_probe/assets/story_unlock_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Locked story door/token cue matches the unlock beat and remains text-free with no device chrome."
+  - activity_id: "concept_travel_planner_predict"
+    asset_id: "travel_planning_cards_01"
+    path: "activity_packages/concept_travel_planner_predict/assets/travel_planning_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Suitcase, map, and travel items support pretend trip planning choices without labels or logos."
+  - activity_id: "concept_trivia_game_remember"
+    asset_id: "trivia_reward_board_01"
+    path: "activity_packages/concept_trivia_game_remember/assets/trivia_reward_board_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Reward board/progress cue is readable and text-free; star/leaf marks are decorative icons, not labels."
+  - activity_id: "concept_vegetable_sort_sort"
+    asset_id: "vegetable_sort_cards_01"
+    path: "activity_packages/concept_vegetable_sort_sort/assets/vegetable_sort_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Vegetable card content supports color/shape/edible-part sorting and uses an intentional card frame without text."
+  - activity_id: "concept_word_build_guess_probe"
+    asset_id: "word_growth_ui_01"
+    path: "activity_packages/concept_word_build_guess_probe/assets/word_growth_ui_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Blank tile growth surface supports word reveal without showing letters, numbers, or labels."
+  - activity_id: "concept_word_echo_remember"
+    asset_id: "word_echo_cards_01"
+    path: "activity_packages/concept_word_echo_remember/assets/word_echo_cards_01__round_512.png"
+    verdict: "pass"
+    owner: null
+    reason: "Banana picture cue is simple, readable, centered, and text-free for word echo repetition."
+residual_risk:
+  - "This is a visual and metadata re-audit, not a new external source-license fetch; it relies on accepted package-local metadata and sha256 verification."
+  - "The three repaired recognition-card PNGs contain internal semi-transparent anti-aliasing pixels, but canvas edges and corners are opaque, so no transparent margin or mask was observed."
