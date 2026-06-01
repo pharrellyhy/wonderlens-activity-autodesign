@@ -1,0 +1,19 @@
+run_id: 20260601_155917_full_pass_agentic_tsv
+artifact_kind: pre_package_source_intent_audit_seed
+source_tsv: inputs/original_activity_concepts_2026-05-29.tsv
+normalized_helper: inputs/source_activity_concepts.md
+verdict: pending_per_activity_audit
+notes:
+- TSV source rows were snapshotted before package acceptance.
+- Seed packages are not accepted as aligned until current-run source-intent audits
+  are written.
+- Known stale full-run drift classes remain blockers until repaired or explicitly
+  classified.
+known_high_risk_source_rows:
+- 15
+- 16
+- 20
+- 24
+- 28
+- 31
+- 32

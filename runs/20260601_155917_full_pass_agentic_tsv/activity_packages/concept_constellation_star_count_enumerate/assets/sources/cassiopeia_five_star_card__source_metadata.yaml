@@ -1,0 +1,17 @@
+activity_id: concept_constellation_star_count_enumerate
+asset_id: cassiopeia_five_star_card
+source_label: Approved internal Cassiopeia 5-guide-star teaching chart
+source_uri: internal://approved-constellation-reference/cassiopeia-5-guide-stars-v1
+source_type: approved_internal_reference
+license: Approved internal educational reference
+storage_allowed: true
+verification_status: accepted
+verification_notes: Pilot-internal reference chart preserves exactly 5 prominent guide-star
+  positions for Cassiopeia; faint extra star-like marks were removed after independent
+  visual QA.
+source_original_path: assets/sources/cassiopeia_five_star_card__source_original.png
+sha256: 5acf454f9e4d30a85ca21845371bb386fd03c1cc4adf38d7d8c3f0c7f38541a7
+verified_at: '2026-05-29T18:16:04+08:00'
+reviewer_agent: main_agent_reference_repair_pending_visual_subagent_review
+star_count: 5
+constellation_name: Cassiopeia

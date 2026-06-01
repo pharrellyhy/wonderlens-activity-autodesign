@@ -1,0 +1,11 @@
+activity_id: concept_word_build_guess_probe
+dashboard_template:
+  parent_headline: 'Word Build Guess: decide'
+  learning_focus:
+  - Form
+  - Responsibility
+  - logical_reasoning
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

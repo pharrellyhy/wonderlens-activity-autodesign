@@ -1,0 +1,11 @@
+activity_id: concept_current_topic_interview_deduce
+dashboard_template:
+  parent_headline: 'Current Topic Interview: deduce'
+  learning_focus:
+  - Form
+  - Causation
+  - logical_reasoning
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

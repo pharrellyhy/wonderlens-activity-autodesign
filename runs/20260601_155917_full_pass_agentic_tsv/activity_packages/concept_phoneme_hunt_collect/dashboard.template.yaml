@@ -1,0 +1,7 @@
+dashboard_fragment:
+  session:
+    focal_attribute: word starts with the /b/ sound
+    summary: The child hears a target sound, finds a real object whose name starts
+      with that sound, photographs it, and supplies the name evidence.
+  caregiver:
+    note: Generated for source-intent pilot run 20260529_172332_source_intent_pilot.

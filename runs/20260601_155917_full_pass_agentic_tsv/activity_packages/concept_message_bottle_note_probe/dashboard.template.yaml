@@ -1,0 +1,11 @@
+activity_id: concept_message_bottle_note_probe
+dashboard_template:
+  parent_headline: 'Message Bottle Note: care'
+  learning_focus:
+  - Form
+  - Responsibility
+  - empathy
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

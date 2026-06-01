@@ -1,0 +1,7 @@
+dashboard_fragment:
+  session:
+    focal_attribute: short silly two-choice comparison
+    summary: The child answers short playful Would You Rather questions and gives
+      a tiny preference reason.
+  caregiver:
+    note: Generated for source-intent pilot run 20260529_172332_source_intent_pilot.

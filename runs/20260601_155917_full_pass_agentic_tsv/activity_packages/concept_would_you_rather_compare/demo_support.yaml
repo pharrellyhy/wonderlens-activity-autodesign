@@ -1,0 +1,23 @@
+activity_id: concept_would_you_rather_compare
+version: 1
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: full
+  entity_bindings:
+  - entity_id: silly_choice_prompt
+    display_label: Silly Choice Prompt
+    source_entity_exemplar: silly two-choice prompt
+    default: true
+  requires:
+    generated_assets: false
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support
+      gating and converted step_instructions.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py; preserve
+      support, asset, and runtime-beat metadata.

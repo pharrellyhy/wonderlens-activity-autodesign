@@ -1,0 +1,11 @@
+activity_id: concept_art_critic_tournament_probe
+dashboard_template:
+  parent_headline: 'Art Critic Tournament: compare'
+  learning_focus:
+  - Form
+  - Perspective
+  - observation
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

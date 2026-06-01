@@ -1,0 +1,8 @@
+activity_id: concept_story_unlock_probe
+recap_template:
+  title: Story Challenge Unlock recap
+  child_summary: '{child_name} practiced imagine in Story Challenge Unlock.'
+  evidence_prompts:
+  - favorite_turn
+  - child_choice
+  - next_time_variation

@@ -1,0 +1,74 @@
+activity_id: concept_phoneme_hunt_collect
+version: 1
+template_type: cat5
+pillar: Adventure
+game_style: quest_collector
+entity: B-sound treasure
+entity_class: &id001
+- sound_object
+- household_object
+entity_binding: bound
+source_entity_exemplar: B-sound treasure
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed source-intent pilot scope
+category: cat5
+attributes:
+- function
+- initial sound
+- spoken name
+key_concepts:
+- Form
+- Function
+related_concepts:
+- initial sound
+- spoken evidence
+- photo evidence
+atl_skills:
+- listening
+- describing
+- evidence
+transdisciplinary_theme: How we express ourselves
+kud:
+  know:
+  - B-sound treasure can be explored through word starts with the /b/ sound.
+  understand:
+  - The child role, device role, sequence, evidence source, and context promise must
+    stay connected.
+  do:
+  - Respond with the promised choice, observation, capture, explanation, or material
+    action.
+progression:
+  topic_axis: function
+  difficulty_level: 2
+  next_step_hint: Scale only after source-intent audit, asset validation, and downstream
+    conversion pass.
+  reward_hook: B-Sound Treasure
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: function
+  mechanic: collect
+  entity_role: exemplar
+  focal_attribute: word starts with the /b/ sound
+  intro: The child hears a target sound, finds a real object whose name starts with
+    that sound, photographs it, and supplies the name evidence.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - initial sound
+    - spoken evidence
+    - photo evidence
+  preview_label: B-sound treasure
+  preview_prompt: Find a real object whose spoken name starts like /b/.
+  role_pivot_note: No role pivot unless the source explicitly assigns the child a
+    role.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

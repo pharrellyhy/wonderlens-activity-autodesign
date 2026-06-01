@@ -1,0 +1,8 @@
+activity_id: concept_word_build_guess_probe
+recap_template:
+  title: Word Build Guess recap
+  child_summary: '{child_name} practiced decide in Word Build Guess.'
+  evidence_prompts:
+  - favorite_turn
+  - child_choice
+  - next_time_variation

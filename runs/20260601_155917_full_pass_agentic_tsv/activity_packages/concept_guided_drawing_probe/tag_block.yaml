@@ -1,0 +1,74 @@
+activity_id: concept_guided_drawing_probe
+version: 1
+template_type: cat3
+pillar: Creation
+game_style: maker_steps
+entity: paper sketch workflow
+entity_class: &id001
+- drawing_activity
+- material_workflow
+entity_binding: agnostic
+source_entity_exemplar: paper sketch workflow
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed source-intent pilot scope
+category: unsupported_cat3
+attributes:
+- material
+- sequence
+- process
+key_concepts:
+- Form
+- Change
+related_concepts:
+- paper drawing
+- step sequence
+- process celebration
+atl_skills:
+- following steps
+- creating
+- reflecting
+transdisciplinary_theme: How we express ourselves
+kud:
+  know:
+  - paper sketch workflow can be explored through step-by-step paper sketch process.
+  understand:
+  - The child role, device role, sequence, evidence source, and context promise must
+    stay connected.
+  do:
+  - Respond with the promised choice, observation, capture, explanation, or material
+    action.
+progression:
+  topic_axis: change
+  difficulty_level: 2
+  next_step_hint: Scale only after source-intent audit, asset validation, and downstream
+    conversion pass.
+  reward_hook: Drawing Process Celebration
+caregiver_role:
+- co-explorer
+activity_signature:
+  observation_angle: material
+  mechanic: build
+  entity_role: catalyst
+  focal_attribute: step-by-step paper sketch process
+  intro: The child would use paper and pencil while AI guides a simple drawing step
+    by step, then photograph the finished work for celebration.
+  bridge_prerequisites:
+    primary:
+    - material
+    secondary:
+    - paper drawing
+    - step sequence
+    - process celebration
+  preview_label: Guided drawing gate
+  preview_prompt: Requires product-approved material workflow support before play.
+  role_pivot_note: No role pivot unless the source explicitly assigns the child a
+    role.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

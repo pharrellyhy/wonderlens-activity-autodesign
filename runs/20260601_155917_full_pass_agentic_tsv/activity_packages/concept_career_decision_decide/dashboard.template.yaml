@@ -1,0 +1,7 @@
+dashboard_fragment:
+  session:
+    focal_attribute: child-as-professional work decision
+    summary: The child is placed in a professional helper role, faces a concrete work
+      scenario, and makes simple expert decisions.
+  caregiver:
+    note: Generated for source-intent pilot run 20260529_172332_source_intent_pilot.

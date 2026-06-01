@@ -1,0 +1,8 @@
+recap:
+  title: Constellation Star Count
+  child_summary: '{child_name} completed or reviewed this source-intent pilot activity
+    according to its support state.'
+  evidence:
+  - Source intent compared against the original workbook row.
+  - Support status and asset readiness follow demo_support.yaml and asset_manifest.yaml.
+  next_prompt: Proceed only after delegated review and downstream conversion pass.

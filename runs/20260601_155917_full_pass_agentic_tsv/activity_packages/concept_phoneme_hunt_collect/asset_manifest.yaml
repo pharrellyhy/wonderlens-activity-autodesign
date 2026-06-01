@@ -1,0 +1,61 @@
+activity_id: concept_phoneme_hunt_collect
+entity_id: b_sound_treasure
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: ball_b_sound_clue
+  role: activity_preview
+  label: ball B-sound visual clue
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: A single friendly round ball object clue for a B-sound
+    treasure hunt.. Style: Flat Nordic children''s illustration matching the quiet
+    white WonderLens prototype; broad flat color fills, sparse pencil texture, muted
+    sage, dusty teal-blue, soft terracotta, oatmeal, ochre, blush; square 512x512
+    source art with important detail inside central circular safe area; no readable
+    text, letters, numbers, labels, logo, watermark, border, contact sheet, device
+    frame, circular mask, or vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/ball_b_sound_clue__round_512.png
+  fallback_behavior: If ball_b_sound_clue is unavailable, preserve support honesty
+    and do not claim this asset is visible.
+- id: banana_b_sound_clue
+  role: activity_preview
+  label: banana B-sound visual clue
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: A single curved banana object clue for a B-sound treasure
+    hunt.. Style: Flat Nordic children''s illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse pencil texture, muted sage, dusty teal-blue,
+    soft terracotta, oatmeal, ochre, blush; square 512x512 source art with important
+    detail inside central circular safe area; no readable text, letters, numbers,
+    labels, logo, watermark, border, contact sheet, device frame, circular mask, or
+    vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/banana_b_sound_clue__round_512.png
+  fallback_behavior: If banana_b_sound_clue is unavailable, preserve support honesty
+    and do not claim this asset is visible.

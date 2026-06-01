@@ -1,0 +1,8 @@
+activity_id: concept_flashcards_enumerate
+recap_template:
+  title: Flashcards recap
+  child_summary: '{child_name} practiced enumerate in Flashcards.'
+  evidence_prompts:
+  - favorite_turn
+  - child_choice
+  - next_time_variation
