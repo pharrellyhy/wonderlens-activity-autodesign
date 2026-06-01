@@ -1,0 +1,645 @@
+run_id: 20260601_155917_full_pass_agentic_tsv
+asset_build_mode: generate_and_curate
+generated_at: '2026-06-01T17:14:51+08:00'
+package_count: 40
+asset_count: 31
+built_count: 29
+required_failures: 2
+entries:
+- activity_id: concept_animal_sound_motion_voice
+  asset_id: animal_sound_cards_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_animal_sound_motion_voice
+  work_item_path: generated_assets/work_items/concept_animal_sound_motion_voice__animal_sound_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/animal_sound_cards_01__round_512.png
+    size: 512x512
+    sha256: 36ad3df16808f0c1cfa19244925535dc3ea53d422ecdce713500afe378498723
+    byte_count: 212724
+    mime_type: image/png
+    source_asset_id: animal_sound_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_art_critic_tournament_probe
+  asset_id: artwork_tournament_set_01
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: curated_original
+  transformation_policy: crop_resize_only
+  status: missing_source
+  package_path: activity_packages/concept_art_critic_tournament_probe
+  work_item_path: generated_assets/work_items/concept_art_critic_tournament_probe__artwork_tournament_set_01.md
+  output_variants: []
+  source_metadata_path: ''
+  qa_notes:
+  - Missing accepted source metadata at assets/sources/artwork_tournament_set_01__source_metadata.yaml.
+- activity_id: concept_award_certificate_probe
+  asset_id: award_inspiration_badges_01
+  role: badge
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_award_certificate_probe
+  work_item_path: generated_assets/work_items/concept_award_certificate_probe__award_inspiration_badges_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/award_inspiration_badges_01__round_512.png
+    size: 512x512
+    sha256: d7f4e3d7652ec24017801e957258c2711a527f96c2ced060a1654d8139748984
+    byte_count: 238326
+    mime_type: image/png
+    source_asset_id: award_inspiration_badges_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_body_movement_probe
+  asset_id: body_movement_cards_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_body_movement_probe
+  work_item_path: generated_assets/work_items/concept_body_movement_probe__body_movement_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/body_movement_cards_01__round_512.png
+    size: 512x512
+    sha256: 5e68177717febfdf500972638802ae791891dab1328a7e370ae1b09b25273754
+    byte_count: 258101
+    mime_type: image/png
+    source_asset_id: body_movement_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_building_challenge_probe
+  asset_id: building_reference_cards_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_building_challenge_probe
+  work_item_path: generated_assets/work_items/concept_building_challenge_probe__building_reference_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/building_reference_cards_01__round_512.png
+    size: 512x512
+    sha256: 3277fa059763a5b8729cbd7ab54d4b1878c383d73b4338fdf5e99dda821bcd57
+    byte_count: 280779
+    mime_type: image/png
+    source_asset_id: building_reference_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_career_decision_decide
+  asset_id: firefighter_role_card
+  role: entity
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_career_decision_decide
+  work_item_path: generated_assets/work_items/concept_career_decision_decide__firefighter_role_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/firefighter_role_card__round_512.png
+    size: 512x512
+    sha256: a3c94516e8da6237511fd7edd4e14545b7fd24614c2621f6ba82971a4f9d32be
+    byte_count: 140060
+    mime_type: image/png
+    source_asset_id: firefighter_role_card
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_childrens_yoga_probe
+  asset_id: childrens_yoga_pose_cards_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_childrens_yoga_probe
+  work_item_path: generated_assets/work_items/concept_childrens_yoga_probe__childrens_yoga_pose_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/childrens_yoga_pose_cards_01__round_512.png
+    size: 512x512
+    sha256: 4de2f7e93c1f828f103524d923ac26485598e9d4f81ed0b5bcdd4c7c2a9de887
+    byte_count: 303200
+    mime_type: image/png
+    source_asset_id: childrens_yoga_pose_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_color_famous_art_probe
+  asset_id: color_artwork_set_01
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: curated_original
+  transformation_policy: crop_resize_only
+  status: missing_source
+  package_path: activity_packages/concept_color_famous_art_probe
+  work_item_path: generated_assets/work_items/concept_color_famous_art_probe__color_artwork_set_01.md
+  output_variants: []
+  source_metadata_path: ''
+  qa_notes:
+  - Missing accepted source metadata at assets/sources/color_artwork_set_01__source_metadata.yaml.
+- activity_id: concept_color_mixing_collect
+  asset_id: color_mixing_board_01
+  role: ui_overlay
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_color_mixing_collect
+  work_item_path: generated_assets/work_items/concept_color_mixing_collect__color_mixing_board_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/color_mixing_board_01__round_512.png
+    size: 512x512
+    sha256: a285b06aad7730a316c54320a1ff4efc3e118eeb8d8e8826655f5983b23e7983
+    byte_count: 209522
+    mime_type: image/png
+    source_asset_id: color_mixing_board_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_coloring_game_probe
+  asset_id: runtime_coloring_line_art_01
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_coloring_game_probe
+  work_item_path: generated_assets/work_items/concept_coloring_game_probe__runtime_coloring_line_art_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/runtime_coloring_line_art_01__round_512.png
+    size: 512x512
+    sha256: 3e3007644bf21c313eec2508f7ba9e340f7f818ca043255b3982cfc191da8515
+    byte_count: 232917
+    mime_type: image/png
+    source_asset_id: runtime_coloring_line_art_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: cassiopeia_five_star_card
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: approved_internal_reference
+  transformation_policy: crop_resize_only
+  status: curated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__cassiopeia_five_star_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/cassiopeia_five_star_card__round_512.png
+    size: 512x512
+    sha256: 72ad360bd37aaefd1b076df6607e77cf16ce48cb4b932e76ec302e6cc3dfe8f8
+    byte_count: 7487
+    mime_type: image/png
+    source_asset_id: cassiopeia_five_star_card
+  source_metadata_path: activity_packages/concept_constellation_star_count_enumerate/assets/sources/cassiopeia_five_star_card__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: orion_seven_star_card
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: approved_internal_reference
+  transformation_policy: crop_resize_only
+  status: curated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__orion_seven_star_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/orion_seven_star_card__round_512.png
+    size: 512x512
+    sha256: cac8ca120709d8c4e0f95d1534a329b85eafeca4a623f642d577b6205f4b1c3d
+    byte_count: 11787
+    mime_type: image/png
+    source_asset_id: orion_seven_star_card
+  source_metadata_path: activity_packages/concept_constellation_star_count_enumerate/assets/sources/orion_seven_star_card__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_emotion_color_outfit_probe
+  asset_id: emotion_color_character_01
+  role: entity
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_emotion_color_outfit_probe
+  work_item_path: generated_assets/work_items/concept_emotion_color_outfit_probe__emotion_color_character_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/emotion_color_character_01__round_512.png
+    size: 512x512
+    sha256: 47d9a81150849ea278241fc2b5657f3875505df22a7b0202686c32dc73af3c70
+    byte_count: 284033
+    mime_type: image/png
+    source_asset_id: emotion_color_character_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_emotion_reader_care
+  asset_id: emotion_expression_cards_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_emotion_reader_care
+  work_item_path: generated_assets/work_items/concept_emotion_reader_care__emotion_expression_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/emotion_expression_cards_01__round_512.png
+    size: 512x512
+    sha256: 9b6278bc2531fde7cbdabcc296968af5d570a0dd6ca617268db21da3c12cbfcc
+    byte_count: 312218
+    mime_type: image/png
+    source_asset_id: emotion_expression_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_flashcards_enumerate
+  asset_id: generic_flashcard_library_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_flashcards_enumerate
+  work_item_path: generated_assets/work_items/concept_flashcards_enumerate__generic_flashcard_library_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/generic_flashcard_library_01__round_512.png
+    size: 512x512
+    sha256: 473a04a85158d7c2821a306e60f33ee474eee0b6ea899693b091853747eab0ba
+    byte_count: 311094
+    mime_type: image/png
+    source_asset_id: generic_flashcard_library_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guess_in_10_deduce
+  asset_id: guess_reference_cards_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guess_in_10_deduce
+  work_item_path: generated_assets/work_items/concept_guess_in_10_deduce__guess_reference_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/guess_reference_cards_01__round_512.png
+    size: 512x512
+    sha256: 1259177f9c48b0cffcf653ce5ecd7be5b9e24d8e28dfa945d2ba1b9a5410cd97
+    byte_count: 230958
+    mime_type: image/png
+    source_asset_id: guess_reference_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_how_many_guess_enumerate
+  asset_id: how_many_count_cards_01
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_how_many_guess_enumerate
+  work_item_path: generated_assets/work_items/concept_how_many_guess_enumerate__how_many_count_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/how_many_count_cards_01__round_512.png
+    size: 512x512
+    sha256: a1ac8b7245499a4331038cb493a17f0e04327b1efca31f4bb491e9269e213bee
+    byte_count: 304822
+    mime_type: image/png
+    source_asset_id: how_many_count_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_one_line_drawing_probe
+  asset_id: one_line_drawing_cards_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_one_line_drawing_probe
+  work_item_path: generated_assets/work_items/concept_one_line_drawing_probe__one_line_drawing_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/one_line_drawing_cards_01__round_512.png
+    size: 512x512
+    sha256: 59017f3ce7efa1cbe8d4e0599efbe756219226c30baf2a29cea248c58b0c40e1
+    byte_count: 205506
+    mime_type: image/png
+    source_asset_id: one_line_drawing_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: rabbit_ears_reveal_card
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_partial_reveal_deduce
+  work_item_path: generated_assets/work_items/concept_partial_reveal_deduce__rabbit_ears_reveal_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/rabbit_ears_reveal_card__round_512.png
+    size: 512x512
+    sha256: cebc801121f63d6cd7e4a5fe7e180d8e2122107698921447624729981603a5ae
+    byte_count: 296984
+    mime_type: image/png
+    source_asset_id: rabbit_ears_reveal_card
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: tiger_tail_reveal_card
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_partial_reveal_deduce
+  work_item_path: generated_assets/work_items/concept_partial_reveal_deduce__tiger_tail_reveal_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/tiger_tail_reveal_card__round_512.png
+    size: 512x512
+    sha256: 0dd6707acc7bacea599662b96f4652826d715c49bd75a391b0ad1c870d866231
+    byte_count: 269940
+    mime_type: image/png
+    source_asset_id: tiger_tail_reveal_card
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: elephant_trunk_reveal_card
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_partial_reveal_deduce
+  work_item_path: generated_assets/work_items/concept_partial_reveal_deduce__elephant_trunk_reveal_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/elephant_trunk_reveal_card__round_512.png
+    size: 512x512
+    sha256: 3aa5a8a20185fd008108eda167277e0705e2d7064942111dc4c39bb83979fbe7
+    byte_count: 301336
+    mime_type: image/png
+    source_asset_id: elephant_trunk_reveal_card
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: ball_b_sound_clue
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__ball_b_sound_clue.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/ball_b_sound_clue__round_512.png
+    size: 512x512
+    sha256: 74a135bf5d0d149c0f71782b48663c65a3ced61ecb41ce4ab38a16e2620b6331
+    byte_count: 324462
+    mime_type: image/png
+    source_asset_id: ball_b_sound_clue
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: banana_b_sound_clue
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__banana_b_sound_clue.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/banana_b_sound_clue__round_512.png
+    size: 512x512
+    sha256: 4be7d872f77e608568d7cb69d2a1a4533e2e111b1459b0489908f4ac6e21a3ea
+    byte_count: 244385
+    mime_type: image/png
+    source_asset_id: banana_b_sound_clue
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_quick_silly_decide
+  asset_id: quick_silly_countdown_01
+  role: ui_overlay
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_quick_silly_decide
+  work_item_path: generated_assets/work_items/concept_quick_silly_decide__quick_silly_countdown_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/quick_silly_countdown_01__round_512.png
+    size: 512x512
+    sha256: f49e5703b28ff27700bc6eb96131e75c015f702d72aec26207d10ff6e6ed1be7
+    byte_count: 260144
+    mime_type: image/png
+    source_asset_id: quick_silly_countdown_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: recognition_challenge_cards_01
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__recognition_challenge_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/recognition_challenge_cards_01__round_512.png
+    size: 512x512
+    sha256: e8028689c338c7cc6f405326a26bf274567bc2dea8261bcd7e8a99fbc9855f5f
+    byte_count: 283172
+    mime_type: image/png
+    source_asset_id: recognition_challenge_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_story_unlock_probe
+  asset_id: story_unlock_cards_01
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_story_unlock_probe
+  work_item_path: generated_assets/work_items/concept_story_unlock_probe__story_unlock_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/story_unlock_cards_01__round_512.png
+    size: 512x512
+    sha256: 52db82368efc3737f0d543c35107a93874ae1f3e7fc62f619ec0fb3a3ade4a44
+    byte_count: 267147
+    mime_type: image/png
+    source_asset_id: story_unlock_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_travel_planner_predict
+  asset_id: travel_planning_cards_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_travel_planner_predict
+  work_item_path: generated_assets/work_items/concept_travel_planner_predict__travel_planning_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/travel_planning_cards_01__round_512.png
+    size: 512x512
+    sha256: 2ca9fe70d623c0a410022d7147e49b0ccbb870c4f0f72e1868d5bc494bd97be8
+    byte_count: 237704
+    mime_type: image/png
+    source_asset_id: travel_planning_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_trivia_game_remember
+  asset_id: trivia_reward_board_01
+  role: ui_overlay
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_trivia_game_remember
+  work_item_path: generated_assets/work_items/concept_trivia_game_remember__trivia_reward_board_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/trivia_reward_board_01__round_512.png
+    size: 512x512
+    sha256: d6d2e1c7cf0d5028bf1f9349ba469a09c80e5fd3e4028e5d8a28cf509d057406
+    byte_count: 287159
+    mime_type: image/png
+    source_asset_id: trivia_reward_board_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_vegetable_sort_sort
+  asset_id: vegetable_sort_cards_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_vegetable_sort_sort
+  work_item_path: generated_assets/work_items/concept_vegetable_sort_sort__vegetable_sort_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/vegetable_sort_cards_01__round_512.png
+    size: 512x512
+    sha256: f27faf5e864588f0130678eabb4904b560c955444ffdd54eeb9e39d918ea08ab
+    byte_count: 353880
+    mime_type: image/png
+    source_asset_id: vegetable_sort_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_word_build_guess_probe
+  asset_id: word_growth_ui_01
+  role: ui_overlay
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_word_build_guess_probe
+  work_item_path: generated_assets/work_items/concept_word_build_guess_probe__word_growth_ui_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/word_growth_ui_01__round_512.png
+    size: 512x512
+    sha256: 44312e5ddf616268c75cf4b6fbb6a96cfb5a6657fa0a7565a3e35b2b195db7cd
+    byte_count: 307019
+    mime_type: image/png
+    source_asset_id: word_growth_ui_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_word_echo_remember
+  asset_id: word_echo_cards_01
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_word_echo_remember
+  work_item_path: generated_assets/work_items/concept_word_echo_remember__word_echo_cards_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/word_echo_cards_01__round_512.png
+    size: 512x512
+    sha256: 54a467092fda49a10189d515cce661b558e075fb54c66bfaf43a9fe8217423da
+    byte_count: 234594
+    mime_type: image/png
+    source_asset_id: word_echo_cards_01
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.

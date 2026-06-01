@@ -23,20 +23,19 @@ assets:
   source_strategy: generated_illustrative
   transformation_policy: generate_new
   prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
-    asset. Primary request: Show animal/object cards for semantic feature-count
-    rounds: animal legs, vehicle wheels, flower petals, clothing buttons, or similar
-    meaningful parts. Do not create piles of unrelated countable icons..
-    Style: Flat Nordic children''s illustration matching the quiet white WonderLens
-    prototype; broad flat color fills, sparse pencil texture, muted sage, dusty teal-blue,
-    soft terracotta, oatmeal, ochre, blush; square 512x512 source art with important
-    detail inside the central circular safe area; no readable text, letters, numbers,
-    labels, logos, watermark, border, contact sheet, device frame, circular mask,
-    or vignette.'
+    asset. Primary request: Show animal/object cards for semantic feature-count rounds:
+    animal legs, vehicle wheels, flower petals, clothing buttons, or similar meaningful
+    parts. Do not create piles of unrelated countable icons.. Style: Flat Nordic children''s
+    illustration matching the quiet white WonderLens prototype; broad flat color fills,
+    sparse pencil texture, muted sage, dusty teal-blue, soft terracotta, oatmeal,
+    ochre, blush; square 512x512 source art with important detail inside the central
+    circular safe area; no readable text, letters, numbers, labels, logos, watermark,
+    border, contact sheet, device frame, circular mask, or vignette.'
   variants:
   - id: round_512
     target: round_device_screen
     size: 512x512
-    path: null
+    path: assets/how_many_count_cards_01__round_512.png
   fallback_behavior: If cards are unavailable, ask familiar voice-only feature-count
     questions and do not claim a card is displayed.
   collection_catalog_id: how_many_count_cards_01

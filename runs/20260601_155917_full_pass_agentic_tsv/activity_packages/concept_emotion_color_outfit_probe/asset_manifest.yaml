@@ -34,6 +34,6 @@ assets:
   - id: round_512
     target: round_device_screen
     size: 512x512
-    path: null
+    path: assets/emotion_color_character_01__round_512.png
   fallback_behavior: If recoloring is unavailable, block at Phase 0 or run a voice-only
     emotion-color conversation without claiming the outfit changed.

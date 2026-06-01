@@ -35,6 +35,6 @@ assets:
   - id: round_512
     target: round_device_screen
     size: 512x512
-    path: null
+    path: assets/guess_reference_cards_01__round_512.png
   fallback_behavior: If cards are unavailable, the AI continues with voice clues and
     encouragement and must not claim the screen is showing a picture.

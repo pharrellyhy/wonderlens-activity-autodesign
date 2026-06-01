@@ -34,6 +34,6 @@ assets:
   - id: round_512
     target: round_device_screen
     size: 512x512
-    path: null
+    path: assets/trivia_reward_board_01__round_512.png
   fallback_behavior: If stateful reward display is unavailable, use verbal encouragement
     only and do not claim stars are being added.

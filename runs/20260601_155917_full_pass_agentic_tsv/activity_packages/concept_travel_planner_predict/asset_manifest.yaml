@@ -33,6 +33,6 @@ assets:
   - id: round_512
     target: round_device_screen
     size: 512x512
-    path: null
+    path: assets/travel_planning_cards_01__round_512.png
   fallback_behavior: If cards are unavailable, run the planning conversation by voice
     only.

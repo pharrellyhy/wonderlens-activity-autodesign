@@ -17,7 +17,8 @@ screen_targets:
 assets:
 - id: recognition_challenge_cards_01
   role: collection_correct
-  label: Provide source target and similar distractor animal cards for a recognition-pop timing challenge.
+  label: Provide source target and similar distractor animal cards for a recognition-pop
+    timing challenge.
   requiredness: required
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -36,7 +37,7 @@ assets:
   - id: round_512
     target: round_device_screen
     size: 512x512
-    path: null
+    path: assets/recognition_challenge_cards_01__round_512.png
   fallback_behavior: If target/distractor timing is unavailable, keep unsupported
     rather than converting to ordinary matching choices.
   collection_catalog_id: recognition_challenge_cards_01

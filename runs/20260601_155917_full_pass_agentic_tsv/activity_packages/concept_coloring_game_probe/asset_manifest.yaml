@@ -35,6 +35,6 @@ assets:
   - id: round_512
     target: round_device_screen
     size: 512x512
-    path: null
+    path: assets/runtime_coloring_line_art_01__round_512.png
   fallback_behavior: If runtime generation and coloring UI are unsupported, block
     at Phase 0 and do not generate an activity package.

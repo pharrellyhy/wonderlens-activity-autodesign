@@ -1,0 +1,159 @@
+run_id: 20260601_155917_full_pass_agentic_tsv
+asset_build_mode: generate_and_curate
+generated_at: '2026-06-01T17:14:51+08:00'
+entries:
+- activity_id: concept_animal_sound_motion_voice
+  asset_id: animal_sound_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_art_critic_tournament_probe
+  asset_id: artwork_tournament_set_01
+  status: missing_source
+  qa_notes:
+  - Missing accepted source metadata at assets/sources/artwork_tournament_set_01__source_metadata.yaml.
+- activity_id: concept_award_certificate_probe
+  asset_id: award_inspiration_badges_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_body_movement_probe
+  asset_id: body_movement_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_building_challenge_probe
+  asset_id: building_reference_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_career_decision_decide
+  asset_id: firefighter_role_card
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_childrens_yoga_probe
+  asset_id: childrens_yoga_pose_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_color_famous_art_probe
+  asset_id: color_artwork_set_01
+  status: missing_source
+  qa_notes:
+  - Missing accepted source metadata at assets/sources/color_artwork_set_01__source_metadata.yaml.
+- activity_id: concept_color_mixing_collect
+  asset_id: color_mixing_board_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_coloring_game_probe
+  asset_id: runtime_coloring_line_art_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: cassiopeia_five_star_card
+  status: curated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: orion_seven_star_card
+  status: curated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_emotion_color_outfit_probe
+  asset_id: emotion_color_character_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_emotion_reader_care
+  asset_id: emotion_expression_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_flashcards_enumerate
+  asset_id: generic_flashcard_library_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guess_in_10_deduce
+  asset_id: guess_reference_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_how_many_guess_enumerate
+  asset_id: how_many_count_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_one_line_drawing_probe
+  asset_id: one_line_drawing_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: rabbit_ears_reveal_card
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: tiger_tail_reveal_card
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: elephant_trunk_reveal_card
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: ball_b_sound_clue
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: banana_b_sound_clue
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_quick_silly_decide
+  asset_id: quick_silly_countdown_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: recognition_challenge_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_story_unlock_probe
+  asset_id: story_unlock_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_travel_planner_predict
+  asset_id: travel_planning_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_trivia_game_remember
+  asset_id: trivia_reward_board_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_vegetable_sort_sort
+  asset_id: vegetable_sort_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_word_build_guess_probe
+  asset_id: word_growth_ui_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_word_echo_remember
+  asset_id: word_echo_cards_01
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.

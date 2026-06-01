@@ -33,6 +33,6 @@ assets:
   - id: round_512
     target: round_device_screen
     size: 512x512
-    path: null
+    path: assets/generic_flashcard_library_01__round_512.png
   fallback_behavior: If cards are unavailable, use a photographed object or voice-only
     recognition prompt and do not claim the screen shows a card.
