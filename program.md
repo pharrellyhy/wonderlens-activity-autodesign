@@ -1,9 +1,10 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.32 | **Date**: 2026-05-29
+> **Version**: 1.33 | **Date**: 2026-06-01
 > **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
 > **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
 >
+> **v1.33 — 2026-06-01**: Define the larger/full pass as a master-orchestrated delegated-agent pipeline: pre/post source-intent auditing, text-only package writing, image-only asset generation with `asset_build=generate_and_curate`, package/import validation, fullstack and WonderLens AI dialogue QA, image QA, repair ownership routing, and final independent review.
 > **v1.32 — 2026-05-29**: Update the active WonderLens activity asset workflow to the latest fullstack-demo flat Nordic nursery style and document the generation, curation, inbox, builder, and validation flow in `docs/activity_asset_generation_workflow.md`.
 > **v1.31 — 2026-05-28**: Raise `Runtime AI instruction` quality to the downstream `step_instructions` bar used by fullstack-demo. Runtime contracts must be convertible into useful hook/transition/round/celebrate/closing guidance: goal/action, tier/length constraint, emotion/tone, child progress evidence, branch behavior, source/activity frame guardrail, concrete example line, and specific screen/state behavior.
 > **v1.30 — 2026-05-28**: Make the WonderLens activity asset style self-contained for full `GOAL.md` runs: square 512x512 runtime PNGs by default, central circular safe area, soft 3D toy illustration matching the mint/white prototype device, and no baked-in device chrome, text, labels, logos, masks, borders, or contact sheets.
@@ -49,21 +50,37 @@ You are an **Activity Design Agent** for WonderLens, an AI-powered educational c
 3. Audit checked-row existing packages for enrichment needs before processing unchecked assignments. Use `package_path=` when present; otherwise use an existing canonical `activities/<activity_id>/` package. Use separate reviewer agents for scoped package-quality review when package audits or enrichment are part of the run. If a package fails the current migrated package depth floor, enrich it in place and record the maintenance in run provenance.
 4. Run **Phase 0: Activity Concept Adaptation Brief** before scaffold selection. Decide input mode, canonical mechanic, readiness, mapping usefulness, trigger condition, asset dependency, product-capability risks, and scaffold fit. Save the brief under the current run directory.
 5. Capture the source-promise alignment contract before writing runtime beats: original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, and product dependencies. If a normalized mechanic/category summary conflicts with the original source design, the original source design controls.
-6. If the brief is `blocked_until_product_decision`, still draft a constrained design preview for human review unless the run has `product_contract_override=minimum_unblock_allowed`. Under that override, generate a normal package and preserve the formerly blocking dependencies as resolved blocker notes in `spec.md`, `prod.md`, `run_manifest.yaml`, and `review.html`.
-7. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1, Cat3, or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
-8. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
-9. Generate a complete migrated activity package following the exact output format.
-10. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking. Do not log `results.tsv`, update `generated_activity_ids.txt`, or mark the assignment complete until reviewer issues are repaired and the package has independent PASS evidence.
-11. If any dimension FAILS → identify the issue, fix it, re-evaluate.
-12. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
-13. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
-14. Only present the final package after ALL dimensions pass AND the package self-check passes.
-15. Put the rubric scorecard in `<package_dir>/spec.md`; do not put a scorecard in `prod.md`.
-16. Update `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/generated_activity_ids.txt` so the run can be traced back to its generated packages.
+6. For source-derived, concept-led, workbook-derived, pilot-validation, and full-pass rows, require a separate source-intent auditor before package writing. The pre-package audit locks the original play frame, child role, device role, interaction sequence, required child action, reference/real asset requirement, and required background/context promise so the package writer cannot drift while preserving only category or mechanic labels.
+7. If the brief is `blocked_until_product_decision`, still draft a constrained design preview for human review unless the run has `product_contract_override=minimum_unblock_allowed`. Under that override, generate a normal package and preserve the formerly blocking dependencies as resolved blocker notes in `spec.md`, run provenance, and `review.html`; use runtime-facing `prod.md` markers only when target consumers ignore them safely.
+8. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1, Cat3, or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
+9. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
+10. Generate a complete migrated activity package following the exact output format. Package writing is text-only: write runtime AI instructions, screen states, source guardrails, asset requirements, and nullable asset paths, but do not generate images or choose final reference sources during this phase.
+11. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking. Do not log `results.tsv`, update `generated_activity_ids.txt`, or mark the assignment complete until reviewer issues are repaired and the package has independent PASS evidence.
+12. If any dimension FAILS → identify the issue, fix it, re-evaluate.
+13. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
+14. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
+15. For any accepted source-derived package, return to the source-intent auditor after package writing. The post-package audit must compare source evidence against `spec.md`, `prod.md`, metadata files, demo extensions, and downstream conversion/runtime evidence when available.
+16. For larger/full production passes, run the full agentic validation pipeline before acceptance: `asset_build=generate_and_curate`, image QA, package/import validation, fullstack dialogue QA, WonderLens AI runtime/dialogue QA, ownership-routed repair loops, and final independent review.
+17. Only present the final package after ALL dimensions pass, the package self-check passes, required source-intent audits pass, and any applicable full-pass validation gates pass.
+18. Put the rubric scorecard in `<package_dir>/spec.md`; do not put a scorecard in `prod.md`.
+19. Update `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/generated_activity_ids.txt` so the run can be traced back to its generated packages.
 
 **Output language contract:** source concepts may arrive in Chinese or mixed language, but every generated artifact must be written in English: `adaptation_brief` values, `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, `dashboard.template.yaml`, asset brief rows, reviewer notes, and generated run-manifest summaries. Source snapshots may preserve original input rows for provenance, but do not copy Chinese source prose into generated package content.
 
 **Existing package enrichment mode:** when a `/goal` rerun finds checked `assignments.md` rows with an explicit `package_path=` or an existing canonical `activities/<activity_id>/` package, audit that package against the current migrated package depth floor before processing unchecked rows. Checked rows are completion markers, not quality freeze markers. Spawn separate reviewer agents for package-quality review, using disjoint package directory scopes when reviewing multiple packages in parallel. If a package is structurally valid but thin, enrich `spec.md` and `prod.md` in place while preserving `activity_id`, tag-block enums, recap/dashboard placeholder compatibility, asset IDs, and the five-required-file package contract. Record reviewer findings, direct reviewer repairs, author repairs, re-review outcomes, and enrichment-only maintenance in `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/review_notes.md`; changed packages belong under `outputs.enriched_activities`, already-compliant no-op passes belong under `outputs.audited_activities`, and neither path appends `results.tsv` or creates duplicate generated-activity log entries unless a new package is actually generated.
+
+**Full-pass agentic pipeline mode:** when the run is a larger/full production
+pass, the main agent acts as master orchestrator and delegates bounded,
+disjoint responsibilities. Required roles are source-intent auditor,
+text-only activity package writer, image-only scene/object/item asset
+generator, package/import contract validator, fullstack dialogue quality
+validator, WonderLens AI dialogue quality validator, image quality validator,
+dialogue quality improver, WonderLens AI dialogue quality improver, image
+quality improver, and final independent reviewer. Fullstack-demo and
+WonderLens AI are direct consumers, not content-improvement steps. They must
+load or generate runtime artifacts from the package as provided; any
+conversion/runtime failure is classified as package-owned, fullstack-owned,
+WonderLens-owned, or product-owned and repaired or recorded with that owner.
 
 **You never show intermediate drafts. You only present the final, self-evaluated design.**
 
@@ -112,7 +129,7 @@ Concept row fields:
 | `asset_requirements` | Required when assets are not `no_assets` | Reference to companion asset table rows for this concept, preferably `file#asset_id`. |
 | `product_capabilities` | Optional | Explicit capability assumptions or blockers, such as `requires_asset_display` or `requires_ui_state`. |
 | `demo_export` | Optional | Full `GOAL.md` generation runs default to `true`; set `false` only when the user explicitly disables direct demo export. |
-| `asset_build` | Optional run/assignment override | `none`, `manifest_only`, `generate_illustrative`, `curate_reference`, or `generate_and_curate`. Default is `manifest_only`; this controls post-package image building, not whether `asset_manifest.yaml` is emitted. |
+| `asset_build` | Optional run/assignment override | `none`, `manifest_only`, `generate_illustrative`, `curate_reference`, or `generate_and_curate`. Default is `manifest_only` for ordinary scoped generation; larger/full production passes must set `generate_and_curate`. This controls post-package image building, not whether `asset_manifest.yaml` is emitted. |
 
 Asset requirement row fields:
 
@@ -284,7 +301,10 @@ adaptation_brief:
 
 ### 0.4.1 Asset build runtime option
 
-`asset_build` is a run-time option for an optional post-package phase. It never changes the activity mechanic or runtime dialogue and must not rewrite package prose just to fit generated images.
+`asset_build` is a run-time option for a post-package phase. It is optional for
+ordinary scoped runs and mandatory as `generate_and_curate` for larger/full
+production passes. It never changes the activity mechanic or runtime dialogue
+and must not rewrite package prose just to fit generated images.
 
 | `asset_build` | Behavior |
 |---|---|
@@ -315,9 +335,9 @@ Supported and degraded demo packages must declare at least one `entity_bindings`
 - `generate_with_assumptions`: generation may proceed, but `spec.md` must include an `Adaptation Rationale` section summarizing the assumptions, asset dependency, and any weak scaffold fit.
 - If the source play frame cannot be preserved without a product/design decision, set `readiness=blocked_until_product_decision` or `source_promise_alignment.alignment_status=needs_product_decision`.
 - If category/mechanic labels are preserved but the child role, interaction sequence, story frame, or required child action changes materially, set `source_promise_alignment.alignment_status=intent_drift` and repair before finalization unless product explicitly approves the adaptation. For workbook-derived rows, compare against the workbook row first; for the current workbook batch, cite `inputs/original_activity_concepts_2026-05-29.tsv` evidence before normalized helper evidence.
-- Source-derived, concept-led, workbook-derived, and pilot-validation outputs require independent source-intent auditor evidence before acceptance. The auditor must compare the original source row or run-local source snapshot against the generated package or blocked/degraded artifact, and unresolved `intent_drift` prevents `results.tsv` logging, assignment checkoff, downstream acceptance, and final completion.
+- Source-derived, concept-led, workbook-derived, pilot-validation, and full-pass outputs require independent source-intent auditor evidence before package writing and again before acceptance. The pre-package audit locks the source promise for the writer; the post-package audit compares the original source row or run-local source snapshot against the generated package, blocked/degraded artifact, and downstream conversion/runtime evidence when available. Unresolved `intent_drift` prevents `results.tsv` logging, assignment checkoff, downstream acceptance, full-pass scale-up, and final completion.
 - `blocked_until_product_decision`: write a blocked brief and a constrained design preview for this row, do not create a valid runtime package under `activities/`, append `results.tsv`, or mark the assignment complete, then continue to the next unchecked row. Use this for unsupported categories, required assets/UI state/material workflow/motion safety, OCR risk, pose risk, before/after state verification, or a mechanic that cannot be represented by current workflow without distorting the activity concept. The preview should be detailed enough to review the proposed activity, but every blocked assumption must be called out inline with `BLOCKED ELEMENT: <reason>` so the design can become valid only after those constraints are resolved.
-- `minimum_unblock_allowed` override: if the run manifest records this product-contract override, dependencies that previously caused `blocked_until_product_decision` may generate as normal packages. The package still must show those dependencies in `spec.md` `## Resolved Product Contract Notes`, inline `prod.md` `RESOLVED BLOCKER` comments near affected beats, and `run_manifest.yaml` `resolved_blockers`. Dimension 1 passes because the product contract now authorizes the minimum behavior; the annotations remain for review and implementation traceability.
+- `minimum_unblock_allowed` override: if the run manifest records this product-contract override, dependencies that previously caused `blocked_until_product_decision` may generate as normal packages. The package still must show those dependencies in `spec.md` `## Resolved Product Contract Notes`, run provenance for affected beats, and `run_manifest.yaml` `resolved_blockers`. Runtime-facing `prod.md` may include review-only `RESOLVED BLOCKER` comments only when all target consumers ignore them safely. Dimension 1 passes because the product contract now authorizes the minimum behavior; the annotations remain for review and implementation traceability.
 - Demo support status does not override package readiness. A package can be a valid five-file activity and still have `demo_support.status: unsupported` because the current fullstack demo lacks the needed UI/runtime primitive.
 
 ### 0.6 Entity mapping use
@@ -480,7 +500,7 @@ Every generated package must still include one of the required `pillar` values a
    - ✅ "That's such an interesting idea! I love how you described it."
    - ❌ "That's wrong. Try again."
 
-4. **Concrete Runtime Speech Contract**: Older packages may use `AI says` with actual dialogue and tone/emotion markers. New packages may use `Runtime AI instruction` plus `Example AI line` when the live LLM should generate wording at runtime. The instruction must be strong enough to convert into downstream `step_instructions`: include the beat goal/action, tier or length constraint, emotion/tone, required child progress evidence, branch behavior, source/activity frame guardrail, safety/product limits, and source-promise alignment. The example line shows acceptable tone and wording but is not the only allowed runtime response. Never write vague summaries such as "AI guides the child."
+4. **Concrete Runtime Speech Contract**: Older packages may use `AI says` with actual dialogue and tone/emotion markers. New packages may use `Runtime AI instruction` plus `Example AI line` when the live LLM should generate wording at runtime. The instruction must be strong enough to convert into downstream `step_instructions` or WonderLens AI equivalent runtime prompts: include the beat goal/action, tier or length constraint, emotion/tone, required child progress evidence, branch behavior, source/activity frame guardrail, safety/product limits, and source-promise alignment. The example line shows acceptable tone and wording but is not the only allowed runtime response. Never write vague summaries such as "AI guides the child."
 
 5. **Edge Case Coverage**: Every step must anticipate AT LEAST 3 child response types:
    - (Ideal) Child responds as hoped
@@ -738,7 +758,7 @@ These extension files do not replace the five-required-file package contract. A 
 For new runtime-LLM packages, a step or round may replace `AI says` with a behavior contract:
 
 ```markdown
-**Runtime AI instruction:** [what the runtime LLM must do, including beat goal/action, source play frame, tier/length constraint, emotion/tone, required content, child progress evidence, branch behavior, safety/product constraints, and what must not be skipped]
+**Runtime AI instruction:** Goal: [beat goal/action, source play frame, required content, and what must not be skipped]. Constraint: [tier/length and safety/product limits]. Tone: [emotion/tone]. Progress evidence: [what child progress looks like]. Branch behavior: [ideal, unexpected, and no-response policy]. Frame/source guardrail: [source role, sequence, asset, background/context, and screen-state guardrail].
 
 **Example AI line:** [tone/emotion marker] "[one concrete acceptable line]"
 ```
@@ -751,15 +771,15 @@ Existing `AI says` exact-dialogue steps remain valid. Do not use a single fixed 
 
 #### Step 3: Multi-Round Interaction
 
-**Round 1 — [round name]:**
+**Round 1 -- [round name]:**
 
 [full AI says or Runtime AI instruction + Example AI line / child responses / AI follow-up or policy / Screen]
 
-**Round 2 — [round name]:**
+**Round 2 -- [round name]:**
 
 [full AI says or Runtime AI instruction + Example AI line / child responses / AI follow-up or policy / Screen]
 
-**Round 3 — [round name]:**
+**Round 3 -- [round name]:**
 
 [full AI says or Runtime AI instruction + Example AI line / child responses / AI follow-up or policy / Screen]
 
@@ -779,7 +799,9 @@ Existing `AI says` exact-dialogue steps remain valid. Do not use a single fixed 
 - **Tone markers** are always in square brackets at the start of AI dialogue: `[excited discovery tone]`, `[mysterious whisper]`, `[warm celebration]`, etc.
 - **Every runtime round must be fully expanded** in `prod.md`. Never write "same structure," "AI gives a riddle," "later rounds follow," or any one-line summary for a runtime round.
 - **All runtime steps must be executable.** Do not reserve full detail only for Step 3; Steps 1, 2, 4, and 5 also need concrete dialogue branches, follow-ups, and screen states unless a branch is genuinely inapplicable.
-- **Runtime behavior contracts** must pair `Runtime AI instruction` with `Example AI line`, and must preserve source-promise alignment. A behavior instruction is not acceptable if it omits the downstream `step_instructions` essentials: goal/action, tier/length constraint, emotion/tone, child progress evidence, branch behavior, source/activity frame guardrail, concrete example line, and specific screen/state behavior. It is also not acceptable if it omits the story setup, profession role-play, physical challenge, photo collection, UI state, or other source element that makes the activity what it is.
+- **Runtime behavior contracts** must pair `Runtime AI instruction` with `Example AI line`, and must preserve source-promise alignment. A behavior instruction is not acceptable if it omits the downstream `step_instructions` / WonderLens AI runtime essentials: goal/action, tier/length constraint, emotion/tone, child progress evidence, branch behavior, source/activity frame guardrail, concrete example line, and specific screen/state behavior. It is also not acceptable if it omits the story setup, profession role-play, physical challenge, photo collection, UI state, background/context promise, reference asset reveal, or other source element that makes the activity what it is.
+- **Machine-convertible runtime instructions** are required for direct-consumer and full-pass packages. Every live activity beat must include one single-line label in this exact form: `**Runtime AI instruction:** Goal: ... Constraint: ... Tone: ... Progress evidence: ... Branch behavior: ... Frame/source guardrail: ...`. Use it for Step 1 hook, Step 2 mission/transition, every Step 3 round, Cat5 synthesis when present, celebration, closing, and early-exit behavior where applicable. `AI says` and `Example AI line` may remain as human-readable examples, but they are not sufficient by themselves for portable downstream loading.
+- **Parseable round and synthesis shape**: Step 3 round headings should use ASCII form `**Round N -- Short Scenario:**` so downstream importers can reliably extract round scenarios. Cat5 packages must distinguish collection rounds from synthesis and celebration; synthesis instructions must name the collection criterion, accepted evidence, how collected items are combined, and the required final story or summary format.
 - **Branch policies must be beat- and round-specific.** Do not reuse boilerplate such as "Child gives an unrelated answer, unsafe action, or asks to change the task", "Validate the idea, restate the safe rule", or "Model a tiny answer" across activities. Do not keyword-substitute a generic row with the activity title, round title, or mechanic name. Unexpected and no-response branches must name what the child is likely to do in this exact beat and how the AI preserves the current mechanic, source frame, asset/fallback, and screen state.
 - **Step 3 branch rows must not repeat across rounds.** If Round 1, Round 2, and Round 3 share the same unexpected/no-response child behavior or AI follow-up text, repair the package before review. Each round should reference the current clue, choice, challenge, asset state, prior consequence, or completion target.
 - **Specificity beats brevity.** Distinguish rounds, screen states, and follow-ups with concrete clues, actions, labels, consequences, or child evidence. A compact migrated package still needs enough detail to match the older quality floor.
@@ -789,10 +811,11 @@ Existing `AI says` exact-dialogue steps remain valid. Do not use a single fixed 
 - **All AI dialogue is in English.** Use age-appropriate, warm, playful language.
 - **Scorecard placement**: `spec.md` includes the scorecard; `prod.md` does not.
 - **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `spec.md` must include `## Asset Usage Timeline` for any prebuilt, displayed, or runtime-generated image dependency. For demo export, `asset_manifest.yaml` owns the machine-readable runtime asset contract: separate asset roles, style ID, screen targets, variants, nullable file paths, prompt/source, fallback behavior, and reference provenance. Illustrative prompts must use the WonderLens activity asset style from Phase 0.4 instead of pointing to an external prompt file. `prod.md` references asset IDs, display location, and fallback behavior only. Review outputs must distinguish `Asset dependencies` from `Display beats` and `Image items`; do not treat one asset row or card set as one image when it is displayed across multiple steps. Do not generate or store image files as part of package authoring; only the explicit post-package asset build phase writes package-local runtime images. Contact sheets are review-only artifacts, not runtime asset manifests.
-- **Resolved blocker placement**: product-contract override runs use `RESOLVED BLOCKER` comments in `prod.md` where the formerly unsupported behavior affects a runtime beat. These comments are review annotations and do not make the package invalid when the run manifest records the override.
+- **Resolved blocker placement**: product-contract override runs must preserve formerly blocked dependencies in `spec.md`, run provenance, and review/dashboard output. Use raw `RESOLVED BLOCKER` comments in `prod.md` only when every target consumer ignores them safely; WonderLens AI runtime generation currently treats such leakage markers as invalid, so direct WonderLens AI validation must either strip review-only markers before conversion or keep them out of runtime-facing `prod.md`.
 - **Extensibility placement**: concept-led and parameterized packages should name reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, `{matched_shape}`, or approved asset-set IDs in `spec.md` `## Extensibility Notes`.
 - **Package alignment**: `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` must describe the same pillar, game style, focal attribute, badge, and next-step direction as `spec.md` and `prod.md`.
 - **Source-promise alignment**: the package must preserve the original play frame, child role, interaction sequence, and required child actions unless `spec.md` and run provenance explicitly record a product-approved adaptation.
+- **Direct-consumer boundary**: fullstack-demo and WonderLens AI load/execute package content. They must not be used to improve, weaken, rewrite, or reinterpret the package to hide thin runtime AI instructions, source-intent drift, unsupported mechanics, or missing assets. Package-owned failures return to autodesign for repair; consumer-runtime failures are recorded as downstream follow-up unless explicitly in scope.
 
 ---
 
@@ -813,7 +836,7 @@ Check every step for dependency on blocked capabilities:
 - Does any step require comparing before/after object state changes (e.g., "did you fold it?")? → FAIL
 - Does any step require detecting non-speech audio (clapping, tapping)? → If yes, is it replaced with dialogue workaround? If not → FAIL
 - Note: Multi-photo workflows (child takes several photos across steps) are ALLOWED. What's blocked is computational comparison between photos to detect differences.
-- Exception: in a run with `product_contract_override=minimum_unblock_allowed`, a formerly blocked dependency may PASS only when the package records it as a resolved blocker in `spec.md`, `prod.md`, and `run_manifest.yaml`. If the dependency is used silently, Dimension 1 still FAILS.
+- Exception: in a run with `product_contract_override=minimum_unblock_allowed`, a formerly blocked dependency may PASS only when the package records it as a resolved blocker in `spec.md`, run provenance, and `run_manifest.yaml`. Runtime-facing `prod.md` markers are allowed only when target consumers ignore them safely. If the dependency is used silently, Dimension 1 still FAILS.
 - For demo-targeted packages, does `demo_support.yaml` claim `supported` only when the current Cat1/Cat5 demo primitive can play it, and `degraded` only when the limitation is explicit? → Must be YES
 - Does every unsupported demo mechanic/UI/runtime dependency use `demo_support.status: unsupported` instead of pretending it is playable? → Must be YES
 

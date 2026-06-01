@@ -23,17 +23,58 @@ asset_manifest.yaml
 
 These files do not replace the five required package files. They make the generated package direct-demo-import ready by declaring demo support status, explicit entity binding, separate runtime assets, reference-bound provenance, and unsupported/degraded mechanic gates.
 
-The default image-asset behavior is `asset_build=manifest_only`: generate and validate asset requirements with nullable output paths, but do not create binary image files. If the user explicitly requests `asset_build=generate_illustrative`, `asset_build=curate_reference`, or `asset_build=generate_and_curate`, run the post-package asset build phase with `scripts/build_activity_assets.py` after package validation and verify it with `scripts/validate_asset_build_outputs.py`. Reference-bound assets may use agent-proposed candidates only before source acceptance; final outputs must use approved originals, licensed/internal sources, official or verified source URLs, or verified data/redraws, never random generated approximations. The builder must consume preaccepted package-local source originals and source metadata; it must not create its own accepted provenance record. Use `docs/activity_asset_generation_workflow.md` for the runtime PNG workflow and current style contract.
+The default image-asset behavior for ordinary scoped generation is `asset_build=manifest_only`: generate and validate asset requirements with nullable output paths, but do not create binary image files. For a larger/full production pass, set `asset_build=generate_and_curate` at run start so autodesign creates package-local PNG assets before consumer validation. If the user explicitly requests `asset_build=generate_illustrative`, `asset_build=curate_reference`, or `asset_build=generate_and_curate`, run the post-package asset build phase with `scripts/build_activity_assets.py` after package validation and verify it with `scripts/validate_asset_build_outputs.py`. Reference-bound assets may use agent-proposed candidates only before source acceptance; final outputs must use approved originals, licensed/internal sources, official or verified source URLs, or verified data/redraws, never random generated approximations. The builder must consume preaccepted package-local source originals and source metadata; it must not create its own accepted provenance record. Use `docs/activity_asset_generation_workflow.md` for the runtime PNG workflow and current style contract.
 
 Generated illustrative image assets must follow the current WonderLens activity asset style: flat Nordic children's illustration for the quiet white prototype, broad flat fills, sparse arc-eye/texture linework, restrained boho pastels, clean negative space, and no generic chibi/toy vocabulary or dimensional modeling. Generate square source art. Background scene assets should be full-bleed 512x512 images that can be clipped by the round lens; item, object, and character assets should be separate centered PNGs with generous clean white padding. Final runtime PNGs should be `512x512` unless the manifest explicitly requests a different or additional larger variant. Do not bake in device chrome: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, colored border, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels. Store outputs only in the current package-local asset locations declared by `asset_manifest.yaml`.
 
 If the user supplies a scope such as "only Batch 5" or "last batch", process only that scoped assignment subset in the run-start snapshot. If the user says the product contract now allows minimum-to-unblock decisions, treat prior capability probes as generation-ready under `product_contract_override=minimum_unblock_allowed`: generate normal packages with the five required files plus any enabled demo extensions, record formerly blocking dependencies as resolved blocker annotations, and keep those callouts visible in `review.html`.
+
+## Full-Pass Agentic Pipeline Contract
+
+For a larger/full activity generation pass, the main agent is the master
+orchestrator. It owns run scope, source snapshots, blocking decisions,
+credentials, server lifecycle, final acceptance, commits, and user reporting.
+It should delegate bounded work to separate agents with disjoint ownership:
+
+- source-intent auditor, before and after package writing;
+- activity package writer, text only;
+- scene/object/item asset generator, image only;
+- package/import contract validator;
+- fullstack-demo dialogue quality validator;
+- WonderLens AI dialogue quality validator;
+- image quality validator;
+- dialogue quality improver;
+- WonderLens AI dialogue quality improver;
+- image quality improver;
+- final independent reviewer.
+
+Fullstack-demo and WonderLens AI are direct consumers, not content-improvement
+steps. They must load or generate runtime artifacts from the package as
+provided, preserve package runtime AI instructions in `step_instructions` or
+equivalent runtime prompts, and report failures with ownership: package-owned,
+fullstack-owned, WonderLens-owned, or product-capability decision. Do not hide a
+package problem by rewriting the source play frame, child role, required child
+action, background/context promise, or asset contract inside either consumer.
+
+Source-intent auditing must happen before package writing to lock the original
+play frame, child role, device role, sequence, required child action,
+real/reference asset requirement, background/context promise, allowed
+adaptation, and blocked/degraded capability reason. It must happen again after
+package writing and downstream conversion/live runtime evidence. Unresolved
+`intent_drift` blocks acceptance, `results.tsv` logging, assignment checkoff,
+and full-pass scale-up.
 
 ## Recommended `/goal` Command
 
 ```text
 /goal Execute GOAL.md end to end using run.md. Initialize run provenance, honor any user-specified assignment scope or product-contract override, audit/enrich checked activity packages that have an explicit package_path or canonical activities/<activity_id>/ directory against the current migrated package depth floor with separate reviewer-agent evidence, then process the run-start unchecked assignment snapshot exactly once in order. Direct demo export is enabled by default unless the user explicitly disables it. Default asset_build=manifest_only unless the user explicitly requests asset generation or reference curation; for generate_illustrative, curate_reference, or generate_and_curate, run scripts/build_activity_assets.py after package validation, apply the current WonderLens activity asset workflow and style from docs/activity_asset_generation_workflow.md, and validate scripts/validate_asset_build_outputs.py before review.html. For each generation-ready row, preserve source-promise alignment from the original source design, including original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, and product dependencies. For workbook-derived rows, derive source-promise fields from the original workbook row first; for the current workbook batch, use inputs/original_activity_concepts_2026-05-29.tsv as the committed workbook export and treat inputs/source_activity_concepts.md as a normalized helper only. If the normalized row weakens sequence, role, real-asset requirements, or background/context requirements, repair the source row or record product-approved adaptation before generation. Use the assignment activity_id as a clean base slug, strip any copied _rYYYYMMDD_HHMMSS suffix, and generate a passing package under runs/<run_id>/activity_packages/<base_activity_id>/ with the five required files plus demo_support.yaml and asset_manifest.yaml, and with tag_block.yaml activity_id matching the clean base slug; for blocked rows, record a blocked brief plus constrained blocked design preview and continue. If product_contract_override=minimum_unblock_allowed is active, generate formerly blocked rows as normal packages, replace invalid blockers with resolved blocker annotations, and still show those resolved dependencies in review.html. Include extensibility notes for every package so reviewers can see whether the activity can be reused with other entities, properties, or asset sets. Do not append results.tsv or mark a generated assignment complete until reviewer issues are repaired and re-reviewed. After final validation, generate and validate runs/<run_id>/review.html according to review_dashboard.md. For workbook-based source comparison, every source_intent_audit.yaml entry must include workbook_evidence and the matrix validation must use --strict-workbook-intent. Stop only on a hard workflow failure that makes later rows unsafe. Use GOAL.md success criteria as the completion contract and report generated, enriched, blocked, resolved blockers, demo support coverage, asset build mode/output status, source-intent drift, extensibility coverage, reviewer-agent coverage, review dashboard path, checks, and residual risks.
 ```
+
+For a larger/full production pass, add `asset_build=generate_and_curate` to the
+invocation and treat the Full-Pass Agentic Pipeline Contract above as mandatory
+rather than optional. Full-pass acceptance requires source-intent, package/import,
+fullstack dialogue, WonderLens AI dialogue, image QA, repair-loop, and final
+independent-review evidence before logging/checkoff.
 
 ## Success Criteria
 
@@ -63,7 +104,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - `runs/<run_id>/run_manifest.yaml` exists with `status: in_progress`, source files, mapping root, output lists, and summary counters.
    - `runs/<run_id>/assignment_snapshot.md` preserves unchecked assignment rows pending at run start.
    - `runs/<run_id>/generated_activity_ids.txt`, `activity_packages/`, `adaptation_briefs/`, `blocked_briefs/`, `blocked_designs/`, `source_snapshots/`, `source_intent_audits/`, and `review_notes.md` are initialized.
-   - Any user-specified batch/scope filter, product-contract override, and `asset_build` mode are recorded in `run_manifest.yaml` `source` or `notes`.
+   - Any user-specified batch/scope filter, product-contract override, `asset_build` mode, and `full_pass_pipeline` flag are recorded in `run_manifest.yaml` `source` or `notes`.
 
 3. Assignment rows are processed in order:
    - Only unchecked `- [ ]` rows are processed.
@@ -98,7 +139,7 @@ The goal is complete only when all of the applicable criteria below are met.
    - Update `runs/<run_id>/run_manifest.yaml` with a `blocked_assignments` entry, including `brief_path` and `design_preview`, and increment `blocked_count`.
    - Report the missing product decision, capability, schema, category, template extension, or asset pipeline decision.
    - If the constraint is later resolved, rerun or promote the constrained preview into a normal package with the five required files plus any enabled demo extensions, remove or resolve the blocked comments, then apply the standard self-evaluation, reviewer, validation, `results.tsv`, and checkoff gates.
-   - If `product_contract_override=minimum_unblock_allowed` is active, do not leave the row blocked solely for a minimum-to-unblock decision. Generate the normal package with the five required files plus any enabled demo extensions, record the former blocker in `spec.md` `## Resolved Product Contract Notes` and near the affected runtime beat in `prod.md` as `RESOLVED BLOCKER`, and record `resolved_blockers` / `resolved_blocker_types` in `run_manifest.yaml`.
+   - If `product_contract_override=minimum_unblock_allowed` is active, do not leave the row blocked solely for a minimum-to-unblock decision. Generate the normal package with the five required files plus any enabled demo extensions, record the former blocker in `spec.md` `## Resolved Product Contract Notes`, record affected runtime beats in run provenance, and record `resolved_blockers` / `resolved_blocker_types` in `run_manifest.yaml`. Raw `RESOLVED BLOCKER` comments may appear in runtime-facing `prod.md` only when the target consumer ignores them safely; WonderLens AI runtime generation must not receive leakage markers unless the downstream converter strips or accepts them.
    - Use `status: completed_with_blockers` when the run finishes all processable rows but one or more rows blocked. Use `status: failed` only for hard workflow failures that prevent safe processing of later rows.
 
 6. Generation-ready assignments produce a complete package:
@@ -134,6 +175,8 @@ The goal is complete only when all of the applicable criteria below are met.
    - `spec.md` is decision-useful, not just a scorecard wrapper: it records concrete design intent, assumptions, constraints, scaffold fit, asset/product dependencies, game-feel rationale, and residual risk when relevant.
    - `prod.md` satisfies the migrated package depth floor from `program.md`: every step is runnable, concrete, and specific enough for the prompt composer without relying on old design files.
    - Runtime beats may use existing `AI says` exact dialogue or the newer `Runtime AI instruction` plus `Example AI line` contract. A behavior instruction must preserve source frame, required content, branch policy, safety/product constraints, and screen/state expectation, and it must be rich enough to convert into downstream `step_instructions`: goal/action, tier or length constraint, emotion/tone, child progress evidence, branch behavior, and activity/source frame guardrail.
+   - Direct-consumer and full-pass packages include a machine-convertible `**Runtime AI instruction:** Goal: ... Constraint: ... Tone: ... Progress evidence: ... Branch behavior: ... Frame/source guardrail: ...` line for every live beat, including Step 1, Step 2, each Step 3 round, Cat5 synthesis when present, celebration, closing, and early-exit behavior where applicable. `AI says` and `Example AI line` may remain as examples, but are not sufficient by themselves for portable downstream loading.
+   - Step 3 round headings use parseable ASCII `**Round N -- Short Scenario:**` form. Cat5 packages distinguish collection rounds from synthesis and celebration, and synthesis instructions name collection criterion, accepted evidence, item-combination behavior, and final story/summary format.
    - Unexpected and no-response branch policies are specific to the current beat and Step 3 round. They may share safety principles, but must not reuse generic boilerplate across activities or repeat identical rows across rounds; each redirect or scaffold returns to the current source action, role, challenge, asset/fallback, screen state, prior consequence, or completion target.
    - `prod.md` contains no `## Self-Evaluation Scorecard`.
    - `spec.md` contains exactly one `## Self-Evaluation Scorecard`.
@@ -223,6 +266,53 @@ The goal is complete only when all of the applicable criteria below are met.
    - Report reviewer-agent coverage: which packages were reviewed, which were edited by reviewers or repaired after review, and whether all generated packages received independent PASS evidence.
    - List verification commands run and their results.
    - State any residual risk or follow-up product decision.
+
+16. Full-pass agentic validation gates pass when the run is a larger/full
+    production pass:
+   - `run_manifest.yaml` records `source.full_pass_pipeline: true` and
+     `source.asset_build: generate_and_curate`.
+   - The master orchestrator records delegated-agent ownership and evidence for
+     source-intent audit, text-only package writing, image-only asset
+     generation, package/import validation, fullstack dialogue QA, WonderLens
+     AI dialogue QA, image QA, dialogue repair, WonderLens AI dialogue repair,
+     image repair, and final independent review.
+   - A pre-package source-intent audit locks the original play frame, child
+     role, device role/action, interaction sequence, required child action,
+     reference/real asset requirement, background/context promise, and allowed
+     adaptation before `prod.md` is written.
+   - The post-package source-intent audit rechecks `spec.md`, `prod.md`,
+     `tag_block.yaml`, `demo_support.yaml`, `asset_manifest.yaml`, fullstack
+     converted `step_instructions`, WonderLens AI runtime artifacts, live or
+     runtime-equivalent dialogue transcripts, and image QA findings.
+   - Package/import validation runs before live dialogue QA. It verifies that
+     fullstack-demo imports the package without content improvement, asset paths
+     resolve, unsupported/degraded gates remain honest, and converted
+     `step_instructions` preserve runtime AI instruction quality instead of
+     falling back to generic defaults. Cat5 imports must preserve any synthesis
+     instruction separately from collection rounds and celebration.
+   - WonderLens AI runtime validation runs before full-pass acceptance. It
+     verifies that generated/loaded runtime artifacts preserve package
+     `step_instructions` quality, unsupported/degraded packages remain honest,
+     runtime-facing conversion input avoids leakage markers such as raw
+     `RESOLVED BLOCKER` comments unless the converter strips or accepts them,
+     and runtime behavior does not add unsupported sensing, hidden-state claims,
+     false screen claims, or mechanic changes.
+   - Fullstack and WonderLens AI dialogue validators exercise multiple child
+     input strategies, including ideal, minimal, wrong, off-topic,
+     help/confusion, premature done, silence/no response, and unsupported
+     request where the runtime supports them.
+   - Image QA independently checks style consistency, asset role, crop safety,
+     scene/dialogue alignment, reference fidelity, object readability, and
+     no-text/no-label/no-device-chrome constraints.
+   - Dialogue and image repair loops classify each failure as package-owned,
+     fullstack-owned, WonderLens-owned, image-owned, or product-owned. Package
+     and image-owned issues are repaired in autodesign and revalidated;
+     downstream-owned issues are recorded as follow-up unless the user
+     explicitly expands scope.
+   - The final independent reviewer reads final packages, source-intent audits,
+     package/import reports, fullstack and WonderLens AI transcripts, image QA
+     reports, repair notes, and dashboard output before issuing the final
+     pass/fail verdict.
 
 ## Assignment Type Names
 
