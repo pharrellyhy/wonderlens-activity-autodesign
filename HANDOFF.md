@@ -1,5 +1,25 @@
 # HANDOFF
 
+## 2026-06-01 - Full-Pass Agentic Pipeline Contract
+
+Problem: Future larger/full activity passes needed the generation workflow to
+explicitly orchestrate delegated source-intent, package, asset, consumer,
+dialogue, image, repair, and final-review gates before scaling.
+
+Solution: Encoded the full-pass contract in `GOAL.md`, `run.md`,
+`program.md`, `README.md`, and
+`docs/activity_asset_generation_workflow.md`. Larger/full passes now set
+`asset_build=generate_and_curate` and `full_pass_pipeline=true`, keep package
+writing text-only, run image generation as an image-only phase, validate
+fullstack-demo and WonderLens AI as direct consumers, require fullstack and
+WonderLens AI dialogue QA, route repair ownership, and require final
+independent review.
+
+Verification: `git diff --check` passed. The required goal keyword search
+passed. Delegated audits covered current workflow gaps, downstream
+fullstack/WonderLens AI consumer contracts, and final diff review. The final
+independent reviewer returned PASS with no blocking findings.
+
 ## 2026-05-29 - Source Intent Pilot Completed
 
 Problem: The source-intent pilot needed end-to-end evidence that new activity

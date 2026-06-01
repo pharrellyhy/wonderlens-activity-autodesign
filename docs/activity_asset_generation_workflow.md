@@ -19,6 +19,13 @@ Package authoring does not create binary images. `GOAL.md` runs default to
 `asset_build=manifest_only`, which emits `asset_manifest.yaml` with nullable
 variant paths.
 
+Larger/full production passes must set `asset_build=generate_and_curate` so
+runtime PNGs are generated or curated before fullstack-demo and WonderLens AI
+dialogue validation. The asset generator role is image-only: it reads the
+accepted package manifest, approved reference material, and this style contract;
+it must not rewrite activity mechanics, runtime AI instructions, source-intent
+audits, or dialogue to make an image easier to accept.
+
 Generate or curate image files only after packages pass package validation and
 the run explicitly requests one of these modes:
 
@@ -47,7 +54,9 @@ Assets support the accepted activity design.
 2. Combine the asset-specific `prompt_en` subject with the current WonderLens
    activity style in this document.
 3. Use Codex built-in image generation to create one source image per asset.
-   Do not create contact sheets for runtime assets.
+   Do not create contact sheets for runtime assets. Prompts should combine the
+   asset-specific subject, scene/object/item role, use beat, and the full style
+   contract below so the output aligns with the dialogue and screen state.
 4. Select the best output, then copy it from
    `/Users/pharrelly/.codex/generated_images/...` into:
 
@@ -169,6 +178,35 @@ Hard constraints:
 Final runtime outputs should include separate 512x512 PNG files for each beat,
 item, object, or character asset unless `asset_manifest.yaml` explicitly
 requests another size.
+
+## Independent Image QA
+
+After the builder writes package-local PNG variants, run an independent image
+quality validator before consumer dialogue QA. The validator reads
+`asset_manifest.yaml`, `prod.md` runtime beats, accepted reference metadata,
+and the generated PNGs. It records concrete asset paths, verdicts, and repair
+requests in `generated_assets/qa_notes.yaml` or `review_notes.md`.
+
+The validator checks:
+
+- style consistency with the current flat Nordic WonderLens target;
+- one asset per file, with scene/object/item/character role matching the
+  manifest;
+- scene and object content aligns with the dialogue beat and screen state;
+- object readability at runtime size;
+- important content stays inside the round lens-safe center when relevant;
+- no readable text, letters, numbers, logos, watermark, UI labels, contact
+  sheets, masks, borders, or baked device chrome;
+- reference-bound assets use accepted provenance and do not invent factual
+  material;
+- no image changes the activity mechanic, source play frame, or child action.
+
+If QA fails, the image quality improver repairs only image-owned artifacts:
+prompt specificity, regenerated illustrative PNGs, accepted reference source,
+curated redraw, crop/resize, or built variants. It must not rewrite package
+prose or source-intent evidence. Re-run the builder, asset output validator,
+and image QA after repairs. Re-run dialogue QA when changed visuals affect
+screen/dialogue claims.
 
 ## Validation
 
