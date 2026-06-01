@@ -80,6 +80,8 @@ Update the autodesign workflow so a future full pass has an explicit:
 - package/import contract validator role;
 - live fullstack dialogue quality validator role;
 - WonderLens AI dialogue quality validator role;
+- marker-free runtime-facing `prod.md` precondition before fullstack-demo and
+  WonderLens AI dialogue quality comparison;
 - image quality validator role;
 - dialogue quality improvement loop;
 - WonderLens AI dialogue quality improvement loop;

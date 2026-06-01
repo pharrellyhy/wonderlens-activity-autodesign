@@ -297,6 +297,10 @@ The goal is complete only when all of the applicable criteria below are met.
      `RESOLVED BLOCKER` comments unless the converter strips or accepts them,
      and runtime behavior does not add unsupported sensing, hidden-state claims,
      false screen claims, or mechanic changes.
+   - Before comparing or accepting dialogue quality across fullstack-demo and
+     WonderLens AI, prove runtime-facing package input is marker-free. This
+     precondition must pass with no matches:
+     `! rg -n "RESOLVED BLOCKER|RESOLVE BLOCKER" runs/<run_id>/activity_packages/*/prod.md`.
    - Fullstack and WonderLens AI dialogue validators exercise multiple child
      input strategies, including ideal, minimal, wrong, off-topic,
      help/confusion, premature done, silence/no response, and unsupported

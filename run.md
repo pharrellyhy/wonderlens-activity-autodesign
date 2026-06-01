@@ -478,6 +478,7 @@ Before logging or committing, verify:
 - Concept-led and parameterized packages include `spec.md` `## Extensibility Notes`, and `run_manifest.yaml` records `extensibility_summary` / `extensibility_notes` for dashboard review.
 - Product-contract override packages include resolved blocker notes in `spec.md`, affected runtime beats in run provenance, and `run_manifest.yaml`.
 - If targeting WonderLens AI runtime generation, runtime-facing `prod.md` input does not include leakage markers or unresolved review annotations such as raw `RESOLVED BLOCKER` comments unless the downstream converter is known to strip or accept them.
+- Before comparing or accepting fullstack-demo and WonderLens AI dialogue quality, the runtime-facing package input is marker-free. Run `! rg -n "RESOLVED BLOCKER|RESOLVE BLOCKER" runs/<run_id>/activity_packages/*/prod.md` and treat any match as a package-owned blocker unless the downstream converter is explicitly proven to strip or accept that marker.
 - If `demo_support.yaml` and `asset_manifest.yaml` are present, `python3 scripts/validate_demo_package_contract.py <package_dir>` passes.
 - In full GOAL.md runs, `demo_support.yaml` and `asset_manifest.yaml` are required for every generated package unless demo export was explicitly disabled for the run or assignment.
 - If `demo_support.status` is `supported`, the UI template is not `none`, entity binding is explicit, and unsupported/degraded reasons are not hiding a missing runtime.
@@ -578,6 +579,8 @@ same package without content improvement and record:
 - runtime generation does not reject or leak review-only markers such as
   unresolved notes or raw `RESOLVED BLOCKER` annotations into executable
   dialogue;
+- the marker-free precondition passes before dialogue comparison:
+  `! rg -n "RESOLVED BLOCKER|RESOLVE BLOCKER" runs/<run_id>/activity_packages/*/prod.md`;
 - failures are classified as package-owned, WonderLens-owned, or product-owned.
 
 If either consumer requires downstream code changes, record the evidence as a

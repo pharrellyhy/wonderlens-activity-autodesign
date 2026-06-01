@@ -272,6 +272,9 @@ Required validation:
 - exercise WonderLens AI dialogue behavior for representative activities with
   the same input strategy matrix used for fullstack where the runtime supports
   it;
+- before comparing fullstack-demo and WonderLens AI dialogue quality, verify
+  runtime-facing package input is marker-free with
+  `! rg -n "RESOLVED BLOCKER|RESOLVE BLOCKER" runs/<run_id>/activity_packages/*/prod.md`;
 - verify unsupported/degraded packages remain honest and do not become playable
   through runtime adaptation;
 - verify WonderLens AI does not add unsupported sensing, hidden-state claims,
@@ -410,6 +413,8 @@ accepting the contract.
   testing.
 - The workflow explicitly requires WonderLens AI runtime dialogue validation
   before full-pass acceptance, not only WonderLens AI conversion/load checks.
+- The workflow requires a marker-free `prod.md` precondition before comparing
+  fullstack-demo and WonderLens AI dialogue quality.
 - The workflow requires `asset_build=generate_and_curate` for full pass asset
   generation and treats assets as package-owned outputs.
 - The workflow separates package writing, image generation, live dialogue QA,
