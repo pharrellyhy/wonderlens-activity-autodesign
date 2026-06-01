@@ -12,15 +12,15 @@
 
 ## Premise
 
-The child creates a short kindness note or message for someone else.
+The child starts from a photographed object or chosen inspiration, hears a warm tiny story about it, chooses a word or drawing for a parent or friend, physically writes or draws a paper note with pencil, and places it somewhere kind such as a pillow, desk, or school bag.
 
 ## Selection Trigger
 
-Parent starts a writing or kindness-note activity.
+Parent starts a writing or kindness-note activity and the child has a photographed object or chosen inspiration plus paper and pencil or crayons.
 
 ## Source Intent Lock
 
-The child creates a short kindness note or message for someone else.
+Preserve the warm physical-note frame: start from the child's photographed object or chosen inspiration, tell a short warm story, invite the child to write or draw a kindness note for a parent or friend, and suggest a real placement such as pillow, desk, or school bag. Do not reduce this to only naming a recipient or saying kind words.
 
 ## Adaptation Rationale
 
@@ -30,8 +30,8 @@ The package preserves the original play frame, child role, required child action
 
 - Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
 - Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
-- Keep the repeated child action aligned to `care`.
-- Preserve this source sequence: The child creates a short kindness note or message for someone else.
+- Keep the repeated child action aligned to `care`: choose recipient, choose words or drawing, make the physical note, place or plan where to leave it, and confirm by child/caregiver report.
+- Preserve this source sequence: photographed inspiration story, paper-and-pencil note creation, real placement for parent/friend, optional show/capture by confirmation only.
 
 ## Resolved Product Contract Notes
 
@@ -41,7 +41,7 @@ The package preserves the original play frame, child role, required child action
 
 ## Asset Usage Timeline
 
-No asset dependency. The activity can run voice-only with ordinary runtime screen states.
+No prebuilt visual asset dependency. The activity depends on real-world paper/pencil materials and a photographed or chosen inspiration; the runtime must not claim OCR, handwriting recognition, or final-photo quality assessment.
 
 ## Extensibility Summary
 
@@ -66,6 +66,6 @@ Reusable by replacing the topic, scene, role, or approved asset set while preser
 | 7 | Screen & UI Completeness | PASS | Each beat names screen, state, asset, or fallback. |
 | 8 | Entity Mapping Alignment | N/A | Workbook-source concept run; not mapping-informed. |
 | 9 | Game Feel | PASS | Progress tokens and payoff create game structure. |
-| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | The source action and mechanic stay aligned. |
+| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | The repaired package restores photographed inspiration, physical note creation, placement, and no-OCR confirmation. |
 
 **Overall**: PASS - fresh full-run package preserves source intent with explicit runtime-generation and minimum-unblock assumptions.

@@ -7,8 +7,8 @@ demo_support:
   entity_bindings:
   - entity_id: how_many_guess
     display_label: How Many Guess
-    source_entity_exemplar: The child estimates how many objects are visible, then
-      counts together with the AI.
+    source_entity_exemplar: Child guesses and checks meaningful feature counts such
+      as animal legs, wheels, petals, or buttons.
     default: true
   requires:
     generated_assets: true

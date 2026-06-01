@@ -8,8 +8,8 @@
 | Activity Category | cat3 |
 | Recommended Tier | T1 |
 | Core IB Key Concepts | Form and Responsibility |
-| Related Concepts | evidence, choice, sequence, reflection |
-| ATL Skills Focus | empathy (primary), observation, language expression |
+| Related Concepts | kindness, message, care, expression |
+| ATL Skills Focus | empathy, communication, fine-motor expression |
 | Experience Pillar | Nurture |
 | Game Style | care_station |
 
@@ -17,21 +17,21 @@
 
 **1. Brief Description**
 
-The child creates a short kindness note or message for someone else.
+The child uses a photographed object or chosen inspiration to make a warm paper note. The AI tells a tiny story, helps the child choose a word or drawing, asks the child to write or draw with paper and pencil, and suggests placing the note for a parent or friend.
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Children know the visible rule, role, or clue that starts this activity.
-- **U (Understand):** Children understand that their action changes what happens next.
-- **D (Do):** Children complete the repeated `care` action and explain or show one piece of evidence.
+- **K (Know):** A note can carry kindness through simple words, marks, or drawings.
+- **U (Understand):** Caring can be shown by making something real and placing it where another person will find it.
+- **D (Do):** Choose a recipient, choose words or a drawing, physically make the note, place it or plan its placement, and confirm completion without handwriting/OCR assessment.
 
 **3. Design Highlight**
 
-Fresh full-rerun package generated from the workbook-derived source snapshot. Runtime wording uses behavior contracts plus example lines so the LLM can adapt while preserving the source sequence.
+The photographed object is a story seed, not a writing-recognition task. The runtime must ask the child or caregiver what the note says or shows and must never claim to read handwriting from the photo.
 
 **4. Typical Scenario**
 
-Parent starts a writing or kindness-note activity.
+The child photographs a toy, shell, flower, cup, or other small inspiration. The AI imagines it carrying a kind message, then the child draws a heart or writes a short note and places it on a pillow, desk, or in a school bag.
 
 ### C. Interaction Flow
 
@@ -39,142 +39,162 @@ Parent starts a writing or kindness-note activity.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Goal: Open from the child's photographed object or chosen inspiration and turn it into a warm "message bottle" story seed for a real paper note. Constraint: T1, 2-3 short sentences; no OCR, no handwriting claims, and do not require the AI to identify the photo beyond child/caregiver confirmation. Tone: tender and imaginative. Progress evidence: child confirms the inspiration object, names a recipient, or agrees to make a note. Branch behavior: if correct, reflect the named object/recipient and preview drawing or words; if wrong/off-topic, accept the idea and return to "one kind note for someone"; if help/silence, offer parent/friend and heart/smile choices, with a graceful exit after repeated silence. Frame/source guardrail: source frame is photographed-inspiration -> story -> physical note -> placement; screen shows inspiration card, paper/pencil checklist, and empty note tokens.
 
-**Example AI line:** "I found a small mission for us: Message Bottle Note. I will guide one step at a time."
+**Example AI line:** "Your photo can be our tiny message bottle. Who should this little kindness note sail to: a parent, a friend, or someone else?"
 
 **Child responses:**
 
-1. (Ideal) The child accepts the message bottle note player role, notices the starter cue, or names something connected to the message recipient.
-2. (Unexpected) Child asks for another game, starts the kind response before the Message Bottle Note mission is framed, or follows an unrelated topic.
-3. (No response) Child watches the Message Bottle Note title/trigger card without taking the message bottle note player role yet.
+1. (Ideal) The child says "Mom," "friend," "Dad," "teacher," names the object, or agrees to write/draw.
+2. (Unexpected) Child asks the AI to read the note, wants only to say kind words, or changes to a non-note game.
+3. (No response) Child watches the inspiration card and materials checklist.
 
 **AI follow-up:**
 
-1. Name the message bottle note player role, connect it to the starter cue, and preview the first kind response.
-2. Acknowledge the request, return to the Message Bottle Note promise, and offer the smallest supported first action.
-3. [wait 2s] Point to the Message Bottle Note role card and first token, then model one tiny in-frame response.
+1. Save the recipient token and connect the object to a warm one-sentence story.
+2. Clarify: "I cannot read handwriting here, but you can tell me what you draw or write."
+3. [wait 2s] Offer "parent or friend?" and "heart or smile?" then allow a spoken-only plan if materials are not ready.
 
-**Screen:** Shows title, child role, source trigger, and empty progress tokens.
+**Screen:** Shows the photo/chosen inspiration card, recipient token, and material chips: paper, pencil/crayon, place to leave note.
 
 #### Step 2: Role And Rules
 
-**Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
+**Runtime AI instruction:** Goal: Set the physical-material rule: the child will choose a tiny message, draw/write it on paper, then place it for the recipient. Constraint: T1, 2-3 short sentences; require child/caregiver confirmation instead of visual/OCR verification; support drawing for pre-writers. Tone: caring and practical. Progress evidence: child has or confirms paper/pencil and chooses word/drawing mode. Branch behavior: if correct, move into message choice; if wrong/unsafe, pause for caregiver/material setup; if help/silence, offer drawing a heart as the smallest action and exit if materials are unavailable. Frame/source guardrail: do not reduce to verbal kindness only; screen stays on real-note checklist and placement map.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Our rule is real and tiny: choose one kind word or drawing, put it on paper, then hide or place it where your person can find it."
 
 **Child responses:**
 
-1. (Ideal) The child agrees to the kind response loop for Message Bottle Note or asks for the easiest version.
-2. (Unexpected) Child tries to skip the message recipient, ignore the required rule/asset, or count a different kind of response.
-3. (No response) Child looks at the Message Bottle Note rule strip without confirming how to start the first turn.
+1. (Ideal) The child confirms paper/pencil, says they will draw, or chooses a simple word.
+2. (Unexpected) Child has no materials, asks the AI to send the message digitally, or wants the AI to judge handwriting.
+3. (No response) Child does not confirm materials or message mode.
 
 **AI follow-up:**
 
-1. Restate the Message Bottle Note loop as AI prompt, child kind response, saved token, and show the first response slot.
-2. Keep the rule tied to the message recipient, name the supported fallback, and offer one allowed first turn.
-3. [wait 2s] Read the Message Bottle Note rule in one sentence and ask for yes, a point, or the first chance to choose a kind response.
+1. Save "materials ready" and ask for one word/drawing.
+2. Gate honestly: "We need paper and something to draw with. Ask a grown-up, or we can save this idea for later."
+3. [wait 2s] Model "a heart is enough," then offer to stop with a saved idea if no response.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Checklist marks Inspiration, Recipient, Materials, Message, Placement. No camera/OCR success state is shown.
 
 #### Step 3: Multi-Round Core Loop
 
-**Round 1 -- Start The Source Action:**
+**Round 1 -- Warm Story From The Object:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The child creates a short kindness note or message for someone else. Ask the child to notice a need and help in the first small turn.
+**Runtime AI instruction:** Goal: Tell a brief warm story inspired by the photographed/chosen object and ask what kind feeling the note should carry. Constraint: T1, 2-3 short sentences; use child-confirmed object name if available, otherwise say "your photo treasure." Tone: cozy and storybook-like. Progress evidence: child chooses a feeling such as love, thanks, miss you, good luck, or a smile. Branch behavior: if correct, turn the feeling into a note idea; if wrong/off-topic, gently return to what the object might want to say; if help/silence, offer two feelings and proceed with one child-approved choice. Frame/source guardrail: photographed inspiration must remain the story seed; screen shows object -> feeling -> note flow.
 
-**Example AI line:** "Let us start: The child creates a short kindness note or message for someone else. What is your first try?"
-
-**Child responses:**
-
-1. (Ideal) The child notices the message recipient cue and suggests a fitting feeling, need, or kind action.
-2. (Unexpected) Child judges the person/object, ignores the message recipient cue, or offers help that does not fit the need.
-3. (No response) Child watches the message recipient cue without naming a feeling, need, or helpful action.
-
-**AI follow-up:**
-
-1. Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state.
-2. Reframe without judging, point to the cue for the message recipient, and offer two gentle help choices.
-3. [wait 2s] Model one caring sentence for the message recipient, then ask the child to choose a feeling or help action.
-
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
-
-**Round 2 -- Repeat With A Variation:**
-
-**Runtime AI instruction:** Keep the same source frame and ask for a second care turn with a small variation.
-
-**Example AI line:** "Now try one more turn in the same game. What changes this time?"
+**Example AI line:** "Maybe this little photo treasure found a secret: kind words can travel. Should your note carry love, thanks, or a big smile?"
 
 **Child responses:**
 
-1. (Ideal) The child notices the kind note sentence cue and suggests a fitting feeling, need, or kind action.
-2. (Unexpected) Child judges the person/object, ignores the kind note sentence cue, or offers help that does not fit the need.
-3. (No response) Child watches the kind note sentence cue without naming a feeling, need, or helpful action.
+1. (Ideal) The child says "love," "thank you," "I miss you," "smile," or points to a feeling choice.
+2. (Unexpected) Child gives an unkind message, asks for a long letter, or talks only about the object category.
+3. (No response) Child does not pick a feeling.
 
 **AI follow-up:**
 
-1. Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state.
-2. Reframe without judging, point to the cue for the kind note sentence, and offer two gentle help choices.
-3. [wait 2s] Model one caring sentence for the kind note sentence, then ask the child to choose a feeling or help action.
+1. Save the feeling token and suggest a matching word/drawing.
+2. Redirect to kindness: "Let's make a note that helps someone feel cared for."
+3. [wait 2s] Offer "love or thank you?" and accept a point/nod.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Inspiration card remains visible; feeling buttons/chips show Love, Thanks, Smile, Good Luck.
 
-**Round 3 -- Complete The Loop:**
+**Round 2 -- Choose Words Or Drawing:**
 
-**Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
+**Runtime AI instruction:** Goal: Help the child choose exactly what to put on paper: one short phrase, one name, or one drawing such as a heart, sun, flower, or smile. Constraint: T1, 2-3 short sentences; do not ask the AI to inspect handwriting; child may speak the content for confirmation. Tone: reassuring and low-pressure. Progress evidence: child says or chooses the note content. Branch behavior: if correct, repeat the chosen content and move to making; if wrong/too complex, shrink it to one word or one drawing; if help/silence, offer "heart + I love you" or "smile + thank you" and allow caregiver confirmation. Frame/source guardrail: this is physical note planning, not digital message composition; screen shows selected content slot.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "Your note can be tiny: a heart, a smile, or the words 'thank you.' What do you want your paper to say or show?"
 
 **Child responses:**
 
-1. (Ideal) The child notices the bottle send-off cue and suggests a fitting feeling, need, or kind action.
-2. (Unexpected) Child judges the person/object, ignores the bottle send-off cue, or offers help that does not fit the need.
-3. (No response) Child watches the bottle send-off cue without naming a feeling, need, or helpful action.
+1. (Ideal) The child chooses a word, phrase, drawing, or says they will make a heart.
+2. (Unexpected) Child asks the AI to spell a long message, wants the AI to verify spelling, or chooses inappropriate content.
+3. (No response) Child does not choose content.
 
 **AI follow-up:**
 
-1. Connect the cue to the caring choice, save the kindness token, and show the calmer or helped state.
-2. Reframe without judging, point to the cue for the bottle send-off, and offer two gentle help choices.
-3. [wait 2s] Model one caring sentence for the bottle send-off, then ask the child to choose a feeling or help action.
+1. Save the exact child-spoken content as the message token.
+2. Simplify and safeguard: "Let's keep it kind and short. A heart or 'thank you' works."
+3. [wait 2s] Model "heart plus your name," then ask for yes/no.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Message slot fills with child-confirmed words/drawing description; no handwriting recognition state appears.
+
+**Round 3 -- Make The Paper Note:**
+
+**Runtime AI instruction:** Goal: Invite the child to physically write or draw the chosen content on paper and confirm when they are done. Constraint: T1, 2-3 short sentences; wait supportively, use child/caregiver "done" confirmation, and never grade neatness or read the paper. Tone: patient and encouraging. Progress evidence: child says done, caregiver confirms, or child describes what they drew/wrote. Branch behavior: if correct, celebrate the making process; if wrong/no materials, switch to saved plan and ask a grown-up for later; if help/silence, give one tiny action and then graceful early exit after two unproductive turns. Frame/source guardrail: required child action is physical writing/drawing; screen shows making timer/checklist, not OCR capture.
+
+**Example AI line:** "Now make the real note on paper. Draw your heart or words, and when you are ready, tell me 'done.'"
+
+**Child responses:**
+
+1. (Ideal) The child says "done," describes the drawing, or caregiver confirms the note is made.
+2. (Unexpected) Child asks if the AI can see/read it, says they only imagined it, or cannot access materials.
+3. (No response) Child may be busy drawing or not engaging.
+
+**AI follow-up:**
+
+1. Save "paper note made" and avoid quality judgment.
+2. Say: "I cannot read or grade it, but you can tell me what it says or shows."
+3. [wait 4s] Say "take your time," then after another pause offer to save the idea and finish later.
+
+**Screen:** Making state shows "Draw/write now" with a patient progress pulse and a "child/caregiver says done" confirmation button.
+
+**Round 4 -- Place The Note:**
+
+**Runtime AI instruction:** Goal: Help the child choose a real placement for the note, such as parent pillow, desk, lunch bag, school bag, or hand delivery to a friend. Constraint: T1, 2-3 short sentences; ask caregiver confirmation for placement safety/privacy; no claim that the AI tracks where it was placed. Tone: secret-helper excitement. Progress evidence: child chooses or confirms a placement. Branch behavior: if correct, save placement and prepare celebration; if wrong/unsafe, suggest a safer visible household spot with caregiver; if help/silence, offer pillow/desk/school bag choices and allow "give it by hand." Frame/source guardrail: the kindness action includes real placement, not just making the note; screen shows placement map/list.
+
+**Example AI line:** "Where will your message bottle land: on a pillow, on a desk, or tucked safely in a school bag?"
+
+**Child responses:**
+
+1. (Ideal) The child chooses pillow, desk, school bag, hand delivery, or another safe place.
+2. (Unexpected) Child chooses a private/unsafe spot, wants to hide it where it may be lost, or skips placement.
+3. (No response) Child looks at placement choices without answering.
+
+**AI follow-up:**
+
+1. Save the placement token and ask for child/caregiver confirmation when placed or planned.
+2. Redirect: "Let's choose a place your grown-up says is okay and your person can find."
+3. [wait 2s] Offer two choices and accept a point or caregiver confirmation.
+
+**Screen:** Placement choices appear; final token waits for "placed" or "planned" confirmation.
 
 #### Step 4: Magic Moment
 
-**Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
+**Runtime AI instruction:** Goal: Celebrate the completed kindness chain: object inspiration, warm feeling, paper note, and real placement/plan. Constraint: T1, 2-3 short sentences; recap only child-confirmed content and do not infer written text from a photo. Tone: proud and gentle. Progress evidence: child confirms placed/planned note or repeats who it is for. Branch behavior: if correct, name the recipient and placement; if wrong/off-topic, recap the safe confirmed steps; if help/silence, close with "your idea is saved" rather than pushing more. Frame/source guardrail: payoff is physical care action; screen shows tokens Inspiration, Message, Made, Placed/Planned.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your tiny message traveled from a photo treasure to real paper. It is ready to make your person feel cared for."
 
 **Child responses:**
 
-1. (Ideal) The child notices how the bottle send-off changed the Message Bottle Note board or names a favorite saved turn.
-2. (Unexpected) Child asks to restart before seeing the Message Bottle Note payoff or ignores how the saved kind response turns connect.
-3. (No response) Child watches the Message Bottle Note reveal without commenting on the saved turns.
+1. (Ideal) The child says where it went, who will get it, or says "done."
+2. (Unexpected) Child wants the AI to check spelling or read the note.
+3. (No response) Child watches the completed kindness chain.
 
 **AI follow-up:**
 
-1. Tie the reveal to the child's kind response turns, name one concrete saved token, and invite a short reflection.
-2. Hold the Message Bottle Note reveal, point to the saved turn that matters, and ask what changed because of it.
-3. [wait 2s] Narrate one before/after change from the Message Bottle Note board, then offer two favorite-turn choices.
+1. Celebrate the process and recipient without judging quality.
+2. Repeat the no-OCR boundary: "You told me the message; that is our proof."
+3. [wait 2s] Read the four tokens and move to closing.
 
-**Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
+**Screen:** Kindness chain board shows the inspiration card, child-confirmed message/drawing description, material confirmation, and placement.
 
 #### Step 5: Closing + IB Concepts
 
-**Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
+**Runtime AI instruction:** Goal: Close by connecting Form to the note's form (word/drawing/place) and Responsibility to caring for someone else. Constraint: T1, 2 short sentences; include parent-reviewable recap based on child/caregiver confirmation. Tone: warm and complete. Progress evidence: child says goodbye, names recipient, or accepts badge. Branch behavior: if correct, echo recipient or placement; if wrong/off-topic, close the note activity first; if help/silence, end gracefully. Frame/source guardrail: closing must mention photographed inspiration, physical note, and placement/plan; screen shows no OCR or photo-grading claim.
 
-**Example AI line:** "Today you practiced Form and Responsibility. You used your own answer to move the activity forward."
+**Example AI line:** "You used Form by making a real note, and Responsibility by choosing kindness for someone. Your note was inspired by your photo and placed or planned for your person."
 
 **Child responses:**
 
-1. (Ideal) The child names a favorite Message Bottle Note moment, asks to play again, or watches the message bottle note recap badge.
-2. (Unexpected) Child shifts topic before the recap names the kind response skill or Form and Responsibility.
-3. (No response) Child stays on the Message Bottle Note recap badge without responding.
+1. (Ideal) The child names the recipient, says they placed it, or watches the badge.
+2. (Unexpected) Child shifts topic before recap.
+3. (No response) Child stays on the recap badge.
 
 **AI follow-up:**
 
-1. Offer a next-time variation using the same care mechanic and the message bottle note frame.
-2. Close Message Bottle Note first, name the practiced kind response, and then offer one next-round seed.
-3. [wait 2s] Read the Message Bottle Note badge in one sentence and end with one concrete next-time invitation.
+1. Offer next time: make another message bottle note from a new photo treasure.
+2. Close the note activity first, then acknowledge the new topic.
+3. [wait 2s] Read the badge and end.
 
-**Screen:** Recap badge lists title, mechanic `care`, focal attribute `message_bottle_note`, and next-step hint.
+**Screen:** Recap badge lists "Message Bottle Helper," mechanic `care`, focal attribute `message_bottle_note`, and next hint "photo treasure -> paper note -> kind place."

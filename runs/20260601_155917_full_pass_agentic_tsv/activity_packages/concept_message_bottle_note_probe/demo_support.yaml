@@ -7,17 +7,18 @@ demo_support:
   entity_bindings:
   - entity_id: message_bottle_note
     display_label: Message Bottle Note
-    source_entity_exemplar: The child creates a short kindness note or message for
-      someone else.
+    source_entity_exemplar: Child uses a photographed object or chosen inspiration,
+      makes a physical paper note with words or drawing, and places it for a parent
+      or friend.
     default: true
   requires:
     generated_assets: false
-    real_camera: false
+    real_camera: true
     runtime_judgment: false
     device_round_screen: true
   unsupported_reasons:
-  - Writing-material workflow and OCR/after-evidence risks require unsupported runtime
-    handling.
+  - Writing-material workflow, photographed inspiration, physical placement, and
+    OCR/after-evidence risks require unsupported runtime handling.
   degraded_reasons: []
   consumer_notes:
     fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support

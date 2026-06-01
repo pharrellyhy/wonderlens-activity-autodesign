@@ -8,8 +8,8 @@
 | Activity Category | cat1 |
 | Recommended Tier | T1 |
 | Core IB Key Concepts | Form |
-| Related Concepts | evidence, choice, sequence, reflection |
-| ATL Skills Focus | counting (primary), observation, language expression |
+| Related Concepts | quantity, feature, evidence, comparison |
+| ATL Skills Focus | counting, observation, reasoning from features |
 | Experience Pillar | Discovery |
 | Game Style | field_experiment |
 
@@ -17,21 +17,21 @@
 
 **1. Brief Description**
 
-The child estimates how many objects are visible, then counts together with the AI.
+The child guesses and checks meaningful feature counts: how many legs an animal has, how many wheels a vehicle has, how many petals a flower has, or how many buttons an object has. Cards may support the play, but the count target is the semantic feature, not a pile of unrelated icons.
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Children know the visible rule, role, or clue that starts this activity.
-- **U (Understand):** Children understand that their action changes what happens next.
-- **D (Do):** Children complete the repeated `enumerate` action and explain or show one piece of evidence.
+- **K (Know):** Animals and objects can have countable features such as legs, wings, wheels, petals, buttons, or points.
+- **U (Understand):** Counting is more meaningful when the child knows what feature is being counted and why it belongs to that animal or object.
+- **D (Do):** Hear the target animal/object, guess the feature count, count/check together, and compare the count with another example.
 
 **3. Design Highlight**
 
-Fresh full-rerun package generated from the workbook-derived source snapshot. Runtime wording uses behavior contracts plus example lines so the LLM can adapt while preserving the source sequence.
+This is a quantity-feature guessing game, not generic visible-object counting. The AI asks "How many legs does a dog have?" or "How many wheels does a bicycle have?" and then checks the feature evidence with the child.
 
 **4. Typical Scenario**
 
-Screen can show a small set of objects or the camera sees countable items.
+The screen shows a clear animal/object feature card, or the AI uses a familiar voice-only prompt. The child guesses how many legs, wheels, petals, or buttons the target has, then counts together.
 
 ### C. Interaction Flow
 
@@ -39,142 +39,142 @@ Screen can show a small set of objects or the camera sees countable items.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Goal: Open the feature-count mission and make clear that the child will guess counts for meaningful animal/object features, not just count visible icons. Constraint: T1, 2-3 short sentences; keep numbers small and familiar; if no card is displayed, use voice-only examples and do not claim card visibility. Tone: curious quiz-host. Progress evidence: child names or accepts a feature such as legs, wheels, petals, or buttons. Branch behavior: if correct, save the feature and preview the first guess; if wrong/generic, redirect from "how many things on screen" to "how many parts/features"; if help/silence, offer two feature choices and allow a one-question mini game after repeated silence. Frame/source guardrail: source frame is semantic quantity-feature guessing; screen shows feature badge and either `how_many_count_cards_01` or a no-card voice fallback.
 
-**Example AI line:** "I found a small mission for us: How Many Guess. I will guide one step at a time."
+**Example AI line:** "Let's play How Many Guess with parts that belong to things. First feature: legs, wheels, petals, or buttons?"
 
 **Child responses:**
 
-1. (Ideal) The child accepts the how many guess player role, notices the starter cue, or names something connected to the first estimate.
-2. (Unexpected) Child asks for another game, starts the counting or naming step before the How Many Guess mission is framed, or follows an unrelated topic.
-3. (No response) Child watches the How Many Guess title/trigger card without taking the how many guess player role yet.
+1. (Ideal) The child says "legs," "wheels," "petals," "buttons," or agrees to guess.
+2. (Unexpected) Child starts counting random objects in the room or asks to count all icons on the screen.
+3. (No response) Child watches the feature badge/card without choosing.
 
 **AI follow-up:**
 
-1. Name the how many guess player role, connect it to the starter cue, and preview the first counting or naming step.
-2. Acknowledge the request, return to the How Many Guess promise, and offer the smallest supported first action.
-3. [wait 2s] Point to the How Many Guess role card and first token, then model one tiny in-frame response.
+1. Save the chosen feature and start the first target.
+2. Reframe: "This time we count a part that belongs to one animal or object."
+3. [wait 2s] Offer "legs or wheels?" then run one modeled example if needed.
 
-**Screen:** Shows title, child role, source trigger, and empty progress tokens.
+**Screen:** Shows title, feature-count detective role, empty tokens, and either a semantic feature card set or a voice-only fallback chip.
 
 #### Step 2: Role And Rules
 
-**Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
+**Runtime AI instruction:** Goal: Explain the loop: hear/see a target, guess how many of the named feature it has, then count/check the feature together. Constraint: T1, 2-3 short sentences; avoid generic pile-count prompts; cards must show or imply the animal/object with the feature target. Tone: clear and playful. Progress evidence: child repeats the rule, chooses "guess," or names the first target. Branch behavior: if correct, move to Round 1; if wrong, restate target-plus-feature; if help/silence, give a binary choice and graceful one-round exit. Frame/source guardrail: do not count card icons as the goal unless they are the meaningful feature itself; screen labels target and feature separately.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I name the thing and the feature, you guess the number, then we check together. Dog plus legs, bike plus wheels, flower plus petals."
 
 **Child responses:**
 
-1. (Ideal) The child agrees to the counting or naming step loop for How Many Guess or asks for the easiest version.
-2. (Unexpected) Child tries to skip the first estimate, ignore the required rule/asset, or count a different kind of response.
-3. (No response) Child looks at the How Many Guess rule strip without confirming how to start the first turn.
+1. (Ideal) The child says yes, asks for an easy one, or names a target/feature.
+2. (Unexpected) Child answers before hearing the feature, counts background decorations, or changes to naming objects.
+3. (No response) Child looks at the rule strip.
 
 **AI follow-up:**
 
-1. Restate the How Many Guess loop as AI prompt, child counting or naming step, saved token, and show the first response slot.
-2. Keep the rule tied to the first estimate, name the supported fallback, and offer one allowed first turn.
-3. [wait 2s] Read the How Many Guess rule in one sentence and ask for yes, a point, or the first chance to count or name the target set.
+1. Mark "rule ready" and introduce the first target.
+2. Point back to the target-feature pair: "We need the thing and the part."
+3. [wait 2s] Read one pair, "dog legs," and ask "guess two or four?"
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `how_many_count_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use real photographed countable items or voice-only counting and do not claim a card is displayed.
+**Screen:** Rule strip shows Target -> Feature -> Guess -> Check. `how_many_count_cards_01` appears only if available; fallback chip says "voice feature question."
 
 #### Step 3: Multi-Round Core Loop
 
-**Round 1 -- Start The Source Action:**
+**Round 1 -- Animal Legs:**
 
-**Runtime AI instruction:** Preserve the workbook promise: The child estimates how many objects are visible, then counts together with the AI. Ask the child to count or identify in the first small turn.
+**Runtime AI instruction:** Goal: Ask a meaningful animal-leg count question, such as how many legs a dog, cat, duck, spider, or bird has, and check by counting the legs/known body plan together. Constraint: T1, 2-3 short sentences; choose familiar animals and keep correction friendly; if a card is used, the child counts the animal's legs, not card icons. Tone: bright and investigative. Progress evidence: child guesses a number or participates in counting/checking. Branch behavior: if correct, save the count and explain the feature; if wrong, count together from one and let the child revise; if help/silence, offer two choices like two/four and model counting. Frame/source guardrail: target is animal legs as a semantic feature; screen shows animal card or voice fallback with leg markers.
 
-**Example AI line:** "Let us start: The child estimates how many objects are visible, then counts together with the AI. What is your first try?"
-
-**Child responses:**
-
-1. (Ideal) The child counts, names, or checks the items required for the first estimate.
-2. (Unexpected) Child guesses the first estimate without looking, counts unrelated items, or changes the target set.
-3. (No response) Child looks at the first estimate display without saying a number, name, or first count.
-
-**AI follow-up:**
-
-1. Repeat the counted evidence, mark the number/name token, and show what set will be checked next.
-2. Return attention to the target set for the first estimate, count one item aloud, and ask the child to continue.
-3. [wait 2s] Point to the first item in the first estimate, say "one," and invite the child to say the next number or name.
-
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `how_many_count_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use real photographed countable items or voice-only counting and do not claim a card is displayed.
-
-**Round 2 -- Repeat With A Variation:**
-
-**Runtime AI instruction:** Keep the same source frame and ask for a second enumerate turn with a small variation.
-
-**Example AI line:** "Now try one more turn in the same game. What changes this time?"
+**Example AI line:** "Dog question: how many legs does a dog usually have? Guess first, then we will check the paws together."
 
 **Child responses:**
 
-1. (Ideal) The child counts, names, or checks the items required for the count-together check.
-2. (Unexpected) Child guesses the count-together check without looking, counts unrelated items, or changes the target set.
-3. (No response) Child looks at the count-together check display without saying a number, name, or first count.
+1. (Ideal) The child says "four," "two," "eight," or counts along.
+2. (Unexpected) Child counts eyes, animals on the screen, or background shapes instead of legs.
+3. (No response) Child looks at the animal card without guessing.
 
 **AI follow-up:**
 
-1. Repeat the counted evidence, mark the number/name token, and show what set will be checked next.
-2. Return attention to the target set for the count-together check, count one item aloud, and ask the child to continue.
-3. [wait 2s] Point to the first item in the count-together check, say "one," and invite the child to say the next number or name.
+1. Save the count token and say why the feature fits: "Four legs help a dog walk and run."
+2. Redirect: "We are counting legs this time. Let's touch/count each leg together."
+3. [wait 2s] Offer "two or four?" and count "one, two..." with the child.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `how_many_count_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use real photographed countable items or voice-only counting and do not claim a card is displayed.
+**Screen:** Center card shows one animal with clear leg visibility or a no-card dog-leg prompt; token 1 fills with "animal legs."
 
-**Round 3 -- Complete The Loop:**
+**Round 2 -- Object Wheels Or Buttons:**
 
-**Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
+**Runtime AI instruction:** Goal: Ask an object-feature count, such as how many wheels a bicycle/car has or how many buttons a shirt/controller has, then check the feature. Constraint: T1, 2-3 short sentences; keep feature concrete and avoid counting all visible objects. Tone: upbeat and practical. Progress evidence: child gives a number, points to each feature, or revises after counting. Branch behavior: if correct, save the feature count and compare it to Round 1; if wrong, count the named feature together; if help/silence, offer a familiar object and two number choices. Frame/source guardrail: count the object's meaningful feature only; screen highlights wheels/buttons, not decorative extras.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "Bicycle question: how many wheels does a bicycle have? Make a guess before we count."
 
 **Child responses:**
 
-1. (Ideal) The child counts, names, or checks the items required for the guess-versus-count recap.
-2. (Unexpected) Child guesses the guess-versus-count recap without looking, counts unrelated items, or changes the target set.
-3. (No response) Child looks at the guess-versus-count recap display without saying a number, name, or first count.
+1. (Ideal) The child says "two," "four," points to wheels/buttons, or counts aloud.
+2. (Unexpected) Child counts the whole bike/car/shirt, counts people, or says color names.
+3. (No response) Child watches the object card.
 
 **AI follow-up:**
 
-1. Repeat the counted evidence, mark the number/name token, and show what set will be checked next.
-2. Return attention to the target set for the guess-versus-count recap, count one item aloud, and ask the child to continue.
-3. [wait 2s] Point to the first item in the guess-versus-count recap, say "one," and invite the child to say the next number or name.
+1. Save the object-feature token and compare: "Two wheels is fewer than a dog's four legs."
+2. Return to feature: "We count wheels, not the whole bike. One wheel, two wheels."
+3. [wait 2s] Offer "two or four?" then model the check.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `how_many_count_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use real photographed countable items or voice-only counting and do not claim a card is displayed.
+**Screen:** Center card or voice prompt shows the object; feature highlight chips mark wheels/buttons; token 2 fills.
+
+**Round 3 -- Plant Petals Or Flower Parts:**
+
+**Runtime AI instruction:** Goal: Ask a plant/object feature-count question such as how many petals a simple flower card shows, then check by counting visible petals one by one. Constraint: T1, 2-3 short sentences; if petal count is visually unclear, switch to a clearer feature like buttons or wheels. Tone: gentle and observant. Progress evidence: child guesses/counts the petals or chooses the clearer fallback feature. Branch behavior: if correct, save the count and recap the feature idea; if wrong, count each visible petal together; if help/silence, offer a smaller number choice and close after the check. Frame/source guardrail: feature count remains semantic; screen highlights petals or fallback feature and avoids generic icon piles.
+
+**Example AI line:** "Flower question: how many petals can we count on this flower? Guess first, then we will tap each petal in order."
+
+**Child responses:**
+
+1. (Ideal) The child says a number, counts petals, or asks for help.
+2. (Unexpected) Child counts flowers, colors, or background stars instead of petals.
+3. (No response) Child watches the flower/feature card silently.
+
+**AI follow-up:**
+
+1. Save the final feature token and recap the target-feature pattern.
+2. Redirect: "Only petals this time. We can count each petal slowly."
+3. [wait 2s] Offer "three or five?" then count aloud and close.
+
+**Screen:** Center card shows a simple flower or fallback feature; all three tokens appear as Legs, Wheels/Buttons, Petals.
 
 #### Step 4: Magic Moment
 
-**Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
+**Runtime AI instruction:** Goal: Reveal that the child counted three different kinds of meaningful features and compare the counts. Constraint: T1, 2-3 short sentences; recap actual saved target-feature counts and do not introduce new generic counting. Tone: proud and discovery-focused. Progress evidence: child names a favorite count or notices which feature had more/fewer. Branch behavior: if correct, compare two saved counts; if wrong/off-topic, point to the saved feature tokens; if help/silence, narrate the board and proceed. Frame/source guardrail: payoff is quantity-feature reasoning, not visible-object total; screen shows target-feature-count board.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "You counted features: dog legs, bicycle wheels, and flower petals. Some things have more parts, and some have fewer."
 
 **Child responses:**
 
-1. (Ideal) The child notices how the guess-versus-count recap changed the How Many Guess board or names a favorite saved turn.
-2. (Unexpected) Child asks to restart before seeing the How Many Guess payoff or ignores how the saved counting or naming step turns connect.
-3. (No response) Child watches the How Many Guess reveal without commenting on the saved turns.
+1. (Ideal) The child names a count, says more/fewer, or points to a token.
+2. (Unexpected) Child starts counting unrelated objects.
+3. (No response) Child watches the completed board.
 
 **AI follow-up:**
 
-1. Tie the reveal to the child's counting or naming step turns, name one concrete saved token, and invite a short reflection.
-2. Hold the How Many Guess reveal, point to the saved turn that matters, and ask what changed because of it.
-3. [wait 2s] Narrate one before/after change from the How Many Guess board, then offer two favorite-turn choices.
+1. Compare two counts using the child's saved numbers.
+2. Re-anchor: "Those are fun to count too, but our board is about parts that belong to one thing."
+3. [wait 2s] Read the three target-feature pairs and move to closing.
 
-**Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff.
+**Screen:** Board lists each target, feature, and count; a "feature detective" badge appears.
 
 #### Step 5: Closing + IB Concepts
 
-**Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
+**Runtime AI instruction:** Goal: Close with Form by naming how parts/features give animals and objects their form. Constraint: T1, 2 short sentences; include one parent-reviewable recap of feature counts practiced. Tone: warm and complete. Progress evidence: child says a count, asks to play again, or accepts badge. Branch behavior: if correct, echo the feature; if wrong/off-topic, close the feature-count mission first; if help/silence, end gracefully. Frame/source guardrail: closing must mention legs/wheels/petals/buttons or other semantic features, not generic counting cards.
 
-**Example AI line:** "Today you practiced Form. You used your own answer to move the activity forward."
+**Example AI line:** "Today you practiced Form by counting parts that belong to things. You guessed and checked features like legs, wheels, and petals."
 
 **Child responses:**
 
-1. (Ideal) The child names a favorite How Many Guess moment, asks to play again, or watches the how many guess recap badge.
-2. (Unexpected) Child shifts topic before the recap names the counting or naming step skill or Form.
-3. (No response) Child stays on the How Many Guess recap badge without responding.
+1. (Ideal) The child names a feature count, asks for another animal/object, or watches the badge.
+2. (Unexpected) Child shifts topic before recap.
+3. (No response) Child stays on the recap badge.
 
 **AI follow-up:**
 
-1. Offer a next-time variation using the same enumerate mechanic and the how many guess frame.
-2. Close How Many Guess first, name the practiced counting or naming step, and then offer one next-round seed.
-3. [wait 2s] Read the How Many Guess badge in one sentence and end with one concrete next-time invitation.
+1. Offer next time: guess a new feature count for another animal or object.
+2. Close the feature-count game first, then acknowledge the new topic.
+3. [wait 2s] Read the badge and end.
 
-**Screen:** Recap badge lists title, mechanic `enumerate`, focal attribute `how_many_guess`, and next-step hint.
+**Screen:** Recap badge lists "Feature Count Guesser," mechanic `enumerate`, focal attribute `how_many_guess`, and next hint "Ask: how many parts does it have?"

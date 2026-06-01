@@ -17,14 +17,16 @@ screen_targets:
 assets:
 - id: recognition_challenge_cards_01
   role: collection_correct
-  label: Provide target and distractor images for a tap-based recognition challenge.
+  label: Provide source target and similar distractor animal cards for a recognition-pop timing challenge.
   requiredness: required
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
   transformation_policy: generate_new
   prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
-    asset. Primary request: Provide target and distractor images for a tap-based recognition
-    challenge.. Style: Flat Nordic children''s illustration matching the quiet white
+    asset. Primary request: Provide a target animal card such as dog plus similar
+    distractor animal cards such as fox and wolf for a recognition-pop timing challenge
+    where the child says the target word only for target cards and stays quiet for
+    distractors.. Style: Flat Nordic children''s illustration matching the quiet white
     WonderLens prototype; broad flat color fills, sparse pencil texture, muted sage,
     dusty teal-blue, soft terracotta, oatmeal, ochre, blush; square 512x512 source
     art with important detail inside the central circular safe area; no readable text,
@@ -35,6 +37,6 @@ assets:
     target: round_device_screen
     size: 512x512
     path: null
-  fallback_behavior: If tap UI or state timing is unavailable, block at Phase 0 rather
-    than converting to dialogue.
+  fallback_behavior: If target/distractor timing is unavailable, keep unsupported
+    rather than converting to ordinary matching choices.
   collection_catalog_id: recognition_challenge_cards_01

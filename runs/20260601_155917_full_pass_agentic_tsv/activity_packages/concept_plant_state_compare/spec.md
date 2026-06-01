@@ -12,15 +12,15 @@
 
 ## Premise
 
-The child compares a plant's visible state, such as sprouting, blooming, wilting, dried, healthy, or fruiting.
+The child photographs or discusses visible plant leaf states such as green, yellowing, damaged, blooming, or wilting. The AI compares the visible evidence, explains a likely child-safe state change, and offers one simple plant-care idea without pretending to diagnose hidden plant health.
 
 ## Selection Trigger
 
-A plant photo shows a clear state, such as blooming, wilting, dried, or after watering.
+A child or caregiver provides a plant photo with visible leaf/state evidence, or the child can discuss a nearby plant whose leaves are green, yellowing, damaged, blooming, or wilting.
 
 ## Source Intent Lock
 
-The child compares a plant's visible state, such as sprouting, blooming, wilting, dried, healthy, or fruiting.
+Preserve the photo-based state-and-care frame: the child notices visible plant states such as green, yellowing, damaged, blooming, or wilting; AI compares the states, explains a likely change in child-safe language, and gives one simple plant-care idea without overclaiming invisible health.
 
 ## Adaptation Rationale
 
@@ -30,8 +30,8 @@ The package preserves the original play frame, child role, required child action
 
 - Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
 - Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
-- Keep the repeated child action aligned to `compare`.
-- Preserve this source sequence: The child compares a plant's visible state, such as sprouting, blooming, wilting, dried, healthy, or fruiting.
+- Keep the repeated child action aligned to `compare`: notice visible leaf evidence, compare two states, and connect the difference to a gentle care idea.
+- Preserve this source sequence: photo/discuss visible plant state, compare green/yellow/damaged or similar evidence, explain one likely state change, then suggest one simple care action.
 
 ## Resolved Product Contract Notes
 
@@ -64,6 +64,6 @@ Reusable by replacing the topic, scene, role, or approved asset set while preser
 | 7 | Screen & UI Completeness | PASS | Each beat names screen, state, asset, or fallback. |
 | 8 | Entity Mapping Alignment | N/A | Workbook-source concept run; not mapping-informed. |
 | 9 | Game Feel | PASS | Progress tokens and payoff create game structure. |
-| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | The source action and mechanic stay aligned. |
+| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | The repaired package restores state-change explanation and plant-care guidance instead of generic comparison. |
 
 **Overall**: PASS - fresh full-run package preserves source intent with explicit runtime-generation and minimum-unblock assumptions.

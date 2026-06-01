@@ -12,15 +12,15 @@
 
 ## Premise
 
-The child estimates how many objects are visible, then counts together with the AI.
+The child answers meaningful quantity-feature questions, such as how many legs an animal has or how many wheels, petals, buttons, or points an object has, then checks the count with the AI.
 
 ## Selection Trigger
 
-Screen can show a small set of objects or the camera sees countable items.
+Screen can show an animal/object card with a semantic feature to count, or the child and AI can discuss a familiar animal/object feature by voice.
 
 ## Source Intent Lock
 
-The child estimates how many objects are visible, then counts together with the AI.
+Preserve the quantity-attribute frame: ask how many of a meaningful feature an animal or object has, such as animal legs, wheels, petals, or buttons. Do not reduce this to estimating a pile of visible unrelated objects unless product explicitly approves the generic counting-card adaptation.
 
 ## Adaptation Rationale
 
@@ -30,8 +30,8 @@ The package preserves the original play frame, child role, required child action
 
 - Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
 - Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
-- Keep the repeated child action aligned to `enumerate`.
-- Preserve this source sequence: The child estimates how many objects are visible, then counts together with the AI.
+- Keep the repeated child action aligned to `enumerate`: hear the animal/object, identify the feature, guess the feature count, and check the semantic reason.
+- Preserve this source sequence: ask a meaningful feature-count question, let child guess, count/check together, then compare the feature with another animal/object.
 
 ## Resolved Product Contract Notes
 
@@ -41,7 +41,7 @@ The package preserves the original play frame, child role, required child action
 
 | asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_or_source | fallback_behavior |
 |---|---|---|---|---|---|---|---|---|
-| how_many_count_cards_01 | count_card_set | required | pre_generated | prod.step_2; prod.step_3.round_1-3 | center_card_area | Show small countable sets for estimate-then-count rounds. | new_ai_generated_asset | If cards are unavailable, use real photographed countable items or voice-only counting and do not claim a card is displayed. |
+| how_many_count_cards_01 | semantic_feature_card_set | required | pre_generated | prod.step_2; prod.step_3.round_1-3 | center_card_area | Show animal/object cards whose count target is a meaningful feature such as legs, wheels, petals, or buttons. | new_ai_generated_asset | If cards are unavailable, ask familiar voice-only feature questions and do not claim a card is displayed. |
 
 ## Extensibility Summary
 
@@ -66,6 +66,6 @@ Reusable by replacing the topic, scene, role, or approved asset set while preser
 | 7 | Screen & UI Completeness | PASS | Each beat names screen, state, asset, or fallback. |
 | 8 | Entity Mapping Alignment | N/A | Workbook-source concept run; not mapping-informed. |
 | 9 | Game Feel | PASS | Progress tokens and payoff create game structure. |
-| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | The source action and mechanic stay aligned. |
+| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | The repaired package restores semantic feature counts instead of generic visible-object counting. |
 
 **Overall**: PASS - fresh full-run package preserves source intent with explicit runtime-generation and minimum-unblock assumptions.

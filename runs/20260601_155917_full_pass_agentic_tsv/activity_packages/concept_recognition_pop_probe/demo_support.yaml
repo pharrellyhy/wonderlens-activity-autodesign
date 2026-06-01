@@ -7,8 +7,9 @@ demo_support:
   entity_bindings:
   - entity_id: whack_a_mole_recognition
     display_label: Recognition Pop Challenge
-    source_entity_exemplar: The child quickly chooses matching target pictures from
-      a changing set.
+    source_entity_exemplar: After a source target such as dog, child learns similar
+      animals such as fox and wolf, then says the target word only when target cards
+      appear and stays quiet for distractors.
     default: true
   requires:
     generated_assets: true
@@ -16,8 +17,8 @@ demo_support:
     runtime_judgment: false
     device_round_screen: true
   unsupported_reasons:
-  - Tap-based recognition game surface and changing target state are not available
-    in the current demo contract.
+  - Target-vs-distractor timed card stream and changing target/quiet state are not
+    available in the current demo contract.
   degraded_reasons: []
   consumer_notes:
     fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support

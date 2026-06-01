@@ -7,8 +7,9 @@ demo_support:
   entity_bindings:
   - entity_id: plant_state_compare
     display_label: Plant State Compare
-    source_entity_exemplar: The child compares a plant's visible state, such as sprouting,
-      blooming, wilting, dried, healthy, or fruiting.
+    source_entity_exemplar: Child photographs or discusses visible plant states such
+      as green, yellowing, damaged, blooming, or wilting, then compares change and
+      chooses one simple care idea.
     default: true
   requires:
     generated_assets: false

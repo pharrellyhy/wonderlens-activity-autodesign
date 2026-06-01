@@ -17,13 +17,15 @@ screen_targets:
 assets:
 - id: how_many_count_cards_01
   role: collection_correct
-  label: Show small countable sets for estimate-then-count rounds.
+  label: Show animal/object cards whose target count is a meaningful feature.
   requiredness: required
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
   transformation_policy: generate_new
   prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
-    asset. Primary request: Show small countable sets for estimate-then-count rounds..
+    asset. Primary request: Show animal/object cards for semantic feature-count
+    rounds: animal legs, vehicle wheels, flower petals, clothing buttons, or similar
+    meaningful parts. Do not create piles of unrelated countable icons..
     Style: Flat Nordic children''s illustration matching the quiet white WonderLens
     prototype; broad flat color fills, sparse pencil texture, muted sage, dusty teal-blue,
     soft terracotta, oatmeal, ochre, blush; square 512x512 source art with important
@@ -35,6 +37,6 @@ assets:
     target: round_device_screen
     size: 512x512
     path: null
-  fallback_behavior: If cards are unavailable, use real photographed countable items
-    or voice-only counting and do not claim a card is displayed.
+  fallback_behavior: If cards are unavailable, ask familiar voice-only feature-count
+    questions and do not claim a card is displayed.
   collection_catalog_id: how_many_count_cards_01
