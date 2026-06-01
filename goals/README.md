@@ -23,7 +23,7 @@ files remain under `goals/` and are not backfilled here.
 
 | Goal | Status | Notes |
 |---|---|---|
-| [2026-06-01-full-pass-agentic-pipeline-goal.md](2026-06-01-full-pass-agentic-pipeline-goal.md) | Planned | Implements the master/subagent full-pass generation workflow, source-intent and consumer/import gates, live dialogue QA, image QA, and repair-loop contracts before scaling generation. |
+| [2026-06-01-full-pass-agentic-pipeline-goal.md](2026-06-01-full-pass-agentic-pipeline-goal.md) | Planned | Implements the master/subagent full-pass generation workflow, source-intent and consumer/import gates, fullstack/WonderLens AI dialogue QA, image QA, and repair-loop contracts before scaling generation. |
 | [2026-05-29-source-intent-pilot-validation-goal.md](2026-05-29-source-intent-pilot-validation-goal.md) | Completed | Seven-row pilot passed source-intent, runtime-instruction, PNG asset, fullstack import, and WonderLens AI runtime validation; Guided Drawing and Plant Parts remain honestly gated. |
 | [2026-05-28-e2e-subset-runtime-validation-goal.md](2026-05-28-e2e-subset-runtime-validation-goal.md) | Completed | Fresh subset/autodesign assets, fullstack import/play/gate behavior, fullstack runtime-beat conversion, and WonderLens AI runtime conversion/load/asset serving were validated; unsupported sorting remains correctly gated. |
 | [2026-05-28-generate-and-curate-asset-pipeline-goal.md](2026-05-28-generate-and-curate-asset-pipeline-goal.md) | Completed | Added the runtime asset builder, output validator, dashboard integration, tests/fixtures, docs workflow updates, and real bitmap/reference smoke evidence. |

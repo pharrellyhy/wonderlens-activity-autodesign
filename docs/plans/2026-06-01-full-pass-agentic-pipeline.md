@@ -9,8 +9,8 @@ Status: Planned
 Implement the full-pass activity generation workflow as a master-orchestrated,
 delegated-agent pipeline in autodesign. The pipeline must let autodesign
 generate activity packages and all required image assets, then let
-fullstack-demo load and execute those packages directly without content
-improvement or manual repair.
+fullstack-demo and WonderLens AI load and execute those packages directly
+without content improvement or manual repair.
 
 This plan is for hardening the generation workflow and validation contract. It
 does not execute a larger/full activity generation pass by itself. A future
@@ -29,6 +29,9 @@ available:
   validation reports;
 - fullstack-demo can import autodesign packages and convert runtime beats into
   `step_instructions`;
+- WonderLens AI can generate/load runtime artifacts from autodesign packages,
+  but its runtime dialogue quality still needs the same live or simulated
+  behavior review as fullstack-demo before full-pass acceptance;
 - live fullstack testing can expose runtime issues that static package checks
   miss.
 
@@ -78,12 +81,21 @@ Fullstack-demo owns execution fidelity:
 - enforcing generic runtime safety/product constraints;
 - running live API sessions against the loaded package.
 
-Fullstack-demo must not improve, rewrite, or reinterpret activity content to
-make a package look better. If fullstack runtime behavior violates a package
-constraint, record whether the cause is package quality, generic runtime
-guardrails, or importer/loader behavior. Repair package problems in
-autodesign. Repair generic fullstack runtime problems in a separate fullstack
-goal unless the user explicitly asks to include that work.
+WonderLens AI owns runtime-generation and WonderLens-side execution fidelity:
+
+- generating/loading runtime artifacts from the package as provided;
+- preserving package runtime AI instructions in WonderLens-side runtime steps;
+- exercising WonderLens AI dialogue behavior against the same source-intent and
+  unsupported-claim constraints;
+- reporting package-owned versus runtime-owned failures.
+
+Fullstack-demo and WonderLens AI must not improve, rewrite, or reinterpret
+activity content to make a package look better. If either consumer runtime
+violates a package constraint, record whether the cause is package quality,
+generic runtime guardrails, importer/loader behavior, or product capability.
+Repair package problems in autodesign. Repair generic consumer-runtime problems
+in separate downstream goals unless the user explicitly asks to include that
+work.
 
 ## Master Orchestrator
 
@@ -106,7 +118,8 @@ Responsibilities:
 ## Delegated Agent Roles
 
 The full pass should use at least the six delegated roles requested by the
-user, plus two additional gates that prevent known drift classes.
+user, plus source/consumer gates and WonderLens AI dialogue roles that prevent
+known drift classes.
 
 | Role | Ownership | Inputs | Required output |
 |---|---|---|---|
@@ -115,8 +128,10 @@ user, plus two additional gates that prevent known drift classes.
 | Scene/object/item asset generator | Image only | `asset_manifest.yaml`, style contract, approved reference sources | Separate PNG source assets and package-local runtime variants; no package prose rewrites. |
 | Consumer/import contract validator | Loader/conversion only | generated packages, fullstack importer, current fullstack target branch | Import result, asset path result, converted `step_instructions` quality notes, no-content-mutation evidence. |
 | Dialogue quality validator | Live API/runtime only | imported fullstack packages, user-input strategy matrix | Sanitized transcripts and verdicts for source intent, unsupported claims, no-response handling, wrong-answer handling, and step richness. |
+| WonderLens AI dialogue quality validator | WonderLens AI runtime only | generated WonderLens AI runtime artifacts, user-input strategy matrix | Sanitized WonderLens AI dialogue/runtime report with verdicts for source intent, unsupported claims, branch recovery, and step richness. |
 | Image quality validator | Visual QA only | generated PNGs, style reference, activity package and dialogue beats | Style consistency, object readability, crop safety, scene/dialogue alignment, reference fidelity, and no-text/no-label verdicts. |
 | Dialogue quality improver | Text repair only | failed dialogue validator reports | Package/runtime-instruction repairs or fullstack-runtime issue recommendations; no image edits. |
+| WonderLens AI dialogue quality improver | WonderLens AI runtime repair triage only | failed WonderLens AI dialogue validator reports | Package/runtime-instruction repairs or WonderLens AI follow-up recommendations; no image edits and no downstream code edits unless explicitly scoped. |
 | Image quality improver | Image repair only | failed image QA reports | Regenerated/curated/rebuilt assets and updated asset reports; no activity-flow rewrites. |
 | Final independent reviewer | Cross-artifact review | final packages, validation reports, transcripts, asset sheets | Final pass/fail report with unresolved risks. |
 
@@ -244,11 +259,37 @@ Fullstack generic guardrails that may need a downstream follow-up:
 - do not add or remove background/context promises;
 - do not make unsupported mechanics playable by changing the child action.
 
+## WonderLens AI Consumer Contract
+
+WonderLens AI must be treated as a second direct runtime consumer, not only a
+schema/load check.
+
+Required validation:
+
+- generate WonderLens AI runtime artifacts from the autodesign packages without
+  content improvement;
+- verify runtime steps preserve the package's runtime AI instruction quality;
+- exercise WonderLens AI dialogue behavior for representative activities with
+  the same input strategy matrix used for fullstack where the runtime supports
+  it;
+- verify unsupported/degraded packages remain honest and do not become playable
+  through runtime adaptation;
+- verify WonderLens AI does not add unsupported sensing, hidden-state claims,
+  false screen claims, or mechanic changes;
+- record whether failures are package-owned, WonderLens-runtime-owned, or
+  product-capability decisions.
+
+WonderLens AI dialogue failures should feed the same repair decision tree as
+fullstack failures: fix package-owned instruction gaps in autodesign, and record
+WonderLens-runtime-owned guardrail issues as downstream follow-up unless the
+user explicitly expands scope.
+
 ## Live Dialogue QA
 
 Static tests are not enough. The dialogue validator must start the target
-fullstack backend/frontend as needed, source authorized provider credentials
-without printing them, and run live API sessions against imported packages.
+fullstack backend/frontend and WonderLens AI runtime harnesses as needed,
+source authorized provider credentials without printing them, and run live or
+runtime-equivalent sessions against imported/generated packages.
 
 Use multiple child-input strategies per activity:
 
@@ -305,7 +346,8 @@ Dialogue repair loop:
 3. If package-owned, repair runtime AI instructions or source guardrails in the
    package/generation contract.
 4. If runtime-owned, record a fullstack follow-up instead of masking the issue
-   in package prose unless the user asks to fix fullstack now.
+   or WonderLens AI follow-up instead of masking the issue in package prose
+   unless the user asks to fix the downstream runtime now.
 5. Re-import and re-run the failing transcript strategy.
 
 Image repair loop:
@@ -331,9 +373,10 @@ autodesign ownership areas:
 - validation/review templates or scripts if the current docs cannot enforce
   the required gates.
 
-Do not edit fullstack-demo in this autodesign goal unless the user explicitly
-expands scope. Fullstack issues discovered during implementation should be
-recorded as downstream findings or a separate follow-up goal.
+Do not edit fullstack-demo or WonderLens AI in this autodesign goal unless the
+user explicitly expands scope. Consumer-runtime issues discovered during
+implementation should be recorded as downstream findings or separate follow-up
+goals.
 
 ## Required Checks
 
@@ -341,7 +384,7 @@ For doc/contract-only changes:
 
 ```bash
 git diff --check
-rg -n "source-intent auditor|Source-intent auditor|dialogue quality|image quality|asset_build=generate_and_curate|fullstack" GOAL.md run.md program.md docs goals
+rg -n "source-intent auditor|Source-intent auditor|dialogue quality|WonderLens AI dialogue|image quality|asset_build=generate_and_curate|fullstack|WonderLens AI" GOAL.md run.md program.md docs goals
 ```
 
 If scripts or schemas are changed, add focused tests and run the nearest
@@ -353,8 +396,9 @@ python3 scripts/validate_asset_build_outputs.py <small-run-dir>
 python3 -m pytest tests/test_demo_package_contract_validator.py tests/test_generate_run_review.py -q
 ```
 
-If fullstack live QA tooling is added or changed, run it against the smallest
-representative imported activity set before accepting the contract.
+If fullstack or WonderLens AI live/dialogue QA tooling is added or changed, run
+it against the smallest representative imported/generated activity set before
+accepting the contract.
 
 ## Success Criteria
 
@@ -364,12 +408,17 @@ representative imported activity set before accepting the contract.
   package writing.
 - The workflow explicitly requires package/import validation before live API
   testing.
+- The workflow explicitly requires WonderLens AI runtime dialogue validation
+  before full-pass acceptance, not only WonderLens AI conversion/load checks.
 - The workflow requires `asset_build=generate_and_curate` for full pass asset
   generation and treats assets as package-owned outputs.
 - The workflow separates package writing, image generation, live dialogue QA,
-  image QA, dialogue repair, and image repair responsibilities.
+  WonderLens AI dialogue QA, image QA, dialogue repair, WonderLens AI dialogue
+  repair, and image repair responsibilities.
 - Delegated/subagent rules are explicit and limited to disjoint ownership.
 - Fullstack-demo is documented as a loader/executor, not a content improver.
+- WonderLens AI is documented as a runtime consumer whose dialogue quality must
+  be validated and repaired or escalated like fullstack dialogue quality.
 - Live dialogue QA includes multiple child-input strategies and checks for
   unsupported claims.
 - Image QA checks style consistency, scene/dialogue alignment, reference
@@ -382,6 +431,7 @@ representative imported activity set before accepting the contract.
 
 - Do not execute the full activity generation pass in this goal.
 - Do not regenerate all activity assets in this goal.
-- Do not implement broad fullstack runtime repairs in this autodesign goal.
+- Do not implement broad fullstack or WonderLens AI runtime repairs in this
+  autodesign goal.
 - Do not relax source fidelity to make activities easier to run.
 - Do not replace live dialogue QA with static term checks.

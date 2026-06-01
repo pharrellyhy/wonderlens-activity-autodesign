@@ -10,8 +10,10 @@ Use this file as the Codex goal-mode execution contract.
 
 Implement the full-pass agentic generation pipeline contract in autodesign so a
 future larger/full activity pass can generate activity packages and all required
-image assets, then have fullstack-demo load and execute those packages directly
-without manual content improvement.
+image assets, then validate that fullstack-demo loads and executes those
+packages directly and that WonderLens AI generates/loads equivalent runtime
+artifacts and exercises equivalent runtime dialogue without manual content
+improvement.
 
 This goal implements workflow documents, validation expectations, and any small
 supporting templates/checks needed to make the contract executable. It does not
@@ -34,6 +36,7 @@ Related context:
 - `inputs/original_activity_concepts_2026-05-29.tsv`
 - `inputs/source_activity_concepts.md`
 - `/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo`
+- `/Users/pharrelly/codebase/gitlab/wonderlens-ai`
 
 The plan is authoritative for design rationale, current evidence, agent roles,
 validation strategy, and workflow detail. This goal is authoritative for hard
@@ -53,8 +56,10 @@ document the conflict before changing behavior.
 - Do not regenerate all activity assets in this goal.
 - Do not make fullstack-demo a content-improvement step. It is the direct
   loader/executor for autodesign packages.
+- Do not make WonderLens AI a content-improvement step. It is a direct runtime
+  consumer for autodesign packages.
 - Do not hide activity drift by rewriting package prose to fit generated
-  images or fullstack behavior.
+  images, fullstack behavior, or WonderLens AI behavior.
 - Keep unsupported/degraded mechanics honest; do not make them playable by
   changing the child action.
 - Keep `asset_build=generate_and_curate` as the expected full-pass asset mode.
@@ -74,8 +79,10 @@ Update the autodesign workflow so a future full pass has an explicit:
 - image-only scene/object/item asset generation role;
 - package/import contract validator role;
 - live fullstack dialogue quality validator role;
+- WonderLens AI dialogue quality validator role;
 - image quality validator role;
 - dialogue quality improvement loop;
+- WonderLens AI dialogue quality improvement loop;
 - image quality improvement loop;
 - final independent review gate.
 
@@ -88,9 +95,9 @@ Expected ownership areas:
 - supporting plan/goal docs or validation templates if needed
 - README/status docs only when workflow behavior changes materially
 
-Do not edit fullstack-demo in this goal unless the user explicitly expands
-scope. If fullstack runtime guardrails are required, document the needed
-follow-up with evidence.
+Do not edit fullstack-demo or WonderLens AI in this goal unless the user
+explicitly expands scope. If consumer runtime guardrails are required, document
+the needed follow-up with evidence.
 
 ## Delegated Agent Rule
 
@@ -103,6 +110,8 @@ review or exploration tasks, such as:
   gates;
 - inspecting fullstack importer/runtime expectations without editing
   fullstack;
+- inspecting WonderLens AI runtime-generation/dialogue expectations without
+  editing WonderLens AI;
 - reviewing the image asset workflow against current fullstack style prompts;
 - independently reviewing the final autodesign contract changes.
 
@@ -116,8 +125,10 @@ For the future full pass, encode these delegated roles in the workflow:
 - scene/object/item asset generator, image only;
 - package/import contract validator;
 - live dialogue quality validator;
+- WonderLens AI dialogue quality validator;
 - image quality validator;
 - dialogue quality improver;
+- WonderLens AI dialogue quality improver;
 - image quality improver;
 - final independent reviewer.
 
@@ -135,10 +146,11 @@ accept a generated package without independent source-intent auditor evidence.
   contracts.
 - If adding scripts or structured checklists, use existing repo patterns and
   add focused tests.
-- Record fullstack as a direct consumer and validation target, not an authoring
-  fallback.
+- Record fullstack and WonderLens AI as direct consumers and validation targets,
+  not authoring fallbacks.
 - Stop and document a conflict if current docs disagree on source ownership,
-  fullstack ownership, asset build mode, or live credential handling.
+  fullstack/WonderLens AI ownership, asset build mode, or live credential
+  handling.
 
 ## Mandatory Ordering
 
@@ -155,9 +167,9 @@ accept a generated package without independent source-intent auditor evidence.
 ## Live Provider Credential Rule
 
 This goal should not require live provider calls unless the executor chooses to
-smoke-test wording against fullstack. If a live fullstack smoke is necessary,
-use a temp DB and source credentials from the authorized fullstack main backend
-without printing values:
+smoke-test wording against fullstack or WonderLens AI. If a live fullstack smoke
+is necessary, use a temp DB and source credentials from the authorized
+fullstack main backend without printing values:
 
 ```bash
 FULLSTACK_MAIN_BACKEND="/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend"
@@ -170,6 +182,10 @@ export DB_PATH="/tmp/wl_activity_live_audit.sqlite3"
 
 If the target port is busy, use a separate audit port and stop only the server
 started for this goal. Never print or commit secret values.
+
+If a WonderLens AI smoke is necessary, use that repo's documented local runtime
+or test harness and source only the explicitly required credentials. Record the
+command and sanitized output, not secret values.
 
 ## Preconditions
 
@@ -192,6 +208,12 @@ Fullstack reference path:
 test -d /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo
 ```
 
+WonderLens AI reference path:
+
+```bash
+test -d /Users/pharrelly/codebase/gitlab/wonderlens-ai
+```
+
 ## Success Criteria
 
 - `GOAL.md`, `run.md`, and `program.md` define the full-pass master/subagent
@@ -202,13 +224,17 @@ test -d /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo
 - The workflow requires package/import validation before live dialogue QA.
 - The workflow requires live dialogue QA with multiple child-input strategies,
   not only static term checks.
+- The workflow requires WonderLens AI dialogue QA and repair/escalation, not
+  only WonderLens AI conversion/load validation.
 - The workflow requires image QA for style, asset role, scene/dialogue
   alignment, crop safety, reference fidelity, and no-text/no-label constraints.
 - The workflow includes dialogue and image repair loops with ownership rules.
 - Fullstack-demo is documented as loader/executor, not content improver.
+- WonderLens AI is documented as a runtime consumer, not content improver.
 - Delegated/subagent rules are explicit and bounded.
-- Any downstream fullstack runtime guardrail gaps discovered during inspection
-  are recorded as follow-up scope instead of hidden in autodesign package prose.
+- Any downstream fullstack or WonderLens AI runtime guardrail gaps discovered
+  during inspection are recorded as follow-up scope instead of hidden in
+  autodesign package prose.
 
 ## Required Checks
 
@@ -216,14 +242,14 @@ Always run:
 
 ```bash
 git diff --check
-rg -n "source-intent auditor|Source-intent auditor|dialogue quality|image quality|asset_build=generate_and_curate|fullstack" GOAL.md run.md program.md docs goals
+rg -n "source-intent auditor|Source-intent auditor|dialogue quality|WonderLens AI dialogue|image quality|asset_build=generate_and_curate|fullstack|WonderLens AI" GOAL.md run.md program.md docs goals
 ```
 
 If scripts, schemas, or tests are changed, run the nearest focused test or
 validator before completion and record the command.
 
-If a live fullstack smoke is run, save only sanitized transcripts and stop the
-audit server before final reporting.
+If a live fullstack or WonderLens AI smoke is run, save only sanitized
+transcripts and stop any audit server before final reporting.
 
 ## Final Completion Gate
 
@@ -232,7 +258,8 @@ Before marking this goal complete:
 - intended autodesign changes are committed;
 - required checks pass;
 - changed files are limited to the planned workflow/validation scope;
-- the final report names any downstream fullstack follow-up risk;
+- the final report names any downstream fullstack or WonderLens AI follow-up
+  risk;
 - no servers started by this goal are still running;
 - no secret files or generated credential artifacts are changed.
 
