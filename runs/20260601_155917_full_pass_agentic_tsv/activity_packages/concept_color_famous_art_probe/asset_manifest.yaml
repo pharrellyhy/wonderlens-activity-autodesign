@@ -1,0 +1,47 @@
+activity_id: concept_color_famous_art_probe
+entity_id: color_in_famous_art
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: color_artwork_set_01
+  role: story_scene
+  label: Provide approved artworks with known dominant color metadata.
+  requiredness: required
+  accuracy_mode: reference_bound
+  source_strategy: curated_original
+  transformation_policy: crop_resize_only
+  prompt_en: Use only approved public-domain, licensed, or internal reference artwork
+    for this package. Do not invent or approximate the artwork set.
+  reference_policy:
+    source_required: true
+    allowed_sources:
+    - licensed_asset
+    - public_domain_reference
+    - approved_internal_reference
+    verification_required: true
+    verification_notes: Curate and verify approved artwork sources before asset build;
+      no random web images or generated substitutes.
+  sources:
+  - label: Pending approved source set for color_artwork_set_01
+    uri: pending://approved-reference-curation/color_artwork_set_01
+    license: Pending approved public-domain, licensed, or internal reference curation
+    source_type: public_domain_reference
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: null
+  fallback_behavior: If the artwork set is unavailable, block at Phase 0 rather than
+    referencing famous art that cannot be shown.

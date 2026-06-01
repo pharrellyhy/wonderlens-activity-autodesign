@@ -1,0 +1,26 @@
+activity_id: concept_story_unlock_probe
+version: 1
+demo_support:
+  status: degraded
+  ui_template: cat1_dialogue
+  support_level: partial
+  entity_bindings:
+  - entity_id: story_challenge_unlock
+    display_label: Story Challenge Unlock
+    source_entity_exemplar: The AI tells a fixed story, pauses at challenge gates,
+      and unlocks the next story beat only after the child completes each quick challenge.
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons:
+  - Unlock state is represented as dialogue guidance; current demo UI does not enforce
+    challenge gates.
+  consumer_notes:
+    fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support
+      gating and converted step_instructions.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py; preserve
+      support, asset, and runtime-beat metadata.

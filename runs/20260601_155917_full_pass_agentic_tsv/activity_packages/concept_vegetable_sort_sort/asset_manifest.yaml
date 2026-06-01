@@ -1,0 +1,40 @@
+activity_id: concept_vegetable_sort_sort
+entity_id: vegetable_sort
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: vegetable_sort_cards_01
+  role: activity_preview
+  label: Provide vegetable cards that can be sorted by color, shape, edible part,
+    or cooking use.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: Provide vegetable cards that can be sorted by color, shape,
+    edible part, or cooking use.. Style: Flat Nordic children''s illustration matching
+    the quiet white WonderLens prototype; broad flat color fills, sparse pencil texture,
+    muted sage, dusty teal-blue, soft terracotta, oatmeal, ochre, blush; square 512x512
+    source art with important detail inside the central circular safe area; no readable
+    text, letters, numbers, labels, logos, watermark, border, contact sheet, device
+    frame, circular mask, or vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: null
+  fallback_behavior: If cards are unavailable, use photographed vegetables or a voice-only
+    sorting prompt and do not claim cards are shown.

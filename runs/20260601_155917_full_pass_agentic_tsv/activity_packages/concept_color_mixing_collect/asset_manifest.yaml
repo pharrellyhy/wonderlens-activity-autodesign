@@ -1,0 +1,40 @@
+activity_id: concept_color_mixing_collect
+entity_id: color_mixing_board
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: color_mixing_board_01
+  role: ui_overlay
+  label: Support color prediction by showing two color spots combining into a result
+    spot.
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: Support color prediction by showing two color spots combining
+    into a result spot.. Style: Flat Nordic children''s illustration matching the
+    quiet white WonderLens prototype; broad flat color fills, sparse pencil texture,
+    muted sage, dusty teal-blue, soft terracotta, oatmeal, ochre, blush; square 512x512
+    source art with important detail inside the central circular safe area; no readable
+    text, letters, numbers, labels, logos, watermark, border, contact sheet, device
+    frame, circular mask, or vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: null
+  fallback_behavior: If the board is unavailable, explain the color result by voice
+    and do not claim the screen is mixing colors.

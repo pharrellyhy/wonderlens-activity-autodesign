@@ -1,0 +1,38 @@
+activity_id: concept_body_movement_probe
+entity_id: simple_body_movement
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: body_movement_cards_01
+  role: activity_preview
+  label: Show simple safe movement prompts.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: Show simple safe movement prompts.. Style: Flat Nordic
+    children''s illustration matching the quiet white WonderLens prototype; broad
+    flat color fills, sparse pencil texture, muted sage, dusty teal-blue, soft terracotta,
+    oatmeal, ochre, blush; square 512x512 source art with important detail inside
+    the central circular safe area; no readable text, letters, numbers, labels, logos,
+    watermark, border, contact sheet, device frame, circular mask, or vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: null
+  fallback_behavior: If movement cards or safety gating are unavailable, block at
+    Phase 0.

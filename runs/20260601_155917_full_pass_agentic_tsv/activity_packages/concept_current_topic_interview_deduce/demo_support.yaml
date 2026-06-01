@@ -1,0 +1,24 @@
+activity_id: concept_current_topic_interview_deduce
+version: 1
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: full
+  entity_bindings:
+  - entity_id: current_topic_interview
+    display_label: Current Topic Interview
+    source_entity_exemplar: The child discusses an age-appropriate topic by giving
+      an opinion and a reason.
+    default: true
+  requires:
+    generated_assets: false
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support
+      gating and converted step_instructions.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py; preserve
+      support, asset, and runtime-beat metadata.

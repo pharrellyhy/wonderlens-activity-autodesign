@@ -1,0 +1,40 @@
+activity_id: concept_recognition_pop_probe
+entity_id: whack_a_mole_recognition
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: recognition_challenge_cards_01
+  role: collection_correct
+  label: Provide target and distractor images for a tap-based recognition challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: Provide target and distractor images for a tap-based recognition
+    challenge.. Style: Flat Nordic children''s illustration matching the quiet white
+    WonderLens prototype; broad flat color fills, sparse pencil texture, muted sage,
+    dusty teal-blue, soft terracotta, oatmeal, ochre, blush; square 512x512 source
+    art with important detail inside the central circular safe area; no readable text,
+    letters, numbers, labels, logos, watermark, border, contact sheet, device frame,
+    circular mask, or vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: null
+  fallback_behavior: If tap UI or state timing is unavailable, block at Phase 0 rather
+    than converting to dialogue.
+  collection_catalog_id: recognition_challenge_cards_01

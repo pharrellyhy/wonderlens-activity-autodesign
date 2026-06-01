@@ -1,0 +1,39 @@
+activity_id: concept_quick_silly_decide
+entity_id: quick_silly_questions
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: quick_silly_countdown_01
+  role: ui_overlay
+  label: Optionally add a playful countdown or prompt card for quick silly questions.
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: Optionally add a playful countdown or prompt card for
+    quick silly questions.. Style: Flat Nordic children''s illustration matching the
+    quiet white WonderLens prototype; broad flat color fills, sparse pencil texture,
+    muted sage, dusty teal-blue, soft terracotta, oatmeal, ochre, blush; square 512x512
+    source art with important detail inside the central circular safe area; no readable
+    text, letters, numbers, labels, logos, watermark, border, contact sheet, device
+    frame, circular mask, or vignette.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: null
+  fallback_behavior: If countdown UI is unavailable, ask the quick questions by voice
+    only and do not claim a timer is on screen.

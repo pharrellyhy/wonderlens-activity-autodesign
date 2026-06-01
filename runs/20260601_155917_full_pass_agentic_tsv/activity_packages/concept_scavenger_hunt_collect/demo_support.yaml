@@ -1,0 +1,25 @@
+activity_id: concept_scavenger_hunt_collect
+version: 1
+demo_support:
+  status: degraded
+  ui_template: cat5_judgment
+  support_level: partial
+  entity_bindings:
+  - entity_id: scavenger_hunt
+    display_label: Scavenger Hunt
+    source_entity_exemplar: Find several things that share a color, shape, or category.
+    default: true
+  requires:
+    generated_assets: false
+    real_camera: true
+    runtime_judgment: true
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons:
+  - The demo can collect child evidence, but cannot honestly verify color/shape/category
+    matches without runtime judgment.
+  consumer_notes:
+    fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support
+      gating and converted step_instructions.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py; preserve
+      support, asset, and runtime-beat metadata.

@@ -1,0 +1,25 @@
+activity_id: concept_plant_state_compare
+version: 1
+demo_support:
+  status: degraded
+  ui_template: cat5_judgment
+  support_level: partial
+  entity_bindings:
+  - entity_id: plant_state_compare
+    display_label: Plant State Compare
+    source_entity_exemplar: The child compares a plant's visible state, such as sprouting,
+      blooming, wilting, dried, healthy, or fruiting.
+    default: true
+  requires:
+    generated_assets: false
+    real_camera: true
+    runtime_judgment: true
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons:
+  - The demo cannot reliably judge plant state from photos in the current contract.
+  consumer_notes:
+    fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support
+      gating and converted step_instructions.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py; preserve
+      support, asset, and runtime-beat metadata.

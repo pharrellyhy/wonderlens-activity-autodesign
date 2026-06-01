@@ -1,0 +1,25 @@
+activity_id: concept_trivia_game_remember
+version: 1
+demo_support:
+  status: degraded
+  ui_template: cat1_dialogue
+  support_level: partial
+  entity_bindings:
+  - entity_id: trivia_game
+    display_label: Trivia Game
+    source_entity_exemplar: The child answers short memory or knowledge questions
+      and receives a simple explanation.
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons:
+  - Progress/reward board state is optional and not enforced by the current demo UI.
+  consumer_notes:
+    fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support
+      gating and converted step_instructions.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py; preserve
+      support, asset, and runtime-beat metadata.
