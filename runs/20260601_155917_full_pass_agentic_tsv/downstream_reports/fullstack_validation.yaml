@@ -19,6 +19,14 @@ checks:
     command: uv run python scripts/run_activity_text_smoke.py --base-url http://127.0.0.1:8001
     status: pass
     result: 12 passed, 0 failed
+  frontend_tests:
+    command: npm test -- tests/activityAssets.test.js tests/useActivityTextSession.test.jsx tests/WonderLensDevice.test.jsx tests/ActivityGameApp.test.jsx
+    status: pass
+    result: 4 files passed, 43 tests passed
+  frontend_build:
+    command: npm run build
+    status: pass
+    result: built in 1.12s with Vite chunk-size warning
 direct_package_load:
   status: consumer_gap
   evidence:

@@ -44,6 +44,21 @@ uv run python scripts/run_activity_text_smoke.py --base-url http://127.0.0.1:800
 
 Result: `12 passed, 0 failed`
 
+```bash
+cd frontend
+npm test -- tests/activityAssets.test.js tests/useActivityTextSession.test.jsx \
+  tests/WonderLensDevice.test.jsx tests/ActivityGameApp.test.jsx
+```
+
+Result: `4 passed (4), 43 passed (43)`
+
+```bash
+cd frontend
+npm run build
+```
+
+Result: `built in 1.12s` with Vite's existing chunk-size warning.
+
 The smoke exercised the existing fullstack catalog:
 
 - `activity_animal_sound_imitation`
@@ -96,4 +111,3 @@ Required follow-up before this run can pass the fullstack package gate:
    improvement.
 4. Re-run live dialogue QA on the loaded package output using ideal, wrong,
    help/confusion, silence, premature done, and unsupported-request inputs.
-
