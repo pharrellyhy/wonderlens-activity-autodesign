@@ -42,6 +42,6 @@ assets:
   - id: round_512
     target: round_device_screen
     size: 512x512
-    path: null
+    path: assets/color_artwork_set_01__round_512.png
   fallback_behavior: If the artwork set is unavailable, block at Phase 0 rather than
     referencing famous art that cannot be shown.

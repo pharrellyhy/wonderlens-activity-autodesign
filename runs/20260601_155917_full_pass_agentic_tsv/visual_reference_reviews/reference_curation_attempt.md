@@ -40,12 +40,26 @@ Observed sanitized failures:
 - `curl: (28) Connection timed out after 60010 milliseconds`
 - `curl: (28) SSL connection timeout`
 
-## Current Status
+## Successful Fallback Curation
 
-Reference-bound artwork sources are still unresolved. The image generator role
-must not synthesize these assets. The run can continue on illustrative assets,
-but final asset acceptance requires either:
+After the Wikimedia/Met fetch path failed, the run used Cleveland Museum of Art
+Open Access API/CDN sources that report `share_license_status: CC0`.
 
-- successful verified source fetch and metadata for these two package assets;
-- approved internal reference files supplied locally; or
-- a recorded product decision to defer or block these two activities.
+Accepted sources:
+
+- `concept_art_critic_tournament_probe/artwork_tournament_set_01`
+  - Source: Katsushika Hokusai, `South Wind, Clear Sky`, accession `1930.189`
+  - Page: `https://clevelandart.org/art/1930.189`
+  - Image: `https://openaccess-cdn.clevelandart.org/1930.189/1930.189_web.jpg`
+  - Stored original:
+    `activity_packages/concept_art_critic_tournament_probe/assets/sources/artwork_tournament_set_01__source_original.jpg`
+- `concept_color_famous_art_probe/color_artwork_set_01`
+  - Source: Vincent van Gogh, `The Large Plane Trees (Road Menders at Saint-Remy)`, accession `1947.209`
+  - Page: `https://clevelandart.org/art/1947.209`
+  - Image: `https://openaccess-cdn.clevelandart.org/1947.209/1947.209_web.jpg`
+  - Stored original:
+    `activity_packages/concept_color_famous_art_probe/assets/sources/color_artwork_set_01__source_original.jpg`
+
+Package-local source metadata was written beside each original and includes
+source URI, license, `storage_allowed: true`, `verification_status: accepted`,
+SHA-256, and reviewer evidence.

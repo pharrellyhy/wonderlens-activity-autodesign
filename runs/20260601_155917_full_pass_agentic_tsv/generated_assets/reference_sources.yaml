@@ -1,7 +1,40 @@
 run_id: 20260601_155917_full_pass_agentic_tsv
 asset_build_mode: generate_and_curate
-generated_at: '2026-06-01T17:14:51+08:00'
+generated_at: '2026-06-01T17:26:37+08:00'
 entries:
+- activity_id: concept_art_critic_tournament_probe
+  asset_id: artwork_tournament_set_01
+  status: accepted
+  source_label: Katsushika Hokusai, South Wind, Clear Sky, from Thirty-Six Views of
+    Mount Fuji
+  source_uri: https://clevelandart.org/art/1930.189
+  source_type: public_domain_reference
+  license: CC0 1.0 / Cleveland Museum of Art Open Access
+  storage_allowed: true
+  source_original_path: assets/sources/artwork_tournament_set_01__source_original.jpg
+  source_metadata_path: assets/sources/artwork_tournament_set_01__source_metadata.yaml
+  sha256: d385a176e2f8b488803bbdf0a7aee198649b84047f229d4a3483371c1aa38f71
+  verified_at: '2026-06-01T17:21:00+08:00'
+  reviewer_agent: codex-master-reference-curation
+  verification_notes: Cleveland Museum of Art Open Access API result for accession
+    1930.189 reports share_license_status CC0 and provides the openaccess-cdn web
+    image URL.
+- activity_id: concept_color_famous_art_probe
+  asset_id: color_artwork_set_01
+  status: accepted
+  source_label: Vincent van Gogh, The Large Plane Trees (Road Menders at Saint-Remy)
+  source_uri: https://clevelandart.org/art/1947.209
+  source_type: public_domain_reference
+  license: CC0 1.0 / Cleveland Museum of Art Open Access
+  storage_allowed: true
+  source_original_path: assets/sources/color_artwork_set_01__source_original.jpg
+  source_metadata_path: assets/sources/color_artwork_set_01__source_metadata.yaml
+  sha256: d57af87d394e3109f09021042885757e88c8ace705c32cd8107f04e2aa2945d4
+  verified_at: '2026-06-01T17:21:00+08:00'
+  reviewer_agent: codex-master-reference-curation
+  verification_notes: Cleveland Museum of Art Open Access API result for accession
+    1947.209 reports share_license_status CC0 and provides the openaccess-cdn web
+    image URL.
 - activity_id: concept_constellation_star_count_enumerate
   asset_id: cassiopeia_five_star_card
   status: accepted

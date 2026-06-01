@@ -1,0 +1,16 @@
+activity_id: concept_art_critic_tournament_probe
+asset_id: artwork_tournament_set_01
+source_label: Katsushika Hokusai, South Wind, Clear Sky, from Thirty-Six Views of
+  Mount Fuji
+source_uri: https://clevelandart.org/art/1930.189
+download_uri: https://openaccess-cdn.clevelandart.org/1930.189/1930.189_web.jpg
+source_type: public_domain_reference
+license: CC0 1.0 / Cleveland Museum of Art Open Access
+storage_allowed: true
+verification_status: accepted
+verification_notes: Cleveland Museum of Art Open Access API result for accession 1930.189
+  reports share_license_status CC0 and provides the openaccess-cdn web image URL.
+source_original_path: assets/sources/artwork_tournament_set_01__source_original.jpg
+sha256: d385a176e2f8b488803bbdf0a7aee198649b84047f229d4a3483371c1aa38f71
+verified_at: '2026-06-01T17:21:00+08:00'
+reviewer_agent: codex-master-reference-curation
