@@ -1,0 +1,91 @@
+run_id: 20260529_172332_source_intent_pilot
+package_id: concept_constellation_star_count_enumerate
+reviewer_role: independent_visual_reference_qa
+reviewed_at: '2026-05-29T18:20:55+08:00'
+workflow_reference: docs/activity_asset_generation_workflow.md
+overall_status: pass
+review_scope:
+  inspected_generated_inbox: false
+  inspected_runtime_assets: true
+  inspected_reference_sources: true
+  package_asset_manifest: activity_packages/concept_constellation_star_count_enumerate/asset_manifest.yaml
+checks:
+  png_dimensions: pass
+  central_framing_safe_area: pass
+  no_text_logos_device_chrome_contact_sheet: pass
+  style_consistency: pass_with_reference_bound_exception
+  reference_bound_provenance: pass
+  reference_bound_count_fidelity: pass
+reference_bound_summary:
+  source_metadata_files_present: pass
+  metadata_verification_status: accepted
+  storage_allowed: true
+  source_sha256_matches_metadata: pass
+  runtime_visual_matches_source: pass_content_equivalent
+  runtime_compare_command: magick compare -metric AE
+  runtime_compare_result: 'exact AE: Cassiopeia 1224 pixels, Orion 1855 pixels; AE with -fuzz 2%: 0 pixels for both cards'
+  runtime_compare_rmse: 'Cassiopeia 6.65359 (0.000101527), Orion 6.79893 (0.000103745)'
+assets:
+  - asset_id: cassiopeia_five_star_card
+    accuracy_mode: reference_bound
+    source_png: activity_packages/concept_constellation_star_count_enumerate/assets/sources/cassiopeia_five_star_card__source_original.png
+    source_metadata: activity_packages/concept_constellation_star_count_enumerate/assets/sources/cassiopeia_five_star_card__source_metadata.yaml
+    runtime_png: activity_packages/concept_constellation_star_count_enumerate/assets/cassiopeia_five_star_card__round_512.png
+    dimensions:
+      source_png: 512x512
+      runtime_png: 512x512
+    provenance:
+      source_type: approved_internal_reference
+      license: Approved internal educational reference
+      verification_status: accepted
+      storage_allowed: true
+      metadata_sha256: 5acf454f9e4d30a85ca21845371bb386fd03c1cc4adf38d7d8c3f0c7f38541a7
+      source_sha256_verified: pass
+      runtime_matches_source_content: pass
+    visual_checks:
+      square_and_minimum_512: pass
+      final_runtime_512: pass
+      central_framing_safe_area: pass
+      no_readable_text: pass
+      no_logo_or_watermark: pass
+      no_device_chrome_or_contact_sheet: pass
+      prominent_guide_star_count: pass
+      expected_prominent_guide_stars: 5
+      observed_prominent_guide_stars: 5
+      extra_star_like_marks: pass
+    notes:
+      - The five connected guide stars are visually preserved and match the package metadata.
+      - Clean deterministic chart contains no extra background star-like marks outside the connected guide-star path.
+      - Runtime card is content-equivalent to the accepted source chart; exact pixel comparison has small anti-alias/channel differences, but 2 percent fuzz comparison reports 0 differing pixels.
+  - asset_id: orion_seven_star_card
+    accuracy_mode: reference_bound
+    source_png: activity_packages/concept_constellation_star_count_enumerate/assets/sources/orion_seven_star_card__source_original.png
+    source_metadata: activity_packages/concept_constellation_star_count_enumerate/assets/sources/orion_seven_star_card__source_metadata.yaml
+    runtime_png: activity_packages/concept_constellation_star_count_enumerate/assets/orion_seven_star_card__round_512.png
+    dimensions:
+      source_png: 512x512
+      runtime_png: 512x512
+    provenance:
+      source_type: approved_internal_reference
+      license: Approved internal educational reference
+      verification_status: accepted
+      storage_allowed: true
+      metadata_sha256: 1b264b29bdfbd7cc860f223279fa967fe8477fb760a79f3607c64b46999b752d
+      source_sha256_verified: pass
+      runtime_matches_source_content: pass
+    visual_checks:
+      square_and_minimum_512: pass
+      final_runtime_512: pass
+      central_framing_safe_area: pass
+      no_readable_text: pass
+      no_logo_or_watermark: pass
+      no_device_chrome_or_contact_sheet: pass
+      prominent_guide_star_count: pass
+      expected_prominent_guide_stars: 7
+      observed_prominent_guide_stars: 7
+      extra_star_like_marks: pass
+    notes:
+      - The seven connected guide stars are visually preserved and match the package metadata.
+      - Clean deterministic chart contains no extra background star-like marks outside the connected guide-star path.
+      - Runtime card is content-equivalent to the accepted source chart; exact pixel comparison has small anti-alias/channel differences, but 2 percent fuzz comparison reports 0 differing pixels.
+failures: []

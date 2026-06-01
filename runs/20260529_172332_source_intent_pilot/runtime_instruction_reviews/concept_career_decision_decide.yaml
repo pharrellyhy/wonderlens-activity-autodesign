@@ -1,0 +1,37 @@
+activity_id: concept_career_decision_decide
+inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_career_decision_decide/prod.md
+quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+review_round: rereview_after_runtime_branch_repair
+beat_count: 5
+labels_present:
+  goal: all_5
+  constraint: all_5
+  tone: all_5
+  progress_evidence: all_5
+  branch_behavior: all_5_concrete
+  source_guardrail: all_5
+  concrete_child_action: all_5
+  screen_state: all_5
+  example_ai_line: all_5
+step_instruction_conversion_readiness: "ready: repaired rows now provide concrete role-specific child actions, branch behavior, follow-up lines, and screen states for each runtime beat."
+quality_floor_comparison:
+  status: meets_floor
+  summary: "The repaired package now matches the quality floor's operational shape: each beat has a goal, constraint, tone, progress evidence, concrete branch handling, source guardrail, example AI line, child response examples, and screen state."
+  strengths:
+    - "Role-first source guardrail is explicit in every beat."
+    - "Firefighter-specific ideal, unexpected, and no-response branches replaced the generic templates."
+    - "Step 3 option leakage is repaired; send/wait stays in Step 3 and water/oil stays in Step 4."
+  residual_notes:
+    - "No active runtime-instruction blocker found in this re-review."
+findings:
+  - id: generic_branch_scaffolding
+    status: resolved
+    evidence: "Each beat now names firefighter-specific child responses and concrete follow-up lines."
+  - id: child_action_not_separate_enough
+    status: resolved
+    evidence: "Child actions now include accepting the role, choosing send/wait, choosing water/hose/helpers, and closing with firefighter/truck/water language."
+  - id: cross_beat_option_leakage
+    status: resolved
+    evidence: "Step 3 progress evidence now only includes send now, wait, yes, or no."
+verdict: pass
+repair_required: false

@@ -1,0 +1,37 @@
+activity_id: concept_plant_parts_enumerate
+inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_plant_parts_enumerate/prod.md
+quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+review_round: rereview_after_runtime_branch_repair
+beat_count: 5
+labels_present:
+  goal: all_5
+  constraint: all_5
+  tone: all_5
+  progress_evidence: all_5
+  branch_behavior: all_5_concrete
+  source_guardrail: all_5
+  concrete_child_action: all_5
+  screen_state: all_5
+  example_ai_line: all_5
+step_instruction_conversion_readiness: "ready: capture beats now state the photo-plus-name/choice evidence contract, duplicate/non-plant repair paths, function facts, and closing state."
+quality_floor_comparison:
+  status: meets_floor
+  summary: "The repaired package now matches the quality floor for runtime instruction conversion. It makes the plant-part evidence source, contrast requirement, function notes, and branch repair paths concrete."
+  strengths:
+    - "Steps 2 and 3 now require a part name/choice unless verified recognition exists."
+    - "Duplicate, unclear, non-plant, and no-response cases have explicit repair or hint lines."
+    - "Step 4 maps visible part categories to safe function facts and avoids unsupported hidden/species claims."
+  residual_notes:
+    - "No active runtime-instruction blocker found in this re-review."
+findings:
+  - id: function_notes_need_mapping
+    status: resolved
+    evidence: "Step 4 now maps leaf, stem, flower, seed, fruit, root, and unknown-part handling to safe facts."
+  - id: missing_invalid_or_duplicate_photo_branch
+    status: resolved
+    evidence: "Steps 2 and 3 now repair unclear, non-plant, duplicate, and no-response capture cases."
+  - id: photo_evidence_contract_unclear
+    status: resolved
+    evidence: "Capture constraints now require child naming/choice unless verified plant-part recognition exists."
+verdict: pass
+repair_required: false

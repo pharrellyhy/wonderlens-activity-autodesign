@@ -1,0 +1,25 @@
+activity_id: concept_phoneme_hunt_collect
+version: 1
+demo_support:
+  status: degraded
+  ui_template: cat5_judgment
+  support_level: partial
+  entity_bindings:
+  - entity_id: b_sound_treasure
+    display_label: B-Sound Treasure
+    source_entity_exemplar: B-sound treasure
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: true
+    runtime_judgment: true
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons:
+  - The demo cannot honestly judge initial phoneme from image data alone.
+  - The package requires child speech or typed/name evidence with the real photo_id.
+  consumer_notes:
+    fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support
+      gating and converted step_instructions.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py; preserve
+      support, asset, and runtime-beat metadata.

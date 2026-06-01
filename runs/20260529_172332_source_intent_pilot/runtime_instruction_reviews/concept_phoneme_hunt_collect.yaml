@@ -1,0 +1,40 @@
+activity_id: concept_phoneme_hunt_collect
+inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_phoneme_hunt_collect/prod.md
+quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+review_round: rereview_after_runtime_branch_repair
+beat_count: 6
+labels_present:
+  goal: all_6
+  constraint: all_6
+  tone: all_6
+  progress_evidence: all_6
+  branch_behavior: all_6_concrete
+  source_guardrail: all_6
+  concrete_child_action: all_6
+  screen_state: all_6
+  example_ai_line: all_6
+step_instruction_conversion_readiness: "ready: the latest prod.md has six explicit beats, including separate Cat5 runtime rounds for capture evidence and B-sound name checking, so no generic second collection round is needed."
+quality_floor_comparison:
+  status: meets_floor
+  summary: "The repaired package now reaches the quality floor for a supported Cat5 runtime activity. It keeps the target sound as the collection rule, requires real photo plus name evidence, and separates name-check handling into its own concrete round."
+  strengths:
+    - "Step 3 captures the real object while keeping the tray uncollected until name evidence exists."
+    - "Step 4 is an explicit B-sound name-check round for the same captured photo_id, preventing fullstack from inventing a generic second collection prompt."
+    - "Non-B names, vague names, photo-only evidence, and silence now have concrete repair or scaffold behavior."
+  residual_notes:
+    - "Step 3 still invites the child to provide a name during capture, but Step 4 separately confirms and gates acceptance, so this is not a runtime blocker."
+findings:
+  - id: missing_negative_sound_branch
+    status: resolved
+    evidence: "Steps 3-5 now keep non-B or missing name evidence uncollected and explain why photo-only evidence is insufficient."
+  - id: generic_branch_scaffolding
+    status: resolved
+    evidence: "Each beat now has sound-hunt-specific child responses and follow-up lines."
+  - id: concrete_child_action_partly_implicit
+    status: resolved
+    evidence: "Child actions now include repeating /b/, choosing a clue, capturing a real object, naming/checking the captured object, and closing the tray."
+  - id: generic_second_collection_round_risk
+    status: resolved
+    evidence: "The prod.md now contains Step 4: Name-Check The Treasure as Round 2 -- B-Sound Name Check, tied to the Step 3 photo_id."
+verdict: pass
+repair_required: false

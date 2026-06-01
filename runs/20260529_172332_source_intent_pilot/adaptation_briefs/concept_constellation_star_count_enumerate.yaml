@@ -1,0 +1,15 @@
+run_id: 20260529_172332_source_intent_pilot
+activity_id: concept_constellation_star_count_enumerate
+title: Constellation Star Count
+source_snapshot: source_snapshots/selected_source_rows.md
+source_promise_lock: Child chooses between two counts, device reveals a real approved
+  constellation matching the selected count, then gives background information.
+demo_support_status: supported
+asset_build: generate_and_curate
+must_preserve:
+- child role
+- device role
+- interaction sequence
+- required child action
+- background/context when promised
+- support honesty

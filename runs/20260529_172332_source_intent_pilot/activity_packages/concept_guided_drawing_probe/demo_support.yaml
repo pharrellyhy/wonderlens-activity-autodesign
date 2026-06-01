@@ -1,0 +1,26 @@
+activity_id: concept_guided_drawing_probe
+version: 1
+demo_support:
+  status: unsupported
+  ui_template: none
+  support_level: unsupported
+  entity_bindings:
+  - entity_id: paper_sketch_workflow
+    display_label: Guided Drawing Workflow
+    source_entity_exemplar: paper sketch workflow
+    default: true
+  requires:
+    generated_assets: false
+    real_camera: true
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons:
+  - Cat3 material workflow support is not approved in the current runtime contract.
+  - The source requires timed paper-and-pencil steps plus final-work photo celebration,
+    which must not be faked as a voice-only activity.
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support
+      gating and converted step_instructions.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py; preserve
+      support, asset, and runtime-beat metadata.

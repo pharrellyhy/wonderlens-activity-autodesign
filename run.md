@@ -35,6 +35,8 @@ runs/<run_id>/
 ├── adaptation_briefs/
 ├── blocked_briefs/
 ├── blocked_designs/
+├── source_snapshots/
+├── source_intent_audits/
 ├── review_notes.md
 └── review.html                  # generated at end of run
 ```
@@ -72,6 +74,7 @@ outputs:
   audited_activities: []
   generated_activities: []
   blocked_assignments: []
+  source_intent_audits: []
   review_dashboard:
 checks: []
 notes:
@@ -303,6 +306,51 @@ Reviewer instructions:
 
 If the reviewer flags any FAIL or credible uncertainty, fix the package, rerun the author self-evaluation, and spawn a fresh independent review. Only finalize the `## Self-Evaluation Scorecard`, append `results.tsv`, and mark the assignment complete after both the author check and independent reviewer check pass.
 
+### Step 4.6: Independent source-intent audit
+
+For source-derived, concept-led, workbook-derived, and pilot-validation rows,
+spawn a separate source-intent auditor agent before accepting the package,
+blocked preview, or degraded artifact. This audit is separate from the general
+10-dimension scorecard review.
+
+Write one audit file per row under:
+
+```text
+runs/<run_id>/source_intent_audits/<ordinal>_<activity_id>.md
+```
+
+The source-intent auditor must compare the original source row or run-local
+source snapshot against the normalized helper, adaptation brief, `spec.md`,
+`prod.md`, `tag_block.yaml`, `demo_support.yaml`, `asset_manifest.yaml`, and
+downstream conversion artifacts when available.
+
+Each audit must record:
+
+- original play frame;
+- child role;
+- device role/action;
+- interaction sequence;
+- required child actions;
+- real/reference asset requirement versus illustrative asset allowance;
+- required background/context information;
+- non-negotiable source elements;
+- allowed V1 adaptations;
+- generated-package evidence with file/section references;
+- downstream conversion evidence when available;
+- verdict: `aligned`, `minor_adaptation`, `intent_drift`, or
+  `needs_product_decision`;
+- repair required and re-review outcome.
+
+`intent_drift` blocks `results.tsv` logging, assignment checkoff, downstream
+acceptance, and final completion until repaired or explicitly recorded as a
+product-review finding. For blocked previews, the audit should verify that the
+preview preserves the source promise up to the unsupported dependency and that
+the unsupported behavior is called out rather than silently adapted away.
+
+Record the audit path, verdict, reviewer agent name/id when available, repairs,
+and re-review status in `runs/<run_id>/review_notes.md` and
+`run_manifest.yaml` `outputs.source_intent_audits`.
+
 ### Step 5: Package checks
 
 Before logging or committing, verify:
@@ -325,6 +373,7 @@ Before logging or committing, verify:
 - `prod.md` Step 3's repeated child action matches `tag_block.yaml` `activity_signature.mechanic`.
 - `prod.md` contains zero `## Self-Evaluation Scorecard` sections.
 - `runs/<run_id>/review_notes.md` contains independent reviewer-agent evidence for the package, including final PASS status or the unresolved issue that prevents logging.
+- `runs/<run_id>/source_intent_audits/` contains independent source-intent auditor evidence for the package or blocked/degraded artifact, and the final verdict is not unresolved `intent_drift`.
 - Concept-led and parameterized packages include `spec.md` `## Extensibility Notes`, and `run_manifest.yaml` records `extensibility_summary` / `extensibility_notes` for dashboard review.
 - Product-contract override packages include resolved blocker notes in `spec.md`, affected `prod.md` beats, and `run_manifest.yaml`.
 - If `demo_support.yaml` and `asset_manifest.yaml` are present, `python3 scripts/validate_demo_package_contract.py <package_dir>` passes.

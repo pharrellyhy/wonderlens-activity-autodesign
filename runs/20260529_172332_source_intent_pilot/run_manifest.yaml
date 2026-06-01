@@ -1,0 +1,401 @@
+run_id: 20260529_172332_source_intent_pilot
+status: completed
+started_at: '2026-05-29T17:24:42+08:00'
+completed_at: '2026-05-29T18:30:29+08:00'
+source:
+  goal_file: goals/2026-05-29-source-intent-pilot-validation-goal.md
+  runbook: run.md
+  plan_file: docs/plans/2026-05-29-source-intent-pilot-validation.md
+  assignments_file: runs/20260529_172332_source_intent_pilot/assignment_snapshot.md
+  assignment_snapshot: runs/20260529_172332_source_intent_pilot/assignment_snapshot.md
+  assignment_scope: seven selected source-intent pilot rows from original workbook
+    TSV
+  workbook_source: inputs/original_activity_concepts_2026-05-29.tsv
+  normalized_helper: inputs/source_activity_concepts.md
+  source_snapshot_md: runs/20260529_172332_source_intent_pilot/source_snapshots/selected_source_rows.md
+  source_snapshot_tsv: runs/20260529_172332_source_intent_pilot/source_snapshots/selected_source_rows.tsv
+  product_contract_override: none
+  demo_export: true
+  asset_build: generate_and_curate
+  mapping_root: data/mappings_dev20_0318
+  autodesign_commit_start: 619a9215667f0c83e1408f0c5aba6452894846a0
+  autodesign_branch: feat/source-intent-pilot
+  downstream_repos:
+    fullstack_demo:
+      path: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo
+      commit: 9e6a6d2b18b65591c62b03e84db6b1818bc4db6d
+      status: clean, main ahead of origin/main by 2 local commits
+    wonderlens_ai:
+      path: /Users/pharrelly/codebase/gitlab/wonderlens-ai
+      commit: 7a2042ec6a31388e846ad24c203a086ea5d0cdc4
+      status: clean, main ahead of origin/main by 1 local commit
+selected_sources:
+- ordinal: 1
+  source_row: 2
+  activity_concept: Phoneme Treasure Hunt
+  concept_source: inputs/source_activity_concepts.md#source_phoneme_hunt
+  activity_id: concept_phoneme_hunt_collect
+  assignment_type: match_pattern
+  mechanic: collect
+  category: cat5
+  asset_policy: optional_support
+  asset_requirements: inputs/source_activity_concepts.md#phoneme_letter_card_01
+- ordinal: 2
+  source_row: 4
+  activity_concept: Guided Drawing
+  concept_source: inputs/source_activity_concepts.md#source_guided_drawing
+  activity_id: concept_guided_drawing_probe
+  assignment_type: capability_probe
+  mechanic: build
+  category: unsupported_cat3
+  asset_policy: optional_support
+  asset_requirements: inputs/source_activity_concepts.md#guided_drawing_step_cards_01
+- ordinal: 3
+  source_row: 20
+  activity_concept: Constellation Star Count
+  concept_source: inputs/source_activity_concepts.md#source_constellation_star_count
+  activity_id: concept_constellation_star_count_enumerate
+  assignment_type: activity_concept
+  mechanic: enumerate
+  category: cat1
+  asset_policy: required_prebuilt
+  asset_requirements: inputs/source_activity_concepts.md#constellation_count_cards_01
+- ordinal: 4
+  source_row: 15
+  activity_concept: Plant Parts Explorer
+  concept_source: inputs/source_activity_concepts.md#source_plant_parts_explorer
+  activity_id: concept_plant_parts_enumerate
+  assignment_type: match_pattern
+  mechanic: enumerate
+  category: cat5
+  asset_policy: no_assets
+- ordinal: 5
+  source_row: 26
+  activity_concept: Career Decision
+  concept_source: inputs/source_activity_concepts.md#source_career_decision
+  activity_id: concept_career_decision_decide
+  assignment_type: activity_concept
+  mechanic: decide
+  category: cat1
+  asset_policy: optional_support
+  asset_requirements: inputs/source_activity_concepts.md#career_portrait_cards_01
+- ordinal: 6
+  source_row: 11
+  activity_concept: Partial Reveal Guess
+  concept_source: inputs/source_activity_concepts.md#source_partial_reveal_guess
+  activity_id: concept_partial_reveal_deduce
+  assignment_type: activity_concept
+  mechanic: deduce
+  category: cat1
+  asset_policy: required_prebuilt
+  asset_requirements: inputs/source_activity_concepts.md#partial_reveal_cards_01
+- ordinal: 7
+  source_row: 33
+  activity_concept: Would You Rather
+  concept_source: inputs/source_activity_concepts.md#source_would_you_rather
+  activity_id: concept_would_you_rather_compare
+  assignment_type: activity_concept
+  mechanic: compare
+  category: cat1
+  asset_policy: no_assets
+summary:
+  pending_at_start: 7
+  enrichment_audited_count: 0
+  enrichment_noop_count: 0
+  enriched_count: 0
+  generated_count: 7
+  blocked_count: 2
+  failed_count: 0
+outputs:
+  enriched_activities: []
+  audited_activities: []
+  generated_activities:
+  - assignment_index: 1
+    assignment: "- [ ] assignment_type=match_pattern, activity_concept=Phoneme Treasure\
+      \ Hunt, concept_source=inputs/source_activity_concepts.md#source_phoneme_hunt,\
+      \ source_workbook_row=2, source_workbook_path=inputs/original_activity_concepts_2026-05-29.tsv,\
+      \ description=\u6211\u4ECA\u5929\u5F88\u997F\uFF0C\u6211\u60F3\u5403\u4E00\u4E9B\
+      \u4EE5 /b/ /b/ /b/ \u5F00\u5934\u7684\u8BCD\u8BED\u3002\u4F60\u80FD\u627E\u4E00\
+      \u4E2A\u8FD9\u6837\u7684\u2018\u5B9D\u8D1D\u2019\u7ED9\u6211\u770B\u5417\uFF1F\
+      , mechanic=collect, category=cat5, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#phoneme_letter_card_01,\
+      \ activity_id=concept_phoneme_hunt_collect, trigger_condition=pilot source-intent\
+      \ validation"
+    base_activity_id: concept_phoneme_hunt_collect
+    activity_id: concept_phoneme_hunt_collect
+    activity_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_phoneme_hunt_collect
+    package_scope: run_local
+    generation_policy: fresh_run_local_package_from_original_workbook_tsv
+    adaptation_brief: runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_phoneme_hunt_collect.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: degraded
+      ui_template: cat5_judgment
+    status: PASS
+    reviewer: pending_delegated_reviews
+  - assignment_index: 2
+    assignment: "- [ ] assignment_type=capability_probe, activity_concept=Guided Drawing,\
+      \ concept_source=inputs/source_activity_concepts.md#source_guided_drawing, source_workbook_row=4,\
+      \ source_workbook_path=inputs/original_activity_concepts_2026-05-29.tsv, description=AI\u5F15\
+      \u5BFC\u5B69\u5B50\u62FF\u7EB8\u7B14\uFF0C\u4E00\u6B65\u4E00\u6B65\u5B8C\u6210\
+      \u4E00\u4E2A\u7B80\u5355\u7684\u753B\u4F5C, mechanic=build, category=unsupported_cat3,\
+      \ tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#guided_drawing_step_cards_01,\
+      \ product_capabilities=requires_materials,before_after_risk, activity_id=concept_guided_drawing_probe,\
+      \ trigger_condition=pilot source-intent validation"
+    base_activity_id: concept_guided_drawing_probe
+    activity_id: concept_guided_drawing_probe
+    activity_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_guided_drawing_probe
+    package_scope: run_local
+    generation_policy: fresh_run_local_package_from_original_workbook_tsv
+    adaptation_brief: runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_guided_drawing_probe.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: unsupported
+      ui_template: none
+    status: UNSUPPORTED_GATED
+    reviewer: pending_delegated_reviews
+  - assignment_index: 3
+    assignment: "- [ ] assignment_type=activity_concept, activity_concept=Constellation\
+      \ Star Count, concept_source=inputs/source_activity_concepts.md#source_constellation_star_count,\
+      \ source_workbook_row=20, source_workbook_path=inputs/original_activity_concepts_2026-05-29.tsv,\
+      \ description=\u540E\u53F0\u9884\u5236\u4E00\u4E2A\u5217\u8868\uFF0C\u662F\u91CD\
+      \u70B9\u661F\u5EA7\u4EE5\u53CA\u5BF9\u5E94\u7684\u6052\u661F\u6570\u91CF\uFF08\
+      \u4E0D\u9650\u4E8E12\u661F\u5EA7\uFF0C\u5305\u62EC\u5927\u718A\u3001\u730E\u6237\
+      \u7B49\u5E38\u89C1\u661F\u5EA7\uFF09\uFF0C\u8BA9\u5B69\u5B50\u5728\u4E24\u4E2A\
+      \u6570\u5B57\u4E2D\u9009\u62E9\uFF08\u6BD4\u59827\u8FD8\u662F29\uFF09\uFF0C\u7136\
+      \u540E\u7ED9\u5B69\u5B50\u5C55\u793A\u4ED6\u9009\u62E9\u6570\u5B57\u5BF9\u5E94\
+      \u7684\u661F\u5EA7\uFF0C\u5E76\u8FDB\u884C\u7B80\u5355\u7684\u4ECB\u7ECD\uFF08\
+      \u5982\u591A\u4E2A\u661F\u5EA7\u5BF9\u5E94\u76F8\u540C\u7684\u6052\u661F\u6570\
+      \uFF0C\u53EF\u4EE5\u968F\u673A\u9009\u62E9\uFF09, mechanic=enumerate, category=cat1,\
+      \ tier=T1, asset_policy=required_prebuilt, asset_requirements=inputs/source_activity_concepts.md#constellation_count_cards_01,\
+      \ product_capabilities=requires_asset_display, activity_id=concept_constellation_star_count_enumerate,\
+      \ trigger_condition=pilot source-intent validation"
+    base_activity_id: concept_constellation_star_count_enumerate
+    activity_id: concept_constellation_star_count_enumerate
+    activity_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_constellation_star_count_enumerate
+    package_scope: run_local
+    generation_policy: fresh_run_local_package_from_original_workbook_tsv
+    adaptation_brief: runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_constellation_star_count_enumerate.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: supported
+      ui_template: cat1_dialogue
+    status: PASS
+    reviewer: pending_delegated_reviews
+  - assignment_index: 4
+    assignment: "- [ ] assignment_type=match_pattern, activity_concept=Plant Parts\
+      \ Explorer, concept_source=inputs/source_activity_concepts.md#source_plant_parts_explorer,\
+      \ source_workbook_row=15, source_workbook_path=inputs/original_activity_concepts_2026-05-29.tsv,\
+      \ description=\u5F15\u5BFC\u5B69\u5B50\u62CD\u6444\u690D\u7269\u7684\u4E0D\u540C\
+      \u4F4D\u7F6E\uFF08\u53F6\uFF0C\u82B1\uFF0C\u82B1\u854A\u7B49\uFF09\uFF0CAI\u7528\
+      \u6BD4\u8F83\u6709\u8DA3\u5473\u7684\u65B9\u5F0F\u4ECB\u7ECD\u690D\u7269\u7684\
+      \u4E0D\u540C\u90E8\u4F4D\u548C\u4F5C\u7528, mechanic=enumerate, category=cat5,\
+      \ tier=T1, asset_policy=no_assets, activity_id=concept_plant_parts_enumerate,\
+      \ trigger_condition=pilot source-intent validation"
+    base_activity_id: concept_plant_parts_enumerate
+    activity_id: concept_plant_parts_enumerate
+    activity_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_plant_parts_enumerate
+    package_scope: run_local
+    generation_policy: fresh_run_local_package_from_original_workbook_tsv
+    adaptation_brief: runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_plant_parts_enumerate.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: unsupported
+      ui_template: none
+    status: UNSUPPORTED_GATED
+    reviewer: wonderlens_ai_sidecar_found_cat5_enumerate_blocked
+  - assignment_index: 5
+    assignment: "- [ ] assignment_type=activity_concept, activity_concept=Career Decision,\
+      \ concept_source=inputs/source_activity_concepts.md#source_career_decision,\
+      \ source_workbook_row=26, source_workbook_path=inputs/original_activity_concepts_2026-05-29.tsv,\
+      \ description=\u544A\u8BC9\u5B69\u5B50\u5047\u5B9A\u73B0\u5728\u662F\u67D0\u4E2A\
+      \u804C\u4E1A\uFF0C\u7136\u540E\u5728\u5DE5\u4F5C\u7684\u8FC7\u7A0B\u4E2D\u9047\
+      \u5230\u4E86\u4E00\u4E2A\u5177\u4F53\u7684\u573A\u666F\uFF0C\u6709\u4E00\u4E9B\
+      \u95EE\u9898\u9700\u8981\u5C0F\u670B\u53CB\u8FD9\u4F4D\u201C\u4E13\u5BB6\u201D\
+      \u6765\u505A\u51B3\u7B56\u3002\u8BA9\u5B69\u5B50\u8FDB\u884C\u662F\u975E\u9009\
+      \u62E9\u6216\u8005\u7B80\u5355\u4E8C\u9009\u4E00\u3002\u6BD4\u5982\u5B69\u5B50\
+      \u662F\u6D88\u9632\u5458\uFF0C\u5982\u679C\u7740\u706B\u4E86\uFF0C1\uFF09\u6211\
+      \u4EEC\u8981\u4E0D\u8981\u7ACB\u523B\u6D3E\u6D88\u9632\u8F66\uFF1F2\uFF09\u6211\
+      \u4EEC\u5E94\u8BE5\u7528\u6C34\u8FD8\u662F\u6CB9\u6765\u706D\u706B\uFF1F, mechanic=decide,\
+      \ category=cat1, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#career_portrait_cards_01,\
+      \ product_capabilities=requires_asset_display, activity_id=concept_career_decision_decide,\
+      \ trigger_condition=pilot source-intent validation"
+    base_activity_id: concept_career_decision_decide
+    activity_id: concept_career_decision_decide
+    activity_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_career_decision_decide
+    package_scope: run_local
+    generation_policy: fresh_run_local_package_from_original_workbook_tsv
+    adaptation_brief: runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_career_decision_decide.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: supported
+      ui_template: cat1_dialogue
+    status: PASS
+    reviewer: pending_delegated_reviews
+  - assignment_index: 6
+    assignment: "- [ ] assignment_type=activity_concept, activity_concept=Partial\
+      \ Reveal Guess, concept_source=inputs/source_activity_concepts.md#source_partial_reveal_guess,\
+      \ source_workbook_row=11, source_workbook_path=inputs/original_activity_concepts_2026-05-29.tsv,\
+      \ description=\u7ED9\u51FA\u52A8\u7269\u7684\u4E00\u534A\uFF0C\u6216\u8005\u4E00\
+      \u4E2A\u5173\u952E\u7684\u90E8\u5206\uFF0C\u8BA9\u5B69\u5B50\u731C\u662F\u4EC0\
+      \u4E48\u52A8\u7269, mechanic=deduce, category=cat1, tier=T1, asset_policy=required_prebuilt,\
+      \ asset_requirements=inputs/source_activity_concepts.md#partial_reveal_cards_01,\
+      \ product_capabilities=requires_asset_display, activity_id=concept_partial_reveal_deduce,\
+      \ trigger_condition=pilot source-intent validation"
+    base_activity_id: concept_partial_reveal_deduce
+    activity_id: concept_partial_reveal_deduce
+    activity_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_partial_reveal_deduce
+    package_scope: run_local
+    generation_policy: fresh_run_local_package_from_original_workbook_tsv
+    adaptation_brief: runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_partial_reveal_deduce.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: supported
+      ui_template: cat1_dialogue
+    status: PASS
+    reviewer: pending_delegated_reviews
+  - assignment_index: 7
+    assignment: "- [ ] assignment_type=activity_concept, activity_concept=Would You\
+      \ Rather, concept_source=inputs/source_activity_concepts.md#source_would_you_rather,\
+      \ source_workbook_row=33, source_workbook_path=inputs/original_activity_concepts_2026-05-29.tsv,\
+      \ description=\u8FD9\u79CD\u4E00\u79CD\u975E\u5E38\u7ECF\u5178\u7684\u73A9\u6CD5\
+      \uFF0C\u4E3B\u8981\u7528\u8BED\u97F3\u7684\u5F62\u5F0F\uFF0C\u8FDE\u7EED\u95EE\
+      \u95EE\u9898\uFF0C\u8BA9\u5B69\u5B50\u4E8C\u9009\u4E00\u3002\u8FD9\u79CD\u73A9\
+      \u6CD5\u4E2D\u53EF\u4EE5\u5E26\u6709\u975E\u5E38\u5F3A\u7684\u8DA3\u5473\u6027\
+      \uFF08\u641E\u7B11\u7684\u611F\u89C9\uFF09\u3002\u6BD4\u5982Would you rather\
+      \ brush your teeth with ketchup, or wash your hair with chocolate milk?, mechanic=compare,\
+      \ category=cat1, tier=T1, asset_policy=no_assets, activity_id=concept_would_you_rather_compare,\
+      \ trigger_condition=pilot source-intent validation"
+    base_activity_id: concept_would_you_rather_compare
+    activity_id: concept_would_you_rather_compare
+    activity_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_would_you_rather_compare
+    package_scope: run_local
+    generation_policy: fresh_run_local_package_from_original_workbook_tsv
+    adaptation_brief: runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_would_you_rather_compare.yaml
+    asset_build: generate_and_curate
+    demo_support:
+      status: supported
+      ui_template: cat1_dialogue
+    status: PASS
+    reviewer: pending_delegated_reviews
+  blocked_assignments:
+  - assignment_index: 2
+    assignment: "- [ ] assignment_type=capability_probe, activity_concept=Guided Drawing,\
+      \ concept_source=inputs/source_activity_concepts.md#source_guided_drawing, source_workbook_row=4,\
+      \ source_workbook_path=inputs/original_activity_concepts_2026-05-29.tsv, description=AI\u5F15\
+      \u5BFC\u5B69\u5B50\u62FF\u7EB8\u7B14\uFF0C\u4E00\u6B65\u4E00\u6B65\u5B8C\u6210\
+      \u4E00\u4E2A\u7B80\u5355\u7684\u753B\u4F5C, mechanic=build, category=unsupported_cat3,\
+      \ tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#guided_drawing_step_cards_01,\
+      \ product_capabilities=requires_materials,before_after_risk, activity_id=concept_guided_drawing_probe,\
+      \ trigger_condition=pilot source-intent validation"
+    brief_path: runs/20260529_172332_source_intent_pilot/blocked_briefs/concept_guided_drawing_probe.yaml
+    design_preview: runs/20260529_172332_source_intent_pilot/blocked_designs/concept_guided_drawing_probe.md
+    status: unsupported_gated
+    reason: Cat3 material workflow support is required before Guided Drawing can be
+      playable.
+  - assignment_index: 4
+    assignment: "- [ ] assignment_type=match_pattern, activity_concept=Plant Parts\
+      \ Explorer, concept_source=inputs/source_activity_concepts.md#source_plant_parts_explorer,\
+      \ source_workbook_row=15, source_workbook_path=inputs/original_activity_concepts_2026-05-29.tsv,\
+      \ description=\u5F15\u5BFC\u5B69\u5B50\u62CD\u6444\u690D\u7269\u7684\u4E0D\u540C\
+      \u4F4D\u7F6E\uFF08\u53F6\uFF0C\u82B1\uFF0C\u82B1\u854A\u7B49\uFF09\uFF0CAI\u7528\
+      \u6BD4\u8F83\u6709\u8DA3\u5473\u7684\u65B9\u5F0F\u4ECB\u7ECD\u690D\u7269\u7684\
+      \u4E0D\u540C\u90E8\u4F4D\u548C\u4F5C\u7528, mechanic=enumerate, category=cat5,\
+      \ tier=T1, asset_policy=no_assets, activity_id=concept_plant_parts_enumerate,\
+      \ trigger_condition=pilot source-intent validation"
+    brief_path: runs/20260529_172332_source_intent_pilot/blocked_briefs/concept_plant_parts_enumerate.yaml
+    design_preview: runs/20260529_172332_source_intent_pilot/blocked_designs/concept_plant_parts_enumerate.md
+    status: unsupported_gated
+    reason: Cat5 enumerate/photo plant-part workflow is blocked in downstream runtime
+      adapters; mechanic was preserved instead of changed to collect.
+  source_intent_audits:
+  - runs/20260529_172332_source_intent_pilot/source_intent_audits/concept_phoneme_hunt_collect.yaml
+  - runs/20260529_172332_source_intent_pilot/source_intent_audits/concept_guided_drawing_probe.yaml
+  - runs/20260529_172332_source_intent_pilot/source_intent_audits/concept_constellation_star_count_enumerate.yaml
+  - runs/20260529_172332_source_intent_pilot/source_intent_audits/concept_plant_parts_enumerate.yaml
+  - runs/20260529_172332_source_intent_pilot/source_intent_audits/concept_career_decision_decide.yaml
+  - runs/20260529_172332_source_intent_pilot/source_intent_audits/concept_partial_reveal_deduce.yaml
+  - runs/20260529_172332_source_intent_pilot/source_intent_audits/concept_would_you_rather_compare.yaml
+  downstream_reports:
+  - runs/20260529_172332_source_intent_pilot/downstream_reports/fullstack_import_review.yaml
+  - runs/20260529_172332_source_intent_pilot/downstream_reports/wonderlens_ai_runtime_review.yaml
+  final_report: runs/20260529_172332_source_intent_pilot/source_intent_pilot_validation.md
+  generation_pass_details: runs/20260529_172332_source_intent_pilot/generation_pass_details.md
+  review_dashboard: runs/20260529_172332_source_intent_pilot/review.html
+  adaptation_briefs:
+  - runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_phoneme_hunt_collect.yaml
+  - runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_guided_drawing_probe.yaml
+  - runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_constellation_star_count_enumerate.yaml
+  - runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_plant_parts_enumerate.yaml
+  - runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_career_decision_decide.yaml
+  - runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_partial_reveal_deduce.yaml
+  - runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_would_you_rather_compare.yaml
+  asset_outputs: runs/20260529_172332_source_intent_pilot/generated_assets/asset_outputs.yaml
+  reference_sources: runs/20260529_172332_source_intent_pilot/generated_assets/reference_sources.yaml
+  asset_qa_notes: runs/20260529_172332_source_intent_pilot/generated_assets/qa_notes.yaml
+checks:
+- name: validate_demo_package_contract
+  command: /Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/validate_demo_package_contract.py
+    runs/20260529_172332_source_intent_pilot/activity_packages
+  status: passed
+  evidence: 'OK demo package contract: 7 package(s)'
+- name: tag_block_schema_run_packages
+  command: Draft202012Validator over runs/20260529_172332_source_intent_pilot/activity_packages/*/tag_block.yaml
+  status: passed
+  evidence: 7 tag_block.yaml files OK
+- name: build_activity_assets
+  command: /Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/build_activity_assets.py
+    runs/20260529_172332_source_intent_pilot --mode generate_and_curate
+  status: passed
+  evidence: 'OK asset build: mode=generate_and_curate packages=7 assets=8 built=8
+    required_failures=0'
+- name: validate_asset_build_outputs
+  command: /Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/validate_asset_build_outputs.py
+    runs/20260529_172332_source_intent_pilot
+  status: passed
+  evidence: 'OK asset build outputs: runs/20260529_172332_source_intent_pilot'
+- name: generate_run_review
+  command: /Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/generate_run_review.py
+    runs/20260529_172332_source_intent_pilot
+  status: passed
+  evidence: Wrote runs/20260529_172332_source_intent_pilot/review.html
+- name: validate_run_review
+  command: /Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/generate_run_review.py
+    --validate runs/20260529_172332_source_intent_pilot
+  status: passed
+  evidence: All dashboard checks PASS; checked_links=116
+- name: source_intent_audit_yaml_parse
+  command: ruby -e 'require "yaml"; Dir["runs/20260529_172332_source_intent_pilot/source_intent_audits/*.yaml"].sort.each { |f| YAML.load_file(f) }'
+  status: passed
+  evidence: Parsed 7 source-intent audit files; verdicts were 5 aligned and 2 minor_adaptation, with no intent_drift or needs_product_decision.
+- name: runtime_instruction_review
+  command: ruby -e 'require "yaml"; Dir["runs/20260529_172332_source_intent_pilot/runtime_instruction_reviews/*.yaml"].sort.each { |f| YAML.load_file(f) }'
+  status: passed
+  evidence: Delegated re-review verdicts pass for all 7 packages; repair_required=false.
+- name: visual_reference_review
+  command: delegated visual/reference QA plus /Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/validate_asset_build_outputs.py runs/20260529_172332_source_intent_pilot
+  status: passed_with_warning
+  evidence: No blocking failures after asset repairs; partial reveal has a non-blocking safe-area margin warning.
+- name: fullstack_import_review
+  command: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/chore/source-intent-pilot-fullstack import and focused pytest
+  status: passed
+  evidence: runs/20260529_172332_source_intent_pilot/downstream_reports/fullstack_import_review.yaml; 83 passed, 1 skipped.
+- name: wonderlens_ai_runtime_review
+  command: /Users/pharrelly/codebase/gitlab/wonderlens-ai/.venv/bin/python scripts/generate_activity_runtime.py plus focused pytest and generated-load verification
+  status: passed
+  evidence: runs/20260529_172332_source_intent_pilot/downstream_reports/wonderlens_ai_runtime_review.yaml; 45 passed; 7 generated packages loaded.
+notes:
+- Fresh pilot generation uses a run-local assignment snapshot instead of mutating
+  the global checked assignment queue.
+- Original workbook TSV rows in source_snapshots/ control over normalized helper wording
+  when they conflict.
+- Guided Drawing is a Cat3 material workflow capability probe and must block or degrade
+  honestly unless product support is approved.
+- Downstream repos were clean but ahead of origin at run start; local commits are
+  documented for reproducibility.
+- Generated run-local package drafts for all seven selected rows; Guided Drawing is
+  intentionally unsupported/gated rather than converted into Cat1/Cat5 play.
+- Plant Parts Explorer is now unsupported/gated after WonderLens AI sidecar found
+  Cat5 enumerate is not executable; the source mechanic remains enumerate to avoid
+  drift.
+- Pilot is complete with two honestly gated unsupported activities, one degraded
+  phoneme Cat5 activity, and no unresolved source-intent drift.

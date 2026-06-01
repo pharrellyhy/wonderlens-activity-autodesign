@@ -1,0 +1,44 @@
+run_id: 20260529_172332_source_intent_pilot
+asset_build_mode: generate_and_curate
+generated_at: '2026-05-29T18:16:05+08:00'
+entries:
+- activity_id: concept_career_decision_decide
+  asset_id: firefighter_role_card
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: cassiopeia_five_star_card
+  status: curated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: orion_seven_star_card
+  status: curated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: rabbit_ears_reveal_card
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: tiger_tail_reveal_card
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_partial_reveal_deduce
+  asset_id: elephant_trunk_reveal_card
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: ball_b_sound_clue
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: banana_b_sound_clue
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.

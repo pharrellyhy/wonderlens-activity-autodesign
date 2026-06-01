@@ -1,0 +1,37 @@
+activity_id: concept_partial_reveal_deduce
+inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_partial_reveal_deduce/prod.md
+quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+review_round: rereview_after_runtime_branch_repair
+beat_count: 5
+labels_present:
+  goal: all_5
+  constraint: all_5
+  tone: all_5
+  progress_evidence: all_5
+  branch_behavior: all_5_concrete
+  source_guardrail: all_5
+  concrete_child_action: all_5
+  screen_state: all_5
+  example_ai_line: all_5
+step_instruction_conversion_readiness: "ready: visible clue assets, answer timing, wrong-guess repair, silence scaffolds, and evidence recap are concrete enough for runtime conversion."
+quality_floor_comparison:
+  status: meets_floor
+  summary: "The repaired file now matches the floor's concrete branch model while keeping the partial-reveal asset dependency explicit."
+  strengths:
+    - "Rabbit, tiger, and elephant clues each have accepted answers, near/wrong guess handling, and silence scaffolds."
+    - "Screen states name the required asset IDs and progress state."
+    - "Source guardrails keep the activity grounded in visible evidence rather than generic riddles."
+  residual_notes:
+    - "No active runtime-instruction blocker found in this re-review."
+findings:
+  - id: guessing_branch_outcomes_missing
+    status: resolved
+    evidence: "Steps 2-4 now include accepted answers, evidence prompts for wrong guesses, and no-response scaffolds."
+  - id: generic_child_responses
+    status: resolved
+    evidence: "Child response rows now name rabbit/bunny, striped tail/tiger, trunk/elephant, and solved-clue recap behavior."
+  - id: source_guardrail_good_but_not_operationalized
+    status: resolved
+    evidence: "Branch behavior now anchors voice and repair behavior to the visible clue assets and source chart."
+verdict: pass
+repair_required: false

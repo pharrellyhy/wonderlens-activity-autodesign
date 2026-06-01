@@ -23,7 +23,7 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
-| [2026-05-29-source-intent-pilot-validation.md](2026-05-29-source-intent-pilot-validation.md) | Planned | Fresh 3-5 design pilot with explicit source-intent auditor gate, runtime instruction quality review, `asset_build=generate_and_curate`, and fullstack/WonderLens AI conversion validation. |
+| [2026-05-29-source-intent-pilot-validation.md](2026-05-29-source-intent-pilot-validation.md) | Completed | Seven-row pilot passed source-intent, runtime-instruction, PNG asset, fullstack import, and WonderLens AI runtime validation; Guided Drawing and Plant Parts remain honestly gated. |
 | [2026-05-28-e2e-subset-runtime-validation.md](2026-05-28-e2e-subset-runtime-validation.md) | Completed | Fresh subset/autodesign assets, fullstack import/play/gate behavior, fullstack runtime-beat conversion, and WonderLens AI runtime conversion/load/asset serving were validated; unsupported sorting remains correctly gated. |
 | [2026-05-28-generate-and-curate-asset-pipeline.md](2026-05-28-generate-and-curate-asset-pipeline.md) | Completed | Implemented `generate_and_curate` asset build scripts, package-local runtime assets, source curation metadata, validation, dashboard visibility, fixture coverage, and bitmap smoke. |
 | [2026-05-27-demo-package-contract-assets.md](2026-05-27-demo-package-contract-assets.md) | Completed | Added demo support metadata, runtime asset manifests, device asset style, unsupported mechanic gates, schemas, validator, and fixtures. |

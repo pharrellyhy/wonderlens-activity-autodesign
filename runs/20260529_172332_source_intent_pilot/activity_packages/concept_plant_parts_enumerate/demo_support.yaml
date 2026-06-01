@@ -1,0 +1,29 @@
+activity_id: concept_plant_parts_enumerate
+version: 1
+demo_support:
+  status: unsupported
+  ui_template: none
+  support_level: unsupported
+  entity_bindings:
+  - entity_id: visible_plant_parts
+    display_label: Visible Plant Parts
+    source_entity_exemplar: visible plant parts
+    default: true
+  requires:
+    generated_assets: false
+    real_camera: true
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons:
+  - Current downstream runtime templates do not support a source-faithful Cat5 enumerate
+    flow where the child photographs different plant parts and receives part-function
+    context.
+  - Converting this source to Cat5 collect would make it playable by changing the
+    original mechanic, so the package must be gated until Cat5 enumerate/photo-part
+    support exists.
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Import with scripts/import_autodesign_package.py; preserve demo_support
+      gating and converted step_instructions.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py; preserve
+      support, asset, and runtime-beat metadata.

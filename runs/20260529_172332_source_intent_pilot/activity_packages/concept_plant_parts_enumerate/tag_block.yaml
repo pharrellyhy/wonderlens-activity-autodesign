@@ -1,0 +1,74 @@
+activity_id: concept_plant_parts_enumerate
+version: 1
+template_type: cat5
+pillar: Discovery
+game_style: field_experiment
+entity: visible plant parts
+entity_class: &id001
+- plant
+- plant_part
+entity_binding: parameterized
+source_entity_exemplar: visible plant parts
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed source-intent pilot scope
+category: cat5
+attributes:
+- function
+- position
+- visible part
+key_concepts:
+- Function
+- Connection
+related_concepts:
+- leaf
+- stem
+- flower
+atl_skills:
+- observing
+- photographing
+- describing
+transdisciplinary_theme: Sharing the planet
+kud:
+  know:
+  - visible plant parts can be explored through visible plant part and simple function.
+  understand:
+  - The child role, device role, sequence, evidence source, and context promise must
+    stay connected.
+  do:
+  - Respond with the promised choice, observation, capture, explanation, or material
+    action.
+progression:
+  topic_axis: function
+  difficulty_level: 2
+  next_step_hint: Scale only after source-intent audit, asset validation, and downstream
+    conversion pass.
+  reward_hook: Plant Part Explorer
+caregiver_role:
+- co-explorer
+activity_signature:
+  observation_angle: function
+  mechanic: enumerate
+  entity_role: subject
+  focal_attribute: visible plant part and simple function
+  intro: The child photographs different plant positions such as leaf, flower, or
+    stem and hears simple function/background notes.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - leaf
+    - stem
+    - flower
+  preview_label: Plant part explorer
+  preview_prompt: Photograph different plant parts and learn what each part can do.
+  role_pivot_note: No role pivot unless the source explicitly assigns the child a
+    role.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

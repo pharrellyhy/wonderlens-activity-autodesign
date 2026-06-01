@@ -1,0 +1,34 @@
+activity_id: concept_guided_drawing_probe
+inspected_prod_path: runs/20260529_172332_source_intent_pilot/activity_packages/concept_guided_drawing_probe/prod.md
+quality_floor_reference: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md
+review_round: rereview_after_runtime_branch_repair
+beat_count: 5
+labels_present:
+  goal: all_5
+  constraint: all_5
+  tone: all_5
+  progress_evidence: all_5
+  branch_behavior: all_5_label_present_but_generic
+  source_guardrail: all_5
+  concrete_child_action: intentionally_absent_for_unsupported_gate
+  screen_state: all_5
+  example_ai_line: all_5
+step_instruction_conversion_readiness: "gate_ready: still not playable, but ready as an unsupported product-capability gate if demo_support.status remains unsupported."
+quality_floor_comparison:
+  status: unsupported_gate_pass
+  summary: "This package remains outside the playable quality floor by design. It correctly preserves source intent by refusing a paper-and-pencil workflow conversion that the current runtime cannot support."
+  strengths:
+    - "The gate explains why voice-only play would misrepresent the source activity."
+    - "Required future capabilities remain explicit: material steps, drawing time, final photo, and no quality grading."
+    - "Screen states consistently deny playable launch and asset claims."
+  residual_notes:
+    - "Generic child-response rows remain, but they are not treated as a blocker because the package is an unsupported gate rather than a playable runtime flow."
+findings:
+  - id: unsupported_gate_is_correct
+    status: still_valid
+    evidence: "The file continues to block runtime launch and document product capability requirements."
+  - id: child_response_template_should_not_surface
+    status: accepted_nonblocking
+    evidence: "The generic rows should not surface to children while demo_support.status is unsupported."
+verdict: pass
+repair_required: false

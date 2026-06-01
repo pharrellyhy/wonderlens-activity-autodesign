@@ -1,0 +1,49 @@
+run_id: 20260529_172332_source_intent_pilot
+reviewer_role: independent_visual_reference_qa
+reviewed_at: '2026-05-29T18:20:55+08:00'
+workflow_reference: docs/activity_asset_generation_workflow.md
+overall_status: warn
+scope:
+  generated_inbox_dir: generated_assets/inbox
+  activity_packages_dir: activity_packages
+  constellation_source_dir: activity_packages/concept_constellation_star_count_enumerate/assets/sources
+  packages_with_assets_reviewed: 4
+  generated_inbox_pngs_reviewed: 6
+  runtime_pngs_reviewed: 8
+  constellation_source_original_pngs_reviewed: 2
+review_files:
+  - visual_reference_reviews/concept_career_decision_decide.yaml
+  - visual_reference_reviews/concept_constellation_star_count_enumerate.yaml
+  - visual_reference_reviews/concept_partial_reveal_deduce.yaml
+  - visual_reference_reviews/concept_phoneme_hunt_collect.yaml
+package_results:
+  - package_id: concept_career_decision_decide
+    status: pass
+  - package_id: concept_constellation_star_count_enumerate
+    status: pass
+  - package_id: concept_partial_reveal_deduce
+    status: warn
+    warnings:
+      - partial_reveal_safe_area_margin
+  - package_id: concept_phoneme_hunt_collect
+    status: pass
+blocking_failures: []
+non_blocking_warnings:
+  - package_id: concept_partial_reveal_deduce
+    assets:
+      - rabbit_ears_reveal_card
+      - elephant_trunk_reveal_card
+    code: partial_reveal_safe_area_margin
+    finding: Partial reveal cards are readable but place important shapes close to the round-screen crop zone.
+passes:
+  - All reviewed PNGs are square and at least 512x512.
+  - All package-local runtime PNGs are 512x512.
+  - No reviewed asset contains readable text, logos, watermarks, device chrome, or contact-sheet layout.
+  - Constellation source metadata is present, storage_allowed is true, verification_status is accepted, and source SHA-256 values match metadata.
+  - Firefighter source/runtime framing now fits the declared central 72 percent round-screen safe area.
+  - Constellation runtime cards preserve exactly 5 and 7 guide stars, with no extra star-like marks.
+  - Constellation runtime cards are content-equivalent to the accepted source originals; exact ImageMagick AE is nonzero, while AE with -fuzz 2% is 0 for both cards.
+tooling_notes:
+  - PNG dimensions and hashes were checked with ImageMagick identify and shasum.
+  - Visual checks were performed by inspecting source, runtime, and constellation reference images directly.
+  - scripts/validate_asset_build_outputs.py passed using /Users/pharrelly/.pyenv/versions/3.13.6/bin/python.

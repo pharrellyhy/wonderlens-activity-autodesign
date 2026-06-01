@@ -1,0 +1,82 @@
+run_id: 20260529_172332_source_intent_pilot
+package_id: concept_partial_reveal_deduce
+reviewer_role: independent_visual_reference_qa
+reviewed_at: '2026-05-29T18:20:55+08:00'
+workflow_reference: docs/activity_asset_generation_workflow.md
+overall_status: warn
+review_scope:
+  inspected_generated_inbox: true
+  inspected_runtime_assets: true
+  inspected_reference_sources: false
+  package_asset_manifest: activity_packages/concept_partial_reveal_deduce/asset_manifest.yaml
+checks:
+  png_dimensions: pass
+  central_framing_safe_area: warn
+  no_text_logos_device_chrome_contact_sheet: pass
+  style_consistency: pass
+assets:
+  - asset_id: rabbit_ears_reveal_card
+    accuracy_mode: illustrative
+    source_png: generated_assets/inbox/concept_partial_reveal_deduce/rabbit_ears_reveal_card.png
+    runtime_png: activity_packages/concept_partial_reveal_deduce/assets/rabbit_ears_reveal_card__round_512.png
+    dimensions:
+      source_png: 1254x1254
+      runtime_png: 512x512
+    visual_checks:
+      square_and_minimum_512: pass
+      final_runtime_512: pass
+      central_framing_safe_area: warn
+      no_readable_text: pass
+      no_logo_or_watermark: pass
+      no_device_chrome_or_contact_sheet: pass
+      style_matches_flat_nordic_target: pass
+      prompt_intent: pass
+    notes:
+      - Shows only long rabbit ears and a small top-of-head hint, matching the partial-reveal intent.
+      - Ear tips and outer ear edges extend close to the round-screen crop zone; the card remains readable, but a slightly smaller crop would be safer.
+  - asset_id: tiger_tail_reveal_card
+    accuracy_mode: illustrative
+    source_png: generated_assets/inbox/concept_partial_reveal_deduce/tiger_tail_reveal_card.png
+    runtime_png: activity_packages/concept_partial_reveal_deduce/assets/tiger_tail_reveal_card__round_512.png
+    dimensions:
+      source_png: 1254x1254
+      runtime_png: 512x512
+    visual_checks:
+      square_and_minimum_512: pass
+      final_runtime_512: pass
+      central_framing_safe_area: pass
+      no_readable_text: pass
+      no_logo_or_watermark: pass
+      no_device_chrome_or_contact_sheet: pass
+      style_matches_flat_nordic_target: pass
+      prompt_intent: pass
+    notes:
+      - Shows a curling tiger tail without a full animal.
+      - Decorative plants stay secondary and do not add text, logos, or UI chrome.
+  - asset_id: elephant_trunk_reveal_card
+    accuracy_mode: illustrative
+    source_png: generated_assets/inbox/concept_partial_reveal_deduce/elephant_trunk_reveal_card.png
+    runtime_png: activity_packages/concept_partial_reveal_deduce/assets/elephant_trunk_reveal_card__round_512.png
+    dimensions:
+      source_png: 1254x1254
+      runtime_png: 512x512
+    visual_checks:
+      square_and_minimum_512: pass
+      final_runtime_512: pass
+      central_framing_safe_area: warn
+      no_readable_text: pass
+      no_logo_or_watermark: pass
+      no_device_chrome_or_contact_sheet: pass
+      style_matches_flat_nordic_target: pass
+      prompt_intent: pass
+    notes:
+      - Shows a trunk and one ear edge without a full animal, matching the partial-reveal intent.
+      - The trunk and ear edge are deliberately large; the center clue is readable, but the right-side ear edge and lower decorative plants are near the crop zone.
+failures: []
+warnings:
+  - code: partial_reveal_safe_area_margin
+    severity: non_blocking
+    assets:
+      - rabbit_ears_reveal_card
+      - elephant_trunk_reveal_card
+    finding: Partial-reveal composition is readable but uses edge-adjacent important shapes; smaller source framing would be safer for round-screen display.
