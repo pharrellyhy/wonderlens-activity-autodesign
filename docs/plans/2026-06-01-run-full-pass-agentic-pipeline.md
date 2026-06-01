@@ -136,6 +136,32 @@ uv run uvicorn app.main:app --host 127.0.0.1 --port 8765
 
 Stop any server started by the run before completion.
 
+## API Rate-Limit Handling
+
+Rate limits are expected operational events during full-pass generation,
+especially for image generation, live dialogue QA, and runtime conversion that
+uses hosted providers. A rate-limit response must not stop the full pass
+directly.
+
+When any provider or local harness returns `429`, `RESOURCE_EXHAUSTED`, quota
+exceeded, `rate_limit`, or equivalent throttling:
+
+- record the phase, activity ID or batch, command, timestamp, provider name if
+  safe, and sanitized error class;
+- do not print or store secret-bearing request payloads or headers;
+- wait a few minutes before retrying, using at least a 3-minute first pause and
+  a 3/5/8-minute backoff for repeated throttles on the same request or batch;
+- retry at least three times before classifying the condition as blocked;
+- reduce concurrency or batch size when that lowers pressure without changing
+  generation quality;
+- continue only independent non-API work while waiting, and only when doing so
+  does not violate the required validation order;
+- never fabricate assets, transcripts, or validation evidence to bypass a rate
+  limit.
+
+If throttling persists after the retry window, record it as an external API
+blocker with the retry log and resume point.
+
 ## Orchestration Model
 
 The master agent owns run setup, artifact layout, server lifecycle, credentials,

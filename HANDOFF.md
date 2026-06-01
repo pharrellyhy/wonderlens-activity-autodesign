@@ -20,6 +20,11 @@ the autodesign plan/goal inputs, the fullstack `feat/activity-text-game`
 worktree, the fullstack main-backend credential file paths, the fullstack style
 prompt, and the WonderLens AI runtime-generation entry points.
 
+Update: The run goal now treats API/provider rate limits as retryable. Image
+generation, hosted LLM calls, fullstack live API, WonderLens AI live API, and
+runtime conversion must wait a few minutes and retry with backoff before a
+rate-limit condition can be classified as blocked.
+
 ## 2026-06-01 - Full-Pass Agentic Pipeline Contract
 
 Problem: Future larger/full activity passes needed the generation workflow to

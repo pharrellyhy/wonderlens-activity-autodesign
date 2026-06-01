@@ -71,6 +71,10 @@ handling, completion, and final reporting.
 - Do not leave servers running at completion.
 - Do not commit downstream fullstack-demo or WonderLens AI changes unless the
   user explicitly expands scope.
+- If image generation, hosted LLM, fullstack live API, WonderLens AI live API,
+  or runtime-conversion calls hit provider rate limits, do not stop directly:
+  log the sanitized throttle, wait a few minutes, retry with backoff, and only
+  classify the condition as blocked after at least three retry attempts.
 - Do not push unless explicitly asked.
 
 ## Required Scope
@@ -237,6 +241,21 @@ uv sync --locked
 uv run uvicorn app.main:app --host 127.0.0.1 --port 8765
 ```
 
+## API Rate-Limit Rule
+
+Treat `429`, `RESOURCE_EXHAUSTED`, quota exceeded, `rate_limit`, and equivalent
+provider throttles as retryable during image generation, hosted LLM calls,
+fullstack live dialogue QA, WonderLens AI live dialogue QA, and runtime
+conversion.
+
+Do not stop the goal directly on the first rate-limit response. Record the
+phase, activity ID or batch, command, timestamp, provider name if safe, and
+sanitized error class. Wait at least 3 minutes before the first retry and use a
+3/5/8-minute backoff for repeated throttles on the same request or batch. Retry
+at least three times before declaring a blocker. Reduce concurrency or batch
+size when safe. Do not print secrets, store secret-bearing request payloads, or
+fabricate assets/transcripts/validation evidence to bypass throttling.
+
 ## Dialogue Quality Pass Gate
 
 For both fullstack-demo and WonderLens AI, pass only when:
@@ -364,6 +383,7 @@ Do not mark achieved until:
 - fullstack and WonderLens AI dialogue QA pass or every failure has a recorded
   owner and explicit downstream/product decision;
 - required checks pass or a blocker is documented;
+- any API rate-limit blocker includes the sanitized retry log and resume point;
 - no fullstack or WonderLens AI servers started by this goal remain running;
 - no secret files or local credential artifacts are changed;
 - intended autodesign artifacts are committed;
@@ -391,5 +411,5 @@ Use from the `wonderlens-activity-autodesign` repo or a clean autodesign
 worktree:
 
 ```text
-/goal Implement goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md. Execute the current workbook full pass from inputs/original_activity_concepts_2026-05-29.tsv with asset_build=generate_and_curate and full_pass_pipeline=true; start fullstack validation only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game on branch feat/activity-text-game while sourcing live credentials only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend; use delegated agents for source intent, text package writing, image generation, fullstack dialogue QA, WonderLens AI dialogue QA, image QA, repair loops, and final independent review; stop only when the completion gate is satisfied or a blocker is documented.
+/goal Implement goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md. Execute the current workbook full pass from inputs/original_activity_concepts_2026-05-29.tsv with asset_build=generate_and_curate and full_pass_pipeline=true; start fullstack validation only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game on branch feat/activity-text-game while sourcing live credentials only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend; use delegated agents for source intent, text package writing, image generation, fullstack dialogue QA, WonderLens AI dialogue QA, image QA, repair loops, and final independent review; if API rate limits occur, wait a few minutes and retry with backoff before declaring a blocker; stop only when the completion gate is satisfied or a blocker is documented.
 ```
