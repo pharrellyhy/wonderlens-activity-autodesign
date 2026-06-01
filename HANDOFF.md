@@ -1,5 +1,25 @@
 # HANDOFF
 
+## 2026-06-01 - Full-Pass Run Goal Ready
+
+Problem: The completed full-pass pipeline contract described how to implement
+the workflow, but the next execution needed a separate run-focused plan/goal
+that starts fullstack validation from the `feat/activity-text-game` worktree.
+
+Solution: Added `docs/plans/2026-06-01-run-full-pass-agentic-pipeline.md` and
+`goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md`. The new goal runs
+the current workbook full pass with `asset_build=generate_and_curate`,
+`full_pass_pipeline=true`, explicit delegated/subagent rules, fullstack server
+startup from
+`/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game`,
+credential sourcing from the fullstack main backend only, WonderLens AI
+dialogue validation, image QA, repair loops, and final independent review.
+
+Verification: `git diff --check` passed. Targeted existence checks passed for
+the autodesign plan/goal inputs, the fullstack `feat/activity-text-game`
+worktree, the fullstack main-backend credential file paths, the fullstack style
+prompt, and the WonderLens AI runtime-generation entry points.
+
 ## 2026-06-01 - Full-Pass Agentic Pipeline Contract
 
 Problem: Future larger/full activity passes needed the generation workflow to

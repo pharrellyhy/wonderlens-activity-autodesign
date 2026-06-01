@@ -162,15 +162,17 @@ orchestrated workflow. Ordinary scoped package generation can keep the default
 Recommended invocation:
 
 ```text
-/goal Execute GOAL.md end to end using run.md with asset_build=generate_and_curate full_pass_pipeline=true.
+/goal Implement goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md. Execute the current workbook full pass from inputs/original_activity_concepts_2026-05-29.tsv with asset_build=generate_and_curate and full_pass_pipeline=true; start fullstack validation only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game on branch feat/activity-text-game while sourcing live credentials only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend; use delegated agents for source intent, text package writing, image generation, fullstack dialogue QA, WonderLens AI dialogue QA, image QA, repair loops, and final independent review; stop only when the completion gate is satisfied or a blocker is documented.
 ```
 
 For an engineering/product explanation, read
 `docs/full_pass_agentic_pipeline_explainer.md`. The detailed implementation
-contract lives in `docs/plans/2026-06-01-full-pass-agentic-pipeline.md`; the
-executable goal file lives in
-`goals/2026-06-01-full-pass-agentic-pipeline-goal.md`. `GOAL.md`, `run.md`, and
-`program.md` remain the runtime procedure that a full pass must obey.
+contract lives in `docs/plans/2026-06-01-full-pass-agentic-pipeline.md`. The
+actual full-pass run plan lives in
+`docs/plans/2026-06-01-run-full-pass-agentic-pipeline.md`, with executable goal
+file `goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md`. `GOAL.md`,
+`run.md`, and `program.md` remain the runtime procedure that a full pass must
+obey.
 
 In this mode the main agent is the master orchestrator and should delegate
 disjoint evidence work: source-intent audit, text-only package writing,
@@ -209,8 +211,8 @@ Common invocations:
 # Request a future post-package illustrative asset build when the asset builder exists.
 /goal Execute GOAL.md end to end using run.md with asset_build=generate_illustrative.
 
-# Larger/full production pass with runtime PNG generation and curation.
-/goal Execute GOAL.md end to end using run.md with asset_build=generate_and_curate full_pass_pipeline=true.
+# Larger/full production pass with runtime PNG generation and downstream validation.
+/goal Implement goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md.
 ```
 
 ## Run Provenance

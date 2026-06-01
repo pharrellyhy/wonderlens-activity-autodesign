@@ -23,6 +23,7 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
+| [2026-06-01-run-full-pass-agentic-pipeline.md](2026-06-01-run-full-pass-agentic-pipeline.md) | Planned | Executes the current workbook full pass with `asset_build=generate_and_curate`, fullstack validation from the `feat/activity-text-game` worktree, WonderLens AI dialogue validation, image QA, repair loops, and final review. |
 | [2026-06-01-full-pass-agentic-pipeline.md](2026-06-01-full-pass-agentic-pipeline.md) | Completed | Encoded the master/subagent full-pass generation workflow, source-intent and consumer/import gates, fullstack/WonderLens AI dialogue QA, image QA, repair loops, and final review contract before scaling generation. |
 | [2026-05-29-source-intent-pilot-validation.md](2026-05-29-source-intent-pilot-validation.md) | Completed | Seven-row pilot passed source-intent, runtime-instruction, PNG asset, fullstack import, and WonderLens AI runtime validation; Guided Drawing and Plant Parts remain honestly gated. |
 | [2026-05-28-e2e-subset-runtime-validation.md](2026-05-28-e2e-subset-runtime-validation.md) | Completed | Fresh subset/autodesign assets, fullstack import/play/gate behavior, fullstack runtime-beat conversion, and WonderLens AI runtime conversion/load/asset serving were validated; unsupported sorting remains correctly gated. |
