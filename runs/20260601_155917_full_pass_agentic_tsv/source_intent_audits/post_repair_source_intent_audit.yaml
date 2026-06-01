@@ -1,0 +1,455 @@
+run_id: 20260601_155917_full_pass_agentic_tsv
+artifact_kind: post_repair_source_intent_audit
+created_at: "2026-06-01T16:36:19+08:00"
+auditor_role: independent post-repair source-intent validator
+scope: all 40 workbook rows and run-local activity packages after commit 553716a
+source_of_truth: inputs/original_activity_concepts_2026-05-29.tsv
+helper_only: inputs/source_activity_concepts.md
+package_root: runs/20260601_155917_full_pass_agentic_tsv/activity_packages
+prior_audit:
+  markdown: runs/20260601_155917_full_pass_agentic_tsv/source_intent_audits/current_run_source_intent_audit.md
+  yaml: runs/20260601_155917_full_pass_agentic_tsv/source_intent_audits/current_run_source_intent_audit.yaml
+repair_report: runs/20260601_155917_full_pass_agentic_tsv/repair_reports/source_intent_text_repair.md
+method:
+  - Used the TSV workbook as authoritative for source intent.
+  - Used source_activity_concepts.md only as helper context.
+  - Re-read the prior source-intent audit and the source-intent text repair report.
+  - Checked run-local package spec.md, prod.md, tag_block.yaml, and demo_support.yaml surfaces, with focused re-checks for rows 16, 24, 28, and 31.
+  - Did not repair package content.
+verdict_enum:
+  - aligned
+  - minor_adaptation
+  - intent_drift
+  - needs_product_decision
+summary:
+  total_entries: 40
+  aligned: 12
+  minor_adaptation: 19
+  intent_drift: 0
+  needs_product_decision: 9
+evidence_summary:
+  overall: >-
+    Commit 553716a repaired the four packages previously marked intent_drift.
+    Runtime-facing spec.md and prod.md now restore the missing source behaviors
+    for rows 16, 24, 28, and 31. No post-repair package remains intent_drift.
+  remaining_intent_drift: []
+  repaired_package_outcome: >-
+    Row 16 now includes plant state-change explanation and care guidance, row 24
+    now includes photographed inspiration, physical note creation, placement,
+    and no-OCR confirmation, row 28 now uses semantic feature counts, and row 31
+    now uses source target plus similar distractors with say-target/stay-quiet
+    timing.
+  product_decision_note: >-
+    Product-decision rows remain needs_product_decision where the package
+    preserves source intent but current runtime/demo support, material workflow,
+    asset rights, live recoloring, or unsupported UI state needs explicit product
+    acceptance.
+before_after_repaired_packages:
+  - source_row: 16
+    activity_id: concept_plant_state_compare
+    before_verdict: intent_drift
+    after_verdict: minor_adaptation
+    source_tsv_intent: >-
+      Child photographs plant leaf states such as green, yellowing, or damaged,
+      compares visible state changes, and hears simple plant-care guidance.
+    post_repair_evidence: >-
+      spec.md Source Intent Lock and prod.md rounds now require visible plant
+      state evidence, green/yellow/damaged/blooming/wilting comparison,
+      cautious state-change explanation, and water/light/gentle-care ideas.
+    residual_reason: >-
+      Minor adaptation remains because demo_support.yaml marks photo state
+      judgment degraded and tag_block.yaml summarizes state comparison without
+      explicitly carrying the care-guidance promise.
+  - source_row: 24
+    activity_id: concept_message_bottle_note_probe
+    before_verdict: intent_drift
+    after_verdict: needs_product_decision
+    source_tsv_intent: >-
+      Use a photographed object to seed a warm story, then guide the child to
+      write or draw a physical note for a parent or friend and place it in a
+      real location, with optional photo confirmation but no quality reading.
+    post_repair_evidence: >-
+      spec.md and prod.md now preserve photographed/chosen inspiration, warm
+      story seed, paper-and-pencil note creation, recipient choice, placement on
+      pillow/desk/school bag or hand delivery, and child/caregiver confirmation
+      without OCR or handwriting assessment.
+    residual_reason: >-
+      Source intent is restored, but demo_support.yaml keeps the package
+      unsupported because writing-material workflow, physical placement, and
+      note evidence handling need product/runtime acceptance.
+  - source_row: 28
+    activity_id: concept_how_many_guess_enumerate
+    before_verdict: intent_drift
+    after_verdict: minor_adaptation
+    source_tsv_intent: >-
+      Ask the child how many meaningful features an animal or object has, such
+      as animal legs, wheels, petals, or buttons, optionally with picture support.
+    post_repair_evidence: >-
+      spec.md and prod.md now reject generic icon piles and require target plus
+      feature questions such as dog legs, bicycle wheels, and flower petals.
+      demo_support.yaml and asset_manifest.yaml also describe semantic
+      feature-count cards.
+    residual_reason: >-
+      Minor adaptation remains because tag_block.yaml still contains a stale
+      activity_signature intro about estimating visible objects, even though the
+      repaired runtime instructions preserve the TSV behavior.
+  - source_row: 31
+    activity_id: concept_recognition_pop_probe
+    before_verdict: intent_drift
+    after_verdict: needs_product_decision
+    source_tsv_intent: >-
+      After a source target such as dog, introduce visually similar animals such
+      as fox and wolf, then show mixed target/distractor pictures where the
+      child says the target word only for the target and stays quiet otherwise.
+    post_repair_evidence: >-
+      spec.md and prod.md now require source target, similar-animal teaching,
+      mixed one-card pop stream, target-word response on target cards, and
+      quiet/no-word behavior on distractors. demo_support.yaml and
+      asset_manifest.yaml keep ordinary matching as an invalid fallback.
+    residual_reason: >-
+      Source intent is restored, but demo_support.yaml keeps the package
+      unsupported because timed target/distractor card state is not available in
+      the current demo contract; tag_block.yaml also retains a stale matching
+      intro.
+entries:
+  - source_row: 1
+    activity_id: concept_scavenger_hunt_collect
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_scavenger_hunt_collect
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves finding and photographing several real objects with a
+      shared color, shape, or category; no prebuilt screen asset is required.
+    findings: []
+  - source_row: 2
+    activity_id: concept_phoneme_hunt_collect
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_phoneme_hunt_collect
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves /b/ sound treasure hunting, real-object photo capture,
+      and spoken-name evidence; visual B-sound cards are support only.
+    findings:
+      - Spoken-name/phoneme judgment remains a runtime assumption rather than a fully verified capability.
+  - source_row: 3
+    activity_id: concept_branching_story_decide
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_branching_story_decide
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves story choice points where child decisions determine
+      later story beats.
+    findings: []
+  - source_row: 4
+    activity_id: concept_guided_drawing_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_guided_drawing_probe
+    verdict: needs_product_decision
+    evidence_summary: >-
+      Source paper-and-pencil guided drawing sequence is preserved as a
+      capability-gated package with final whole-work photo and no quality grade.
+    findings:
+      - Product must approve material setup and final-work capture before runtime launch.
+  - source_row: 5
+    activity_id: concept_word_echo_remember
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_word_echo_remember
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves listen-and-repeat word or phrase echo practice with a
+      valid voice-only fallback.
+    findings: []
+  - source_row: 6
+    activity_id: concept_building_challenge_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_building_challenge_probe
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves physical building with household materials and
+      no-assessment celebration, but completion evidence is child/caregiver
+      confirmation rather than visual verification.
+    findings: []
+  - source_row: 7
+    activity_id: concept_story_unlock_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_story_unlock_probe
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves fixed adventure story gates unlocked by small child
+      challenges, with visual unlock state treated as optional support.
+    findings: []
+  - source_row: 8
+    activity_id: concept_coloring_game_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_coloring_game_probe
+    verdict: needs_product_decision
+    evidence_summary: >-
+      Package records line art, photographed color sources, color-to-region
+      mapping, and final artwork, but live recoloring/static fallback needs
+      product acceptance.
+    findings:
+      - Product must decide whether fallback presentation satisfies the TSV promise of automatic coloring.
+  - source_row: 9
+    activity_id: concept_classic_music_movement_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_classic_music_movement_probe
+    verdict: needs_product_decision
+    evidence_summary: >-
+      Package preserves safe Freeze Dance/Floor Is Lava style movement cues but
+      abstracts named music playback.
+    findings:
+      - Music rights, audio policy, and trigger conditions remain unresolved.
+  - source_row: 10
+    activity_id: concept_childrens_yoga_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_childrens_yoga_probe
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves child-safe pose imitation and no camera-based quality
+      judgment, with approved pose cards as a dependency.
+    findings: []
+  - source_row: 11
+    activity_id: concept_partial_reveal_deduce
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_partial_reveal_deduce
+    verdict: aligned
+    evidence_summary: >-
+      Package requires visible partial animal cards before guessing the whole
+      animal and rejects voice-only guessing as the main path.
+    findings: []
+  - source_row: 12
+    activity_id: concept_emotion_reader_care
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_emotion_reader_care
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves noticing character/animal feeling cues and choosing a
+      caring response while avoiding real-person diagnosis.
+    findings:
+      - Scene/context support is simplified for lower-risk runtime use.
+  - source_row: 13
+    activity_id: concept_animal_sound_motion_voice
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_animal_sound_motion_voice
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves familiar animal sound or animal-role voice imitation.
+    findings: []
+  - source_row: 14
+    activity_id: concept_tiny_curator_sort
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_tiny_curator_sort
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves child-defined grouping: find related objects, arrange a
+      tiny exhibition, and explain the child's own rule.
+    findings: []
+  - source_row: 15
+    activity_id: concept_plant_parts_enumerate
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_plant_parts_enumerate
+    verdict: needs_product_decision
+    evidence_summary: >-
+      Package restores photo-based plant-part exploration and function notes,
+      but downstream runtime/demo support remains explicitly gated.
+    findings:
+      - Product/runtime acceptance is required before using the package as launchable.
+  - source_row: 16
+    activity_id: concept_plant_state_compare
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_plant_state_compare
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Repaired spec.md and prod.md now preserve plant-state photo/discussion,
+      green/yellow/damaged/blooming/wilting comparison, cautious state-change
+      explanation, and simple care guidance.
+    findings:
+      - demo_support.yaml marks photo state judgment degraded.
+      - tag_block.yaml state summary is source-adjacent but does not explicitly carry the care-guidance promise.
+  - source_row: 17
+    activity_id: concept_emotion_color_outfit_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_emotion_color_outfit_probe
+    verdict: needs_product_decision
+    evidence_summary: >-
+      Emotion-to-color choice remains present, but live character outfit
+      recoloring or acceptable fallback needs product approval.
+    findings: []
+  - source_row: 18
+    activity_id: concept_guess_in_10_deduce
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_guess_in_10_deduce
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves clue-by-clue guessing with easier hints when the child
+      is stuck.
+    findings: []
+  - source_row: 19
+    activity_id: concept_color_mixing_collect
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_color_mixing_collect
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves color mixing and primary/secondary color talk, but
+      allows choosing colors when photographing specified colors is unavailable.
+    findings: []
+  - source_row: 20
+    activity_id: concept_constellation_star_count_enumerate
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_constellation_star_count_enumerate
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves choose-number-before-reveal, reference-bound
+      constellation cards, visible star-count practice, and background facts;
+      scope is narrowed to a two-card pilot subset.
+    findings: []
+  - source_row: 21
+    activity_id: concept_toy_tidy_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_toy_tidy_probe
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves toy-area photo, two-minute tidy mission, organizing
+      tips, and after-state confirmation, but avoids visual cleanup claims.
+    findings: []
+  - source_row: 22
+    activity_id: concept_time_sense_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_time_sense_probe
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves predicting or feeling elapsed time and checking the
+      result within the source time-limit frame.
+    findings: []
+  - source_row: 23
+    activity_id: concept_one_line_drawing_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_one_line_drawing_probe
+    verdict: needs_product_decision
+    evidence_summary: >-
+      Physical one-line drawing from a reference is preserved, but material
+      workflow and reference-display support require approval.
+    findings: []
+  - source_row: 24
+    activity_id: concept_message_bottle_note_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_message_bottle_note_probe
+    verdict: needs_product_decision
+    evidence_summary: >-
+      Repaired spec.md and prod.md now preserve photographed or chosen
+      inspiration, warm story seed, paper-and-pencil note creation, recipient,
+      real placement, and no-OCR child/caregiver confirmation.
+    findings:
+      - demo_support.yaml keeps the package unsupported for current demo/runtime material workflow and note evidence handling.
+  - source_row: 25
+    activity_id: concept_award_certificate_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_award_certificate_probe
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves appreciation award design with paper/pencil and badge
+      inspiration, while photographed-object warm-story trigger is weaker than
+      the TSV example.
+    findings: []
+  - source_row: 26
+    activity_id: concept_career_decision_decide
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_career_decision_decide
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package strongly preserves role-first professional decision making, but
+      current content is a firefighter pilot subset.
+    findings: []
+  - source_row: 27
+    activity_id: concept_vegetable_sort_sort
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_vegetable_sort_sort
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Sorting and vegetable cards are preserved, but explicit vegetable taxonomy
+      instruction is softened to a more generic sorting flow.
+    findings: []
+  - source_row: 28
+    activity_id: concept_how_many_guess_enumerate
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_how_many_guess_enumerate
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Repaired spec.md and prod.md now preserve semantic feature-count guessing
+      for animal legs, object wheels/buttons, and petals instead of generic
+      visible-object counting.
+    findings:
+      - tag_block.yaml retains a stale activity_signature intro about estimating visible objects.
+  - source_row: 29
+    activity_id: concept_flashcards_enumerate
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_flashcards_enumerate
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves reusable picture-card recognition, naming, and a small
+      follow-up prompt.
+    findings: []
+  - source_row: 30
+    activity_id: concept_trivia_game_remember
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_trivia_game_remember
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Playful recall after a brief content output is preserved, while prior
+      topic binding and accumulated reward structure are implied rather than
+      enforced.
+    findings: []
+  - source_row: 31
+    activity_id: concept_recognition_pop_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_recognition_pop_probe
+    verdict: needs_product_decision
+    evidence_summary: >-
+      Repaired spec.md and prod.md now preserve source target, similar
+      distractors, one-card pop stream, speak-target behavior, and quiet
+      behavior for non-targets.
+    findings:
+      - demo_support.yaml keeps the package unsupported because timed target/distractor card state is unavailable.
+      - tag_block.yaml retains a stale matching intro.
+  - source_row: 32
+    activity_id: concept_word_build_guess_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_word_build_guess_probe
+    verdict: needs_product_decision
+    evidence_summary: >-
+      Generic word reveal is present, but the TSV requires letter guessing tied
+      to the photographed or asked-about object; product approval is needed for
+      clue-answer simplification.
+    findings: []
+  - source_row: 33
+    activity_id: concept_would_you_rather_compare
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_would_you_rather_compare
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves short funny two-choice Would You Rather questions and
+      tiny preference reasons.
+    findings: []
+  - source_row: 34
+    activity_id: concept_art_critic_tournament_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_art_critic_tournament_probe
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Tournament preference flow is preserved, with rights-cleared artwork
+      source and state handling as dependencies.
+    findings: []
+  - source_row: 35
+    activity_id: concept_color_famous_art_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_color_famous_art_probe
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves child-provided color leading to approved artworks where
+      that color is important plus simple background introduction.
+    findings: []
+  - source_row: 36
+    activity_id: concept_body_movement_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_body_movement_probe
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves safe simple movement imitation with visual support and
+      no detection/evaluation.
+    findings: []
+  - source_row: 37
+    activity_id: concept_current_topic_interview_deduce
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_current_topic_interview_deduce
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Opinion-and-reason interview is preserved, while social/current-topic
+      background is generalized and simplified.
+    findings: []
+  - source_row: 38
+    activity_id: concept_little_poem_build
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_little_poem_build
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Poem co-creation is preserved, with runtime expected to bind to the
+      child's photographed or asked-about object when available.
+    findings: []
+  - source_row: 39
+    activity_id: concept_travel_planner_predict
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_travel_planner_predict
+    verdict: aligned
+    evidence_summary: >-
+      Package preserves toy/character trip planning with packing, travel, and
+      weather or event choices.
+    findings: []
+  - source_row: 40
+    activity_id: concept_quick_silly_decide
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_quick_silly_decide
+    verdict: minor_adaptation
+    evidence_summary: >-
+      Package preserves quick silly binary choices, but the TSV's 5-7 rapid
+      question rhythm and countdown/drumbeat feel are under-specified.
+    findings: []
