@@ -1,0 +1,611 @@
+run_id: 20260601_155917_full_pass_agentic_tsv
+artifact_kind: current_run_source_intent_audit
+created_at: "2026-06-01T16:11:10+08:00"
+auditor_role: source-intent auditor
+scope: all 40 workbook rows and run-local activity packages
+source_of_truth: inputs/original_activity_concepts_2026-05-29.tsv
+helper_only: inputs/source_activity_concepts.md
+package_root: runs/20260601_155917_full_pass_agentic_tsv/activity_packages
+method:
+  - Read the TSV workbook rows as authoritative source intent.
+  - Used source_activity_concepts.md only to clarify English names, helper locks, and asset hints.
+  - Compared each mapped package's spec.md, prod.md, and tag_block.yaml against child role, sequence, child action, asset/reference promise, background/context promise, and runtime AI instruction quality.
+  - Did not repair package files.
+verdict_enum:
+  - aligned
+  - minor_adaptation
+  - intent_drift
+  - needs_product_decision
+summary:
+  total_entries: 40
+  aligned: 12
+  minor_adaptation: 17
+  intent_drift: 4
+  needs_product_decision: 7
+high_risk_previous_drift:
+  checked_rows:
+    - source_row: 15
+      activity_id: concept_plant_parts_enumerate
+      current_verdict: needs_product_decision
+      unresolved: true
+      note: Source sequence is restored, but package is intentionally downstream-unsupported and needs product/runtime acceptance before use.
+    - source_row: 16
+      activity_id: concept_plant_state_compare
+      current_verdict: intent_drift
+      unresolved: true
+      note: Still omits the TSV-required state-change explanation and plant-care idea.
+    - source_row: 20
+      activity_id: concept_constellation_star_count_enumerate
+      current_verdict: minor_adaptation
+      unresolved: false
+      note: Prior drift is substantially repaired; the remaining adaptation is a two-card pilot subset.
+    - source_row: 24
+      activity_id: concept_message_bottle_note_probe
+      current_verdict: intent_drift
+      unresolved: true
+      note: Still weakens photographed-object warm story, physical note, placement, and final show/capture flow.
+    - source_row: 28
+      activity_id: concept_how_many_guess_enumerate
+      current_verdict: intent_drift
+      unresolved: true
+      note: Still changes meaningful feature-count questions into generic visible object counting.
+    - source_row: 31
+      activity_id: concept_recognition_pop_probe
+      current_verdict: intent_drift
+      unresolved: true
+      note: Still changes speak-target/stay-quiet timing into ordinary picture matching.
+    - source_row: 32
+      activity_id: concept_word_build_guess_probe
+      current_verdict: needs_product_decision
+      unresolved: true
+      note: Letter guessing tied to the photographed or asked-about object may be replaced by generic clue answering without recorded product approval.
+entries:
+  - source_row: 1
+    activity_id: concept_scavenger_hunt_collect
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_scavenger_hunt_collect
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child is the finder/collector of objects sharing a color, shape, or category.
+      sequence: Package opens the shared-feature rule, collects repeated finds, and closes with saved tokens.
+      required_child_action: Find, photograph, and name objects that share the target feature.
+      real_or_reference_asset_requirement: No prebuilt asset required; real-world objects are the evidence.
+      background_or_context_promise: Higher-tier extension is not required for this T1 package.
+      runtime_ai_instruction_quality: Adequate behavior contracts; generic wording stays within the collection frame.
+    findings: []
+  - source_row: 2
+    activity_id: concept_phoneme_hunt_collect
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_phoneme_hunt_collect
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child is a sound-treasure finder.
+      sequence: Package preserves hungry /b/ sound setup, real-object search, photo capture, name evidence, and sound check.
+      required_child_action: Find and photograph a real object whose spoken name starts with /b/.
+      real_or_reference_asset_requirement: Uses generated B-sound clue cards as support; real object remains required.
+      background_or_context_promise: Source is phoneme play, not formal phonics; package keeps a playful frame.
+      runtime_ai_instruction_quality: Strong and specific, with guardrails that visual cards only support the search.
+    findings:
+      - Degraded runtime judgment of spoken object names remains an implementation assumption.
+  - source_row: 3
+    activity_id: concept_branching_story_decide
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_branching_story_decide
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child chooses story paths.
+      sequence: Package states story choice points where child decisions decide what happens next.
+      required_child_action: Make simple choices during the story.
+      real_or_reference_asset_requirement: No required asset.
+      background_or_context_promise: Story branching is the context promise.
+      runtime_ai_instruction_quality: Adequate, though many step contracts are templated.
+    findings: []
+  - source_row: 4
+    activity_id: concept_guided_drawing_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_guided_drawing_probe
+    verdict: needs_product_decision
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child is a paper-and-pencil maker.
+      sequence: Package records step-by-step drawing, wait time, final whole-work photo, and no quality grading.
+      required_child_action: Draw physically with paper and pencil.
+      real_or_reference_asset_requirement: Optional step cards; real materials are required.
+      background_or_context_promise: Process celebration is preserved as a capability gate.
+      runtime_ai_instruction_quality: Clear for gating, not a launchable runtime flow.
+    findings:
+      - Package readiness is blocked_until_product_decision; product must approve material workflow and final-work capture before runtime use.
+  - source_row: 5
+    activity_id: concept_word_echo_remember
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_word_echo_remember
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child is an echo speaker.
+      sequence: Package keeps listen, repeat, and try again rounds.
+      required_child_action: Repeat a word or tiny phrase by voice.
+      real_or_reference_asset_requirement: Optional cards only; voice-only fallback is valid.
+      background_or_context_promise: Second-language choice is optional and not required in the T1 package.
+      runtime_ai_instruction_quality: Adequate, with no reading dependency.
+    findings: []
+  - source_row: 6
+    activity_id: concept_building_challenge_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_building_challenge_probe
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child is a physical builder using blocks, clay, cushions, or household materials.
+      sequence: Package keeps material setup, build target, physical work, and no-assessment confirmation.
+      required_child_action: Build a simple target physically.
+      real_or_reference_asset_requirement: Optional reference cards; real materials are required.
+      background_or_context_promise: Source examples are broadened to a general material build challenge.
+      runtime_ai_instruction_quality: Adequate and honest about caregiver setup and no quality inference.
+    findings:
+      - Before/after evidence is reduced to child or caregiver confirmation.
+  - source_row: 7
+    activity_id: concept_story_unlock_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_story_unlock_probe
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child completes small challenges to unlock a fixed story.
+      sequence: Package preserves story beat, paused gate, quick challenge, and next story beat.
+      required_child_action: Complete a small task such as finding a color, making a sound, or echoing a word.
+      real_or_reference_asset_requirement: Optional cards only.
+      background_or_context_promise: Adventure/story framing remains required around challenges.
+      runtime_ai_instruction_quality: Adequate, with state/display fallbacks called out.
+    findings:
+      - Visual unlock state is treated as optional support.
+  - source_row: 8
+    activity_id: concept_coloring_game_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_coloring_game_probe
+    verdict: needs_product_decision
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child co-creates an artwork by supplying photographed colors.
+      sequence: Package records line art, real-world color capture, mapping color to regions, and artwork reveal.
+      required_child_action: Photograph color sources for fill regions.
+      real_or_reference_asset_requirement: Runtime or static line-art asset and recoloring state are required for the full source promise.
+      background_or_context_promise: Final shareable artwork is part of the source promise.
+      runtime_ai_instruction_quality: Honest about unsupported live recoloring and static/no-image fallbacks.
+    findings:
+      - Product must decide whether static preview or verbal fallback is acceptable for a source that promises automatic coloring.
+  - source_row: 9
+    activity_id: concept_classic_music_movement_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_classic_music_movement_probe
+    verdict: needs_product_decision
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child moves in a safe Freeze Dance or Floor Is Lava style game.
+      sequence: Package keeps movement cue rounds but abstracts away named music playback.
+      required_child_action: Move, freeze, or respond to rhythm/mood cues.
+      real_or_reference_asset_requirement: No visual asset required.
+      background_or_context_promise: Music rights and trigger policy remain unresolved in the source notes.
+      runtime_ai_instruction_quality: Adequate safety language, but source music/game policy is unresolved.
+    findings:
+      - Product must approve music/audio policy and trigger conditions before this is a faithful runtime activity.
+  - source_row: 10
+    activity_id: concept_childrens_yoga_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_childrens_yoga_probe
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child imitates child-safe poses.
+      sequence: Package guides a short pose routine and avoids camera-based quality judgment.
+      required_child_action: Copy simple poses or movement metaphors.
+      real_or_reference_asset_requirement: Approved pose cards are required or must degrade honestly.
+      background_or_context_promise: Safety and enough time are preserved.
+      runtime_ai_instruction_quality: Adequate, with motion safety and display fallback.
+    findings:
+      - Approved pose library remains a dependency.
+  - source_row: 11
+    activity_id: concept_partial_reveal_deduce
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_partial_reveal_deduce
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child is an evidence guesser.
+      sequence: Package requires visible partial cards before guessing and uses three part challenges.
+      required_child_action: Guess the whole animal from the displayed part.
+      real_or_reference_asset_requirement: Required prebuilt partial-reveal cards are declared.
+      background_or_context_promise: Source promise is visual clue guessing, not trivia.
+      runtime_ai_instruction_quality: Strong; rejects voice-only guessing as the main path.
+    findings: []
+  - source_row: 12
+    activity_id: concept_emotion_reader_care
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_emotion_reader_care
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child interprets a character or animal's possible feeling.
+      sequence: Package keeps cue noticing, possible feeling, and helpful response.
+      required_child_action: Name or choose a feeling and explain evidence.
+      real_or_reference_asset_requirement: Optional expression cards; no diagnosis of real people.
+      background_or_context_promise: Scene/context support is simplified to obvious expression or body cue.
+      runtime_ai_instruction_quality: Adequate and safer than direct emotion diagnosis.
+    findings:
+      - Open-ended feeling definition may be narrowed to choices for younger children.
+  - source_row: 13
+    activity_id: concept_animal_sound_motion_voice
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_animal_sound_motion_voice
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child makes animal sounds or speaks in role.
+      sequence: Package prompts familiar animals and accepts child imitation.
+      required_child_action: Produce an animal sound or animal-role voice.
+      real_or_reference_asset_requirement: Optional animal cards only.
+      background_or_context_promise: Sound flashcard frame is preserved.
+      runtime_ai_instruction_quality: Adequate.
+    findings: []
+  - source_row: 14
+    activity_id: concept_tiny_curator_sort
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_tiny_curator_sort
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child is a curator who creates the grouping rule.
+      sequence: Package asks child to find three or four related objects, arrange them, and explain the rule.
+      required_child_action: Select, arrange, and explain a child-defined collection.
+      real_or_reference_asset_requirement: No prebuilt asset required.
+      background_or_context_promise: Divergent grouping logic is preserved.
+      runtime_ai_instruction_quality: Adequate.
+    findings: []
+  - source_row: 15
+    activity_id: concept_plant_parts_enumerate
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_plant_parts_enumerate
+    verdict: needs_product_decision
+    high_risk_previous_drift: true
+    evidence:
+      child_role: Child is a plant-part field explorer.
+      sequence: Package restores photo-based first part, different part, and function/background note beats.
+      required_child_action: Photograph different visible plant locations and name or choose the part.
+      real_or_reference_asset_requirement: Real camera evidence is required; no prebuilt asset.
+      background_or_context_promise: Part-function notes are present and explicitly guarded.
+      runtime_ai_instruction_quality: Strong for source intent, with concrete leaf/stem/flower facts.
+    findings:
+      - Previous generic naming drift appears repaired.
+      - Package is intentionally unsupported in current downstream runtime templates and needs product/runtime acceptance before playable use.
+  - source_row: 16
+    activity_id: concept_plant_state_compare
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_plant_state_compare
+    verdict: intent_drift
+    high_risk_previous_drift: true
+    evidence:
+      child_role: Child should compare visible leaf states such as green, yellowing, or damaged.
+      sequence: Package compares generic plant states but does not require the TSV's state-change and care sequence.
+      required_child_action: Source requires photo-based state comparison; package allows generic visible-state choices.
+      real_or_reference_asset_requirement: Real plant photo evidence should ground the comparison.
+      background_or_context_promise: Required state-change explanation and simple care guidance are missing or too weak.
+      runtime_ai_instruction_quality: Generic multi-round compare template; not specific enough to the state-and-care promise.
+    findings:
+      - Restore state-change explanation and one plant-care idea, or record product approval for generic state comparison.
+  - source_row: 17
+    activity_id: concept_emotion_color_outfit_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_emotion_color_outfit_probe
+    verdict: needs_product_decision
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child assigns outfit colors to character emotions.
+      sequence: Package keeps emotion-to-color choice but allows imagining/static fallback.
+      required_child_action: Choose colors for several expressions.
+      real_or_reference_asset_requirement: Source needs a displayed character with white clothing and changing/colored outfit state.
+      background_or_context_promise: Clothing recolor after each emotion is part of the source promise.
+      runtime_ai_instruction_quality: Adequate but explicitly fallback-dependent.
+    findings:
+      - Product must approve static/imagination fallback if live outfit recoloring is unavailable.
+  - source_row: 18
+    activity_id: concept_guess_in_10_deduce
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_guess_in_10_deduce
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child guesses from clues.
+      sequence: Package gives clues one by one, accepts guesses, and provides easier support.
+      required_child_action: Infer animal or object from evidence.
+      real_or_reference_asset_requirement: Optional reference cards only.
+      background_or_context_promise: Tiered clue difficulty and frustration reduction are preserved.
+      runtime_ai_instruction_quality: Adequate.
+    findings: []
+  - source_row: 19
+    activity_id: concept_color_mixing_collect
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_color_mixing_collect
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child gathers or chooses colors for a mixing experiment.
+      sequence: Package keeps color selection, prediction, and compare-against-result sequence.
+      required_child_action: Find or choose two colors and predict the mix.
+      real_or_reference_asset_requirement: Optional visual support only.
+      background_or_context_promise: Color-mixing explanation is preserved at a basic level.
+      runtime_ai_instruction_quality: Adequate.
+    findings:
+      - TSV asks for photographing specified color objects; package also allows choosing colors.
+  - source_row: 20
+    activity_id: concept_constellation_star_count_enumerate
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_constellation_star_count_enumerate
+    verdict: minor_adaptation
+    high_risk_previous_drift: true
+    evidence:
+      child_role: Child chooses a star-count number before reveal.
+      sequence: Package now preserves choose number, reveal matching real constellation, give background fact, and close.
+      required_child_action: Choose 5 or 7; do not count a visible image first.
+      real_or_reference_asset_requirement: Required reference-bound Cassiopeia and Orion cards are declared with internal approved sources.
+      background_or_context_promise: Short constellation background fact is explicit.
+      runtime_ai_instruction_quality: Strong; directly rejects prior direct-counting and fictional-pattern drift.
+    findings:
+      - Adaptation narrows the TSV's prebuilt constellation list to a two-card pilot subset.
+  - source_row: 21
+    activity_id: concept_toy_tidy_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_toy_tidy_probe
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child is a tidy-up challenger.
+      sequence: Package keeps before/toy context, consent, short timed tidy, tips, and after-state confirmation.
+      required_child_action: Physically tidy toys.
+      real_or_reference_asset_requirement: Real toy-area photo or child/caregiver confirmation is needed.
+      background_or_context_promise: Organizing tips during the timer are preserved.
+      runtime_ai_instruction_quality: Adequate and honest about no quality inference.
+    findings:
+      - After photo may be reduced to confirmation fallback.
+  - source_row: 22
+    activity_id: concept_time_sense_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_time_sense_probe
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child estimates elapsed time.
+      sequence: Package predicts short time, waits/checks, and compares result.
+      required_child_action: Close eyes or wait, then signal when time feels complete.
+      real_or_reference_asset_requirement: No visual asset required.
+      background_or_context_promise: Time-sense practice is preserved; timer max is implied by short estimates.
+      runtime_ai_instruction_quality: Adequate.
+    findings: []
+  - source_row: 23
+    activity_id: concept_one_line_drawing_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_one_line_drawing_probe
+    verdict: needs_product_decision
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child copies a one-line drawing with paper and pen.
+      sequence: Package preserves reference image, physical draw attempt, final show, and no grading.
+      required_child_action: Find paper/pen and draw physically.
+      real_or_reference_asset_requirement: Required prebuilt one-line references and real materials.
+      background_or_context_promise: Process encouragement is preserved.
+      runtime_ai_instruction_quality: Adequate but dependent on material and reference-display support.
+    findings:
+      - Product must approve Cat3 material workflow and reference-card display before playable use.
+  - source_row: 24
+    activity_id: concept_message_bottle_note_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_message_bottle_note_probe
+    verdict: intent_drift
+    high_risk_previous_drift: true
+    evidence:
+      child_role: Child should make a physical kindness note inspired by a photographed object or chosen inspiration.
+      sequence: Package reduces warm photographed-inspiration story, write/draw step, placement, and show/capture into a generic kindness-message loop.
+      required_child_action: Source requires writing or drawing a note and placing it for a parent or friend.
+      real_or_reference_asset_requirement: Real paper/pen material workflow and optional final photo/confirmation are source-relevant.
+      background_or_context_promise: Warm story from the photographed thing is missing.
+      runtime_ai_instruction_quality: Generic care template; not specific enough to physical note placement.
+    findings:
+      - Restore photographed-inspiration story plus physical note placement, or record product approval for verbal-message adaptation.
+  - source_row: 25
+    activity_id: concept_award_certificate_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_award_certificate_probe
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child makes or designs an appreciation award.
+      sequence: Package keeps warm story framing, award idea, paper design, and no grading.
+      required_child_action: Draw or make an award for someone.
+      real_or_reference_asset_requirement: Optional badge inspiration; real materials remain relevant.
+      background_or_context_promise: Appreciation/care context is preserved.
+      runtime_ai_instruction_quality: Adequate with material-workflow assumptions.
+    findings:
+      - Photographed-object story trigger is less explicit than the TSV.
+  - source_row: 26
+    activity_id: concept_career_decision_decide
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_career_decision_decide
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child is assigned a professional/expert role before decisions.
+      sequence: Package explicitly preserves role-first setup, concrete work scenario, and A/B or yes/no decisions.
+      required_child_action: Decide expert actions.
+      real_or_reference_asset_requirement: Uses a firefighter role card as pilot support.
+      background_or_context_promise: Professional pride and role play are preserved.
+      runtime_ai_instruction_quality: Strong and source-specific.
+    findings:
+      - Current package is a firefighter pilot rather than a general profession library.
+  - source_row: 27
+    activity_id: concept_vegetable_sort_sort
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_vegetable_sort_sort
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child classifies vegetable cards or photographed vegetables.
+      sequence: Package supports sorting rounds but generalizes the taxonomy rule.
+      required_child_action: Sort vegetables into categories.
+      real_or_reference_asset_requirement: Required vegetable cards or real photographed vegetables.
+      background_or_context_promise: TSV's leaf/stem/root category introduction is weakened.
+      runtime_ai_instruction_quality: Adequate but generic.
+    findings:
+      - Add explicit common-vegetable taxonomy if this row is expected to teach leaf/stem/root categories.
+  - source_row: 28
+    activity_id: concept_how_many_guess_enumerate
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_how_many_guess_enumerate
+    verdict: intent_drift
+    high_risk_previous_drift: true
+    evidence:
+      child_role: Child should answer meaningful feature-count questions about animals or objects.
+      sequence: Package estimates visible object sets and counts them with AI.
+      required_child_action: Source requires "how many legs/wheels/petals/buttons" style feature answers.
+      real_or_reference_asset_requirement: Optional image support should show entities with meaningful countable attributes.
+      background_or_context_promise: Attribute context is missing.
+      runtime_ai_instruction_quality: Generic counting-card template; conflicts with helper source_intent_lock.
+    findings:
+      - Restore quantity-attribute questions or record product approval for generic estimate-and-count cards.
+  - source_row: 29
+    activity_id: concept_flashcards_enumerate
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_flashcards_enumerate
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child recognizes and names picture cards.
+      sequence: Package shows/cards, asks child to name, and follows up.
+      required_child_action: Identify what is on a card.
+      real_or_reference_asset_requirement: Prebuilt image library is required or must degrade honestly.
+      background_or_context_promise: Reusable category practice is preserved.
+      runtime_ai_instruction_quality: Adequate.
+    findings: []
+  - source_row: 30
+    activity_id: concept_trivia_game_remember
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_trivia_game_remember
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child recalls content from a prior short topic output.
+      sequence: Package has playful question rounds but abstracts the preceding content output.
+      required_child_action: Answer low-pressure recall questions.
+      real_or_reference_asset_requirement: Optional image support.
+      background_or_context_promise: Topic content before quiz is implied rather than strongly enforced.
+      runtime_ai_instruction_quality: Adequate but generic.
+    findings:
+      - Runtime should ensure the quiz follows content tied to a photographed or asked-about topic.
+  - source_row: 31
+    activity_id: concept_recognition_pop_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_recognition_pop_probe
+    verdict: intent_drift
+    high_risk_previous_drift: true
+    evidence:
+      child_role: Child should respond only when the target appears and stay quiet for similar distractors.
+      sequence: Package changes source-photo intro and target/distractor stream into ordinary matching choices.
+      required_child_action: Source child action is say "dog" for target dog and stay quiet otherwise; package asks child to choose matching pictures.
+      real_or_reference_asset_requirement: Real or approved target/distractor animal photos are required.
+      background_or_context_promise: Similar-animal teaching from source object, such as dog/fox/wolf, is missing.
+      runtime_ai_instruction_quality: Generic compare template; fallback says block if UI unavailable but still supplies dialogue matching rounds.
+    findings:
+      - Restore recognition-pop target timing or record product approval for ordinary matching.
+  - source_row: 32
+    activity_id: concept_word_build_guess_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_word_build_guess_probe
+    verdict: needs_product_decision
+    high_risk_previous_drift: true
+    evidence:
+      child_role: Child should say letters to reveal a hidden word tied to the photographed or asked-about object.
+      sequence: Package allows letter choices or clue answers to reveal a word.
+      required_child_action: Source action is letter guessing until the word is complete.
+      real_or_reference_asset_requirement: Word-growth UI or equivalent visible progress is required for full promise.
+      background_or_context_promise: Object/photo relationship for the hidden word is not explicit enough.
+      runtime_ai_instruction_quality: Adequate for a generic word puzzle, weak for object-tied letter guessing.
+    findings:
+      - Product must approve clue-answer simplification and non-explicit object binding, or the package should restore letter-only object-tied play.
+  - source_row: 33
+    activity_id: concept_would_you_rather_compare
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_would_you_rather_compare
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child answers playful two-choice questions.
+      sequence: Package runs short silly comparison prompts and closes with a favorite.
+      required_child_action: Choose one option and optionally give a tiny reason.
+      real_or_reference_asset_requirement: No asset required.
+      background_or_context_promise: Funny, voice-led choice play is preserved.
+      runtime_ai_instruction_quality: Strong and concise.
+    findings: []
+  - source_row: 34
+    activity_id: concept_art_critic_tournament_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_art_critic_tournament_probe
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child is an art chooser in a tournament.
+      sequence: Package compares two approved artworks per round and keeps a winner.
+      required_child_action: Choose the preferred artwork across rounds.
+      real_or_reference_asset_requirement: Rights-cleared or approved artwork assets are required.
+      background_or_context_promise: Tournament winner flow is preserved.
+      runtime_ai_instruction_quality: Adequate with state and asset assumptions.
+    findings:
+      - Product/art-source approval remains a dependency.
+  - source_row: 35
+    activity_id: concept_color_famous_art_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_color_famous_art_probe
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child supplies a real-world color that drives artwork selection.
+      sequence: Package preserves capture/choose color, show several matching approved artworks, and give child-safe background.
+      required_child_action: Photograph or name a color.
+      real_or_reference_asset_requirement: Approved public-domain or licensed artwork assets with color metadata are required.
+      background_or_context_promise: Artwork background introduction is explicit.
+      runtime_ai_instruction_quality: Adequate and source-specific.
+    findings: []
+  - source_row: 36
+    activity_id: concept_body_movement_probe
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_body_movement_probe
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child imitates simple safe body movements.
+      sequence: Package guides one simple movement at a time with safety limits.
+      required_child_action: Copy stretch, raise-hand, crouch, or animal-like movement.
+      real_or_reference_asset_requirement: Source expects related pictures; package declares display fallback.
+      background_or_context_promise: No motion evaluation; process focus is preserved.
+      runtime_ai_instruction_quality: Adequate with motion safety.
+    findings:
+      - Approved movement cards remain a support dependency.
+  - source_row: 37
+    activity_id: concept_current_topic_interview_deduce
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_current_topic_interview_deduce
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Older child is an interviewee giving an opinion and reason.
+      sequence: Package discusses an age-appropriate topic but abstracts topic sourcing.
+      required_child_action: Say a viewpoint and a reason.
+      real_or_reference_asset_requirement: No asset required.
+      background_or_context_promise: Source expects some social/funny background setup; package keeps only age-appropriate topic framing.
+      runtime_ai_instruction_quality: Adequate but generic.
+    findings:
+      - Runtime should avoid live-news dependence unless product approves current-topic sourcing.
+  - source_row: 38
+    activity_id: concept_little_poem_build
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_little_poem_build
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child co-creates a small poem from a photographed or chosen thing.
+      sequence: Package keeps child participation, poem creation, and reading aloud.
+      required_child_action: Provide the object/topic and respond to poem choices.
+      real_or_reference_asset_requirement: No asset required.
+      background_or_context_promise: Rhyme and participation are preserved, with topic binding generalized.
+      runtime_ai_instruction_quality: Adequate.
+    findings:
+      - Ensure runtime ties the poem to the child's photographed/asked-about object when available.
+  - source_row: 39
+    activity_id: concept_travel_planner_predict
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_travel_planner_predict
+    verdict: aligned
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child helps a toy or character plan a trip.
+      sequence: Package keeps packing, travel choice, and what-might-happen planning.
+      required_child_action: Choose what to bring or plan for a condition such as rain.
+      real_or_reference_asset_requirement: Optional support only.
+      background_or_context_promise: Real-life planning frame is preserved.
+      runtime_ai_instruction_quality: Adequate.
+    findings: []
+  - source_row: 40
+    activity_id: concept_quick_silly_decide
+    package_path: runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_quick_silly_decide
+    verdict: minor_adaptation
+    high_risk_previous_drift: false
+    evidence:
+      child_role: Child answers rapid silly yes/no or A/B prompts.
+      sequence: Package runs short playful choice questions.
+      required_child_action: Make quick decisions.
+      real_or_reference_asset_requirement: Optional countdown/screen support only.
+      background_or_context_promise: Fast host energy is implied but not strongly enforced.
+      runtime_ai_instruction_quality: Adequate but should keep pace quick.
+    findings:
+      - Package may under-specify the TSV's 5-7 rapid-question rhythm and countdown support.
