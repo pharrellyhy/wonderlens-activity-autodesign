@@ -1,0 +1,37 @@
+run_id: 20260601_155917_full_pass_agentic_tsv
+consumer: fullstack_demo
+worktree: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game
+branch: feat/activity-text-game
+credential_source: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend
+server:
+  started: true
+  host: 127.0.0.1
+  requested_port: 8000
+  actual_port: 8001
+  port_substitution_reason: 127.0.0.1:8000 was already occupied locally.
+  stopped: true
+checks:
+  backend_structural:
+    command: uv run pytest backend/tests/test_activity_text_game_api.py backend/tests/test_activity_text_game_definitions.py backend/tests/test_activity_text_game_cat3.py backend/tests/test_activity_text_game_turns.py -q
+    status: pass
+    result: 17 passed in 2.05s
+  live_smoke_existing_catalog:
+    command: uv run python scripts/run_activity_text_smoke.py --base-url http://127.0.0.1:8001
+    status: pass
+    result: 12 passed, 0 failed
+direct_package_load:
+  status: consumer_gap
+  evidence:
+    - backend/game_loader.py scans only top-level backend/games/*.md files with YAML frontmatter.
+    - No active scripts/import_autodesign_package.py loader was found in the required worktree.
+    - scripts/generate_game_frontmatter.py is a scaffold generator and leaves TODOs.
+    - scripts/convert_game.py converts one prod markdown file through a hosted model and is not a direct package loader.
+  generated_run_packages_loaded: false
+  generated_run_live_dialogue_qa_status: not_run
+  reason_not_run: The required fullstack branch currently lacks a direct non-lossy package load/import surface for this run's activity_packages directory.
+owner: fullstack consumer/importer
+next_required_gate:
+  - Provide or implement a non-lossy autodesign package importer/converter.
+  - Preserve runtime-quality step_instructions comparable to backend/games/fluffy_expedition_dandelion.md.
+  - Load generated packages into the required worktree without manual content improvement.
+  - Re-run live dialogue QA on loaded package output with multiple child-input strategies.
