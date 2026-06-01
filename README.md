@@ -165,11 +165,12 @@ Recommended invocation:
 /goal Execute GOAL.md end to end using run.md with asset_build=generate_and_curate full_pass_pipeline=true.
 ```
 
-The detailed contract lives in
-`docs/plans/2026-06-01-full-pass-agentic-pipeline.md`; the executable goal file
-lives in `goals/2026-06-01-full-pass-agentic-pipeline-goal.md`. `GOAL.md`,
-`run.md`, and `program.md` remain the runtime procedure that a full pass must
-obey.
+For an engineering/product explanation, read
+`docs/full_pass_agentic_pipeline_explainer.md`. The detailed implementation
+contract lives in `docs/plans/2026-06-01-full-pass-agentic-pipeline.md`; the
+executable goal file lives in
+`goals/2026-06-01-full-pass-agentic-pipeline-goal.md`. `GOAL.md`, `run.md`, and
+`program.md` remain the runtime procedure that a full pass must obey.
 
 In this mode the main agent is the master orchestrator and should delegate
 disjoint evidence work: source-intent audit, text-only package writing,
