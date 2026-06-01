@@ -39,9 +39,9 @@ Older child and parent select an age-appropriate news, school, community, or nat
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Current Topic Interview starter cue, name the child as current topic interview player, and preview the first opinion-and-reason interview turn.
 
-**Example AI line:** "I found a small mission for us: Current Topic Interview. I will guide one step at a time."
+**Example AI line:** "Current Topic Interview starts now. You are the current topic interview player; I will help one opinion-and-reason interview turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Older child and parent select an age-appropriate news, school, community, or nat
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one opinion-and-reason interview cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -75,7 +75,7 @@ Older child and parent select an age-appropriate news, school, community, or nat
 2. Keep the rule tied to the first opinion, name the supported fallback, and offer one allowed first turn.
 3. [wait 2s] Read the Current Topic Interview rule in one sentence and ask for yes, a point, or the first chance to make a clue-based guess.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the active opinion-and-reason interview cue.
 
 #### Step 3: Multi-Round Core Loop
 
@@ -83,7 +83,7 @@ Older child and parent select an age-appropriate news, school, community, or nat
 
 **Runtime AI instruction:** Preserve the workbook promise: The child discusses an age-appropriate topic by giving an opinion and a reason. Ask the child to use clues to infer in the first small turn.
 
-**Example AI line:** "Let us start: The child discusses an age-appropriate topic by giving an opinion and a reason. What is your first try?"
+**Example AI line:** "Let us start: The child discusses an age-appropriate topic by giving an opinion and a reason. Try the first opinion with a reason now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Older child and parent select an age-appropriate news, school, community, or nat
 2. Name the clue in the first opinion, separate it from one distracting detail, and ask for one maybe-guess.
 3. [wait 2s] Point to one visible clue for the first opinion, model a "maybe it is" guess, and invite a copy or new guess.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and opinion-and-reason interview cue. No prebuilt asset is required; show progress tokens and the active opinion-and-reason interview cue.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Older child and parent select an age-appropriate news, school, community, or nat
 2. Name the clue in the reason for the opinion, separate it from one distracting detail, and ask for one maybe-guess.
 3. [wait 2s] Point to one visible clue for the reason for the opinion, model a "maybe it is" guess, and invite a copy or new guess.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and opinion-and-reason interview cue. No prebuilt asset is required; show progress tokens and the active opinion-and-reason interview cue.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your opinion-and-reason interview turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Older child and parent select an age-appropriate news, school, community, or nat
 2. Name the clue in the polite follow-up thought, separate it from one distracting detail, and ask for one maybe-guess.
 3. [wait 2s] Point to one visible clue for the polite follow-up thought, model a "maybe it is" guess, and invite a copy or new guess.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and opinion-and-reason interview cue. No prebuilt asset is required; show progress tokens and the active opinion-and-reason interview cue.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your opinion-and-reason interview turns are saved: we started Current Topic Interview, practiced opinion-and-reason interview, and reached the finish."
 
 **Child responses:**
 

@@ -39,9 +39,9 @@ Child notices two colors nearby or selects a color experiment mode.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Color Mixing Board starter cue, name the child as color mixing board player, and preview the first color-mixing prediction turn.
 
-**Example AI line:** "I found a small mission for us: Color Mixing Board. I will guide one step at a time."
+**Example AI line:** "Color Mixing Board starts now. You are the color mixing board player; I will help one color-mixing prediction turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child notices two colors nearby or selects a color experiment mode.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one color-mixing prediction cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Child notices two colors nearby or selects a color experiment mode.
 
 **Runtime AI instruction:** Preserve the workbook promise: The child chooses or finds two colors, predicts what they make together, and compares against the mixed result. Ask the child to find or match in the first small turn.
 
-**Example AI line:** "Let us start: The child chooses or finds two colors, predicts what they make together, and compares against the mixed result. What is your first try?"
+**Example AI line:** "Let us start: The child chooses or finds two colors, predicts what they make together, and compares against the mixed result. Try the first color mix prediction now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child notices two colors nearby or selects a color experiment mode.
 2. Keep the hunt rule visible, contrast one non-match with one allowed example, and ask for a safer match for the first color pair.
 3. [wait 2s] Give one concrete example that would count for the first color pair, then ask the child to point, say, or show one.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_mixing_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.
+**Screen:** Shows the active round token, child response slot, and color-mixing prediction cue. Use `color_mixing_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child notices two colors nearby or selects a color experiment mode.
 2. Keep the hunt rule visible, contrast one non-match with one allowed example, and ask for a safer match for the mixed-color prediction check.
 3. [wait 2s] Give one concrete example that would count for the mixed-color prediction check, then ask the child to point, say, or show one.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_mixing_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.
+**Screen:** Shows the active round token, child response slot, and color-mixing prediction cue. Use `color_mixing_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your color-mixing prediction turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child notices two colors nearby or selects a color experiment mode.
 2. Keep the hunt rule visible, contrast one non-match with one allowed example, and ask for a safer match for the name for the mixed result.
 3. [wait 2s] Give one concrete example that would count for the name for the mixed result, then ask the child to point, say, or show one.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_mixing_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.
+**Screen:** Shows the active round token, child response slot, and color-mixing prediction cue. Use `color_mixing_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the board is unavailable, explain the color result by voice and do not claim the screen is mixing colors.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your color-mixing prediction turns are saved: we started Color Mixing Board, practiced color-mixing prediction, and reached the finish."
 
 **Child responses:**
 

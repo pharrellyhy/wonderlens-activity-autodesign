@@ -39,9 +39,9 @@ Child photographs an object, chooses a feeling, or names a favorite topic.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Little Poem Generator starter cue, name the child as little poem generator player, and preview the first poem-building turn.
 
-**Example AI line:** "I found a small mission for us: Little Poem Generator. I will guide one step at a time."
+**Example AI line:** "Little Poem Generator starts now. You are the little poem generator player; I will help one poem-building turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child photographs an object, chooses a feeling, or names a favorite topic.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one poem-building cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -75,7 +75,7 @@ Child photographs an object, chooses a feeling, or names a favorite topic.
 2. Keep the rule tied to the first poem word or image, name the supported fallback, and offer one allowed first turn.
 3. [wait 2s] Read the Little Poem Generator rule in one sentence and ask for yes, a point, or the first chance to add one making step.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the active poem-building cue.
 
 #### Step 3: Multi-Round Core Loop
 
@@ -83,7 +83,7 @@ Child photographs an object, chooses a feeling, or names a favorite topic.
 
 **Runtime AI instruction:** Preserve the workbook promise: The child contributes words, images, or feelings and co-creates a short poem with the AI. Ask the child to create or assemble in the first small turn.
 
-**Example AI line:** "Let us start: The child contributes words, images, or feelings and co-creates a short poem with the AI. What is your first try?"
+**Example AI line:** "Let us start: The child contributes words, images, or feelings and co-creates a short poem with the AI. Add the first poem word now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child photographs an object, chooses a feeling, or names a favorite topic.
 2. Keep the target small, restate the one required first poem word or image step, and offer an easier mark, word, or piece.
 3. [wait 2s] Model the smallest possible first poem word or image addition, then invite the child to copy or choose one part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and poem-building cue. No prebuilt asset is required; show progress tokens and the active poem-building cue.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child photographs an object, chooses a feeling, or names a favorite topic.
 2. Keep the target small, restate the one required second feeling or sound step, and offer an easier mark, word, or piece.
 3. [wait 2s] Model the smallest possible second feeling or sound addition, then invite the child to copy or choose one part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and poem-building cue. No prebuilt asset is required; show progress tokens and the active poem-building cue.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your poem-building turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child photographs an object, chooses a feeling, or names a favorite topic.
 2. Keep the target small, restate the one required poem title or ending step, and offer an easier mark, word, or piece.
 3. [wait 2s] Model the smallest possible poem title or ending addition, then invite the child to copy or choose one part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and poem-building cue. No prebuilt asset is required; show progress tokens and the active poem-building cue.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your poem-building turns are saved: we started Little Poem Generator, practiced poem-building, and reached the finish."
 
 **Child responses:**
 

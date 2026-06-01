@@ -39,9 +39,9 @@ Screen can show vegetable cards or a child photographs several vegetables.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Vegetable Sort starter cue, name the child as vegetable sorter, and preview the first vegetable sorting turn.
 
-**Example AI line:** "I found a small mission for us: Vegetable Sort. I will guide one step at a time."
+**Example AI line:** "Vegetable Sort starts now. You are the vegetable sorter; I will help one vegetable sorting turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Screen can show vegetable cards or a child photographs several vegetables.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one vegetable sorting cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Screen can show vegetable cards or a child photographs several vegetables.
 
 **Runtime AI instruction:** Preserve the workbook promise: The child sorts vegetable cards or photographed vegetables by a visible or meaningful rule. Ask the child to group or organize in the first small turn.
 
-**Example AI line:** "Let us start: The child sorts vegetable cards or photographed vegetables by a visible or meaningful rule. What is your first try?"
+**Example AI line:** "Let us start: The child sorts vegetable cards or photographed vegetables by a visible or meaningful rule. Try the first vegetable sort now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Screen can show vegetable cards or a child photographs several vegetables.
 2. Hold the current groups still, compare two possible rules, and ask which one controls the first vegetable group.
 3. [wait 2s] Model placing one item by the first vegetable group rule, then ask the child to place or name one more.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `vegetable_sort_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use photographed vegetables or a voice-only sorting prompt and do not claim cards are shown.
+**Screen:** Shows the active round token, child response slot, and vegetable sorting cue. Use `vegetable_sort_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use photographed vegetables or a voice-only sorting prompt and do not claim cards are shown.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Screen can show vegetable cards or a child photographs several vegetables.
 2. Hold the current groups still, compare two possible rules, and ask which one controls the new sorting rule.
 3. [wait 2s] Model placing one item by the new sorting rule rule, then ask the child to place or name one more.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `vegetable_sort_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use photographed vegetables or a voice-only sorting prompt and do not claim cards are shown.
+**Screen:** Shows the active round token, child response slot, and vegetable sorting cue. Use `vegetable_sort_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use photographed vegetables or a voice-only sorting prompt and do not claim cards are shown.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your vegetable sorting turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Screen can show vegetable cards or a child photographs several vegetables.
 2. Hold the current groups still, compare two possible rules, and ask which one controls the final sorting rule explanation.
 3. [wait 2s] Model placing one item by the final sorting rule explanation rule, then ask the child to place or name one more.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `vegetable_sort_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use photographed vegetables or a voice-only sorting prompt and do not claim cards are shown.
+**Screen:** Shows the active round token, child response slot, and vegetable sorting cue. Use `vegetable_sort_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use photographed vegetables or a voice-only sorting prompt and do not claim cards are shown.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your vegetable sorting turns are saved: we started Vegetable Sort, practiced vegetable sorting, and reached the finish."
 
 **Child responses:**
 

@@ -39,9 +39,9 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Travel Planner starter cue, name the child as pretend trip planner, and preview the first pretend travel plan turn.
 
-**Example AI line:** "I found a small mission for us: Travel Planner. I will guide one step at a time."
+**Example AI line:** "Travel Planner starts now. You are the pretend trip planner; I will help one pretend travel plan turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one pretend travel plan cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 
 **Runtime AI instruction:** Preserve the workbook promise: The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen. Ask the child to predict or plan in the first small turn.
 
-**Example AI line:** "Let us start: The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen. What is your first try?"
+**Example AI line:** "Let us start: The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen. Try the first travel plan now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 2. Keep the pretend setup, narrow the pack choice to two possible outcomes, and ask which one might happen.
 3. [wait 2s] Model "I think this will happen because.." for the pack choice, then ask for one guess or choice.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `travel_planning_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only.
+**Screen:** Shows the active round token, child response slot, and pretend travel plan cue. Use `travel_planning_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 2. Keep the pretend setup, narrow the transport or weather choice to two possible outcomes, and ask which one might happen.
 3. [wait 2s] Model "I think this will happen because.." for the transport or weather choice, then ask for one guess or choice.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `travel_planning_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only.
+**Screen:** Shows the active round token, child response slot, and pretend travel plan cue. Use `travel_planning_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your pretend travel plan turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child asks about a place, weather, vehicle, animal habitat, or character journey
 2. Keep the pretend setup, narrow the what might happen on the trip to two possible outcomes, and ask which one might happen.
 3. [wait 2s] Model "I think this will happen because.." for the what might happen on the trip, then ask for one guess or choice.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `travel_planning_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only.
+**Screen:** Shows the active round token, child response slot, and pretend travel plan cue. Use `travel_planning_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your pretend travel plan turns are saved: we started Travel Planner, practiced pretend travel plan, and reached the finish."
 
 **Child responses:**
 

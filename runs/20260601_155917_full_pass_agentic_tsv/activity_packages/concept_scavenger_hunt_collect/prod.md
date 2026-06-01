@@ -39,9 +39,9 @@ Child photographs an object with a clear color, shape, or category feature.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Scavenger Hunt starter cue, name the child as scavenger hunt player, and preview the first matching-item hunt turn.
 
-**Example AI line:** "I found a small mission for us: Scavenger Hunt. I will guide one step at a time."
+**Example AI line:** "Scavenger Hunt starts now. You are the scavenger hunt player; I will help one matching-item hunt turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child photographs an object with a clear color, shape, or category feature.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one matching-item hunt cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -75,7 +75,7 @@ Child photographs an object with a clear color, shape, or category feature.
 2. Keep the rule tied to the first matching object, name the supported fallback, and offer one allowed first turn.
 3. [wait 2s] Read the Scavenger Hunt rule in one sentence and ask for yes, a point, or the first chance to find or show one match.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the active matching-item hunt cue.
 
 #### Step 3: Multi-Round Core Loop
 
@@ -83,7 +83,7 @@ Child photographs an object with a clear color, shape, or category feature.
 
 **Runtime AI instruction:** Preserve the workbook promise: Find several things that share a color, shape, or category. Ask the child to find or match in the first small turn.
 
-**Example AI line:** "Let us start: Find several things that share a color, shape, or category. What is your first try?"
+**Example AI line:** "Let us start: Find several things that share a color, shape, or category. Find the first matching item now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child photographs an object with a clear color, shape, or category feature.
 2. Keep the hunt rule visible, contrast one non-match with one allowed example, and ask for a safer match for the first matching object.
 3. [wait 2s] Give one concrete example that would count for the first matching object, then ask the child to point, say, or show one.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and matching-item hunt cue. No prebuilt asset is required; show progress tokens and the active matching-item hunt cue.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child photographs an object with a clear color, shape, or category feature.
 2. Keep the hunt rule visible, contrast one non-match with one allowed example, and ask for a safer match for the second object from the same rule.
 3. [wait 2s] Give one concrete example that would count for the second object from the same rule, then ask the child to point, say, or show one.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and matching-item hunt cue. No prebuilt asset is required; show progress tokens and the active matching-item hunt cue.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your matching-item hunt turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child photographs an object with a clear color, shape, or category feature.
 2. Keep the hunt rule visible, contrast one non-match with one allowed example, and ask for a safer match for the collection rule recap.
 3. [wait 2s] Give one concrete example that would count for the collection rule recap, then ask the child to point, say, or show one.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and matching-item hunt cue. No prebuilt asset is required; show progress tokens and the active matching-item hunt cue.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your matching-item hunt turns are saved: we started Scavenger Hunt, practiced matching-item hunt, and reached the finish."
 
 **Child responses:**
 

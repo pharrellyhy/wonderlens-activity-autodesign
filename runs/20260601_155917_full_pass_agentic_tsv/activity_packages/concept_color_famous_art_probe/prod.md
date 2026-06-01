@@ -39,9 +39,9 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Color In Famous Art starter cue, name the child as color in famous art player, and preview the first color noticing turn.
 
-**Example AI line:** "I found a small mission for us: Color In Famous Art. I will guide one step at a time."
+**Example AI line:** "Color In Famous Art starts now. You are the color in famous art player; I will help one famous-art color noticing turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one famous-art color noticing cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 2. Return attention to the target set for the real-world color sample, count one item aloud, and ask the child to continue.
 3. [wait 2s] Point to the first item in the real-world color sample, say "one," and invite the child to say the next number or name.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_artwork_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the artwork set is unavailable, block at Phase 0 rather than referencing famous art that cannot be shown.
+**Screen:** Shows the active round token, child response slot, and famous-art color noticing cue. Use `color_artwork_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the artwork set is unavailable, block at Phase 0 rather than referencing famous art that cannot be shown.
 
 **Round 2 -- Meet The First Artwork:**
 
@@ -117,7 +117,7 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 2. Return attention to the target set for the artwork where the color appears, count one item aloud, and ask the child to continue.
 3. [wait 2s] Point to the first item in the artwork where the color appears, say "one," and invite the child to say the next number or name.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_artwork_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the artwork set is unavailable, block at Phase 0 rather than referencing famous art that cannot be shown.
+**Screen:** Shows the active round token, child response slot, and famous-art color noticing cue. Use `color_artwork_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the artwork set is unavailable, block at Phase 0 rather than referencing famous art that cannot be shown.
 
 **Round 3 -- Compare More Art:**
 
@@ -137,13 +137,13 @@ A photographed yellow, blue, red, or green object becomes the bridge to rights-c
 2. Return attention to the target set for the favorite use of that color, count one item aloud, and ask the child to continue.
 3. [wait 2s] Point to the first item in the favorite use of that color, say "one," and invite the child to say the next number or name.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `color_artwork_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the artwork set is unavailable, block at Phase 0 rather than referencing famous art that cannot be shown.
+**Screen:** Shows the active round token, child response slot, and famous-art color noticing cue. Use `color_artwork_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If the artwork set is unavailable, block at Phase 0 rather than referencing famous art that cannot be shown.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your famous-art color noticing turns are saved: we started Color In Famous Art, practiced famous-art color noticing, and reached the finish."
 
 **Child responses:**
 

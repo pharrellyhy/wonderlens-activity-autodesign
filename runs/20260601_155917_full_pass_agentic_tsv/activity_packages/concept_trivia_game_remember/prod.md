@@ -39,9 +39,9 @@ Child has just explored a topic and can answer short fact or memory questions.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Trivia Game starter cue, name the child as trivia game player, and preview the first trivia answer turn.
 
-**Example AI line:** "I found a small mission for us: Trivia Game. I will guide one step at a time."
+**Example AI line:** "Trivia Game starts now. You are the trivia game player; I will help one trivia answer turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child has just explored a topic and can answer short fact or memory questions.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one trivia answer cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Child has just explored a topic and can answer short fact or memory questions.
 
 **Runtime AI instruction:** Preserve the workbook promise: The child answers short memory or knowledge questions and receives a simple explanation. Ask the child to echo or recall in the first small turn.
 
-**Example AI line:** "Let us start: The child answers short memory or knowledge questions and receives a simple explanation. What is your first try?"
+**Example AI line:** "Let us start: The child answers short memory or knowledge questions and receives a simple explanation. Try the first trivia answer now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child has just explored a topic and can answer short fact or memory questions.
 2. Slow the first answer into smaller pieces, accept a partial recall, and ask for just the next word or sound.
 3. [wait 2s] Say the first answer prompt in two short beats, then invite the child to copy one beat.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `trivia_reward_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.
+**Screen:** Shows the active round token, child response slot, and trivia answer cue. Use `trivia_reward_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child has just explored a topic and can answer short fact or memory questions.
 2. Slow the short explanation follow-up into smaller pieces, accept a partial recall, and ask for just the next word or sound.
 3. [wait 2s] Say the short explanation follow-up prompt in two short beats, then invite the child to copy one beat.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `trivia_reward_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.
+**Screen:** Shows the active round token, child response slot, and trivia answer cue. Use `trivia_reward_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your trivia answer turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child has just explored a topic and can answer short fact or memory questions.
 2. Slow the remembered fact into smaller pieces, accept a partial recall, and ask for just the next word or sound.
 3. [wait 2s] Say the remembered fact prompt in two short beats, then invite the child to copy one beat.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `trivia_reward_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.
+**Screen:** Shows the active round token, child response slot, and trivia answer cue. Use `trivia_reward_board_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If stateful reward display is unavailable, use verbal encouragement only and do not claim stars are being added.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your trivia answer turns are saved: we started Trivia Game, practiced trivia answer, and reached the finish."
 
 **Child responses:**
 

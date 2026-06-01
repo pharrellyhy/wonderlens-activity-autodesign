@@ -39,9 +39,9 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Time Sense Challenge starter cue, name the child as time sense challenge player, and preview the first time prediction turn.
 
-**Example AI line:** "I found a small mission for us: Time Sense Challenge. I will guide one step at a time."
+**Example AI line:** "Time Sense Challenge starts now. You are the time sense challenge player; I will help one time prediction turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one time prediction cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -75,7 +75,7 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 2. Keep the rule tied to the first time guess, name the supported fallback, and offer one allowed first turn.
 3. [wait 2s] Read the Time Sense Challenge rule in one sentence and ask for yes, a point, or the first chance to make a plan or prediction.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the active time prediction cue.
 
 #### Step 3: Multi-Round Core Loop
 
@@ -83,7 +83,7 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 
 **Runtime AI instruction:** Preserve the workbook promise: The child predicts when a short amount of time has passed, then checks the result. Ask the child to predict or plan in the first small turn.
 
-**Example AI line:** "Let us start: The child predicts when a short amount of time has passed, then checks the result. What is your first try?"
+**Example AI line:** "Let us start: The child predicts when a short amount of time has passed, then checks the result. Try the first time prediction now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 2. Keep the pretend setup, narrow the first time guess to two possible outcomes, and ask which one might happen.
 3. [wait 2s] Model "I think this will happen because.." for the first time guess, then ask for one guess or choice.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and time prediction cue. No prebuilt asset is required; show progress tokens and the active time prediction cue.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 2. Keep the pretend setup, narrow the timer check to two possible outcomes, and ask which one might happen.
 3. [wait 2s] Model "I think this will happen because.." for the timer check, then ask for one guess or choice.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and time prediction cue. No prebuilt asset is required; show progress tokens and the active time prediction cue.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your time prediction turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child can sit safely and make a short estimate such as ten seconds or one minute
 2. Keep the pretend setup, narrow the new prediction strategy to two possible outcomes, and ask which one might happen.
 3. [wait 2s] Model "I think this will happen because.." for the new prediction strategy, then ask for one guess or choice.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and time prediction cue. No prebuilt asset is required; show progress tokens and the active time prediction cue.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your time prediction turns are saved: we started Time Sense Challenge, practiced time prediction, and reached the finish."
 
 **Child responses:**
 

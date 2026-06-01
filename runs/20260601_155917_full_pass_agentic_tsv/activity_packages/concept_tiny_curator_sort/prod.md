@@ -39,9 +39,9 @@ Child is at home or outdoors with several objects that can be grouped or compare
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Tiny Curator starter cue, name the child as tiny curator player, and preview the first sorting move turn.
 
-**Example AI line:** "I found a small mission for us: Tiny Curator. I will guide one step at a time."
+**Example AI line:** "Tiny Curator starts now. You are the tiny curator player; I will help one curator sorting turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child is at home or outdoors with several objects that can be grouped or compare
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one curator sorting cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -75,7 +75,7 @@ Child is at home or outdoors with several objects that can be grouped or compare
 2. Keep the rule tied to the first exhibition object, name the supported fallback, and offer one allowed first turn.
 3. [wait 2s] Read the Tiny Curator rule in one sentence and ask for yes, a point, or the first chance to place one item by the rule.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the active curator sorting cue.
 
 #### Step 3: Multi-Round Core Loop
 
@@ -83,7 +83,7 @@ Child is at home or outdoors with several objects that can be grouped or compare
 
 **Runtime AI instruction:** Preserve the workbook promise: The child finds three or four objects they think belong together, arranges them as a tiny exhibition, and explains their grouping rule. Ask the child to group or organize in the first small turn.
 
-**Example AI line:** "Let us start: The child finds three or four objects they think belong together, arranges them as a tiny exhibition, and explains their grouping rule. What is your first try?"
+**Example AI line:** "Let us start: The child finds three or four objects they think belong together, arranges them as a tiny exhibition, and explains their grouping rule. Try the first curator sorting move now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child is at home or outdoors with several objects that can be grouped or compare
 2. Hold the current groups still, compare two possible rules, and ask which one controls the first exhibition object.
 3. [wait 2s] Model placing one item by the first exhibition object rule, then ask the child to place or name one more.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and curator sorting cue. No prebuilt asset is required; show progress tokens and the active curator sorting cue.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child is at home or outdoors with several objects that can be grouped or compare
 2. Hold the current groups still, compare two possible rules, and ask which one controls the second or third grouped object.
 3. [wait 2s] Model placing one item by the second or third grouped object rule, then ask the child to place or name one more.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and curator sorting cue. No prebuilt asset is required; show progress tokens and the active curator sorting cue.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your curator sorting turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child is at home or outdoors with several objects that can be grouped or compare
 2. Hold the current groups still, compare two possible rules, and ask which one controls the exhibit rule explanation.
 3. [wait 2s] Model placing one item by the exhibit rule explanation rule, then ask the child to place or name one more.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and curator sorting cue. No prebuilt asset is required; show progress tokens and the active curator sorting cue.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your curator sorting turns are saved: we started Tiny Curator, practiced curator sorting, and reached the finish."
 
 **Child responses:**
 

@@ -39,9 +39,9 @@ Child names a mood or chooses a color to represent a feeling.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Emotion Color Outfit starter cue, name the child as emotion color outfit player, and preview the first emotion-color outfit choice turn.
 
-**Example AI line:** "I found a small mission for us: Emotion Color Outfit. I will guide one step at a time."
+**Example AI line:** "Emotion Color Outfit starts now. You are the emotion color outfit player; I will help one emotion-color outfit choice turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child names a mood or chooses a color to represent a feeling.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one emotion-color outfit choice cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Child names a mood or chooses a color to represent a feeling.
 
 **Runtime AI instruction:** Preserve the workbook promise: The child uses colors to represent feelings, then sees or imagines a character outfit matching that feeling. Ask the child to notice a need and help in the first small turn.
 
-**Example AI line:** "Let us start: The child uses colors to represent feelings, then sees or imagines a character outfit matching that feeling. What is your first try?"
+**Example AI line:** "Let us start: The child uses colors to represent feelings, then sees or imagines a character outfit matching that feeling. Try the first feeling color choice now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child names a mood or chooses a color to represent a feeling.
 2. Reframe without judging, point to the cue for the feeling color, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for the feeling color, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `emotion_color_character_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color conversation without claiming the outfit changed.
+**Screen:** Shows the active round token, child response slot, and emotion-color outfit choice cue. Use `emotion_color_character_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color conversation without claiming the outfit changed.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child names a mood or chooses a color to represent a feeling.
 2. Reframe without judging, point to the cue for the outfit color choice, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for the outfit color choice, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `emotion_color_character_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color conversation without claiming the outfit changed.
+**Screen:** Shows the active round token, child response slot, and emotion-color outfit choice cue. Use `emotion_color_character_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color conversation without claiming the outfit changed.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your emotion-color outfit choice turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child names a mood or chooses a color to represent a feeling.
 2. Reframe without judging, point to the cue for the care-and-color recap, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for the care-and-color recap, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `emotion_color_character_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color conversation without claiming the outfit changed.
+**Screen:** Shows the active round token, child response slot, and emotion-color outfit choice cue. Use `emotion_color_character_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If recoloring is unavailable, block at Phase 0 or run a voice-only emotion-color conversation without claiming the outfit changed.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your emotion-color outfit choice turns are saved: we started Emotion Color Outfit, practiced emotion-color outfit choice, and reached the finish."
 
 **Child responses:**
 

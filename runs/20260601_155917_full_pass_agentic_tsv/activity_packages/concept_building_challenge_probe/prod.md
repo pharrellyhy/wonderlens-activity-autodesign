@@ -39,9 +39,9 @@ Parent or child selects a hands-on build mode and has blocks, bricks, or recycla
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Building Challenge starter cue, name the child as building challenge player, and preview the first making step turn.
 
-**Example AI line:** "I found a small mission for us: Building Challenge. I will guide one step at a time."
+**Example AI line:** "Building Challenge starts now. You are the building challenge player; I will help one building step turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Parent or child selects a hands-on build mode and has blocks, bricks, or recycla
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one building step cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Parent or child selects a hands-on build mode and has blocks, bricks, or recycla
 
 **Runtime AI instruction:** Preserve the workbook promise: The child uses blocks, bricks, or household materials to build a simple target. Ask the child to create or assemble in the first small turn.
 
-**Example AI line:** "Let us start: The child uses blocks, bricks, or household materials to build a simple target. What is your first try?"
+**Example AI line:** "Let us start: The child uses blocks, bricks, or household materials to build a simple target. Try the first building step now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Parent or child selects a hands-on build mode and has blocks, bricks, or recycla
 2. Keep the target small, restate the one required first base piece or shape step, and offer an easier mark, word, or piece.
 3. [wait 2s] Model the smallest possible first base piece or shape addition, then invite the child to copy or choose one part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `building_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, describe the build target by voice; still block package generation unless material workflow support exists.
+**Screen:** Shows the active round token, child response slot, and building step cue. Use `building_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, describe the build target by voice; still block package generation unless material workflow support exists.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Parent or child selects a hands-on build mode and has blocks, bricks, or recycla
 2. Keep the target small, restate the one required stability or detail challenge step, and offer an easier mark, word, or piece.
 3. [wait 2s] Model the smallest possible stability or detail challenge addition, then invite the child to copy or choose one part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `building_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, describe the build target by voice; still block package generation unless material workflow support exists.
+**Screen:** Shows the active round token, child response slot, and building step cue. Use `building_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, describe the build target by voice; still block package generation unless material workflow support exists.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your building step turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Parent or child selects a hands-on build mode and has blocks, bricks, or recycla
 2. Keep the target small, restate the one required finished structure recap step, and offer an easier mark, word, or piece.
 3. [wait 2s] Model the smallest possible finished structure recap addition, then invite the child to copy or choose one part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `building_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, describe the build target by voice; still block package generation unless material workflow support exists.
+**Screen:** Shows the active round token, child response slot, and building step cue. Use `building_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, describe the build target by voice; still block package generation unless material workflow support exists.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your building step turns are saved: we started Building Challenge, practiced building step, and reached the finish."
 
 **Child responses:**
 

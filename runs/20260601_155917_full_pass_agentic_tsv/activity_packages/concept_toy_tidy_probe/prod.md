@@ -39,9 +39,9 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Toy Tidy Challenge starter cue, name the child as toy tidy challenge player, and preview the first toy tidy sorting turn.
 
-**Example AI line:** "I found a small mission for us: Toy Tidy Challenge. I will guide one step at a time."
+**Example AI line:** "Toy Tidy Challenge starts now. You are the toy tidy challenge player; I will help one toy tidy sorting turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one toy tidy sorting cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -75,7 +75,7 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 2. Keep the rule tied to the first tiny tidy target, name the supported fallback, and offer one allowed first turn.
 3. [wait 2s] Read the Toy Tidy Challenge rule in one sentence and ask for yes, a point, or the first chance to place one item by the rule.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the active toy tidy sorting cue.
 
 #### Step 3: Multi-Round Core Loop
 
@@ -97,7 +97,7 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 2. Hold the current groups still, compare two possible rules, and ask which one controls the first tiny tidy target.
 3. [wait 2s] Model placing one item by the first tiny tidy target rule, then ask the child to place or name one more.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and toy tidy sorting cue. No prebuilt asset is required; show progress tokens and the active toy tidy sorting cue.
 
 **Round 2 -- Sort One Group:**
 
@@ -117,7 +117,7 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 2. Hold the current groups still, compare two possible rules, and ask which one controls the timer tip during the mission.
 3. [wait 2s] Model placing one item by the timer tip during the mission rule, then ask the child to place or name one more.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and toy tidy sorting cue. No prebuilt asset is required; show progress tokens and the active toy tidy sorting cue.
 
 **Round 3 -- Confirm After State:**
 
@@ -137,13 +137,13 @@ A toy area becomes a two-minute tidy sprint with child or caregiver confirmation
 2. Hold the current groups still, compare two possible rules, and ask which one controls the after-state confirmation.
 3. [wait 2s] Model placing one item by the after-state confirmation rule, then ask the child to place or name one more.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and toy tidy sorting cue. No prebuilt asset is required; show progress tokens and the active toy tidy sorting cue.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your toy tidy sorting turns are saved: we started Toy Tidy Challenge, practiced toy tidy sorting, and reached the finish."
 
 **Child responses:**
 

@@ -39,9 +39,9 @@ Product has a text-aware word puzzle mode with parent approval for reading level
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Word Build Guess starter cue, name the child as word build guess player, and preview the first letter or clue choice turn.
 
-**Example AI line:** "I found a small mission for us: Word Build Guess. I will guide one step at a time."
+**Example AI line:** "Word Build Guess starts now. You are the word build guess player; I will help one word-reveal choice turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Product has a text-aware word puzzle mode with parent approval for reading level
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one word-reveal choice cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Product has a text-aware word puzzle mode with parent approval for reading level
 
 **Runtime AI instruction:** Preserve the workbook promise: The child chooses letters or answers clues to reveal a word step by step. Ask the child to choose and respond in the first small turn.
 
-**Example AI line:** "Let us start: The child chooses letters or answers clues to reveal a word step by step. What is your first try?"
+**Example AI line:** "Let us start: The child chooses letters or answers clues to reveal a word step by step. Try the first letter or clue choice now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Product has a text-aware word puzzle mode with parent approval for reading level
 2. Keep the decision frame, remove the unavailable option, and ask for one of the visible choices for the first clue or letter.
 3. [wait 2s] Read the visible choices for the first clue or letter, model one choice sentence, and ask for a tap or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `word_growth_ui_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If word state is unsupported, block at Phase 0 or run a voice-only clue riddle with no letter UI claims.
+**Screen:** Shows the active round token, child response slot, and word-reveal choice cue. Use `word_growth_ui_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If word state is unsupported, block at Phase 0 or run a voice-only clue riddle with no letter UI claims.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Product has a text-aware word puzzle mode with parent approval for reading level
 2. Keep the decision frame, remove the unavailable option, and ask for one of the visible choices for the next letter or clue.
 3. [wait 2s] Read the visible choices for the next letter or clue, model one choice sentence, and ask for a tap or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `word_growth_ui_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If word state is unsupported, block at Phase 0 or run a voice-only clue riddle with no letter UI claims.
+**Screen:** Shows the active round token, child response slot, and word-reveal choice cue. Use `word_growth_ui_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If word state is unsupported, block at Phase 0 or run a voice-only clue riddle with no letter UI claims.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your word-reveal choice turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Product has a text-aware word puzzle mode with parent approval for reading level
 2. Keep the decision frame, remove the unavailable option, and ask for one of the visible choices for the final word reveal.
 3. [wait 2s] Read the visible choices for the final word reveal, model one choice sentence, and ask for a tap or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `word_growth_ui_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If word state is unsupported, block at Phase 0 or run a voice-only clue riddle with no letter UI claims.
+**Screen:** Shows the active round token, child response slot, and word-reveal choice cue. Use `word_growth_ui_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If word state is unsupported, block at Phase 0 or run a voice-only clue riddle with no letter UI claims.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your word-reveal choice turns are saved: we started Word Build Guess, practiced word-reveal choice, and reached the finish."
 
 **Child responses:**
 

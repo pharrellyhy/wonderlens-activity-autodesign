@@ -39,9 +39,9 @@ Child photographs an animal toy, animal picture, or enters guessing mode.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Guess in 10 starter cue, name the child as guess in 10 player, and preview the first clue guess turn.
 
-**Example AI line:** "I found a small mission for us: Guess in 10. I will guide one step at a time."
+**Example AI line:** "Guess in 10 starts now. You are the guess in 10 player; I will help one clue guess turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child photographs an animal toy, animal picture, or enters guessing mode.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one clue guess cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Child photographs an animal toy, animal picture, or enters guessing mode.
 
 **Runtime AI instruction:** Preserve the workbook promise: The AI gives clues one by one, and the child guesses an animal or object from the evidence. Ask the child to use clues to infer in the first small turn.
 
-**Example AI line:** "Let us start: The AI gives clues one by one, and the child guesses an animal or object from the evidence. What is your first try?"
+**Example AI line:** "Let us start: The AI gives clues one by one, and the child guesses an animal or object from the evidence. Try the first clue guess now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child photographs an animal toy, animal picture, or enters guessing mode.
 2. Name the clue in the first clue guess, separate it from one distracting detail, and ask for one maybe-guess.
 3. [wait 2s] Point to one visible clue for the first clue guess, model a "maybe it is" guess, and invite a copy or new guess.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `guess_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI continues with voice clues and encouragement and must not claim the screen is showing a picture.
+**Screen:** Shows the active round token, child response slot, and clue guess cue. Use `guess_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI continues with voice clues and encouragement and must not claim the screen is showing a picture.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child photographs an animal toy, animal picture, or enters guessing mode.
 2. Name the clue in the new clue revision, separate it from one distracting detail, and ask for one maybe-guess.
 3. [wait 2s] Point to one visible clue for the new clue revision, model a "maybe it is" guess, and invite a copy or new guess.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `guess_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI continues with voice clues and encouragement and must not claim the screen is showing a picture.
+**Screen:** Shows the active round token, child response slot, and clue guess cue. Use `guess_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI continues with voice clues and encouragement and must not claim the screen is showing a picture.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your clue guess turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child photographs an animal toy, animal picture, or enters guessing mode.
 2. Name the clue in the final evidence guess, separate it from one distracting detail, and ask for one maybe-guess.
 3. [wait 2s] Point to one visible clue for the final evidence guess, model a "maybe it is" guess, and invite a copy or new guess.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `guess_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI continues with voice clues and encouragement and must not claim the screen is showing a picture.
+**Screen:** Shows the active round token, child response slot, and clue guess cue. Use `guess_reference_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI continues with voice clues and encouragement and must not claim the screen is showing a picture.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your clue guess turns are saved: we started Guess in 10, practiced clue guess, and reached the finish."
 
 **Child responses:**
 

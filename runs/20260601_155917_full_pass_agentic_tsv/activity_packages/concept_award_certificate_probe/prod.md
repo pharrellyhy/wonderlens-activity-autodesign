@@ -39,9 +39,9 @@ A family story or photographed object inspires a handmade award such as Best Hel
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Award Certificate starter cue, name the child as award certificate player, and preview the first kind award choice turn.
 
-**Example AI line:** "I found a small mission for us: Award Certificate. I will guide one step at a time."
+**Example AI line:** "Award Certificate starts now. You are the award certificate player; I will help one appreciation badge turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ A family story or photographed object inspires a handmade award such as Best Hel
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one appreciation badge cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ A family story or photographed object inspires a handmade award such as Best Hel
 2. Reframe without judging, point to the cue for the person to appreciate, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for the person to appreciate, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `award_inspiration_badges_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If badge assets or certificate workflow are unavailable, block at Phase 0 or run a verbal appreciation activity without claiming a certificate is created.
+**Screen:** Shows the active round token, child response slot, and appreciation badge cue. Use `award_inspiration_badges_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If badge assets or certificate workflow are unavailable, block at Phase 0 or run a verbal appreciation activity without claiming a certificate is created.
 
 **Round 2 -- Design The Badge:**
 
@@ -117,7 +117,7 @@ A family story or photographed object inspires a handmade award such as Best Hel
 2. Reframe without judging, point to the cue for the award title or badge idea, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for the award title or badge idea, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `award_inspiration_badges_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If badge assets or certificate workflow are unavailable, block at Phase 0 or run a verbal appreciation activity without claiming a certificate is created.
+**Screen:** Shows the active round token, child response slot, and appreciation badge cue. Use `award_inspiration_badges_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If badge assets or certificate workflow are unavailable, block at Phase 0 or run a verbal appreciation activity without claiming a certificate is created.
 
 **Round 3 -- Present The Award:**
 
@@ -137,13 +137,13 @@ A family story or photographed object inspires a handmade award such as Best Hel
 2. Reframe without judging, point to the cue for the kind certificate message, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for the kind certificate message, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `award_inspiration_badges_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If badge assets or certificate workflow are unavailable, block at Phase 0 or run a verbal appreciation activity without claiming a certificate is created.
+**Screen:** Shows the active round token, child response slot, and appreciation badge cue. Use `award_inspiration_badges_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If badge assets or certificate workflow are unavailable, block at Phase 0 or run a verbal appreciation activity without claiming a certificate is created.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your appreciation badge turns are saved: we started Award Certificate, practiced appreciation badge, and reached the finish."
 
 **Child responses:**
 

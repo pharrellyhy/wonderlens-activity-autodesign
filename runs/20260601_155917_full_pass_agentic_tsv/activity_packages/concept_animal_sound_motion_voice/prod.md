@@ -39,9 +39,9 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Animal Sound Imitation starter cue, name the child as animal voice performer, and preview the first animal sound or animal-role voice turn.
 
-**Example AI line:** "I found a small mission for us: Animal Sound Imitation. I will guide one step at a time."
+**Example AI line:** "Animal Sound Imitation starts now. You are the animal voice performer; I will help one animal sound turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one animal sound cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 
 **Runtime AI instruction:** Preserve the workbook promise: The AI prompts a familiar animal, and the child imitates its sound or speaks in the animal role. Ask the child to move or voice safely in the first small turn.
 
-**Example AI line:** "Let us start: The AI prompts a familiar animal, and the child imitates its sound or speaks in the animal role. What is your first try?"
+**Example AI line:** "Let us start: The AI prompts a familiar animal, and the child imitates its sound or speaks in the animal role. Try the first animal sound now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the first animal voice.
 3. [wait 2s] Demonstrate the smallest safe version of the first animal voice, then ask the child to copy just that part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `animal_sound_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.
+**Screen:** Shows the active round token, child response slot, and animal sound cue. Use `animal_sound_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the changed animal voice or volume.
 3. [wait 2s] Demonstrate the smallest safe version of the changed animal voice or volume, then ask the child to copy just that part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `animal_sound_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.
+**Screen:** Shows the active round token, child response slot, and animal sound cue. Use `animal_sound_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your animal sound turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child photographs an animal toy, animal picture, or enters animal-sound mode.
 2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the favorite animal-role line.
 3. [wait 2s] Demonstrate the smallest safe version of the favorite animal-role line, then ask the child to copy just that part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `animal_sound_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.
+**Screen:** Shows the active round token, child response slot, and animal sound cue. Use `animal_sound_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your animal sound turns are saved: we started Animal Sound Imitation, practiced animal sound, and reached the finish."
 
 **Child responses:**
 

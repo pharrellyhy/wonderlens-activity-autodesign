@@ -39,9 +39,9 @@ Child enters story mode or photographs a toy or object that can become a story c
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Branching Choice Story starter cue, name the child as two-path storyteller, and preview the first story choice turn.
 
-**Example AI line:** "I found a small mission for us: Branching Choice Story. I will guide one step at a time."
+**Example AI line:** "Branching Choice Story starts now. You are the two-path storyteller; I will help one story choice turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child enters story mode or photographs a toy or object that can become a story c
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one story choice cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -75,7 +75,7 @@ Child enters story mode or photographs a toy or object that can become a story c
 2. Keep the rule tied to the first story fork, name the supported fallback, and offer one allowed first turn.
 3. [wait 2s] Read the Branching Choice Story rule in one sentence and ask for yes, a point, or the first chance to make a choice.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. No prebuilt asset is required; show progress tokens and the active story choice cue.
 
 #### Step 3: Multi-Round Core Loop
 
@@ -83,7 +83,7 @@ Child enters story mode or photographs a toy or object that can become a story c
 
 **Runtime AI instruction:** Preserve the workbook promise: The AI tells a story with choice points, and the child's choices decide what happens next. Ask the child to choose and respond in the first small turn.
 
-**Example AI line:** "Let us start: The AI tells a story with choice points, and the child's choices decide what happens next. What is your first try?"
+**Example AI line:** "Let us start: The AI tells a story with choice points, and the child's choices decide what happens next. Choose the first story path now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child enters story mode or photographs a toy or object that can become a story c
 2. Use the idea as story color, then restate the two opening paths and ask for one choice.
 3. [wait 2s] Read the two opening path labels, model "I choose this path," and ask for one tap or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and story choice cue. No prebuilt asset is required; show progress tokens and the active story choice cue.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child enters story mode or photographs a toy or object that can become a story c
 2. Keep the first consequence in place, show the two current options, and ask which branch happens now.
 3. [wait 2s] Point from the first token to the two new options, then model one short branch choice.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and story choice cue. No prebuilt asset is required; show progress tokens and the active story choice cue.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your story choice turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child enters story mode or photographs a toy or object that can become a story c
 2. Point to the saved branch tokens, explain which endings still fit, and ask for one ending that follows them.
 3. [wait 2s] Read the path chain aloud, offer two fitting endings, and invite the child to pick one.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. No prebuilt asset is required; show progress tokens and the current prompt.
+**Screen:** Shows the active round token, child response slot, and story choice cue. No prebuilt asset is required; show progress tokens and the active story choice cue.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your story choice turns are saved: we started Branching Choice Story, practiced story choice, and reached the finish."
 
 **Child responses:**
 

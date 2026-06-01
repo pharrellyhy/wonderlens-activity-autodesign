@@ -39,9 +39,9 @@ Parent selects a vocabulary, shape, color, animal, or object-recognition practic
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Flashcards starter cue, name the child as flashcards player, and preview the first picture-card naming turn.
 
-**Example AI line:** "I found a small mission for us: Flashcards. I will guide one step at a time."
+**Example AI line:** "Flashcards starts now. You are the flashcards player; I will help one flashcard naming turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Parent selects a vocabulary, shape, color, animal, or object-recognition practic
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one flashcard naming cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Parent selects a vocabulary, shape, color, animal, or object-recognition practic
 
 **Runtime AI instruction:** Preserve the workbook promise: The child recognizes a picture card, names what they see, and answers one tiny follow-up. Ask the child to count or identify in the first small turn.
 
-**Example AI line:** "Let us start: The child recognizes a picture card, names what they see, and answers one tiny follow-up. What is your first try?"
+**Example AI line:** "Let us start: The child recognizes a picture card, names what they see, and answers one tiny follow-up. Name the first picture card now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Parent selects a vocabulary, shape, color, animal, or object-recognition practic
 2. Return attention to the target set for the picture-card name, count one item aloud, and ask the child to continue.
 3. [wait 2s] Point to the first item in the picture-card name, say "one," and invite the child to say the next number or name.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `generic_flashcard_library_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a photographed object or voice-only recognition prompt and do not claim the screen shows a card.
+**Screen:** Shows the active round token, child response slot, and flashcard naming cue. Use `generic_flashcard_library_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a photographed object or voice-only recognition prompt and do not claim the screen shows a card.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Parent selects a vocabulary, shape, color, animal, or object-recognition practic
 2. Return attention to the target set for the one visible feature, count one item aloud, and ask the child to continue.
 3. [wait 2s] Point to the first item in the one visible feature, say "one," and invite the child to say the next number or name.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `generic_flashcard_library_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a photographed object or voice-only recognition prompt and do not claim the screen shows a card.
+**Screen:** Shows the active round token, child response slot, and flashcard naming cue. Use `generic_flashcard_library_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a photographed object or voice-only recognition prompt and do not claim the screen shows a card.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your flashcard naming turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Parent selects a vocabulary, shape, color, animal, or object-recognition practic
 2. Return attention to the target set for the tiny follow-up answer, count one item aloud, and ask the child to continue.
 3. [wait 2s] Point to the first item in the tiny follow-up answer, say "one," and invite the child to say the next number or name.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `generic_flashcard_library_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a photographed object or voice-only recognition prompt and do not claim the screen shows a card.
+**Screen:** Shows the active round token, child response slot, and flashcard naming cue. Use `generic_flashcard_library_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a photographed object or voice-only recognition prompt and do not claim the screen shows a card.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your flashcard naming turns are saved: we started Flashcards, practiced flashcard naming, and reached the finish."
 
 **Child responses:**
 

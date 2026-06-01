@@ -39,9 +39,9 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Story Challenge Unlock starter cue, name the child as story gate unlocker, and preview the first story unlock response turn.
 
-**Example AI line:** "I found a small mission for us: Story Challenge Unlock. I will guide one step at a time."
+**Example AI line:** "Story Challenge Unlock starts now. You are the story gate unlocker; I will help one story unlock challenge turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one story unlock challenge cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 2. Return to the moon-door cliffhanger, repeat the allowed colors, and ask for one named or shown color.
 3. [wait 2s] Point to the moon door colors, model "blue opens it," and invite the child to say or show one color.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `story_unlock_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
+**Screen:** Shows the active round token, child response slot, and story unlock challenge cue. Use `story_unlock_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
 
 **Round 2 -- Wake The Owl Bridge:**
 
@@ -117,7 +117,7 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 2. Keep the sleepy-owl scene, lower the volume target, and offer "hoo-hoo" or "hello owl" as the two safe responses.
 3. [wait 2s] Make one quiet "hoo-hoo" example, then ask the child to copy it or whisper hello.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `story_unlock_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
+**Screen:** Shows the active round token, child response slot, and story unlock challenge cue. Use `story_unlock_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
 
 **Round 3 -- Echo The Star Word:**
 
@@ -137,13 +137,13 @@ A fox reaches story gates that open with a color find, an animal sound, and a Fr
 2. Stay in the final gate scene, say the target word again slowly, and accept a tiny echo attempt.
 3. [wait 2s] Say "bon-jour" in two beats and invite the child to copy just one beat if needed.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `story_unlock_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
+**Screen:** Shows the active round token, child response slot, and story unlock challenge cue. Use `story_unlock_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If unlock UI is unavailable, use voice-only story choices and do not claim a screen element has unlocked.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your story unlock challenge turns are saved: we started Story Challenge Unlock, practiced story unlock challenge, and reached the finish."
 
 **Child responses:**
 

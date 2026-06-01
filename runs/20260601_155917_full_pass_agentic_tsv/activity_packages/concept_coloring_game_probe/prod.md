@@ -39,9 +39,9 @@ A simple line-art picture waits for colors gathered from the child environment.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Coloring Game starter cue, name the child as coloring game player, and preview the first coloring region turn.
 
-**Example AI line:** "I found a small mission for us: Coloring Game. I will guide one step at a time."
+**Example AI line:** "Coloring Game starts now. You are the coloring game player; I will help one coloring region turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ A simple line-art picture waits for colors gathered from the child environment.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one coloring region cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ A simple line-art picture waits for colors gathered from the child environment.
 2. Keep the target small, restate the one required first real-world color choice step, and offer an easier mark, word, or piece.
 3. [wait 2s] Model the smallest possible first real-world color choice addition, then invite the child to copy or choose one part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `runtime_coloring_line_art_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If runtime generation and coloring UI are unsupported, block at Phase 0 and do not generate an activity package.
+**Screen:** Shows the active round token, child response slot, and coloring region cue. Use `runtime_coloring_line_art_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If runtime generation and coloring UI are unsupported, block at Phase 0 and do not generate an activity package.
 
 **Round 2 -- Apply Or Describe The Color:**
 
@@ -117,7 +117,7 @@ A simple line-art picture waits for colors gathered from the child environment.
 2. Keep the target small, restate the one required region fill or honest fallback step, and offer an easier mark, word, or piece.
 3. [wait 2s] Model the smallest possible region fill or honest fallback addition, then invite the child to copy or choose one part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `runtime_coloring_line_art_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If runtime generation and coloring UI are unsupported, block at Phase 0 and do not generate an activity package.
+**Screen:** Shows the active round token, child response slot, and coloring region cue. Use `runtime_coloring_line_art_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If runtime generation and coloring UI are unsupported, block at Phase 0 and do not generate an activity package.
 
 **Round 3 -- Reveal The Artwork:**
 
@@ -137,13 +137,13 @@ A simple line-art picture waits for colors gathered from the child environment.
 2. Keep the target small, restate the one required finished coloring choice step, and offer an easier mark, word, or piece.
 3. [wait 2s] Model the smallest possible finished coloring choice addition, then invite the child to copy or choose one part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `runtime_coloring_line_art_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If runtime generation and coloring UI are unsupported, block at Phase 0 and do not generate an activity package.
+**Screen:** Shows the active round token, child response slot, and coloring region cue. Use `runtime_coloring_line_art_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If runtime generation and coloring UI are unsupported, block at Phase 0 and do not generate an activity package.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your coloring region turns are saved: we started Coloring Game, practiced coloring region, and reached the finish."
 
 **Child responses:**
 

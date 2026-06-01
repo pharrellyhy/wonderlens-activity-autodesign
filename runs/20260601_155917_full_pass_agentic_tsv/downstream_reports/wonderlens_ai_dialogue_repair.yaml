@@ -1,0 +1,64 @@
+run_id: "20260601_155917_full_pass_agentic_tsv"
+date: "2026-06-01"
+scope:
+  repaired_prod_files: 29
+  package_count: 40
+  evidence_files:
+    - "runs/20260601_155917_full_pass_agentic_tsv/downstream_reports/wonderlens_ai_dialogue_repair.md"
+    - "runs/20260601_155917_full_pass_agentic_tsv/downstream_reports/wonderlens_ai_dialogue_repair.yaml"
+  excluded_paths:
+    - "runs/20260601_155917_full_pass_agentic_tsv/visual_reference_reviews/image_quality_reaudit*"
+leakage_counts:
+  before_total: 283
+  after_total: 0
+  before:
+    "Open from the source trigger": 29
+    "I found a small mission": 29
+    "Rule: I prompt": 29
+    "source-intent cue": 89
+    "current prompt": 32
+    "What is your first try": 23
+    "What did we make": 23
+    "Your turns made the board light up": 29
+    "RESOLVED BLOCKER": 0
+    "RESOLVE BLOCKER": 0
+  after:
+    "Open from the source trigger": 0
+    "I found a small mission": 0
+    "Rule: I prompt": 0
+    "source-intent cue": 0
+    "current prompt": 0
+    "What is your first try": 0
+    "What did we make": 0
+    "Your turns made the board light up": 0
+    "RESOLVED BLOCKER": 0
+    "RESOLVE BLOCKER": 0
+repair_summary:
+  - "Replaced generic opening lines with activity name, child role, and first source-specific turn."
+  - "Replaced generic rule examples with activity-specific cue wording while preserving token-saving behavior."
+  - "Replaced generic screen cue labels with activity-specific cues while preserving asset and fallback guardrails."
+  - "Replaced generic first-try, recap, and finish examples with activity-specific action language."
+validation:
+  - name: "runtime leakage scan"
+    cwd: "/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/full-pass-agentic-run"
+    command: 'if rg -n "Open from the source trigger|I found a small mission|Rule: I prompt|source-intent cue|current prompt|What is your first try|What did we make|Your turns made the board light up|RESOLVED BLOCKER|RESOLVE BLOCKER" runs/20260601_155917_full_pass_agentic_tsv/activity_packages/*/prod.md; then exit 1; else echo no_runtime_leakage; fi'
+    exit_code: 0
+    output: "no_runtime_leakage"
+  - name: "demo package contract"
+    cwd: "/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/full-pass-agentic-run"
+    command: "/Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/validate_demo_package_contract.py runs/20260601_155917_full_pass_agentic_tsv/activity_packages"
+    exit_code: 0
+    output: "OK demo package contract: 40 package(s)"
+  - name: "wonderlens-ai runtime generation"
+    cwd: "/Users/pharrelly/codebase/gitlab/wonderlens-ai"
+    command: "rm -rf .artifacts/full-pass-agentic && mkdir -p .artifacts/full-pass-agentic && uv run python scripts/generate_activity_runtime.py --source /Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/full-pass-agentic-run/runs/20260601_155917_full_pass_agentic_tsv/activity_packages --dest .artifacts/full-pass-agentic/activities --write --force --report-json .artifacts/full-pass-agentic/runtime-report.json"
+    exit_code: 0
+    output_summary: "40 package(s) generated; every package line reported warnings=0."
+  - name: "markdown whitespace check"
+    cwd: "/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/full-pass-agentic-run"
+    command: "git diff --check"
+    exit_code: 0
+    output: "no output"
+residual_risks:
+  - "This repair removes the listed leakage phrases and restores source-specific runtime wording; it does not perform a new full dialogue quality audit."
+  - "The WonderLens AI validation command wrote only the requested .artifacts/full-pass-agentic validation output in the downstream repo."

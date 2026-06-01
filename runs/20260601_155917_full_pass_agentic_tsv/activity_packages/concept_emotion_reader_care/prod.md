@@ -39,9 +39,9 @@ A character, animal, or story moment shows an obvious emotional expression.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Emotion Reader starter cue, name the child as feeling helper, and preview the first feeling clue turn.
 
-**Example AI line:** "I found a small mission for us: Emotion Reader. I will guide one step at a time."
+**Example AI line:** "Emotion Reader starts now. You are the feeling helper; I will help one feeling clue turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ A character, animal, or story moment shows an obvious emotional expression.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one feeling clue cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ A character, animal, or story moment shows an obvious emotional expression.
 
 **Runtime AI instruction:** Preserve the workbook promise: The child notices an obvious expression or body cue and thinks about what feeling or help might fit. Ask the child to notice a need and help in the first small turn.
 
-**Example AI line:** "Let us start: The child notices an obvious expression or body cue and thinks about what feeling or help might fit. What is your first try?"
+**Example AI line:** "Let us start: The child notices an obvious expression or body cue and thinks about what feeling or help might fit. Try the first feeling clue now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ A character, animal, or story moment shows an obvious emotional expression.
 2. Reframe without judging, point to the cue for the visible face or body cue, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for the visible face or body cue, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `emotion_expression_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face.
+**Screen:** Shows the active round token, child response slot, and feeling clue cue. Use `emotion_expression_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ A character, animal, or story moment shows an obvious emotional expression.
 2. Reframe without judging, point to the cue for the possible feeling, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for the possible feeling, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `emotion_expression_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face.
+**Screen:** Shows the active round token, child response slot, and feeling clue cue. Use `emotion_expression_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your feeling clue turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ A character, animal, or story moment shows an obvious emotional expression.
 2. Reframe without judging, point to the cue for the kind help choice, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for the kind help choice, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `emotion_expression_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face.
+**Screen:** Shows the active round token, child response slot, and feeling clue cue. Use `emotion_expression_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your feeling clue turns are saved: we started Emotion Reader, practiced feeling clue, and reached the finish."
 
 **Child responses:**
 

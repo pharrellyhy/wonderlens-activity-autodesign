@@ -39,9 +39,9 @@ Child enters language-practice mode, asks what an object is called, or photograp
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Word Echo Practice starter cue, name the child as echo player, and preview the first word echo turn.
 
-**Example AI line:** "I found a small mission for us: Word Echo Practice. I will guide one step at a time."
+**Example AI line:** "Word Echo Practice starts now. You are the echo player; I will help one word echo turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Child enters language-practice mode, asks what an object is called, or photograp
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one word echo cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Child enters language-practice mode, asks what an object is called, or photograp
 
 **Runtime AI instruction:** Preserve the workbook promise: The AI says a simple word or phrase and the child repeats it back in a playful echo round. Ask the child to echo or recall in the first small turn.
 
-**Example AI line:** "Let us start: The AI says a simple word or phrase and the child repeats it back in a playful echo round. What is your first try?"
+**Example AI line:** "Let us start: The AI says a simple word or phrase and the child repeats it back in a playful echo round. Echo the first word now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Child enters language-practice mode, asks what an object is called, or photograp
 2. Slow the first echo word into smaller pieces, accept a partial recall, and ask for just the next word or sound.
 3. [wait 2s] Say the first echo word prompt in two short beats, then invite the child to copy one beat.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `word_echo_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
+**Screen:** Shows the active round token, child response slot, and word echo cue. Use `word_echo_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Child enters language-practice mode, asks what an object is called, or photograp
 2. Slow the echo variation into smaller pieces, accept a partial recall, and ask for just the next word or sound.
 3. [wait 2s] Say the echo variation prompt in two short beats, then invite the child to copy one beat.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `word_echo_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
+**Screen:** Shows the active round token, child response slot, and word echo cue. Use `word_echo_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your word echo turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Child enters language-practice mode, asks what an object is called, or photograp
 2. Slow the remembered echo pair into smaller pieces, accept a partial recall, and ask for just the next word or sound.
 3. [wait 2s] Say the remembered echo pair prompt in two short beats, then invite the child to copy one beat.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `word_echo_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
+**Screen:** Shows the active round token, child response slot, and word echo cue. Use `word_echo_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your word echo turns are saved: we started Word Echo Practice, practiced word echo, and reached the finish."
 
 **Child responses:**
 

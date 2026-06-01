@@ -39,9 +39,9 @@ Light transition, waiting moment, or warm-up conversation.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Quick and Silly Questions starter cue, name the child as quick and silly questions player, and preview the first quick choice turn.
 
-**Example AI line:** "I found a small mission for us: Quick and Silly Questions. I will guide one step at a time."
+**Example AI line:** "Quick and Silly Questions starts now. You are the quick and silly questions player; I will help one quick choice turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Light transition, waiting moment, or warm-up conversation.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one quick choice cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Light transition, waiting moment, or warm-up conversation.
 
 **Runtime AI instruction:** Preserve the workbook promise: The child answers very short playful choice questions during a transition or warm-up. Ask the child to choose and respond in the first small turn.
 
-**Example AI line:** "Let us start: The child answers very short playful choice questions during a transition or warm-up. What is your first try?"
+**Example AI line:** "Let us start: The child answers very short playful choice questions during a transition or warm-up. Answer the first quick choice now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Light transition, waiting moment, or warm-up conversation.
 2. Keep the decision frame, remove the unavailable option, and ask for one of the visible choices for the first playful choice.
 3. [wait 2s] Read the visible choices for the first playful choice, model one choice sentence, and ask for a tap or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `quick_silly_countdown_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If countdown UI is unavailable, ask the quick questions by voice only and do not claim a timer is on screen.
+**Screen:** Shows the active round token, child response slot, and quick choice cue. Use `quick_silly_countdown_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If countdown UI is unavailable, ask the quick questions by voice only and do not claim a timer is on screen.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Light transition, waiting moment, or warm-up conversation.
 2. Keep the decision frame, remove the unavailable option, and ask for one of the visible choices for the changed silly choice.
 3. [wait 2s] Read the visible choices for the changed silly choice, model one choice sentence, and ask for a tap or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `quick_silly_countdown_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If countdown UI is unavailable, ask the quick questions by voice only and do not claim a timer is on screen.
+**Screen:** Shows the active round token, child response slot, and quick choice cue. Use `quick_silly_countdown_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If countdown UI is unavailable, ask the quick questions by voice only and do not claim a timer is on screen.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your quick choice turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Light transition, waiting moment, or warm-up conversation.
 2. Keep the decision frame, remove the unavailable option, and ask for one of the visible choices for the favorite silly answer.
 3. [wait 2s] Read the visible choices for the favorite silly answer, model one choice sentence, and ask for a tap or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `quick_silly_countdown_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If countdown UI is unavailable, ask the quick questions by voice only and do not claim a timer is on screen.
+**Screen:** Shows the active round token, child response slot, and quick choice cue. Use `quick_silly_countdown_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If countdown UI is unavailable, ask the quick questions by voice only and do not claim a timer is on screen.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your quick choice turns are saved: we started Quick and Silly Questions, practiced quick choice, and reached the finish."
 
 **Child responses:**
 

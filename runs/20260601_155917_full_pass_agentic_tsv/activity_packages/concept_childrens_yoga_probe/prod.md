@@ -39,9 +39,9 @@ Parent selects a calm movement routine and the child has enough space.
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open from the source trigger and name the child's role in this activity.
+**Runtime AI instruction:** Open from the Children's Yoga starter cue, name the child as children's yoga player, and preview the first safe yoga pose turn.
 
-**Example AI line:** "I found a small mission for us: Children's Yoga. I will guide one step at a time."
+**Example AI line:** "Children's Yoga starts now. You are the children's yoga player; I will help one child-safe yoga pose turn at a time."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ Parent selects a calm movement routine and the child has enough space.
 
 **Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
 
-**Example AI line:** "Rule: I prompt, you try the activity action, and we save one token for each turn."
+**Example AI line:** "Rule: I give one child-safe yoga pose cue, you answer or try it, and we save one progress token each turn."
 
 **Child responses:**
 
@@ -83,7 +83,7 @@ Parent selects a calm movement routine and the child has enough space.
 
 **Runtime AI instruction:** Preserve the workbook promise: The AI guides a short, child-safe pose routine using animal or object metaphors. Ask the child to move or voice safely in the first small turn.
 
-**Example AI line:** "Let us start: The AI guides a short, child-safe pose routine using animal or object metaphors. What is your first try?"
+**Example AI line:** "Let us start: The AI guides a short, child-safe pose routine using animal or object metaphors. Try the first safe pose now."
 
 **Child responses:**
 
@@ -97,7 +97,7 @@ Parent selects a calm movement routine and the child has enough space.
 2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the first child-safe pose.
 3. [wait 2s] Demonstrate the smallest safe version of the first child-safe pose, then ask the child to copy just that part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `childrens_yoga_pose_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If pose cards or motion safety rules are unavailable, block at Phase 0.
+**Screen:** Shows the active round token, child response slot, and child-safe yoga pose cue. Use `childrens_yoga_pose_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If pose cards or motion safety rules are unavailable, block at Phase 0.
 
 **Round 2 -- Repeat With A Variation:**
 
@@ -117,13 +117,13 @@ Parent selects a calm movement routine and the child has enough space.
 2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the second pose with a small variation.
 3. [wait 2s] Demonstrate the smallest safe version of the second pose with a small variation, then ask the child to copy just that part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `childrens_yoga_pose_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If pose cards or motion safety rules are unavailable, block at Phase 0.
+**Screen:** Shows the active round token, child response slot, and child-safe yoga pose cue. Use `childrens_yoga_pose_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If pose cards or motion safety rules are unavailable, block at Phase 0.
 
 **Round 3 -- Complete The Loop:**
 
 **Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
 
-**Example AI line:** "What did we make, find, choose, or learn from your turns?"
+**Example AI line:** "What should we remember from your child-safe yoga pose turns?"
 
 **Child responses:**
 
@@ -137,13 +137,13 @@ Parent selects a calm movement routine and the child has enough space.
 2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the calm finish pose.
 3. [wait 2s] Demonstrate the smallest safe version of the calm finish pose, then ask the child to copy just that part.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `childrens_yoga_pose_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If pose cards or motion safety rules are unavailable, block at Phase 0.
+**Screen:** Shows the active round token, child response slot, and child-safe yoga pose cue. Use `childrens_yoga_pose_cards_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-3; fallback: If pose cards or motion safety rules are unavailable, block at Phase 0.
 
 #### Step 4: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
-**Example AI line:** "Your turns made the board light up: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your child-safe yoga pose turns are saved: we started Children's Yoga, practiced child-safe yoga pose, and reached the finish."
 
 **Child responses:**
 
