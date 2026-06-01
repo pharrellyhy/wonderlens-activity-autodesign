@@ -50,6 +50,7 @@ Asset build mode: `generate_and_curate`.
 
 Asset output evidence:
 
+- `generation_pass_details.md`
 - `generated_assets/asset_outputs.yaml`
 - `generated_assets/reference_sources.yaml`
 - `generated_assets/qa_notes.yaml`

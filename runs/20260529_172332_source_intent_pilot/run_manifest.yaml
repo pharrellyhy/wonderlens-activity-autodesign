@@ -319,6 +319,7 @@ outputs:
   - runs/20260529_172332_source_intent_pilot/downstream_reports/fullstack_import_review.yaml
   - runs/20260529_172332_source_intent_pilot/downstream_reports/wonderlens_ai_runtime_review.yaml
   final_report: runs/20260529_172332_source_intent_pilot/source_intent_pilot_validation.md
+  generation_pass_details: runs/20260529_172332_source_intent_pilot/generation_pass_details.md
   review_dashboard: runs/20260529_172332_source_intent_pilot/review.html
   adaptation_briefs:
   - runs/20260529_172332_source_intent_pilot/adaptation_briefs/concept_phoneme_hunt_collect.yaml

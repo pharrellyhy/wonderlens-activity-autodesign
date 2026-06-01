@@ -27,3 +27,6 @@ source baseline with `asset_build=generate_and_curate`.
 - Partial Reveal Guess should use slightly safer source framing before a larger asset run.
 
 Final report: `runs/20260529_172332_source_intent_pilot/source_intent_pilot_validation.md`.
+
+Detailed generation pass and asset prompt log:
+`runs/20260529_172332_source_intent_pilot/generation_pass_details.md`.
