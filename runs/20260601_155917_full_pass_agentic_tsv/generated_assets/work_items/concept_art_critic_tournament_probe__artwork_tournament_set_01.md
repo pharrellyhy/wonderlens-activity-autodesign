@@ -10,11 +10,11 @@ Transformation policy: `crop_resize_only`
 
 ## Prompt Or Source Requirement
 
-Use only approved public-domain, licensed, or internal reference artwork for this package. Do not invent or approximate the artwork set.
+Use the accepted package-local Hokusai public-domain reference artwork. Runtime presentation may crop the accepted source to remove source borders and readable cartouche text, but must not invent or approximate the artwork.
 
 ## Declared Sources
 
-- Pending approved source set for artwork_tournament_set_01: pending://approved-reference-curation/artwork_tournament_set_01 (Pending approved public-domain, licensed, or internal reference curation)
+- Katsushika Hokusai, South Wind, Clear Sky, from Thirty-Six Views of Mount Fuji: https://clevelandart.org/art/1930.189 (CC0 1.0 / Cleveland Museum of Art Open Access)
 
 ## Variants
 

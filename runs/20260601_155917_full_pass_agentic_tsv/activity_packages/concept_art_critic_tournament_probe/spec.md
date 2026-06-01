@@ -42,7 +42,8 @@ The package preserves the original play frame, child role, required child action
 
 | asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_or_source | fallback_behavior |
 |---|---|---|---|---|---|---|---|---|
-| artwork_tournament_set_01 | approved_artwork_set | required | pre_curated | prod.step_2; prod.step_3.round_1-5 | center_card_area | Provide approved artwork pairs for comparison and tournament choice. | approved_public_domain_or_licensed_artwork_set | If the artwork set or tournament state is unavailable, block at Phase 0. |
+| artwork_tournament_set_01 | approved_artwork_option | required | pre_curated | prod.step_2; prod.step_3.round_1-5 | side_by_side_compare_area | Provide the accepted Hokusai artwork option, cropped to remove source border and readable cartouche text. | Hokusai public-domain Cleveland Museum of Art source | If the artwork set or tournament state is unavailable, block at Phase 0. |
+| artwork_tournament_challenger_01 | approved_artwork_option | required | pre_curated | prod.step_2; prod.step_3.round_1-5 | side_by_side_compare_area | Provide the accepted Van Gogh challenger artwork for comparison and tournament choice. | Van Gogh public-domain Cleveland Museum of Art source | If the challenger artwork or tournament state is unavailable, block at Phase 0. |
 
 ## Extensibility Summary
 

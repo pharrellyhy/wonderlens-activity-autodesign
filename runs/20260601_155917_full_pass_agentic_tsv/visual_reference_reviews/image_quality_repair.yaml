@@ -1,0 +1,51 @@
+run_id: 20260601_155917_full_pass_agentic_tsv
+repair_owner: master_after_delegated_image_improver_shutdown
+repaired_at: "2026-06-01T18:22:23+0800"
+source_audit:
+  previous_report: visual_reference_reviews/image_quality_audit.md
+  previous_verdict: fail
+  previous_counts:
+    pass: 29
+    needs_repair: 1
+    product_decision: 1
+repairs:
+  - activity_id: concept_art_critic_tournament_probe
+    previous_asset_id: artwork_tournament_set_01
+    previous_verdict: needs_repair
+    action: cropped_accepted_source_and_added_challenger
+    repaired_assets:
+      - artwork_tournament_set_01
+      - artwork_tournament_challenger_01
+    intent_preserved: true
+    notes:
+      - Removed visible cartouche text and source border from the Hokusai runtime PNG.
+      - Added accepted Van Gogh public-domain challenger artwork for side-by-side tournament comparison.
+  - activity_id: concept_recognition_pop_probe
+    previous_asset_id: recognition_challenge_cards_01
+    previous_verdict: product_decision
+    action: split_composite_into_separate_target_and_distractor_cards
+    removed_assets:
+      - recognition_challenge_cards_01
+    repaired_assets:
+      - recognition_target_dog_card
+      - recognition_distractor_fox_card
+      - recognition_distractor_wolf_card
+    intent_preserved: true
+    notes:
+      - Preserved target-vs-distractor timing behavior.
+      - Kept dog as speak-target and fox/wolf as quiet distractors.
+validation:
+  asset_build:
+    command: /Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/build_activity_assets.py runs/20260601_155917_full_pass_agentic_tsv --mode generate_and_curate
+    status: pass
+    result: "OK asset build: mode=generate_and_curate packages=40 assets=34 built=34 required_failures=0"
+  asset_outputs:
+    command: /Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/validate_asset_build_outputs.py runs/20260601_155917_full_pass_agentic_tsv
+    status: pass
+    result: "OK asset build outputs: runs/20260601_155917_full_pass_agentic_tsv"
+  demo_package_contract:
+    command: /Users/pharrelly/.pyenv/versions/3.13.6/bin/python scripts/validate_demo_package_contract.py runs/20260601_155917_full_pass_agentic_tsv/activity_packages
+    status: pass
+    result: "OK demo package contract: 40 package(s)"
+next_required_gate:
+  - Run a fresh independent image QA pass over the repaired 34 assets.

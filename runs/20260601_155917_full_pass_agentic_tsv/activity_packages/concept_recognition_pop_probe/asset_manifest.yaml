@@ -15,29 +15,75 @@ screen_targets:
     master_size: 512
     safe_area: central 72 percent circle
 assets:
-- id: recognition_challenge_cards_01
+- id: recognition_target_dog_card
   role: collection_correct
-  label: Provide source target and similar distractor animal cards for a recognition-pop
-    timing challenge.
+  label: Dog target card for the recognition-pop timing challenge.
   requiredness: required
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
   transformation_policy: generate_new
   prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
-    asset. Primary request: Provide a target animal card such as dog plus similar
-    distractor animal cards such as fox and wolf for a recognition-pop timing challenge
-    where the child says the target word only for target cards and stays quiet for
-    distractors.. Style: Flat Nordic children''s illustration matching the quiet white
-    WonderLens prototype; broad flat color fills, sparse pencil texture, muted sage,
-    dusty teal-blue, soft terracotta, oatmeal, ochre, blush; square 512x512 source
-    art with important detail inside the central circular safe area; no readable text,
-    letters, numbers, labels, logos, watermark, border, contact sheet, device frame,
-    circular mask, or vignette.'
+    asset. Primary request: One centered dog target card for a recognition-pop timing
+    challenge where the child says the target word only when the dog appears. Style:
+    Flat Nordic children''s illustration matching the quiet white WonderLens prototype;
+    broad flat color fills, sparse pencil texture, muted sage, dusty teal-blue, soft
+    terracotta, oatmeal, ochre, blush; square 512x512 source art with important detail
+    inside the central circular safe area; no readable text, letters, numbers, labels,
+    logos, watermark, border, contact sheet, device frame, circular mask, or vignette;
+    one centered subject only.'
   variants:
   - id: round_512
     target: round_device_screen
     size: 512x512
-    path: assets/recognition_challenge_cards_01__round_512.png
+    path: assets/recognition_target_dog_card__round_512.png
+  fallback_behavior: If target/distractor timing is unavailable, keep unsupported
+    rather than converting to ordinary matching choices.
+  collection_catalog_id: recognition_challenge_cards_01
+- id: recognition_distractor_fox_card
+  role: collection_distractor
+  label: Fox quiet distractor card for the recognition-pop timing challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: One centered fox distractor card for a recognition-pop
+    timing challenge where the child stays quiet for look-alike animals. Style: Flat
+    Nordic children''s illustration matching the quiet white WonderLens prototype;
+    broad flat color fills, sparse pencil texture, muted sage, dusty teal-blue, soft
+    terracotta, oatmeal, ochre, blush; square 512x512 source art with important detail
+    inside the central circular safe area; no readable text, letters, numbers, labels,
+    logos, watermark, border, contact sheet, device frame, circular mask, or vignette;
+    one centered subject only.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/recognition_distractor_fox_card__round_512.png
+  fallback_behavior: If target/distractor timing is unavailable, keep unsupported
+    rather than converting to ordinary matching choices.
+  collection_catalog_id: recognition_challenge_cards_01
+- id: recognition_distractor_wolf_card
+  role: collection_distractor
+  label: Wolf quiet distractor card for the recognition-pop timing challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens runtime activity
+    asset. Primary request: One centered wolf distractor card for a recognition-pop
+    timing challenge where the child stays quiet for look-alike animals. Style: Flat
+    Nordic children''s illustration matching the quiet white WonderLens prototype;
+    broad flat color fills, sparse pencil texture, muted sage, dusty teal-blue, soft
+    terracotta, oatmeal, ochre, blush; square 512x512 source art with important detail
+    inside the central circular safe area; no readable text, letters, numbers, labels,
+    logos, watermark, border, contact sheet, device frame, circular mask, or vignette;
+    one centered subject only.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/recognition_distractor_wolf_card__round_512.png
   fallback_behavior: If target/distractor timing is unavailable, keep unsupported
     rather than converting to ordinary matching choices.
   collection_catalog_id: recognition_challenge_cards_01

@@ -75,7 +75,7 @@ The child photographed a dog. The AI introduces dog, fox, and wolf with visible 
 2. Reframe: "This is not a matching choice. It is say target, quiet for distractor."
 3. [wait 2s] Model: "Dog: say dog. Fox: quiet," then ask for a nod/echo.
 
-**Screen:** Three cards appear: Dog Target with a small sound icon, Fox Quiet, Wolf Quiet. Asset `recognition_challenge_cards_01` is required for playable timing; unsupported fallback keeps the package gated instead of converting to matching.
+**Screen:** Three separate cards appear: Dog Target with a small sound icon, Fox Quiet, Wolf Quiet. Use `recognition_target_dog_card`, `recognition_distractor_fox_card`, and `recognition_distractor_wolf_card`; unsupported fallback keeps the package gated instead of converting to matching.
 
 #### Step 3: Multi-Round Core Loop
 
@@ -97,7 +97,7 @@ The child photographed a dog. The AI introduces dog, fox, and wolf with visible 
 2. Replay slowly: "This one is dog, our say-it card."
 3. [wait 2s] Model the word once and accept an echo; if still silent, move to a quiet-card practice.
 
-**Screen:** One target animal card pops in the center; token 1 fills only for target-word response or supported echo.
+**Screen:** `recognition_target_dog_card` pops alone in the center; token 1 fills only for target-word response or supported echo.
 
 **Round 2 -- Slow Distractor Quiet:**
 
@@ -117,7 +117,7 @@ The child photographed a dog. The AI introduces dog, fox, and wolf with visible 
 2. Say: "Good try. The pointy face/tail tells us this is fox, so we save our dog word."
 3. [wait 2s] Treat silence as correct for distractor, then move on.
 
-**Screen:** One fox/wolf distractor card appears; "quiet success" token can fill without speech.
+**Screen:** `recognition_distractor_fox_card` or `recognition_distractor_wolf_card` appears alone; "quiet success" token can fill without speech.
 
 **Round 3 -- Mixed Target After Distractor:**
 
@@ -137,7 +137,7 @@ The child photographed a dog. The AI introduces dog, fox, and wolf with visible 
 2. Replay the missed contrast: "Quiet for wolf. Say dog for dog."
 3. [wait 2s] Accept quiet as correct on the distractor, then model the target word for the target card.
 
-**Screen:** Card stream shows one distractor then one target; token 3 records "quiet + say."
+**Screen:** Card stream shows one separate distractor card (`recognition_distractor_wolf_card` or `recognition_distractor_fox_card`) then `recognition_target_dog_card`; token 3 records "quiet + say."
 
 **Round 4 -- Look-Alike Challenge:**
 
@@ -157,7 +157,7 @@ The child photographed a dog. The AI introduces dog, fox, and wolf with visible 
 2. Acknowledge the explanation briefly, then return to "say only on dog."
 3. [wait 2s] Provide one clue and replay a single target pop; exit if still no response.
 
-**Screen:** One-card pop stream with visible clue highlight; token 4 fills for target/quiet control.
+**Screen:** One-card pop stream uses the separate dog, fox, or wolf card with visible clue highlight; token 4 fills for target/quiet control.
 
 **Round 5 -- Final Pop Check:**
 
@@ -177,7 +177,7 @@ The child photographed a dog. The AI introduces dog, fox, and wolf with visible 
 2. Say: "The target word is only for dog. We can stop here and keep practicing next time."
 3. [wait 2s] Close with partial success: "You practiced careful waiting."
 
-**Screen:** Final stream completes; badge shows target word, quiet cards, and pop tokens.
+**Screen:** Final stream completes with separate `recognition_distractor_fox_card`, `recognition_target_dog_card`, and `recognition_distractor_wolf_card` pops; badge shows target word, quiet cards, and pop tokens.
 
 #### Step 4: Magic Moment
 

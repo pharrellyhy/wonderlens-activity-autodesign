@@ -42,7 +42,9 @@ The package preserves the original play frame, child role, required child action
 
 | asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_or_source | fallback_behavior |
 |---|---|---|---|---|---|---|---|---|
-| recognition_challenge_cards_01 | target_distractor_animal_card_set | required | pre_generated | prod.step_2; prod.step_3.round_1-5 | center_card_area | Provide target animal and similar distractor animal cards for a timing challenge where the child speaks only on target cards. | new_ai_generated_asset | If target/distractor timing is unavailable, keep the package unsupported rather than converting to ordinary matching choices. |
+| recognition_target_dog_card | target_animal_card | required | pre_generated | prod.step_2; prod.step_3.round_1; prod.step_3.round_3-5 | center_pop_area | Provide a separate dog target card for the timing challenge where the child speaks only on target cards. | new_ai_generated_asset | If target/distractor timing is unavailable, keep the package unsupported rather than converting to ordinary matching choices. |
+| recognition_distractor_fox_card | distractor_animal_card | required | pre_generated | prod.step_2; prod.step_3.round_2-5 | center_pop_area | Provide a separate fox quiet card for the timing challenge where the child stays quiet for distractors. | new_ai_generated_asset | If target/distractor timing is unavailable, keep the package unsupported rather than converting to ordinary matching choices. |
+| recognition_distractor_wolf_card | distractor_animal_card | required | pre_generated | prod.step_2; prod.step_3.round_2-5 | center_pop_area | Provide a separate wolf quiet card for the timing challenge where the child stays quiet for distractors. | new_ai_generated_asset | If target/distractor timing is unavailable, keep the package unsupported rather than converting to ordinary matching choices. |
 
 ## Extensibility Summary
 

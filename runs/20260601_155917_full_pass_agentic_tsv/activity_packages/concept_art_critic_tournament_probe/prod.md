@@ -75,7 +75,7 @@ Two rights-cleared artworks appear side by side each round and the child decides
 2. Keep the rule tied to the first artwork match, name the supported fallback, and offer one allowed first turn.
 3. [wait 2s] Read the Art Critic Tournament rule in one sentence and ask for yes, a point, or the first chance to compare the visible options.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `artwork_tournament_set_01` and `artwork_tournament_challenger_01` in `side_by_side_compare_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 
 #### Step 3: Multi-Round Core Loop
 
@@ -97,7 +97,7 @@ Two rights-cleared artworks appear side by side each round and the child decides
 2. Restate the two visible options and the comparison lens for the first artwork match, then ask for left/right or this/that.
 3. [wait 2s] Name one difference in the first artwork match, model a choice, and invite one point or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
+**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` and `artwork_tournament_challenger_01` in `side_by_side_compare_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 
 **Round 2 -- Match 2:**
 
@@ -117,7 +117,7 @@ Two rights-cleared artworks appear side by side each round and the child decides
 2. Restate the two visible options and the comparison lens for the new challenger match, then ask for left/right or this/that.
 3. [wait 2s] Name one difference in the new challenger match, model a choice, and invite one point or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
+**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` and `artwork_tournament_challenger_01` in `side_by_side_compare_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 
 **Round 3 -- Match 3:**
 
@@ -137,7 +137,7 @@ Two rights-cleared artworks appear side by side each round and the child decides
 2. Restate the two visible options and the comparison lens for the color, shape, or feeling criterion, then ask for left/right or this/that.
 3. [wait 2s] Name one difference in the color, shape, or feeling criterion, model a choice, and invite one point or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
+**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` and `artwork_tournament_challenger_01` in `side_by_side_compare_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 
 **Round 4 -- Match 4:**
 
@@ -157,7 +157,7 @@ Two rights-cleared artworks appear side by side each round and the child decides
 2. Restate the two visible options and the comparison lens for the semifinal keep-or-release choice, then ask for left/right or this/that.
 3. [wait 2s] Name one difference in the semifinal keep-or-release choice, model a choice, and invite one point or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
+**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` and `artwork_tournament_challenger_01` in `side_by_side_compare_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 
 **Round 5 -- Final Match:**
 
@@ -177,7 +177,7 @@ Two rights-cleared artworks appear side by side each round and the child decides
 2. Restate the two visible options and the comparison lens for the final champion choice, then ask for left/right or this/that.
 3. [wait 2s] Name one difference in the final champion choice, model a choice, and invite one point or word.
 
-**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` in `center_card_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
+**Screen:** Shows the active round token, child response slot, and source-intent cue. Use `artwork_tournament_set_01` and `artwork_tournament_challenger_01` in `side_by_side_compare_area` during prod.step_2; prod.step_3.round_1-5; fallback: If the artwork set or tournament state is unavailable, block at Phase 0.
 
 #### Step 4: Magic Moment
 

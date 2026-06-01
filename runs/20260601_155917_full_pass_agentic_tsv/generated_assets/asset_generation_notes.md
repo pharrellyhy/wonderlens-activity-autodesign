@@ -24,7 +24,9 @@ Illustrative assets were generated with the built-in image generation tool using
 | `concept_phoneme_hunt_collect` | `ball_b_sound_clue` | `required` | `runs/20260601_155917_full_pass_agentic_tsv/generated_assets/inbox/concept_phoneme_hunt_collect/ball_b_sound_clue.png` | PNG, 1254x1254 |
 | `concept_phoneme_hunt_collect` | `banana_b_sound_clue` | `required` | `runs/20260601_155917_full_pass_agentic_tsv/generated_assets/inbox/concept_phoneme_hunt_collect/banana_b_sound_clue.png` | PNG, 1254x1254 |
 | `concept_quick_silly_decide` | `quick_silly_countdown_01` | `optional` | `runs/20260601_155917_full_pass_agentic_tsv/generated_assets/inbox/concept_quick_silly_decide/quick_silly_countdown_01.png` | PNG, 1254x1254 |
-| `concept_recognition_pop_probe` | `recognition_challenge_cards_01` | `required` | `runs/20260601_155917_full_pass_agentic_tsv/generated_assets/inbox/concept_recognition_pop_probe/recognition_challenge_cards_01.png` | PNG, 1254x1254 |
+| `concept_recognition_pop_probe` | `recognition_target_dog_card` | `required` | `runs/20260601_155917_full_pass_agentic_tsv/generated_assets/inbox/concept_recognition_pop_probe/recognition_target_dog_card.png` | PNG, 512x512 |
+| `concept_recognition_pop_probe` | `recognition_distractor_fox_card` | `required` | `runs/20260601_155917_full_pass_agentic_tsv/generated_assets/inbox/concept_recognition_pop_probe/recognition_distractor_fox_card.png` | PNG, 512x512 |
+| `concept_recognition_pop_probe` | `recognition_distractor_wolf_card` | `required` | `runs/20260601_155917_full_pass_agentic_tsv/generated_assets/inbox/concept_recognition_pop_probe/recognition_distractor_wolf_card.png` | PNG, 512x512 |
 | `concept_story_unlock_probe` | `story_unlock_cards_01` | `optional` | `runs/20260601_155917_full_pass_agentic_tsv/generated_assets/inbox/concept_story_unlock_probe/story_unlock_cards_01.png` | PNG, 1254x1254 |
 | `concept_travel_planner_predict` | `travel_planning_cards_01` | `optional` | `runs/20260601_155917_full_pass_agentic_tsv/generated_assets/inbox/concept_travel_planner_predict/travel_planning_cards_01.png` | PNG, 1254x1254 |
 | `concept_trivia_game_remember` | `trivia_reward_board_01` | `optional` | `runs/20260601_155917_full_pass_agentic_tsv/generated_assets/inbox/concept_trivia_game_remember/trivia_reward_board_01.png` | PNG, 1254x1254 |
@@ -35,10 +37,11 @@ Illustrative assets were generated with the built-in image generation tool using
 ## Reference-Bound Exclusions
 The following assets intentionally remain outside image generation and require verified source curation:
 
-- `concept_art_critic_tournament_probe/artwork_tournament_set_01`: Use only approved public-domain, licensed, or internal reference artwork for this package. Do not invent or approximate the artwork set.
+- `concept_art_critic_tournament_probe/artwork_tournament_set_01`: accepted Hokusai public-domain source, cropped to remove source border and readable cartouche text.
+- `concept_art_critic_tournament_probe/artwork_tournament_challenger_01`: accepted Van Gogh public-domain source reused from the current run for the challenger artwork.
 - `concept_color_famous_art_probe/color_artwork_set_01`: Use only approved public-domain, licensed, or internal reference artwork for this package. Do not invent or approximate the artwork set.
 
 ## Mechanical Validation
-- `illustrative_sources`: 27
+- `illustrative_sources`: 29
 - `missing`: 0
 - `invalid`: 0

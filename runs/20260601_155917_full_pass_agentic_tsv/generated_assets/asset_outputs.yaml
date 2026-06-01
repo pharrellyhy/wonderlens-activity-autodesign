@@ -1,9 +1,9 @@
 run_id: 20260601_155917_full_pass_agentic_tsv
 asset_build_mode: generate_and_curate
-generated_at: '2026-06-01T17:26:37+08:00'
+generated_at: '2026-06-01T18:20:35+08:00'
 package_count: 40
-asset_count: 31
-built_count: 31
+asset_count: 34
+built_count: 34
 required_failures: 0
 entries:
 - activity_id: concept_animal_sound_motion_voice
@@ -41,11 +41,32 @@ entries:
   - variant_id: round_512
     path: assets/artwork_tournament_set_01__round_512.png
     size: 512x512
-    sha256: c84cdde113e54f55643debd202716270c801f3cfe151b23ebb036d6d33172604
-    byte_count: 526332
+    sha256: 0c9aa18d46c0570e4c38b37ef5fb2740c27911cd66528daa83f33f79fc7f7545
+    byte_count: 524302
     mime_type: image/png
     source_asset_id: artwork_tournament_set_01
   source_metadata_path: activity_packages/concept_art_critic_tournament_probe/assets/sources/artwork_tournament_set_01__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_art_critic_tournament_probe
+  asset_id: artwork_tournament_challenger_01
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: curated_original
+  transformation_policy: crop_resize_only
+  status: curated
+  package_path: activity_packages/concept_art_critic_tournament_probe
+  work_item_path: generated_assets/work_items/concept_art_critic_tournament_probe__artwork_tournament_challenger_01.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/artwork_tournament_challenger_01__round_512.png
+    size: 512x512
+    sha256: b22903c3e598c7aacf2e21d96bb80af03de70570986098585e2b7a2ced310dd9
+    byte_count: 641189
+    mime_type: image/png
+    source_asset_id: artwork_tournament_challenger_01
+  source_metadata_path: activity_packages/concept_art_critic_tournament_probe/assets/sources/artwork_tournament_challenger_01__source_metadata.yaml
   qa_notes:
   - Built package-local runtime asset variants.
 - activity_id: concept_award_certificate_probe
@@ -511,7 +532,7 @@ entries:
   qa_notes:
   - Built package-local runtime asset variants.
 - activity_id: concept_recognition_pop_probe
-  asset_id: recognition_challenge_cards_01
+  asset_id: recognition_target_dog_card
   role: collection_correct
   accuracy_mode: illustrative
   requiredness: required
@@ -519,15 +540,57 @@ entries:
   transformation_policy: generate_new
   status: generated
   package_path: activity_packages/concept_recognition_pop_probe
-  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__recognition_challenge_cards_01.md
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__recognition_target_dog_card.md
   output_variants:
   - variant_id: round_512
-    path: assets/recognition_challenge_cards_01__round_512.png
+    path: assets/recognition_target_dog_card__round_512.png
     size: 512x512
-    sha256: e8028689c338c7cc6f405326a26bf274567bc2dea8261bcd7e8a99fbc9855f5f
-    byte_count: 283172
+    sha256: 29dd70e65b1d0166b9ddba745db37b539681376d141b0dbaca1e20597e5bae20
+    byte_count: 36307
     mime_type: image/png
-    source_asset_id: recognition_challenge_cards_01
+    source_asset_id: recognition_target_dog_card
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: recognition_distractor_fox_card
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__recognition_distractor_fox_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/recognition_distractor_fox_card__round_512.png
+    size: 512x512
+    sha256: 4d17df4a20548a5dade021a4b13eea8e2236ea89fb0de0869f8bfecb26484be8
+    byte_count: 29680
+    mime_type: image/png
+    source_asset_id: recognition_distractor_fox_card
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: recognition_distractor_wolf_card
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__recognition_distractor_wolf_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/recognition_distractor_wolf_card__round_512.png
+    size: 512x512
+    sha256: ffbe648dfeafdc5574ade0ea625ffd268685c04aeb3c7d5cdeb34cea0381a7b3
+    byte_count: 29054
+    mime_type: image/png
+    source_asset_id: recognition_distractor_wolf_card
   source_metadata_path: ''
   qa_notes:
   - Built package-local runtime asset variants.

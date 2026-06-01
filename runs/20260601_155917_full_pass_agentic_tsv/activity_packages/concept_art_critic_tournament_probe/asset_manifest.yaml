@@ -17,13 +17,14 @@ screen_targets:
 assets:
 - id: artwork_tournament_set_01
   role: story_scene
-  label: Provide approved artwork pairs for comparison and tournament choice.
+  label: Hokusai approved artwork option for comparison and tournament choice.
   requiredness: required
   accuracy_mode: reference_bound
   source_strategy: curated_original
   transformation_policy: crop_resize_only
-  prompt_en: Use only approved public-domain, licensed, or internal reference artwork
-    for this package. Do not invent or approximate the artwork set.
+  prompt_en: Use the accepted package-local Hokusai public-domain reference artwork.
+    Runtime presentation may crop the accepted source to remove source borders and
+    readable cartouche text, but must not invent or approximate the artwork.
   reference_policy:
     source_required: true
     allowed_sources:
@@ -34,9 +35,10 @@ assets:
     verification_notes: Curate and verify approved artwork sources before asset build;
       no random web images or generated substitutes.
   sources:
-  - label: Pending approved source set for artwork_tournament_set_01
-    uri: pending://approved-reference-curation/artwork_tournament_set_01
-    license: Pending approved public-domain, licensed, or internal reference curation
+  - label: Katsushika Hokusai, South Wind, Clear Sky, from Thirty-Six Views of Mount
+      Fuji
+    uri: https://clevelandart.org/art/1930.189
+    license: CC0 1.0 / Cleveland Museum of Art Open Access
     source_type: public_domain_reference
   variants:
   - id: round_512
@@ -45,3 +47,34 @@ assets:
     path: assets/artwork_tournament_set_01__round_512.png
   fallback_behavior: If the artwork set or tournament state is unavailable, block
     at Phase 0.
+- id: artwork_tournament_challenger_01
+  role: story_scene
+  label: Van Gogh approved challenger artwork for tournament comparison.
+  requiredness: required
+  accuracy_mode: reference_bound
+  source_strategy: curated_original
+  transformation_policy: crop_resize_only
+  prompt_en: Use the accepted package-local Van Gogh public-domain reference artwork
+    as the tournament challenger. Do not invent, redraw, or approximate the artwork.
+  reference_policy:
+    source_required: true
+    allowed_sources:
+    - licensed_asset
+    - public_domain_reference
+    - approved_internal_reference
+    verification_required: true
+    verification_notes: Reused accepted public-domain Cleveland Museum of Art source
+      from the current run's color famous art package; no random web images or generated
+      substitutes.
+  sources:
+  - label: Vincent van Gogh, The Large Plane Trees (Road Menders at Saint-Remy)
+    uri: https://clevelandart.org/art/1947.209
+    license: CC0 1.0 / Cleveland Museum of Art Open Access
+    source_type: public_domain_reference
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/artwork_tournament_challenger_01__round_512.png
+  fallback_behavior: If the challenger artwork or tournament state is unavailable,
+    block at Phase 0.
