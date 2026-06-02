@@ -399,6 +399,188 @@
       background: oklch(0.94 0.035 220);
     }
 
+    .workflow-lab {
+      display: grid;
+      grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(1.2rem, 3vw, 2rem);
+      align-items: stretch;
+      margin-top: 1.2rem;
+    }
+
+    .flow-panel,
+    .flow-detail,
+    .asset-example {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      box-shadow: var(--shadow);
+    }
+
+    .flow-panel {
+      padding: 1rem;
+    }
+
+    .flow-board {
+      position: relative;
+      min-height: 24rem;
+      border-radius: 0.8rem;
+      padding: 0.85rem;
+      background:
+        linear-gradient(90deg, oklch(0.93 0.018 84) 1px, transparent 1px),
+        linear-gradient(180deg, oklch(0.93 0.018 84) 1px, transparent 1px),
+        oklch(0.975 0.008 80);
+      background-size: 2.4rem 2.4rem;
+      overflow: hidden;
+    }
+
+    .flow-stages {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(3, minmax(5.8rem, 1fr));
+      gap: 0.7rem;
+      height: 100%;
+    }
+
+    .flow-stage {
+      min-width: 0;
+      border: 1px solid oklch(0.78 0.03 82);
+      border-radius: 0.72rem;
+      background: oklch(0.99 0.005 80 / 0.94);
+      padding: 0.7rem;
+      display: grid;
+      align-content: start;
+      transition: transform 220ms cubic-bezier(0.25, 1, 0.5, 1), background 220ms cubic-bezier(0.25, 1, 0.5, 1), border-color 220ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .flow-stage[data-active="true"] {
+      transform: translateY(-0.18rem);
+      border-color: oklch(0.64 0.09 205);
+      background: oklch(0.94 0.035 210);
+      box-shadow: 0 0.8rem 1.8rem oklch(0.46 0.05 210 / 0.14);
+    }
+
+    .flow-stage b {
+      color: var(--ink);
+      font-size: 0.83rem;
+      line-height: 1.15;
+    }
+
+    .flow-stage span {
+      margin-top: 0.36rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
+    .flow-path {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .flow-path path {
+      fill: none;
+      stroke: oklch(0.61 0.07 202);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1 9;
+      opacity: 0.56;
+    }
+
+    .flow-token {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      width: 2.15rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 32%, oklch(0.99 0.004 80) 0 23%, transparent 24%),
+        linear-gradient(135deg, var(--salmon), var(--teal));
+      border: 2px solid oklch(0.99 0.005 80);
+      box-shadow: 0 0.7rem 1.6rem oklch(0.35 0.06 210 / 0.24);
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+    }
+
+    .flow-detail {
+      padding: 1.1rem;
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+
+    .flow-detail h3 {
+      font-size: 1.4rem;
+      line-height: 1.05;
+    }
+
+    .flow-detail p {
+      margin: 0;
+      font-size: 0.94rem;
+    }
+
+    .flow-meter {
+      height: 0.45rem;
+      border-radius: 999px;
+      background: oklch(0.91 0.02 82);
+      overflow: hidden;
+    }
+
+    .flow-meter span {
+      display: block;
+      width: calc(var(--flow-progress, 0) * 100%);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--salmon), var(--teal));
+      transition: width 180ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .flow-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .flow-controls button {
+      border: 1px solid oklch(0.74 0.035 82);
+      border-radius: 999px;
+      background: oklch(0.965 0.012 77);
+      color: var(--ink);
+      padding: 0.55rem 0.78rem;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 760;
+      cursor: pointer;
+      transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), background 140ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .flow-controls button:hover,
+    .flow-controls button:focus-visible {
+      transform: translateY(-1px);
+      background: oklch(0.93 0.025 88);
+      outline: none;
+    }
+
+    .flow-controls button[aria-pressed="true"] {
+      background: oklch(0.88 0.045 145);
+      border-color: oklch(0.67 0.065 145);
+    }
+
+    .flow-note {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
     .roles {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -562,6 +744,65 @@
       line-height: 1.3;
     }
 
+    .asset-example {
+      margin-top: 1.4rem;
+      padding: 1.1rem;
+    }
+
+    .asset-example h3 {
+      margin-bottom: 0.6rem;
+      font-size: 1.35rem;
+    }
+
+    .asset-example p {
+      margin-top: 0;
+      font-size: 0.94rem;
+    }
+
+    .bundle-grid {
+      display: grid;
+      grid-template-columns: repeat(9, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-top: 1rem;
+    }
+
+    .bundle-frame,
+    .item-frame {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 0.7rem;
+      background: oklch(0.97 0.008 80);
+      padding: 0.45rem;
+    }
+
+    .bundle-frame img,
+    .item-frame img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      background: oklch(0.985 0.006 80);
+    }
+
+    .bundle-frame span,
+    .item-frame span {
+      display: block;
+      margin-top: 0.36rem;
+      color: var(--muted);
+      font-size: 0.66rem;
+      line-height: 1.15;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-top: 0.8rem;
+    }
+
     .repair {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -707,6 +948,7 @@
       .roles,
       .artifact-map,
       .asset-showcase,
+      .workflow-lab,
       .repair,
       .two-up {
         grid-template-columns: minmax(0, 1fr);
@@ -714,6 +956,14 @@
 
       .asset-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .bundle-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .item-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
 
@@ -748,6 +998,31 @@
       .steps,
       .asset-grid {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .flow-board {
+        min-height: 32rem;
+      }
+
+      .flow-stages {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: repeat(9, minmax(4.6rem, auto));
+      }
+
+      .flow-path {
+        display: none;
+      }
+
+      .flow-stage {
+        padding: 0.6rem;
+      }
+
+      .bundle-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .item-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .gates {
@@ -788,6 +1063,7 @@
         <li><a href="#why">Why it exists</a></li>
         <li><a href="#source">Source rules</a></li>
         <li><a href="#map">Pipeline map</a></li>
+        <li><a href="#animation">Workflow animation</a></li>
         <li><a href="#roles">Agent roles</a></li>
         <li><a href="#artifacts">Artifact flow</a></li>
         <li><a href="#assets">Assets</a></li>
@@ -944,6 +1220,50 @@
         </div>
       </section>
 
+      <section id="animation" class="section" aria-labelledby="animation-title">
+        <div class="section-head">
+          <h2 id="animation-title">Workflow animation</h2>
+          <p>
+            A gif-like loop shows the run packet moving through authoring, image build, consumer validation, repair routing, and final review. Pause it for discussion, resume it when walking the room through the sequence.
+          </p>
+        </div>
+        <div class="workflow-lab" data-flow-player>
+          <div class="flow-panel">
+            <div class="flow-board" aria-label="Animated full-pass workflow">
+              <svg class="flow-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M 17 17 L 50 17 L 83 17 L 83 50 L 50 50 L 17 50 L 17 83 L 50 83 L 83 83"></path>
+              </svg>
+              <div class="flow-token" aria-hidden="true"></div>
+              <div class="flow-stages">
+                <div class="flow-stage" data-flow-step="0"><b>Source lock</b><span>TSV row, source snapshot, adaptation brief.</span></div>
+                <div class="flow-stage" data-flow-step="1"><b>Text package</b><span>Five files, demo support, runtime instructions.</span></div>
+                <div class="flow-stage" data-flow-step="2"><b>Post audit</b><span>Intent drift check before consumer work.</span></div>
+                <div class="flow-stage" data-flow-step="5"><b>Image QA</b><span>Style, crop, beat alignment, reference fidelity.</span></div>
+                <div class="flow-stage" data-flow-step="4"><b>Asset build</b><span>Package-local 512x512 PNGs and manifest paths.</span></div>
+                <div class="flow-stage" data-flow-step="3"><b>Bundle repair</b><span>Scene bundle plus object, item, and reference assets.</span></div>
+                <div class="flow-stage" data-flow-step="6"><b>Import</b><span>Fullstack package import and `step_instructions` shape.</span></div>
+                <div class="flow-stage" data-flow-step="7"><b>Runtime QA</b><span>Fullstack and WonderLens AI dialogue strategies.</span></div>
+                <div class="flow-stage" data-flow-step="8"><b>Final review</b><span>Independent evidence audit and residual risk.</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-detail">
+            <h3 data-flow-title>Source lock</h3>
+            <p data-flow-copy>Lock the source promise before writing package files.</p>
+            <div class="flow-meter" aria-hidden="true"><span></span></div>
+            <div class="flow-controls" aria-label="Workflow animation controls">
+              <button type="button" data-flow-toggle>Pause</button>
+              <button type="button" data-flow-restart>Restart</button>
+              <button type="button" data-flow-loop aria-pressed="true">Loop on</button>
+            </div>
+            <p class="flow-note" data-flow-status aria-live="polite">Playing. Step 1 of 9.</p>
+            <p class="flow-note">
+              The motion is deliberately procedural: each tick hands evidence to the next gate, similar to a decoder-style loop where state updates until the sequence is complete.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section id="roles" class="section" aria-labelledby="roles-title">
         <div class="section-head">
           <h2 id="roles-title">Agent roles stay separate</h2>
@@ -1070,6 +1390,32 @@
               <li>Image QA checks style, crop safety, beat alignment, readable runtime size, reference fidelity, no duplicate selectable objects, and no premature answer reveal.</li>
               <li>Failures repair image-owned artifacts only: prompt, source, curated redraw, crop, or generated PNG.</li>
             </ul>
+          </div>
+        </div>
+        <div class="asset-example" aria-labelledby="vegetable-assets-title">
+          <h3 id="vegetable-assets-title">Complete asset bundle example: Vegetable Sort</h3>
+          <p>
+            This is the expected full-pass shape: scene/icon/badge assets for every major beat, plus separate item PNGs for the selectable vegetable cards. Each file is a standalone 512x512 runtime asset.
+          </p>
+          <div class="bundle-grid" aria-label="Vegetable Sort scene bundle">
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/icon.png" alt="Vegetable Sort activity icon"><span>icon</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/intro.png" alt="Vegetable Sort intro scene"><span>intro</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/rules.png" alt="Vegetable Sort rules scene"><span>rules</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/round_1.png" alt="Vegetable Sort round 1 scene"><span>round 1</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/round_2.png" alt="Vegetable Sort round 2 scene"><span>round 2</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/round_3.png" alt="Vegetable Sort round 3 scene"><span>round 3</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/celebrate.png" alt="Vegetable Sort celebration scene"><span>celebrate</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/closing.png" alt="Vegetable Sort closing scene"><span>closing</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/recap.png" alt="Vegetable Sort recap badge"><span>recap</span></div>
+          </div>
+          <div class="item-grid" aria-label="Vegetable Sort selectable item assets">
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/broccoli.png" alt="Broccoli selectable item"><span>broccoli</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/carrot.png" alt="Carrot selectable item"><span>carrot</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/corn.png" alt="Corn selectable item"><span>corn</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/cucumber.png" alt="Cucumber selectable item"><span>cucumber</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/potato.png" alt="Potato selectable item"><span>potato</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/pumpkin.png" alt="Pumpkin selectable item"><span>pumpkin</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/tomato.png" alt="Tomato selectable item"><span>tomato</span></div>
           </div>
         </div>
       </section>
@@ -1236,5 +1582,161 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
       </section>
     </main>
   </div>
+  <script>
+    (() => {
+      const player = document.querySelector("[data-flow-player]");
+      if (!player) {
+        return;
+      }
+
+      const board = player.querySelector(".flow-board");
+      const token = player.querySelector(".flow-token");
+      const stages = Array.from(player.querySelectorAll(".flow-stage")).sort((a, b) => Number(a.dataset.flowStep) - Number(b.dataset.flowStep));
+      const title = player.querySelector("[data-flow-title]");
+      const copy = player.querySelector("[data-flow-copy]");
+      const status = player.querySelector("[data-flow-status]");
+      const meter = player.querySelector(".flow-meter span");
+      const toggle = player.querySelector("[data-flow-toggle]");
+      const restart = player.querySelector("[data-flow-restart]");
+      const loopButton = player.querySelector("[data-flow-loop]");
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const stepText = [
+        {
+          title: "Source lock",
+          copy: "Capture the TSV-backed source promise, child role, sequence, required action, and asset promise before writing package files."
+        },
+        {
+          title: "Text package",
+          copy: "Write the five required files plus demo extensions. Every live beat gets a machine-convertible runtime instruction."
+        },
+        {
+          title: "Post audit",
+          copy: "Recheck the package against source intent before downstream systems touch it."
+        },
+        {
+          title: "Bundle repair",
+          copy: "Ensure the fullstack-style scene bundle exists, then add object, item, entity, target, distractor, or reference assets when needed."
+        },
+        {
+          title: "Asset build",
+          copy: "Build package-local 512x512 runtime PNGs and update `asset_manifest.yaml` paths without changing the activity flow."
+        },
+        {
+          title: "Image QA",
+          copy: "Check style, crop safety, beat alignment, reference fidelity, no duplicate selectable items, and no early answer reveal."
+        },
+        {
+          title: "Package import",
+          copy: "Fullstack-demo imports the package as provided, resolves assets, and preserves `step_instructions` quality."
+        },
+        {
+          title: "Runtime QA",
+          copy: "Fullstack-demo and WonderLens AI run dialogue strategies such as ideal, wrong, help, off-topic, premature done, and silence."
+        },
+        {
+          title: "Final review",
+          copy: "An independent reviewer reads packages, audits, reports, transcripts, image QA, repair notes, manifest, and dashboard before acceptance."
+        }
+      ];
+
+      let progress = 0;
+      let loop = true;
+      let running = !prefersReduced;
+      let lastTime = 0;
+      let activeIndex = -1;
+      const duration = 18000;
+
+      function getCenters() {
+        const boardRect = board.getBoundingClientRect();
+        return stages.map((stage) => {
+          const rect = stage.getBoundingClientRect();
+          return {
+            x: rect.left - boardRect.left + rect.width / 2,
+            y: rect.top - boardRect.top + rect.height / 2
+          };
+        });
+      }
+
+      function setActive(index) {
+        if (index === activeIndex) {
+          return;
+        }
+        activeIndex = index;
+        stages.forEach((stage, stageIndex) => {
+          stage.dataset.active = stageIndex === index ? "true" : "false";
+        });
+        const current = stepText[index];
+        title.textContent = current.title;
+        copy.textContent = current.copy;
+      }
+
+      function render() {
+        const centers = getCenters();
+        const maxSegment = centers.length - 1;
+        const rawPosition = progress * maxSegment;
+        const index = Math.min(Math.floor(rawPosition), maxSegment);
+        const nextIndex = Math.min(index + 1, maxSegment);
+        const segmentProgress = Math.min(rawPosition - index, 1);
+        const from = centers[index];
+        const to = centers[nextIndex];
+        const x = from.x + (to.x - from.x) * segmentProgress;
+        const y = from.y + (to.y - from.y) * segmentProgress;
+
+        token.style.transform = `translate3d(${x - token.offsetWidth / 2}px, ${y - token.offsetHeight / 2}px, 0)`;
+        setActive(index);
+        player.style.setProperty("--flow-progress", String(progress));
+        meter.style.width = `${progress * 100}%`;
+        toggle.textContent = running ? "Pause" : "Resume";
+        toggle.setAttribute("aria-pressed", running ? "false" : "true");
+        loopButton.textContent = loop ? "Loop on" : "Loop off";
+        loopButton.setAttribute("aria-pressed", loop ? "true" : "false");
+        status.textContent = `${running ? "Playing" : "Paused"}. Step ${index + 1} of ${centers.length}.`;
+      }
+
+      function tick(time) {
+        if (!lastTime) {
+          lastTime = time;
+        }
+        const delta = time - lastTime;
+        lastTime = time;
+
+        if (running) {
+          progress += delta / duration;
+          if (progress >= 1) {
+            if (loop) {
+              progress = progress % 1;
+            } else {
+              progress = 1;
+              running = false;
+            }
+          }
+          render();
+        }
+        window.requestAnimationFrame(tick);
+      }
+
+      toggle.addEventListener("click", () => {
+        running = !running;
+        lastTime = 0;
+        render();
+      });
+
+      restart.addEventListener("click", () => {
+        progress = 0;
+        running = !prefersReduced;
+        lastTime = 0;
+        render();
+      });
+
+      loopButton.addEventListener("click", () => {
+        loop = !loop;
+        render();
+      });
+
+      window.addEventListener("resize", render);
+      render();
+      window.requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>

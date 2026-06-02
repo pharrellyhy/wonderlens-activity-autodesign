@@ -17,6 +17,16 @@ Verification: `HTMLParser` parse passed, local href/src reference check reported
 `git diff --check` passed, Chrome desktop render passed, and Chrome DevTools
 390px mobile emulation reported no horizontal overflow.
 
+Update: Added a gif-like workflow animation section with pause/resume, restart,
+and loop controls, plus a complete Vegetable Sort asset bundle example sourced
+from the fullstack-demo `activity_vegetable_sort` assets. Verification for this
+update: `HTMLParser` parse passed, local href/src reference check reported
+`refs=29 missing=0`, the presentation style scan found no banned patterns,
+`git diff --check` passed, all 16 Vegetable Sort PNGs were verified as 512x512,
+Chrome DevTools verified pause/resume and loop control state, all 16 example
+images loaded, desktop had no horizontal overflow, and 390px mobile emulation
+reported no horizontal overflow.
+
 ## 2026-06-01 - Full-Pass Run Goal Ready
 
 Problem: The completed full-pass pipeline contract described how to implement
