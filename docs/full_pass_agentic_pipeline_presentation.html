@@ -1701,7 +1701,7 @@
             </div>
             <ul class="qa-list" aria-label="Asset QA rules">
               <li>Package authoring stays text-only until `asset_build=generate_and_curate` runs.</li>
-              <li>Every package gets `activity_icon`, `intro_scene`, `rules_scene`, three round scenes, `celebrate_scene`, `closing_scene`, and `recap_scene`; Cat5 or synthesis flows also get `synthesis_scene`.</li>
+              <li>Every package gets `activity_icon`, `intro_scene`, `rules_scene`, three round scenes, `celebrate_scene`, and `closing_scene`; Cat5 or synthesis flows also get `synthesis_scene`.</li>
               <li>`asset_manifest.yaml` owns asset IDs, roles, prompts or sources, variants, nullable paths, and fallbacks; final PNGs are package-local 512x512 runtime assets.</li>
               <li>Image QA checks style, crop safety, beat alignment, readable runtime size, reference fidelity, no duplicate selectable objects, and no premature answer reveal.</li>
               <li>Failures repair image-owned artifacts only: prompt, source, curated redraw, crop, or generated PNG.</li>
@@ -1711,7 +1711,7 @@
         <div class="asset-example" aria-labelledby="vegetable-assets-title">
           <h3 id="vegetable-assets-title">Complete asset bundle example: Vegetable Sort</h3>
           <p>
-            This is the expected full-pass shape: scene/icon/badge assets for every major beat, plus separate item PNGs for the selectable vegetable cards. Each file is a standalone 512x512 runtime asset.
+            This is the expected full-pass shape: scene/icon assets for every major beat, plus separate item PNGs for the selectable vegetable cards. Each file is a standalone 512x512 runtime asset.
           </p>
           <div class="bundle-grid" aria-label="Vegetable Sort scene bundle">
             <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/icon.png" alt="Vegetable Sort activity icon"><span>icon</span></div>
@@ -1722,7 +1722,6 @@
             <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/round_3.png" alt="Vegetable Sort round 3 scene"><span>round 3</span></div>
             <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/celebrate.png" alt="Vegetable Sort celebration scene"><span>celebrate</span></div>
             <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/closing.png" alt="Vegetable Sort closing scene"><span>closing</span></div>
-            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/recap.png" alt="Vegetable Sort recap badge"><span>recap</span></div>
           </div>
           <div class="item-grid" aria-label="Vegetable Sort selectable item assets">
             <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/broccoli.png" alt="Broccoli selectable item"><span>broccoli</span></div>

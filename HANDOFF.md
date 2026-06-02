@@ -70,6 +70,17 @@ confirmed exactly one selected/pressed card with matching detail content,
 24/24 images loaded, desktop had no horizontal overflow, and DevTools mobile
 emulation at 390px reported no horizontal overflow.
 
+Update: Removed the obsolete recap image asset from the Asset phase section.
+The presentation no longer lists `recap_scene` as a required asset role and the
+Vegetable Sort bundle example no longer includes `recap.png`; recap/dashboard
+text templates remain documented outside the image asset contract.
+Verification for this update: `HTMLParser` parse passed, extracted inline
+JavaScript syntax passed, local href/src reference check reported
+`refs=28 missing=0`, the stale asset-recap scan found no `recap_scene`,
+`recap.png`, or `scene/icon/badge` text, the presentation style scan found no
+banned patterns, and Chrome loaded 23/23 images with the Vegetable Sort bundle
+reduced to 8 scene/icon assets and no desktop horizontal overflow.
+
 ## 2026-06-01 - Full-Pass Run Goal Ready
 
 Problem: The completed full-pass pipeline contract described how to implement
