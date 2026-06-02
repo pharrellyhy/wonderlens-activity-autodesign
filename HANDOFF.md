@@ -166,6 +166,7 @@ Verification: Autodesign validators and delegated reviews passed. Fullstack impo
 - Embedded the WonderLens activity asset style in `GOAL.md`, `program.md`, `run.md`, and `README.md`: soft 3D toy illustration, mint/white prototype-device palette, square 512x512 runtime PNGs by default, central circular safe area, full-bleed square background, no baked-in device chrome/text/logos/contact sheets, and package-local output locations from `asset_manifest.yaml`.
 - Updated the E2E subset validation plan/goal and the asset-pipeline plan to reference the repo-local style contract instead of an external style prompt file.
 - Added an explicit E2E Cat5 validation rule: generated Cat5 collection packages must include WonderLens-style selectable item/card assets in `asset_manifest.yaml`, reference them from `prod.md` screen states, and preserve real camera capture / `photo_id` handoff semantics.
+- Added `docs/full_pass_agentic_pipeline_presentation.html`, a one-page presentation with sidebar navigation, CSS diagrams, acceptance gates, repair routing, and local references to the generated flat Nordic fullstack-demo assets.
 - Updated `GOAL.md`, `run.md`, `program.md`, and `README.md` with executable asset build commands and package-local output rules.
 - Marked the generate-and-curate asset pipeline plan and goal as completed in `docs/plans/README.md` and `goals/README.md`.
 - Validation used `/Users/pharrelly/.pyenv/versions/3.13.6/bin/python` because the default Homebrew `python3` lacks pytest, PyYAML, jsonschema, and Pillow.

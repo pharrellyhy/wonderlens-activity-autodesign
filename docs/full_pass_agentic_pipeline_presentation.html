@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WonderLens Full-Pass Agentic Pipeline</title>
+  <style>
+    :root {
+      --paper: oklch(0.985 0.006 70);
+      --paper-2: oklch(0.955 0.012 80);
+      --ink: oklch(0.24 0.028 250);
+      --muted: oklch(0.48 0.038 245);
+      --line: oklch(0.82 0.02 80);
+      --salmon: oklch(0.72 0.11 34);
+      --sage: oklch(0.76 0.055 145);
+      --teal: oklch(0.63 0.08 210);
+      --ochre: oklch(0.78 0.115 86);
+      --brown: oklch(0.47 0.07 52);
+      --blue: oklch(0.72 0.075 230);
+      --shadow: 0 20px 60px oklch(0.45 0.04 70 / 0.15);
+      color-scheme: light;
+      font-family:
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 22% 8%, oklch(0.92 0.04 86 / 0.5), transparent 28rem),
+        linear-gradient(135deg, var(--paper), oklch(0.968 0.01 115));
+      color: var(--ink);
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 18rem minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 1.4rem 1.2rem;
+      border-right: 1px solid var(--line);
+      background: oklch(0.965 0.012 77 / 0.92);
+      backdrop-filter: blur(12px);
+      overflow-y: auto;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .lens-icon {
+      width: 3.1rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 48% 46%, oklch(0.985 0.004 70) 0 28%, transparent 29%),
+        radial-gradient(circle at 52% 48%, oklch(0.27 0.018 260) 0 57%, transparent 58%),
+        linear-gradient(140deg, var(--sage), var(--teal));
+      box-shadow:
+        inset 0 0 0 0.24rem oklch(0.95 0.01 80),
+        0 0.45rem 1.4rem oklch(0.45 0.04 80 / 0.18);
+    }
+
+    .brand-mark strong {
+      display: block;
+      font-size: 0.92rem;
+      line-height: 1.1;
+    }
+
+    .brand-mark span {
+      display: block;
+      margin-top: 0.16rem;
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+
+    .nav-label {
+      margin: 1.2rem 0 0.5rem;
+      color: var(--brown);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: grid;
+      gap: 0.2rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav a {
+      display: block;
+      border-radius: 0.5rem;
+      padding: 0.55rem 0.65rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.2;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      color: var(--ink);
+      background: oklch(0.92 0.025 88);
+      outline: none;
+    }
+
+    .sidebar-note {
+      margin-top: 1.4rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    section {
+      scroll-margin-top: 2rem;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+      padding: clamp(3rem, 7vw, 7rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      width: fit-content;
+      margin: 0 0 1.2rem;
+      padding: 0.38rem 0.62rem;
+      border: 1px solid oklch(0.78 0.035 80);
+      border-radius: 999px;
+      background: oklch(0.98 0.01 70 / 0.82);
+      color: var(--brown);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 11ch;
+      font-size: clamp(4rem, 12vw, 10.8rem);
+      font-weight: 880;
+      color: oklch(0.24 0.04 240);
+    }
+
+    h2 {
+      max-width: 13ch;
+      font-size: clamp(2.4rem, 6vw, 5.8rem);
+      font-weight: 850;
+    }
+
+    h3 {
+      font-size: clamp(1.3rem, 2.4vw, 2.1rem);
+      font-weight: 820;
+    }
+
+    p {
+      max-width: 72ch;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.65;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar a,
+    .step span,
+    .asset-tile span,
+    .file-pill,
+    .command-box {
+      overflow-wrap: anywhere;
+    }
+
+    .hero-copy {
+      max-width: 62rem;
+    }
+
+    .hero-lede {
+      max-width: 47rem;
+      margin-top: 1.6rem;
+      color: oklch(0.38 0.04 245);
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      line-height: 1.55;
+    }
+
+    .hero-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: clamp(2rem, 4vw, 4rem);
+      max-width: 64rem;
+    }
+
+    .hero-strip div {
+      min-height: 8.5rem;
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      background: oklch(0.985 0.006 70 / 0.72);
+      padding: 1rem;
+      box-shadow: 0 0.7rem 2rem oklch(0.5 0.04 70 / 0.08);
+    }
+
+    .hero-strip strong {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-size: 1.75rem;
+    }
+
+    .hero-strip span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .section {
+      padding: clamp(3rem, 7vw, 6.5rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 0.7fr);
+      gap: clamp(1.5rem, 4vw, 4rem);
+      align-items: end;
+      margin-bottom: clamp(2rem, 5vw, 4rem);
+    }
+
+    .section-head p {
+      margin: 0;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(9rem, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: oklch(0.985 0.005 80);
+      box-shadow: var(--shadow);
+    }
+
+    .pillar {
+      min-height: 12rem;
+      padding: 1rem;
+      border-right: 1px solid var(--line);
+      display: grid;
+      align-content: space-between;
+    }
+
+    .pillar:last-child {
+      border-right: 0;
+    }
+
+    .pillar b {
+      font-size: 0.82rem;
+      color: var(--brown);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .pillar span {
+      display: block;
+      color: var(--ink);
+      font-size: 1.08rem;
+      font-weight: 760;
+      line-height: 1.15;
+    }
+
+    .pillar small {
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .pipeline {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .pipeline-row {
+      display: grid;
+      grid-template-columns: 11rem 1fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .lane {
+      border: 1px solid var(--line);
+      border-radius: 0.7rem;
+      padding: 0.9rem;
+      background: oklch(0.965 0.014 80);
+      color: var(--brown);
+      font-weight: 760;
+      display: grid;
+      align-content: center;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(8rem, 1fr));
+      gap: 0.6rem;
+    }
+
+    .step {
+      position: relative;
+      min-height: 8.5rem;
+      border: 1px solid var(--line);
+      border-radius: 0.7rem;
+      background: oklch(0.99 0.005 80);
+      padding: 0.85rem;
+    }
+
+    .step::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -0.55rem;
+      width: 0.5rem;
+      border-top: 2px solid var(--line);
+    }
+
+    .step:last-child::after {
+      display: none;
+    }
+
+    .step b {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    .step span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .accent-salmon {
+      background: oklch(0.95 0.035 34);
+    }
+
+    .accent-sage {
+      background: oklch(0.94 0.035 145);
+    }
+
+    .accent-blue {
+      background: oklch(0.94 0.035 220);
+    }
+
+    .roles {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .role {
+      min-height: 13rem;
+      padding: 1.1rem;
+      background: oklch(0.985 0.006 80);
+    }
+
+    .role h3 {
+      margin-bottom: 0.7rem;
+      font-size: 1.1rem;
+      line-height: 1.15;
+    }
+
+    .role ul,
+    .checklist,
+    .qa-list {
+      margin: 0;
+      padding-left: 1.05rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .role li,
+    .checklist li,
+    .qa-list li {
+      margin: 0.35rem 0;
+    }
+
+    .artifact-map {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .artifact-cluster {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+      min-height: 18rem;
+    }
+
+    .artifact-cluster h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .file-pill {
+      display: block;
+      width: fit-content;
+      margin: 0.44rem 0;
+      border-radius: 999px;
+      padding: 0.35rem 0.58rem;
+      background: oklch(0.93 0.02 84);
+      color: oklch(0.32 0.05 240);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+    }
+
+    .arrow-stack {
+      display: grid;
+      gap: 0.7rem;
+      color: var(--brown);
+      text-align: center;
+      font-weight: 760;
+    }
+
+    .asset-showcase {
+      display: grid;
+      grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.15fr);
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: start;
+    }
+
+    .device-demo {
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .device-shell {
+      width: min(21rem, 100%);
+      margin: 0 auto;
+      aspect-ratio: 0.78;
+      border-radius: 2.4rem;
+      background: linear-gradient(145deg, oklch(0.96 0.004 80), oklch(0.88 0.006 80));
+      border: 1px solid oklch(0.72 0.015 80);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 0.3rem oklch(0.985 0.006 80), 0 1rem 3rem oklch(0.4 0.035 80 / 0.18);
+    }
+
+    .round-screen {
+      width: 72%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      background: oklch(0.98 0.008 80);
+      border: 0.35rem solid oklch(0.73 0.035 145);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.35rem;
+      padding: 1rem;
+    }
+
+    .round-screen img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 0.45rem;
+      background: oklch(0.98 0.005 80);
+    }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .asset-tile {
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      background: oklch(0.985 0.006 80);
+      padding: 0.7rem;
+      min-width: 0;
+    }
+
+    .asset-tile img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 0.55rem;
+      background: oklch(0.955 0.01 80);
+    }
+
+    .asset-tile b {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.82rem;
+    }
+
+    .asset-tile span {
+      display: block;
+      margin-top: 0.2rem;
+      color: var(--muted);
+      font-size: 0.74rem;
+      line-height: 1.3;
+    }
+
+    .repair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .repair-path {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+    }
+
+    .repair-path b {
+      display: block;
+      color: var(--brown);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .repair-path span {
+      display: block;
+      margin-top: 0.5rem;
+      color: var(--ink);
+      font-size: 1.1rem;
+      font-weight: 760;
+      line-height: 1.25;
+    }
+
+    .repair-path p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+    }
+
+    .gates {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: oklch(0.985 0.006 80);
+      box-shadow: var(--shadow);
+    }
+
+    .gates th,
+    .gates td {
+      padding: 0.95rem 1rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.45;
+    }
+
+    .gates th {
+      background: oklch(0.93 0.022 82);
+      color: var(--brown);
+      font-size: 0.76rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .gates td {
+      color: var(--muted);
+    }
+
+    .gates tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .gates strong {
+      color: var(--ink);
+    }
+
+    .two-up {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .audience {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.2rem;
+    }
+
+    .audience h3 {
+      margin-bottom: 0.8rem;
+    }
+
+    .command-box {
+      margin-top: 1.2rem;
+      border: 1px solid oklch(0.72 0.04 80);
+      border-radius: 0.8rem;
+      background: oklch(0.18 0.025 245);
+      color: oklch(0.93 0.01 80);
+      padding: 1rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.86rem;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+
+    .final-note {
+      padding: clamp(3rem, 7vw, 6rem);
+      background: oklch(0.27 0.045 235);
+      color: oklch(0.96 0.008 80);
+    }
+
+    .final-note h2 {
+      max-width: 12ch;
+      color: oklch(0.97 0.01 80);
+    }
+
+    .final-note p {
+      color: oklch(0.84 0.02 90);
+    }
+
+    .final-note .command-box {
+      background: oklch(0.2 0.035 235);
+      border-color: oklch(0.45 0.065 220);
+    }
+
+    @media (max-width: 1180px) {
+      .steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .step::after {
+        display: none;
+      }
+
+      .pillars,
+      .roles,
+      .artifact-map,
+      .asset-showcase,
+      .repair,
+      .two-up {
+        grid-template-columns: 1fr;
+      }
+
+      .asset-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      .layout {
+        display: block;
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero,
+      .section,
+      .final-note {
+        padding: 2rem 1rem;
+      }
+
+      .hero-strip,
+      .section-head,
+      .pipeline-row {
+        grid-template-columns: 1fr;
+      }
+
+      .steps,
+      .asset-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 15vw, 4.4rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Presentation navigation">
+      <a class="brand-mark" href="#top" aria-label="Back to top">
+        <span class="lens-icon" aria-hidden="true"></span>
+        <span>
+          <strong>WonderLens</strong>
+          <span>Full-pass pipeline</span>
+        </span>
+      </a>
+      <div class="nav-label">Navigate</div>
+      <ol class="nav">
+        <li><a href="#why">Why it exists</a></li>
+        <li><a href="#map">Pipeline map</a></li>
+        <li><a href="#roles">Agent roles</a></li>
+        <li><a href="#artifacts">Artifact flow</a></li>
+        <li><a href="#assets">Assets</a></li>
+        <li><a href="#repair">Repair routing</a></li>
+        <li><a href="#gates">Acceptance gates</a></li>
+        <li><a href="#audience">Team views</a></li>
+        <li><a href="#invoke">Invocation</a></li>
+      </ol>
+      <p class="sidebar-note">
+        Source docs: <br>
+        <a href="full_pass_agentic_pipeline_explainer.md">full_pass_agentic_pipeline_explainer.md</a><br>
+        <a href="activity_asset_generation_workflow.md">activity_asset_generation_workflow.md</a>
+      </p>
+    </aside>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="title">
+        <div class="hero-copy">
+          <p class="eyebrow">Engineering and product presentation</p>
+          <h1 id="title">Full-pass agentic pipeline</h1>
+          <p class="hero-lede">
+            A production pass turns a source activity idea into a validated WonderLens package with runtime text, image assets, downstream consumer checks, live dialogue QA, repair evidence, and final review.
+          </p>
+          <div class="hero-strip" aria-label="Pipeline summary">
+            <div>
+              <strong>1</strong>
+              <span>Autodesign owns source intent, package quality, runtime instructions, assets, and package-owned repairs.</span>
+            </div>
+            <div>
+              <strong>2</strong>
+              <span>Image generation is a separate image-only phase. It supports the activity, it does not rewrite it.</span>
+            </div>
+            <div>
+              <strong>3</strong>
+              <span>Fullstack-demo and WonderLens AI are direct consumers. They validate, they do not improve weak packages.</span>
+            </div>
+            <div>
+              <strong>4</strong>
+              <span>Acceptance requires evidence: import, runtime generation, dialogue QA, image QA, repair loops, and final review.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="why" class="section" aria-labelledby="why-title">
+        <div class="section-head">
+          <h2 id="why-title">Why the full pass exists</h2>
+          <p>
+            A package can pass static structure checks and still fail the product promise. The full pass adds independent checks at every place where a generated activity can drift.
+          </p>
+        </div>
+        <div class="pillars">
+          <div class="pillar">
+            <b>Intent</b>
+            <span>Preserve the source play frame</span>
+            <small>Child role, sequence, required action, and real/reference asset promises stay locked.</small>
+          </div>
+          <div class="pillar">
+            <b>Runtime</b>
+            <span>Make `prod.md` executable</span>
+            <small>Every live beat needs machine-convertible runtime guidance, not only pleasant sample lines.</small>
+          </div>
+          <div class="pillar">
+            <b>Assets</b>
+            <span>Match the beat, not the mood board</span>
+            <small>Images must support the actual screen state, source promise, and child-facing action.</small>
+          </div>
+          <div class="pillar">
+            <b>Consumers</b>
+            <span>Validate both runtime paths</span>
+            <small>Fullstack-demo and WonderLens AI load the same package through different conversion paths.</small>
+          </div>
+          <div class="pillar">
+            <b>Repair</b>
+            <span>Route fixes by owner</span>
+            <small>Package gaps return to autodesign. Runtime bugs become downstream follow-ups.</small>
+          </div>
+        </div>
+      </section>
+
+      <section id="map" class="section" aria-labelledby="map-title">
+        <div class="section-head">
+          <h2 id="map-title">Pipeline map</h2>
+          <p>
+            The pass is one coordinated run. Asset generation, downstream validation, dialogue QA, repairs, and final review are not separate afterthoughts.
+          </p>
+        </div>
+        <div class="pipeline" role="img" aria-label="Swimlane diagram for the full pass">
+          <div class="pipeline-row">
+            <div class="lane">Autodesign</div>
+            <div class="steps">
+              <div class="step accent-salmon"><b>Run setup</b><span>Record repo state, assignment snapshot, flags, and provenance.</span></div>
+              <div class="step accent-salmon"><b>Source audit</b><span>Lock source promise before package writing.</span></div>
+              <div class="step accent-salmon"><b>Package writing</b><span>Create five-file package plus demo extensions.</span></div>
+              <div class="step accent-salmon"><b>Post audit</b><span>Reject intent drift before downstream checks.</span></div>
+              <div class="step accent-salmon"><b>Package repairs</b><span>Fix weak runtime instructions and package-owned gaps.</span></div>
+              <div class="step accent-salmon"><b>Final report</b><span>Commit evidence, risks, and accepted outputs.</span></div>
+            </div>
+          </div>
+          <div class="pipeline-row">
+            <div class="lane">Image phase</div>
+            <div class="steps">
+              <div class="step accent-sage"><b>Manifest read</b><span>Use asset IDs, roles, prompts, sources, variants, and fallback behavior.</span></div>
+              <div class="step accent-sage"><b>Generate</b><span>Create one flat Nordic PNG per illustrative asset.</span></div>
+              <div class="step accent-sage"><b>Curate</b><span>Verify reference-bound originals and metadata.</span></div>
+              <div class="step accent-sage"><b>Build</b><span>Write package-local assets and update manifest paths.</span></div>
+              <div class="step accent-sage"><b>Image QA</b><span>Check style, crop safety, beat alignment, and reference fidelity.</span></div>
+              <div class="step accent-sage"><b>Repair images</b><span>Fix only prompts, sources, crops, or PNG outputs.</span></div>
+            </div>
+          </div>
+          <div class="pipeline-row">
+            <div class="lane">Consumers</div>
+            <div class="steps">
+              <div class="step accent-blue"><b>Fullstack import</b><span>Load package as provided and convert `step_instructions`.</span></div>
+              <div class="step accent-blue"><b>Fullstack QA</b><span>Test ideal, minimal, wrong, off-topic, help, done, and silence turns.</span></div>
+              <div class="step accent-blue"><b>AI runtime</b><span>Generate or load WonderLens-side runtime artifacts.</span></div>
+              <div class="step accent-blue"><b>AI dialogue QA</b><span>Compare runtime behavior against package beats.</span></div>
+              <div class="step accent-blue"><b>Classify</b><span>Package gap, runtime gap, product gap, or credential blocker.</span></div>
+              <div class="step accent-blue"><b>Final review</b><span>Independent evidence audit before acceptance.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="roles" class="section" aria-labelledby="roles-title">
+        <div class="section-head">
+          <h2 id="roles-title">Agent roles stay separate</h2>
+          <p>
+            The master agent orchestrates, but independent agents own disjoint review surfaces. A writer should not be the only reviewer of its own artifact.
+          </p>
+        </div>
+        <div class="roles">
+          <div class="role">
+            <h3>Authoring side</h3>
+            <ul>
+              <li>Master orchestrator controls run order, blockers, commits, and final report.</li>
+              <li>Source-intent auditor locks play frame, child action, real assets, and context.</li>
+              <li>Text-only package writer creates runtime prose and package metadata.</li>
+            </ul>
+          </div>
+          <div class="role">
+            <h3>Asset side</h3>
+            <ul>
+              <li>Image-only generator produces or curates PNGs from accepted prompts and manifests.</li>
+              <li>Image quality validator checks style, crop safety, beat fit, and reference fidelity.</li>
+              <li>Image improver repairs visual artifacts without changing dialogue.</li>
+            </ul>
+          </div>
+          <div class="role">
+            <h3>Consumer side</h3>
+            <ul>
+              <li>Package/import validator checks schema, paths, converted instruction shape, and gates.</li>
+              <li>Fullstack and WonderLens AI validators run runtime-equivalent dialogue checks.</li>
+              <li>Final reviewer audits evidence and residual-risk ownership.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="artifacts" class="section" aria-labelledby="artifacts-title">
+        <div class="section-head">
+          <h2 id="artifacts-title">Artifact flow</h2>
+          <p>
+            The same package feeds both consumers. Downstream systems should preserve package intent, not rewrite it into something easier to run.
+          </p>
+        </div>
+        <div class="artifact-map">
+          <div class="artifact-cluster">
+            <h3>Autodesign package</h3>
+            <span class="file-pill">spec.md</span>
+            <span class="file-pill">prod.md</span>
+            <span class="file-pill">tag_block.yaml</span>
+            <span class="file-pill">demo_support.yaml</span>
+            <span class="file-pill">asset_manifest.yaml</span>
+            <span class="file-pill">assets/*.png</span>
+          </div>
+          <div class="arrow-stack">
+            <span>validated package</span>
+            <span>-></span>
+            <span>direct consumer import</span>
+            <span>-></span>
+            <span>runtime evidence</span>
+          </div>
+          <div class="artifact-cluster">
+            <h3>Consumer evidence</h3>
+            <span class="file-pill">step_instructions</span>
+            <span class="file-pill">runtime.yaml</span>
+            <span class="file-pill">import reports</span>
+            <span class="file-pill">dialogue transcripts</span>
+            <span class="file-pill">qa_notes.yaml</span>
+            <span class="file-pill">review.html</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="assets" class="section" aria-labelledby="assets-title">
+        <div class="section-head">
+          <h2 id="assets-title">Asset phase</h2>
+          <p>
+            Current activity assets use a flat Nordic nursery illustration style: quiet white backgrounds, restrained boho pastels, sparse linework, generous negative space, one file per beat or item, and no baked device chrome.
+          </p>
+        </div>
+        <div class="asset-showcase">
+          <div class="device-demo">
+            <div class="device-shell" aria-label="Prototype device display mock">
+              <div class="round-screen">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/items/banana.png" alt="Flat Nordic banana item asset">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_recognition_pop_challenge/items/strawberry.png" alt="Flat Nordic strawberry item asset">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/items/book.png" alt="Flat Nordic book item asset">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/items/cup.png" alt="Flat Nordic cup item asset">
+              </div>
+            </div>
+            <p>
+              Cat5 cards/items guide selection and capture. They do not replace real camera capture or the downstream `photo_id` handoff.
+            </p>
+          </div>
+          <div>
+            <div class="asset-grid">
+              <div class="asset-tile">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/style-reference-flat-nordic.png" alt="Flat Nordic style reference strip">
+                <b>Style strip</b>
+                <span>Current visual target for generated activity assets.</span>
+              </div>
+              <div class="asset-tile">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/intro.png" alt="Intro scene asset">
+                <b>Scene beat</b>
+                <span>Full-bleed square image with lens-safe central content.</span>
+              </div>
+              <div class="asset-tile">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_constellation_star_count/round_1.png" alt="Constellation round asset">
+                <b>Reference case</b>
+                <span>Real-world facts need accepted provenance, not random approximation.</span>
+              </div>
+              <div class="asset-tile">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_recognition_pop_challenge/items/strawberry.png" alt="Strawberry item card asset">
+                <b>Selectable item</b>
+                <span>One reusable centered object per file for Cat5-style screens.</span>
+              </div>
+            </div>
+            <ul class="qa-list" aria-label="Asset QA rules">
+              <li>Package authoring stays text-only until `asset_build=generate_and_curate` runs.</li>
+              <li>`asset_manifest.yaml` owns asset IDs, roles, prompts or sources, variants, nullable paths, and fallbacks.</li>
+              <li>Image QA checks style, crop safety, beat alignment, readable runtime size, and reference fidelity.</li>
+              <li>Failures repair image-owned artifacts only: prompt, source, curated redraw, crop, or generated PNG.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="repair" class="section" aria-labelledby="repair-title">
+        <div class="section-head">
+          <h2 id="repair-title">Repair routing</h2>
+          <p>
+            The pipeline is useful because it refuses to hide ownership. A weak package is fixed in autodesign. A good package ignored by a runtime becomes a downstream follow-up.
+          </p>
+        </div>
+        <div class="repair">
+          <div class="repair-path">
+            <b>Source intent drift</b>
+            <span>Text/package repair -> source-intent re-audit</span>
+            <p>Example: a constellation reveal becomes a generic star counting activity.</p>
+          </div>
+          <div class="repair-path">
+            <b>Thin runtime instruction</b>
+            <span>Package repair -> import and dialogue revalidation</span>
+            <p>Example: `Example AI line` is pleasant, but no branch behavior is machine-convertible.</p>
+          </div>
+          <div class="repair-path">
+            <b>Image mismatch</b>
+            <span>Image repair -> builder -> image QA</span>
+            <p>Example: asset looks nice but does not match the screen beat or reference requirement.</p>
+          </div>
+          <div class="repair-path">
+            <b>Runtime consumer issue</b>
+            <span>Downstream follow-up, unless explicitly in scope</span>
+            <p>Example: fullstack ignores strong `prod.md` instructions during `step_instructions` conversion.</p>
+          </div>
+          <div class="repair-path">
+            <b>Product capability gap</b>
+            <span>Blocked, degraded, or approved minimum behavior</span>
+            <p>Example: drawing, sorting UI, or runtime visual judgment is not honestly supported yet.</p>
+          </div>
+          <div class="repair-path">
+            <b>Credential blocker</b>
+            <span>Record exact missing prerequisite</span>
+            <p>Example: live provider QA cannot run because credentials are unavailable.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="gates" class="section" aria-labelledby="gates-title">
+        <div class="section-head">
+          <h2 id="gates-title">Acceptance gates</h2>
+          <p>
+            A full pass is accepted only when every gate has evidence, or a blocker is explicitly owned and reproducible.
+          </p>
+        </div>
+        <table class="gates">
+          <thead>
+            <tr>
+              <th>Gate</th>
+              <th>Evidence</th>
+              <th>Owner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Source intent</strong></td>
+              <td>Pre and post source-intent audit with source evidence.</td>
+              <td>Autodesign</td>
+            </tr>
+            <tr>
+              <td><strong>Package quality</strong></td>
+              <td>Five-file package plus executable `prod.md` and demo extensions.</td>
+              <td>Autodesign</td>
+            </tr>
+            <tr>
+              <td><strong>Runtime instructions</strong></td>
+              <td>Machine-convertible instruction for every live beat.</td>
+              <td>Autodesign</td>
+            </tr>
+            <tr>
+              <td><strong>Assets</strong></td>
+              <td>Built PNGs, manifest validation, reference metadata, and image QA.</td>
+              <td>Autodesign image phase</td>
+            </tr>
+            <tr>
+              <td><strong>Fullstack import</strong></td>
+              <td>Import report and converted `step_instructions` preserve package intent.</td>
+              <td>Fullstack validation</td>
+            </tr>
+            <tr>
+              <td><strong>WonderLens AI runtime</strong></td>
+              <td>Generated or loaded runtime artifacts preserve package behavior.</td>
+              <td>WonderLens AI validation</td>
+            </tr>
+            <tr>
+              <td><strong>Dialogue QA</strong></td>
+              <td>Runtime-equivalent reports or sanitized transcripts across user strategies.</td>
+              <td>Consumer validators</td>
+            </tr>
+            <tr>
+              <td><strong>Marker-free input</strong></td>
+              <td>No `RESOLVED BLOCKER` or `RESOLVE BLOCKER` in runtime-facing `prod.md`.</td>
+              <td>Autodesign</td>
+            </tr>
+            <tr>
+              <td><strong>Final review</strong></td>
+              <td>Independent PASS or explicit residual-risk report.</td>
+              <td>Final reviewer</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="audience" class="section" aria-labelledby="audience-title">
+        <div class="section-head">
+          <h2 id="audience-title">What each team gets</h2>
+          <p>
+            The same run output supports product judgment and engineering contract validation.
+          </p>
+        </div>
+        <div class="two-up">
+          <div class="audience">
+            <h3>Product view</h3>
+            <ul class="checklist">
+              <li>Does the generated activity preserve the original product promise?</li>
+              <li>Is a required capability unsupported today?</li>
+              <li>Is degraded behavior acceptable, or should the row stay blocked?</li>
+              <li>Are image assets appropriate for the child-facing experience?</li>
+              <li>Do dialogue transcripts feel like the intended activity?</li>
+            </ul>
+          </div>
+          <div class="audience">
+            <h3>Engineering view</h3>
+            <ul class="checklist">
+              <li>Do package schema and tag vocabularies validate?</li>
+              <li>Does `prod.md` convert into runtime instructions cleanly?</li>
+              <li>Do fullstack-demo and WonderLens AI preserve behavior?</li>
+              <li>Do asset paths resolve with no unsafe fallbacks?</li>
+              <li>Are issues assigned to the right repo or product decision?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="invoke" class="final-note" aria-labelledby="invoke-title">
+        <h2 id="invoke-title">How to run it</h2>
+        <p>
+          Use this mode for larger or production-scale passes, where package generation, asset generation, downstream validation, dialogue QA, repair loops, and final review must happen in one evidence-backed run.
+        </p>
+        <div class="command-box">/goal Execute GOAL.md end to end using run.md with asset_build=generate_and_curate full_pass_pipeline=true.</div>
+        <p>
+          The completion standard is not "the package exists." The completion standard is that both direct consumers can load and exercise the package without weakening the activity promise.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

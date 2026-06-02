@@ -4,6 +4,10 @@ Audience: engineering and product teams
 
 Status: Current workflow explanation
 
+Presentation version:
+
+- `docs/full_pass_agentic_pipeline_presentation.html`
+
 ## Executive Summary
 
 The full-pass agentic pipeline is the production workflow for turning a source
