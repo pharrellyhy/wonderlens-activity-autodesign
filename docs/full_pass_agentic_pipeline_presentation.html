@@ -581,6 +581,117 @@
       line-height: 1.45;
     }
 
+    .text-package {
+      display: grid;
+      grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.15fr);
+      gap: clamp(1.2rem, 3vw, 2rem);
+      align-items: stretch;
+    }
+
+    .text-stack,
+    .runtime-card {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      box-shadow: var(--shadow);
+      padding: 1.1rem;
+    }
+
+    .text-stack {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .text-file {
+      min-width: 0;
+      border: 1px solid oklch(0.78 0.028 82);
+      border-radius: 0.7rem;
+      background: oklch(0.97 0.008 80);
+      padding: 0.75rem;
+    }
+
+    .text-file b {
+      display: block;
+      color: var(--ink);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.83rem;
+    }
+
+    .text-file span {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .runtime-card {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+
+    .runtime-card h3 {
+      font-size: 1.45rem;
+      line-height: 1.05;
+    }
+
+    .contract-line {
+      border: 1px solid oklch(0.76 0.035 82);
+      border-radius: 0.75rem;
+      background: oklch(0.94 0.018 82);
+      padding: 0.85rem;
+      color: oklch(0.28 0.04 240);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .beat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .beat-chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: oklch(0.965 0.012 77);
+      color: oklch(0.31 0.046 242);
+      padding: 0.43rem 0.58rem;
+      font-size: 0.72rem;
+      font-weight: 760;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    .runtime-checks {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .runtime-checks li {
+      border: 1px solid var(--line);
+      border-radius: 0.7rem;
+      background: oklch(0.99 0.005 80);
+      padding: 0.75rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .runtime-checks strong {
+      display: block;
+      margin-bottom: 0.28rem;
+      color: var(--ink);
+    }
+
     .roles {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -949,6 +1060,7 @@
       .artifact-map,
       .asset-showcase,
       .workflow-lab,
+      .text-package,
       .repair,
       .two-up {
         grid-template-columns: minmax(0, 1fr);
@@ -964,6 +1076,11 @@
 
       .item-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .beat-grid,
+      .runtime-checks {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -1025,6 +1142,11 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .beat-grid,
+      .runtime-checks {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
       .gates {
         table-layout: fixed;
       }
@@ -1064,6 +1186,7 @@
         <li><a href="#source">Source rules</a></li>
         <li><a href="#map">Pipeline map</a></li>
         <li><a href="#animation">Workflow animation</a></li>
+        <li><a href="#text-package">Text package</a></li>
         <li><a href="#roles">Agent roles</a></li>
         <li><a href="#artifacts">Artifact flow</a></li>
         <li><a href="#assets">Assets</a></li>
@@ -1236,7 +1359,7 @@
               <div class="flow-token" aria-hidden="true"></div>
               <div class="flow-stages">
                 <div class="flow-stage" data-flow-step="0"><b>Source lock</b><span>TSV row, source snapshot, adaptation brief.</span></div>
-                <div class="flow-stage" data-flow-step="1"><b>Text package</b><span>Five files, demo support, runtime instructions.</span></div>
+                <div class="flow-stage" data-flow-step="1"><b>Text package</b><span>Five files, runtime beats, demo gates, asset manifest.</span></div>
                 <div class="flow-stage" data-flow-step="2"><b>Post audit</b><span>Intent drift check before consumer work.</span></div>
                 <div class="flow-stage" data-flow-step="5"><b>Image QA</b><span>Style, crop, beat alignment, reference fidelity.</span></div>
                 <div class="flow-stage" data-flow-step="4"><b>Asset build</b><span>Package-local 512x512 PNGs and manifest paths.</span></div>
@@ -1260,6 +1383,69 @@
             <p class="flow-note">
               The motion is deliberately procedural: each tick hands evidence to the next gate, similar to a decoder-style loop where state updates until the sequence is complete.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="text-package" class="section" aria-labelledby="text-package-title">
+        <div class="section-head">
+          <h2 id="text-package-title">Text package detail</h2>
+          <p>
+            Package writing is text-only, but it is still the runtime contract. The writer emits reviewer intent, executable dialogue behavior, demo gates, entity binding, and asset requirements before any image build runs.
+          </p>
+        </div>
+        <div class="text-package">
+          <div class="text-stack" aria-label="Text package files and ownership">
+            <div class="text-file">
+              <b>spec.md</b>
+              <span>Reviewer reference: source promise, adaptation rationale, scaffold fit, asset brief, asset usage timeline, extensibility notes, residual risk, and exactly one self-evaluation scorecard.</span>
+            </div>
+            <div class="text-file">
+              <b>prod.md</b>
+              <span>Runtime guide: Step 1 through Step 5, fully expanded Step 3 rounds, screen states, child branches, follow-up policy, and asset IDs with display and fallback behavior.</span>
+            </div>
+            <div class="text-file">
+              <b>tag_block.yaml</b>
+              <span>Machine contract: activity ID, category, mechanic, pillar, game style, focal attribute, progression, tags, and entity coverage vocabulary.</span>
+            </div>
+            <div class="text-file">
+              <b>recap.template.yaml + dashboard.template.yaml</b>
+              <span>Family-facing output templates that stay aligned with the tag block, especially focal attribute, badge/reward, and next-step direction.</span>
+            </div>
+            <div class="text-file">
+              <b>demo_support.yaml</b>
+              <span>Demo gate: supported, degraded, or unsupported status, UI template, explicit default entity binding, runtime requirements, and honest limitation notes.</span>
+            </div>
+            <div class="text-file">
+              <b>asset_manifest.yaml</b>
+              <span>Text-only asset contract: separate runtime asset roles, style ID, screen targets, variants, nullable paths, fallback behavior, and reference provenance requirements.</span>
+            </div>
+          </div>
+          <div class="runtime-card">
+            <h3>Runtime beat contract</h3>
+            <p>
+              The text package succeeds only when `prod.md` can become useful `step_instructions` or WonderLens AI runtime prompts without downstream guessing.
+            </p>
+            <div class="contract-line">**Runtime AI instruction:** Goal: ... Constraint: ... Tone: ... Progress evidence: ... Branch behavior: ... Frame/source guardrail: ...</div>
+            <div class="beat-grid" aria-label="Runtime beats that need instructions">
+              <span class="beat-chip">Step 1 hook</span>
+              <span class="beat-chip">Step 2 mission</span>
+              <span class="beat-chip">Round 1</span>
+              <span class="beat-chip">Round 2</span>
+              <span class="beat-chip">Round 3</span>
+              <span class="beat-chip">Cat5 synthesis</span>
+              <span class="beat-chip">Celebration</span>
+              <span class="beat-chip">Closing</span>
+              <span class="beat-chip">Early exit</span>
+            </div>
+            <ul class="runtime-checks" aria-label="Runtime package quality checks">
+              <li><strong>Example line is not enough</strong>The example shows tone; the instruction carries goal, progress evidence, branch policy, and frame guardrails.</li>
+              <li><strong>Rounds stay parseable</strong>Step 3 headings use the exact ASCII shape `**Round N -- Short Scenario:**` so importers can split rounds reliably.</li>
+              <li><strong>Cat5 keeps synthesis separate</strong>Collection rounds, item evidence, item-combination behavior, final story/summary, and celebration do not collapse into one generic step.</li>
+              <li><strong>No runtime leakage</strong>Review markers such as `RESOLVED BLOCKER` stay out of runtime-facing `prod.md` unless a consumer is proven to strip them.</li>
+              <li><strong>Assets are referenced, not built</strong>`prod.md` references asset IDs and fallback behavior. The image phase later writes actual PNGs and manifest paths.</li>
+              <li><strong>Demo gates are honest</strong>Unsupported UI-heavy mechanics stay unsupported; runtime-judgment Cat5 packages disclose degraded catalog or text-simulated behavior.</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -1607,7 +1793,7 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
         },
         {
           title: "Text package",
-          copy: "Write the five required files plus demo extensions. Every live beat gets a machine-convertible runtime instruction."
+          copy: "Write the five required files plus demo extensions. Runtime beats, demo gates, entity binding, and text-only asset contracts are explicit before image build."
         },
         {
           title: "Post audit",

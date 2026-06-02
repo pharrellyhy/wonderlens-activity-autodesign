@@ -27,6 +27,16 @@ Chrome DevTools verified pause/resume and loop control state, all 16 example
 images loaded, desktop had no horizontal overflow, and 390px mobile emulation
 reported no horizontal overflow.
 
+Update: Added a dedicated Text Package Detail section that explains file
+ownership for `spec.md`, `prod.md`, `tag_block.yaml`, recap/dashboard
+templates, `demo_support.yaml`, and `asset_manifest.yaml`, plus the runtime
+beat contract required for downstream `step_instructions` / WonderLens AI
+runtime prompts. Verification for this update: `HTMLParser` parse passed, local
+href/src reference check reported `refs=29 missing=0`, the presentation style
+scan found no banned patterns, `git diff --check` passed, Chrome desktop
+render reported no horizontal overflow and 24/24 images loaded, and 390px
+mobile emulation reported no horizontal overflow.
+
 ## 2026-06-01 - Full-Pass Run Goal Ready
 
 Problem: The completed full-pass pipeline contract described how to implement
