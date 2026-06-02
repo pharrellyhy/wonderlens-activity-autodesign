@@ -1,5 +1,23 @@
 # HANDOFF
 
+## 2026-06-02 - Clean Subset Workflow PR
+
+Problem: The paused full-pass branch contained useful workflow/tooling changes
+mixed with incomplete run artifacts and partial image assets, so it was not
+safe to merge as a completed full-pass output.
+
+Solution: Split the reusable workflow, docs, scripts, and tests onto a fresh
+branch from `origin/main` while excluding `runs/` artifacts and generated
+activity packages. The asset contract now keeps subset/full-pass illustrative
+source PNGs at 512x512, preserves the latest no-`recap_scene` image-bundle
+contract from `main`, and keeps the standard fullstack-style bundle focused on
+`activity_icon`, intro/rules/three round scenes, celebration, closing, and
+Cat5/synthesis scene where applicable.
+
+Verification: Targeted Python unittest coverage passed for asset build,
+dashboard review generation, full-pass asset-bundle repair, and full-pass
+asset-bundle validation. `git diff --check` should be rerun after final staging.
+
 ## 2026-06-02 - Full-Pass Presentation Synced
 
 Problem: The one-page pipeline presentation needed to reflect the newer

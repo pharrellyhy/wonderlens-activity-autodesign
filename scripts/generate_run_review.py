@@ -601,9 +601,32 @@ def runtime_contract_quality_findings(beats: list[dict[str, Any]]) -> list[str]:
         if not screen or len(screen) < 40 or screen.lower() in {"show the activity start.", "screen updates."}:
             missing.append("missing specific screen/state behavior")
 
+        if runtime_beat_kind(title) == "payoff" and _celebration_instruction_asks_new_gameplay(instruction_lower):
+            missing.append("celebration beat asks for new gameplay; move required child action to Step 3")
+
         if missing:
             findings.append(f"{title}: " + "; ".join(missing))
     return findings
+
+
+def _celebration_instruction_asks_new_gameplay(instruction_lower: str) -> bool:
+    gameplay_phrases = (
+        "ask one more",
+        "binary choice",
+        "child chooses",
+        "child photographs",
+        "child takes a photo",
+        "child draws",
+        "child collects",
+        "collection action",
+        "drawing step",
+        "one more simple tool",
+        "progress evidence: child chooses",
+        "tool/action choice",
+    )
+    if any(phrase in instruction_lower for phrase in gameplay_phrases):
+        return True
+    return bool(re.search(r"\bgoal:\s*ask\b", instruction_lower))
 
 
 def beat_from_chunk(title: str, chunk: str) -> dict[str, Any]:
@@ -2664,8 +2687,10 @@ def dashboard_workflow(run_id: str) -> str:
       <li><strong>Collect run inputs</strong><span>Read `run_manifest.yaml`, `review_notes.md`, `results.tsv`, generated or enriched package files, blocked briefs, and blocked design previews.</span></li>
       <li><strong>Prepare mechanism storyboard prompts</strong><code>python3 scripts/generate_storyboard_prompts.py {esc(run_path)}</code></li>
       <li><strong>Generate review-only storyboard images</strong><span>Use Codex image generation with the prompt files under `visual_storyboards/&lt;activity_id&gt;/`, then copy each final PNG to `mechanism_grid.png` and rerun the prompt script to refresh metadata. Prompt-only storyboard experiments are ignored when generated v1 images are present.</span></li>
+      <li><strong>Repair full-pass asset manifest bundle</strong><code>python3 scripts/repair_full_pass_asset_bundle.py {esc(run_path)}</code></li>
       <li><strong>Build runtime assets when requested</strong><code>python3 scripts/build_activity_assets.py {esc(run_path)} --mode generate_and_curate</code><span>Use agent-generated illustrative PNGs and verified reference originals as inputs; write final runtime assets back into package-local `assets/` directories.</span></li>
       <li><strong>Validate runtime asset outputs</strong><code>python3 scripts/validate_asset_build_outputs.py {esc(run_path)}</code></li>
+      <li><strong>Validate full-pass asset bundle</strong><code>python3 scripts/validate_full_pass_asset_bundle.py {esc(run_path)}</code></li>
       <li><strong>Prepare prebuilt asset prompts</strong><code>python3 scripts/generate_asset_pilot_prompts.py {esc(run_path)}</code></li>
       <li><strong>Generate prebuilt contact sheets</strong><span>Use Codex image generation with `generated_assets_pilot/&lt;activity_id&gt;/&lt;asset_id&gt;/contact_sheet.prompt.md`, copy the selected PNG to `contact_sheet.png`, then rerun the prompt script so `asset.meta.yaml` and `asset_manifest.yaml` record status, timing, placement, fallback, and provenance.</span></li>
       <li><strong>Integrate generated assets</strong><code>python3 scripts/integrate_generated_assets.py {esc(run_path)}</code></li>
@@ -4642,6 +4667,19 @@ def validate(repo_root: Path, run_dir: Path) -> None:
     product_contract_override = ""
     if isinstance(manifest.get("source"), dict):
         product_contract_override = normalize_text(manifest["source"].get("product_contract_override")).lower()
+    full_pass_pipeline = bool(
+        isinstance(manifest.get("source"), dict)
+        and manifest["source"].get("full_pass_pipeline") is True
+    )
+    full_pass_asset_bundle_issues: list[dict[str, Any]] = []
+    if full_pass_pipeline:
+        try:
+            import validate_full_pass_asset_bundle as asset_bundle
+        except ImportError:
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            import validate_full_pass_asset_bundle as asset_bundle  # type: ignore
+
+        full_pass_asset_bundle_issues = asset_bundle.validate_run(run_dir)
     product_capability_gaps = (
         unresolved_product_capability_entries(outputs.get("generated_activities", []))
         if product_contract_override == "minimum_unblock_allowed"
@@ -4798,8 +4836,10 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         and "Mechanic Fidelity + Scaffold Honesty" in text,
         "dashboard_workflow": "Review Dashboard Workflow" in text
         and f"python3 scripts/generate_storyboard_prompts.py runs/{run_dir.name}" in text
+        and f"python3 scripts/repair_full_pass_asset_bundle.py runs/{run_dir.name}" in text
         and f"python3 scripts/build_activity_assets.py runs/{run_dir.name} --mode generate_and_curate" in text
         and f"python3 scripts/validate_asset_build_outputs.py runs/{run_dir.name}" in text
+        and f"python3 scripts/validate_full_pass_asset_bundle.py runs/{run_dir.name}" in text
         and f"python3 scripts/generate_asset_pilot_prompts.py runs/{run_dir.name}" in text
         and f"python3 scripts/generate_run_review.py runs/{run_dir.name}" in text
         and f"python3 scripts/generate_run_review.py --validate runs/{run_dir.name}" in text,
@@ -4851,6 +4891,7 @@ def validate(repo_root: Path, run_dir: Path) -> None:
             and "work item" in text
             and all(path.exists() for path in expected_runtime_asset_images)
         ),
+        "full_pass_asset_bundle": not full_pass_pipeline or not full_pass_asset_bundle_issues,
         "activity_html_exports": not export_entries
         or (
             "Activity HTML Exports" in text
@@ -4968,6 +5009,12 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         print("product_capability_gaps=" + ", ".join(product_capability_gaps))
     if runtime_quality_findings:
         print("runtime_contract_quality_findings=" + " | ".join(runtime_quality_findings[:20]))
+    if full_pass_asset_bundle_issues:
+        formatted = [
+            f"{issue.get('activity_id')}/{issue.get('missing_asset_id') or issue.get('asset_id')}: {issue.get('kind')}"
+            for issue in full_pass_asset_bundle_issues[:20]
+        ]
+        print("full_pass_asset_bundle_findings=" + " | ".join(formatted))
     if failed:
         raise SystemExit("FAIL review dashboard validation: " + ", ".join(failed))
 

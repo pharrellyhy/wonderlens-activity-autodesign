@@ -234,9 +234,10 @@ Run `program.md` Phase 0 before scaffold composition. This is required for `acti
 11. If generation proceeds, carry `canonical_mechanic` into `tag_block.yaml` `activity_signature.mechanic`.
 12. If `demo_export=true`, classify demo readiness:
    - `supported` / `cat1_dialogue` for Cat1 dialogue, riddle, voice acting, prediction, imagination, or simple enumeration playable in the current demo.
+   - `degraded` / `cat1_dialogue` for simple guided drawing or material build-step flows that can be represented honestly as text-guided child/caregiver self-report with declared step-card assets/fallbacks, no visual assessment, and no photo-verification claim.
    - `supported` / `cat5_collection` for simple Cat5 visible-property collection playable with catalog candidates.
    - `degraded` / `cat5_judgment` for Cat5 activities that need runtime judgment, such as beginning sound or semantic category, and must disclose catalog/text-simulated judgment.
-   - `unsupported` / `none` for drawing, coloring, physical building, sorting/grouping UI, tournament, certificate, complex Cat3, or any unimplemented UI/runtime dependency.
+   - `unsupported` / `none` for drawing, coloring, physical building, sorting/grouping UI, tournament, certificate, complex Cat3, visual verification, final-photo validation, before/after comparison, or any unimplemented UI/runtime dependency that cannot be represented by honest self-report.
 
 ### Step 1.2: Pre-package source-intent audit
 
@@ -361,6 +362,7 @@ Runtime completeness rule:
 - Steps 1, 2, 4, and 5 also need concrete dialogue or runtime behavior contracts, branches, follow-ups, and screen states. Do not concentrate all detail in Step 3 while leaving the bridge, rules, magic moment, or closing generic.
 - Runtime behavior contracts must be constrained enough for a live LLM and structured enough to convert into downstream `step_instructions`: include beat goal/action, tier or length constraint, emotion/tone, required story/setup or role-play frame, exact child challenge/action, child progress evidence, branch behavior, safety/product constraints, screen/state expectation, and what must not be skipped. A single example line is only a sample, not the whole runtime response.
 - Direct-consumer and full-pass packages must provide a machine-convertible runtime instruction for every live beat, not only exact sample dialogue. Use the exact single-line label `**Runtime AI instruction:** Goal: ... Constraint: ... Tone: ... Progress evidence: ... Branch behavior: ... Frame/source guardrail: ...` for Step 1, Step 2, each Step 3 round, Cat5 synthesis when present, celebration, closing, and early-exit behavior where applicable. `AI says` and `Example AI line` may remain for human tone examples, but they are insufficient by themselves for portable downstream loading.
+- Celebration/magic moment beats must not contain new required child gameplay. They may recap, reveal, synthesize, award, or ask an optional reflective closing-style wonder, but they must not ask a new binary choice, tool/action decision, photo, drawing step, or collection/challenge action. Move any source-required extra action into an explicit Step 3 round before celebration.
 - Step 3 headings must be parseable ASCII headings in the form `**Round N -- Short Scenario:**`. For Cat5 packages, distinguish collection rounds from synthesis and celebration; synthesis instructions must name the collection criterion, accepted evidence, how collected items combine, and the required final story or summary format.
 - Branch behavior must be beat- and round-specific. Unexpected and no-response child branches may share safety principles, but their text must name likely off-track or quiet behavior for this exact beat, and the AI follow-up must return to the current role, source action, challenge, asset/fallback, or screen state. Do not copy boilerplate such as "Child gives an unrelated answer, unsafe action, or asks to change the task", "Validate the idea, restate the safe rule", or "Model a tiny answer" across packages. Do not produce keyword-substitution rows that only swap in the activity title, mechanic, or round title.
 - Step 3 branch rows must not repeat across rounds in the same package. If the same unexpected/no-response child behavior or AI follow-up appears in multiple rounds, rewrite each row around the current clue, choice, challenge, prior consequence, asset state, or completion target.
@@ -370,9 +372,10 @@ Runtime completeness rule:
 - Do not generate image files as part of this loop. When an activity uses AI-generated or displayed images, author the dependency in `spec.md` `## Asset Brief`, add a skimmable `## Asset Usage Timeline`, and reference the stable `asset_id` plus display location from the relevant screen description in `prod.md`.
 - Do not make contact sheets the runtime asset contract. For demo export, write separate asset entries in `asset_manifest.yaml`; contact sheets may remain review-only artifacts under pilot asset workflows.
 - For reference-bound assets, include approved source/provenance and verification notes in `asset_manifest.yaml`. If source/provenance is missing, mark demo support `degraded` with a limitation, `unsupported`, or leave demo export incomplete rather than pretending a random generated image is correct.
-- For illustrative assets, use the current WonderLens activity asset style from `docs/activity_asset_generation_workflow.md`: flat Nordic children's illustration, broad flat fills, sparse arc-eye/texture linework, restrained boho pastels, generous negative space, square source art, full-bleed scenes, and separate centered item/object/character PNGs with clean white padding.
-- Do not bake device chrome or review layout into generated assets: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, colored border, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels.
-- For required assets, include at least one final runtime PNG at `512x512` or larger, with `512x512` preferred unless the manifest explicitly requests an additional larger variant. Tiny `64px`/`128px` variants are allowed only as secondary thumbnails, never as the only playable runtime output.
+- For illustrative assets, use the current WonderLens activity asset style from `docs/activity_asset_generation_workflow.md`: flat Nordic children's illustration, broad flat fills, sparse arc-eye/texture linework, restrained boho pastels, generous negative space, direct 512x512 square source PNGs for subset and full-pass attempts, full-bleed scenes, and separate centered item/object/character/icon/badge/distractor PNGs with clean white padding.
+- Do not bake device chrome or review layout into generated assets: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, colored border, readable text, letters, numbers, logos, watermark, contact sheet, multi-card sheet, or UI labels.
+- Do not bake app-owned progress/control UI into generated assets: no progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or similar runtime interface markers. The app overlays progress and controls separately.
+- For required assets, include at least one final runtime PNG at `512x512`, with larger variants allowed only when the manifest explicitly requests them. Tiny `64px`/`128px` variants are allowed only as secondary thumbnails, never as the only playable runtime output.
 
 ### Step 4: Self-evaluate and repair
 
@@ -494,7 +497,7 @@ Before logging or committing, verify:
 
 Run this phase only after every generated package has passed package validation and only when `source.asset_build` is not `none` or `manifest_only`.
 
-- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; the agent-generated source PNGs must follow `docs/activity_asset_generation_workflow.md`, and the deterministic builder consumes them from `runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png`, writes final variants under each package's `assets/`, updates package-relative variant paths, and summarizes them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
+- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; the agent-generated source PNGs must follow `docs/activity_asset_generation_workflow.md`, should be 512x512 for subset and full-pass attempts, and must represent one scene/object/item/character/icon/badge/distractor per asset ID rather than a composite card sheet. The builder consumes them from `runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png`, writes final variants under each package's `assets/`, updates package-relative variant paths, and summarizes them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
 - `curate_reference`: for `reference_bound` assets, let an agent propose candidate sources, then verify provenance through approved public-domain, official, licensed/internal, or verified educational/scientific sources before accepting. Store accepted source originals and reviewer-approved metadata under package-local `assets/sources/`; do not use random web-image results as sources. The deterministic builder validates this metadata and leaves paths null if accepted provenance is missing or weak.
 - `generate_and_curate`: run both behaviors.
 
@@ -508,11 +511,30 @@ make an image easier to accept.
 Asset-only rerun command:
 
 ```bash
+python3 scripts/repair_full_pass_asset_bundle.py runs/<run_id>
 python3 scripts/build_activity_assets.py runs/<run_id> --mode generate_and_curate
 python3 scripts/validate_asset_build_outputs.py runs/<run_id>
+python3 scripts/validate_asset_granularity.py runs/<run_id>
+python3 scripts/validate_full_pass_asset_bundle.py runs/<run_id>
 ```
 
 The builder prepares `generated_assets/work_items/*.md` for delegated agents, preserves existing package-local runtime assets unless `--force` is supplied, leaves missing variants as null, and records failures in `asset_outputs.yaml` / `qa_notes.yaml` rather than pretending unavailable files exist.
+
+For larger/full production passes, `asset_manifest.yaml` must request a
+fullstack-style asset bundle, not only the concept-specific cards or objects.
+Every package, including unsupported/gated review packages, needs package-local
+512x512 PNG variants for `activity_icon`, `intro_scene`, `rules_scene`,
+`round_1_scene`, `round_2_scene`, `round_3_scene`, `celebrate_scene`, and
+`closing_scene`; Cat5 or synthesis flows also need `synthesis_scene`. Add
+separate item/object/entity/target/distractor assets on
+top of that bundle when the runtime displays specific cards or objects.
+Scene assets must not embed app-owned progress dots, round markers, response
+slots, rule strips, buttons, chips, picker slots, badges, or similar runtime
+interface markers. Scene bundles must also be visually distinct by activity;
+unrelated activities cannot pass image QA with the same cozy-room, blank-board,
+child-response, or child-on-rug template. For guided drawing and other
+step-by-step build flows, the round scene itself must show what the child
+should draw or build in that step.
 
 ### Step 5.6: Independent image quality QA
 
@@ -529,12 +551,28 @@ verdict for:
 - one scene/object/item/character asset per file;
 - role match against `asset_manifest.yaml`;
 - scene/dialogue and screen-beat alignment;
+- no baked app progress/control UI such as progress dots, round markers,
+  response slots, rule strips, buttons, chips, picker slots, or badges;
+- cross-activity distinctness, so unrelated activities do not reuse the same
+  generic scene template;
+- guided drawing/build-step fidelity when applicable, so each round scene shows
+  the exact child action for that step;
+- no duplicate selectable item/object in a scene background when the runtime
+  uses separate picker sprites, target/distractor cards, or collection items
+  to advance the activity;
+- progressive evidence and partial-reveal sequencing, so early beat images do
+  not expose the final answer, full target, or solution before the dialogue
+  reveal step;
 - object readability at runtime size;
 - central round-lens crop safety where relevant;
 - no readable text, letters, numbers, logos, watermark, UI labels, contact
   sheets, masks, borders, or baked device chrome;
 - approved provenance and factual fidelity for reference-bound assets;
 - no misleading image that changes the source play frame or child action.
+
+Duplicate picker objects in scene backgrounds and premature answer reveal are
+hard REPAIR verdicts. Accept the asset only after the image matches the source
+intent step by step, including when the answer is supposed to appear.
 
 If QA fails, assign the image quality improver to repair prompt specificity,
 regenerate an illustrative asset, replace/verify a reference source, or apply a

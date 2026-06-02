@@ -164,6 +164,34 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
 
         self.assertEqual([], findings)
 
+    def test_runtime_contract_quality_flags_celebration_gameplay_prompt(self):
+        prod_text = """
+#### Step 4: Celebration
+
+**Runtime AI instruction:** Goal: ask one more simple tool/action choice to keep the firefighter role active. Constraint: binary choice, safe and short. Emotion/tone: focused and proud. Progress evidence: child chooses water, trained helpers, hose, or another safe action. Branch behavior: accept water/safe helper choices, correct oil gently, and scaffold with water after silence. Frame/source guardrail: keep child in professional role through the sequence.
+
+**Example AI line:** [focused] "Do you use water, or call trained helpers?"
+
+**Child responses:**
+
+1. (Ideal) Child chooses water or helpers.
+2. (Unexpected) Child chooses an unsafe tool.
+3. (No response) Child does not answer.
+
+**AI follow-up policy:**
+
+1. (Ideal) Accept the helper choice.
+2. (Unexpected) Redirect to a safe helper choice.
+3. (No response) Model choosing water.
+
+**Screen/state:** Badge screen waits while the child chooses a tool.
+"""
+        findings = self.report.runtime_contract_quality_findings(self.report.runtime_beats(prod_text))
+
+        self.assertEqual(1, len(findings))
+        self.assertIn("Celebration", findings[0])
+        self.assertIn("celebration beat asks for new gameplay", findings[0])
+
     def test_review_validation_fails_thin_runtime_contracts(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -211,6 +239,98 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
             (run_dir / "review.html").write_text(self.report.build_html(root, run_dir))
 
             with self.assertRaisesRegex(SystemExit, "runtime_contract_quality"):
+                self.report.validate(root, run_dir)
+
+    def test_review_validation_fails_missing_full_pass_asset_bundle(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            run_dir = root / "runs" / "asset_bundle_smoke"
+            package_dir = run_dir / "activity_packages" / "asset_bundle_smoke"
+            package_dir.mkdir(parents=True)
+            (run_dir / "run_manifest.yaml").write_text(
+                "run_id: asset_bundle_smoke\n"
+                "source:\n"
+                "  full_pass_pipeline: true\n"
+                "outputs:\n"
+                "  generated_activities:\n"
+                "    - activity_id: asset_bundle_smoke\n"
+                "      activity_path: runs/asset_bundle_smoke/activity_packages/asset_bundle_smoke\n"
+            )
+            (run_dir / "review_notes.md").write_text("# Review Notes\n")
+            (run_dir / "assignment_snapshot.md").write_text("# Assignments\n")
+            (run_dir / "generated_activity_ids.txt").write_text("asset_bundle_smoke\n")
+            (package_dir / "spec.md").write_text(
+                "## Self-Evaluation Scorecard\n\n"
+                "| # | Dimension | Score | Notes |\n"
+                "|---|---|---|---|\n"
+                + "".join(f"| {i} | D{i} | PASS | ok |\n" for i in range(1, 11))
+            )
+            (package_dir / "prod.md").write_text(
+                "## Asset Bundle Smoke\n\n"
+                "#### Step 1: Strong Prompt\n\n"
+                "**Runtime AI instruction:** Goal: open with a concrete activity mission and ask for one visible clue. Constraint: T1 max 2 sentences, preserve the source action, and do not invent screen content. Emotion/tone: curious. Child progress evidence: the child names or points to one clue. Branch behavior: for ideal responses, echo the clue; for unexpected comments, return to the clue; for no response, wait briefly and model one clue.\n\n"
+                "**Example AI line:** [curious] \"Look at this first clue. What do you notice?\"\n\n"
+                "**Child responses:**\n\n"
+                "1. (Ideal) Child names a clue.\n"
+                "2. (Unexpected) Child talks about something else.\n"
+                "3. (No response) Child is quiet.\n\n"
+                "**AI follow-up policy:**\n\n"
+                "1. (Ideal) Echo the clue and continue.\n"
+                "2. (Unexpected) Acknowledge and return to the clue.\n"
+                "3. (No response) [wait 2s] Model one clue.\n\n"
+                "**Screen/state:** Intro scene stays centered with one clue card, one empty progress token, and no unearned screen claim.\n"
+            )
+            (package_dir / "tag_block.yaml").write_text(
+                "activity_name: Asset Bundle Smoke\n"
+                "template_type: cat1\n"
+                "activity_signature:\n"
+                "  mechanic: describe\n"
+            )
+            (package_dir / "recap.template.yaml").write_text("{}\n")
+            (package_dir / "dashboard.template.yaml").write_text("{}\n")
+            (package_dir / "demo_support.yaml").write_text(
+                "activity_id: asset_bundle_smoke\n"
+                "version: 1\n"
+                "support:\n"
+                "  status: supported\n"
+                "  ui_template: cat1_three_rounds\n"
+            )
+            (package_dir / "asset_manifest.yaml").write_text(
+                "activity_id: asset_bundle_smoke\n"
+                "entity_id: fixture\n"
+                "version: 1\n"
+                "style_id: wonderlens_device_mint_soft_3d\n"
+                "palette:\n"
+                "  shell: warm porcelain off-white\n"
+                "  screen: barely tinted white\n"
+                "  primary_accent: muted sage green\n"
+                "screen_targets:\n"
+                "  round_device_screen:\n"
+                "    aspect_ratio: '1:1'\n"
+                "    crop_shape: circle\n"
+                "    master_size: 512\n"
+                "    safe_area: central 72 percent circle\n"
+                "assets:\n"
+                "- id: target_card\n"
+                "  role: collection_correct\n"
+                "  label: Target card\n"
+                "  requiredness: required\n"
+                "  accuracy_mode: illustrative\n"
+                "  source_strategy: generated_illustrative\n"
+                "  transformation_policy: generate_new\n"
+                "  prompt_en: Generate one target card.\n"
+                "  variants:\n"
+                "  - id: round_512\n"
+                "    target: round_device_screen\n"
+                "    size: 512x512\n"
+                "    path: assets/target_card__round_512.png\n"
+                "  fallback_behavior: Show fallback.\n"
+            )
+            (package_dir / "assets").mkdir()
+            (package_dir / "assets" / "target_card__round_512.png").write_bytes(b"png")
+            (run_dir / "review.html").write_text(self.report.build_html(root, run_dir))
+
+            with self.assertRaisesRegex(SystemExit, "full_pass_asset_bundle"):
                 self.report.validate(root, run_dir)
 
     def test_runtime_branch_policy_renders_as_horizontal_table(self):

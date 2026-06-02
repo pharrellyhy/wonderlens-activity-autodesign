@@ -37,6 +37,8 @@ except ImportError as exc:  # pragma: no cover - environment guard
 
 SUPPORTED_MODES = {"generate_illustrative", "curate_reference", "generate_and_curate"}
 SAFE_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9_]*$")
+PREFERRED_ILLUSTRATIVE_SOURCE_SIZE = (512, 512)
+ACCEPTED_ILLUSTRATIVE_SOURCE_SIZES = {(512, 512)}
 ACCEPTED_REFERENCE_SOURCE_TYPES = {
     "approved_internal_reference",
     "licensed_asset",
@@ -209,6 +211,11 @@ def resize_png(source: Path, target: Path, size: tuple[int, int], *, force: bool
     return True
 
 
+def image_size(path: Path) -> tuple[int, int]:
+    with Image.open(path) as image:
+        return image.size
+
+
 def write_work_item(
     run_dir: Path,
     package_dir: Path,
@@ -231,9 +238,17 @@ def write_work_item(
     )
     if not sources:
         sources = "- None declared"
+    source_sizes = ", ".join(f"{w}x{h}" for w, h in sorted(ACCEPTED_ILLUSTRATIVE_SOURCE_SIZES))
+    preferred_source = f"{PREFERRED_ILLUSTRATIVE_SOURCE_SIZE[0]}x{PREFERRED_ILLUSTRATIVE_SOURCE_SIZE[1]}"
     guidance = (
-        "Generate one source PNG into "
-        f"`generated_assets/inbox/{activity_id}/{asset_id}.png` using the prompt and device style."
+        f"Generate exactly one {preferred_source} source PNG into "
+        f"`generated_assets/inbox/{activity_id}/{asset_id}.png` using the prompt and device style. "
+        "The source PNG must contain one visual unit for this asset role only; split scenes, objects, "
+        "items, characters, icons, badges, and distractors into separate asset IDs instead of combining "
+        "multiple cards or a contact sheet in one runtime image. If the image tool returns a larger "
+        f"square, downsample the accepted source to {preferred_source} before running this builder. "
+        f"Existing accepted sources may be any supported square size: {source_sizes}; runtime variants "
+        "are resized from the accepted source according to the manifest."
         if norm(asset.get("accuracy_mode")) == "illustrative"
         else "Verify the source, store the accepted original in package-local "
         f"`assets/sources/{asset_id}__source_original.<ext>`, and only place a curated redraw in the inbox if the transformation policy requires one."
@@ -264,9 +279,28 @@ Transformation policy: `{norm(asset.get('transformation_policy'))}`
 
 {guidance}
 
-Do not use contact sheets as runtime assets. Do not use random approximations
-for reference-bound assets. Keep important detail inside the central round-screen
-safe area.
+Do not use contact sheets, multi-card sheets, labels, or baked UI chrome as
+runtime assets. Do not use random approximations for reference-bound assets.
+Keep important detail inside the central round-screen safe area.
+Do not bake app-owned UI state into image files: no progress dots, round tokens,
+response slots, rule strips, buttons, badges, chips, picker slots, device
+chrome, or other runtime interface markers. The app/runtime overlays progress
+and controls separately.
+Full-pass scenes must be visually distinct by activity and grounded in the
+source action for that exact beat. Do not reuse a generic cozy-room/blank-board
+template across unrelated activities.
+For guided drawing or other step-by-step build flows, each round scene must
+show the drawing/building instruction for that step, such as the starting
+shape, the added detail, then the finished simple form. Do not substitute
+generic materials, locks, timers, cameras, or placeholder cards when the
+runtime beat is supposed to tell the child what to do.
+Hard source-intent visual QA: if the activity advances by selecting an
+item/object, do not put duplicate selectable items/objects in background scenes
+where they compete with picker sprites, target/distractor cards, or collection
+items. If the activity builds evidence step by step or uses partial reveal, do
+not show the final answer, full target, or solution before the source-aligned
+reveal beat. Align this asset to its runtime beat step by step; violations are
+hard repair findings, not polish notes.
 """
     work_path.parent.mkdir(parents=True, exist_ok=True)
     work_path.write_text(body)
@@ -287,6 +321,15 @@ def variant_entry(asset: dict[str, Any], variant: dict[str, Any], output_path: P
 
 def update_variant_path(variant: dict[str, Any], package_dir: Path, output_path: Path) -> None:
     variant["path"] = package_relative(package_dir, output_path)
+
+
+def clear_missing_variant_paths(asset: dict[str, Any]) -> None:
+    """Drop stale paths when a source is missing, rejected, or not buildable."""
+    for variant in asset.get("variants", []):
+        if not isinstance(variant, dict):
+            continue
+        if norm(variant.get("path")):
+            variant["path"] = None
 
 
 def first_source(asset: dict[str, Any]) -> dict[str, Any]:
@@ -459,22 +502,43 @@ def build_asset(
         qa_notes.append(f"Unsupported accuracy_mode: {accuracy}.")
 
     if source_image is not None and status in {"generated", "curated"}:
-        for variant in asset.get("variants", []):
-            if not isinstance(variant, dict):
-                continue
-            variant_id = norm(variant.get("id"))
-            output_path = safe_output_path(package_dir, asset_id, variant_id)
+        if accuracy == "illustrative":
             try:
-                wrote = resize_png(source_image, output_path, parse_size(variant.get("size")), force=force)
+                actual_source_size = image_size(source_image)
             except Exception as exc:  # pragma: no cover - defensive guard
                 status = "qa_failed"
-                qa_notes.append(f"Could not create {variant_id}: {exc}")
-                continue
-            update_variant_path(variant, package_dir, output_path)
-            output_variants.append(variant_entry(asset, variant, output_path, package_dir))
-        if not output_variants:
-            status = "qa_failed"
-            qa_notes.append("No runtime variants were produced.")
+                qa_notes.append(f"Could not inspect illustrative source size: {exc}")
+            else:
+                if actual_source_size not in ACCEPTED_ILLUSTRATIVE_SOURCE_SIZES:
+                    status = "qa_failed"
+                    accepted_sizes = ", ".join(
+                        f"{width}x{height}" for width, height in sorted(ACCEPTED_ILLUSTRATIVE_SOURCE_SIZES)
+                    )
+                    qa_notes.append(
+                        "Illustrative source must be one accepted square size before build "
+                        f"({accepted_sizes}); "
+                        f"found {actual_source_size[0]}x{actual_source_size[1]} at "
+                        f"{run_relative(run_dir, source_image)}."
+                    )
+        if status != "qa_failed":
+            for variant in asset.get("variants", []):
+                if not isinstance(variant, dict):
+                    continue
+                variant_id = norm(variant.get("id"))
+                output_path = safe_output_path(package_dir, asset_id, variant_id)
+                try:
+                    resize_png(source_image, output_path, parse_size(variant.get("size")), force=force)
+                except Exception as exc:  # pragma: no cover - defensive guard
+                    status = "qa_failed"
+                    qa_notes.append(f"Could not create {variant_id}: {exc}")
+                    continue
+                update_variant_path(variant, package_dir, output_path)
+                output_variants.append(variant_entry(asset, variant, output_path, package_dir))
+            if not output_variants:
+                status = "qa_failed"
+                qa_notes.append("No runtime variants were produced.")
+    else:
+        clear_missing_variant_paths(asset)
 
     failed_required = requiredness == "required" and status not in {"generated", "curated"}
     output_entry = {
@@ -545,6 +609,7 @@ def build_assets(run_dir: Path, mode: str = "generate_and_curate", *, force: boo
     for package_dir in package_dirs:
         manifest_path = package_dir / "asset_manifest.yaml"
         manifest = load_yaml(manifest_path)
+        original_manifest_text = yaml.safe_dump(manifest, sort_keys=False, allow_unicode=False)
         changed = False
         for asset in manifest.get("assets", []):
             if not isinstance(asset, dict):
@@ -573,7 +638,7 @@ def build_assets(run_dir: Path, mode: str = "generate_and_curate", *, force: boo
                 changed = True
             if failed_required:
                 required_failures += 1
-        if changed:
+        if changed or yaml.safe_dump(manifest, sort_keys=False, allow_unicode=False) != original_manifest_text:
             write_yaml(manifest_path, manifest)
 
     output_root = run_dir / "generated_assets"

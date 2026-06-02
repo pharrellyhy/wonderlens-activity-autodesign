@@ -50,6 +50,8 @@ REFERENCE_METADATA_REQUIRED_FIELDS = (
     "reviewer_agent",
 )
 MIN_REQUIRED_RUNTIME_EDGE = 512
+ACCEPTED_ILLUSTRATIVE_SOURCE_SIZES = {(512, 512)}
+IMAGE_SUFFIXES = (".png", ".jpg", ".jpeg", ".webp")
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -150,6 +152,55 @@ def validate_png(path: Path, expected_size: tuple[int, int] | None) -> list[str]
     except Exception as exc:
         issues.append(f"{path}: could not inspect image: {exc}")
     return issues
+
+
+def validate_png_in_sizes(path: Path, accepted_sizes: set[tuple[int, int]]) -> list[str]:
+    issues: list[str] = []
+    if not path.exists():
+        return [f"file does not exist at {path}"]
+    try:
+        with Image.open(path) as image:
+            if image.format != "PNG":
+                issues.append(f"{path}: expected PNG, found {image.format}")
+            if image.size not in accepted_sizes:
+                sizes = ", ".join(f"{width}x{height}" for width, height in sorted(accepted_sizes))
+                issues.append(
+                    f"{path}: expected illustrative source size in {{{sizes}}}, "
+                    f"found {image.size[0]}x{image.size[1]}"
+                )
+    except Exception as exc:
+        issues.append(f"{path}: could not inspect image: {exc}")
+    return issues
+
+
+def find_image(candidates: list[Path]) -> Path | None:
+    for candidate in candidates:
+        if candidate.is_file():
+            return candidate
+        for suffix in IMAGE_SUFFIXES:
+            suffixed = candidate.with_suffix(suffix)
+            if suffixed.is_file():
+                return suffixed
+    return None
+
+
+def illustrative_source_path(run_dir: Path, activity_id: str, asset_id: str) -> Path | None:
+    inbox = run_dir / "generated_assets" / "inbox" / activity_id
+    return find_image(
+        [
+            inbox / asset_id,
+            inbox / f"{asset_id}__master",
+            inbox / f"{asset_id}__source",
+        ]
+    )
+
+
+def validate_illustrative_source_size(run_dir: Path, activity_id: str, asset_id: str) -> list[str]:
+    label = f"{activity_id}/{asset_id}"
+    source = illustrative_source_path(run_dir, activity_id, asset_id)
+    if source is None:
+        return [f"{label}: illustrative built asset missing source image in generated_assets/inbox"]
+    return validate_png_in_sizes(source, ACCEPTED_ILLUSTRATIVE_SOURCE_SIZES)
 
 
 def audit_entries_by_asset(run_dir: Path) -> dict[tuple[str, str], dict[str, Any]]:
@@ -302,6 +353,8 @@ def validate_asset(
             f"{label}: required asset has no high-resolution runtime variant "
             f"with minimum edge >= {MIN_REQUIRED_RUNTIME_EDGE}px; thumbnails cannot be the only built output"
         )
+    if built_paths and accuracy_mode == "illustrative":
+        issues.extend(validate_illustrative_source_size(run_dir, activity_id, asset_id))
     if built_paths and accuracy_mode == "reference_bound":
         issues.extend(validate_reference_source(package_dir, activity_id, asset, references))
     return issues

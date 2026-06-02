@@ -217,11 +217,16 @@ Illustrative assets:
 
 - one image per declared asset;
 - separate scene, character, object, item, icon, badge, and distractor files;
+- standard fullstack-style scene bundle for every package: `activity_icon`,
+  `intro_scene`, `rules_scene`, `round_1_scene`, `round_2_scene`,
+  `round_3_scene`, `celebrate_scene`, and `closing_scene`, plus
+  `synthesis_scene` for Cat5/synthesis flows;
+- direct 512x512 illustrative source PNGs before the deterministic builder;
 - flat Nordic WonderLens style matching the current fullstack reference;
 - clean white item/object/character sprites when applicable;
 - full-bleed beat/background scenes when applicable;
-- no text, letters, numbers, logos, watermarks, contact sheets, borders,
-  circular masks, device chrome, or labels.
+- no text, letters, numbers, logos, watermarks, contact sheets, multi-card
+  sheets, borders, circular masks, device chrome, or labels.
 
 Reference-bound assets:
 
@@ -330,10 +335,18 @@ Checks:
 - one asset per file;
 - scene/object/item role matches manifest role;
 - image aligns with package dialogue and screen beat;
-- object is readable at runtime size;
+- scene backgrounds do not duplicate selectable items/objects when separate
+  picker sprites, target/distractor cards, or collection items advance the
+  activity;
+- progressive evidence and partial-reveal images do not expose the final
+  answer, full target, or solution before the source-aligned reveal beat;
+- duplicate picker objects or premature answer reveal are hard image-QA repair
+  verdicts, not cosmetic notes;
+- object is readable at 512x512 runtime size unless a larger variant is
+  explicitly requested;
 - central crop/lens safe area is respected when relevant;
-- no text, letters, numbers, logos, watermarks, labels, contact sheets, masks,
-  borders, or UI chrome;
+- no text, letters, numbers, logos, watermarks, labels, contact sheets,
+  multi-card sheets, masks, borders, or UI chrome;
 - no reference-bound invention;
 - no misleading scene that changes the activity mechanic.
 
@@ -395,7 +408,9 @@ relevant checks. Examples:
 
 ```bash
 python3 scripts/validate_demo_package_contract.py tests/fixtures/demo_package_contract/valid
+python3 scripts/repair_full_pass_asset_bundle.py <small-run-dir>
 python3 scripts/validate_asset_build_outputs.py <small-run-dir>
+python3 scripts/validate_full_pass_asset_bundle.py <small-run-dir>
 python3 -m pytest tests/test_demo_package_contract_validator.py tests/test_generate_run_review.py -q
 ```
 
