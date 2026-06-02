@@ -352,12 +352,23 @@
     }
 
     .step {
+      appearance: none;
       position: relative;
-      min-height: 8.5rem;
+      display: block;
+      min-height: 6.8rem;
+      width: 100%;
       border: 1px solid var(--line);
       border-radius: 0.7rem;
       background: oklch(0.99 0.005 80);
       padding: 0.85rem;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
     }
 
     .step::after {
@@ -371,6 +382,26 @@
 
     .step:last-child::after {
       display: none;
+    }
+
+    .step:hover,
+    .step:focus-visible,
+    .step[data-selected="true"] {
+      border-color: oklch(0.58 0.06 210);
+      box-shadow: 0 0.7rem 1.8rem oklch(0.45 0.04 70 / 0.12);
+    }
+
+    .step:hover {
+      transform: translateY(-0.08rem);
+    }
+
+    .step:focus-visible {
+      outline: 3px solid oklch(0.78 0.075 210 / 0.72);
+      outline-offset: 3px;
+    }
+
+    .step[data-selected="true"] {
+      transform: translateY(-0.12rem);
     }
 
     .step b {
@@ -397,6 +428,74 @@
 
     .accent-blue {
       background: oklch(0.94 0.035 220);
+    }
+
+    .map-detail {
+      display: grid;
+      grid-template-columns: minmax(15rem, 0.85fr) minmax(0, 1.15fr);
+      gap: clamp(1rem, 2.4vw, 1.6rem);
+      margin-top: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.85rem;
+      background: oklch(0.985 0.006 80);
+      padding: clamp(1rem, 2.5vw, 1.4rem);
+      box-shadow: var(--shadow);
+    }
+
+    .map-detail-kicker {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 0.7rem;
+      border-radius: 999px;
+      background: oklch(0.91 0.032 86);
+      padding: 0.35rem 0.6rem;
+      color: var(--brown);
+      font-size: 0.72rem;
+      font-weight: 820;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .map-detail h3 {
+      max-width: none;
+      font-size: clamp(1.45rem, 2.5vw, 2.2rem);
+      line-height: 1.05;
+    }
+
+    .map-detail p {
+      margin: 0.8rem 0 0;
+    }
+
+    .map-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin: 0;
+    }
+
+    .map-detail-item {
+      min-width: 0;
+      border: 1px solid oklch(0.84 0.022 86);
+      border-radius: 0.7rem;
+      background: oklch(0.973 0.009 82);
+      padding: 0.8rem;
+    }
+
+    .map-detail-item dt {
+      margin: 0 0 0.35rem;
+      color: var(--brown);
+      font-size: 0.72rem;
+      font-weight: 820;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .map-detail-item dd {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
     }
 
     .workflow-lab {
@@ -1059,6 +1158,7 @@
       .roles,
       .artifact-map,
       .asset-showcase,
+      .map-detail,
       .workflow-lab,
       .text-package,
       .repair,
@@ -1113,7 +1213,8 @@
       }
 
       .steps,
-      .asset-grid {
+      .asset-grid,
+      .map-detail-grid {
         grid-template-columns: minmax(0, 1fr);
       }
 
@@ -1306,40 +1407,69 @@
             The pass is one coordinated run. Asset generation, downstream validation, dialogue QA, repairs, and final review are not separate afterthoughts.
           </p>
         </div>
-        <div class="pipeline" role="img" aria-label="Swimlane diagram for the full pass">
+        <div class="pipeline" data-pipeline-map aria-label="Interactive swimlane diagram for the full pass">
           <div class="pipeline-row">
             <div class="lane">Autodesign</div>
             <div class="steps">
-              <div class="step accent-salmon"><b>Run setup</b><span>Record repo state, assignment snapshot, `full_pass_pipeline=true`, and `asset_build=generate_and_curate`.</span></div>
-              <div class="step accent-salmon"><b>Source audit</b><span>Lock TSV-backed source promise before package writing.</span></div>
-              <div class="step accent-salmon"><b>Package writing</b><span>Create five-file package plus demo extensions.</span></div>
-              <div class="step accent-salmon"><b>Post audit</b><span>Check package files, demo extensions, conversion evidence, transcripts, and image QA.</span></div>
-              <div class="step accent-salmon"><b>Package repairs</b><span>Fix weak runtime instructions and package-owned gaps.</span></div>
-              <div class="step accent-salmon"><b>Final report</b><span>Commit evidence, risks, and accepted outputs.</span></div>
+              <button type="button" class="step accent-salmon" data-map-step="run-setup" aria-pressed="true"><b>Run setup</b><span>Flags, snapshot, repo state.</span></button>
+              <button type="button" class="step accent-salmon" data-map-step="source-audit" aria-pressed="false"><b>Source audit</b><span>Lock the workbook promise.</span></button>
+              <button type="button" class="step accent-salmon" data-map-step="package-writing" aria-pressed="false"><b>Package writing</b><span>Write package and demo files.</span></button>
+              <button type="button" class="step accent-salmon" data-map-step="post-audit" aria-pressed="false"><b>Post audit</b><span>Check the package contract.</span></button>
+              <button type="button" class="step accent-salmon" data-map-step="package-repairs" aria-pressed="false"><b>Package repairs</b><span>Fix package-owned gaps.</span></button>
+              <button type="button" class="step accent-salmon" data-map-step="final-report" aria-pressed="false"><b>Final report</b><span>Record evidence and risk.</span></button>
             </div>
           </div>
           <div class="pipeline-row">
             <div class="lane">Image phase</div>
             <div class="steps">
-              <div class="step accent-sage"><b>Bundle repair</b><span>Ensure the standard fullstack-style scene bundle exists in the manifest.</span></div>
-              <div class="step accent-sage"><b>Generate</b><span>Create one flat Nordic PNG per illustrative asset.</span></div>
-              <div class="step accent-sage"><b>Curate</b><span>Verify reference-bound originals and metadata.</span></div>
-              <div class="step accent-sage"><b>Build</b><span>Write package-local assets and update manifest paths.</span></div>
-              <div class="step accent-sage"><b>Image QA</b><span>Check style, crop safety, beat alignment, and reference fidelity.</span></div>
-              <div class="step accent-sage"><b>Repair images</b><span>Fix only prompts, sources, crops, or PNG outputs.</span></div>
+              <button type="button" class="step accent-sage" data-map-step="bundle-repair" aria-pressed="false"><b>Bundle repair</b><span>Complete manifest roles.</span></button>
+              <button type="button" class="step accent-sage" data-map-step="generate" aria-pressed="false"><b>Generate</b><span>Create runtime PNGs.</span></button>
+              <button type="button" class="step accent-sage" data-map-step="curate" aria-pressed="false"><b>Curate</b><span>Verify real references.</span></button>
+              <button type="button" class="step accent-sage" data-map-step="build" aria-pressed="false"><b>Build</b><span>Write assets and paths.</span></button>
+              <button type="button" class="step accent-sage" data-map-step="image-qa" aria-pressed="false"><b>Image QA</b><span>Check style and fidelity.</span></button>
+              <button type="button" class="step accent-sage" data-map-step="repair-images" aria-pressed="false"><b>Repair images</b><span>Fix image-owned defects.</span></button>
             </div>
           </div>
           <div class="pipeline-row">
             <div class="lane">Consumers</div>
             <div class="steps">
-              <div class="step accent-blue"><b>Package import</b><span>Load package as provided, resolve assets, and convert `step_instructions`.</span></div>
-              <div class="step accent-blue"><b>Fullstack QA</b><span>Test ideal, minimal, wrong, off-topic, help, done, and silence turns.</span></div>
-              <div class="step accent-blue"><b>AI runtime</b><span>Generate or load WonderLens-side runtime artifacts.</span></div>
-              <div class="step accent-blue"><b>AI dialogue QA</b><span>Compare runtime behavior against package beats.</span></div>
-              <div class="step accent-blue"><b>Classify</b><span>Package gap, runtime gap, product gap, or credential blocker.</span></div>
-              <div class="step accent-blue"><b>Final review</b><span>Independent evidence audit before acceptance.</span></div>
+              <button type="button" class="step accent-blue" data-map-step="package-import" aria-pressed="false"><b>Package import</b><span>Load and convert package.</span></button>
+              <button type="button" class="step accent-blue" data-map-step="fullstack-qa" aria-pressed="false"><b>Fullstack QA</b><span>Exercise web demo turns.</span></button>
+              <button type="button" class="step accent-blue" data-map-step="ai-runtime" aria-pressed="false"><b>AI runtime</b><span>Load WonderLens artifacts.</span></button>
+              <button type="button" class="step accent-blue" data-map-step="ai-dialogue-qa" aria-pressed="false"><b>AI dialogue QA</b><span>Compare package beats.</span></button>
+              <button type="button" class="step accent-blue" data-map-step="classify" aria-pressed="false"><b>Classify</b><span>Assign each failure.</span></button>
+              <button type="button" class="step accent-blue" data-map-step="final-review" aria-pressed="false"><b>Final review</b><span>Audit final evidence.</span></button>
             </div>
           </div>
+        </div>
+        <div class="map-detail" data-map-detail aria-live="polite" aria-labelledby="map-detail-title">
+          <div>
+            <span class="map-detail-kicker" data-map-detail-lane>Autodesign</span>
+            <h3 id="map-detail-title" data-map-detail-title>Run setup</h3>
+            <p data-map-detail-purpose>Start the full pass with exact source inputs, repo state, run flags, assignment snapshot, and evidence locations before any package writing begins.</p>
+          </div>
+          <dl class="map-detail-grid" aria-label="Selected pipeline step detail">
+            <div class="map-detail-item">
+              <dt>Owner</dt>
+              <dd data-map-detail-owner>Master orchestrator</dd>
+            </div>
+            <div class="map-detail-item">
+              <dt>Inputs</dt>
+              <dd data-map-detail-inputs>GOAL.md, run.md, program.md, workbook row set, current branch, and run ID.</dd>
+            </div>
+            <div class="map-detail-item">
+              <dt>Outputs</dt>
+              <dd data-map-detail-outputs>run_manifest.yaml, assignment_snapshot.md, repo-state note, and run dashboard skeleton.</dd>
+            </div>
+            <div class="map-detail-item">
+              <dt>Validation gate</dt>
+              <dd data-map-detail-validation>Manifest records `source.full_pass_pipeline: true` and `source.asset_build: generate_and_curate` before authoring starts.</dd>
+            </div>
+            <div class="map-detail-item">
+              <dt>Repair route</dt>
+              <dd data-map-detail-repair>Stop the pass and repair setup before package generation if flags, snapshots, or source pointers are missing.</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
@@ -1769,6 +1899,234 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
     </main>
   </div>
   <script>
+    (() => {
+      const map = document.querySelector("[data-pipeline-map]");
+      const detail = document.querySelector("[data-map-detail]");
+      if (!map || !detail) {
+        return;
+      }
+
+      const stepDetails = {
+        "run-setup": {
+          lane: "Autodesign",
+          title: "Run setup",
+          purpose: "Start the full pass with exact source inputs, repo state, run flags, assignment snapshot, and evidence locations before any package writing begins.",
+          owner: "Master orchestrator",
+          inputs: "GOAL.md, run.md, program.md, workbook row set, current branch, and run ID.",
+          outputs: "run_manifest.yaml, assignment_snapshot.md, repo-state note, and run dashboard skeleton.",
+          validation: "Manifest records `source.full_pass_pipeline: true` and `source.asset_build: generate_and_curate` before authoring starts.",
+          repair: "Stop the pass and repair setup before package generation if flags, snapshots, or source pointers are missing."
+        },
+        "source-audit": {
+          lane: "Autodesign",
+          title: "Source audit",
+          purpose: "Lock the workbook promise before the package writer adapts it, including child role, required action, source object, and real-world asset promise.",
+          owner: "Source-intent auditor",
+          inputs: "Original TSV row, normalized source helper, assignment snapshot, source links, and capability notes.",
+          outputs: "Pre-write source audit, adaptation brief, accepted constraints, and explicit blocked or degraded notes.",
+          validation: "Audit states what must survive in `spec.md`, `prod.md`, `demo_support.yaml`, and `asset_manifest.yaml`.",
+          repair: "If intent is ambiguous, resolve the source promise before writing. If capability is unsupported, mark the row honestly."
+        },
+        "package-writing": {
+          lane: "Autodesign",
+          title: "Package writing",
+          purpose: "Write the package contract that both fullstack-demo and WonderLens AI should consume without inventing missing runtime behavior.",
+          owner: "Text-only package writer",
+          inputs: "Source audit, program.md rules, templates, category guidance, entity binding, and asset requirements.",
+          outputs: "spec.md, prod.md, tag_block.yaml, recap.template.yaml, dashboard.template.yaml, demo_support.yaml, and asset_manifest.yaml.",
+          validation: "`prod.md` contains machine-convertible runtime beats, Cat5 synthesis stays separate when present, and demo support is explicit.",
+          repair: "Package-owned gaps return to the writer before downstream import or image generation proceeds."
+        },
+        "post-audit": {
+          lane: "Autodesign",
+          title: "Post audit",
+          purpose: "Check the written package against the source promise and downstream contracts before consumers or image builders rely on it.",
+          owner: "Independent package auditor",
+          inputs: "All package files, source audit, demo support, asset manifest, and runtime beat expectations.",
+          outputs: "Post-write source audit, package quality notes, conversion risk notes, and repair instructions when needed.",
+          validation: "Audit confirms source intent, runtime instructions, demo gates, entity binding, and text-only asset contracts are complete.",
+          repair: "Send text problems back to package writing. Send image-only requirements to the image phase without changing activity flow."
+        },
+        "package-repairs": {
+          lane: "Autodesign",
+          title: "Package repairs",
+          purpose: "Fix weak package guidance after import, dialogue, or audit evidence shows the activity contract is underspecified.",
+          owner: "Package repair agent",
+          inputs: "Audit findings, importer reports, runtime transcripts, consumer validation notes, and residual-risk list.",
+          outputs: "Updated package files, repair notes, renewed audits, and rerun instructions for affected consumers.",
+          validation: "The same failing evidence is rerun and shows the package-owned issue is resolved without weakening the source promise.",
+          repair: "If the issue belongs to consumer code or product capability, classify it instead of hiding it in package prose."
+        },
+        "final-report": {
+          lane: "Autodesign",
+          title: "Final report",
+          purpose: "Close the run with accepted outputs, evidence paths, blockers, deferred issues, and reviewer-readable residual risk.",
+          owner: "Master orchestrator",
+          inputs: "Run dashboard, manifests, audits, asset QA, import reports, dialogue QA, repairs, and final review notes.",
+          outputs: "Final run report, updated dashboard, accepted package list, blocker list, and next-action summary.",
+          validation: "Every accepted activity has evidence or an explicit residual risk owner. Unsupported activities are not presented as playable.",
+          repair: "If evidence is incomplete, route back to the owning phase before declaring the pass accepted."
+        },
+        "bundle-repair": {
+          lane: "Image phase",
+          title: "Bundle repair",
+          purpose: "Make each package asset-ready by ensuring the standard scene bundle and required selectable or reference assets exist in the manifest.",
+          owner: "Asset manifest repair agent",
+          inputs: "asset_manifest.yaml, prod.md screen states, demo_support.yaml, package category, and known fullstack asset expectations.",
+          outputs: "Completed text-only asset manifest with scene, object, item, target, distractor, synthesis, and reference roles as needed.",
+          validation: "Manifest covers every runtime beat that needs a visual and keeps paths nullable until the image builder writes PNGs.",
+          repair: "Patch manifest roles and prompts only. Do not alter dialogue flow to fit missing assets."
+        },
+        generate: {
+          lane: "Image phase",
+          title: "Generate",
+          purpose: "Create bitmap assets that match the approved WonderLens activity style and the specific screen beat or selectable item.",
+          owner: "Image generation agent",
+          inputs: "Asset manifest prompts, style rules, package-local activity context, screen target, and any accepted source reference.",
+          outputs: "Package-local generated PNG candidates and generation notes for each illustrative asset.",
+          validation: "Each generated image is 512x512, flat Nordic, screen-safe, centered for the round display, and tied to one manifest asset ID.",
+          repair: "Regenerate or adjust prompts when images are random, low resolution, off-style, duplicated, or reveal the answer too early."
+        },
+        curate: {
+          lane: "Image phase",
+          title: "Curate",
+          purpose: "Use real source material when the activity promises a real artwork, constellation, landmark, animal, plant, or other reference-bound object.",
+          owner: "Reference curator",
+          inputs: "Source promise, web or collection sources, license metadata, source originals, and manifest provenance fields.",
+          outputs: "Accepted source original, metadata, curated derivative when allowed, and provenance notes in the asset manifest.",
+          validation: "The source is real, licensed or open for the intended use, correctly named, and visually faithful enough for the activity.",
+          repair: "Replace generated approximations with source-backed assets, or block the activity if a required reference cannot be used."
+        },
+        build: {
+          lane: "Image phase",
+          title: "Build",
+          purpose: "Write final package-local runtime images and connect them to the manifest paths used by downstream consumers.",
+          owner: "Asset build agent",
+          inputs: "Approved generated images, source originals, manifest asset IDs, package directory, and build mode.",
+          outputs: "Final PNG files, updated asset_manifest.yaml paths, and build validation logs.",
+          validation: "All required assets exist at package-local paths, dimensions are correct, and referenced files load from disk.",
+          repair: "Repair missing files, wrong sizes, broken paths, or manifest mismatches before image QA."
+        },
+        "image-qa": {
+          lane: "Image phase",
+          title: "Image QA",
+          purpose: "Check whether the built images actually support the child-facing beat, reference promise, and physical screen constraints.",
+          owner: "Image quality validator",
+          inputs: "Built PNGs, source references, asset manifest, prod.md screen states, and style rules.",
+          outputs: "Image QA report with pass/fail, prompt/source issues, crop notes, duplicate-item notes, and reference fidelity notes.",
+          validation: "QA passes style, crop safety, beat alignment, reference fidelity, no duplicate selectable items, and no early answer reveal.",
+          repair: "Send image-owned defects to Repair images. Send text or runtime mismatches back to the owning phase."
+        },
+        "repair-images": {
+          lane: "Image phase",
+          title: "Repair images",
+          purpose: "Fix only visual artifacts while preserving the accepted activity mechanics, package prose, and runtime sequence.",
+          owner: "Image repair agent",
+          inputs: "Image QA findings, failed assets, prompts, source originals, crops, and manifest paths.",
+          outputs: "Repaired PNGs, updated source or prompt notes, and a renewed image QA result.",
+          validation: "The same QA criteria pass after repair, and no package text changes were needed for image-owned defects.",
+          repair: "If repair requires changing the activity promise, escalate to package repair or product capability review."
+        },
+        "package-import": {
+          lane: "Consumers",
+          title: "Package import",
+          purpose: "Load the package as authored and convert it into the fullstack-demo runtime shape without losing `step_instructions` quality.",
+          owner: "Fullstack package/import validator",
+          inputs: "Package directory, prod.md, demo_support.yaml, asset_manifest.yaml, tag block, and built assets.",
+          outputs: "Imported activity, converted runtime YAML or demo MD, asset resolution report, and unsupported/degraded gate result.",
+          validation: "Importer preserves entity binding, runtime beats, Cat5 synthesis when present, asset paths, and unsupported mechanic gates.",
+          repair: "Package omissions return to autodesign. Importer bugs become fullstack-demo follow-up work."
+        },
+        "fullstack-qa": {
+          lane: "Consumers",
+          title: "Fullstack QA",
+          purpose: "Exercise the imported activity through representative dialogue paths and UI states in the web demo.",
+          owner: "Fullstack runtime validator",
+          inputs: "Imported activity, test entity binding, generated assets, and dialogue strategy list.",
+          outputs: "Runtime transcript set, UI screenshots or notes, pass/fail report, and classified issues.",
+          validation: "Ideal, minimal, wrong, off-topic, help, done, silence, and photo/item flows behave like the package contract.",
+          repair: "Package-owned dialogue gaps go back to autodesign. UI/runtime defects become fullstack-demo issues."
+        },
+        "ai-runtime": {
+          lane: "Consumers",
+          title: "AI runtime",
+          purpose: "Generate or load WonderLens AI runtime artifacts that remain faithful to the package rather than to fullstack-demo shortcuts.",
+          owner: "WonderLens AI runtime validator",
+          inputs: "Package files, runtime converter, existing WonderLens AI schemas, assets, and camera/photo assumptions.",
+          outputs: "WonderLens-side runtime artifacts, conversion report, and runtime context evidence.",
+          validation: "Runtime artifacts preserve the generated YAML contract, real camera capture assumptions, Cat5 response types, and collection catalog when needed.",
+          repair: "Converter gaps become WonderLens AI follow-up work unless the package itself lacks required instructions."
+        },
+        "ai-dialogue-qa": {
+          lane: "Consumers",
+          title: "AI dialogue QA",
+          purpose: "Compare WonderLens AI dialogue behavior with the package beats, not only with fullstack-demo output.",
+          owner: "WonderLens AI dialogue validator",
+          inputs: "Runtime artifacts, package instructions, dialogue strategy prompts, camera/photo IDs, and transcripts.",
+          outputs: "Dialogue comparison report, mismatch list, and package/runtime classification notes.",
+          validation: "Responses follow goal, constraint, tone, progress evidence, branch policy, source guardrail, and synthesis behavior.",
+          repair: "Repair package prompts if they are thin. Repair WonderLens AI runtime prompts if conversion loses faithful behavior."
+        },
+        classify: {
+          lane: "Consumers",
+          title: "Classify",
+          purpose: "Assign each failure to the correct owner instead of treating all differences as package defects.",
+          owner: "Master orchestrator with validators",
+          inputs: "Fullstack QA, WonderLens AI QA, image QA, importer reports, logs, transcripts, and blocker notes.",
+          outputs: "Issue classification: package gap, image gap, runtime gap, product gap, credential blocker, or accepted residual risk.",
+          validation: "Each issue has one owner, evidence, repro path, and next step. Credential or provider limits include retry evidence.",
+          repair: "Route to the owning repo or phase. Do not merge unclear failures into a vague final report."
+        },
+        "final-review": {
+          lane: "Consumers",
+          title: "Final review",
+          purpose: "Have an independent reviewer audit the full evidence chain before the pass is accepted.",
+          owner: "Final reviewer",
+          inputs: "Packages, audits, asset QA, imports, transcripts, repairs, manifests, dashboard, and final report draft.",
+          outputs: "PASS, BLOCKED, or PASS with residual risk, plus reviewer notes and required fixes.",
+          validation: "Reviewer can trace every accepted activity from source promise through package, assets, consumers, repairs, and final evidence.",
+          repair: "Any missing evidence or misclassified risk returns to the responsible phase before final acceptance."
+        }
+      };
+
+      const fields = {
+        lane: detail.querySelector("[data-map-detail-lane]"),
+        title: detail.querySelector("[data-map-detail-title]"),
+        purpose: detail.querySelector("[data-map-detail-purpose]"),
+        owner: detail.querySelector("[data-map-detail-owner]"),
+        inputs: detail.querySelector("[data-map-detail-inputs]"),
+        outputs: detail.querySelector("[data-map-detail-outputs]"),
+        validation: detail.querySelector("[data-map-detail-validation]"),
+        repair: detail.querySelector("[data-map-detail-repair]")
+      };
+      const buttons = Array.from(map.querySelectorAll("[data-map-step]"));
+
+      function setSelected(stepId) {
+        const selected = stepDetails[stepId];
+        if (!selected) {
+          return;
+        }
+
+        buttons.forEach((button) => {
+          const isSelected = button.dataset.mapStep === stepId;
+          button.dataset.selected = isSelected ? "true" : "false";
+          button.setAttribute("aria-pressed", isSelected ? "true" : "false");
+        });
+
+        Object.entries(fields).forEach(([key, element]) => {
+          if (element) {
+            element.textContent = selected[key];
+          }
+        });
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => setSelected(button.dataset.mapStep));
+      });
+
+      setSelected(buttons.find((button) => button.getAttribute("aria-pressed") === "true")?.dataset.mapStep || buttons[0]?.dataset.mapStep);
+    })();
+
     (() => {
       const player = document.querySelector("[data-flow-player]");
       if (!player) {

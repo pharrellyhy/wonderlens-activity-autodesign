@@ -59,6 +59,17 @@ DevTools confirmed `Final review` selected during loop playback with status
 `Playing. Step 9 of 9.` at progress 0.92, 24/24 images loaded, and no desktop
 horizontal overflow.
 
+Update: Made every Pipeline map step clickable and added a shared detail panel
+for Autodesign, Image phase, and Consumer steps. The cards now act as compact
+navigation labels, while the panel shows purpose, owner, inputs, outputs,
+validation gate, and repair route for the selected step. Verification for this
+update: `HTMLParser` parse passed, extracted inline JavaScript syntax passed,
+local href/src reference check reported `refs=29 missing=0`, the presentation
+style scan found no banned patterns, Chrome clicked all 18 map steps and
+confirmed exactly one selected/pressed card with matching detail content,
+24/24 images loaded, desktop had no horizontal overflow, and DevTools mobile
+emulation at 390px reported no horizontal overflow.
+
 ## 2026-06-01 - Full-Pass Run Goal Ready
 
 Problem: The completed full-pass pipeline contract described how to implement
