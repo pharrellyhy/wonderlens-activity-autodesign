@@ -37,6 +37,17 @@ scan found no banned patterns, `git diff --check` passed, Chrome desktop
 render reported no horizontal overflow and 24/24 images loaded, and 390px
 mobile emulation reported no horizontal overflow.
 
+Update: Replaced the generated-looking reference-case tile with the accepted
+Hokusai source original from the full-pass run package at
+`.worktrees/feat/full-pass-agentic-run/runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_art_critic_tournament_probe/assets/sources/`,
+so the presentation shows a provenance-backed source original. Verification
+for this update: `HTMLParser` parse passed, local href/src reference check
+reported `refs=29 missing=0`, the presentation style scan found no banned
+patterns, `git diff --check` passed, `sips` verified the source original as
+900x617, Chrome loaded the reference source with natural size 900x617, all
+24/24 images loaded, desktop had no horizontal overflow, and 390px mobile
+emulation reported no horizontal overflow.
+
 ## 2026-06-01 - Full-Pass Run Goal Ready
 
 Problem: The completed full-pass pipeline contract described how to implement
