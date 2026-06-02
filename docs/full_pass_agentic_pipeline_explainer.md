@@ -225,8 +225,24 @@ current WonderLens asset style guidance. It generates or curates runtime PNGs
 without editing package prose.
 
 Generated assets should be beat-specific, style-consistent, readable at runtime
-size, and free of baked UI chrome, readable text, labels, logos, watermarks, and
-unsupported claims.
+size, and free of baked UI chrome, app-owned progress/control markers, readable
+text, labels, logos, watermarks, and unsupported claims. Subset and full-pass
+generation should use 512x512 source PNGs while final runtime variants remain
+manifest-driven.
+
+The full-pass asset floor matches the current fullstack-demo activity packages:
+each package needs package-local 512x512 beat assets for `activity_icon`,
+`intro_scene`, `rules_scene`, `round_1_scene`, `round_2_scene`,
+`round_3_scene`, `celebrate_scene`, and `closing_scene`; Cat5 or synthesis
+flows also need `synthesis_scene`. Round objects, choice items,
+targets, distractors, characters, and badges are generated as additional
+separate PNGs, not as substitutes for the beat-scene bundle.
+
+Scene bundles must also stay activity-specific. A generic cozy-room,
+blank-board, child-response, or child-on-rug layout cannot be reused across
+unrelated activities. Guided drawing and other build-step activities must show
+the exact child action for each round, not generic materials or capability
+placeholder imagery.
 
 Reference-bound assets require accepted source/provenance metadata. Random
 illustrative approximations are not acceptable for real constellations,
@@ -333,7 +349,9 @@ Product should use the full-pass reports to answer:
 - Does each generated activity preserve the original product promise?
 - Is any required capability unsupported today?
 - Is a degraded behavior acceptable, or should the row stay blocked?
-- Are image assets appropriate for the child-facing experience?
+- Are image assets appropriate for the child-facing experience, including no
+  duplicated selectable objects in picker backgrounds and no early answer
+  reveal in progressive-evidence flows?
 - Do live dialogue transcripts feel like the intended activity, not just a
   generic interaction?
 - Are downstream issues product-capability decisions or implementation bugs?

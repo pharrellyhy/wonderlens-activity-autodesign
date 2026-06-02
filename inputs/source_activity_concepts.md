@@ -159,12 +159,14 @@ Language rule: source concepts may arrive in Chinese, but all normalized concept
 | assignment_type | capability_probe |
 | input_mode_hint | concept_only |
 | mechanic | build |
-| category | unsupported_cat3 |
+| category | cat3 |
 | asset_policy | optional_support |
 | asset_requirements | guided_drawing_step_cards_01 |
-| product_capabilities | requires_materials, before_after_risk |
+| product_capabilities | requires_materials, requires_step_card_assets, no_visual_assessment, no_photo_verification_claim |
 | trigger_condition_en | Child is indoors and photographs an object that could become a drawing theme. |
-| adaptation_notes_en | Do not force this into the current Cat1/Cat5 package workflow. Output a Phase 0 brief and block unless product support for material workflows and final-work capture is declared. |
+| minimum_unblock_status | approved_text_guided_self_report |
+| resolved_assumptions_en | Fullstack-compatible minimum behavior may guide paper-and-pencil steps through text/voice, declared step-card assets, child or caregiver self-report, no visual assessment, and no photo-verification claim. The final photo celebration from the workbook remains a degraded/future capability unless product support exists. |
+| adaptation_notes_en | Preserve the workbook's simple sketch sequence: prepare paper and pencil, show or describe each drawing step, leave enough time without requiring per-step visual confirmation, then celebrate process. Do not convert it into a generic gate, countdown, camera placeholder, or assessment task. |
 
 ### source_word_echo_practice
 

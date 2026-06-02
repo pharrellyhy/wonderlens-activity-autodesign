@@ -53,10 +53,14 @@ Assets support the accepted activity design.
 1. Read each illustrative asset entry in `asset_manifest.yaml`.
 2. Combine the asset-specific `prompt_en` subject with the current WonderLens
    activity style in this document.
-3. Use Codex built-in image generation to create one source image per asset.
-   Do not create contact sheets for runtime assets. Prompts should combine the
-   asset-specific subject, scene/object/item role, use beat, and the full style
-   contract below so the output aligns with the dialogue and screen state.
+3. Use Codex built-in image generation to create one 512x512 square source
+   image per asset for subset and full-pass attempts. Do not create contact
+   sheets, multi-card sheets, or combined runtime assets. Prompts should combine
+   the asset-specific subject, scene/object/item role, use beat, and the full
+   style contract below so the output aligns with the dialogue and screen
+   state. Quality improvements should come from beat-specific prompts, removal
+   of app-owned UI language, no duplicated picker sprites in scene backgrounds,
+   and image QA repair before acceptance.
 4. Select the best output, then copy it from
    `/Users/pharrelly/.codex/generated_images/...` into:
 
@@ -65,7 +69,8 @@ runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png
 ```
 
 5. Visually inspect the PNG before running the builder:
-   - image is square and at least 512x512;
+   - illustrative source image is square and exactly 512x512; downsample larger
+     generated outputs to 512x512 before build;
    - no text, letters, numbers, logos, watermarks, UI labels, borders, masks,
      vignettes, black corners, or baked device chrome;
    - the style matches the flat Nordic nursery target;
@@ -161,8 +166,9 @@ Avoid:
 
 Composition:
 
-- generate square source art;
-- background scenes are full-bleed 512x512 images that can be clipped by the
+- generate or downsample illustrative source art to square 512x512 PNGs for
+  subset and full-pass attempts;
+- background scenes are full-bleed square images that can be clipped by the
   device's circular lens;
 - item, object, and character assets are separate reusable PNGs with one
   centered subject per file, generous clean white padding, and no baked UI
@@ -174,10 +180,37 @@ Hard constraints:
 - no baked-in lens border, rim, vignette, black corners, transparent margin,
   colored border, readable text, letters, numbers, logos, watermark, UI labels,
   or combined multi-image source asset.
+- no baked app progress or control UI: progress dots, round tokens, response
+  slots, rule strips, buttons, chips, picker slots, badges, and similar runtime
+  markers belong to the app, not the PNG.
 
 Final runtime outputs should include separate 512x512 PNG files for each beat,
-item, object, or character asset unless `asset_manifest.yaml` explicitly
-requests another size.
+item, object, character, icon, badge, or distractor asset unless
+`asset_manifest.yaml` explicitly requests another size. A single composite card
+set is not an acceptable substitute for separate runtime assets.
+
+For larger/full production passes, the accepted package-local assets must match
+the fullstack-demo bundle shape before downstream validation. Every package
+needs separate 512x512 variants for `activity_icon`, `intro_scene`,
+`rules_scene`, `round_1_scene`, `round_2_scene`, `round_3_scene`,
+`celebrate_scene`, and `closing_scene`. Cat5 or other synthesis flows also need
+`synthesis_scene`. These beat-scene assets are required in
+addition to any object, item, target, distractor, entity, or badge assets used
+inside the rounds.
+
+Full-pass scene bundles must not use one generic template across unrelated
+activities. Each activity needs a distinct visual motif grounded in the source
+promise and runtime mechanic. For example, little poem scenes should use a poem
+page and small image tokens, time-sense scenes should use elapsed-time
+prediction imagery, and current-topic interview scenes should use interview
+visuals. A repeated cozy-room/blank-board/child-response layout is a hard image
+QA repair finding.
+
+For guided drawing or other step-by-step build activities, the beat images must
+show the actual instruction sequence. Round scenes should show the first shape,
+the added detail, and the finished simple form. Generic paper/pencil props,
+locks, timers, cameras, or placeholder cards are not acceptable substitutes
+when the source promise is to guide what the child draws next.
 
 ## Independent Image QA
 
@@ -193,10 +226,24 @@ The validator checks:
 - one asset per file, with scene/object/item/character role matching the
   manifest;
 - scene and object content aligns with the dialogue beat and screen state;
+- for activities that advance by choosing an item/object, scene backgrounds do
+  not duplicate the same selectable items or objects in a way that competes
+  with picker sprites, target/distractor cards, or collection items;
+- progressive evidence and partial-reveal images preserve reveal timing: early
+  beats must not show the final answer, full target, or solution before the
+  source-aligned dialogue reveal step;
+- duplicate picker objects in scene backgrounds and premature answer reveal are
+  hard repair findings, not optional polish notes;
 - object readability at runtime size;
 - important content stays inside the round lens-safe center when relevant;
 - no readable text, letters, numbers, logos, watermark, UI labels, contact
   sheets, masks, borders, or baked device chrome;
+- no baked app progress/control UI such as progress dots, round markers,
+  response slots, rule strips, buttons, chips, picker slots, or badges;
+- cross-activity distinctness, so unrelated packages cannot pass with the same
+  layout, props, and screen-template composition;
+- guided drawing/build-step fidelity when applicable: each round scene shows the
+  specific child action for that step;
 - reference-bound assets use accepted provenance and do not invent factual
   material;
 - no image changes the activity mechanic, source play frame, or child action.
@@ -213,8 +260,18 @@ screen/dialogue claims.
 After any asset build, run:
 
 ```bash
+python3 scripts/repair_full_pass_asset_bundle.py runs/<run_id>
 python3 scripts/validate_asset_build_outputs.py runs/<run_id>
+python3 scripts/validate_asset_granularity.py runs/<run_id>
+python3 scripts/validate_full_pass_asset_bundle.py runs/<run_id>
 ```
+
+These validations check package-local runtime PNG paths, fail illustrative
+generated assets whose inbox source PNG is not the accepted 512x512 square
+source size, and reject
+composite card/set/board/library assets that should be split into separate
+runtime visual units. Full-pass runs also fail when the standard beat-scene
+bundle is missing or has no package-local PNG paths.
 
 For each package with demo extensions, also run:
 

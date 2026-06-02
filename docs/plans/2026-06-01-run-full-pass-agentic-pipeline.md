@@ -249,12 +249,31 @@ An image pass requires:
 - generated PNGs follow `docs/activity_asset_generation_workflow.md` and the
   fullstack style reference at
   `/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/wonderlens-activity-style.md`;
+- every package has the standard fullstack-style asset bundle:
+  `activity_icon`, `intro_scene`, `rules_scene`, `round_1_scene`,
+  `round_2_scene`, `round_3_scene`, `celebrate_scene`, and `closing_scene`,
+  plus `synthesis_scene` for Cat5/synthesis flows;
 - each declared scene, character, object, item, icon, badge, or distractor has
-  one readable asset at the expected runtime size;
+  one readable 512x512 asset unless a larger variant is explicitly requested;
+- generated illustrative source PNGs are 512x512 square, while final runtime
+  variants remain manifest-driven;
 - scene assets match the dialogue beat and do not change the mechanic;
+- scene PNGs do not contain app-owned progress/control UI such as progress
+  dots, round markers, response slots, rule strips, buttons, chips, picker
+  slots, badges, or other runtime interface markers;
+- unrelated activity scene bundles are visually distinct and do not reuse the
+  same cozy-room, blank-board, child-response, or child-on-rug template;
+- guided drawing and other build-step scene bundles show the specific drawing
+  or build instruction for each round;
+- scene backgrounds do not duplicate selectable items/objects in a way that
+  competes with picker sprites, target/distractor cards, or collection items;
+- progressive evidence and partial-reveal images do not expose the final
+  answer, full target, or solution before the source-aligned reveal beat;
+- duplicate picker objects or premature answer reveal are hard image-QA repair
+  verdicts because they change the source-intent step sequence;
 - item/object/character assets are centered and crop-safe;
-- no text, letters, numbers, labels, watermarks, contact sheets, borders,
-  masks, or device chrome are baked into generated assets;
+- no text, letters, numbers, labels, watermarks, contact sheets, multi-card
+  sheets, borders, masks, or device chrome are baked into generated assets;
 - reference-bound assets use accepted originals and metadata, not invented
   generated approximations.
 
@@ -264,8 +283,10 @@ Autodesign checks:
 
 ```bash
 python3 scripts/validate_demo_package_contract.py runs/<run_id>/activity_packages
+python3 scripts/repair_full_pass_asset_bundle.py runs/<run_id>
 python3 scripts/build_activity_assets.py runs/<run_id> --mode generate_and_curate
 python3 scripts/validate_asset_build_outputs.py runs/<run_id>
+python3 scripts/validate_full_pass_asset_bundle.py runs/<run_id>
 python3 scripts/generate_run_review.py --validate runs/<run_id>
 ! rg -n "RESOLVED BLOCKER|RESOLVE BLOCKER" runs/<run_id>/activity_packages/*/prod.md
 git diff --check

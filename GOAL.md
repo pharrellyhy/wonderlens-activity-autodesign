@@ -25,7 +25,30 @@ These files do not replace the five required package files. They make the genera
 
 The default image-asset behavior for ordinary scoped generation is `asset_build=manifest_only`: generate and validate asset requirements with nullable output paths, but do not create binary image files. For a larger/full production pass, set `asset_build=generate_and_curate` at run start so autodesign creates package-local PNG assets before consumer validation. If the user explicitly requests `asset_build=generate_illustrative`, `asset_build=curate_reference`, or `asset_build=generate_and_curate`, run the post-package asset build phase with `scripts/build_activity_assets.py` after package validation and verify it with `scripts/validate_asset_build_outputs.py`. Reference-bound assets may use agent-proposed candidates only before source acceptance; final outputs must use approved originals, licensed/internal sources, official or verified source URLs, or verified data/redraws, never random generated approximations. The builder must consume preaccepted package-local source originals and source metadata; it must not create its own accepted provenance record. Use `docs/activity_asset_generation_workflow.md` for the runtime PNG workflow and current style contract.
 
-Generated illustrative image assets must follow the current WonderLens activity asset style: flat Nordic children's illustration for the quiet white prototype, broad flat fills, sparse arc-eye/texture linework, restrained boho pastels, clean negative space, and no generic chibi/toy vocabulary or dimensional modeling. Generate square source art. Background scene assets should be full-bleed 512x512 images that can be clipped by the round lens; item, object, and character assets should be separate centered PNGs with generous clean white padding. Final runtime PNGs should be `512x512` unless the manifest explicitly requests a different or additional larger variant. Do not bake in device chrome: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, colored border, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels. Store outputs only in the current package-local asset locations declared by `asset_manifest.yaml`.
+Generated illustrative image assets must follow the current WonderLens activity asset style: flat Nordic children's illustration for the quiet white prototype, broad flat fills, sparse arc-eye/texture linework, restrained boho pastels, clean negative space, and no generic chibi/toy vocabulary or dimensional modeling. Generate or downsample illustrative source PNGs to square `512x512` before build. Background scene assets should be full-bleed 512x512 images that can be clipped by the round lens; item, object, character, icon, badge, and distractor assets should be separate centered PNGs with generous clean white padding. Final runtime PNGs should be `512x512` unless the manifest explicitly requests a different or additional larger variant. Do not bake in device chrome: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, colored border, readable text, letters, numbers, logos, watermark, contact sheet, multi-card sheet, or UI labels. Store outputs only in the current package-local asset locations declared by `asset_manifest.yaml`.
+
+For larger/full production passes, every generated package must declare and
+build the standard fullstack-style scene bundle before downstream consumer
+validation: `activity_icon`, `intro_scene`, `rules_scene`, `round_1_scene`,
+`round_2_scene`, `round_3_scene`, `celebrate_scene`, and `closing_scene`.
+Cat5 or synthesis flows must also include `synthesis_scene`.
+These scene/icon assets are required in addition to any displayed
+object, item, entity, target, distractor, or reference-bound assets. Generate
+final scene PNGs only from locked runtime dialogue/screen beats; if
+source-intent, runtime AI instruction quality, or product-decision review still
+shows unresolved drift for a package, repair or explicitly classify that text
+state before accepting the final scene asset bundle.
+
+Image QA must validate step-by-step source-intent alignment. For activities
+where the child selects a specific item/object to advance, background or scene
+images must not duplicate the same selectable item/object in a way that
+competes with picker sprites, target/distractor cards, or collection items;
+use empty slots, trays, silhouettes, abstract cues, or already-selected
+state only when the beat explicitly calls for it. For progressive evidence or
+partial-reveal flows, images must not expose the final answer, full target, or
+solution state before the dialogue beat where the source design reveals it.
+Either violation is a hard image-QA repair verdict because the visual changes
+the activity sequence even if the asset looks polished.
 
 If the user supplies a scope such as "only Batch 5" or "last batch", process only that scoped assignment subset in the run-start snapshot. If the user says the product contract now allows minimum-to-unblock decisions, treat prior capability probes as generation-ready under `product_contract_override=minimum_unblock_allowed`: generate normal packages with the five required files plus any enabled demo extensions, record formerly blocking dependencies as resolved blocker annotations, and keep those callouts visible in `review.html`.
 
@@ -208,8 +231,8 @@ The goal is complete only when all of the applicable criteria below are met.
    - When demo export is enabled, `asset_manifest.yaml` contains separate runtime asset entries, not a contact sheet as the runtime asset.
    - `asset_manifest.yaml` uses `style_id: wonderlens_device_mint_soft_3d`, round-device safe-area rules, target variants, nullable path slots, and fallback behavior.
    - Illustrative assets use the current WonderLens activity asset style from `docs/activity_asset_generation_workflow.md`: flat Nordic children's illustration, quiet white prototype fit, broad flat fills, sparse linework, restrained boho pastels, clean negative space, and no generic chibi/toy vocabulary or dimensional modeling.
-   - Illustrative assets are square 512x512 PNGs unless the manifest requests another size. Scene assets are full-bleed square images that can be clipped by the round lens; item, object, and character assets are separate centered PNGs with generous clean white padding. They do not include circular/oval masks, lens borders, rims, vignettes, black corners, transparent margins, colored borders, readable text, letters, numbers, logos, watermarks, contact sheets, or UI labels.
-   - Required assets include at least one final runtime PNG at `512x512` or larger, with `512x512` preferred unless the manifest explicitly requests an additional larger variant. Smaller `64px`/`128px` variants are thumbnails only and cannot be the only built output.
+   - Illustrative source and runtime assets are square 512x512 PNGs unless the manifest requests another size. Scene assets are full-bleed square images that can be clipped by the round lens; item, object, character, icon, badge, and distractor assets are separate centered PNGs with generous clean white padding. They do not include circular/oval masks, lens borders, rims, vignettes, black corners, transparent margins, colored borders, readable text, letters, numbers, logos, watermarks, contact sheets, multi-card sheets, or UI labels.
+   - Required assets include at least one final runtime PNG at `512x512`, with larger variants allowed only when explicitly requested. Smaller `64px`/`128px` variants are thumbnails only and cannot be the only built output.
    - Reference-bound assets such as constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, or famous structures include approved `source_strategy`, `transformation_policy`, source/provenance, and verification requirements. Random generated approximations fail the run.
    - If `asset_build=manifest_only`, nullable asset paths are acceptable. If a stronger asset build mode is requested, `scripts/build_activity_assets.py runs/<run_id> --mode <mode>` writes final runtime PNGs under package-local `assets/`, updates package-relative variant paths in `asset_manifest.yaml`, writes `generated_assets/asset_outputs.yaml`, `reference_sources.yaml`, and `qa_notes.yaml`, and `scripts/validate_asset_build_outputs.py runs/<run_id>` passes before the dashboard is finalized. Reference-bound outputs require accepted `assets/sources/<asset_id>__source_metadata.yaml` with source type, license, storage permission, sha256, verification timestamp, and reviewer agent.
    - `demo_support.yaml` marks simple Cat1/Cat5 activities as `supported`, Cat5 runtime-judgment cases as `degraded`, and UI-heavy or unsupported mechanics as `unsupported` instead of claiming they are playable.
@@ -306,8 +329,10 @@ The goal is complete only when all of the applicable criteria below are met.
      help/confusion, premature done, silence/no response, and unsupported
      request where the runtime supports them.
    - Image QA independently checks style consistency, asset role, crop safety,
-     scene/dialogue alignment, reference fidelity, object readability, and
-     no-text/no-label/no-device-chrome constraints.
+     scene/dialogue alignment, reference fidelity, object readability,
+     no-text/no-label/no-device-chrome constraints, no duplicate selectable
+     items competing with picker sprites, and no premature answer reveal in
+     progressive evidence or partial-reveal beats.
    - Dialogue and image repair loops classify each failure as package-owned,
      fullstack-owned, WonderLens-owned, image-owned, or product-owned. Package
      and image-owned issues are repaired in autodesign and revalidated;

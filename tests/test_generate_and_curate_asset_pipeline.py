@@ -25,7 +25,7 @@ def load_script(name):
     return module
 
 
-def write_png(path, size=(1024, 1024), color=(117, 207, 151, 255)):
+def write_png(path, size=(512, 512), color=(117, 207, 151, 255)):
     path.parent.mkdir(parents=True, exist_ok=True)
     image = Image.new("RGBA", size, color)
     image.save(path, format="PNG")
@@ -299,6 +299,22 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
         statuses = {(entry["asset_id"], entry["status"]) for entry in asset_outputs["entries"]}
         self.assertIn(("moss_icon", "missing_source"), statuses)
         self.assertIn(("orion_card", "missing_source"), statuses)
+
+    def test_missing_rejected_source_clears_stale_removed_variant_path(self):
+        builder = load_script("build_activity_assets")
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = pathlib.Path(tmp) / "runs" / "test_run"
+            package_dir = base_run(run_dir)
+            manifest_path = package_dir / "asset_manifest.yaml"
+            manifest = read_yaml(manifest_path)
+            manifest["assets"][0]["variants"][0]["path"] = "assets/moss_icon__round_1024.png"
+            write_yaml(manifest_path, manifest)
+
+            result = builder.build_assets(run_dir, mode="generate_and_curate")
+            manifest = read_yaml(manifest_path)
+
+        self.assertEqual(2, result["required_failures"])
+        self.assertIsNone(manifest["assets"][0]["variants"][0]["path"])
 
     def test_build_is_idempotent_without_force(self):
         builder = load_script("build_activity_assets")

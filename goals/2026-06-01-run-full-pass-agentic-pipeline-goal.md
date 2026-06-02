@@ -86,6 +86,10 @@ Produce a complete autodesign run with:
 - generated activity packages under `runs/<run_id>/activity_packages/`;
 - package self-evaluation and independent package-review evidence;
 - generated/curated PNG assets and asset validation reports;
+- fullstack-style package-local scene bundles for every package:
+  `activity_icon`, `intro_scene`, `rules_scene`, `round_1_scene`,
+  `round_2_scene`, `round_3_scene`, `celebrate_scene`, and `closing_scene`,
+  plus `synthesis_scene` for Cat5/synthesis flows;
 - image QA and repair evidence;
 - fullstack load/import evidence from the required worktree;
 - fullstack converted `step_instructions` quality review;
@@ -146,7 +150,9 @@ Rules:
 9. Validate package contracts and runtime AI instruction quality.
 10. Run post-package source-intent audits.
 11. Generate or curate PNG assets and validate asset outputs.
-12. Run image QA and repair image-owned failures.
+12. Validate full-pass asset bundle completeness with
+    `scripts/validate_full_pass_asset_bundle.py`, then run image QA and repair
+    image-owned failures.
 13. Verify all runtime-facing `prod.md` files are marker-free.
 14. Load packages into fullstack-demo from the required worktree and validate
     converted `step_instructions`.
@@ -281,13 +287,32 @@ For both fullstack-demo and WonderLens AI, pass only when:
 
 Pass only when every accepted activity has:
 
-- package-local PNGs for all required manifest assets;
+- package-local 512x512 PNGs for all required manifest assets unless a larger
+  variant is explicitly requested;
+- 512x512 square illustrative source PNGs for subset and full-pass asset
+  generation attempts, while final runtime variants stay manifest-driven;
 - style alignment with `docs/activity_asset_generation_workflow.md` and the
   fullstack style prompt in the required worktree;
 - scene/dialogue alignment for each runtime beat;
-- readable centered objects/items/characters at runtime size;
-- no text, letters, numbers, labels, watermarks, contact sheets, borders,
-  masks, or device chrome baked into generated assets;
+- no baked app progress/control UI in PNGs; progress dots, round markers,
+  response slots, rule strips, buttons, chips, picker slots, badges, and other
+  runtime interface markers belong to the app;
+- no cross-activity template reuse; unrelated activities cannot pass with the
+  same cozy-room, blank-board, child-response, or child-on-rug scene structure;
+- guided drawing/build-step scenes show the child action for that exact step
+  rather than generic paper, pencil, lock, timer, camera, or placeholder cards;
+- no duplicated selectable items/objects in background scenes when separate
+  picker sprites, target/distractor cards, or collection items advance the
+  activity;
+- no premature answer reveal in progressive evidence or partial-reveal flows;
+  early beat images must preserve the source step sequence and reveal only what
+  the current dialogue beat should show;
+- duplicate picker objects or premature answer reveal are hard image-QA repair
+  verdicts, not cosmetic notes;
+- readable centered objects/items/characters/icons/badges/distractors at
+  runtime size;
+- no text, letters, numbers, labels, watermarks, contact sheets, multi-card
+  sheets, borders, masks, or device chrome baked into generated assets;
 - accepted source originals and metadata for reference-bound assets.
 
 ## Preconditions
@@ -340,6 +365,7 @@ Autodesign, replacing `<run_id>` with the generated run:
 python3 scripts/validate_demo_package_contract.py runs/<run_id>/activity_packages
 python3 scripts/build_activity_assets.py runs/<run_id> --mode generate_and_curate
 python3 scripts/validate_asset_build_outputs.py runs/<run_id>
+python3 scripts/validate_asset_granularity.py runs/<run_id>
 python3 scripts/generate_run_review.py --validate runs/<run_id>
 ! rg -n "RESOLVED BLOCKER|RESOLVE BLOCKER" runs/<run_id>/activity_packages/*/prod.md
 git diff --check
