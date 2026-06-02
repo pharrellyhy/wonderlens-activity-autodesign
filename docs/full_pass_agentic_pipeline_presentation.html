@@ -1859,10 +1859,10 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
       function render() {
         const centers = getCenters();
         const maxSegment = centers.length - 1;
-        const rawPosition = progress * maxSegment;
+        const rawPosition = progress * centers.length;
         const index = Math.min(Math.floor(rawPosition), maxSegment);
         const nextIndex = Math.min(index + 1, maxSegment);
-        const segmentProgress = Math.min(rawPosition - index, 1);
+        const segmentProgress = index === maxSegment ? 0 : Math.min(rawPosition - index, 1);
         const from = centers[index];
         const to = centers[nextIndex];
         const x = from.x + (to.x - from.x) * segmentProgress;

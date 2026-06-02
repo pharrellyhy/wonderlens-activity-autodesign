@@ -48,6 +48,17 @@ patterns, `git diff --check` passed, `sips` verified the source original as
 24/24 images loaded, desktop had no horizontal overflow, and 390px mobile
 emulation reported no horizontal overflow.
 
+Update: Fixed the workflow animation so the `Final review` stage is selected
+during loop playback. Root cause: the prior active-stage math required
+`progress === 1`, but loop mode wrapped progress before rendering that terminal
+state. Verification for this update: `HTMLParser` parse passed, selector math
+reproduction showed the old loop omitted index 8 and the new loop includes it,
+local href/src reference check reported `refs=29 missing=0`, the presentation
+style scan found no banned patterns, `git diff --check` passed, and Chrome
+DevTools confirmed `Final review` selected during loop playback with status
+`Playing. Step 9 of 9.` at progress 0.92, 24/24 images loaded, and no desktop
+horizontal overflow.
+
 ## 2026-06-01 - Full-Pass Run Goal Ready
 
 Problem: The completed full-pass pipeline contract described how to implement
