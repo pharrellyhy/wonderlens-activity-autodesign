@@ -154,6 +154,7 @@
     .hero {
       min-height: 92vh;
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
       align-items: center;
       padding: clamp(3rem, 7vw, 7rem);
       border-bottom: 1px solid var(--line);
@@ -216,7 +217,9 @@
     }
 
     .hero-copy {
+      width: 100%;
       max-width: 62rem;
+      min-width: 0;
     }
 
     .hero-lede {
@@ -225,6 +228,7 @@
       color: oklch(0.38 0.04 245);
       font-size: clamp(1.1rem, 2vw, 1.45rem);
       line-height: 1.55;
+      overflow-wrap: anywhere;
     }
 
     .hero-strip {
@@ -232,10 +236,13 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0.9rem;
       margin-top: clamp(2rem, 4vw, 4rem);
+      width: 100%;
       max-width: 64rem;
+      min-width: 0;
     }
 
     .hero-strip div {
+      min-width: 0;
       min-height: 8.5rem;
       border: 1px solid var(--line);
       border-radius: 0.75rem;
@@ -562,6 +569,7 @@
     }
 
     .repair-path {
+      min-width: 0;
       border: 1px solid var(--line);
       border-radius: 0.9rem;
       background: oklch(0.985 0.006 80);
@@ -588,6 +596,12 @@
     .repair-path p {
       margin-bottom: 0;
       font-size: 0.9rem;
+    }
+
+    .repair-path b,
+    .repair-path span,
+    .repair-path p {
+      overflow-wrap: anywhere;
     }
 
     .gates {
@@ -656,6 +670,7 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 0.86rem;
       line-height: 1.5;
+      white-space: pre-wrap;
       overflow-x: auto;
     }
 
@@ -694,7 +709,7 @@
       .asset-showcase,
       .repair,
       .two-up {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .asset-grid {
@@ -727,16 +742,33 @@
       .hero-strip,
       .section-head,
       .pipeline-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .steps,
       .asset-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .gates {
+        table-layout: fixed;
+      }
+
+      .gates th,
+      .gates td {
+        padding: 0.7rem 0.55rem;
+        font-size: 0.8rem;
+        overflow-wrap: anywhere;
       }
 
       h1 {
-        font-size: clamp(3rem, 15vw, 4.4rem);
+        max-width: 100%;
+        font-size: clamp(3rem, 14vw, 4rem);
+      }
+
+      .hero-copy,
+      .hero-lede {
+        max-width: 100%;
       }
     }
   </style>
@@ -754,6 +786,7 @@
       <div class="nav-label">Navigate</div>
       <ol class="nav">
         <li><a href="#why">Why it exists</a></li>
+        <li><a href="#source">Source rules</a></li>
         <li><a href="#map">Pipeline map</a></li>
         <li><a href="#roles">Agent roles</a></li>
         <li><a href="#artifacts">Artifact flow</a></li>
@@ -766,6 +799,7 @@
       <p class="sidebar-note">
         Source docs: <br>
         <a href="full_pass_agentic_pipeline_explainer.md">full_pass_agentic_pipeline_explainer.md</a><br>
+        <a href="../GOAL.md">GOAL.md</a>, <a href="../run.md">run.md</a>, <a href="../program.md">program.md</a><br>
         <a href="activity_asset_generation_workflow.md">activity_asset_generation_workflow.md</a>
       </p>
     </aside>
@@ -785,15 +819,15 @@
             </div>
             <div>
               <strong>2</strong>
-              <span>Image generation is a separate image-only phase. It supports the activity, it does not rewrite it.</span>
+              <span>Full production passes record `full_pass_pipeline=true` and `asset_build=generate_and_curate` before generation.</span>
             </div>
             <div>
               <strong>3</strong>
-              <span>Fullstack-demo and WonderLens AI are direct consumers. They validate, they do not improve weak packages.</span>
+              <span>Image generation is a separate image-only phase. It supports the activity, it does not rewrite it.</span>
             </div>
             <div>
               <strong>4</strong>
-              <span>Acceptance requires evidence: import, runtime generation, dialogue QA, image QA, repair loops, and final review.</span>
+              <span>Fullstack-demo and WonderLens AI are direct consumers. They validate package behavior as provided.</span>
             </div>
           </div>
         </div>
@@ -835,6 +869,37 @@
         </div>
       </section>
 
+      <section id="source" class="section" aria-labelledby="source-title">
+        <div class="section-head">
+          <h2 id="source-title">Source rules</h2>
+          <p>
+            The updated full-pass contract starts from the original workbook promise, then treats normalized helper files and downstream converters as support tools. They cannot weaken the activity.
+          </p>
+        </div>
+        <div class="repair">
+          <div class="repair-path">
+            <b>Workbook baseline</b>
+            <span>`inputs/original_activity_concepts_2026-05-29.tsv` controls</span>
+            <p>Use `inputs/source_activity_concepts.md` only for normalized names, mechanics, asset hints, and capability notes. If the two disagree, the TSV wins unless product approval is recorded.</p>
+          </div>
+          <div class="repair-path">
+            <b>Run manifest</b>
+            <span>Record full-pass mode before processing</span>
+            <p>`run_manifest.yaml` must include `source.full_pass_pipeline: true` and `source.asset_build: generate_and_curate` for production-scale passes.</p>
+          </div>
+          <div class="repair-path">
+            <b>Runtime contract</b>
+            <span>Every live beat has a machine-convertible instruction</span>
+            <p>Step 1, Step 2, every Step 3 round, Cat5 synthesis, celebration, closing, and early exits need goal, constraint, tone, progress evidence, branch behavior, and frame guardrail.</p>
+          </div>
+          <div class="repair-path">
+            <b>Cat5 shape</b>
+            <span>Collection, synthesis, and celebration stay distinct</span>
+            <p>Imports must preserve synthesis instructions separately when present, including collection criterion, accepted evidence, item-combination behavior, and final summary format.</p>
+          </div>
+        </div>
+      </section>
+
       <section id="map" class="section" aria-labelledby="map-title">
         <div class="section-head">
           <h2 id="map-title">Pipeline map</h2>
@@ -846,10 +911,10 @@
           <div class="pipeline-row">
             <div class="lane">Autodesign</div>
             <div class="steps">
-              <div class="step accent-salmon"><b>Run setup</b><span>Record repo state, assignment snapshot, flags, and provenance.</span></div>
-              <div class="step accent-salmon"><b>Source audit</b><span>Lock source promise before package writing.</span></div>
+              <div class="step accent-salmon"><b>Run setup</b><span>Record repo state, assignment snapshot, `full_pass_pipeline=true`, and `asset_build=generate_and_curate`.</span></div>
+              <div class="step accent-salmon"><b>Source audit</b><span>Lock TSV-backed source promise before package writing.</span></div>
               <div class="step accent-salmon"><b>Package writing</b><span>Create five-file package plus demo extensions.</span></div>
-              <div class="step accent-salmon"><b>Post audit</b><span>Reject intent drift before downstream checks.</span></div>
+              <div class="step accent-salmon"><b>Post audit</b><span>Check package files, demo extensions, conversion evidence, transcripts, and image QA.</span></div>
               <div class="step accent-salmon"><b>Package repairs</b><span>Fix weak runtime instructions and package-owned gaps.</span></div>
               <div class="step accent-salmon"><b>Final report</b><span>Commit evidence, risks, and accepted outputs.</span></div>
             </div>
@@ -857,7 +922,7 @@
           <div class="pipeline-row">
             <div class="lane">Image phase</div>
             <div class="steps">
-              <div class="step accent-sage"><b>Manifest read</b><span>Use asset IDs, roles, prompts, sources, variants, and fallback behavior.</span></div>
+              <div class="step accent-sage"><b>Bundle repair</b><span>Ensure the standard fullstack-style scene bundle exists in the manifest.</span></div>
               <div class="step accent-sage"><b>Generate</b><span>Create one flat Nordic PNG per illustrative asset.</span></div>
               <div class="step accent-sage"><b>Curate</b><span>Verify reference-bound originals and metadata.</span></div>
               <div class="step accent-sage"><b>Build</b><span>Write package-local assets and update manifest paths.</span></div>
@@ -868,7 +933,7 @@
           <div class="pipeline-row">
             <div class="lane">Consumers</div>
             <div class="steps">
-              <div class="step accent-blue"><b>Fullstack import</b><span>Load package as provided and convert `step_instructions`.</span></div>
+              <div class="step accent-blue"><b>Package import</b><span>Load package as provided, resolve assets, and convert `step_instructions`.</span></div>
               <div class="step accent-blue"><b>Fullstack QA</b><span>Test ideal, minimal, wrong, off-topic, help, done, and silence turns.</span></div>
               <div class="step accent-blue"><b>AI runtime</b><span>Generate or load WonderLens-side runtime artifacts.</span></div>
               <div class="step accent-blue"><b>AI dialogue QA</b><span>Compare runtime behavior against package beats.</span></div>
@@ -890,8 +955,8 @@
           <div class="role">
             <h3>Authoring side</h3>
             <ul>
-              <li>Master orchestrator controls run order, blockers, commits, and final report.</li>
-              <li>Source-intent auditor locks play frame, child action, real assets, and context.</li>
+              <li>Master orchestrator controls scope, snapshots, blockers, credentials, servers, commits, and final report.</li>
+              <li>Source-intent auditor locks play frame, child role, device role, action, real assets, and context before and after writing.</li>
               <li>Text-only package writer creates runtime prose and package metadata.</li>
             </ul>
           </div>
@@ -908,6 +973,7 @@
             <ul>
               <li>Package/import validator checks schema, paths, converted instruction shape, and gates.</li>
               <li>Fullstack and WonderLens AI validators run runtime-equivalent dialogue checks.</li>
+              <li>Dialogue improvers repair package-owned guidance gaps, including WonderLens AI runtime prompt gaps.</li>
               <li>Final reviewer audits evidence and residual-risk ownership.</li>
             </ul>
           </div>
@@ -923,20 +989,23 @@
         </div>
         <div class="artifact-map">
           <div class="artifact-cluster">
+            <h3>Source and run</h3>
+            <span class="file-pill">original_activity_concepts_2026-05-29.tsv</span>
+            <span class="file-pill">source_activity_concepts.md</span>
+            <span class="file-pill">assignment_snapshot.md</span>
+            <span class="file-pill">run_manifest.yaml</span>
+            <span class="file-pill">source_intent_audits/*.md</span>
+          </div>
+          <div class="artifact-cluster">
             <h3>Autodesign package</h3>
             <span class="file-pill">spec.md</span>
             <span class="file-pill">prod.md</span>
             <span class="file-pill">tag_block.yaml</span>
+            <span class="file-pill">recap.template.yaml</span>
+            <span class="file-pill">dashboard.template.yaml</span>
             <span class="file-pill">demo_support.yaml</span>
             <span class="file-pill">asset_manifest.yaml</span>
             <span class="file-pill">assets/*.png</span>
-          </div>
-          <div class="arrow-stack">
-            <span>validated package</span>
-            <span>-></span>
-            <span>direct consumer import</span>
-            <span>-></span>
-            <span>runtime evidence</span>
           </div>
           <div class="artifact-cluster">
             <h3>Consumer evidence</h3>
@@ -996,8 +1065,9 @@
             </div>
             <ul class="qa-list" aria-label="Asset QA rules">
               <li>Package authoring stays text-only until `asset_build=generate_and_curate` runs.</li>
-              <li>`asset_manifest.yaml` owns asset IDs, roles, prompts or sources, variants, nullable paths, and fallbacks.</li>
-              <li>Image QA checks style, crop safety, beat alignment, readable runtime size, and reference fidelity.</li>
+              <li>Every package gets `activity_icon`, `intro_scene`, `rules_scene`, three round scenes, `celebrate_scene`, `closing_scene`, and `recap_scene`; Cat5 or synthesis flows also get `synthesis_scene`.</li>
+              <li>`asset_manifest.yaml` owns asset IDs, roles, prompts or sources, variants, nullable paths, and fallbacks; final PNGs are package-local 512x512 runtime assets.</li>
+              <li>Image QA checks style, crop safety, beat alignment, readable runtime size, reference fidelity, no duplicate selectable objects, and no premature answer reveal.</li>
               <li>Failures repair image-owned artifacts only: prompt, source, curated redraw, crop, or generated PNG.</li>
             </ul>
           </div>
@@ -1062,8 +1132,13 @@
           </thead>
           <tbody>
             <tr>
+              <td><strong>Run flags</strong></td>
+              <td>`run_manifest.yaml` records `source.full_pass_pipeline: true` and `source.asset_build: generate_and_curate`.</td>
+              <td>Master orchestrator</td>
+            </tr>
+            <tr>
               <td><strong>Source intent</strong></td>
-              <td>Pre and post source-intent audit with source evidence.</td>
+              <td>Pre and post source-intent audit with workbook evidence; TSV controls normalized helpers.</td>
               <td>Autodesign</td>
             </tr>
             <tr>
@@ -1073,12 +1148,12 @@
             </tr>
             <tr>
               <td><strong>Runtime instructions</strong></td>
-              <td>Machine-convertible instruction for every live beat.</td>
+              <td>Machine-convertible instruction for every live beat, with Cat5 synthesis preserved separately when present.</td>
               <td>Autodesign</td>
             </tr>
             <tr>
               <td><strong>Assets</strong></td>
-              <td>Built PNGs, manifest validation, reference metadata, and image QA.</td>
+              <td>Standard scene bundle, built PNGs, manifest validation, reference metadata, and image QA.</td>
               <td>Autodesign image phase</td>
             </tr>
             <tr>
@@ -1147,6 +1222,14 @@
           Use this mode for larger or production-scale passes, where package generation, asset generation, downstream validation, dialogue QA, repair loops, and final review must happen in one evidence-backed run.
         </p>
         <div class="command-box">/goal Execute GOAL.md end to end using run.md with asset_build=generate_and_curate full_pass_pipeline=true.</div>
+        <p>
+          The manifest must record both flags, and the asset phase uses the full-pass builder sequence before downstream dialogue QA.
+        </p>
+        <div class="command-box">python3 scripts/repair_full_pass_asset_bundle.py runs/&lt;run_id&gt;
+python3 scripts/build_activity_assets.py runs/&lt;run_id&gt; --mode generate_and_curate
+python3 scripts/validate_asset_build_outputs.py runs/&lt;run_id&gt;
+python3 scripts/validate_asset_granularity.py runs/&lt;run_id&gt;
+python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
         <p>
           The completion standard is not "the package exists." The completion standard is that both direct consumers can load and exercise the package without weakening the activity promise.
         </p>

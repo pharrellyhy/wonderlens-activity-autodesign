@@ -1,5 +1,22 @@
 # HANDOFF
 
+## 2026-06-02 - Full-Pass Presentation Synced
+
+Problem: The one-page pipeline presentation needed to reflect the newer
+`feat/full-pass-agentic-run` GOAL/run/program rules, not only the earlier
+high-level explainer.
+
+Solution: Updated `docs/full_pass_agentic_pipeline_presentation.html` with
+TSV-first workbook source intent, required full-pass manifest flags, explicit
+standard fullstack-style scene bundle requirements, stronger runtime instruction
+and Cat5 synthesis preservation rules, delegated role coverage, marker-free
+consumer input, and the current asset build validation command sequence.
+
+Verification: `HTMLParser` parse passed, local href/src reference check reported
+`refs=13 missing=0`, the presentation style scan found no banned patterns,
+`git diff --check` passed, Chrome desktop render passed, and Chrome DevTools
+390px mobile emulation reported no horizontal overflow.
+
 ## 2026-06-01 - Full-Pass Run Goal Ready
 
 Problem: The completed full-pass pipeline contract described how to implement
