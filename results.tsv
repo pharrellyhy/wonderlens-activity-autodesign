@@ -141,3 +141,4 @@ B-Sound Treasure Hunt	concept_phoneme_hunt_collect	cat5	T1	PASS	P	P	P	P	P	P	P	P	
 Constellation Star Count	concept_constellation_star_count_enumerate	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260603_110015_subset_agentic_validation/activity_packages/concept_constellation_star_count_enumerate	2026-06-03T11:43:09+08:00
 Guided Drawing	concept_guided_drawing_probe	cat3	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260603_110015_subset_agentic_validation/activity_packages/concept_guided_drawing_probe	2026-06-03T11:43:09+08:00
 Recognition Pop Challenge	concept_recognition_pop_probe	cat1	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260603_110015_subset_agentic_validation/activity_packages/concept_recognition_pop_probe	2026-06-03T11:43:09+08:00
+B-Sound Treasure Hunt	concept_phoneme_hunt_collect	cat5	T1	PASS	P	P	P	P	P	P	P	P	N	runs/20260603_171053_subset_phoneme_validation/activity_packages/concept_phoneme_hunt_collect	2026-06-03T18:41:31+08:00

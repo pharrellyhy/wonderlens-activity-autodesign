@@ -1,0 +1,19 @@
+run_id: 20260603_171053_subset_phoneme_validation
+generated_at: '2026-06-03T17:19:28+08:00'
+package_count: 1
+added_count: 0
+updated_count: 9
+packages:
+- activity_id: concept_phoneme_hunt_collect
+  package_path: runs/20260603_171053_subset_phoneme_validation/activity_packages/concept_phoneme_hunt_collect
+  added_assets: []
+  updated_assets:
+  - activity_icon
+  - celebrate_scene
+  - closing_scene
+  - intro_scene
+  - round_1_scene
+  - round_2_scene
+  - round_3_scene
+  - rules_scene
+  - synthesis_scene

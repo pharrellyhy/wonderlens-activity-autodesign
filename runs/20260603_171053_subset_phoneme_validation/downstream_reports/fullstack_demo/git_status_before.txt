@@ -1,0 +1,12 @@
+ D frontend/public/activity-assets/activity_animal_sound_imitation/recap.png
+ D frontend/public/activity-assets/activity_career_decision_role_play/recap.png
+ D frontend/public/activity-assets/activity_constellation_star_count/recap.png
+ D frontend/public/activity-assets/activity_emotion_reader/recap.png
+ D frontend/public/activity-assets/activity_guided_drawing/recap.png
+ D frontend/public/activity-assets/activity_partial_reveal_guess/recap.png
+ D frontend/public/activity-assets/activity_phoneme_treasure_hunt/recap.png
+ D frontend/public/activity-assets/activity_recognition_pop_challenge/recap.png
+ D frontend/public/activity-assets/activity_story_challenge_unlock/recap.png
+ D frontend/public/activity-assets/activity_travel_planner/recap.png
+ D frontend/public/activity-assets/activity_vegetable_sort/recap.png
+ D frontend/public/activity-assets/activity_word_echo_practice/recap.png

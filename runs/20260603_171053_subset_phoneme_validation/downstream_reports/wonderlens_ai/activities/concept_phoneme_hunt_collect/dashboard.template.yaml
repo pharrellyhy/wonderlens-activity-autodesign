@@ -1,0 +1,10 @@
+dashboard_fragment:
+  session:
+    activity_id: concept_phoneme_hunt_collect
+    title: B-Sound Treasure Hunt
+    focal_attribute: beginning sound /b/
+    summary: "The child connected a real object and its spoken name to the /b/ beginning sound."
+    evidence_line: "{child_name} used object-name evidence to explain why {accepted_object_name} matched /b/."
+  caregiver:
+    note: "This activity practices listening for the first sound in a word. If the device cannot infer the sound from a photo, ask the child to say the object name."
+    next_step_hint: "Repeat with one familiar beginning sound, keeping the hunt playful and one object at a time."

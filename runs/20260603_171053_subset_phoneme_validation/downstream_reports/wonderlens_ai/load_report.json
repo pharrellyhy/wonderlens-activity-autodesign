@@ -1,0 +1,71 @@
+{
+  "activity_type": "concept_phoneme_hunt_collect",
+  "asset_readiness": "ready",
+  "category": "category_5",
+  "collection_catalog": {
+    "accepted_features": [
+      "beginning_b_sound",
+      "b_sound",
+      "ball",
+      "book",
+      "banana"
+    ],
+    "correct": [
+      {
+        "id": "ball_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/ball_object__round_512.png",
+        "label": "Ball"
+      },
+      {
+        "id": "banana_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/banana_object__round_512.png",
+        "label": "Banana"
+      },
+      {
+        "id": "book_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/book_object__round_512.png",
+        "label": "Book"
+      }
+    ],
+    "criterion": "Things whose spoken names begin with the /b/ sound",
+    "distractors": [
+      {
+        "id": "cup_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/cup_object__round_512.png",
+        "label": "Cup"
+      },
+      {
+        "id": "sock_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/sock_object__round_512.png",
+        "label": "Sock"
+      }
+    ],
+    "rejected_features": [
+      "cup",
+      "sock"
+    ],
+    "visual_prompt_hint": "Ask the child to say the object's name and listen for the beginning /b/ sound."
+  },
+  "executable": true,
+  "failures": [],
+  "optional_missing_asset_ids": [],
+  "package_asset_ids": [
+    "package:concept_phoneme_hunt_collect:activity_icon",
+    "package:concept_phoneme_hunt_collect:intro_scene",
+    "package:concept_phoneme_hunt_collect:rules_scene",
+    "package:concept_phoneme_hunt_collect:round_1_scene",
+    "package:concept_phoneme_hunt_collect:round_2_scene",
+    "package:concept_phoneme_hunt_collect:round_3_scene",
+    "package:concept_phoneme_hunt_collect:synthesis_scene",
+    "package:concept_phoneme_hunt_collect:celebrate_scene",
+    "package:concept_phoneme_hunt_collect:closing_scene",
+    "package:concept_phoneme_hunt_collect:b_sound_letter_cue",
+    "package:concept_phoneme_hunt_collect:ball_object",
+    "package:concept_phoneme_hunt_collect:banana_object",
+    "package:concept_phoneme_hunt_collect:book_object",
+    "package:concept_phoneme_hunt_collect:cup_object"
+  ],
+  "play_rounds": 3,
+  "required_missing_asset_ids": [],
+  "support_status": "degraded"
+}

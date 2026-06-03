@@ -1,0 +1,32 @@
+concept_phoneme_hunt_collect:
+  creative_slots:
+    stuck_hint: Look nearby for something whose spoken name begins with /b/.
+  collection_catalog:
+    accepted_features:
+      - beginning_b_sound
+      - b_sound
+      - ball
+      - book
+      - banana
+    rejected_features:
+      - cup
+      - sock
+    visual_prompt_hint: Ask the child to say the object's name and listen for the beginning /b/ sound.
+    criterion: Things whose spoken names begin with the /b/ sound
+    correct:
+      - id: ball_object
+        label: Ball
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/ball_object__round_512.png
+      - id: banana_object
+        label: Banana
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/banana_object__round_512.png
+      - id: book_object
+        label: Book
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/book_object__round_512.png
+    distractors:
+      - id: cup_object
+        label: Cup
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/cup_object__round_512.png
+      - id: sock_object
+        label: Sock
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/sock_object__round_512.png

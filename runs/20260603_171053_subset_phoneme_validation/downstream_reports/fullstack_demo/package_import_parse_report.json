@@ -1,0 +1,20 @@
+{
+  "asset_readiness": "ready",
+  "category": "category_5",
+  "collection_catalog_correct_count": 3,
+  "collection_catalog_distractor_count": 2,
+  "correct_images": [
+    "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/ball_object__round_512.png",
+    "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/banana_object__round_512.png",
+    "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/book_object__round_512.png"
+  ],
+  "distractor_images": [
+    "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/cup_object__round_512.png",
+    "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/sock_object__round_512.png"
+  ],
+  "imported_activity_type": "concept_phoneme_hunt_collect__beginning_sound_treasure",
+  "imported_game": "/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/subset-agentic-validation/runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import/games/concept_phoneme_hunt_collect__beginning_sound_treasure.md",
+  "play_rounds": 3,
+  "source_activity_id": "concept_phoneme_hunt_collect",
+  "support_status": "degraded"
+}

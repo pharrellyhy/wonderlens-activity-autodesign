@@ -1,0 +1,75 @@
+activity_id: concept_phoneme_hunt_collect
+version: 1
+source_entity_exemplar: beginning sound treasure
+template_type: cat5
+pillar: Adventure
+game_style: quest_collector
+entity: beginning sound treasure
+entity_class:
+  - household_object
+  - spoken_word
+entity_binding: parameterized
+tier_range:
+  primary: T1
+  span:
+    - T1
+  elasticity: fixed subset validation scope
+category: objects
+attributes:
+  - beginning_b_sound
+  - spoken_word
+key_concepts:
+  - Form
+  - Connection
+related_concepts:
+  - sound
+  - beginning sound
+  - word-object match
+  - evidence
+atl_skills:
+  - listening
+  - language_expression
+  - evidence_collection
+transdisciplinary_theme: How we express ourselves
+kud:
+  know:
+    - The sound /b/ can begin words such as ball, banana, book, box, and bag.
+    - A photo needs the object's spoken or typed name for beginning-sound evidence.
+  understand:
+    - A beginning sound is part of a word's form.
+    - Different objects can be connected by the same beginning sound.
+  do:
+    - Listen for /b/.
+    - Find and show one indoor treasure.
+    - Name the treasure and explain why it matches /b/.
+progression:
+  topic_axis: form
+  difficulty_level: 1
+  next_step_hint: Repeat with one new beginning sound and one new indoor treasure.
+  reward_hook: Sound Treasure Finder
+caregiver_role:
+  - observer
+  - scaffold
+activity_signature:
+  observation_angle: function
+  mechanic: collect
+  entity_role: exemplar
+  focal_attribute: beginning_b_sound
+  intro: The child hears /b/, finds one indoor treasure, and names it so the AI can connect the word to its beginning sound.
+  bridge_prerequisites:
+    primary:
+      - function
+    secondary:
+      - pattern
+      - language sound
+  preview_label: B-Sound Treasure Hunt
+  preview_prompt: Listen for /b/, then find one treasure whose word begins with that sound.
+  role_pivot_note: The photographed object is evidence for a broader beginning-sound rule.
+matchability:
+  entity_class_filter:
+    - household_object
+    - spoken_word
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

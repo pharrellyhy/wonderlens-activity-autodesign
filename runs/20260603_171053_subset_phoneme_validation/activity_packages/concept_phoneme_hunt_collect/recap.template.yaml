@@ -1,0 +1,12 @@
+recap:
+  title: B-Sound Treasure Hunt
+  child_summary: "{child_name} listened for /b/, found one indoor treasure, and named it so the sound match was clear."
+  evidence:
+    - "Target sound: /b/"
+    - "Accepted treasure: {accepted_object_name}"
+    - "Photo evidence: {accepted_photo_id}"
+  concept_chips:
+    - Form
+    - Connection
+    - beginning sound
+  next_prompt: "Try one new beginning sound with one new treasure."

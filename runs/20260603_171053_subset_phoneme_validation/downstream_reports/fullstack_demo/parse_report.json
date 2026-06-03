@@ -1,0 +1,16 @@
+{
+  "activity_id": "concept_phoneme_hunt_collect",
+  "collection_catalog_correct_count": 3,
+  "collection_catalog_distractor_count": 2,
+  "correct_images": [
+    "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/ball_object__round_512.png",
+    "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/banana_object__round_512.png",
+    "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/book_object__round_512.png"
+  ],
+  "distractor_images": [
+    "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/cup_object__round_512.png",
+    "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/sock_object__round_512.png"
+  ],
+  "game_mechanic": null,
+  "title": null
+}
