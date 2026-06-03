@@ -23,9 +23,9 @@ asset_manifest.yaml
 
 These files do not replace the five required package files. They make the generated package direct-demo-import ready by declaring demo support status, explicit entity binding, separate runtime assets, reference-bound provenance, and unsupported/degraded mechanic gates.
 
-The default image-asset behavior for ordinary scoped generation is `asset_build=manifest_only`: generate and validate asset requirements with nullable output paths, but do not create binary image files. For a larger/full production pass, set `asset_build=generate_and_curate` at run start so autodesign creates package-local PNG assets before consumer validation. If the user explicitly requests `asset_build=generate_illustrative`, `asset_build=curate_reference`, or `asset_build=generate_and_curate`, run the post-package asset build phase with `scripts/build_activity_assets.py` after package validation and verify it with `scripts/validate_asset_build_outputs.py`. Reference-bound assets may use agent-proposed candidates only before source acceptance; final outputs must use approved originals, licensed/internal sources, official or verified source URLs, or verified data/redraws, never random generated approximations. The builder must consume preaccepted package-local source originals and source metadata; it must not create its own accepted provenance record. Use `docs/activity_asset_generation_workflow.md` for the runtime PNG workflow and current style contract.
+The default image-asset behavior for ordinary scoped generation is `asset_build=manifest_only`: generate and validate asset requirements with nullable output paths, but do not create binary image files. For a larger/full production pass, set `asset_build=generate_and_curate` at run start so autodesign creates package-local PNG assets before consumer validation. If the user explicitly requests `asset_build=generate_illustrative`, `asset_build=curate_reference`, or `asset_build=generate_and_curate`, run the post-package asset build phase with `scripts/build_activity_assets.py` after package validation and verify it with `scripts/validate_asset_build_outputs.py`. Illustrative asset generation must use the Codex built-in imagegen tool; do not substitute SVG/vector drawings, placeholder art, contact sheets, or non-imagegen scripts as accepted source art. Reference-bound assets may use agent-proposed candidates only before source acceptance; final outputs must use approved originals, licensed/internal sources, official or verified source URLs, or verified data/redraws, never random generated approximations. The builder must consume preaccepted package-local source originals and source metadata; it must not create its own accepted provenance record. Use `docs/activity_asset_generation_workflow.md` plus the repo-local style prompt and image in `docs/asset_style_reference/` for the runtime PNG workflow and current style contract.
 
-Generated illustrative image assets must follow the current WonderLens activity asset style: flat Nordic children's illustration for the quiet white prototype, broad flat fills, sparse arc-eye/texture linework, restrained boho pastels, clean negative space, and no generic chibi/toy vocabulary or dimensional modeling. Generate or downsample illustrative source PNGs to square `512x512` before build. Background scene assets should be full-bleed 512x512 images that can be clipped by the round lens; item, object, character, icon, badge, and distractor assets should be separate centered PNGs with generous clean white padding. Final runtime PNGs should be `512x512` unless the manifest explicitly requests a different or additional larger variant. Do not bake in device chrome: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, colored border, readable text, letters, numbers, logos, watermark, contact sheet, multi-card sheet, or UI labels. Store outputs only in the current package-local asset locations declared by `asset_manifest.yaml`.
+Generated illustrative image assets must follow the current WonderLens activity asset style: flat Nordic children's illustration for the quiet white prototype, broad flat fills, sparse arc-eye/texture linework, restrained boho pastels, clean negative space, and no generic chibi/toy vocabulary or dimensional modeling. Before generating, read `docs/asset_style_reference/wonderlens-activity-style.md` and use `docs/asset_style_reference/style-reference-flat-nordic.png` as the visual target. Generate or downsample illustrative source PNGs to square `512x512` before build. Background scene assets should be full-bleed 512x512 images that can be clipped by the round lens; item, object, character, icon, badge, and distractor assets should be separate centered PNGs with generous clean white padding. Activities with picker/item selection must declare each selectable item/object as its own asset and store built runtime item/object PNGs under package-local `assets/items/`, not mixed into the scene/background asset root. Final runtime PNGs should be `512x512` unless the manifest explicitly requests a different or additional larger variant. Do not bake in device chrome: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, colored border, readable text, letters, numbers, logos, watermark, contact sheet, multi-card sheet, or UI labels. Store outputs only in the current package-local asset locations declared by `asset_manifest.yaml`.
 
 For larger/full production passes, every generated package must declare and
 build the standard fullstack-style scene bundle before downstream consumer
@@ -71,6 +71,10 @@ It should delegate bounded work to separate agents with disjoint ownership:
 - image quality improver;
 - final independent reviewer.
 
+Run at most three delegated/sub-agents in parallel. When a delegated agent
+finishes, collect its evidence, record the handoff or result, and terminate or
+kill that finished agent before spawning a replacement.
+
 Fullstack-demo and WonderLens AI are direct consumers, not content-improvement
 steps. They must load or generate runtime artifacts from the package as
 provided, preserve package runtime AI instructions in `step_instructions` or
@@ -86,6 +90,13 @@ adaptation, and blocked/degraded capability reason. It must happen again after
 package writing and downstream conversion/live runtime evidence. Unresolved
 `intent_drift` blocks acceptance, `results.tsv` logging, assignment checkoff,
 and full-pass scale-up.
+
+For transient provider errors such as `429`, `RESOURCE_EXHAUSTED`, quota
+exceeded, `rate_limit`, or equivalent API throttles during imagegen, hosted LLM,
+fullstack live API, WonderLens AI live API, or runtime-conversion phases, do
+not stop directly. Record the sanitized phase/activity/error class, wait a few
+minutes, retry with backoff, and only declare a blocker after at least three
+retry attempts or a non-retryable error.
 
 ## Recommended `/goal` Command
 
@@ -110,6 +121,8 @@ The goal is complete only when all of the applicable criteria below are met.
    - `run.md`
    - `review_dashboard.md`
    - `docs/activity_asset_generation_workflow.md`
+   - `docs/asset_style_reference/wonderlens-activity-style.md`
+   - `docs/asset_style_reference/style-reference-flat-nordic.png`
    - `runs/README.md`
    - `activities/README.md`
    - `activities/_schema/tag_block.schema.json`
@@ -230,8 +243,8 @@ The goal is complete only when all of the applicable criteria below are met.
    - The loop does not generate or store image files during package authoring; image files are created only by an explicit post-package asset build mode.
    - When demo export is enabled, `asset_manifest.yaml` contains separate runtime asset entries, not a contact sheet as the runtime asset.
    - `asset_manifest.yaml` uses `style_id: wonderlens_device_mint_soft_3d`, round-device safe-area rules, target variants, nullable path slots, and fallback behavior.
-   - Illustrative assets use the current WonderLens activity asset style from `docs/activity_asset_generation_workflow.md`: flat Nordic children's illustration, quiet white prototype fit, broad flat fills, sparse linework, restrained boho pastels, clean negative space, and no generic chibi/toy vocabulary or dimensional modeling.
-   - Illustrative source and runtime assets are square 512x512 PNGs unless the manifest requests another size. Scene assets are full-bleed square images that can be clipped by the round lens; item, object, character, icon, badge, and distractor assets are separate centered PNGs with generous clean white padding. They do not include circular/oval masks, lens borders, rims, vignettes, black corners, transparent margins, colored borders, readable text, letters, numbers, logos, watermarks, contact sheets, multi-card sheets, or UI labels.
+   - Illustrative assets are generated with the Codex built-in imagegen tool and use the current WonderLens activity asset style from `docs/activity_asset_generation_workflow.md` plus `docs/asset_style_reference/`: flat Nordic children's illustration, quiet white prototype fit, broad flat fills, sparse linework, restrained boho pastels, clean negative space, and no generic chibi/toy vocabulary or dimensional modeling.
+   - Illustrative source and runtime assets are square 512x512 PNGs unless the manifest requests another size. Scene assets are full-bleed square images that can be clipped by the round lens; item, object, character, icon, badge, and distractor assets are separate centered PNGs with generous clean white padding. Picker/selectable item or object assets are declared individually and built under package-local `assets/items/`, separate from beat-scene/background assets. They do not include circular/oval masks, lens borders, rims, vignettes, black corners, transparent margins, colored borders, readable text, letters, numbers, logos, watermarks, contact sheets, multi-card sheets, or UI labels.
    - Required assets include at least one final runtime PNG at `512x512`, with larger variants allowed only when explicitly requested. Smaller `64px`/`128px` variants are thumbnails only and cannot be the only built output.
    - Reference-bound assets such as constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, or famous structures include approved `source_strategy`, `transformation_policy`, source/provenance, and verification requirements. Random generated approximations fail the run.
    - If `asset_build=manifest_only`, nullable asset paths are acceptable. If a stronger asset build mode is requested, `scripts/build_activity_assets.py runs/<run_id> --mode <mode>` writes final runtime PNGs under package-local `assets/`, updates package-relative variant paths in `asset_manifest.yaml`, writes `generated_assets/asset_outputs.yaml`, `reference_sources.yaml`, and `qa_notes.yaml`, and `scripts/validate_asset_build_outputs.py runs/<run_id>` passes before the dashboard is finalized. Reference-bound outputs require accepted `assets/sources/<asset_id>__source_metadata.yaml` with source type, license, storage permission, sha256, verification timestamp, and reviewer agent.

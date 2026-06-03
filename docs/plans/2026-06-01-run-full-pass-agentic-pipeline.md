@@ -167,6 +167,8 @@ blocker with the retry log and resume point.
 The master agent owns run setup, artifact layout, server lifecycle, credentials,
 final acceptance, commits, and user reporting. Delegated agents provide
 evidence and repairs only within assigned ownership.
+Use at most three delegated/sub-agents in parallel. When one finishes, collect
+its evidence and terminate or kill it before spawning a replacement.
 
 Required delegated roles:
 
@@ -174,7 +176,7 @@ Required delegated roles:
 |---|---|---|
 | Source-intent auditor | Workbook/source comparison only | `aligned`, `minor_adaptation`, `intent_drift`, or `needs_product_decision` per activity with evidence. |
 | Activity package writer | Text package files only | `spec.md`, `prod.md`, metadata/templates, and `asset_manifest.yaml` with no image generation. |
-| Scene/object/item asset generator | PNG source assets only | Source PNGs, accepted reference originals, and package-local variants generated from the manifest. |
+| Scene/object/item asset generator | PNG source assets only | Codex imagegen source PNGs using `docs/asset_style_reference/`, accepted reference originals, picker item/object assets under `assets/items/`, and package-local variants generated from the manifest. |
 | Fullstack dialogue validator | Fullstack import/load and live API only | Converted `step_instructions`, sanitized transcripts, and pass/fail criteria. |
 | Image quality validator | Visual QA only | Style, role, crop, scene-dialogue alignment, reference fidelity, and no-text/no-label verdicts. |
 | Fullstack dialogue improver | Package-owned text repair only | Repaired runtime instructions or downstream issue classification. |
@@ -197,7 +199,8 @@ failing validator after repair.
 4. Generate text-only packages from the source snapshots.
 5. Run package validation, self-evaluation, and independent package review.
 6. Run the post-package source-intent auditor before any downstream validation.
-7. Generate or curate PNG assets using `scripts/build_activity_assets.py`.
+7. Generate or curate PNG assets using Codex built-in imagegen,
+   `docs/asset_style_reference/`, and `scripts/build_activity_assets.py`.
 8. Run image QA and repair image-owned failures.
 9. Confirm runtime-facing `prod.md` files are marker-free:
 

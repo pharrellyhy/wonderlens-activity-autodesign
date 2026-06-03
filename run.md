@@ -101,6 +101,10 @@ blocking decisions, credentials, server lifecycle, final acceptance, commits,
 and user reporting. Delegate bounded tasks only when ownership is disjoint and
 the delegate can return concise evidence.
 
+Run at most three delegated/sub-agents in parallel. When a delegated agent
+finishes, collect its evidence, record the result, and terminate or kill that
+finished agent before spawning a replacement.
+
 Required delegated roles for a full pass:
 
 - Source-intent auditor: text/package review only; checks original source
@@ -134,6 +138,13 @@ They must load generated packages as provided. If either runtime improves,
 weakens, rewrites, or reinterprets activity content to make it pass, the run
 must classify that as a consumer/runtime finding or a package repair need; do
 not hide the issue in downstream output.
+
+Treat transient API/provider failures such as `429`, `RESOURCE_EXHAUSTED`,
+quota exceeded, `rate_limit`, and equivalent throttles as retryable during
+imagegen, hosted LLM, fullstack live API, WonderLens AI live API, and
+runtime-conversion phases. Record sanitized phase/activity/error evidence,
+wait a few minutes, retry with backoff, and only declare a blocker after at
+least three retry attempts or a clearly non-retryable error.
 
 ## Existing Package Enrichment Pass (do before unchecked assignment processing)
 
@@ -497,7 +508,7 @@ Before logging or committing, verify:
 
 Run this phase only after every generated package has passed package validation and only when `source.asset_build` is not `none` or `manifest_only`.
 
-- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; the agent-generated source PNGs must follow `docs/activity_asset_generation_workflow.md`, should be 512x512 for subset and full-pass attempts, and must represent one scene/object/item/character/icon/badge/distractor per asset ID rather than a composite card sheet. The builder consumes them from `runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png`, writes final variants under each package's `assets/`, updates package-relative variant paths, and summarizes them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
+- `generate_illustrative`: build only `accuracy_mode: illustrative` assets from `asset_manifest.yaml`; the source PNGs must be generated with the Codex built-in imagegen tool, follow `docs/activity_asset_generation_workflow.md` and the repo-local style files in `docs/asset_style_reference/`, should be 512x512 for subset and full-pass attempts, and must represent one scene/object/item/character/icon/badge/distractor per asset ID rather than a composite card sheet. Do not accept SVG/vector drawings, placeholder art, or non-imagegen scripts as generated illustrative source art. The builder consumes them from `runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png`, writes final variants under each package's `assets/`, updates package-relative variant paths, and summarizes them in `runs/<run_id>/generated_assets/asset_outputs.yaml`.
 - `curate_reference`: for `reference_bound` assets, let an agent propose candidate sources, then verify provenance through approved public-domain, official, licensed/internal, or verified educational/scientific sources before accepting. Store accepted source originals and reviewer-approved metadata under package-local `assets/sources/`; do not use random web-image results as sources. The deterministic builder validates this metadata and leaves paths null if accepted provenance is missing or weak.
 - `generate_and_curate`: run both behaviors.
 
@@ -526,8 +537,11 @@ Every package, including unsupported/gated review packages, needs package-local
 512x512 PNG variants for `activity_icon`, `intro_scene`, `rules_scene`,
 `round_1_scene`, `round_2_scene`, `round_3_scene`, `celebrate_scene`, and
 `closing_scene`; Cat5 or synthesis flows also need `synthesis_scene`. Add
-separate item/object/entity/target/distractor assets on
-top of that bundle when the runtime displays specific cards or objects.
+separate item/object/entity/target/distractor assets on top of that bundle when
+the runtime displays specific cards or objects. For picker or item/object
+selection activities, declare each selectable item/object as its own asset and
+store built runtime item/object PNG variants under package-local `assets/items/`
+rather than mixing them with scene/background assets.
 Scene assets must not embed app-owned progress dots, round markers, response
 slots, rule strips, buttons, chips, picker slots, badges, or similar runtime
 interface markers. Scene bundles must also be visually distinct by activity;
@@ -551,6 +565,8 @@ verdict for:
 - one scene/object/item/character asset per file;
 - role match against `asset_manifest.yaml`;
 - scene/dialogue and screen-beat alignment;
+- picker/selectable item or object variants live under `assets/items/` and are
+  not mixed into scene/background asset locations;
 - no baked app progress/control UI such as progress dots, round markers,
   response slots, rule strips, buttons, chips, picker slots, or badges;
 - cross-activity distinctness, so unrelated activities do not reuse the same
@@ -830,7 +846,9 @@ Before that final message, ensure `runs/<run_id>/review.html` exists and is refe
 - When a user scopes a fresh rerun to a named batch or assignment subset, do not process outside that scope.
 - When the user declares minimum-to-unblock decisions allowed by product contract, generate those rows as normal packages and preserve the former blockers as resolved annotations rather than invalid blockers.
 - Always include extensibility notes for reusable concept-led packages so review.html can show how the activity adapts to other entities, properties, or asset sets.
-- For larger/full production passes, always set `asset_build=generate_and_curate`, keep package writing text-only, run image generation as a separate image-only phase, and require source-intent, package/import, fullstack dialogue, WonderLens AI dialogue, image QA, repair-loop, and final independent-review evidence before acceptance.
+- For larger/full production passes, always set `asset_build=generate_and_curate`, keep package writing text-only, run image generation as a separate image-only phase with Codex built-in imagegen and the repo-local `docs/asset_style_reference/` files, and require source-intent, package/import, fullstack dialogue, WonderLens AI dialogue, image QA, repair-loop, and final independent-review evidence before acceptance.
+- Keep at most three delegated/sub-agents active at once; terminate or kill each finished agent before spawning another.
+- Retry transient API/provider throttles such as `429` with a few-minute backoff before declaring a blocker.
 - Never treat fullstack-demo or WonderLens AI as content-improvement steps. They load/execute package content and report conversion/runtime failures; package-owned failures return to autodesign for repair.
 - Commit after every completed package unless the user explicitly asks to batch commits.
 - Quality over speed. Take as many self-evaluation rounds as needed.

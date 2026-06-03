@@ -54,6 +54,9 @@ document the conflict before changing behavior.
   decision is recorded.
 - Do not execute a larger/full activity generation pass in this goal.
 - Do not regenerate all activity assets in this goal.
+- Encode that future fresh runs must generate illustrative source PNGs with the
+  Codex built-in imagegen tool and the repo-local style references in
+  `docs/asset_style_reference/`.
 - Do not make fullstack-demo a content-improvement step. It is the direct
   loader/executor for autodesign packages.
 - Do not make WonderLens AI a content-improvement step. It is a direct runtime
@@ -64,6 +67,11 @@ document the conflict before changing behavior.
   changing the child action.
 - Keep `asset_build=generate_and_curate` as the expected full-pass asset mode.
 - Do not use generated approximations for reference-bound factual assets.
+- Do not accept SVG/vector drawings, placeholder art, or non-imagegen scripts
+  as generated illustrative source art in future subset/full-pass runs.
+- Do not mix picker/selectable item/object assets with scene/background assets;
+  future runs must build those item/object PNGs under package-local
+  `assets/items/`.
 - Do not edit, print, copy, or commit `.env`, credential JSON files, tokens, or
   provider secrets.
 - Do not leave backend/frontend servers running at completion.
@@ -114,11 +122,15 @@ review or exploration tasks, such as:
   fullstack;
 - inspecting WonderLens AI runtime-generation/dialogue expectations without
   editing WonderLens AI;
-- reviewing the image asset workflow against current fullstack style prompts;
+- reviewing the image asset workflow against the repo-local flat Nordic style
+  prompt and reference image copied from fullstack-demo prompts;
 - independently reviewing the final autodesign contract changes.
 
 Keep all file edits, credentials, server lifecycle, blocking decisions, commits,
 and final user reporting local to the main agent.
+Run at most three delegated/sub-agents in parallel. When a delegated agent
+finishes, collect its evidence and terminate or kill that finished agent before
+spawning a replacement.
 
 For the future full pass, encode these delegated roles in the workflow:
 
@@ -142,6 +154,9 @@ accept a generated package without independent source-intent auditor evidence.
 - Work in an isolated autodesign feature worktree.
 - Inspect current `GOAL.md`, `run.md`, `program.md`, and
   `docs/activity_asset_generation_workflow.md` before editing.
+- Include `docs/asset_style_reference/wonderlens-activity-style.md` and
+  `docs/asset_style_reference/style-reference-flat-nordic.png` in the future
+  fresh-run asset contract.
 - Prefer strengthening existing workflow sections over adding a parallel
   workflow that future agents might miss.
 - Keep edits focused on executable generation, validation, and repair
@@ -198,6 +213,8 @@ test -f GOAL.md
 test -f run.md
 test -f program.md
 test -f docs/activity_asset_generation_workflow.md
+test -f docs/asset_style_reference/wonderlens-activity-style.md
+test -f docs/asset_style_reference/style-reference-flat-nordic.png
 test -f docs/plans/2026-06-01-full-pass-agentic-pipeline.md
 test -f goals/2026-06-01-full-pass-agentic-pipeline-goal.md
 test -f inputs/original_activity_concepts_2026-05-29.tsv
@@ -223,6 +240,8 @@ test -d /Users/pharrelly/codebase/gitlab/wonderlens-ai
 - The workflow requires source-intent auditor evidence before package
   acceptance.
 - The workflow separates text package writing from image asset generation.
+- The workflow requires Codex built-in imagegen, the repo-local flat Nordic
+  style references, and `assets/items/` placement for picker item/object PNGs.
 - The workflow requires package/import validation before live dialogue QA.
 - The workflow requires live dialogue QA with multiple child-input strategies,
   not only static term checks.
@@ -244,7 +263,7 @@ Always run:
 
 ```bash
 git diff --check
-rg -n "source-intent auditor|Source-intent auditor|dialogue quality|WonderLens AI dialogue|image quality|asset_build=generate_and_curate|fullstack|WonderLens AI" GOAL.md run.md program.md docs goals
+rg -n "source-intent auditor|Source-intent auditor|dialogue quality|WonderLens AI dialogue|image quality|asset_build=generate_and_curate|imagegen|assets/items|fullstack|WonderLens AI" GOAL.md run.md program.md docs goals
 ```
 
 If scripts, schemas, or tests are changed, run the nearest focused test or

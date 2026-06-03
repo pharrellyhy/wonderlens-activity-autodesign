@@ -56,6 +56,10 @@ Do not process any other unchecked `assignments.md` rows.
   capability-probe rows generate honest packages with resolved contract notes
   rather than blocked previews.
 - Keep package writing text-only until the explicit post-package asset phase.
+- Generate illustrative source PNGs with Codex built-in imagegen, not SVG,
+  vector, placeholder, or script-generated substitute art.
+- Use the repo-local flat Nordic style prompt and reference image in
+  `docs/asset_style_reference/` for every generated illustrative asset.
 - Generate or downsample illustrative source PNGs to exactly 512x512 before
   build. Final runtime PNGs must also be 512x512 unless a manifest explicitly
   requests a larger additional variant.
@@ -78,6 +82,9 @@ Do not process any other unchecked `assignments.md` rows.
 - For Recognition Pop and any picker/object activity, scene backgrounds must
   not duplicate selectable targets or distractors that compete with separate
   picker sprites.
+- For any picker/object activity, selectable item/object PNGs must be declared
+  separately and built under package-local `assets/items/`, not mixed with
+  scene/background assets.
 
 ## Hard Constraints
 
@@ -110,12 +117,14 @@ Do not process any other unchecked `assignments.md` rows.
 - Use delegated/sub-agents for independent roles when available: source-intent
   audit, package review, image generation, image QA, fullstack validation,
   WonderLens AI validation, dialogue repair, image repair, and final independent
-  review. Keep run orchestration, credentials, scope, and final acceptance local
-  to the main agent.
+  review. Use at most three delegated/sub-agents in parallel; collect evidence
+  and terminate or kill each finished agent before spawning a replacement. Keep
+  run orchestration, credentials, scope, and final acceptance local to the main
+  agent.
 - If an API/provider rate limit occurs during image generation, hosted LLM
   calls, fullstack live API, WonderLens AI live API, or runtime conversion, wait
-  a few minutes and retry with backoff before classifying the condition as
-  blocked.
+  a few minutes and retry with backoff at least three times before classifying
+  the condition as blocked.
 - Use conventional commits after a coherent passing unit of work, per project
   instructions. Do not push unless explicitly asked.
 
@@ -162,7 +171,11 @@ descriptions, or final responses.
 
 - `asset_manifest.yaml` declares the standard scene bundle plus required
   item/object/entity/target/distractor/reference assets.
+- Picker/selectable item/object assets are declared individually and built
+  under package-local `assets/items/`.
 - Package-local generated/curated PNGs are built and validated at 512x512.
+- Generated illustrative source PNGs come from Codex built-in imagegen and
+  match `docs/asset_style_reference/`.
 - Image QA evidence confirms role match, style consistency, crop safety,
   scene/dialogue alignment, no baked UI, no duplicate picker objects in scene
   backgrounds, no premature answer reveal, and reference fidelity where

@@ -3,10 +3,17 @@
 This document records the workflow used to create runtime image assets for
 autodesign activity packages.
 
-Latest style source reviewed on 2026-05-29:
+Repo-local style source for fresh runs:
 
 ```text
-/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/wonderlens-activity-style.md
+docs/asset_style_reference/wonderlens-activity-style.md
+docs/asset_style_reference/style-reference-flat-nordic.png
+```
+
+These files were copied from the fullstack-demo prompt folder on 2026-06-03:
+
+```text
+/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/
 ```
 
 The schema value remains `style_id: wonderlens_device_mint_soft_3d` for
@@ -33,6 +40,20 @@ the run explicitly requests one of these modes:
 - `curate_reference`: curate only `accuracy_mode: reference_bound` assets.
 - `generate_and_curate`: do both.
 
+## Transient API Error Handling
+
+Treat image generation, hosted LLM, live API, and runtime-conversion errors
+such as `429`, `RESOURCE_EXHAUSTED`, quota exceeded, `rate_limit`, and
+equivalent provider throttles as retryable. Record a sanitized note with the
+phase, activity ID or batch, command/tool name, timestamp, and error class; do
+not print secrets or request payloads.
+
+Do not stop immediately on the first throttle. Wait a few minutes before the
+first retry, then use a short backoff such as 3/5/8 minutes for repeated
+throttles on the same request or batch. Retry at least three times before
+declaring the run blocked, and reduce concurrency or batch size when that is
+safe.
+
 ## Source Of Truth
 
 Use package files in this order:
@@ -51,16 +72,17 @@ Assets support the accepted activity design.
 ## Illustrative Asset Workflow
 
 1. Read each illustrative asset entry in `asset_manifest.yaml`.
-2. Combine the asset-specific `prompt_en` subject with the current WonderLens
-   activity style in this document.
-3. Use Codex built-in image generation to create one 512x512 square source
-   image per asset for subset and full-pass attempts. Do not create contact
-   sheets, multi-card sheets, or combined runtime assets. Prompts should combine
-   the asset-specific subject, scene/object/item role, use beat, and the full
-   style contract below so the output aligns with the dialogue and screen
-   state. Quality improvements should come from beat-specific prompts, removal
-   of app-owned UI language, no duplicated picker sprites in scene backgrounds,
-   and image QA repair before acceptance.
+2. Combine the asset-specific `prompt_en` subject with the repo-local style
+   prompt and reference image in `docs/asset_style_reference/`.
+3. Use the Codex built-in imagegen tool to create one 512x512 square source
+   image per asset for subset and full-pass attempts. Do not substitute SVG,
+   PIL/vector drawings, placeholder art, contact sheets, multi-card sheets, or
+   combined runtime assets for imagegen output. Prompts should combine the
+   asset-specific subject, scene/object/item role, use beat, and the full style
+   contract below so the output aligns with the dialogue and screen state.
+   Quality improvements should come from beat-specific prompts, removal of
+   app-owned UI language, no duplicated picker sprites in scene backgrounds, and
+   image QA repair before acceptance.
 4. Select the best output, then copy it from
    `/Users/pharrelly/.codex/generated_images/...` into:
 
@@ -173,6 +195,11 @@ Composition:
 - item, object, and character assets are separate reusable PNGs with one
   centered subject per file, generous clean white padding, and no baked UI
   frame unless the frame itself is the intended object.
+- activities that need a picker or item/object selection must keep selectable
+  item/object PNGs separate from beat-scene/background PNGs. Declare each
+  picker item as its own asset ID and store built runtime item/object variants
+  under package-local `assets/items/` when the package is built; fullstack
+  direct exports use `frontend/public/activity-assets/<activity_id>/items/`.
 
 Hard constraints:
 

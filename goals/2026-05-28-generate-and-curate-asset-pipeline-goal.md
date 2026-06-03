@@ -42,9 +42,16 @@ changing behavior.
 - Keep `asset_build=manifest_only` as the default.
 - Run asset building only after package validation.
 - Provide both full-run integration and an asset-only rerun workflow.
-- Actually generate bitmap images when the image generation tool is available.
+- Actually generate bitmap images with the Codex built-in imagegen tool when it
+  is available. Do not accept SVG/vector drawings, placeholder art, or
+  non-imagegen scripts as generated illustrative source art.
+- Use the repo-local flat Nordic style prompt and reference image in
+  `docs/asset_style_reference/` for generated illustrative assets.
 - Write final runtime assets back into each package under
   `activity_packages/<activity_id>/assets/`.
+- Write picker/selectable item/object runtime variants under package-local
+  `activity_packages/<activity_id>/assets/items/`, separate from scene and
+  background assets.
 - Update package `asset_manifest.yaml` with package-relative variant paths.
 - Store accepted reference-bound source originals and source metadata under
   package-local `assets/sources/` when source terms allow local storage.
@@ -84,6 +91,8 @@ asset generation, reference-source research, visual QA, or code review with
 disjoint ownership. Keep tightly coupled workflow contract edits, manifest
 schema decisions, final integration, final validation, committing, and final
 reporting local to the main agent.
+Use at most three sub-agents in parallel; collect evidence and terminate or
+kill each finished agent before spawning another.
 
 Good delegation candidates:
 
@@ -92,8 +101,8 @@ Good delegation candidates:
 - build fixture matrices for illustrative, reference-bound, failed-source, and
   path-safety cases;
 - research and verify reference-bound sources for smoke assets;
-- generate illustrative bitmap assets from prepared work items using the
-  imagegen skill/tool;
+- generate illustrative bitmap assets from prepared work items using Codex
+  built-in imagegen;
 - visual QA for round-screen crop safety and reference fidelity;
 - independent code review after implementation.
 
@@ -108,8 +117,8 @@ Good delegation candidates:
 - Keep generated bitmap smoke artifacts small and tied to fixtures or a tiny
   run; do not regenerate all 40 activities as part of this goal unless the user
   explicitly asks.
-- If an actual image generation tool is unavailable, document the blocker and
-  do not mark the goal complete.
+- If Codex built-in imagegen is unavailable, document the blocker and do not
+  mark the goal complete.
 - Update plan and goal indexes only after the goal is completed or genuinely
   blocked.
 - Follow repo commit rules. Do not push unless explicitly asked.
@@ -132,10 +141,10 @@ Good delegation candidates:
 No repo secrets are required for this goal. Do not source `.env` or inspect
 credential files.
 
-The Codex image generation tool/skill may be used for bitmap generation. Web
-search may be used for reference-source discovery and verification. Do not
-record secret values, private tokens, or machine-local credential paths in
-package manifests or committed audit files.
+The Codex built-in imagegen tool is the required generator for illustrative
+bitmap generation. Web search may be used for reference-source discovery and
+verification. Do not record secret values, private tokens, or machine-local
+credential paths in package manifests or committed audit files.
 
 ## Preconditions
 
@@ -166,7 +175,9 @@ Stop on baseline failure and fix only what is required to restore the baseline.
   `GOAL.md` post-package phase.
 - An asset-only rerun workflow can fill assets for an existing run directory.
 - Illustrative assets are generated as separate PNG runtime assets in the
-  WonderLens soft-3D device style.
+  WonderLens flat Nordic activity style using `docs/asset_style_reference/`.
+- Picker/selectable item and object assets are built under package-local
+  `assets/items/`, not mixed with scene/background assets.
 - Reference-bound assets require verified sources and accepted provenance before
   producing or accepting runtime variants.
 - Accepted reference-bound assets store final runtime files plus source

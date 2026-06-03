@@ -1,5 +1,21 @@
 # HANDOFF
 
+## 2026-06-03 - Runtime Asset Rules Hardened
+
+Problem: Fresh subset/full-pass runs needed stricter runtime rules after image
+assets were produced with placeholder-like quality, the latest flat Nordic
+style prompt was not consistently referenced, and picker item assets were mixed
+with scene assets.
+
+Solution: Runtime docs and related goal files now require Codex built-in
+imagegen for illustrative assets, repo-local style references in
+`docs/asset_style_reference/`, package-local `assets/items/` for
+picker/selectable item/object PNGs, retry-with-backoff for transient API
+throttles such as `429`, and at most three delegated/sub-agents running in
+parallel with finished agents terminated before replacements.
+
+Verification: Run `git diff --check` after final staging for this docs update.
+
 ## 2026-06-03 - Subset Agentic Validation Goal Ready
 
 Problem: After merging the subset workflow gates, the next run needed a narrow
