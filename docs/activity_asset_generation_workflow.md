@@ -248,6 +248,24 @@ prediction imagery, and current-topic interview scenes should use interview
 visuals. A repeated cozy-room/blank-board/child-response layout is a hard image
 QA repair finding.
 
+Every scene asset must answer a plain visual question: what is happening in
+this activity beat, and why does this image help the child do that action now?
+Generic containers, blank cards, blank boards, empty rooms, glows, sparkles,
+camera placeholders, or decorative props are not acceptable scene subjects
+unless the beat itself is explicitly about that object. Do not start image
+prompts from a loose metaphor such as treasure, basket, magic glow, clue card,
+or cozy room. Start from the child action, learning evidence, and runtime screen
+state, then add only props that are needed for that beat.
+
+For sound, phoneme, rhyme, or word-hunt activities, generated scene assets must
+make the listening/speaking/search action visually legible without baking in
+letters, words, or target answers. Acceptable subjects include a child listening,
+mouth/sound-wave cue, indoor search path, voice-wave trail, photo evidence area
+kept outside the PNG, or abstract sound tokens. Baskets, treasure chests, blank
+letter cards, and empty collection containers are not valid default subjects;
+they may appear only when the runtime beat genuinely uses that object and the
+image still communicates the sound task.
+
 For guided drawing or other step-by-step build activities, the beat images must
 show the actual instruction sequence. Round scenes should show the first shape,
 the added detail, and the finished simple form. Generic paper/pencil props,
@@ -268,9 +286,18 @@ The validator checks:
 - one asset per file, with scene/object/item/character role matching the
   manifest;
 - scene and object content aligns with the dialogue beat and screen state;
+- scene semantic coherence: the image must show the beat's child action,
+  learning evidence, or source-specific screen state, not a generic metaphor,
+  empty container, blank card, blank board, glow, sparkle field, or empty room;
+- prompt root cause: if an accepted image contains a nonsensical repeated prop,
+  QA must inspect the recorded imagegen prompt and fail the prompt when it asked
+  for that prop without a beat-specific reason;
 - for activities that advance by choosing an item/object, scene backgrounds do
   not duplicate the same selectable items or objects in a way that competes
   with picker sprites, target/distractor cards, or collection items;
+- for activities that show a picker or selectable collection catalog, the
+  package must provide a consumer-parity catalog: four correct items and eight
+  distractors unless the run goal records a product-approved smaller catalog;
 - progressive evidence and partial-reveal images preserve reveal timing: early
   beats must not show the final answer, full target, or solution before the
   source-aligned dialogue reveal step;
@@ -296,6 +323,12 @@ curated redraw, crop/resize, or built variants. It must not rewrite package
 prose or source-intent evidence. Re-run the builder, asset output validator,
 and image QA after repairs. Re-run dialogue QA when changed visuals affect
 screen/dialogue claims.
+
+Repair requests must be concrete enough to drive imagegen without repeating the
+failed prompt. Record `asset_id`, `failure_type`, `visual_problem`,
+`prompt_root_cause`, `remove`, `replace_with`, `exact_regeneration_prompt`, and
+`post_check`. For a nonsensical prop failure, the replacement prompt must name
+the real child action and explicitly ban the failed placeholder subject.
 
 ## Validation
 

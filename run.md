@@ -282,11 +282,24 @@ Asset rules:
 - final runtime PNGs are package-local and generally 512x512;
 - picker/item/object assets are separate files under package-local
   `assets/items/`;
+- every scene asset must visually explain the activity beat's child action,
+  learning evidence, or source-specific screen state; generic baskets, blank
+  cards, blank boards, glows, empty rooms, and decorative placeholders fail
+  image QA unless the beat itself is explicitly about that object;
+- sound/phoneme/word-hunt scenes must foreground listening, speaking, sound
+  waves, search motion, or runtime evidence areas rather than defaulting to a
+  treasure/basket metaphor;
+- picker/catalog activities must provide a consumer-parity item set, normally
+  four correct items and eight distractors, unless the goal records an approved
+  smaller catalog;
 - no baked text, labels, UI controls, masks, borders, contact sheets, device
   chrome, duplicate picker objects in backgrounds, or premature answer reveals.
 
-Run independent image QA whenever PNG assets exist. Repair image-owned failures,
-rebuild, and revalidate.
+Run independent image QA whenever PNG assets exist. The reviewer must inspect
+the actual PNGs, not only the prompts, manifest, or build logs. Repair
+image-owned failures with a recorded prompt-root-cause note and an exact
+regeneration prompt that removes the failed placeholder subject, rebuild, and
+revalidate.
 
 For subset/full-pass runs, write a run-local manual prompt trace for each
 generated package under:

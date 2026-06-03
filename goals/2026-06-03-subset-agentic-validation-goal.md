@@ -167,6 +167,18 @@ descriptions, or final responses.
   scene/dialogue alignment, no baked UI, no duplicate picker objects in scene
   backgrounds, no premature answer reveal, and reference fidelity where
   applicable.
+- Image QA evidence includes actual PNG review, not only manifest/prompt review.
+  Scene assets fail if they do not visually explain the current beat's child
+  action, sound/phoneme evidence, or source-specific screen state. Generic
+  baskets, blank cards, blank boards, empty rooms, glows, and decorative
+  placeholders require regeneration unless the beat itself is explicitly about
+  that object.
+- Sound/phoneme/word-hunt assets foreground listening, speaking, sound waves,
+  search motion, or runtime evidence areas; they do not default to a
+  treasure/basket metaphor.
+- Picker/catalog activities provide a consumer-parity item set, normally four
+  correct items and eight distractors under `assets/items/`, unless the run goal
+  records an approved smaller catalog.
 - Constellation/reference-bound assets use approved provenance or verified
   source data; random generated approximations do not pass.
 
