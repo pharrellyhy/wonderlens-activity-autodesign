@@ -1,5 +1,21 @@
 # HANDOFF
 
+## 2026-06-03 - Core Operator Docs Simplified
+
+Problem: Root `GOAL.md` and `run.md` had absorbed full-pass, asset, consumer,
+and validation detail that now also lives in scoped goal files, plans, and
+dedicated workflow docs. This made the default active-queue workflow harder to
+scan.
+
+Solution: Kept `program.md` as the detailed generation contract, compacted
+`GOAL.md` into the default objective/completion contract, compacted `run.md`
+into the execution loop, and trimmed the `templates.md` front matter while
+leaving mechanic adapters and pillar overlays intact. README now points
+full-pass execution to `goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md`
+instead of duplicating the long invocation.
+
+Verification: Run `git diff --check` and targeted doc scans before committing.
+
 ## 2026-06-03 - Assignment Queue Simplified
 
 Problem: `assignments.md` had become both the active queue and a historical

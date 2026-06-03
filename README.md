@@ -50,10 +50,11 @@ runs/<run_id>/
 Core files:
 
 ```text
-GOAL.md                            Codex /goal objective and success criteria
+GOAL.md                            Default Codex /goal objective and completion contract
 program.md                         Agent instructions, adaptation brief, migrated output contract, rubric
 templates.md                       Template 0 reference, mechanic adapters, pillar scaffolds, Cat1/Cat3/Cat5 modifiers
-run.md                             Autonomous activity-package loop
+run.md                             Compact autonomous activity-package loop
+goals/                             Scoped execution contracts for subset, full-pass, and feature runs
 review_dashboard.md                Static review dashboard contract and UI requirements
 runs/README.md                     Run provenance directory contract
 docs/activity_asset_generation_workflow.md
@@ -163,7 +164,7 @@ orchestrated workflow. Ordinary scoped package generation can keep the default
 Recommended invocation:
 
 ```text
-/goal Implement goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md. Execute the current workbook full pass from inputs/original_activity_concepts_2026-05-29.tsv with asset_build=generate_and_curate and full_pass_pipeline=true; generate illustrative assets with Codex built-in imagegen using docs/asset_style_reference/wonderlens-activity-style.md and docs/asset_style_reference/style-reference-flat-nordic.png; store picker item/object assets under package-local assets/items/; start fullstack validation only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game on branch feat/activity-text-game while sourcing live credentials only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend; use delegated agents for source intent, text package writing, image generation, fullstack dialogue QA, WonderLens AI dialogue QA, image QA, repair loops, and final independent review with at most three running in parallel and finished agents killed before replacements; if API rate limits occur, wait a few minutes and retry with backoff before declaring a blocker; stop only when the completion gate is satisfied or a blocker is documented.
+/goal Execute goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md end to end.
 ```
 
 For an engineering/product explanation, read
@@ -171,9 +172,10 @@ For an engineering/product explanation, read
 contract lives in `docs/plans/2026-06-01-full-pass-agentic-pipeline.md`. The
 actual full-pass run plan lives in
 `docs/plans/2026-06-01-run-full-pass-agentic-pipeline.md`, with executable goal
-file `goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md`. `GOAL.md`,
-`run.md`, and `program.md` remain the runtime procedure that a full pass must
-obey.
+file `goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md`. Root
+`GOAL.md` and `run.md` are intentionally compact defaults; the scoped goal file
+owns full-pass hard constraints, delegated-agent rules, credential boundaries,
+and live validation ordering.
 
 In this mode the main agent is the master orchestrator and should delegate
 disjoint evidence work: source-intent audit, text-only package writing,
@@ -196,7 +198,9 @@ capability.
 2. Start your coding agent from the repo root.
 3. Start the loop with the recommended Codex `/goal` command in `GOAL.md`.
 
-`GOAL.md` defines the run objective, success criteria, and completion contract. `run.md` defines the step-by-step execution loop.
+`GOAL.md` defines the default objective and completion contract. `run.md`
+defines the compact execution loop. Scoped goals under `goals/` override those
+defaults for subset, full-pass, and feature-specific runs.
 
 For generation-ready assignments, the loop creates one complete run-local package under `runs/<run_id>/activity_packages/<activity_id>/`, adds demo extension files by default, self-evaluates against the 10-dimension rubric, gets independent reviewer-agent PASS evidence, updates `results.tsv`, adds `package_path=` to the completed assignment row, and records both `base_activity_id` and `activity_path` in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/` and a constrained design preview under `runs/<run_id>/blocked_designs/`. These previews still show detailed proposed runtime steps with inline `BLOCKED ELEMENT` comments, but they are not logged, packaged, or marked complete until the constraints are resolved. They no longer halt the rest of the batch.
 
@@ -213,7 +217,7 @@ Common invocations:
 /goal Execute GOAL.md end to end using run.md with asset_build=generate_illustrative.
 
 # Larger/full production pass with runtime PNG generation and downstream validation.
-/goal Implement goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md.
+/goal Execute goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md end to end.
 ```
 
 ## Run Provenance
@@ -401,6 +405,7 @@ package. To add new work, append a new unchecked line under `## Active Queue`.
 ├── program.md
 ├── templates.md
 ├── run.md
+├── goals/
 ├── review_dashboard.md
 ├── assignments.md
 ├── results.tsv
