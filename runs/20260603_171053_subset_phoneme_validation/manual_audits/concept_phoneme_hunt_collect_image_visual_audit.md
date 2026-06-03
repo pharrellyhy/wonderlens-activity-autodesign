@@ -22,6 +22,11 @@ but the scene bundle does not make semantic sense for a phoneme treasure hunt.
 Most scenes are placeholder visuals: basket, blank card, glow, or empty nursery
 space. The child action and learning evidence are not visually legible.
 
+The story-scene bundle also fails real-world coherence. It does not establish a
+plausible activity world with stable camera/framing or concrete beat-to-beat
+changes. The scenes read as isolated prompt symbols on soft backgrounds rather
+than moments in one coherent child-facing activity.
+
 ## Scene Findings
 
 | Asset | Visual finding | QA result |
@@ -62,7 +67,8 @@ correctly rendered a nice-looking but meaningless basket/card/glow motif.
 
 This is not an imagegen quality problem first. It is an asset-brief problem:
 the prompt optimized for avoiding target-object leakage and UI/text leakage,
-but did not specify what the scene should communicate.
+but did not specify what real-world scene the child is in or what the scene
+should communicate.
 
 ## Regeneration Direction
 
@@ -70,22 +76,25 @@ Regenerate the scene bundle from beat-specific visual subjects:
 
 - `activity_icon`: child-friendly listening/search icon with mouth/sound-wave
   cue and small search path; no basket.
-- `intro_scene`: child listening in a simple room with soft sound waves pointing
-  toward a search path; no basket or blank card.
-- `rules_scene`: mouth/sound-wave practice cue plus clear empty runtime overlay
-  area outside the PNG semantics; no blank card as the main subject.
-- `round_1_scene`: close child mouth/listening cue and sound-wave trail for
+- `intro_scene`: establish one plausible room where the child can listen and
+  search, with the same child/space language used by later scenes; no basket or
+  blank card.
+- `rules_scene`: show the child practicing the beginning sound in that same
+  room, with mouth/sound-wave cues and a clear activity focus; no blank card as
+  the main subject.
+- `round_1_scene`: close but still real-world moment of the child listening and
   practicing `/b/`; no literal letters, no blank card.
-- `round_2_scene`: indoor search path with sound-wave trail and clear open space
-  where camera/runtime evidence appears outside the PNG; no basket.
-- `round_3_scene`: abstract accepted evidence token joining a sound wave after
-  the child names a matching item; no basket/glow-only scene.
-- `synthesis_scene`: multiple spoken-name sound waves converging into one
-  beginning-sound pattern; no container.
-- `celebrate_scene`: sound-wave celebration around the accepted evidence token;
-  no generic sparkle basket.
-- `closing_scene`: calm sound-wave path or child listening/finishing pose; no
-  repeated basket motif.
+- `round_2_scene`: same room/search area with the child looking for a real
+  object and a sound-wave trail guiding the search; no basket.
+- `round_3_scene`: same visual world after the child names a matching item,
+  showing accepted sound evidence as an app-owned overlay area or concrete
+  child reaction, not a basket/glow-only scene.
+- `synthesis_scene`: same setting with multiple spoken-name sound waves
+  converging into one beginning-sound pattern; no container.
+- `celebrate_scene`: same child/world celebrating the sound discovery; no
+  generic sparkle basket.
+- `closing_scene`: calm finishing moment in the same setting; no repeated basket
+  motif.
 
 Regeneration prompts must explicitly ban: basket, treasure chest, blank card,
 blank board, empty container, generic glow-only subject, and decorative empty

@@ -173,6 +173,10 @@ descriptions, or final responses.
   baskets, blank cards, blank boards, empty rooms, glows, and decorative
   placeholders require regeneration unless the beat itself is explicitly about
   that object.
+- Story-scene assets feel like coherent real-world scenes, with plausible
+  spaces, stable camera/framing, consistent subject treatment, and concrete
+  beat-to-beat changes. Isolated floating symbols are acceptable for icons,
+  badges, and item sprites only.
 - Sound/phoneme/word-hunt assets foreground listening, speaking, sound waves,
   search motion, or runtime evidence areas; they do not default to a
   treasure/basket metaphor.

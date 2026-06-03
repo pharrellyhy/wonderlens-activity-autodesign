@@ -286,6 +286,10 @@ Asset rules:
   learning evidence, or source-specific screen state; generic baskets, blank
   cards, blank boards, glows, empty rooms, and decorative placeholders fail
   image QA unless the beat itself is explicitly about that object;
+- story-scene assets must feel like coherent real-world scenes with plausible
+  spaces, stable camera/framing, consistent subject treatment, and concrete
+  beat-to-beat changes; isolated floating symbols are for icons, badges, and
+  item sprites, not scene backgrounds;
 - sound/phoneme/word-hunt scenes must foreground listening, speaking, sound
   waves, search motion, or runtime evidence areas rather than defaulting to a
   treasure/basket metaphor;

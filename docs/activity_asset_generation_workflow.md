@@ -266,6 +266,17 @@ letter cards, and empty collection containers are not valid default subjects;
 they may appear only when the runtime beat genuinely uses that object and the
 image still communicates the sound task.
 
+Story-scene assets should feel like coherent real-world scenes, not isolated
+prompt symbols on a decorative background. Each package should establish a
+plausible setting, keep consistent scene geography, lighting, scale, and camera
+language across the beat bundle, and show concrete people, objects, or spaces
+that could exist in the child's world or role-play world. Icon, badge, and
+item-sprite assets may use isolated subjects, but `story_scene` assets should
+not look like random generated stickers, floating props, or abstract template
+fillers. When a local consumer package provides a stronger reference for this
+quality bar, compare against it for world coherence and continuity, not for
+copying its exact subject matter.
+
 For guided drawing or other step-by-step build activities, the beat images must
 show the actual instruction sequence. Round scenes should show the first shape,
 the added detail, and the finished simple form. Generic paper/pencil props,
@@ -289,6 +300,11 @@ The validator checks:
 - scene semantic coherence: the image must show the beat's child action,
   learning evidence, or source-specific screen state, not a generic metaphor,
   empty container, blank card, blank board, glow, sparkle field, or empty room;
+- real-world staging for story scenes: the scene bundle must feel like one
+  coherent activity world with plausible spaces, consistent camera/framing,
+  stable subject treatment, and concrete beat-to-beat changes; isolated symbols
+  or floating prompt tokens are acceptable only for icons, badges, or item
+  sprites;
 - prompt root cause: if an accepted image contains a nonsensical repeated prop,
   QA must inspect the recorded imagegen prompt and fail the prompt when it asked
   for that prop without a beat-specific reason;
