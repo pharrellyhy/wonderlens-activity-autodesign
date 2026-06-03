@@ -208,6 +208,8 @@ python scripts/validate_asset_granularity.py runs/<run_id>
 python scripts/validate_full_pass_asset_bundle.py runs/<run_id>
 if rg -n "RESOLVED BLOCKER|RESOLVE BLOCKER" runs/<run_id>/activity_packages/*/prod.md; then exit 1; fi
 test -f runs/<run_id>/manual_audits/concept_phoneme_hunt_collect_prompt_trace.md
+test -f runs/<run_id>/downstream_reports/fullstack_demo/dialogue_qa_report.json
+test -f runs/<run_id>/downstream_reports/wonderlens_ai/dialogue_qa_report.json
 if rg -n "Matching placeholder|/icons/green_apple.png|/icons/straight_stick.png" runs/<run_id>/downstream_reports/fullstack_demo; then exit 1; fi
 ```
 

@@ -1,4 +1,5 @@
 import importlib.util
+import json
 from pathlib import Path
 import re
 import sys
@@ -191,6 +192,64 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
         self.assertEqual(1, len(findings))
         self.assertIn("Celebration", findings[0])
         self.assertIn("celebration beat asks for new gameplay", findings[0])
+
+    def test_consumer_dialogue_qa_requires_both_reports(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+
+            findings = self.report.consumer_dialogue_qa_findings(run_dir)
+
+            self.assertEqual(2, len(findings))
+            self.assertTrue(any("fullstack-demo" in finding for finding in findings))
+            self.assertTrue(any("WonderLens AI" in finding for finding in findings))
+
+    def test_consumer_dialogue_qa_requires_strategy_coverage(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            for consumer in ("fullstack_demo", "wonderlens_ai"):
+                report_dir = run_dir / "downstream_reports" / consumer
+                report_dir.mkdir(parents=True)
+                (report_dir / "dialogue_qa_report.json").write_text(
+                    json.dumps(
+                        {
+                            "status": "pass",
+                            "mode": "runtime_equivalent",
+                            "activity_ids": ["quality_smoke"],
+                            "strategies": [
+                                {"strategy": "expected_answer", "status": "pass"},
+                            ],
+                        }
+                    )
+                )
+
+            findings = self.report.consumer_dialogue_qa_findings(run_dir)
+
+            self.assertTrue(findings)
+            self.assertTrue(any("wrong_unproductive_answer" in finding for finding in findings))
+            self.assertTrue(any("premature_done" in finding for finding in findings))
+
+    def test_consumer_dialogue_qa_accepts_complete_reports(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            strategies = [
+                {"strategy": strategy, "status": "pass"}
+                for strategy in sorted(self.report.REQUIRED_DIALOGUE_QA_STRATEGIES)
+            ]
+            for consumer in ("fullstack_demo", "wonderlens_ai"):
+                report_dir = run_dir / "downstream_reports" / consumer
+                report_dir.mkdir(parents=True)
+                (report_dir / "dialogue_qa_report.json").write_text(
+                    json.dumps(
+                        {
+                            "status": "pass",
+                            "mode": "runtime_equivalent",
+                            "activity_ids": ["quality_smoke"],
+                            "strategies": strategies,
+                        }
+                    )
+                )
+
+            self.assertEqual([], self.report.consumer_dialogue_qa_findings(run_dir))
 
     def test_review_validation_fails_thin_runtime_contracts(self):
         with tempfile.TemporaryDirectory() as tmp:

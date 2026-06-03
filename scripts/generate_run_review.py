@@ -184,6 +184,19 @@ RUBRIC_CRITERIA = [
     },
 ]
 
+CONSUMER_DIALOGUE_QA_REPORTS = {
+    "fullstack_demo": "fullstack-demo",
+    "wonderlens_ai": "WonderLens AI",
+}
+
+REQUIRED_DIALOGUE_QA_STRATEGIES = {
+    "expected_answer",
+    "wrong_unproductive_answer",
+    "help_confusion",
+    "silence_no_response",
+    "premature_done",
+}
+
 
 @dataclass
 class Link:
@@ -697,6 +710,58 @@ def scorecard_rows(spec_text: str) -> list[dict[str, str]]:
             }
         )
     return rows
+
+
+def consumer_dialogue_qa_findings(run_dir: Path) -> list[str]:
+    findings: list[str] = []
+    for report_dir, label in CONSUMER_DIALOGUE_QA_REPORTS.items():
+        report_path = run_dir / "downstream_reports" / report_dir / "dialogue_qa_report.json"
+        if not report_path.exists():
+            findings.append(f"{label}: missing {report_path.relative_to(run_dir)}")
+            continue
+
+        try:
+            data = json.loads(report_path.read_text())
+        except (OSError, json.JSONDecodeError) as exc:
+            findings.append(f"{label}: unreadable dialogue QA report ({exc})")
+            continue
+
+        if not isinstance(data, dict):
+            findings.append(f"{label}: dialogue QA report must be a JSON object")
+            continue
+
+        status = normalize_text(data.get("status")).lower()
+        if status not in {"pass", "downstream_owned_failure"}:
+            findings.append(f"{label}: status must be pass or downstream_owned_failure")
+
+        raw_strategies = data.get("strategies")
+        if not isinstance(raw_strategies, list):
+            findings.append(f"{label}: strategies must list dialogue QA cases")
+            strategy_names: set[str] = set()
+        else:
+            strategy_names = {
+                normalize_text(item.get("strategy") or item.get("name") or item.get("id"))
+                for item in raw_strategies
+                if isinstance(item, dict)
+            }
+            for item in raw_strategies:
+                if not isinstance(item, dict):
+                    continue
+                item_name = normalize_text(item.get("strategy") or item.get("name") or item.get("id"))
+                item_status = normalize_text(item.get("status")).lower()
+                if item_name and item_status not in {"pass", "downstream_owned_failure"}:
+                    findings.append(f"{label}: strategy {item_name} has invalid status {item_status or '<empty>'}")
+
+        missing = sorted(REQUIRED_DIALOGUE_QA_STRATEGIES.difference(strategy_names))
+        if missing:
+            findings.append(f"{label}: missing dialogue QA strategies {', '.join(missing)}")
+
+        if status == "downstream_owned_failure":
+            failure_text = normalize_text(data.get("failure_summary") or data.get("downstream_follow_up"))
+            if not failure_text:
+                findings.append(f"{label}: downstream_owned_failure requires failure_summary or downstream_follow_up")
+
+    return findings
 
 
 def href_from_run_dir(run_dir: Path, target: Path) -> str:
@@ -4761,6 +4826,11 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         for beats in runtime_sets
         for finding in runtime_contract_quality_findings(beats)
     ]
+    dialogue_qa_findings = (
+        consumer_dialogue_qa_findings(run_dir)
+        if full_pass_pipeline and bool(outputs.get("generated_activities", []))
+        else []
+    )
     expected_branch_followups = sum(
         len(beat.get("branches", []))
         for beats in runtime_sets
@@ -4825,6 +4895,7 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         ),
         "branch_policy_specificity": not generic_policy_findings,
         "runtime_contract_quality": not runtime_quality_findings,
+        "consumer_dialogue_qa": not dialogue_qa_findings,
         "photo_capture_timing": expected_photo_timing == 0
         or (
             text.count('class="photo-timing-strip"') >= expected_photo_timing

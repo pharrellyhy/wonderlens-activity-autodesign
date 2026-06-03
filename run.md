@@ -326,6 +326,38 @@ ordering contract. At minimum:
 Do not let fullstack-demo or WonderLens AI improve, weaken, rewrite, or
 reinterpret package content to make the run pass.
 
+For every `full_pass_pipeline=true` run with generated packages, record
+consumer dialogue QA before final dashboard validation. Missing dialogue QA is
+a run blocker, even when conversion/load checks pass. Write:
+
+```text
+runs/<run_id>/downstream_reports/fullstack_demo/dialogue_qa_report.json
+runs/<run_id>/downstream_reports/wonderlens_ai/dialogue_qa_report.json
+```
+
+Each report must be a sanitized JSON object with:
+
+```json
+{
+  "status": "pass",
+  "mode": "live|runtime_equivalent",
+  "activity_ids": ["<activity_id>"],
+  "strategies": [
+    {"strategy": "expected_answer", "status": "pass"},
+    {"strategy": "wrong_unproductive_answer", "status": "pass"},
+    {"strategy": "help_confusion", "status": "pass"},
+    {"strategy": "silence_no_response", "status": "pass"},
+    {"strategy": "premature_done", "status": "pass"}
+  ]
+}
+```
+
+Use `status: downstream_owned_failure` only when the report includes a
+`failure_summary` or `downstream_follow_up` and the issue is explicitly not
+package-owned. Do not mark a run complete when a report is missing, has fewer
+than the five strategies above, or uses conversion/load evidence as a substitute
+for dialogue QA.
+
 Before comparing or accepting live dialogue, prove runtime-facing package input
 does not contain raw blocker markers:
 
