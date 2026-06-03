@@ -1,5 +1,23 @@
 # HANDOFF
 
+## 2026-06-03 - Assignment Queue Simplified
+
+Problem: `assignments.md` had become both the active queue and a historical
+ledger, mixing completed legacy batches, completed smoke/e2e rows, older
+unchecked-but-superseded capability probes, and the completed subset validation
+rows.
+
+Solution: Moved the historical ledger into `docs/assignments_archive.md` and
+replaced `assignments.md` with a short active-queue file. README now describes
+`assignments.md` as active-only and instructs operators to copy archived rows
+back into the queue when a future goal needs a rerun.
+
+Verification: `git diff --check` passed, `assignments.md` has no processable
+checkbox assignment rows, `docs/assignments_archive.md` preserves 131
+historical assignment rows exactly matching the prior `assignments.md` row set,
+and targeted README/archive scans confirm the active queue and archive are
+documented.
+
 ## 2026-06-03 - Runtime Asset Rules Hardened
 
 Problem: Fresh subset/full-pass runs needed stricter runtime rules after image

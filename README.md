@@ -77,9 +77,10 @@ docs/activity_vocabulary.md        Closed enums for activity_signature fields
 docs/game_styles.md                12 game styles under 6 experience pillars
 entity_guidance.md                 Mapping schema and selection rules
 conversation_bridge.md             Warm/cold bridge patterns
-inputs/source_activity_concepts.md Active source concept rows referenced by assignments.md Batch 4
+inputs/source_activity_concepts.md Source concept rows referenced by active or archived assignment rows
 examples/                          Concrete input-source and input-mode examples
-assignments.md                     Work queue
+assignments.md                     Active work queue only
+docs/assignments_archive.md        Historical assignment ledger for provenance
 results.tsv                        Assignment and rubric log
 ```
 
@@ -191,7 +192,7 @@ capability.
 
 ## Quick Start
 
-1. Edit `assignments.md` with the activity requests to generate.
+1. Add the activity requests to the active queue in `assignments.md`.
 2. Start your coding agent from the repo root.
 3. Start the loop with the recommended Codex `/goal` command in `GOAL.md`.
 
@@ -247,7 +248,7 @@ MAPPING_ROOT=data/mappings_dev20_0318
 
 | Source | Typical fields | Required when | How the agent uses it |
 |---|---|---|---|
-| `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `concept_source`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `asset_policy`, `asset_requirements`, `product_capabilities` | Always. This is the execution queue the loop reads. | Normalizes the request, loads referenced concept/asset rows when present, runs Phase 0 when needed, then either generates a package or records a blocked brief plus constrained design preview and continues. |
+| `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `concept_source`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `asset_policy`, `asset_requirements`, `product_capabilities` | Always for active generation. This is the execution queue the loop reads. | Normalizes the request, loads referenced concept/asset rows when present, runs Phase 0 when needed, then either generates a package or records a blocked brief plus constrained design preview and continues. |
 | Activity Concept Brief | concept row plus optional companion asset requirement rows | The starting point is a source/curriculum/design concept rather than a full entity package request. This is the preferred source for concept-led work. | Produces an English `adaptation_brief` first. The brief decides input mode, readiness, trigger fit, asset dependency, mapping use, and scaffold fit. |
 | Asset Requirements table | `asset_id`, `concept_ref`, `asset_type`, `requiredness`, `generation_timing`, `use_step`, `display_location`, `purpose`, `prompt_en`, `source`, `display_behavior`, `fallback_behavior`, `safety_constraints`, `accuracy_mode`, `source_strategy`, `transformation_policy` | The idea mentions or requires AI-generated images, screen-displayed reference images, line art, cards, icons, overlays, or visual supports. | Avoids asset inference from prose. Phase 0 copies the rows into `asset_dependency`; `spec.md` records an `## Asset Brief` and `## Asset Usage Timeline`; `asset_manifest.yaml` records the consumer-facing runtime asset contract; `prod.md` references stable asset IDs. |
 | Entity mapping YAML | `mapping=<entity_id>` resolved through `MAPPING_ROOT/_index.yaml` | Required only for mapping-informed packages, entity-specific factual claims, warm/cold bridge grounding, mapping-grounded Key Concepts, or matcher-ready entity routing. | Grounds visible attributes, tier language, IB concepts, related concepts, bridge prerequisites, trigger fit, and matchability. |
@@ -333,7 +334,12 @@ See `examples/source_activity_concept_template.md` for the fillable template. Se
 
 ## Working With `assignments.md`
 
-`assignments.md` is the agent's queue. Each unchecked line (`- [ ]`) is one pending package request; checked lines (`- [x]`) are treated as complete and skipped. The loop processes the file from top to bottom.
+`assignments.md` is the active queue only. Each unchecked line (`- [ ]`) is one pending package request; checked lines (`- [x]`) are treated as complete and skipped. The loop processes the file from top to bottom.
+
+Historical batches, completed smoke runs, and superseded scoped validation rows
+belong in `docs/assignments_archive.md`. Do not process rows from that archive
+unless a goal file explicitly copies or references a scoped subset back into
+`assignments.md`.
 
 Use this shape for new assignments:
 
@@ -380,7 +386,11 @@ Optional:
 
 Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas also get a constrained design preview with inline blocked-element comments instead of forcing package generation, and the loop continues to later unchecked rows. If a scoped run declares `product_contract_override=minimum_unblock_allowed`, formerly blocking minimum-to-unblock decisions generate as normal packages with resolved blocker annotations and review-dashboard callouts. Legacy concept aliases should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
 
-To rerun an assignment, change its checkbox back to `- [ ]` or copy it into a fresh batch. The rerun will create a new run-local package directory instead of overwriting or relinking the previous package. To add work, append a new unchecked line in the appropriate batch section or create a new batch heading.
+To rerun an archived assignment, copy the row from `docs/assignments_archive.md`
+back into `assignments.md` as an unchecked active row, then adjust any
+run-specific fields required by the current goal. The rerun will create a new
+run-local package directory instead of overwriting or relinking the previous
+package. To add new work, append a new unchecked line under `## Active Queue`.
 
 ## Project Structure
 
@@ -394,6 +404,8 @@ To rerun an assignment, change its checkbox back to `- [ ]` or copy it into a fr
 ├── review_dashboard.md
 ├── assignments.md
 ├── results.tsv
+├── docs/
+│   └── assignments_archive.md
 ├── runs/
 │   ├── README.md
 │   └── <run_id>/
