@@ -1,5 +1,6 @@
 concept_phoneme_hunt_collect:
   creative_slots:
+    collection_count: 1
     stuck_hint: Look nearby for something whose spoken name begins with /b/.
   collection_catalog:
     accepted_features:
@@ -8,9 +9,16 @@ concept_phoneme_hunt_collect:
       - ball
       - book
       - banana
+      - box
     rejected_features:
       - cup
       - sock
+      - apple
+      - car
+      - hat
+      - mug
+      - shoe
+      - spoon
     visual_prompt_hint: Ask the child to say the object's name and listen for the beginning /b/ sound.
     criterion: Things whose spoken names begin with the /b/ sound
     correct:
@@ -23,6 +31,9 @@ concept_phoneme_hunt_collect:
       - id: book_object
         label: Book
         image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/book_object__round_512.png
+      - id: box_object
+        label: Box
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/box_object__round_512.png
     distractors:
       - id: cup_object
         label: Cup
@@ -30,3 +41,21 @@ concept_phoneme_hunt_collect:
       - id: sock_object
         label: Sock
         image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/sock_object__round_512.png
+      - id: apple_object
+        label: Apple
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/apple_object__round_512.png
+      - id: car_object
+        label: Car
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/car_object__round_512.png
+      - id: hat_object
+        label: Hat
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/hat_object__round_512.png
+      - id: mug_object
+        label: Mug
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/mug_object__round_512.png
+      - id: shoe_object
+        label: Shoe
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/shoe_object__round_512.png
+      - id: spoon_object
+        label: Spoon
+        image: /activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/spoon_object__round_512.png

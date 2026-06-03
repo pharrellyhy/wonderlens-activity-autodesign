@@ -161,6 +161,23 @@ class RepairFullPassAssetBundleTest(unittest.TestCase):
             self.assertIn("do not redraw those selectable animals", prompt)
         self.assertIn("do not include dog, fox, wolf", by_id["activity_icon"]["prompt_en"])
 
+    def test_phoneme_prompts_foreground_sound_action_not_baskets(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            package_dir = write_package(run_dir, "concept_phoneme_hunt_collect", template_type="cat5")
+
+            repair.repair_run(run_dir)
+
+            manifest = yaml.safe_load((package_dir / "asset_manifest.yaml").read_text())
+
+        by_id = {asset["id"]: asset for asset in manifest["assets"]}
+        for asset_id in ("activity_icon", "intro_scene", "rules_scene", "round_1_scene", "round_2_scene", "round_3_scene", "synthesis_scene"):
+            prompt = by_id[asset_id]["prompt_en"].lower()
+            self.assertNotIn("empty basket", prompt)
+            self.assertNotIn("camera clue slot", prompt)
+            self.assertIn("sound", prompt)
+        self.assertIn("listening", by_id["intro_scene"]["prompt_en"].lower())
+
     def test_cat5_adds_synthesis_scene(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             run_dir = Path(tmp)

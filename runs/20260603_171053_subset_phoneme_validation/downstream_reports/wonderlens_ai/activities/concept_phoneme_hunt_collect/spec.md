@@ -45,20 +45,28 @@ Child enters language treasure-hunt mode or photographs an everyday indoor objec
 
 | asset_id | asset_type | role | requiredness | generation timing | use step | display location | purpose | prompt/source summary | display behavior | fallback |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `activity_icon` | icon | activity_preview | required | post-package build | activity preview | round device screen | Identify the activity without revealing the answer. | Flat Nordic sound-treasure basket icon, no text or letters. | Display before launch. | Use a plain preview tile and do not claim the icon is visible. |
-| `intro_scene` | scene_background | story_scene | required | post-package build | Step 1 | round device screen | Start the search mood. | Quiet indoor listening corner with empty basket. | Show during transition bridge. | Voice-only intro. |
-| `rules_scene` | scene_background | story_scene | required | post-package build | Step 2 | round device screen | Support the sound rule. | Text-free sound basket and listening shapes. | Show while modeling `/b/`. | Voice-only rule. |
-| `round_1_scene` | scene_background | story_scene | required | post-package build | Step 3 Round 1 | round device screen | Practice the sound before search. | Blank cue backing and empty basket, no object duplicates. | Show with optional app overlay. | Voice-only sound model. |
-| `round_2_scene` | scene_background | story_scene | required | post-package build | Step 3 Round 2 | round device screen | Invite the indoor search. | Open indoor path and empty collection basket. | Show while camera/photo UI is app-owned overlay. | Voice-only search prompt. |
-| `round_3_scene` | scene_background | story_scene | required | post-package build | Step 3 Round 3 | round device screen | Show acceptance state. | Single soft glow and basket space, no labels. | Show while app overlays accepted photo/name. | Voice-only evidence check. |
-| `synthesis_scene` | scene_background | story_scene | required | post-package build | Step 4 | round device screen | Connect photo/name to the sound rule. | Abstract treasure shape joining sound wave into basket. | Show during synthesis. | Voice-only synthesis. |
-| `celebrate_scene` | scene_background | story_scene | required | post-package build | Step 5 celebration | round device screen | Celebrate after synthesis. | Calm celebration sparkle around basket. | Show briefly after synthesis. | Voice-only celebration. |
-| `closing_scene` | scene_background | story_scene | required | post-package build | Step 5 closing | round device screen | Close without new task. | Resting basket with one abstract glow. | Show during recap close. | Voice-only close. |
-| `b_sound_letter_cue` | ui_overlay | ui_overlay | optional | post-package build | Step 2; Step 3 Round 1 | round device screen cue backing | Provide visual support for a runtime-owned `/b/` or B overlay. | Text-free rounded cue-card backing, no readable marks. | Show only if runtime overlays the actual letter/sound separately. | Repeat `/b/` by voice and do not claim a letter card is visible. |
+| `activity_icon` | icon | activity_preview | required | post-package build | activity preview | round device screen | Identify the activity without revealing the answer. | Listening-and-search icon with mouth/sound-wave cue and search path, no text or letters. | Display before launch. | Use a plain preview tile and do not claim the icon is visible. |
+| `intro_scene` | scene_background | story_scene | required | post-package build | Step 1 | round device screen | Start the search mood. | Same child in a plausible indoor room listening to the device before the sound is named. | Show during transition bridge. | Voice-only intro. |
+| `rules_scene` | scene_background | story_scene | required | post-package build | Step 2 | round device screen | Support the sound rule. | Same child practicing the beginning sound with mouth/speech cues and sound waves. | Show while modeling `/b/`. | Voice-only rule. |
+| `round_1_scene` | scene_background | story_scene | required | post-package build | Step 3 Round 1 | round device screen | Practice the sound before search. | Child rehearses the target sound; no baked example objects. | Show with optional app overlay. | Voice-only sound model. |
+| `round_2_scene` | scene_background | story_scene | required | post-package build | Step 3 Round 2 | round device screen | Invite the indoor search. | Same child safely searching the room with a subtle sound-wave trail; no answer object revealed. | Show while camera/photo UI is app-owned overlay. | Voice-only search prompt. |
+| `round_3_scene` | scene_background | story_scene | required | post-package build | Step 3 Round 3 | round device screen | Show naming and evidence check. | Child names the found object toward the device; runtime overlays accepted photo/name separately. | Show while app overlays accepted photo/name. | Voice-only evidence check. |
+| `synthesis_scene` | scene_background | story_scene | required | post-package build | Step 4 | round device screen | Connect photo/name to the sound rule. | Sound-wave ribbon connects the child-provided word evidence to the beginning-sound pattern. | Show during synthesis. | Voice-only synthesis. |
+| `celebrate_scene` | scene_background | story_scene | required | post-package build | Step 5 celebration | round device screen | Celebrate after synthesis. | Same child celebrates the listening/speaking success with sound-wave ribbons. | Show briefly after synthesis. | Voice-only celebration. |
+| `closing_scene` | scene_background | story_scene | required | post-package build | Step 5 closing | round device screen | Close without new task. | Calm finishing moment in the same room with the sound-wave ribbon fading. | Show during recap close. | Voice-only close. |
+| `b_sound_letter_cue` | ui_overlay | ui_overlay | optional | post-package build | Step 2; Step 3 Round 1 | round device screen support tile | Provide visual support for a runtime-owned `/b/` or B overlay. | Text-free listening tile with mouth/sound-wave pictogram, no readable marks. | Show only if runtime overlays the actual letter/sound separately. | Repeat `/b/` by voice and do not claim a letter card is visible. |
 | `ball_object` | icon | collection_correct | required | post-package build | example/picker support | package `assets/items/` | Correct B example. | One centered ball object, no text. | Optional example sprite or picker item. | Use voice-only examples. |
 | `banana_object` | icon | collection_correct | required | post-package build | example/picker support | package `assets/items/` | Correct B example. | One centered banana object, no text. | Optional example sprite or picker item. | Use voice-only examples. |
 | `book_object` | icon | collection_correct | required | post-package build | example/picker support | package `assets/items/` | Correct B example. | One centered closed book object, no text. | Optional example sprite or picker item. | Use voice-only examples. |
+| `box_object` | icon | collection_correct | required | post-package build | example/picker support | package `assets/items/` | Correct B example. | One centered plain box object, no text. | Optional example sprite or picker item. | Use voice-only examples. |
 | `cup_object` | icon | collection_distractor | required | post-package build | contrast/picker support | package `assets/items/` | Nonmatching contrast example. | One centered plain cup object, no text. | Optional contrast sprite. | Use voice-only contrast. |
+| `sock_object` | icon | collection_distractor | required | post-package build | contrast/picker support | package `assets/items/` | Second nonmatching contrast example. | One centered soft sock object, no text. | Optional contrast sprite. | Use voice-only contrast. |
+| `apple_object` | icon | collection_distractor | required | post-package build | contrast/picker support | package `assets/items/` | Nonmatching contrast example. | One centered apple object, no text. | Optional contrast sprite. | Use voice-only contrast. |
+| `car_object` | icon | collection_distractor | required | post-package build | contrast/picker support | package `assets/items/` | Nonmatching contrast example. | One centered toy car object, no text. | Optional contrast sprite. | Use voice-only contrast. |
+| `hat_object` | icon | collection_distractor | required | post-package build | contrast/picker support | package `assets/items/` | Nonmatching contrast example. | One centered hat object, no text. | Optional contrast sprite. | Use voice-only contrast. |
+| `mug_object` | icon | collection_distractor | required | post-package build | contrast/picker support | package `assets/items/` | Nonmatching contrast example. | One centered mug object, no text. | Optional contrast sprite. | Use voice-only contrast. |
+| `shoe_object` | icon | collection_distractor | required | post-package build | contrast/picker support | package `assets/items/` | Nonmatching contrast example. | One centered shoe object, no text. | Optional contrast sprite. | Use voice-only contrast. |
+| `spoon_object` | icon | collection_distractor | required | post-package build | contrast/picker support | package `assets/items/` | Nonmatching contrast example. | One centered spoon object, no text. | Optional contrast sprite. | Use voice-only contrast. |
 
 ## Asset Usage Timeline
 
@@ -77,7 +85,15 @@ Child enters language treasure-hunt mode or photographs an everyday indoor objec
 | `ball_object` | post-package imagegen/build | optional Round 1/picker | optional example only | Correct B example. | Kept out of scene backgrounds. | Voice-only example. |
 | `banana_object` | post-package imagegen/build | optional Round 1/picker | optional example only | Correct B example. | Kept out of scene backgrounds. | Voice-only example. |
 | `book_object` | post-package imagegen/build | optional Round 1/picker | optional example only | Correct B example. | Kept out of scene backgrounds. | Voice-only example. |
+| `box_object` | post-package imagegen/build | optional Round 1/picker | optional example only | Correct B example. | Kept out of scene backgrounds. | Voice-only example. |
 | `cup_object` | post-package imagegen/build | optional contrast/picker | optional contrast only | Non-B contrast. | Kept out of scene backgrounds. | Voice-only contrast. |
+| `sock_object` | post-package imagegen/build | optional contrast/picker | optional contrast only | Non-B contrast. | Kept out of scene backgrounds. | Voice-only contrast. |
+| `apple_object` | post-package imagegen/build | optional contrast/picker | optional contrast only | Non-B contrast. | Kept out of scene backgrounds. | Voice-only contrast. |
+| `car_object` | post-package imagegen/build | optional contrast/picker | optional contrast only | Non-B contrast. | Kept out of scene backgrounds. | Voice-only contrast. |
+| `hat_object` | post-package imagegen/build | optional contrast/picker | optional contrast only | Non-B contrast. | Kept out of scene backgrounds. | Voice-only contrast. |
+| `mug_object` | post-package imagegen/build | optional contrast/picker | optional contrast only | Non-B contrast. | Kept out of scene backgrounds. | Voice-only contrast. |
+| `shoe_object` | post-package imagegen/build | optional contrast/picker | optional contrast only | Non-B contrast. | Kept out of scene backgrounds. | Voice-only contrast. |
+| `spoon_object` | post-package imagegen/build | optional contrast/picker | optional contrast only | Non-B contrast. | Kept out of scene backgrounds. | Voice-only contrast. |
 
 ## Extensibility Notes
 
@@ -91,7 +107,7 @@ Child enters language treasure-hunt mode or photographs an everyday indoor objec
 | # | Dimension | Score | Notes |
 |---|-----------|-------|-------|
 | 1 | V1 Technical Compliance | PASS | No OCR, pose, IMU, state-change, or image-only phoneme inference is required; phoneme judgment uses child-provided object name evidence and degraded demo support. |
-| 2 | Hook & Transition | PASS | Step 1 opens with a playful sound basket, not a quiz; Step 2 naturally names the sound rule. |
+| 2 | Hook & Transition | PASS | Step 1 opens with a playful sound mission, not a quiz; Step 2 naturally names the sound rule. |
 | 3 | Edge Case Coverage | PASS | Every live beat includes ideal, unexpected, and no-response branches, including cannot-find and non-B-object cases. |
 | 4 | IB Completeness | PASS | Form and Connection, KUD, related concepts, and ATL skills all match beginning-sound evidence. |
 | 5 | Tier Appropriateness | PASS | T1 instructions use short concrete sentences, one-object search, and low-pressure correction. |

@@ -1,5 +1,24 @@
 # HANDOFF
 
+## 2026-06-04 - Phoneme Subset Validation Repaired
+
+Problem: Run `20260603_171053_subset_phoneme_validation` had been marked
+complete while its image audit still failed the phoneme activity for generic
+basket/blank-card/glow scene imagery, and the active queue row was reopened.
+
+Solution: Repaired `concept_phoneme_hunt_collect` with a 22-asset package:
+listening/speaking/search/evidence scene prompts, regenerated 512x512 PNGs,
+four correct `/b/` picker objects, eight distractors, refreshed WonderLens AI
+runtime artifacts, refreshed run-local fullstack import/export evidence, and
+added the required runtime-equivalent dialogue QA reports. Also updated
+`repair_full_pass_asset_bundle.py` so the required repair check does not
+restore the old phoneme container metaphor. Required fullstack-demo worktree
+import was attempted and recorded as downstream-owned failure because that
+consumer currently rejects `collection_count=1` for Cat5 activities.
+
+Verification: Focused repair-helper, asset/package, downstream, and dashboard
+checks passed from the `feat/subset-agentic-validation` worktree before commit.
+
 ## 2026-06-03 - Core Operator Docs Simplified
 
 Problem: Root `GOAL.md`, `run.md`, and the front/tail sections of `program.md`

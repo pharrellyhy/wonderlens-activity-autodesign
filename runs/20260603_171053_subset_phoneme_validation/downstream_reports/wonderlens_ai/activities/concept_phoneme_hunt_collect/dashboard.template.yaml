@@ -2,7 +2,7 @@ dashboard_fragment:
   session:
     activity_id: concept_phoneme_hunt_collect
     title: B-Sound Treasure Hunt
-    focal_attribute: beginning sound /b/
+    focal_attribute: beginning_b_sound
     summary: "The child connected a real object and its spoken name to the /b/ beginning sound."
     evidence_line: "{child_name} used object-name evidence to explain why {accepted_object_name} matched /b/."
   caregiver:

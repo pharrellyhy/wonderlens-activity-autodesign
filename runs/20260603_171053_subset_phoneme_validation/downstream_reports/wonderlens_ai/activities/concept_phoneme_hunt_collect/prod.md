@@ -39,9 +39,9 @@ A child starts language treasure-hunt mode indoors, hears `/b/`, and searches fo
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Goal: open from language treasure-hunt mode with a warm, non-testing hook and introduce that the device is hungry for one sound-treasure, not a worksheet answer. Constraint: T1, one or two short sentences; do not claim the image understands phonemes by itself. Tone: playful and inviting. Progress evidence: child says yes, looks ready, asks what sound, or stays with the screen. Branch behavior: if ready, move to the sound rule; if the child names a random object, admire the object and say the rule comes next; if silent, wait two seconds and model a tiny ready phrase. Frame/source guardrail: preserve the source frame that AI introduces `/b/` first, then the child finds one indoor treasure whose word starts with `/b/`; screen may show `intro_scene` only, with no baked letters, buttons, or progress UI.
+**Runtime AI instruction:** Goal: open from language treasure-hunt mode with a warm, non-testing hook and introduce that the device is ready for one sound-treasure, not a worksheet answer. Constraint: T1, one or two short sentences; do not claim the image understands phonemes by itself. Tone: playful and inviting. Progress evidence: child says yes, looks ready, asks what sound, or stays with the screen. Branch behavior: if ready, move to the sound rule; if the child names a random object, admire the object and say the rule comes next; if silent, wait two seconds and model a tiny ready phrase. Frame/source guardrail: preserve the source frame that AI introduces `/b/` first, then the child finds one indoor treasure whose word starts with `/b/`; screen may show `intro_scene` only, with no baked letters, buttons, or progress UI.
 
-**Example AI line:** [playful hunger] "My sound basket is hungry today. It wants one special treasure."
+**Example AI line:** [playful launch] "My listening lens is ready today. It wants one special sound treasure."
 
 **Child responses:**
 
@@ -55,7 +55,7 @@ A child starts language treasure-hunt mode indoors, hears `/b/`, and searches fo
 2. [gentle redirect] "A cup is a real treasure. First, listen for today's sound."
 3. [wait 2s] [soft model] "You can say, 'I'm ready.'"
 
-**Screen:** `intro_scene` shows a quiet indoor search corner with an empty soft basket and listening spark shapes. The app may overlay a small activity title outside the PNG; the PNG itself has no text, letters, progress dots, buttons, or camera slot.
+**Screen:** `intro_scene` shows the child in a plausible indoor search room listening to the device before the sound is named. The app may overlay a small activity title outside the PNG; the PNG itself has no text, letters, progress dots, buttons, or camera slot.
 
 #### Step 2: Target Sound Rule
 
@@ -75,7 +75,7 @@ A child starts language treasure-hunt mode indoors, hears `/b/`, and searches fo
 2. [kind contrast] "Cup starts with /k/. We need the pop-pop /b/ sound."
 3. [wait 2s] [slow model] "Try just the first sound: /b/."
 
-**Screen:** `rules_scene` shows a soft sound basket and simple listening shapes. If available, `b_sound_letter_cue` appears as a blank rounded cue backing while the app overlays the `/b/` cue separately; if the overlay is unavailable, the screen stays visual-only and the AI repeats the sound by voice.
+**Screen:** `rules_scene` shows the child practicing the beginning sound with mouth/speech cues and sound waves moving toward the device. If available, `b_sound_letter_cue` appears as a text-free listening tile while the app overlays the `/b/` cue separately; if the overlay is unavailable, the screen stays visual-only and the AI repeats the sound by voice.
 
 #### Step 3: Multi-Round Interaction
 
@@ -97,7 +97,7 @@ A child starts language treasure-hunt mode indoors, hears `/b/`, and searches fo
 2. [specific redirect] "Cup begins with /k/. Keep hunting for a /b/ beginning."
 3. [wait 2s] [tiny scaffold] "I will start: /b/ like ball. Your turn if you want."
 
-**Screen:** `round_1_scene` shows the blank cue backing and a small empty basket space. Any ball/book/banana examples appear only as separate item sprites or runtime overlays; the scene PNG itself avoids duplicate selectable objects and contains no letters or labels.
+**Screen:** `round_1_scene` shows the child rehearsing the target sound before searching. Any ball/book/banana/box examples appear only as separate item sprites or runtime overlays; the scene PNG itself avoids duplicate selectable objects and contains no letters or labels.
 
 **Round 2 -- Find One Indoor Treasure:**
 
@@ -117,7 +117,7 @@ A child starts language treasure-hunt mode indoors, hears `/b/`, and searches fo
 2. [helpful clue] "Look for book, bag, box, ball, or banana. One is enough."
 3. [wait 2s] [safe nudge] "Try looking on a table or shelf first."
 
-**Screen:** `round_2_scene` shows an open indoor path and empty collection basket, leaving the app camera preview and capture slot outside the PNG. No selectable object sprites are baked into the scene background.
+**Screen:** `round_2_scene` shows the child safely searching the room with a subtle sound-wave trail, leaving the app camera preview and capture slot outside the PNG. No selectable object sprites are baked into the scene background.
 
 **Round 3 -- Name And Accept The Match:**
 
@@ -133,11 +133,11 @@ A child starts language treasure-hunt mode indoors, hears `/b/`, and searches fo
 
 **AI follow-up:**
 
-1. [clear accept] "Yes. Your word starts with /b/, so it goes in the basket."
+1. [clear accept] "Yes. Your word starts with /b/, so it counts for our sound hunt."
 2. [kind repair] "Cup is a good find, but it starts with /k/. Want to try book or bag?"
 3. [wait 2s] [naming prompt] "Tell me the treasure's name first, then I can hear the sound."
 
-**Screen:** `round_3_scene` shows a single soft acceptance glow and empty basket area. The app may overlay the accepted photo and name evidence; the PNG has no text, labels, progress markers, or picker slots.
+**Screen:** `round_3_scene` shows the child naming the found object toward the device, with a neutral evidence area where the app may overlay the accepted photo and name evidence; the PNG has no text, labels, progress markers, or picker slots.
 
 #### Step 4: Synthesis And Magic Moment
 
@@ -157,7 +157,7 @@ A child starts language treasure-hunt mode indoors, hears `/b/`, and searches fo
 2. [bridge to evidence] "Yes, your book matters. Its first sound is /b/."
 3. [wait 2s] [gentle model] "Our rule was: one treasure, one /b/ beginning."
 
-**Screen:** `synthesis_scene` shows one abstract treasure shape joining a soft sound wave into the basket. The accepted photo remains an app overlay if available; the generated scene does not bake in the photo, letters, labels, or extra example objects.
+**Screen:** `synthesis_scene` shows sound-wave evidence connecting the child's word to the beginning-sound pattern. The accepted photo remains an app overlay if available; the generated scene does not bake in the photo, letters, labels, or extra example objects.
 
 #### Step 5: Closing + IB Concepts
 
@@ -177,4 +177,4 @@ A child starts language treasure-hunt mode indoors, hears `/b/`, and searches fo
 2. [future bridge] "A new sound can be our next mission after a little break."
 3. [wait 2s] [soft goodbye] "Thanks for showing me your /b/ treasure."
 
-**Screen:** `celebrate_scene` appears first as a short sparkle around the completed sound basket. Then `closing_scene` shows the basket resting calmly with one abstract treasure glow. Any badge, recap chip, or next activity control is app-owned UI and is not baked into either image.
+**Screen:** `celebrate_scene` appears first as a short sound-wave celebration around the child and device. Then `closing_scene` shows the same room calming down with the sound-wave ribbon fading. Any badge, recap chip, or next activity control is app-owned UI and is not baked into either image.

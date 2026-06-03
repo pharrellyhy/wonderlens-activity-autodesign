@@ -10,7 +10,7 @@ Transformation policy: `generate_new`
 
 ## Prompt Or Source Requirement
 
-Use case: illustration-story. Asset type: text-free cue-card backing. Primary request: one centered blank rounded cue card or listening tile for a runtime-owned target sound overlay; the generated image itself must contain no letters or words. Scene/backdrop: clean white. Style/medium: flat Nordic children's illustration matching docs/asset_style_reference/wonderlens-activity-style.md and style-reference-flat-nordic.png with restrained boho pastels and light paper grain. Composition/framing: one centered card, generous padding, safe inside round crop. Constraints: no readable text, no letters, no numbers, no labels, no logos, no watermark, no app UI, no border, no progress dots.
+Use case: illustration-story. Asset type: text-free listening support tile. Primary request: one centered rounded listening tile for a runtime-owned target sound overlay; include a simple mouth-and-sound-wave pictogram so the image is not a blank placeholder. The generated image itself must contain no letters or words. Scene/backdrop: clean white. Style/medium: flat Nordic children's illustration matching docs/asset_style_reference/wonderlens-activity-style.md and style-reference-flat-nordic.png with restrained boho pastels and light paper grain. Composition/framing: one centered tile, generous padding, safe inside round crop. Constraints: no readable text, no letters, no numbers, no labels, no logos, no watermark, no app UI, no border, no progress dots, no basket, no treasure chest, no blank card, no blank board, no empty container.
 
 ## Style Reference Required For Imagegen
 

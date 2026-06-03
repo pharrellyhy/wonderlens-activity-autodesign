@@ -8,7 +8,8 @@
       "b_sound",
       "ball",
       "book",
-      "banana"
+      "banana",
+      "box"
     ],
     "correct": [
       {
@@ -25,6 +26,11 @@
         "id": "book_object",
         "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/book_object__round_512.png",
         "label": "Book"
+      },
+      {
+        "id": "box_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/box_object__round_512.png",
+        "label": "Box"
       }
     ],
     "criterion": "Things whose spoken names begin with the /b/ sound",
@@ -38,14 +44,53 @@
         "id": "sock_object",
         "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/sock_object__round_512.png",
         "label": "Sock"
+      },
+      {
+        "id": "apple_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/apple_object__round_512.png",
+        "label": "Apple"
+      },
+      {
+        "id": "car_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/car_object__round_512.png",
+        "label": "Car"
+      },
+      {
+        "id": "hat_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/hat_object__round_512.png",
+        "label": "Hat"
+      },
+      {
+        "id": "mug_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/mug_object__round_512.png",
+        "label": "Mug"
+      },
+      {
+        "id": "shoe_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/shoe_object__round_512.png",
+        "label": "Shoe"
+      },
+      {
+        "id": "spoon_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/spoon_object__round_512.png",
+        "label": "Spoon"
       }
     ],
     "rejected_features": [
       "cup",
-      "sock"
+      "sock",
+      "apple",
+      "car",
+      "hat",
+      "mug",
+      "shoe",
+      "spoon"
     ],
     "visual_prompt_hint": "Ask the child to say the object's name and listen for the beginning /b/ sound."
   },
+  "collection_catalog_correct_count": 4,
+  "collection_catalog_distractor_count": 8,
+  "collection_count": 1,
   "executable": true,
   "failures": [],
   "optional_missing_asset_ids": [],
@@ -63,7 +108,15 @@
     "package:concept_phoneme_hunt_collect:ball_object",
     "package:concept_phoneme_hunt_collect:banana_object",
     "package:concept_phoneme_hunt_collect:book_object",
-    "package:concept_phoneme_hunt_collect:cup_object"
+    "package:concept_phoneme_hunt_collect:box_object",
+    "package:concept_phoneme_hunt_collect:cup_object",
+    "package:concept_phoneme_hunt_collect:sock_object",
+    "package:concept_phoneme_hunt_collect:apple_object",
+    "package:concept_phoneme_hunt_collect:car_object",
+    "package:concept_phoneme_hunt_collect:hat_object",
+    "package:concept_phoneme_hunt_collect:mug_object",
+    "package:concept_phoneme_hunt_collect:shoe_object",
+    "package:concept_phoneme_hunt_collect:spoon_object"
   ],
   "play_rounds": 3,
   "required_missing_asset_ids": [],

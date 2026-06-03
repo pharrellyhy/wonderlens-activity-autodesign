@@ -350,10 +350,51 @@ def visual_direction(activity_id: str, activity_name: str, asset_id: str) -> str
             "story-scene backgrounds; let the app place the picker/card sprites."
         )
     if "phoneme" in key:
+        phoneme_steps = {
+            "activity_icon": (
+                "show a child-friendly listening-and-search symbol with a small sound wave and "
+                "indoor search spark."
+            ),
+            "intro_scene": (
+                "show a child listening to the device in a plausible indoor search room before the "
+                "target sound is named."
+            ),
+            "rules_scene": (
+                "show the child practicing the beginning sound by voice, with mouth/speech cues and "
+                "sound waves moving toward the device."
+            ),
+            "round_1_scene": (
+                "show sound rehearsal before searching: the child leans toward the device with a clear "
+                "listening posture and soft sound-wave arcs."
+            ),
+            "round_2_scene": (
+                "show the child safely searching the room after hearing the target sound; the camera "
+                "or photo UI remains outside the generated PNG."
+            ),
+            "round_3_scene": (
+                "show the child naming the found object toward the device, with a neutral evidence "
+                "area where runtime may overlay the accepted photo/name."
+            ),
+            "synthesis_scene": (
+                "show word-to-beginning-sound evidence: the child's speech and a device-side evidence "
+                "area connected by one shared sound ribbon."
+            ),
+            "celebrate_scene": (
+                "show a warm sound-wave celebration around the child and device after the beginning "
+                "sound match is accepted."
+            ),
+            "closing_scene": (
+                "show the same room calming down with the sound-wave ribbon fading; no new search "
+                "challenge starts."
+            ),
+        }
+        step_direction = phoneme_steps.get(asset_id, phoneme_steps["activity_icon"])
         return (
-            "Activity-specific direction: use neutral treasure-hunt/search imagery such as a listening "
-            "spot, soft treasure path, empty basket, or camera clue slot; do not reveal target objects "
-            "before the child supplies evidence."
+            "Activity-specific direction: sound/phoneme assets must foreground listening, speaking, "
+            "room search, or word evidence instead of a treasure or container metaphor. For this "
+            f"asset, {step_direction} Do not draw baskets, treasure chests, blank cards, blank boards, "
+            "empty containers, generic glow-only subjects, or selectable target objects inside "
+            "story-scene backgrounds."
         )
     if "vegetable_sort" in key or "vegetable sort" in key:
         return (

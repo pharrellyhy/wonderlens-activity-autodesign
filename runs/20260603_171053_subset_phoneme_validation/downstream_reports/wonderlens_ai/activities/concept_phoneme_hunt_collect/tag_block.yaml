@@ -16,8 +16,8 @@ tier_range:
   elasticity: fixed subset validation scope
 category: objects
 attributes:
-  - beginning sound
-  - spoken word evidence
+  - beginning_b_sound
+  - spoken_word
 key_concepts:
   - Form
   - Connection
@@ -54,7 +54,7 @@ activity_signature:
   observation_angle: function
   mechanic: collect
   entity_role: exemplar
-  focal_attribute: beginning sound /b/
+  focal_attribute: beginning_b_sound
   intro: The child hears /b/, finds one indoor treasure, and names it so the AI can connect the word to its beginning sound.
   bridge_prerequisites:
     primary:

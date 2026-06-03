@@ -1,7 +1,7 @@
 run_id: 20260603_171053_subset_phoneme_validation
 status: complete
 started_at: "2026-06-03T17:12:31+08:00"
-completed_at: "2026-06-03T18:41:31+08:00"
+completed_at: "2026-06-04T01:35:45+08:00"
 source:
   goal_file: goals/2026-06-03-subset-agentic-validation-goal.md
   runbook: run.md
@@ -39,6 +39,10 @@ outputs:
   source_intent_audits:
     - runs/20260603_171053_subset_phoneme_validation/source_intent_audits/001_concept_phoneme_hunt_collect.md
   review_dashboard: runs/20260603_171053_subset_phoneme_validation/review.html
+  image_contact_sheet: runs/20260603_171053_subset_phoneme_validation/image_qa/source_contact_sheet.png
+  image_visual_audit: runs/20260603_171053_subset_phoneme_validation/manual_audits/concept_phoneme_hunt_collect_image_visual_audit.md
+  fullstack_dialogue_qa: runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/dialogue_qa_report.json
+  wonderlens_ai_dialogue_qa: runs/20260603_171053_subset_phoneme_validation/downstream_reports/wonderlens_ai/dialogue_qa_report.json
 checks:
   - name: demo_package_contract
     status: pass
@@ -48,7 +52,13 @@ checks:
     command: "python jsonschema validation for activity package tag_block.yaml"
   - name: asset_build
     status: pass
-    command: "source ../../../.venv/bin/activate && python scripts/build_activity_assets.py runs/20260603_171053_subset_phoneme_validation --mode generate_and_curate --force"
+    command: "../../../.venv/bin/python scripts/build_activity_assets.py runs/20260603_171053_subset_phoneme_validation --mode generate_and_curate --force"
+  - name: repair_full_pass_asset_bundle
+    status: pass
+    command: "../../../.venv/bin/python scripts/repair_full_pass_asset_bundle.py runs/20260603_171053_subset_phoneme_validation"
+  - name: repair_helper_unit_tests
+    status: pass
+    command: "../../../.venv/bin/python -m unittest tests.test_repair_full_pass_asset_bundle"
   - name: asset_build_outputs
     status: pass
     command: "source ../../../.venv/bin/activate && python scripts/validate_asset_build_outputs.py runs/20260603_171053_subset_phoneme_validation"
@@ -67,15 +77,36 @@ checks:
   - name: wonderlens_ai_placeholder_rejection
     status: pass
     artifact: runs/20260603_171053_subset_phoneme_validation/downstream_reports/wonderlens_ai/placeholder_rejection.txt
+  - name: wonderlens_ai_dialogue_qa
+    status: pass
+    artifact: runs/20260603_171053_subset_phoneme_validation/downstream_reports/wonderlens_ai/dialogue_qa_report.json
   - name: fullstack_package_import
     status: pass
     artifact: runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import_parse_report.json
+  - name: fullstack_required_worktree_import
+    status: downstream_owned_failure
+    artifact: runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/required_worktree_import_report.json
   - name: fullstack_package_import_placeholder_rejection
     status: pass
     artifact: runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import_placeholder_rejection.txt
   - name: fullstack_export_placeholder_rejection
     status: pass
     artifact: runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/placeholder_rejection.txt
+  - name: fullstack_dialogue_qa
+    status: pass
+    artifact: runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/dialogue_qa_report.json
+  - name: image_visual_qa
+    status: pass
+    artifact: runs/20260603_171053_subset_phoneme_validation/manual_audits/concept_phoneme_hunt_collect_image_visual_audit.md
+  - name: review_dashboard_validation
+    status: pass
+    command: "../../../.venv/bin/python scripts/generate_run_review.py --validate runs/20260603_171053_subset_phoneme_validation"
+  - name: blocker_marker_rejection
+    status: pass
+    command: "rg scan for RESOLVED BLOCKER / RESOLVE BLOCKER in runtime-facing files returned no matches"
+  - name: fullstack_placeholder_rejection
+    status: pass
+    command: "rg scan for Matching placeholder, /icons/green_apple.png, and /icons/straight_stick.png returned no matches"
 delegated_reviews:
   - reviewer: Planck
     status: pass
@@ -92,12 +123,24 @@ delegated_reviews:
   - reviewer: Mendel
     status: pass
     scope: focused round_3_scene image re-QA and item-directory check
+  - reviewer: Schrodinger
+    status: pass
+    scope: branch-specific phoneme repair checklist and downstream evidence gap analysis
+  - reviewer: Boyle
+    status: pass
+    scope: branch-specific verification command and completion-gate checklist
 notes:
   - Fresh one-row subset validation run from branch feat/subset-agentic-validation.
   - Illustrative source images were generated with Codex built-in imagegen and copied into generated_assets/inbox before asset build.
   - Picker/object variants were built under package-local assets/items/.
-  - Added a second non-/b/ item sprite, sock_object, so fullstack picker catalogs use package assets instead of generic icon placeholders.
+  - Repaired phoneme scene prompts and PNGs to foreground listening, speaking, room search, and evidence instead of generic basket/card/glow imagery.
+  - Updated repair_full_pass_asset_bundle.py so required bundle repair preserves phoneme sound/action prompts instead of regenerating the old container metaphor.
+  - Built 22 runtime assets: 9 scene/support PNGs, 1 letter-cue support PNG, 4 correct /b/ item sprites, and 8 distractor item sprites.
+  - Expanded the fullstack picker catalog to package-owned assets for ball, banana, book, box, cup, sock, apple, car, hat, mug, shoe, and spoon.
+  - Recorded runtime-equivalent dialogue QA reports for fullstack-demo and WonderLens AI with expected, wrong/unproductive, help/confusion, silence/no-response, and premature-done strategies.
+  - Required fullstack-demo worktree import was attempted from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game and is recorded as downstream_owned_failure because Cat5CreativeSlots.collection_count requires >=2 while this source-preserving package requires one treasure.
   - WonderLens AI fullstack export uses a run-local runtime override because the generic exporter does not consume asset_manifest collection_catalog_id values.
 blockers: []
 follow_ups:
   - Consider a WonderLens AI generator improvement to derive fullstack collection_catalog entries from package asset_manifest collection item roles without a run-local override.
+  - Fullstack-demo should support collection_count=1 for single-find phoneme hunts or add a single-collection template that preserves the one-object source promise.

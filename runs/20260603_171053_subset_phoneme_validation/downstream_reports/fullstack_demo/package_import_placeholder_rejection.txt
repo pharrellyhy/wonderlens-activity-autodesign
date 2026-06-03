@@ -1,1 +1,1 @@
-PASS no forbidden placeholders
+PASS no placeholder collection routes

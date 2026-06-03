@@ -24,8 +24,15 @@
           "package:concept_phoneme_hunt_collect:ball_object",
           "package:concept_phoneme_hunt_collect:banana_object",
           "package:concept_phoneme_hunt_collect:book_object",
+          "package:concept_phoneme_hunt_collect:box_object",
           "package:concept_phoneme_hunt_collect:cup_object",
-          "package:concept_phoneme_hunt_collect:sock_object"
+          "package:concept_phoneme_hunt_collect:sock_object",
+          "package:concept_phoneme_hunt_collect:apple_object",
+          "package:concept_phoneme_hunt_collect:car_object",
+          "package:concept_phoneme_hunt_collect:hat_object",
+          "package:concept_phoneme_hunt_collect:mug_object",
+          "package:concept_phoneme_hunt_collect:shoe_object",
+          "package:concept_phoneme_hunt_collect:spoon_object"
         ],
         "required_missing_asset_ids": [],
         "support_level": "catalog_simulated_judgment",

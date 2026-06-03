@@ -1,0 +1,60 @@
+{
+  "status": "pass",
+  "mode": "runtime_equivalent",
+  "consumer": "wonderlens-ai",
+  "run_id": "20260603_171053_subset_phoneme_validation",
+  "activity_ids": [
+    "concept_phoneme_hunt_collect"
+  ],
+  "artifacts": {
+    "runtime_yaml": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/wonderlens_ai/activities/concept_phoneme_hunt_collect/runtime.yaml",
+    "runtime_generation_report": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/wonderlens_ai/runtime_generation_report.json",
+    "runtime_check_report": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/wonderlens_ai/runtime_check_report.json",
+    "load_report": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/wonderlens_ai/load_report.json"
+  },
+  "evidence_summary": {
+    "runtime_support_executable": true,
+    "source_terms_present": true,
+    "branch_policy_complete": true,
+    "step_instruction_keys": [
+      "hook",
+      "transition",
+      "rounds",
+      "celebrate",
+      "closing",
+      "early_exit",
+      "synthesis"
+    ],
+    "collection_catalog_correct_count": 4,
+    "collection_catalog_distractor_count": 8,
+    "collection_count": 1,
+    "asset_bindings_intentionally_empty": "Item candidates are carried in runtime collection_catalog and package asset_manifest, not runtime asset_bindings."
+  },
+  "strategies": [
+    {
+      "strategy": "expected_answer",
+      "status": "pass",
+      "evidence": "runtime.yaml preserves ideal branch policies for repeating /b/, naming valid B words, returning with a photo_id, and connecting the accepted object name to the sound."
+    },
+    {
+      "strategy": "wrong_unproductive_answer",
+      "status": "pass",
+      "evidence": "runtime.yaml preserves unexpected branch policies for a cup/non-B answer and redirects to /b/ examples without weakening the source promise."
+    },
+    {
+      "strategy": "help_confusion",
+      "status": "pass",
+      "evidence": "step_instructions include support for help/confusion through example B words, safe nearby-object hints, voice-only fallback, and one concrete naming prompt."
+    },
+    {
+      "strategy": "silence_no_response",
+      "status": "pass",
+      "evidence": "branch_policy includes no_response entries for hook, transition, every round, synthesis/celebrate, and closing; goals specify waiting, modeling, and soft closing behavior."
+    },
+    {
+      "strategy": "premature_done",
+      "status": "pass",
+      "evidence": "step goals require the one-object search and child-provided sound evidence before synthesis; closing allows a future round without starting fresh gameplay."
+    }
+  ]
+}
