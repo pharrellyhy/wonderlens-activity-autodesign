@@ -34,7 +34,7 @@ Process only the `assignments.md` section:
 
 The scoped rows are:
 
-- `concept_scavenger_hunt_collect`
+- `concept_scavenger_hunt_collect` -- Cat5 synthesis candidate
 - `concept_phoneme_hunt_collect`
 - `concept_constellation_star_count_enumerate`
 - `concept_guided_drawing_probe`
@@ -63,6 +63,10 @@ Do not process any other unchecked `assignments.md` rows.
   standard scene assets are `activity_icon`, `intro_scene`, `rules_scene`,
   `round_1_scene`, `round_2_scene`, `round_3_scene`, `celebrate_scene`, and
   `closing_scene`; Cat5/synthesis flows also require `synthesis_scene`.
+- Treat Scavenger Hunt as the Cat5 synthesis candidate. It must collect
+  multiple child-found items and then synthesize the collection into a shared
+  rule, pattern, short summary, or story payoff instead of ending with a generic
+  completion line.
 - For Constellation Star Count, preserve the original source intent: child
   chooses a number, the device shows an approved real constellation card that
   matches that number of guide stars, and the AI shares brief background

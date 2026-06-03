@@ -14,7 +14,8 @@ worktree from current `main`, `asset_build=generate_and_curate`,
 fullstack-demo validation from the `feat/activity-text-game` worktree,
 WonderLens AI validation, rate-limit retry, delegated validation roles, and no
 touching `.worktrees/feat/full-pass-agentic-run` or the local paused run
-artifacts.
+artifacts. Scavenger Hunt is explicitly the Cat5 synthesis candidate for
+collection summary and `synthesis_scene` validation.
 
 Next: Run
 `/goal Implement goals/2026-06-03-subset-agentic-validation-goal.md. Stop only
