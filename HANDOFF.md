@@ -1,5 +1,25 @@
 # HANDOFF
 
+## 2026-06-03 - Subset Agentic Validation Goal Ready
+
+Problem: After merging the subset workflow gates, the next run needed a narrow
+goal that validates the new 512x512 asset and consumer-conversion pipeline
+without resuming the paused full pass.
+
+Solution: Added a scoped unchecked `assignments.md` section for five high-risk
+activities and created
+`goals/2026-06-03-subset-agentic-validation-goal.md`. The goal requires a fresh
+worktree from current `main`, `asset_build=generate_and_curate`,
+`full_pass_pipeline=true` for the subset scope, 512x512 image generation,
+fullstack-demo validation from the `feat/activity-text-game` worktree,
+WonderLens AI validation, rate-limit retry, delegated validation roles, and no
+touching `.worktrees/feat/full-pass-agentic-run` or the local paused run
+artifacts.
+
+Next: Run
+`/goal Implement goals/2026-06-03-subset-agentic-validation-goal.md. Stop only
+when its completion gate is satisfied or a blocker is documented.`
+
 ## 2026-06-02 - Clean Subset Workflow PR
 
 Problem: The paused full-pass branch contained useful workflow/tooling changes
