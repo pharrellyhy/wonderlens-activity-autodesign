@@ -521,7 +521,7 @@
 
     .flow-board {
       position: relative;
-      min-height: 20rem;
+      min-height: 26rem;
       border-radius: 0.8rem;
       padding: 0.85rem;
       background:
@@ -533,13 +533,13 @@
     }
 
     .flow-stages {
-      position: relative;
+      position: absolute;
+      inset: 0.85rem;
       z-index: 1;
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      grid-template-rows: repeat(2, minmax(6.4rem, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(3, minmax(0, 1fr));
       gap: 0.7rem;
-      height: 100%;
     }
 
     .flow-stage {
@@ -551,6 +551,36 @@
       display: grid;
       align-content: start;
       transition: transform 220ms cubic-bezier(0.25, 1, 0.5, 1), background 220ms cubic-bezier(0.25, 1, 0.5, 1), border-color 220ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .flow-stage[data-flow-step="3"] {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    .flow-stage[data-flow-step="4"] {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .flow-stage[data-flow-step="5"] {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .flow-stage[data-flow-step="6"] {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    .flow-stage[data-flow-step="7"] {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .flow-stage[data-flow-step="8"] {
+      grid-column: 3;
+      grid-row: 3;
     }
 
     .flow-stage[data-active="true"] {
@@ -580,7 +610,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 2;
+      z-index: 0;
     }
 
     .flow-path path {
@@ -933,50 +963,9 @@
 
     .asset-showcase {
       display: grid;
-      grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.15fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: clamp(1.5rem, 4vw, 3rem);
       align-items: start;
-    }
-
-    .device-demo {
-      border: 1px solid var(--line);
-      border-radius: 1rem;
-      background: oklch(0.985 0.006 80);
-      padding: 1.1rem;
-      box-shadow: var(--shadow);
-    }
-
-    .device-shell {
-      width: min(21rem, 100%);
-      margin: 0 auto;
-      aspect-ratio: 0.78;
-      border-radius: 2.4rem;
-      background: linear-gradient(145deg, oklch(0.96 0.004 80), oklch(0.88 0.006 80));
-      border: 1px solid oklch(0.72 0.015 80);
-      display: grid;
-      place-items: center;
-      box-shadow: inset 0 0 0 0.3rem oklch(0.985 0.006 80), 0 1rem 3rem oklch(0.4 0.035 80 / 0.18);
-    }
-
-    .round-screen {
-      width: 72%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      overflow: hidden;
-      background: oklch(0.98 0.008 80);
-      border: 0.35rem solid oklch(0.73 0.035 145);
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.35rem;
-      padding: 1rem;
-    }
-
-    .round-screen img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      border-radius: 0.45rem;
-      background: oklch(0.98 0.005 80);
     }
 
     .asset-grid {
@@ -1285,12 +1274,19 @@
       }
 
       .flow-stages {
+        position: relative;
+        inset: auto;
         grid-template-columns: minmax(0, 1fr);
-        grid-template-rows: repeat(8, minmax(4.6rem, auto));
+        grid-template-rows: repeat(9, minmax(4.6rem, auto));
       }
 
       .flow-facts {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .flow-stage {
+        grid-column: auto !important;
+        grid-row: auto !important;
       }
 
       .flow-path {
@@ -1489,6 +1485,7 @@
           <div class="pipeline-row">
             <div class="lane">Image phase</div>
             <div class="steps">
+              <button type="button" class="step accent-sage" data-map-step="bundle-repair" aria-pressed="false"><b>Bundle repair</b><span>Complete manifest roles.</span></button>
               <button type="button" class="step accent-sage" data-map-step="generate" aria-pressed="false"><b>Generate</b><span>Create runtime PNGs.</span></button>
               <button type="button" class="step accent-sage" data-map-step="curate" aria-pressed="false"><b>Curate</b><span>Verify real references.</span></button>
               <button type="button" class="step accent-sage" data-map-step="build" aria-pressed="false"><b>Build</b><span>Write assets and paths.</span></button>
@@ -1550,18 +1547,19 @@
           <div class="flow-panel">
             <div class="flow-board" aria-label="Animated full-pass workflow">
               <svg class="flow-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M 13 25 L 38 25 L 63 25 L 87 25 L 87 75 L 63 75 L 38 75 L 13 75"></path>
+                <path data-flow-path-line d="M 0 0"></path>
               </svg>
               <div class="flow-token" aria-hidden="true"></div>
               <div class="flow-stages">
                 <div class="flow-stage" data-flow-step="0"><b>Source lock</b><span>Master and source auditor freeze source promise.</span></div>
                 <div class="flow-stage" data-flow-step="1"><b>Text package</b><span>Writer creates package YAML and runtime beats.</span></div>
                 <div class="flow-stage" data-flow-step="2"><b>Post audit</b><span>Auditors check package against source contract.</span></div>
-                <div class="flow-stage" data-flow-step="3"><b>Generate / curate</b><span>Image agents create PNGs or accept real sources.</span></div>
-                <div class="flow-stage" data-flow-step="4"><b>Build assets</b><span>Builder writes package-local files and paths.</span></div>
-                <div class="flow-stage" data-flow-step="5"><b>Image QA</b><span>Validator checks style, beat fit, and references.</span></div>
-                <div class="flow-stage" data-flow-step="6"><b>Consumer QA</b><span>Fullstack and WonderLens AI load and exercise.</span></div>
-                <div class="flow-stage" data-flow-step="7"><b>Final review</b><span>Independent reviewer audits evidence and risk.</span></div>
+                <div class="flow-stage" data-flow-step="3"><b>Bundle repair</b><span>Manifest roles cover scenes, items, and references.</span></div>
+                <div class="flow-stage" data-flow-step="4"><b>Generate / curate</b><span>Image agents create PNGs or accept real sources.</span></div>
+                <div class="flow-stage" data-flow-step="5"><b>Build assets</b><span>Builder writes package-local files and paths.</span></div>
+                <div class="flow-stage" data-flow-step="6"><b>Image QA</b><span>Validator checks style, beat fit, and references.</span></div>
+                <div class="flow-stage" data-flow-step="7"><b>Consumer QA</b><span>Fullstack and WonderLens AI load and exercise.</span></div>
+                <div class="flow-stage" data-flow-step="8"><b>Final review</b><span>Independent reviewer audits evidence and risk.</span></div>
               </div>
             </div>
           </div>
@@ -1579,7 +1577,7 @@
               <button type="button" data-flow-restart>Restart</button>
               <button type="button" data-flow-loop aria-pressed="true">Loop on</button>
             </div>
-            <p class="flow-note" data-flow-status aria-live="polite">Playing. Step 1 of 8.</p>
+            <p class="flow-note" data-flow-status aria-live="polite">Playing. Step 1 of 9.</p>
             <p class="flow-note">
               The motion is deliberately procedural: each tick hands evidence to the next gate, similar to a decoder-style loop where state updates until the sequence is complete.
             </p>
@@ -1753,19 +1751,6 @@
           </p>
         </div>
         <div class="asset-showcase">
-          <div class="device-demo">
-            <div class="device-shell" aria-label="Prototype device display mock">
-              <div class="round-screen">
-                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/items/banana.png" alt="Flat Nordic banana item asset">
-                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_recognition_pop_challenge/items/strawberry.png" alt="Flat Nordic strawberry item asset">
-                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/items/book.png" alt="Flat Nordic book item asset">
-                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/items/cup.png" alt="Flat Nordic cup item asset">
-              </div>
-            </div>
-            <p>
-              Cat5 cards/items guide selection and capture. They do not replace real camera capture or the downstream `photo_id` handoff.
-            </p>
-          </div>
           <div>
             <div class="asset-grid">
               <div class="asset-tile">
@@ -2056,6 +2041,16 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           validation: "Every accepted activity has evidence or an explicit residual risk owner. Unsupported activities are not presented as playable.",
           repair: "If evidence is incomplete, route back to the owning phase before declaring the pass accepted."
         },
+        "bundle-repair": {
+          lane: "Image phase",
+          title: "Bundle repair",
+          purpose: "Make each package asset-ready by ensuring the standard scene bundle and required selectable or reference assets exist in the manifest.",
+          owner: "Asset manifest repair agent",
+          inputs: "asset_manifest.yaml, prod.md screen states, demo_support.yaml, package category, and known fullstack asset expectations.",
+          outputs: "Completed text-only asset manifest with scene, object, item, target, distractor, synthesis, and reference roles as needed.",
+          validation: "Manifest covers every runtime beat that needs a visual and keeps paths nullable until the image builder writes PNGs.",
+          repair: "Patch manifest roles and prompts only. Do not alter dialogue flow to fit missing assets."
+        },
         generate: {
           lane: "Image phase",
           title: "Generate",
@@ -2214,6 +2209,8 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
 
       const board = player.querySelector(".flow-board");
       const token = player.querySelector(".flow-token");
+      const pathSvg = player.querySelector(".flow-path");
+      const pathLine = player.querySelector("[data-flow-path-line]");
       const stages = Array.from(player.querySelectorAll(".flow-stage")).sort((a, b) => Number(a.dataset.flowStep) - Number(b.dataset.flowStep));
       const title = player.querySelector("[data-flow-title]");
       const copy = player.querySelector("[data-flow-copy]");
@@ -2247,6 +2244,13 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           use: "Use this gate to catch drift before image generation or runtime validation spends time on a weak package.",
           by: "Independent package auditor.",
           produces: "Post-write source audit, package quality notes, conversion risks, and repair instructions."
+        },
+        {
+          title: "Bundle repair",
+          copy: "Ensure the standard scene bundle exists, then add object, item, entity, target, distractor, synthesis, or reference assets when needed.",
+          use: "Use this after package audit and before image generation so every runtime beat has an explicit visual contract.",
+          by: "Asset manifest repair agent.",
+          produces: "Completed asset_manifest.yaml roles, prompts, references, variants, and nullable output paths."
         },
         {
           title: "Generate / curate",
@@ -2303,6 +2307,18 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
         });
       }
 
+      function updatePath(centers) {
+        if (!pathSvg || !pathLine || centers.length === 0) {
+          return;
+        }
+        const boardRect = board.getBoundingClientRect();
+        pathSvg.setAttribute("viewBox", `0 0 ${boardRect.width} ${boardRect.height}`);
+        pathLine.setAttribute("d", centers.map((center, index) => {
+          const command = index === 0 ? "M" : "L";
+          return `${command} ${center.x.toFixed(1)} ${center.y.toFixed(1)}`;
+        }).join(" "));
+      }
+
       function setActive(index) {
         if (index === activeIndex) {
           return;
@@ -2321,6 +2337,7 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
 
       function render() {
         const centers = getCenters();
+        updatePath(centers);
         const maxSegment = centers.length - 1;
         const rawPosition = progress * centers.length;
         const index = Math.min(Math.floor(rawPosition), maxSegment);
