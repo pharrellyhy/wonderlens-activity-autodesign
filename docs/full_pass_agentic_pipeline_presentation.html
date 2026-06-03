@@ -521,7 +521,7 @@
 
     .flow-board {
       position: relative;
-      min-height: 24rem;
+      min-height: 20rem;
       border-radius: 0.8rem;
       padding: 0.85rem;
       background:
@@ -536,8 +536,8 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      grid-template-rows: repeat(3, minmax(5.8rem, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(6.4rem, 1fr));
       gap: 0.7rem;
       height: 100%;
     }
@@ -678,6 +678,37 @@
       color: var(--muted);
       font-size: 0.78rem;
       line-height: 1.45;
+    }
+
+    .flow-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+
+    .flow-fact {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 0.72rem;
+      background: oklch(0.97 0.008 80);
+      padding: 0.72rem;
+    }
+
+    .flow-fact b {
+      display: block;
+      color: var(--brown);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .flow-fact span {
+      display: block;
+      margin-top: 0.32rem;
+      color: var(--ink);
+      font-size: 0.78rem;
+      line-height: 1.34;
+      overflow-wrap: anywhere;
     }
 
     .text-package {
@@ -845,8 +876,39 @@
     }
 
     .artifact-cluster h3 {
-      margin-bottom: 1rem;
+      margin-bottom: 0.55rem;
       font-size: 1.2rem;
+    }
+
+    .artifact-cluster p {
+      margin: 0 0 0.75rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+    .artifact-meta {
+      display: grid;
+      grid-template-columns: 5.6rem minmax(0, 1fr);
+      gap: 0.5rem;
+      align-items: start;
+      margin: 0.42rem 0 0.7rem;
+      padding-bottom: 0.64rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .artifact-meta b {
+      color: var(--brown);
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .artifact-meta span {
+      color: var(--ink);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
     }
 
     .file-pill {
@@ -1224,7 +1286,11 @@
 
       .flow-stages {
         grid-template-columns: minmax(0, 1fr);
-        grid-template-rows: repeat(9, minmax(4.6rem, auto));
+        grid-template-rows: repeat(8, minmax(4.6rem, auto));
+      }
+
+      .flow-facts {
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .flow-path {
@@ -1298,6 +1364,7 @@
       </ol>
       <p class="sidebar-note">
         Source docs: <br>
+        <a href="../goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md">full-pass run goal</a><br>
         <a href="full_pass_agentic_pipeline_explainer.md">full_pass_agentic_pipeline_explainer.md</a><br>
         <a href="../GOAL.md">GOAL.md</a>, <a href="../run.md">run.md</a>, <a href="../program.md">program.md</a><br>
         <a href="activity_asset_generation_workflow.md">activity_asset_generation_workflow.md</a>
@@ -1422,7 +1489,6 @@
           <div class="pipeline-row">
             <div class="lane">Image phase</div>
             <div class="steps">
-              <button type="button" class="step accent-sage" data-map-step="bundle-repair" aria-pressed="false"><b>Bundle repair</b><span>Complete manifest roles.</span></button>
               <button type="button" class="step accent-sage" data-map-step="generate" aria-pressed="false"><b>Generate</b><span>Create runtime PNGs.</span></button>
               <button type="button" class="step accent-sage" data-map-step="curate" aria-pressed="false"><b>Curate</b><span>Verify real references.</span></button>
               <button type="button" class="step accent-sage" data-map-step="build" aria-pressed="false"><b>Build</b><span>Write assets and paths.</span></button>
@@ -1455,7 +1521,7 @@
             </div>
             <div class="map-detail-item">
               <dt>Inputs</dt>
-              <dd data-map-detail-inputs>GOAL.md, run.md, program.md, workbook row set, current branch, and run ID.</dd>
+              <dd data-map-detail-inputs>Scoped full-pass goal, compact GOAL.md/run.md defaults, program.md, workbook row set, current branch, and run ID.</dd>
             </div>
             <div class="map-detail-item">
               <dt>Outputs</dt>
@@ -1484,32 +1550,36 @@
           <div class="flow-panel">
             <div class="flow-board" aria-label="Animated full-pass workflow">
               <svg class="flow-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M 17 17 L 50 17 L 83 17 L 83 50 L 50 50 L 17 50 L 17 83 L 50 83 L 83 83"></path>
+                <path d="M 13 25 L 38 25 L 63 25 L 87 25 L 87 75 L 63 75 L 38 75 L 13 75"></path>
               </svg>
               <div class="flow-token" aria-hidden="true"></div>
               <div class="flow-stages">
-                <div class="flow-stage" data-flow-step="0"><b>Source lock</b><span>TSV row, source snapshot, adaptation brief.</span></div>
-                <div class="flow-stage" data-flow-step="1"><b>Text package</b><span>Five files, runtime beats, demo gates, asset manifest.</span></div>
-                <div class="flow-stage" data-flow-step="2"><b>Post audit</b><span>Intent drift check before consumer work.</span></div>
-                <div class="flow-stage" data-flow-step="5"><b>Image QA</b><span>Style, crop, beat alignment, reference fidelity.</span></div>
-                <div class="flow-stage" data-flow-step="4"><b>Asset build</b><span>Package-local 512x512 PNGs and manifest paths.</span></div>
-                <div class="flow-stage" data-flow-step="3"><b>Bundle repair</b><span>Scene bundle plus object, item, and reference assets.</span></div>
-                <div class="flow-stage" data-flow-step="6"><b>Import</b><span>Fullstack package import and `step_instructions` shape.</span></div>
-                <div class="flow-stage" data-flow-step="7"><b>Runtime QA</b><span>Fullstack and WonderLens AI dialogue strategies.</span></div>
-                <div class="flow-stage" data-flow-step="8"><b>Final review</b><span>Independent evidence audit and residual risk.</span></div>
+                <div class="flow-stage" data-flow-step="0"><b>Source lock</b><span>Master and source auditor freeze source promise.</span></div>
+                <div class="flow-stage" data-flow-step="1"><b>Text package</b><span>Writer creates package YAML and runtime beats.</span></div>
+                <div class="flow-stage" data-flow-step="2"><b>Post audit</b><span>Auditors check package against source contract.</span></div>
+                <div class="flow-stage" data-flow-step="3"><b>Generate / curate</b><span>Image agents create PNGs or accept real sources.</span></div>
+                <div class="flow-stage" data-flow-step="4"><b>Build assets</b><span>Builder writes package-local files and paths.</span></div>
+                <div class="flow-stage" data-flow-step="5"><b>Image QA</b><span>Validator checks style, beat fit, and references.</span></div>
+                <div class="flow-stage" data-flow-step="6"><b>Consumer QA</b><span>Fullstack and WonderLens AI load and exercise.</span></div>
+                <div class="flow-stage" data-flow-step="7"><b>Final review</b><span>Independent reviewer audits evidence and risk.</span></div>
               </div>
             </div>
           </div>
           <div class="flow-detail">
             <h3 data-flow-title>Source lock</h3>
             <p data-flow-copy>Lock the source promise before writing package files.</p>
+            <div class="flow-facts" aria-label="Selected workflow step ownership">
+              <div class="flow-fact"><b>Use</b><span data-flow-use>Start a run from the scoped full-pass goal and source snapshot.</span></div>
+              <div class="flow-fact"><b>Generated by</b><span data-flow-by>Master orchestrator and source-intent auditor.</span></div>
+              <div class="flow-fact"><b>Produces</b><span data-flow-produces>Run manifest, assignment snapshot, adaptation brief, and pre-package audit.</span></div>
+            </div>
             <div class="flow-meter" aria-hidden="true"><span></span></div>
             <div class="flow-controls" aria-label="Workflow animation controls">
               <button type="button" data-flow-toggle>Pause</button>
               <button type="button" data-flow-restart>Restart</button>
               <button type="button" data-flow-loop aria-pressed="true">Loop on</button>
             </div>
-            <p class="flow-note" data-flow-status aria-live="polite">Playing. Step 1 of 9.</p>
+            <p class="flow-note" data-flow-status aria-live="polite">Playing. Step 1 of 8.</p>
             <p class="flow-note">
               The motion is deliberately procedural: each tick hands evidence to the next gate, similar to a decoder-style loop where state updates until the sequence is complete.
             </p>
@@ -1626,6 +1696,12 @@
         <div class="artifact-map">
           <div class="artifact-cluster">
             <h3>Source and run</h3>
+            <p>
+              Use this cluster to prove what the run was allowed to generate before package writing began.
+            </p>
+            <div class="artifact-meta"><b>Generated by</b><span>Master orchestrator and source-intent auditor.</span></div>
+            <div class="artifact-meta"><b>Use</b><span>Freeze scope, source promise, run flags, blockers, and evidence paths.</span></div>
+            <div class="artifact-meta"><b>Produces</b><span>Source snapshot, assignment snapshot, pre-package audit, and run manifest.</span></div>
             <span class="file-pill">original_activity_concepts_2026-05-29.tsv</span>
             <span class="file-pill">source_activity_concepts.md</span>
             <span class="file-pill">assignment_snapshot.md</span>
@@ -1634,6 +1710,12 @@
           </div>
           <div class="artifact-cluster">
             <h3>Autodesign package</h3>
+            <p>
+              Use this cluster as the direct import contract for fullstack-demo and WonderLens AI.
+            </p>
+            <div class="artifact-meta"><b>Generated by</b><span>Text-only package writer plus image-only asset generator and builder.</span></div>
+            <div class="artifact-meta"><b>Use</b><span>Load the activity, convert runtime beats, serve package-local assets, and repair package-owned gaps.</span></div>
+            <div class="artifact-meta"><b>Produces</b><span>Five required package files, demo support, asset manifest, PNG assets, items, and reference sources.</span></div>
             <span class="file-pill">spec.md</span>
             <span class="file-pill">prod.md</span>
             <span class="file-pill">tag_block.yaml</span>
@@ -1642,9 +1724,17 @@
             <span class="file-pill">demo_support.yaml</span>
             <span class="file-pill">asset_manifest.yaml</span>
             <span class="file-pill">assets/*.png</span>
+            <span class="file-pill">assets/items/*.png</span>
+            <span class="file-pill">assets/sources/*</span>
           </div>
           <div class="artifact-cluster">
             <h3>Consumer evidence</h3>
+            <p>
+              Use this cluster to decide whether acceptance, package repair, downstream follow-up, or product gating is correct.
+            </p>
+            <div class="artifact-meta"><b>Generated by</b><span>Import validator, fullstack validator, WonderLens AI validator, image QA, and final reviewer.</span></div>
+            <div class="artifact-meta"><b>Use</b><span>Check runtime fidelity, asset resolution, dialogue behavior, unsupported mechanics, and residual risk.</span></div>
+            <div class="artifact-meta"><b>Produces</b><span>Converted instructions, runtime artifacts, import reports, transcripts, QA notes, and review dashboard.</span></div>
             <span class="file-pill">step_instructions</span>
             <span class="file-pill">runtime.yaml</span>
             <span class="file-pill">import reports</span>
@@ -1882,9 +1972,9 @@
         <p>
           Use this mode for larger or production-scale passes, where package generation, asset generation, downstream validation, dialogue QA, repair loops, and final review must happen in one evidence-backed run.
         </p>
-        <div class="command-box">/goal Execute GOAL.md end to end using run.md with asset_build=generate_and_curate full_pass_pipeline=true.</div>
+        <div class="command-box">/goal Execute goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md end to end.</div>
         <p>
-          The manifest must record both flags, and the asset phase uses the full-pass builder sequence before downstream dialogue QA.
+          The scoped goal owns the full-pass flags, delegated-agent rules, credential boundaries, and live validation order. The manifest still records the flags, and the asset phase uses the full-pass builder sequence before downstream dialogue QA.
         </p>
         <div class="command-box">python3 scripts/repair_full_pass_asset_bundle.py runs/&lt;run_id&gt;
 python3 scripts/build_activity_assets.py runs/&lt;run_id&gt; --mode generate_and_curate
@@ -1911,7 +2001,7 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           title: "Run setup",
           purpose: "Start the full pass with exact source inputs, repo state, run flags, assignment snapshot, and evidence locations before any package writing begins.",
           owner: "Master orchestrator",
-          inputs: "GOAL.md, run.md, program.md, workbook row set, current branch, and run ID.",
+          inputs: "Scoped full-pass goal, compact GOAL.md/run.md defaults, program.md, workbook row set, current branch, and run ID.",
           outputs: "run_manifest.yaml, assignment_snapshot.md, repo-state note, and run dashboard skeleton.",
           validation: "Manifest records `source.full_pass_pipeline: true` and `source.asset_build: generate_and_curate` before authoring starts.",
           repair: "Stop the pass and repair setup before package generation if flags, snapshots, or source pointers are missing."
@@ -1965,16 +2055,6 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           outputs: "Final run report, updated dashboard, accepted package list, blocker list, and next-action summary.",
           validation: "Every accepted activity has evidence or an explicit residual risk owner. Unsupported activities are not presented as playable.",
           repair: "If evidence is incomplete, route back to the owning phase before declaring the pass accepted."
-        },
-        "bundle-repair": {
-          lane: "Image phase",
-          title: "Bundle repair",
-          purpose: "Make each package asset-ready by ensuring the standard scene bundle and required selectable or reference assets exist in the manifest.",
-          owner: "Asset manifest repair agent",
-          inputs: "asset_manifest.yaml, prod.md screen states, demo_support.yaml, package category, and known fullstack asset expectations.",
-          outputs: "Completed text-only asset manifest with scene, object, item, target, distractor, synthesis, and reference roles as needed.",
-          validation: "Manifest covers every runtime beat that needs a visual and keeps paths nullable until the image builder writes PNGs.",
-          repair: "Patch manifest roles and prompts only. Do not alter dialogue flow to fit missing assets."
         },
         generate: {
           lane: "Image phase",
@@ -2137,6 +2217,9 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
       const stages = Array.from(player.querySelectorAll(".flow-stage")).sort((a, b) => Number(a.dataset.flowStep) - Number(b.dataset.flowStep));
       const title = player.querySelector("[data-flow-title]");
       const copy = player.querySelector("[data-flow-copy]");
+      const use = player.querySelector("[data-flow-use]");
+      const by = player.querySelector("[data-flow-by]");
+      const produces = player.querySelector("[data-flow-produces]");
       const status = player.querySelector("[data-flow-status]");
       const meter = player.querySelector(".flow-meter span");
       const toggle = player.querySelector("[data-flow-toggle]");
@@ -2146,39 +2229,59 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
       const stepText = [
         {
           title: "Source lock",
-          copy: "Capture the TSV-backed source promise, child role, sequence, required action, and asset promise before writing package files."
+          copy: "Capture the TSV-backed source promise, child role, sequence, required action, and asset promise before writing package files.",
+          use: "Start here when the full-pass goal begins. This freezes what the package must preserve.",
+          by: "Master orchestrator and source-intent auditor.",
+          produces: "Run manifest, assignment snapshot, adaptation brief, and pre-package audit."
         },
         {
           title: "Text package",
-          copy: "Write the five required files plus demo extensions. Runtime beats, demo gates, entity binding, and text-only asset contracts are explicit before image build."
+          copy: "Write the five required files plus demo extensions. Runtime beats, demo gates, entity binding, and text-only asset contracts are explicit before image build.",
+          use: "Use this as the activity contract that both direct consumers must import without inventing missing behavior.",
+          by: "Text-only package writer.",
+          produces: "spec.md, prod.md, tag_block.yaml, recap and dashboard templates, demo_support.yaml, and asset_manifest.yaml."
         },
         {
           title: "Post audit",
-          copy: "Recheck the package against source intent before downstream systems touch it."
+          copy: "Recheck the package against source intent before downstream systems touch it.",
+          use: "Use this gate to catch drift before image generation or runtime validation spends time on a weak package.",
+          by: "Independent package auditor.",
+          produces: "Post-write source audit, package quality notes, conversion risks, and repair instructions."
         },
         {
-          title: "Bundle repair",
-          copy: "Ensure the fullstack-style scene bundle exists, then add object, item, entity, target, distractor, or reference assets when needed."
+          title: "Generate / curate",
+          copy: "Create illustrative PNGs for beat assets and selectable items, or accept real sources when the activity promises a real reference.",
+          use: "Use this phase after package text is stable. It turns asset_manifest.yaml into visual candidates and source-backed material.",
+          by: "Image generation agent and reference curator.",
+          produces: "Generated PNG candidates, accepted source originals, source metadata, and curation notes."
         },
         {
-          title: "Asset build",
-          copy: "Build package-local 512x512 runtime PNGs and update `asset_manifest.yaml` paths without changing the activity flow."
+          title: "Build assets",
+          copy: "Build package-local 512x512 runtime PNGs and update `asset_manifest.yaml` paths without changing the activity flow.",
+          use: "Use this to make assets importable by consumers from stable package-local paths.",
+          by: "Asset build agent.",
+          produces: "Final PNG files, updated asset manifest paths, and build validation logs."
         },
         {
           title: "Image QA",
-          copy: "Check style, crop safety, beat alignment, reference fidelity, no duplicate selectable items, and no early answer reveal."
+          copy: "Check style, crop safety, beat alignment, reference fidelity, no duplicate selectable items, and no early answer reveal.",
+          use: "Use this gate to decide whether to repair images, replace sources, or block a reference-bound case.",
+          by: "Image quality validator.",
+          produces: "Image QA report with crop notes, duplicate-item notes, reference fidelity notes, and repair routes."
         },
         {
-          title: "Package import",
-          copy: "Fullstack-demo imports the package as provided, resolves assets, and preserves `step_instructions` quality."
-        },
-        {
-          title: "Runtime QA",
-          copy: "Fullstack-demo and WonderLens AI run dialogue strategies such as ideal, wrong, help, off-topic, premature done, and silence."
+          title: "Consumer QA",
+          copy: "Fullstack-demo imports the package as provided, WonderLens AI loads matching runtime artifacts, and both exercise dialogue behavior.",
+          use: "Use this phase to prove direct consumers preserve package intent and classify downstream-owned failures.",
+          by: "Package/import validator, fullstack runtime validator, and WonderLens AI runtime validator.",
+          produces: "Converted step_instructions, runtime.yaml or equivalent artifacts, import reports, transcripts, screenshots, and issue classifications."
         },
         {
           title: "Final review",
-          copy: "An independent reviewer reads packages, audits, reports, transcripts, image QA, repair notes, manifest, and dashboard before acceptance."
+          copy: "An independent reviewer reads packages, audits, reports, transcripts, image QA, repair notes, manifest, and dashboard before acceptance.",
+          use: "Use this only after evidence exists for every accepted activity or every blocker has an explicit owner.",
+          by: "Final independent reviewer.",
+          produces: "Accepted package list, blocker list, residual-risk report, final dashboard, and next-action summary."
         }
       ];
 
@@ -2211,6 +2314,9 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
         const current = stepText[index];
         title.textContent = current.title;
         copy.textContent = current.copy;
+        use.textContent = current.use;
+        by.textContent = current.by;
+        produces.textContent = current.produces;
       }
 
       function render() {
