@@ -266,22 +266,49 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
             self.assertEqual(0, result["required_failures"])
             self.assertEqual([], issues)
             self.assertEqual(
-                "assets/moss_icon__round_1024.png",
+                "assets/items/moss_icon__round_1024.png",
                 manifest["assets"][0]["variants"][0]["path"],
             )
             self.assertEqual(
                 "assets/orion_card__round_1024.png",
                 manifest["assets"][1]["variants"][0]["path"],
             )
-            with Image.open(package_dir / "assets" / "moss_icon__round_1024.png") as image:
+            with Image.open(package_dir / "assets" / "items" / "moss_icon__round_1024.png") as image:
                 self.assertEqual((1024, 1024), image.size)
-            with Image.open(package_dir / "assets" / "moss_icon__catalog_512.png") as image:
+            with Image.open(package_dir / "assets" / "items" / "moss_icon__catalog_512.png") as image:
                 self.assertEqual((512, 512), image.size)
             self.assertTrue((package_dir / "assets" / "sources" / "orion_card__source_metadata.yaml").exists())
             statuses = {(entry["asset_id"], entry["status"]) for entry in asset_outputs["entries"]}
             self.assertIn(("moss_icon", "generated"), statuses)
             self.assertIn(("orion_card", "curated"), statuses)
             self.assertTrue((run_dir / "generated_assets" / "work_items" / "asset_smoke__moss_icon.md").exists())
+
+    def test_collection_assets_build_under_items_directory_and_work_item_names_style_sources(self):
+        builder = load_script("build_activity_assets")
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = pathlib.Path(tmp) / "runs" / "test_run"
+            package_dir = base_run(run_dir)
+            write_png(run_dir / "generated_assets" / "inbox" / "asset_smoke" / "moss_icon.png")
+            write_png(package_dir / "assets" / "sources" / "orion_card__source_original.png")
+            write_reference_metadata(package_dir)
+
+            result = builder.build_assets(run_dir, mode="generate_and_curate")
+            manifest = read_yaml(package_dir / "asset_manifest.yaml")
+            work_item = run_dir / "generated_assets" / "work_items" / "asset_smoke__moss_icon.md"
+            item_variant_exists = (
+                package_dir / "assets" / "items" / "moss_icon__round_1024.png"
+            ).exists()
+            work_item_text = work_item.read_text()
+
+        self.assertEqual(0, result["required_failures"])
+        self.assertEqual(
+            "assets/items/moss_icon__round_1024.png",
+            manifest["assets"][0]["variants"][0]["path"],
+        )
+        self.assertTrue(item_variant_exists)
+        self.assertIn("docs/asset_style_reference/wonderlens-activity-style.md", work_item_text)
+        self.assertIn("docs/asset_style_reference/style-reference-flat-nordic.png", work_item_text)
+        self.assertIn("Codex built-in imagegen", work_item_text)
 
     def test_missing_required_inputs_leave_paths_null_and_record_failures(self):
         builder = load_script("build_activity_assets")
@@ -307,7 +334,7 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
             package_dir = base_run(run_dir)
             manifest_path = package_dir / "asset_manifest.yaml"
             manifest = read_yaml(manifest_path)
-            manifest["assets"][0]["variants"][0]["path"] = "assets/moss_icon__round_1024.png"
+            manifest["assets"][0]["variants"][0]["path"] = "assets/items/moss_icon__round_1024.png"
             write_yaml(manifest_path, manifest)
 
             result = builder.build_assets(run_dir, mode="generate_and_curate")
@@ -326,7 +353,7 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
             write_reference_metadata(package_dir)
 
             first = builder.build_assets(run_dir, mode="generate_and_curate")
-            output = package_dir / "assets" / "moss_icon__round_1024.png"
+            output = package_dir / "assets" / "items" / "moss_icon__round_1024.png"
             metadata_path = package_dir / "assets" / "sources" / "orion_card__source_metadata.yaml"
             first_metadata = metadata_path.read_text()
             output.write_bytes(b"reviewed-output")
@@ -419,11 +446,11 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
                     "id": "icon_64",
                     "target": "catalog_grid",
                     "size": "64x64",
-                    "path": "assets/moss_icon__icon_64.png",
+                    "path": "assets/items/moss_icon__icon_64.png",
                 }
             ]
             write_yaml(package_dir / "asset_manifest.yaml", manifest)
-            write_png(package_dir / "assets" / "moss_icon__icon_64.png", size=(64, 64))
+            write_png(package_dir / "assets" / "items" / "moss_icon__icon_64.png", size=(64, 64))
             work_item = run_dir / "generated_assets" / "work_items" / "asset_smoke__moss_icon.md"
             work_item.parent.mkdir(parents=True, exist_ok=True)
             work_item.write_text("# moss work item\n")
@@ -439,7 +466,7 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
                             "output_variants": [
                                 {
                                     "variant_id": "icon_64",
-                                    "path": "assets/moss_icon__icon_64.png",
+                                    "path": "assets/items/moss_icon__icon_64.png",
                                     "size": "64x64",
                                 }
                             ],
@@ -469,7 +496,7 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
 
         self.assertIn("Generated Runtime Assets", html)
         self.assertIn("generate_and_curate", html)
-        self.assertIn("assets/moss_icon__round_1024.png", html)
+        self.assertIn("assets/items/moss_icon__round_1024.png", html)
         self.assertIn("Approved internal Orion chart", html)
         self.assertIn("asset_smoke__orion_card.md", html)
 
@@ -528,6 +555,7 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
             self.assertEqual(0, result.returncode, result.stdout)
             self.assertIn("built=2", result.stdout)
             self.assertTrue((package_dir / "assets" / "orion_card__round_1024.png").exists())
+            self.assertTrue((package_dir / "assets" / "items" / "moss_icon__round_1024.png").exists())
 
 
 if __name__ == "__main__":

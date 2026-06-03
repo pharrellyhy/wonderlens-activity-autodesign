@@ -46,6 +46,7 @@ STANDARD_BEAT_ASSET_IDS = {
     "celebrate_scene",
     "closing_scene",
 }
+ITEM_ASSET_ROLES = {"collection_correct", "collection_distractor"}
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -86,6 +87,19 @@ def composite_reasons(asset: dict[str, Any]) -> list[str]:
     return reasons
 
 
+def item_path_reasons(asset: dict[str, Any]) -> list[str]:
+    if norm(asset.get("role")) not in ITEM_ASSET_ROLES:
+        return []
+    reasons: list[str] = []
+    for variant in asset.get("variants", []):
+        if not isinstance(variant, dict):
+            continue
+        path = norm(variant.get("path"))
+        if path and not path.startswith("assets/items/"):
+            reasons.append(f"collection item variant path is not under assets/items/: {path}")
+    return reasons
+
+
 def validate_package(package_dir: Path) -> list[dict[str, Any]]:
     manifest = load_yaml(package_dir / "asset_manifest.yaml")
     activity_id = norm(manifest.get("activity_id")) or package_dir.name
@@ -98,7 +112,7 @@ def validate_package(package_dir: Path) -> list[dict[str, Any]]:
         asset_id = norm(asset.get("id"))
         if not asset_id:
             continue
-        reasons = composite_reasons(asset)
+        reasons = composite_reasons(asset) + item_path_reasons(asset)
         display_count = display_reference_count(prod_text, asset_id)
         if reasons and display_count >= 3 and len(manifest.get("assets", [])) == 1:
             reasons.append(

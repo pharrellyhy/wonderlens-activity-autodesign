@@ -37,6 +37,8 @@ BEAT_LABELS = {
     "celebrate_scene": "Celebration scene",
     "closing_scene": "Closing scene",
 }
+STYLE_REFERENCE_MD = "docs/asset_style_reference/wonderlens-activity-style.md"
+STYLE_REFERENCE_IMAGE = "docs/asset_style_reference/style-reference-flat-nordic.png"
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -90,6 +92,11 @@ def section_screen(text: str, marker_pattern: str) -> str:
 
 
 def screen_context(package_dir: Path, asset_id: str) -> str:
+    if asset_id == "celebrate_scene" and bundle.needs_synthesis_scene(package_dir):
+        return (
+            "Use `celebrate_scene` only as a short celebration state after the synthesis payoff; "
+            "do not repeat `synthesis_scene`, accepted-photo evidence, app badges, progress, or labels."
+        )
     text = prod_text(package_dir)
     patterns = {
         "activity_icon": r"^##\s+.+?$",
@@ -380,6 +387,7 @@ def prompt_for(activity_id: str, activity_name: str, asset_id: str, role: str, c
         f"{context_clause} "
         f"{direction} "
         "Style: flat Nordic children's illustration matching the quiet white WonderLens prototype; "
+        f"use repo-local style reference `{STYLE_REFERENCE_MD}` and visual target `{STYLE_REFERENCE_IMAGE}`; "
         "broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, "
         "restrained boho pastels, airy negative space, organic simple silhouettes. "
         "No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, "

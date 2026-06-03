@@ -114,6 +114,21 @@ under `runs/<run_id>/activity_packages/<activity_id>/assets/`, updates
 package-relative paths in `asset_manifest.yaml`, and writes run audit files
 under `runs/<run_id>/generated_assets/`.
 
+For item/object picker assets, the builder writes collection item variants
+under package-local `assets/items/`, not beside beat-scene/background PNGs.
+
+For subset/full-pass runs, write or update:
+
+```text
+runs/<run_id>/manual_audits/<activity_id>_prompt_trace.md
+```
+
+The trace must compare package step instructions with recorded downstream LLM
+prompt material, and package image descriptions with the exact final imagegen
+prompt recorded by the image agent. If the exact provider payload is not
+available, say so and cite the closest recorded artifact. Keep request payloads
+sanitized and do not include secrets.
+
 ## Reference-Bound Asset Workflow
 
 Reference-bound assets include constellations, artworks, maps, scientific

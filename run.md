@@ -41,6 +41,7 @@ runs/<run_id>/
 ├── source_snapshots/
 ├── source_intent_audits/
 ├── generated_assets/        # only when an asset build runs
+├── manual_audits/
 ├── review_notes.md
 └── review.html              # generated at end of run
 ```
@@ -287,6 +288,20 @@ Asset rules:
 Run independent image QA whenever PNG assets exist. Repair image-owned failures,
 rebuild, and revalidate.
 
+For subset/full-pass runs, write a run-local manual prompt trace for each
+generated package under:
+
+```text
+runs/<run_id>/manual_audits/<activity_id>_prompt_trace.md
+```
+
+The trace must list, per runtime step, package instruction vs recorded
+downstream LLM prompt material and image description vs exact recorded imagegen
+prompt. If a provider or tool does not expose the raw request payload, state
+that limitation explicitly and point to the closest recorded prompt material
+such as `step_instructions`, `asset_manifest.yaml`, and generated asset work
+items. Do not include secrets or credential material.
+
 ## Consumer And Full-Pass Gates
 
 When `full_pass_pipeline=true`, use the scoped goal file as the detailed
@@ -300,6 +315,9 @@ ordering contract. At minimum:
   spawning another;
 - validate fullstack-demo import/conversion before live dialogue QA;
 - validate WonderLens AI runtime generation/load and dialogue behavior;
+- reject generic downstream picker placeholders such as `Matching placeholder`,
+  `/icons/green_apple.png`, or `/icons/straight_stick.png` when package item
+  assets exist;
 - classify failures as package-owned, fullstack-owned, WonderLens-owned,
   image-owned, or product-owned;
 - repair package-owned and image-owned issues in autodesign, then revalidate;

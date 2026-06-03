@@ -37,6 +37,9 @@ except ImportError as exc:  # pragma: no cover - environment guard
 
 SUPPORTED_MODES = {"generate_illustrative", "curate_reference", "generate_and_curate"}
 SAFE_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9_]*$")
+ITEM_ASSET_ROLES = {"collection_correct", "collection_distractor"}
+STYLE_REFERENCE_MD = "docs/asset_style_reference/wonderlens-activity-style.md"
+STYLE_REFERENCE_IMAGE = "docs/asset_style_reference/style-reference-flat-nordic.png"
 PREFERRED_ILLUSTRATIVE_SOURCE_SIZE = (512, 512)
 ACCEPTED_ILLUSTRATIVE_SOURCE_SIZES = {(512, 512)}
 ACCEPTED_REFERENCE_SOURCE_TYPES = {
@@ -142,9 +145,11 @@ def discover_package_dirs(run_dir: Path) -> list[Path]:
     return sorted(path.parent for path in package_root.rglob("asset_manifest.yaml"))
 
 
-def safe_output_path(package_dir: Path, asset_id: str, variant_id: str) -> Path:
-    asset_id = validate_safe_id(asset_id, "asset id")
+def safe_output_path(package_dir: Path, asset: dict[str, Any], variant_id: str) -> Path:
+    asset_id = validate_safe_id(asset.get("id"), "asset id")
     variant_id = validate_safe_id(variant_id, "variant id")
+    if norm(asset.get("role")) in ITEM_ASSET_ROLES:
+        return package_dir / "assets" / "items" / f"{asset_id}__{variant_id}.png"
     return package_dir / "assets" / f"{asset_id}__{variant_id}.png"
 
 
@@ -242,7 +247,8 @@ def write_work_item(
     preferred_source = f"{PREFERRED_ILLUSTRATIVE_SOURCE_SIZE[0]}x{PREFERRED_ILLUSTRATIVE_SOURCE_SIZE[1]}"
     guidance = (
         f"Generate exactly one {preferred_source} source PNG into "
-        f"`generated_assets/inbox/{activity_id}/{asset_id}.png` using the prompt and device style. "
+        f"`generated_assets/inbox/{activity_id}/{asset_id}.png` using Codex built-in imagegen, "
+        f"the prompt below, `{STYLE_REFERENCE_MD}`, and `{STYLE_REFERENCE_IMAGE}`. "
         "The source PNG must contain one visual unit for this asset role only; split scenes, objects, "
         "items, characters, icons, badges, and distractors into separate asset IDs instead of combining "
         "multiple cards or a contact sheet in one runtime image. If the image tool returns a larger "
@@ -267,6 +273,16 @@ Transformation policy: `{norm(asset.get('transformation_policy'))}`
 
 {norm(asset.get('prompt_en')) or 'No prompt recorded.'}
 
+## Style Reference Required For Imagegen
+
+- Style prompt: `{STYLE_REFERENCE_MD}`
+- Reference image: `{STYLE_REFERENCE_IMAGE}`
+- Tool: Codex built-in imagegen
+
+When generating an illustrative source PNG, combine the asset-specific prompt
+above with the style prompt and use the reference image as the visual target.
+Do not substitute SVG, vector, script-generated, or placeholder art.
+
 ## Declared Sources
 
 {sources}
@@ -278,6 +294,13 @@ Transformation policy: `{norm(asset.get('transformation_policy'))}`
 ## Agent Instructions
 
 {guidance}
+
+## Prompt Trace Requirement
+
+Record the exact final prompt text submitted to imagegen, or state that the
+provider/tool did not expose an exact request payload. Keep secrets out of
+trace files. For subset/full-pass runs, copy this evidence into the run-local
+manual prompt trace for the activity.
 
 Do not use contact sheets, multi-card sheets, labels, or baked UI chrome as
 runtime assets. Do not use random approximations for reference-bound assets.
@@ -525,7 +548,7 @@ def build_asset(
                 if not isinstance(variant, dict):
                     continue
                 variant_id = norm(variant.get("id"))
-                output_path = safe_output_path(package_dir, asset_id, variant_id)
+                output_path = safe_output_path(package_dir, asset, variant_id)
                 try:
                     resize_png(source_image, output_path, parse_size(variant.get("size")), force=force)
                 except Exception as exc:  # pragma: no cover - defensive guard

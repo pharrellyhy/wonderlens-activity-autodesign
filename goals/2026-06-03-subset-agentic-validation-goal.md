@@ -10,7 +10,7 @@ pipeline before resuming any larger/full pass.
 
 ## Objective
 
-Run a five-activity subset through the current agentic generation, asset,
+Run a one-activity subset through the current agentic generation, asset,
 consumer-conversion, dialogue-QA, image-QA, and repair gates using 512x512 image
 assets.
 
@@ -26,21 +26,14 @@ The finished run must prove that:
 
 ## Scope
 
-Process only the `assignments.md` section:
+Process only the active `assignments.md` row:
 
 ```text
-## 2026-06-03 Subset Agentic Validation
+concept_phoneme_hunt_collect
 ```
 
-The scoped rows are:
-
-- `concept_scavenger_hunt_collect` -- Cat5 synthesis candidate
-- `concept_phoneme_hunt_collect`
-- `concept_constellation_star_count_enumerate`
-- `concept_guided_drawing_probe`
-- `concept_recognition_pop_probe`
-
-Do not process any other unchecked `assignments.md` rows.
+Do not process archived rows in `docs/assignments_archive.md` or any other
+unchecked rows if additional rows are added later.
 
 ## Design Decisions
 
@@ -67,22 +60,10 @@ Do not process any other unchecked `assignments.md` rows.
   standard scene assets are `activity_icon`, `intro_scene`, `rules_scene`,
   `round_1_scene`, `round_2_scene`, `round_3_scene`, `celebrate_scene`, and
   `closing_scene`; Cat5/synthesis flows also require `synthesis_scene`.
-- Treat Scavenger Hunt as the Cat5 synthesis candidate. It must collect
-  multiple child-found items and then synthesize the collection into a shared
-  rule, pattern, short summary, or story payoff instead of ending with a generic
-  completion line.
-- For Constellation Star Count, preserve the original source intent: child
-  chooses a number, the device shows an approved real constellation card that
-  matches that number of guide stars, and the AI shares brief background
-  information about that constellation. Do not turn it into counting stars in a
-  generic image.
-- For Guided Drawing, represent the current V1 behavior honestly as
-  text-guided child/caregiver self-report with step-card assets, no visual
-  assessment, and no photo-verification claim.
-- For Recognition Pop and any picker/object activity, scene backgrounds must
-  not duplicate selectable targets or distractors that compete with separate
-  picker sprites.
-- For any picker/object activity, selectable item/object PNGs must be declared
+- For `concept_phoneme_hunt_collect`, preserve the original source intent:
+  the AI introduces a target sound, then the child finds one indoor treasure
+  whose spoken word starts with that sound.
+- Selectable item/object PNGs must be declared
   separately and built under package-local `assets/items/`, not mixed with
   scene/background assets.
 
@@ -157,7 +138,8 @@ descriptions, or final responses.
 
 ### Autodesign Package Quality
 
-- Exactly the five scoped rows are snapshotted and processed.
+- Exactly the one scoped row is snapshotted and processed:
+  `concept_phoneme_hunt_collect`.
 - Every generated package has the five required files plus
   `demo_support.yaml` and `asset_manifest.yaml`.
 - `prod.md` contains machine-convertible `Runtime AI instruction` lines for
@@ -176,6 +158,11 @@ descriptions, or final responses.
 - Package-local generated/curated PNGs are built and validated at 512x512.
 - Generated illustrative source PNGs come from Codex built-in imagegen and
   match `docs/asset_style_reference/`.
+- Run-local manual prompt trace exists at
+  `runs/<run_id>/manual_audits/concept_phoneme_hunt_collect_prompt_trace.md`
+  and lists, per runtime step, package instruction vs recorded downstream LLM
+  prompt material plus image description vs exact recorded imagegen prompt or
+  an explicit provider-payload logging gap.
 - Image QA evidence confirms role match, style consistency, crop safety,
   scene/dialogue alignment, no baked UI, no duplicate picker objects in scene
   backgrounds, no premature answer reveal, and reference fidelity where
@@ -188,10 +175,19 @@ descriptions, or final responses.
 - Fullstack-demo imports/loads the subset packages from the required worktree.
 - Fullstack converted `step_instructions` are at least as rich as current
   high-quality activity instructions such as `fluffy_expedition_dandelion.md`.
+- Fullstack export does not use generic placeholder collection entries such as
+  `Matching placeholder`, `/icons/green_apple.png`, or `/icons/straight_stick.png`
+  for `concept_phoneme_hunt_collect`; picker entries must come from package
+  assets or be recorded as a downstream-owned failure.
 - Fullstack live or runtime-equivalent dialogue QA exercises multiple child
   input strategies, including expected answer, wrong/unproductive answer,
   help/confusion, silence/no response, and premature done where applicable.
 - WonderLens AI converts/loads the subset packages cleanly.
+- WonderLens AI emits package `asset_manifest.yaml` and runtime/package asset
+  references without an empty asset binding where item assets are required; if
+  its runtime model intentionally keeps item candidates outside `runtime.yaml`,
+  record that as explicit downstream evidence instead of silently accepting
+  `asset_bindings: []`.
 - WonderLens AI dialogue/runtime QA meets the same source-intent and runtime
   instruction quality bar as fullstack validation.
 - Package-owned consumer failures are repaired in autodesign and revalidated;
@@ -211,6 +207,8 @@ python scripts/validate_asset_build_outputs.py runs/<run_id>
 python scripts/validate_asset_granularity.py runs/<run_id>
 python scripts/validate_full_pass_asset_bundle.py runs/<run_id>
 if rg -n "RESOLVED BLOCKER|RESOLVE BLOCKER" runs/<run_id>/activity_packages/*/prod.md; then exit 1; fi
+test -f runs/<run_id>/manual_audits/concept_phoneme_hunt_collect_prompt_trace.md
+if rg -n "Matching placeholder|/icons/green_apple.png|/icons/straight_stick.png" runs/<run_id>/downstream_reports/fullstack_demo; then exit 1; fi
 ```
 
 Also run or record evidence for:
@@ -227,7 +225,7 @@ Also run or record evidence for:
 
 Do not mark the goal achieved until:
 
-- only the five scoped rows were processed;
+- only `concept_phoneme_hunt_collect` was processed;
 - `runs/<run_id>/review.html`, `run_manifest.yaml`, and validation reports
   document the subset result;
 - all success criteria above pass or residual downstream-owned risks are

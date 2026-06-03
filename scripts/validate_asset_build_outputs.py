@@ -29,6 +29,7 @@ except ImportError as exc:  # pragma: no cover - environment guard
 BUILT_STATUSES = {"generated", "curated"}
 FAILURE_STATUSES = {"missing_source", "qa_failed", "blocked", "skipped_fallback"}
 ALLOWED_STATUSES = BUILT_STATUSES | FAILURE_STATUSES
+ITEM_ASSET_ROLES = {"collection_correct", "collection_distractor"}
 ACCEPTED_REFERENCE_SOURCE_TYPES = {
     "approved_internal_reference",
     "licensed_asset",
@@ -152,6 +153,12 @@ def validate_png(path: Path, expected_size: tuple[int, int] | None) -> list[str]
     except Exception as exc:
         issues.append(f"{path}: could not inspect image: {exc}")
     return issues
+
+
+def expected_variant_prefix(asset: dict[str, Any]) -> str:
+    if norm(asset.get("role")) in ITEM_ASSET_ROLES:
+        return "assets/items"
+    return "assets"
 
 
 def validate_png_in_sizes(path: Path, accepted_sizes: set[tuple[int, int]]) -> list[str]:
@@ -307,6 +314,7 @@ def validate_asset(
     issues: list[str] = []
     built_paths: list[str] = []
     built_sizes: list[tuple[int, int]] = []
+    expected_prefix = expected_variant_prefix(asset)
     for variant in as_list(asset.get("variants")):
         if not isinstance(variant, dict):
             continue
@@ -317,6 +325,8 @@ def validate_asset(
         if path_error:
             issues.append(f"{label}: unsafe variant path {rel_path!r}: {path_error}")
             continue
+        if expected_prefix == "assets/items" and not rel_path.startswith("assets/items/"):
+            issues.append(f"{label}: collection item asset path must be under assets/items/")
         expected_size = parse_size(variant.get("size"))
         issues.extend(validate_png(package_dir / rel_path, expected_size))
         built_paths.append(rel_path)
@@ -336,6 +346,8 @@ def validate_asset(
             rel_path, path_error = safe_relative_path(output.get("path"), prefix="assets")
             if path_error:
                 issues.append(f"{label}: unsafe audit output path {rel_path!r}: {path_error}")
+            elif expected_prefix == "assets/items" and not rel_path.startswith("assets/items/"):
+                issues.append(f"{label}: collection item audit path must be under assets/items/")
             elif not (package_dir / rel_path).exists():
                 issues.append(f"{label}: audit output path does not exist at {rel_path}")
         work_item, work_error = safe_relative_path(audit.get("work_item_path"), prefix="generated_assets")
