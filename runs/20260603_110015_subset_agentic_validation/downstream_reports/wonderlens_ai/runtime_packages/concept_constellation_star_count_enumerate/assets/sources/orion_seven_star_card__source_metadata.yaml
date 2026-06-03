@@ -1,0 +1,17 @@
+activity_id: concept_constellation_star_count_enumerate
+asset_id: orion_seven_star_card
+source_label: Approved internal Orion 7-guide-star teaching chart
+source_uri: internal://approved-constellation-reference/orion-7-guide-stars-v1
+source_type: approved_internal_reference
+license: Approved internal educational reference
+storage_allowed: true
+verification_status: accepted
+verification_notes: Pilot-internal reference chart preserves exactly 7 prominent guide-star
+  positions for Orion; faint extra star-like marks were removed after independent
+  visual QA.
+source_original_path: assets/sources/orion_seven_star_card__source_original.png
+sha256: 1b264b29bdfbd7cc860f223279fa967fe8477fb760a79f3607c64b46999b752d
+verified_at: '2026-06-03T11:00:15+08:00'
+reviewer_agent: main_agent_reference_reuse_from_20260529_source_intent_pilot
+star_count: 7
+constellation_name: Orion

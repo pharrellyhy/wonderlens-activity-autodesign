@@ -1,0 +1,76 @@
+activity_id: concept_recognition_pop_probe
+activity_name: Recognition Pop Challenge
+version: 1
+template_type: cat1
+pillar: Mystery
+game_style: mystery_lens
+entity: dog-like target picture
+entity_class: &id001
+- animal_picture
+- recognition_target
+entity_binding: bound
+source_entity_exemplar: dog-like target picture
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed subset validation scope
+category: cat1
+attributes:
+- target versus distractor recognition
+key_concepts:
+- Form
+- Connection
+related_concepts:
+- target
+- distractor
+- visual similarity
+- timing rule
+atl_skills:
+- observation
+- pattern_recognition
+- focus
+- logical_reasoning
+transdisciplinary_theme: How the world works
+kud:
+  know:
+  - target versus distractor recognition can be noticed through the source activity
+    evidence.
+  understand:
+  - A source-faithful activity keeps the child action, evidence, and reveal order
+    aligned.
+  do:
+  - After a source object such as dog, the device shows changing target and distractor
+    pictures and the child responds only when the target appears.
+progression:
+  topic_axis: form
+  difficulty_level: 1
+  next_step_hint: Repeat with a nearby source-aligned variation only after consumer
+    support is verified.
+  reward_hook: Recognition Pop Challenge
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: shape
+  mechanic: compare
+  entity_role: exemplar
+  focal_attribute: target versus distractor recognition
+  intro: The child compares changing pictures against a target rule; target and distractor
+    sprites are separate from scene backgrounds.
+  bridge_prerequisites:
+    primary:
+    - shape
+    secondary:
+    - pattern
+    - quantity
+  preview_label: Recognition Pop Challenge
+  preview_prompt: The child compares changing pictures against a target rule; target
+    and distractor sprites are separate from scene backgrounds.
+  role_pivot_note: Concept/workbook activity; runtime must preserve the declared source
+    frame.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

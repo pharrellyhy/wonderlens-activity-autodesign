@@ -1,0 +1,349 @@
+adaptation_brief:
+  input_mode: concept_only
+  core_promise: Number choice comes before the reveal; the displayed card is approved
+    and reference-bound; the AI gives one fact instead of asking the child to count
+    a generic image.
+  source_promise_alignment:
+    original_play_frame: Child chooses a number, then device shows an approved real
+      constellation card matching that guide-star count and gives brief background
+      context.
+    child_role: child completes the source activity action directly
+    interaction_sequence:
+    - Choose A Star Number
+    - Reveal The Matching Real Card
+    - Hear One Background Fact
+    required_child_actions:
+    - enumerate
+    - respond to source evidence
+    non_negotiable_elements:
+    - Child chooses a number, then device shows an approved real constellation card
+      matching that guide-star count and gives brief background context.
+    allowed_v1_adaptations:
+    - direct supported package behavior
+    product_dependencies:
+    - generated_assets
+    - device_round_screen
+    alignment_status: aligned
+    alignment_note: Generated package keeps the workbook play frame and records any
+      V1 limitation in demo_support.yaml.
+  canonical_mechanic: enumerate
+  mechanic_confidence: high
+  category_decision: cat1
+  readiness: generate_with_assumptions
+  trigger_condition: Child chooses a space theme or the screen can show an approved
+    constellation card.
+  entity_role: reference
+  observation_angle: quantity
+  focal_attribute: chosen guide-star count
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - generated_assets
+  - device_round_screen
+  asset_dependency:
+    policy: generate_and_curate
+    assets:
+    - asset_id: activity_icon
+      asset_type: activity_preview
+      asset_role: activity_preview
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: Constellation Number Reveal activity icon
+        motif, source-aligned but free of app-owned interface elements. One visual
+        unit only. Keep important detail inside the central safe area. For scenes,
+        no selectable target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If activity_icon is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: intro_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: Constellation Number Reveal intro moment,
+        source-aligned but free of app-owned interface elements, no constellation
+        pattern or answer reveal yet. One visual unit only. Keep important detail
+        inside the central safe area. For scenes, no selectable target objects that
+        compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If intro_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: rules_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: Constellation Number Reveal rule explanation
+        moment, source-aligned but free of app-owned interface elements, no constellation
+        pattern or answer reveal yet. One visual unit only. Keep important detail
+        inside the central safe area. For scenes, no selectable target objects that
+        compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If rules_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: round_1_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: Constellation Number Reveal first round scene,
+        source-aligned but free of app-owned interface elements, no constellation
+        pattern or answer reveal yet. One visual unit only. Keep important detail
+        inside the central safe area. For scenes, no selectable target objects that
+        compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If round_1_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: round_2_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: Constellation Number Reveal second round
+        scene, source-aligned but free of app-owned interface elements. One visual
+        unit only. Keep important detail inside the central safe area. For scenes,
+        no selectable target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If round_2_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: round_3_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: Constellation Number Reveal third round scene,
+        source-aligned but free of app-owned interface elements. One visual unit only.
+        Keep important detail inside the central safe area. For scenes, no selectable
+        target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If round_3_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: celebrate_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: Constellation Number Reveal celebration moment,
+        source-aligned but free of app-owned interface elements. One visual unit only.
+        Keep important detail inside the central safe area. For scenes, no selectable
+        target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If celebrate_scene is unavailable, keep the runtime beat
+        honest and use voice-only fallback without claiming this image is visible.
+    - asset_id: closing_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: Constellation Number Reveal closing recap
+        moment, source-aligned but free of app-owned interface elements. One visual
+        unit only. Keep important detail inside the central safe area. For scenes,
+        no selectable target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If closing_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: cassiopeia_five_star_card
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: reference_bound
+      source_strategy: approved_internal_reference
+      transformation_policy: crop_resize_only
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: Use the accepted package-local Cassiopeia teaching chart. Preserve
+        exactly 5 prominent guide stars and approved guide-line shape. Do not add
+        extra stars, text, labels, numbers, or fictional geometry.
+      source: internal://approved-constellation-reference/cassiopeia-5-guide-stars-v1
+      fallback_behavior: If the accepted Cassiopeia source is unavailable, do not
+        reveal or describe the constellation card.
+    - asset_id: orion_seven_star_card
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: reference_bound
+      source_strategy: approved_internal_reference
+      transformation_policy: crop_resize_only
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: Use the accepted package-local Orion teaching chart. Preserve exactly
+        7 prominent guide stars and approved guide-line shape. Do not add extra stars,
+        text, labels, numbers, or fictional geometry.
+      source: internal://approved-constellation-reference/orion-7-guide-stars-v1
+      fallback_behavior: If the accepted Orion source is unavailable, do not reveal
+        or describe the constellation card.
+    missing_asset_risk: medium
+  demo_support:
+    export_requested: true
+    asset_build: generate_and_curate
+    status: supported
+    ui_template: cat1_dialogue
+    support_level: full
+    entity_bindings:
+    - entity_id: approved_constellation_card
+      display_label: Approved Constellation Card
+      source_entity_exemplar: approved constellation card
+      default: true
+    requires:
+      generated_assets: true
+      real_camera: false
+      runtime_judgment: false
+      device_round_screen: true
+  resolved_contract_notes: []

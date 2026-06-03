@@ -1,0 +1,166 @@
+{
+  "run_id": "20260603_110015_subset_agentic_validation",
+  "consumer": "fullstack-demo",
+  "mode": "runtime-equivalent dialogue QA using WonderLens AI deterministic --fullstack-dest export plus fullstack parser",
+  "strategies_exercised": [
+    "expected_answer",
+    "wrong_or_unproductive_answer",
+    "help_or_confusion",
+    "silence_no_response",
+    "premature_done"
+  ],
+  "source_term_groups": {
+    "concept_scavenger_hunt_collect": [
+      [
+        "photo",
+        "photograph"
+      ],
+      [
+        "share",
+        "shared"
+      ],
+      [
+        "clue",
+        "connection"
+      ]
+    ],
+    "concept_phoneme_hunt_collect": [
+      [
+        "/b/",
+        "beginning sound"
+      ],
+      [
+        "treasure"
+      ],
+      [
+        "starts with",
+        "begins with"
+      ]
+    ],
+    "concept_constellation_star_count_enumerate": [
+      [
+        "constellation"
+      ],
+      [
+        "guide stars",
+        "guide-star"
+      ],
+      [
+        "orion",
+        "cassiopeia"
+      ]
+    ],
+    "concept_guided_drawing_probe": [
+      [
+        "paper"
+      ],
+      [
+        "draw",
+        "drawing"
+      ],
+      [
+        "step"
+      ],
+      [
+        "circle"
+      ]
+    ],
+    "concept_recognition_pop_probe": [
+      [
+        "dog"
+      ],
+      [
+        "target"
+      ],
+      [
+        "distractor"
+      ],
+      [
+        "quiet"
+      ]
+    ]
+  },
+  "activities": [
+    {
+      "activity_id": "concept_constellation_star_count_enumerate",
+      "markdown_path": "runs/20260603_110015_subset_agentic_validation/downstream_reports/fullstack_demo/exported_games/concept_constellation_star_count_enumerate.md",
+      "source_terms_present": true,
+      "rich_step_instructions": true,
+      "branch_behavior_present": true,
+      "cat5_synthesis_present_when_required": true,
+      "strategy_evidence": {
+        "expected_answer": "fullstack parser receives ideal branch and source-specific round goals",
+        "wrong_or_unproductive_answer": "fullstack parser receives unexpected redirect constraints from exported step_instructions",
+        "help_or_confusion": "fullstack parser receives confusion/help constraints embedded in branch behavior",
+        "silence_no_response": "fullstack parser receives no-response wait/model constraints",
+        "premature_done": "fullstack parser receives evidence-before-advance constraints from each round goal"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "activity_id": "concept_guided_drawing_probe",
+      "markdown_path": "runs/20260603_110015_subset_agentic_validation/downstream_reports/fullstack_demo/exported_games/concept_guided_drawing_probe.md",
+      "source_terms_present": true,
+      "rich_step_instructions": true,
+      "branch_behavior_present": true,
+      "cat5_synthesis_present_when_required": true,
+      "strategy_evidence": {
+        "expected_answer": "fullstack parser receives ideal branch and source-specific round goals",
+        "wrong_or_unproductive_answer": "fullstack parser receives unexpected redirect constraints from exported step_instructions",
+        "help_or_confusion": "fullstack parser receives confusion/help constraints embedded in branch behavior",
+        "silence_no_response": "fullstack parser receives no-response wait/model constraints",
+        "premature_done": "fullstack parser receives evidence-before-advance constraints from each round goal"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "activity_id": "concept_phoneme_hunt_collect",
+      "markdown_path": "runs/20260603_110015_subset_agentic_validation/downstream_reports/fullstack_demo/exported_games/concept_phoneme_hunt_collect.md",
+      "source_terms_present": true,
+      "rich_step_instructions": true,
+      "branch_behavior_present": true,
+      "cat5_synthesis_present_when_required": true,
+      "strategy_evidence": {
+        "expected_answer": "fullstack parser receives ideal branch and source-specific round goals",
+        "wrong_or_unproductive_answer": "fullstack parser receives unexpected redirect constraints from exported step_instructions",
+        "help_or_confusion": "fullstack parser receives confusion/help constraints embedded in branch behavior",
+        "silence_no_response": "fullstack parser receives no-response wait/model constraints",
+        "premature_done": "fullstack parser receives evidence-before-advance constraints from each round goal"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "activity_id": "concept_recognition_pop_probe",
+      "markdown_path": "runs/20260603_110015_subset_agentic_validation/downstream_reports/fullstack_demo/exported_games/concept_recognition_pop_probe.md",
+      "source_terms_present": true,
+      "rich_step_instructions": true,
+      "branch_behavior_present": true,
+      "cat5_synthesis_present_when_required": true,
+      "strategy_evidence": {
+        "expected_answer": "fullstack parser receives ideal branch and source-specific round goals",
+        "wrong_or_unproductive_answer": "fullstack parser receives unexpected redirect constraints from exported step_instructions",
+        "help_or_confusion": "fullstack parser receives confusion/help constraints embedded in branch behavior",
+        "silence_no_response": "fullstack parser receives no-response wait/model constraints",
+        "premature_done": "fullstack parser receives evidence-before-advance constraints from each round goal"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "activity_id": "concept_scavenger_hunt_collect",
+      "markdown_path": "runs/20260603_110015_subset_agentic_validation/downstream_reports/fullstack_demo/exported_games/concept_scavenger_hunt_collect.md",
+      "source_terms_present": true,
+      "rich_step_instructions": true,
+      "branch_behavior_present": true,
+      "cat5_synthesis_present_when_required": true,
+      "strategy_evidence": {
+        "expected_answer": "fullstack parser receives ideal branch and source-specific round goals",
+        "wrong_or_unproductive_answer": "fullstack parser receives unexpected redirect constraints from exported step_instructions",
+        "help_or_confusion": "fullstack parser receives confusion/help constraints embedded in branch behavior",
+        "silence_no_response": "fullstack parser receives no-response wait/model constraints",
+        "premature_done": "fullstack parser receives evidence-before-advance constraints from each round goal"
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "verdict": "PASS"
+}

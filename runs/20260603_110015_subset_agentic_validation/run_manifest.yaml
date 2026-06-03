@@ -1,0 +1,218 @@
+run_id: 20260603_110015_subset_agentic_validation
+status: completed
+started_at: '2026-06-03T11:00:15+08:00'
+completed_at: '2026-06-03T11:43:09+08:00'
+source:
+  goal_file: goals/2026-06-03-subset-agentic-validation-goal.md
+  runbook: run.md
+  assignments_file: assignments.md
+  assignment_snapshot: runs/20260603_110015_subset_agentic_validation/assignment_snapshot.md
+  assignment_scope: 2026-06-03 Subset Agentic Validation; exactly five scoped rows
+  workbook_source: inputs/original_activity_concepts_2026-05-29.tsv
+  normalized_helper: inputs/source_activity_concepts.md
+  source_snapshot_md: runs/20260603_110015_subset_agentic_validation/source_snapshots/selected_source_rows.md
+  source_snapshot_tsv: runs/20260603_110015_subset_agentic_validation/source_snapshots/selected_source_rows.tsv
+  product_contract_override: minimum_unblock_allowed
+  asset_build: generate_and_curate
+  full_pass_pipeline: true
+  mapping_root: data/mappings_dev20_0318
+  no_full_pass_resume: true
+summary:
+  pending_at_start: 5
+  enrichment_audited_count: 0
+  enrichment_noop_count: 0
+  enriched_count: 0
+  generated_count: 5
+  blocked_count: 0
+  failed_count: 0
+outputs:
+  enriched_activities: []
+  audited_activities: []
+  generated_activities:
+  - assignment_index: 1
+    assignment: '- [ ] assignment_type=match_pattern, activity_concept=Scavenger Hunt,
+      concept_source=inputs/source_activity_concepts.md#source_scavenger_hunt, description=Child
+      finds and photographs three things that share a color, shape, or category, then
+      names one extra thing they have in common, mechanic=collect, category=cat5,
+      tier=T1, asset_policy=no_assets, asset_build=generate_and_curate, full_pass_pipeline=true,
+      activity_id=concept_scavenger_hunt_collect, trigger_condition=Child photographs
+      an object with a clear color, shape, or category feature'
+    base_activity_id: concept_scavenger_hunt_collect
+    activity_id: concept_scavenger_hunt_collect
+    activity_path: runs/20260603_110015_subset_agentic_validation/activity_packages/concept_scavenger_hunt_collect
+    package_scope: run_local
+    generation_policy: fresh_subset_validation_package
+    adaptation_brief: runs/20260603_110015_subset_agentic_validation/adaptation_briefs/001_concept_scavenger_hunt_collect.yaml
+    source_intent_audit: runs/20260603_110015_subset_agentic_validation/source_intent_audits/001_concept_scavenger_hunt_collect.md
+    asset_build: generate_and_curate
+    demo_support:
+      status: degraded
+      ui_template: cat5_judgment
+    status: validated_pass
+  - assignment_index: 2
+    assignment: '- [ ] assignment_type=match_pattern, activity_concept=Phoneme Treasure
+      Hunt, concept_source=inputs/source_activity_concepts.md#source_phoneme_hunt,
+      description=Child hears a target sound and finds one indoor treasure whose word
+      starts with that sound, mechanic=collect, category=cat5, tier=T1, asset_policy=optional_support,
+      asset_requirements=inputs/source_activity_concepts.md#phoneme_letter_card_01,
+      asset_build=generate_and_curate, full_pass_pipeline=true, activity_id=concept_phoneme_hunt_collect,
+      trigger_condition=Child enters language treasure-hunt mode or photographs an
+      everyday object suitable for sound play'
+    base_activity_id: concept_phoneme_hunt_collect
+    activity_id: concept_phoneme_hunt_collect
+    activity_path: runs/20260603_110015_subset_agentic_validation/activity_packages/concept_phoneme_hunt_collect
+    package_scope: run_local
+    generation_policy: fresh_subset_validation_package
+    adaptation_brief: runs/20260603_110015_subset_agentic_validation/adaptation_briefs/002_concept_phoneme_hunt_collect.yaml
+    source_intent_audit: runs/20260603_110015_subset_agentic_validation/source_intent_audits/002_concept_phoneme_hunt_collect.md
+    asset_build: generate_and_curate
+    demo_support:
+      status: degraded
+      ui_template: cat5_judgment
+    status: validated_pass
+  - assignment_index: 3
+    assignment: '- [ ] assignment_type=activity_concept, activity_concept=Constellation
+      Star Count, concept_source=inputs/source_activity_concepts.md#source_constellation_star_count,
+      description=Child chooses a number, then the device shows an approved real constellation
+      card that matches that number of guide stars and shares brief background context
+      about that constellation, mechanic=enumerate, category=cat1, tier=T1, asset_policy=required_prebuilt,
+      asset_requirements=inputs/source_activity_concepts.md#constellation_count_cards_01,
+      product_capabilities=requires_asset_display, asset_build=generate_and_curate,
+      full_pass_pipeline=true, activity_id=concept_constellation_star_count_enumerate,
+      trigger_condition=Child chooses a space theme or the screen can show an approved
+      constellation card'
+    base_activity_id: concept_constellation_star_count_enumerate
+    activity_id: concept_constellation_star_count_enumerate
+    activity_path: runs/20260603_110015_subset_agentic_validation/activity_packages/concept_constellation_star_count_enumerate
+    package_scope: run_local
+    generation_policy: fresh_subset_validation_package
+    adaptation_brief: runs/20260603_110015_subset_agentic_validation/adaptation_briefs/003_concept_constellation_star_count_enumerate.yaml
+    source_intent_audit: runs/20260603_110015_subset_agentic_validation/source_intent_audits/003_concept_constellation_star_count_enumerate.md
+    asset_build: generate_and_curate
+    demo_support:
+      status: supported
+      ui_template: cat1_dialogue
+    resolved_blocker_types:
+    - requires_asset_display
+    resolved_blockers:
+    - Product capability `requires_asset_display` is resolved by approved internal
+      Cassiopeia and Orion reference-card assets in `asset_manifest.yaml`, with
+      `demo_support.status=supported`.
+    status: validated_pass
+  - assignment_index: 4
+    assignment: '- [ ] assignment_type=capability_probe, activity_concept=Guided Drawing,
+      concept_source=inputs/source_activity_concepts.md#source_guided_drawing, description=AI
+      guides the child to use paper and pencil to complete a simple drawing step by
+      step, represented as text-guided child or caregiver self-report with step-card
+      assets and no visual assessment or photo-verification claim, mechanic=build,
+      category=cat3, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#guided_drawing_step_cards_01,
+      product_capabilities=requires_materials,requires_step_card_assets,no_visual_assessment,no_photo_verification_claim,
+      asset_build=generate_and_curate, full_pass_pipeline=true, activity_id=concept_guided_drawing_probe,
+      trigger_condition=Child is indoors and has paper and pencil ready for a guided
+      sketch'
+    base_activity_id: concept_guided_drawing_probe
+    activity_id: concept_guided_drawing_probe
+    activity_path: runs/20260603_110015_subset_agentic_validation/activity_packages/concept_guided_drawing_probe
+    package_scope: run_local
+    generation_policy: fresh_subset_validation_package
+    adaptation_brief: runs/20260603_110015_subset_agentic_validation/adaptation_briefs/004_concept_guided_drawing_probe.yaml
+    source_intent_audit: runs/20260603_110015_subset_agentic_validation/source_intent_audits/004_concept_guided_drawing_probe.md
+    asset_build: generate_and_curate
+    demo_support:
+      status: degraded
+      ui_template: cat1_dialogue
+    resolved_blocker_types:
+    - requires_materials
+    - requires_step_card_assets
+    - no_visual_assessment
+    - no_photo_verification_claim
+    resolved_blockers:
+    - Product capabilities are resolved by explicit paper-and-pencil material assumptions,
+      generated step-card assets, child/caregiver self-report evidence, and production
+      copy that avoids visual-assessment or photo-verification claims.
+    status: validated_pass
+  - assignment_index: 5
+    assignment: '- [ ] assignment_type=capability_probe, activity_concept=Recognition
+      Pop Challenge, concept_source=inputs/source_activity_concepts.md#source_whack_a_mole_recognition,
+      description=Child quickly chooses matching target pictures from a changing set
+      without scene backgrounds duplicating the same selectable target or distractor
+      sprites, mechanic=compare, category=cat1, tier=T1, asset_policy=required_prebuilt,
+      asset_requirements=inputs/source_activity_concepts.md#recognition_challenge_cards_01,
+      product_capabilities=requires_asset_display,requires_ui_state, asset_build=generate_and_curate,
+      full_pass_pipeline=true, activity_id=concept_recognition_pop_probe, trigger_condition=Product
+      has a tap-based recognition game surface'
+    base_activity_id: concept_recognition_pop_probe
+    activity_id: concept_recognition_pop_probe
+    activity_path: runs/20260603_110015_subset_agentic_validation/activity_packages/concept_recognition_pop_probe
+    package_scope: run_local
+    generation_policy: fresh_subset_validation_package
+    adaptation_brief: runs/20260603_110015_subset_agentic_validation/adaptation_briefs/005_concept_recognition_pop_probe.yaml
+    source_intent_audit: runs/20260603_110015_subset_agentic_validation/source_intent_audits/005_concept_recognition_pop_probe.md
+    asset_build: generate_and_curate
+    demo_support:
+      status: degraded
+      ui_template: cat1_dialogue
+    resolved_blocker_types:
+    - requires_asset_display
+    - requires_ui_state
+    resolved_blockers:
+    - Product capabilities are resolved by separate dog target and distractor assets,
+      abstract beat backgrounds, and `demo_support.status=degraded` to preserve the
+      need for runtime UI state/timing support.
+    status: validated_pass
+  blocked_assignments: []
+  source_intent_audits:
+  - runs/20260603_110015_subset_agentic_validation/source_intent_audits/001_concept_scavenger_hunt_collect.md
+  - runs/20260603_110015_subset_agentic_validation/source_intent_audits/002_concept_phoneme_hunt_collect.md
+  - runs/20260603_110015_subset_agentic_validation/source_intent_audits/003_concept_constellation_star_count_enumerate.md
+  - runs/20260603_110015_subset_agentic_validation/source_intent_audits/004_concept_guided_drawing_probe.md
+  - runs/20260603_110015_subset_agentic_validation/source_intent_audits/005_concept_recognition_pop_probe.md
+  review_dashboard: runs/20260603_110015_subset_agentic_validation/review.html
+  final_report: runs/20260603_110015_subset_agentic_validation/subset_agentic_validation.md
+checks:
+- name: demo_package_contract
+  command: python scripts/validate_demo_package_contract.py runs/20260603_110015_subset_agentic_validation/activity_packages
+  result: PASS
+- name: asset_build
+  command: python scripts/build_activity_assets.py runs/20260603_110015_subset_agentic_validation --mode generate_and_curate --force
+  result: PASS
+- name: asset_build_outputs
+  command: python scripts/validate_asset_build_outputs.py runs/20260603_110015_subset_agentic_validation
+  result: PASS
+- name: asset_granularity
+  command: python scripts/validate_asset_granularity.py runs/20260603_110015_subset_agentic_validation --report-yaml runs/20260603_110015_subset_agentic_validation/generated_assets/asset_granularity_report.yaml
+  result: PASS
+- name: full_pass_asset_bundle
+  command: python scripts/validate_full_pass_asset_bundle.py runs/20260603_110015_subset_agentic_validation --report-yaml runs/20260603_110015_subset_agentic_validation/generated_assets/full_pass_asset_bundle_report.yaml
+  result: PASS
+- name: tag_block_schema
+  command: run-local activities/_schema/tag_block.schema.json validation for activity_packages/*/tag_block.yaml
+  result: PASS
+- name: review_dashboard
+  command: python scripts/generate_run_review.py --validate runs/20260603_110015_subset_agentic_validation
+  result: PASS
+- name: wonderlens_ai_runtime_generation
+  command: uv run python scripts/generate_activity_runtime.py --write --force --source ... --dest ... --fullstack-dest ...
+  result: PASS
+- name: wonderlens_ai_runtime_check
+  command: uv run python scripts/generate_activity_runtime.py --check --source ... --dest ...
+  result: PASS
+- name: wonderlens_ai_focused_tests
+  command: uv run pytest tests/unit/activity/test_activity_package_models.py tests/unit/activity/test_activity_package_loader.py tests/unit/activity/test_activity_package_adapter.py tests/unit/activity/test_runtime_generator.py tests/unit/activity/test_activity_asset_manifest.py tests/unit/scripts/test_generate_activity_runtime.py -q
+  result: PASS
+- name: fullstack_demo_parser_and_tests
+  command: PYTHONPATH=backend uv run python parse_game_file check; uv run pytest backend/tests/test_activity_source_fidelity.py tests/test_activity_text_game_asset_contract.py -q
+  result: PASS
+delegated_reviews:
+  pipeline_explorer: completed
+  asset_explorer: completed
+  consumer_explorer: completed
+notes:
+- Fresh subset validation run from branch feat/subset-agentic-validation.
+- Package writing completed before explicit asset build.
+- All source PNGs are generated or reused at exactly 512x512 before build.
+- No full-pass generation was resumed.
+- Final validation passed package, asset, dashboard, WonderLens AI, and fullstack-demo
+  checks without touching the forbidden full-pass run paths.
+blockers: []
+follow_ups: []

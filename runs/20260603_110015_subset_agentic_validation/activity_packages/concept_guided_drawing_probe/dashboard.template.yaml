@@ -1,0 +1,7 @@
+dashboard_fragment:
+  session:
+    focal_attribute: drawing step sequence
+    summary: The child draws on real paper while the AI gives step cards and waits
+      for self-report; no camera verification is claimed.
+  caregiver:
+    note: Generated for the 2026-06-03 subset agentic validation run.

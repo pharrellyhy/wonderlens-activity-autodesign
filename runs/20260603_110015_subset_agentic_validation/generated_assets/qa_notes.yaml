@@ -1,0 +1,284 @@
+run_id: 20260603_110015_subset_agentic_validation
+asset_build_mode: generate_and_curate
+generated_at: '2026-06-03T11:32:18+08:00'
+entries:
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: activity_icon
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: intro_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: rules_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: round_1_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: round_2_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: round_3_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: celebrate_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: closing_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: cassiopeia_five_star_card
+  status: curated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: orion_seven_star_card
+  status: curated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: activity_icon
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: intro_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: rules_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: round_1_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: round_2_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: round_3_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: celebrate_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: closing_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: circle_step
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: ears_step
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: finish_step
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: activity_icon
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: intro_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: rules_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: round_1_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: round_2_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: round_3_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: synthesis_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: celebrate_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: closing_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: ball_object
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: banana_object
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: book_object
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: cup_object
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: b_sound_letter_cue
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: activity_icon
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: intro_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: rules_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: round_1_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: round_2_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: round_3_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: celebrate_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: closing_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: dog_target
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: fox_distractor
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: wolf_distractor
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: cat_distractor
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: activity_icon
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: intro_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: rules_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: round_1_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: round_2_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: round_3_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: synthesis_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: celebrate_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: closing_scene
+  status: generated
+  qa_notes:
+  - Built package-local runtime asset variants.

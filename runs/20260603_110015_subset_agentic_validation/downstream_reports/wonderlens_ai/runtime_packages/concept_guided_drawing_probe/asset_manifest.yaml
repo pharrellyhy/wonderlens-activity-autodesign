@@ -1,0 +1,336 @@
+activity_id: concept_guided_drawing_probe
+entity_id: paper_drawing
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: activity_icon
+  role: activity_preview
+  label: Activity icon for Step Card Drawing Guide.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Activity icon for Step Card Drawing Guide. Composition:
+    single centered icon or badge on a clean white background, no app UI; generate
+    a 512x512 square source PNG; if the image tool returns a larger square, downsample
+    it to 512x512 before asset build; keep important details inside the central round-lens
+    safe area. Activity-specific direction: guided drawing scene assets must be usable
+    as step cards. For this asset, show a clean paper-and-pencil guided drawing motif,
+    with a simple circle drawing as the main subject. Include paper and pencil only
+    as supporting context. Style: flat Nordic children''s illustration matching the
+    quiet white WonderLens prototype; broad flat color fills, sparse arc-eye or tiny
+    texture linework, light colored-pencil grain, restrained boho pastels, airy negative
+    space, organic simple silhouettes. No readable text, letters, numbers, labels,
+    logos, watermark, border, contact sheet, multi-card sheet, device frame, circular
+    mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter.
+    Do not draw progress dots, round markers, response slots, rule strips, buttons,
+    chips, picker slots, badges, or other app-owned interface state; the runtime overlays
+    those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/activity_icon__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: intro_scene
+  role: story_scene
+  label: Intro scene for Step Card Drawing Guide.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Intro scene for Step Card Drawing Guide. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: Use `intro_scene`
+    app-owned progress, choices, or camera slots are overlays and are not baked into
+    the PNG. Activity-specific direction: guided drawing scene assets must be usable
+    as step cards. For this asset, show a blank sheet of paper and pencil ready for
+    a child to start a guided sketch; do not show a completed drawing yet. Include
+    paper and pencil only as supporting context. Style: flat Nordic children''s illustration
+    matching the quiet white WonderLens prototype; broad flat color fills, sparse
+    arc-eye or tiny texture linework, light colored-pencil grain, restrained boho
+    pastels, airy negative space, organic simple silhouettes. No readable text, letters,
+    numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device
+    frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard
+    shadows, or clutter. Do not draw progress dots, round markers, response slots,
+    rule strips, buttons, chips, picker slots, badges, or other app-owned interface
+    state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: rules_scene
+  role: story_scene
+  label: Rules scene for Step Card Drawing Guide.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Rules scene for Step Card Drawing Guide. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: Use `rules_scene`.
+    Activity-specific direction: guided drawing scene assets must be usable as step
+    cards. For this asset, show paper and pencil with a few small drawing example
+    marks arranged loosely as art materials. Include paper and pencil only as supporting
+    context. Style: flat Nordic children''s illustration matching the quiet white
+    WonderLens prototype; broad flat color fills, sparse arc-eye or tiny texture linework,
+    light colored-pencil grain, restrained boho pastels, airy negative space, organic
+    simple silhouettes. No readable text, letters, numbers, labels, logos, watermark,
+    border, contact sheet, multi-card sheet, device frame, circular mask, vignette,
+    black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw
+    progress dots, round markers, response slots, rule strips, buttons, chips, picker
+    slots, badges, or other app-owned interface state; the runtime overlays those
+    separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_1_scene
+  role: story_scene
+  label: Round 1 scene for Step Card Drawing Guide.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 1 scene for Step Card Drawing Guide. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: Use `round_1_scene`
+    and `circle_step` only the first drawing action. Activity-specific direction:
+    guided drawing scene assets must be usable as step cards. For this asset, show
+    only the first drawing instruction: one big circle on paper, with no ears, petals,
+    face, or finished picture yet. Include paper and pencil only as supporting context.
+    Style: flat Nordic children''s illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye or tiny texture linework, light
+    colored-pencil grain, restrained boho pastels, airy negative space, organic simple
+    silhouettes. No readable text, letters, numbers, labels, logos, watermark, border,
+    contact sheet, multi-card sheet, device frame, circular mask, vignette, black
+    corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress
+    dots, round markers, response slots, rule strips, buttons, chips, picker slots,
+    badges, or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_2_scene
+  role: story_scene
+  label: Round 2 scene for Step Card Drawing Guide.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 2 scene for Step Card Drawing Guide. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: Use `round_2_scene`
+    and `ears_step` do not a finished drawing yet. Activity-specific direction: guided
+    drawing scene assets must be usable as step cards. For this asset, show the second
+    drawing instruction: the circle now has exactly two small ears or petals; do not
+    add a face or final detail yet. Include paper and pencil only as supporting context.
+    Style: flat Nordic children''s illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye or tiny texture linework, light
+    colored-pencil grain, restrained boho pastels, airy negative space, organic simple
+    silhouettes. No readable text, letters, numbers, labels, logos, watermark, border,
+    contact sheet, multi-card sheet, device frame, circular mask, vignette, black
+    corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress
+    dots, round markers, response slots, rule strips, buttons, chips, picker slots,
+    badges, or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_3_scene
+  role: story_scene
+  label: Round 3 scene for Step Card Drawing Guide.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 3 scene for Step Card Drawing Guide. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: Use `round_3_scene`
+    and `finish_step`. Activity-specific direction: guided drawing scene assets must
+    be usable as step cards. For this asset, show the final drawing instruction: the
+    circle with two small ears or petals now gains one face/detail and reads as a
+    finished simple drawing. Include paper and pencil only as supporting context.
+    Style: flat Nordic children''s illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye or tiny texture linework, light
+    colored-pencil grain, restrained boho pastels, airy negative space, organic simple
+    silhouettes. No readable text, letters, numbers, labels, logos, watermark, border,
+    contact sheet, multi-card sheet, device frame, circular mask, vignette, black
+    corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress
+    dots, round markers, response slots, rule strips, buttons, chips, picker slots,
+    badges, or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: celebrate_scene
+  role: story_scene
+  label: Celebration scene for Step Card Drawing Guide.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Celebration scene for Step Card Drawing Guide.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `celebrate_scene`
+    if reference or object assets remain visible, they are separate runtime layers.
+    Activity-specific direction: guided drawing scene assets must be usable as step
+    cards. For this asset, show the finished simple drawing on paper being warmly
+    celebrated through color and composition only, without badges, stickers, or app
+    UI. Include paper and pencil only as supporting context. Style: flat Nordic children''s
+    illustration matching the quiet white WonderLens prototype; broad flat color fills,
+    sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained
+    boho pastels, airy negative space, organic simple silhouettes. No readable text,
+    letters, numbers, labels, logos, watermark, border, contact sheet, multi-card
+    sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi
+    toy look, hard shadows, or clutter. Do not draw progress dots, round markers,
+    response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned
+    interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: closing_scene
+  role: story_scene
+  label: Closing scene for Step Card Drawing Guide.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Closing scene for Step Card Drawing Guide. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: Use `closing_scene`.
+    Activity-specific direction: guided drawing scene assets must be usable as step
+    cards. For this asset, show the finished simple drawing resting beside the pencil
+    as a quiet process recap. Include paper and pencil only as supporting context.
+    Style: flat Nordic children''s illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye or tiny texture linework, light
+    colored-pencil grain, restrained boho pastels, airy negative space, organic simple
+    silhouettes. No readable text, letters, numbers, labels, logos, watermark, border,
+    contact sheet, multi-card sheet, device frame, circular mask, vignette, black
+    corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress
+    dots, round markers, response slots, rule strips, buttons, chips, picker slots,
+    badges, or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: circle_step
+  role: story_scene
+  label: paper with one simple circle drawing instruction
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+    boho pastels, generous negative space, square 512x512 source art, no readable
+    text, no letters or numbers, no logos, no watermark, no masks, no borders, and
+    no baked UI chrome. Subject: paper with one simple circle drawing instruction.
+    One visual unit only. Keep important detail inside the central safe area. For
+    scenes, no selectable target objects that compete with separate sprites.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/circle_step__round_512.png
+  fallback_behavior: If circle_step is unavailable, keep the runtime beat honest and
+    use voice-only fallback without claiming this image is visible.
+- id: ears_step
+  role: story_scene
+  label: paper with a circle plus two small side shapes
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+    boho pastels, generous negative space, square 512x512 source art, no readable
+    text, no letters or numbers, no logos, no watermark, no masks, no borders, and
+    no baked UI chrome. Subject: paper with a circle plus two small side shapes. One
+    visual unit only. Keep important detail inside the central safe area. For scenes,
+    no selectable target objects that compete with separate sprites.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/ears_step__round_512.png
+  fallback_behavior: If ears_step is unavailable, keep the runtime beat honest and
+    use voice-only fallback without claiming this image is visible.
+- id: finish_step
+  role: story_scene
+  label: paper with the simple finished drawing and one small face detail
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+    boho pastels, generous negative space, square 512x512 source art, no readable
+    text, no letters or numbers, no logos, no watermark, no masks, no borders, and
+    no baked UI chrome. Subject: paper with the simple finished drawing and one small
+    face detail. One visual unit only. Keep important detail inside the central safe
+    area. For scenes, no selectable target objects that compete with separate sprites.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/finish_step__round_512.png
+  fallback_behavior: If finish_step is unavailable, keep the runtime beat honest and
+    use voice-only fallback without claiming this image is visible.

@@ -1,0 +1,331 @@
+activity_id: concept_constellation_star_count_enumerate
+entity_id: approved_constellation_card
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: activity_icon
+  role: activity_preview
+  label: Activity icon for Constellation Number Reveal.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Activity icon for Constellation Number Reveal.
+    Composition: single centered icon or badge on a clean white background, no app
+    UI; generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Activity-specific direction: choose a visual motif
+    unique to this activity''s source promise and mechanic; avoid reusing the same
+    blank-board, child-on-rug, response-slot, or cozy-room template across activities.
+    Style: flat Nordic children''s illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye or tiny texture linework, light
+    colored-pencil grain, restrained boho pastels, airy negative space, organic simple
+    silhouettes. No readable text, letters, numbers, labels, logos, watermark, border,
+    contact sheet, multi-card sheet, device frame, circular mask, vignette, black
+    corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress
+    dots, round markers, response slots, rule strips, buttons, chips, picker slots,
+    badges, or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/activity_icon__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: intro_scene
+  role: story_scene
+  label: Intro scene for Constellation Number Reveal.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Intro scene for Constellation Number Reveal.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `intro_scene`
+    app-owned progress, choices, or camera slots are overlays and are not baked into
+    the PNG. Activity-specific direction: choose a visual motif unique to this activity''s
+    source promise and mechanic; avoid reusing the same blank-board, child-on-rug,
+    response-slot, or cozy-room template across activities. Style: flat Nordic children''s
+    illustration matching the quiet white WonderLens prototype; broad flat color fills,
+    sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained
+    boho pastels, airy negative space, organic simple silhouettes. No readable text,
+    letters, numbers, labels, logos, watermark, border, contact sheet, multi-card
+    sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi
+    toy look, hard shadows, or clutter. Do not draw progress dots, round markers,
+    response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned
+    interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: rules_scene
+  role: story_scene
+  label: Rules scene for Constellation Number Reveal.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Rules scene for Constellation Number Reveal.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `rules_scene`.
+    Activity-specific direction: choose a visual motif unique to this activity''s
+    source promise and mechanic; avoid reusing the same blank-board, child-on-rug,
+    response-slot, or cozy-room template across activities. Style: flat Nordic children''s
+    illustration matching the quiet white WonderLens prototype; broad flat color fills,
+    sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained
+    boho pastels, airy negative space, organic simple silhouettes. No readable text,
+    letters, numbers, labels, logos, watermark, border, contact sheet, multi-card
+    sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi
+    toy look, hard shadows, or clutter. Do not draw progress dots, round markers,
+    response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned
+    interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_1_scene
+  role: story_scene
+  label: Round 1 scene for Constellation Number Reveal.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 1 scene for Constellation Number Reveal.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `round_1_scene`
+    app overlays two number choices separately, no constellation card yet. Activity-specific
+    direction: choose a visual motif unique to this activity''s source promise and
+    mechanic; avoid reusing the same blank-board, child-on-rug, response-slot, or
+    cozy-room template across activities. Style: flat Nordic children''s illustration
+    matching the quiet white WonderLens prototype; broad flat color fills, sparse
+    arc-eye or tiny texture linework, light colored-pencil grain, restrained boho
+    pastels, airy negative space, organic simple silhouettes. No readable text, letters,
+    numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device
+    frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard
+    shadows, or clutter. Do not draw progress dots, round markers, response slots,
+    rule strips, buttons, chips, picker slots, badges, or other app-owned interface
+    state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_2_scene
+  role: story_scene
+  label: Round 2 scene for Constellation Number Reveal.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 2 scene for Constellation Number Reveal.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `round_2_scene`
+    plus either `cassiopeia_five_star_card` or `orion_seven_star_card`. Activity-specific
+    direction: choose a visual motif unique to this activity''s source promise and
+    mechanic; avoid reusing the same blank-board, child-on-rug, response-slot, or
+    cozy-room template across activities. Style: flat Nordic children''s illustration
+    matching the quiet white WonderLens prototype; broad flat color fills, sparse
+    arc-eye or tiny texture linework, light colored-pencil grain, restrained boho
+    pastels, airy negative space, organic simple silhouettes. No readable text, letters,
+    numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device
+    frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard
+    shadows, or clutter. Do not draw progress dots, round markers, response slots,
+    rule strips, buttons, chips, picker slots, badges, or other app-owned interface
+    state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_3_scene
+  role: story_scene
+  label: Round 3 scene for Constellation Number Reveal.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 3 scene for Constellation Number Reveal.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `round_3_scene`
+    keep the revealed reference card visible through app display. Activity-specific
+    direction: choose a visual motif unique to this activity''s source promise and
+    mechanic; avoid reusing the same blank-board, child-on-rug, response-slot, or
+    cozy-room template across activities. Style: flat Nordic children''s illustration
+    matching the quiet white WonderLens prototype; broad flat color fills, sparse
+    arc-eye or tiny texture linework, light colored-pencil grain, restrained boho
+    pastels, airy negative space, organic simple silhouettes. No readable text, letters,
+    numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device
+    frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard
+    shadows, or clutter. Do not draw progress dots, round markers, response slots,
+    rule strips, buttons, chips, picker slots, badges, or other app-owned interface
+    state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: celebrate_scene
+  role: story_scene
+  label: Celebration scene for Constellation Number Reveal.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Celebration scene for Constellation Number Reveal.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `celebrate_scene`
+    if reference or object assets remain visible, they are separate runtime layers.
+    Activity-specific direction: choose a visual motif unique to this activity''s
+    source promise and mechanic; avoid reusing the same blank-board, child-on-rug,
+    response-slot, or cozy-room template across activities. Style: flat Nordic children''s
+    illustration matching the quiet white WonderLens prototype; broad flat color fills,
+    sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained
+    boho pastels, airy negative space, organic simple silhouettes. No readable text,
+    letters, numbers, labels, logos, watermark, border, contact sheet, multi-card
+    sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi
+    toy look, hard shadows, or clutter. Do not draw progress dots, round markers,
+    response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned
+    interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: closing_scene
+  role: story_scene
+  label: Closing scene for Constellation Number Reveal.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Closing scene for Constellation Number Reveal.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `closing_scene`.
+    Activity-specific direction: choose a visual motif unique to this activity''s
+    source promise and mechanic; avoid reusing the same blank-board, child-on-rug,
+    response-slot, or cozy-room template across activities. Style: flat Nordic children''s
+    illustration matching the quiet white WonderLens prototype; broad flat color fills,
+    sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained
+    boho pastels, airy negative space, organic simple silhouettes. No readable text,
+    letters, numbers, labels, logos, watermark, border, contact sheet, multi-card
+    sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi
+    toy look, hard shadows, or clutter. Do not draw progress dots, round markers,
+    response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned
+    interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: cassiopeia_five_star_card
+  role: story_scene
+  label: Cassiopeia five-guide-star reference card
+  requiredness: required
+  accuracy_mode: reference_bound
+  source_strategy: approved_internal_reference
+  transformation_policy: crop_resize_only
+  prompt_en: Use the accepted package-local Cassiopeia teaching chart. Preserve exactly
+    5 prominent guide stars and approved guide-line shape. Do not add extra stars,
+    text, labels, numbers, or fictional geometry.
+  reference_policy:
+    source_required: true
+    allowed_sources:
+    - approved_internal_reference
+    verification_required: true
+    verification_notes: Package-local approved Cassiopeia guide-star chart with 5
+      visible guide stars.
+  sources:
+  - label: Approved internal Cassiopeia 5-guide-star teaching chart
+    uri: internal://approved-constellation-reference/cassiopeia-5-guide-stars-v1
+    license: Approved internal educational reference
+    source_type: approved_internal_reference
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/cassiopeia_five_star_card__round_512.png
+  fallback_behavior: If the accepted Cassiopeia source is unavailable, do not reveal
+    or describe the constellation card.
+  star_count: 5
+  constellation_name: Cassiopeia
+- id: orion_seven_star_card
+  role: story_scene
+  label: Orion seven-guide-star reference card
+  requiredness: required
+  accuracy_mode: reference_bound
+  source_strategy: approved_internal_reference
+  transformation_policy: crop_resize_only
+  prompt_en: Use the accepted package-local Orion teaching chart. Preserve exactly
+    7 prominent guide stars and approved guide-line shape. Do not add extra stars,
+    text, labels, numbers, or fictional geometry.
+  reference_policy:
+    source_required: true
+    allowed_sources:
+    - approved_internal_reference
+    verification_required: true
+    verification_notes: Package-local approved Orion guide-star chart with 7 visible
+      guide stars.
+  sources:
+  - label: Approved internal Orion 7-guide-star teaching chart
+    uri: internal://approved-constellation-reference/orion-7-guide-stars-v1
+    license: Approved internal educational reference
+    source_type: approved_internal_reference
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/orion_seven_star_card__round_512.png
+  fallback_behavior: If the accepted Orion source is unavailable, do not reveal or
+    describe the constellation card.
+  star_count: 7
+  constellation_name: Orion

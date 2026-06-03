@@ -1,0 +1,75 @@
+activity_id: concept_phoneme_hunt_collect
+activity_name: B-Sound Treasure Hunt
+version: 1
+template_type: cat5
+pillar: Adventure
+game_style: quest_collector
+entity: beginning sound treasure
+entity_class: &id001
+- household_object
+- spoken_word
+entity_binding: parameterized
+source_entity_exemplar: beginning sound treasure
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed subset validation scope
+category: cat5
+attributes:
+- beginning sound evidence
+key_concepts:
+- Form
+- Connection
+related_concepts:
+- sound
+- initial phoneme
+- word-object match
+- evidence
+atl_skills:
+- language_expression
+- listening
+- classification
+- evidence_collection
+transdisciplinary_theme: How we express ourselves
+kud:
+  know:
+  - beginning sound evidence can be noticed through the source activity evidence.
+  understand:
+  - A source-faithful activity keeps the child action, evidence, and reveal order
+    aligned.
+  do:
+  - AI introduces a target sound, then the child finds one indoor treasure whose word
+    starts with that sound.
+progression:
+  topic_axis: form
+  difficulty_level: 1
+  next_step_hint: Repeat with a nearby source-aligned variation only after consumer
+    support is verified.
+  reward_hook: B-Sound Treasure Hunt
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: function
+  mechanic: collect
+  entity_role: exemplar
+  focal_attribute: beginning sound evidence
+  intro: The target sound becomes the collection criterion; visual objects support
+    but do not replace spoken or typed name evidence.
+  bridge_prerequisites:
+    primary:
+    - function
+    secondary:
+    - pattern
+    - shape
+  preview_label: B-Sound Treasure Hunt
+  preview_prompt: The target sound becomes the collection criterion; visual objects
+    support but do not replace spoken or typed name evidence.
+  role_pivot_note: Concept/workbook activity; runtime must preserve the declared source
+    frame.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

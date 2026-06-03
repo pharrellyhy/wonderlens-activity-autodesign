@@ -1,0 +1,262 @@
+{
+  "activities": [
+    {
+      "activity_id": "concept_constellation_star_count_enumerate",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_constellation_star_count_enumerate:activity_icon",
+          "package:concept_constellation_star_count_enumerate:intro_scene",
+          "package:concept_constellation_star_count_enumerate:rules_scene",
+          "package:concept_constellation_star_count_enumerate:round_1_scene",
+          "package:concept_constellation_star_count_enumerate:round_2_scene",
+          "package:concept_constellation_star_count_enumerate:round_3_scene",
+          "package:concept_constellation_star_count_enumerate:celebrate_scene",
+          "package:concept_constellation_star_count_enumerate:closing_scene",
+          "package:concept_constellation_star_count_enumerate:cassiopeia_five_star_card",
+          "package:concept_constellation_star_count_enumerate:orion_seven_star_card"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "full",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "full",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Approved Constellation Card",
+        "entity_id": "approved_constellation_card",
+        "source_entity_exemplar": "approved constellation card"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_guided_drawing_probe",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [
+          "The package represents V1 behavior as voice/text-guided paper drawing with child or caregiver self-report.",
+          "It makes no visual assessment, no photo-verification claim, and no automated quality judgment."
+        ],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_guided_drawing_probe:activity_icon",
+          "package:concept_guided_drawing_probe:intro_scene",
+          "package:concept_guided_drawing_probe:rules_scene",
+          "package:concept_guided_drawing_probe:round_1_scene",
+          "package:concept_guided_drawing_probe:round_2_scene",
+          "package:concept_guided_drawing_probe:round_3_scene",
+          "package:concept_guided_drawing_probe:celebrate_scene",
+          "package:concept_guided_drawing_probe:closing_scene",
+          "package:concept_guided_drawing_probe:circle_step",
+          "package:concept_guided_drawing_probe:ears_step",
+          "package:concept_guided_drawing_probe:finish_step"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "text_guided_self_report",
+        "support_status": "degraded",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [
+          "The package represents V1 behavior as voice/text-guided paper drawing with child or caregiver self-report.",
+          "It makes no visual assessment, no photo-verification claim, and no automated quality judgment."
+        ],
+        "status": "degraded",
+        "support_level": "text_guided_self_report",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Paper Drawing",
+        "entity_id": "paper_drawing",
+        "source_entity_exemplar": "paper drawing"
+      },
+      "runtime_support": {
+        "executable": false,
+        "extension_reasons": [
+          "ui_heavy_mechanic",
+          "unsupported_template"
+        ],
+        "quality_warnings": [],
+        "requires_runtime_extension": true
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_phoneme_hunt_collect",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [
+          "The current demo cannot infer the starting sound of a photographed object from image data alone.",
+          "The package requires the child to say or enter the object name before accepting sound evidence.",
+          "Any `/b/` or B cue is app-owned overlay support, not baked into generated PNG assets."
+        ],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_phoneme_hunt_collect:activity_icon",
+          "package:concept_phoneme_hunt_collect:intro_scene",
+          "package:concept_phoneme_hunt_collect:rules_scene",
+          "package:concept_phoneme_hunt_collect:round_1_scene",
+          "package:concept_phoneme_hunt_collect:round_2_scene",
+          "package:concept_phoneme_hunt_collect:round_3_scene",
+          "package:concept_phoneme_hunt_collect:synthesis_scene",
+          "package:concept_phoneme_hunt_collect:celebrate_scene",
+          "package:concept_phoneme_hunt_collect:closing_scene",
+          "package:concept_phoneme_hunt_collect:ball_object",
+          "package:concept_phoneme_hunt_collect:banana_object",
+          "package:concept_phoneme_hunt_collect:book_object",
+          "package:concept_phoneme_hunt_collect:cup_object",
+          "package:concept_phoneme_hunt_collect:b_sound_letter_cue"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "catalog_simulated_judgment",
+        "support_status": "degraded",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [
+          "The current demo cannot infer the starting sound of a photographed object from image data alone.",
+          "The package requires the child to say or enter the object name before accepting sound evidence.",
+          "Any `/b/` or B cue is app-owned overlay support, not baked into generated PNG assets."
+        ],
+        "status": "degraded",
+        "support_level": "catalog_simulated_judgment",
+        "ui_template": "cat5_judgment",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Beginning Sound Treasure",
+        "entity_id": "beginning_sound_treasure",
+        "source_entity_exemplar": "beginning sound treasure"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_recognition_pop_probe",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [
+          "The package preserves the target-versus-distractor timing rule, but the current conversion path cannot prove fast tap UI timing.",
+          "Dialogue QA must verify that target/distractor rules are not weakened into ordinary matching."
+        ],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_recognition_pop_probe:activity_icon",
+          "package:concept_recognition_pop_probe:intro_scene",
+          "package:concept_recognition_pop_probe:rules_scene",
+          "package:concept_recognition_pop_probe:round_1_scene",
+          "package:concept_recognition_pop_probe:round_2_scene",
+          "package:concept_recognition_pop_probe:round_3_scene",
+          "package:concept_recognition_pop_probe:celebrate_scene",
+          "package:concept_recognition_pop_probe:closing_scene",
+          "package:concept_recognition_pop_probe:dog_target",
+          "package:concept_recognition_pop_probe:fox_distractor",
+          "package:concept_recognition_pop_probe:wolf_distractor",
+          "package:concept_recognition_pop_probe:cat_distractor"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "timing_rule_preview",
+        "support_status": "degraded",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [
+          "The package preserves the target-versus-distractor timing rule, but the current conversion path cannot prove fast tap UI timing.",
+          "Dialogue QA must verify that target/distractor rules are not weakened into ordinary matching."
+        ],
+        "status": "degraded",
+        "support_level": "timing_rule_preview",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Dog-Like Target Picture",
+        "entity_id": "dog_like_target_picture",
+        "source_entity_exemplar": "dog-like target picture"
+      },
+      "runtime_support": {
+        "executable": false,
+        "extension_reasons": [
+          "ui_heavy_mechanic"
+        ],
+        "quality_warnings": [],
+        "requires_runtime_extension": true
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_scavenger_hunt_collect",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [
+          "The current demo cannot reliably judge arbitrary shared color, shape, or category from image data alone.",
+          "The package accepts child-stated evidence and preserves the three-photo collection plus synthesis loop."
+        ],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_scavenger_hunt_collect:activity_icon",
+          "package:concept_scavenger_hunt_collect:intro_scene",
+          "package:concept_scavenger_hunt_collect:rules_scene",
+          "package:concept_scavenger_hunt_collect:round_1_scene",
+          "package:concept_scavenger_hunt_collect:round_2_scene",
+          "package:concept_scavenger_hunt_collect:round_3_scene",
+          "package:concept_scavenger_hunt_collect:synthesis_scene",
+          "package:concept_scavenger_hunt_collect:celebrate_scene",
+          "package:concept_scavenger_hunt_collect:closing_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "catalog_simulated_judgment",
+        "support_status": "degraded",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [
+          "The current demo cannot reliably judge arbitrary shared color, shape, or category from image data alone.",
+          "The package accepts child-stated evidence and preserves the three-photo collection plus synthesis loop."
+        ],
+        "status": "degraded",
+        "support_level": "catalog_simulated_judgment",
+        "ui_template": "cat5_judgment",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Shared Clue Object",
+        "entity_id": "shared_clue_object",
+        "source_entity_exemplar": "shared clue object"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    }
+  ],
+  "changed": []
+}

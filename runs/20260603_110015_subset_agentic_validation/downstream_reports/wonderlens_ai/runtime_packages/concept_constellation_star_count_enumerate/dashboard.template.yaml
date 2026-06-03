@@ -1,0 +1,8 @@
+dashboard_fragment:
+  session:
+    focal_attribute: chosen guide-star count
+    summary: Number choice comes before the reveal; the displayed card is approved
+      and reference-bound; the AI gives one fact instead of asking the child to count
+      a generic image.
+  caregiver:
+    note: Generated for the 2026-06-03 subset agentic validation run.

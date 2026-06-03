@@ -1,0 +1,76 @@
+activity_id: concept_guided_drawing_probe
+activity_name: Step Card Drawing Guide
+version: 1
+template_type: cat3
+pillar: Creation
+game_style: inventor_workshop
+entity: paper drawing
+entity_class: &id001
+- paper_material
+- drawing_activity
+entity_binding: agnostic
+source_entity_exemplar: paper drawing
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed subset validation scope
+category: cat3
+attributes:
+- drawing step sequence
+key_concepts:
+- Form
+- Change
+related_concepts:
+- step sequence
+- shape building
+- process celebration
+- self-report
+atl_skills:
+- creative_thinking
+- focus
+- fine_motor_planning
+- language_expression
+transdisciplinary_theme: How we express ourselves
+kud:
+  know:
+  - drawing step sequence can be noticed through the source activity evidence.
+  understand:
+  - A source-faithful activity keeps the child action, evidence, and reveal order
+    aligned.
+  do:
+  - AI guides the child to use paper and pencil to complete a simple drawing step
+    by step, then celebrates the process.
+progression:
+  topic_axis: form
+  difficulty_level: 1
+  next_step_hint: Repeat with a nearby source-aligned variation only after consumer
+    support is verified.
+  reward_hook: Step Card Drawing Guide
+caregiver_role:
+- scaffold
+- observer
+activity_signature:
+  observation_angle: shape
+  mechanic: build
+  entity_role: reference
+  focal_attribute: drawing step sequence
+  intro: The child draws on real paper while the AI gives step cards and waits for
+    self-report; no camera verification is claimed.
+  bridge_prerequisites:
+    primary:
+    - shape
+    secondary:
+    - pattern
+    - quantity
+  preview_label: Step Card Drawing Guide
+  preview_prompt: The child draws on real paper while the AI gives step cards and
+    waits for self-report; no camera verification is claimed.
+  role_pivot_note: Concept/workbook activity; runtime must preserve the declared source
+    frame.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

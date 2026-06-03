@@ -1,0 +1,29 @@
+activity_id: concept_phoneme_hunt_collect
+version: 1
+demo_support:
+  status: degraded
+  ui_template: cat5_judgment
+  support_level: catalog_simulated_judgment
+  entity_bindings:
+  - entity_id: beginning_sound_treasure
+    display_label: Beginning Sound Treasure
+    source_entity_exemplar: beginning sound treasure
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: true
+    runtime_judgment: true
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons:
+  - The current demo cannot infer the starting sound of a photographed object from
+    image data alone.
+  - The package requires the child to say or enter the object name before accepting
+    sound evidence.
+  - Any `/b/` or B cue is app-owned overlay support, not baked into generated PNG
+    assets.
+  consumer_notes:
+    fullstack_demo: Use deterministic runtime/fullstack export or parse generated
+      markdown; do not use LLM conversion as proof of no rewrite.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py and preserve
+      demo_support gating.
