@@ -1,7 +1,7 @@
 run_id: 20260603_171053_subset_phoneme_validation
 status: complete
 started_at: "2026-06-03T17:12:31+08:00"
-completed_at: "2026-06-04T01:35:45+08:00"
+completed_at: "2026-06-04T14:45:31+08:00"
 source:
   goal_file: goals/2026-06-03-subset-agentic-validation-goal.md
   runbook: run.md
@@ -98,6 +98,9 @@ checks:
   - name: image_visual_qa
     status: pass
     artifact: runs/20260603_171053_subset_phoneme_validation/manual_audits/concept_phoneme_hunt_collect_image_visual_audit.md
+  - name: shared_stage_scene_prompt_repair
+    status: pass
+    command: "../../../.venv/bin/python -m unittest tests.test_repair_full_pass_asset_bundle"
   - name: review_dashboard_validation
     status: pass
     command: "../../../.venv/bin/python scripts/generate_run_review.py --validate runs/20260603_171053_subset_phoneme_validation"
@@ -134,6 +137,7 @@ notes:
   - Illustrative source images were generated with Codex built-in imagegen and copied into generated_assets/inbox before asset build.
   - Picker/object variants were built under package-local assets/items/.
   - Repaired phoneme scene prompts and PNGs to foreground listening, speaking, room search, and evidence instead of generic basket/card/glow imagery.
+  - Tightened phoneme story-scene imagegen prompts after visual review with a repeated low-clutter shared stage, rounded rectangular WonderLens device contract, explicit not-a-circular-puck guardrail, and clearer search/evidence beat actions.
   - Updated repair_full_pass_asset_bundle.py so required bundle repair preserves phoneme sound/action prompts instead of regenerating the old container metaphor.
   - Built 22 runtime assets: 9 scene/support PNGs, 1 letter-cue support PNG, 4 correct /b/ item sprites, and 8 distractor item sprites.
   - Expanded the fullstack picker catalog to package-owned assets for ball, banana, book, box, cup, sock, apple, car, hat, mug, shoe, and spoon.

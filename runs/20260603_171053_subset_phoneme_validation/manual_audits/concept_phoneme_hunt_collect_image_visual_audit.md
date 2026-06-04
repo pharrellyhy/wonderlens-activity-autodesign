@@ -22,14 +22,16 @@ scene bundle plus item sprites. This audit is based on rendered images, not only
 
 ## Verdict
 
-PASS image QA after repair.
+PASS image QA after shared-stage scene repair.
 
 The repaired scene bundle now communicates a coherent phoneme treasure hunt:
 listen, practice the beginning sound, search the room, name the found object,
 connect the spoken word to the sound rule, celebrate, and close. The old
-basket/card/container motif has been removed from runtime scenes. The scenes use
-a stable child, room, lens, and sound-wave language while keeping app-owned UI,
-photo/name overlays, progress, and selectable item sprites out of the PNGs.
+basket/card/container motif has been removed from runtime scenes. The scenes now
+use a repeated low-clutter playroom, a stable child, and a recognizable rounded
+rectangular WonderLens device instead of an unexplained circle on the rug. The
+scene PNGs keep app-owned UI, photo/name overlays, progress, and selectable item
+sprites out of the backgrounds.
 
 ## Scene Findings
 
@@ -37,14 +39,14 @@ photo/name overlays, progress, and selectable item sprites out of the PNGs.
 | --- | --- | --- |
 | `activity_icon__round_512.png` | Child profile, sound cue, magnifier, and search path communicate listening plus search without revealing a target object. | PASS |
 | `b_sound_letter_cue__round_512.png` | Unframed mouth-and-sound-wave pictogram; not a blank cue card and no readable mark. | PASS |
-| `intro_scene__round_512.png` | Child listens beside the lens in a plausible room before the sound is named. | PASS |
-| `rules_scene__round_512.png` | Child practices the sound with mouth/speech cues and sound waves. | PASS |
+| `intro_scene__round_512.png` | Child listens beside a rounded rectangular WonderLens device before the sound is named. | PASS |
+| `rules_scene__round_512.png` | Child practices the sound with mouth/speech cues and sound waves moving to the device. | PASS |
 | `round_1_scene__round_512.png` | Child rehearses the sound with mouth/ear action; no baked B examples. | PASS |
-| `round_2_scene__round_512.png` | Child searches a room with a sound-wave trail; no answer object or camera UI is baked in. | PASS |
-| `round_3_scene__round_512.png` | Child speaks toward the lens for object-name evidence; no photo slot, panel, or accepted object is baked in. | PASS |
-| `synthesis_scene__round_512.png` | Sound-wave connection makes the spoken-name to beginning-sound rule visible. | PASS |
-| `celebrate_scene__round_512.png` | Celebration is tied to child/lens sound-wave success, not generic container sparkle. | PASS |
-| `closing_scene__round_512.png` | Calm finishing scene in the same room with a fading sound ribbon. | PASS |
+| `round_2_scene__round_512.png` | Child actively searches the low-clutter room with the device in hand; no answer object or camera UI is baked in. | PASS |
+| `round_3_scene__round_512.png` | Child speaks toward the device and points to unmarked open space reserved for runtime evidence overlay; no photo slot, panel, marked placeholder, or accepted object is baked in. | PASS |
+| `synthesis_scene__round_512.png` | Sound-wave connection makes the spoken-name to beginning-sound rule visible without checkmarks, badges, letters, or item objects. | PASS |
+| `celebrate_scene__round_512.png` | Celebration is tied to child/device sound-wave success, not generic container sparkle. | PASS |
+| `closing_scene__round_512.png` | Calm finishing scene in the same low-clutter room with the device still visible and a fading sound ribbon. | PASS |
 
 ## Item Findings
 
@@ -60,9 +62,11 @@ story-scene backgrounds.
 ## Repair Summary
 
 - Rewrote scene prompts and runtime screen copy to foreground listening,
-  speaking, sound waves, search motion, and evidence areas.
-- Regenerated `activity_icon`, `b_sound_letter_cue`, all story scenes, and the
-  seven missing catalog-parity item sources with Codex built-in imagegen.
+  speaking, sound waves, search motion, evidence areas, and a reusable
+  shared-stage contract.
+- Regenerated all story scenes with Codex built-in imagegen using the repeated
+  low-clutter playroom and rounded rectangular WonderLens device prompts.
+- Retained the already accepted item sprites and support assets.
 - Downsampled accepted source PNGs to 512x512 before the asset build.
 - Rebuilt package-local runtime PNGs with `scripts/build_activity_assets.py`.
 - Refreshed WonderLens AI and fullstack-demo run-local evidence to reflect the

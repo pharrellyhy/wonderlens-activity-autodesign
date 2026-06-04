@@ -8,8 +8,10 @@ Run id: `20260603_171053_subset_phoneme_validation`
 - Package accepted after source-intent audit, package re-review, image QA repair/re-QA, local asset validation, WonderLens AI runtime validation, fullstack demo import/export validation, and runtime-equivalent dialogue QA reports.
 - Built 22 runtime assets. Scene/support assets live under `assets/`; picker/object sprites live under `assets/items/`.
 - Repaired the phoneme image set away from the earlier basket/blank-card/glow motif toward listening, speaking, searching, and evidence scenes.
+- Tightened the story-scene imagegen prompts after visual review: every scene now repeats a low-clutter shared stage and a rounded rectangular WonderLens device contract so the device no longer reads as an unexplained circle on the rug.
 - Expanded the consumer-parity picker catalog to four correct `/b/` objects (`ball`, `banana`, `book`, `box`) and eight distractors (`cup`, `sock`, `apple`, `car`, `hat`, `mug`, `shoe`, `spoon`) so fullstack picker catalogs use package assets instead of generic placeholder icons.
 - Updated `scripts/repair_full_pass_asset_bundle.py` so the required bundle-repair check keeps phoneme assets focused on sound/action evidence rather than restoring a container metaphor.
+- Added regression coverage that checks phoneme scene prompts include the shared stage, recognizable device shape, clear search/evidence actions, and the explicit not-a-circular-puck guardrail.
 
 ## Validation Evidence
 
@@ -24,6 +26,7 @@ Run id: `20260603_171053_subset_phoneme_validation`
 - Fullstack runtime-equivalent dialogue QA content: PASS, but overall report status is `downstream_owned_failure` because required-worktree import/load rejects source-preserving `collection_count=1`.
 - WLAI fullstack export placeholder rejection: PASS.
 - `generate_run_review.py --validate`: PASS.
+- Manual visual QA of `image_qa/source_contact_sheet.png`: PASS after shared-stage scene regeneration.
 
 ## Residual Note
 

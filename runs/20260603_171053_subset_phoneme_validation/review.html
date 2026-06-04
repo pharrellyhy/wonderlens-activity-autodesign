@@ -1321,7 +1321,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
       <div class="summary-line">
         <span class="status-strong"><span class="status-dot "></span>Status <strong>complete</strong></span>
         <span>Started <strong>2026-06-03T17:12:31+08:00</strong></span>
-        <span>Completed <strong>2026-06-04T01:35:45+08:00</strong></span>
+        <span>Completed <strong>2026-06-04T14:45:31+08:00</strong></span>
       </div>
     </div>
     <div class="header-stamp">Run ID <strong>20260603_171053_subset_phoneme_validation</strong></div>
@@ -1346,7 +1346,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
       <a href="#validation-checks">Validation</a>
       <a href="#residual-risk">Residual Risk</a>
     </nav>
-    <div class="sidebar-counts"><div><span>Review cards</span><strong>1</strong></div><div><span>Blocked</span><strong>0</strong></div><div><span>Runtime assets</span><strong>22</strong></div><div><span>Asset sheets</span><strong>0</strong></div><div><span>Failed</span><strong>0</strong></div><div><span>Checks</span><strong>21</strong></div></div>
+    <div class="sidebar-counts"><div><span>Review cards</span><strong>1</strong></div><div><span>Blocked</span><strong>0</strong></div><div><span>Runtime assets</span><strong>22</strong></div><div><span>Asset sheets</span><strong>0</strong></div><div><span>Failed</span><strong>0</strong></div><div><span>Checks</span><strong>22</strong></div></div>
   </aside>
 	  <div class="review-content">
 	  <section class="metrics" id="summary-metrics"><div class="metric"><span>Pending at start</span><strong>1</strong></div><div class="metric"><span>Generated</span><strong>1</strong></div><div class="metric"><span>Enriched</span><strong>0</strong></div><div class="metric"><span>Audited no-op</span><strong>0</strong></div><div class="metric"><span>Blocked</span><strong>0</strong></div><div class="metric"><span>Review cards</span><strong>1</strong></div></section>
@@ -2285,6 +2285,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
 <tr><td>Unknown</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="unknown">Unknown</span></td></tr>
 <tr><td>Unknown</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="unknown">Unknown</span></td></tr>
 <tr><td>Unknown</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="unknown">Unknown</span></td></tr>
+<tr><td>../../../.venv/bin/python -m unittest tests.test_repair_full_pass_asset_bundle</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="unknown">Unknown</span></td></tr>
 <tr><td>../../../.venv/bin/python scripts/generate_run_review.py --validate runs/20260603_171053_subset_phoneme_validation</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="unknown">Unknown</span></td></tr>
 <tr><td>rg scan for RESOLVED BLOCKER / RESOLVE BLOCKER in runtime-facing files returned no matches</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="unknown">Unknown</span></td></tr>
 <tr><td>rg scan for Matching placeholder, /icons/green_apple.png, and /icons/straight_stick.png returned no matches</td><td><span class="badge badge-status" data-tag-group="default" data-tag-value="unknown">Unknown</span></td></tr></tbody></table></div>
@@ -2321,10 +2322,10 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="preview-truncated muted hidden" id="preview-truncated">File is larger than the inline-preview limit. Use "Open file in new tab" to read the full contents.</div>
 </dialog>
 <div id="file-previews" hidden aria-hidden="true">
-<template id="preview-run-manifest-yaml" data-label="runs/20260603_171053_subset_phoneme_validation/run_manifest.yaml" data-href="run_manifest.yaml" data-kind="YAML" data-truncated="false" data-size="9676">run_id: 20260603_171053_subset_phoneme_validation
+<template id="preview-run-manifest-yaml" data-label="runs/20260603_171053_subset_phoneme_validation/run_manifest.yaml" data-href="run_manifest.yaml" data-kind="YAML" data-truncated="false" data-size="10073">run_id: 20260603_171053_subset_phoneme_validation
 status: complete
 started_at: &quot;2026-06-03T17:12:31+08:00&quot;
-completed_at: &quot;2026-06-04T01:35:45+08:00&quot;
+completed_at: &quot;2026-06-04T14:45:31+08:00&quot;
 source:
   goal_file: goals/2026-06-03-subset-agentic-validation-goal.md
   runbook: run.md
@@ -2421,6 +2422,9 @@ checks:
   - name: image_visual_qa
     status: pass
     artifact: runs/20260603_171053_subset_phoneme_validation/manual_audits/concept_phoneme_hunt_collect_image_visual_audit.md
+  - name: shared_stage_scene_prompt_repair
+    status: pass
+    command: &quot;../../../.venv/bin/python -m unittest tests.test_repair_full_pass_asset_bundle&quot;
   - name: review_dashboard_validation
     status: pass
     command: &quot;../../../.venv/bin/python scripts/generate_run_review.py --validate runs/20260603_171053_subset_phoneme_validation&quot;
@@ -2457,6 +2461,7 @@ notes:
   - Illustrative source images were generated with Codex built-in imagegen and copied into generated_assets/inbox before asset build.
   - Picker/object variants were built under package-local assets/items/.
   - Repaired phoneme scene prompts and PNGs to foreground listening, speaking, room search, and evidence instead of generic basket/card/glow imagery.
+  - Tightened phoneme story-scene imagegen prompts after visual review with a repeated low-clutter shared stage, rounded rectangular WonderLens device contract, explicit not-a-circular-puck guardrail, and clearer search/evidence beat actions.
   - Updated repair_full_pass_asset_bundle.py so required bundle repair preserves phoneme sound/action prompts instead of regenerating the old container metaphor.
   - Built 22 runtime assets: 9 scene/support PNGs, 1 letter-cue support PNG, 4 correct /b/ item sprites, and 8 distractor item sprites.
   - Expanded the fullstack picker catalog to package-owned assets for ball, banana, book, box, cup, sock, apple, car, hat, mug, shoe, and spoon.
@@ -2467,7 +2472,7 @@ blockers: []
 follow_ups:
   - Consider a WonderLens AI generator improvement to derive fullstack collection_catalog entries from package asset_manifest collection item roles without a run-local override.
   - Fullstack-demo should support collection_count=1 for single-find phoneme hunts or add a single-collection template that preserves the one-object source promise.</template>
-<template id="preview-review-notes-md" data-label="runs/20260603_171053_subset_phoneme_validation/review_notes.md" data-href="review_notes.md" data-kind="Markdown" data-truncated="false" data-size="2885"># Review Notes
+<template id="preview-review-notes-md" data-label="runs/20260603_171053_subset_phoneme_validation/review_notes.md" data-href="review_notes.md" data-kind="Markdown" data-truncated="false" data-size="3419"># Review Notes
 
 Run id: `20260603_171053_subset_phoneme_validation`
 
@@ -2477,8 +2482,10 @@ Run id: `20260603_171053_subset_phoneme_validation`
 - Package accepted after source-intent audit, package re-review, image QA repair/re-QA, local asset validation, WonderLens AI runtime validation, fullstack demo import/export validation, and runtime-equivalent dialogue QA reports.
 - Built 22 runtime assets. Scene/support assets live under `assets/`; picker/object sprites live under `assets/items/`.
 - Repaired the phoneme image set away from the earlier basket/blank-card/glow motif toward listening, speaking, searching, and evidence scenes.
+- Tightened the story-scene imagegen prompts after visual review: every scene now repeats a low-clutter shared stage and a rounded rectangular WonderLens device contract so the device no longer reads as an unexplained circle on the rug.
 - Expanded the consumer-parity picker catalog to four correct `/b/` objects (`ball`, `banana`, `book`, `box`) and eight distractors (`cup`, `sock`, `apple`, `car`, `hat`, `mug`, `shoe`, `spoon`) so fullstack picker catalogs use package assets instead of generic placeholder icons.
 - Updated `scripts/repair_full_pass_asset_bundle.py` so the required bundle-repair check keeps phoneme assets focused on sound/action evidence rather than restoring a container metaphor.
+- Added regression coverage that checks phoneme scene prompts include the shared stage, recognizable device shape, clear search/evidence actions, and the explicit not-a-circular-puck guardrail.
 
 ## Validation Evidence
 
@@ -2493,6 +2500,7 @@ Run id: `20260603_171053_subset_phoneme_validation`
 - Fullstack runtime-equivalent dialogue QA content: PASS, but overall report status is `downstream_owned_failure` because required-worktree import/load rejects source-preserving `collection_count=1`.
 - WLAI fullstack export placeholder rejection: PASS.
 - `generate_run_review.py --validate`: PASS.
+- Manual visual QA of `image_qa/source_contact_sheet.png`: PASS after shared-stage scene regeneration.
 
 ## Residual Note
 
@@ -2557,7 +2565,7 @@ Recommended fields:
 - [x] assignment_type=match_pattern, activity_concept=Phoneme Treasure Hunt, concept_source=inputs/source_activity_concepts.md#source_phoneme_hunt, description=Child hears a target sound and finds one indoor treasure whose word starts with that sound, mechanic=collect, category=cat5, tier=T1, asset_policy=optional_support, asset_requirements=inputs/source_activity_concepts.md#phoneme_letter_card_01, asset_build=generate_and_curate, full_pass_pipeline=true, activity_id=concept_phoneme_hunt_collect, trigger_condition=Child enters language treasure-hunt mode or photographs an everyday object suitable for sound play, package_path=runs/20260603_171053_subset_phoneme_validation/activity_packages/concept_phoneme_hunt_collect</template>
 <template id="preview-generated-assets-asset-outputs-yaml" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/asset_outputs.yaml" data-href="generated_assets/asset_outputs.yaml" data-kind="YAML" data-truncated="false" data-size="16967">run_id: 20260603_171053_subset_phoneme_validation
 asset_build_mode: generate_and_curate
-generated_at: &#x27;2026-06-04T01:33:08+08:00&#x27;
+generated_at: &#x27;2026-06-04T15:01:42+08:00&#x27;
 package_count: 1
 asset_count: 22
 built_count: 22
@@ -2598,8 +2606,8 @@ entries:
   - variant_id: round_512
     path: assets/intro_scene__round_512.png
     size: 512x512
-    sha256: cb6fdc46c6634a440a5bb0e27eb71ce0ea307443d1f1cc015357f3162f0ee73f
-    byte_count: 416890
+    sha256: 6a93e0d8097aaf1b42d65208278228471e1ddb2205991ec0a1a1599c41c57beb
+    byte_count: 446598
     mime_type: image/png
     source_asset_id: intro_scene
   source_metadata_path: &#x27;&#x27;
@@ -2619,8 +2627,8 @@ entries:
   - variant_id: round_512
     path: assets/rules_scene__round_512.png
     size: 512x512
-    sha256: 6d50e10165b5459c19c314a0b34defdab4d8f64adf99218190960d088317f747
-    byte_count: 419281
+    sha256: 58312853391324800ad47bcf82d23cb6031260654feaf29b46439e0f3ec60915
+    byte_count: 463613
     mime_type: image/png
     source_asset_id: rules_scene
   source_metadata_path: &#x27;&#x27;
@@ -2640,8 +2648,8 @@ entries:
   - variant_id: round_512
     path: assets/round_1_scene__round_512.png
     size: 512x512
-    sha256: e40b746151eb254fdda98233d236cf9ebc99cfde7afc9ec34ffed3a406a456ce
-    byte_count: 423560
+    sha256: 6785bb65823106b0b38703e31ca39de5b3f6a98333b63990ddac8c84e16ad28d
+    byte_count: 459154
     mime_type: image/png
     source_asset_id: round_1_scene
   source_metadata_path: &#x27;&#x27;
@@ -2661,8 +2669,8 @@ entries:
   - variant_id: round_512
     path: assets/round_2_scene__round_512.png
     size: 512x512
-    sha256: a89fcb7a10ce0bd2beb07b896259cef02ababb666e8bbe0dbbc886aa6d2c0e07
-    byte_count: 425607
+    sha256: 7af0910384337660628de0421eb21ae63e0ac5dadef98f7a29420b02981ff962
+    byte_count: 440098
     mime_type: image/png
     source_asset_id: round_2_scene
   source_metadata_path: &#x27;&#x27;
@@ -2682,8 +2690,8 @@ entries:
   - variant_id: round_512
     path: assets/round_3_scene__round_512.png
     size: 512x512
-    sha256: f8f9573dc60a3dadf43fbf0babe695a1b2962b23edd79b91832f583661ee648c
-    byte_count: 426521
+    sha256: 14e85798e50660058946c17799cf547421b8a8c5275de1565d1487fbd4d3f936
+    byte_count: 473704
     mime_type: image/png
     source_asset_id: round_3_scene
   source_metadata_path: &#x27;&#x27;
@@ -2703,8 +2711,8 @@ entries:
   - variant_id: round_512
     path: assets/synthesis_scene__round_512.png
     size: 512x512
-    sha256: a20d883dbbc2bcd8ee5eafbf83881a5d9bc7faa8286198007a67ca5b00a220f3
-    byte_count: 431635
+    sha256: 7d35a5d5537c9dadd43f2a178d6dda2b652ac15b21ea3e55000be01ba4d2c5b8
+    byte_count: 451336
     mime_type: image/png
     source_asset_id: synthesis_scene
   source_metadata_path: &#x27;&#x27;
@@ -2724,8 +2732,8 @@ entries:
   - variant_id: round_512
     path: assets/celebrate_scene__round_512.png
     size: 512x512
-    sha256: d1f6c69d6b516e8577999db6a69b1ea46a618bc961e6c7e296ec682bc73366c9
-    byte_count: 443053
+    sha256: 919e7e66d5a07421c7fba9308abcf980164d022cbadad74082430a344c4362b4
+    byte_count: 467018
     mime_type: image/png
     source_asset_id: celebrate_scene
   source_metadata_path: &#x27;&#x27;
@@ -2745,8 +2753,8 @@ entries:
   - variant_id: round_512
     path: assets/closing_scene__round_512.png
     size: 512x512
-    sha256: c28b164efa66fa4a2da7aecb6ad3381f5d1c8dbe06cc1be728164de2ae65fc01
-    byte_count: 437663
+    sha256: adcf7e2f4e084e4fc8becc66102dd7c8c0dfab6287778d28cfedbf6f3709b4a5
+    byte_count: 455306
     mime_type: image/png
     source_asset_id: closing_scene
   source_metadata_path: &#x27;&#x27;
@@ -3027,11 +3035,11 @@ entries:
   - Built package-local runtime asset variants.</template>
 <template id="preview-generated-assets-reference-sources-yaml" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/reference_sources.yaml" data-href="generated_assets/reference_sources.yaml" data-kind="YAML" data-truncated="false" data-size="142">run_id: 20260603_171053_subset_phoneme_validation
 asset_build_mode: generate_and_curate
-generated_at: &#x27;2026-06-04T01:33:08+08:00&#x27;
+generated_at: &#x27;2026-06-04T15:01:42+08:00&#x27;
 entries: []</template>
 <template id="preview-generated-assets-qa-notes-yaml" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/qa_notes.yaml" data-href="generated_assets/qa_notes.yaml" data-kind="YAML" data-truncated="false" data-size="3419">run_id: 20260603_171053_subset_phoneme_validation
 asset_build_mode: generate_and_curate
-generated_at: &#x27;2026-06-04T01:33:08+08:00&#x27;
+generated_at: &#x27;2026-06-04T15:01:42+08:00&#x27;
 entries:
 - activity_id: concept_phoneme_hunt_collect
   asset_id: activity_icon
@@ -3605,7 +3613,7 @@ items. If the activity builds evidence step by step or uses partial reveal, do
 not show the final answer, full target, or solution before the source-aligned
 reveal beat. Align this asset to its runtime beat step by step; violations are
 hard repair findings, not polish notes.</template>
-<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--intro-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__intro_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__intro_scene.md" data-kind="Markdown" data-truncated="false" data-size="5379"># Asset Work Item: concept_phoneme_hunt_collect/intro_scene
+<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--intro-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__intro_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__intro_scene.md" data-kind="Markdown" data-truncated="false" data-size="6046"># Asset Work Item: concept_phoneme_hunt_collect/intro_scene
 
 Mode: `generate_and_curate`
 Package: `activity_packages/concept_phoneme_hunt_collect`
@@ -3617,7 +3625,7 @@ Transformation policy: `generate_new`
 
 ## Prompt Or Source Requirement
 
-Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Intro scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `intro_scene` child in a plausible indoor search room listening to the device before the sound is named. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, show a child listening to the device in a plausible indoor search room before the target sound is named. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
+Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Intro scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `intro_scene` child in a plausible indoor search room listening to the device before the sound is named. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, Shared stage: preschool child with brown hair, green sweater, blue pants, in a warm playroom with window on the left, low shelf on the right, round rug in the center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only. The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning device with a teal rim, visible camera eye, and small speaker marks; it must read as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration. Use the shared stage. Show the child noticing the WonderLens device at the start of a sound hunt. The child is looking at the device with one hand cupped near the ear, waiting to hear the target sound. The room should feel searchable, but do not show the answer items yet. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
 
 ## Style Reference Required For Imagegen
 
@@ -3670,7 +3678,7 @@ items. If the activity builds evidence step by step or uses partial reveal, do
 not show the final answer, full target, or solution before the source-aligned
 reveal beat. Align this asset to its runtime beat step by step; violations are
 hard repair findings, not polish notes.</template>
-<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--rules-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__rules_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__rules_scene.md" data-kind="Markdown" data-truncated="false" data-size="5626"># Asset Work Item: concept_phoneme_hunt_collect/rules_scene
+<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--rules-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__rules_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__rules_scene.md" data-kind="Markdown" data-truncated="false" data-size="6282"># Asset Work Item: concept_phoneme_hunt_collect/rules_scene
 
 Mode: `generate_and_curate`
 Package: `activity_packages/concept_phoneme_hunt_collect`
@@ -3682,7 +3690,7 @@ Transformation policy: `generate_new`
 
 ## Prompt Or Source Requirement
 
-Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Rules scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `rules_scene` child practicing the beginning sound with mouth/speech cues and sound waves moving toward the device. If available, `b_sound_letter_cue` appears as a text-free listening tile while the app overlays the `/b/` cue separately if the overlay is unavailable, the screen stays visual-only and the AI repeats the sound by voice. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, show the child practicing the beginning sound by voice, with mouth/speech cues and sound waves moving toward the device. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
+Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Rules scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `rules_scene` child practicing the beginning sound with mouth/speech cues and sound waves moving toward the device. If available, `b_sound_letter_cue` appears as a text-free listening tile while the app overlays the `/b/` cue separately if the overlay is unavailable, the screen stays visual-only and the AI repeats the sound by voice. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, Shared stage: preschool child with brown hair, green sweater, blue pants, in a warm playroom with window on the left, low shelf on the right, round rug in the center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only. The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning device with a teal rim, visible camera eye, and small speaker marks; it must read as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration. Use the shared stage. Show the child practicing the first sound with the WonderLens device. The child faces the device, mouth open in a clear speaking pose, with simple sound-wave arcs traveling from mouth to device. The device must be clearly visible as the listening partner. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
 
 ## Style Reference Required For Imagegen
 
@@ -3735,7 +3743,7 @@ items. If the activity builds evidence step by step or uses partial reveal, do
 not show the final answer, full target, or solution before the source-aligned
 reveal beat. Align this asset to its runtime beat step by step; violations are
 hard repair findings, not polish notes.</template>
-<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--round-1-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__round_1_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__round_1_scene.md" data-kind="Markdown" data-truncated="false" data-size="5556"># Asset Work Item: concept_phoneme_hunt_collect/round_1_scene
+<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--round-1-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__round_1_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__round_1_scene.md" data-kind="Markdown" data-truncated="false" data-size="6184"># Asset Work Item: concept_phoneme_hunt_collect/round_1_scene
 
 Mode: `generate_and_curate`
 Package: `activity_packages/concept_phoneme_hunt_collect`
@@ -3747,7 +3755,7 @@ Transformation policy: `generate_new`
 
 ## Prompt Or Source Requirement
 
-Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Round 1 scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `round_1_scene` child rehearsing the target sound before searching. Any ball/book/banana/box examples appear only as separate item sprites or runtime overlays the scene PNG itself avoids duplicate selectable objects and contains no letters or labels. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, show sound rehearsal before searching: the child leans toward the device with a clear listening posture and soft sound-wave arcs. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
+Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Round 1 scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `round_1_scene` child rehearsing the target sound before searching. Any ball/book/banana/box examples appear only as separate item sprites or runtime overlays the scene PNG itself avoids duplicate selectable objects and contains no letters or labels. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, Shared stage: preschool child with brown hair, green sweater, blue pants, in a warm playroom with window on the left, low shelf on the right, round rug in the center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only. The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning device with a teal rim, visible camera eye, and small speaker marks; it must read as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration. Use the shared stage. Show call-and-response sound practice before searching. The child leans toward the WonderLens device with one hand near the mouth and one near the ear, repeating the sound. Keep the focus on listening and speaking, not object selection. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
 
 ## Style Reference Required For Imagegen
 
@@ -3800,7 +3808,7 @@ items. If the activity builds evidence step by step or uses partial reveal, do
 not show the final answer, full target, or solution before the source-aligned
 reveal beat. Align this asset to its runtime beat step by step; violations are
 hard repair findings, not polish notes.</template>
-<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--round-2-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__round_2_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__round_2_scene.md" data-kind="Markdown" data-truncated="false" data-size="5517"># Asset Work Item: concept_phoneme_hunt_collect/round_2_scene
+<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--round-2-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__round_2_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__round_2_scene.md" data-kind="Markdown" data-truncated="false" data-size="6274"># Asset Work Item: concept_phoneme_hunt_collect/round_2_scene
 
 Mode: `generate_and_curate`
 Package: `activity_packages/concept_phoneme_hunt_collect`
@@ -3812,7 +3820,7 @@ Transformation policy: `generate_new`
 
 ## Prompt Or Source Requirement
 
-Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Round 2 scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `round_2_scene` child safely searching the room with a subtle sound-wave trail, leaving the app camera preview and capture slot outside the PNG. No selectable object sprites are baked into the scene background. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, show the child safely searching the room after hearing the target sound; the camera or photo UI remains outside the generated PNG. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
+Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Round 2 scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `round_2_scene` child safely searching the room with a subtle sound-wave trail, leaving the app camera preview and capture slot outside the PNG. No selectable object sprites are baked into the scene background. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, Shared stage: preschool child with brown hair, green sweater, blue pants, in a warm playroom with window on the left, low shelf on the right, round rug in the center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only. The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning device with a teal rim, visible camera eye, and small speaker marks; it must read as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration. Use the shared stage. Show the child actively searching the playroom after hearing the sound. The child is standing or crouching near the shelf/rug, scanning the room with the WonderLens device in hand or nearby. The scene should clearly communicate look around the room for a matching object. Do not show specific answer sprites like ball, banana, book, or box baked into the background. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
 
 ## Style Reference Required For Imagegen
 
@@ -3865,7 +3873,7 @@ items. If the activity builds evidence step by step or uses partial reveal, do
 not show the final answer, full target, or solution before the source-aligned
 reveal beat. Align this asset to its runtime beat step by step; violations are
 hard repair findings, not polish notes.</template>
-<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--round-3-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__round_3_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__round_3_scene.md" data-kind="Markdown" data-truncated="false" data-size="5471"># Asset Work Item: concept_phoneme_hunt_collect/round_3_scene
+<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--round-3-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__round_3_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__round_3_scene.md" data-kind="Markdown" data-truncated="false" data-size="6284"># Asset Work Item: concept_phoneme_hunt_collect/round_3_scene
 
 Mode: `generate_and_curate`
 Package: `activity_packages/concept_phoneme_hunt_collect`
@@ -3877,7 +3885,7 @@ Transformation policy: `generate_new`
 
 ## Prompt Or Source Requirement
 
-Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Round 3 scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `round_3_scene` child naming the found object toward the device, with a neutral evidence area where the app may overlay the accepted photo and name evidence. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, show the child naming the found object toward the device, with a neutral evidence area where runtime may overlay the accepted photo/name. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
+Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Round 3 scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `round_3_scene` child naming the found object toward the device, with a neutral evidence area where the app may overlay the accepted photo and name evidence. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, Shared stage: preschool child with brown hair, green sweater, blue pants, in a warm playroom with window on the left, low shelf on the right, round rug in the center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only. The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning device with a teal rim, visible camera eye, and small speaker marks; it must read as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration. Use the shared stage. Show the child speaking a found object&#x27;s name toward the WonderLens device for checking. The child points naturally toward the clear unmarked open floor area beside the device where runtime can later overlay the actual item/photo. Do not draw the found object itself. Do not draw any outline, dotted oval, placeholder shape, slot, card, photo frame, or marked area. The action should read as say its name to the listening device. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
 
 ## Style Reference Required For Imagegen
 
@@ -3930,7 +3938,7 @@ items. If the activity builds evidence step by step or uses partial reveal, do
 not show the final answer, full target, or solution before the source-aligned
 reveal beat. Align this asset to its runtime beat step by step; violations are
 hard repair findings, not polish notes.</template>
-<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--synthesis-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__synthesis_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__synthesis_scene.md" data-kind="Markdown" data-truncated="false" data-size="5553"># Asset Work Item: concept_phoneme_hunt_collect/synthesis_scene
+<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--synthesis-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__synthesis_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__synthesis_scene.md" data-kind="Markdown" data-truncated="false" data-size="6157"># Asset Work Item: concept_phoneme_hunt_collect/synthesis_scene
 
 Mode: `generate_and_curate`
 Package: `activity_packages/concept_phoneme_hunt_collect`
@@ -3942,7 +3950,7 @@ Transformation policy: `generate_new`
 
 ## Prompt Or Source Requirement
 
-Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Synthesis scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `synthesis_scene` sound-wave evidence connecting the child&#x27;s word to the beginning-sound pattern. The accepted photo remains an app overlay if available the generated scene does not bake in the photo, letters, labels, or extra example objects. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, show word-to-beginning-sound evidence: the child&#x27;s speech and a device-side evidence area connected by one shared sound ribbon. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
+Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Synthesis scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `synthesis_scene` sound-wave evidence connecting the child&#x27;s word to the beginning-sound pattern. The accepted photo remains an app overlay if available the generated scene does not bake in the photo, letters, labels, or extra example objects. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, Shared stage: preschool child with brown hair, green sweater, blue pants, in a warm playroom with window on the left, low shelf on the right, round rug in the center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only. The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning device with a teal rim, visible camera eye, and small speaker marks; it must read as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration. Use the shared stage. Show the WonderLens device connecting the child&#x27;s spoken object name to the sound rule. The child says name, the device listens, and one accepted-match sound ribbon connects them. No letters or readable labels. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
 
 ## Style Reference Required For Imagegen
 
@@ -3995,7 +4003,7 @@ items. If the activity builds evidence step by step or uses partial reveal, do
 not show the final answer, full target, or solution before the source-aligned
 reveal beat. Align this asset to its runtime beat step by step; violations are
 hard repair findings, not polish notes.</template>
-<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--celebrate-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__celebrate_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__celebrate_scene.md" data-kind="Markdown" data-truncated="false" data-size="5465"># Asset Work Item: concept_phoneme_hunt_collect/celebrate_scene
+<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--celebrate-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__celebrate_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__celebrate_scene.md" data-kind="Markdown" data-truncated="false" data-size="6101"># Asset Work Item: concept_phoneme_hunt_collect/celebrate_scene
 
 Mode: `generate_and_curate`
 Package: `activity_packages/concept_phoneme_hunt_collect`
@@ -4007,7 +4015,7 @@ Transformation policy: `generate_new`
 
 ## Prompt Or Source Requirement
 
-Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Celebration scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: Use `celebrate_scene` only as a short celebration state after the synthesis payoff do not repeat `synthesis_scene`, accepted-photo evidence, app badges, progress, or labels. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, show a warm sound-wave celebration around the child and device after the beginning sound match is accepted. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
+Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Celebration scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: Use `celebrate_scene` only as a short celebration state after the synthesis payoff do not repeat `synthesis_scene`, accepted-photo evidence, app badges, progress, or labels. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, Shared stage: preschool child with brown hair, green sweater, blue pants, in a warm playroom with window on the left, low shelf on the right, round rug in the center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only. The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning device with a teal rim, visible camera eye, and small speaker marks; it must read as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration. Use the shared stage. Show the child celebrating a successful sound hunt beside the WonderLens device. The celebration should be about listening/speaking success, with small sound-wave ribbons, not generic sparkles around an unexplained object. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
 
 ## Style Reference Required For Imagegen
 
@@ -4060,7 +4068,7 @@ items. If the activity builds evidence step by step or uses partial reveal, do
 not show the final answer, full target, or solution before the source-aligned
 reveal beat. Align this asset to its runtime beat step by step; violations are
 hard repair findings, not polish notes.</template>
-<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--closing-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__closing_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__closing_scene.md" data-kind="Markdown" data-truncated="false" data-size="5448"># Asset Work Item: concept_phoneme_hunt_collect/closing_scene
+<template id="preview-generated-assets-work-items-concept-phoneme-hunt-collect--closing-scene-md" data-label="runs/20260603_171053_subset_phoneme_validation/generated_assets/work_items/concept_phoneme_hunt_collect__closing_scene.md" data-href="generated_assets/work_items/concept_phoneme_hunt_collect__closing_scene.md" data-kind="Markdown" data-truncated="false" data-size="6067"># Asset Work Item: concept_phoneme_hunt_collect/closing_scene
 
 Mode: `generate_and_curate`
 Package: `activity_packages/concept_phoneme_hunt_collect`
@@ -4072,7 +4080,7 @@ Transformation policy: `generate_new`
 
 ## Prompt Or Source Requirement
 
-Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Closing scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `celebrate_scene` appears first as a short sound-wave celebration around the child and device. Then `closing_scene` same room calming down with the sound-wave ribbon fading. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, show the same room calming down with the sound-wave ribbon fading; no new search challenge starts. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
+Use case: illustration-story. Asset type: WonderLens full-pass runtime activity asset. Primary request: Closing scene for B-Sound Treasure Hunt. Composition: full-bleed square beat scene, softly painterly nursery composition, no app UI; generate a 512x512 square source PNG; if the image tool returns a larger square, downsample it to 512x512 before asset build; keep important details inside the central round-lens safe area. Source beat context, for subject only: `celebrate_scene` appears first as a short sound-wave celebration around the child and device. Then `closing_scene` same room calming down with the sound-wave ribbon fading. Activity-specific direction: sound/phoneme assets must foreground listening, speaking, room search, or word evidence instead of a treasure or container metaphor. For this asset, Shared stage: preschool child with brown hair, green sweater, blue pants, in a warm playroom with window on the left, low shelf on the right, round rug in the center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only. The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning device with a teal rim, visible camera eye, and small speaker marks; it must read as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration. Use the shared stage. Show the child calmly finishing the sound hunt with the WonderLens device still visible. The room is settled, the child is relaxed, and the sound-wave ribbon fades away. No new search task starts. Do not draw baskets, treasure chests, blank cards, blank boards, empty containers, generic glow-only subjects, or selectable target objects inside story-scene backgrounds. Style: flat Nordic children&#x27;s illustration matching the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain, restrained boho pastels, airy negative space, organic simple silhouettes. No readable text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned interface state; the runtime overlays those separately.
 
 ## Style Reference Required For Imagegen
 

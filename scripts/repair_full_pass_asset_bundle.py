@@ -350,49 +350,74 @@ def visual_direction(activity_id: str, activity_name: str, asset_id: str) -> str
             "story-scene backgrounds; let the app place the picker/card sprites."
         )
     if "phoneme" in key:
+        phoneme_shared_stage = (
+            "Shared stage: preschool child with brown hair, green sweater, blue pants, in a warm "
+            "playroom with window on the left, low shelf on the right, round rug in the center. "
+            "Keep the room low-clutter: shelf, rug, window, plant, and open floor only. The WonderLens "
+            "device is a rounded rectangular handheld/tabletop tablet-like learning device with a "
+            "teal rim, visible camera eye, and small speaker marks; it must read as a device, not a "
+            "flat circle, not a circular puck, coaster, button, or rug decoration."
+        )
         phoneme_steps = {
             "activity_icon": (
                 "show a child-friendly listening-and-search symbol with a small sound wave and "
                 "indoor search spark."
             ),
             "intro_scene": (
-                "show a child listening to the device in a plausible indoor search room before the "
-                "target sound is named."
+                "Use the shared stage. Show the child noticing the WonderLens device at the start "
+                "of a sound hunt. The child is looking at the device with one hand cupped near the "
+                "ear, waiting to hear the target sound. The room should feel searchable, but do not "
+                "show the answer items yet."
             ),
             "rules_scene": (
-                "show the child practicing the beginning sound by voice, with mouth/speech cues and "
-                "sound waves moving toward the device."
+                "Use the shared stage. Show the child practicing the first sound with the WonderLens "
+                "device. The child faces the device, mouth open in a clear speaking pose, with simple "
+                "sound-wave arcs traveling from mouth to device. The device must be clearly visible "
+                "as the listening partner."
             ),
             "round_1_scene": (
-                "show sound rehearsal before searching: the child leans toward the device with a clear "
-                "listening posture and soft sound-wave arcs."
+                "Use the shared stage. Show call-and-response sound practice before searching. The "
+                "child leans toward the WonderLens device with one hand near the mouth and one near "
+                "the ear, repeating the sound. Keep the focus on listening and speaking, not object "
+                "selection."
             ),
             "round_2_scene": (
-                "show the child safely searching the room after hearing the target sound; the camera "
-                "or photo UI remains outside the generated PNG."
+                "Use the shared stage. Show the child actively searching the playroom after hearing "
+                "the sound. The child is standing or crouching near the shelf/rug, scanning the room "
+                "with the WonderLens device in hand or nearby. The scene should clearly communicate "
+                "look around the room for a matching object. Do not show specific answer sprites like "
+                "ball, banana, book, or box baked into the background."
             ),
             "round_3_scene": (
-                "show the child naming the found object toward the device, with a neutral evidence "
-                "area where runtime may overlay the accepted photo/name."
+                "Use the shared stage. Show the child speaking a found object's name toward the "
+                "WonderLens device for checking. The child points naturally toward the clear unmarked "
+                "open floor area beside the device where runtime can later overlay the actual item/photo. "
+                "Do not draw the found object itself. Do not draw any outline, dotted oval, placeholder "
+                "shape, slot, card, photo frame, or marked area. The action should read as say its name "
+                "to the listening device."
             ),
             "synthesis_scene": (
-                "show word-to-beginning-sound evidence: the child's speech and a device-side evidence "
-                "area connected by one shared sound ribbon."
+                "Use the shared stage. Show the WonderLens device connecting the child's spoken object "
+                "name to the sound rule. The child says name, the device listens, and one accepted-match "
+                "sound ribbon connects them. No letters or readable labels."
             ),
             "celebrate_scene": (
-                "show a warm sound-wave celebration around the child and device after the beginning "
-                "sound match is accepted."
+                "Use the shared stage. Show the child celebrating a successful sound hunt beside the "
+                "WonderLens device. The celebration should be about listening/speaking success, with "
+                "small sound-wave ribbons, not generic sparkles around an unexplained object."
             ),
             "closing_scene": (
-                "show the same room calming down with the sound-wave ribbon fading; no new search "
-                "challenge starts."
+                "Use the shared stage. Show the child calmly finishing the sound hunt with the "
+                "WonderLens device still visible. The room is settled, the child is relaxed, and the "
+                "sound-wave ribbon fades away. No new search task starts."
             ),
         }
         step_direction = phoneme_steps.get(asset_id, phoneme_steps["activity_icon"])
+        stage_prefix = "" if asset_id == "activity_icon" else f"{phoneme_shared_stage} "
         return (
             "Activity-specific direction: sound/phoneme assets must foreground listening, speaking, "
             "room search, or word evidence instead of a treasure or container metaphor. For this "
-            f"asset, {step_direction} Do not draw baskets, treasure chests, blank cards, blank boards, "
+            f"asset, {stage_prefix}{step_direction} Do not draw baskets, treasure chests, blank cards, blank boards, "
             "empty containers, generic glow-only subjects, or selectable target objects inside "
             "story-scene backgrounds."
         )

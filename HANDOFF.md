@@ -1,5 +1,23 @@
 # HANDOFF
 
+## 2026-06-04 - Phoneme Scene Prompts Tightened
+
+Problem: After the phoneme subset validation repair, visual review still found
+the story scenes too vague: the WonderLens device could read as a random circle
+on the rug, and the child action was clearer than before but still not grounded
+by a reusable visual stage.
+
+Solution: Updated the phoneme branch in
+`scripts/repair_full_pass_asset_bundle.py` to include a repeated low-clutter
+shared stage, a rounded rectangular WonderLens device contract, explicit
+not-a-circular-puck wording, and clearer search/evidence beat actions.
+Regenerated only the story-scene PNG sources for
+`concept_phoneme_hunt_collect`; item sprites and support assets were retained.
+
+Verification: Added focused regression coverage in
+`tests/test_repair_full_pass_asset_bundle.py`, rebuilt all 22 package assets,
+and visually checked `image_qa/source_contact_sheet.png`.
+
 ## 2026-06-04 - Phoneme Subset Validation Repaired
 
 Problem: Run `20260603_171053_subset_phoneme_validation` had been marked
