@@ -890,6 +890,55 @@
       margin: 0.35rem 0;
     }
 
+    .qa-criteria {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .qa-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .qa-card h3 {
+      margin-bottom: 0.65rem;
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .qa-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .qa-card li {
+      padding: 0.72rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+    .qa-card li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .qa-card strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--brown);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
     .artifact-map {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -1212,6 +1261,7 @@
       .map-detail,
       .workflow-lab,
       .text-package,
+      .qa-criteria,
       .repair,
       .two-up {
         grid-template-columns: minmax(0, 1fr);
@@ -1351,6 +1401,7 @@
         <li><a href="#animation">Workflow animation</a></li>
         <li><a href="#text-package">Text package</a></li>
         <li><a href="#roles">Agent roles</a></li>
+        <li><a href="#qa-criteria">QA criteria</a></li>
         <li><a href="#artifacts">Artifact flow</a></li>
         <li><a href="#assets">Assets</a></li>
         <li><a href="#repair">Repair routing</a></li>
@@ -1682,6 +1733,41 @@
               <li>Fullstack 和 WonderLens AI validators 跑 runtime-equivalent dialogue checks。</li>
               <li>Dialogue improvers 修 package-owned guidance gaps，也包括 WonderLens AI runtime prompt gaps。</li>
               <li>Final reviewer 审 evidence 和 residual-risk ownership。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="qa-criteria" class="section" aria-labelledby="qa-criteria-title">
+        <div class="section-head">
+          <h2 id="qa-criteria-title">QA criteria</h2>
+          <p>
+            这三个 gate 决定最容易漂移的部分是否通过：image fidelity、fullstack-demo runtime behavior，以及 WonderLens AI dialogue behavior。
+          </p>
+        </div>
+        <div class="qa-criteria">
+          <div class="qa-card">
+            <h3>Image QA</h3>
+            <ul>
+              <li><strong>Rules</strong> 验证 manifest coverage、package-local 512x512 PNGs、asset IDs 和 paths、flat Nordic style、round-screen crop safety、beat alignment、reference provenance、reference fidelity、无重复 selectable items、无 readable text/logos/watermarks，以及不能提前泄露答案。</li>
+              <li><strong>Evidence</strong> 提供 asset inventory、built file paths、image thumbnails 或 review notes、reference-bound assets 的 source metadata，以及每个 failed asset 的 QA notes。</li>
+              <li><strong>Pass</strong> 每个 required asset 都能加载，匹配对应 runtime beat 和 style；source-bound assets 真实且 faithful；剩余 issue 已修复、blocked，或明确 accepted as degraded。</li>
+            </ul>
+          </div>
+          <div class="qa-card">
+            <h3>Fullstack QA</h3>
+            <ul>
+              <li><strong>Rules</strong> 验证 import as authored、entity binding、supported/degraded/unsupported gates、asset resolution、`step_instructions` quality、Cat5 synthesis separation、expected UI state，以及 ideal、minimal、wrong、off-topic、help、done、silence、photo 和 item flows。</li>
+              <li><strong>Evidence</strong> 提供 import report、converted runtime YAML 或 demo MD、asset path report、screenshots 或 UI notes、representative transcripts，以及 classified failures。</li>
+              <li><strong>Pass</strong> Web demo 没有 unsafe fallbacks 就能加载，遵守 demo gates，展示 declared assets，保留 package runtime beats，并把 mismatch 分类为 package-owned 或 fullstack-owned。</li>
+            </ul>
+          </div>
+          <div class="qa-card">
+            <h3>AI dialogue QA</h3>
+            <ul>
+              <li><strong>Rules</strong> 用 generated YAML 和 `prod.md` 验证 WonderLens AI runtime artifacts，包括 real camera 或 `photo_id` assumptions、Cat5 response types、collection catalog use、source guardrails、branch behavior、synthesis、celebration，以及 no unsupported visual claims。</li>
+              <li><strong>Evidence</strong> 提供 runtime artifact report、prompt 或 context trace、和 fullstack QA 相同策略下的 dialogue transcripts、comparison notes，以及 mismatch owner classification。</li>
+              <li><strong>Pass</strong> Responses 在 ideal 和 recovery paths 中遵循 package goal、constraint、tone、progress evidence、branch policy 和 source guardrails；每个 discrepancy 都已修复或分配给正确 owner。</li>
             </ul>
           </div>
         </div>
@@ -2090,9 +2176,9 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           purpose: "检查 built images 是否真正支持 child-facing beat、reference promise 和 physical screen constraints。",
           owner: "Image quality validator",
           inputs: "Built PNGs、source references、asset manifest、prod.md screen states 和 style rules。",
-          outputs: "Image QA report，包含 pass/fail、prompt/source issues、crop notes、duplicate-item notes 和 reference fidelity notes。",
-          validation: "QA 通过 style、crop safety、beat alignment、reference fidelity、no duplicate selectable items 和 no early answer reveal。",
-          repair: "Image-owned defects 送到 Repair images；text 或 runtime mismatches 回到 owning phase。"
+          outputs: "Image QA report，包含 asset inventory、pass/fail、prompt/source issues、crop notes、duplicate-item notes、reference fidelity notes，以及 blocked/degraded decisions。",
+          validation: "只有当每个 required asset 都能加载，匹配对应 beat 和 flat Nordic style，在 runtime size 下 crop-safe，按需保留 reference provenance 和 fidelity，没有重复 selectable items，没有 readable text/logos/watermarks，且不会提前泄露答案时，才算 pass。",
+          repair: "Image-owned defects 送到 Repair images；text 或 runtime mismatches 回到 owning phase。如果 faithful source 无法使用，reference-bound cases 必须 blocked 或 degraded。"
         },
         "repair-images": {
           lane: "Image phase",
@@ -2121,8 +2207,8 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           owner: "Fullstack runtime validator",
           inputs: "Imported activity、test entity binding、generated assets 和 dialogue strategy list。",
           outputs: "Runtime transcript set、UI screenshots 或 notes、pass/fail report 和 classified issues。",
-          validation: "Ideal、minimal、wrong、off-topic、help、done、silence 以及 photo/item flows 的行为都符合 package contract。",
-          repair: "Package-owned dialogue gaps 回到 Autodesign；UI/runtime defects 成为 fullstack-demo issues。"
+          validation: "只有当 import 使用 package as authored，demo gates 被遵守，assets 没有 unsafe fallback 就能 resolve，`step_instructions` 保留 goal/constraint/tone/progress evidence/branch behavior/frame guardrail，Cat5 synthesis 保持分离，并且 ideal、minimal、wrong、off-topic、help、done、silence、photo 和 item flows 都符合 package contract 时，才算 pass。",
+          repair: "Package-owned dialogue gaps 回到 Autodesign；UI/runtime defects 成为 fullstack-demo issues。Unsupported mechanics 保持 gated，不能呈现为 playable。"
         },
         "ai-runtime": {
           lane: "Consumers",
@@ -2141,8 +2227,8 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           owner: "WonderLens AI dialogue validator",
           inputs: "Runtime artifacts、package instructions、dialogue strategy prompts、camera/photo IDs 和 transcripts。",
           outputs: "Dialogue comparison report、mismatch list 和 package/runtime classification notes。",
-          validation: "Responses 遵循 goal、constraint、tone、progress evidence、branch policy、source guardrail 和 synthesis behavior。",
-          repair: "如果 package prompts 太薄，修 package；如果 conversion 丢失 faithful behavior，修 WonderLens AI runtime prompts。"
+          validation: "只有当 WonderLens AI runtime artifacts 保持 faithful to generated YAML and `prod.md`，real camera 或 `photo_id` assumptions 被保留，Cat5 response types 和 collection catalog use 正确，responses 遵循 goal/constraint/tone/progress evidence/branch policy/source guardrail/synthesis behavior，并且没有 unsupported visual claims 时，才算 pass。",
+          repair: "如果 package prompts 太薄，修 package；如果 conversion 丢失 faithful behavior，修 WonderLens AI runtime prompts。Provider 或 credential gaps 要和 package quality 分开分类。"
         },
         classify: {
           lane: "Consumers",
@@ -2271,10 +2357,10 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
         },
         {
           title: "Image QA",
-          copy: "检查 style、crop safety、beat alignment、reference fidelity、no duplicate selectable items 和 no early answer reveal。",
+          copy: "检查 manifest coverage、runtime size、style、crop safety、beat alignment、reference fidelity、duplicate items 和 answer reveal。",
           use: "用这个 gate 判断应当 repair images、replace sources，还是 block reference-bound case。",
           by: "Image quality validator。",
-          produces: "Image QA report，包含 crop notes、duplicate-item notes、reference fidelity notes 和 repair routes。"
+          produces: "Image QA report，包含 asset inventory、crop notes、duplicate-item notes、reference fidelity notes、pass/fail result 和 repair routes。"
         },
         {
           title: "Consumer QA",

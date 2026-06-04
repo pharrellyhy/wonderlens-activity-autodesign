@@ -76,7 +76,7 @@ Then Generate / curate: image agents create PNGs or accept real source material.
 
 Then Build assets: the builder writes final package-local runtime assets and manifest paths.
 
-Then Image QA: the validator checks style, crop safety, beat fit, reference fidelity, and answer leakage.
+Then Image QA: the validator checks manifest coverage, runtime size, style, crop safety, beat fit, reference fidelity, duplicate items, and answer leakage.
 
 Then Consumer QA: Fullstack-demo and WonderLens AI load the package and exercise runtime behavior.
 
@@ -113,6 +113,28 @@ On the asset side, the image-only generator or curator produces the PNGs and ref
 On the consumer side, the package/import validator checks schema, paths, converted instruction shape, and gates. Fullstack and WonderLens AI validators run runtime-equivalent dialogue checks. Dialogue improvers repair package-owned guidance gaps. The final reviewer audits the evidence and residual-risk ownership.
 
 The important rule is that a writer should not be the only reviewer of its own artifact.
+
+## QA Criteria
+
+This section is the pass/fail contract for the three riskiest validation surfaces.
+
+Image QA validates the asset bundle. It checks manifest coverage, package-local 512x512 PNGs, asset IDs and paths, flat Nordic style, round-screen crop safety, beat alignment, reference provenance, reference fidelity, duplicate selectable items, readable text, logos, watermarks, and premature answer reveal.
+
+Image QA evidence should include an asset inventory, built file paths, thumbnails or review notes, source metadata for reference-bound assets, and per-asset QA notes for every failure.
+
+Image QA passes only when every required asset loads, matches its runtime beat and style, source-bound assets are real and faithful, and every remaining issue is repaired, blocked, or explicitly accepted as degraded.
+
+Fullstack QA validates the web demo as a direct consumer. It checks that the package is imported as authored, entity binding is honored, supported/degraded/unsupported gates are respected, assets resolve, `step_instructions` preserve goal, constraint, tone, progress evidence, branch behavior, and frame guardrail, Cat5 synthesis stays separate, and the expected UI state appears.
+
+Fullstack QA must exercise ideal, minimal, wrong, off-topic, help, done, silence, photo, and item flows. Evidence should include the import report, converted runtime YAML or demo MD, asset path report, screenshots or UI notes, representative transcripts, and classified failures.
+
+Fullstack QA passes only when the web demo loads without unsafe fallbacks, honors demo gates, shows declared assets, preserves package runtime beats, and classifies every mismatch as package-owned or fullstack-owned.
+
+AI dialogue QA validates WonderLens AI runtime behavior against the generated YAML and `prod.md`. It checks real camera or `photo_id` assumptions, Cat5 response types, collection catalog use, source guardrails, branch behavior, synthesis, celebration, and unsupported visual claims.
+
+AI dialogue QA evidence should include the runtime artifact report, prompt or context trace, transcripts across the same strategies used by fullstack QA, comparison notes, and owner classification for mismatches.
+
+AI dialogue QA passes only when responses follow the package goal, constraint, tone, progress evidence, branch policy, and source guardrails across ideal and recovery paths, with every discrepancy either repaired or assigned to the correct owner.
 
 ## Artifact Flow
 

@@ -890,6 +890,55 @@
       margin: 0.35rem 0;
     }
 
+    .qa-criteria {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .qa-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .qa-card h3 {
+      margin-bottom: 0.65rem;
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .qa-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .qa-card li {
+      padding: 0.72rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+    .qa-card li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .qa-card strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--brown);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
     .artifact-map {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -1212,6 +1261,7 @@
       .map-detail,
       .workflow-lab,
       .text-package,
+      .qa-criteria,
       .repair,
       .two-up {
         grid-template-columns: minmax(0, 1fr);
@@ -1351,6 +1401,7 @@
         <li><a href="#animation">Workflow animation</a></li>
         <li><a href="#text-package">Text package</a></li>
         <li><a href="#roles">Agent roles</a></li>
+        <li><a href="#qa-criteria">QA criteria</a></li>
         <li><a href="#artifacts">Artifact flow</a></li>
         <li><a href="#assets">Assets</a></li>
         <li><a href="#repair">Repair routing</a></li>
@@ -1682,6 +1733,41 @@
               <li>Fullstack and WonderLens AI validators run runtime-equivalent dialogue checks.</li>
               <li>Dialogue improvers repair package-owned guidance gaps, including WonderLens AI runtime prompt gaps.</li>
               <li>Final reviewer audits evidence and residual-risk ownership.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="qa-criteria" class="section" aria-labelledby="qa-criteria-title">
+        <div class="section-head">
+          <h2 id="qa-criteria-title">QA criteria</h2>
+          <p>
+            These gates decide pass/fail for the parts most likely to drift: image fidelity, fullstack-demo runtime behavior, and WonderLens AI dialogue behavior.
+          </p>
+        </div>
+        <div class="qa-criteria">
+          <div class="qa-card">
+            <h3>Image QA</h3>
+            <ul>
+              <li><strong>Rules</strong> Validate manifest coverage, package-local 512x512 PNGs, asset IDs and paths, flat Nordic style, round-screen crop safety, beat alignment, reference provenance, reference fidelity, no duplicate selectable items, no readable text/logos/watermarks, and no premature answer reveal.</li>
+              <li><strong>Evidence</strong> Provide asset inventory, built file paths, image thumbnails or review notes, source metadata for reference-bound assets, and per-asset QA notes for every failure.</li>
+              <li><strong>Pass</strong> Every required asset loads, matches its runtime beat and style, source-bound assets are real and faithful, and every remaining issue is repaired, blocked, or explicitly accepted as degraded.</li>
+            </ul>
+          </div>
+          <div class="qa-card">
+            <h3>Fullstack QA</h3>
+            <ul>
+              <li><strong>Rules</strong> Validate import as authored, entity binding, supported/degraded/unsupported gates, asset resolution, `step_instructions` quality, Cat5 synthesis separation, expected UI state, and dialogue strategies for ideal, minimal, wrong, off-topic, help, done, silence, photo, and item flows.</li>
+              <li><strong>Evidence</strong> Provide import report, converted runtime YAML or demo MD, asset path report, screenshots or UI notes, representative transcripts, and classified failures.</li>
+              <li><strong>Pass</strong> The web demo loads without unsafe fallbacks, honors demo gates, shows declared assets, preserves package runtime beats, and classifies any mismatch as package-owned or fullstack-owned.</li>
+            </ul>
+          </div>
+          <div class="qa-card">
+            <h3>AI dialogue QA</h3>
+            <ul>
+              <li><strong>Rules</strong> Validate WonderLens AI runtime artifacts against the generated YAML and `prod.md`, including real camera or `photo_id` assumptions, Cat5 response types, collection catalog use, source guardrails, branch behavior, synthesis, celebration, and no unsupported visual claims.</li>
+              <li><strong>Evidence</strong> Provide runtime artifact report, prompt or context trace, dialogue transcripts across the same strategies as fullstack QA, comparison notes, and owner classification for mismatches.</li>
+              <li><strong>Pass</strong> Responses follow the package goal, constraint, tone, progress evidence, branch policy, and source guardrails across ideal and recovery paths, with every discrepancy repaired or assigned to the correct owner.</li>
             </ul>
           </div>
         </div>
@@ -2090,9 +2176,9 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           purpose: "Check whether the built images actually support the child-facing beat, reference promise, and physical screen constraints.",
           owner: "Image quality validator",
           inputs: "Built PNGs, source references, asset manifest, prod.md screen states, and style rules.",
-          outputs: "Image QA report with pass/fail, prompt/source issues, crop notes, duplicate-item notes, and reference fidelity notes.",
-          validation: "QA passes style, crop safety, beat alignment, reference fidelity, no duplicate selectable items, and no early answer reveal.",
-          repair: "Send image-owned defects to Repair images. Send text or runtime mismatches back to the owning phase."
+          outputs: "Image QA report with asset inventory, pass/fail, prompt/source issues, crop notes, duplicate-item notes, reference fidelity notes, and blocked/degraded decisions.",
+          validation: "Pass only when every required asset loads, matches its beat and flat Nordic style, is crop-safe at runtime size, preserves reference provenance and fidelity when required, avoids duplicate selectable items, avoids readable text/logos/watermarks, and does not reveal answers early.",
+          repair: "Send image-owned defects to Repair images. Send text or runtime mismatches back to the owning phase. Block or degrade reference-bound cases when a faithful source cannot be used."
         },
         "repair-images": {
           lane: "Image phase",
@@ -2121,8 +2207,8 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           owner: "Fullstack runtime validator",
           inputs: "Imported activity, test entity binding, generated assets, and dialogue strategy list.",
           outputs: "Runtime transcript set, UI screenshots or notes, pass/fail report, and classified issues.",
-          validation: "Ideal, minimal, wrong, off-topic, help, done, silence, and photo/item flows behave like the package contract.",
-          repair: "Package-owned dialogue gaps go back to autodesign. UI/runtime defects become fullstack-demo issues."
+          validation: "Pass only when import uses the package as authored, demo gates are honored, assets resolve without unsafe fallback, `step_instructions` preserve goal/constraint/tone/progress evidence/branch behavior/frame guardrail, Cat5 synthesis stays separate, and ideal, minimal, wrong, off-topic, help, done, silence, photo, and item flows match the package contract.",
+          repair: "Package-owned dialogue gaps go back to autodesign. UI/runtime defects become fullstack-demo issues. Unsupported mechanics remain gated instead of being presented as playable."
         },
         "ai-runtime": {
           lane: "Consumers",
@@ -2141,8 +2227,8 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           owner: "WonderLens AI dialogue validator",
           inputs: "Runtime artifacts, package instructions, dialogue strategy prompts, camera/photo IDs, and transcripts.",
           outputs: "Dialogue comparison report, mismatch list, and package/runtime classification notes.",
-          validation: "Responses follow goal, constraint, tone, progress evidence, branch policy, source guardrail, and synthesis behavior.",
-          repair: "Repair package prompts if they are thin. Repair WonderLens AI runtime prompts if conversion loses faithful behavior."
+          validation: "Pass only when WonderLens AI runtime artifacts stay faithful to generated YAML and `prod.md`, real camera or `photo_id` assumptions are preserved, Cat5 response types and collection catalog use are correct, responses follow goal/constraint/tone/progress evidence/branch policy/source guardrail/synthesis behavior, and unsupported visual claims are avoided.",
+          repair: "Repair package prompts if they are thin. Repair WonderLens AI runtime prompts if conversion loses faithful behavior. Classify provider or credential gaps separately from package quality."
         },
         classify: {
           lane: "Consumers",
@@ -2271,10 +2357,10 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
         },
         {
           title: "Image QA",
-          copy: "Check style, crop safety, beat alignment, reference fidelity, no duplicate selectable items, and no early answer reveal.",
+          copy: "Check manifest coverage, runtime size, style, crop safety, beat alignment, reference fidelity, duplicate items, and answer reveal.",
           use: "Use this gate to decide whether to repair images, replace sources, or block a reference-bound case.",
           by: "Image quality validator.",
-          produces: "Image QA report with crop notes, duplicate-item notes, reference fidelity notes, and repair routes."
+          produces: "Image QA report with asset inventory, crop notes, duplicate-item notes, reference fidelity notes, pass/fail result, and repair routes."
         },
         {
           title: "Consumer QA",

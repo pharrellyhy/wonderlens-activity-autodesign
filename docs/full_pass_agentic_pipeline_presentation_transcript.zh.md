@@ -76,7 +76,7 @@ Workflow animation 展示 run packet 如何穿过整个 pipeline。
 
 接着是 Build assets：builder 写入最终 package-local runtime assets 和 manifest paths。
 
-然后是 Image QA：validator 检查 style、crop safety、beat fit、reference fidelity，以及是否提前泄露答案。
+然后是 Image QA：validator 检查 manifest coverage、runtime size、style、crop safety、beat fit、reference fidelity、duplicate items，以及是否提前泄露答案。
 
 接下来是 Consumer QA：Fullstack-demo 和 WonderLens AI 加载 package，并执行 runtime behavior。
 
@@ -113,6 +113,28 @@ Asset side 里，image-only generator 或 curator 生成 PNGs 和 source-backed 
 Consumer side 里，package/import validator 检查 schema、paths、converted instruction shape 和 gates。Fullstack 和 WonderLens AI validators 运行 runtime-equivalent dialogue checks。Dialogue improvers 修 package-owned guidance gaps。Final reviewer 审 evidence 和 residual-risk ownership。
 
 核心规则是：writer 不能成为自己 artifact 的唯一 reviewer。
+
+## QA Criteria
+
+这一节是三个最高风险 validation surface 的 pass/fail contract。
+
+Image QA 验证 asset bundle。它检查 manifest coverage、package-local 512x512 PNGs、asset IDs 和 paths、flat Nordic style、round-screen crop safety、beat alignment、reference provenance、reference fidelity、duplicate selectable items、readable text、logos、watermarks，以及是否提前泄露答案。
+
+Image QA evidence 应该包括 asset inventory、built file paths、thumbnails 或 review notes、reference-bound assets 的 source metadata，以及每个 failure 的 per-asset QA notes。
+
+Image QA 只有在每个 required asset 都能加载、匹配对应 runtime beat 和 style、source-bound assets 真实且 faithful，并且剩余 issue 都已 repaired、blocked 或 explicitly accepted as degraded 时，才算 pass。
+
+Fullstack QA 验证 web demo 作为 direct consumer 的行为。它检查 package 是否 import as authored、entity binding 是否生效、supported/degraded/unsupported gates 是否被遵守、assets 是否 resolve、`step_instructions` 是否保留 goal、constraint、tone、progress evidence、branch behavior 和 frame guardrail、Cat5 synthesis 是否保持分离，以及 expected UI state 是否出现。
+
+Fullstack QA 必须覆盖 ideal、minimal、wrong、off-topic、help、done、silence、photo 和 item flows。Evidence 应该包括 import report、converted runtime YAML 或 demo MD、asset path report、screenshots 或 UI notes、representative transcripts，以及 classified failures。
+
+Fullstack QA 只有在 web demo 没有 unsafe fallbacks 就能加载、遵守 demo gates、展示 declared assets、保留 package runtime beats，并且每个 mismatch 都分类为 package-owned 或 fullstack-owned 时，才算 pass。
+
+AI dialogue QA 用 generated YAML 和 `prod.md` 验证 WonderLens AI runtime behavior。它检查 real camera 或 `photo_id` assumptions、Cat5 response types、collection catalog use、source guardrails、branch behavior、synthesis、celebration，以及 unsupported visual claims。
+
+AI dialogue QA evidence 应该包括 runtime artifact report、prompt 或 context trace、和 fullstack QA 相同策略下的 transcripts、comparison notes，以及 mismatch owner classification。
+
+AI dialogue QA 只有在 responses 在 ideal 和 recovery paths 中遵循 package goal、constraint、tone、progress evidence、branch policy 和 source guardrails，并且每个 discrepancy 都已 repaired 或 assigned to correct owner 时，才算 pass。
 
 ## Artifact Flow
 
