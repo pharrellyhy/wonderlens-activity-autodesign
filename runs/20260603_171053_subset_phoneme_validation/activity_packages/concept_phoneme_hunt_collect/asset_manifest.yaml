@@ -1,0 +1,726 @@
+activity_id: concept_phoneme_hunt_collect
+entity_id: beginning_sound_treasure
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: activity_icon
+  role: activity_preview
+  label: Activity icon for B-Sound Treasure Hunt.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Activity icon for B-Sound Treasure Hunt. Composition:
+    single centered icon or badge on a clean white background, no app UI; generate
+    a 512x512 square source PNG; if the image tool returns a larger square, downsample
+    it to 512x512 before asset build; keep important details inside the central round-lens
+    safe area. Activity-specific direction: sound/phoneme assets must foreground listening,
+    speaking, room search, or word evidence instead of a treasure or container metaphor.
+    For this asset, show a child-friendly listening-and-search symbol with a small
+    sound wave and indoor search spark. Do not draw baskets, treasure chests, blank
+    cards, blank boards, empty containers, generic glow-only subjects, or selectable
+    target objects inside story-scene backgrounds. Style: flat Nordic children''s
+    illustration matching the quiet white WonderLens prototype; use repo-local style
+    reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual
+    target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat
+    color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain,
+    restrained boho pastels, airy negative space, organic simple silhouettes. No readable
+    text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card
+    sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi
+    toy look, hard shadows, or clutter. Do not draw progress dots, round markers,
+    response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned
+    interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/activity_icon__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: intro_scene
+  role: story_scene
+  label: Intro scene for B-Sound Treasure Hunt.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Intro scene for B-Sound Treasure Hunt. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: `intro_scene`
+    child in a plausible indoor search room listening to the device before the sound
+    is named. Activity-specific direction: sound/phoneme assets must foreground listening,
+    speaking, room search, or word evidence instead of a treasure or container metaphor.
+    For this asset, Shared stage: preschool child with brown hair, green sweater,
+    blue pants, in a warm playroom with window on the left, low shelf on the right,
+    round rug in the center. Keep the room low-clutter: shelf, rug, window, plant,
+    and open floor only. The WonderLens device is a rounded rectangular handheld/tabletop
+    tablet-like learning device with a teal rim, visible camera eye, and small speaker
+    marks; it must read as a device, not a flat circle, not a circular puck, coaster,
+    button, or rug decoration. Use the shared stage. Show the child noticing the WonderLens
+    device at the start of a sound hunt. The child is looking at the device with one
+    hand cupped near the ear, waiting to hear the target sound. The room should feel
+    searchable, but do not show the answer items yet. Do not draw baskets, treasure
+    chests, blank cards, blank boards, empty containers, generic glow-only subjects,
+    or selectable target objects inside story-scene backgrounds. Style: flat Nordic
+    children''s illustration matching the quiet white WonderLens prototype; use repo-local
+    style reference `docs/asset_style_reference/wonderlens-activity-style.md` and
+    visual target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad
+    flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil
+    grain, restrained boho pastels, airy negative space, organic simple silhouettes.
+    No readable text, letters, numbers, labels, logos, watermark, border, contact
+    sheet, multi-card sheet, device frame, circular mask, vignette, black corners,
+    glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots,
+    round markers, response slots, rule strips, buttons, chips, picker slots, badges,
+    or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: rules_scene
+  role: story_scene
+  label: Rules scene for B-Sound Treasure Hunt.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Rules scene for B-Sound Treasure Hunt. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: `rules_scene`
+    child practicing the beginning sound with mouth/speech cues and sound waves moving
+    toward the device. If available, `b_sound_letter_cue` appears as a text-free listening
+    tile while the app overlays the `/b/` cue separately if the overlay is unavailable,
+    the screen stays visual-only and the AI repeats the sound by voice. Activity-specific
+    direction: sound/phoneme assets must foreground listening, speaking, room search,
+    or word evidence instead of a treasure or container metaphor. For this asset,
+    Shared stage: preschool child with brown hair, green sweater, blue pants, in a
+    warm playroom with window on the left, low shelf on the right, round rug in the
+    center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only.
+    The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning
+    device with a teal rim, visible camera eye, and small speaker marks; it must read
+    as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration.
+    Use the shared stage. Show the child practicing the first sound with the WonderLens
+    device. The child faces the device, mouth open in a clear speaking pose, with
+    simple sound-wave arcs traveling from mouth to device. The device must be clearly
+    visible as the listening partner. Do not draw baskets, treasure chests, blank
+    cards, blank boards, empty containers, generic glow-only subjects, or selectable
+    target objects inside story-scene backgrounds. Style: flat Nordic children''s
+    illustration matching the quiet white WonderLens prototype; use repo-local style
+    reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual
+    target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat
+    color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain,
+    restrained boho pastels, airy negative space, organic simple silhouettes. No readable
+    text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card
+    sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi
+    toy look, hard shadows, or clutter. Do not draw progress dots, round markers,
+    response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned
+    interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_1_scene
+  role: story_scene
+  label: Round 1 scene for B-Sound Treasure Hunt.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 1 scene for B-Sound Treasure Hunt. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: `round_1_scene`
+    child rehearsing the target sound before searching. Any ball/book/banana/box examples
+    appear only as separate item sprites or runtime overlays the scene PNG itself
+    avoids duplicate selectable objects and contains no letters or labels. Activity-specific
+    direction: sound/phoneme assets must foreground listening, speaking, room search,
+    or word evidence instead of a treasure or container metaphor. For this asset,
+    Shared stage: preschool child with brown hair, green sweater, blue pants, in a
+    warm playroom with window on the left, low shelf on the right, round rug in the
+    center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only.
+    The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning
+    device with a teal rim, visible camera eye, and small speaker marks; it must read
+    as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration.
+    Use the shared stage. Show call-and-response sound practice before searching.
+    The child leans toward the WonderLens device with one hand near the mouth and
+    one near the ear, repeating the sound. Keep the focus on listening and speaking,
+    not object selection. Do not draw baskets, treasure chests, blank cards, blank
+    boards, empty containers, generic glow-only subjects, or selectable target objects
+    inside story-scene backgrounds. Style: flat Nordic children''s illustration matching
+    the quiet white WonderLens prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md`
+    and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`;
+    broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil
+    grain, restrained boho pastels, airy negative space, organic simple silhouettes.
+    No readable text, letters, numbers, labels, logos, watermark, border, contact
+    sheet, multi-card sheet, device frame, circular mask, vignette, black corners,
+    glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots,
+    round markers, response slots, rule strips, buttons, chips, picker slots, badges,
+    or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_2_scene
+  role: story_scene
+  label: Round 2 scene for B-Sound Treasure Hunt.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 2 scene for B-Sound Treasure Hunt. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: `round_2_scene`
+    child safely searching the room with a subtle sound-wave trail, leaving the app
+    camera preview and capture slot outside the PNG. No selectable object sprites
+    are baked into the scene background. Activity-specific direction: sound/phoneme
+    assets must foreground listening, speaking, room search, or word evidence instead
+    of a treasure or container metaphor. For this asset, Shared stage: preschool child
+    with brown hair, green sweater, blue pants, in a warm playroom with window on
+    the left, low shelf on the right, round rug in the center. Keep the room low-clutter:
+    shelf, rug, window, plant, and open floor only. The WonderLens device is a rounded
+    rectangular handheld/tabletop tablet-like learning device with a teal rim, visible
+    camera eye, and small speaker marks; it must read as a device, not a flat circle,
+    not a circular puck, coaster, button, or rug decoration. Use the shared stage.
+    Show the child actively searching the playroom after hearing the sound. The child
+    is standing or crouching near the shelf/rug, scanning the room with the WonderLens
+    device in hand or nearby. The scene should clearly communicate look around the
+    room for a matching object. Do not show specific answer sprites like ball, banana,
+    book, or box baked into the background. Do not draw baskets, treasure chests,
+    blank cards, blank boards, empty containers, generic glow-only subjects, or selectable
+    target objects inside story-scene backgrounds. Style: flat Nordic children''s
+    illustration matching the quiet white WonderLens prototype; use repo-local style
+    reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual
+    target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat
+    color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain,
+    restrained boho pastels, airy negative space, organic simple silhouettes. No readable
+    text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card
+    sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi
+    toy look, hard shadows, or clutter. Do not draw progress dots, round markers,
+    response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned
+    interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_3_scene
+  role: story_scene
+  label: Round 3 scene for B-Sound Treasure Hunt.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 3 scene for B-Sound Treasure Hunt. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: `round_3_scene`
+    child naming the found object toward the device, with a neutral evidence area
+    where the app may overlay the accepted photo and name evidence. Activity-specific
+    direction: sound/phoneme assets must foreground listening, speaking, room search,
+    or word evidence instead of a treasure or container metaphor. For this asset,
+    Shared stage: preschool child with brown hair, green sweater, blue pants, in a
+    warm playroom with window on the left, low shelf on the right, round rug in the
+    center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only.
+    The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning
+    device with a teal rim, visible camera eye, and small speaker marks; it must read
+    as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration.
+    Use the shared stage. Show the child speaking a found object''s name toward the
+    WonderLens device for checking. The child points naturally toward the clear unmarked
+    open floor area beside the device where runtime can later overlay the actual item/photo.
+    Do not draw the found object itself. Do not draw any outline, dotted oval, placeholder
+    shape, slot, card, photo frame, or marked area. The action should read as say
+    its name to the listening device. Do not draw baskets, treasure chests, blank
+    cards, blank boards, empty containers, generic glow-only subjects, or selectable
+    target objects inside story-scene backgrounds. Style: flat Nordic children''s
+    illustration matching the quiet white WonderLens prototype; use repo-local style
+    reference `docs/asset_style_reference/wonderlens-activity-style.md` and visual
+    target `docs/asset_style_reference/style-reference-flat-nordic.png`; broad flat
+    color fills, sparse arc-eye or tiny texture linework, light colored-pencil grain,
+    restrained boho pastels, airy negative space, organic simple silhouettes. No readable
+    text, letters, numbers, labels, logos, watermark, border, contact sheet, multi-card
+    sheet, device frame, circular mask, vignette, black corners, glossy eyes, chibi
+    toy look, hard shadows, or clutter. Do not draw progress dots, round markers,
+    response slots, rule strips, buttons, chips, picker slots, badges, or other app-owned
+    interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: synthesis_scene
+  role: story_scene
+  label: Synthesis scene for B-Sound Treasure Hunt.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Synthesis scene for B-Sound Treasure Hunt. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: `synthesis_scene`
+    sound-wave evidence connecting the child''s word to the beginning-sound pattern.
+    The accepted photo remains an app overlay if available the generated scene does
+    not bake in the photo, letters, labels, or extra example objects. Activity-specific
+    direction: sound/phoneme assets must foreground listening, speaking, room search,
+    or word evidence instead of a treasure or container metaphor. For this asset,
+    Shared stage: preschool child with brown hair, green sweater, blue pants, in a
+    warm playroom with window on the left, low shelf on the right, round rug in the
+    center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only.
+    The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning
+    device with a teal rim, visible camera eye, and small speaker marks; it must read
+    as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration.
+    Use the shared stage. Show the WonderLens device connecting the child''s spoken
+    object name to the sound rule. The child says name, the device listens, and one
+    accepted-match sound ribbon connects them. No letters or readable labels. Do not
+    draw baskets, treasure chests, blank cards, blank boards, empty containers, generic
+    glow-only subjects, or selectable target objects inside story-scene backgrounds.
+    Style: flat Nordic children''s illustration matching the quiet white WonderLens
+    prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md`
+    and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`;
+    broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil
+    grain, restrained boho pastels, airy negative space, organic simple silhouettes.
+    No readable text, letters, numbers, labels, logos, watermark, border, contact
+    sheet, multi-card sheet, device frame, circular mask, vignette, black corners,
+    glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots,
+    round markers, response slots, rule strips, buttons, chips, picker slots, badges,
+    or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/synthesis_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: celebrate_scene
+  role: story_scene
+  label: Celebration scene for B-Sound Treasure Hunt.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Celebration scene for B-Sound Treasure Hunt.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `celebrate_scene`
+    only as a short celebration state after the synthesis payoff do not repeat `synthesis_scene`,
+    accepted-photo evidence, app badges, progress, or labels. Activity-specific direction:
+    sound/phoneme assets must foreground listening, speaking, room search, or word
+    evidence instead of a treasure or container metaphor. For this asset, Shared stage:
+    preschool child with brown hair, green sweater, blue pants, in a warm playroom
+    with window on the left, low shelf on the right, round rug in the center. Keep
+    the room low-clutter: shelf, rug, window, plant, and open floor only. The WonderLens
+    device is a rounded rectangular handheld/tabletop tablet-like learning device
+    with a teal rim, visible camera eye, and small speaker marks; it must read as
+    a device, not a flat circle, not a circular puck, coaster, button, or rug decoration.
+    Use the shared stage. Show the child celebrating a successful sound hunt beside
+    the WonderLens device. The celebration should be about listening/speaking success,
+    with small sound-wave ribbons, not generic sparkles around an unexplained object.
+    Do not draw baskets, treasure chests, blank cards, blank boards, empty containers,
+    generic glow-only subjects, or selectable target objects inside story-scene backgrounds.
+    Style: flat Nordic children''s illustration matching the quiet white WonderLens
+    prototype; use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md`
+    and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`;
+    broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil
+    grain, restrained boho pastels, airy negative space, organic simple silhouettes.
+    No readable text, letters, numbers, labels, logos, watermark, border, contact
+    sheet, multi-card sheet, device frame, circular mask, vignette, black corners,
+    glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots,
+    round markers, response slots, rule strips, buttons, chips, picker slots, badges,
+    or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: closing_scene
+  role: story_scene
+  label: Closing scene for B-Sound Treasure Hunt.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Closing scene for B-Sound Treasure Hunt. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: `celebrate_scene`
+    appears first as a short sound-wave celebration around the child and device. Then
+    `closing_scene` same room calming down with the sound-wave ribbon fading. Activity-specific
+    direction: sound/phoneme assets must foreground listening, speaking, room search,
+    or word evidence instead of a treasure or container metaphor. For this asset,
+    Shared stage: preschool child with brown hair, green sweater, blue pants, in a
+    warm playroom with window on the left, low shelf on the right, round rug in the
+    center. Keep the room low-clutter: shelf, rug, window, plant, and open floor only.
+    The WonderLens device is a rounded rectangular handheld/tabletop tablet-like learning
+    device with a teal rim, visible camera eye, and small speaker marks; it must read
+    as a device, not a flat circle, not a circular puck, coaster, button, or rug decoration.
+    Use the shared stage. Show the child calmly finishing the sound hunt with the
+    WonderLens device still visible. The room is settled, the child is relaxed, and
+    the sound-wave ribbon fades away. No new search task starts. Do not draw baskets,
+    treasure chests, blank cards, blank boards, empty containers, generic glow-only
+    subjects, or selectable target objects inside story-scene backgrounds. Style:
+    flat Nordic children''s illustration matching the quiet white WonderLens prototype;
+    use repo-local style reference `docs/asset_style_reference/wonderlens-activity-style.md`
+    and visual target `docs/asset_style_reference/style-reference-flat-nordic.png`;
+    broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil
+    grain, restrained boho pastels, airy negative space, organic simple silhouettes.
+    No readable text, letters, numbers, labels, logos, watermark, border, contact
+    sheet, multi-card sheet, device frame, circular mask, vignette, black corners,
+    glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots,
+    round markers, response slots, rule strips, buttons, chips, picker slots, badges,
+    or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: b_sound_letter_cue
+  role: ui_overlay
+  label: Text-free listening tile for a runtime-owned /b/ or B cue.
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: text-free listening support
+    tile. Primary request: one centered rounded listening tile for a runtime-owned
+    target sound overlay; include a simple mouth-and-sound-wave pictogram so the image
+    is not a blank placeholder. The generated image itself must contain no letters
+    or words. Scene/backdrop: clean white. Style/medium: flat Nordic children''s illustration
+    matching docs/asset_style_reference/wonderlens-activity-style.md and style-reference-flat-nordic.png
+    with restrained boho pastels and light paper grain. Composition/framing: one centered
+    tile, generous padding, safe inside round crop. Constraints: no readable text,
+    no letters, no numbers, no labels, no logos, no watermark, no app UI, no border,
+    no progress dots, no basket, no treasure chest, no blank card, no blank board,
+    no empty container.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/b_sound_letter_cue__round_512.png
+  fallback_behavior: If runtime letter overlays are unavailable, use voice-only /b/
+    modeling and do not claim a letter card is visible.
+- id: ball_object
+  role: collection_correct
+  label: One centered ball object as a correct /b/ example.
+  collection_catalog_id: ball_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered round ball object for a beginning-sound treasure; no other
+    objects. Scene/backdrop: clean white. Style/medium: flat Nordic children''s illustration
+    matching docs/asset_style_reference/wonderlens-activity-style.md and style-reference-flat-nordic.png,
+    muted sage, dusty teal-blue, soft terracotta, warm ochre accents, sparse pencil
+    grain. Composition/framing: one object only, centered with generous padding, safe
+    inside round crop. Constraints: no readable text, no letters, no numbers, no logos,
+    no watermark, no app UI, no border, no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/ball_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only B examples without claiming this
+    item sprite is visible.
+- id: banana_object
+  role: collection_correct
+  label: One centered banana object as a correct /b/ example.
+  collection_catalog_id: banana_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered curved banana object for a beginning-sound treasure; no
+    other objects. Scene/backdrop: clean white. Style/medium: flat Nordic children''s
+    illustration matching docs/asset_style_reference/wonderlens-activity-style.md
+    and style-reference-flat-nordic.png, muted ochre banana with sparse pencil grain
+    and soft green-brown accents. Composition/framing: one object only, centered with
+    generous padding, safe inside round crop. Constraints: no readable text, no letters,
+    no numbers, no logos, no watermark, no app UI, no border, no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/banana_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only B examples without claiming this
+    item sprite is visible.
+- id: book_object
+  role: collection_correct
+  label: One centered closed book object as a correct /b/ example.
+  collection_catalog_id: book_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered closed book object for a beginning-sound treasure; no readable
+    cover marks. Scene/backdrop: clean white. Style/medium: flat Nordic children''s
+    illustration matching docs/asset_style_reference/wonderlens-activity-style.md
+    and style-reference-flat-nordic.png, muted salmon and dusty blue cover shapes
+    with sparse paper grain. Composition/framing: one object only, centered with generous
+    padding, safe inside round crop. Constraints: no readable text, no letters, no
+    numbers, no logos, no watermark, no app UI, no border, no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/book_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only B examples without claiming this
+    item sprite is visible.
+- id: box_object
+  role: collection_correct
+  label: One centered plain box object as a correct /b/ example.
+  collection_catalog_id: box_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered plain box object for a beginning-sound treasure; no other
+    objects and no shipping marks. Scene/backdrop: clean white. Style/medium: flat
+    Nordic children''s illustration matching docs/asset_style_reference/wonderlens-activity-style.md
+    and style-reference-flat-nordic.png, muted warm cardboard ochre with soft sage
+    shadow and sparse paper grain. Composition/framing: one object only, centered
+    with generous padding, safe inside round crop. Constraints: no readable text,
+    no letters, no numbers, no logos, no watermark, no app UI, no border, no contact
+    sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/box_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only B examples without claiming this
+    item sprite is visible.
+- id: cup_object
+  role: collection_distractor
+  label: One centered plain cup object as a nonmatching contrast.
+  collection_catalog_id: cup_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered plain cup object as a nonmatching sound contrast; no other
+    objects. Scene/backdrop: clean white. Style/medium: flat Nordic children''s illustration
+    matching docs/asset_style_reference/wonderlens-activity-style.md and style-reference-flat-nordic.png,
+    muted sage ceramic and soft terracotta accent, sparse pencil grain. Composition/framing:
+    one object only, centered with generous padding, safe inside round crop. Constraints:
+    no readable text, no letters, no numbers, no logos, no watermark, no app UI, no
+    border, no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/cup_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only contrast without claiming this
+    item sprite is visible.
+- id: sock_object
+  role: collection_distractor
+  label: One centered soft sock object as a nonmatching contrast.
+  collection_catalog_id: sock_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered soft sock object as a nonmatching /b/ sound contrast; no
+    other objects. Scene/backdrop: clean white. Style/medium: flat Nordic children''s
+    illustration matching docs/asset_style_reference/wonderlens-activity-style.md
+    and style-reference-flat-nordic.png, muted sage cuff, dusty teal-blue toe and
+    heel, soft terracotta dots, sparse pencil grain. Composition/framing: one object
+    only, centered with generous padding, safe inside round crop. Constraints: no
+    readable text, no letters, no numbers, no logos, no watermark, no app UI, no border,
+    no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/sock_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only contrast without claiming this
+    item sprite is visible.
+- id: apple_object
+  role: collection_distractor
+  label: One centered apple object as a nonmatching contrast.
+  collection_catalog_id: apple_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered apple object as a nonmatching sound contrast; no other objects.
+    Scene/backdrop: clean white. Style/medium: flat Nordic children''s illustration
+    matching docs/asset_style_reference/wonderlens-activity-style.md and style-reference-flat-nordic.png,
+    muted red-salmon apple with sage leaf and sparse paper grain. Composition/framing:
+    one object only, centered with generous padding, safe inside round crop. Constraints:
+    no readable text, no letters, no numbers, no logos, no watermark, no app UI, no
+    border, no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/apple_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only contrast without claiming this
+    item sprite is visible.
+- id: car_object
+  role: collection_distractor
+  label: One centered toy car object as a nonmatching contrast.
+  collection_catalog_id: car_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered simple toy car object as a nonmatching sound contrast; no
+    other objects. Scene/backdrop: clean white. Style/medium: flat Nordic children''s
+    illustration matching docs/asset_style_reference/wonderlens-activity-style.md
+    and style-reference-flat-nordic.png, dusty teal-blue body with soft ochre wheels
+    and sparse paper grain. Composition/framing: one object only, centered with generous
+    padding, safe inside round crop. Constraints: no readable text, no letters, no
+    numbers, no logos, no watermark, no app UI, no border, no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/car_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only contrast without claiming this
+    item sprite is visible.
+- id: hat_object
+  role: collection_distractor
+  label: One centered hat object as a nonmatching contrast.
+  collection_catalog_id: hat_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered soft hat object as a nonmatching sound contrast; no other
+    objects. Scene/backdrop: clean white. Style/medium: flat Nordic children''s illustration
+    matching docs/asset_style_reference/wonderlens-activity-style.md and style-reference-flat-nordic.png,
+    muted sage and warm ochre fabric with sparse paper grain. Composition/framing:
+    one object only, centered with generous padding, safe inside round crop. Constraints:
+    no readable text, no letters, no numbers, no logos, no watermark, no app UI, no
+    border, no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/hat_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only contrast without claiming this
+    item sprite is visible.
+- id: mug_object
+  role: collection_distractor
+  label: One centered mug object as a nonmatching contrast.
+  collection_catalog_id: mug_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered plain mug object as a nonmatching sound contrast; no other
+    objects. Scene/backdrop: clean white. Style/medium: flat Nordic children''s illustration
+    matching docs/asset_style_reference/wonderlens-activity-style.md and style-reference-flat-nordic.png,
+    warm porcelain mug with terracotta handle and sparse paper grain. Composition/framing:
+    one object only, centered with generous padding, safe inside round crop. Constraints:
+    no readable text, no letters, no numbers, no logos, no watermark, no app UI, no
+    border, no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/mug_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only contrast without claiming this
+    item sprite is visible.
+- id: shoe_object
+  role: collection_distractor
+  label: One centered shoe object as a nonmatching contrast.
+  collection_catalog_id: shoe_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered simple shoe object as a nonmatching sound contrast; no other
+    objects. Scene/backdrop: clean white. Style/medium: flat Nordic children''s illustration
+    matching docs/asset_style_reference/wonderlens-activity-style.md and style-reference-flat-nordic.png,
+    dusty blue shoe with sage sole and sparse paper grain. Composition/framing: one
+    object only, centered with generous padding, safe inside round crop. Constraints:
+    no readable text, no letters, no numbers, no logos, no watermark, no app UI, no
+    border, no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/shoe_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only contrast without claiming this
+    item sprite is visible.
+- id: spoon_object
+  role: collection_distractor
+  label: One centered spoon object as a nonmatching contrast.
+  collection_catalog_id: spoon_object
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: collection item sprite. Primary
+    request: one centered simple spoon object as a nonmatching sound contrast; no
+    other objects. Scene/backdrop: clean white. Style/medium: flat Nordic children''s
+    illustration matching docs/asset_style_reference/wonderlens-activity-style.md
+    and style-reference-flat-nordic.png, muted silver-gray spoon with soft sage shadow
+    and sparse paper grain. Composition/framing: one object only, centered with generous
+    padding, safe inside round crop. Constraints: no readable text, no letters, no
+    numbers, no logos, no watermark, no app UI, no border, no contact sheet.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/spoon_object__round_512.png
+  fallback_behavior: If unavailable, use voice-only contrast without claiming this
+    item sprite is visible.

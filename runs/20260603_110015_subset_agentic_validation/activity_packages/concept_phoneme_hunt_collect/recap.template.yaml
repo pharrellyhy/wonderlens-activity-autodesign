@@ -1,0 +1,8 @@
+recap:
+  title: B-Sound Treasure Hunt
+  child_summary: '{child_name} completed B-Sound Treasure Hunt by following the source-aligned
+    evidence rule.'
+  evidence:
+  - Runtime instructions preserved source intent.
+  - Asset and support contracts were validated for the subset run.
+  next_prompt: Try a nearby variation only after the same consumer gates pass.

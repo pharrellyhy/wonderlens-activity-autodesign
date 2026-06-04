@@ -521,7 +521,7 @@
 
     .flow-board {
       position: relative;
-      min-height: 24rem;
+      min-height: 26rem;
       border-radius: 0.8rem;
       padding: 0.85rem;
       background:
@@ -533,13 +533,13 @@
     }
 
     .flow-stages {
-      position: relative;
+      position: absolute;
+      inset: 0.85rem;
       z-index: 1;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      grid-template-rows: repeat(3, minmax(5.8rem, 1fr));
+      grid-template-rows: repeat(3, minmax(0, 1fr));
       gap: 0.7rem;
-      height: 100%;
     }
 
     .flow-stage {
@@ -551,6 +551,36 @@
       display: grid;
       align-content: start;
       transition: transform 220ms cubic-bezier(0.25, 1, 0.5, 1), background 220ms cubic-bezier(0.25, 1, 0.5, 1), border-color 220ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .flow-stage[data-flow-step="3"] {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    .flow-stage[data-flow-step="4"] {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .flow-stage[data-flow-step="5"] {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .flow-stage[data-flow-step="6"] {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    .flow-stage[data-flow-step="7"] {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .flow-stage[data-flow-step="8"] {
+      grid-column: 3;
+      grid-row: 3;
     }
 
     .flow-stage[data-active="true"] {
@@ -580,7 +610,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 2;
+      z-index: 0;
     }
 
     .flow-path path {
@@ -678,6 +708,37 @@
       color: var(--muted);
       font-size: 0.78rem;
       line-height: 1.45;
+    }
+
+    .flow-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+
+    .flow-fact {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 0.72rem;
+      background: oklch(0.97 0.008 80);
+      padding: 0.72rem;
+    }
+
+    .flow-fact b {
+      display: block;
+      color: var(--brown);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .flow-fact span {
+      display: block;
+      margin-top: 0.32rem;
+      color: var(--ink);
+      font-size: 0.78rem;
+      line-height: 1.34;
+      overflow-wrap: anywhere;
     }
 
     .text-package {
@@ -829,6 +890,149 @@
       margin: 0.35rem 0;
     }
 
+    .agent-handoffs {
+      display: grid;
+      grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(1.2rem, 3vw, 2rem);
+      align-items: stretch;
+    }
+
+    .handoff-principles,
+    .handoff-flow {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .handoff-principles h3,
+    .handoff-flow h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .handoff-rules {
+      display: grid;
+      gap: 0.7rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .handoff-rules li {
+      border: 1px solid oklch(0.84 0.022 86);
+      border-radius: 0.75rem;
+      background: oklch(0.97 0.008 80);
+      padding: 0.8rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.42;
+    }
+
+    .handoff-rules strong {
+      display: block;
+      margin-bottom: 0.28rem;
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .handoff-chain {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .handoff-link {
+      display: grid;
+      grid-template-columns: minmax(7.5rem, 0.6fr) minmax(0, 1fr);
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+
+    .handoff-agent,
+    .handoff-payload {
+      min-width: 0;
+      border: 1px solid oklch(0.84 0.022 86);
+      border-radius: 0.75rem;
+      background: oklch(0.972 0.008 80);
+      padding: 0.72rem;
+    }
+
+    .handoff-agent {
+      display: grid;
+      align-content: center;
+      color: var(--brown);
+      font-size: 0.76rem;
+      font-weight: 820;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .handoff-payload b {
+      display: block;
+      margin-bottom: 0.28rem;
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .handoff-payload span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.42;
+      overflow-wrap: anywhere;
+    }
+
+    .qa-criteria {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .qa-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .qa-card h3 {
+      margin-bottom: 0.65rem;
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .qa-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .qa-card li {
+      padding: 0.72rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+    .qa-card li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .qa-card strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--brown);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
     .artifact-map {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -845,8 +1049,39 @@
     }
 
     .artifact-cluster h3 {
-      margin-bottom: 1rem;
+      margin-bottom: 0.55rem;
       font-size: 1.2rem;
+    }
+
+    .artifact-cluster p {
+      margin: 0 0 0.75rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+    .artifact-meta {
+      display: grid;
+      grid-template-columns: 5.6rem minmax(0, 1fr);
+      gap: 0.5rem;
+      align-items: start;
+      margin: 0.42rem 0 0.7rem;
+      padding-bottom: 0.64rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .artifact-meta b {
+      color: var(--brown);
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .artifact-meta span {
+      color: var(--ink);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
     }
 
     .file-pill {
@@ -871,50 +1106,9 @@
 
     .asset-showcase {
       display: grid;
-      grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.15fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: clamp(1.5rem, 4vw, 3rem);
       align-items: start;
-    }
-
-    .device-demo {
-      border: 1px solid var(--line);
-      border-radius: 1rem;
-      background: oklch(0.985 0.006 80);
-      padding: 1.1rem;
-      box-shadow: var(--shadow);
-    }
-
-    .device-shell {
-      width: min(21rem, 100%);
-      margin: 0 auto;
-      aspect-ratio: 0.78;
-      border-radius: 2.4rem;
-      background: linear-gradient(145deg, oklch(0.96 0.004 80), oklch(0.88 0.006 80));
-      border: 1px solid oklch(0.72 0.015 80);
-      display: grid;
-      place-items: center;
-      box-shadow: inset 0 0 0 0.3rem oklch(0.985 0.006 80), 0 1rem 3rem oklch(0.4 0.035 80 / 0.18);
-    }
-
-    .round-screen {
-      width: 72%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      overflow: hidden;
-      background: oklch(0.98 0.008 80);
-      border: 0.35rem solid oklch(0.73 0.035 145);
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.35rem;
-      padding: 1rem;
-    }
-
-    .round-screen img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      border-radius: 0.45rem;
-      background: oklch(0.98 0.005 80);
     }
 
     .asset-grid {
@@ -1161,6 +1355,8 @@
       .map-detail,
       .workflow-lab,
       .text-package,
+      .agent-handoffs,
+      .qa-criteria,
       .repair,
       .two-up {
         grid-template-columns: minmax(0, 1fr);
@@ -1214,7 +1410,8 @@
 
       .steps,
       .asset-grid,
-      .map-detail-grid {
+      .map-detail-grid,
+      .handoff-link {
         grid-template-columns: minmax(0, 1fr);
       }
 
@@ -1223,8 +1420,19 @@
       }
 
       .flow-stages {
+        position: relative;
+        inset: auto;
         grid-template-columns: minmax(0, 1fr);
         grid-template-rows: repeat(9, minmax(4.6rem, auto));
+      }
+
+      .flow-facts {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .flow-stage {
+        grid-column: auto !important;
+        grid-row: auto !important;
       }
 
       .flow-path {
@@ -1289,6 +1497,8 @@
         <li><a href="#animation">Workflow animation</a></li>
         <li><a href="#text-package">Text package</a></li>
         <li><a href="#roles">Agent roles</a></li>
+        <li><a href="#handoffs">Agent handoffs</a></li>
+        <li><a href="#qa-criteria">QA criteria</a></li>
         <li><a href="#artifacts">Artifact flow</a></li>
         <li><a href="#assets">Assets</a></li>
         <li><a href="#repair">Repair routing</a></li>
@@ -1298,6 +1508,10 @@
       </ol>
       <p class="sidebar-note">
         Source docs: <br>
+        <a href="full_pass_agentic_pipeline_presentation.zh.html">Chinese version</a><br>
+        <a href="full_pass_agentic_pipeline_presentation_transcript.md">English transcript</a><br>
+        <a href="full_pass_agentic_pipeline_presentation_transcript.zh.md">Chinese transcript</a><br>
+        <a href="../goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md">full-pass run goal</a><br>
         <a href="full_pass_agentic_pipeline_explainer.md">full_pass_agentic_pipeline_explainer.md</a><br>
         <a href="../GOAL.md">GOAL.md</a>, <a href="../run.md">run.md</a>, <a href="../program.md">program.md</a><br>
         <a href="activity_asset_generation_workflow.md">activity_asset_generation_workflow.md</a>
@@ -1455,7 +1669,7 @@
             </div>
             <div class="map-detail-item">
               <dt>Inputs</dt>
-              <dd data-map-detail-inputs>GOAL.md, run.md, program.md, workbook row set, current branch, and run ID.</dd>
+              <dd data-map-detail-inputs>Scoped full-pass goal, compact GOAL.md/run.md defaults, program.md, workbook row set, current branch, and run ID.</dd>
             </div>
             <div class="map-detail-item">
               <dt>Outputs</dt>
@@ -1484,25 +1698,30 @@
           <div class="flow-panel">
             <div class="flow-board" aria-label="Animated full-pass workflow">
               <svg class="flow-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M 17 17 L 50 17 L 83 17 L 83 50 L 50 50 L 17 50 L 17 83 L 50 83 L 83 83"></path>
+                <path data-flow-path-line d="M 0 0"></path>
               </svg>
               <div class="flow-token" aria-hidden="true"></div>
               <div class="flow-stages">
-                <div class="flow-stage" data-flow-step="0"><b>Source lock</b><span>TSV row, source snapshot, adaptation brief.</span></div>
-                <div class="flow-stage" data-flow-step="1"><b>Text package</b><span>Five files, runtime beats, demo gates, asset manifest.</span></div>
-                <div class="flow-stage" data-flow-step="2"><b>Post audit</b><span>Intent drift check before consumer work.</span></div>
-                <div class="flow-stage" data-flow-step="5"><b>Image QA</b><span>Style, crop, beat alignment, reference fidelity.</span></div>
-                <div class="flow-stage" data-flow-step="4"><b>Asset build</b><span>Package-local 512x512 PNGs and manifest paths.</span></div>
-                <div class="flow-stage" data-flow-step="3"><b>Bundle repair</b><span>Scene bundle plus object, item, and reference assets.</span></div>
-                <div class="flow-stage" data-flow-step="6"><b>Import</b><span>Fullstack package import and `step_instructions` shape.</span></div>
-                <div class="flow-stage" data-flow-step="7"><b>Runtime QA</b><span>Fullstack and WonderLens AI dialogue strategies.</span></div>
-                <div class="flow-stage" data-flow-step="8"><b>Final review</b><span>Independent evidence audit and residual risk.</span></div>
+                <div class="flow-stage" data-flow-step="0"><b>Source lock</b><span>Master and source auditor freeze source promise.</span></div>
+                <div class="flow-stage" data-flow-step="1"><b>Text package</b><span>Writer creates package YAML and runtime beats.</span></div>
+                <div class="flow-stage" data-flow-step="2"><b>Post audit</b><span>Auditors check package against source contract.</span></div>
+                <div class="flow-stage" data-flow-step="3"><b>Bundle repair</b><span>Manifest roles cover scenes, items, and references.</span></div>
+                <div class="flow-stage" data-flow-step="4"><b>Generate / curate</b><span>Image agents create PNGs or accept real sources.</span></div>
+                <div class="flow-stage" data-flow-step="5"><b>Build assets</b><span>Builder writes package-local files and paths.</span></div>
+                <div class="flow-stage" data-flow-step="6"><b>Image QA</b><span>Validator checks style, beat fit, and references.</span></div>
+                <div class="flow-stage" data-flow-step="7"><b>Consumer QA</b><span>Fullstack and WonderLens AI load and exercise.</span></div>
+                <div class="flow-stage" data-flow-step="8"><b>Final review</b><span>Independent reviewer audits evidence and risk.</span></div>
               </div>
             </div>
           </div>
           <div class="flow-detail">
             <h3 data-flow-title>Source lock</h3>
             <p data-flow-copy>Lock the source promise before writing package files.</p>
+            <div class="flow-facts" aria-label="Selected workflow step ownership">
+              <div class="flow-fact"><b>Use</b><span data-flow-use>Start a run from the scoped full-pass goal and source snapshot.</span></div>
+              <div class="flow-fact"><b>Generated by</b><span data-flow-by>Master orchestrator and source-intent auditor.</span></div>
+              <div class="flow-fact"><b>Produces</b><span data-flow-produces>Run manifest, assignment snapshot, adaptation brief, and pre-package audit.</span></div>
+            </div>
             <div class="flow-meter" aria-hidden="true"><span></span></div>
             <div class="flow-controls" aria-label="Workflow animation controls">
               <button type="button" data-flow-toggle>Pause</button>
@@ -1616,6 +1835,99 @@
         </div>
       </section>
 
+      <section id="handoffs" class="section" aria-labelledby="handoffs-title">
+        <div class="section-head">
+          <h2 id="handoffs-title">Agent handoffs</h2>
+          <p>
+            Agents do not collaborate by editing the same artifact at the same time. They pass evidence packets forward, then route failed evidence back to the smallest owning agent.
+          </p>
+        </div>
+        <div class="agent-handoffs">
+          <div class="handoff-principles">
+            <h3>Interaction rules</h3>
+            <ul class="handoff-rules">
+              <li><strong>Master owns sequencing</strong>The orchestrator assigns agents, freezes scope, checks blockers, and decides when a phase can advance. It should not rewrite specialist evidence to make the run look cleaner.</li>
+              <li><strong>Writers produce, auditors challenge</strong>The package writer creates `spec.md`, `prod.md`, and YAML files. Source and package auditors compare those files against the workbook promise and return concrete repair notes.</li>
+              <li><strong>Image agents stay image-only</strong>Manifest repair, generation, curation, build, QA, and image repair can change prompts, sources, crops, files, and paths. They do not change activity mechanics or dialogue to hide a visual problem.</li>
+              <li><strong>Consumers validate, not author</strong>Fullstack-demo and WonderLens AI validators import and exercise the package as written. When behavior drifts, they classify whether the package, converter, runtime UI, provider, or product capability owns the fix.</li>
+              <li><strong>Final review is independent</strong>The final reviewer receives the full evidence chain and can send work back to any phase. Acceptance requires traceable source, package, asset, runtime, repair, and residual-risk evidence.</li>
+            </ul>
+          </div>
+          <div class="handoff-flow" aria-label="Agent interaction chain">
+            <h3>Who talks to whom</h3>
+            <div class="handoff-chain">
+              <div class="handoff-link">
+                <div class="handoff-agent">Master -> source auditor</div>
+                <div class="handoff-payload"><b>Source packet</b><span>Run goal, workbook row, normalized helper notes, capability hints, repo state, and required evidence locations.</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Source auditor -> writer</div>
+                <div class="handoff-payload"><b>Adaptation brief</b><span>Locked play promise, child role, device role, real-world reference requirements, unsupported capabilities, and demo expectations.</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Writer -> package auditors</div>
+                <div class="handoff-payload"><b>Text package</b><span>`spec.md`, `prod.md`, `tag_block.yaml`, templates, `demo_support.yaml`, and `asset_manifest.yaml` for source, schema, runtime, and asset-contract review.</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Package auditors -> repair or image phase</div>
+                <div class="handoff-payload"><b>Go or repair decision</b><span>Text gaps return to package repair. Complete text packages hand the asset manifest to bundle repair, generation, curation, and build.</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Image QA -> image repair or classifier</div>
+                <div class="handoff-payload"><b>Visual evidence</b><span>Pass/fail notes for manifest coverage, style, crop, beat fit, reference fidelity, duplicates, and answer reveal. Only image-owned defects enter image repair.</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Consumers -> classifier</div>
+                <div class="handoff-payload"><b>Runtime evidence</b><span>Import reports, converted instructions, screenshots, transcripts, camera or `photo_id` assumptions, and mismatches from fullstack-demo and WonderLens AI.</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Classifier -> owner</div>
+                <div class="handoff-payload"><b>Repair route</b><span>Package gaps go back to Autodesign, image gaps to the image phase, converter/runtime bugs to the consumer repo, capability gaps to product decision, credential blockers to run notes.</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Final reviewer -> master</div>
+                <div class="handoff-payload"><b>Acceptance decision</b><span>PASS, BLOCKED, or PASS with residual risk, backed by evidence paths and any required next action.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="qa-criteria" class="section" aria-labelledby="qa-criteria-title">
+        <div class="section-head">
+          <h2 id="qa-criteria-title">QA criteria</h2>
+          <p>
+            These gates decide pass/fail for the parts most likely to drift: image fidelity, fullstack-demo runtime behavior, and WonderLens AI dialogue behavior.
+          </p>
+        </div>
+        <div class="qa-criteria">
+          <div class="qa-card">
+            <h3>Image QA</h3>
+            <ul>
+              <li><strong>Rules</strong> Validate manifest coverage, package-local 512x512 PNGs, asset IDs and paths, flat Nordic style, round-screen crop safety, beat alignment, reference provenance, reference fidelity, no duplicate selectable items, no readable text/logos/watermarks, and no premature answer reveal.</li>
+              <li><strong>Evidence</strong> Provide asset inventory, built file paths, image thumbnails or review notes, source metadata for reference-bound assets, and per-asset QA notes for every failure.</li>
+              <li><strong>Pass</strong> Every required asset loads, matches its runtime beat and style, source-bound assets are real and faithful, and every remaining issue is repaired, blocked, or explicitly accepted as degraded.</li>
+            </ul>
+          </div>
+          <div class="qa-card">
+            <h3>Fullstack QA</h3>
+            <ul>
+              <li><strong>Rules</strong> Validate import as authored, entity binding, supported/degraded/unsupported gates, asset resolution, `step_instructions` quality, Cat5 synthesis separation, expected UI state, and dialogue strategies for ideal, minimal, wrong, off-topic, help, done, silence, photo, and item flows.</li>
+              <li><strong>Evidence</strong> Provide import report, converted runtime YAML or demo MD, asset path report, screenshots or UI notes, representative transcripts, and classified failures.</li>
+              <li><strong>Pass</strong> The web demo loads without unsafe fallbacks, honors demo gates, shows declared assets, preserves package runtime beats, and classifies any mismatch as package-owned or fullstack-owned.</li>
+            </ul>
+          </div>
+          <div class="qa-card">
+            <h3>AI dialogue QA</h3>
+            <ul>
+              <li><strong>Rules</strong> Validate WonderLens AI runtime artifacts against the generated YAML and `prod.md`, including real camera or `photo_id` assumptions, Cat5 response types, collection catalog use, source guardrails, branch behavior, synthesis, celebration, and no unsupported visual claims.</li>
+              <li><strong>Evidence</strong> Provide runtime artifact report, prompt or context trace, dialogue transcripts across the same strategies as fullstack QA, comparison notes, and owner classification for mismatches.</li>
+              <li><strong>Pass</strong> Responses follow the package goal, constraint, tone, progress evidence, branch policy, and source guardrails across ideal and recovery paths, with every discrepancy repaired or assigned to the correct owner.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section id="artifacts" class="section" aria-labelledby="artifacts-title">
         <div class="section-head">
           <h2 id="artifacts-title">Artifact flow</h2>
@@ -1626,6 +1938,12 @@
         <div class="artifact-map">
           <div class="artifact-cluster">
             <h3>Source and run</h3>
+            <p>
+              Use this cluster to prove what the run was allowed to generate before package writing began.
+            </p>
+            <div class="artifact-meta"><b>Generated by</b><span>Master orchestrator and source-intent auditor.</span></div>
+            <div class="artifact-meta"><b>Use</b><span>Freeze scope, source promise, run flags, blockers, and evidence paths.</span></div>
+            <div class="artifact-meta"><b>Produces</b><span>Source snapshot, assignment snapshot, pre-package audit, and run manifest.</span></div>
             <span class="file-pill">original_activity_concepts_2026-05-29.tsv</span>
             <span class="file-pill">source_activity_concepts.md</span>
             <span class="file-pill">assignment_snapshot.md</span>
@@ -1634,6 +1952,12 @@
           </div>
           <div class="artifact-cluster">
             <h3>Autodesign package</h3>
+            <p>
+              Use this cluster as the direct import contract for fullstack-demo and WonderLens AI.
+            </p>
+            <div class="artifact-meta"><b>Generated by</b><span>Text-only package writer plus image-only asset generator and builder.</span></div>
+            <div class="artifact-meta"><b>Use</b><span>Load the activity, convert runtime beats, serve package-local assets, and repair package-owned gaps.</span></div>
+            <div class="artifact-meta"><b>Produces</b><span>Five required package files, demo support, asset manifest, PNG assets, items, and reference sources.</span></div>
             <span class="file-pill">spec.md</span>
             <span class="file-pill">prod.md</span>
             <span class="file-pill">tag_block.yaml</span>
@@ -1642,9 +1966,17 @@
             <span class="file-pill">demo_support.yaml</span>
             <span class="file-pill">asset_manifest.yaml</span>
             <span class="file-pill">assets/*.png</span>
+            <span class="file-pill">assets/items/*.png</span>
+            <span class="file-pill">assets/sources/*</span>
           </div>
           <div class="artifact-cluster">
             <h3>Consumer evidence</h3>
+            <p>
+              Use this cluster to decide whether acceptance, package repair, downstream follow-up, or product gating is correct.
+            </p>
+            <div class="artifact-meta"><b>Generated by</b><span>Import validator, fullstack validator, WonderLens AI validator, image QA, and final reviewer.</span></div>
+            <div class="artifact-meta"><b>Use</b><span>Check runtime fidelity, asset resolution, dialogue behavior, unsupported mechanics, and residual risk.</span></div>
+            <div class="artifact-meta"><b>Produces</b><span>Converted instructions, runtime artifacts, import reports, transcripts, QA notes, and review dashboard.</span></div>
             <span class="file-pill">step_instructions</span>
             <span class="file-pill">runtime.yaml</span>
             <span class="file-pill">import reports</span>
@@ -1663,19 +1995,6 @@
           </p>
         </div>
         <div class="asset-showcase">
-          <div class="device-demo">
-            <div class="device-shell" aria-label="Prototype device display mock">
-              <div class="round-screen">
-                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/items/banana.png" alt="Flat Nordic banana item asset">
-                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_recognition_pop_challenge/items/strawberry.png" alt="Flat Nordic strawberry item asset">
-                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/items/book.png" alt="Flat Nordic book item asset">
-                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/items/cup.png" alt="Flat Nordic cup item asset">
-              </div>
-            </div>
-            <p>
-              Cat5 cards/items guide selection and capture. They do not replace real camera capture or the downstream `photo_id` handoff.
-            </p>
-          </div>
           <div>
             <div class="asset-grid">
               <div class="asset-tile">
@@ -1882,9 +2201,9 @@
         <p>
           Use this mode for larger or production-scale passes, where package generation, asset generation, downstream validation, dialogue QA, repair loops, and final review must happen in one evidence-backed run.
         </p>
-        <div class="command-box">/goal Execute GOAL.md end to end using run.md with asset_build=generate_and_curate full_pass_pipeline=true.</div>
+        <div class="command-box">/goal Execute goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md end to end.</div>
         <p>
-          The manifest must record both flags, and the asset phase uses the full-pass builder sequence before downstream dialogue QA.
+          The scoped goal owns the full-pass flags, delegated-agent rules, credential boundaries, and live validation order. The manifest still records the flags, and the asset phase uses the full-pass builder sequence before downstream dialogue QA.
         </p>
         <div class="command-box">python3 scripts/repair_full_pass_asset_bundle.py runs/&lt;run_id&gt;
 python3 scripts/build_activity_assets.py runs/&lt;run_id&gt; --mode generate_and_curate
@@ -1911,7 +2230,7 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           title: "Run setup",
           purpose: "Start the full pass with exact source inputs, repo state, run flags, assignment snapshot, and evidence locations before any package writing begins.",
           owner: "Master orchestrator",
-          inputs: "GOAL.md, run.md, program.md, workbook row set, current branch, and run ID.",
+          inputs: "Scoped full-pass goal, compact GOAL.md/run.md defaults, program.md, workbook row set, current branch, and run ID.",
           outputs: "run_manifest.yaml, assignment_snapshot.md, repo-state note, and run dashboard skeleton.",
           validation: "Manifest records `source.full_pass_pipeline: true` and `source.asset_build: generate_and_curate` before authoring starts.",
           repair: "Stop the pass and repair setup before package generation if flags, snapshots, or source pointers are missing."
@@ -2012,9 +2331,9 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           purpose: "Check whether the built images actually support the child-facing beat, reference promise, and physical screen constraints.",
           owner: "Image quality validator",
           inputs: "Built PNGs, source references, asset manifest, prod.md screen states, and style rules.",
-          outputs: "Image QA report with pass/fail, prompt/source issues, crop notes, duplicate-item notes, and reference fidelity notes.",
-          validation: "QA passes style, crop safety, beat alignment, reference fidelity, no duplicate selectable items, and no early answer reveal.",
-          repair: "Send image-owned defects to Repair images. Send text or runtime mismatches back to the owning phase."
+          outputs: "Image QA report with asset inventory, pass/fail, prompt/source issues, crop notes, duplicate-item notes, reference fidelity notes, and blocked/degraded decisions.",
+          validation: "Pass only when every required asset loads, matches its beat and flat Nordic style, is crop-safe at runtime size, preserves reference provenance and fidelity when required, avoids duplicate selectable items, avoids readable text/logos/watermarks, and does not reveal answers early.",
+          repair: "Send image-owned defects to Repair images. Send text or runtime mismatches back to the owning phase. Block or degrade reference-bound cases when a faithful source cannot be used."
         },
         "repair-images": {
           lane: "Image phase",
@@ -2043,8 +2362,8 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           owner: "Fullstack runtime validator",
           inputs: "Imported activity, test entity binding, generated assets, and dialogue strategy list.",
           outputs: "Runtime transcript set, UI screenshots or notes, pass/fail report, and classified issues.",
-          validation: "Ideal, minimal, wrong, off-topic, help, done, silence, and photo/item flows behave like the package contract.",
-          repair: "Package-owned dialogue gaps go back to autodesign. UI/runtime defects become fullstack-demo issues."
+          validation: "Pass only when import uses the package as authored, demo gates are honored, assets resolve without unsafe fallback, `step_instructions` preserve goal/constraint/tone/progress evidence/branch behavior/frame guardrail, Cat5 synthesis stays separate, and ideal, minimal, wrong, off-topic, help, done, silence, photo, and item flows match the package contract.",
+          repair: "Package-owned dialogue gaps go back to autodesign. UI/runtime defects become fullstack-demo issues. Unsupported mechanics remain gated instead of being presented as playable."
         },
         "ai-runtime": {
           lane: "Consumers",
@@ -2063,8 +2382,8 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
           owner: "WonderLens AI dialogue validator",
           inputs: "Runtime artifacts, package instructions, dialogue strategy prompts, camera/photo IDs, and transcripts.",
           outputs: "Dialogue comparison report, mismatch list, and package/runtime classification notes.",
-          validation: "Responses follow goal, constraint, tone, progress evidence, branch policy, source guardrail, and synthesis behavior.",
-          repair: "Repair package prompts if they are thin. Repair WonderLens AI runtime prompts if conversion loses faithful behavior."
+          validation: "Pass only when WonderLens AI runtime artifacts stay faithful to generated YAML and `prod.md`, real camera or `photo_id` assumptions are preserved, Cat5 response types and collection catalog use are correct, responses follow goal/constraint/tone/progress evidence/branch policy/source guardrail/synthesis behavior, and unsupported visual claims are avoided.",
+          repair: "Repair package prompts if they are thin. Repair WonderLens AI runtime prompts if conversion loses faithful behavior. Classify provider or credential gaps separately from package quality."
         },
         classify: {
           lane: "Consumers",
@@ -2134,9 +2453,14 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
 
       const board = player.querySelector(".flow-board");
       const token = player.querySelector(".flow-token");
+      const pathSvg = player.querySelector(".flow-path");
+      const pathLine = player.querySelector("[data-flow-path-line]");
       const stages = Array.from(player.querySelectorAll(".flow-stage")).sort((a, b) => Number(a.dataset.flowStep) - Number(b.dataset.flowStep));
       const title = player.querySelector("[data-flow-title]");
       const copy = player.querySelector("[data-flow-copy]");
+      const use = player.querySelector("[data-flow-use]");
+      const by = player.querySelector("[data-flow-by]");
+      const produces = player.querySelector("[data-flow-produces]");
       const status = player.querySelector("[data-flow-status]");
       const meter = player.querySelector(".flow-meter span");
       const toggle = player.querySelector("[data-flow-toggle]");
@@ -2146,39 +2470,66 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
       const stepText = [
         {
           title: "Source lock",
-          copy: "Capture the TSV-backed source promise, child role, sequence, required action, and asset promise before writing package files."
+          copy: "Capture the TSV-backed source promise, child role, sequence, required action, and asset promise before writing package files.",
+          use: "Start here when the full-pass goal begins. This freezes what the package must preserve.",
+          by: "Master orchestrator and source-intent auditor.",
+          produces: "Run manifest, assignment snapshot, adaptation brief, and pre-package audit."
         },
         {
           title: "Text package",
-          copy: "Write the five required files plus demo extensions. Runtime beats, demo gates, entity binding, and text-only asset contracts are explicit before image build."
+          copy: "Write the five required files plus demo extensions. Runtime beats, demo gates, entity binding, and text-only asset contracts are explicit before image build.",
+          use: "Use this as the activity contract that both direct consumers must import without inventing missing behavior.",
+          by: "Text-only package writer.",
+          produces: "spec.md, prod.md, tag_block.yaml, recap and dashboard templates, demo_support.yaml, and asset_manifest.yaml."
         },
         {
           title: "Post audit",
-          copy: "Recheck the package against source intent before downstream systems touch it."
+          copy: "Recheck the package against source intent before downstream systems touch it.",
+          use: "Use this gate to catch drift before image generation or runtime validation spends time on a weak package.",
+          by: "Independent package auditor.",
+          produces: "Post-write source audit, package quality notes, conversion risks, and repair instructions."
         },
         {
           title: "Bundle repair",
-          copy: "Ensure the fullstack-style scene bundle exists, then add object, item, entity, target, distractor, or reference assets when needed."
+          copy: "Ensure the standard scene bundle exists, then add object, item, entity, target, distractor, synthesis, or reference assets when needed.",
+          use: "Use this after package audit and before image generation so every runtime beat has an explicit visual contract.",
+          by: "Asset manifest repair agent.",
+          produces: "Completed asset_manifest.yaml roles, prompts, references, variants, and nullable output paths."
         },
         {
-          title: "Asset build",
-          copy: "Build package-local 512x512 runtime PNGs and update `asset_manifest.yaml` paths without changing the activity flow."
+          title: "Generate / curate",
+          copy: "Create illustrative PNGs for beat assets and selectable items, or accept real sources when the activity promises a real reference.",
+          use: "Use this phase after package text is stable. It turns asset_manifest.yaml into visual candidates and source-backed material.",
+          by: "Image generation agent and reference curator.",
+          produces: "Generated PNG candidates, accepted source originals, source metadata, and curation notes."
+        },
+        {
+          title: "Build assets",
+          copy: "Build package-local 512x512 runtime PNGs and update `asset_manifest.yaml` paths without changing the activity flow.",
+          use: "Use this to make assets importable by consumers from stable package-local paths.",
+          by: "Asset build agent.",
+          produces: "Final PNG files, updated asset manifest paths, and build validation logs."
         },
         {
           title: "Image QA",
-          copy: "Check style, crop safety, beat alignment, reference fidelity, no duplicate selectable items, and no early answer reveal."
+          copy: "Check manifest coverage, runtime size, style, crop safety, beat alignment, reference fidelity, duplicate items, and answer reveal.",
+          use: "Use this gate to decide whether to repair images, replace sources, or block a reference-bound case.",
+          by: "Image quality validator.",
+          produces: "Image QA report with asset inventory, crop notes, duplicate-item notes, reference fidelity notes, pass/fail result, and repair routes."
         },
         {
-          title: "Package import",
-          copy: "Fullstack-demo imports the package as provided, resolves assets, and preserves `step_instructions` quality."
-        },
-        {
-          title: "Runtime QA",
-          copy: "Fullstack-demo and WonderLens AI run dialogue strategies such as ideal, wrong, help, off-topic, premature done, and silence."
+          title: "Consumer QA",
+          copy: "Fullstack-demo imports the package as provided, WonderLens AI loads matching runtime artifacts, and both exercise dialogue behavior.",
+          use: "Use this phase to prove direct consumers preserve package intent and classify downstream-owned failures.",
+          by: "Package/import validator, fullstack runtime validator, and WonderLens AI runtime validator.",
+          produces: "Converted step_instructions, runtime.yaml or equivalent artifacts, import reports, transcripts, screenshots, and issue classifications."
         },
         {
           title: "Final review",
-          copy: "An independent reviewer reads packages, audits, reports, transcripts, image QA, repair notes, manifest, and dashboard before acceptance."
+          copy: "An independent reviewer reads packages, audits, reports, transcripts, image QA, repair notes, manifest, and dashboard before acceptance.",
+          use: "Use this only after evidence exists for every accepted activity or every blocker has an explicit owner.",
+          by: "Final independent reviewer.",
+          produces: "Accepted package list, blocker list, residual-risk report, final dashboard, and next-action summary."
         }
       ];
 
@@ -2200,6 +2551,18 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
         });
       }
 
+      function updatePath(centers) {
+        if (!pathSvg || !pathLine || centers.length === 0) {
+          return;
+        }
+        const boardRect = board.getBoundingClientRect();
+        pathSvg.setAttribute("viewBox", `0 0 ${boardRect.width} ${boardRect.height}`);
+        pathLine.setAttribute("d", centers.map((center, index) => {
+          const command = index === 0 ? "M" : "L";
+          return `${command} ${center.x.toFixed(1)} ${center.y.toFixed(1)}`;
+        }).join(" "));
+      }
+
       function setActive(index) {
         if (index === activeIndex) {
           return;
@@ -2211,10 +2574,14 @@ python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
         const current = stepText[index];
         title.textContent = current.title;
         copy.textContent = current.copy;
+        use.textContent = current.use;
+        by.textContent = current.by;
+        produces.textContent = current.produces;
       }
 
       function render() {
         const centers = getCenters();
+        updatePath(centers);
         const maxSegment = centers.length - 1;
         const rawPosition = progress * centers.length;
         const index = Math.min(Math.floor(rawPosition), maxSegment);

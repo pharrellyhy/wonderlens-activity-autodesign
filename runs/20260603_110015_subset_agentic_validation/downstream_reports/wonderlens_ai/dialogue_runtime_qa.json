@@ -1,0 +1,283 @@
+{
+  "run_id": "20260603_110015_subset_agentic_validation",
+  "consumer": "wonderlens-ai",
+  "mode": "runtime-equivalent dialogue QA using generated runtime.yaml branch policies",
+  "strategies_exercised": [
+    "expected_answer",
+    "wrong_or_unproductive_answer",
+    "help_or_confusion",
+    "silence_no_response",
+    "premature_done"
+  ],
+  "source_term_groups": {
+    "concept_scavenger_hunt_collect": [
+      [
+        "photo",
+        "photograph"
+      ],
+      [
+        "share",
+        "shared"
+      ],
+      [
+        "clue",
+        "connection"
+      ]
+    ],
+    "concept_phoneme_hunt_collect": [
+      [
+        "/b/",
+        "beginning sound"
+      ],
+      [
+        "treasure"
+      ],
+      [
+        "starts with",
+        "begins with"
+      ]
+    ],
+    "concept_constellation_star_count_enumerate": [
+      [
+        "constellation"
+      ],
+      [
+        "guide stars",
+        "guide-star"
+      ],
+      [
+        "orion",
+        "cassiopeia"
+      ]
+    ],
+    "concept_guided_drawing_probe": [
+      [
+        "paper"
+      ],
+      [
+        "draw",
+        "drawing"
+      ],
+      [
+        "step"
+      ],
+      [
+        "circle"
+      ]
+    ],
+    "concept_recognition_pop_probe": [
+      [
+        "dog"
+      ],
+      [
+        "target"
+      ],
+      [
+        "distractor"
+      ],
+      [
+        "quiet"
+      ]
+    ]
+  },
+  "activities": [
+    {
+      "activity_id": "concept_constellation_star_count_enumerate",
+      "runtime_support": {
+        "executable": true,
+        "requires_runtime_extension": false,
+        "extension_reasons": [],
+        "quality_warnings": []
+      },
+      "step_instruction_keys": [
+        "hook",
+        "transition",
+        "rounds",
+        "celebrate",
+        "closing",
+        "early_exit"
+      ],
+      "round_count": 3,
+      "branch_policy_keys": [
+        "celebrate",
+        "closing",
+        "hook",
+        "round_1",
+        "round_2",
+        "round_3",
+        "transition"
+      ],
+      "branch_policy_complete": true,
+      "missing_branch_policy": [],
+      "source_terms_present": true,
+      "strategy_evidence": {
+        "expected_answer": "ideal branch advances and each round goal states the expected source evidence",
+        "wrong_or_unproductive_answer": "unexpected branch validates then redirects to the exact source evidence",
+        "help_or_confusion": "unexpected/help handling is covered by modeling a smaller valid action or naming support limits",
+        "silence_no_response": "no_response branch waits briefly, models one tiny response, and avoids pressure",
+        "premature_done": "runtime goals require current beat evidence before advancing; closing/celebrate do not introduce unsupported completion claims"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "activity_id": "concept_guided_drawing_probe",
+      "runtime_support": {
+        "executable": false,
+        "requires_runtime_extension": true,
+        "extension_reasons": [
+          "ui_heavy_mechanic",
+          "unsupported_template"
+        ],
+        "quality_warnings": []
+      },
+      "step_instruction_keys": [
+        "hook",
+        "transition",
+        "rounds",
+        "celebrate",
+        "closing",
+        "early_exit"
+      ],
+      "round_count": 3,
+      "branch_policy_keys": [
+        "celebrate",
+        "closing",
+        "hook",
+        "round_1",
+        "round_2",
+        "round_3",
+        "transition"
+      ],
+      "branch_policy_complete": true,
+      "missing_branch_policy": [],
+      "source_terms_present": true,
+      "strategy_evidence": {
+        "expected_answer": "ideal branch advances and each round goal states the expected source evidence",
+        "wrong_or_unproductive_answer": "unexpected branch validates then redirects to the exact source evidence",
+        "help_or_confusion": "unexpected/help handling is covered by modeling a smaller valid action or naming support limits",
+        "silence_no_response": "no_response branch waits briefly, models one tiny response, and avoids pressure",
+        "premature_done": "runtime goals require current beat evidence before advancing; closing/celebrate do not introduce unsupported completion claims"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "activity_id": "concept_phoneme_hunt_collect",
+      "runtime_support": {
+        "executable": true,
+        "requires_runtime_extension": false,
+        "extension_reasons": [],
+        "quality_warnings": []
+      },
+      "step_instruction_keys": [
+        "hook",
+        "transition",
+        "rounds",
+        "celebrate",
+        "closing",
+        "early_exit",
+        "synthesis"
+      ],
+      "round_count": 3,
+      "branch_policy_keys": [
+        "celebrate",
+        "closing",
+        "hook",
+        "round_1",
+        "round_2",
+        "round_3",
+        "transition"
+      ],
+      "branch_policy_complete": true,
+      "missing_branch_policy": [],
+      "source_terms_present": true,
+      "strategy_evidence": {
+        "expected_answer": "ideal branch advances and each round goal states the expected source evidence",
+        "wrong_or_unproductive_answer": "unexpected branch validates then redirects to the exact source evidence",
+        "help_or_confusion": "unexpected/help handling is covered by modeling a smaller valid action or naming support limits",
+        "silence_no_response": "no_response branch waits briefly, models one tiny response, and avoids pressure",
+        "premature_done": "runtime goals require current beat evidence before advancing; closing/celebrate do not introduce unsupported completion claims"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "activity_id": "concept_recognition_pop_probe",
+      "runtime_support": {
+        "executable": false,
+        "requires_runtime_extension": true,
+        "extension_reasons": [
+          "ui_heavy_mechanic"
+        ],
+        "quality_warnings": []
+      },
+      "step_instruction_keys": [
+        "hook",
+        "transition",
+        "rounds",
+        "celebrate",
+        "closing",
+        "early_exit"
+      ],
+      "round_count": 3,
+      "branch_policy_keys": [
+        "celebrate",
+        "closing",
+        "hook",
+        "round_1",
+        "round_2",
+        "round_3",
+        "transition"
+      ],
+      "branch_policy_complete": true,
+      "missing_branch_policy": [],
+      "source_terms_present": true,
+      "strategy_evidence": {
+        "expected_answer": "ideal branch advances and each round goal states the expected source evidence",
+        "wrong_or_unproductive_answer": "unexpected branch validates then redirects to the exact source evidence",
+        "help_or_confusion": "unexpected/help handling is covered by modeling a smaller valid action or naming support limits",
+        "silence_no_response": "no_response branch waits briefly, models one tiny response, and avoids pressure",
+        "premature_done": "runtime goals require current beat evidence before advancing; closing/celebrate do not introduce unsupported completion claims"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "activity_id": "concept_scavenger_hunt_collect",
+      "runtime_support": {
+        "executable": true,
+        "requires_runtime_extension": false,
+        "extension_reasons": [],
+        "quality_warnings": []
+      },
+      "step_instruction_keys": [
+        "hook",
+        "transition",
+        "rounds",
+        "celebrate",
+        "closing",
+        "early_exit",
+        "synthesis"
+      ],
+      "round_count": 3,
+      "branch_policy_keys": [
+        "celebrate",
+        "closing",
+        "hook",
+        "round_1",
+        "round_2",
+        "round_3",
+        "transition"
+      ],
+      "branch_policy_complete": true,
+      "missing_branch_policy": [],
+      "source_terms_present": true,
+      "strategy_evidence": {
+        "expected_answer": "ideal branch advances and each round goal states the expected source evidence",
+        "wrong_or_unproductive_answer": "unexpected branch validates then redirects to the exact source evidence",
+        "help_or_confusion": "unexpected/help handling is covered by modeling a smaller valid action or naming support limits",
+        "silence_no_response": "no_response branch waits briefly, models one tiny response, and avoids pressure",
+        "premature_done": "runtime goals require current beat evidence before advancing; closing/celebrate do not introduce unsupported completion claims"
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "verdict": "PASS"
+}

@@ -1,0 +1,470 @@
+run_id: 20260603_171053_subset_phoneme_validation
+asset_build_mode: generate_and_curate
+generated_at: '2026-06-04T15:01:42+08:00'
+package_count: 1
+asset_count: 22
+built_count: 22
+required_failures: 0
+entries:
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: activity_icon
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__activity_icon.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/activity_icon__round_512.png
+    size: 512x512
+    sha256: 352c4543a29c1eb4f932eda57115816bd156f5eadeff4798666bdba616a6fa12
+    byte_count: 239232
+    mime_type: image/png
+    source_asset_id: activity_icon
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: intro_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__intro_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/intro_scene__round_512.png
+    size: 512x512
+    sha256: 6a93e0d8097aaf1b42d65208278228471e1ddb2205991ec0a1a1599c41c57beb
+    byte_count: 446598
+    mime_type: image/png
+    source_asset_id: intro_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: rules_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__rules_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/rules_scene__round_512.png
+    size: 512x512
+    sha256: 58312853391324800ad47bcf82d23cb6031260654feaf29b46439e0f3ec60915
+    byte_count: 463613
+    mime_type: image/png
+    source_asset_id: rules_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: round_1_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__round_1_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_1_scene__round_512.png
+    size: 512x512
+    sha256: 6785bb65823106b0b38703e31ca39de5b3f6a98333b63990ddac8c84e16ad28d
+    byte_count: 459154
+    mime_type: image/png
+    source_asset_id: round_1_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: round_2_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__round_2_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_2_scene__round_512.png
+    size: 512x512
+    sha256: 7af0910384337660628de0421eb21ae63e0ac5dadef98f7a29420b02981ff962
+    byte_count: 440098
+    mime_type: image/png
+    source_asset_id: round_2_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: round_3_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__round_3_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_3_scene__round_512.png
+    size: 512x512
+    sha256: 14e85798e50660058946c17799cf547421b8a8c5275de1565d1487fbd4d3f936
+    byte_count: 473704
+    mime_type: image/png
+    source_asset_id: round_3_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: synthesis_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__synthesis_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/synthesis_scene__round_512.png
+    size: 512x512
+    sha256: 7d35a5d5537c9dadd43f2a178d6dda2b652ac15b21ea3e55000be01ba4d2c5b8
+    byte_count: 451336
+    mime_type: image/png
+    source_asset_id: synthesis_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: celebrate_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__celebrate_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/celebrate_scene__round_512.png
+    size: 512x512
+    sha256: 919e7e66d5a07421c7fba9308abcf980164d022cbadad74082430a344c4362b4
+    byte_count: 467018
+    mime_type: image/png
+    source_asset_id: celebrate_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: closing_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__closing_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/closing_scene__round_512.png
+    size: 512x512
+    sha256: adcf7e2f4e084e4fc8becc66102dd7c8c0dfab6287778d28cfedbf6f3709b4a5
+    byte_count: 455306
+    mime_type: image/png
+    source_asset_id: closing_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: b_sound_letter_cue
+  role: ui_overlay
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__b_sound_letter_cue.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/b_sound_letter_cue__round_512.png
+    size: 512x512
+    sha256: afcf577bbc386a2beb69c585f61dafc27c049e6a033c4cc08f50e7f3e438a80a
+    byte_count: 246473
+    mime_type: image/png
+    source_asset_id: b_sound_letter_cue
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: ball_object
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__ball_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/ball_object__round_512.png
+    size: 512x512
+    sha256: c75ba3965cc38d6d4f517680e6c47454f7cd05bc2d21b6f1a0a877ca33532414
+    byte_count: 257190
+    mime_type: image/png
+    source_asset_id: ball_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: banana_object
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__banana_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/banana_object__round_512.png
+    size: 512x512
+    sha256: 13734951dd80058f73e46af989f6ac6dab934f73022784276f747260654f6910
+    byte_count: 176737
+    mime_type: image/png
+    source_asset_id: banana_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: book_object
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__book_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/book_object__round_512.png
+    size: 512x512
+    sha256: 943524a4796cbd6da533931b880ff1b96ef665b0f31c6aa902268a8e6e624c44
+    byte_count: 260707
+    mime_type: image/png
+    source_asset_id: book_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: box_object
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__box_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/box_object__round_512.png
+    size: 512x512
+    sha256: d2a2be4518777b15dcad414b549647e6416997462bb39f008d0f10260d226ac0
+    byte_count: 296845
+    mime_type: image/png
+    source_asset_id: box_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: cup_object
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__cup_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/cup_object__round_512.png
+    size: 512x512
+    sha256: df1b4fcbb5133b4fa733f2c957fe0690f5e5b2c89495d9584f3d370e685622db
+    byte_count: 228239
+    mime_type: image/png
+    source_asset_id: cup_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: sock_object
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__sock_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/sock_object__round_512.png
+    size: 512x512
+    sha256: f58804f4c7edcf18f6654fdaaec654ed39b715b6edab89c4495fa98b1ff5f79c
+    byte_count: 216227
+    mime_type: image/png
+    source_asset_id: sock_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: apple_object
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__apple_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/apple_object__round_512.png
+    size: 512x512
+    sha256: 3172a3a0a006cbb0197611002b4feb5ddc6db10a5690c8ce28bac143f7df9659
+    byte_count: 301418
+    mime_type: image/png
+    source_asset_id: apple_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: car_object
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__car_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/car_object__round_512.png
+    size: 512x512
+    sha256: 58ba7b350b14f73cd7b19a7bb38091594e16b09cde7685bf25e186d444bba579
+    byte_count: 298602
+    mime_type: image/png
+    source_asset_id: car_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: hat_object
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__hat_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/hat_object__round_512.png
+    size: 512x512
+    sha256: 938a57b31ee86d8a89a1037ba63abb4ae4ccee9aa2f25fd401f2fe7af292a5ac
+    byte_count: 295293
+    mime_type: image/png
+    source_asset_id: hat_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: mug_object
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__mug_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/mug_object__round_512.png
+    size: 512x512
+    sha256: 4f44dfff89d56314ceeb71198f4c8fddc690effd628d1206106e81a1f1adfe91
+    byte_count: 308613
+    mime_type: image/png
+    source_asset_id: mug_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: shoe_object
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__shoe_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/shoe_object__round_512.png
+    size: 512x512
+    sha256: badd5006143f634baaa9c98946b620b505f3f621992900d1229b3f5fdffa852f
+    byte_count: 218869
+    mime_type: image/png
+    source_asset_id: shoe_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: spoon_object
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__spoon_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/items/spoon_object__round_512.png
+    size: 512x512
+    sha256: 215ce7107fd6ccd1c5796e71c2071c1c3d608c7eb76fcd6d4950db3bb1844c2a
+    byte_count: 249533
+    mime_type: image/png
+    source_asset_id: spoon_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.

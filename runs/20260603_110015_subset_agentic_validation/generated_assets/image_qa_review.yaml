@@ -1,0 +1,76 @@
+run_id: 20260603_110015_subset_agentic_validation
+status: PASS
+reviewer: main_agent_visual_qa_after_repair
+scope: all package-local runtime PNGs plus source inbox PNGs for five subset packages,
+  including the optional text-free phoneme cue backing added after package review
+structural_evidence:
+- python scripts/validate_asset_build_outputs.py runs/20260603_110015_subset_agentic_validation
+  -> PASS
+- python scripts/validate_asset_granularity.py runs/20260603_110015_subset_agentic_validation
+  -> PASS
+- python scripts/validate_full_pass_asset_bundle.py runs/20260603_110015_subset_agentic_validation
+  -> PASS
+visual_checks:
+- 512x512 source and runtime PNGs
+- role-specific separate assets, no contact sheets as runtime assets
+- flat Nordic nursery style with clean white/barely tinted backgrounds
+- no readable text, letters, numbers, labels, logos, watermarks, masks, borders, device
+  chrome, buttons, chips, progress dots, picker slots, or badges
+- scene/dialogue alignment for each activity beat
+- Recognition Pop backgrounds do not duplicate selectable dog/fox/wolf/cat sprites
+- Constellation intro/rules/number-choice imagery does not reveal a reference constellation
+  before the child number choice
+- Guided Drawing intro/rules imagery does not show the completed drawing before Step
+  3 round actions
+- Constellation reference cards preserve accepted internal Cassiopeia 5-guide-star
+  and Orion 7-guide-star sources
+- Phoneme `b_sound_letter_cue` is a text-free cue-card backing; `/b/` or B remains
+  a runtime overlay and is not baked into the PNG
+repairs_made:
+- activity_id: concept_scavenger_hunt_collect
+  issue: standard beat scenes repeated same visual motif
+  repair: redrew distinct intro, rules, round, synthesis, celebration, and closing
+    source PNGs; rebuilt package assets
+- activity_id: concept_phoneme_hunt_collect
+  issue: standard beat scenes repeated same visual motif
+  repair: redrew distinct sound/listening/treasure evidence scenes; rebuilt package
+    assets
+- activity_id: concept_phoneme_hunt_collect
+  issue: source supports showing a corresponding letter cue, but generated PNGs must
+    remain text-free
+  repair: added and visually checked `b_sound_letter_cue` as an optional blank cue-card
+    backing; runtime owns any `/b/` or B overlay
+- activity_id: concept_constellation_star_count_enumerate
+  issue: early scenes and icon revealed countable constellation-like patterns before
+    child chose a number
+  repair: redrew intro, rules, round 1, and activity icon as non-answer imagery; rebuilt
+    package assets
+- activity_id: concept_guided_drawing_probe
+  issue: intro/rules scenes showed the finished drawing too early
+  repair: redrew intro/rules as blank paper and pencil; kept round scenes as progressive
+    drawing steps; rebuilt package assets
+- activity_id: concept_recognition_pop_probe
+  issue: beat scenes were repetitive
+  repair: redrew abstract beat scenes that avoid target/distractor animal duplication;
+    rebuilt package assets
+activity_verdicts:
+- activity_id: concept_scavenger_hunt_collect
+  verdict: PASS
+  notes: Distinct text-free scenes; synthesis scene supports collection summary without
+    app-owned photo slots.
+- activity_id: concept_phoneme_hunt_collect
+  verdict: PASS
+  notes: Object sprites are separate; cue backing is text-free; app may overlay the
+    `/b/` or B sound cue separately.
+- activity_id: concept_constellation_star_count_enumerate
+  verdict: PASS
+  notes: Reference cards are separate, exact-count, and source-backed; early scenes
+    avoid premature answer reveal.
+- activity_id: concept_guided_drawing_probe
+  verdict: PASS
+  notes: Step assets and scenes show first circle, added shapes, and finished detail
+    in order; no photo-verification UI.
+- activity_id: concept_recognition_pop_probe
+  verdict: PASS
+  notes: Background scenes are abstract and do not include dog/fox/wolf/cat selectable
+    sprites.

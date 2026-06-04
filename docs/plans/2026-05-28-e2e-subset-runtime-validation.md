@@ -98,9 +98,10 @@ For every generated package:
 - required assets include at least one final runtime PNG at `512x512` or larger,
   with `512x512` preferred for this validation unless the current asset
   manifest requires an additional larger variant;
-- generated image assets follow the WonderLens activity style: soft 3D toy
-  illustration, warm whites, mint green accents, soft sky blue, gentle coral,
-  pale yellow, rounded clay/plastic forms, and gentle studio lighting;
+- generated image assets follow the WonderLens flat Nordic activity style in
+  `docs/activity_asset_generation_workflow.md` and
+  `docs/asset_style_reference/`, and illustrative source PNGs come from Codex
+  built-in imagegen rather than SVG/vector/placeholder substitutes;
 - generated image assets are square source art with the primary subject inside
   a central circular safe area, simple full-bleed background continued to the
   square edges, and no baked-in circular mask, lens border, rim, vignette,
@@ -109,6 +110,8 @@ For every generated package:
 - Cat5 collection packages declare the selectable on-device item/card assets in
   `asset_manifest.yaml`, using roles such as `collection_correct`,
   `collection_distractor`, `card_set`, or `icon` as appropriate;
+- Cat5 picker/selectable item assets are built under package-local
+  `assets/items/`, separate from scene/background assets;
 - Cat5 selectable cards/items follow the same WonderLens activity asset style
   and are referenced from `prod.md` Step 2 or Step 3 screen states by stable
   `asset_id`;

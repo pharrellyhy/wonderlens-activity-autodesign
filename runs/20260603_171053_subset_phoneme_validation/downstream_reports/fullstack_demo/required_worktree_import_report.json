@@ -1,0 +1,127 @@
+{
+  "activity_type": "concept_phoneme_hunt_collect__beginning_sound_treasure",
+  "cleanup_removed": [
+    "/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/backend/games/concept_phoneme_hunt_collect__beginning_sound_treasure.md",
+    "/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure",
+    "/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/backend/games/concept_phoneme_hunt_collect__beginning_sound_treasure.md",
+    "/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure"
+  ],
+  "consumer_worktree": "/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game",
+  "diagnostic_collection_count_2_probe": {
+    "output": "2026-06-04 01:50:51 | INFO | wonderlens | Loaded synthesis format: collaborative_story (collaborative_story.md)\n2026-06-04 01:50:51 | INFO | wonderlens | Loaded synthesis format: comparison_reveal (comparison_reveal.md)\n2026-06-04 01:50:51 | INFO | wonderlens | Loaded synthesis format: sorting_challenge (sorting_challenge.md)\n2026-06-04 01:50:51 | INFO | wonderlens | Loaded 31 demo games from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/backend/games\n{\"activity_catalog_exposed\": true, \"activity_set\": \"activity_text_game\", \"collection_catalog_correct_count\": 4, \"collection_catalog_distractor_count\": 8, \"collection_count\": 2, \"entity_category\": \"category_5\", \"entity_tier\": \"T1\", \"generated_round_items\": [[{\"id\": \"hat_object\", \"image\": \"/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/hat_object__round_512.png\", \"label\": \"Hat\"}, {\"correct\": true, \"id\": \"book_object\", \"image\": \"/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/book_object__round_512.png\", \"label\": \"Book\"}, {\"id\": \"mug_object\", \"image\": \"/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/mug_object__round_512.png\", \"label\": \"Mug\"}], [{\"id\": \"cup_object\", \"image\": \"/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/cup_object__round_512.png\", \"label\": \"Cup\"}, {\"id\": \"car_object\", \"image\": \"/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/car_object__round_512.png\", \"label\": \"Car\"}, {\"correct\": true, \"id\": \"ball_object\", \"image\": \"/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/ball_object__round_512.png\", \"label\": \"Ball\"}], [{\"correct\": true, \"id\": \"box_object\", \"image\": \"/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/box_object__round_512.png\", \"label\": \"Box\"}, {\"id\": \"shoe_object\", \"image\": \"/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/shoe_object__round_512.png\", \"label\": \"Shoe\"}, {\"id\": \"apple_object\", \"image\": \"/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/apple_object__round_512.png\", \"label\": \"Apple\"}]], \"loaded_via_game_loader\": true, \"missing_public_assets\": [], \"placeholder_routes_present\": false, \"public_asset_count\": 22, \"recipe_round_count\": 3, \"source_export_id\": \"concept_phoneme_hunt_collect\"}\n",
+    "parsed": {
+      "activity_catalog_exposed": true,
+      "activity_set": "activity_text_game",
+      "collection_catalog_correct_count": 4,
+      "collection_catalog_distractor_count": 8,
+      "collection_count": 2,
+      "entity_category": "category_5",
+      "entity_tier": "T1",
+      "generated_round_items": [
+        [
+          {
+            "id": "hat_object",
+            "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/hat_object__round_512.png",
+            "label": "Hat"
+          },
+          {
+            "correct": true,
+            "id": "book_object",
+            "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/book_object__round_512.png",
+            "label": "Book"
+          },
+          {
+            "id": "mug_object",
+            "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/mug_object__round_512.png",
+            "label": "Mug"
+          }
+        ],
+        [
+          {
+            "id": "cup_object",
+            "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/cup_object__round_512.png",
+            "label": "Cup"
+          },
+          {
+            "id": "car_object",
+            "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/car_object__round_512.png",
+            "label": "Car"
+          },
+          {
+            "correct": true,
+            "id": "ball_object",
+            "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/ball_object__round_512.png",
+            "label": "Ball"
+          }
+        ],
+        [
+          {
+            "correct": true,
+            "id": "box_object",
+            "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/box_object__round_512.png",
+            "label": "Box"
+          },
+          {
+            "id": "shoe_object",
+            "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/shoe_object__round_512.png",
+            "label": "Shoe"
+          },
+          {
+            "id": "apple_object",
+            "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/apple_object__round_512.png",
+            "label": "Apple"
+          }
+        ]
+      ],
+      "loaded_via_game_loader": true,
+      "missing_public_assets": [],
+      "placeholder_routes_present": false,
+      "public_asset_count": 22,
+      "recipe_round_count": 3,
+      "source_export_id": "concept_phoneme_hunt_collect"
+    },
+    "returncode": 0
+  },
+  "downstream_follow_up": "Fullstack-demo should support collection_count=1 for single-find phoneme hunts, or provide a non-Cat5/single-collection template that preserves the one-object source promise.",
+  "failure_summary": "The required fullstack worktree rejects the source-preserving package because backend/schemas/creative_slots.py defines Cat5CreativeSlots.collection_count with ge=2, while this source row and package intentionally require exactly one indoor /b/ treasure.",
+  "finished_at": "2026-06-03T17:50:51.326827+00:00",
+  "mode": "temporary_required_worktree_import",
+  "post_cleanup_git_status_short": [
+    " D frontend/public/activity-assets/activity_animal_sound_imitation/recap.png",
+    " D frontend/public/activity-assets/activity_career_decision_role_play/recap.png",
+    " D frontend/public/activity-assets/activity_constellation_star_count/recap.png",
+    " D frontend/public/activity-assets/activity_emotion_reader/recap.png",
+    " D frontend/public/activity-assets/activity_guided_drawing/recap.png",
+    " D frontend/public/activity-assets/activity_partial_reveal_guess/recap.png",
+    " D frontend/public/activity-assets/activity_phoneme_treasure_hunt/recap.png",
+    " D frontend/public/activity-assets/activity_recognition_pop_challenge/recap.png",
+    " D frontend/public/activity-assets/activity_story_challenge_unlock/recap.png",
+    " D frontend/public/activity-assets/activity_travel_planner/recap.png",
+    " D frontend/public/activity-assets/activity_vegetable_sort/recap.png",
+    " D frontend/public/activity-assets/activity_word_echo_practice/recap.png"
+  ],
+  "preexisting_git_status_short": [
+    " D frontend/public/activity-assets/activity_animal_sound_imitation/recap.png",
+    " D frontend/public/activity-assets/activity_career_decision_role_play/recap.png",
+    " D frontend/public/activity-assets/activity_constellation_star_count/recap.png",
+    " D frontend/public/activity-assets/activity_emotion_reader/recap.png",
+    " D frontend/public/activity-assets/activity_guided_drawing/recap.png",
+    " D frontend/public/activity-assets/activity_partial_reveal_guess/recap.png",
+    " D frontend/public/activity-assets/activity_phoneme_treasure_hunt/recap.png",
+    " D frontend/public/activity-assets/activity_recognition_pop_challenge/recap.png",
+    " D frontend/public/activity-assets/activity_story_challenge_unlock/recap.png",
+    " D frontend/public/activity-assets/activity_travel_planner/recap.png",
+    " D frontend/public/activity-assets/activity_vegetable_sort/recap.png",
+    " D frontend/public/activity-assets/activity_word_echo_practice/recap.png"
+  ],
+  "source_assets": "/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/subset-agentic-validation/runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure",
+  "source_game": "/Users/pharrelly/codebase/github/wonderlens-activity-autodesign/.worktrees/feat/subset-agentic-validation/runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import/games/concept_phoneme_hunt_collect__beginning_sound_treasure.md",
+  "source_preserving_import": {
+    "output": "2026-06-04 01:50:50 | INFO | wonderlens | Loaded synthesis format: collaborative_story (collaborative_story.md)\n2026-06-04 01:50:50 | INFO | wonderlens | Loaded synthesis format: comparison_reveal (comparison_reveal.md)\n2026-06-04 01:50:50 | INFO | wonderlens | Loaded synthesis format: sorting_challenge (sorting_challenge.md)\n2026-06-04 01:50:50 | ERROR | wonderlens | Failed to parse game file: concept_phoneme_hunt_collect__beginning_sound_treasure.md\nTraceback (most recent call last):\n  File \"/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/backend/game_loader.py\", line 39, in _load_demo_games\n    entity_config, recipe = parse_game_file(md_path)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/backend/game_parser.py\", line 144, in parse_game_file\n    entity_config = _build_entity_config(data)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/backend/game_parser.py\", line 40, in _build_entity_config\n    creative_slots = Cat5CreativeSlots(**slots_data)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/.venv/lib/python3.12/site-packages/pydantic/main.py\", line 250, in __init__\n    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\npydantic_core._pydantic_core.ValidationError: 1 validation error for Cat5CreativeSlots\ncollection_count\n  Input should be greater than or equal to 2 [type=greater_than_equal, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.12/v/greater_than_equal\nTraceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n  File \"/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/backend/game_loader.py\", line 52, in <module>\n    _load_demo_games()\n  File \"/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/backend/game_loader.py\", line 49, in _load_demo_games\n    raise RuntimeError(f\"Failed to load demo game definitions:\\n{failure_list}\")\nRuntimeError: Failed to load demo game definitions:\n  - concept_phoneme_hunt_collect__beginning_sound_treasure.md: 1 validation error for Cat5CreativeSlots\ncollection_count\n  Input should be greater than or equal to 2 [type=greater_than_equal, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.12/v/greater_than_equal\n",
+    "returncode": 1
+  },
+  "started_at": "2026-06-03T17:50:50.468973+00:00",
+  "status": "downstream_owned_failure",
+  "temporary_asset_dir": "/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure",
+  "temporary_game_path": "/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/backend/games/concept_phoneme_hunt_collect__beginning_sound_treasure.md"
+}

@@ -1,0 +1,92 @@
+{
+  "activity_id": "concept_phoneme_hunt_collect",
+  "activity_type": "concept_phoneme_hunt_collect__beginning_sound_treasure",
+  "asset_count": 22,
+  "asset_directory": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure",
+  "asset_files": [
+    "activity_icon__round_512.png",
+    "apple_object__round_512.png",
+    "b_sound_letter_cue__round_512.png",
+    "ball_object__round_512.png",
+    "banana_object__round_512.png",
+    "book_object__round_512.png",
+    "box_object__round_512.png",
+    "car_object__round_512.png",
+    "celebrate_scene__round_512.png",
+    "closing_scene__round_512.png",
+    "cup_object__round_512.png",
+    "hat_object__round_512.png",
+    "intro_scene__round_512.png",
+    "mug_object__round_512.png",
+    "round_1_scene__round_512.png",
+    "round_2_scene__round_512.png",
+    "round_3_scene__round_512.png",
+    "rules_scene__round_512.png",
+    "shoe_object__round_512.png",
+    "sock_object__round_512.png",
+    "spoon_object__round_512.png",
+    "synthesis_scene__round_512.png"
+  ],
+  "collection_catalog": {
+    "correct": [
+      {
+        "id": "ball_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/ball_object__round_512.png"
+      },
+      {
+        "id": "banana_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/banana_object__round_512.png"
+      },
+      {
+        "id": "book_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/book_object__round_512.png"
+      },
+      {
+        "id": "box_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/box_object__round_512.png"
+      }
+    ],
+    "distractors": [
+      {
+        "id": "cup_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/cup_object__round_512.png"
+      },
+      {
+        "id": "sock_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/sock_object__round_512.png"
+      },
+      {
+        "id": "apple_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/apple_object__round_512.png"
+      },
+      {
+        "id": "car_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/car_object__round_512.png"
+      },
+      {
+        "id": "hat_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/hat_object__round_512.png"
+      },
+      {
+        "id": "mug_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/mug_object__round_512.png"
+      },
+      {
+        "id": "shoe_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/shoe_object__round_512.png"
+      },
+      {
+        "id": "spoon_object",
+        "image": "/activity-assets/concept_phoneme_hunt_collect__beginning_sound_treasure/spoon_object__round_512.png"
+      }
+    ]
+  },
+  "collection_catalog_correct_count": 4,
+  "collection_catalog_distractor_count": 8,
+  "collection_count": 1,
+  "markdown_path": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import/games/concept_phoneme_hunt_collect__beginning_sound_treasure.md",
+  "placeholder_routes_present": false,
+  "required_worktree_import_report": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/required_worktree_import_report.json",
+  "required_worktree_import_status": "downstream_owned_failure",
+  "status": "ok"
+}

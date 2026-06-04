@@ -50,10 +50,11 @@ runs/<run_id>/
 Core files:
 
 ```text
-GOAL.md                            Codex /goal objective and success criteria
+GOAL.md                            Default Codex /goal objective and completion contract
 program.md                         Agent instructions, adaptation brief, migrated output contract, rubric
 templates.md                       Template 0 reference, mechanic adapters, pillar scaffolds, Cat1/Cat3/Cat5 modifiers
-run.md                             Autonomous activity-package loop
+run.md                             Compact autonomous activity-package loop
+goals/                             Scoped execution contracts for subset, full-pass, and feature runs
 review_dashboard.md                Static review dashboard contract and UI requirements
 runs/README.md                     Run provenance directory contract
 docs/activity_asset_generation_workflow.md
@@ -77,9 +78,10 @@ docs/activity_vocabulary.md        Closed enums for activity_signature fields
 docs/game_styles.md                12 game styles under 6 experience pillars
 entity_guidance.md                 Mapping schema and selection rules
 conversation_bridge.md             Warm/cold bridge patterns
-inputs/source_activity_concepts.md Active source concept rows referenced by assignments.md Batch 4
+inputs/source_activity_concepts.md Source concept rows referenced by active or archived assignment rows
 examples/                          Concrete input-source and input-mode examples
-assignments.md                     Work queue
+assignments.md                     Active work queue only
+docs/assignments_archive.md        Historical assignment ledger for provenance
 results.tsv                        Assignment and rubric log
 ```
 
@@ -162,7 +164,7 @@ orchestrated workflow. Ordinary scoped package generation can keep the default
 Recommended invocation:
 
 ```text
-/goal Implement goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md. Execute the current workbook full pass from inputs/original_activity_concepts_2026-05-29.tsv with asset_build=generate_and_curate and full_pass_pipeline=true; start fullstack validation only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game on branch feat/activity-text-game while sourcing live credentials only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend; use delegated agents for source intent, text package writing, image generation, fullstack dialogue QA, WonderLens AI dialogue QA, image QA, repair loops, and final independent review; if API rate limits occur, wait a few minutes and retry with backoff before declaring a blocker; stop only when the completion gate is satisfied or a blocker is documented.
+/goal Execute goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md end to end.
 ```
 
 For an engineering/product explanation, read
@@ -170,9 +172,10 @@ For an engineering/product explanation, read
 contract lives in `docs/plans/2026-06-01-full-pass-agentic-pipeline.md`. The
 actual full-pass run plan lives in
 `docs/plans/2026-06-01-run-full-pass-agentic-pipeline.md`, with executable goal
-file `goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md`. `GOAL.md`,
-`run.md`, and `program.md` remain the runtime procedure that a full pass must
-obey.
+file `goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md`. Root
+`GOAL.md` and `run.md` are intentionally compact defaults; the scoped goal file
+owns full-pass hard constraints, delegated-agent rules, credential boundaries,
+and live validation ordering.
 
 In this mode the main agent is the master orchestrator and should delegate
 disjoint evidence work: source-intent audit, text-only package writing,
@@ -191,11 +194,13 @@ capability.
 
 ## Quick Start
 
-1. Edit `assignments.md` with the activity requests to generate.
+1. Add the activity requests to the active queue in `assignments.md`.
 2. Start your coding agent from the repo root.
 3. Start the loop with the recommended Codex `/goal` command in `GOAL.md`.
 
-`GOAL.md` defines the run objective, success criteria, and completion contract. `run.md` defines the step-by-step execution loop.
+`GOAL.md` defines the default objective and completion contract. `run.md`
+defines the compact execution loop. Scoped goals under `goals/` override those
+defaults for subset, full-pass, and feature-specific runs.
 
 For generation-ready assignments, the loop creates one complete run-local package under `runs/<run_id>/activity_packages/<activity_id>/`, adds demo extension files by default, self-evaluates against the 10-dimension rubric, gets independent reviewer-agent PASS evidence, updates `results.tsv`, adds `package_path=` to the completed assignment row, and records both `base_activity_id` and `activity_path` in `runs/<run_id>/run_manifest.yaml`. Blocked concept-led assignments write a blocked brief under `runs/<run_id>/blocked_briefs/` and a constrained design preview under `runs/<run_id>/blocked_designs/`. These previews still show detailed proposed runtime steps with inline `BLOCKED ELEMENT` comments, but they are not logged, packaged, or marked complete until the constraints are resolved. They no longer halt the rest of the batch.
 
@@ -212,7 +217,7 @@ Common invocations:
 /goal Execute GOAL.md end to end using run.md with asset_build=generate_illustrative.
 
 # Larger/full production pass with runtime PNG generation and downstream validation.
-/goal Implement goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md.
+/goal Execute goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md end to end.
 ```
 
 ## Run Provenance
@@ -247,7 +252,7 @@ MAPPING_ROOT=data/mappings_dev20_0318
 
 | Source | Typical fields | Required when | How the agent uses it |
 |---|---|---|---|
-| `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `concept_source`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `asset_policy`, `asset_requirements`, `product_capabilities` | Always. This is the execution queue the loop reads. | Normalizes the request, loads referenced concept/asset rows when present, runs Phase 0 when needed, then either generates a package or records a blocked brief plus constrained design preview and continues. |
+| `assignments.md` queue | unchecked line with `assignment_type`, `entity`, `activity_concept`, `concept_source`, `description`, `category`, `mechanic`, `tier`, `scene`, `mapping`, `asset_policy`, `asset_requirements`, `product_capabilities` | Always for active generation. This is the execution queue the loop reads. | Normalizes the request, loads referenced concept/asset rows when present, runs Phase 0 when needed, then either generates a package or records a blocked brief plus constrained design preview and continues. |
 | Activity Concept Brief | concept row plus optional companion asset requirement rows | The starting point is a source/curriculum/design concept rather than a full entity package request. This is the preferred source for concept-led work. | Produces an English `adaptation_brief` first. The brief decides input mode, readiness, trigger fit, asset dependency, mapping use, and scaffold fit. |
 | Asset Requirements table | `asset_id`, `concept_ref`, `asset_type`, `requiredness`, `generation_timing`, `use_step`, `display_location`, `purpose`, `prompt_en`, `source`, `display_behavior`, `fallback_behavior`, `safety_constraints`, `accuracy_mode`, `source_strategy`, `transformation_policy` | The idea mentions or requires AI-generated images, screen-displayed reference images, line art, cards, icons, overlays, or visual supports. | Avoids asset inference from prose. Phase 0 copies the rows into `asset_dependency`; `spec.md` records an `## Asset Brief` and `## Asset Usage Timeline`; `asset_manifest.yaml` records the consumer-facing runtime asset contract; `prod.md` references stable asset IDs. |
 | Entity mapping YAML | `mapping=<entity_id>` resolved through `MAPPING_ROOT/_index.yaml` | Required only for mapping-informed packages, entity-specific factual claims, warm/cold bridge grounding, mapping-grounded Key Concepts, or matcher-ready entity routing. | Grounds visible attributes, tier language, IB concepts, related concepts, bridge prerequisites, trigger fit, and matchability. |
@@ -333,7 +338,12 @@ See `examples/source_activity_concept_template.md` for the fillable template. Se
 
 ## Working With `assignments.md`
 
-`assignments.md` is the agent's queue. Each unchecked line (`- [ ]`) is one pending package request; checked lines (`- [x]`) are treated as complete and skipped. The loop processes the file from top to bottom.
+`assignments.md` is the active queue only. Each unchecked line (`- [ ]`) is one pending package request; checked lines (`- [x]`) are treated as complete and skipped. The loop processes the file from top to bottom.
+
+Historical batches, completed smoke runs, and superseded scoped validation rows
+belong in `docs/assignments_archive.md`. Do not process rows from that archive
+unless a goal file explicitly copies or references a scoped subset back into
+`assignments.md`.
 
 Use this shape for new assignments:
 
@@ -380,7 +390,11 @@ Optional:
 
 Prefer `mechanic=` over `style=` when you only know what the child should do. If `mechanic=` is present and `style=` is omitted, the agent infers pillar and game style from the mechanic, entity affordances, category, and `program.md` section 1.6. Concept-led rows first produce an `adaptation_brief`; blocked ideas also get a constrained design preview with inline blocked-element comments instead of forcing package generation, and the loop continues to later unchecked rows. If a scoped run declares `product_contract_override=minimum_unblock_allowed`, formerly blocking minimum-to-unblock decisions generate as normal packages with resolved blocker annotations and review-dashboard callouts. Legacy concept aliases should not be used in new rows. Older completed rows may contain retired style tokens such as `voice_acting`, `storytelling_chain`, `prediction_game`, `helper_hotline`, `comparison_chart`, or `naming_story`; keep them as legacy history, not templates for new rows.
 
-To rerun an assignment, change its checkbox back to `- [ ]` or copy it into a fresh batch. The rerun will create a new run-local package directory instead of overwriting or relinking the previous package. To add work, append a new unchecked line in the appropriate batch section or create a new batch heading.
+To rerun an archived assignment, copy the row from `docs/assignments_archive.md`
+back into `assignments.md` as an unchecked active row, then adjust any
+run-specific fields required by the current goal. The rerun will create a new
+run-local package directory instead of overwriting or relinking the previous
+package. To add new work, append a new unchecked line under `## Active Queue`.
 
 ## Project Structure
 
@@ -391,9 +405,12 @@ To rerun an assignment, change its checkbox back to `- [ ]` or copy it into a fr
 ├── program.md
 ├── templates.md
 ├── run.md
+├── goals/
 ├── review_dashboard.md
 ├── assignments.md
 ├── results.tsv
+├── docs/
+│   └── assignments_archive.md
 ├── runs/
 │   ├── README.md
 │   └── <run_id>/

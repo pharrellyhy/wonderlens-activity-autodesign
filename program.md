@@ -1,88 +1,40 @@
 # WonderLens Activity Auto-Design — program.md
 
-> **Version**: 1.33 | **Date**: 2026-06-01
-> **Purpose**: Instruction file for AI agent to autonomously design high-quality WonderLens educational activities
-> **Adapted from**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch) pattern — human writes the .md, agent generates the designs
->
-> **v1.33 — 2026-06-01**: Define the larger/full pass as a master-orchestrated delegated-agent pipeline: pre/post source-intent auditing, text-only package writing, image-only asset generation with `asset_build=generate_and_curate`, package/import validation, fullstack and WonderLens AI dialogue QA, image QA, repair ownership routing, and final independent review.
-> **v1.32 — 2026-05-29**: Update the active WonderLens activity asset workflow to the latest fullstack-demo flat Nordic nursery style and document the generation, curation, inbox, builder, and validation flow in `docs/activity_asset_generation_workflow.md`.
-> **v1.31 — 2026-05-28**: Raise `Runtime AI instruction` quality to the downstream `step_instructions` bar used by fullstack-demo. Runtime contracts must be convertible into useful hook/transition/round/celebrate/closing guidance: goal/action, tier/length constraint, emotion/tone, child progress evidence, branch behavior, source/activity frame guardrail, concrete example line, and specific screen/state behavior.
-> **v1.30 — 2026-05-28**: Make the WonderLens activity asset style self-contained for full `GOAL.md` runs: square 512x512 runtime PNGs by default, central circular safe area, soft 3D toy illustration matching the mint/white prototype device, and no baked-in device chrome, text, labels, logos, masks, borders, or contact sheets.
-> **v1.29 — 2026-05-27**: Add optional direct-demo package extensions: `demo_support.yaml` for support/degraded/unsupported gating and explicit entity binding, plus `asset_manifest.yaml` for separate runtime assets, prototype-device visual style, round-screen safe areas, and reference-bound source/provenance rules. Contact sheets remain review-only artifacts.
-> **v1.28 — 2026-05-22**: Tighten reviewer-ready branch policy specificity. Unexpected and no-response branches must be beat- and round-specific; keyword-substitution rows and repeated Step 3 branch policies fail review.
-> **v1.27 — 2026-05-22**: Tighten branch policy specificity. Unexpected and no-response branches must be beat-specific to the current source action, role, challenge, asset/fallback, and screen state; shared safety principles are allowed, but copied boilerplate branch text fails review.
-> **v1.26 — 2026-05-21**: Add source-promise alignment as a generation and review gate. Phase 0 must capture the original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, and product dependencies. The original source design controls over a lossy normalized paraphrase when they conflict. Future runtime beats may use `Runtime AI instruction` plus `Example AI line` as a constrained behavior contract, while existing `AI says` exact-dialogue beats remain valid.
-> **v1.25 — 2026-05-13**: Require `review.html` detail dialogs to show runtime beats as a visual storyboard/timeline map before the extracted source rows. The map must make AI prompt, child response branches, follow-up behavior, and screen state scannable without hiding the full runtime text.
-> **v1.24 — 2026-05-12**: Clarify review dashboard image accounting. `review.html` must distinguish unique asset dependencies from runtime display beats and known image-item counts; one `asset_id` or card set can appear in several steps, and set item counts stay TBD unless source data declares them. The dashboard must also show the generation/validation workflow used to create the derived HTML.
-> **v1.23 — 2026-05-12**: Require image/display dependencies to be trackable as an asset usage timeline. Asset briefs now expose where and when each prebuilt, displayed, or runtime-generated image is loaded, shown, used, persisted/hidden, and how fallback works; `review.html` must surface that timeline for fast review.
-> **v1.22 — 2026-05-12**: Add product-contract override handling for `minimum_unblock_allowed` runs. Formerly blocked capability probes can generate normal five-file packages when the minimum unblock decisions are assumed approved, but the package must preserve those dependencies as `RESOLVED BLOCKER` annotations and `review.html` must show resolved contract items. Add Cat3 `template_type` support and require concept-led packages to include extensibility notes for reusable entity/property/asset-set retargeting.
-> **v1.21 — 2026-05-12**: Fresh `/goal` generation writes actual five-file packages under `runs/<run_id>/activity_packages/<base_activity_id>/` with clean `activity_id` values. `activities/<activity_id>/` is reserved for canonical/promoted packages and explicit checked-package enrichment; run-local paths distinguish reruns without suffixing IDs.
-> **v1.20 — 2026-05-11**: Run review dashboards must support in-file preview for every linked `.md`/`.yaml`/`.txt` so reviewers can read package files (spec.md, prod.md, tag_block.yaml, recap/dashboard templates, blocked briefs, blocked design previews, run manifest, review notes) inline. The generator embeds raw file content as hidden `<template>` elements; a dedicated preview `<dialog>` renders Markdown client-side and shows YAML/text in a preformatted block. Plain click previews; modifier-click and an "Open in new tab" link still navigate. See `review_dashboard.md` §"In-file preview" for the full contract.
-> **v1.19 — 2026-05-11**: Lock the editorial design language for `runs/<run_id>/review.html`. Warm-paper palette, single indigo-ink accent, serif display title and dialog headings, hairline-divided panels in place of card-within-card nesting, tabular numerals on every numeric column, indigo/amber accent rails on activity and blocked cards, and a status-dot run indicator in the header. See `review_dashboard.md` §"Design language" for the full contract.
-> **v1.18 — 2026-05-11**: Run review dashboards must show every reviewer-audited package, including no-op passes, and must expose the 10-dimension review criteria plus per-package scorecard results and rationale.
-> **v1.17 — 2026-05-11**: Blocked assignments now still receive constrained run-local design previews. The preview must show detailed runtime steps with inline blocked-element comments, but it is not a valid runtime package and is not logged or checked off until the blocking decisions are resolved.
-> **v1.16 — 2026-05-11**: Tighten reviewer gating for `/goal` runs. Generated packages require separate reviewer-agent PASS evidence before logging/checkoff, and enrichment/audit passes should use reviewer agents with disjoint package scopes.
-> **v1.15 — 2026-05-10**: Change blocker handling from terminal stop to per-row triage. Product/design blockers write blocked briefs, remain unchecked, and the `/goal` loop continues to later unchecked rows; only hard workflow failures stop the batch.
-> **v1.14 — 2026-05-10**: Add existing package enrichment mode for `/goal` reruns. Checked assignment rows can be audited and enriched when migrated package standards tighten; preserve machine contracts and record maintenance in run provenance instead of relogging `results.tsv`.
-> **v1.13 — 2026-05-09**: Tighten migrated package depth standards. The five-file format may be more compact than legacy specs, but `spec.md` and `prod.md` must remain decision-useful, concrete, and reviewer-runnable; reviewers should fail structurally valid but thin/generic packages.
-> **v1.12 — 2026-05-09**: Expand the canonical `activity_signature.mechanic` enum to 12 values. Retire `voice` in favor of `motion_voice`, retire `narrate` in favor of `imagine`, and add `decide` plus `remember`.
-> **v1.11 — 2026-05-09**: Add run provenance directories under `runs/<run_id>/`. Runtime activity packages remain under `activities/<activity_id>/`, while run manifests, assignment snapshots, adaptation briefs, blocked briefs, and generated activity indexes live under `runs/`.
-> **v1.10 — 2026-05-09**: Add the Activity Concept Brief as the preferred concept-led source shape and introduce an explicit asset dependency layer. Concept rows should declare `asset_policy` and asset requirement rows instead of relying on the generator to infer image/display needs from prose.
-> **v1.9 — 2026-05-08**: Formalize assignment types (`entity_activity`, `activity_concept`, `match_pattern`, `capability_probe`), standardize new concept rows on `activity_concept=`, rename the old Phase 0 concept-only mode to `concept_only`, and add `GOAL.md` as the Codex `/goal` completion contract.
-> **v1.8 — 2026-05-08**: Add Phase 0 Activity Concept Adaptation Brief. Mechanic is now the primary intent signal for concept-led assignments; pillar/game style remain required scaffold metadata but must not override the canonical mechanic. Entity mapping is optional for concept-only briefs and required only when the package claims mapping-informed grounding or matcher-ready entity routing.
-> **v1.7 — 2026-05-08**: Require a separate reviewer agent to independently check the 10-dimension `spec.md` scorecard against the actual package files before the scorecard is finalized, results are logged, or an assignment is marked complete.
-> **v1.6 — 2026-05-08**: Make the migrated `activities/<activity_id>/` five-file package the default output target. `prod.md` must keep every runtime round fully expanded; only `spec.md` carries the author-editorial `## Self-Evaluation Scorecard`; `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` are separate package files aligned to `activities/_schema/tag_block.schema.json`.
-> **v1.5 — 2026-04-21**: Legacy inline-design tag block revision: extended `entity_attributes_covered` with dual matcher semantics keyed on `entity_binding`. Superseded for migrated packages by v1.6 and `activities/_schema/tag_block.schema.json`.
-> **v1.4 — 2026-04-20**: Legacy inline-design tag block revision: introduced `entity_attributes_covered` as a required field. Superseded for migrated packages by v1.6.
-> **v1.3 — 2026-04-20**: Align `progression.difficulty_level` wire format to the Template 0 authority (`docs/template_0_preview.html` §04) and `docs/progression_axes.md`: bare integer `1|2|3`, not `L1|L2|L3`. The `L1/L2/L3` forms remain the human-readable rung labels in prose and UI copy.
-> **v1.2 — 2026-04-20**: Sync template-reading flow to the new `templates.md` v1.0 structure (Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix). Replaces the "Template A for Cat1 / Template B for Cat5" split with three-layer composition (Template 0 + pillar overlay + category modifier).
-> **v1.1 — 2026-04-20**: Introduce `## Tag block — the central contract` section (new Phase 1.9) as the structured output artifact every activity emits for downstream child-recap and parent-dashboard surfaces. Add pre-output self-check step to the generation loop.
+Version: 1.35
+Updated: 2026-06-03
 
----
+Purpose: canonical authoring contract for WonderLens activity packages. This
+file defines what a high-quality activity package must contain. `GOAL.md` and
+`run.md` define how a run is executed. Scoped files under `goals/` define
+subset/full-pass overrides. Historical change context lives in `HANDOFF.md` and
+`docs/plans/`.
 
 ## How This Works
 
-You are an **Activity Design Agent** for WonderLens, an AI-powered educational camera for children ages 2-8. Your job is to **invent and fully design** interactive activities from an **assignment row**: sometimes an entity + category, sometimes a concept brief, sometimes a reusable match pattern, and sometimes a product capability probe.
+You are an **Activity Design Agent** for WonderLens, an AI-powered educational
+camera for children ages 2-8. Your job is to design interactive activities from
+an assignment row: an entity activity, activity concept, match pattern, or
+capability probe.
 
-**The loop:**
-1. Receive input: an `assignment_type` row from `assignments.md`. New rows should use one of `entity_activity`, `activity_concept`, `match_pattern`, or `capability_probe`. Legacy concept aliases are normalized to `assignment_type=activity_concept` with `activity_concept=<value>`.
-2. Create a run provenance directory under `runs/<run_id>/` before processing assignments. Fresh generated packages go under `runs/<run_id>/activity_packages/<base_activity_id>/` with clean `activity_id` values; canonical/promoted packages remain under `activities/<activity_id>/`.
-3. Audit checked-row existing packages for enrichment needs before processing unchecked assignments. Use `package_path=` when present; otherwise use an existing canonical `activities/<activity_id>/` package. Use separate reviewer agents for scoped package-quality review when package audits or enrichment are part of the run. If a package fails the current migrated package depth floor, enrich it in place and record the maintenance in run provenance.
-4. Run **Phase 0: Activity Concept Adaptation Brief** before scaffold selection. Decide input mode, canonical mechanic, readiness, mapping usefulness, trigger condition, asset dependency, product-capability risks, and scaffold fit. Save the brief under the current run directory.
-5. Capture the source-promise alignment contract before writing runtime beats: original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, and product dependencies. If a normalized mechanic/category summary conflicts with the original source design, the original source design controls.
-6. For source-derived, concept-led, workbook-derived, pilot-validation, and full-pass rows, require a separate source-intent auditor before package writing. The pre-package audit locks the original play frame, child role, device role, interaction sequence, required child action, reference/real asset requirement, and required background/context promise so the package writer cannot drift while preserving only category or mechanic labels.
-7. If the brief is `blocked_until_product_decision`, still draft a constrained design preview for human review unless the run has `product_contract_override=minimum_unblock_allowed`. Under that override, generate a normal package and preserve the formerly blocking dependencies as resolved blocker notes in `spec.md`, run provenance, and `review.html`; use runtime-facing `prod.md` markers only when target consumers ignore them safely.
-8. Read `templates.md` for structural scaffolding — start with the Template 0 reference, apply the mechanic adapter, apply the category modifier (Cat1, Cat3, or Cat5), then apply the least misleading pillar/style scaffold required by the package schema.
-9. Brainstorm creative variables (metaphor, role, game mechanic) fresh for this entity or activity concept, grounded in mapping only when the brief is mapping-informed.
-10. Generate a complete migrated activity package following the exact output format. Package writing is text-only: write runtime AI instructions, screen states, source guardrails, asset requirements, and nullable asset paths, but do not generate images or choose final reference sources during this phase.
-11. Self-evaluate against the rubric (10 dimensions), repair failures, then pass the package to a separate reviewer agent for independent scorecard checking. Do not log `results.tsv`, update `generated_activity_ids.txt`, or mark the assignment complete until reviewer issues are repaired and the package has independent PASS evidence.
-12. If any dimension FAILS → identify the issue, fix it, re-evaluate.
-13. **Run the tag-block self-check** from §1.9 (Tag block — the central contract) before emitting. Every required field must be filled with a non-placeholder value.
-14. Run the recap/dashboard alignment check: `dashboard_fragment.session.focal_attribute` must equal `tag_block.activity_signature.focal_attribute`.
-15. For any accepted source-derived package, return to the source-intent auditor after package writing. The post-package audit must compare source evidence against `spec.md`, `prod.md`, metadata files, demo extensions, and downstream conversion/runtime evidence when available.
-16. For larger/full production passes, run the full agentic validation pipeline before acceptance: `asset_build=generate_and_curate`, image QA, package/import validation, fullstack dialogue QA, WonderLens AI runtime/dialogue QA, ownership-routed repair loops, and final independent review.
-17. Only present the final package after ALL dimensions pass, the package self-check passes, required source-intent audits pass, and any applicable full-pass validation gates pass.
-18. Put the rubric scorecard in `<package_dir>/spec.md`; do not put a scorecard in `prod.md`.
-19. Update `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/generated_activity_ids.txt` so the run can be traced back to its generated packages.
+Authoring responsibilities:
 
-**Output language contract:** source concepts may arrive in Chinese or mixed language, but every generated artifact must be written in English: `adaptation_brief` values, `spec.md`, `prod.md`, `tag_block.yaml`, `recap.template.yaml`, `dashboard.template.yaml`, asset brief rows, reviewer notes, and generated run-manifest summaries. Source snapshots may preserve original input rows for provenance, but do not copy Chinese source prose into generated package content.
+1. Run Phase 0 when the row is concept-led, underspecified, mapping-informed,
+   asset-dependent, or product-capability-sensitive.
+2. Preserve the source promise: original play frame, child role, device role,
+   sequence, required child action, real/reference asset need, and
+   background/context promise.
+3. Compose scaffolding from `templates.md`: Template 0 spine, mechanic adapter,
+   category modifier, then pillar/style overlay.
+4. Write the migrated package files in Phase 2 format. Package writing is
+   text-only; image generation happens only in explicit asset-build phases.
+5. Self-evaluate with the 10-dimension rubric, repair failures, and require
+   independent reviewer evidence before acceptance.
+6. Keep output English-only, even when source rows contain Chinese or mixed
+   language. Source snapshots may preserve original input text for provenance.
 
-**Existing package enrichment mode:** when a `/goal` rerun finds checked `assignments.md` rows with an explicit `package_path=` or an existing canonical `activities/<activity_id>/` package, audit that package against the current migrated package depth floor before processing unchecked rows. Checked rows are completion markers, not quality freeze markers. Spawn separate reviewer agents for package-quality review, using disjoint package directory scopes when reviewing multiple packages in parallel. If a package is structurally valid but thin, enrich `spec.md` and `prod.md` in place while preserving `activity_id`, tag-block enums, recap/dashboard placeholder compatibility, asset IDs, and the five-required-file package contract. Record reviewer findings, direct reviewer repairs, author repairs, re-review outcomes, and enrichment-only maintenance in `runs/<run_id>/run_manifest.yaml` and `runs/<run_id>/review_notes.md`; changed packages belong under `outputs.enriched_activities`, already-compliant no-op passes belong under `outputs.audited_activities`, and neither path appends `results.tsv` or creates duplicate generated-activity log entries unless a new package is actually generated.
-
-**Full-pass agentic pipeline mode:** when the run is a larger/full production
-pass, the main agent acts as master orchestrator and delegates bounded,
-disjoint responsibilities. Required roles are source-intent auditor,
-text-only activity package writer, image-only scene/object/item asset
-generator, package/import contract validator, fullstack dialogue quality
-validator, WonderLens AI dialogue quality validator, image quality validator,
-dialogue quality improver, WonderLens AI dialogue quality improver, image
-quality improver, and final independent reviewer. Fullstack-demo and
-WonderLens AI are direct consumers, not content-improvement steps. They must
-load or generate runtime artifacts from the package as provided; any
-conversion/runtime failure is classified as package-owned, fullstack-owned,
-WonderLens-owned, or product-owned and repaired or recorded with that owner.
-
-**You never show intermediate drafts. You only present the final, self-evaluated design.**
+Operational details such as run manifests, assignment snapshots, enrichment
+passes, full-pass delegated-agent orchestration, dashboard generation, and
+commits live in `run.md` and scoped goal files.
 
 ---
 
@@ -287,24 +239,30 @@ adaptation_brief:
 - `asset_policy=required_prebuilt`: generation may proceed with assumptions only when every required asset has `asset_id`, `asset_type`, `use_step`, `prompt_en` or source description, `display_behavior`, and `fallback_behavior`. If any required field is missing, block.
 - `asset_policy=runtime_generated`: block the assignment unless the concept explicitly declares runtime image generation as a supported product capability and includes timing, prompt, display, and fallback behavior, or the current run records `product_contract_override=minimum_unblock_allowed`. Current package generation should not create image files directly.
 - `asset_policy=blocked`: mark the assignment `readiness=blocked_until_product_decision`.
-- Required visual assets must be treated as dependencies, not as narrative flavor. If an activity cannot work without the asset and the asset pipeline is not defined, mark that assignment blocked at the adaptation brief and call out the dependency in the constrained design preview.
-- `prod.md` should reference asset IDs and runtime behavior, not raw image prompts. `spec.md` owns the author-facing `## Asset Brief` with image prompts and dependency rationale.
-- Demo-targeted packages use `asset_manifest.yaml` for the consumer-facing asset contract. It must define separate assets by runtime role, not a single contact sheet. Each asset needs role, requiredness, accuracy mode, prompt or source, variants, nullable file path slots, and fallback behavior.
-- Demo-targeted asset rows must declare `source_strategy` and `transformation_policy`. Illustrative required/optional assets use `source_strategy: generated_illustrative` and `transformation_policy: generate_new`. Reference-bound assets must not use `generate_new`; they use `curated_original`, `redraw_from_verified_data`, `licensed_reference`, or `approved_internal_reference` with `crop_resize_only`, `simplified_redraw`, `style_preserving_redraw`, or `no_derivative_generation`.
-- Use `style_id: wonderlens_device_mint_soft_3d` unless a future schema approves another style. This remains the compatibility identifier; the current visual target is the flat Nordic nursery style in `docs/activity_asset_generation_workflow.md`.
-- Illustrative asset prompts must include the current WonderLens activity asset style: quiet white prototype fit, broad flat color fills, sparse arc-eye/texture linework, restrained boho pastels, airy negative space, no generic chibi/toy vocabulary, no glossy eyes, no dimensional modeling, and no cartoon clutter.
-- Round-device variants must be designed first: square source art, `aspect_ratio: "1:1"`, `crop_shape: circle`, and important detail inside the central circular safe area. Background scene assets should be full-bleed square images that can be clipped by the round lens; item, object, and character assets should be separate centered PNGs with generous clean white padding.
-- Do not bake in device chrome or review layout: no circular/oval mask, lens border, rim, vignette, black corners, transparent margin, colored border, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels.
-- Final runtime PNGs should be `512x512` unless the manifest explicitly requests another or additional larger variant. `64px`/`128px` files are thumbnails only and must never be the only playable output.
-- For subset and full-pass asset generation, request 512x512 square illustrative source PNGs, then let the deterministic builder resize to the manifest's final runtime variants. Quality repairs should come from prompt specificity, source-intent alignment, and image QA rather than smaller source images.
-- Larger/full production passes must declare and build a fullstack-style asset bundle for every package, including unsupported/gated packages used for review. The minimum bundle is `activity_icon`, `intro_scene`, `rules_scene`, `round_1_scene`, `round_2_scene`, `round_3_scene`, `celebrate_scene`, and `closing_scene`; Cat5 or collection/synthesis flows also require `synthesis_scene`. Use role `activity_preview` for `activity_icon` and role `story_scene` for the beat scenes. Add separate item/object/entity/target/distractor PNGs in addition to this scene bundle whenever the activity displays specific cards or objects.
-- Full-pass beat-scene PNGs must not bake in app-owned progress or control UI. Do not draw progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, badges, or other runtime interface markers inside scene assets; the app overlays those separately.
-- Full-pass scene bundles must be visually distinct by activity. Do not reuse the same cozy-room, blank-board, response-slot, or child-on-rug template across unrelated packages. Each scene set must use a source-specific motif that distinguishes the mechanic and child action.
-- For activities where the child selects an item/object to advance, background or beat-scene images must not duplicate the same selectable item/object in a way that competes with picker sprites, target/distractor cards, or collection items. Scene art may show empty slots, trays, silhouettes, environmental context, abstract clues, or already-selected/collected state only when the beat explicitly calls for it.
-- For evidence-building and partial-reveal flows, visual reveal timing must match the source sequence. Early beat images must not expose the final answer, full target, or solution before the dialogue/screen beat where the source design reveals it.
-- For guided drawing or other step-by-step build flows, the round images must show the instruction sequence itself, such as first shape, added detail, then finished simple form. Generic materials, locks, timers, cameras, or placeholder cards do not satisfy a beat whose purpose is to tell the child what to draw/build next.
-- Assets that depict real-world factual/reference material, including constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, and famous structures, must use `accuracy_mode: reference_bound`, include approved source/provenance, and require verification before generation is accepted. Do not request random or arbitrary generated approximations for these assets. Accepted runtime builds require `assets/sources/<asset_id>__source_original.<ext>` plus reviewer-approved `assets/sources/<asset_id>__source_metadata.yaml`; the deterministic builder validates this provenance but does not self-certify it.
-- Reference-bound candidate discovery is allowed only as a pre-acceptance step. The final manifest must cite verified sources, not search-result thumbnails or arbitrary web images. Famous public-domain artwork normally uses the original image with crop/resize or no derivative generation; constellations and diagrams normally redraw from verified source data.
+- Required visual assets are dependencies, not narrative flavor. If the activity
+  cannot work without an undefined asset, block or degrade honestly.
+- `spec.md` owns `## Asset Brief` and `## Asset Usage Timeline`.
+- `prod.md` references asset IDs, display behavior, and fallback behavior only;
+  do not put raw image prompts in runtime guidance.
+- Demo-targeted packages mirror the runtime contract in `asset_manifest.yaml`
+  with separate assets, roles, accuracy modes, variants, nullable paths, source
+  strategy, transformation policy, and fallback behavior.
+- Use `style_id: wonderlens_device_mint_soft_3d` for compatibility. The active
+  visual target and generation rules live in
+  `docs/activity_asset_generation_workflow.md` and `docs/asset_style_reference/`.
+- Illustrative assets must come from Codex built-in imagegen in explicit asset
+  phases; do not accept SVG/vector placeholders, contact sheets, or script-made
+  substitute art as generated illustrative assets.
+- Picker/selectable item or object assets must be declared separately and built
+  under package-local `assets/items/`.
+- Reference-bound assets, including constellations, artworks, maps, diagrams,
+  species, historical objects, named places, and famous structures, require
+  approved provenance and verified source data. Random generated approximations
+  fail the contract.
+- Runtime PNG sizing, fullstack-style scene bundles, crop safety, no-text/no-UI
+  constraints, image QA, and repair loops are governed by
+  `docs/activity_asset_generation_workflow.md`, `run.md`, and scoped full-pass
+  goal files.
 
 ### 0.4.1 Asset build runtime option
 
@@ -317,7 +275,7 @@ and must not rewrite package prose just to fit generated images.
 |---|---|
 | `none` | Skip asset generation/curation entirely. |
 | `manifest_only` | Default. Emit and validate `asset_manifest.yaml` with nullable paths; create no binary image files. |
-| `generate_illustrative` | Generate only illustrative assets from approved prompts and style/screen targets. The deterministic builder consumes approved PNGs from `generated_assets/inbox/` and writes package-local runtime variants. Reference-bound assets remain unbuilt unless sources already exist. |
+| `generate_illustrative` | Generate only illustrative assets from approved prompts and style/screen targets using Codex built-in imagegen. The deterministic builder consumes approved PNGs from `generated_assets/inbox/` and writes package-local runtime variants. Reference-bound assets remain unbuilt unless sources already exist. |
 | `curate_reference` | Let an agent propose candidates, then use web/source search and provenance verification to accept only approved originals or verified data; store accepted source originals and reviewer-approved metadata under package-local `assets/sources/`; no random substitutes. |
 | `generate_and_curate` | Run both illustrative generation and reference curation/build after all packages validate. |
 
@@ -819,7 +777,8 @@ Existing `AI says` exact-dialogue steps remain valid. Do not use a single fixed 
 - **Closing speech** must celebrate FIRST, then naturally name Key Concepts. Concepts feel like praise, not vocabulary lessons.
 - **All AI dialogue is in English.** Use age-appropriate, warm, playful language.
 - **Scorecard placement**: `spec.md` includes the scorecard; `prod.md` does not.
-- **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `spec.md` must include `## Asset Usage Timeline` for any prebuilt, displayed, or runtime-generated image dependency. For demo export, `asset_manifest.yaml` owns the machine-readable runtime asset contract: separate asset roles, style ID, screen targets, variants, nullable file paths, prompt/source, fallback behavior, and reference provenance. Illustrative prompts must use the WonderLens activity asset style from Phase 0.4 instead of pointing to an external prompt file. `prod.md` references asset IDs, display location, and fallback behavior only. Full-pass packages must include the standard fullstack-style scene bundle (`activity_icon`, `intro_scene`, `rules_scene`, `round_1_scene`, `round_2_scene`, `round_3_scene`, `celebrate_scene`, `closing_scene`, plus `synthesis_scene` when applicable) in addition to any object/item assets. Review outputs must distinguish `Asset dependencies` from `Display beats` and `Image items`; do not treat one asset row or card set as one image when it is displayed across multiple steps. Do not generate or store image files as part of package authoring; only the explicit post-package asset build phase writes package-local runtime images. Contact sheets are review-only artifacts, not runtime asset manifests.
+- **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `spec.md` must include `## Asset Usage Timeline` for any prebuilt, displayed, or runtime-generated image dependency. For demo export, `asset_manifest.yaml` owns the machine-readable runtime asset contract: separate asset roles, style ID, screen targets, variants, nullable file paths, prompt/source, fallback behavior, and reference provenance. Illustrative prompts must use the WonderLens activity asset style from Phase 0.4 and the repo-local `docs/asset_style_reference/` files instead of pointing to an external prompt file. `prod.md` references asset IDs, display location, and fallback behavior only. Full-pass packages must include the standard fullstack-style scene bundle (`activity_icon`, `intro_scene`, `rules_scene`, `round_1_scene`, `round_2_scene`, `round_3_scene`, `celebrate_scene`, `closing_scene`, plus `synthesis_scene` when applicable) in addition to any object/item assets. Picker/selectable item or object assets must be declared separately and built under package-local `assets/items/`, not mixed with beat-scene/background assets. Review outputs must distinguish `Asset dependencies` from `Display beats` and `Image items`; do not treat one asset row or card set as one image when it is displayed across multiple steps. Do not generate or store image files as part of package authoring; only the explicit post-package asset build phase writes package-local runtime images. Contact sheets are review-only artifacts, not runtime asset manifests.
+- **Scene image meaning**: generated scene prompts must start from the beat's child action, learning evidence, and runtime screen state. Generic metaphors or placeholders such as baskets, treasure chests, blank cards, blank boards, empty rooms, glows, sparkles, and camera slots are not valid scene subjects unless the beat is explicitly about that object. Story-scene assets should feel like coherent real-world scenes with plausible spaces, stable camera/framing, consistent subject treatment, and concrete beat-to-beat changes; isolated floating symbols are for icons, badges, and item sprites, not scene backgrounds. For sound, phoneme, rhyme, or word-hunt activities, visuals must make listening, speaking, sound waves, search motion, or runtime evidence handling legible without baking in letters, words, or target answers. Image QA must inspect the actual PNGs and the recorded prompt root cause; a nice-looking but nonsensical scene is a hard repair.
 - **Resolved blocker placement**: product-contract override runs must preserve formerly blocked dependencies in `spec.md`, run provenance, and review/dashboard output. Use raw `RESOLVED BLOCKER` comments in `prod.md` only when every target consumer ignores them safely; WonderLens AI runtime generation currently treats such leakage markers as invalid, so direct WonderLens AI validation must either strip review-only markers before conversion or keep them out of runtime-facing `prod.md`. Before comparing or accepting fullstack-demo and WonderLens AI dialogue quality, run `! rg -n "RESOLVED BLOCKER|RESOLVE BLOCKER" runs/<run_id>/activity_packages/*/prod.md`; any match is a package-owned blocker unless the downstream converter is explicitly proven to strip or accept that marker.
 - **Extensibility placement**: concept-led and parameterized packages should name reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, `{matched_shape}`, or approved asset-set IDs in `spec.md` `## Extensibility Notes`.
 - **Package alignment**: `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` must describe the same pillar, game style, focal attribute, badge, and next-step direction as `spec.md` and `prod.md`.
@@ -901,7 +860,23 @@ For the target tier, check:
 - If `asset_manifest.yaml` is present, do declared variants include the round-device screen target, safe-area rules, and fallback behavior for missing assets? → Must be YES
 - For full-pass runs, does the package include the standard fullstack-style scene bundle and package-local 512x512 PNGs, not just item/card assets? → Must be YES
 - For illustrative assets, do prompts and accepted outputs follow the WonderLens activity asset style and avoid baked-in masks, borders, text, labels, logos, contact sheets, and UI chrome? → Must be YES
+- For generated illustrative assets in subset/full-pass runs, were source PNGs produced with Codex built-in imagegen rather than SVG/vector/placeholder substitutes? → Must be YES
 - For item/object picker activities, do scene backgrounds avoid duplicate selectable objects that compete with picker sprites, target/distractor cards, or collection items? → Must be YES; otherwise hard REPAIR
+- For item/object picker activities, are selectable item/object PNGs declared separately and built under `assets/items/` rather than mixed with scene/background assets? → Must be YES; otherwise hard REPAIR
+- For picker/catalog activities, does the package provide a consumer-parity item
+  set, normally four correct items and eight distractors unless the run goal
+  records an approved smaller catalog? → Must be YES; otherwise hard REPAIR
+- Does each scene asset visually explain the beat's child action, learning
+  evidence, or source-specific screen state rather than using a generic basket,
+  blank card, blank board, empty room, glow, sparkle field, or other placeholder?
+  → Must be YES; otherwise hard REPAIR
+- Do story-scene assets feel like a coherent real-world activity scene with
+  plausible spaces, stable camera/framing, consistent subject treatment, and
+  concrete beat-to-beat changes rather than isolated floating symbols? → Must be
+  YES; otherwise hard REPAIR
+- For sound, phoneme, rhyme, or word-hunt activities, do scene assets foreground
+  listening/speaking/search evidence rather than defaulting to a
+  treasure/basket metaphor? → Must be YES; otherwise hard REPAIR
 - For evidence-building or partial-reveal activities, do images preserve the step-by-step reveal sequence and avoid showing the final answer too early? → Must be YES; otherwise hard REPAIR
 - Do scene assets avoid baked app UI such as progress dots, round markers, response slots, rule strips, buttons, chips, picker slots, or badges? → Must be YES; otherwise hard REPAIR
 - Are unrelated activities visually distinct rather than variants of the same generic template? → Must be YES; otherwise hard REPAIR
@@ -966,153 +941,25 @@ Does the design preserve the child action promised by the assignment or Phase 0 
 
 ---
 
-## Phase 4: Seed Exemplars — Quality Reference
+## Phase 4: Quality Reference
 
-Study these two exemplars carefully. They represent the quality floor. Your output must match or exceed this level of detail, creativity, and specificity.
+Use legacy designs and generated packages as examples only after reading the
+current contracts above. Good packages share these qualities:
 
-### Exemplar 1: In-Device Sustained Verbal Interaction (T0)
+- The metaphor turns the source idea into play, not a worksheet.
+- The child has a specific role tied to what they actually do.
+- Each Step 3 round changes the objective, clue, action, evidence, or screen
+  state.
+- The AI models the expected behavior before asking young children to perform
+  it.
+- Edge branches validate the child first, then return to the current source
+  action.
+- Cat5 collection activities synthesize the set; they do not end at "you found
+  three things."
+- The magic moment follows from accumulated child action and is visible in
+  dialogue plus screen behavior.
+- IB concepts are named naturally in the closing because they match what the
+  child just did.
 
-**Entity**: Stuffed toy dog | **Category**: 1 (Sustained Verbal Interaction)
-
-**Activity Name**: Mood Changer
-
-**Concept**: Child becomes the stuffed dog's "emotional spokesperson." AI presents different scenarios, and the child voices what the dog would feel/say in each one. It's like casting a spell on the toy — the child becomes the toy's voice.
-
-**Key Design Qualities to Learn From**:
-- The metaphor ("magic game where you can hear the dog's inner voice") transforms a psychology exercise into play
-- Each round targets a DIFFERENT emotion (happy → surprised → excited), creating variety
-- AI MODELS the behavior first ("the dog might sigh 'ohh...' or say 'where's my ball?'") before asking the child
-- The closing names the child as "Dog's Emotion Translator" — a role/title that celebrates the skill
-- Screen responds dynamically to the narrative (sunshine animation when the scenario is "morning sun")
-- Edge cases: when child says "woof woof!" (a non-emotional response), AI validates it AS emotional ("That's saying hello to the sun!") then extends with a richer example
-
-**Interaction Pattern**: AI narrates scenario → child voices the emotion → AI validates + extends → next scenario. 3–5 rounds, escalating emotional complexity.
-
-**IB Mapping**: Key Concept = Perspective. The closing line explicitly connects: "The same dog feels different things when different things happen — that's the magic of Perspective."
-
-### Exemplar 2: Out-of-Device Collection Exploration (T1)
-
-**Entity**: Patterned stone | **Category**: 5 (Collection/Tracking Exploration)
-
-**Activity Name**: Story Creator
-
-**Concept**: Child photographs a stone with interesting patterns → AI asks what the pattern looks like → child names it ("a snake!") → AI proposes finding more "stone actors" to form a "stone theater troupe" → child searches for and photographs 2 more stones → each stone gets a character name → child creates a mini-story with the troupe.
-
-**Key Design Qualities to Learn From**:
-- The metaphor escalates: pattern → character → troupe → story. Each step BUILDS on the previous
-- The child has a ROLE: "Director." This gives ownership and agency
-- Task is broken into 3 clear sub-tasks (find 2 actors, take group photo, announce the play name) — perfect for T1
-- When child only takes a photo but doesn't name the stone, AI suggests a name ("Looks like 'Starry Stone'? Or do you have a better name?") — this is scaffolding, not correcting
-- Screen shows collected stones as thumbnails on the side, building a visual collection
-- The "no response" case for finding stones includes: "Look near the ground, at the flower bed edges — stone actors like to hide in corners" — a CONCRETE, actionable hint
-
-**Interaction Pattern**: AI frames mission → child explores physically → photographs finds → AI reacts to each find → collection complete → child synthesizes (names the story) → AI celebrates and names concepts.
-
-**IB Mapping**: Key Concepts = Form + Connection. "You discovered the beauty of each stone's Form, and used your imagination to create Connections between them as a story."
-
----
-
-## Phase 5: How to Use This
-
-### Mechanic-First Workflow
-
-Before generating any design, ALWAYS:
-1. Run Phase 0 when the assignment is concept-led, has `activity_concept=`, has a legacy concept alias, or lacks a fully specified entity + category request.
-2. Read `templates.md` in the layered order: (a) the **Template 0 reference** for the 5-beat spine and universal creative variables, (b) the **Mechanic Adapter** matching `canonical_mechanic`, (c) the **category modifier** for Cat1, Cat3, or Cat5, and then (d) the least misleading pillar/style scaffold required by the package schema.
-3. Use the composed scaffold (Template 0 spine + mechanic adapter + category modifier + optional pillar/style scaffold) — follow the beat sequence and keep the child action faithful to `activity_signature.mechanic`.
-4. Use the **Quick Entity Brainstorm Guide** for inspiration, but invent FRESH creative variables.
-5. Run the mechanic fidelity, scaffold honesty, and category-specific checks before running the full rubric (Dimensions 1–10, with D8 only for mapping-informed designs).
-6. If your entity is not in the brainstorm guide, extrapolate using the pattern: identify the entity's most striking VISUAL FEATURE → choose the focal attribute / observation angle → build the activity loop from the canonical mechanic.
-
-### Input Format
-
-When the human gives you an assignment, it will look like:
-
-```
-Design an activity for: [entity] + [category number or name]
-Optional: tier=[T0/T1/T2], mechanic=[mechanic], pillar=[pillar], style=[game_style], scene=[brief scenario]
-```
-
-For concept-led adaptation, it may look like:
-
-```
-Adapt activity concept: assignment_type=activity_concept, activity_concept=[activity name], description=[concept description], notes=[source / curriculum / design comments]
-Optional: mechanic=[mechanic], category=[category hint], entity=[entity or entity class], mapping=[entity_id], product_capabilities=[declared capability flags]
-```
-
-Examples:
-- `Design an activity for: butterfly + category 5 (collection/tracking), mechanic=deduce`
-- `Design an activity for: toy car + category 1 (sustained verbal), tier=T0, mechanic=motion_voice, style=voice_stage`
-- `Design an activity for: kitchen vegetables + category 3 (material exploration), tier=T1, scene=child photographs broccoli on kitchen counter`
-- `Adapt activity concept: assignment_type=activity_concept, activity_concept=Scavenger Hunt, description=find X things with a shared color or shape, mechanic=collect`
-- `Adapt activity concept: assignment_type=capability_probe, activity_concept=Coloring Game, description=child photographs colors and AI fills a line drawing, category=cat5`
-
-If `mechanic=` is provided, honor it when setting `activity_signature.mechanic`. If `style=` is omitted, infer it per §1.6 rules from the canonical mechanic, entity affordances, category, and scaffold fit. If an activity concept requires unsupported product capabilities, output the adaptation brief and constrained design preview instead of forcing a valid package.
-
-### If tier is not specified
-
-Infer the most natural tier based on entity + category:
-- Category 1 (verbal) with toys/stuffed animals → typically T0
-- Category 5 (collection/outdoor) → typically T1
-- Category 4/6 (social/collaborative) → typically T2
-- If ambiguous, default to T1
-
-### If scene is not specified
-
-Invent a plausible, specific trigger scene. Don't be generic — include where the child is, what they're doing, and what they photograph. Example: "Child is in the park and photographs a ladybug on a leaf" not "child photographs an insect."
-
-### Batch Mode
-
-If the human gives multiple assignments at once, design each one fully before moving to the next. Do not abbreviate later designs because "they follow the same pattern."
-
-### After Generating
-
-Always end with:
-1. A complete `<package_dir>/` package with the five required files, plus `demo_support.yaml` and `asset_manifest.yaml` when direct demo export is requested; full `GOAL.md` runs request it by default.
-2. The self-evaluation scorecard at the end of `spec.md` only.
-3. A one-line summary: "Ready for curriculum review" or "N issues found and fixed during self-evaluation"
-
----
-
-## Appendix: Quick-Reference Checklists
-
-### Before Selecting Key Concepts (mapping-informed designs):
-- [ ] Have I read the entity mapping YAML file?
-- [ ] Am I picking at least 1 Key Concept from `primary_key_concepts` (relevance ≥ 0.8)?
-- [ ] If I'm using Form+Connection, can I justify it from the mapping's reasoning fields?
-- [ ] Have I checked what Key Concepts the previous designs in this batch used? (Aim for diversity)
-- [ ] Does my chosen concept pair match what the child actually DOES in the activity?
-- [ ] Is my IB theme drawn from the mapping's primary or secondary themes?
-- [ ] Am I sourcing at least 2 Related Concepts from `candidate_related_concepts`?
-
-### Before Writing Step 1, Ask Yourself:
-- [ ] What's the creative METAPHOR that transforms this from "educational exercise" into "play"?
-- [ ] What ROLE does the child take on? (translator, director, detective, scientist, architect...)
-- [ ] How does the first line connect to the child's EMOTION, not their KNOWLEDGE?
-
-### For Every Step, Verify:
-- [ ] AI dialogue is concrete (actual words, not descriptions of behavior)
-- [ ] Tone/emotion marker is present
-- [ ] 3 child response branches exist (ideal / unexpected / silence)
-- [ ] "Unexpected" branch validates before redirecting
-- [ ] Screen description is specific
-- [ ] No V1 hard-blocked capability is required
-
-### For Closing, Verify:
-- [ ] Celebrates FIRST, concepts SECOND
-- [ ] Key Concepts are named naturally (feels like praise, not vocabulary)
-- [ ] The concept connection is EARNED (matches what the child actually did)
-- [ ] Screen shows concept words artistically
-
-### V1 Red Flags (instant FAIL if present in any step):
-- "Child reads the text on..."
-- "AI detects the child's facial expression..."
-- "Child tilts the camera to..."
-- "AI compares the before and after photos to detect changes..."
-- "AI detects clapping/tapping/stomping sounds..."
-- "AI measures how loud the child speaks..."
-- Note: "Child photographs another object and AI describes what it sees" is FINE — each photo is processed independently
-
----
-
-*End of program.md — Activity Design Agent ready for assignments.*
+Use `run.md` for execution steps, batch behavior, final reporting, and commit
+rules.

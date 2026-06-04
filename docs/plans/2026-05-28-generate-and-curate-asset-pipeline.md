@@ -84,18 +84,19 @@ runs/<run_id>/generated_assets/
 
 ## Visual Target For Illustrative Assets
 
-Illustrative assets should use the `wonderlens_device_mint_soft_3d` style
-documented in `GOAL.md`, `program.md`, and the demo package contract:
+Illustrative assets keep `style_id: wonderlens_device_mint_soft_3d` for schema
+compatibility, but the active visual target is the flat Nordic activity style
+in `docs/activity_asset_generation_workflow.md` and
+`docs/asset_style_reference/`:
 
-- soft 3D educational toy illustration;
-- warm white and mint prototype-device palette;
-- soft sky blue, gentle coral, pale yellow, and activity-specific small
-  highlights;
-- rounded clay/plastic forms;
-- gentle studio lighting;
-- cohesive square source art;
-- primary subject inside a central circular safe area;
-- simple full-bleed background scenery continued to every square edge.
+- Codex built-in imagegen source PNGs, not SVG/vector/placeholder substitutes;
+- broad flat fills, sparse arc-eye/texture linework, pale cheeks, and light
+  paper grain;
+- restrained boho pastels on clean white or barely tinted white backgrounds;
+- full-bleed square beat scenes that can be clipped by the round lens;
+- centered item/object/character assets with generous clean white padding;
+- picker/selectable item and object assets built under package-local
+  `assets/items/`, separate from scene/background assets.
 
 Do not bake device chrome or review layout into runtime assets: no circular or
 oval mask, lens border, rim, vignette, black corners, transparent margin, white

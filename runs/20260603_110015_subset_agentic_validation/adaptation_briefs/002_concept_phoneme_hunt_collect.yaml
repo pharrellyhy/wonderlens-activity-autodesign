@@ -1,0 +1,448 @@
+adaptation_brief:
+  input_mode: parameterized
+  core_promise: The target sound becomes the collection criterion; visual objects
+    support but do not replace spoken or typed name evidence.
+  source_promise_alignment:
+    original_play_frame: AI introduces a target sound, then the child finds one indoor
+      treasure whose word starts with that sound.
+    child_role: child completes the source activity action directly
+    interaction_sequence:
+    - Hear The Target Sound
+    - Capture One Treasure
+    - Name Evidence Check
+    required_child_actions:
+    - collect
+    - respond to source evidence
+    non_negotiable_elements:
+    - AI introduces a target sound, then the child finds one indoor treasure whose
+      word starts with that sound.
+    allowed_v1_adaptations: &id001
+    - The current demo cannot infer the starting sound of a photographed object from
+      image data alone.
+    - The package requires the child to say or enter the object name before accepting
+      sound evidence.
+    product_dependencies:
+    - generated_assets
+    - real_camera
+    - runtime_judgment
+    - device_round_screen
+    alignment_status: minor_adaptation
+    alignment_note: Generated package keeps the workbook play frame and records any
+      V1 limitation in demo_support.yaml.
+  canonical_mechanic: collect
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: generate_with_assumptions
+  trigger_condition: Child enters language treasure-hunt mode or photographs an everyday
+    object suitable for sound play.
+  entity_role: exemplar
+  observation_angle: function
+  focal_attribute: beginning sound evidence
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+  - generated_assets
+  - real_camera
+  - runtime_judgment
+  - device_round_screen
+  asset_dependency:
+    policy: generate_and_curate
+    assets:
+    - asset_id: activity_icon
+      asset_type: activity_preview
+      asset_role: activity_preview
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: B-Sound Treasure Hunt activity icon motif,
+        source-aligned but free of app-owned interface elements. One visual unit only.
+        Keep important detail inside the central safe area. For scenes, no selectable
+        target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If activity_icon is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: intro_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: B-Sound Treasure Hunt intro moment, source-aligned
+        but free of app-owned interface elements. One visual unit only. Keep important
+        detail inside the central safe area. For scenes, no selectable target objects
+        that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If intro_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: rules_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: B-Sound Treasure Hunt rule explanation moment,
+        source-aligned but free of app-owned interface elements. One visual unit only.
+        Keep important detail inside the central safe area. For scenes, no selectable
+        target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If rules_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: round_1_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: B-Sound Treasure Hunt first round scene,
+        source-aligned but free of app-owned interface elements. One visual unit only.
+        Keep important detail inside the central safe area. For scenes, no selectable
+        target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If round_1_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: round_2_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: B-Sound Treasure Hunt second round scene,
+        source-aligned but free of app-owned interface elements. One visual unit only.
+        Keep important detail inside the central safe area. For scenes, no selectable
+        target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If round_2_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: round_3_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: B-Sound Treasure Hunt third round scene,
+        source-aligned but free of app-owned interface elements. One visual unit only.
+        Keep important detail inside the central safe area. For scenes, no selectable
+        target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If round_3_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: synthesis_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: B-Sound Treasure Hunt evidence synthesis
+        moment with abstract connected shapes, no app UI. One visual unit only. Keep
+        important detail inside the central safe area. For scenes, no selectable target
+        objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If synthesis_scene is unavailable, keep the runtime beat
+        honest and use voice-only fallback without claiming this image is visible.
+    - asset_id: celebrate_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: B-Sound Treasure Hunt celebration moment,
+        source-aligned but free of app-owned interface elements. One visual unit only.
+        Keep important detail inside the central safe area. For scenes, no selectable
+        target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If celebrate_scene is unavailable, keep the runtime beat
+        honest and use voice-only fallback without claiming this image is visible.
+    - asset_id: closing_scene
+      asset_type: story_scene
+      asset_role: story_scene
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: B-Sound Treasure Hunt closing recap moment,
+        source-aligned but free of app-owned interface elements. One visual unit only.
+        Keep important detail inside the central safe area. For scenes, no selectable
+        target objects that compete with separate sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If closing_scene is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: ball_object
+      asset_type: collection_correct
+      asset_role: collection_correct
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: one centered round ball object for a beginning
+        sound treasure. One visual unit only. Keep important detail inside the central
+        safe area. For scenes, no selectable target objects that compete with separate
+        sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If ball_object is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: banana_object
+      asset_type: collection_correct
+      asset_role: collection_correct
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: one centered curved banana object for a beginning
+        sound treasure. One visual unit only. Keep important detail inside the central
+        safe area. For scenes, no selectable target objects that compete with separate
+        sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If banana_object is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: book_object
+      asset_type: collection_correct
+      asset_role: collection_correct
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: one centered closed book object for a beginning
+        sound treasure. One visual unit only. Keep important detail inside the central
+        safe area. For scenes, no selectable target objects that compete with separate
+        sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If book_object is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    - asset_id: cup_object
+      asset_type: collection_distractor
+      asset_role: collection_distractor
+      requiredness: required
+      generation_timing: pre_generated
+      style_id: wonderlens_device_mint_soft_3d
+      accuracy_mode: illustrative
+      source_strategy: generated_illustrative
+      transformation_policy: generate_new
+      use_step: prod runtime beat
+      display_location: round_device_screen
+      screen_targets:
+      - round_device_screen
+      target_variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: null
+      prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+        prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+        boho pastels, generous negative space, square 512x512 source art, no readable
+        text, no letters or numbers, no logos, no watermark, no masks, no borders,
+        and no baked UI chrome. Subject: one centered plain cup object as a nonmatching
+        sound contrast. One visual unit only. Keep important detail inside the central
+        safe area. For scenes, no selectable target objects that compete with separate
+        sprites.'
+      source: new_generated_source_png
+      fallback_behavior: If cup_object is unavailable, keep the runtime beat honest
+        and use voice-only fallback without claiming this image is visible.
+    missing_asset_risk: medium
+  demo_support:
+    export_requested: true
+    asset_build: generate_and_curate
+    status: degraded
+    ui_template: cat5_judgment
+    support_level: catalog_simulated_judgment
+    entity_bindings:
+    - entity_id: beginning_sound_treasure
+      display_label: Beginning Sound Treasure
+      source_entity_exemplar: beginning sound treasure
+      default: true
+    requires:
+      generated_assets: true
+      real_camera: true
+      runtime_judgment: true
+      device_round_screen: true
+  resolved_contract_notes: *id001

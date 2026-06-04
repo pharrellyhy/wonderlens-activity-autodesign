@@ -1,0 +1,27 @@
+activity_id: concept_guided_drawing_probe
+version: 1
+demo_support:
+  status: degraded
+  ui_template: cat1_dialogue
+  support_level: text_guided_self_report
+  entity_bindings:
+  - entity_id: paper_drawing
+    display_label: Paper Drawing
+    source_entity_exemplar: paper drawing
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons:
+  - The package represents V1 behavior as voice/text-guided paper drawing with child
+    or caregiver self-report.
+  - It makes no visual assessment, no photo-verification claim, and no automated quality
+    judgment.
+  consumer_notes:
+    fullstack_demo: Use deterministic runtime/fullstack export or parse generated
+      markdown; do not use LLM conversion as proof of no rewrite.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py and preserve
+      demo_support gating.

@@ -1,0 +1,27 @@
+activity_id: concept_recognition_pop_probe
+version: 1
+demo_support:
+  status: degraded
+  ui_template: cat1_dialogue
+  support_level: timing_rule_preview
+  entity_bindings:
+  - entity_id: dog_like_target_picture
+    display_label: Dog-Like Target Picture
+    source_entity_exemplar: dog-like target picture
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: true
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons:
+  - The package preserves the target-versus-distractor timing rule, but the current
+    conversion path cannot prove fast tap UI timing.
+  - Dialogue QA must verify that target/distractor rules are not weakened into ordinary
+    matching.
+  consumer_notes:
+    fullstack_demo: Use deterministic runtime/fullstack export or parse generated
+      markdown; do not use LLM conversion as proof of no rewrite.
+    wonderlens_ai: Convert prod.md with scripts/generate_activity_runtime.py and preserve
+      demo_support gating.

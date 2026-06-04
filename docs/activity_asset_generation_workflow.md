@@ -3,10 +3,17 @@
 This document records the workflow used to create runtime image assets for
 autodesign activity packages.
 
-Latest style source reviewed on 2026-05-29:
+Repo-local style source for fresh runs:
 
 ```text
-/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/wonderlens-activity-style.md
+docs/asset_style_reference/wonderlens-activity-style.md
+docs/asset_style_reference/style-reference-flat-nordic.png
+```
+
+These files were copied from the fullstack-demo prompt folder on 2026-06-03:
+
+```text
+/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/
 ```
 
 The schema value remains `style_id: wonderlens_device_mint_soft_3d` for
@@ -33,6 +40,20 @@ the run explicitly requests one of these modes:
 - `curate_reference`: curate only `accuracy_mode: reference_bound` assets.
 - `generate_and_curate`: do both.
 
+## Transient API Error Handling
+
+Treat image generation, hosted LLM, live API, and runtime-conversion errors
+such as `429`, `RESOURCE_EXHAUSTED`, quota exceeded, `rate_limit`, and
+equivalent provider throttles as retryable. Record a sanitized note with the
+phase, activity ID or batch, command/tool name, timestamp, and error class; do
+not print secrets or request payloads.
+
+Do not stop immediately on the first throttle. Wait a few minutes before the
+first retry, then use a short backoff such as 3/5/8 minutes for repeated
+throttles on the same request or batch. Retry at least three times before
+declaring the run blocked, and reduce concurrency or batch size when that is
+safe.
+
 ## Source Of Truth
 
 Use package files in this order:
@@ -51,16 +72,17 @@ Assets support the accepted activity design.
 ## Illustrative Asset Workflow
 
 1. Read each illustrative asset entry in `asset_manifest.yaml`.
-2. Combine the asset-specific `prompt_en` subject with the current WonderLens
-   activity style in this document.
-3. Use Codex built-in image generation to create one 512x512 square source
-   image per asset for subset and full-pass attempts. Do not create contact
-   sheets, multi-card sheets, or combined runtime assets. Prompts should combine
-   the asset-specific subject, scene/object/item role, use beat, and the full
-   style contract below so the output aligns with the dialogue and screen
-   state. Quality improvements should come from beat-specific prompts, removal
-   of app-owned UI language, no duplicated picker sprites in scene backgrounds,
-   and image QA repair before acceptance.
+2. Combine the asset-specific `prompt_en` subject with the repo-local style
+   prompt and reference image in `docs/asset_style_reference/`.
+3. Use the Codex built-in imagegen tool to create one 512x512 square source
+   image per asset for subset and full-pass attempts. Do not substitute SVG,
+   PIL/vector drawings, placeholder art, contact sheets, multi-card sheets, or
+   combined runtime assets for imagegen output. Prompts should combine the
+   asset-specific subject, scene/object/item role, use beat, and the full style
+   contract below so the output aligns with the dialogue and screen state.
+   Quality improvements should come from beat-specific prompts, removal of
+   app-owned UI language, no duplicated picker sprites in scene backgrounds, and
+   image QA repair before acceptance.
 4. Select the best output, then copy it from
    `/Users/pharrelly/.codex/generated_images/...` into:
 
@@ -91,6 +113,21 @@ The builder consumes the inbox PNGs, writes package-local runtime variants
 under `runs/<run_id>/activity_packages/<activity_id>/assets/`, updates
 package-relative paths in `asset_manifest.yaml`, and writes run audit files
 under `runs/<run_id>/generated_assets/`.
+
+For item/object picker assets, the builder writes collection item variants
+under package-local `assets/items/`, not beside beat-scene/background PNGs.
+
+For subset/full-pass runs, write or update:
+
+```text
+runs/<run_id>/manual_audits/<activity_id>_prompt_trace.md
+```
+
+The trace must compare package step instructions with recorded downstream LLM
+prompt material, and package image descriptions with the exact final imagegen
+prompt recorded by the image agent. If the exact provider payload is not
+available, say so and cite the closest recorded artifact. Keep request payloads
+sanitized and do not include secrets.
 
 ## Reference-Bound Asset Workflow
 
@@ -173,6 +210,11 @@ Composition:
 - item, object, and character assets are separate reusable PNGs with one
   centered subject per file, generous clean white padding, and no baked UI
   frame unless the frame itself is the intended object.
+- activities that need a picker or item/object selection must keep selectable
+  item/object PNGs separate from beat-scene/background PNGs. Declare each
+  picker item as its own asset ID and store built runtime item/object variants
+  under package-local `assets/items/` when the package is built; fullstack
+  direct exports use `frontend/public/activity-assets/<activity_id>/items/`.
 
 Hard constraints:
 
@@ -206,6 +248,35 @@ prediction imagery, and current-topic interview scenes should use interview
 visuals. A repeated cozy-room/blank-board/child-response layout is a hard image
 QA repair finding.
 
+Every scene asset must answer a plain visual question: what is happening in
+this activity beat, and why does this image help the child do that action now?
+Generic containers, blank cards, blank boards, empty rooms, glows, sparkles,
+camera placeholders, or decorative props are not acceptable scene subjects
+unless the beat itself is explicitly about that object. Do not start image
+prompts from a loose metaphor such as treasure, basket, magic glow, clue card,
+or cozy room. Start from the child action, learning evidence, and runtime screen
+state, then add only props that are needed for that beat.
+
+For sound, phoneme, rhyme, or word-hunt activities, generated scene assets must
+make the listening/speaking/search action visually legible without baking in
+letters, words, or target answers. Acceptable subjects include a child listening,
+mouth/sound-wave cue, indoor search path, voice-wave trail, photo evidence area
+kept outside the PNG, or abstract sound tokens. Baskets, treasure chests, blank
+letter cards, and empty collection containers are not valid default subjects;
+they may appear only when the runtime beat genuinely uses that object and the
+image still communicates the sound task.
+
+Story-scene assets should feel like coherent real-world scenes, not isolated
+prompt symbols on a decorative background. Each package should establish a
+plausible setting, keep consistent scene geography, lighting, scale, and camera
+language across the beat bundle, and show concrete people, objects, or spaces
+that could exist in the child's world or role-play world. Icon, badge, and
+item-sprite assets may use isolated subjects, but `story_scene` assets should
+not look like random generated stickers, floating props, or abstract template
+fillers. When a local consumer package provides a stronger reference for this
+quality bar, compare against it for world coherence and continuity, not for
+copying its exact subject matter.
+
 For guided drawing or other step-by-step build activities, the beat images must
 show the actual instruction sequence. Round scenes should show the first shape,
 the added detail, and the finished simple form. Generic paper/pencil props,
@@ -226,9 +297,23 @@ The validator checks:
 - one asset per file, with scene/object/item/character role matching the
   manifest;
 - scene and object content aligns with the dialogue beat and screen state;
+- scene semantic coherence: the image must show the beat's child action,
+  learning evidence, or source-specific screen state, not a generic metaphor,
+  empty container, blank card, blank board, glow, sparkle field, or empty room;
+- real-world staging for story scenes: the scene bundle must feel like one
+  coherent activity world with plausible spaces, consistent camera/framing,
+  stable subject treatment, and concrete beat-to-beat changes; isolated symbols
+  or floating prompt tokens are acceptable only for icons, badges, or item
+  sprites;
+- prompt root cause: if an accepted image contains a nonsensical repeated prop,
+  QA must inspect the recorded imagegen prompt and fail the prompt when it asked
+  for that prop without a beat-specific reason;
 - for activities that advance by choosing an item/object, scene backgrounds do
   not duplicate the same selectable items or objects in a way that competes
   with picker sprites, target/distractor cards, or collection items;
+- for activities that show a picker or selectable collection catalog, the
+  package must provide a consumer-parity catalog: four correct items and eight
+  distractors unless the run goal records a product-approved smaller catalog;
 - progressive evidence and partial-reveal images preserve reveal timing: early
   beats must not show the final answer, full target, or solution before the
   source-aligned dialogue reveal step;
@@ -254,6 +339,12 @@ curated redraw, crop/resize, or built variants. It must not rewrite package
 prose or source-intent evidence. Re-run the builder, asset output validator,
 and image QA after repairs. Re-run dialogue QA when changed visuals affect
 screen/dialogue claims.
+
+Repair requests must be concrete enough to drive imagegen without repeating the
+failed prompt. Record `asset_id`, `failure_type`, `visual_problem`,
+`prompt_root_cause`, `remove`, `replace_with`, `exact_regeneration_prompt`, and
+`post_check`. For a nonsensical prop failure, the replacement prompt must name
+the real child action and explicitly ban the failed placeholder subject.
 
 ## Validation
 

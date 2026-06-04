@@ -75,7 +75,7 @@ package-only run.
 Recommended command:
 
 ```text
-/goal Execute GOAL.md end to end using run.md with asset_build=generate_and_curate full_pass_pipeline=true.
+/goal Execute goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md end to end.
 ```
 
 Required run behavior:
@@ -86,6 +86,8 @@ Required run behavior:
 - image generation and curation run in a separate image-only phase
 - fullstack-demo and WonderLens AI are validation targets, not authoring
   fallbacks
+- the scoped goal owns delegated-agent rules, credential boundaries, live
+  validation ordering, and final acceptance criteria
 
 ## System Boundaries
 
@@ -396,23 +398,28 @@ Package-owned failures should be repaired in autodesign first.
 ## Relationship To Other Documents
 
 - `README.md`: entry point and common invocation.
-- `GOAL.md`: run objective and success criteria.
-- `run.md`: step-by-step execution loop.
-- `program.md`: generation contract and package quality rubric.
+- `goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md`: executable
+  full-pass run contract; owns hard constraints, delegated-agent rules,
+  credential boundaries, live validation ordering, and final acceptance.
+- `GOAL.md`: compact default objective and completion contract for ordinary
+  active-queue runs.
+- `run.md`: compact default execution loop.
+- `program.md`: canonical authoring, package quality, and rubric contract.
 - `docs/plans/2026-06-01-full-pass-agentic-pipeline.md`: implementation plan for
   adding the full-pass workflow contract to the repo.
 - `goals/2026-06-01-full-pass-agentic-pipeline-goal.md`: Codex goal file for the
-  workflow-contract implementation.
+  workflow-contract implementation, not the production run invocation.
 - `docs/activity_asset_generation_workflow.md`: detailed asset generation and
   curation workflow.
 
 ## Common Questions
 
-### Is This A Separate Run After GOAL.md?
+### Should I Run Root GOAL.md First?
 
-No. For a full production pass, asset generation, package validation, image QA,
-fullstack dialogue QA, WonderLens AI dialogue QA, repairs, and final review are
-part of the same full-pass `/goal` run.
+No. For a full production pass, execute the scoped full-pass goal directly. It
+pulls in the compact root defaults plus the hard full-pass requirements for
+asset generation, package validation, image QA, fullstack dialogue QA,
+WonderLens AI dialogue QA, repairs, and final review.
 
 ### Does Fullstack-Demo Improve The Activity?
 

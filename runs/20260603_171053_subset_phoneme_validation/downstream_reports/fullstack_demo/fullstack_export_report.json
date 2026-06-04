@@ -1,0 +1,12 @@
+{
+  "activity_id": "concept_phoneme_hunt_collect",
+  "activity_type": "concept_phoneme_hunt_collect__beginning_sound_treasure",
+  "collection_catalog_correct_count": 4,
+  "collection_catalog_distractor_count": 8,
+  "collection_count": 1,
+  "export_path": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/fullstack_export/concept_phoneme_hunt_collect.md",
+  "required_worktree_import_report": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/required_worktree_import_report.json",
+  "required_worktree_import_status": "downstream_owned_failure",
+  "status": "ok",
+  "warning_count": 0
+}

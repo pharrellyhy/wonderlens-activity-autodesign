@@ -1,0 +1,77 @@
+activity_id: concept_constellation_star_count_enumerate
+activity_name: Constellation Number Reveal
+version: 1
+template_type: cat1
+pillar: Discovery
+game_style: field_experiment
+entity: approved constellation card
+entity_class: &id001
+- constellation
+- star_pattern
+entity_binding: bound
+source_entity_exemplar: approved constellation card
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed subset validation scope
+category: cat1
+attributes:
+- chosen guide-star count
+key_concepts:
+- Form
+- Connection
+related_concepts:
+- guide stars
+- constellation
+- number choice
+- background fact
+atl_skills:
+- counting
+- observation
+- focus
+- language_expression
+transdisciplinary_theme: How the world works
+kud:
+  know:
+  - chosen guide-star count can be noticed through the source activity evidence.
+  understand:
+  - A source-faithful activity keeps the child action, evidence, and reveal order
+    aligned.
+  do:
+  - Child chooses a number, then device shows an approved real constellation card
+    matching that guide-star count and gives brief background context.
+progression:
+  topic_axis: form
+  difficulty_level: 1
+  next_step_hint: Repeat with a nearby source-aligned variation only after consumer
+    support is verified.
+  reward_hook: Constellation Number Reveal
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: quantity
+  mechanic: enumerate
+  entity_role: reference
+  focal_attribute: chosen guide-star count
+  intro: Number choice comes before the reveal; the displayed card is approved and
+    reference-bound; the AI gives one fact instead of asking the child to count a
+    generic image.
+  bridge_prerequisites:
+    primary:
+    - quantity
+    secondary:
+    - pattern
+    - shape
+  preview_label: Constellation Number Reveal
+  preview_prompt: Number choice comes before the reveal; the displayed card is approved
+    and reference-bound; the AI gives one fact instead of asking the child to count
+    a generic image.
+  role_pivot_note: Concept/workbook activity; runtime must preserve the declared source
+    frame.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

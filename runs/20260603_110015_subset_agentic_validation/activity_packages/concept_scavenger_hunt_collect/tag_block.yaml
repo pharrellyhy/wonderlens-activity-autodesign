@@ -1,0 +1,75 @@
+activity_id: concept_scavenger_hunt_collect
+activity_name: Shared Clue Scavenger Hunt
+version: 1
+template_type: cat5
+pillar: Adventure
+game_style: quest_collector
+entity: shared clue object
+entity_class: &id001
+- household_object
+- property_example
+entity_binding: parameterized
+source_entity_exemplar: shared clue object
+tier_range:
+  primary: T1
+  span:
+  - T1
+  elasticity: fixed subset validation scope
+category: cat5
+attributes:
+- shared visible clue
+key_concepts:
+- Form
+- Connection
+related_concepts:
+- similarity
+- classification
+- photo evidence
+- generalization
+atl_skills:
+- observation
+- classification
+- evidence_collection
+- language_expression
+transdisciplinary_theme: How the world works
+kud:
+  know:
+  - shared visible clue can be noticed through the source activity evidence.
+  understand:
+  - A source-faithful activity keeps the child action, evidence, and reveal order
+    aligned.
+  do:
+  - Child finds and photographs three things that share a color, shape, or category,
+    then names one extra shared connection.
+progression:
+  topic_axis: form
+  difficulty_level: 1
+  next_step_hint: Repeat with a nearby source-aligned variation only after consumer
+    support is verified.
+  reward_hook: Shared Clue Scavenger Hunt
+caregiver_role:
+- observer
+activity_signature:
+  observation_angle: pattern
+  mechanic: collect
+  entity_role: exemplar
+  focal_attribute: shared visible clue
+  intro: Three real-world finds become evidence for one shared rule and one child-generated
+    extra connection.
+  bridge_prerequisites:
+    primary:
+    - pattern
+    secondary:
+    - shape
+    - quantity
+  preview_label: Shared Clue Scavenger Hunt
+  preview_prompt: Three real-world finds become evidence for one shared rule and one
+    child-generated extra connection.
+  role_pivot_note: Concept/workbook activity; runtime must preserve the declared source
+    frame.
+matchability:
+  entity_class_filter: *id001
+  tier_support:
+    T0: false
+    T1: true
+    T2: false

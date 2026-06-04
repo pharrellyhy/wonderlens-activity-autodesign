@@ -1,0 +1,2652 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WonderLens Full-Pass Agentic Pipeline（中文版）</title>
+  <style>
+    :root {
+      --paper: oklch(0.985 0.006 70);
+      --paper-2: oklch(0.955 0.012 80);
+      --ink: oklch(0.24 0.028 250);
+      --muted: oklch(0.48 0.038 245);
+      --line: oklch(0.82 0.02 80);
+      --salmon: oklch(0.72 0.11 34);
+      --sage: oklch(0.76 0.055 145);
+      --teal: oklch(0.63 0.08 210);
+      --ochre: oklch(0.78 0.115 86);
+      --brown: oklch(0.47 0.07 52);
+      --blue: oklch(0.72 0.075 230);
+      --shadow: 0 20px 60px oklch(0.45 0.04 70 / 0.15);
+      color-scheme: light;
+      font-family:
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 22% 8%, oklch(0.92 0.04 86 / 0.5), transparent 28rem),
+        linear-gradient(135deg, var(--paper), oklch(0.968 0.01 115));
+      color: var(--ink);
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 18rem minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 1.4rem 1.2rem;
+      border-right: 1px solid var(--line);
+      background: oklch(0.965 0.012 77 / 0.92);
+      backdrop-filter: blur(12px);
+      overflow-y: auto;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .lens-icon {
+      width: 3.1rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 48% 46%, oklch(0.985 0.004 70) 0 28%, transparent 29%),
+        radial-gradient(circle at 52% 48%, oklch(0.27 0.018 260) 0 57%, transparent 58%),
+        linear-gradient(140deg, var(--sage), var(--teal));
+      box-shadow:
+        inset 0 0 0 0.24rem oklch(0.95 0.01 80),
+        0 0.45rem 1.4rem oklch(0.45 0.04 80 / 0.18);
+    }
+
+    .brand-mark strong {
+      display: block;
+      font-size: 0.92rem;
+      line-height: 1.1;
+    }
+
+    .brand-mark span {
+      display: block;
+      margin-top: 0.16rem;
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+
+    .nav-label {
+      margin: 1.2rem 0 0.5rem;
+      color: var(--brown);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: grid;
+      gap: 0.2rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav a {
+      display: block;
+      border-radius: 0.5rem;
+      padding: 0.55rem 0.65rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.2;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      color: var(--ink);
+      background: oklch(0.92 0.025 88);
+      outline: none;
+    }
+
+    .sidebar-note {
+      margin-top: 1.4rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    section {
+      scroll-margin-top: 2rem;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      align-items: center;
+      padding: clamp(3rem, 7vw, 7rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      width: fit-content;
+      margin: 0 0 1.2rem;
+      padding: 0.38rem 0.62rem;
+      border: 1px solid oklch(0.78 0.035 80);
+      border-radius: 999px;
+      background: oklch(0.98 0.01 70 / 0.82);
+      color: var(--brown);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 11ch;
+      font-size: clamp(4rem, 12vw, 10.8rem);
+      font-weight: 880;
+      color: oklch(0.24 0.04 240);
+    }
+
+    h2 {
+      max-width: 13ch;
+      font-size: clamp(2.4rem, 6vw, 5.8rem);
+      font-weight: 850;
+    }
+
+    h3 {
+      font-size: clamp(1.3rem, 2.4vw, 2.1rem);
+      font-weight: 820;
+    }
+
+    p {
+      max-width: 72ch;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.65;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar a,
+    .step span,
+    .asset-tile span,
+    .file-pill,
+    .command-box {
+      overflow-wrap: anywhere;
+    }
+
+    .hero-copy {
+      width: 100%;
+      max-width: 62rem;
+      min-width: 0;
+    }
+
+    .hero-lede {
+      max-width: 47rem;
+      margin-top: 1.6rem;
+      color: oklch(0.38 0.04 245);
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: clamp(2rem, 4vw, 4rem);
+      width: 100%;
+      max-width: 64rem;
+      min-width: 0;
+    }
+
+    .hero-strip div {
+      min-width: 0;
+      min-height: 8.5rem;
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      background: oklch(0.985 0.006 70 / 0.72);
+      padding: 1rem;
+      box-shadow: 0 0.7rem 2rem oklch(0.5 0.04 70 / 0.08);
+    }
+
+    .hero-strip strong {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-size: 1.75rem;
+    }
+
+    .hero-strip span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .section {
+      padding: clamp(3rem, 7vw, 6.5rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 0.7fr);
+      gap: clamp(1.5rem, 4vw, 4rem);
+      align-items: end;
+      margin-bottom: clamp(2rem, 5vw, 4rem);
+    }
+
+    .section-head p {
+      margin: 0;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(9rem, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: oklch(0.985 0.005 80);
+      box-shadow: var(--shadow);
+    }
+
+    .pillar {
+      min-height: 12rem;
+      padding: 1rem;
+      border-right: 1px solid var(--line);
+      display: grid;
+      align-content: space-between;
+    }
+
+    .pillar:last-child {
+      border-right: 0;
+    }
+
+    .pillar b {
+      font-size: 0.82rem;
+      color: var(--brown);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .pillar span {
+      display: block;
+      color: var(--ink);
+      font-size: 1.08rem;
+      font-weight: 760;
+      line-height: 1.15;
+    }
+
+    .pillar small {
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .pipeline {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .pipeline-row {
+      display: grid;
+      grid-template-columns: 11rem 1fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .lane {
+      border: 1px solid var(--line);
+      border-radius: 0.7rem;
+      padding: 0.9rem;
+      background: oklch(0.965 0.014 80);
+      color: var(--brown);
+      font-weight: 760;
+      display: grid;
+      align-content: center;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(8rem, 1fr));
+      gap: 0.6rem;
+    }
+
+    .step {
+      appearance: none;
+      position: relative;
+      display: block;
+      min-height: 6.8rem;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 0.7rem;
+      background: oklch(0.99 0.005 80);
+      padding: 0.85rem;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+    }
+
+    .step::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -0.55rem;
+      width: 0.5rem;
+      border-top: 2px solid var(--line);
+    }
+
+    .step:last-child::after {
+      display: none;
+    }
+
+    .step:hover,
+    .step:focus-visible,
+    .step[data-selected="true"] {
+      border-color: oklch(0.58 0.06 210);
+      box-shadow: 0 0.7rem 1.8rem oklch(0.45 0.04 70 / 0.12);
+    }
+
+    .step:hover {
+      transform: translateY(-0.08rem);
+    }
+
+    .step:focus-visible {
+      outline: 3px solid oklch(0.78 0.075 210 / 0.72);
+      outline-offset: 3px;
+    }
+
+    .step[data-selected="true"] {
+      transform: translateY(-0.12rem);
+    }
+
+    .step b {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    .step span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .accent-salmon {
+      background: oklch(0.95 0.035 34);
+    }
+
+    .accent-sage {
+      background: oklch(0.94 0.035 145);
+    }
+
+    .accent-blue {
+      background: oklch(0.94 0.035 220);
+    }
+
+    .map-detail {
+      display: grid;
+      grid-template-columns: minmax(15rem, 0.85fr) minmax(0, 1.15fr);
+      gap: clamp(1rem, 2.4vw, 1.6rem);
+      margin-top: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 0.85rem;
+      background: oklch(0.985 0.006 80);
+      padding: clamp(1rem, 2.5vw, 1.4rem);
+      box-shadow: var(--shadow);
+    }
+
+    .map-detail-kicker {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 0.7rem;
+      border-radius: 999px;
+      background: oklch(0.91 0.032 86);
+      padding: 0.35rem 0.6rem;
+      color: var(--brown);
+      font-size: 0.72rem;
+      font-weight: 820;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .map-detail h3 {
+      max-width: none;
+      font-size: clamp(1.45rem, 2.5vw, 2.2rem);
+      line-height: 1.05;
+    }
+
+    .map-detail p {
+      margin: 0.8rem 0 0;
+    }
+
+    .map-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin: 0;
+    }
+
+    .map-detail-item {
+      min-width: 0;
+      border: 1px solid oklch(0.84 0.022 86);
+      border-radius: 0.7rem;
+      background: oklch(0.973 0.009 82);
+      padding: 0.8rem;
+    }
+
+    .map-detail-item dt {
+      margin: 0 0 0.35rem;
+      color: var(--brown);
+      font-size: 0.72rem;
+      font-weight: 820;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .map-detail-item dd {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .workflow-lab {
+      display: grid;
+      grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(1.2rem, 3vw, 2rem);
+      align-items: stretch;
+      margin-top: 1.2rem;
+    }
+
+    .flow-panel,
+    .flow-detail,
+    .asset-example {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      box-shadow: var(--shadow);
+    }
+
+    .flow-panel {
+      padding: 1rem;
+    }
+
+    .flow-board {
+      position: relative;
+      min-height: 26rem;
+      border-radius: 0.8rem;
+      padding: 0.85rem;
+      background:
+        linear-gradient(90deg, oklch(0.93 0.018 84) 1px, transparent 1px),
+        linear-gradient(180deg, oklch(0.93 0.018 84) 1px, transparent 1px),
+        oklch(0.975 0.008 80);
+      background-size: 2.4rem 2.4rem;
+      overflow: hidden;
+    }
+
+    .flow-stages {
+      position: absolute;
+      inset: 0.85rem;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .flow-stage {
+      min-width: 0;
+      border: 1px solid oklch(0.78 0.03 82);
+      border-radius: 0.72rem;
+      background: oklch(0.99 0.005 80 / 0.94);
+      padding: 0.7rem;
+      display: grid;
+      align-content: start;
+      transition: transform 220ms cubic-bezier(0.25, 1, 0.5, 1), background 220ms cubic-bezier(0.25, 1, 0.5, 1), border-color 220ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .flow-stage[data-flow-step="3"] {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    .flow-stage[data-flow-step="4"] {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .flow-stage[data-flow-step="5"] {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .flow-stage[data-flow-step="6"] {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    .flow-stage[data-flow-step="7"] {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .flow-stage[data-flow-step="8"] {
+      grid-column: 3;
+      grid-row: 3;
+    }
+
+    .flow-stage[data-active="true"] {
+      transform: translateY(-0.18rem);
+      border-color: oklch(0.64 0.09 205);
+      background: oklch(0.94 0.035 210);
+      box-shadow: 0 0.8rem 1.8rem oklch(0.46 0.05 210 / 0.14);
+    }
+
+    .flow-stage b {
+      color: var(--ink);
+      font-size: 0.83rem;
+      line-height: 1.15;
+    }
+
+    .flow-stage span {
+      margin-top: 0.36rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
+    .flow-path {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .flow-path path {
+      fill: none;
+      stroke: oklch(0.61 0.07 202);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1 9;
+      opacity: 0.56;
+    }
+
+    .flow-token {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      width: 2.15rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 32%, oklch(0.99 0.004 80) 0 23%, transparent 24%),
+        linear-gradient(135deg, var(--salmon), var(--teal));
+      border: 2px solid oklch(0.99 0.005 80);
+      box-shadow: 0 0.7rem 1.6rem oklch(0.35 0.06 210 / 0.24);
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+    }
+
+    .flow-detail {
+      padding: 1.1rem;
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+
+    .flow-detail h3 {
+      font-size: 1.4rem;
+      line-height: 1.05;
+    }
+
+    .flow-detail p {
+      margin: 0;
+      font-size: 0.94rem;
+    }
+
+    .flow-meter {
+      height: 0.45rem;
+      border-radius: 999px;
+      background: oklch(0.91 0.02 82);
+      overflow: hidden;
+    }
+
+    .flow-meter span {
+      display: block;
+      width: calc(var(--flow-progress, 0) * 100%);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--salmon), var(--teal));
+      transition: width 180ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .flow-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .flow-controls button {
+      border: 1px solid oklch(0.74 0.035 82);
+      border-radius: 999px;
+      background: oklch(0.965 0.012 77);
+      color: var(--ink);
+      padding: 0.55rem 0.78rem;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 760;
+      cursor: pointer;
+      transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), background 140ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .flow-controls button:hover,
+    .flow-controls button:focus-visible {
+      transform: translateY(-1px);
+      background: oklch(0.93 0.025 88);
+      outline: none;
+    }
+
+    .flow-controls button[aria-pressed="true"] {
+      background: oklch(0.88 0.045 145);
+      border-color: oklch(0.67 0.065 145);
+    }
+
+    .flow-note {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .flow-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+
+    .flow-fact {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 0.72rem;
+      background: oklch(0.97 0.008 80);
+      padding: 0.72rem;
+    }
+
+    .flow-fact b {
+      display: block;
+      color: var(--brown);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .flow-fact span {
+      display: block;
+      margin-top: 0.32rem;
+      color: var(--ink);
+      font-size: 0.78rem;
+      line-height: 1.34;
+      overflow-wrap: anywhere;
+    }
+
+    .text-package {
+      display: grid;
+      grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.15fr);
+      gap: clamp(1.2rem, 3vw, 2rem);
+      align-items: stretch;
+    }
+
+    .text-stack,
+    .runtime-card {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      box-shadow: var(--shadow);
+      padding: 1.1rem;
+    }
+
+    .text-stack {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .text-file {
+      min-width: 0;
+      border: 1px solid oklch(0.78 0.028 82);
+      border-radius: 0.7rem;
+      background: oklch(0.97 0.008 80);
+      padding: 0.75rem;
+    }
+
+    .text-file b {
+      display: block;
+      color: var(--ink);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.83rem;
+    }
+
+    .text-file span {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .runtime-card {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+
+    .runtime-card h3 {
+      font-size: 1.45rem;
+      line-height: 1.05;
+    }
+
+    .contract-line {
+      border: 1px solid oklch(0.76 0.035 82);
+      border-radius: 0.75rem;
+      background: oklch(0.94 0.018 82);
+      padding: 0.85rem;
+      color: oklch(0.28 0.04 240);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .beat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .beat-chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: oklch(0.965 0.012 77);
+      color: oklch(0.31 0.046 242);
+      padding: 0.43rem 0.58rem;
+      font-size: 0.72rem;
+      font-weight: 760;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    .runtime-checks {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .runtime-checks li {
+      border: 1px solid var(--line);
+      border-radius: 0.7rem;
+      background: oklch(0.99 0.005 80);
+      padding: 0.75rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .runtime-checks strong {
+      display: block;
+      margin-bottom: 0.28rem;
+      color: var(--ink);
+    }
+
+    .roles {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .role {
+      min-height: 13rem;
+      padding: 1.1rem;
+      background: oklch(0.985 0.006 80);
+    }
+
+    .role h3 {
+      margin-bottom: 0.7rem;
+      font-size: 1.1rem;
+      line-height: 1.15;
+    }
+
+    .role ul,
+    .checklist,
+    .qa-list {
+      margin: 0;
+      padding-left: 1.05rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .role li,
+    .checklist li,
+    .qa-list li {
+      margin: 0.35rem 0;
+    }
+
+    .agent-handoffs {
+      display: grid;
+      grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(1.2rem, 3vw, 2rem);
+      align-items: stretch;
+    }
+
+    .handoff-principles,
+    .handoff-flow {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .handoff-principles h3,
+    .handoff-flow h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .handoff-rules {
+      display: grid;
+      gap: 0.7rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .handoff-rules li {
+      border: 1px solid oklch(0.84 0.022 86);
+      border-radius: 0.75rem;
+      background: oklch(0.97 0.008 80);
+      padding: 0.8rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.42;
+    }
+
+    .handoff-rules strong {
+      display: block;
+      margin-bottom: 0.28rem;
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .handoff-chain {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .handoff-link {
+      display: grid;
+      grid-template-columns: minmax(7.5rem, 0.6fr) minmax(0, 1fr);
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+
+    .handoff-agent,
+    .handoff-payload {
+      min-width: 0;
+      border: 1px solid oklch(0.84 0.022 86);
+      border-radius: 0.75rem;
+      background: oklch(0.972 0.008 80);
+      padding: 0.72rem;
+    }
+
+    .handoff-agent {
+      display: grid;
+      align-content: center;
+      color: var(--brown);
+      font-size: 0.76rem;
+      font-weight: 820;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .handoff-payload b {
+      display: block;
+      margin-bottom: 0.28rem;
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .handoff-payload span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.42;
+      overflow-wrap: anywhere;
+    }
+
+    .qa-criteria {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .qa-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .qa-card h3 {
+      margin-bottom: 0.65rem;
+      font-size: 1.25rem;
+      line-height: 1.1;
+    }
+
+    .qa-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .qa-card li {
+      padding: 0.72rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+    .qa-card li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .qa-card strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--brown);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .artifact-map {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .artifact-cluster {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+      min-height: 18rem;
+    }
+
+    .artifact-cluster h3 {
+      margin-bottom: 0.55rem;
+      font-size: 1.2rem;
+    }
+
+    .artifact-cluster p {
+      margin: 0 0 0.75rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.42;
+    }
+
+    .artifact-meta {
+      display: grid;
+      grid-template-columns: 5.6rem minmax(0, 1fr);
+      gap: 0.5rem;
+      align-items: start;
+      margin: 0.42rem 0 0.7rem;
+      padding-bottom: 0.64rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .artifact-meta b {
+      color: var(--brown);
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .artifact-meta span {
+      color: var(--ink);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .file-pill {
+      display: block;
+      width: fit-content;
+      margin: 0.44rem 0;
+      border-radius: 999px;
+      padding: 0.35rem 0.58rem;
+      background: oklch(0.93 0.02 84);
+      color: oklch(0.32 0.05 240);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+    }
+
+    .arrow-stack {
+      display: grid;
+      gap: 0.7rem;
+      color: var(--brown);
+      text-align: center;
+      font-weight: 760;
+    }
+
+    .asset-showcase {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: start;
+    }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .asset-tile {
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      background: oklch(0.985 0.006 80);
+      padding: 0.7rem;
+      min-width: 0;
+    }
+
+    .asset-tile img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 0.55rem;
+      background: oklch(0.955 0.01 80);
+    }
+
+    .asset-tile b {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.82rem;
+    }
+
+    .asset-tile span {
+      display: block;
+      margin-top: 0.2rem;
+      color: var(--muted);
+      font-size: 0.74rem;
+      line-height: 1.3;
+    }
+
+    .asset-example {
+      margin-top: 1.4rem;
+      padding: 1.1rem;
+    }
+
+    .asset-example h3 {
+      margin-bottom: 0.6rem;
+      font-size: 1.35rem;
+    }
+
+    .asset-example p {
+      margin-top: 0;
+      font-size: 0.94rem;
+    }
+
+    .bundle-grid {
+      display: grid;
+      grid-template-columns: repeat(9, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-top: 1rem;
+    }
+
+    .bundle-frame,
+    .item-frame {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 0.7rem;
+      background: oklch(0.97 0.008 80);
+      padding: 0.45rem;
+    }
+
+    .bundle-frame img,
+    .item-frame img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      background: oklch(0.985 0.006 80);
+    }
+
+    .bundle-frame span,
+    .item-frame span {
+      display: block;
+      margin-top: 0.36rem;
+      color: var(--muted);
+      font-size: 0.66rem;
+      line-height: 1.15;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-top: 0.8rem;
+    }
+
+    .repair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .repair-path {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.1rem;
+    }
+
+    .repair-path b {
+      display: block;
+      color: var(--brown);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .repair-path span {
+      display: block;
+      margin-top: 0.5rem;
+      color: var(--ink);
+      font-size: 1.1rem;
+      font-weight: 760;
+      line-height: 1.25;
+    }
+
+    .repair-path p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+    }
+
+    .repair-path b,
+    .repair-path span,
+    .repair-path p {
+      overflow-wrap: anywhere;
+    }
+
+    .gates {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: oklch(0.985 0.006 80);
+      box-shadow: var(--shadow);
+    }
+
+    .gates th,
+    .gates td {
+      padding: 0.95rem 1rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.45;
+    }
+
+    .gates th {
+      background: oklch(0.93 0.022 82);
+      color: var(--brown);
+      font-size: 0.76rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .gates td {
+      color: var(--muted);
+    }
+
+    .gates tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .gates strong {
+      color: var(--ink);
+    }
+
+    .two-up {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .audience {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: oklch(0.985 0.006 80);
+      padding: 1.2rem;
+    }
+
+    .audience h3 {
+      margin-bottom: 0.8rem;
+    }
+
+    .command-box {
+      margin-top: 1.2rem;
+      border: 1px solid oklch(0.72 0.04 80);
+      border-radius: 0.8rem;
+      background: oklch(0.18 0.025 245);
+      color: oklch(0.93 0.01 80);
+      padding: 1rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.86rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+
+    .final-note {
+      padding: clamp(3rem, 7vw, 6rem);
+      background: oklch(0.27 0.045 235);
+      color: oklch(0.96 0.008 80);
+    }
+
+    .final-note h2 {
+      max-width: 12ch;
+      color: oklch(0.97 0.01 80);
+    }
+
+    .final-note p {
+      color: oklch(0.84 0.02 90);
+    }
+
+    .final-note .command-box {
+      background: oklch(0.2 0.035 235);
+      border-color: oklch(0.45 0.065 220);
+    }
+
+    @media (max-width: 1180px) {
+      .steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .step::after {
+        display: none;
+      }
+
+      .pillars,
+      .roles,
+      .artifact-map,
+      .asset-showcase,
+      .map-detail,
+      .workflow-lab,
+      .text-package,
+      .agent-handoffs,
+      .qa-criteria,
+      .repair,
+      .two-up {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .asset-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .bundle-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .item-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .beat-grid,
+      .runtime-checks {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      .layout {
+        display: block;
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero,
+      .section,
+      .final-note {
+        padding: 2rem 1rem;
+      }
+
+      .hero-strip,
+      .section-head,
+      .pipeline-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .steps,
+      .asset-grid,
+      .map-detail-grid,
+      .handoff-link {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .flow-board {
+        min-height: 32rem;
+      }
+
+      .flow-stages {
+        position: relative;
+        inset: auto;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: repeat(9, minmax(4.6rem, auto));
+      }
+
+      .flow-facts {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .flow-stage {
+        grid-column: auto !important;
+        grid-row: auto !important;
+      }
+
+      .flow-path {
+        display: none;
+      }
+
+      .flow-stage {
+        padding: 0.6rem;
+      }
+
+      .bundle-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .item-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .beat-grid,
+      .runtime-checks {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .gates {
+        table-layout: fixed;
+      }
+
+      .gates th,
+      .gates td {
+        padding: 0.7rem 0.55rem;
+        font-size: 0.8rem;
+        overflow-wrap: anywhere;
+      }
+
+      h1 {
+        max-width: 100%;
+        font-size: clamp(3rem, 14vw, 4rem);
+      }
+
+      .hero-copy,
+      .hero-lede {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Presentation navigation">
+      <a class="brand-mark" href="#top" aria-label="Back to top">
+        <span class="lens-icon" aria-hidden="true"></span>
+        <span>
+          <strong>WonderLens</strong>
+          <span>Full-pass pipeline 中文版</span>
+        </span>
+      </a>
+      <div class="nav-label">导航</div>
+      <ol class="nav">
+        <li><a href="#why">为什么需要 full-pass</a></li>
+        <li><a href="#source">Source rules</a></li>
+        <li><a href="#map">Pipeline map</a></li>
+        <li><a href="#animation">Workflow animation</a></li>
+        <li><a href="#text-package">Text package</a></li>
+        <li><a href="#roles">Agent roles</a></li>
+        <li><a href="#handoffs">Agent handoffs</a></li>
+        <li><a href="#qa-criteria">QA criteria</a></li>
+        <li><a href="#artifacts">Artifact flow</a></li>
+        <li><a href="#assets">Assets</a></li>
+        <li><a href="#repair">Repair routing</a></li>
+        <li><a href="#gates">Acceptance gates</a></li>
+        <li><a href="#audience">Team views</a></li>
+        <li><a href="#invoke">Invocation</a></li>
+      </ol>
+      <p class="sidebar-note">
+        Source docs: <br>
+        <a href="full_pass_agentic_pipeline_presentation.html">English version</a><br>
+        <a href="full_pass_agentic_pipeline_presentation_transcript.zh.md">中文讲稿</a><br>
+        <a href="full_pass_agentic_pipeline_presentation_transcript.md">English transcript</a><br>
+        <a href="../goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md">full-pass run goal</a><br>
+        <a href="full_pass_agentic_pipeline_explainer.md">full_pass_agentic_pipeline_explainer.md</a><br>
+        <a href="../GOAL.md">GOAL.md</a>, <a href="../run.md">run.md</a>, <a href="../program.md">program.md</a><br>
+        <a href="activity_asset_generation_workflow.md">activity_asset_generation_workflow.md</a>
+      </p>
+    </aside>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="title">
+        <div class="hero-copy">
+          <p class="eyebrow">面向 Engineering 和 product 的 presentation</p>
+          <h1 id="title">Full-pass agentic pipeline</h1>
+          <p class="hero-lede">
+            一个 Production pass 会把 source activity idea 转成经过验证的 WonderLens package；其中包含 runtime text、image assets、downstream consumer checks、live dialogue QA、repair evidence 和 final review。
+          </p>
+          <div class="hero-strip" aria-label="Pipeline summary">
+            <div>
+              <strong>1</strong>
+              <span>Autodesign 负责 source intent、package quality、runtime instructions、assets，以及所有 package-owned repairs。</span>
+            </div>
+            <div>
+              <strong>2</strong>
+              <span>Full production pass 在生成前必须记录 `full_pass_pipeline=true` 和 `asset_build=generate_and_curate`。</span>
+            </div>
+            <div>
+              <strong>3</strong>
+              <span>Image generation 是独立的 image-only phase；它只补足 activity 的视觉表达，不改写 activity 本身。</span>
+            </div>
+            <div>
+              <strong>4</strong>
+              <span>Fullstack-demo 和 WonderLens AI 都是 direct consumers；它们验证 package 原样运行时的行为。</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="why" class="section" aria-labelledby="why-title">
+        <div class="section-head">
+          <h2 id="why-title">为什么需要 full-pass</h2>
+          <p>
+            Package 即使通过 static structure checks，也可能没有兑现 product promise。Full pass 会在 generated activity 最容易漂移的地方增加 independent checks。
+          </p>
+        </div>
+        <div class="pillars">
+          <div class="pillar">
+            <b>Intent</b>
+            <span>保住 source play frame</span>
+            <small>Child role、sequence、required action，以及 real/reference asset promise 都要被锁住。</small>
+          </div>
+          <div class="pillar">
+            <b>Runtime</b>
+            <span>让 `prod.md` 变得可执行</span>
+            <small>每个 live beat 都需要 machine-convertible runtime guidance，不能只靠顺耳的 sample line。</small>
+          </div>
+          <div class="pillar">
+            <b>Assets</b>
+            <span>匹配 beat，而不是只匹配 mood board</span>
+            <small>Images 必须服务实际 screen state、source promise 和 child-facing action。</small>
+          </div>
+          <div class="pillar">
+            <b>Consumers</b>
+            <span>验证两条 runtime paths</span>
+            <small>Fullstack-demo 和 WonderLens AI 会通过不同 conversion paths 加载同一个 package。</small>
+          </div>
+          <div class="pillar">
+            <b>Repair</b>
+            <span>按 owner 路由修复</span>
+            <small>Package gaps 回到 Autodesign 修；runtime bugs 则成为 downstream follow-ups。</small>
+          </div>
+        </div>
+      </section>
+
+      <section id="source" class="section" aria-labelledby="source-title">
+        <div class="section-head">
+          <h2 id="source-title">Source rules</h2>
+          <p>
+            更新后的 full-pass contract 以原始 workbook promise 为起点；normalized helper files 和 downstream converters 只是辅助工具，不能削弱 activity。
+          </p>
+        </div>
+        <div class="repair">
+          <div class="repair-path">
+            <b>Workbook baseline</b>
+            <span>以 `inputs/original_activity_concepts_2026-05-29.tsv` 为准</span>
+            <p>`inputs/source_activity_concepts.md` 只用于 normalized names、mechanics、asset hints 和 capability notes。两者冲突时，以 TSV 为准，除非已经记录 product approval。</p>
+          </div>
+          <div class="repair-path">
+            <b>Run manifest</b>
+            <span>处理前先记录 full-pass mode</span>
+            <p>Production-scale pass 的 `run_manifest.yaml` 必须包含 `source.full_pass_pipeline: true` 和 `source.asset_build: generate_and_curate`。</p>
+          </div>
+          <div class="repair-path">
+            <b>Runtime contract</b>
+            <span>每个 live beat 都要有 machine-convertible instruction</span>
+            <p>Step 1、Step 2、每个 Step 3 round、Cat5 synthesis、celebration、closing 和 early exits，都需要 goal、constraint、tone、progress evidence、branch behavior 和 frame guardrail。</p>
+          </div>
+          <div class="repair-path">
+            <b>Cat5 shape</b>
+            <span>Collection、synthesis 和 celebration 必须分开</span>
+            <p>如果存在 synthesis instructions，imports 必须单独保留它们，包括 collection criterion、accepted evidence、item-combination behavior 和 final summary format。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="map" class="section" aria-labelledby="map-title">
+        <div class="section-head">
+          <h2 id="map-title">Pipeline map</h2>
+          <p>
+            这个 pass 是一次协调完成的 run。Asset generation、downstream validation、dialogue QA、repairs 和 final review 不是事后补上的独立步骤。
+          </p>
+        </div>
+        <div class="pipeline" data-pipeline-map aria-label="full pass 的 interactive swimlane diagram">
+          <div class="pipeline-row">
+            <div class="lane">Autodesign</div>
+            <div class="steps">
+              <button type="button" class="step accent-salmon" data-map-step="run-setup" aria-pressed="true"><b>Run setup</b><span>Flags、snapshot、repo state。</span></button>
+              <button type="button" class="step accent-salmon" data-map-step="source-audit" aria-pressed="false"><b>Source audit</b><span>锁住 workbook promise。</span></button>
+              <button type="button" class="step accent-salmon" data-map-step="package-writing" aria-pressed="false"><b>Package writing</b><span>写 package 和 demo files。</span></button>
+              <button type="button" class="step accent-salmon" data-map-step="post-audit" aria-pressed="false"><b>Post audit</b><span>检查 package contract。</span></button>
+              <button type="button" class="step accent-salmon" data-map-step="package-repairs" aria-pressed="false"><b>Package repairs</b><span>修 package-owned gaps。</span></button>
+              <button type="button" class="step accent-salmon" data-map-step="final-report" aria-pressed="false"><b>Final report</b><span>记录 evidence 和 risk。</span></button>
+            </div>
+          </div>
+          <div class="pipeline-row">
+            <div class="lane">Image phase</div>
+            <div class="steps">
+              <button type="button" class="step accent-sage" data-map-step="bundle-repair" aria-pressed="false"><b>Bundle repair</b><span>补齐 manifest roles。</span></button>
+              <button type="button" class="step accent-sage" data-map-step="generate" aria-pressed="false"><b>Generate</b><span>生成 runtime PNGs。</span></button>
+              <button type="button" class="step accent-sage" data-map-step="curate" aria-pressed="false"><b>Curate</b><span>核对 real references。</span></button>
+              <button type="button" class="step accent-sage" data-map-step="build" aria-pressed="false"><b>Build</b><span>写入 assets 和 paths。</span></button>
+              <button type="button" class="step accent-sage" data-map-step="image-qa" aria-pressed="false"><b>Image QA</b><span>检查 style 和 fidelity。</span></button>
+              <button type="button" class="step accent-sage" data-map-step="repair-images" aria-pressed="false"><b>Repair images</b><span>修 image-owned defects。</span></button>
+            </div>
+          </div>
+          <div class="pipeline-row">
+            <div class="lane">Consumers</div>
+            <div class="steps">
+              <button type="button" class="step accent-blue" data-map-step="package-import" aria-pressed="false"><b>Package import</b><span>加载并转换 package。</span></button>
+              <button type="button" class="step accent-blue" data-map-step="fullstack-qa" aria-pressed="false"><b>Fullstack QA</b><span>跑 web demo turns。</span></button>
+              <button type="button" class="step accent-blue" data-map-step="ai-runtime" aria-pressed="false"><b>AI runtime</b><span>加载 WonderLens artifacts。</span></button>
+              <button type="button" class="step accent-blue" data-map-step="ai-dialogue-qa" aria-pressed="false"><b>AI dialogue QA</b><span>对照 package beats。</span></button>
+              <button type="button" class="step accent-blue" data-map-step="classify" aria-pressed="false"><b>Classify</b><span>给每个 failure 定 owner。</span></button>
+              <button type="button" class="step accent-blue" data-map-step="final-review" aria-pressed="false"><b>Final review</b><span>审 final evidence。</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="map-detail" data-map-detail aria-live="polite" aria-labelledby="map-detail-title">
+          <div>
+            <span class="map-detail-kicker" data-map-detail-lane>Autodesign</span>
+            <h3 id="map-detail-title" data-map-detail-title>Run setup</h3>
+            <p data-map-detail-purpose>在开始写 package 之前，先用精确的 source inputs、repo state、run flags、assignment snapshot 和 evidence locations 启动 full pass。</p>
+          </div>
+          <dl class="map-detail-grid" aria-label="当前 pipeline step detail">
+            <div class="map-detail-item">
+              <dt>Owner</dt>
+              <dd data-map-detail-owner>Master orchestrator</dd>
+            </div>
+            <div class="map-detail-item">
+              <dt>Inputs</dt>
+              <dd data-map-detail-inputs>Scoped full-pass goal、compact GOAL.md/run.md defaults、program.md、workbook row set、current branch 和 run ID。</dd>
+            </div>
+            <div class="map-detail-item">
+              <dt>Outputs</dt>
+              <dd data-map-detail-outputs>run_manifest.yaml、assignment_snapshot.md、repo-state note 和 run dashboard skeleton。</dd>
+            </div>
+            <div class="map-detail-item">
+              <dt>Validation gate</dt>
+              <dd data-map-detail-validation>Authoring 开始前，manifest 已记录 `source.full_pass_pipeline: true` 和 `source.asset_build: generate_and_curate`。</dd>
+            </div>
+            <div class="map-detail-item">
+              <dt>Repair route</dt>
+              <dd data-map-detail-repair>如果 flags、snapshots 或 source pointers 缺失，先停止 pass 并修复 setup，再进入 package generation。</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section id="animation" class="section" aria-labelledby="animation-title">
+        <div class="section-head">
+          <h2 id="animation-title">Workflow animation</h2>
+          <p>
+            这段类似 gif 的 loop 展示 run packet 如何经过 authoring、image build、consumer validation、repair routing 和 final review。讲解时可以暂停讨论，再继续带大家走完整个 sequence。
+          </p>
+        </div>
+        <div class="workflow-lab" data-flow-player>
+          <div class="flow-panel">
+            <div class="flow-board" aria-label="Animated full-pass workflow">
+              <svg class="flow-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <path data-flow-path-line d="M 0 0"></path>
+              </svg>
+              <div class="flow-token" aria-hidden="true"></div>
+              <div class="flow-stages">
+                <div class="flow-stage" data-flow-step="0"><b>Source lock</b><span>Master 和 source auditor 冻结 source promise。</span></div>
+                <div class="flow-stage" data-flow-step="1"><b>Text package</b><span>Writer 生成 package YAML 和 runtime beats。</span></div>
+                <div class="flow-stage" data-flow-step="2"><b>Post audit</b><span>Auditors 按 source contract 检查 package。</span></div>
+                <div class="flow-stage" data-flow-step="3"><b>Bundle repair</b><span>Manifest roles 覆盖 scenes、items 和 references。</span></div>
+                <div class="flow-stage" data-flow-step="4"><b>Generate / curate</b><span>Image agents 生成 PNGs，或接收 real sources。</span></div>
+                <div class="flow-stage" data-flow-step="5"><b>Build assets</b><span>Builder 写入 package-local files 和 paths。</span></div>
+                <div class="flow-stage" data-flow-step="6"><b>Image QA</b><span>Validator 检查 style、beat fit 和 references。</span></div>
+                <div class="flow-stage" data-flow-step="7"><b>Consumer QA</b><span>Fullstack 和 WonderLens AI 加载并执行。</span></div>
+                <div class="flow-stage" data-flow-step="8"><b>Final review</b><span>Independent reviewer 审 evidence 和 risk。</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-detail">
+            <h3 data-flow-title>Source lock</h3>
+            <p data-flow-copy>写 package files 之前，先锁住 source promise。</p>
+            <div class="flow-facts" aria-label="当前 workflow step ownership">
+              <div class="flow-fact"><b>Use</b><span data-flow-use>从 scoped full-pass goal 和 source snapshot 启动 run。</span></div>
+              <div class="flow-fact"><b>Generated by</b><span data-flow-by>Master orchestrator 和 source-intent auditor。</span></div>
+              <div class="flow-fact"><b>Produces</b><span data-flow-produces>Run manifest、assignment snapshot、adaptation brief 和 pre-package audit。</span></div>
+            </div>
+            <div class="flow-meter" aria-hidden="true"><span></span></div>
+            <div class="flow-controls" aria-label="Workflow animation controls">
+              <button type="button" data-flow-toggle>暂停</button>
+              <button type="button" data-flow-restart>重新开始</button>
+              <button type="button" data-flow-loop aria-pressed="true">Loop 开启</button>
+            </div>
+            <p class="flow-note" data-flow-status aria-live="polite">播放中。Step 1 / 9。</p>
+            <p class="flow-note">
+              这段 motion 故意做成流程感：每一次 tick 都把 evidence 交给下一个 gate，类似 decoder-style loop，直到整个 sequence 完成。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="text-package" class="section" aria-labelledby="text-package-title">
+        <div class="section-head">
+          <h2 id="text-package-title">Text package 细节</h2>
+          <p>
+            Package writing 虽然是 text-only，但它仍然是 runtime contract。任何 image build 开始之前，writer 必须先写清 reviewer intent、可执行的 dialogue behavior、demo gates、entity binding 和 asset requirements。
+          </p>
+        </div>
+        <div class="text-package">
+          <div class="text-stack" aria-label="Text package files and ownership">
+            <div class="text-file">
+              <b>spec.md</b>
+              <span>Reviewer reference：source promise、adaptation rationale、scaffold fit、asset brief、asset usage timeline、extensibility notes、residual risk，以及一个且仅一个 self-evaluation scorecard。</span>
+            </div>
+            <div class="text-file">
+              <b>prod.md</b>
+              <span>Runtime guide：Step 1 到 Step 5、完整展开的 Step 3 rounds、screen states、child branches、follow-up policy，以及带 display/fallback behavior 的 asset IDs。</span>
+            </div>
+            <div class="text-file">
+              <b>tag_block.yaml</b>
+              <span>Machine contract：activity ID、category、mechanic、pillar、game style、focal attribute、progression、tags 和 entity coverage vocabulary。</span>
+            </div>
+            <div class="text-file">
+              <b>recap.template.yaml + dashboard.template.yaml</b>
+              <span>面向家庭的 output templates，要和 tag block 保持一致，尤其是 focal attribute、badge/reward 和 next-step direction。</span>
+            </div>
+            <div class="text-file">
+              <b>demo_support.yaml</b>
+              <span>Demo gate：supported、degraded 或 unsupported status，UI template，明确的 default entity binding，runtime requirements，以及诚实的 limitation notes。</span>
+            </div>
+            <div class="text-file">
+              <b>asset_manifest.yaml</b>
+              <span>Text-only asset contract：独立的 runtime asset roles、style ID、screen targets、variants、nullable paths、fallback behavior 和 reference provenance requirements。</span>
+            </div>
+          </div>
+          <div class="runtime-card">
+            <h3>Runtime beat contract</h3>
+            <p>
+              只有当 `prod.md` 不需要 downstream 猜测，就能转成可用的 `step_instructions` 或 WonderLens AI runtime prompts，text package 才算成功。
+            </p>
+            <div class="contract-line">**Runtime AI instruction:** Goal: ... Constraint: ... Tone: ... Progress evidence: ... Branch behavior: ... Frame/source guardrail: ...</div>
+            <div class="beat-grid" aria-label="需要 instructions 的 runtime beats">
+              <span class="beat-chip">Step 1 hook</span>
+              <span class="beat-chip">Step 2 mission</span>
+              <span class="beat-chip">Round 1</span>
+              <span class="beat-chip">Round 2</span>
+              <span class="beat-chip">Round 3</span>
+              <span class="beat-chip">Cat5 synthesis</span>
+              <span class="beat-chip">Celebration</span>
+              <span class="beat-chip">Closing</span>
+              <span class="beat-chip">Early exit</span>
+            </div>
+            <ul class="runtime-checks" aria-label="Runtime package quality checks">
+              <li><strong>Example line is not enough</strong>Example 负责展示 tone；instruction 才承载 goal、progress evidence、branch policy 和 frame guardrails。</li>
+              <li><strong>Rounds stay parseable</strong>Step 3 headings 必须使用精确的 ASCII 形态 `**Round N -- Short Scenario:**`，这样 importers 才能稳定拆分 rounds。</li>
+              <li><strong>Cat5 keeps synthesis separate</strong>Collection rounds、item evidence、item-combination behavior、final story/summary 和 celebration 不能被压成一个泛泛的 step。</li>
+              <li><strong>No runtime leakage</strong>除非已经证明 consumer 会剥离，否则 `RESOLVED BLOCKER` 这类 review markers 不能进入 runtime-facing `prod.md`。</li>
+              <li><strong>Assets are referenced, not built</strong>`prod.md` 只引用 asset IDs 和 fallback behavior；真正的 PNGs 和 manifest paths 由后续 image phase 写入。</li>
+              <li><strong>Demo gates are honest</strong>Unsupported UI-heavy mechanics 必须继续标为 unsupported；runtime-judgment Cat5 packages 要明确说明 degraded catalog 或 text-simulated behavior。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="roles" class="section" aria-labelledby="roles-title">
+        <div class="section-head">
+          <h2 id="roles-title">Agent roles 必须分开</h2>
+          <p>
+            Master agent 负责 orchestration，但 independent agents 要各自拥有独立的 review surface。Writer 不能成为自己 artifact 的唯一 reviewer。
+          </p>
+        </div>
+        <div class="roles">
+          <div class="role">
+            <h3>Authoring side</h3>
+            <ul>
+              <li>Master orchestrator 控制 scope、snapshots、blockers、credentials、servers、commits 和 final report。</li>
+              <li>Source-intent auditor 在写作前后锁住 play frame、child role、device role、action、real assets 和 context。</li>
+              <li>Text-only package writer 生成 runtime prose 和 package metadata。</li>
+            </ul>
+          </div>
+          <div class="role">
+            <h3>Asset side</h3>
+            <ul>
+              <li>Image-only generator 基于 accepted prompts 和 manifests 生成或 curate PNGs。</li>
+              <li>Image quality validator 检查 style、crop safety、beat fit 和 reference fidelity。</li>
+              <li>Image improver 只修 visual artifacts，不改 dialogue。</li>
+            </ul>
+          </div>
+          <div class="role">
+            <h3>Consumer side</h3>
+            <ul>
+              <li>Package/import validator 检查 schema、paths、converted instruction shape 和 gates。</li>
+              <li>Fullstack 和 WonderLens AI validators 跑 runtime-equivalent dialogue checks。</li>
+              <li>Dialogue improvers 修 package-owned guidance gaps，也包括 WonderLens AI runtime prompt gaps。</li>
+              <li>Final reviewer 审 evidence 和 residual-risk ownership。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="handoffs" class="section" aria-labelledby="handoffs-title">
+        <div class="section-head">
+          <h2 id="handoffs-title">Agent handoffs</h2>
+          <p>
+            Agents 之间不是同时改同一个 artifact，而是把 evidence packet 往后交；一旦 evidence 不通过，就回到最小、最明确的 owner 处理。
+          </p>
+        </div>
+        <div class="agent-handoffs">
+          <div class="handoff-principles">
+            <h3>Interaction rules</h3>
+            <ul class="handoff-rules">
+              <li><strong>Master 负责节奏</strong>Orchestrator 分配 agents、冻结 scope、检查 blockers，并判断 phase 什么时候可以前进。它不应该重写 specialist evidence，只为了让 run 看起来更顺。</li>
+              <li><strong>Writer 产出，auditor 挑战</strong>Package writer 创建 `spec.md`、`prod.md` 和 YAML files。Source auditor 与 package auditors 对照 workbook promise 检查这些文件，并返回可执行的 repair notes。</li>
+              <li><strong>Image agents 只处理 image-owned work</strong>Manifest repair、generation、curation、build、QA 和 image repair 可以改 prompts、sources、crops、files 和 paths，但不能为了掩盖视觉问题去改 activity mechanics 或 dialogue。</li>
+              <li><strong>Consumers 负责验证，不负责重写</strong>Fullstack-demo 和 WonderLens AI validators 按 package 原样 import 和运行。行为漂移时，它们要判断 fix 属于 package、converter、runtime UI、provider，还是 product capability。</li>
+              <li><strong>Final review 必须独立</strong>Final reviewer 接收完整 evidence chain，可以把工作退回任意 phase。只有 source、package、asset、runtime、repair 和 residual-risk evidence 都可追溯，才允许 acceptance。</li>
+            </ul>
+          </div>
+          <div class="handoff-flow" aria-label="Agent interaction chain">
+            <h3>谁和谁交接</h3>
+            <div class="handoff-chain">
+              <div class="handoff-link">
+                <div class="handoff-agent">Master -> source auditor</div>
+                <div class="handoff-payload"><b>Source packet</b><span>Run goal、workbook row、normalized helper notes、capability hints、repo state，以及必须保存 evidence 的位置。</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Source auditor -> writer</div>
+                <div class="handoff-payload"><b>Adaptation brief</b><span>锁定后的 play promise、child role、device role、real-world reference requirements、unsupported capabilities 和 demo expectations。</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Writer -> package auditors</div>
+                <div class="handoff-payload"><b>Text package</b><span>`spec.md`、`prod.md`、`tag_block.yaml`、templates、`demo_support.yaml` 和 `asset_manifest.yaml`，用于 source、schema、runtime 和 asset-contract review。</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Package auditors -> repair or image phase</div>
+                <div class="handoff-payload"><b>Go or repair decision</b><span>Text gaps 回到 package repair；完整的 text package 则把 asset manifest 交给 bundle repair、generation、curation 和 build。</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Image QA -> image repair or classifier</div>
+                <div class="handoff-payload"><b>Visual evidence</b><span>记录 manifest coverage、style、crop、beat fit、reference fidelity、duplicates 和 answer reveal 的 pass/fail notes。只有 image-owned defects 进入 image repair。</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Consumers -> classifier</div>
+                <div class="handoff-payload"><b>Runtime evidence</b><span>来自 fullstack-demo 和 WonderLens AI 的 import reports、converted instructions、screenshots、transcripts、camera 或 `photo_id` assumptions，以及 mismatches。</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Classifier -> owner</div>
+                <div class="handoff-payload"><b>Repair route</b><span>Package gaps 回 Autodesign；image gaps 回 image phase；converter/runtime bugs 去 consumer repo；capability gaps 交 product decision；credential blockers 写入 run notes。</span></div>
+              </div>
+              <div class="handoff-link">
+                <div class="handoff-agent">Final reviewer -> master</div>
+                <div class="handoff-payload"><b>Acceptance decision</b><span>PASS、BLOCKED，或 PASS with residual risk。每个结论都要有 evidence paths 和必要的 next action。</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="qa-criteria" class="section" aria-labelledby="qa-criteria-title">
+        <div class="section-head">
+          <h2 id="qa-criteria-title">QA criteria</h2>
+          <p>
+            这三个 gate 决定最容易漂移的部分是否通过：image fidelity、fullstack-demo runtime behavior，以及 WonderLens AI dialogue behavior。
+          </p>
+        </div>
+        <div class="qa-criteria">
+          <div class="qa-card">
+            <h3>Image QA</h3>
+            <ul>
+              <li><strong>Rules</strong> 验证 manifest coverage、package-local 512x512 PNGs、asset IDs 和 paths、flat Nordic style、round-screen crop safety、beat alignment、reference provenance、reference fidelity、无重复 selectable items、无 readable text/logos/watermarks，以及不能提前泄露答案。</li>
+              <li><strong>Evidence</strong> 提供 asset inventory、built file paths、image thumbnails 或 review notes、reference-bound assets 的 source metadata，以及每个 failed asset 的 QA notes。</li>
+              <li><strong>Pass</strong> 每个 required asset 都能加载，匹配对应 runtime beat 和 style；source-bound assets 真实且 faithful；剩余 issue 已修复、blocked，或明确 accepted as degraded。</li>
+            </ul>
+          </div>
+          <div class="qa-card">
+            <h3>Fullstack QA</h3>
+            <ul>
+              <li><strong>Rules</strong> 验证 import as authored、entity binding、supported/degraded/unsupported gates、asset resolution、`step_instructions` quality、Cat5 synthesis separation、expected UI state，以及 ideal、minimal、wrong、off-topic、help、done、silence、photo 和 item flows。</li>
+              <li><strong>Evidence</strong> 提供 import report、converted runtime YAML 或 demo MD、asset path report、screenshots 或 UI notes、representative transcripts，以及 classified failures。</li>
+              <li><strong>Pass</strong> Web demo 没有 unsafe fallbacks 就能加载，遵守 demo gates，展示 declared assets，保留 package runtime beats，并把 mismatch 分类为 package-owned 或 fullstack-owned。</li>
+            </ul>
+          </div>
+          <div class="qa-card">
+            <h3>AI dialogue QA</h3>
+            <ul>
+              <li><strong>Rules</strong> 用 generated YAML 和 `prod.md` 验证 WonderLens AI runtime artifacts，包括 real camera 或 `photo_id` assumptions、Cat5 response types、collection catalog use、source guardrails、branch behavior、synthesis、celebration，以及 no unsupported visual claims。</li>
+              <li><strong>Evidence</strong> 提供 runtime artifact report、prompt 或 context trace、和 fullstack QA 相同策略下的 dialogue transcripts、comparison notes，以及 mismatch owner classification。</li>
+              <li><strong>Pass</strong> Responses 在 ideal 和 recovery paths 中遵循 package goal、constraint、tone、progress evidence、branch policy 和 source guardrails；每个 discrepancy 都已修复或分配给正确 owner。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="artifacts" class="section" aria-labelledby="artifacts-title">
+        <div class="section-head">
+          <h2 id="artifacts-title">Artifact flow</h2>
+          <p>
+            同一个 package 会交给两个 consumers。Downstream systems 应该保留 package intent，而不是把它改写成更容易运行的内容。
+          </p>
+        </div>
+        <div class="artifact-map">
+          <div class="artifact-cluster">
+            <h3>Source and run</h3>
+            <p>
+              用这一组 artifacts 证明：在 package writing 开始前，这个 run 被允许生成什么。
+            </p>
+            <div class="artifact-meta"><b>Generated by</b><span>Master orchestrator 和 source-intent auditor。</span></div>
+            <div class="artifact-meta"><b>Use</b><span>冻结 scope、source promise、run flags、blockers 和 evidence paths。</span></div>
+            <div class="artifact-meta"><b>Produces</b><span>Source snapshot、assignment snapshot、pre-package audit 和 run manifest。</span></div>
+            <span class="file-pill">original_activity_concepts_2026-05-29.tsv</span>
+            <span class="file-pill">source_activity_concepts.md</span>
+            <span class="file-pill">assignment_snapshot.md</span>
+            <span class="file-pill">run_manifest.yaml</span>
+            <span class="file-pill">source_intent_audits/*.md</span>
+          </div>
+          <div class="artifact-cluster">
+            <h3>Autodesign package</h3>
+            <p>
+              这一组 artifacts 就是 fullstack-demo 和 WonderLens AI 的 direct import contract。
+            </p>
+            <div class="artifact-meta"><b>Generated by</b><span>Text-only package writer，以及 image-only asset generator 和 builder。</span></div>
+            <div class="artifact-meta"><b>Use</b><span>加载 activity、转换 runtime beats、提供 package-local assets，并修复 package-owned gaps。</span></div>
+            <div class="artifact-meta"><b>Produces</b><span>Five required package files、demo support、asset manifest、PNG assets、items 和 reference sources。</span></div>
+            <span class="file-pill">spec.md</span>
+            <span class="file-pill">prod.md</span>
+            <span class="file-pill">tag_block.yaml</span>
+            <span class="file-pill">recap.template.yaml</span>
+            <span class="file-pill">dashboard.template.yaml</span>
+            <span class="file-pill">demo_support.yaml</span>
+            <span class="file-pill">asset_manifest.yaml</span>
+            <span class="file-pill">assets/*.png</span>
+            <span class="file-pill">assets/items/*.png</span>
+            <span class="file-pill">assets/sources/*</span>
+          </div>
+          <div class="artifact-cluster">
+            <h3>Consumer evidence</h3>
+            <p>
+              用这一组 evidence 判断下一步应该是 acceptance、package repair、downstream follow-up，还是 product gating。
+            </p>
+            <div class="artifact-meta"><b>Generated by</b><span>Import validator、fullstack validator、WonderLens AI validator、image QA 和 final reviewer。</span></div>
+            <div class="artifact-meta"><b>Use</b><span>检查 runtime fidelity、asset resolution、dialogue behavior、unsupported mechanics 和 residual risk。</span></div>
+            <div class="artifact-meta"><b>Produces</b><span>Converted instructions、runtime artifacts、import reports、transcripts、QA notes 和 review dashboard。</span></div>
+            <span class="file-pill">step_instructions</span>
+            <span class="file-pill">runtime.yaml</span>
+            <span class="file-pill">import reports</span>
+            <span class="file-pill">dialogue transcripts</span>
+            <span class="file-pill">qa_notes.yaml</span>
+            <span class="file-pill">review.html</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="assets" class="section" aria-labelledby="assets-title">
+        <div class="section-head">
+          <h2 id="assets-title">Asset phase</h2>
+          <p>
+            当前 activity assets 使用 flat Nordic nursery illustration style：安静的白底、克制的 boho pastel、稀疏线条、足够留白；每个 beat 或 item 单独成文件，不能内嵌 device chrome。
+          </p>
+        </div>
+        <div class="asset-showcase">
+          <div>
+            <div class="asset-grid">
+              <div class="asset-tile">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/style-reference-flat-nordic.png" alt="Flat Nordic style reference strip">
+                <b>Style strip</b>
+                <span>Generated activity assets 当前的视觉目标。</span>
+              </div>
+              <div class="asset-tile">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt/intro.png" alt="Intro scene asset">
+                <b>Scene beat</b>
+                <span>Full-bleed square image，中心内容要 lens-safe。</span>
+              </div>
+              <div class="asset-tile">
+                <img src="../.worktrees/feat/full-pass-agentic-run/runs/20260601_155917_full_pass_agentic_tsv/activity_packages/concept_art_critic_tournament_probe/assets/sources/hokusai_fuji_artwork__source_original.jpg" alt="Cleveland Museum of Art Open Access 的 Hokusai source original">
+                <b>Reference source</b>
+                <span>已接受的 CMA CC0 source original 和 metadata，而不是生成的近似图。</span>
+              </div>
+              <div class="asset-tile">
+                <img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_recognition_pop_challenge/items/strawberry.png" alt="Strawberry item card asset">
+                <b>Selectable item</b>
+                <span>Cat5-style screens 使用的可复用居中 object，每个文件一个。</span>
+              </div>
+            </div>
+            <ul class="qa-list" aria-label="Asset QA rules">
+              <li>在 `asset_build=generate_and_curate` 运行前，package authoring 保持 text-only。</li>
+              <li>每个 package 都要有 `activity_icon`、`intro_scene`、`rules_scene`、三个 round scenes、`celebrate_scene` 和 `closing_scene`；Cat5 或 synthesis flows 还要有 `synthesis_scene`。</li>
+              <li>`asset_manifest.yaml` 负责 asset IDs、roles、prompts 或 sources、variants、nullable paths 和 fallbacks；最终 PNGs 是 package-local 的 512x512 runtime assets。</li>
+              <li>Image QA 检查 style、crop safety、beat alignment、runtime size 可读性、reference fidelity、无重复 selectable objects，以及不能提前泄露答案。</li>
+              <li>Failures 只修 image-owned artifacts：prompt、source、curated redraw、crop 或 generated PNG。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="asset-example" aria-labelledby="vegetable-assets-title">
+          <h3 id="vegetable-assets-title">Complete asset bundle example: Vegetable Sort</h3>
+          <p>
+            这是期望的 full-pass shape：每个 major beat 都有 scene/icon assets，selectable vegetable cards 另有独立 item PNGs。每个文件都是独立的 512x512 runtime asset。
+          </p>
+          <div class="bundle-grid" aria-label="Vegetable Sort scene bundle">
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/icon.png" alt="Vegetable Sort activity icon"><span>icon</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/intro.png" alt="Vegetable Sort intro scene"><span>intro</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/rules.png" alt="Vegetable Sort rules scene"><span>rules</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/round_1.png" alt="Vegetable Sort round 1 scene"><span>round 1</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/round_2.png" alt="Vegetable Sort round 2 scene"><span>round 2</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/round_3.png" alt="Vegetable Sort round 3 scene"><span>round 3</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/celebrate.png" alt="Vegetable Sort celebration scene"><span>celebrate</span></div>
+            <div class="bundle-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/closing.png" alt="Vegetable Sort closing scene"><span>closing</span></div>
+          </div>
+          <div class="item-grid" aria-label="Vegetable Sort selectable item assets">
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/broccoli.png" alt="Broccoli selectable item"><span>broccoli</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/carrot.png" alt="Carrot selectable item"><span>carrot</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/corn.png" alt="Corn selectable item"><span>corn</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/cucumber.png" alt="Cucumber selectable item"><span>cucumber</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/potato.png" alt="Potato selectable item"><span>potato</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/pumpkin.png" alt="Pumpkin selectable item"><span>pumpkin</span></div>
+            <div class="item-frame"><img src="../../wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort/items/tomato.png" alt="Tomato selectable item"><span>tomato</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="repair" class="section" aria-labelledby="repair-title">
+        <div class="section-head">
+          <h2 id="repair-title">Repair routing</h2>
+          <p>
+            这套 pipeline 的价值在于不掩盖 ownership。Weak package 回 Autodesign 修；如果 good package 被 runtime 忽略，就记录为 downstream follow-up。
+          </p>
+        </div>
+        <div class="repair">
+          <div class="repair-path">
+            <b>Source intent drift</b>
+            <span>Text/package repair -> source-intent re-audit</span>
+            <p>Example：constellation reveal 被改成了泛泛的数星星 activity。</p>
+          </div>
+          <div class="repair-path">
+            <b>Thin runtime instruction</b>
+            <span>Package repair -> import and dialogue revalidation</span>
+            <p>Example：`Example AI line` 听起来不错，但 branch behavior 无法 machine-convertible。</p>
+          </div>
+          <div class="repair-path">
+            <b>Image mismatch</b>
+            <span>Image repair -> builder -> image QA</span>
+            <p>Example：asset 看起来不错，但不匹配 screen beat 或 reference requirement。</p>
+          </div>
+          <div class="repair-path">
+            <b>Runtime consumer issue</b>
+            <span>Downstream follow-up，除非明确纳入 scope</span>
+            <p>Example：fullstack 在 `step_instructions` conversion 中忽略了足够强的 `prod.md` instructions。</p>
+          </div>
+          <div class="repair-path">
+            <b>Product capability gap</b>
+            <span>Blocked、degraded，或 approved minimum behavior</span>
+            <p>Example：drawing、sorting UI 或 runtime visual judgment 目前还不能诚实支持。</p>
+          </div>
+          <div class="repair-path">
+            <b>Credential blocker</b>
+            <span>记录具体缺失的 prerequisite</span>
+            <p>Example：credentials 不可用，所以 live provider QA 无法运行。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="gates" class="section" aria-labelledby="gates-title">
+        <div class="section-head">
+          <h2 id="gates-title">Acceptance gates</h2>
+          <p>
+            只有每个 gate 都有 evidence，或者 blocker 有明确 owner 且可复现，full pass 才能被 accepted。
+          </p>
+        </div>
+        <table class="gates">
+          <thead>
+            <tr>
+              <th>Gate</th>
+              <th>Evidence</th>
+              <th>Owner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Run flags</strong></td>
+              <td>`run_manifest.yaml` 记录 `source.full_pass_pipeline: true` 和 `source.asset_build: generate_and_curate`。</td>
+              <td>Master orchestrator</td>
+            </tr>
+            <tr>
+              <td><strong>Source intent</strong></td>
+              <td>带 workbook evidence 的 pre/post source-intent audit；TSV 控制 normalized helpers。</td>
+              <td>Autodesign</td>
+            </tr>
+            <tr>
+              <td><strong>Package quality</strong></td>
+              <td>Five-file package，加上可执行的 `prod.md` 和 demo extensions。</td>
+              <td>Autodesign</td>
+            </tr>
+            <tr>
+              <td><strong>Runtime instructions</strong></td>
+              <td>每个 live beat 都有 machine-convertible instruction；如果存在 Cat5 synthesis，需要单独保留。</td>
+              <td>Autodesign</td>
+            </tr>
+            <tr>
+              <td><strong>Assets</strong></td>
+              <td>Standard scene bundle、built PNGs、manifest validation、reference metadata 和 image QA。</td>
+              <td>Autodesign image phase</td>
+            </tr>
+            <tr>
+              <td><strong>Fullstack import</strong></td>
+              <td>Import report 和转换后的 `step_instructions` 保留 package intent。</td>
+              <td>Fullstack validation</td>
+            </tr>
+            <tr>
+              <td><strong>WonderLens AI runtime</strong></td>
+              <td>生成或加载的 runtime artifacts 保留 package behavior。</td>
+              <td>WonderLens AI validation</td>
+            </tr>
+            <tr>
+              <td><strong>Dialogue QA</strong></td>
+              <td>覆盖不同 user strategies 的 runtime-equivalent reports 或 sanitized transcripts。</td>
+              <td>Consumer validators</td>
+            </tr>
+            <tr>
+              <td><strong>Marker-free input</strong></td>
+              <td>Runtime-facing `prod.md` 中不能出现 `RESOLVED BLOCKER` 或 `RESOLVE BLOCKER`。</td>
+              <td>Autodesign</td>
+            </tr>
+            <tr>
+              <td><strong>Final review</strong></td>
+              <td>Independent PASS，或明确的 residual-risk report。</td>
+              <td>Final reviewer</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="audience" class="section" aria-labelledby="audience-title">
+        <div class="section-head">
+          <h2 id="audience-title">每个团队如何使用</h2>
+          <p>
+            同一份 run output 同时支持 product judgment 和 engineering contract validation。
+          </p>
+        </div>
+        <div class="two-up">
+          <div class="audience">
+            <h3>Product view</h3>
+            <ul class="checklist">
+              <li>Generated activity 是否保住了原始 product promise？</li>
+              <li>是否有 required capability 目前还 unsupported？</li>
+              <li>Degraded behavior 是否可以接受，还是该 row 应该继续 blocked？</li>
+              <li>Image assets 是否适合 child-facing experience？</li>
+              <li>Dialogue transcripts 是否像预期的 activity？</li>
+            </ul>
+          </div>
+          <div class="audience">
+            <h3>Engineering view</h3>
+            <ul class="checklist">
+              <li>Package schema 和 tag vocabularies 是否 validate？</li>
+              <li>`prod.md` 是否能干净地转换为 runtime instructions？</li>
+              <li>Fullstack-demo 和 WonderLens AI 是否保留 behavior？</li>
+              <li>Asset paths 是否能 resolve，且没有 unsafe fallbacks？</li>
+              <li>Issues 是否分配到了正确 repo 或 product decision？</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="invoke" class="final-note" aria-labelledby="invoke-title">
+        <h2 id="invoke-title">如何运行</h2>
+        <p>
+          较大规模或 production-scale passes 使用这个模式：package generation、asset generation、downstream validation、dialogue QA、repair loops 和 final review 都必须在同一个 evidence-backed run 中完成。
+        </p>
+        <div class="command-box">/goal Execute goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md end to end.</div>
+        <p>
+          Scoped goal 负责 full-pass flags、delegated-agent rules、credential boundaries 和 live validation order。Manifest 仍然记录这些 flags；asset phase 在 downstream dialogue QA 之前使用 full-pass builder sequence。
+        </p>
+        <div class="command-box">python3 scripts/repair_full_pass_asset_bundle.py runs/&lt;run_id&gt;
+python3 scripts/build_activity_assets.py runs/&lt;run_id&gt; --mode generate_and_curate
+python3 scripts/validate_asset_build_outputs.py runs/&lt;run_id&gt;
+python3 scripts/validate_asset_granularity.py runs/&lt;run_id&gt;
+python3 scripts/validate_full_pass_asset_bundle.py runs/&lt;run_id&gt;</div>
+        <p>
+          完成标准不是“package 存在”。真正的完成标准是：两个 direct consumers 都能加载并运行 package，而且不削弱 activity promise。
+        </p>
+      </section>
+    </main>
+  </div>
+  <script>
+    (() => {
+      const map = document.querySelector("[data-pipeline-map]");
+      const detail = document.querySelector("[data-map-detail]");
+      if (!map || !detail) {
+        return;
+      }
+
+      const stepDetails = {
+        "run-setup": {
+          lane: "Autodesign",
+          title: "Run setup",
+          purpose: "在开始写 package 之前，先用精确的 source inputs、repo state、run flags、assignment snapshot 和 evidence locations 启动 full pass。",
+          owner: "Master orchestrator",
+          inputs: "Scoped full-pass goal、compact GOAL.md/run.md defaults、program.md、workbook row set、current branch 和 run ID。",
+          outputs: "run_manifest.yaml、assignment_snapshot.md、repo-state note 和 run dashboard skeleton。",
+          validation: "Authoring 开始前，manifest 已记录 `source.full_pass_pipeline: true` 和 `source.asset_build: generate_and_curate`。",
+          repair: "如果 flags、snapshots 或 source pointers 缺失，先停止 pass 并修复 setup，再进入 package generation。"
+        },
+        "source-audit": {
+          lane: "Autodesign",
+          title: "Source audit",
+          purpose: "在 package writer 开始 adaptation 前，锁住 workbook promise，包括 child role、required action、source object 和 real-world asset promise。",
+          owner: "Source-intent auditor",
+          inputs: "Original TSV row、normalized source helper、assignment snapshot、source links 和 capability notes。",
+          outputs: "Pre-write source audit、adaptation brief、accepted constraints，以及明确的 blocked/degraded notes。",
+          validation: "Audit 明确哪些内容必须保留到 `spec.md`、`prod.md`、`demo_support.yaml` 和 `asset_manifest.yaml`。",
+          repair: "如果 intent 不清楚，先澄清 source promise 再写；如果 capability unsupported，就诚实标记该 row。"
+        },
+        "package-writing": {
+          lane: "Autodesign",
+          title: "Package writing",
+          purpose: "写出 package contract，让 fullstack-demo 和 WonderLens AI 可以直接消费，而不需要自行补造缺失的 runtime behavior。",
+          owner: "Text-only package writer",
+          inputs: "Source audit、program.md rules、templates、category guidance、entity binding 和 asset requirements。",
+          outputs: "spec.md、prod.md、tag_block.yaml、recap.template.yaml、dashboard.template.yaml、demo_support.yaml 和 asset_manifest.yaml。",
+          validation: "`prod.md` 包含 machine-convertible runtime beats；如果有 Cat5 synthesis，需要保持分离；demo support 必须明确。",
+          repair: "Package-owned gaps 必须先回到 writer 修复，再继续 downstream import 或 image generation。"
+        },
+        "post-audit": {
+          lane: "Autodesign",
+          title: "Post audit",
+          purpose: "在 consumers 或 image builders 依赖它之前，用 source promise 和 downstream contracts 检查已经写好的 package。",
+          owner: "Independent package auditor",
+          inputs: "All package files、source audit、demo support、asset manifest 和 runtime beat expectations。",
+          outputs: "Post-write source audit、package quality notes、conversion risk notes，以及必要时的 repair instructions。",
+          validation: "Audit 确认 source intent、runtime instructions、demo gates、entity binding 和 text-only asset contracts 完整。",
+          repair: "Text problems 回到 package writing；image-only requirements 进入 image phase，但不改变 activity flow。"
+        },
+        "package-repairs": {
+          lane: "Autodesign",
+          title: "Package repairs",
+          purpose: "当 import、dialogue 或 audit evidence 显示 activity contract 不够明确时，修复 weak package guidance。",
+          owner: "Package repair agent",
+          inputs: "Audit findings、importer reports、runtime transcripts、consumer validation notes 和 residual-risk list。",
+          outputs: "Updated package files、repair notes、renewed audits，以及 affected consumers 的 rerun instructions。",
+          validation: "重新跑同一份 failing evidence，证明 package-owned issue 已解决，且没有削弱 source promise。",
+          repair: "如果 issue 属于 consumer code 或 product capability，就进行 classify，不要藏进 package prose。"
+        },
+        "final-report": {
+          lane: "Autodesign",
+          title: "Final report",
+          purpose: "用 accepted outputs、evidence paths、blockers、deferred issues 和 reviewer-readable residual risk 收尾 run。",
+          owner: "Master orchestrator",
+          inputs: "Run dashboard、manifests、audits、asset QA、import reports、dialogue QA、repairs 和 final review notes。",
+          outputs: "Final run report、updated dashboard、accepted package list、blocker list 和 next-action summary。",
+          validation: "每个 accepted activity 都有 evidence 或明确的 residual risk owner。Unsupported activities 不能被呈现为 playable。",
+          repair: "如果 evidence 不完整，先回到 owning phase，再声明 pass accepted。"
+        },
+        "bundle-repair": {
+          lane: "Image phase",
+          title: "Bundle repair",
+          purpose: "确保 manifest 中有 standard scene bundle，以及必要的 selectable/reference assets，让每个 package asset-ready。",
+          owner: "Asset manifest repair agent",
+          inputs: "asset_manifest.yaml、prod.md screen states、demo_support.yaml、package category 和已知 fullstack asset expectations。",
+          outputs: "补齐 text-only asset manifest，按需覆盖 scene、object、item、target、distractor、synthesis 和 reference roles。",
+          validation: "Manifest 覆盖每个需要视觉支持的 runtime beat，并在 image builder 写入 PNGs 前保持 paths nullable。",
+          repair: "只 patch manifest roles 和 prompts；不要为了适配 missing assets 改 dialogue flow。"
+        },
+        generate: {
+          lane: "Image phase",
+          title: "Generate",
+          purpose: "创建 bitmap assets，使其匹配已批准的 WonderLens activity style，以及具体的 screen beat 或 selectable item。",
+          owner: "Image generation agent",
+          inputs: "Asset manifest prompts、style rules、package-local activity context、screen target，以及任何 accepted source reference。",
+          outputs: "每个 illustrative asset 的 package-local generated PNG candidates 和 generation notes。",
+          validation: "每张 generated image 都是 512x512、flat Nordic、screen-safe、适合 round display 居中展示，并绑定一个 manifest asset ID。",
+          repair: "如果 images 随机、低清、off-style、重复，或过早泄露答案，就 regenerate 或调整 prompts。"
+        },
+        curate: {
+          lane: "Image phase",
+          title: "Curate",
+          purpose: "当 activity 承诺真实 artwork、constellation、landmark、animal、plant 或其他 reference-bound object 时，使用 real source material。",
+          owner: "Reference curator",
+          inputs: "Source promise、web 或 collection sources、license metadata、source originals 和 manifest provenance fields。",
+          outputs: "Accepted source original、metadata、允许时的 curated derivative，以及 asset manifest 中的 provenance notes。",
+          validation: "Source 必须真实、license 或 open status 支持 intended use、命名正确，并且视觉上足够 faithful。",
+          repair: "用 source-backed assets 替换 generated approximations；如果 required reference 无法使用，则 block 该 activity。"
+        },
+        build: {
+          lane: "Image phase",
+          title: "Build",
+          purpose: "写入最终 package-local runtime images，并把它们连接到 downstream consumers 使用的 manifest paths。",
+          owner: "Asset build agent",
+          inputs: "Approved generated images、source originals、manifest asset IDs、package directory 和 build mode。",
+          outputs: "Final PNG files、更新后的 asset_manifest.yaml paths 和 build validation logs。",
+          validation: "所有 required assets 都存在于 package-local paths，尺寸正确，并且 referenced files 能从磁盘加载。",
+          repair: "在 image QA 前修复 missing files、wrong sizes、broken paths 或 manifest mismatches。"
+        },
+        "image-qa": {
+          lane: "Image phase",
+          title: "Image QA",
+          purpose: "检查 built images 是否真正支持 child-facing beat、reference promise 和 physical screen constraints。",
+          owner: "Image quality validator",
+          inputs: "Built PNGs、source references、asset manifest、prod.md screen states 和 style rules。",
+          outputs: "Image QA report，包含 asset inventory、pass/fail、prompt/source issues、crop notes、duplicate-item notes、reference fidelity notes，以及 blocked/degraded decisions。",
+          validation: "只有当每个 required asset 都能加载，匹配对应 beat 和 flat Nordic style，在 runtime size 下 crop-safe，按需保留 reference provenance 和 fidelity，没有重复 selectable items，没有 readable text/logos/watermarks，且不会提前泄露答案时，才算 pass。",
+          repair: "Image-owned defects 送到 Repair images；text 或 runtime mismatches 回到 owning phase。如果 faithful source 无法使用，reference-bound cases 必须 blocked 或 degraded。"
+        },
+        "repair-images": {
+          lane: "Image phase",
+          title: "Repair images",
+          purpose: "只修 visual artifacts，同时保留已接受的 activity mechanics、package prose 和 runtime sequence。",
+          owner: "Image repair agent",
+          inputs: "Image QA findings、failed assets、prompts、source originals、crops 和 manifest paths。",
+          outputs: "Repaired PNGs、更新后的 source 或 prompt notes，以及新的 image QA result。",
+          validation: "Repair 后同一套 QA criteria 通过，且 image-owned defects 不需要修改 package text。",
+          repair: "如果 repair 需要改变 activity promise，就升级到 package repair 或 product capability review。"
+        },
+        "package-import": {
+          lane: "Consumers",
+          title: "Package import",
+          purpose: "按原样加载 package，并转换成 fullstack-demo runtime shape，同时不丢失 `step_instructions` quality。",
+          owner: "Fullstack package/import validator",
+          inputs: "Package directory、prod.md、demo_support.yaml、asset_manifest.yaml、tag block 和 built assets。",
+          outputs: "Imported activity、converted runtime YAML 或 demo MD、asset resolution report，以及 unsupported/degraded gate result。",
+          validation: "Importer 保留 entity binding、runtime beats、存在时的 Cat5 synthesis、asset paths 和 unsupported mechanic gates。",
+          repair: "Package omissions 回到 Autodesign；importer bugs 成为 fullstack-demo follow-up work。"
+        },
+        "fullstack-qa": {
+          lane: "Consumers",
+          title: "Fullstack QA",
+          purpose: "在 web demo 中通过有代表性的 dialogue paths 和 UI states 运行 imported activity。",
+          owner: "Fullstack runtime validator",
+          inputs: "Imported activity、test entity binding、generated assets 和 dialogue strategy list。",
+          outputs: "Runtime transcript set、UI screenshots 或 notes、pass/fail report 和 classified issues。",
+          validation: "只有当 import 使用 package as authored，demo gates 被遵守，assets 没有 unsafe fallback 就能 resolve，`step_instructions` 保留 goal/constraint/tone/progress evidence/branch behavior/frame guardrail，Cat5 synthesis 保持分离，并且 ideal、minimal、wrong、off-topic、help、done、silence、photo 和 item flows 都符合 package contract 时，才算 pass。",
+          repair: "Package-owned dialogue gaps 回到 Autodesign；UI/runtime defects 成为 fullstack-demo issues。Unsupported mechanics 保持 gated，不能呈现为 playable。"
+        },
+        "ai-runtime": {
+          lane: "Consumers",
+          title: "AI runtime",
+          purpose: "生成或加载 WonderLens AI runtime artifacts，保持对 package faithful，而不是对 fullstack-demo shortcuts faithful。",
+          owner: "WonderLens AI runtime validator",
+          inputs: "Package files、runtime converter、existing WonderLens AI schemas、assets 和 camera/photo assumptions。",
+          outputs: "WonderLens-side runtime artifacts、conversion report 和 runtime context evidence。",
+          validation: "Runtime artifacts 保留 generated YAML contract、real camera capture assumptions、Cat5 response types，以及需要时的 collection catalog。",
+          repair: "除非 package 本身缺 required instructions，否则 converter gaps 归为 WonderLens AI follow-up work。"
+        },
+        "ai-dialogue-qa": {
+          lane: "Consumers",
+          title: "AI dialogue QA",
+          purpose: "用 package beats 对照 WonderLens AI dialogue behavior，而不是只对照 fullstack-demo output。",
+          owner: "WonderLens AI dialogue validator",
+          inputs: "Runtime artifacts、package instructions、dialogue strategy prompts、camera/photo IDs 和 transcripts。",
+          outputs: "Dialogue comparison report、mismatch list 和 package/runtime classification notes。",
+          validation: "只有当 WonderLens AI runtime artifacts 保持 faithful to generated YAML and `prod.md`，real camera 或 `photo_id` assumptions 被保留，Cat5 response types 和 collection catalog use 正确，responses 遵循 goal/constraint/tone/progress evidence/branch policy/source guardrail/synthesis behavior，并且没有 unsupported visual claims 时，才算 pass。",
+          repair: "如果 package prompts 太薄，修 package；如果 conversion 丢失 faithful behavior，修 WonderLens AI runtime prompts。Provider 或 credential gaps 要和 package quality 分开分类。"
+        },
+        classify: {
+          lane: "Consumers",
+          title: "Classify",
+          purpose: "把每个 failure 分配给正确 owner，而不是把所有 difference 都当作 package defects。",
+          owner: "Master orchestrator with validators",
+          inputs: "Fullstack QA、WonderLens AI QA、image QA、importer reports、logs、transcripts 和 blocker notes。",
+          outputs: "Issue classification：package gap、image gap、runtime gap、product gap、credential blocker，或 accepted residual risk。",
+          validation: "每个 issue 都有一个 owner、evidence、repro path 和 next step。Credential 或 provider limits 需要包含 retry evidence。",
+          repair: "路由到 owning repo 或 phase。不要把不清楚的 failures 合并进模糊的 final report。"
+        },
+        "final-review": {
+          lane: "Consumers",
+          title: "Final review",
+          purpose: "在 pass accepted 前，让 independent reviewer 审完整 evidence chain。",
+          owner: "Final reviewer",
+          inputs: "Packages、audits、asset QA、imports、transcripts、repairs、manifests、dashboard 和 final report draft。",
+          outputs: "PASS、BLOCKED 或 PASS with residual risk，并附 reviewer notes 和 required fixes。",
+          validation: "Reviewer 能从 source promise 一路追踪每个 accepted activity，经过 package、assets、consumers、repairs，直到 final evidence。",
+          repair: "任何 missing evidence 或 misclassified risk 都要先回 responsible phase，再 final acceptance。"
+        }
+      };
+
+      const fields = {
+        lane: detail.querySelector("[data-map-detail-lane]"),
+        title: detail.querySelector("[data-map-detail-title]"),
+        purpose: detail.querySelector("[data-map-detail-purpose]"),
+        owner: detail.querySelector("[data-map-detail-owner]"),
+        inputs: detail.querySelector("[data-map-detail-inputs]"),
+        outputs: detail.querySelector("[data-map-detail-outputs]"),
+        validation: detail.querySelector("[data-map-detail-validation]"),
+        repair: detail.querySelector("[data-map-detail-repair]")
+      };
+      const buttons = Array.from(map.querySelectorAll("[data-map-step]"));
+
+      function setSelected(stepId) {
+        const selected = stepDetails[stepId];
+        if (!selected) {
+          return;
+        }
+
+        buttons.forEach((button) => {
+          const isSelected = button.dataset.mapStep === stepId;
+          button.dataset.selected = isSelected ? "true" : "false";
+          button.setAttribute("aria-pressed", isSelected ? "true" : "false");
+        });
+
+        Object.entries(fields).forEach(([key, element]) => {
+          if (element) {
+            element.textContent = selected[key];
+          }
+        });
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => setSelected(button.dataset.mapStep));
+      });
+
+      setSelected(buttons.find((button) => button.getAttribute("aria-pressed") === "true")?.dataset.mapStep || buttons[0]?.dataset.mapStep);
+    })();
+
+    (() => {
+      const player = document.querySelector("[data-flow-player]");
+      if (!player) {
+        return;
+      }
+
+      const board = player.querySelector(".flow-board");
+      const token = player.querySelector(".flow-token");
+      const pathSvg = player.querySelector(".flow-path");
+      const pathLine = player.querySelector("[data-flow-path-line]");
+      const stages = Array.from(player.querySelectorAll(".flow-stage")).sort((a, b) => Number(a.dataset.flowStep) - Number(b.dataset.flowStep));
+      const title = player.querySelector("[data-flow-title]");
+      const copy = player.querySelector("[data-flow-copy]");
+      const use = player.querySelector("[data-flow-use]");
+      const by = player.querySelector("[data-flow-by]");
+      const produces = player.querySelector("[data-flow-produces]");
+      const status = player.querySelector("[data-flow-status]");
+      const meter = player.querySelector(".flow-meter span");
+      const toggle = player.querySelector("[data-flow-toggle]");
+      const restart = player.querySelector("[data-flow-restart]");
+      const loopButton = player.querySelector("[data-flow-loop]");
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const stepText = [
+        {
+          title: "Source lock",
+          copy: "写 package files 前，先捕捉 TSV-backed source promise、child role、sequence、required action 和 asset promise。",
+          use: "full-pass goal 开始时从这里启动；这一步冻结 package 必须保留的内容。",
+          by: "Master orchestrator 和 source-intent auditor。",
+          produces: "Run manifest、assignment snapshot、adaptation brief 和 pre-package audit。"
+        },
+        {
+          title: "Text package",
+          copy: "写 five required files 和 demo extensions。Image build 前，runtime beats、demo gates、entity binding 和 text-only asset contracts 必须明确。",
+          use: "把它当作 activity contract，让两个 direct consumers 不需要补造缺失行为就能 import。",
+          by: "Text-only package writer。",
+          produces: "spec.md、prod.md、tag_block.yaml、recap/dashboard templates、demo_support.yaml 和 asset_manifest.yaml。"
+        },
+        {
+          title: "Post audit",
+          copy: "Downstream systems 接触 package 之前，再按 source intent 检查一次。",
+          use: "用这个 gate 在 image generation 或 runtime validation 之前拦住 drift，避免继续投入到 weak package。",
+          by: "Independent package auditor。",
+          produces: "Post-write source audit、package quality notes、conversion risks 和 repair instructions。"
+        },
+        {
+          title: "Bundle repair",
+          copy: "先确保 standard scene bundle 存在，再按需补 object、item、entity、target、distractor、synthesis 或 reference assets。",
+          use: "在 package audit 后、image generation 前使用这一步，确保每个 runtime beat 都有明确 visual contract。",
+          by: "Asset manifest repair agent。",
+          produces: "补齐 asset_manifest.yaml roles、prompts、references、variants 和 nullable output paths。"
+        },
+        {
+          title: "Generate / curate",
+          copy: "为 beat assets 和 selectable items 创建 illustrative PNGs；当 activity 承诺 real reference 时，接收 real sources。",
+          use: "在 package text 稳定后进入这一 phase，把 asset_manifest.yaml 转成 visual candidates 和 source-backed material。",
+          by: "Image generation agent 和 reference curator。",
+          produces: "Generated PNG candidates、accepted source originals、source metadata 和 curation notes。"
+        },
+        {
+          title: "Build assets",
+          copy: "构建 package-local 512x512 runtime PNGs，并更新 `asset_manifest.yaml` paths，同时不改变 activity flow。",
+          use: "用这一步让 consumers 能从稳定的 package-local paths import assets。",
+          by: "Asset build agent。",
+          produces: "Final PNG files、updated asset manifest paths 和 build validation logs。"
+        },
+        {
+          title: "Image QA",
+          copy: "检查 manifest coverage、runtime size、style、crop safety、beat alignment、reference fidelity、duplicate items 和 answer reveal。",
+          use: "用这个 gate 判断应当 repair images、replace sources，还是 block reference-bound case。",
+          by: "Image quality validator。",
+          produces: "Image QA report，包含 asset inventory、crop notes、duplicate-item notes、reference fidelity notes、pass/fail result 和 repair routes。"
+        },
+        {
+          title: "Consumer QA",
+          copy: "Fullstack-demo 按原样 import package，WonderLens AI 加载匹配的 runtime artifacts，二者都执行 dialogue behavior。",
+          use: "用这一 phase 证明 direct consumers 保留 package intent，并 classify downstream-owned failures。",
+          by: "Package/import validator、fullstack runtime validator 和 WonderLens AI runtime validator。",
+          produces: "Converted step_instructions、runtime.yaml 或等价 artifacts、import reports、transcripts、screenshots 和 issue classifications。"
+        },
+        {
+          title: "Final review",
+          copy: "Acceptance 前，independent reviewer 要阅读 packages、audits、reports、transcripts、image QA、repair notes、manifest 和 dashboard。",
+          use: "只有当每个 accepted activity 都有 evidence，或每个 blocker 都有明确 owner 后，才进入这一步。",
+          by: "Final independent reviewer。",
+          produces: "Accepted package list、blocker list、residual-risk report、final dashboard 和 next-action summary。"
+        }
+      ];
+
+      let progress = 0;
+      let loop = true;
+      let running = !prefersReduced;
+      let lastTime = 0;
+      let activeIndex = -1;
+      const duration = 18000;
+
+      function getCenters() {
+        const boardRect = board.getBoundingClientRect();
+        return stages.map((stage) => {
+          const rect = stage.getBoundingClientRect();
+          return {
+            x: rect.left - boardRect.left + rect.width / 2,
+            y: rect.top - boardRect.top + rect.height / 2
+          };
+        });
+      }
+
+      function updatePath(centers) {
+        if (!pathSvg || !pathLine || centers.length === 0) {
+          return;
+        }
+        const boardRect = board.getBoundingClientRect();
+        pathSvg.setAttribute("viewBox", `0 0 ${boardRect.width} ${boardRect.height}`);
+        pathLine.setAttribute("d", centers.map((center, index) => {
+          const command = index === 0 ? "M" : "L";
+          return `${command} ${center.x.toFixed(1)} ${center.y.toFixed(1)}`;
+        }).join(" "));
+      }
+
+      function setActive(index) {
+        if (index === activeIndex) {
+          return;
+        }
+        activeIndex = index;
+        stages.forEach((stage, stageIndex) => {
+          stage.dataset.active = stageIndex === index ? "true" : "false";
+        });
+        const current = stepText[index];
+        title.textContent = current.title;
+        copy.textContent = current.copy;
+        use.textContent = current.use;
+        by.textContent = current.by;
+        produces.textContent = current.produces;
+      }
+
+      function render() {
+        const centers = getCenters();
+        updatePath(centers);
+        const maxSegment = centers.length - 1;
+        const rawPosition = progress * centers.length;
+        const index = Math.min(Math.floor(rawPosition), maxSegment);
+        const nextIndex = Math.min(index + 1, maxSegment);
+        const segmentProgress = index === maxSegment ? 0 : Math.min(rawPosition - index, 1);
+        const from = centers[index];
+        const to = centers[nextIndex];
+        const x = from.x + (to.x - from.x) * segmentProgress;
+        const y = from.y + (to.y - from.y) * segmentProgress;
+
+        token.style.transform = `translate3d(${x - token.offsetWidth / 2}px, ${y - token.offsetHeight / 2}px, 0)`;
+        setActive(index);
+        player.style.setProperty("--flow-progress", String(progress));
+        meter.style.width = `${progress * 100}%`;
+        toggle.textContent = running ? "暂停" : "继续";
+        toggle.setAttribute("aria-pressed", running ? "false" : "true");
+        loopButton.textContent = loop ? "Loop 开启" : "Loop 关闭";
+        loopButton.setAttribute("aria-pressed", loop ? "true" : "false");
+        status.textContent = `${running ? "播放中" : "已暂停"}。Step ${index + 1} / ${centers.length}。`;
+      }
+
+      function tick(time) {
+        if (!lastTime) {
+          lastTime = time;
+        }
+        const delta = time - lastTime;
+        lastTime = time;
+
+        if (running) {
+          progress += delta / duration;
+          if (progress >= 1) {
+            if (loop) {
+              progress = progress % 1;
+            } else {
+              progress = 1;
+              running = false;
+            }
+          }
+          render();
+        }
+        window.requestAnimationFrame(tick);
+      }
+
+      toggle.addEventListener("click", () => {
+        running = !running;
+        lastTime = 0;
+        render();
+      });
+
+      restart.addEventListener("click", () => {
+        progress = 0;
+        running = !prefersReduced;
+        lastTime = 0;
+        render();
+      });
+
+      loopButton.addEventListener("click", () => {
+        loop = !loop;
+        render();
+      });
+
+      window.addEventListener("resize", render);
+      render();
+      window.requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>

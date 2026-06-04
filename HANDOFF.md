@@ -1,5 +1,94 @@
 # HANDOFF
 
+## 2026-06-04 - Phoneme Scene Prompts Tightened
+
+Problem: After the phoneme subset validation repair, visual review still found
+the story scenes too vague: the WonderLens device could read as a random circle
+on the rug, and the child action was clearer than before but still not grounded
+by a reusable visual stage.
+
+Solution: Updated the phoneme branch in
+`scripts/repair_full_pass_asset_bundle.py` to include a repeated low-clutter
+shared stage, a rounded rectangular WonderLens device contract, explicit
+not-a-circular-puck wording, and clearer search/evidence beat actions.
+Regenerated only the story-scene PNG sources for
+`concept_phoneme_hunt_collect`; item sprites and support assets were retained.
+
+Verification: Added focused regression coverage in
+`tests/test_repair_full_pass_asset_bundle.py`, rebuilt all 22 package assets,
+and visually checked `image_qa/source_contact_sheet.png`.
+
+## 2026-06-04 - Phoneme Subset Validation Repaired
+
+Problem: Run `20260603_171053_subset_phoneme_validation` had been marked
+complete while its image audit still failed the phoneme activity for generic
+basket/blank-card/glow scene imagery, and the active queue row was reopened.
+
+Solution: Repaired `concept_phoneme_hunt_collect` with a 22-asset package:
+listening/speaking/search/evidence scene prompts, regenerated 512x512 PNGs,
+four correct `/b/` picker objects, eight distractors, refreshed WonderLens AI
+runtime artifacts, refreshed run-local fullstack import/export evidence, and
+added the required runtime-equivalent dialogue QA reports. Also updated
+`repair_full_pass_asset_bundle.py` so the required repair check does not
+restore the old phoneme container metaphor. Required fullstack-demo worktree
+import was attempted and recorded as downstream-owned failure because that
+consumer currently rejects `collection_count=1` for Cat5 activities.
+
+Verification: Focused repair-helper, asset/package, downstream, and dashboard
+checks passed from the `feat/subset-agentic-validation` worktree before commit.
+
+## 2026-06-03 - Core Operator Docs Simplified
+
+Problem: Root `GOAL.md`, `run.md`, and the front/tail sections of `program.md`
+had absorbed full-pass, asset, consumer, and validation detail that now also
+lives in scoped goal files, plans, and dedicated workflow docs. This made the
+default active-queue workflow harder to scan.
+
+Solution: Kept `program.md` as the detailed generation contract, compacted
+`GOAL.md` into the default objective/completion contract, compacted `run.md`
+into the execution loop, trimmed `program.md` changelog/runbook/asset/tail
+duplication while preserving Phase 0, package format, and rubric detail, and
+trimmed the `templates.md` front matter while leaving mechanic adapters and
+pillar overlays intact. README now points full-pass execution to
+`goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md` instead of
+duplicating the long invocation.
+
+Verification: Run `git diff --check` and targeted doc scans before committing.
+
+## 2026-06-03 - Assignment Queue Simplified
+
+Problem: `assignments.md` had become both the active queue and a historical
+ledger, mixing completed legacy batches, completed smoke/e2e rows, older
+unchecked-but-superseded capability probes, and the completed subset validation
+rows.
+
+Solution: Moved the historical ledger into `docs/assignments_archive.md` and
+replaced `assignments.md` with a short active-queue file. README now describes
+`assignments.md` as active-only and instructs operators to copy archived rows
+back into the queue when a future goal needs a rerun.
+
+Verification: `git diff --check` passed, `assignments.md` has no processable
+checkbox assignment rows, `docs/assignments_archive.md` preserves 131
+historical assignment rows exactly matching the prior `assignments.md` row set,
+and targeted README/archive scans confirm the active queue and archive are
+documented.
+
+## 2026-06-03 - Runtime Asset Rules Hardened
+
+Problem: Fresh subset/full-pass runs needed stricter runtime rules after image
+assets were produced with placeholder-like quality, the latest flat Nordic
+style prompt was not consistently referenced, and picker item assets were mixed
+with scene assets.
+
+Solution: Runtime docs and related goal files now require Codex built-in
+imagegen for illustrative assets, repo-local style references in
+`docs/asset_style_reference/`, package-local `assets/items/` for
+picker/selectable item/object PNGs, retry-with-backoff for transient API
+throttles such as `429`, and at most three delegated/sub-agents running in
+parallel with finished agents terminated before replacements.
+
+Verification: Run `git diff --check` after final staging for this docs update.
+
 ## 2026-06-03 - Subset Agentic Validation Goal Ready
 
 Problem: After merging the subset workflow gates, the next run needed a narrow

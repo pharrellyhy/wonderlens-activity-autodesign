@@ -1,0 +1,53 @@
+{
+  "activity_ids": [
+    "concept_phoneme_hunt_collect"
+  ],
+  "artifacts": {
+    "converted_game": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import/games/concept_phoneme_hunt_collect__beginning_sound_treasure.md",
+    "parse_report": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import_parse_report.json",
+    "required_worktree_import_report": "runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/required_worktree_import_report.json"
+  },
+  "consumer": "fullstack-demo",
+  "downstream_follow_up": "Fullstack-demo should support collection_count=1 for single-find phoneme hunts, or provide a single-collection template that preserves the one-object source promise.",
+  "evidence_summary": {
+    "branch_behavior_present": true,
+    "collection_catalog_correct_count": 4,
+    "collection_catalog_distractor_count": 8,
+    "collection_count": 1,
+    "placeholder_collection_routes_rejected": true,
+    "required_worktree_import_status": "downstream_owned_failure",
+    "rich_step_instructions": true,
+    "source_terms_present": true
+  },
+  "failure_summary": "Required fullstack worktree import/load rejects source-preserving collection_count=1 because Cat5CreativeSlots.collection_count is constrained to ge=2.",
+  "mode": "runtime_equivalent",
+  "run_id": "20260603_171053_subset_phoneme_validation",
+  "status": "downstream_owned_failure",
+  "strategies": [
+    {
+      "evidence": "The converted game preserves ideal branch cases for repeating /b/, naming banana/book/ball/box, returning with a photo_id, and connecting the accepted B word to the beginning sound.",
+      "status": "pass",
+      "strategy": "expected_answer"
+    },
+    {
+      "evidence": "The converted step instructions preserve redirects for cup/non-B words, including contrast against /k/ and a one-retry path without harsh correction.",
+      "status": "pass",
+      "strategy": "wrong_unproductive_answer"
+    },
+    {
+      "evidence": "The converted runtime includes help paths for asking what sound, not finding an item, or needing nearby examples such as book, bag, box, ball, or banana.",
+      "status": "pass",
+      "strategy": "help_confusion"
+    },
+    {
+      "evidence": "Every live beat preserves no-response handling: wait briefly, model a tiny response, repeat /b/ slowly, offer a small search-area hint, or close softly.",
+      "status": "pass",
+      "strategy": "silence_no_response"
+    },
+    {
+      "evidence": "Progress evidence requires a child-provided object name and accepted B-word evidence before synthesis/celebration; closing offers future play without starting a new round.",
+      "status": "pass",
+      "strategy": "premature_done"
+    }
+  ]
+}

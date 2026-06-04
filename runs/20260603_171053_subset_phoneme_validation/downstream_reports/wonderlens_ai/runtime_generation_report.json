@@ -1,0 +1,69 @@
+{
+  "activities": [
+    {
+      "activity_id": "concept_phoneme_hunt_collect",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [
+          "The current demo cannot infer the starting sound of a photographed object from image data alone.",
+          "The package requires the child to say or enter the object name before accepting sound evidence.",
+          "Any /b/ or B cue is app-owned overlay support, not baked into generated PNG assets."
+        ],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_phoneme_hunt_collect:activity_icon",
+          "package:concept_phoneme_hunt_collect:intro_scene",
+          "package:concept_phoneme_hunt_collect:rules_scene",
+          "package:concept_phoneme_hunt_collect:round_1_scene",
+          "package:concept_phoneme_hunt_collect:round_2_scene",
+          "package:concept_phoneme_hunt_collect:round_3_scene",
+          "package:concept_phoneme_hunt_collect:synthesis_scene",
+          "package:concept_phoneme_hunt_collect:celebrate_scene",
+          "package:concept_phoneme_hunt_collect:closing_scene",
+          "package:concept_phoneme_hunt_collect:b_sound_letter_cue",
+          "package:concept_phoneme_hunt_collect:ball_object",
+          "package:concept_phoneme_hunt_collect:banana_object",
+          "package:concept_phoneme_hunt_collect:book_object",
+          "package:concept_phoneme_hunt_collect:box_object",
+          "package:concept_phoneme_hunt_collect:cup_object",
+          "package:concept_phoneme_hunt_collect:sock_object",
+          "package:concept_phoneme_hunt_collect:apple_object",
+          "package:concept_phoneme_hunt_collect:car_object",
+          "package:concept_phoneme_hunt_collect:hat_object",
+          "package:concept_phoneme_hunt_collect:mug_object",
+          "package:concept_phoneme_hunt_collect:shoe_object",
+          "package:concept_phoneme_hunt_collect:spoon_object"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "catalog_simulated_judgment",
+        "support_status": "degraded",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [
+          "The current demo cannot infer the starting sound of a photographed object from image data alone.",
+          "The package requires the child to say or enter the object name before accepting sound evidence.",
+          "Any /b/ or B cue is app-owned overlay support, not baked into generated PNG assets."
+        ],
+        "status": "degraded",
+        "support_level": "catalog_simulated_judgment",
+        "ui_template": "cat5_judgment",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Beginning Sound Treasure",
+        "entity_id": "beginning_sound_treasure",
+        "source_entity_exemplar": "beginning sound treasure"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    }
+  ],
+  "changed": []
+}

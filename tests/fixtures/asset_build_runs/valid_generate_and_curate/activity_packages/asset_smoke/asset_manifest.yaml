@@ -29,11 +29,11 @@ assets:
   - id: round_1024
     target: round_device_screen
     size: 1024x1024
-    path: assets/moss_icon__round_1024.png
+    path: assets/items/moss_icon__round_1024.png
   - id: catalog_512
     target: catalog_grid
     size: 512x512
-    path: assets/moss_icon__catalog_512.png
+    path: assets/items/moss_icon__catalog_512.png
   fallback_behavior: Use a spoken moss clue.
 - id: orion_card
   role: story_scene

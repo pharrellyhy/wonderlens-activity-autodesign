@@ -1,0 +1,380 @@
+activity_id: concept_recognition_pop_probe
+entity_id: dog_like_target_picture
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: barely tinted white
+  primary_accent: muted sage green
+  secondary_accent: soft terracotta salmon
+  shadow: pale lavender gray
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+- id: activity_icon
+  role: activity_preview
+  label: Activity icon for Recognition Pop Challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Activity icon for Recognition Pop Challenge.
+    Composition: single centered icon or badge on a clean white background, no app
+    UI; generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Activity-specific direction: Recognition Pop must
+    use neutral stage art because target and distractor cards are separate sprites.
+    For this asset, show a neutral pop-stage with one empty reveal slot and a small
+    sound-wave motif; do not include dog, fox, wolf, or any animal silhouette. If
+    the activity has separate target/distractor item assets, do not redraw those selectable
+    animals inside story-scene backgrounds; let the app place the picker/card sprites.
+    Style: flat Nordic children''s illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye or tiny texture linework, light
+    colored-pencil grain, restrained boho pastels, airy negative space, organic simple
+    silhouettes. No readable text, letters, numbers, labels, logos, watermark, border,
+    contact sheet, multi-card sheet, device frame, circular mask, vignette, black
+    corners, glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress
+    dots, round markers, response slots, rule strips, buttons, chips, picker slots,
+    badges, or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/activity_icon__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: intro_scene
+  role: story_scene
+  label: Intro scene for Recognition Pop Challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Intro scene for Recognition Pop Challenge. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: Use `intro_scene`
+    app-owned progress, choices, or camera slots are overlays and are not baked into
+    the PNG. Activity-specific direction: Recognition Pop must use neutral stage art
+    because target and distractor cards are separate sprites. For this asset, show
+    an empty pop-stage ready for the source target card overlay; leave the center
+    clear for the app-placed card. If the activity has separate target/distractor
+    item assets, do not redraw those selectable animals inside story-scene backgrounds;
+    let the app place the picker/card sprites. Style: flat Nordic children''s illustration
+    matching the quiet white WonderLens prototype; broad flat color fills, sparse
+    arc-eye or tiny texture linework, light colored-pencil grain, restrained boho
+    pastels, airy negative space, organic simple silhouettes. No readable text, letters,
+    numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device
+    frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard
+    shadows, or clutter. Do not draw progress dots, round markers, response slots,
+    rule strips, buttons, chips, picker slots, badges, or other app-owned interface
+    state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: rules_scene
+  role: story_scene
+  label: Rules scene for Recognition Pop Challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Rules scene for Recognition Pop Challenge. Composition:
+    full-bleed square beat scene, softly painterly nursery composition, no app UI;
+    generate a 512x512 square source PNG; if the image tool returns a larger square,
+    downsample it to 512x512 before asset build; keep important details inside the
+    central round-lens safe area. Source beat context, for subject only: Use `rules_scene`.
+    Activity-specific direction: Recognition Pop must use neutral stage art because
+    target and distractor cards are separate sprites. For this asset, show three empty
+    card stands or reveal slots that imply say/quiet practice through composition
+    only; do not draw the animal cards. If the activity has separate target/distractor
+    item assets, do not redraw those selectable animals inside story-scene backgrounds;
+    let the app place the picker/card sprites. Style: flat Nordic children''s illustration
+    matching the quiet white WonderLens prototype; broad flat color fills, sparse
+    arc-eye or tiny texture linework, light colored-pencil grain, restrained boho
+    pastels, airy negative space, organic simple silhouettes. No readable text, letters,
+    numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device
+    frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard
+    shadows, or clutter. Do not draw progress dots, round markers, response slots,
+    rule strips, buttons, chips, picker slots, badges, or other app-owned interface
+    state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_1_scene
+  role: story_scene
+  label: Round 1 scene for Recognition Pop Challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 1 scene for Recognition Pop Challenge.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `round_1_scene`
+    plus `dog_target` background contains no duplicate animals. Activity-specific
+    direction: Recognition Pop must use neutral stage art because target and distractor
+    cards are separate sprites. For this asset, show one empty center pop slot with
+    a gentle spotlight where the target card can be overlaid; no animals are drawn
+    in the background. If the activity has separate target/distractor item assets,
+    do not redraw those selectable animals inside story-scene backgrounds; let the
+    app place the picker/card sprites. Style: flat Nordic children''s illustration
+    matching the quiet white WonderLens prototype; broad flat color fills, sparse
+    arc-eye or tiny texture linework, light colored-pencil grain, restrained boho
+    pastels, airy negative space, organic simple silhouettes. No readable text, letters,
+    numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device
+    frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard
+    shadows, or clutter. Do not draw progress dots, round markers, response slots,
+    rule strips, buttons, chips, picker slots, badges, or other app-owned interface
+    state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_2_scene
+  role: story_scene
+  label: Round 2 scene for Recognition Pop Challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 2 scene for Recognition Pop Challenge.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `round_2_scene`
+    plus one distractor sprite background remains abstract. Activity-specific direction:
+    Recognition Pop must use neutral stage art because target and distractor cards
+    are separate sprites. For this asset, show one quiet pop slot with a soft muted
+    curtain or pause motif where a distractor card can be overlaid; no animals are
+    drawn in the background. If the activity has separate target/distractor item assets,
+    do not redraw those selectable animals inside story-scene backgrounds; let the
+    app place the picker/card sprites. Style: flat Nordic children''s illustration
+    matching the quiet white WonderLens prototype; broad flat color fills, sparse
+    arc-eye or tiny texture linework, light colored-pencil grain, restrained boho
+    pastels, airy negative space, organic simple silhouettes. No readable text, letters,
+    numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device
+    frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard
+    shadows, or clutter. Do not draw progress dots, round markers, response slots,
+    rule strips, buttons, chips, picker slots, badges, or other app-owned interface
+    state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: round_3_scene
+  role: story_scene
+  label: Round 3 scene for Recognition Pop Challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Round 3 scene for Recognition Pop Challenge.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `round_3_scene`
+    plus `dog_target` app owns timing and tap state. Activity-specific direction:
+    Recognition Pop must use neutral stage art because target and distractor cards
+    are separate sprites. For this asset, show two sequential empty pop slots with
+    the first fading and the second ready for the app-placed card stream; no animals
+    are drawn in the background. If the activity has separate target/distractor item
+    assets, do not redraw those selectable animals inside story-scene backgrounds;
+    let the app place the picker/card sprites. Style: flat Nordic children''s illustration
+    matching the quiet white WonderLens prototype; broad flat color fills, sparse
+    arc-eye or tiny texture linework, light colored-pencil grain, restrained boho
+    pastels, airy negative space, organic simple silhouettes. No readable text, letters,
+    numbers, labels, logos, watermark, border, contact sheet, multi-card sheet, device
+    frame, circular mask, vignette, black corners, glossy eyes, chibi toy look, hard
+    shadows, or clutter. Do not draw progress dots, round markers, response slots,
+    rule strips, buttons, chips, picker slots, badges, or other app-owned interface
+    state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: celebrate_scene
+  role: story_scene
+  label: Celebration scene for Recognition Pop Challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Celebration scene for Recognition Pop Challenge.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `celebrate_scene`
+    if reference or object assets remain visible, they are separate runtime layers.
+    Activity-specific direction: Recognition Pop must use neutral stage art because
+    target and distractor cards are separate sprites. For this asset, show the neutral
+    pop-stage warmly lit after the target/quiet sequence, without tokens or animal
+    duplicates. If the activity has separate target/distractor item assets, do not
+    redraw those selectable animals inside story-scene backgrounds; let the app place
+    the picker/card sprites. Style: flat Nordic children''s illustration matching
+    the quiet white WonderLens prototype; broad flat color fills, sparse arc-eye or
+    tiny texture linework, light colored-pencil grain, restrained boho pastels, airy
+    negative space, organic simple silhouettes. No readable text, letters, numbers,
+    labels, logos, watermark, border, contact sheet, multi-card sheet, device frame,
+    circular mask, vignette, black corners, glossy eyes, chibi toy look, hard shadows,
+    or clutter. Do not draw progress dots, round markers, response slots, rule strips,
+    buttons, chips, picker slots, badges, or other app-owned interface state; the
+    runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: closing_scene
+  role: story_scene
+  label: Closing scene for Recognition Pop Challenge.
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Use case: illustration-story. Asset type: WonderLens full-pass runtime
+    activity asset. Primary request: Closing scene for Recognition Pop Challenge.
+    Composition: full-bleed square beat scene, softly painterly nursery composition,
+    no app UI; generate a 512x512 square source PNG; if the image tool returns a larger
+    square, downsample it to 512x512 before asset build; keep important details inside
+    the central round-lens safe area. Source beat context, for subject only: Use `closing_scene`.
+    Activity-specific direction: Recognition Pop must use neutral stage art because
+    target and distractor cards are separate sprites. For this asset, show the empty
+    reveal stage resting calmly, with the card area still clear. If the activity has
+    separate target/distractor item assets, do not redraw those selectable animals
+    inside story-scene backgrounds; let the app place the picker/card sprites. Style:
+    flat Nordic children''s illustration matching the quiet white WonderLens prototype;
+    broad flat color fills, sparse arc-eye or tiny texture linework, light colored-pencil
+    grain, restrained boho pastels, airy negative space, organic simple silhouettes.
+    No readable text, letters, numbers, labels, logos, watermark, border, contact
+    sheet, multi-card sheet, device frame, circular mask, vignette, black corners,
+    glossy eyes, chibi toy look, hard shadows, or clutter. Do not draw progress dots,
+    round markers, response slots, rule strips, buttons, chips, picker slots, badges,
+    or other app-owned interface state; the runtime overlays those separately.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing_scene__round_512.png
+  fallback_behavior: If this beat asset is unavailable, degrade the demo screen and
+    do not claim that the missing visual is displayed.
+- id: dog_target
+  role: collection_correct
+  label: one centered friendly dog target sprite
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+    boho pastels, generous negative space, square 512x512 source art, no readable
+    text, no letters or numbers, no logos, no watermark, no masks, no borders, and
+    no baked UI chrome. Subject: one centered friendly dog target sprite. One visual
+    unit only. Keep important detail inside the central safe area. For scenes, no
+    selectable target objects that compete with separate sprites.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/dog_target__round_512.png
+  fallback_behavior: If dog_target is unavailable, keep the runtime beat honest and
+    use voice-only fallback without claiming this image is visible.
+  collection_catalog_id: dog_target
+- id: fox_distractor
+  role: collection_distractor
+  label: one centered friendly fox distractor sprite
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+    boho pastels, generous negative space, square 512x512 source art, no readable
+    text, no letters or numbers, no logos, no watermark, no masks, no borders, and
+    no baked UI chrome. Subject: one centered friendly fox distractor sprite. One
+    visual unit only. Keep important detail inside the central safe area. For scenes,
+    no selectable target objects that compete with separate sprites.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/fox_distractor__round_512.png
+  fallback_behavior: If fox_distractor is unavailable, keep the runtime beat honest
+    and use voice-only fallback without claiming this image is visible.
+  collection_catalog_id: fox_distractor
+- id: wolf_distractor
+  role: collection_distractor
+  label: one centered friendly wolf distractor sprite
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+    boho pastels, generous negative space, square 512x512 source art, no readable
+    text, no letters or numbers, no logos, no watermark, no masks, no borders, and
+    no baked UI chrome. Subject: one centered friendly wolf distractor sprite. One
+    visual unit only. Keep important detail inside the central safe area. For scenes,
+    no selectable target objects that compete with separate sprites.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/wolf_distractor__round_512.png
+  fallback_behavior: If wolf_distractor is unavailable, keep the runtime beat honest
+    and use voice-only fallback without claiming this image is visible.
+  collection_catalog_id: wolf_distractor
+- id: cat_distractor
+  role: collection_distractor
+  label: one centered friendly cat distractor sprite
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Flat Nordic children illustration matching the quiet white WonderLens
+    prototype; broad flat color fills, sparse arc-eye and texture linework, restrained
+    boho pastels, generous negative space, square 512x512 source art, no readable
+    text, no letters or numbers, no logos, no watermark, no masks, no borders, and
+    no baked UI chrome. Subject: one centered friendly cat distractor sprite. One
+    visual unit only. Keep important detail inside the central safe area. For scenes,
+    no selectable target objects that compete with separate sprites.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/cat_distractor__round_512.png
+  fallback_behavior: If cat_distractor is unavailable, keep the runtime beat honest
+    and use voice-only fallback without claiming this image is visible.
+  collection_catalog_id: cat_distractor

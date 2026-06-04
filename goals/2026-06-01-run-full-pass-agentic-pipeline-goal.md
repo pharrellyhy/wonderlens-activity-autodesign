@@ -53,6 +53,11 @@ handling, completion, and final reporting.
 - Set `asset_build=generate_and_curate` and `full_pass_pipeline=true`.
 - Generate actual package-local PNG assets; `manifest_only` is not acceptable
   for this run.
+- Generate illustrative source PNGs with the Codex built-in imagegen tool. Do
+  not accept SVG/vector drawings, placeholder art, or non-imagegen scripts as
+  generated illustrative assets.
+- Use the repo-local style prompt and reference image in
+  `docs/asset_style_reference/` as the active flat Nordic visual target.
 - Keep package writing text-only and image generation image-only.
 - Do not use fullstack-demo or WonderLens AI as content improvement steps.
 - Do not rewrite activity intent to fit generated images, fullstack behavior,
@@ -122,6 +127,9 @@ Required delegated roles:
 
 Rules:
 
+- Run at most three delegated/sub-agents in parallel. When a delegated agent
+  finishes, collect its evidence and terminate or kill that finished agent
+  before spawning a replacement.
 - Validators must return concise evidence, file paths, transcript paths when
   applicable, and a verdict.
 - Validators must not repair their own findings.
@@ -291,8 +299,11 @@ Pass only when every accepted activity has:
   variant is explicitly requested;
 - 512x512 square illustrative source PNGs for subset and full-pass asset
   generation attempts, while final runtime variants stay manifest-driven;
-- style alignment with `docs/activity_asset_generation_workflow.md` and the
-  fullstack style prompt in the required worktree;
+- style alignment with `docs/activity_asset_generation_workflow.md`,
+  `docs/asset_style_reference/wonderlens-activity-style.md`, and
+  `docs/asset_style_reference/style-reference-flat-nordic.png`;
+- Codex built-in imagegen provenance for generated illustrative source PNGs,
+  with no SVG/vector/placeholder substitutes accepted as generated art;
 - scene/dialogue alignment for each runtime beat;
 - no baked app progress/control UI in PNGs; progress dots, round markers,
   response slots, rule strips, buttons, chips, picker slots, badges, and other
@@ -304,6 +315,8 @@ Pass only when every accepted activity has:
 - no duplicated selectable items/objects in background scenes when separate
   picker sprites, target/distractor cards, or collection items advance the
   activity;
+- selectable item/object picker PNGs declared separately and built under
+  package-local `assets/items/`, not mixed with beat-scene/background assets;
 - no premature answer reveal in progressive evidence or partial-reveal flows;
   early beat images must preserve the source step sequence and reveal only what
   the current dialogue beat should show;
@@ -324,6 +337,8 @@ test -f GOAL.md
 test -f run.md
 test -f program.md
 test -f docs/activity_asset_generation_workflow.md
+test -f docs/asset_style_reference/wonderlens-activity-style.md
+test -f docs/asset_style_reference/style-reference-flat-nordic.png
 test -f docs/plans/2026-06-01-run-full-pass-agentic-pipeline.md
 test -f goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md
 test -f inputs/original_activity_concepts_2026-05-29.tsv
@@ -437,5 +452,5 @@ Use from the `wonderlens-activity-autodesign` repo or a clean autodesign
 worktree:
 
 ```text
-/goal Implement goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md. Execute the current workbook full pass from inputs/original_activity_concepts_2026-05-29.tsv with asset_build=generate_and_curate and full_pass_pipeline=true; start fullstack validation only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game on branch feat/activity-text-game while sourcing live credentials only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend; use delegated agents for source intent, text package writing, image generation, fullstack dialogue QA, WonderLens AI dialogue QA, image QA, repair loops, and final independent review; if API rate limits occur, wait a few minutes and retry with backoff before declaring a blocker; stop only when the completion gate is satisfied or a blocker is documented.
+/goal Implement goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md. Execute the current workbook full pass from inputs/original_activity_concepts_2026-05-29.tsv with asset_build=generate_and_curate and full_pass_pipeline=true; generate illustrative assets with Codex built-in imagegen using docs/asset_style_reference/wonderlens-activity-style.md and docs/asset_style_reference/style-reference-flat-nordic.png; store picker item/object assets under package-local assets/items/; start fullstack validation only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game on branch feat/activity-text-game while sourcing live credentials only from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/backend; use delegated agents for source intent, text package writing, image generation, fullstack dialogue QA, WonderLens AI dialogue QA, image QA, repair loops, and final independent review with at most three running in parallel and finished agents killed before replacements; if API rate limits occur, wait a few minutes and retry with backoff before declaring a blocker; stop only when the completion gate is satisfied or a blocker is documented.
 ```

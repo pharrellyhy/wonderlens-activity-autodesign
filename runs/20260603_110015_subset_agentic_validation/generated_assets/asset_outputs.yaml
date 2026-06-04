@@ -1,0 +1,1184 @@
+run_id: 20260603_110015_subset_agentic_validation
+asset_build_mode: generate_and_curate
+generated_at: '2026-06-03T11:32:18+08:00'
+package_count: 5
+asset_count: 56
+built_count: 56
+required_failures: 0
+entries:
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: activity_icon
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__activity_icon.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/activity_icon__round_512.png
+    size: 512x512
+    sha256: 571380516c952c5daf58378e97b3092d71481f1a641537163003abc253834638
+    byte_count: 4209
+    mime_type: image/png
+    source_asset_id: activity_icon
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: intro_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__intro_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/intro_scene__round_512.png
+    size: 512x512
+    sha256: 170b8ec467f9d8d12f26d53ecb49aab7f50d08543bd04eb4f523b9a4a12bad27
+    byte_count: 3808
+    mime_type: image/png
+    source_asset_id: intro_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: rules_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__rules_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/rules_scene__round_512.png
+    size: 512x512
+    sha256: 39a61edab2e9d3eaa2f87b5ca84798d40c1c043610e297fb1453e7fa30e702c4
+    byte_count: 3786
+    mime_type: image/png
+    source_asset_id: rules_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: round_1_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__round_1_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_1_scene__round_512.png
+    size: 512x512
+    sha256: 08e88cd6aaa67a1835c10619009fc8a388e88c79d96dd60b43a5887469b78958
+    byte_count: 3967
+    mime_type: image/png
+    source_asset_id: round_1_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: round_2_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__round_2_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_2_scene__round_512.png
+    size: 512x512
+    sha256: 5017507a4c9fd0a07fe5886f4ae7331fef0778138e999d67d88f6a73b5b1b037
+    byte_count: 3839
+    mime_type: image/png
+    source_asset_id: round_2_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: round_3_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__round_3_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_3_scene__round_512.png
+    size: 512x512
+    sha256: ee91c137f5aba7986e1c7a1f8d3b593f4d321647dca3ae7079ee62128f3438a4
+    byte_count: 3975
+    mime_type: image/png
+    source_asset_id: round_3_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: celebrate_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__celebrate_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/celebrate_scene__round_512.png
+    size: 512x512
+    sha256: a341a63bf64e39cfa31de536f7601fa044a20fe4f09baf4cc8982eef49f65355
+    byte_count: 4125
+    mime_type: image/png
+    source_asset_id: celebrate_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: closing_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__closing_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/closing_scene__round_512.png
+    size: 512x512
+    sha256: a341a63bf64e39cfa31de536f7601fa044a20fe4f09baf4cc8982eef49f65355
+    byte_count: 4125
+    mime_type: image/png
+    source_asset_id: closing_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: cassiopeia_five_star_card
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: approved_internal_reference
+  transformation_policy: crop_resize_only
+  status: curated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__cassiopeia_five_star_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/cassiopeia_five_star_card__round_512.png
+    size: 512x512
+    sha256: 72ad360bd37aaefd1b076df6607e77cf16ce48cb4b932e76ec302e6cc3dfe8f8
+    byte_count: 7487
+    mime_type: image/png
+    source_asset_id: cassiopeia_five_star_card
+  source_metadata_path: activity_packages/concept_constellation_star_count_enumerate/assets/sources/cassiopeia_five_star_card__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_constellation_star_count_enumerate
+  asset_id: orion_seven_star_card
+  role: story_scene
+  accuracy_mode: reference_bound
+  requiredness: required
+  source_strategy: approved_internal_reference
+  transformation_policy: crop_resize_only
+  status: curated
+  package_path: activity_packages/concept_constellation_star_count_enumerate
+  work_item_path: generated_assets/work_items/concept_constellation_star_count_enumerate__orion_seven_star_card.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/orion_seven_star_card__round_512.png
+    size: 512x512
+    sha256: cac8ca120709d8c4e0f95d1534a329b85eafeca4a623f642d577b6205f4b1c3d
+    byte_count: 11787
+    mime_type: image/png
+    source_asset_id: orion_seven_star_card
+  source_metadata_path: activity_packages/concept_constellation_star_count_enumerate/assets/sources/orion_seven_star_card__source_metadata.yaml
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: activity_icon
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__activity_icon.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/activity_icon__round_512.png
+    size: 512x512
+    sha256: c9fa2e51a95a6697d1d5bb5ba9a336dd4db1d9877d719c57f71d5b8fa63916c2
+    byte_count: 5355
+    mime_type: image/png
+    source_asset_id: activity_icon
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: intro_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__intro_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/intro_scene__round_512.png
+    size: 512x512
+    sha256: e0328f1db40e75942e1a02caf3b984aff10eb928133717d315181f77869bf40b
+    byte_count: 3928
+    mime_type: image/png
+    source_asset_id: intro_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: rules_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__rules_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/rules_scene__round_512.png
+    size: 512x512
+    sha256: e0328f1db40e75942e1a02caf3b984aff10eb928133717d315181f77869bf40b
+    byte_count: 3928
+    mime_type: image/png
+    source_asset_id: rules_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: round_1_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__round_1_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_1_scene__round_512.png
+    size: 512x512
+    sha256: 8cb627da491ca2ea7c231af4dbb58bec6de06b9ea46a21575a62b2c2930296a4
+    byte_count: 4606
+    mime_type: image/png
+    source_asset_id: round_1_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: round_2_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__round_2_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_2_scene__round_512.png
+    size: 512x512
+    sha256: b510bd4d7674f94b62d7a67b15799a17e4ecafa53e73eddcdadcad5ab0dba62f
+    byte_count: 5221
+    mime_type: image/png
+    source_asset_id: round_2_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: round_3_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__round_3_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_3_scene__round_512.png
+    size: 512x512
+    sha256: c9fa2e51a95a6697d1d5bb5ba9a336dd4db1d9877d719c57f71d5b8fa63916c2
+    byte_count: 5355
+    mime_type: image/png
+    source_asset_id: round_3_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: celebrate_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__celebrate_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/celebrate_scene__round_512.png
+    size: 512x512
+    sha256: c9fa2e51a95a6697d1d5bb5ba9a336dd4db1d9877d719c57f71d5b8fa63916c2
+    byte_count: 5355
+    mime_type: image/png
+    source_asset_id: celebrate_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: closing_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__closing_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/closing_scene__round_512.png
+    size: 512x512
+    sha256: c9fa2e51a95a6697d1d5bb5ba9a336dd4db1d9877d719c57f71d5b8fa63916c2
+    byte_count: 5355
+    mime_type: image/png
+    source_asset_id: closing_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: circle_step
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__circle_step.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/circle_step__round_512.png
+    size: 512x512
+    sha256: 5cb1f819ede77e47835d747aaaabf566ab76f7863b8e6d757dd65fe8e81decbf
+    byte_count: 3448
+    mime_type: image/png
+    source_asset_id: circle_step
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: ears_step
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__ears_step.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/ears_step__round_512.png
+    size: 512x512
+    sha256: f57e18b20a71c26486b865165b1e4f9e3acf0b1f824ab5cda0e764392603e1e0
+    byte_count: 3912
+    mime_type: image/png
+    source_asset_id: ears_step
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_guided_drawing_probe
+  asset_id: finish_step
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_guided_drawing_probe
+  work_item_path: generated_assets/work_items/concept_guided_drawing_probe__finish_step.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/finish_step__round_512.png
+    size: 512x512
+    sha256: 81e0f33d22b075aa3d248198b818d425dc3161f95ff9986cc9babb9b4980765f
+    byte_count: 4084
+    mime_type: image/png
+    source_asset_id: finish_step
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: activity_icon
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__activity_icon.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/activity_icon__round_512.png
+    size: 512x512
+    sha256: 790382e72e27f6c843ef859b352bb75afb4d061cac075bb59fc91d5110dae770
+    byte_count: 3771
+    mime_type: image/png
+    source_asset_id: activity_icon
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: intro_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__intro_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/intro_scene__round_512.png
+    size: 512x512
+    sha256: 83001e980356f22aab6cdec9e633ccbe61d78e8e154cf0ced327c86e44c750e3
+    byte_count: 5196
+    mime_type: image/png
+    source_asset_id: intro_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: rules_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__rules_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/rules_scene__round_512.png
+    size: 512x512
+    sha256: 4aee00d05966702d4b16d0c60ede3c47d969d3240d19eecfa3ecf5bb11ce303a
+    byte_count: 3654
+    mime_type: image/png
+    source_asset_id: rules_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: round_1_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__round_1_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_1_scene__round_512.png
+    size: 512x512
+    sha256: d75f097816fa3c660a581cfc9b699cc53dcf455335a9955ea121d48c15e63413
+    byte_count: 3755
+    mime_type: image/png
+    source_asset_id: round_1_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: round_2_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__round_2_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_2_scene__round_512.png
+    size: 512x512
+    sha256: ea039dedfe4312474dfa9c6d027126dd141824b572587e1a30e2f02b39827b43
+    byte_count: 3687
+    mime_type: image/png
+    source_asset_id: round_2_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: round_3_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__round_3_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_3_scene__round_512.png
+    size: 512x512
+    sha256: ef969996ebf9fc73b4e55e437198ad112edcd28cf2a85b4f7b6346e371064c59
+    byte_count: 3744
+    mime_type: image/png
+    source_asset_id: round_3_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: synthesis_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__synthesis_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/synthesis_scene__round_512.png
+    size: 512x512
+    sha256: dcde88af0ab8227479c96c726f6c00cd2020470dcd8fbcb6a3012d813f224b5e
+    byte_count: 3842
+    mime_type: image/png
+    source_asset_id: synthesis_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: celebrate_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__celebrate_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/celebrate_scene__round_512.png
+    size: 512x512
+    sha256: 25ad7b80f869244ab91f0638f2f07ec73a528623158aaa7c8a560346d0d39f85
+    byte_count: 3872
+    mime_type: image/png
+    source_asset_id: celebrate_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: closing_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__closing_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/closing_scene__round_512.png
+    size: 512x512
+    sha256: 26f6e059edf9bea710e2afe32bb70579fcfafed4b29c805770b724344628a67b
+    byte_count: 3893
+    mime_type: image/png
+    source_asset_id: closing_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: ball_object
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__ball_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/ball_object__round_512.png
+    size: 512x512
+    sha256: 027dfd2217a4c4617bcd7cae2f7826911849d02177997137aea52b427c0fdd77
+    byte_count: 3460
+    mime_type: image/png
+    source_asset_id: ball_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: banana_object
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__banana_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/banana_object__round_512.png
+    size: 512x512
+    sha256: 2e6ab7edfcb2c87c2895f5b106a5f83261a1b9c20c0226424f784894006dde6c
+    byte_count: 3618
+    mime_type: image/png
+    source_asset_id: banana_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: book_object
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__book_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/book_object__round_512.png
+    size: 512x512
+    sha256: d7196725b416ac3a488955906e963b9524ad8d35ce948d67229d3b86e1a47647
+    byte_count: 2581
+    mime_type: image/png
+    source_asset_id: book_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: cup_object
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__cup_object.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/cup_object__round_512.png
+    size: 512x512
+    sha256: 2a7a3b57cfcd875e09172bbd316336039f0b0f3e4dc3509f1524e683a7339e66
+    byte_count: 2972
+    mime_type: image/png
+    source_asset_id: cup_object
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_phoneme_hunt_collect
+  asset_id: b_sound_letter_cue
+  role: ui_overlay
+  accuracy_mode: illustrative
+  requiredness: optional
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_phoneme_hunt_collect
+  work_item_path: generated_assets/work_items/concept_phoneme_hunt_collect__b_sound_letter_cue.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/b_sound_letter_cue__round_512.png
+    size: 512x512
+    sha256: 9f291752e7dc6319464dcc094fca698ebc75a86e63d89c381af16fd45f14d6fc
+    byte_count: 9082
+    mime_type: image/png
+    source_asset_id: b_sound_letter_cue
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: activity_icon
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__activity_icon.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/activity_icon__round_512.png
+    size: 512x512
+    sha256: 3d6081d4447edd5be6cb3ffa57b1c06939ec1fb393518f52333c87578280967e
+    byte_count: 3583
+    mime_type: image/png
+    source_asset_id: activity_icon
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: intro_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__intro_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/intro_scene__round_512.png
+    size: 512x512
+    sha256: 70ac8198390f45e58db8e43e20768ea380c6786c614e2e72e92d77ee81470e0f
+    byte_count: 3873
+    mime_type: image/png
+    source_asset_id: intro_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: rules_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__rules_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/rules_scene__round_512.png
+    size: 512x512
+    sha256: 397c6113e47dda44b75eca6f491b87a8d80b0fdbecfc77e09d561e7a3d87555d
+    byte_count: 3851
+    mime_type: image/png
+    source_asset_id: rules_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: round_1_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__round_1_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_1_scene__round_512.png
+    size: 512x512
+    sha256: 5ae4d7334a7f714fcde276e3d980fc99f65dfcfb9c7a2ae5d47015a7b1333646
+    byte_count: 3460
+    mime_type: image/png
+    source_asset_id: round_1_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: round_2_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__round_2_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_2_scene__round_512.png
+    size: 512x512
+    sha256: 0cae0e7733e47ecd2a227b44713f35b974b53c08c12153ebe483059b5b8971d7
+    byte_count: 3491
+    mime_type: image/png
+    source_asset_id: round_2_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: round_3_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__round_3_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_3_scene__round_512.png
+    size: 512x512
+    sha256: b2a3fe0c72744fcd5062d00fa5f7aeae332631e483df7692d7ac8034bd08b954
+    byte_count: 3452
+    mime_type: image/png
+    source_asset_id: round_3_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: celebrate_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__celebrate_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/celebrate_scene__round_512.png
+    size: 512x512
+    sha256: 8a0617ec6002cd70d27b141012062e343002eac33aae19391460ca1e34ec9809
+    byte_count: 3505
+    mime_type: image/png
+    source_asset_id: celebrate_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: closing_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__closing_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/closing_scene__round_512.png
+    size: 512x512
+    sha256: 03e8872387c3201c0b2cdf04f0de843caef57b510e71c384f8c0555826a0db7c
+    byte_count: 3468
+    mime_type: image/png
+    source_asset_id: closing_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: dog_target
+  role: collection_correct
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__dog_target.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/dog_target__round_512.png
+    size: 512x512
+    sha256: b83d9ce8a5c8488dac15630259aad3f845321840ebf8cf3be7b08f0961ba900d
+    byte_count: 3421
+    mime_type: image/png
+    source_asset_id: dog_target
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: fox_distractor
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__fox_distractor.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/fox_distractor__round_512.png
+    size: 512x512
+    sha256: 737fbb610e7302b53f8e9f4de6923e481c3148f83f65cbd049e5bb71963b2fc3
+    byte_count: 3307
+    mime_type: image/png
+    source_asset_id: fox_distractor
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: wolf_distractor
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__wolf_distractor.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/wolf_distractor__round_512.png
+    size: 512x512
+    sha256: 8741a73c0790892db4b3190799361659ad42eab6bd5b68c58647c972b1aa2931
+    byte_count: 3337
+    mime_type: image/png
+    source_asset_id: wolf_distractor
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_recognition_pop_probe
+  asset_id: cat_distractor
+  role: collection_distractor
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_recognition_pop_probe
+  work_item_path: generated_assets/work_items/concept_recognition_pop_probe__cat_distractor.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/cat_distractor__round_512.png
+    size: 512x512
+    sha256: e967016ee8b9924efbe036bce9a7c4081cdff893dc11c8e9e797952eddcad5ac
+    byte_count: 3429
+    mime_type: image/png
+    source_asset_id: cat_distractor
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: activity_icon
+  role: activity_preview
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_scavenger_hunt_collect
+  work_item_path: generated_assets/work_items/concept_scavenger_hunt_collect__activity_icon.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/activity_icon__round_512.png
+    size: 512x512
+    sha256: 1f10d242ef0805511fedc24d7cfa6e997f2947549419f3153a03c0d1ab5b8268
+    byte_count: 4580
+    mime_type: image/png
+    source_asset_id: activity_icon
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: intro_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_scavenger_hunt_collect
+  work_item_path: generated_assets/work_items/concept_scavenger_hunt_collect__intro_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/intro_scene__round_512.png
+    size: 512x512
+    sha256: 60fef93d239be30bf5b39ffbe60d203399d0fbb276cfe36be8752e088815dacb
+    byte_count: 3693
+    mime_type: image/png
+    source_asset_id: intro_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: rules_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_scavenger_hunt_collect
+  work_item_path: generated_assets/work_items/concept_scavenger_hunt_collect__rules_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/rules_scene__round_512.png
+    size: 512x512
+    sha256: fa256ebd2a5c299dc117124281281a431f06e79bdf8145ed277750df64bbf7f1
+    byte_count: 3633
+    mime_type: image/png
+    source_asset_id: rules_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: round_1_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_scavenger_hunt_collect
+  work_item_path: generated_assets/work_items/concept_scavenger_hunt_collect__round_1_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_1_scene__round_512.png
+    size: 512x512
+    sha256: 1f0eb6c43af5e5de6c70eda7777f9e8612128434b5d7f9fd7bf06a067c5ac138
+    byte_count: 3710
+    mime_type: image/png
+    source_asset_id: round_1_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: round_2_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_scavenger_hunt_collect
+  work_item_path: generated_assets/work_items/concept_scavenger_hunt_collect__round_2_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_2_scene__round_512.png
+    size: 512x512
+    sha256: be0d4b7a34ce0acb8c92b5de41775b73e986124c2c7ebbca98547d57045f43ac
+    byte_count: 3634
+    mime_type: image/png
+    source_asset_id: round_2_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: round_3_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_scavenger_hunt_collect
+  work_item_path: generated_assets/work_items/concept_scavenger_hunt_collect__round_3_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/round_3_scene__round_512.png
+    size: 512x512
+    sha256: 4e33a2210e530926b1b629ef9198f3cd096b4ba01509c16e1710853c899dc5bb
+    byte_count: 3585
+    mime_type: image/png
+    source_asset_id: round_3_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: synthesis_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_scavenger_hunt_collect
+  work_item_path: generated_assets/work_items/concept_scavenger_hunt_collect__synthesis_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/synthesis_scene__round_512.png
+    size: 512x512
+    sha256: a9f5cf5e7f1c69dc28ebd76f2bac3622e7ade8e822881f632d008488ec1e6bad
+    byte_count: 4704
+    mime_type: image/png
+    source_asset_id: synthesis_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: celebrate_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_scavenger_hunt_collect
+  work_item_path: generated_assets/work_items/concept_scavenger_hunt_collect__celebrate_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/celebrate_scene__round_512.png
+    size: 512x512
+    sha256: 570050ce5cc68c45a5a28a15e048409262529505c145f6888e07faabd199bf8f
+    byte_count: 4835
+    mime_type: image/png
+    source_asset_id: celebrate_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.
+- activity_id: concept_scavenger_hunt_collect
+  asset_id: closing_scene
+  role: story_scene
+  accuracy_mode: illustrative
+  requiredness: required
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  status: generated
+  package_path: activity_packages/concept_scavenger_hunt_collect
+  work_item_path: generated_assets/work_items/concept_scavenger_hunt_collect__closing_scene.md
+  output_variants:
+  - variant_id: round_512
+    path: assets/closing_scene__round_512.png
+    size: 512x512
+    sha256: a91d03bc146363eab1d47f95c4cbdce170aa9a37e378809f7843f8aae4ff2bd9
+    byte_count: 4254
+    mime_type: image/png
+    source_asset_id: closing_scene
+  source_metadata_path: ''
+  qa_notes:
+  - Built package-local runtime asset variants.

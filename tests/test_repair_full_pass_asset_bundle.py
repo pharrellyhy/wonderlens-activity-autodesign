@@ -161,6 +161,62 @@ class RepairFullPassAssetBundleTest(unittest.TestCase):
             self.assertIn("do not redraw those selectable animals", prompt)
         self.assertIn("do not include dog, fox, wolf", by_id["activity_icon"]["prompt_en"])
 
+    def test_phoneme_prompts_foreground_sound_action_not_baskets(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            package_dir = write_package(run_dir, "concept_phoneme_hunt_collect", template_type="cat5")
+
+            repair.repair_run(run_dir)
+
+            manifest = yaml.safe_load((package_dir / "asset_manifest.yaml").read_text())
+
+        by_id = {asset["id"]: asset for asset in manifest["assets"]}
+        for asset_id in ("activity_icon", "intro_scene", "rules_scene", "round_1_scene", "round_2_scene", "round_3_scene", "synthesis_scene"):
+            prompt = by_id[asset_id]["prompt_en"].lower()
+            self.assertNotIn("empty basket", prompt)
+            self.assertNotIn("camera clue slot", prompt)
+            self.assertIn("sound", prompt)
+        self.assertIn("listening", by_id["intro_scene"]["prompt_en"].lower())
+
+    def test_phoneme_scene_prompts_use_shared_stage_and_clear_actions(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            package_dir = write_package(run_dir, "concept_phoneme_hunt_collect", template_type="cat5")
+
+            repair.repair_run(run_dir)
+
+            manifest = yaml.safe_load((package_dir / "asset_manifest.yaml").read_text())
+
+        by_id = {asset["id"]: asset for asset in manifest["assets"]}
+        scene_ids = (
+            "intro_scene",
+            "rules_scene",
+            "round_1_scene",
+            "round_2_scene",
+            "round_3_scene",
+            "synthesis_scene",
+            "celebrate_scene",
+            "closing_scene",
+        )
+        for asset_id in scene_ids:
+            prompt = by_id[asset_id]["prompt_en"].lower()
+            self.assertIn("shared stage", prompt)
+            self.assertIn("preschool child with brown hair", prompt)
+            self.assertIn("green sweater", prompt)
+            self.assertIn("low shelf on the right", prompt)
+            self.assertIn("wonderlens device", prompt)
+            self.assertIn("rounded rectangular", prompt)
+            self.assertIn("tablet-like learning device", prompt)
+            self.assertIn("must read as a device", prompt)
+            self.assertIn("not a flat circle", prompt)
+            self.assertIn("not a circular puck", prompt)
+
+        self.assertIn("look around the room for a matching object", by_id["round_2_scene"]["prompt_en"].lower())
+        self.assertIn("speaking a found object's name", by_id["round_3_scene"]["prompt_en"].lower())
+        self.assertIn("unmarked open floor", by_id["round_3_scene"]["prompt_en"].lower())
+        self.assertIn("do not draw any outline", by_id["round_3_scene"]["prompt_en"].lower())
+        self.assertIn("child says name", by_id["synthesis_scene"]["prompt_en"].lower())
+
     def test_cat5_adds_synthesis_scene(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             run_dir = Path(tmp)

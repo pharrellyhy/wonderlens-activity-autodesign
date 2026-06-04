@@ -1,0 +1,123 @@
+adaptation_brief:
+  activity_id: concept_phoneme_hunt_collect
+  input_mode: parameterized
+  core_promise: "The AI introduces the /b/ beginning sound, then the child finds one indoor treasure whose spoken word starts with that sound and shows it with the camera."
+  source_promise_alignment:
+    original_play_frame: "A sound-focused scavenger hunt where /b/ is the collection rule."
+    child_role: "Beginning-sound treasure finder."
+    device_role: "Introduce the /b/ sound, invite one photo-backed find, and judge the spoken/typed object name rather than the image alone."
+    interaction_sequence:
+      - "AI models /b/ /b/ /b/."
+      - "AI asks the child to find one treasure whose word starts with /b/."
+      - "Child photographs or shows one candidate object and names it."
+      - "AI accepts a /b/ word or redirects a non-/b/ word gently."
+      - "AI summarizes the beginning-sound rule."
+    required_child_actions:
+      - "Hear the /b/ sound."
+      - "Search indoors for one object."
+      - "Show or photograph the object."
+      - "Say or enter the object name so the sound evidence can be judged."
+    non_negotiable_elements:
+      - "Target sound must be /b/."
+      - "The target sound is the collection criterion."
+      - "The activity remains playful, not a formal phonics test."
+      - "Letter support is optional; voice-only fallback must work."
+    allowed_v1_adaptations:
+      - "Use child-provided object name as evidence because V1 cannot infer a beginning phoneme from a photo alone."
+      - "Use a text-free cue-card backing with app-owned /b/ or B overlay, or voice-only fallback if overlay is unavailable."
+      - "Use generated object picker sprites as examples/distractors, but do not replace the real child find."
+    product_dependencies:
+      - "generated_assets"
+      - "real_camera"
+      - "runtime_judgment"
+      - "device_round_screen"
+      - "optional_letter_overlay"
+    alignment_status: aligned
+    alignment_note: "The runtime keeps the source sequence: introduce /b/, ask for one matching treasure, require child name evidence, and summarize why it matched."
+  canonical_mechanic: collect
+  mechanic_confidence: high
+  category_decision: cat5
+  readiness: generate_with_assumptions
+  trigger_condition: "Child enters language treasure-hunt mode or photographs an everyday object suitable for sound play."
+  entity_role: exemplar
+  observation_angle: function
+  focal_attribute: "beginning sound /b/"
+  mapping_use:
+    required: false
+    available: false
+    value_if_available: []
+    missing_mapping_risk: none
+  product_capability_flags:
+    - requires_assets
+    - requires_asset_display
+    - requires_runtime_judgment
+    - requires_real_camera
+  asset_dependency:
+    policy: optional_support
+    assets:
+      - asset_id: phoneme_letter_card_01
+        asset_type: card_set
+        asset_role: ui_overlay
+        requiredness: optional
+        generation_timing: pre_generated
+        style_id: wonderlens_device_mint_soft_3d
+        accuracy_mode: illustrative
+        source_strategy: generated_illustrative
+        transformation_policy: generate_new
+        use_step: "prod.step_1; prod.step_3.round_1"
+        display_location: "round_device_screen cue-card backing"
+        screen_targets:
+          - round_device_screen
+        target_variants:
+          - id: round_512
+            target: round_device_screen
+            size: 512x512
+            path:
+        prompt_en: "Create a text-free cue-card backing for a runtime-owned /b/ or B overlay; no readable letters or labels baked into the PNG."
+        source: "new_ai_generated_asset"
+        reference_policy:
+          source_required: false
+          allowed_sources: []
+          verification_required: false
+          verification_notes: "Illustrative only; letter glyph belongs to runtime overlay."
+        sources: []
+        display_behavior: "Show the card backing at task start and briefly again if the child forgets the target sound; app overlays /b/ or B separately when available."
+        fallback_behavior: "If unavailable, repeat /b/ by voice only and do not claim the screen is showing a letter."
+    missing_asset_risk: low
+  demo_support:
+    export_requested: true
+    asset_build: generate_and_curate
+    status: degraded
+    ui_template: cat5_judgment
+    support_level: "catalog_simulated_judgment"
+    entity_bindings:
+      - entity_id: beginning_sound_treasure
+        display_label: Beginning Sound Treasure
+        source_entity_exemplar: beginning sound treasure
+        default: true
+    requires:
+      generated_assets: true
+      real_camera: true
+      runtime_judgment: true
+      device_round_screen: true
+    unsupported_reasons: []
+    degraded_reasons:
+      - "The current demo cannot infer the starting sound of a photographed object from image pixels alone."
+      - "The activity needs the child to say or enter the object name before accepting sound evidence."
+  scaffold_choice:
+    pillar: Adventure
+    game_style: quest_collector
+    scaffold_fit: acceptable
+  assumptions:
+    - "Runtime can prompt for a child-provided object name after photo capture."
+    - "Runtime may overlay /b/ or B on a text-free backing; if not, voice-only fallback is sufficient."
+  resolved_blockers:
+    - "Beginning-sound judgment is represented as degraded demo support and relies on child-provided name evidence instead of unsupported image-only phoneme inference."
+  extensibility:
+    entity_binding: parameterized
+    reusable_slots:
+      - "{target_sound}"
+      - "{target_letter_overlay}"
+      - "{candidate_object_name}"
+      - "{accepted_photo_id}"
+    retargeting_note: "Retarget by replacing /b/, allowed example words, optional letter overlay, and item sprite set together; keep the collect-and-name sequence unchanged."

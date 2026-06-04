@@ -1,32 +1,35 @@
 # Templates
 
-> **Version**: 1.11 | **Date**: 2026-05-27
-> **Owns**: the mechanic adapters, pillar-overlay contents (Mystery, Creation, Performance, Discovery, Adventure, Nurture), and the Cat1 / Cat3 / Cat5 category modifier appendix.
-> **Does NOT own**: the migrated five-file package layout, the tag block schema, asset requirement rows, or the tier defaults — those live in `activities/README.md`, `activities/_schema/tag_block.schema.json`, `docs/activity_vocabulary.md`, and `program.md` Phase 0 / §1.9.
-> **Consumed by**: `program.md` Phase 5 (template-reading flow), `run.md` (activity package loop), `docs/progression_axes.md` (cross-ref from axis → pillar affinity), generated `prod.md` runtime outputs, and legacy `designs/cat{1,5}/*.md` references.
+Version: 1.12
+Updated: 2026-06-03
 
-> **v1.7 — 2026-05-10**: Clarify enrichment mode. Existing migrated packages may be updated to the current template expansion floor without changing their mechanic, pillar/style, tag-block identity, or runtime package contract.
-> **v1.8 — 2026-05-11**: Make independent reviewer-agent quality review part of the package acceptance gate for generated and enriched packages.
-> **v1.9 — 2026-05-12**: Add Cat3 material-exploration modifier for product-contract override runs, and require reusable concept-led packages to expose extensibility slots such as `{runtime_entity}`, `{shared_feature}`, or approved asset-set IDs.
-> **v1.11 — 2026-05-27**: Reference optional demo export extensions. Templates still own scaffolding only; demo support gates and asset manifests live in `activities/README.md`, `program.md`, and `run.md`.
-> **v1.10 — 2026-05-21**: Add source-promise alignment as a layer above templates. Mechanic adapters, category modifiers, and pillar/style scaffolds must preserve the original source play frame unless product approval is recorded.
+This file owns reusable activity scaffolding:
 
----
+- mechanic adapters;
+- six pillar overlays: Mystery, Creation, Performance, Discovery, Adventure,
+  and Nurture;
+- Cat1, Cat3, and Cat5 category modifiers.
+
+This file does not own package layout, YAML schemas, demo support gates, asset
+manifest fields, or tier defaults. Those live in `activities/README.md`,
+`activities/_schema/`, `docs/activity_vocabulary.md`, and `program.md`.
 
 ## How templates work
 
-An activity design is built by composing four activity layers, plus source-promise and optional asset dependency layers supplied by Phase 0:
+An activity scaffold composes these layers:
 
-0. **Source-promise alignment** — the original play frame, child role, interaction sequence, required child actions, non-negotiable elements, allowed V1 adaptations, and product dependencies. This layer controls over normalized category/mechanic shorthand when they conflict. Templates can shape the experience, but they cannot invert a profession-first activity into scenario matching, a story-first unlock into a door-choice game, or a photo-collection concept into in-device-only play without product approval.
-
-1. **Template 0** — the category-agnostic skeleton. It defines the 5-beat spine (Transition Bridge → Frame & Role → Core Loop → Magic Moment → Celebration), the universal creative variables (`{metaphor}`, `{role_title}`, `{escalation_axis}`, `{reflective_question}`), and the three tier dials (T0 / T1 / T2). The migrated output contract lives in `program.md` §1.9 and `activities/README.md`.
-2. **Mechanic adapter** — one of the twelve `activity_signature.mechanic` adapters below. It defines what the child actually does in the repeated loop. This is the primary action label, but it does not replace the source-promise layer. If the mechanic token is right but the child role or sequence changes, the package still needs repair or product approval.
-3. **Category modifier** — Cat1 (in-device, sustained verbal), Cat3 (out-of-device material exploration), or Cat5 (out-of-device collection/tracking), drawn from the appendix at the bottom of this file. Category modifiers are small — 8 fields (beat medium, round count, camera use, setting, step count, core mechanic, anchor priority, checklist extras). They set the physical frame for the mechanic.
-4. **Pillar/style scaffold** — one of the six overlays below (Mystery / Creation / Performance / Discovery / Adventure / Nurture) and its compatible style. It provides emotional payoff, metaphor flavor, and magic-moment shape. If no pillar/style cleanly fits, choose the least misleading scaffold only when the mechanic remains intact; otherwise block generation per `program.md` Phase 0.
-
-The optional **asset dependency layer** is not a template layer and must not change the mechanic. It declares whether the scaffold may reference prebuilt cards, AI-generated images, line art, icons, overlays, or reference pictures. Asset requirements come from `adaptation_brief.asset_dependency` and are documented in `spec.md` `## Asset Brief`; demo-targeted packages also mirror the runtime asset contract in optional `asset_manifest.yaml`. `prod.md` references asset IDs and fallback behavior only.
-
-The layers compose like this:
+1. **Source promise** from Phase 0: original play frame, child role, sequence,
+   required child actions, non-negotiables, allowed adaptations, and product
+   dependencies. This controls over shorthand category/mechanic labels when
+   they conflict.
+2. **Template 0 spine**: Transition Bridge, Frame and Role, Core Loop, Magic
+   Moment, Celebration.
+3. **Mechanic adapter**: the repeated child action in Step 3.
+4. **Category modifier**: Cat1, Cat3, or Cat5 physical/runtime framing.
+5. **Pillar/style overlay**: emotional payoff, metaphor, and magic-moment
+   flavor.
+6. **Optional asset references** from the adaptation brief. Assets support the
+   scaffold; they do not change the mechanic.
 
 ```text
 Source Promise
@@ -38,9 +41,10 @@ Source Promise
 = activity scaffold
 ```
 
-The agent then fills the `{slots}` and expands each beat to full `program.md` format. The migrated five-file package may be more compact than older legacy specs, but template expansion must not become thin or generic: every beat needs enough concrete dialogue, branch reaction, screen state, and payoff detail for the runtime prompt composer to run it without inventing missing behavior.
-
-**Why Option B (one file).** Mechanics, pillar creative variables (like `{hidden_details}`, `{modifications}`, `{quest_criterion}`), and category modifiers all influence the executable scaffold. Keeping them together avoids split-file drift while still making the mechanic layer the first-class child-action contract.
+The agent then fills `{slots}` and expands each beat to `program.md` package
+format. A package may be compact, but it must not become generic: every live
+beat still needs concrete dialogue or runtime instruction, branch reaction,
+screen state, and earned payoff.
 
 ---
 
@@ -358,15 +362,3 @@ The same entity can be designed under different pillars — the pillar determine
 | Household objects | Mystery, Creation, Nurture | Hidden lives to investigate, mashup potential, "help it" scenarios |
 | Animals (real or toy) | Performance, Discovery, Nurture | Expressive characters, observable behaviors to predict, care relationships |
 | Nature items (outdoor) | All pillars (Cat5) | Visually rich, findable, varied — work for any collection mission |
-
----
-
-## Revnote
-
-- **v1.7 · 2026-05-10** · Add enrichment-mode guidance for existing migrated packages: keep identity and machine-readable contracts stable while adding missing scaffold expansion detail.
-- **v1.6 · 2026-05-09** · Tighten migrated package expansion standards: compact five-file packages are acceptable, but structurally valid thin packages fail; every beat needs executable detail, and every core-loop round needs distinct action, reaction, and screen progression.
-- **v1.3 · 2026-05-08** · Add the mechanic adapter layer between Template 0 and pillar/style scaffolds. Mechanics now define the primary child-action loop; pillar/style provides emotional payoff only after mechanic and category are fixed.
-- **v1.3 · 2026-05-12** · Clarify that fresh run packages live under `runs/<run_id>/activity_packages/<activity_id>/` while canonical packages live under `activities/<activity_id>/`.
-- **v1.2 · 2026-05-08** · Align template consumption with the migrated five-file package. Templates now explicitly forbid condensed runtime rounds and defer tag-block shape to `activities/_schema/tag_block.schema.json`.
-- **v1.1 · 2026-04-20** · Legacy inline-design note for `entity_attributes_covered`; superseded for migrated packages by v1.2 and `activities/_schema/tag_block.schema.json`.
-- **v1.0 · 2026-04-20** · Refactor to Template 0 reference + 6 pillar overlays + Cat1/Cat5 category-modifier appendix (Option B, single file). Replaces the v0.x Template A / Template B dual-template structure. Template 0 skeleton authority now lives in `docs/template_0_preview.html` §03 / §04 / §06; this file owns the pillar overlays and the category modifiers. Creative variables stay per-overlay because they are genuinely pillar-specific (`{hidden_details}` is Mystery-only, `{modifications}` is Creation-only, etc.).
