@@ -126,6 +126,8 @@ runs/<run_id>/activity_packages/<activity_id>/
 ├── asset_manifest.yaml          # variant paths updated to package-relative assets/...
 └── assets/
     ├── <asset_id>__<variant_id>.png
+    ├── items/
+    │   └── <picker_item_id>__<variant_id>.png
     └── sources/
         ├── <asset_id>__source_original.<ext>
         └── <asset_id>__source_metadata.yaml

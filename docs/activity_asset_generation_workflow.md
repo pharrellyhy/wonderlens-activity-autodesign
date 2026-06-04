@@ -401,3 +401,6 @@ python3 scripts/build_activity_screen_assets.py
 
 Autodesign package runs should still use the package-local
 `generated_assets/inbox/` plus `scripts/build_activity_assets.py` flow above.
+That builder writes collection picker roles (`collection_correct` and
+`collection_distractor`) under package-local `assets/items/`; beat scenes,
+icons, overlays, and reference-bound sources stay under `assets/`.

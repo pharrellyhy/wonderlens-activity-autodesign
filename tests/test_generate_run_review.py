@@ -382,11 +382,11 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
                 "  - id: round_512\n"
                 "    target: round_device_screen\n"
                 "    size: 512x512\n"
-                "    path: assets/target_card__round_512.png\n"
+                "    path: assets/items/target_card__round_512.png\n"
                 "  fallback_behavior: Show fallback.\n"
             )
-            (package_dir / "assets").mkdir()
-            (package_dir / "assets" / "target_card__round_512.png").write_bytes(b"png")
+            (package_dir / "assets" / "items").mkdir(parents=True)
+            (package_dir / "assets" / "items" / "target_card__round_512.png").write_bytes(b"png")
             (run_dir / "review.html").write_text(self.report.build_html(root, run_dir))
 
             with self.assertRaisesRegex(SystemExit, "full_pass_asset_bundle"):

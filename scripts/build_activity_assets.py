@@ -65,6 +65,7 @@ REFERENCE_METADATA_REQUIRED_FIELDS = (
 REFERENCE_TRANSFORM_REQUIRES_CURATED_VARIANT = {"simplified_redraw", "style_preserving_redraw"}
 DERIVABLE_REFERENCE_TRANSFORMS = {"crop_resize_only", "no_derivative_generation"}
 IMAGE_SUFFIXES = (".png", ".jpg", ".jpeg", ".webp")
+ITEM_ASSET_ROLES = {"collection_correct", "collection_distractor"}
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -146,11 +147,11 @@ def discover_package_dirs(run_dir: Path) -> list[Path]:
 
 
 def safe_output_path(package_dir: Path, asset: dict[str, Any], variant_id: str) -> Path:
+    role = norm(asset.get("role"))
     asset_id = validate_safe_id(asset.get("id"), "asset id")
     variant_id = validate_safe_id(variant_id, "variant id")
-    if norm(asset.get("role")) in ITEM_ASSET_ROLES:
-        return package_dir / "assets" / "items" / f"{asset_id}__{variant_id}.png"
-    return package_dir / "assets" / f"{asset_id}__{variant_id}.png"
+    output_dir = package_dir / "assets" / "items" if role in ITEM_ASSET_ROLES else package_dir / "assets"
+    return output_dir / f"{asset_id}__{variant_id}.png"
 
 
 def asset_source_dir(package_dir: Path) -> Path:
