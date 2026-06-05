@@ -23,6 +23,7 @@ files remain under `goals/` and are not backfilled here.
 
 | Goal | Status | Notes |
 |---|---|---|
+| [2026-06-05-entity-compatibility-axis-parameterization-contract-goal.md](2026-06-05-entity-compatibility-axis-parameterization-contract-goal.md) | Planned | Plan-backed goal for explicit entity compatibility, parameterization-mode enforcement, ambiguous agnostic package failures, review-dashboard verdicts, and current-twelve reclassification. |
 | [2026-06-05-entity-parameterized-package-authoring-goal.md](2026-06-05-entity-parameterized-package-authoring-goal.md) | Completed | Implemented producer-side package parameterization metadata, authoring-agent mode decision docs, review-dashboard integrity verdicts, validators, fixtures, current-twelve classification, and downstream runtime contract documentation. |
 | [2026-06-01-run-full-pass-agentic-pipeline-goal.md](2026-06-01-run-full-pass-agentic-pipeline-goal.md) | Planned | Executes the current workbook full pass with `asset_build=generate_and_curate`, fullstack validation from the `feat/activity-text-game` worktree, WonderLens AI dialogue validation, image QA, repair loops, and final review. |
 | [2026-06-01-full-pass-agentic-pipeline-goal.md](2026-06-01-full-pass-agentic-pipeline-goal.md) | Completed | Encoded the master/subagent full-pass generation workflow, source-intent and consumer/import gates, fullstack/WonderLens AI dialogue QA, image QA, repair loops, and final review contract before scaling generation. |

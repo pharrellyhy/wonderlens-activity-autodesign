@@ -23,6 +23,7 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
+| [2026-06-05-entity-compatibility-axis-parameterization-contract.md](2026-06-05-entity-compatibility-axis-parameterization-contract.md) | Planned | Splits broad entity compatibility from runtime handoff behavior by replacing overloaded agnostic semantics with an explicit compatibility axis and enforcing parameterization mode as the handoff contract. |
 | [2026-06-05-entity-parameterized-package-authoring.md](2026-06-05-entity-parameterized-package-authoring.md) | Completed | Added producer-side parameterization metadata, authoring-agent mode decision docs, review-dashboard integrity verdicts, validator/schema coverage, current-twelve classification, and downstream WonderLens AI contract alignment. |
 | [2026-06-01-run-full-pass-agentic-pipeline.md](2026-06-01-run-full-pass-agentic-pipeline.md) | Planned | Executes the current workbook full pass with `asset_build=generate_and_curate`, fullstack validation from the `feat/activity-text-game` worktree, WonderLens AI dialogue validation, image QA, repair loops, and final review. |
 | [2026-06-01-full-pass-agentic-pipeline.md](2026-06-01-full-pass-agentic-pipeline.md) | Completed | Encoded the master/subagent full-pass generation workflow, source-intent and consumer/import gates, fullstack/WonderLens AI dialogue QA, image QA, repair loops, and final review contract before scaling generation. |
