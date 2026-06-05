@@ -34,7 +34,7 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 | `tag_block.yaml` | matcher, selector | YAML | machine-readable metadata; schema-validated |
 | `recap.template.yaml` | recap renderer | YAML with `{placeholders}` | per-session payload emitted at activity end |
 | `dashboard.template.yaml` | parent dashboard roller | YAML with `{placeholders}` | per-session fragment merged into device rollup |
-| `demo_support.yaml` | demo importer, reviewers | YAML | optional extension declaring `supported`, `degraded`, or `unsupported` demo readiness, UI template, explicit entity binding, and limitations |
+| `demo_support.yaml` | demo importer, reviewers | YAML | optional extension declaring demo readiness, explicit entity binding, top-level parameterization, and limitations |
 | `asset_manifest.yaml` | asset generator, demo importer | YAML | optional extension declaring separate runtime assets, style, screen targets, variants, file slots, fallback behavior, and reference provenance |
 
 ## Runtime completeness invariants
@@ -55,6 +55,7 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.yaml` `activity_signature.focal_attribute`.
 - `demo_support.yaml` and `asset_manifest.yaml` are optional extension files. A package without them remains a valid five-file activity package, but it is not direct-demo-import ready.
 - If `demo_support.yaml` declares `status: supported` or `status: degraded`, the package must include `asset_manifest.yaml`, at least one explicit entity binding, and a playable `ui_template`.
+- If `demo_support.yaml` is present, it must include top-level `parameterization` beside top-level `demo_support`. Do not nest `parameterization` under `demo_support`.
 - If `demo_support.yaml` declares `status: unsupported`, consumers must not expose the package as playable; the file must state `ui_template: none` and explain the missing mechanic, UI, asset, or runtime capability.
 
 ## Asset brief invariant
@@ -94,6 +95,25 @@ Current package generation does not create image files by default. Demo-targeted
 | `demo_support.unsupported_reasons` | Required when `status: unsupported`. |
 | `demo_support.degraded_reasons` | Required when `status: degraded`. |
 | `demo_support.consumer_notes` | Consumer-specific guidance, such as fullstack demo limitations. |
+
+`parameterization` tells consumers whether a discovery handoff entity can safely change runtime behavior. It is a top-level sibling of `demo_support` inside `demo_support.yaml`.
+
+Allowed `parameterization.mode` values:
+
+| Mode | Meaning |
+|---|---|
+| `fixed` | Handoff entity does not change authored success criteria, targets, clues, or assets. |
+| `entity_theme` | Handoff entity may appear in hook/context but does not change success criteria. |
+| `entity_target` | Handoff entity becomes the target object or subject. |
+| `property_target` | A discovered property or taxonomy value becomes the target. |
+| `initial_sound_from_entity` | Runtime derives the initial letter/sound target from the entity label. MVP only: first-letter sound derivation, not full phonetics. |
+| `word_from_entity` | Runtime uses the entity label as the word/echo target. |
+| `asset_catalog_target` | Target/distractor behavior depends on declared package assets or catalogs. |
+| `unsupported_until_parameterized` | The package is not valid for handoff retargeting until slots/assets/rules are repaired. |
+
+`tag_block.yaml` `entity_binding` and `matchability.entity_class_filter: []` are not sufficient for runtime parameterization. They do not state which handoff fields are required, which runtime fields are dynamic, which authored constants stay frozen, what happens when inputs are missing, or what evidence supports the decision.
+
+Every accepted `parameterization` decision must record the mode, decision source, integrity status, confidence, required handoff fields under `validity.requires`, source fields, derived runtime fields, authored/frozen constants, invalid/fallback behavior, evidence, and reviewer action. Authoring-agent or subagent inference is only proposed until these fields are written to package metadata and pass validation/review.
 
 `asset_manifest.yaml` describes each runtime asset separately. Do not collapse several cards into one contact sheet. Required fields:
 

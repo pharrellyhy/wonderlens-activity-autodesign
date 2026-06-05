@@ -1,0 +1,38 @@
+activity_id: entity_target_missing_runtime_fields
+version: 1
+parameterization:
+  mode: entity_target
+  decision_source: fixture_author
+  integrity_status: invalid_fixture
+  confidence: high
+  evidence:
+    - This fixture intentionally claims dynamic target behavior without declaring runtime fields.
+  validity:
+    production_supported: true
+    requires: []
+    invalid_when: []
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants: {}
+  fallback_behavior: Invalid fixture.
+  consumer_notes:
+    wonderlens_ai: This fixture should fail validation.
+  reviewer_action: repair_required
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: full
+  entity_bindings:
+    - entity_id: dog
+      display_label: Dog
+      source_entity_exemplar: dog
+      default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Invalid dynamic target fixture.

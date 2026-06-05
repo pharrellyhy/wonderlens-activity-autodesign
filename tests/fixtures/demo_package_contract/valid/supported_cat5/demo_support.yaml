@@ -1,5 +1,25 @@
 activity_id: fluffy_expedition_dandelion
 version: 1
+parameterization:
+  mode: entity_theme
+  decision_source: fixture_author
+  integrity_status: validator_fixture
+  confidence: high
+  evidence:
+    - Dandelion frames the child-facing theme, but the fuzzy collection rule is authored.
+  validity:
+    production_supported: true
+    requires: []
+    invalid_when: []
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    collection_criterion: fuzzy texture
+    collection_catalog: fixed
+  fallback_behavior: Keep the authored fuzzy collection rule even if no handoff entity is present.
+  consumer_notes:
+    wonderlens_ai: Do not retarget the success rule from the entity name.
+  reviewer_action: accept_as_thematic
 demo_support:
   status: supported
   ui_template: cat5_collection

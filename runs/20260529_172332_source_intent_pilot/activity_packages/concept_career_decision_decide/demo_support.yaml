@@ -1,5 +1,27 @@
 activity_id: concept_career_decision_decide
 version: 1
+parameterization:
+  mode: entity_theme
+  decision_source: current_package_review
+  integrity_status: thematic_entity_binding
+  confidence: high
+  evidence:
+    - The run-local package binds a firefighter helper role.
+    - Dialogue and assets preserve an authored helper scenario rather than deriving new career rules from arbitrary handoff entities.
+  validity:
+    production_supported: true
+    requires: []
+    invalid_when: []
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    helper_role: firefighter expert role
+    scenario_type: safe helper choice
+    runtime_rule: preserve authored firefighter safety prompts
+  fallback_behavior: Keep the authored firefighter helper scenario if no handoff entity is available.
+  consumer_notes:
+    wonderlens_ai: Treat the entity binding as a theme; do not rewrite tools or success criteria from the handoff entity.
+  reviewer_action: accept_as_thematic
 demo_support:
   status: supported
   ui_template: cat1_dialogue

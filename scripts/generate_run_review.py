@@ -196,6 +196,11 @@ REQUIRED_DIALOGUE_QA_STRATEGIES = {
     "silence_no_response",
     "premature_done",
 }
+CONSUMER_DIALOGUE_QA_FILENAMES = ("dialogue_qa_report.json", "dialogue_runtime_qa.json")
+DIALOGUE_QA_STRATEGY_ALIASES = {
+    "wrong_or_unproductive_answer": "wrong_unproductive_answer",
+    "help_or_confusion": "help_confusion",
+}
 
 
 @dataclass
@@ -623,6 +628,15 @@ def runtime_contract_quality_findings(beats: list[dict[str, Any]]) -> list[str]:
 
 
 def _celebration_instruction_asks_new_gameplay(instruction_lower: str) -> bool:
+    future_preview_cues = (
+        "without executing it",
+        "as a preview",
+        "future version:",
+        "future child-facing shape",
+    )
+    if any(cue in instruction_lower for cue in future_preview_cues):
+        return False
+
     gameplay_phrases = (
         "ask one more",
         "binary choice",
@@ -640,6 +654,20 @@ def _celebration_instruction_asks_new_gameplay(instruction_lower: str) -> bool:
     if any(phrase in instruction_lower for phrase in gameplay_phrases):
         return True
     return bool(re.search(r"\bgoal:\s*ask\b", instruction_lower))
+
+
+def normalize_dialogue_qa_strategy(value: Any) -> str:
+    strategy = normalize_text(value)
+    return DIALOGUE_QA_STRATEGY_ALIASES.get(strategy, strategy)
+
+
+def dialogue_qa_report_path(run_dir: Path, report_dir: str) -> Path:
+    base = run_dir / "downstream_reports" / report_dir
+    for filename in CONSUMER_DIALOGUE_QA_FILENAMES:
+        path = base / filename
+        if path.exists():
+            return path
+    return base / CONSUMER_DIALOGUE_QA_FILENAMES[0]
 
 
 def beat_from_chunk(title: str, chunk: str) -> dict[str, Any]:
@@ -715,7 +743,7 @@ def scorecard_rows(spec_text: str) -> list[dict[str, str]]:
 def consumer_dialogue_qa_findings(run_dir: Path) -> list[str]:
     findings: list[str] = []
     for report_dir, label in CONSUMER_DIALOGUE_QA_REPORTS.items():
-        report_path = run_dir / "downstream_reports" / report_dir / "dialogue_qa_report.json"
+        report_path = dialogue_qa_report_path(run_dir, report_dir)
         if not report_path.exists():
             findings.append(f"{label}: missing {report_path.relative_to(run_dir)}")
             continue
@@ -730,27 +758,31 @@ def consumer_dialogue_qa_findings(run_dir: Path) -> list[str]:
             findings.append(f"{label}: dialogue QA report must be a JSON object")
             continue
 
-        status = normalize_text(data.get("status")).lower()
+        status = normalize_text(data.get("status") or data.get("verdict")).lower()
         if status not in {"pass", "downstream_owned_failure"}:
             findings.append(f"{label}: status must be pass or downstream_owned_failure")
 
         raw_strategies = data.get("strategies")
+        raw_legacy_strategies = data.get("strategies_exercised")
         if not isinstance(raw_strategies, list):
-            findings.append(f"{label}: strategies must list dialogue QA cases")
-            strategy_names: set[str] = set()
+            if isinstance(raw_legacy_strategies, list):
+                strategy_names = {normalize_dialogue_qa_strategy(item) for item in raw_legacy_strategies}
+            else:
+                findings.append(f"{label}: strategies must list dialogue QA cases")
+                strategy_names = set()
         else:
-            strategy_names = {
-                normalize_text(item.get("strategy") or item.get("name") or item.get("id"))
-                for item in raw_strategies
-                if isinstance(item, dict)
-            }
+            strategy_names = set()
             for item in raw_strategies:
-                if not isinstance(item, dict):
+                if isinstance(item, str):
+                    strategy_names.add(normalize_dialogue_qa_strategy(item))
                     continue
-                item_name = normalize_text(item.get("strategy") or item.get("name") or item.get("id"))
-                item_status = normalize_text(item.get("status")).lower()
-                if item_name and item_status not in {"pass", "downstream_owned_failure"}:
-                    findings.append(f"{label}: strategy {item_name} has invalid status {item_status or '<empty>'}")
+                if isinstance(item, dict):
+                    item_name = normalize_dialogue_qa_strategy(item.get("strategy") or item.get("name") or item.get("id"))
+                    item_status = normalize_text(item.get("status")).lower()
+                    if item_name:
+                        strategy_names.add(item_name)
+                    if item_name and item_status not in {"pass", "downstream_owned_failure"}:
+                        findings.append(f"{label}: strategy {item_name} has invalid status {item_status or '<empty>'}")
 
         missing = sorted(REQUIRED_DIALOGUE_QA_STRATEGIES.difference(strategy_names))
         if missing:

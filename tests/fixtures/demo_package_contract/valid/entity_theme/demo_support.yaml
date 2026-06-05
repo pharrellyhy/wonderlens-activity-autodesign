@@ -1,4 +1,4 @@
-activity_id: dream_whisperer_cat
+activity_id: helper_theme_dialogue
 version: 1
 parameterization:
   mode: entity_theme
@@ -6,7 +6,7 @@ parameterization:
   integrity_status: validator_fixture
   confidence: high
   evidence:
-    - Cat is the conversation anchor, but the dream-whisperer dialogue beats stay authored.
+    - Handoff entity may be named in the hook, but the helper scenario remains authored.
   validity:
     production_supported: true
     requires: []
@@ -14,20 +14,20 @@ parameterization:
   source_fields: {}
   derived_runtime_fields: {}
   authored_constants:
-    dialogue_frame: sleepy cat dream
-    badge_asset: fixed
-  fallback_behavior: Keep the authored cat dialogue frame if no runtime entity is present.
+    helper_scenario: firefighter safety choice
+    success_criterion: choose the safe first action
+  fallback_behavior: Keep the authored helper scenario if no handoff entity is present.
   consumer_notes:
-    wonderlens_ai: Handoff entity may theme the hook only after authored slots are added.
+    wonderlens_ai: Do not rewrite the scenario tools or success criteria from the handoff entity.
   reviewer_action: accept_as_thematic
 demo_support:
   status: supported
   ui_template: cat1_dialogue
   support_level: full
   entity_bindings:
-    - entity_id: cat
-      display_label: Cat
-      source_entity_exemplar: cat
+    - entity_id: firefighter
+      display_label: Firefighter
+      source_entity_exemplar: firefighter
       default: true
   requires:
     generated_assets: true
@@ -37,4 +37,4 @@ demo_support:
   unsupported_reasons: []
   degraded_reasons: []
   consumer_notes:
-    fullstack_demo: Use the existing Cat1 dialogue UI with the bound cat entity.
+    fullstack_demo: Use the existing Cat1 dialogue UI with the helper theme.

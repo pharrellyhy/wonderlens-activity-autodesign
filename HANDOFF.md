@@ -1,5 +1,34 @@
 # HANDOFF
 
+## 2026-06-05 - Entity Parameterized Package Authoring Completed
+
+Problem: Demo/runtime-ready packages could declare entity bindings without
+declaring whether the handoff entity was fixed, thematic, dynamic, catalog
+driven, or unsupported. That left downstream consumers and reviewers to infer
+runtime behavior from activity IDs, prose, or broad match metadata.
+
+Solution: Added the top-level `parameterization` contract for
+`demo_support.yaml`, validator/schema support, valid and invalid fixtures,
+authoring docs, vocabulary docs, a current-twelve classification matrix, and
+run-local metadata migrations for the supported/degraded package examples that
+the contract validator exercises. The review dashboard now surfaces
+parameterization mode, integrity, dynamic fields, frozen fields, required
+handoff, evidence, and reviewer action, and its validator accepts both current
+and legacy downstream dialogue QA report shapes.
+
+Verification: Final verification for this goal used `git diff --check`,
+`python3 -m unittest tests.test_generate_run_review`,
+`python3 scripts/validate_demo_package_contract.py activities`,
+`python3 -m pytest tests/test_demo_package_contract_validator.py
+tests/test_generate_and_curate_asset_pipeline.py -q`, direct fixture
+validation, JSON schema parsing/schema validation, the three-run package
+contract repro from code review, and refreshed dashboard validation for
+`runs/20260603_110015_subset_agentic_validation` and
+`runs/20260603_171053_subset_phoneme_validation`. Regenerating
+`runs/20260529_172332_source_intent_pilot/review.html` still exposes unrelated
+legacy Step 4 runtime-contract findings in two activities, so that generated
+HTML was not included in this goal.
+
 ## 2026-06-05 - Parameterization Review Verdict Planned
 
 Problem: The entity-parameterized package plan needed to cover the latest

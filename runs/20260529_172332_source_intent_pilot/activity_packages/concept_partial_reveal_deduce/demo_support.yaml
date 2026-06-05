@@ -1,5 +1,42 @@
 activity_id: concept_partial_reveal_deduce
 version: 1
+parameterization:
+  mode: asset_catalog_target
+  decision_source: current_package_review
+  integrity_status: catalog_clue_target
+  confidence: high
+  evidence:
+    - Asset manifest declares rabbit ears, tiger tail, and elephant trunk reveal cards.
+    - Correct answers come from the authored clue-card catalog, not arbitrary entity handoff.
+  validity:
+    production_supported: true
+    requires:
+      - clue card asset id
+      - hidden answer label
+      - accepted guess list
+    invalid_when:
+      - clue card asset is missing
+      - hidden answer cannot be read from package metadata
+      - handoff asks for an entity outside the reveal-card catalog
+  source_fields:
+    clue_assets:
+      - asset_manifest.assets[].id
+      - asset_manifest.assets[].label
+  derived_runtime_fields:
+    target_card_ids:
+      - rabbit_ears_reveal_card
+      - tiger_tail_reveal_card
+      - elephant_trunk_reveal_card
+    answer_labels:
+      - rabbit
+      - tiger
+      - elephant
+  authored_constants:
+    reveal_rule: show a partial clue before the whole answer
+  fallback_behavior: Use only declared reveal cards; do not invent answers for uncataloged handoff entities.
+  consumer_notes:
+    wonderlens_ai: Treat the catalog as the source of truth for answer labels and accepted guesses.
+  reviewer_action: verify_clue_answer_mapping_before_accepting
 demo_support:
   status: supported
   ui_template: cat1_dialogue

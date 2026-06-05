@@ -1,0 +1,29 @@
+activity_id: fixed_missing_authored_constants
+entity_id: fox
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: "1:1"
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+assets:
+  - id: fox_badge
+    role: badge
+    label: Fox badge
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: Soft 3D educational toy illustration of a small fox badge, centered, no text or watermark.
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path:
+    fallback_behavior: Use the default badge.

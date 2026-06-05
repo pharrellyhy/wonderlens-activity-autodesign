@@ -268,6 +268,32 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
         self.assertIn("Celebration", findings[0])
         self.assertIn("celebration beat asks for new gameplay", findings[0])
 
+    def test_runtime_contract_quality_accepts_future_preview_note(self):
+        prod_text = """
+#### Step 4: Record Future Preview Shape
+
+**Runtime AI instruction:** Goal: document the future child-facing shape without executing it. Constraint: summarize four drawing steps and final photo celebration only as a preview. Emotion/tone: warm design note. Progress evidence: reviewers can tell what support would need to implement. Branch behavior: no per-step confirmation is required; leave enough time for drawing. Frame/source guardrail: this is not a live runtime task.
+
+**Example AI line:** [warm] "Future version: draw one simple line, add a shape, add a tiny detail, then photograph the whole drawing for celebration."
+
+**Child responses:**
+
+1. (Ideal) Reviewer reads the preview note.
+2. (Unexpected) Reviewer asks to launch it as play.
+3. (No response) Reviewer pauses.
+
+**AI follow-up policy:**
+
+1. (Ideal) Keep the preview as documentation.
+2. (Unexpected) Restate that this is not executable runtime play.
+3. (No response) Leave the preview note unchanged.
+
+**Screen/state:** Optional drawing step cards are documented but not launched.
+"""
+        findings = self.report.runtime_contract_quality_findings(self.report.runtime_beats(prod_text))
+
+        self.assertEqual([], findings)
+
     def test_consumer_dialogue_qa_requires_both_reports(self):
         with tempfile.TemporaryDirectory() as tmp:
             run_dir = Path(tmp)
@@ -320,6 +346,31 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
                             "mode": "runtime_equivalent",
                             "activity_ids": ["quality_smoke"],
                             "strategies": strategies,
+                        }
+                    )
+                )
+
+            self.assertEqual([], self.report.consumer_dialogue_qa_findings(run_dir))
+
+    def test_consumer_dialogue_qa_accepts_legacy_runtime_reports(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            legacy_strategies = [
+                "expected_answer",
+                "wrong_or_unproductive_answer",
+                "help_or_confusion",
+                "silence_no_response",
+                "premature_done",
+            ]
+            for consumer in ("fullstack_demo", "wonderlens_ai"):
+                report_dir = run_dir / "downstream_reports" / consumer
+                report_dir.mkdir(parents=True)
+                (report_dir / "dialogue_runtime_qa.json").write_text(
+                    json.dumps(
+                        {
+                            "verdict": "PASS",
+                            "mode": "runtime_equivalent",
+                            "strategies_exercised": legacy_strategies,
                         }
                     )
                 )

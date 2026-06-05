@@ -3,6 +3,8 @@
 > Legacy workflow only. These rules apply to old `designs/*_spec.md` -> `designs/*_prod.md` files and the aggregated `docs/WonderLens_Game_Designs_prod.md`. Do **not** use this file for migrated `activities/*/prod.md`; migrated runtime prods must keep every Step 3 round fully expanded and must not use one-line later-round summaries.
 >
 > Do **not** use this workflow for activity concept spreadsheet / concept-led adaptation. Concept rows follow the `program.md` Phase 0 path: `activity_concept row -> adaptation_brief -> assignment line or migrated activity package`.
+>
+> For migrated demo/runtime packages, entity handoff behavior is declared by top-level `parameterization` in `demo_support.yaml`; see `program.md` and `activities/README.md`. This legacy transform does not define parameterization rules.
 
 ## Reference
 

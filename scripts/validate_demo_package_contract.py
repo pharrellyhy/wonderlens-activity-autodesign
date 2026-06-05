@@ -18,6 +18,24 @@ except ImportError:  # pragma: no cover - exercised in dependency-light envs.
 
 DEMO_STATUSES = {"supported", "degraded", "unsupported"}
 UI_TEMPLATES = {"cat1_dialogue", "cat5_collection", "cat5_judgment", "none"}
+PARAMETERIZATION_MODES = {
+    "fixed",
+    "entity_theme",
+    "entity_target",
+    "property_target",
+    "initial_sound_from_entity",
+    "word_from_entity",
+    "asset_catalog_target",
+    "unsupported_until_parameterized",
+}
+DYNAMIC_PARAMETERIZATION_MODES = {
+    "entity_target",
+    "property_target",
+    "initial_sound_from_entity",
+    "word_from_entity",
+    "asset_catalog_target",
+}
+FIXED_PARAMETERIZATION_MODES = {"fixed", "entity_theme"}
 ASSET_ROLES = {
     "entity",
     "activity_preview",
@@ -191,6 +209,79 @@ def validate_demo_support(package_dir: Path, data: dict[str, Any]) -> list[str]:
     return issues
 
 
+def catalog_target_asset_count(asset_data: dict[str, Any]) -> int:
+    return sum(
+        1
+        for asset in as_list(asset_data.get("assets"))
+        if norm(as_dict(asset).get("role")) in {"collection_correct", "collection_distractor", "story_scene", "entity"}
+    )
+
+
+def validate_parameterization(package_dir: Path, demo_data: dict[str, Any], asset_data: dict[str, Any]) -> list[str]:
+    label = str(package_dir)
+    issues: list[str] = []
+    support = as_dict(demo_data.get("demo_support"))
+    status = norm(support.get("status"))
+    raw_parameterization = demo_data.get("parameterization")
+    parameterization = as_dict(raw_parameterization)
+
+    if status in {"supported", "degraded"} and not parameterization:
+        issues.append(f"{label}: {status} package must declare parameterization")
+        return issues
+    if raw_parameterization is not None and not isinstance(raw_parameterization, dict):
+        issues.append(f"{label}: parameterization must be a mapping")
+        return issues
+    if not parameterization:
+        return issues
+
+    mode = norm(parameterization.get("mode"))
+    if not mode:
+        issues.append(f"{label}: parameterization.mode is required")
+    elif mode not in PARAMETERIZATION_MODES:
+        issues.append(f"{label}: parameterization.mode {mode!r} is not allowed")
+
+    if mode == "unsupported_until_parameterized" and status in {"supported", "degraded"}:
+        issues.append(f"{label}: {status} package must not use unsupported_until_parameterized mode")
+    if status == "unsupported" and mode in DYNAMIC_PARAMETERIZATION_MODES:
+        issues.append(f"{label}: unsupported package must not claim dynamic parameterization mode {mode}")
+
+    if not norm(parameterization.get("decision_source")):
+        issues.append(f"{label}: parameterization.decision_source is required")
+    if not norm(parameterization.get("integrity_status")):
+        issues.append(f"{label}: parameterization.integrity_status is required")
+    if not norm(parameterization.get("confidence")):
+        issues.append(f"{label}: parameterization.confidence is required")
+    if not as_list(parameterization.get("evidence")):
+        issues.append(f"{label}: parameterization.evidence must include at least one item")
+    if not norm(parameterization.get("reviewer_action")):
+        issues.append(f"{label}: parameterization.reviewer_action is required")
+    if not norm(parameterization.get("fallback_behavior")):
+        issues.append(f"{label}: parameterization.fallback_behavior is required")
+
+    validity = as_dict(parameterization.get("validity"))
+    source_fields = as_dict(parameterization.get("source_fields"))
+    derived_runtime_fields = as_dict(parameterization.get("derived_runtime_fields"))
+    authored_constants = as_dict(parameterization.get("authored_constants"))
+
+    if mode in DYNAMIC_PARAMETERIZATION_MODES:
+        if not as_list(validity.get("requires")):
+            issues.append(f"{label}: dynamic parameterization mode {mode} must declare validity.requires")
+        if not source_fields:
+            issues.append(f"{label}: dynamic parameterization mode {mode} must declare source_fields")
+        if not derived_runtime_fields:
+            issues.append(f"{label}: dynamic parameterization mode {mode} must declare derived_runtime_fields")
+    if mode in FIXED_PARAMETERIZATION_MODES and not authored_constants:
+        issues.append(f"{label}: {mode} parameterization mode must declare authored_constants")
+    if mode == "initial_sound_from_entity":
+        target_sound = norm(authored_constants.get("target_sound")).lower()
+        if target_sound and target_sound != "dynamic":
+            issues.append(f"{label}: initial_sound_from_entity must not hard-code authored_constants.target_sound")
+    if mode == "asset_catalog_target" and catalog_target_asset_count(asset_data) == 0:
+        issues.append(f"{label}: asset_catalog_target must declare target/catalog assets in asset_manifest.yaml")
+
+    return issues
+
+
 def validate_screen_targets(package_dir: Path, manifest: dict[str, Any]) -> list[str]:
     label = str(package_dir)
     issues: list[str] = []
@@ -336,6 +427,7 @@ def validate_package(package_dir: Path) -> list[str]:
 
     if demo_path.exists():
         issues.extend(validate_demo_support(package_dir, demo_data))
+        issues.extend(validate_parameterization(package_dir, demo_data, asset_data))
     if asset_path.exists():
         issues.extend(validate_asset_manifest(package_dir, asset_data))
     if demo_path.exists() != asset_path.exists():

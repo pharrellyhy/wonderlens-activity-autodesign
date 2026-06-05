@@ -1,0 +1,340 @@
+version: 1
+status: reviewed
+reviewed_at: "2026-06-05"
+mode_contract_source: docs/plans/2026-06-05-entity-parameterized-package-authoring.md
+notes:
+  - Classifications are mode-driven and describe current package evidence, not desired future behavior.
+  - "entity_class_filter: [] is broad match metadata only; it is not proof of dynamic handoff support."
+  - initial_sound_from_entity uses first normalized English letter as the MVP approximation until a phoneme resolver exists.
+activities:
+  - activity_id: concept_animal_sound_motion_voice
+    inspected_paths:
+      - activities/concept_animal_sound_motion_voice
+    mode: entity_theme
+    evidence:
+      - Canonical prod rounds use fixed cat and duck echo actions.
+      - The trigger can be an animal toy/photo, but round animals and sounds are authored constants.
+    validity:
+      production_supported: true
+      requires: []
+      invalid_when: []
+    source_fields: {}
+    derived_runtime_fields: {}
+    authored_constants:
+      animal_sequence:
+        - cat
+        - duck
+      mechanic: voice and motion echo
+    fallback_behavior: Keep the authored cat and duck sequence when no handoff entity is available.
+    reviewer_action: accept_as_thematic; require new source fields before approving dynamic animal retargeting.
+    metadata_action: Add top-level parameterization mode entity_theme; freeze round animals and sounds until animal/sound slots are authored.
+
+  - activity_id: concept_career_decision_decide
+    inspected_paths:
+      - activities/concept_career_decision_decide
+      - runs/20260529_172332_source_intent_pilot/activity_packages/concept_career_decision_decide
+    mode: entity_theme
+    evidence:
+      - Run-local demo binds a firefighter helper role.
+      - Dialogue centers fixed firefighter, hose, and safety-check choices.
+    validity:
+      production_supported: true
+      requires: []
+      invalid_when: []
+    source_fields: {}
+    derived_runtime_fields: {}
+    authored_constants:
+      helper_role: firefighter expert role
+      scenario_type: safe helper choice
+    fallback_behavior: Keep the authored firefighter helper scenario if no handoff entity is available.
+    reviewer_action: accept_as_thematic; reject claims that arbitrary career entities rewrite tools or success criteria.
+    metadata_action: Add entity_theme metadata; freeze helper scenario, tools, and safe-first-action success criteria unless explicit slots are added.
+
+  - activity_id: concept_constellation_star_count_enumerate
+    inspected_paths:
+      - activities/concept_constellation_star_count_enumerate
+      - runs/20260529_172332_source_intent_pilot/activity_packages/concept_constellation_star_count_enumerate
+      - runs/20260603_110015_subset_agentic_validation/activity_packages/concept_constellation_star_count_enumerate
+    mode: asset_catalog_target
+    evidence:
+      - Runtime-ready variants depend on approved constellation/star-pattern reference assets.
+      - Success requires declared star count, constellation/card identity, and approved source provenance.
+    validity:
+      production_supported: true
+      requires:
+        - approved reference asset with star_count
+        - approved reference asset with constellation_name
+        - source provenance for each reference-bound card
+      invalid_when:
+        - approved reference card is missing
+        - star_count or constellation_name metadata is missing
+        - source provenance cannot be verified
+    source_fields:
+      catalog_assets:
+        - asset_manifest.assets[].id
+        - asset_manifest.assets[].star_count
+        - asset_manifest.assets[].constellation_name
+        - asset_manifest.assets[].sources
+    derived_runtime_fields:
+      target_card_ids:
+        - cassiopeia_five_star_card
+        - orion_seven_star_card
+      answer_field: star_count
+      display_field: constellation_name
+    authored_constants:
+      count_task: count visible guide stars on approved cards
+    fallback_behavior: Do not start the package if approved constellation card metadata is unavailable.
+    reviewer_action: verify_catalog_metadata_before_accepting.
+    metadata_action: Add catalog metadata for approved cards, star_count, display name, child-safe fact, and invalid_when approved metadata is missing.
+
+  - activity_id: concept_emotion_reader_care
+    inspected_paths:
+      - activities/concept_emotion_reader_care
+    mode: entity_theme
+    evidence:
+      - Canonical rounds use fixed care cues such as worried hands, sleepy shoulders, and brave try.
+      - No current package declares a visual emotion/property source field.
+    validity:
+      production_supported: true
+      requires: []
+      invalid_when: []
+    source_fields: {}
+    derived_runtime_fields: {}
+    authored_constants:
+      care_cues:
+        - worried hands
+        - sleepy shoulders
+        - brave try
+      mechanic: choose a caring response
+    fallback_behavior: Keep the authored care cue sequence when no handoff entity is available.
+    reviewer_action: accept_as_thematic; require expression/property source fields before approving property_target.
+    metadata_action: Add entity_theme metadata and freeze the authored cue/help sequence; only move to property_target when expression source fields are declared.
+
+  - activity_id: concept_guided_drawing_probe
+    inspected_paths:
+      - runs/20260603_110015_subset_agentic_validation/activity_packages/concept_guided_drawing_probe
+    mode: fixed
+    evidence:
+      - Run-local package is a degraded self-report drawing flow with fixed circle, side-shape, and finish-detail steps.
+      - Step assets are tied to the authored drawing sequence.
+    validity:
+      production_supported: false
+      requires: []
+      invalid_when:
+        - discovery handoff expects a different drawing target
+        - package lacks parameterized step prompts and matching assets
+    source_fields: {}
+    derived_runtime_fields: {}
+    authored_constants:
+      drawing_target: simple circle-based drawing
+      step_sequence:
+        - circle_step
+        - ears_step
+        - finish_step
+    fallback_behavior: Keep the fixed drawing sequence; do not retarget drawing steps from handoff entities.
+    reviewer_action: accept_only_as_fixed_or_author_parameterized_drawing_slots.
+    metadata_action: Add fixed metadata and freeze drawing target and step assets; dynamic entity targeting requires parameterized drawing prompts and assets.
+
+  - activity_id: concept_partial_reveal_deduce
+    inspected_paths:
+      - activities/concept_partial_reveal_deduce
+      - runs/20260529_172332_source_intent_pilot/activity_packages/concept_partial_reveal_deduce
+    mode: asset_catalog_target
+    evidence:
+      - Run-local demo binds partial animal reveal cards.
+      - Success depends on prebuilt clue/whole-card mappings, such as ears, tail, or trunk clues.
+    validity:
+      production_supported: true
+      requires:
+        - clue card asset id
+        - hidden answer label
+        - accepted guess list
+      invalid_when:
+        - clue card asset is missing
+        - hidden answer cannot be read from package metadata
+        - handoff asks for an entity outside the reveal-card catalog
+    source_fields:
+      clue_assets:
+        - asset_manifest.assets[].id
+        - asset_manifest.assets[].label
+    derived_runtime_fields:
+      target_card_ids:
+        - rabbit_ears_reveal_card
+        - tiger_tail_reveal_card
+        - elephant_trunk_reveal_card
+      answer_labels:
+        - rabbit
+        - tiger
+        - elephant
+    authored_constants:
+      reveal_rule: show a partial clue before the whole answer
+    fallback_behavior: Use only declared reveal cards; do not invent answers for uncataloged handoff entities.
+    reviewer_action: verify_clue_answer_mapping_before_accepting.
+    metadata_action: Add catalog metadata for clue asset IDs, hidden answer labels, accepted guesses, distractors, and invalid_when catalog evidence is missing.
+
+  - activity_id: concept_phoneme_hunt_collect
+    inspected_paths:
+      - activities/concept_phoneme_hunt_collect
+      - runs/20260603_171053_subset_phoneme_validation/activity_packages/concept_phoneme_hunt_collect
+    mode: unsupported_until_parameterized
+    evidence:
+      - Latest reviewed run hard-codes beginning /b/, B overlay, and B-item catalog.
+      - Dynamic dog to D or cat to C handoff requires object-name source fields and non-conflicting dynamic sound slots.
+    validity:
+      production_supported: false
+      requires: []
+      invalid_when:
+        - package hard-codes target_sound to /b/
+        - generated prompts or runtime exports preserve B-specific overlays
+        - object name source fields are missing
+    source_fields: {}
+    derived_runtime_fields: {}
+    authored_constants:
+      current_target_sound: /b/
+      current_collection_criterion: beginning B sound
+    fallback_behavior: Treat current packages as fixed /b/ demos; do not claim dog-to-D handoff until repaired.
+    reviewer_action: repair_to_initial_sound_from_entity_or_reject_dynamic_handoff_claim.
+    metadata_action: Repair package prompts/runtime fields to initial_sound_from_entity, or keep it fixed; do not claim dynamic phoneme handoff while target_sound remains /b/.
+
+  - activity_id: concept_recognition_pop_probe
+    inspected_paths:
+      - runs/20260603_110015_subset_agentic_validation/activity_packages/concept_recognition_pop_probe
+    mode: asset_catalog_target
+    evidence:
+      - Run-local assets declare a dog target with fox, wolf, and cat distractors.
+      - Gameplay responds only to the declared target sprite/catalog, not arbitrary entity handoff.
+    validity:
+      production_supported: true
+      requires:
+        - collection_correct target asset
+        - collection_distractor assets
+        - runtime support for target/distractor timing rule
+      invalid_when:
+        - target or distractor catalog is missing
+        - fast-tap timing cannot be represented honestly
+        - handoff asks for an entity outside the declared target catalog
+    source_fields:
+      target_asset:
+        - asset_manifest.assets[role=collection_correct].id
+        - asset_manifest.assets[role=collection_correct].label
+      distractor_assets:
+        - asset_manifest.assets[role=collection_distractor].id
+        - asset_manifest.assets[role=collection_distractor].label
+    derived_runtime_fields:
+      target_label: dog
+      distractor_labels:
+        - fox
+        - wolf
+        - cat
+      timing_rule: respond only when the dog target appears
+    authored_constants:
+      response_rule: fast target recognition
+    fallback_behavior: Run only with declared target/distractor assets; degrade timing claims if UI cannot prove fast responses.
+    reviewer_action: verify_target_catalog_and_timing_before_accepting.
+    metadata_action: Add target/distractor catalog metadata, accepted target label, timing requirement, and invalid_when sprites or timing support are unavailable.
+
+  - activity_id: concept_story_unlock_probe
+    inspected_paths:
+      - runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_story_unlock_probe
+    mode: fixed
+    evidence:
+      - Story uses fixed fox, moon-door color, owl sound, and bonjour echo gates.
+      - The photographed object can only act as a catalyst unless story slots are authored.
+    validity:
+      production_supported: false
+      requires: []
+      invalid_when:
+        - discovery handoff expects story beats to change from the entity
+        - gate prompts or story cards are not parameterized
+    source_fields: {}
+    derived_runtime_fields: {}
+    authored_constants:
+      story_character: fox
+      gate_prompts:
+        - moon-door color
+        - owl sound
+        - bonjour echo
+    fallback_behavior: Keep the fixed story beats; use photographed object only as a catalyst.
+    reviewer_action: accept_only_as_fixed_or_author_story_slots.
+    metadata_action: Add fixed metadata and freeze story beats, gate prompts, target word, and story cards.
+
+  - activity_id: concept_travel_planner_predict
+    inspected_paths:
+      - activities/concept_travel_planner_predict
+    mode: entity_theme
+    evidence:
+      - Current rounds use fixed rainy route, puddle/boat, and mud/boots reveal sequence.
+      - Trigger context can theme the setup, but itinerary success criteria are authored.
+    validity:
+      production_supported: true
+      requires: []
+      invalid_when: []
+    source_fields: {}
+    derived_runtime_fields: {}
+    authored_constants:
+      reveal_sequence:
+        - rainy route
+        - puddle or boat
+        - mud or boots
+      mechanic: choose what to bring or do next
+    fallback_behavior: Keep the authored travel reveal sequence when no handoff entity is available.
+    reviewer_action: accept_as_thematic; require destination, weather, and item-plan source fields before dynamic retargeting.
+    metadata_action: Add entity_theme metadata; freeze reveal sequence unless destination, weather, and item-plan slots are added.
+
+  - activity_id: concept_vegetable_sort_sort
+    inspected_paths:
+      - activities/concept_vegetable_sort_sort
+    mode: asset_catalog_target
+    evidence:
+      - Sorting depends on vegetable cards and known properties such as color, shape, edible part, or use.
+      - Arbitrary object handoff is invalid without a declared sort rule source.
+    validity:
+      production_supported: true
+      requires:
+        - vegetable catalog card ids
+        - sortable property metadata
+        - selected sort rule
+      invalid_when:
+        - handoff entity is outside the vegetable catalog
+        - no sortable property metadata is declared
+        - selected sort rule conflicts with catalog metadata
+    source_fields:
+      catalog_assets:
+        - asset_manifest.assets[].id
+        - asset_manifest.assets[].collection_catalog_id
+      sort_metadata:
+        - catalog.properties.color
+        - catalog.properties.shape
+        - catalog.properties.edible_part
+    derived_runtime_fields:
+      target_cards: catalog card ids
+      sort_rule: selected property rule
+      accepted_groups: groups derived from catalog metadata
+    authored_constants:
+      mechanic: sort cards by one declared property
+    fallback_behavior: Reject handoff entities outside the catalog or run as an authored vegetable-sort package only.
+    reviewer_action: verify_catalog_properties_and_sort_rule_before_accepting.
+    metadata_action: Add vegetable catalog metadata with card IDs and sortable properties; invalid_when handoff is outside the catalog or no rule can be derived.
+
+  - activity_id: concept_word_echo_remember
+    inspected_paths:
+      - activities/concept_word_echo_remember
+    mode: unsupported_until_parameterized
+    evidence:
+      - Canonical prod currently hard-codes cup and cup-cup echo behavior.
+      - No package metadata declares handoff label source fields or derived target_word.
+    validity:
+      production_supported: false
+      requires: []
+      invalid_when:
+        - package hard-codes target_word to cup
+        - handoff label source fields are missing
+        - generated prompts preserve cup-specific echoes
+    source_fields: {}
+    derived_runtime_fields: {}
+    authored_constants:
+      current_target_word: cup
+      current_echo_pattern: cup-cup
+    fallback_behavior: Treat current packages as fixed cup echo; do not claim dynamic word handoff until repaired.
+    reviewer_action: repair_to_word_from_entity_or_reject_dynamic_handoff_claim.
+    metadata_action: Repair to word_from_entity with required handoff label fields and target_word slots, or keep fixed cup echo.

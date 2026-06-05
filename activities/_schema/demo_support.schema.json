@@ -14,6 +14,114 @@
       "type": "integer",
       "minimum": 1
     },
+    "parameterization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "decision_source",
+        "integrity_status",
+        "confidence",
+        "evidence",
+        "reviewer_action",
+        "fallback_behavior"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "fixed",
+            "entity_theme",
+            "entity_target",
+            "property_target",
+            "initial_sound_from_entity",
+            "word_from_entity",
+            "asset_catalog_target",
+            "unsupported_until_parameterized"
+          ]
+        },
+        "decision_source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "integrity_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "reviewer_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "validity": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "production_supported": {
+              "type": "boolean"
+            },
+            "requires": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "allowed_entity_classes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "invalid_when": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "source_fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "derived_runtime_fields": {
+          "type": "object"
+        },
+        "authored_constants": {
+          "type": "object"
+        },
+        "fallback_behavior": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consumer_notes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "demo_support": {
       "type": "object",
       "additionalProperties": false,
@@ -110,8 +218,142 @@
   "allOf": [
     {
       "if": {
+        "required": ["demo_support"],
         "properties": {
           "demo_support": {
+            "required": ["status"],
+            "properties": {
+              "status": {
+                "enum": ["supported", "degraded"]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": ["parameterization"],
+        "properties": {
+          "parameterization": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "fixed",
+                  "entity_theme",
+                  "entity_target",
+                  "property_target",
+                  "initial_sound_from_entity",
+                  "word_from_entity",
+                  "asset_catalog_target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["demo_support"],
+        "properties": {
+          "demo_support": {
+            "required": ["status"],
+            "properties": {
+              "status": {
+                "const": "unsupported"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "parameterization": {
+            "properties": {
+              "mode": {
+                "enum": ["fixed", "entity_theme", "unsupported_until_parameterized"]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["parameterization"],
+        "properties": {
+          "parameterization": {
+            "required": ["mode"],
+            "properties": {
+              "mode": {
+                "enum": [
+                  "entity_target",
+                  "property_target",
+                  "initial_sound_from_entity",
+                  "word_from_entity",
+                  "asset_catalog_target"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "parameterization": {
+            "required": ["validity", "source_fields", "derived_runtime_fields"],
+            "properties": {
+              "validity": {
+                "required": ["requires"],
+                "properties": {
+                  "requires": {
+                    "minItems": 1
+                  }
+                }
+              },
+              "source_fields": {
+                "minProperties": 1
+              },
+              "derived_runtime_fields": {
+                "minProperties": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["parameterization"],
+        "properties": {
+          "parameterization": {
+            "required": ["mode"],
+            "properties": {
+              "mode": {
+                "enum": ["fixed", "entity_theme"]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "parameterization": {
+            "required": ["authored_constants"],
+            "properties": {
+              "authored_constants": {
+                "minProperties": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["demo_support"],
+        "properties": {
+          "demo_support": {
+            "required": ["status"],
             "properties": {
               "status": {
                 "const": "supported"
@@ -140,8 +382,10 @@
     },
     {
       "if": {
+        "required": ["demo_support"],
         "properties": {
           "demo_support": {
+            "required": ["status"],
             "properties": {
               "status": {
                 "const": "degraded"
@@ -170,8 +414,10 @@
     },
     {
       "if": {
+        "required": ["demo_support"],
         "properties": {
           "demo_support": {
+            "required": ["status"],
             "properties": {
               "status": {
                 "const": "unsupported"

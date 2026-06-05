@@ -1,5 +1,26 @@
 activity_id: concept_constellation_star_count_enumerate
 version: 1
+parameterization:
+  mode: fixed
+  decision_source: fixture_author
+  integrity_status: validator_fixture
+  confidence: high
+  evidence:
+    - The package depends on an approved constellation reference card, not arbitrary entity handoff.
+  validity:
+    production_supported: true
+    requires: []
+    invalid_when:
+      - approved_reference_missing
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    reference_asset: orion_reference_card
+    star_pattern: approved_internal_reference
+  fallback_behavior: Do not claim a named constellation if approved reference data is missing.
+  consumer_notes:
+    wonderlens_ai: Treat the reference card as fixed package content.
+  reviewer_action: accept_as_fixed_reference_bound
 demo_support:
   status: supported
   ui_template: cat1_dialogue

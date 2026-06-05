@@ -1,0 +1,50 @@
+activity_id: phoneme_dynamic_collect
+version: 1
+parameterization:
+  mode: initial_sound_from_entity
+  decision_source: fixture_author
+  integrity_status: validator_fixture
+  confidence: high
+  evidence:
+    - Runtime target sound derives from the handoff object name.
+    - Authored constants mark target_sound as dynamic rather than fixed to one letter.
+  validity:
+    production_supported: true
+    requires:
+      - handoff.object_name_en
+    allowed_entity_classes: []
+    invalid_when:
+      - entity_name_missing
+      - entity_name_not_speakable_in_english
+  source_fields:
+    entity_name:
+      - handoff.object_name_en
+      - demo_support.default_entity_binding.display_label
+  derived_runtime_fields:
+    accepted_initial_sound: first_spoken_letter
+    collection_criterion_template: Things whose spoken names begin with the {sound_label} sound
+  authored_constants:
+    target_sound: dynamic
+    collection_catalog: illustrative_examples
+  fallback_behavior: Do not start this package when no speakable object name is available.
+  consumer_notes:
+    wonderlens_ai: Derive accepted_initial_sound before planning prompts or collection checks.
+  reviewer_action: accept_after_validator_passes
+demo_support:
+  status: supported
+  ui_template: cat5_collection
+  support_level: full
+  entity_bindings:
+    - entity_id: dog
+      display_label: Dog
+      source_entity_exemplar: dog
+      default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Use the derived first-letter sound for collection choices.
