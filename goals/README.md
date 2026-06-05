@@ -1,6 +1,6 @@
 # Goal Status Index
 
-> **Last checked:** 2026-06-01
+> **Last checked:** 2026-06-05
 
 ## Status Definitions
 
@@ -23,6 +23,7 @@ files remain under `goals/` and are not backfilled here.
 
 | Goal | Status | Notes |
 |---|---|---|
+| [2026-06-05-entity-parameterized-package-authoring-goal.md](2026-06-05-entity-parameterized-package-authoring-goal.md) | Planned | Implements producer-side package parameterization metadata, validators, fixtures, current-twelve classification, and downstream runtime contract documentation. |
 | [2026-06-01-run-full-pass-agentic-pipeline-goal.md](2026-06-01-run-full-pass-agentic-pipeline-goal.md) | Planned | Executes the current workbook full pass with `asset_build=generate_and_curate`, fullstack validation from the `feat/activity-text-game` worktree, WonderLens AI dialogue validation, image QA, repair loops, and final review. |
 | [2026-06-01-full-pass-agentic-pipeline-goal.md](2026-06-01-full-pass-agentic-pipeline-goal.md) | Completed | Encoded the master/subagent full-pass generation workflow, source-intent and consumer/import gates, fullstack/WonderLens AI dialogue QA, image QA, repair loops, and final review contract before scaling generation. |
 | [2026-05-29-source-intent-pilot-validation-goal.md](2026-05-29-source-intent-pilot-validation-goal.md) | Completed | Seven-row pilot passed source-intent, runtime-instruction, PNG asset, fullstack import, and WonderLens AI runtime validation; Guided Drawing and Plant Parts remain honestly gated. |

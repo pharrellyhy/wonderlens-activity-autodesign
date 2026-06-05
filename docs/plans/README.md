@@ -1,6 +1,6 @@
 # Plan Status Index
 
-> **Last checked:** 2026-06-01
+> **Last checked:** 2026-06-05
 
 ## Status Definitions
 
@@ -23,6 +23,7 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
+| [2026-06-05-entity-parameterized-package-authoring.md](2026-06-05-entity-parameterized-package-authoring.md) | Planned | Adds producer-side parameterization metadata, validator/schema coverage, current-twelve classification, and downstream WonderLens AI contract alignment. |
 | [2026-06-01-run-full-pass-agentic-pipeline.md](2026-06-01-run-full-pass-agentic-pipeline.md) | Planned | Executes the current workbook full pass with `asset_build=generate_and_curate`, fullstack validation from the `feat/activity-text-game` worktree, WonderLens AI dialogue validation, image QA, repair loops, and final review. |
 | [2026-06-01-full-pass-agentic-pipeline.md](2026-06-01-full-pass-agentic-pipeline.md) | Completed | Encoded the master/subagent full-pass generation workflow, source-intent and consumer/import gates, fullstack/WonderLens AI dialogue QA, image QA, repair loops, and final review contract before scaling generation. |
 | [2026-05-29-source-intent-pilot-validation.md](2026-05-29-source-intent-pilot-validation.md) | Completed | Seven-row pilot passed source-intent, runtime-instruction, PNG asset, fullstack import, and WonderLens AI runtime validation; Guided Drawing and Plant Parts remain honestly gated. |
