@@ -179,6 +179,12 @@ file `goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md`. Root
 owns full-pass hard constraints, delegated-agent rules, credential boundaries,
 and live validation ordering.
 
+For multi-person handoff, open
+`docs/full_pass_agentic_parallel_workflow.html`. It is a separate interactive
+operations guide for role ownership, branch flow, file scope, status tracking,
+and PM-facing review criteria when several people work on the same full-pass
+run branch.
+
 In this mode the main agent is the master orchestrator and should delegate
 disjoint evidence work: source-intent audit, text-only package writing,
 image-only asset generation, fullstack import validation, WonderLens AI runtime
