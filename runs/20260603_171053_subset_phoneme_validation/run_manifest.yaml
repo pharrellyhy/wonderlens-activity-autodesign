@@ -35,6 +35,23 @@ outputs:
       package_path: runs/20260603_171053_subset_phoneme_validation/activity_packages/concept_phoneme_hunt_collect
       prompt_trace: runs/20260603_171053_subset_phoneme_validation/manual_audits/concept_phoneme_hunt_collect_prompt_trace.md
       fullstack_imported_game: runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import/games/concept_phoneme_hunt_collect__beginning_sound_treasure.md
+      parameterization_decision:
+        mode: fixed
+        decision_source: codex_review_alignment
+        integrity_status: dynamic_handoff_not_supported
+        confidence: high
+        evidence:
+          - Package title, prompts, item catalog, and runtime exports are authored around beginning /b/.
+          - WonderLens AI runtime evidence currently preserves accepted_initial_sound=b.
+        required_handoff_fields: []
+        dynamic_fields: []
+        frozen_fields:
+          - target_sound=/b/
+          - collection_criterion=beginning B sound
+          - correct_item_catalog=/b/ objects
+        invalid_when:
+          - Discovery expects handoff object name to retarget the target sound.
+        reviewer_action: Treat as a valid fixed /b/ package only; repair to initial_sound_from_entity before dynamic entity handoff.
   blocked_assignments: []
   source_intent_audits:
     - runs/20260603_171053_subset_phoneme_validation/source_intent_audits/001_concept_phoneme_hunt_collect.md
@@ -144,6 +161,7 @@ notes:
   - Recorded runtime-equivalent dialogue QA reports for fullstack-demo and WonderLens AI with expected, wrong/unproductive, help/confusion, silence/no-response, and premature-done strategies.
   - Required fullstack-demo worktree import was attempted from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game and is recorded as downstream_owned_failure because Cat5CreativeSlots.collection_count requires >=2 while this source-preserving package requires one treasure.
   - WonderLens AI fullstack export uses a run-local runtime override because the generic exporter does not consume asset_manifest collection_catalog_id values.
+  - Review dashboard was refreshed with a parameterization verdict: this package is valid as a fixed /b/ hunt, not as dynamic entity handoff until initial_sound_from_entity metadata and runtime repair land.
 blockers: []
 follow_ups:
   - Consider a WonderLens AI generator improvement to derive fullstack collection_catalog entries from package asset_manifest collection item roles without a run-local override.

@@ -1037,6 +1037,79 @@ def collect_asset_policy(
     return "unknown"
 
 
+def compact_field_list(value: Any, limit: int = 8) -> list[str]:
+    if isinstance(value, dict):
+        items = [normalize_text(key) for key in value if normalize_text(key)]
+        return items[:limit]
+    return compact_list(value, limit=limit)
+
+
+def first_mapping(*values: Any) -> dict[str, Any]:
+    for value in values:
+        if isinstance(value, dict) and value:
+            return value
+    return {}
+
+
+def collect_parameterization_decision(
+    package_dir: Path,
+    tag: dict[str, Any],
+    entry: dict[str, Any],
+) -> dict[str, Any]:
+    """Return declared or proposed package parameterization metadata for review."""
+
+    package_parameterization = load_yaml(package_dir / "parameterization.yaml")
+    demo_support = load_yaml(package_dir / "demo_support.yaml")
+    raw = first_mapping(
+        entry.get("parameterization_decision"),
+        entry.get("parameterization"),
+        tag.get("parameterization"),
+        package_parameterization.get("parameterization"),
+        package_parameterization if package_parameterization.get("mode") else {},
+        demo_support.get("parameterization"),
+    )
+    if not raw:
+        return {}
+    validity = raw.get("validity") if isinstance(raw.get("validity"), dict) else {}
+    decision = {
+        "mode": normalize_text(raw.get("mode") or raw.get("declared_mode") or raw.get("parameterization_mode")),
+        "integrity_status": normalize_text(
+            raw.get("integrity_status")
+            or raw.get("validity_status")
+            or raw.get("status")
+            or validity.get("status")
+        ),
+        "decision_source": normalize_text(raw.get("decision_source") or raw.get("source")),
+        "confidence": normalize_text(raw.get("confidence")),
+        "reviewer_action": normalize_text(raw.get("reviewer_action") or raw.get("required_reviewer_action")),
+        "required_handoff_fields": compact_field_list(
+            raw.get("required_handoff_fields")
+            or raw.get("required_handoff")
+            or raw.get("requires")
+            or validity.get("requires"),
+            limit=10,
+        ),
+        "dynamic_fields": compact_field_list(
+            raw.get("dynamic_fields")
+            or raw.get("derived_runtime_fields")
+            or raw.get("derived_fields"),
+            limit=10,
+        ),
+        "frozen_fields": compact_field_list(
+            raw.get("frozen_fields")
+            or raw.get("authored_constants"),
+            limit=10,
+        ),
+        "invalid_when": compact_list(
+            raw.get("invalid_when")
+            or validity.get("invalid_when"),
+            limit=8,
+        ),
+        "evidence": compact_list(raw.get("evidence") or raw.get("debug_evidence"), limit=8),
+    }
+    return {key: value for key, value in decision.items() if value}
+
+
 def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind: str) -> dict[str, Any]:
     activity_path = normalize_text(entry.get("activity_path"))
     activity_id = normalize_text(entry.get("activity_id"))
@@ -1099,6 +1172,7 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         "entity_role": normalize_text(signature.get("entity_role") or "unknown"),
         "entity_binding": normalize_text(tag.get("entity_binding") or "unknown"),
         "parameter_slots": placeholder_tokens(tag, spec_text),
+        "parameterization_decision": collect_parameterization_decision(package_dir, tag, entry),
         "asset_policy": collect_asset_policy(entry, assignment_fields, brief, spec_text),
         "asset_usage": asset_usage,
         "changed_files": compact_list(entry.get("changed_files"), limit=8),
@@ -1647,13 +1721,33 @@ def resolved_blocker_rows(package: dict[str, Any]) -> str:
 def extensibility_rows(package: dict[str, Any]) -> str:
     slots = package.get("parameter_slots", [])
     notes = package.get("extensibility_notes", [])
+    decision = package.get("parameterization_decision") or {}
     slot_html = value_list(slots, empty="No explicit parameter slots")
     note_html = "".join(f"<li>{esc(note)}</li>" for note in notes)
+    if decision.get("evidence"):
+        note_html += "".join(f"<li>Parameterization evidence: {esc(item)}</li>" for item in decision["evidence"])
+    if decision.get("invalid_when"):
+        note_html += "".join(f"<li>Invalid when: {esc(item)}</li>" for item in decision["invalid_when"])
     note_html = note_html or "<li>Package is primarily standalone; no extensibility note recorded.</li>"
     summary = package.get("extensibility_summary") or "Review how the activity can be reused by replacing entity, attribute, asset, or topic slots."
+    parameterization_html = ""
+    if decision:
+        parameterization_html = (
+            '<div class="inline-fields">'
+            f"<div><span>Parameterization mode</span><strong>{esc(decision.get('mode') or 'not_declared')}</strong></div>"
+            f"<div><span>Integrity</span><strong>{esc(decision.get('integrity_status') or 'not_declared')}</strong></div>"
+            f"<div><span>Decision source</span><strong>{esc(decision.get('decision_source') or 'not_declared')}</strong></div>"
+            f"<div><span>Confidence</span><strong>{esc(decision.get('confidence') or 'not_declared')}</strong></div>"
+            f"<div><span>Reviewer action</span><strong>{esc(decision.get('reviewer_action') or 'not_declared')}</strong></div>"
+            "</div>"
+            f"<p><span>Dynamic fields</span>{value_list(decision.get('dynamic_fields', []), empty='No dynamic fields declared')}</p>"
+            f"<p><span>Frozen fields</span>{value_list(decision.get('frozen_fields', []), empty='No frozen fields declared')}</p>"
+            f"<p><span>Required handoff</span>{value_list(decision.get('required_handoff_fields', []), empty='No handoff fields declared')}</p>"
+        )
     return (
         '<div class="extensibility-block">'
         f'<p>{esc(summary)}</p>'
+        f"{parameterization_html}"
         f'<p><span>Reusable slots</span>{slot_html}</p>'
         f'<ul>{note_html}</ul>'
         "</div>"
@@ -2696,13 +2790,18 @@ def extensibility_summary(packages: list[dict[str, Any]]) -> str:
     for package in packages:
         notes = package.get("extensibility_notes", [])
         slots = package.get("parameter_slots", [])
-        if not notes and not slots:
+        decision = package.get("parameterization_decision") or {}
+        if not notes and not slots and not decision:
             continue
         rows.append(
             "<tr>"
             f"<td>{esc(package['activity_name'])}<br><span class=\"muted\">{esc(package['activity_id'])}</span></td>"
             f"<td>{esc(package.get('entity_binding') or 'unknown')}</td>"
+            f"<td>{esc(decision.get('mode') or 'not_declared')}</td>"
+            f"<td>{esc(decision.get('integrity_status') or 'not_declared')}</td>"
             f"<td>{value_list(slots, empty='No explicit slots')}</td>"
+            f"<td>{value_list(decision.get('dynamic_fields', []), empty='No dynamic fields declared')}</td>"
+            f"<td>{value_list(decision.get('required_handoff_fields', []), empty='No handoff fields declared')}</td>"
             f"<td>{esc(notes[0] if notes else package.get('extensibility_summary') or 'Reusable by changing the concept context.')}</td>"
             "</tr>"
         )
@@ -2711,9 +2810,9 @@ def extensibility_summary(packages: list[dict[str, Any]]) -> str:
     return f"""
   <section class="panel" id="extensibility-overview">
     <div class="panel-head"><h2>Extensibility Overview</h2></div>
-    <div class="criteria-note">This section highlights whether an activity can be extended to other entities, topics, or matched properties by replacing slots such as {{runtime_entity}}, {{shared_feature}}, or asset-set IDs.</div>
+    <div class="criteria-note">This section highlights whether an activity can be extended to other entities, topics, or matched properties by replacing slots such as {{runtime_entity}}, {{shared_feature}}, or asset-set IDs, and whether the parameterization decision has enough integrity evidence for runtime handoff.</div>
     <div class="table-wrap"><table class="reason-guide-table">
-      <thead><tr><th>Activity</th><th>Binding</th><th>Reusable slots</th><th>How to extend</th></tr></thead>
+      <thead><tr><th>Activity</th><th>Binding</th><th>Parameterization mode</th><th>Integrity</th><th>Reusable slots</th><th>Dynamic fields</th><th>Required handoff</th><th>How to extend</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table></div>
   </section>
@@ -5046,6 +5145,8 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         or (
             "Extensibility Overview" in text
             and "Reusable slots" in text
+            and "Parameterization mode" in text
+            and "Integrity" in text
             and "Extensibility" in text
         ),
         "no_external_assets": not re.search(r"<(?:script|link)[^>]+(?:src|href)=[\"']https?://", text),

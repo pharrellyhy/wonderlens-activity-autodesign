@@ -112,6 +112,81 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
         self.assertIn("Example AI line", rendered_map)
         self.assertIn("Screen/state", rendered_detail)
 
+    def test_extensibility_overview_shows_parameterization_decision(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            run_dir = root / "runs" / "parameterization_smoke"
+            package_dir = run_dir / "activity_packages" / "parameterization_smoke"
+            package_dir.mkdir(parents=True)
+            (run_dir / "run_manifest.yaml").write_text(
+                "run_id: parameterization_smoke\n"
+                "outputs:\n"
+                "  generated_activities:\n"
+                "    - activity_id: parameterization_smoke\n"
+                "      activity_path: runs/parameterization_smoke/activity_packages/parameterization_smoke\n"
+            )
+            (run_dir / "review_notes.md").write_text("# Review Notes\n")
+            (run_dir / "assignment_snapshot.md").write_text("# Assignments\n")
+            (run_dir / "generated_activity_ids.txt").write_text("parameterization_smoke\n")
+            (package_dir / "spec.md").write_text(
+                "## Extensibility Notes\n\n"
+                "- Reusable slots are `{target_sound}` and `{candidate_object_name}`.\n"
+                "- Do not retarget by swapping a letter only.\n\n"
+                "## Self-Evaluation Scorecard\n\n"
+                "| # | Dimension | Score | Notes |\n"
+                "|---|---|---|---|\n"
+                + "".join(f"| {i} | D{i} | PASS | ok |\n" for i in range(1, 11))
+            )
+            (package_dir / "prod.md").write_text(
+                "## Parameterization Smoke\n\n"
+                "#### Step 1: Start\n\n"
+                "**AI says:** Find a thing that starts with our sound.\n"
+            )
+            (package_dir / "tag_block.yaml").write_text(
+                "activity_name: Parameterization Smoke\n"
+                "template_type: cat5\n"
+                "entity_binding: parameterized\n"
+                "activity_signature:\n"
+                "  mechanic: collect\n"
+            )
+            (package_dir / "demo_support.yaml").write_text(
+                "activity_id: parameterization_smoke\n"
+                "version: 1\n"
+                "support:\n"
+                "  status: degraded\n"
+                "  ui_template: cat5_collection\n"
+                "parameterization:\n"
+                "  mode: initial_sound_from_entity\n"
+                "  decision_source: authoring_agent\n"
+                "  integrity_status: agent_proposed\n"
+                "  confidence: high\n"
+                "  evidence:\n"
+                "    - target_sound is reusable\n"
+                "    - runtime evidence depends on spoken object name\n"
+                "  required_handoff_fields:\n"
+                "    - handoff.object_name_en\n"
+                "  dynamic_fields:\n"
+                "    - judgment_policy.accepted_initial_sound\n"
+                "    - creative_slots.collection_criterion\n"
+                "  frozen_fields:\n"
+                "    - mechanic\n"
+                "    - round_count\n"
+                "  reviewer_action: accept\n"
+            )
+            (package_dir / "recap.template.yaml").write_text("{}\n")
+            (package_dir / "dashboard.template.yaml").write_text("{}\n")
+
+            html = self.report.build_html(root, run_dir)
+
+            self.assertIn("<th>Parameterization mode</th>", html)
+            self.assertIn("<th>Integrity</th>", html)
+            self.assertIn("initial_sound_from_entity", html)
+            self.assertIn("agent_proposed", html)
+            self.assertIn("authoring_agent", html)
+            self.assertIn("judgment_policy.accepted_initial_sound", html)
+            self.assertIn("handoff.object_name_en", html)
+            self.assertIn("target_sound is reusable", html)
+
     def test_runtime_contract_quality_flags_thin_instructions(self):
         prod_text = """
 #### Step 1: Thin Prompt

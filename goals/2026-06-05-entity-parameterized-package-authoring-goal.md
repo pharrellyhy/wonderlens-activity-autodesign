@@ -43,6 +43,12 @@ and goal conflict, stop and document the conflict before changing behavior.
   validators unless a schema migration is explicitly implemented and tested.
 - Keep `entity_class_filter: []` as broad match metadata, not proof of dynamic
   entity validity.
+- Treat authoring-agent or subagent mode inference as proposed evidence until
+  the decision is written into package metadata and passes validator/reviewer
+  integrity checks.
+- Keep parameterization logic generic by declared mode and required fields. Do
+  not hard-code package behavior by activity ID, current title, or one example
+  activity.
 - Do not implement WonderLens AI backend runtime code in this repo.
 - Do not edit secrets, credentials, production data, or machine-local config.
 - Do not perform unrelated refactors, broad formatting sweeps, or dependency
@@ -54,6 +60,10 @@ and goal conflict, stop and document the conflict before changing behavior.
 - Update authoring/generation guidance so future demo/runtime-ready packages
   declare binding mode, required handoff inputs, dynamic target fields, authored
   constants, and invalid/fallback behavior.
+- Add an authoring-agent/subagent parameterization decision step that emits the
+  proposed mode, decision source, confidence, evidence, dynamic fields, frozen
+  fields, required handoff fields, invalid/fallback behavior, and reviewer
+  action.
 - Update validators and schemas or equivalent checks for allowed modes and
   required fields.
 - Add fixtures covering valid dynamic, valid thematic/fixed, and invalid
@@ -62,6 +72,10 @@ and goal conflict, stop and document the conflict before changing behavior.
 - Migrate package examples or canonical package files where appropriate without
   pretending unsupported mechanics are playable.
 - Document downstream WonderLens AI contract expectations.
+- Update `review_dashboard.md` and `scripts/generate_run_review.py` so
+  `runs/<run_id>/review.html` exposes a concise Extensibility Overview verdict
+  with parameterization mode, integrity status, dynamic fields, frozen fields,
+  required handoff, evidence, and reviewer action.
 
 ## Execution Rules
 
@@ -84,9 +98,11 @@ and goal conflict, stop and document the conflict before changing behavior.
 1. Confirm current validator/tests baseline.
 2. Define the parameterization contract and validator/schema behavior.
 3. Update authoring instructions and examples.
-4. Add fixtures and current-twelve classification coverage.
-5. Migrate current package metadata where appropriate.
-6. Run required checks before marking indexes completed or blocked.
+4. Add the authoring-agent/subagent mode decision surface and review dashboard
+   visibility.
+5. Add fixtures and current-twelve classification coverage.
+6. Migrate current package metadata where appropriate.
+7. Run required checks before marking indexes completed or blocked.
 
 ## Live Provider Credential Rule
 
@@ -126,6 +142,9 @@ only intended goal work.
   dynamic, thematic, fixed, or unsupported until repaired.
 - Downstream WonderLens AI expectations are documented with the matching runtime
   plan path.
+- The generated review dashboard gives a new reviewer a scan-first verdict for
+  parameterization integrity without requiring background knowledge or manual
+  file archaeology.
 
 ## Required Checks
 
@@ -133,6 +152,7 @@ Minimum final checks:
 
 ```bash
 git diff --check
+python3 -m unittest tests.test_generate_run_review
 python3 scripts/validate_demo_package_contract.py activities
 python3 -m pytest tests/test_demo_package_contract_validator.py tests/test_generate_and_curate_asset_pipeline.py -q
 ```

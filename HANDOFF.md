@@ -1,5 +1,24 @@
 # HANDOFF
 
+## 2026-06-05 - Parameterization Review Verdict Planned
+
+Problem: The entity-parameterized package plan needed to cover the latest
+discussion: authoring agents can infer a parameterization mode, but reviewers
+and downstream runtimes need a concise declared verdict instead of reading every
+generated document or guessing from activity prose.
+
+Solution: Updated the producer plan/goal and review dashboard contract so
+authoring-agent/subagent mode decisions are treated as proposed evidence until
+validated, package metadata remains the source of truth, and `review.html`
+surfaces parameterization mode, integrity, dynamic fields, frozen fields,
+required handoff, evidence, and reviewer action.
+
+Verification: Focused review-generator regression added before implementation;
+`python3 -m unittest tests.test_generate_run_review`,
+`python3 scripts/generate_run_review.py --validate
+runs/20260603_171053_subset_phoneme_validation`, and `git diff --check`
+passed after the generated dashboard was refreshed.
+
 ## 2026-06-04 - Phoneme Scene Prompts Tightened
 
 Problem: After the phoneme subset validation repair, visual review still found

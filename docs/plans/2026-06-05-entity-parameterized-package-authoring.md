@@ -89,6 +89,14 @@ That creates incorrect handoffs:
   in package files, not only in prose notes.
 - The producer contract should stay additive so older five-file packages remain
   valid authoring artifacts.
+- An authoring agent or delegated review subagent may infer and propose the
+  parameterization mode during package creation, because it can inspect the
+  authored entity binding, target slots, assets, and runtime beats together.
+  That inference is a review input, not the runtime authority, until it is
+  written into declared metadata and passes validation.
+- Discovery handoff support must stay generic by declared mode and field
+  requirements. Do not hard-code behavior for one activity ID, current package
+  title, or the Phoneme Treasure Hunt example.
 
 ## Proposed Package Contract
 
@@ -122,6 +130,13 @@ Recommended shape:
 ```yaml
 parameterization:
   mode: initial_sound_from_entity
+  decision_source: authoring_agent
+  integrity_status: agent_proposed
+  confidence: high
+  evidence:
+    - target sound is derived from the handoff object name
+    - authored picker contract accepts any initial letter with declared item assets
+  reviewer_action: accept_after_validator_passes
   validity:
     production_supported: true
     requires:
@@ -144,10 +159,44 @@ parameterization:
     wonderlens_ai: "Runtime must derive target sound from handoff entity before planning."
 ```
 
+The authoring workflow may store the same decision in `run_manifest.yaml`
+under `parameterization_decision` while a package is still being reviewed.
+Final package migration must not rely on the run manifest alone; runtime-ready
+packages need the declaration in package metadata that downstream consumers can
+load without knowing which run produced the package.
+
 For `fixed` and `entity_theme`, the declaration must name which fields are safe
 to vary and which authored constants must not change. That prevents a consumer
 from turning a fixed fox/moon/owl story or fixed cat clue sequence into an
 arbitrary dynamic activity without a real authored slot.
+
+## Authoring Agent Mode Decision
+
+During authoring, add a lightweight classifier step owned by the generating
+agent or a delegated subagent. The classifier reads the package files and emits
+a proposed parameterization decision with:
+
+- declared mode;
+- decision source and confidence;
+- evidence tying the mode to authored slots, assets, runtime beats, or fixed
+  constants;
+- required handoff fields;
+- dynamic runtime fields;
+- frozen authored fields;
+- invalid/fallback conditions;
+- reviewer action, such as accept, repair, downgrade to `entity_theme`, mark
+  `fixed`, or mark `unsupported_until_parameterized`.
+
+The classifier should be mode-driven, not activity-ID-driven. For example,
+`initial_sound_from_entity` requires a spoken entity label and a dynamic sound
+target no matter which activity uses it. A future phoneme activity should pass
+or fail the same checks as Phoneme Treasure Hunt without adding another
+hard-coded branch.
+
+The review agent can infer likely mode from prose, but validators must check the
+declared metadata against package evidence before the package is treated as
+runtime-ready. When evidence and declaration disagree, the package should fail
+parameterization integrity rather than silently downgrading or guessing.
 
 ## Current Twelve Migration
 
@@ -240,6 +289,9 @@ Validator changes should enforce:
   declarations;
 - unsupported packages may include parameterization notes but must not claim
   playable dynamic support.
+- authoring-agent decisions must include evidence, required handoff fields for
+  dynamic modes, and explicit frozen fields for fixed/thematic modes before the
+  review dashboard can mark the integrity as accepted.
 
 Fixture coverage should include:
 
@@ -250,6 +302,29 @@ Fixture coverage should include:
 - valid `word_from_entity` or `asset_catalog_target` package if current package
   content supports it;
 - current-twelve classification matrix fixture.
+
+## Review Dashboard And Reviewer Verdict
+
+Update `runs/<run_id>/review.html` generation so a new reviewer can judge
+whether an activity is "good" without reading every supporting file. The
+Extensibility Overview must show, for every reusable or parameterized package:
+
+- entity binding;
+- parameterization mode;
+- integrity status;
+- decision source and confidence where available;
+- reusable slots;
+- dynamic runtime fields;
+- frozen authored fields;
+- required handoff fields;
+- evidence and invalid/fallback conditions;
+- reviewer action.
+
+This section is the handoff-facing reviewer verdict surface. It should answer:
+"Can this package honestly run for another entity, what fields change, what
+stays fixed, and what would make the package invalid?" Details can still live in
+package files, but the dashboard must provide a concise verdict for reviewers
+who do not have background context.
 
 ## Downstream Contract
 
@@ -262,6 +337,9 @@ should agree on:
 - how derived fields map to `runtime.yaml` and Activity WS session context;
 - how selector/debug evidence distinguishes fixed, thematic, valid dynamic, and
   invalid combinations.
+- how discovery handoff stores and forwards the resolved context, including
+  declared mode, source field used, derived fields, frozen fields, and invalid
+  reason when the handoff cannot satisfy the package.
 
 If the authoring and backend plans disagree during implementation, stop and
 document the conflict before changing package behavior.
@@ -282,6 +360,7 @@ Minimum final checks:
 
 ```bash
 git diff --check
+python3 -m unittest tests.test_generate_run_review
 python3 scripts/validate_demo_package_contract.py activities
 python3 -m pytest tests/test_demo_package_contract_validator.py tests/test_generate_and_curate_asset_pipeline.py -q
 ```

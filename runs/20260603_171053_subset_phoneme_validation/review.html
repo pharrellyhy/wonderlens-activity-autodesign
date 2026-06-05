@@ -1364,7 +1364,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
       <li><strong>Prepare mechanism storyboard prompts</strong><code>python3 scripts/generate_storyboard_prompts.py runs/20260603_171053_subset_phoneme_validation</code></li>
       <li><strong>Generate review-only storyboard images</strong><span>Use Codex image generation with the prompt files under `visual_storyboards/&lt;activity_id&gt;/`, then copy each final PNG to `mechanism_grid.png` and rerun the prompt script to refresh metadata. Prompt-only storyboard experiments are ignored when generated v1 images are present.</span></li>
       <li><strong>Repair full-pass asset manifest bundle</strong><code>python3 scripts/repair_full_pass_asset_bundle.py runs/20260603_171053_subset_phoneme_validation</code></li>
-      <li><strong>Build runtime assets when requested</strong><code>python3 scripts/build_activity_assets.py runs/20260603_171053_subset_phoneme_validation --mode generate_and_curate</code><span>Use agent-generated illustrative PNGs and verified reference originals as inputs; write final runtime assets back into package-local `assets/` directories.</span></li>
+      <li><strong>Build runtime assets when requested</strong><code>python3 scripts/build_activity_assets.py runs/20260603_171053_subset_phoneme_validation --mode generate_and_curate</code><span>Use agent-generated illustrative PNGs and verified reference originals as inputs; write scene assets into package-local `assets/` and picker item sprites into `assets/items/`.</span></li>
       <li><strong>Validate runtime asset outputs</strong><code>python3 scripts/validate_asset_build_outputs.py runs/20260603_171053_subset_phoneme_validation</code></li>
       <li><strong>Validate full-pass asset bundle</strong><code>python3 scripts/validate_full_pass_asset_bundle.py runs/20260603_171053_subset_phoneme_validation</code></li>
       <li><strong>Prepare prebuilt asset prompts</strong><code>python3 scripts/generate_asset_pilot_prompts.py runs/20260603_171053_subset_phoneme_validation</code></li>
@@ -1409,10 +1409,10 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
 
 	<section class="panel" id="extensibility-overview">
     <div class="panel-head"><h2>Extensibility Overview</h2></div>
-    <div class="criteria-note">This section highlights whether an activity can be extended to other entities, topics, or matched properties by replacing slots such as {runtime_entity}, {shared_feature}, or asset-set IDs.</div>
+    <div class="criteria-note">This section highlights whether an activity can be extended to other entities, topics, or matched properties by replacing slots such as {runtime_entity}, {shared_feature}, or asset-set IDs, and whether the parameterization decision has enough integrity evidence for runtime handoff.</div>
     <div class="table-wrap"><table class="reason-guide-table">
-      <thead><tr><th>Activity</th><th>Binding</th><th>Reusable slots</th><th>How to extend</th></tr></thead>
-      <tbody><tr><td>B-Sound Treasure Hunt<br><span class="muted">concept_phoneme_hunt_collect</span></td><td>parameterized</td><td><span class="badge badge-metadata badge-metadata-accepted-photo-id">{accepted_photo_id}</span> <span class="badge badge-metadata badge-metadata-candidate-object-name">{candidate_object_name}</span> <span class="badge badge-metadata badge-metadata-target-letter-overlay">{target_letter_overlay}</span> <span class="badge badge-metadata badge-metadata-target-sound">{target_sound}</span></td><td>Reusable slots are `{target_sound}`, `{target_letter_overlay}`, `{candidate_object_name}`, and `{accepted_photo_id}`.</td></tr></tbody>
+      <thead><tr><th>Activity</th><th>Binding</th><th>Parameterization mode</th><th>Integrity</th><th>Reusable slots</th><th>Dynamic fields</th><th>Required handoff</th><th>How to extend</th></tr></thead>
+      <tbody><tr><td>B-Sound Treasure Hunt<br><span class="muted">concept_phoneme_hunt_collect</span></td><td>parameterized</td><td>fixed</td><td>dynamic_handoff_not_supported</td><td><span class="badge badge-metadata badge-metadata-accepted-photo-id">{accepted_photo_id}</span> <span class="badge badge-metadata badge-metadata-candidate-object-name">{candidate_object_name}</span> <span class="badge badge-metadata badge-metadata-target-letter-overlay">{target_letter_overlay}</span> <span class="badge badge-metadata badge-metadata-target-sound">{target_sound}</span></td><td><span class="muted">No dynamic fields declared</span></td><td><span class="muted">No handoff fields declared</span></td><td>Reusable slots are `{target_sound}`, `{target_letter_overlay}`, `{candidate_object_name}`, and `{accepted_photo_id}`.</td></tr></tbody>
     </table></div>
   </section>
 
@@ -2229,7 +2229,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   </section>
   <section class="dialog-wide">
     <h4>Extensibility</h4>
-    <div class="extensibility-block"><p>Review how the activity can be reused by replacing entity, attribute, asset, or topic slots.</p><p><span>Reusable slots</span><span class="badge badge-metadata badge-metadata-accepted-photo-id">{accepted_photo_id}</span> <span class="badge badge-metadata badge-metadata-candidate-object-name">{candidate_object_name}</span> <span class="badge badge-metadata badge-metadata-target-letter-overlay">{target_letter_overlay}</span> <span class="badge badge-metadata badge-metadata-target-sound">{target_sound}</span></p><ul><li>Reusable slots are `{target_sound}`, `{target_letter_overlay}`, `{candidate_object_name}`, and `{accepted_photo_id}`.</li><li>Retargeting from `/b/` to another sound requires changing example words, optional item sprites, runtime overlay, and sound-specific dialogue together.</li><li>Do not retarget by only swapping a letter image; the child action and evidence rule must stay aligned with the target sound.</li><li>The current package is concept/workbook grounded and should not invent entity-specific mapping facts.</li></ul></div>
+    <div class="extensibility-block"><p>Review how the activity can be reused by replacing entity, attribute, asset, or topic slots.</p><div class="inline-fields"><div><span>Parameterization mode</span><strong>fixed</strong></div><div><span>Integrity</span><strong>dynamic_handoff_not_supported</strong></div><div><span>Decision source</span><strong>codex_review_alignment</strong></div><div><span>Confidence</span><strong>high</strong></div><div><span>Reviewer action</span><strong>Treat as a valid fixed /b/ package only; repair to initial_sound_from_entity before dynamic entity handoff.</strong></div></div><p><span>Dynamic fields</span><span class="muted">No dynamic fields declared</span></p><p><span>Frozen fields</span><span class="badge badge-metadata badge-metadata-target-sound-b">target_sound=/b/</span> <span class="badge badge-metadata badge-metadata-collection-criterion-beginning-b-sound">collection_criterion=beginning B sound</span> <span class="badge badge-metadata badge-metadata-correct-item-catalog-b-objects">correct_item_catalog=/b/ objects</span></p><p><span>Required handoff</span><span class="muted">No handoff fields declared</span></p><p><span>Reusable slots</span><span class="badge badge-metadata badge-metadata-accepted-photo-id">{accepted_photo_id}</span> <span class="badge badge-metadata badge-metadata-candidate-object-name">{candidate_object_name}</span> <span class="badge badge-metadata badge-metadata-target-letter-overlay">{target_letter_overlay}</span> <span class="badge badge-metadata badge-metadata-target-sound">{target_sound}</span></p><ul><li>Reusable slots are `{target_sound}`, `{target_letter_overlay}`, `{candidate_object_name}`, and `{accepted_photo_id}`.</li><li>Retargeting from `/b/` to another sound requires changing example words, optional item sprites, runtime overlay, and sound-specific dialogue together.</li><li>Do not retarget by only swapping a letter image; the child action and evidence rule must stay aligned with the target sound.</li><li>The current package is concept/workbook grounded and should not invent entity-specific mapping facts.</li><li>Parameterization evidence: Package title, prompts, item catalog, and runtime exports are authored around beginning /b/.</li><li>Parameterization evidence: WonderLens AI runtime evidence currently preserves accepted_initial_sound=b.</li><li>Invalid when: Discovery expects handoff object name to retarget the target sound.</li></ul></div>
   </section>
   <section class="dialog-wide">
     <h4>Scorecard Results</h4>
@@ -2322,7 +2322,7 @@ a[data-preview-id]:hover { border-bottom-style: solid; border-bottom-color: var(
   <div class="preview-truncated muted hidden" id="preview-truncated">File is larger than the inline-preview limit. Use "Open file in new tab" to read the full contents.</div>
 </dialog>
 <div id="file-previews" hidden aria-hidden="true">
-<template id="preview-run-manifest-yaml" data-label="runs/20260603_171053_subset_phoneme_validation/run_manifest.yaml" data-href="run_manifest.yaml" data-kind="YAML" data-truncated="false" data-size="10073">run_id: 20260603_171053_subset_phoneme_validation
+<template id="preview-run-manifest-yaml" data-label="runs/20260603_171053_subset_phoneme_validation/run_manifest.yaml" data-href="run_manifest.yaml" data-kind="YAML" data-truncated="false" data-size="11120">run_id: 20260603_171053_subset_phoneme_validation
 status: complete
 started_at: &quot;2026-06-03T17:12:31+08:00&quot;
 completed_at: &quot;2026-06-04T14:45:31+08:00&quot;
@@ -2359,6 +2359,23 @@ outputs:
       package_path: runs/20260603_171053_subset_phoneme_validation/activity_packages/concept_phoneme_hunt_collect
       prompt_trace: runs/20260603_171053_subset_phoneme_validation/manual_audits/concept_phoneme_hunt_collect_prompt_trace.md
       fullstack_imported_game: runs/20260603_171053_subset_phoneme_validation/downstream_reports/fullstack_demo/package_import/games/concept_phoneme_hunt_collect__beginning_sound_treasure.md
+      parameterization_decision:
+        mode: fixed
+        decision_source: codex_review_alignment
+        integrity_status: dynamic_handoff_not_supported
+        confidence: high
+        evidence:
+          - Package title, prompts, item catalog, and runtime exports are authored around beginning /b/.
+          - WonderLens AI runtime evidence currently preserves accepted_initial_sound=b.
+        required_handoff_fields: []
+        dynamic_fields: []
+        frozen_fields:
+          - target_sound=/b/
+          - collection_criterion=beginning B sound
+          - correct_item_catalog=/b/ objects
+        invalid_when:
+          - Discovery expects handoff object name to retarget the target sound.
+        reviewer_action: Treat as a valid fixed /b/ package only; repair to initial_sound_from_entity before dynamic entity handoff.
   blocked_assignments: []
   source_intent_audits:
     - runs/20260603_171053_subset_phoneme_validation/source_intent_audits/001_concept_phoneme_hunt_collect.md
@@ -2468,6 +2485,7 @@ notes:
   - Recorded runtime-equivalent dialogue QA reports for fullstack-demo and WonderLens AI with expected, wrong/unproductive, help/confusion, silence/no-response, and premature-done strategies.
   - Required fullstack-demo worktree import was attempted from /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game and is recorded as downstream_owned_failure because Cat5CreativeSlots.collection_count requires &gt;=2 while this source-preserving package requires one treasure.
   - WonderLens AI fullstack export uses a run-local runtime override because the generic exporter does not consume asset_manifest collection_catalog_id values.
+  - Review dashboard was refreshed with a parameterization verdict: this package is valid as a fixed /b/ hunt, not as dynamic entity handoff until initial_sound_from_entity metadata and runtime repair land.
 blockers: []
 follow_ups:
   - Consider a WonderLens AI generator improvement to derive fullstack collection_catalog entries from package asset_manifest collection item roles without a run-local override.
