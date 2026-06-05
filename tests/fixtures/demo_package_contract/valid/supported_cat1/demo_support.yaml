@@ -1,5 +1,26 @@
 activity_id: dream_whisperer_cat
 version: 1
+entity_compatibility: agnostic
+parameterization:
+  mode: entity_theme
+  decision_source: fixture_author
+  integrity_status: validator_fixture
+  confidence: high
+  evidence:
+    - Cat is the conversation anchor, but the dream-whisperer dialogue beats stay authored.
+  validity:
+    production_supported: true
+    requires: []
+    invalid_when: []
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    dialogue_frame: sleepy cat dream
+    badge_asset: fixed
+  fallback_behavior: Keep the authored cat dialogue frame if no runtime entity is present.
+  consumer_notes:
+    wonderlens_ai: Handoff entity may theme the hook only after authored slots are added.
+  reviewer_action: accept_as_thematic
 demo_support:
   status: supported
   ui_template: cat1_dialogue

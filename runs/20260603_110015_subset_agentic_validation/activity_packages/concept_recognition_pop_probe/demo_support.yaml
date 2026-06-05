@@ -1,5 +1,43 @@
 activity_id: concept_recognition_pop_probe
 version: 1
+parameterization:
+  mode: asset_catalog_target
+  decision_source: current_package_review
+  integrity_status: catalog_target_with_degraded_timing
+  confidence: high
+  evidence:
+    - Asset manifest declares one dog collection_correct target and fox, wolf, and cat distractors.
+    - Demo support degrades timing because conversion cannot prove fast tap UI timing.
+  validity:
+    production_supported: true
+    requires:
+      - collection_correct target asset
+      - collection_distractor assets
+      - runtime support for target/distractor timing rule
+    invalid_when:
+      - target or distractor catalog is missing
+      - fast-tap timing cannot be represented honestly
+      - handoff asks for an entity outside the declared target catalog
+  source_fields:
+    target_asset:
+      - asset_manifest.assets[role=collection_correct].id
+      - asset_manifest.assets[role=collection_correct].label
+    distractor_assets:
+      - asset_manifest.assets[role=collection_distractor].id
+      - asset_manifest.assets[role=collection_distractor].label
+  derived_runtime_fields:
+    target_label: dog
+    distractor_labels:
+      - fox
+      - wolf
+      - cat
+    timing_rule: respond only when the dog target appears
+  authored_constants:
+    response_rule: fast target recognition
+  fallback_behavior: Run only with declared target/distractor assets; degrade timing claims if UI cannot prove fast responses.
+  consumer_notes:
+    wonderlens_ai: Preserve the dog target and distractors from catalog metadata; do not rewrite this into generic matching.
+  reviewer_action: verify_target_catalog_and_timing_before_accepting
 demo_support:
   status: degraded
   ui_template: cat1_dialogue

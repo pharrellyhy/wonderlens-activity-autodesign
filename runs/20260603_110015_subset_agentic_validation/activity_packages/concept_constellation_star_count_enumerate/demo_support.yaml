@@ -1,5 +1,41 @@
 activity_id: concept_constellation_star_count_enumerate
 version: 1
+parameterization:
+  mode: asset_catalog_target
+  decision_source: current_package_review
+  integrity_status: approved_catalog_target
+  confidence: high
+  evidence:
+    - Full-pass asset manifest includes Cassiopeia and Orion reference cards with star_count metadata.
+    - Runtime choices depend on declared card identity and metadata, not arbitrary generated star art.
+  validity:
+    production_supported: true
+    requires:
+      - approved reference asset with star_count
+      - approved reference asset with constellation_name
+      - source provenance for each reference-bound card
+    invalid_when:
+      - approved reference card is missing
+      - star_count or constellation_name metadata is missing
+      - source provenance cannot be verified
+  source_fields:
+    catalog_assets:
+      - asset_manifest.assets[].id
+      - asset_manifest.assets[].star_count
+      - asset_manifest.assets[].constellation_name
+      - asset_manifest.assets[].sources
+  derived_runtime_fields:
+    target_card_ids:
+      - cassiopeia_five_star_card
+      - orion_seven_star_card
+    answer_field: star_count
+    display_field: constellation_name
+  authored_constants:
+    count_task: count visible guide stars on approved cards
+  fallback_behavior: Do not start the package if approved constellation card metadata is unavailable.
+  consumer_notes:
+    wonderlens_ai: Resolve the card from the catalog and read star_count from metadata; do not infer counts from generated art.
+  reviewer_action: verify_catalog_metadata_before_accepting
 demo_support:
   status: supported
   ui_template: cat1_dialogue

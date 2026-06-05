@@ -1,5 +1,26 @@
 activity_id: concept_tiny_curator_sort
 version: 1
+entity_compatibility: unsupported
+parameterization:
+  mode: unsupported_until_parameterized
+  decision_source: fixture_author
+  integrity_status: validator_fixture
+  confidence: high
+  evidence:
+    - Sorting requires grouping UI and sortable property evidence that this fixture does not provide.
+  validity:
+    production_supported: false
+    requires: []
+    invalid_when:
+      - sorting_ui_missing
+      - sortable_property_missing
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants: {}
+  fallback_behavior: Do not expose as playable until sorting parameterization and UI support exist.
+  consumer_notes:
+    wonderlens_ai: Keep this package filtered from playable offers.
+  reviewer_action: keep_unsupported
 demo_support:
   status: unsupported
   ui_template: none

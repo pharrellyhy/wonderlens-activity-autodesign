@@ -1,5 +1,26 @@
 activity_id: concept_would_you_rather_compare
 version: 1
+parameterization:
+  mode: entity_theme
+  decision_source: current_package_review
+  integrity_status: thematic_prompt_binding
+  confidence: medium
+  evidence:
+    - The package binds a silly two-choice prompt and declares no generated target assets.
+    - The activity is a fixed comparison dialogue, not a dynamic entity-target resolver.
+  validity:
+    production_supported: true
+    requires: []
+    invalid_when: []
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    prompt_type: silly two-choice preference
+    runtime_rule: ask the child to choose and explain
+  fallback_behavior: Preserve the authored comparison prompt if no handoff entity is available.
+  consumer_notes:
+    wonderlens_ai: Use handoff context only as optional theme unless explicit choice slots are authored.
+  reviewer_action: accept_as_thematic
 demo_support:
   status: supported
   ui_template: cat1_dialogue

@@ -137,6 +137,33 @@ def base_run(run_dir):
         {
             "activity_id": "asset_smoke",
             "version": 1,
+            "entity_compatibility": "source_bound",
+            "parameterization": {
+                "mode": "entity_theme",
+                "decision_source": "fixture_author",
+                "integrity_status": "validator_fixture",
+                "confidence": "high",
+                "evidence": [
+                    "Moss themes the asset-smoke fixture, but the asset set and collection/reference checks are authored."
+                ],
+                "validity": {
+                    "production_supported": True,
+                    "requires": [],
+                    "allowed_entity_classes": [],
+                    "invalid_when": [],
+                },
+                "source_fields": {},
+                "derived_runtime_fields": {},
+                "authored_constants": {
+                    "collection_asset": "moss_icon",
+                    "reference_asset": "orion_card",
+                },
+                "fallback_behavior": "Keep the authored asset-smoke flow if no handoff entity is present.",
+                "consumer_notes": {
+                    "wonderlens_ai": "Do not retarget asset-smoke success criteria from the handoff entity."
+                },
+                "reviewer_action": "accept_as_thematic_fixture",
+            },
             "demo_support": {
                 "status": "supported",
                 "ui_template": "cat5_collection",

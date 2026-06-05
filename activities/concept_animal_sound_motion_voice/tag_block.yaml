@@ -8,6 +8,7 @@ game_style: voice_stage
 entity: familiar_animal
 entity_class: [animal]
 entity_binding: agnostic
+entity_compatibility: agnostic
 tier_range:
   primary: T0
   span: [T0, T1]

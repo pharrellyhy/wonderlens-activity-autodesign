@@ -70,6 +70,7 @@ An activity enters the candidate set only when all hard checks pass:
 | Tag block validity | schema-required fields | Exclude from catalog. |
 | Tier support | `tier_range.span`, `matchability.tier_support` | Exclude for this child tier. |
 | Binding fit | `entity_binding`, `entity`, `entity_class` | Exclude if the photo cannot support the declared binding. |
+| Handoff compatibility | `entity_compatibility`, `parameterization.mode` when available | Exclude or flag if the package is source-bound, unsupported, or missing the mode required for arbitrary handoff. |
 | Class allowlist | `matchability.entity_class_filter` | Exclude if non-empty filter does not intersect the detected entity class chain. |
 | Property resolution | `activity_signature.focal_attribute`, legacy `entity_attributes_covered` where present | Exclude if required runtime value cannot be filled. |
 | Safety/runtime availability | runtime safety and environment checks | Exclude or ask for another photo. |

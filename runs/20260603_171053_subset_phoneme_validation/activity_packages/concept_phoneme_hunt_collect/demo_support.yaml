@@ -1,5 +1,29 @@
 activity_id: concept_phoneme_hunt_collect
 version: 1
+parameterization:
+  mode: fixed
+  decision_source: codex_review_alignment
+  integrity_status: dynamic_handoff_not_supported
+  confidence: high
+  evidence:
+    - Package title, prompts, item catalog, and runtime exports are authored around beginning /b/.
+    - WonderLens AI runtime evidence currently preserves accepted_initial_sound=b.
+  validity:
+    production_supported: false
+    requires: []
+    allowed_entity_classes: []
+    invalid_when:
+      - Discovery expects handoff object name to retarget the target sound.
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    target_sound: /b/
+    collection_criterion: beginning B sound
+    correct_item_catalog: /b/ objects
+  fallback_behavior: Treat as a valid fixed /b/ package only; do not retarget from handoff entity.
+  consumer_notes:
+    wonderlens_ai: Repair to initial_sound_from_entity before dynamic entity handoff.
+  reviewer_action: Repair to initial_sound_from_entity before dynamic entity handoff.
 demo_support:
   status: degraded
   ui_template: cat5_judgment

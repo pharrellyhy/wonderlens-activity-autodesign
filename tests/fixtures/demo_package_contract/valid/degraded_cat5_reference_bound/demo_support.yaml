@@ -1,5 +1,27 @@
 activity_id: concept_phoneme_hunt_collect
 version: 1
+entity_compatibility: source_bound
+parameterization:
+  mode: fixed
+  decision_source: fixture_author
+  integrity_status: validator_fixture
+  confidence: high
+  evidence:
+    - The demo fixture is authored around the fixed ball beginning-sound example.
+  validity:
+    production_supported: false
+    requires: []
+    invalid_when:
+      - handoff_expected_to_retarget_sound
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    target_sound: /b/
+    target_word: ball
+  fallback_behavior: Keep this degraded catalog simulation fixed to the authored sound.
+  consumer_notes:
+    wonderlens_ai: Do not use this fixture as dynamic initial-sound handoff evidence.
+  reviewer_action: accept_as_fixed_degraded_demo
 demo_support:
   status: degraded
   ui_template: cat5_judgment

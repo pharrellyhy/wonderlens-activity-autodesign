@@ -24,6 +24,7 @@ Those jobs should not be mentally mixed. A field can be stored in one YAML block
 |---|---|---|
 | Catalog identity | Loader, sync scripts, reviewers | `activity_id`, `version`, `source_entity_exemplar`, `template_type`, `pillar`, `game_style` |
 | Upstream eligibility | Matcher | `entity`, `entity_class`, `entity_binding`, `tier_range`, `matchability.entity_class_filter`, `matchability.tier_support` |
+| Handoff safety | Review dashboard, runtime consumers | Optional `entity_compatibility` summary in `tag_block.yaml`; authoritative `entity_compatibility` plus `parameterization` in `demo_support.yaml` |
 | Upstream coherence | Matcher, selector | `activity_signature.observation_angle`, `activity_signature.bridge_prerequisites.primary`, `activity_signature.bridge_prerequisites.secondary`, `activity_signature.entity_role`, `activity_signature.role_pivot_note` |
 | Runtime presentation | Activity start, script agent, recap copy | `activity_signature.focal_attribute`, `activity_signature.intro`, `activity_signature.preview_label`, `activity_signature.preview_prompt`, `activity_signature.mechanic` |
 | Parent dashboard | Parent dashboard, growth path, curriculum analytics | `key_concepts`, `atl_skills`, `transdisciplinary_theme`, `subject_tags` when present, `progression.*`, `activity_signature.observation_angle`, `activity_signature.mechanic`, `activity_signature.entity_role`, `caregiver_role` |
@@ -48,13 +49,14 @@ These fields help the matcher answer two questions:
 | `entity` | Use the bound entity for gold-standard activities; use a placeholder for parameterized property activities. | `lion`, `{parameterized_by_matched_property}` | Runtime may replace the placeholder with the detected entity. |
 | `entity_class` | Ordered class chain from specific to broad. Leave empty only when runtime fills it for wide parameterized activities. | `[lion, big_cat, mammal, animal]` | Used for rollup when exact entity match misses. |
 | `entity_binding` | `bound` for exact-entity activities, `parameterized` for reusable entity/property activities, `agnostic` only when the entity truly does not matter. | `parameterized` | Do not mark an activity `agnostic` if the script names specific entity properties. |
+| `entity_compatibility` | Optional summary of runtime handoff safety: `source_bound`, `agnostic`, or `unsupported`. `demo_support.yaml` owns the authoritative demo/runtime value when present. | `agnostic` | Do not infer this from `entity_binding`; wide matching is not proof of runtime parameterization. |
 | `tier_range.primary` | The age register the activity is written for. | `T1` | This is authoring intent, not the child's runtime tier. |
 | `tier_range.span` | The supported neighboring tiers. | `[T0, T1, T2]` | Use narrow spans when language/task structure cannot safely stretch. |
 | `tier_range.elasticity` | Human-readable rule for how far the activity can flex. | `±1`, `neighbor`, `strict` | Existing files use string values; keep the value understandable to reviewers. |
 | `matchability.entity_class_filter` | List classes this activity accepts. Empty means wide. | `[]`, `[insect, patterned_thing]` | Use this to prevent an otherwise parameterized activity from matching nonsensical entities. |
 | `matchability.tier_support` | Boolean support matrix for tiers. | `{T0: yes, T1: yes, T2: yes}` | Should agree with `tier_range.span`. |
 
-Eligibility means an activity may enter the selector's candidate set. It is not the same as being selected. An activity is eligible only when the tag block is valid, the child tier is allowed by both `tier_range.span` and `matchability.tier_support`, the photographed entity satisfies `entity_binding`, any `entity_class_filter` passes, required runtime properties can be resolved, and safety/runtime availability checks pass.
+Eligibility means an activity may enter the selector's candidate set. It is not the same as being selected or handoff-safe. An activity is eligible only when the tag block is valid, the child tier is allowed by both `tier_range.span` and `matchability.tier_support`, the photographed entity satisfies `entity_binding`, any `entity_class_filter` passes, required runtime properties can be resolved, and safety/runtime availability checks pass. For demo/runtime handoff, `entity_compatibility` plus `parameterization.mode` must also validate.
 
 Binding examples:
 

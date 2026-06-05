@@ -1,5 +1,86 @@
 # HANDOFF
 
+## 2026-06-05 - Entity Compatibility Axis Completed
+
+Problem: `entity_binding: agnostic` was overloaded. It could mean broad matcher
+eligibility, arbitrary runtime handoff safety, or simply "not tied to one
+source exemplar." Reviewers and WonderLens AI needed a compact declared answer
+for whether a package can honestly run from an arbitrary photographed entity.
+
+Solution: Added the explicit `entity_compatibility` axis with values
+`source_bound`, `agnostic`, and `unsupported`; kept `parameterization.mode` as
+the runtime transform axis; updated the demo-support schema and focused
+validator; added invalid/valid fixture coverage; reclassified the current
+twelve matrix and canonical current-twelve tag blocks present under
+`activities/`; updated authoring, vocabulary, matcher/progression, activities,
+and dashboard docs; and extended `review.html` generation to show entity
+compatibility, handoff verdict, stale-text risk, frozen fields, required
+handoff, and reviewer action. A delegated review found three follow-up gaps
+before commit: tag-only compatibility summaries were skipped by the dashboard,
+`stale_text_risk` was dashboard-read but schema-disallowed, and the adaptation
+brief template nested `entity_compatibility` under `parameterization`. Those
+were repaired so tag-only `agnostic` summaries now show a failing missing-mode
+verdict, valid demo fixtures can schema-validate stale-text risk, and the
+template keeps compatibility top-level.
+
+Verification: `git diff --check`, `python3 -m unittest
+tests.test_demo_package_contract_validator`, `python3
+scripts/validate_demo_package_contract.py activities`, the tag-block schema
+validation snippet from `AGENTS.md`, valid `demo_support.yaml` fixture schema
+validation using the repo pyenv Python, `tests.test_generate_run_review` under
+the repo pyenv Python, and the required pytest file selection under the repo
+pyenv Python passed. The system Homebrew `python3` lacks `yaml` and `pytest`,
+so checks that need those packages were run with the repo-documented pyenv
+Python.
+
+## 2026-06-05 - Entity Parameterized Package Authoring Completed
+
+Problem: Demo/runtime-ready packages could declare entity bindings without
+declaring whether the handoff entity was fixed, thematic, dynamic, catalog
+driven, or unsupported. That left downstream consumers and reviewers to infer
+runtime behavior from activity IDs, prose, or broad match metadata.
+
+Solution: Added the top-level `parameterization` contract for
+`demo_support.yaml`, validator/schema support, valid and invalid fixtures,
+authoring docs, vocabulary docs, a current-twelve classification matrix, and
+run-local metadata migrations for the supported/degraded package examples that
+the contract validator exercises. The review dashboard now surfaces
+parameterization mode, integrity, dynamic fields, frozen fields, required
+handoff, evidence, and reviewer action, and its validator accepts both current
+and legacy downstream dialogue QA report shapes.
+
+Verification: Final verification for this goal used `git diff --check`,
+`python3 -m unittest tests.test_generate_run_review`,
+`python3 scripts/validate_demo_package_contract.py activities`,
+`python3 -m pytest tests/test_demo_package_contract_validator.py
+tests/test_generate_and_curate_asset_pipeline.py -q`, direct fixture
+validation, JSON schema parsing/schema validation, the three-run package
+contract repro from code review, and refreshed dashboard validation for
+`runs/20260603_110015_subset_agentic_validation` and
+`runs/20260603_171053_subset_phoneme_validation`. Regenerating
+`runs/20260529_172332_source_intent_pilot/review.html` still exposes unrelated
+legacy Step 4 runtime-contract findings in two activities, so that generated
+HTML was not included in this goal.
+
+## 2026-06-05 - Parameterization Review Verdict Planned
+
+Problem: The entity-parameterized package plan needed to cover the latest
+discussion: authoring agents can infer a parameterization mode, but reviewers
+and downstream runtimes need a concise declared verdict instead of reading every
+generated document or guessing from activity prose.
+
+Solution: Updated the producer plan/goal and review dashboard contract so
+authoring-agent/subagent mode decisions are treated as proposed evidence until
+validated, package metadata remains the source of truth, and `review.html`
+surfaces parameterization mode, integrity, dynamic fields, frozen fields,
+required handoff, evidence, and reviewer action.
+
+Verification: Focused review-generator regression added before implementation;
+`python3 -m unittest tests.test_generate_run_review`,
+`python3 scripts/generate_run_review.py --validate
+runs/20260603_171053_subset_phoneme_validation`, and `git diff --check`
+passed after the generated dashboard was refreshed.
+
 ## 2026-06-04 - Phoneme Scene Prompts Tightened
 
 Problem: After the phoneme subset validation repair, visual review still found

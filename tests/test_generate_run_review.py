@@ -112,6 +112,137 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
         self.assertIn("Example AI line", rendered_map)
         self.assertIn("Screen/state", rendered_detail)
 
+    def test_extensibility_overview_shows_parameterization_decision(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            run_dir = root / "runs" / "parameterization_smoke"
+            package_dir = run_dir / "activity_packages" / "parameterization_smoke"
+            package_dir.mkdir(parents=True)
+            (run_dir / "run_manifest.yaml").write_text(
+                "run_id: parameterization_smoke\n"
+                "outputs:\n"
+                "  generated_activities:\n"
+                "    - activity_id: parameterization_smoke\n"
+                "      activity_path: runs/parameterization_smoke/activity_packages/parameterization_smoke\n"
+            )
+            (run_dir / "review_notes.md").write_text("# Review Notes\n")
+            (run_dir / "assignment_snapshot.md").write_text("# Assignments\n")
+            (run_dir / "generated_activity_ids.txt").write_text("parameterization_smoke\n")
+            (package_dir / "spec.md").write_text(
+                "## Extensibility Notes\n\n"
+                "- Reusable slots are `{target_sound}` and `{candidate_object_name}`.\n"
+                "- Do not retarget by swapping a letter only.\n\n"
+                "## Self-Evaluation Scorecard\n\n"
+                "| # | Dimension | Score | Notes |\n"
+                "|---|---|---|---|\n"
+                + "".join(f"| {i} | D{i} | PASS | ok |\n" for i in range(1, 11))
+            )
+            (package_dir / "prod.md").write_text(
+                "## Parameterization Smoke\n\n"
+                "#### Step 1: Start\n\n"
+                "**AI says:** Find a thing that starts with our sound.\n"
+            )
+            (package_dir / "tag_block.yaml").write_text(
+                "activity_name: Parameterization Smoke\n"
+                "template_type: cat5\n"
+                "entity_binding: parameterized\n"
+                "activity_signature:\n"
+                "  mechanic: collect\n"
+            )
+            (package_dir / "demo_support.yaml").write_text(
+                "activity_id: parameterization_smoke\n"
+                "version: 1\n"
+                "entity_compatibility: agnostic\n"
+                "support:\n"
+                "  status: degraded\n"
+                "  ui_template: cat5_collection\n"
+                "parameterization:\n"
+                "  mode: initial_sound_from_entity\n"
+                "  decision_source: authoring_agent\n"
+                "  integrity_status: agent_proposed\n"
+                "  confidence: high\n"
+                "  evidence:\n"
+                "    - target_sound is reusable\n"
+                "    - runtime evidence depends on spoken object name\n"
+                "  required_handoff_fields:\n"
+                "    - handoff.object_name_en\n"
+                "  dynamic_fields:\n"
+                "    - judgment_policy.accepted_initial_sound\n"
+                "    - creative_slots.collection_criterion\n"
+                "  frozen_fields:\n"
+                "    - mechanic\n"
+                "    - round_count\n"
+                "  stale_text_risk: pass_no_conflicting_source_constants\n"
+                "  reviewer_action: accept\n"
+            )
+            (package_dir / "recap.template.yaml").write_text("{}\n")
+            (package_dir / "dashboard.template.yaml").write_text("{}\n")
+
+            html = self.report.build_html(root, run_dir)
+
+            self.assertIn("<th>Parameterization mode</th>", html)
+            self.assertIn("<th>Entity compatibility</th>", html)
+            self.assertIn("<th>Handoff verdict</th>", html)
+            self.assertIn("<th>Stale-text risk</th>", html)
+            self.assertIn("agnostic", html)
+            self.assertIn("pass", html)
+            self.assertIn("<th>Integrity</th>", html)
+            self.assertIn("initial_sound_from_entity", html)
+            self.assertIn("agent_proposed", html)
+            self.assertIn("authoring_agent", html)
+            self.assertIn("judgment_policy.accepted_initial_sound", html)
+            self.assertIn("handoff.object_name_en", html)
+            self.assertIn("pass_no_conflicting_source_constants", html)
+            self.assertIn("target_sound is reusable", html)
+
+    def test_extensibility_overview_flags_tag_only_agnostic_without_mode(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            run_dir = root / "runs" / "tag_only_parameterization"
+            package_dir = run_dir / "activity_packages" / "tag_only_parameterization"
+            package_dir.mkdir(parents=True)
+            (run_dir / "run_manifest.yaml").write_text(
+                "run_id: tag_only_parameterization\n"
+                "outputs:\n"
+                "  generated_activities:\n"
+                "    - activity_id: tag_only_parameterization\n"
+                "      activity_path: runs/tag_only_parameterization/activity_packages/tag_only_parameterization\n"
+            )
+            (run_dir / "review_notes.md").write_text("# Review Notes\n")
+            (run_dir / "assignment_snapshot.md").write_text("# Assignments\n")
+            (run_dir / "generated_activity_ids.txt").write_text("tag_only_parameterization\n")
+            (package_dir / "spec.md").write_text(
+                "## Extensibility Notes\n\n"
+                "- Tag block says agnostic, but no runtime parameterization is declared.\n\n"
+                "## Self-Evaluation Scorecard\n\n"
+                "| # | Dimension | Score | Notes |\n"
+                "|---|---|---|---|\n"
+                + "".join(f"| {i} | D{i} | PASS | ok |\n" for i in range(1, 11))
+            )
+            (package_dir / "prod.md").write_text(
+                "## Tag Only Parameterization\n\n"
+                "#### Step 1: Start\n\n"
+                "**AI says:** Begin.\n"
+            )
+            (package_dir / "tag_block.yaml").write_text(
+                "activity_name: Tag Only Parameterization\n"
+                "template_type: cat5\n"
+                "entity_binding: agnostic\n"
+                "entity_compatibility: agnostic\n"
+                "activity_signature:\n"
+                "  mechanic: collect\n"
+            )
+            (package_dir / "recap.template.yaml").write_text("{}\n")
+            (package_dir / "dashboard.template.yaml").write_text("{}\n")
+
+            html = self.report.build_html(root, run_dir)
+
+            self.assertIn("<th>Entity compatibility</th>", html)
+            self.assertIn("agnostic", html)
+            self.assertIn("fail_mode_not_handoff_safe", html)
+            self.assertIn("No dynamic fields declared", html)
+            self.assertIn("No handoff fields declared", html)
+
     def test_runtime_contract_quality_flags_thin_instructions(self):
         prod_text = """
 #### Step 1: Thin Prompt
@@ -193,6 +324,32 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
         self.assertIn("Celebration", findings[0])
         self.assertIn("celebration beat asks for new gameplay", findings[0])
 
+    def test_runtime_contract_quality_accepts_future_preview_note(self):
+        prod_text = """
+#### Step 4: Record Future Preview Shape
+
+**Runtime AI instruction:** Goal: document the future child-facing shape without executing it. Constraint: summarize four drawing steps and final photo celebration only as a preview. Emotion/tone: warm design note. Progress evidence: reviewers can tell what support would need to implement. Branch behavior: no per-step confirmation is required; leave enough time for drawing. Frame/source guardrail: this is not a live runtime task.
+
+**Example AI line:** [warm] "Future version: draw one simple line, add a shape, add a tiny detail, then photograph the whole drawing for celebration."
+
+**Child responses:**
+
+1. (Ideal) Reviewer reads the preview note.
+2. (Unexpected) Reviewer asks to launch it as play.
+3. (No response) Reviewer pauses.
+
+**AI follow-up policy:**
+
+1. (Ideal) Keep the preview as documentation.
+2. (Unexpected) Restate that this is not executable runtime play.
+3. (No response) Leave the preview note unchanged.
+
+**Screen/state:** Optional drawing step cards are documented but not launched.
+"""
+        findings = self.report.runtime_contract_quality_findings(self.report.runtime_beats(prod_text))
+
+        self.assertEqual([], findings)
+
     def test_consumer_dialogue_qa_requires_both_reports(self):
         with tempfile.TemporaryDirectory() as tmp:
             run_dir = Path(tmp)
@@ -245,6 +402,31 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
                             "mode": "runtime_equivalent",
                             "activity_ids": ["quality_smoke"],
                             "strategies": strategies,
+                        }
+                    )
+                )
+
+            self.assertEqual([], self.report.consumer_dialogue_qa_findings(run_dir))
+
+    def test_consumer_dialogue_qa_accepts_legacy_runtime_reports(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            legacy_strategies = [
+                "expected_answer",
+                "wrong_or_unproductive_answer",
+                "help_or_confusion",
+                "silence_no_response",
+                "premature_done",
+            ]
+            for consumer in ("fullstack_demo", "wonderlens_ai"):
+                report_dir = run_dir / "downstream_reports" / consumer
+                report_dir.mkdir(parents=True)
+                (report_dir / "dialogue_runtime_qa.json").write_text(
+                    json.dumps(
+                        {
+                            "verdict": "PASS",
+                            "mode": "runtime_equivalent",
+                            "strategies_exercised": legacy_strategies,
                         }
                     )
                 )

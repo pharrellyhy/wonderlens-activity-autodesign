@@ -32,6 +32,19 @@ PACKAGE_FILES = [
     "dashboard.template.yaml",
 ]
 
+ENTITY_COMPATIBILITY_VALUES = {"source_bound", "agnostic", "unsupported"}
+DYNAMIC_PARAMETERIZATION_MODES = {
+    "entity_target",
+    "property_target",
+    "initial_sound_from_entity",
+    "word_from_entity",
+    "asset_catalog_target",
+}
+HANDOFF_SAFE_PARAMETERIZATION_MODES = {
+    "entity_theme",
+    *DYNAMIC_PARAMETERIZATION_MODES,
+}
+
 BRANCH_LABELS = [
     ("Ideal", "ideal"),
     ("Unexpected", "unexpected"),
@@ -195,6 +208,11 @@ REQUIRED_DIALOGUE_QA_STRATEGIES = {
     "help_confusion",
     "silence_no_response",
     "premature_done",
+}
+CONSUMER_DIALOGUE_QA_FILENAMES = ("dialogue_qa_report.json", "dialogue_runtime_qa.json")
+DIALOGUE_QA_STRATEGY_ALIASES = {
+    "wrong_or_unproductive_answer": "wrong_unproductive_answer",
+    "help_or_confusion": "help_confusion",
 }
 
 
@@ -623,6 +641,15 @@ def runtime_contract_quality_findings(beats: list[dict[str, Any]]) -> list[str]:
 
 
 def _celebration_instruction_asks_new_gameplay(instruction_lower: str) -> bool:
+    future_preview_cues = (
+        "without executing it",
+        "as a preview",
+        "future version:",
+        "future child-facing shape",
+    )
+    if any(cue in instruction_lower for cue in future_preview_cues):
+        return False
+
     gameplay_phrases = (
         "ask one more",
         "binary choice",
@@ -640,6 +667,20 @@ def _celebration_instruction_asks_new_gameplay(instruction_lower: str) -> bool:
     if any(phrase in instruction_lower for phrase in gameplay_phrases):
         return True
     return bool(re.search(r"\bgoal:\s*ask\b", instruction_lower))
+
+
+def normalize_dialogue_qa_strategy(value: Any) -> str:
+    strategy = normalize_text(value)
+    return DIALOGUE_QA_STRATEGY_ALIASES.get(strategy, strategy)
+
+
+def dialogue_qa_report_path(run_dir: Path, report_dir: str) -> Path:
+    base = run_dir / "downstream_reports" / report_dir
+    for filename in CONSUMER_DIALOGUE_QA_FILENAMES:
+        path = base / filename
+        if path.exists():
+            return path
+    return base / CONSUMER_DIALOGUE_QA_FILENAMES[0]
 
 
 def beat_from_chunk(title: str, chunk: str) -> dict[str, Any]:
@@ -715,7 +756,7 @@ def scorecard_rows(spec_text: str) -> list[dict[str, str]]:
 def consumer_dialogue_qa_findings(run_dir: Path) -> list[str]:
     findings: list[str] = []
     for report_dir, label in CONSUMER_DIALOGUE_QA_REPORTS.items():
-        report_path = run_dir / "downstream_reports" / report_dir / "dialogue_qa_report.json"
+        report_path = dialogue_qa_report_path(run_dir, report_dir)
         if not report_path.exists():
             findings.append(f"{label}: missing {report_path.relative_to(run_dir)}")
             continue
@@ -730,27 +771,31 @@ def consumer_dialogue_qa_findings(run_dir: Path) -> list[str]:
             findings.append(f"{label}: dialogue QA report must be a JSON object")
             continue
 
-        status = normalize_text(data.get("status")).lower()
+        status = normalize_text(data.get("status") or data.get("verdict")).lower()
         if status not in {"pass", "downstream_owned_failure"}:
             findings.append(f"{label}: status must be pass or downstream_owned_failure")
 
         raw_strategies = data.get("strategies")
+        raw_legacy_strategies = data.get("strategies_exercised")
         if not isinstance(raw_strategies, list):
-            findings.append(f"{label}: strategies must list dialogue QA cases")
-            strategy_names: set[str] = set()
+            if isinstance(raw_legacy_strategies, list):
+                strategy_names = {normalize_dialogue_qa_strategy(item) for item in raw_legacy_strategies}
+            else:
+                findings.append(f"{label}: strategies must list dialogue QA cases")
+                strategy_names = set()
         else:
-            strategy_names = {
-                normalize_text(item.get("strategy") or item.get("name") or item.get("id"))
-                for item in raw_strategies
-                if isinstance(item, dict)
-            }
+            strategy_names = set()
             for item in raw_strategies:
-                if not isinstance(item, dict):
+                if isinstance(item, str):
+                    strategy_names.add(normalize_dialogue_qa_strategy(item))
                     continue
-                item_name = normalize_text(item.get("strategy") or item.get("name") or item.get("id"))
-                item_status = normalize_text(item.get("status")).lower()
-                if item_name and item_status not in {"pass", "downstream_owned_failure"}:
-                    findings.append(f"{label}: strategy {item_name} has invalid status {item_status or '<empty>'}")
+                if isinstance(item, dict):
+                    item_name = normalize_dialogue_qa_strategy(item.get("strategy") or item.get("name") or item.get("id"))
+                    item_status = normalize_text(item.get("status")).lower()
+                    if item_name:
+                        strategy_names.add(item_name)
+                    if item_name and item_status not in {"pass", "downstream_owned_failure"}:
+                        findings.append(f"{label}: strategy {item_name} has invalid status {item_status or '<empty>'}")
 
         missing = sorted(REQUIRED_DIALOGUE_QA_STRATEGIES.difference(strategy_names))
         if missing:
@@ -1037,6 +1082,136 @@ def collect_asset_policy(
     return "unknown"
 
 
+def compact_field_list(value: Any, limit: int = 8) -> list[str]:
+    if isinstance(value, dict):
+        items = [normalize_text(key) for key in value if normalize_text(key)]
+        return items[:limit]
+    return compact_list(value, limit=limit)
+
+
+def first_mapping(*values: Any) -> dict[str, Any]:
+    for value in values:
+        if isinstance(value, dict) and value:
+            return value
+    return {}
+
+
+def parameterization_handoff_verdict(
+    *,
+    entity_compatibility: str,
+    mode: str,
+    integrity_status: str,
+    required_handoff_fields: list[str],
+    stale_text_risk: str,
+) -> str:
+    """Return a compact reviewer verdict for discovery handoff safety."""
+
+    if not entity_compatibility:
+        return "fail_missing_compatibility"
+    if entity_compatibility not in ENTITY_COMPATIBILITY_VALUES:
+        return "fail_invalid_compatibility"
+    if entity_compatibility == "unsupported":
+        return "fail_unsupported"
+    if entity_compatibility == "source_bound":
+        return "conditional_source_bound"
+    if mode not in HANDOFF_SAFE_PARAMETERIZATION_MODES:
+        return "fail_mode_not_handoff_safe"
+    if mode in DYNAMIC_PARAMETERIZATION_MODES and not required_handoff_fields:
+        return "fail_missing_required_handoff"
+    if stale_text_risk.startswith("fail") or stale_text_risk.startswith("stale"):
+        return "fail_stale_text_risk"
+    if integrity_status in {"validated", "validator_fixture", "accepted", "pass"}:
+        return "pass"
+    return "conditional_pending_integrity"
+
+
+def collect_parameterization_decision(
+    package_dir: Path,
+    tag: dict[str, Any],
+    entry: dict[str, Any],
+) -> dict[str, Any]:
+    """Return declared or proposed package parameterization metadata for review."""
+
+    package_parameterization = load_yaml(package_dir / "parameterization.yaml")
+    demo_support = load_yaml(package_dir / "demo_support.yaml")
+    entity_compatibility_hint = normalize_text(
+        entry.get("entity_compatibility")
+        or tag.get("entity_compatibility")
+        or package_parameterization.get("entity_compatibility")
+        or demo_support.get("entity_compatibility")
+    )
+    raw = first_mapping(
+        entry.get("parameterization_decision"),
+        entry.get("parameterization"),
+        tag.get("parameterization"),
+        package_parameterization.get("parameterization"),
+        package_parameterization if package_parameterization.get("mode") else {},
+        demo_support.get("parameterization"),
+    )
+    if not raw and not entity_compatibility_hint:
+        return {}
+    raw = raw or {}
+    validity = raw.get("validity") if isinstance(raw.get("validity"), dict) else {}
+    entity_compatibility = normalize_text(
+        entity_compatibility_hint
+        or raw.get("entity_compatibility")
+    )
+    mode = normalize_text(raw.get("mode") or raw.get("declared_mode") or raw.get("parameterization_mode"))
+    integrity_status = normalize_text(
+        raw.get("integrity_status")
+        or raw.get("validity_status")
+        or raw.get("status")
+        or validity.get("status")
+    )
+    required_handoff_fields = compact_field_list(
+        raw.get("required_handoff_fields")
+        or raw.get("required_handoff")
+        or raw.get("requires")
+        or validity.get("requires"),
+        limit=10,
+    )
+    stale_text_risk = normalize_text(
+        raw.get("stale_text_risk")
+        or raw.get("stale_authored_constant_risk")
+        or raw.get("stale_constant_risk")
+    )
+    decision = {
+        "entity_compatibility": entity_compatibility,
+        "mode": mode,
+        "integrity_status": integrity_status,
+        "decision_source": normalize_text(raw.get("decision_source") or raw.get("source")),
+        "confidence": normalize_text(raw.get("confidence")),
+        "reviewer_action": normalize_text(raw.get("reviewer_action") or raw.get("required_reviewer_action")),
+        "required_handoff_fields": required_handoff_fields,
+        "dynamic_fields": compact_field_list(
+            raw.get("dynamic_fields")
+            or raw.get("derived_runtime_fields")
+            or raw.get("derived_fields"),
+            limit=10,
+        ),
+        "frozen_fields": compact_field_list(
+            raw.get("frozen_fields")
+            or raw.get("authored_constants"),
+            limit=10,
+        ),
+        "invalid_when": compact_list(
+            raw.get("invalid_when")
+            or validity.get("invalid_when"),
+            limit=8,
+        ),
+        "stale_text_risk": stale_text_risk,
+        "evidence": compact_list(raw.get("evidence") or raw.get("debug_evidence"), limit=8),
+    }
+    decision["handoff_verdict"] = parameterization_handoff_verdict(
+        entity_compatibility=entity_compatibility,
+        mode=mode,
+        integrity_status=integrity_status,
+        required_handoff_fields=required_handoff_fields,
+        stale_text_risk=stale_text_risk,
+    )
+    return {key: value for key, value in decision.items() if value}
+
+
 def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind: str) -> dict[str, Any]:
     activity_path = normalize_text(entry.get("activity_path"))
     activity_id = normalize_text(entry.get("activity_id"))
@@ -1099,6 +1274,7 @@ def collect_package(repo_root: Path, run_dir: Path, entry: dict[str, Any], kind:
         "entity_role": normalize_text(signature.get("entity_role") or "unknown"),
         "entity_binding": normalize_text(tag.get("entity_binding") or "unknown"),
         "parameter_slots": placeholder_tokens(tag, spec_text),
+        "parameterization_decision": collect_parameterization_decision(package_dir, tag, entry),
         "asset_policy": collect_asset_policy(entry, assignment_fields, brief, spec_text),
         "asset_usage": asset_usage,
         "changed_files": compact_list(entry.get("changed_files"), limit=8),
@@ -1647,13 +1823,36 @@ def resolved_blocker_rows(package: dict[str, Any]) -> str:
 def extensibility_rows(package: dict[str, Any]) -> str:
     slots = package.get("parameter_slots", [])
     notes = package.get("extensibility_notes", [])
+    decision = package.get("parameterization_decision") or {}
     slot_html = value_list(slots, empty="No explicit parameter slots")
     note_html = "".join(f"<li>{esc(note)}</li>" for note in notes)
+    if decision.get("evidence"):
+        note_html += "".join(f"<li>Parameterization evidence: {esc(item)}</li>" for item in decision["evidence"])
+    if decision.get("invalid_when"):
+        note_html += "".join(f"<li>Invalid when: {esc(item)}</li>" for item in decision["invalid_when"])
     note_html = note_html or "<li>Package is primarily standalone; no extensibility note recorded.</li>"
     summary = package.get("extensibility_summary") or "Review how the activity can be reused by replacing entity, attribute, asset, or topic slots."
+    parameterization_html = ""
+    if decision:
+        parameterization_html = (
+            '<div class="inline-fields">'
+            f"<div><span>Entity compatibility</span><strong>{esc(decision.get('entity_compatibility') or 'not_declared')}</strong></div>"
+            f"<div><span>Handoff verdict</span><strong>{esc(decision.get('handoff_verdict') or 'not_declared')}</strong></div>"
+            f"<div><span>Parameterization mode</span><strong>{esc(decision.get('mode') or 'not_declared')}</strong></div>"
+            f"<div><span>Integrity</span><strong>{esc(decision.get('integrity_status') or 'not_declared')}</strong></div>"
+            f"<div><span>Decision source</span><strong>{esc(decision.get('decision_source') or 'not_declared')}</strong></div>"
+            f"<div><span>Confidence</span><strong>{esc(decision.get('confidence') or 'not_declared')}</strong></div>"
+            f"<div><span>Stale-text risk</span><strong>{esc(decision.get('stale_text_risk') or 'not_declared')}</strong></div>"
+            f"<div><span>Reviewer action</span><strong>{esc(decision.get('reviewer_action') or 'not_declared')}</strong></div>"
+            "</div>"
+            f"<p><span>Dynamic fields</span>{value_list(decision.get('dynamic_fields', []), empty='No dynamic fields declared')}</p>"
+            f"<p><span>Frozen fields</span>{value_list(decision.get('frozen_fields', []), empty='No frozen fields declared')}</p>"
+            f"<p><span>Required handoff</span>{value_list(decision.get('required_handoff_fields', []), empty='No handoff fields declared')}</p>"
+        )
     return (
         '<div class="extensibility-block">'
         f'<p>{esc(summary)}</p>'
+        f"{parameterization_html}"
         f'<p><span>Reusable slots</span>{slot_html}</p>'
         f'<ul>{note_html}</ul>'
         "</div>"
@@ -2696,13 +2895,23 @@ def extensibility_summary(packages: list[dict[str, Any]]) -> str:
     for package in packages:
         notes = package.get("extensibility_notes", [])
         slots = package.get("parameter_slots", [])
-        if not notes and not slots:
+        decision = package.get("parameterization_decision") or {}
+        if not notes and not slots and not decision:
             continue
         rows.append(
             "<tr>"
             f"<td>{esc(package['activity_name'])}<br><span class=\"muted\">{esc(package['activity_id'])}</span></td>"
+            f"<td>{esc(decision.get('entity_compatibility') or 'not_declared')}</td>"
+            f"<td>{esc(decision.get('handoff_verdict') or 'not_declared')}</td>"
             f"<td>{esc(package.get('entity_binding') or 'unknown')}</td>"
+            f"<td>{esc(decision.get('mode') or 'not_declared')}</td>"
+            f"<td>{esc(decision.get('integrity_status') or 'not_declared')}</td>"
+            f"<td>{esc(decision.get('stale_text_risk') or 'not_declared')}</td>"
             f"<td>{value_list(slots, empty='No explicit slots')}</td>"
+            f"<td>{value_list(decision.get('dynamic_fields', []), empty='No dynamic fields declared')}</td>"
+            f"<td>{value_list(decision.get('frozen_fields', []), empty='No frozen fields declared')}</td>"
+            f"<td>{value_list(decision.get('required_handoff_fields', []), empty='No handoff fields declared')}</td>"
+            f"<td>{esc(decision.get('reviewer_action') or 'not_declared')}</td>"
             f"<td>{esc(notes[0] if notes else package.get('extensibility_summary') or 'Reusable by changing the concept context.')}</td>"
             "</tr>"
         )
@@ -2711,9 +2920,9 @@ def extensibility_summary(packages: list[dict[str, Any]]) -> str:
     return f"""
   <section class="panel" id="extensibility-overview">
     <div class="panel-head"><h2>Extensibility Overview</h2></div>
-    <div class="criteria-note">This section highlights whether an activity can be extended to other entities, topics, or matched properties by replacing slots such as {{runtime_entity}}, {{shared_feature}}, or asset-set IDs.</div>
+    <div class="criteria-note">This section highlights whether an activity can be extended to other entities, topics, or matched properties by replacing slots such as {{runtime_entity}}, {{shared_feature}}, or asset-set IDs, and whether the parameterization decision has enough integrity evidence for runtime handoff.</div>
     <div class="table-wrap"><table class="reason-guide-table">
-      <thead><tr><th>Activity</th><th>Binding</th><th>Reusable slots</th><th>How to extend</th></tr></thead>
+      <thead><tr><th>Activity</th><th>Entity compatibility</th><th>Handoff verdict</th><th>Binding</th><th>Parameterization mode</th><th>Integrity</th><th>Stale-text risk</th><th>Reusable slots</th><th>Dynamic fields</th><th>Frozen fields</th><th>Required handoff</th><th>Reviewer action</th><th>How to extend</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table></div>
   </section>
@@ -5046,6 +5255,8 @@ def validate(repo_root: Path, run_dir: Path) -> None:
         or (
             "Extensibility Overview" in text
             and "Reusable slots" in text
+            and "Parameterization mode" in text
+            and "Integrity" in text
             and "Extensibility" in text
         ),
         "no_external_assets": not re.search(r"<(?:script|link)[^>]+(?:src|href)=[\"']https?://", text),

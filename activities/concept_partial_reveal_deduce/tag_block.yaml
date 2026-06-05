@@ -8,6 +8,7 @@ game_style: mystery_lens
 entity: common_animal_or_object
 entity_class: [animal, object]
 entity_binding: agnostic
+entity_compatibility: source_bound
 tier_range:
   primary: T1
   span: [T0, T1, T2]

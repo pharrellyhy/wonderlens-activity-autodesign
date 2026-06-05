@@ -7,6 +7,7 @@ game_style: quest_collector
 entity: '{runtime_entity}'
 entity_class: []
 entity_binding: parameterized
+entity_compatibility: source_bound
 tier_range:
   primary: T1
   span:

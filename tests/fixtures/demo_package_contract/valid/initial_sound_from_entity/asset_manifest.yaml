@@ -1,0 +1,48 @@
+activity_id: phoneme_dynamic_collect
+entity_id: dog
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: "1:1"
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  catalog_grid:
+    aspect_ratio: "1:1"
+    master_size: 512
+assets:
+  - id: door_object
+    role: collection_correct
+    label: Door
+    collection_catalog_id: door
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: Soft 3D educational toy illustration of one simple door, mint and porcelain palette, centered, no text or letters.
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path:
+    fallback_behavior: Ask the child for a spoken object name instead of showing this card.
+  - id: cup_object
+    role: collection_distractor
+    label: Cup
+    collection_catalog_id: cup
+    requiredness: optional
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: Soft 3D educational toy illustration of one simple cup, mint and porcelain palette, centered, no text or letters.
+    variants:
+      - id: icon_256
+        target: catalog_grid
+        size: 256x256
+        path:
+    fallback_behavior: Hide the distractor if the card asset is unavailable.

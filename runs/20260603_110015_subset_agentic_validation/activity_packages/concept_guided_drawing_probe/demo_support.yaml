@@ -1,5 +1,31 @@
 activity_id: concept_guided_drawing_probe
 version: 1
+parameterization:
+  mode: fixed
+  decision_source: current_package_review
+  integrity_status: fixed_drawing_sequence
+  confidence: high
+  evidence:
+    - The degraded package is a self-report paper drawing flow.
+    - Step-card assets are authored around circle, ears or petals, and finish-detail drawing steps.
+  validity:
+    production_supported: false
+    requires: []
+    invalid_when:
+      - discovery handoff expects a different drawing target
+      - package lacks parameterized step prompts and matching assets
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    drawing_target: simple circle-based drawing
+    step_sequence:
+      - circle_step
+      - ears_step
+      - finish_step
+  fallback_behavior: Keep the fixed drawing sequence; do not retarget drawing steps from handoff entities.
+  consumer_notes:
+    wonderlens_ai: Dynamic drawing requires authored slots for target shape, step prompts, and matching assets.
+  reviewer_action: accept_only_as_fixed_or_author_parameterized_drawing_slots
 demo_support:
   status: degraded
   ui_template: cat1_dialogue

@@ -1,5 +1,40 @@
 activity_id: concept_scavenger_hunt_collect
 version: 1
+parameterization:
+  mode: property_target
+  decision_source: current_package_review
+  integrity_status: degraded_child_stated_property_target
+  confidence: medium
+  evidence:
+    - The package asks for a shared clue object and preserves a three-photo collection plus synthesis loop.
+    - Demo support says arbitrary color, shape, or category cannot be judged reliably from image data alone.
+  validity:
+    production_supported: false
+    requires:
+      - handoff object label
+      - child or caregiver stated shared property
+      - child or caregiver stated evidence for each collected photo
+    invalid_when:
+      - no shared property is stated
+      - runtime claims automated image judgment of arbitrary properties
+      - fewer than three collection examples are available
+  source_fields:
+    seed_object:
+      - handoff.object_label
+      - demo_support.default_entity_binding.display_label
+    shared_property:
+      - child_stated_property
+      - caregiver_confirmed_property
+  derived_runtime_fields:
+    target_property: child_or_caregiver_stated_shared_property
+    collection_goal_count: 3
+    evidence_prompt: explain how each photo shares the clue
+  authored_constants:
+    collection_loop: three-photo scavenger hunt with synthesis
+  fallback_behavior: Degrade to child-stated evidence; do not claim automated recognition of color, shape, or category.
+  consumer_notes:
+    wonderlens_ai: Require explicit property evidence before accepting collection items.
+  reviewer_action: accept_only_as_degraded_property_target
 demo_support:
   status: degraded
   ui_template: cat5_judgment

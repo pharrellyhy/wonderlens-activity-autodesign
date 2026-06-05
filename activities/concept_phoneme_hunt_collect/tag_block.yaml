@@ -8,6 +8,7 @@ game_style: quest_collector
 entity: any_everyday_object
 entity_class: [observable_thing]
 entity_binding: agnostic
+entity_compatibility: unsupported
 tier_range:
   primary: T1
   span: [T0, T1]

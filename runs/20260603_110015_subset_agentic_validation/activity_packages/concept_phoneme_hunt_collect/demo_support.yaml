@@ -1,5 +1,28 @@
 activity_id: concept_phoneme_hunt_collect
 version: 1
+parameterization:
+  mode: fixed
+  decision_source: current_package_review
+  integrity_status: dynamic_handoff_not_supported
+  confidence: high
+  evidence:
+    - Package title and runtime copy are authored around B-Sound Treasure Hunt.
+    - Demo support explicitly says the current demo cannot infer starting sound from image data alone.
+  validity:
+    production_supported: false
+    requires: []
+    invalid_when:
+      - discovery handoff expects retargeting from photographed object name
+      - runtime lacks child-supplied object name or phoneme evidence
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    target_sound: /b/
+    collection_criterion: beginning B sound
+  fallback_behavior: Treat as a fixed B-sound demo only; do not retarget from handoff entity.
+  consumer_notes:
+    wonderlens_ai: Repair to initial_sound_from_entity before claiming dog-to-D or other dynamic phoneme handoff.
+  reviewer_action: accept_only_as_fixed_or_repair_to_initial_sound_from_entity
 demo_support:
   status: degraded
   ui_template: cat5_judgment
