@@ -1,5 +1,6 @@
 activity_id: concept_tiny_curator_sort
 version: 1
+entity_compatibility: unsupported
 parameterization:
   mode: unsupported_until_parameterized
   decision_source: fixture_author

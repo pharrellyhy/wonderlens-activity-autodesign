@@ -215,6 +215,8 @@ adaptation_brief:
     unsupported_reasons: []
     degraded_reasons: []
 
+  entity_compatibility: <source_bound|agnostic|unsupported>
+
   parameterization:
     mode: <fixed|entity_theme|entity_target|property_target|initial_sound_from_entity|word_from_entity|asset_catalog_target|unsupported_until_parameterized>
     decision_source: <author|authoring_agent|review_subagent|manual_reviewer>
@@ -248,6 +250,7 @@ adaptation_brief:
 
   extensibility:
     entity_binding: <bound|parameterized|agnostic>
+    entity_compatibility: <source_bound|agnostic|unsupported>
     reusable_slots: ["<runtime placeholder, matched property, or replaceable asset-set id>"]
     retargeting_note: "<how to reuse the activity with another entity/property/asset set without changing the mechanic>"
 ```
@@ -315,11 +318,11 @@ When `demo_export=true`, which is the default for full `GOAL.md` generation runs
 
 Supported and degraded demo packages must declare at least one `entity_bindings` entry and exactly one default binding. Unsupported packages may still include a binding for review context, but consumers must not show them as playable. A degraded package must explain the limitation, such as "catalog simulated judgment, not real camera validation." Do not hide an unsupported mechanic behind a Cat1 or Cat5 scaffold.
 
-`demo_support.yaml` must also declare a top-level `parameterization:` block when the package is demo-targeted. It is a sibling of the top-level `demo_support:` block, not nested inside it. Allowed `parameterization.mode` values are `fixed`, `entity_theme`, `entity_target`, `property_target`, `initial_sound_from_entity`, `word_from_entity`, `asset_catalog_target`, and `unsupported_until_parameterized`.
+`demo_support.yaml` must also declare a top-level `entity_compatibility:` field and a top-level `parameterization:` block when the package is demo-targeted. They are siblings of the top-level `demo_support:` block, not nested inside it. Allowed `entity_compatibility` values are `source_bound`, `agnostic`, and `unsupported`. Allowed `parameterization.mode` values are `fixed`, `entity_theme`, `entity_target`, `property_target`, `initial_sound_from_entity`, `word_from_entity`, `asset_catalog_target`, and `unsupported_until_parameterized`.
 
-`tag_block.yaml` `entity_binding` and `matchability.entity_class_filter: []` are not enough to prove runtime parameterization. `entity_binding` describes the package's broad relationship to an entity, and an empty class filter means wide matching; neither declares source handoff fields, derived runtime fields, retargetable slots, frozen authored constants, invalid/fallback behavior, or supporting evidence. A dynamic claim is valid only after those fields are written into package metadata and pass review/validation.
+`entity_compatibility` is the reviewer-facing handoff promise: `source_bound` means safe only for the authored entity or a closed set, `agnostic` means safe for arbitrary handoff within declared validity rules and a supported non-fixed mode, and `unsupported` means not selectable from discovery handoff until repaired. `tag_block.yaml` `entity_binding` and `matchability.entity_class_filter: []` are not enough to prove runtime parameterization or handoff safety. `entity_binding` describes the package's broad relationship to an entity, and an empty class filter means wide matching; neither declares source handoff fields, derived runtime fields, retargetable slots, frozen authored constants, invalid/fallback behavior, or supporting evidence. A dynamic claim is valid only after those fields are written into package metadata and pass review/validation.
 
-Authors or delegated review subagents may infer a likely mode, but that inference is only proposed evidence until it is recorded in metadata and validated. Each decision must name required handoff fields under `validity.requires`, source fields, derived runtime fields, authored/frozen constants, invalid/fallback behavior, evidence, confidence, and reviewer action. First-letter sound derivation for `initial_sound_from_entity` is the MVP contract; it derives an initial letter/sound label from the entity name and does not claim full phonetics.
+Authors or delegated review subagents may infer likely `entity_compatibility` and mode, but that inference is only proposed evidence until it is recorded in metadata and validated. Each decision must name required handoff fields under `validity.requires`, source fields, derived runtime fields, authored/frozen constants, invalid/fallback behavior, evidence, confidence, and reviewer action. First-letter sound derivation for `initial_sound_from_entity` is the MVP contract; it derives an initial letter/sound label from the entity name and does not claim full phonetics.
 
 ### 0.5 Readiness rules
 
@@ -553,6 +556,7 @@ game_style: <mystery_lens|mystery_trail|inventor_workshop|mix_lab|voice_stage|en
 entity: <entity_name_or_{parameterized_by_matched_property}>
 entity_class: [<class>, ...]              # [] for wide/property templates
 entity_binding: <bound|parameterized|agnostic>
+entity_compatibility: <source_bound|agnostic|unsupported> # optional summary; demo_support.yaml owns runtime authority when present
 tier_range:
   primary: <T0|T1|T2>
   span: [<T0|T1|T2>, ...]
@@ -603,7 +607,7 @@ Use `activities/_schema/tag_block.schema.json` for exact required fields and enu
 | Group | Required fields | Primary consumer |
 |---|---|---|
 | Identity | `activity_id`, `version`, `template_type`, `pillar`, `game_style` | loader, matcher, author review |
-| IB frame | `entity`, `entity_binding`, `tier_range`, `key_concepts`, `progression`, `caregiver_role`, `kud` | parent dashboard and progression surfaces |
+| IB frame | `entity`, `entity_binding`, optional `entity_compatibility`, `tier_range`, `key_concepts`, `progression`, `caregiver_role`, `kud` | parent dashboard and progression surfaces |
 | Activity signature | `observation_angle`, `mechanic`, `entity_role`, `focal_attribute`, `intro`, `bridge_prerequisites`, `preview_label`, `preview_prompt` | matcher, selector, runtime preview, dashboard |
 | Matchability | `entity_class_filter`, `tier_support` | matcher and selector |
 
@@ -621,6 +625,7 @@ The three closed enums under `activity_signature` are owned by `docs/activity_vo
 - **Child recap renderer** reads `recap.template.yaml`; the focal attribute token and reward language must match the runtime activity.
 - **Parent dashboard renderer** reads `dashboard.template.yaml`; `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.activity_signature.focal_attribute`.
 - **Demo importer** reads optional `demo_support.yaml`; it must declare `supported`, `degraded`, or `unsupported`, a concrete UI template, explicit entity binding, product/runtime requirements, and limitation notes.
+- **Runtime compatibility reader** reads optional top-level `entity_compatibility` in `demo_support.yaml`; it must declare whether arbitrary discovery handoff is source-bound, agnostic within validity rules, or unsupported until repaired.
 - **Runtime parameterization reader** reads optional top-level `parameterization` in `demo_support.yaml`; it must declare whether the handoff entity is fixed, thematic, a target, a property source, an initial-sound source, a word source, asset-catalog-driven, or unsupported until repaired.
 - **Asset pipeline / demo importer** reads optional `asset_manifest.yaml`; it must declare separate runtime assets, screen targets, prompt/source, variants, nullable file path slots, fallback behavior, and reference-bound provenance.
 
@@ -653,6 +658,7 @@ Before emitting a completed migrated package, verify:
 - [ ] `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` exactly equals `tag_block.yaml` `activity_signature.focal_attribute`.
 - [ ] No field value is a placeholder, ellipsis, or instruction-shaped string ("pick one of...", "see mapping", etc.).
 - [ ] If `demo_support.yaml` is present, it validates against `activities/_schema/demo_support.schema.json` or the focused validator, and its status/template honestly match the current demo support gate.
+- [ ] If `demo_support.yaml` is present, its top-level `entity_compatibility` field uses an allowed value and does not rely on `tag_block.yaml` `entity_binding` as proof of handoff safety.
 - [ ] If `demo_support.yaml` is present, its top-level `parameterization` block uses an allowed mode and records `validity.requires`, source fields, derived runtime fields, authored constants, invalid/fallback behavior, evidence, confidence, and reviewer action as applicable.
 - [ ] If `asset_manifest.yaml` is present, it validates against `activities/_schema/asset_manifest.schema.json` or the focused validator, uses separate runtime assets rather than contact sheets, and requires source/provenance for reference-bound assets.
 
@@ -808,7 +814,7 @@ Existing `AI says` exact-dialogue steps remain valid. Do not use a single fixed 
 - **Asset placement**: `spec.md` may include asset prompts and dependency rationale in `## Asset Brief`; `spec.md` must include `## Asset Usage Timeline` for any prebuilt, displayed, or runtime-generated image dependency. For demo export, `asset_manifest.yaml` owns the machine-readable runtime asset contract: separate asset roles, style ID, screen targets, variants, nullable file paths, prompt/source, fallback behavior, and reference provenance. Illustrative prompts must use the WonderLens activity asset style from Phase 0.4 and the repo-local `docs/asset_style_reference/` files instead of pointing to an external prompt file. `prod.md` references asset IDs, display location, and fallback behavior only. Full-pass packages must include the standard fullstack-style scene bundle (`activity_icon`, `intro_scene`, `rules_scene`, `round_1_scene`, `round_2_scene`, `round_3_scene`, `celebrate_scene`, `closing_scene`, plus `synthesis_scene` when applicable) in addition to any object/item assets. Picker/selectable item or object assets must be declared separately and built under package-local `assets/items/`, not mixed with beat-scene/background assets. Review outputs must distinguish `Asset dependencies` from `Display beats` and `Image items`; do not treat one asset row or card set as one image when it is displayed across multiple steps. Do not generate or store image files as part of package authoring; only the explicit post-package asset build phase writes package-local runtime images. Contact sheets are review-only artifacts, not runtime asset manifests.
 - **Scene image meaning**: generated scene prompts must start from the beat's child action, learning evidence, and runtime screen state. Generic metaphors or placeholders such as baskets, treasure chests, blank cards, blank boards, empty rooms, glows, sparkles, and camera slots are not valid scene subjects unless the beat is explicitly about that object. Story-scene assets should feel like coherent real-world scenes with plausible spaces, stable camera/framing, consistent subject treatment, and concrete beat-to-beat changes; isolated floating symbols are for icons, badges, and item sprites, not scene backgrounds. For sound, phoneme, rhyme, or word-hunt activities, visuals must make listening, speaking, sound waves, search motion, or runtime evidence handling legible without baking in letters, words, or target answers. Image QA must inspect the actual PNGs and the recorded prompt root cause; a nice-looking but nonsensical scene is a hard repair.
 - **Resolved blocker placement**: product-contract override runs must preserve formerly blocked dependencies in `spec.md`, run provenance, and review/dashboard output. Use raw `RESOLVED BLOCKER` comments in `prod.md` only when every target consumer ignores them safely; WonderLens AI runtime generation currently treats such leakage markers as invalid, so direct WonderLens AI validation must either strip review-only markers before conversion or keep them out of runtime-facing `prod.md`. Before comparing or accepting fullstack-demo and WonderLens AI dialogue quality, run `! rg -n "RESOLVED BLOCKER|RESOLVE BLOCKER" runs/<run_id>/activity_packages/*/prod.md`; any match is a package-owned blocker unless the downstream converter is explicitly proven to strip or accept that marker.
-- **Extensibility placement**: concept-led and parameterized packages should name reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, `{matched_shape}`, or approved asset-set IDs in `spec.md` `## Extensibility Notes`. Demo-targeted package metadata owns the machine-readable decision in top-level `parameterization` inside `demo_support.yaml`; prose notes alone are not runtime authority.
+- **Extensibility placement**: concept-led and parameterized packages should name reusable slots such as `{runtime_entity}`, `{shared_feature}`, `{matched_color}`, `{matched_shape}`, or approved asset-set IDs in `spec.md` `## Extensibility Notes`. Demo-targeted package metadata owns the machine-readable decision in top-level `entity_compatibility` and `parameterization` inside `demo_support.yaml`; prose notes alone are not runtime authority.
 - **Package alignment**: `tag_block.yaml`, `recap.template.yaml`, and `dashboard.template.yaml` must describe the same pillar, game style, focal attribute, badge, and next-step direction as `spec.md` and `prod.md`.
 - **Source-promise alignment**: the package must preserve the original play frame, child role, interaction sequence, and required child actions unless `spec.md` and run provenance explicitly record a product-approved adaptation.
 - **Direct-consumer boundary**: fullstack-demo and WonderLens AI load/execute package content. They must not be used to improve, weaken, rewrite, or reinterpret the package to hide thin runtime AI instructions, source-intent drift, unsupported mechanics, or missing assets. Package-owned failures return to autodesign for repair; consumer-runtime failures are recorded as downstream follow-up unless explicitly in scope.
@@ -835,7 +841,7 @@ Check every step for dependency on blocked capabilities:
 - Exception: in a run with `product_contract_override=minimum_unblock_allowed`, a formerly blocked dependency may PASS only when the package records it as a resolved blocker in `spec.md`, run provenance, and `run_manifest.yaml`. Runtime-facing `prod.md` markers are allowed only when target consumers ignore them safely. If the dependency is used silently, Dimension 1 still FAILS.
 - For demo-targeted packages, does `demo_support.yaml` claim `supported` only when the current Cat1/Cat5 demo primitive can play it, and `degraded` only when the limitation is explicit? → Must be YES
 - Does every unsupported demo mechanic/UI/runtime dependency use `demo_support.status: unsupported` instead of pretending it is playable? → Must be YES
-- If the package claims dynamic entity behavior, does top-level `parameterization` declare an allowed mode, `validity.requires`, source fields, derived runtime fields, frozen constants, invalid/fallback behavior, evidence, confidence, and reviewer action? → Must be YES
+- If the package claims dynamic or arbitrary handoff behavior, does top-level `entity_compatibility` declare the handoff safety verdict, and does top-level `parameterization` declare an allowed mode, `validity.requires`, source fields, derived runtime fields, frozen constants, invalid/fallback behavior, evidence, confidence, and reviewer action? → Must be YES
 
 ### Dimension 2: Hook & Transition (PASS/FAIL)
 

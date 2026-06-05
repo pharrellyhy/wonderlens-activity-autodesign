@@ -1,5 +1,38 @@
 # HANDOFF
 
+## 2026-06-05 - Entity Compatibility Axis Completed
+
+Problem: `entity_binding: agnostic` was overloaded. It could mean broad matcher
+eligibility, arbitrary runtime handoff safety, or simply "not tied to one
+source exemplar." Reviewers and WonderLens AI needed a compact declared answer
+for whether a package can honestly run from an arbitrary photographed entity.
+
+Solution: Added the explicit `entity_compatibility` axis with values
+`source_bound`, `agnostic`, and `unsupported`; kept `parameterization.mode` as
+the runtime transform axis; updated the demo-support schema and focused
+validator; added invalid/valid fixture coverage; reclassified the current
+twelve matrix and canonical current-twelve tag blocks present under
+`activities/`; updated authoring, vocabulary, matcher/progression, activities,
+and dashboard docs; and extended `review.html` generation to show entity
+compatibility, handoff verdict, stale-text risk, frozen fields, required
+handoff, and reviewer action. A delegated review found three follow-up gaps
+before commit: tag-only compatibility summaries were skipped by the dashboard,
+`stale_text_risk` was dashboard-read but schema-disallowed, and the adaptation
+brief template nested `entity_compatibility` under `parameterization`. Those
+were repaired so tag-only `agnostic` summaries now show a failing missing-mode
+verdict, valid demo fixtures can schema-validate stale-text risk, and the
+template keeps compatibility top-level.
+
+Verification: `git diff --check`, `python3 -m unittest
+tests.test_demo_package_contract_validator`, `python3
+scripts/validate_demo_package_contract.py activities`, the tag-block schema
+validation snippet from `AGENTS.md`, valid `demo_support.yaml` fixture schema
+validation using the repo pyenv Python, `tests.test_generate_run_review` under
+the repo pyenv Python, and the required pytest file selection under the repo
+pyenv Python passed. The system Homebrew `python3` lacks `yaml` and `pytest`,
+so checks that need those packages were run with the repo-documented pyenv
+Python.
+
 ## 2026-06-05 - Entity Parameterized Package Authoring Completed
 
 Problem: Demo/runtime-ready packages could declare entity bindings without

@@ -1,5 +1,6 @@
 activity_id: fluffy_expedition_dandelion
 version: 1
+entity_compatibility: source_bound
 parameterization:
   mode: entity_theme
   decision_source: fixture_author

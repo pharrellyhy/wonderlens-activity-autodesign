@@ -8,6 +8,7 @@ notes:
   - initial_sound_from_entity uses first normalized English letter as the MVP approximation until a phoneme resolver exists.
 activities:
   - activity_id: concept_animal_sound_motion_voice
+    entity_compatibility: agnostic
     inspected_paths:
       - activities/concept_animal_sound_motion_voice
     mode: entity_theme
@@ -30,6 +31,7 @@ activities:
     metadata_action: Add top-level parameterization mode entity_theme; freeze round animals and sounds until animal/sound slots are authored.
 
   - activity_id: concept_career_decision_decide
+    entity_compatibility: agnostic
     inspected_paths:
       - activities/concept_career_decision_decide
       - runs/20260529_172332_source_intent_pilot/activity_packages/concept_career_decision_decide
@@ -51,6 +53,7 @@ activities:
     metadata_action: Add entity_theme metadata; freeze helper scenario, tools, and safe-first-action success criteria unless explicit slots are added.
 
   - activity_id: concept_constellation_star_count_enumerate
+    entity_compatibility: source_bound
     inspected_paths:
       - activities/concept_constellation_star_count_enumerate
       - runs/20260529_172332_source_intent_pilot/activity_packages/concept_constellation_star_count_enumerate
@@ -88,6 +91,7 @@ activities:
     metadata_action: Add catalog metadata for approved cards, star_count, display name, child-safe fact, and invalid_when approved metadata is missing.
 
   - activity_id: concept_emotion_reader_care
+    entity_compatibility: agnostic
     inspected_paths:
       - activities/concept_emotion_reader_care
     mode: entity_theme
@@ -111,6 +115,7 @@ activities:
     metadata_action: Add entity_theme metadata and freeze the authored cue/help sequence; only move to property_target when expression source fields are declared.
 
   - activity_id: concept_guided_drawing_probe
+    entity_compatibility: source_bound
     inspected_paths:
       - runs/20260603_110015_subset_agentic_validation/activity_packages/concept_guided_drawing_probe
     mode: fixed
@@ -136,6 +141,7 @@ activities:
     metadata_action: Add fixed metadata and freeze drawing target and step assets; dynamic entity targeting requires parameterized drawing prompts and assets.
 
   - activity_id: concept_partial_reveal_deduce
+    entity_compatibility: source_bound
     inspected_paths:
       - activities/concept_partial_reveal_deduce
       - runs/20260529_172332_source_intent_pilot/activity_packages/concept_partial_reveal_deduce
@@ -173,6 +179,7 @@ activities:
     metadata_action: Add catalog metadata for clue asset IDs, hidden answer labels, accepted guesses, distractors, and invalid_when catalog evidence is missing.
 
   - activity_id: concept_phoneme_hunt_collect
+    entity_compatibility: unsupported
     inspected_paths:
       - activities/concept_phoneme_hunt_collect
       - runs/20260603_171053_subset_phoneme_validation/activity_packages/concept_phoneme_hunt_collect
@@ -197,6 +204,7 @@ activities:
     metadata_action: Repair package prompts/runtime fields to initial_sound_from_entity, or keep it fixed; do not claim dynamic phoneme handoff while target_sound remains /b/.
 
   - activity_id: concept_recognition_pop_probe
+    entity_compatibility: source_bound
     inspected_paths:
       - runs/20260603_110015_subset_agentic_validation/activity_packages/concept_recognition_pop_probe
     mode: asset_catalog_target
@@ -234,6 +242,7 @@ activities:
     metadata_action: Add target/distractor catalog metadata, accepted target label, timing requirement, and invalid_when sprites or timing support are unavailable.
 
   - activity_id: concept_story_unlock_probe
+    entity_compatibility: source_bound
     inspected_paths:
       - runs/20260521_163621_workbook_review_packet_full/activity_packages/concept_story_unlock_probe
     mode: fixed
@@ -259,6 +268,7 @@ activities:
     metadata_action: Add fixed metadata and freeze story beats, gate prompts, target word, and story cards.
 
   - activity_id: concept_travel_planner_predict
+    entity_compatibility: agnostic
     inspected_paths:
       - activities/concept_travel_planner_predict
     mode: entity_theme
@@ -282,6 +292,7 @@ activities:
     metadata_action: Add entity_theme metadata; freeze reveal sequence unless destination, weather, and item-plan slots are added.
 
   - activity_id: concept_vegetable_sort_sort
+    entity_compatibility: source_bound
     inspected_paths:
       - activities/concept_vegetable_sort_sort
     mode: asset_catalog_target
@@ -317,6 +328,7 @@ activities:
     metadata_action: Add vegetable catalog metadata with card IDs and sortable properties; invalid_when handoff is outside the catalog or no rule can be derived.
 
   - activity_id: concept_word_echo_remember
+    entity_compatibility: unsupported
     inspected_paths:
       - activities/concept_word_echo_remember
     mode: unsupported_until_parameterized

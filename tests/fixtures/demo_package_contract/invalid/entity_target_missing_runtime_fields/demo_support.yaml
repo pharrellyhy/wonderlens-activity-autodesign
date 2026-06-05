@@ -1,5 +1,6 @@
 activity_id: entity_target_missing_runtime_fields
 version: 1
+entity_compatibility: agnostic
 parameterization:
   mode: entity_target
   decision_source: fixture_author

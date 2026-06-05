@@ -111,6 +111,7 @@ matchability:
 | `game_style` | yes | Specific activity format, such as `field_experiment`, `voice_stage`, `mystery_trail`. Secondary selector signal; prefer `activity_signature.mechanic` for child-action fit. |
 | `entity` | yes | Bound entity name, or a placeholder for parameterized activities. |
 | `entity_binding` | yes | `bound`, `parameterized`, or `agnostic`. Controls swap-ability. |
+| `entity_compatibility` | no | Optional runtime handoff summary: `source_bound`, `agnostic`, or `unsupported`. Demo/runtime packages should put the authoritative value in `demo_support.yaml`. |
 | `tier_range` | yes | Authoring tier intent and supported tier span. |
 | `key_concepts` | yes | 1+ IB key concepts visible in the activity. |
 | `progression` | yes | Primary progression axis/rung declaration for this activity. |
@@ -147,6 +148,7 @@ Eligibility fields are top-level matcher inputs. They should be stable and machi
 | `entity` | Nominal entity or placeholder. | `lion`, `{parameterized_by_matched_property}` |
 | `entity_class` | Lets matcher roll up from specific to general when exact match misses. | `[lion, big_cat, mammal, animal]` |
 | `entity_binding` | Declares how tightly the activity depends on a specific entity. | `bound`, `parameterized`, `agnostic` |
+| `entity_compatibility` | Optional summary of whether runtime handoff is source-bound, agnostic within validity rules, or unsupported. | `source_bound`, `agnostic`, `unsupported` |
 | `tier_range.primary` | Tier the activity was written for. | `T1` |
 | `tier_range.span` | Tiers the activity can safely support. | `[T0, T1, T2]` |
 | `tier_range.elasticity` | Human-readable stretch rule. | `"±1"`, `neighbor`, `strict`, `broad` |
@@ -165,7 +167,7 @@ An activity is **eligible** when all hard filters pass:
 6. Required runtime properties can be resolved. For parameterized property activities, this means the photographed entity exposes the property the activity needs, such as color, shape, material, pattern, or quantity.
 7. Safety and runtime availability checks pass.
 
-Eligibility only means "this activity may be considered." It does not mean the activity should be selected. Ranking still uses conversation coherence, progression target, freshness, and other selector signals.
+Eligibility only means "this activity may be considered." It does not mean the activity should be selected or runtime-handoff safe. Ranking still uses conversation coherence, progression target, freshness, and other selector signals. Demo/runtime handoff safety is proven by `entity_compatibility` plus `parameterization.mode`, not by `entity_binding` alone.
 
 ### 3.1.1 Binding-Specific Eligibility Rules
 

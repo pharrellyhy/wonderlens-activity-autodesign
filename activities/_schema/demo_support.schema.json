@@ -4,7 +4,7 @@
   "title": "WonderLens demo_support.yaml",
   "type": "object",
   "additionalProperties": false,
-  "required": ["activity_id", "version", "demo_support"],
+  "required": ["activity_id", "version", "entity_compatibility", "demo_support"],
   "properties": {
     "activity_id": {
       "type": "string",
@@ -13,6 +13,10 @@
     "version": {
       "type": "integer",
       "minimum": 1
+    },
+    "entity_compatibility": {
+      "type": "string",
+      "enum": ["source_bound", "agnostic", "unsupported"]
     },
     "parameterization": {
       "type": "object",
@@ -111,6 +115,10 @@
           "type": "object"
         },
         "fallback_behavior": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stale_text_risk": {
           "type": "string",
           "minLength": 1
         },
@@ -216,6 +224,59 @@
     }
   },
   "allOf": [
+    {
+      "if": {
+        "required": ["entity_compatibility"],
+        "properties": {
+          "entity_compatibility": {
+            "const": "agnostic"
+          }
+        }
+      },
+      "then": {
+        "required": ["parameterization"],
+        "properties": {
+          "parameterization": {
+            "required": ["mode"],
+            "properties": {
+              "mode": {
+                "enum": [
+                  "entity_theme",
+                  "entity_target",
+                  "property_target",
+                  "initial_sound_from_entity",
+                  "word_from_entity",
+                  "asset_catalog_target"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["entity_compatibility"],
+        "properties": {
+          "entity_compatibility": {
+            "const": "unsupported"
+          }
+        }
+      },
+      "then": {
+        "required": ["parameterization"],
+        "properties": {
+          "parameterization": {
+            "required": ["mode"],
+            "properties": {
+              "mode": {
+                "const": "unsupported_until_parameterized"
+              }
+            }
+          }
+        }
+      }
+    },
     {
       "if": {
         "required": ["demo_support"],

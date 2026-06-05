@@ -37,6 +37,7 @@
     "entity": { "type": "string" },
     "entity_class": { "type": "array", "items": { "type": "string" } },
     "entity_binding": { "enum": ["bound", "parameterized", "agnostic"] },
+    "entity_compatibility": { "enum": ["source_bound", "agnostic", "unsupported"] },
 
     "tier_range": {
       "type": "object",

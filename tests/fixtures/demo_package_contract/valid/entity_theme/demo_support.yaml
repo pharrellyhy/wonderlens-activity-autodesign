@@ -1,5 +1,6 @@
 activity_id: helper_theme_dialogue
 version: 1
+entity_compatibility: agnostic
 parameterization:
   mode: entity_theme
   decision_source: fixture_author

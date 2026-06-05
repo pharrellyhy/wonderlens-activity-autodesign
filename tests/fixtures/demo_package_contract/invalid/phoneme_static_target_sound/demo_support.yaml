@@ -1,5 +1,6 @@
 activity_id: phoneme_static_target_sound
 version: 1
+entity_compatibility: agnostic
 parameterization:
   mode: initial_sound_from_entity
   decision_source: fixture_author

@@ -28,12 +28,17 @@ PARAMETERIZATION_MODES = {
     "asset_catalog_target",
     "unsupported_until_parameterized",
 }
+ENTITY_COMPATIBILITY_VALUES = {"source_bound", "agnostic", "unsupported"}
 DYNAMIC_PARAMETERIZATION_MODES = {
     "entity_target",
     "property_target",
     "initial_sound_from_entity",
     "word_from_entity",
     "asset_catalog_target",
+}
+HANDOFF_SAFE_PARAMETERIZATION_MODES = {
+    "entity_theme",
+    *DYNAMIC_PARAMETERIZATION_MODES,
 }
 FIXED_PARAMETERIZATION_MODES = {"fixed", "entity_theme"}
 ASSET_ROLES = {
@@ -222,11 +227,19 @@ def validate_parameterization(package_dir: Path, demo_data: dict[str, Any], asse
     issues: list[str] = []
     support = as_dict(demo_data.get("demo_support"))
     status = norm(support.get("status"))
+    compatibility = norm(demo_data.get("entity_compatibility"))
     raw_parameterization = demo_data.get("parameterization")
     parameterization = as_dict(raw_parameterization)
 
+    if not compatibility:
+        issues.append(f"{label}: entity_compatibility is required")
+    elif compatibility not in ENTITY_COMPATIBILITY_VALUES:
+        issues.append(f"{label}: entity_compatibility {compatibility!r} is not allowed")
+
     if status in {"supported", "degraded"} and not parameterization:
         issues.append(f"{label}: {status} package must declare parameterization")
+        if compatibility == "agnostic":
+            issues.append(f"{label}: entity_compatibility agnostic requires parameterization.mode")
         return issues
     if raw_parameterization is not None and not isinstance(raw_parameterization, dict):
         issues.append(f"{label}: parameterization must be a mapping")
@@ -244,6 +257,13 @@ def validate_parameterization(package_dir: Path, demo_data: dict[str, Any], asse
         issues.append(f"{label}: {status} package must not use unsupported_until_parameterized mode")
     if status == "unsupported" and mode in DYNAMIC_PARAMETERIZATION_MODES:
         issues.append(f"{label}: unsupported package must not claim dynamic parameterization mode {mode}")
+    if compatibility == "agnostic":
+        if not mode:
+            issues.append(f"{label}: entity_compatibility agnostic requires parameterization.mode")
+        elif mode not in HANDOFF_SAFE_PARAMETERIZATION_MODES:
+            issues.append(f"{label}: entity_compatibility agnostic requires a non-fixed parameterization.mode")
+    if compatibility == "unsupported" and mode and mode != "unsupported_until_parameterized":
+        issues.append(f"{label}: entity_compatibility unsupported must use unsupported_until_parameterized mode")
 
     if not norm(parameterization.get("decision_source")):
         issues.append(f"{label}: parameterization.decision_source is required")

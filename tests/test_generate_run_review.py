@@ -152,6 +152,7 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
             (package_dir / "demo_support.yaml").write_text(
                 "activity_id: parameterization_smoke\n"
                 "version: 1\n"
+                "entity_compatibility: agnostic\n"
                 "support:\n"
                 "  status: degraded\n"
                 "  ui_template: cat5_collection\n"
@@ -171,6 +172,7 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
                 "  frozen_fields:\n"
                 "    - mechanic\n"
                 "    - round_count\n"
+                "  stale_text_risk: pass_no_conflicting_source_constants\n"
                 "  reviewer_action: accept\n"
             )
             (package_dir / "recap.template.yaml").write_text("{}\n")
@@ -179,13 +181,67 @@ class GenerateRunReviewRegressionTest(unittest.TestCase):
             html = self.report.build_html(root, run_dir)
 
             self.assertIn("<th>Parameterization mode</th>", html)
+            self.assertIn("<th>Entity compatibility</th>", html)
+            self.assertIn("<th>Handoff verdict</th>", html)
+            self.assertIn("<th>Stale-text risk</th>", html)
+            self.assertIn("agnostic", html)
+            self.assertIn("pass", html)
             self.assertIn("<th>Integrity</th>", html)
             self.assertIn("initial_sound_from_entity", html)
             self.assertIn("agent_proposed", html)
             self.assertIn("authoring_agent", html)
             self.assertIn("judgment_policy.accepted_initial_sound", html)
             self.assertIn("handoff.object_name_en", html)
+            self.assertIn("pass_no_conflicting_source_constants", html)
             self.assertIn("target_sound is reusable", html)
+
+    def test_extensibility_overview_flags_tag_only_agnostic_without_mode(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            run_dir = root / "runs" / "tag_only_parameterization"
+            package_dir = run_dir / "activity_packages" / "tag_only_parameterization"
+            package_dir.mkdir(parents=True)
+            (run_dir / "run_manifest.yaml").write_text(
+                "run_id: tag_only_parameterization\n"
+                "outputs:\n"
+                "  generated_activities:\n"
+                "    - activity_id: tag_only_parameterization\n"
+                "      activity_path: runs/tag_only_parameterization/activity_packages/tag_only_parameterization\n"
+            )
+            (run_dir / "review_notes.md").write_text("# Review Notes\n")
+            (run_dir / "assignment_snapshot.md").write_text("# Assignments\n")
+            (run_dir / "generated_activity_ids.txt").write_text("tag_only_parameterization\n")
+            (package_dir / "spec.md").write_text(
+                "## Extensibility Notes\n\n"
+                "- Tag block says agnostic, but no runtime parameterization is declared.\n\n"
+                "## Self-Evaluation Scorecard\n\n"
+                "| # | Dimension | Score | Notes |\n"
+                "|---|---|---|---|\n"
+                + "".join(f"| {i} | D{i} | PASS | ok |\n" for i in range(1, 11))
+            )
+            (package_dir / "prod.md").write_text(
+                "## Tag Only Parameterization\n\n"
+                "#### Step 1: Start\n\n"
+                "**AI says:** Begin.\n"
+            )
+            (package_dir / "tag_block.yaml").write_text(
+                "activity_name: Tag Only Parameterization\n"
+                "template_type: cat5\n"
+                "entity_binding: agnostic\n"
+                "entity_compatibility: agnostic\n"
+                "activity_signature:\n"
+                "  mechanic: collect\n"
+            )
+            (package_dir / "recap.template.yaml").write_text("{}\n")
+            (package_dir / "dashboard.template.yaml").write_text("{}\n")
+
+            html = self.report.build_html(root, run_dir)
+
+            self.assertIn("<th>Entity compatibility</th>", html)
+            self.assertIn("agnostic", html)
+            self.assertIn("fail_mode_not_handoff_safe", html)
+            self.assertIn("No dynamic fields declared", html)
+            self.assertIn("No handoff fields declared", html)
 
     def test_runtime_contract_quality_flags_thin_instructions(self):
         prod_text = """

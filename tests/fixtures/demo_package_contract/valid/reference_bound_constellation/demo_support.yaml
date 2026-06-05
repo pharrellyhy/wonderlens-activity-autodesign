@@ -1,5 +1,6 @@
 activity_id: concept_constellation_star_count_enumerate
 version: 1
+entity_compatibility: source_bound
 parameterization:
   mode: fixed
   decision_source: fixture_author

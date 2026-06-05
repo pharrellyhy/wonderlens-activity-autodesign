@@ -125,6 +125,16 @@ class DemoPackageContractValidatorTest(unittest.TestCase):
 
         self.assertIn("initial_sound_from_entity must not hard-code authored_constants.target_sound", "\n".join(issues))
 
+    def test_agnostic_compatibility_rejects_fixed_mode(self):
+        validator = load_validator()
+
+        issues = validator.validate_roots([FIXTURE_ROOT / "invalid" / "agnostic_fixed_mode"])
+
+        self.assertIn(
+            "entity_compatibility agnostic requires a non-fixed parameterization.mode",
+            "\n".join(issues),
+        )
+
     def test_fixed_mode_requires_authored_constants(self):
         validator = load_validator()
 
@@ -157,6 +167,8 @@ class DemoPackageContractValidatorTest(unittest.TestCase):
         self.assertEqual(CURRENT_TWELVE_IDS, activity_ids)
         for row in rows:
             mode = row.get("mode")
+            compatibility = row.get("entity_compatibility")
+            self.assertIn(compatibility, validator.ENTITY_COMPATIBILITY_VALUES)
             self.assertIn(mode, validator.PARAMETERIZATION_MODES)
             self.assertTrue(row.get("evidence"))
             self.assertTrue(row.get("metadata_action"))
@@ -172,6 +184,12 @@ class DemoPackageContractValidatorTest(unittest.TestCase):
                 self.assertTrue(row["derived_runtime_fields"])
             if mode in validator.FIXED_PARAMETERIZATION_MODES:
                 self.assertTrue(row["authored_constants"])
+            if compatibility == "agnostic":
+                self.assertIn(mode, validator.HANDOFF_SAFE_PARAMETERIZATION_MODES)
+                if mode in validator.DYNAMIC_PARAMETERIZATION_MODES:
+                    self.assertTrue(row["validity"].get("requires"))
+            if compatibility == "unsupported":
+                self.assertEqual("unsupported_until_parameterized", mode)
 
 
 if __name__ == "__main__":

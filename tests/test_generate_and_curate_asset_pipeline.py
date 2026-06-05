@@ -137,6 +137,7 @@ def base_run(run_dir):
         {
             "activity_id": "asset_smoke",
             "version": 1,
+            "entity_compatibility": "source_bound",
             "parameterization": {
                 "mode": "entity_theme",
                 "decision_source": "fixture_author",
