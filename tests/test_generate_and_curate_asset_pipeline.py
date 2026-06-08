@@ -335,7 +335,8 @@ class GenerateAndCurateAssetPipelineTest(unittest.TestCase):
         self.assertTrue(item_variant_exists)
         self.assertIn("docs/asset_style_reference/wonderlens-activity-style.md", work_item_text)
         self.assertIn("docs/asset_style_reference/style-reference-flat-nordic.png", work_item_text)
-        self.assertIn("Codex built-in imagegen", work_item_text)
+        self.assertIn("approved image provider", work_item_text)
+        self.assertIn("scripts/generate_activity_asset_sources.py", work_item_text)
 
     def test_missing_required_inputs_leave_paths_null_and_record_failures(self):
         builder = load_script("build_activity_assets")

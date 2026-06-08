@@ -23,7 +23,7 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
-| [2026-06-08-team-readiness-and-gemini-assets.md](2026-06-08-team-readiness-and-gemini-assets.md) | Planned | Prepares collaborator onboarding, review-status templates, and a Gemini image provider path using the fullstack backend credential pattern. |
+| [2026-06-08-team-readiness-and-gemini-assets.md](2026-06-08-team-readiness-and-gemini-assets.md) | Completed | Added collaborator onboarding, review-status template, Gemini source PNG provider, dependency setup, tests, docs links, and live smoke evidence. |
 | [2026-06-05-entity-compatibility-axis-parameterization-contract.md](2026-06-05-entity-compatibility-axis-parameterization-contract.md) | Completed | Added explicit entity compatibility metadata, validator/schema enforcement, review-dashboard handoff verdicts, current-twelve reclassification, docs, fixtures, and focused verification. |
 | [2026-06-05-entity-parameterized-package-authoring.md](2026-06-05-entity-parameterized-package-authoring.md) | Completed | Added producer-side parameterization metadata, authoring-agent mode decision docs, review-dashboard integrity verdicts, validator/schema coverage, current-twelve classification, and downstream WonderLens AI contract alignment. |
 | [2026-06-01-run-full-pass-agentic-pipeline.md](2026-06-01-run-full-pass-agentic-pipeline.md) | Planned | Executes the current workbook full pass with `asset_build=generate_and_curate`, fullstack validation from the `feat/activity-text-game` worktree, WonderLens AI dialogue validation, image QA, repair loops, and final review. |

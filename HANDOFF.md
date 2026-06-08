@@ -1,5 +1,34 @@
 # HANDOFF
 
+## 2026-06-08 - Team Readiness And Gemini Assets Completed
+
+Problem: The parallel full-pass workflow was not ready to share with
+collaborators who cannot use Codex built-in `imagegen`; the repo also lacked a
+machine-readable per-activity status template and a concise contributor setup
+path.
+
+Solution: Added `docs/team_onboarding.md`,
+`docs/image_generation_provider_setup.md`, `runs/_templates/review_status.yaml`,
+`requirements-imagegen.txt`, and `scripts/generate_activity_asset_sources.py`.
+README, the asset workflow doc, and the parallel workflow HTML now point to the
+new onboarding/provider/status flow. The provider reads run-local
+`asset_manifest.yaml` files, selects generated illustrative assets, writes
+512x512 source PNGs into `generated_assets/inbox/<activity_id>/<asset_id>.png`,
+and emits sanitized provider audit files while leaving package-local runtime
+variants to `scripts/build_activity_assets.py`.
+
+Verification: A local ignored `.venv` installed `requirements-imagegen.txt`.
+Checks passed with that environment: `git diff --check`,
+`python3 -m unittest tests.test_generate_activity_asset_sources`,
+`python3 -m unittest tests.test_generate_and_curate_asset_pipeline`, and
+`python3 scripts/generate_activity_asset_sources.py --help`. Live smoke used the
+referenced fullstack backend credential pattern without printing secret values:
+Gemini generated one non-production `asset_smoke/moss_icon` source PNG under
+`tmp/gemini_source_smoke`, the deterministic builder produced package-local item
+variants with zero required failures, `scripts/validate_asset_build_outputs.py`
+passed, and a targeted audit scan found no local path or credential-looking
+strings in provider/build audit files.
+
 ## 2026-06-05 - Entity Compatibility Axis Completed
 
 Problem: `entity_binding: agnostic` was overloaded. It could mean broad matcher
