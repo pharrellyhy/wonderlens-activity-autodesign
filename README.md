@@ -60,6 +60,7 @@ runs/README.md                     Run provenance directory contract
 docs/activity_asset_generation_workflow.md
                                    Runtime PNG generation, curation, style, and validation workflow
 docs/team_onboarding.md            Contributor setup, role ownership, status files, and handoff rules
+docs/role_agent_prompting_guide.md Role-scoped coding-agent prompts, file boundaries, and stop conditions
 docs/image_generation_provider_setup.md
                                    Gemini provider setup for non-Codex illustrative source PNGs
 requirements-imagegen.txt          Optional Python dependencies for third-party image generation providers
@@ -214,6 +215,8 @@ and PM-facing review criteria when several people work on the same full-pass
 run branch.
 
 For a concise contributor setup checklist, read `docs/team_onboarding.md`.
+For role-specific coding-agent prompts and forbidden scopes, read
+`docs/role_agent_prompting_guide.md`.
 Each activity should track review state in
 `runs/<run_id>/review_status/<activity_id>.yaml`, copied from
 `runs/_templates/review_status.yaml`.
