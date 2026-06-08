@@ -327,11 +327,11 @@
     }
 
     .grid.two {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
     }
 
     .grid.three {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
     }
 
     .panel {
@@ -360,12 +360,13 @@
 
     .role-cards {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 16.5rem), 1fr));
       gap: 0.95rem;
     }
 
     .role-card {
       min-height: 14rem;
+      min-width: 0;
       border: 1px solid var(--line);
       border-radius: 0.72rem;
       padding: 1rem;
@@ -395,6 +396,10 @@
       gap: 0.7rem;
       align-items: start;
       margin-bottom: 0.7rem;
+    }
+
+    .role-top > div {
+      min-width: 0;
     }
 
     .role-badge {
@@ -510,7 +515,7 @@
 
     .detail-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
       gap: 0.8rem;
       margin-top: 0.9rem;
     }
@@ -774,9 +779,8 @@
 
     .status-board {
       display: grid;
-      grid-template-columns: repeat(8, minmax(8rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.5rem), 1fr));
       gap: 0.55rem;
-      overflow-x: auto;
       padding-bottom: 0.2rem;
     }
 
@@ -814,13 +818,14 @@
 
     .handoff {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
       gap: 0.65rem;
     }
 
     .handoff-step {
       position: relative;
       min-height: 10rem;
+      min-width: 0;
       border: 1px solid var(--line);
       border-radius: 0.68rem;
       padding: 0.9rem;
@@ -850,6 +855,22 @@
       content: none;
     }
 
+    .meaning-list {
+      display: grid;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+
+    .meaning-row {
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      gap: 0.62rem;
+      align-items: start;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
     .footer {
       padding: 1.5rem clamp(1.25rem, 4vw, 4.5rem) 3rem;
       color: var(--muted);
@@ -862,11 +883,8 @@
     }
 
     @media (max-width: 1180px) {
-      .role-cards,
-      .grid.three,
-      .detail-grid,
       .handoff {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
       }
     }
 
@@ -889,12 +907,13 @@
       }
 
       .section-head,
-      .grid.two,
-      .grid.three,
-      .role-cards,
-      .detail-grid,
       .handoff {
         grid-template-columns: 1fr;
+      }
+
+      .meaning-row {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
       }
 
       .timeline-row {
@@ -989,7 +1008,7 @@
               </div>
               <p>Owns the canonical pipeline contract and integrates the run.</p>
               <ul class="list">
-                <li>Freezes <code>GOAL.md</code>, <code>program.md</code>, <code>run.md</code>, templates, and assignments.</li>
+                <li>Freezes the canonical goal, program, run loop, templates, and assignments.</li>
                 <li>Creates the baseline run output and run branch.</li>
                 <li>Merges role PRs, reruns validators, and prepares handoff.</li>
               </ul>
@@ -1005,7 +1024,7 @@
               </div>
               <p>Owns whether assigned activities are playable and runtime-ready.</p>
               <ul class="list">
-                <li>Reviews <code>spec.md</code>, <code>prod.md</code>, <code>tag_block.yaml</code>, and templates.</li>
+                <li>Reviews package text, metadata, and recap/dashboard templates.</li>
                 <li>Checks parameterization, step instructions, and branch quality.</li>
                 <li>Marks text status with concrete repair notes.</li>
               </ul>
@@ -1021,7 +1040,7 @@
               </div>
               <p>Owns image completeness, reference fidelity, and round-screen fit.</p>
               <ul class="list">
-                <li>Reviews <code>asset_manifest.yaml</code>, <code>assets/</code>, and <code>assets/sources/</code>.</li>
+                <li>Reviews asset manifests, package-local PNGs, and source metadata.</li>
                 <li>Generates or curates PNGs when tooling is available.</li>
                 <li>Rejects fake reference-bound assets and mixed contact sheets.</li>
               </ul>
@@ -1140,8 +1159,8 @@
                 <h3>Parallel Work Rule</h3>
                 <ul class="list">
                   <li>One package can have one text owner and one asset owner at the same time.</li>
-                  <li>Do not let two people edit the same <code>prod.md</code> or <code>asset_manifest.yaml</code> concurrently.</li>
-                  <li>Shared status should be split per activity, for example <code>review_status/&lt;activity_id&gt;.yaml</code>.</li>
+                  <li>Do not let two people edit the same package text or asset manifest concurrently.</li>
+                  <li>Split shared status per activity instead of editing one global tracker from many branches.</li>
                   <li>Large runs use small PR batches, such as activities 01-05 and 06-10.</li>
                 </ul>
               </div>
@@ -1381,12 +1400,24 @@ pm_review:
             <article class="panel">
               <div class="panel-body">
                 <h3>Gate Meanings</h3>
-                <ul class="list">
-                  <li><span class="state pass">Pass</span> means evidence exists and the owner accepts the risk.</li>
-                  <li><span class="state warn">Needs fix</span> means the owner identified a repair with clear file scope.</li>
-                  <li><span class="state fail">Blocked</span> means product capability, missing source, or unsupported mechanic prevents acceptance.</li>
-                  <li><span class="state wait">Pending</span> means no reviewer has produced evidence yet.</li>
-                </ul>
+                <div class="meaning-list">
+                  <div class="meaning-row">
+                    <span class="state pass">Pass</span>
+                    <span>Evidence exists and the owner accepts the risk.</span>
+                  </div>
+                  <div class="meaning-row">
+                    <span class="state warn">Needs fix</span>
+                    <span>The owner identified a repair with clear file scope.</span>
+                  </div>
+                  <div class="meaning-row">
+                    <span class="state fail">Blocked</span>
+                    <span>Product capability, missing source, or unsupported mechanic prevents acceptance.</span>
+                  </div>
+                  <div class="meaning-row">
+                    <span class="state wait">Pending</span>
+                    <span>No reviewer has produced evidence yet.</span>
+                  </div>
+                </div>
               </div>
             </article>
           </div>
