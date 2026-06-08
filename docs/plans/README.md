@@ -23,6 +23,7 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
+| [2026-06-08-gemini-asset-quality-candidates.md](2026-06-08-gemini-asset-quality-candidates.md) | Planned | Adds multi-candidate Gemini generation, style-reference prompting, explicit candidate acceptance, and reviewable visual QA evidence for illustrative assets. |
 | [2026-06-08-team-readiness-and-gemini-assets.md](2026-06-08-team-readiness-and-gemini-assets.md) | Completed | Added collaborator onboarding, review-status template, Gemini source PNG provider, dependency setup, tests, docs links, and live smoke evidence. |
 | [2026-06-05-entity-compatibility-axis-parameterization-contract.md](2026-06-05-entity-compatibility-axis-parameterization-contract.md) | Completed | Added explicit entity compatibility metadata, validator/schema enforcement, review-dashboard handoff verdicts, current-twelve reclassification, docs, fixtures, and focused verification. |
 | [2026-06-05-entity-parameterized-package-authoring.md](2026-06-05-entity-parameterized-package-authoring.md) | Completed | Added producer-side parameterization metadata, authoring-agent mode decision docs, review-dashboard integrity verdicts, validator/schema coverage, current-twelve classification, and downstream WonderLens AI contract alignment. |

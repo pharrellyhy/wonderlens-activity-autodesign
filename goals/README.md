@@ -23,6 +23,7 @@ files remain under `goals/` and are not backfilled here.
 
 | Goal | Status | Notes |
 |---|---|---|
+| [2026-06-08-gemini-asset-quality-candidates-goal.md](2026-06-08-gemini-asset-quality-candidates-goal.md) | Planned | Implements multi-candidate Gemini generation, style-reference prompting, explicit candidate acceptance, and live smoke validation. |
 | [2026-06-08-team-readiness-and-gemini-assets-goal.md](2026-06-08-team-readiness-and-gemini-assets-goal.md) | Completed | Completion gate passed for onboarding, review-status template, Gemini source provider, dependency setup, focused tests, static checks, and live smoke. |
 | [2026-06-05-entity-compatibility-axis-parameterization-contract-goal.md](2026-06-05-entity-compatibility-axis-parameterization-contract-goal.md) | Completed | Completion gate passed for explicit entity compatibility, parameterization-mode enforcement, ambiguous agnostic package failures, review-dashboard verdicts, current-twelve reclassification, docs, fixtures, and focused checks. |
 | [2026-06-05-entity-parameterized-package-authoring-goal.md](2026-06-05-entity-parameterized-package-authoring-goal.md) | Completed | Implemented producer-side package parameterization metadata, authoring-agent mode decision docs, review-dashboard integrity verdicts, validators, fixtures, current-twelve classification, and downstream runtime contract documentation. |
