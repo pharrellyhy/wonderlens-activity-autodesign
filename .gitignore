@@ -11,6 +11,8 @@
 .env.*
 !.env.example
 
+*.elaborate-baton*.json
+
 __pycache__/
 .venv
 .pytest_cache/
