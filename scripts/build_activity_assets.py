@@ -248,8 +248,10 @@ def write_work_item(
     preferred_source = f"{PREFERRED_ILLUSTRATIVE_SOURCE_SIZE[0]}x{PREFERRED_ILLUSTRATIVE_SOURCE_SIZE[1]}"
     guidance = (
         f"Generate exactly one {preferred_source} source PNG into "
-        f"`generated_assets/inbox/{activity_id}/{asset_id}.png` using Codex built-in imagegen, "
-        f"the prompt below, `{STYLE_REFERENCE_MD}`, and `{STYLE_REFERENCE_IMAGE}`. "
+        f"`generated_assets/inbox/{activity_id}/{asset_id}.png` using an approved image provider "
+        f"(Codex built-in imagegen when available, or the Gemini provider documented in "
+        f"`docs/image_generation_provider_setup.md`), the prompt below, `{STYLE_REFERENCE_MD}`, "
+        f"and `{STYLE_REFERENCE_IMAGE}`. "
         "The source PNG must contain one visual unit for this asset role only; split scenes, objects, "
         "items, characters, icons, badges, and distractors into separate asset IDs instead of combining "
         "multiple cards or a contact sheet in one runtime image. If the image tool returns a larger "
@@ -278,7 +280,7 @@ Transformation policy: `{norm(asset.get('transformation_policy'))}`
 
 - Style prompt: `{STYLE_REFERENCE_MD}`
 - Reference image: `{STYLE_REFERENCE_IMAGE}`
-- Tool: Codex built-in imagegen
+- Tool: approved image provider; use Gemini via `scripts/generate_activity_asset_sources.py` when Codex imagegen is unavailable.
 
 When generating an illustrative source PNG, combine the asset-specific prompt
 above with the style prompt and use the reference image as the visual target.

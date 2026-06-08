@@ -10,6 +10,8 @@
 .env
 .env.*
 !.env.example
+*.elaborate-baton*.json
+*service-account*.json
 
 *.elaborate-baton*.json
 

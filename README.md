@@ -59,11 +59,17 @@ review_dashboard.md                Static review dashboard contract and UI requi
 runs/README.md                     Run provenance directory contract
 docs/activity_asset_generation_workflow.md
                                    Runtime PNG generation, curation, style, and validation workflow
+docs/team_onboarding.md            Contributor setup, role ownership, status files, and handoff rules
+docs/image_generation_provider_setup.md
+                                   Gemini provider setup for non-Codex illustrative source PNGs
+requirements-imagegen.txt          Optional Python dependencies for third-party image generation providers
 skills/wonderlens-workbook-to-review-packet/
                                    Repo-local Codex workflow skill for workbook-to-review-packet runs
 scripts/generate_run_review.py     Static run review dashboard generator and validator
 scripts/validate_demo_package_contract.py
                                    Validator for demo_support.yaml and asset_manifest.yaml
+scripts/generate_activity_asset_sources.py
+                                   Provider-backed illustrative source PNG generator for asset manifests
 scripts/build_activity_assets.py   Asset-only runtime PNG builder for explicit asset_build modes
 scripts/validate_asset_build_outputs.py
                                    Validator for package-local asset outputs and run audit files
@@ -144,11 +150,30 @@ runs/<run_id>/generated_assets/
 
 Keep `asset_manifest.yaml` as the stable source request. Do not fake file paths or claim unavailable assets are displayed; use `demo_support.yaml` degraded/unsupported gates and fallback behavior instead.
 
-Illustrative image assets use the current WonderLens activity asset workflow and style in `docs/activity_asset_generation_workflow.md`: flat Nordic children's illustration, quiet white prototype fit, broad flat color fills, sparse arc-eye/texture linework, restrained boho pastels, square 512x512 source art, full-bleed scene assets, separate centered item/object/character PNGs, and no baked UI chrome, masks, borders, readable text, letters, numbers, logos, watermark, contact sheet, or UI labels.
+Illustrative image assets use the current WonderLens activity asset workflow
+and style in `docs/activity_asset_generation_workflow.md`: flat Nordic
+children's illustration, quiet white prototype fit, broad flat color fills,
+sparse arc-eye/texture linework, restrained boho pastels, square 512x512 source
+art, full-bleed scene assets, separate centered item/object/character PNGs, and
+no baked UI chrome, masks, borders, readable text, letters, numbers, logos,
+watermark, contact sheet, or UI labels. Collaborators without Codex built-in
+`imagegen` can generate illustrative source PNGs with Gemini by following
+`docs/image_generation_provider_setup.md`.
 
 Required assets must include at least one final runtime PNG at `512x512` or larger, with `512x512` preferred unless the manifest explicitly requests an additional larger variant. Smaller `64px`/`128px` files are thumbnails only and must not be the only playable asset output.
 
 Before running the asset builder, place illustrative source PNGs in `generated_assets/inbox/<activity_id>/<asset_id>.png`. For reference-bound assets, place both `assets/sources/<asset_id>__source_original.<ext>` and `assets/sources/<asset_id>__source_metadata.yaml` in the package. Source metadata must include accepted `source_type`, verified `license`, `storage_allowed: true`, `verification_status: accepted`, matching `sha256`, `verified_at`, and `reviewer_agent`.
+
+Optional Gemini source-generation command for illustrative assets:
+
+```bash
+python3 -m pip install -r requirements-imagegen.txt
+python3 scripts/generate_activity_asset_sources.py \
+  --provider gemini \
+  --model gemini-2.5-flash-image \
+  --run runs/<run_id> \
+  --activity <activity_id>
+```
 
 Asset-only rerun command for an existing run:
 
@@ -187,6 +212,11 @@ For multi-person handoff, open
 operations guide for role ownership, branch flow, file scope, status tracking,
 and PM-facing review criteria when several people work on the same full-pass
 run branch.
+
+For a concise contributor setup checklist, read `docs/team_onboarding.md`.
+Each activity should track review state in
+`runs/<run_id>/review_status/<activity_id>.yaml`, copied from
+`runs/_templates/review_status.yaml`.
 
 In this mode the main agent is the master orchestrator and should delegate
 disjoint evidence work: source-intent audit, text-only package writing,
@@ -229,6 +259,9 @@ Common invocations:
 
 # Larger/full production pass with runtime PNG generation and downstream validation.
 /goal Execute goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md end to end.
+
+# Generate third-party illustrative source PNGs for one activity before the builder.
+python3 scripts/generate_activity_asset_sources.py --provider gemini --run runs/<run_id> --activity <activity_id>
 ```
 
 ## Run Provenance

@@ -74,17 +74,19 @@ Assets support the accepted activity design.
 1. Read each illustrative asset entry in `asset_manifest.yaml`.
 2. Combine the asset-specific `prompt_en` subject with the repo-local style
    prompt and reference image in `docs/asset_style_reference/`.
-3. Use the Codex built-in imagegen tool to create one 512x512 square source
-   image per asset for subset and full-pass attempts. Do not substitute SVG,
-   PIL/vector drawings, placeholder art, contact sheets, multi-card sheets, or
-   combined runtime assets for imagegen output. Prompts should combine the
+3. Use an approved image provider to create one 512x512 square source image per
+   asset for subset and full-pass attempts. Codex built-in `imagegen` is
+   acceptable for operators who have access. Collaborators without that access
+   should use the Gemini provider in `scripts/generate_activity_asset_sources.py`
+   after following `docs/image_generation_provider_setup.md`. Do not substitute
+   SVG, PIL/vector drawings, placeholder art, contact sheets, multi-card sheets,
+   or combined runtime assets for provider output. Prompts should combine the
    asset-specific subject, scene/object/item role, use beat, and the full style
    contract below so the output aligns with the dialogue and screen state.
    Quality improvements should come from beat-specific prompts, removal of
    app-owned UI language, no duplicated picker sprites in scene backgrounds, and
    image QA repair before acceptance.
-4. Select the best output, then copy it from
-   `/Users/pharrelly/.codex/generated_images/...` into:
+4. Select or generate the accepted provider output into:
 
 ```text
 runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png
@@ -92,7 +94,7 @@ runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png
 
 5. Visually inspect the PNG before running the builder:
    - illustrative source image is square and exactly 512x512; downsample larger
-     generated outputs to 512x512 before build;
+    generated outputs to 512x512 before build;
    - no text, letters, numbers, logos, watermarks, UI labels, borders, masks,
      vignettes, black corners, or baked device chrome;
    - the style matches the flat Nordic nursery target;
@@ -100,6 +102,8 @@ runs/<run_id>/generated_assets/inbox/<activity_id>/<asset_id>.png
      white padding;
    - scene/background assets are full-bleed square images and keep important
      content inside the round lens-safe center.
+   The Gemini provider normalizes accepted outputs to 512x512 before writing
+   the inbox PNG.
 6. Run the deterministic builder:
 
 ```bash
@@ -128,6 +132,21 @@ prompt material, and package image descriptions with the exact final imagegen
 prompt recorded by the image agent. If the exact provider payload is not
 available, say so and cite the closest recorded artifact. Keep request payloads
 sanitized and do not include secrets.
+
+Gemini source generation for illustrative assets:
+
+```bash
+python3 -m pip install -r requirements-imagegen.txt
+python3 scripts/generate_activity_asset_sources.py \
+  --provider gemini \
+  --model gemini-2.5-flash-image \
+  --run runs/<run_id> \
+  --activity <activity_id>
+```
+
+The provider writes sanitized audit evidence under
+`runs/<run_id>/generated_assets/provider_runs/` and must never log API keys,
+service-account JSON contents, or other secrets.
 
 ## Reference-Bound Asset Workflow
 
@@ -386,7 +405,7 @@ assets as displayed.
 
 When working directly in the fullstack demo repo rather than autodesign run
 packages, follow the same style contract, generate one separate PNG per beat or
-item, copy selected Codex imagegen outputs into:
+item, copy selected provider outputs into:
 
 ```text
 frontend/public/activity-assets/<activity_id>/

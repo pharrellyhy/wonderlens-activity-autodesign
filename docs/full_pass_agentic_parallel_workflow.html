@@ -978,6 +978,7 @@
             <a class="button primary" href="#roles">Choose a role</a>
             <a class="button" href="#git">See branch model</a>
             <a class="button" href="#review">PM review criteria</a>
+            <a class="button" href="team_onboarding.md">Onboarding doc</a>
           </div>
         </div>
       </section>
@@ -1041,7 +1042,7 @@
               <p>Owns image completeness, reference fidelity, and round-screen fit.</p>
               <ul class="list">
                 <li>Reviews asset manifests, package-local PNGs, and source metadata.</li>
-                <li>Generates or curates PNGs when tooling is available.</li>
+                <li>Generates illustrative sources with Codex imagegen or the Gemini provider.</li>
                 <li>Rejects fake reference-bound assets and mixed contact sheets.</li>
               </ul>
             </article>
@@ -1296,7 +1297,7 @@
                   <td><code>runs/&lt;run_id&gt;/review_status/&lt;activity_id&gt;.yaml</code></td>
                   <td>Current role owner</td>
                   <td>Anyone updating their own lane for that activity</td>
-                  <td>Editing one global status table from many branches</td>
+                  <td>Editing one global status table from many branches; copy from <code>runs/_templates/review_status.yaml</code></td>
                   <td><span class="state wait">dashboard input</span></td>
                 </tr>
                 <tr>
@@ -1590,9 +1591,11 @@ python3 scripts/validate_asset_build_outputs.py runs/&lt;run_id&gt;</code></pre>
                   Text/package review can be done manually from Markdown and
                   YAML. Asset review can also be manual for source curation,
                   prompt review, manifest completeness, and visual QA. Actual
-                  generated PNG creation still needs a Codex-enabled operator or
-                  another approved image provider until the asset pipeline has a
-                  provider-agnostic script.
+                  generated PNG creation can use a Codex-enabled operator or the
+                  Gemini provider documented in
+                  <code>docs/image_generation_provider_setup.md</code>. The
+                  provider writes only source PNGs; the deterministic builder
+                  still creates package-local runtime variants.
                 </p>
               </div>
             </details>
