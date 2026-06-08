@@ -80,6 +80,10 @@
         monospace;
     }
 
+    code {
+      overflow-wrap: anywhere;
+    }
+
     .shell {
       display: grid;
       grid-template-columns: 18.5rem minmax(0, 1fr);
@@ -1186,7 +1190,9 @@
               <h2>Daily Steps</h2>
               <p>
                 Use the tabs to show a normal work session for each role. These
-                are designed for people who may not have downstream app access.
+                are designed for people who may not have downstream app access,
+                and make clear where each person asks a coding agent to do the
+                actual repo work.
               </p>
             </div>
             <span class="tag">Role-specific checklist</span>
@@ -1204,6 +1210,7 @@
               <div class="role-pane is-active" data-pane-panel="captain">
                 <div class="timeline">
                   <div class="timeline-row"><span class="time">Start</span><p>Pull <code>main</code>, create or update <code>run/&lt;date&gt;-agentic-pass</code>, freeze scope, and record flags such as <code>asset_build=generate_and_curate</code> and <code>full_pass_pipeline=true</code>.</p></div>
+                  <div class="timeline-row"><span class="time">Agent</span><p>Start the coding agent from repo root and run the scoped full-pass goal, for example <code>/goal Execute goals/2026-06-01-run-full-pass-agentic-pipeline-goal.md end to end.</code> The agent owns baseline package generation, run manifest updates, first-pass dashboard output, and review-status file creation when that support exists.</p></div>
                   <div class="timeline-row"><span class="time">Baseline</span><p>Run the initial package pass, commit the run directory, and assign activities by package ID. Keep canonical rule changes separate from generated-output commits when possible.</p></div>
                   <div class="timeline-row"><span class="time">Review</span><p>Review each contributor PR for file scope, role ownership, and validator output. Ask for package-level fixes instead of hiding weak package content downstream.</p></div>
                   <div class="timeline-row"><span class="time">Close</span><p>Regenerate <code>review.html</code> or the run review packet, update run manifest/status, and hand the integrated run to the downstream integration owner.</p></div>
@@ -1213,6 +1220,7 @@
               <div class="role-pane" data-pane-panel="text">
                 <div class="timeline">
                   <div class="timeline-row"><span class="time">Start</span><p>Branch from the latest run branch and open assigned packages. Confirm the activity ID, mechanic, category, support level, and entity mode before editing.</p></div>
+                  <div class="timeline-row"><span class="time">Agent</span><p>Ask the coding agent to review only the assigned package paths, for example <code>Review runs/&lt;run_id&gt;/activity_packages/&lt;activity_id&gt; for runtime beat quality, parameterization, demo support, and status YAML updates. Do not edit assets or downstream app code.</code></p></div>
                   <div class="timeline-row"><span class="time">Review</span><p>Read <code>spec.md</code>, <code>prod.md</code>, <code>tag_block.yaml</code>, <code>demo_support.yaml</code>, <code>recap.template.yaml</code>, and <code>dashboard.template.yaml</code>. Verify runtime beats, branch behavior, and package alignment.</p></div>
                   <div class="timeline-row"><span class="time">Repair</span><p>Patch only assigned package text/YAML. Do not regenerate assets. If assets are missing, write an asset request note for the asset owner.</p></div>
                   <div class="timeline-row"><span class="time">Submit</span><p>Update the activity status file with pass/fail notes, run focused validation if available, and open a PR to the run branch.</p></div>
@@ -1222,6 +1230,7 @@
               <div class="role-pane" data-pane-panel="asset">
                 <div class="timeline">
                   <div class="timeline-row"><span class="time">Start</span><p>Branch from the latest run branch and inspect <code>asset_manifest.yaml</code>, <code>spec.md</code> asset brief, and <code>prod.md</code> display beats for assigned activities.</p></div>
+                  <div class="timeline-row"><span class="time">Agent</span><p>Ask the coding agent to run the asset-only workflow for assigned assets, for example <code>Generate Gemini candidates for runs/&lt;run_id&gt;/activity_packages/&lt;activity_id&gt;, accept only reviewed illustrative sources into generated_assets/inbox, then run the asset builder and update review_status.</code></p></div>
                   <div class="timeline-row"><span class="time">Source</span><p>For reference-bound assets, accept only approved internal, licensed, public-domain, official, or verified educational/scientific sources. Store source originals and metadata.</p></div>
                   <div class="timeline-row"><span class="time">Build</span><p>For illustrative assets, generate 512x512 PNGs with the WonderLens flat Nordic style when image tooling is available, then run the deterministic builder.</p></div>
                   <div class="timeline-row"><span class="time">Submit</span><p>Validate package-local assets, update status notes, and open a PR containing only manifests, assets, source metadata, and asset QA evidence.</p></div>
@@ -1231,6 +1240,7 @@
               <div class="role-pane" data-pane-panel="integration">
                 <div class="timeline">
                   <div class="timeline-row"><span class="time">Start</span><p>Take the integrated run branch after text and asset validators pass. Do not accept a package solely because schema validation is green.</p></div>
+                  <div class="timeline-row"><span class="time">Agent</span><p>Ask the coding agent to run integration checks only after package and asset gates pass, for example <code>Load this run into fullstack-demo and WonderLens AI, compare runtime prompts/dialogue behavior, update downstream evidence, and route failures by owner.</code></p></div>
                   <div class="timeline-row"><span class="time">Import</span><p>Load packages into fullstack-demo and WonderLens AI. Confirm converted <code>step_instructions</code> or <code>runtime.yaml</code> preserve every machine-convertible runtime instruction.</p></div>
                   <div class="timeline-row"><span class="time">Dialogue</span><p>Run happy-path, unexpected-input, silence/no-response, and varied-entity tests. Route failures to package, asset, consumer runtime, or product capability owners.</p></div>
                   <div class="timeline-row"><span class="time">Review</span><p>Create PM-facing playback strips with thumbnails, child action, AI response, risk, and verdict. Mark only demo-worthy activities as accepted.</p></div>
