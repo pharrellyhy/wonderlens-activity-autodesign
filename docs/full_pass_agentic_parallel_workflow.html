@@ -1557,8 +1557,9 @@ pm_review:
               <pre><code>git checkout main
 git pull
 git checkout -b run/202606xx-agentic-pass
-# Run the baseline goal from repo root, then delegate per-activity.
-/goal Execute goals/baseline-text-packages-goal.md end to end.
+# Run the baseline text-packages goal from repo root.
+# Commit generated baseline output before assigning review work.
+# Per-activity reviews use the scoped goal files individually.</code></pre>
             </div>
 
             <div class="command">
@@ -1570,14 +1571,9 @@ git checkout -b run/202606xx-agentic-pass
 git checkout run/202606xx-agentic-pass
 git pull
 git checkout -b bob/text-activities-01-05</code></pre>
-
-# Then invoke the scoped goal file per activity:
-# /goal Execute goals/text-reviewer-goal.md end to end with RUN_ID=&lt;run_id&gt; ACTIVITY_ID=&lt;activity_id&gt;.
             </div>
 
             <div class="command">
-# Then invoke the scoped goal file per activity:
-# /goal Execute goals/text-reviewer-goal.md end to end with RUN_ID=&lt;run_id&gt; ACTIVITY_ID=&lt;activity_id&gt;.
               <div class="command-head">
                 <span>Contributor syncs before PR</span>
                 <button class="copy" type="button">Copy</button>
@@ -1667,26 +1663,26 @@ python3 scripts/validate_asset_build_outputs.py runs/&lt;run_id&gt;</code></pre>
         owner: "Run Captain",
         inputs: "<code>main</code>, assignments, scoped goal, current package contract",
         outputs: "Run branch, frozen scope, activity ownership plan",
-        inputs: "<code>goals/baseline-text-packages-goal.md</code>, <code>program.md</code>, <code>assignments.md</code>",
+        done: "Everyone knows the run ID, branch, assigned activities, and flags."
       },
       {
         title: "Generate baseline",
         owner: "Run Captain",
-        inputs: "<code>goals/baseline-text-packages-goal.md</code>, <code>program.md</code>, <code>assignments.md</code>",
+        inputs: "<code>GOAL.md</code>, <code>run.md</code>, <code>program.md</code>, assignments, asset mode",
         outputs: "<code>runs/&lt;run_id&gt;/activity_packages</code>, manifests, initial review files",
         done: "Baseline commit exists before text and asset reviewers branch."
       },
       {
-        inputs: "<code>goals/text-reviewer-goal.md</code> with RUN_ID + ACTIVITY_ID",
+        title: "Text review",
         owner: "Text Reviewer",
-        inputs: "<code>goals/text-reviewer-goal.md</code> with RUN_ID + ACTIVITY_ID",
+        inputs: "<code>spec.md</code>, <code>prod.md</code>, <code>tag_block.yaml</code>, <code>demo_support.yaml</code>",
         outputs: "Package repairs, text review status, concrete residual risks",
         done: "Playable steps, parameterization, branch behavior, and support gate pass."
       },
       {
-        inputs: "<code>goals/asset-curator-goal.md</code> with RUN_ID + ACTIVITY_ID, <code>asset_manifest.yaml</code>",
+        title: "Asset review",
         owner: "Asset Curator",
-        inputs: "<code>goals/asset-curator-goal.md</code> with RUN_ID + ACTIVITY_ID, <code>asset_manifest.yaml</code>",
+        inputs: "<code>asset_manifest.yaml</code>, asset brief, accepted package steps",
         outputs: "Package-local PNGs, source metadata, asset QA notes",
         done: "Assets exist, are correctly sourced, and match screen/style constraints."
       },
@@ -1700,7 +1696,7 @@ python3 scripts/validate_asset_build_outputs.py runs/&lt;run_id&gt;</code></pre>
       {
         title: "Runtime check",
         owner: "Integration Owner",
-        inputs: "<code>goals/integration-owner-goal.md</code> with RUN_ID + ACTIVITY_ID, validated run branch",
+        inputs: "Validated run branch and package directory",
         outputs: "Fullstack-demo and WonderLens AI import/dialogue reports",
         done: "Runtime behavior matches package content or failures are classified."
       },
