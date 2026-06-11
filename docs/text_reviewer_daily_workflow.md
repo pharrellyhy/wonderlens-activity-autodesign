@@ -89,49 +89,14 @@ Before editing, answer these questions for each package:
 
 ### Phase 2: Agent — Review One Package at a Time
 
-Start a coding agent per package with this prompt:
 
 ```text
-You are the text reviewer for run <RUN_ID>.
-Review only runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>.
-
-Goal:
-- Verify spec.md, prod.md, tag_block.yaml, demo_support.yaml,
-  recap.template.yaml, and dashboard.template.yaml describe the same activity.
-- Improve runtime beat quality, step instructions, parameterization,
-  entity binding, demo support metadata, and package alignment as needed.
-- Preserve child-facing tone and age-appropriate interaction.
-- Do not change the activity mechanic, pillar, or game style unless the current
-  selection is provably wrong and the fix is recorded in spec.md
-  ## Adaptation Rationale.
-
-Allowed files:
-- runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>/spec.md
-- runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>/prod.md
-- runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>/tag_block.yaml
-- runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>/demo_support.yaml
-- runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>/recap.template.yaml
-- runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>/dashboard.template.yaml
-- runs/<RUN_ID>/review_status/<ACTIVITY_ID>.yaml
-
-Forbidden files:
-- assets/**
-- generated_assets/**
-- downstream app repos
-- unrelated activity packages
-
-Validation:
-- python3 scripts/validate_demo_package_contract.py
-  runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>
-- git diff --check
-
-Update review_status with pass/fail evidence, reviewer name, next_owner,
-and remaining risks in 1-2 concrete sentences.
-Stop if the activity needs new visual assets, unsupported UI capability,
-or product decisions.
+/goal Execute goals/text-reviewer-goal.md end to end with RUN_ID=<run_id> ACTIVITY_ID=<activity_id>.
 ```
 
----
+The goal file owns the 10-dimension rubric (see `program.md` Phase 3), the
+allowed/forbidden file lists, the required validators, and the completion
+criteria. You do not need to repeat these rules in the prompt.
 
 ### Phase 3: Review — Read and Judge the Output
 
@@ -285,7 +250,7 @@ for aid in vegetable_sort phoneme_hunt word_echo; do
 done
 
 # Start agent for package 1: vegetable_sort
-# [use Phase 2 prompt]
+# Start agent for package 1:
 # Read agent output, review all 6 files, note 1 thin Step 3 round
 # Repair in prod.md, re-validate, update review_status → pass
 

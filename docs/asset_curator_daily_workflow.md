@@ -132,58 +132,17 @@ Before editing, classify each asset in the manifest:
 
 ### Phase 2: Agent — Generate or Curate Sources
 
-Start a coding agent per package with this prompt:
+Start a coding agent per package:
 
 ```text
-You are the asset curator for run <RUN_ID>.
-Work only on assets for runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>.
-
-Goal:
-- Use asset_manifest.yaml as the source of truth.
-- Generate or curate source images for every required runtime asset.
-- Preserve the WonderLens flat Nordic style, round-screen fit, and
-  package-local output paths.
-- Reject fake reference-bound assets.
-
-Allowed files:
-- runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>/asset_manifest.yaml
-- runs/<RUN_ID>/activity_packages/<ACTIVITY_ID>/assets/**
-- runs/<RUN_ID>/generated_assets/**
-- runs/<RUN_ID>/review_status/<ACTIVITY_ID>.yaml
-
-Forbidden files:
-- prod.md mechanics or dialogue
-- spec.md activity design, except clearly scoped asset brief path corrections
-- downstream app repos
-- unrelated activity packages
-
-Asset workflow:
-1. For illustrative assets, generate source PNGs using Codex built-in imagegen.
-   Place them in runs/<RUN_ID>/generated_assets/inbox/<ACTIVITY_ID>/<asset_id>.png.
-   Each scene prompt must start from the beat's child action, learning evidence,
-   and runtime screen state. Generic metaphors (baskets, treasure chests, blank
-   cards, empty rooms, glows) are not valid scene subjects unless the beat is
-   explicitly about that object.
-2. For reference-bound assets, accept only approved sources. Store source
-   originals and metadata under package-local assets/sources/.
-3. Run the deterministic builder:
-   python3 scripts/build_activity_assets.py runs/<RUN_ID> --mode generate_and_curate
-4. Run asset validation:
-   python3 scripts/validate_asset_build_outputs.py runs/<RUN_ID>
-5. Run independent image QA — inspect actual PNGs against
-   docs/activity_asset_generation_workflow.md style contract.
-
-Validation:
-- python3 scripts/build_activity_assets.py runs/<RUN_ID> --mode generate_and_curate
-- python3 scripts/validate_asset_build_outputs.py runs/<RUN_ID>
-- git diff --check
-
-Update review_status with generated paths, rejected candidates, source evidence,
-and final QA status.
-Stop if credentials, license, reference fidelity, or image quality is uncertain.
+/goal Execute goals/asset-curator-goal.md end to end with RUN_ID=<run_id> ACTIVITY_ID=<activity_id>.
 ```
 
----
+The goal file owns the WonderLens flat Nordic style contract (see
+`docs/activity_asset_generation_workflow.md`), the allowed/forbidden file
+lists, the deterministic builder and validator commands, the reference-bound
+asset provenance rules, and the completion criteria. You do not need to
+repeat these rules in the prompt.
 
 ### Phase 3: Source — Handle Reference-Bound Assets
 
