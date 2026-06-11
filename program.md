@@ -827,6 +827,16 @@ After generating the activity design, evaluate it against ALL 10 dimensions belo
 
 Before finalizing the `## Self-Evaluation Scorecard`, spawn a separate reviewer agent to check the same 10 dimensions independently against the actual package files. This is a required acceptance gate for every generated package in a `/goal` run; if reviewer-agent tooling is unavailable, package finalization is a hard workflow failure, not a skippable residual risk. The reviewer must read `program.md` Phase 3 and the generated `<package_dir>` directly, plus `templates.md`, `activities/README.md`, `activities/_schema/tag_block.schema.json`, and `docs/activity_vocabulary.md`; for mapping-informed assignments, it must also read the relevant mapping source, `entity_guidance.md`, and `conversation_bridge.md`. Treat any reviewer FAIL or credible uncertainty as a required repair: fix the package, rerun the author self-evaluation, and request a fresh independent review before writing the final scorecard, logging `results.tsv`, or marking the assignment complete. Record reviewer-agent coverage, evidence, repairs, and re-review outcome in the current run's `review_notes.md`.
 
+Each generated package must also get a per-activity review status file at
+`runs/<run_id>/review_status/<activity_id>.yaml`, copied from
+`runs/_templates/review_status.yaml`. This file is the parallel-workflow
+status source of truth defined in
+`docs/full_pass_agentic_parallel_workflow.html` and updated by
+each role owner (text reviewer, asset curator, integration owner)
+in their own lane; it replaces a single global review_notes.md for
+multi-person runs.
+
+
 Reviewers must fail packages that are structurally valid but thin. Passing means the package meets the migrated package depth floor: `spec.md` carries enough authoring rationale to audit the design, and `prod.md` carries enough concrete dialogue and screen behavior to run the activity without inventing missing beats.
 
 ### Dimension 1: V1 Technical Compliance (PASS/FAIL)

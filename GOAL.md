@@ -82,6 +82,11 @@ For source-derived, concept-led, workbook-derived, pilot-validation, and
 full-pass rows:
 
 - create an adaptation brief before package writing;
+
+- a `review_status/<activity_id>.yaml` file is copied from
+  `runs/_templates/review_status.yaml` for each generated package, recording
+  per-activity gate status for the parallel workflow in
+  `docs/full_pass_agentic_parallel_workflow.html`.
 - run a pre-package source-intent audit when the source promise is richer than a
   simple entity/category row;
 - repair or block unresolved `intent_drift` before package writing;
@@ -179,6 +184,9 @@ The goal is complete only when:
   `full_pass_pipeline=true`;
 - `results.tsv`, `generated_activity_ids.txt`, `assignments.md`, and
   `run_manifest.yaml` are updated only for accepted generated packages;
+- `runs/<run_id>/review_status/<activity_id>.yaml` exists for every
+  generated package, copied from `runs/_templates/review_status.yaml`
+  with per-activity gate status tracked by the assigned role owners;
 - `runs/<run_id>/review.html` exists and validates;
 - the final report lists generated, enriched/audited, blocked, failed,
   supported/degraded/unsupported demo coverage, asset status, checks, residual

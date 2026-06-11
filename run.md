@@ -42,6 +42,7 @@ runs/<run_id>/
 ├── source_intent_audits/
 ├── generated_assets/        # only when an asset build runs
 ├── manual_audits/
+├── review_status/           # per-activity review YAML files
 ├── review_notes.md
 └── review.html              # generated at end of run
 ```
@@ -86,6 +87,9 @@ checks: []
 notes: []
 ```
 
+
+   Create an empty `runs/<run_id>/review_status/` directory. Each generated
+   package will get a per-activity status file here (see step 7).
 6. Say: `Setup complete. <N> assignments pending. Run id: <run_id>.`
 
 ## Optional Existing-Package Maintenance
@@ -213,6 +217,20 @@ When `demo_export=true`, also write:
 ```text
 demo_support.yaml
 asset_manifest.yaml
+
+For every generated package, also create the per-activity review status file:
+
+```bash
+cp runs/_templates/review_status.yaml runs/<run_id>/review_status/<activity_id>.yaml
+```
+
+Edit `activity_id`, `run_id`, and `owners.run_captain` before committing.
+Leave `text_review`, `asset_review`, and downstream gate statuses
+as `pending`. These per-activity files are the parallel-workflow status
+source of truth defined in
+`docs/full_pass_agentic_parallel_workflow.html` and
+`docs/role_agent_prompting_guide.md`.
+
 ```
 
 Package-writing rules:
