@@ -1,0 +1,24 @@
+activity_id: concept_emotion_reader_care
+version: 1
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: full
+  entity_bindings:
+  - entity_id: emotion_reader
+    display_label: Emotion Reader
+    source_entity_exemplar: emotion_reader
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    wonderlens_ai: Importable after WonderLens AI generates runtime.yaml from this
+      package.
+    fullstack_demo: Uses the same UI artwork as the activity-text-game demo, copied
+      package-locally under assets/.
+    asset_source: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_emotion_reader

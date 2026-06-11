@@ -1,0 +1,11 @@
+activity_id: concept_guided_drawing_probe
+dashboard_template:
+  parent_headline: 'Guided Drawing: build'
+  learning_focus:
+  - Form
+  - Change
+  - creative_thinking
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

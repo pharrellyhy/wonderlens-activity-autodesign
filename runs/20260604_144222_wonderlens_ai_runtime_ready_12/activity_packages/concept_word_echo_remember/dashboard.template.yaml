@@ -1,0 +1,11 @@
+activity_id: concept_word_echo_remember
+dashboard_template:
+  parent_headline: 'Word Echo Practice: remember'
+  learning_focus:
+  - Form
+  - Connection
+  - focus
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

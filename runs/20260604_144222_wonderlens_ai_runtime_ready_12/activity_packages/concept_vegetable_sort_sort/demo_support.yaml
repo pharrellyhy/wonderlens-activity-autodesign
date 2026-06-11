@@ -1,0 +1,24 @@
+activity_id: concept_vegetable_sort_sort
+version: 1
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: minimal_tap_select
+  entity_bindings:
+  - entity_id: vegetable_sort
+    display_label: Vegetable Sort
+    source_entity_exemplar: vegetable_sort
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    wonderlens_ai: Use tap/select group choices for each vegetable. Do not require
+      drag/drop board state.
+    fullstack_demo: Uses the same UI artwork as the activity-text-game demo, copied
+      package-locally under assets/.
+    asset_source: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_vegetable_sort

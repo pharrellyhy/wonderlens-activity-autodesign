@@ -1,0 +1,247 @@
+activity_id: concept_guided_drawing_probe
+entity_id: guided_drawing
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Guided Drawing Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Guided Drawing
+    Celebration badge. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 343702
+    sha256: 8187d26517b5dd9d4a4b8ae235092e835b84722369c6a55b3d7675ee54a7f6f0
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Guided Drawing Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Guided Drawing Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Guided Drawing
+    Closing scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 403177
+    sha256: a971d3156ab78639c6e9e65511de4ef2c3f740f410006a50d7209c20c20dbead
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Guided Drawing Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Guided Drawing Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Guided Drawing
+    Activity icon. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 172582
+    sha256: 215bf7cc4fd8c2b793f14c538a470cbb283fb41559268c2155f681b0f081971b
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Guided Drawing Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Guided Drawing Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Guided Drawing
+    Intro scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 382553
+    sha256: 57d5c55b1b6ce0d87c52f5525b32cad75873284cd49df64c492b2e4da419331c
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Guided Drawing Intro scene is visible.
+- id: drawing
+  role: ui_overlay
+  label: Drawing
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Drawing. Use
+    the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/drawing.png
+    mime_type: image/png
+    byte_count: 239944
+    sha256: d4c27ff863de5402e2c36dbd3e489785eb2e7fa3bc0bccdff8490047d8df3c58
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Drawing is visible.
+- id: paper
+  role: ui_overlay
+  label: Paper
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Paper. Use
+    the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/paper.png
+    mime_type: image/png
+    byte_count: 216845
+    sha256: 46c1d491ed60e48a7669afa3cb426d96898414ef6d1e9762250746cc5a2ce187
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Paper is visible.
+- id: pencil
+  role: ui_overlay
+  label: Pencil
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Pencil. Use
+    the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/pencil.png
+    mime_type: image/png
+    byte_count: 164933
+    sha256: b5e0944950fb952532e9e1f98745406d4e3de7c167590d8a3006b3a627621fdf
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Pencil is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Guided Drawing Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Guided Drawing
+    Round 1 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 360450
+    sha256: 98d1eb8fde7a0eec1337d7f09e34ca3a686875439609e96c9a49d51f854c4e76
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Guided Drawing Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Guided Drawing Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Guided Drawing
+    Round 2 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 337453
+    sha256: 5f38d10a9f069575fca1b88f18e5a5c8d9c6450d284e4395de19ff2a96d2aadd
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Guided Drawing Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Guided Drawing Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Guided Drawing
+    Round 3 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 359535
+    sha256: 5976e4317bdd2e791217d8f1d0adb4f4b3b07326dc6242f8fec68524cceb4999
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Guided Drawing Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Guided Drawing Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Guided Drawing: Guided Drawing
+    Rules scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 349909
+    sha256: 4d86d04d26b1e9a7675fa2b97882daece6c5cbf7156d59dc3d497860df56b944
+  fallback_behavior: Continue Guided Drawing with spoken guidance and do not claim
+    that Guided Drawing Rules scene is visible.

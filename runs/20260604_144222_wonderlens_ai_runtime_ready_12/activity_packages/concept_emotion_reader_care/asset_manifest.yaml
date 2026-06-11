@@ -1,0 +1,187 @@
+activity_id: concept_emotion_reader_care
+entity_id: emotion_reader
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Emotion Reader Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Emotion Reader: Emotion Reader
+    Celebration badge. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 240036
+    sha256: 5a7bb9838f58bfbdea2d61c8fb9467af7a9c065a3803cb790c2f2eddae51262e
+  fallback_behavior: Continue Emotion Reader with spoken guidance and do not claim
+    that Emotion Reader Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Emotion Reader Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Emotion Reader: Emotion Reader
+    Closing scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 218280
+    sha256: 84e0621f7e6b7f1eb9421de860138423058fe7d7e417f0e7db075c4d8c9567c8
+  fallback_behavior: Continue Emotion Reader with spoken guidance and do not claim
+    that Emotion Reader Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Emotion Reader Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Emotion Reader: Emotion Reader
+    Activity icon. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 251219
+    sha256: 89f95b5350e525a105128d56546f194fecd2a7a412f500760fb9c55be2cd0c1c
+  fallback_behavior: Continue Emotion Reader with spoken guidance and do not claim
+    that Emotion Reader Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Emotion Reader Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Emotion Reader: Emotion Reader
+    Intro scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 283335
+    sha256: 67633ac241d2e4e8bd49697fec6517525b761f595d674baf7e9bb129203b5053
+  fallback_behavior: Continue Emotion Reader with spoken guidance and do not claim
+    that Emotion Reader Intro scene is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Emotion Reader Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Emotion Reader: Emotion Reader
+    Round 1 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 297547
+    sha256: 03835b9a36e56be88953c38f759cf0ec2a09651a4a851b7486fe66c1ccaa27ae
+  fallback_behavior: Continue Emotion Reader with spoken guidance and do not claim
+    that Emotion Reader Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Emotion Reader Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Emotion Reader: Emotion Reader
+    Round 2 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 292698
+    sha256: ace5a4470ce580959784eed35d200ac7b56586148beea4ce400c5b402c6bc197
+  fallback_behavior: Continue Emotion Reader with spoken guidance and do not claim
+    that Emotion Reader Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Emotion Reader Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Emotion Reader: Emotion Reader
+    Round 3 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 271889
+    sha256: 2821c835ff5520d80313957607167c2526b66b939f472f0d35171a45cf07a3d6
+  fallback_behavior: Continue Emotion Reader with spoken guidance and do not claim
+    that Emotion Reader Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Emotion Reader Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Emotion Reader: Emotion Reader
+    Rules scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 185263
+    sha256: ec0ab2346a6ec3382b8ed8d2fb33a5ebd550f593758013891d0ef6e263ef720c
+  fallback_behavior: Continue Emotion Reader with spoken guidance and do not claim
+    that Emotion Reader Rules scene is visible.

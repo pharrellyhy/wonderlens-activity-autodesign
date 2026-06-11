@@ -1,0 +1,8 @@
+activity_id: concept_career_decision_decide
+recap_template:
+  title: Career Decision Role Play recap
+  child_summary: '{child_name} practiced decide in Career Decision Role Play.'
+  evidence_prompts:
+  - favorite_turn
+  - child_choice
+  - next_time_variation

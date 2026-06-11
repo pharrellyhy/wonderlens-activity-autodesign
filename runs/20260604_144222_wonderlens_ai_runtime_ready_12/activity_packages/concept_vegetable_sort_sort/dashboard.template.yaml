@@ -1,0 +1,11 @@
+activity_id: concept_vegetable_sort_sort
+dashboard_template:
+  parent_headline: 'Vegetable Sort: sort'
+  learning_focus:
+  - Form
+  - Form
+  - classification
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest

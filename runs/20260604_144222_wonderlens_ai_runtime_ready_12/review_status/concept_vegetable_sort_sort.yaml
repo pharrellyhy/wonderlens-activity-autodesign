@@ -1,0 +1,75 @@
+# Generated for run 20260604_144222_wonderlens_ai_runtime_ready_12 activity concept_vegetable_sort_sort.
+activity_id: concept_vegetable_sort_sort
+run_id: 20260604_144222_wonderlens_ai_runtime_ready_12
+status_schema_version: 1
+owners:
+  run_captain: ""
+  text: ""
+  image: ""
+  integration: ""
+  pm: ""
+role_branches:
+  text: ""
+  image: ""
+  integration: ""
+last_updated: ""
+status_values:
+  - pending
+  - pass
+  - needs_fix
+  - blocked
+  - not_applicable
+text_review:
+  status: pending
+  reviewer: ""
+  evidence:
+    - ""
+  findings:
+    - ""
+asset_review:
+  status: pending
+  reviewer: ""
+  provider_generation:
+    status: pending
+    provider: gemini
+    model: gemini-2.5-flash-image
+    audit_paths:
+      - ""
+  generated_sources:
+    - asset_id: ""
+      path: ""
+      provider: ""
+      audit_path: ""
+      sha256: ""
+  reference_sources:
+    - asset_id: ""
+      metadata_path: ""
+      verification_status: ""
+  findings:
+    - ""
+contract_validation:
+  status: pending
+  commands:
+    - ""
+  evidence:
+    - ""
+runtime_validation:
+  status: pending
+  fullstack_demo:
+    status: pending
+    evidence:
+      - ""
+  wonderlens_ai:
+    status: pending
+    evidence:
+      - ""
+pm_review:
+  status: pending
+  reviewer: ""
+  notes:
+    - ""
+final_verdict:
+  status: pending
+  reason: ""
+blocked_reason: ""
+next_owner: ""

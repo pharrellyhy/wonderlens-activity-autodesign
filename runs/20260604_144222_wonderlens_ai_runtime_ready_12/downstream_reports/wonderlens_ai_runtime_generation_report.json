@@ -1,0 +1,544 @@
+{
+  "activities": [
+    {
+      "activity_id": "concept_animal_sound_motion_voice",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_animal_sound_motion_voice:celebrate_scene",
+          "package:concept_animal_sound_motion_voice:closing_scene",
+          "package:concept_animal_sound_motion_voice:activity_icon",
+          "package:concept_animal_sound_motion_voice:intro_scene",
+          "package:concept_animal_sound_motion_voice:cat",
+          "package:concept_animal_sound_motion_voice:puppy",
+          "package:concept_animal_sound_motion_voice:rabbit",
+          "package:concept_animal_sound_motion_voice:round_1_scene",
+          "package:concept_animal_sound_motion_voice:round_2_scene",
+          "package:concept_animal_sound_motion_voice:round_3_scene",
+          "package:concept_animal_sound_motion_voice:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "full",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "full",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Animal Sound Imitation",
+        "entity_id": "animal_sound_imitation",
+        "source_entity_exemplar": "animal_sound_imitation"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_career_decision_decide",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_career_decision_decide:celebrate_scene",
+          "package:concept_career_decision_decide:closing_scene",
+          "package:concept_career_decision_decide:activity_icon",
+          "package:concept_career_decision_decide:intro_scene",
+          "package:concept_career_decision_decide:alarm",
+          "package:concept_career_decision_decide:firefighter",
+          "package:concept_career_decision_decide:hose",
+          "package:concept_career_decision_decide:oil",
+          "package:concept_career_decision_decide:outside",
+          "package:concept_career_decision_decide:phone",
+          "package:concept_career_decision_decide:round_1_scene",
+          "package:concept_career_decision_decide:round_2_scene",
+          "package:concept_career_decision_decide:round_3_scene",
+          "package:concept_career_decision_decide:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "full",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "full",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Career Decision Role Play",
+        "entity_id": "career_decision_role_play",
+        "source_entity_exemplar": "career_decision_role_play"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_constellation_star_count_enumerate",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_constellation_star_count_enumerate:celebrate_scene",
+          "package:concept_constellation_star_count_enumerate:closing_scene",
+          "package:concept_constellation_star_count_enumerate:activity_icon",
+          "package:concept_constellation_star_count_enumerate:intro_scene",
+          "package:concept_constellation_star_count_enumerate:round_1_scene",
+          "package:concept_constellation_star_count_enumerate:round_2_scene",
+          "package:concept_constellation_star_count_enumerate:round_3_scene",
+          "package:concept_constellation_star_count_enumerate:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "full",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "full",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Constellation Star Count",
+        "entity_id": "constellation_star_count",
+        "source_entity_exemplar": "constellation_star_count"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_emotion_reader_care",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_emotion_reader_care:celebrate_scene",
+          "package:concept_emotion_reader_care:closing_scene",
+          "package:concept_emotion_reader_care:activity_icon",
+          "package:concept_emotion_reader_care:intro_scene",
+          "package:concept_emotion_reader_care:round_1_scene",
+          "package:concept_emotion_reader_care:round_2_scene",
+          "package:concept_emotion_reader_care:round_3_scene",
+          "package:concept_emotion_reader_care:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "full",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "full",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Emotion Reader",
+        "entity_id": "emotion_reader",
+        "source_entity_exemplar": "emotion_reader"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_guided_drawing_probe",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_guided_drawing_probe:celebrate_scene",
+          "package:concept_guided_drawing_probe:closing_scene",
+          "package:concept_guided_drawing_probe:activity_icon",
+          "package:concept_guided_drawing_probe:intro_scene",
+          "package:concept_guided_drawing_probe:drawing",
+          "package:concept_guided_drawing_probe:paper",
+          "package:concept_guided_drawing_probe:pencil",
+          "package:concept_guided_drawing_probe:round_1_scene",
+          "package:concept_guided_drawing_probe:round_2_scene",
+          "package:concept_guided_drawing_probe:round_3_scene",
+          "package:concept_guided_drawing_probe:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "minimal_photo_capture",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "minimal_photo_capture",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Guided Drawing",
+        "entity_id": "guided_drawing",
+        "source_entity_exemplar": "guided_drawing"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_partial_reveal_deduce",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_partial_reveal_deduce:celebrate_scene",
+          "package:concept_partial_reveal_deduce:closing_scene",
+          "package:concept_partial_reveal_deduce:activity_icon",
+          "package:concept_partial_reveal_deduce:intro_scene",
+          "package:concept_partial_reveal_deduce:round_1_scene",
+          "package:concept_partial_reveal_deduce:round_2_scene",
+          "package:concept_partial_reveal_deduce:round_3_scene",
+          "package:concept_partial_reveal_deduce:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "full",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "full",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Partial Reveal Guess",
+        "entity_id": "partial_reveal_guess",
+        "source_entity_exemplar": "partial_reveal_guess"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_phoneme_hunt_collect",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_phoneme_hunt_collect:celebrate_scene",
+          "package:concept_phoneme_hunt_collect:closing_scene",
+          "package:concept_phoneme_hunt_collect:activity_icon",
+          "package:concept_phoneme_hunt_collect:intro_scene",
+          "package:concept_phoneme_hunt_collect:ball",
+          "package:concept_phoneme_hunt_collect:banana",
+          "package:concept_phoneme_hunt_collect:basket",
+          "package:concept_phoneme_hunt_collect:book",
+          "package:concept_phoneme_hunt_collect:cup",
+          "package:concept_phoneme_hunt_collect:leaf",
+          "package:concept_phoneme_hunt_collect:pencil",
+          "package:concept_phoneme_hunt_collect:sock",
+          "package:concept_phoneme_hunt_collect:spoon",
+          "package:concept_phoneme_hunt_collect:toy_car",
+          "package:concept_phoneme_hunt_collect:round_1_scene",
+          "package:concept_phoneme_hunt_collect:round_2_scene",
+          "package:concept_phoneme_hunt_collect:round_3_scene",
+          "package:concept_phoneme_hunt_collect:rules_scene",
+          "package:concept_phoneme_hunt_collect:synthesis_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "full_runtime_judgment",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "full_runtime_judgment",
+        "ui_template": "cat5_judgment",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Phoneme Treasure Hunt",
+        "entity_id": "phoneme_treasure_hunt",
+        "source_entity_exemplar": "phoneme_treasure_hunt"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_recognition_pop_probe",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_recognition_pop_probe:celebrate_scene",
+          "package:concept_recognition_pop_probe:closing_scene",
+          "package:concept_recognition_pop_probe:activity_icon",
+          "package:concept_recognition_pop_probe:intro_scene",
+          "package:concept_recognition_pop_probe:apple",
+          "package:concept_recognition_pop_probe:basketball",
+          "package:concept_recognition_pop_probe:car",
+          "package:concept_recognition_pop_probe:cherries",
+          "package:concept_recognition_pop_probe:strawberry",
+          "package:concept_recognition_pop_probe:round_1_scene",
+          "package:concept_recognition_pop_probe:round_2_scene",
+          "package:concept_recognition_pop_probe:round_3_scene",
+          "package:concept_recognition_pop_probe:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "minimal_tap_select",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "minimal_tap_select",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Recognition Pop Challenge",
+        "entity_id": "recognition_pop_challenge",
+        "source_entity_exemplar": "recognition_pop_challenge"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_story_unlock_probe",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_story_unlock_probe:celebrate_scene",
+          "package:concept_story_unlock_probe:closing_scene",
+          "package:concept_story_unlock_probe:activity_icon",
+          "package:concept_story_unlock_probe:intro_scene",
+          "package:concept_story_unlock_probe:round_1_scene",
+          "package:concept_story_unlock_probe:round_2_scene",
+          "package:concept_story_unlock_probe:round_3_scene",
+          "package:concept_story_unlock_probe:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "full",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "full",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Story Challenge Unlock",
+        "entity_id": "story_challenge_unlock",
+        "source_entity_exemplar": "story_challenge_unlock"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_travel_planner_predict",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_travel_planner_predict:celebrate_scene",
+          "package:concept_travel_planner_predict:closing_scene",
+          "package:concept_travel_planner_predict:activity_icon",
+          "package:concept_travel_planner_predict:intro_scene",
+          "package:concept_travel_planner_predict:round_1_scene",
+          "package:concept_travel_planner_predict:round_2_scene",
+          "package:concept_travel_planner_predict:round_3_scene",
+          "package:concept_travel_planner_predict:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "full",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "full",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Travel Planner",
+        "entity_id": "travel_planner",
+        "source_entity_exemplar": "travel_planner"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_vegetable_sort_sort",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_vegetable_sort_sort:celebrate_scene",
+          "package:concept_vegetable_sort_sort:closing_scene",
+          "package:concept_vegetable_sort_sort:activity_icon",
+          "package:concept_vegetable_sort_sort:intro_scene",
+          "package:concept_vegetable_sort_sort:broccoli",
+          "package:concept_vegetable_sort_sort:carrot",
+          "package:concept_vegetable_sort_sort:corn",
+          "package:concept_vegetable_sort_sort:cucumber",
+          "package:concept_vegetable_sort_sort:potato",
+          "package:concept_vegetable_sort_sort:pumpkin",
+          "package:concept_vegetable_sort_sort:tomato",
+          "package:concept_vegetable_sort_sort:round_1_scene",
+          "package:concept_vegetable_sort_sort:round_2_scene",
+          "package:concept_vegetable_sort_sort:round_3_scene",
+          "package:concept_vegetable_sort_sort:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "minimal_tap_select",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "minimal_tap_select",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Vegetable Sort",
+        "entity_id": "vegetable_sort",
+        "source_entity_exemplar": "vegetable_sort"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    },
+    {
+      "activity_id": "concept_word_echo_remember",
+      "asset_readiness": {
+        "asset_readiness": "ready",
+        "degraded_reasons": [],
+        "optional_missing_asset_ids": [],
+        "package_asset_ids": [
+          "package:concept_word_echo_remember:celebrate_scene",
+          "package:concept_word_echo_remember:closing_scene",
+          "package:concept_word_echo_remember:activity_icon",
+          "package:concept_word_echo_remember:intro_scene",
+          "package:concept_word_echo_remember:round_1_scene",
+          "package:concept_word_echo_remember:round_2_scene",
+          "package:concept_word_echo_remember:round_3_scene",
+          "package:concept_word_echo_remember:rules_scene"
+        ],
+        "required_missing_asset_ids": [],
+        "support_level": "full",
+        "support_status": "supported",
+        "unsupported_reasons": []
+      },
+      "demo_support": {
+        "degraded_reasons": [],
+        "status": "supported",
+        "support_level": "full",
+        "ui_template": "cat1_dialogue",
+        "unsupported_reasons": []
+      },
+      "entity_binding": {
+        "default": true,
+        "display_label": "Word Echo Practice",
+        "entity_id": "word_echo_practice",
+        "source_entity_exemplar": "word_echo_practice"
+      },
+      "runtime_support": {
+        "executable": true,
+        "extension_reasons": [],
+        "quality_warnings": [],
+        "requires_runtime_extension": false
+      },
+      "warnings": []
+    }
+  ],
+  "changed": []
+}

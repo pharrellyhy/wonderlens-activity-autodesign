@@ -10,12 +10,6 @@ docs/asset_style_reference/wonderlens-activity-style.md
 docs/asset_style_reference/style-reference-flat-nordic.png
 ```
 
-These files were copied from the fullstack-demo prompt folder on 2026-06-03:
-
-```text
-/Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/prompts/
-```
-
 The schema value remains `style_id: wonderlens_device_mint_soft_3d` for
 consumer compatibility. The current visual target for that style is the flat
 Nordic nursery illustration style below, not the older soft-3D toy look.
