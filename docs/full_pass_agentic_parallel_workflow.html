@@ -1219,17 +1219,15 @@
                   <div class="timeline-row"><span class="time">Close</span><p>Regenerate <code>review.html</code> or the run review packet, update run manifest/status, and hand the integrated run to the downstream integration owner.</p></div>
                 </div>
                 <p style="margin-top:0.8rem;font-size:0.82rem;line-height:1.4;"><a href="run_captain_daily_workflow.md">Full instructions: Run Captain Daily Workflow</a> — step-by-step session workflow with commands, review-status rules, and stop conditions.</p>
-                <p style="margin-top:0.8rem;font-size:0.82rem;line-height:1.4;"><a href="run_captain_daily_workflow.md">Full instructions: Run Captain Daily Workflow</a> — step-by-step session workflow with commands, review-status rules, and stop conditions.</p>
               </div>
 
               <div class="role-pane" data-pane-panel="text">
                 <div class="timeline">
                   <div class="timeline-row"><span class="time">Start</span><p>Branch from the latest run branch and open assigned packages. Confirm the activity ID, mechanic, category, support level, and entity mode before editing.</p></div>
-                  <div class="timeline-row"><span class="time">Agent</span><p><code>/goal Execute goals/text-reviewer-goal.md end to end with RUN_ID=<run_id> ACTIVITY_ID=<activity_id>.</code> The goal file owns the 10-dimension rubric, file scope, validators, and completion criteria.</p></div>
+                  <div class="timeline-row"><span class="time">Agent</span><p><code>/goal Execute goals/text-reviewer-goal.md end to end with RUN_ID=&lt;run_id&gt; ACTIVITY_ID=&lt;activity_id&gt;.</code> The goal file owns the 10-dimension rubric, file scope, validators, and completion criteria.</p></div>
                   <div class="timeline-row"><span class="time">Review</span><p>Read <code>spec.md</code>, <code>prod.md</code>, <code>tag_block.yaml</code>, <code>demo_support.yaml</code>, <code>recap.template.yaml</code>, and <code>dashboard.template.yaml</code>. Verify runtime beats, branch behavior, and package alignment.</p></div>
                   <div class="timeline-row"><span class="time">Repair</span><p>Patch only assigned package text/YAML. Do not regenerate assets. If assets are missing, write an asset request note for the asset owner.</p></div>
                   <div class="timeline-row"><span class="time">Submit</span><p>Update the activity status file with pass/fail notes, run focused validation if available, and open a PR to the run branch.</p></div>
-                <p style="margin-top:0.8rem;font-size:0.82rem;line-height:1.4;"><a href="text_reviewer_daily_workflow.md">Full instructions: Text Reviewer Daily Workflow</a> — step-by-step session workflow with commands, review checklist, and stop conditions.</p>
                 </div>
                 <p style="margin-top:0.8rem;font-size:0.82rem;line-height:1.4;"><a href="text_reviewer_daily_workflow.md">Full instructions: Text Reviewer Daily Workflow</a> — step-by-step session workflow with commands, review checklist, and stop conditions.</p>
               </div>
@@ -1237,10 +1235,9 @@
               <div class="role-pane" data-pane-panel="asset">
                 <div class="timeline">
                   <div class="timeline-row"><span class="time">Start</span><p>Branch from the latest run branch and inspect <code>asset_manifest.yaml</code>, <code>spec.md</code> asset brief, and <code>prod.md</code> display beats for assigned activities.</p></div>
-                  <div class="timeline-row"><span class="time">Agent</span><p><code>/goal Execute goals/asset-curator-goal.md end to end with RUN_ID=<run_id> ACTIVITY_ID=<activity_id>.</code> The goal file owns the style contract, builder/validator commands, and reference-bound asset rules.</p></div>
+                  <div class="timeline-row"><span class="time">Agent</span><p><code>/goal Execute goals/asset-curator-goal.md end to end with RUN_ID=&lt;run_id&gt; ACTIVITY_ID=&lt;activity_id&gt;.</code> The goal file owns the style contract, builder/validator commands, and reference-bound asset rules.</p></div>
                   <div class="timeline-row"><span class="time">Source</span><p>For reference-bound assets, accept only approved internal, licensed, public-domain, official, or verified educational/scientific sources. Store source originals and metadata.</p></div>
                   <div class="timeline-row"><span class="time">Build</span><p>For illustrative assets, generate 512x512 PNGs with the WonderLens flat Nordic style when image tooling is available, then run the deterministic builder.</p></div>
-                <p style="margin-top:0.8rem;font-size:0.82rem;line-height:1.4;"><a href="asset_curator_daily_workflow.md">Full instructions: Asset Curator Daily Workflow</a> — step-by-step session workflow with commands, asset QA rules, and stop conditions.</p>
                   <div class="timeline-row"><span class="time">Submit</span><p>Validate package-local assets, update status notes, and open a PR containing only manifests, assets, source metadata, and asset QA evidence.</p></div>
                 </div>
                 <p style="margin-top:0.8rem;font-size:0.82rem;line-height:1.4;"><a href="asset_curator_daily_workflow.md">Full instructions: Asset Curator Daily Workflow</a> — step-by-step session workflow with commands, asset QA rules, and stop conditions.</p>
@@ -1249,9 +1246,8 @@
               <div class="role-pane" data-pane-panel="integration">
                 <div class="timeline">
                   <div class="timeline-row"><span class="time">Start</span><p>Take the integrated run branch after text and asset validators pass. Do not accept a package solely because schema validation is green.</p></div>
-                  <div class="timeline-row"><span class="time">Agent</span><p><code>/goal Execute goals/integration-owner-goal.md end to end with RUN_ID=<run_id> ACTIVITY_ID=<activity_id>.</code> The goal file owns the consumer targets, dialogue QA strategies, and failure-classification rules.</p></div>
+                  <div class="timeline-row"><span class="time">Agent</span><p><code>/goal Execute goals/integration-owner-goal.md end to end with RUN_ID=&lt;run_id&gt; ACTIVITY_ID=&lt;activity_id&gt;.</code> The goal file owns the consumer targets, dialogue QA strategies, and failure-classification rules.</p></div>
                   <div class="timeline-row"><span class="time">Import</span><p>Load packages into fullstack-demo and WonderLens AI. Confirm converted <code>step_instructions</code> or <code>runtime.yaml</code> preserve every machine-convertible runtime instruction.</p></div>
-                <p style="margin-top:0.8rem;font-size:0.82rem;line-height:1.4;"><a href="role_agent_prompting_guide.md">Full instructions: Integration Owner Prompt</a> — stock agent prompt, allowed files, and stop conditions for the integration role.</p>
                   <div class="timeline-row"><span class="time">Dialogue</span><p>Run happy-path, unexpected-input, silence/no-response, and varied-entity tests. Route failures to package, asset, consumer runtime, or product capability owners.</p></div>
                   <div class="timeline-row"><span class="time">Review</span><p>Create PM-facing playback strips with thumbnails, child action, AI response, risk, and verdict. Mark only demo-worthy activities as accepted.</p></div>
                 </div>
@@ -1563,7 +1559,6 @@ git pull
 git checkout -b run/202606xx-agentic-pass
 # Run the baseline goal from repo root, then delegate per-activity.
 /goal Execute goals/baseline-text-packages-goal.md end to end.
-# Commit generated baseline output before assigning review work.</code></pre>
             </div>
 
             <div class="command">
@@ -1575,11 +1570,14 @@ git checkout -b run/202606xx-agentic-pass
 git checkout run/202606xx-agentic-pass
 git pull
 git checkout -b bob/text-activities-01-05</code></pre>
+
 # Then invoke the scoped goal file per activity:
-# /goal Execute goals/text-reviewer-goal.md end to end with RUN_ID=<run_id> ACTIVITY_ID=<activity_id>.
+# /goal Execute goals/text-reviewer-goal.md end to end with RUN_ID=&lt;run_id&gt; ACTIVITY_ID=&lt;activity_id&gt;.
             </div>
 
             <div class="command">
+# Then invoke the scoped goal file per activity:
+# /goal Execute goals/text-reviewer-goal.md end to end with RUN_ID=&lt;run_id&gt; ACTIVITY_ID=&lt;activity_id&gt;.
               <div class="command-head">
                 <span>Contributor syncs before PR</span>
                 <button class="copy" type="button">Copy</button>
@@ -1669,26 +1667,26 @@ python3 scripts/validate_asset_build_outputs.py runs/&lt;run_id&gt;</code></pre>
         owner: "Run Captain",
         inputs: "<code>main</code>, assignments, scoped goal, current package contract",
         outputs: "Run branch, frozen scope, activity ownership plan",
-        done: "Everyone knows the run ID, branch, assigned activities, and flags."
+        inputs: "<code>goals/baseline-text-packages-goal.md</code>, <code>program.md</code>, <code>assignments.md</code>",
       },
       {
         title: "Generate baseline",
         owner: "Run Captain",
-        inputs: "<code>goals/baseline-text-packages-goal.md</code>, <code>program.md</code>, <code>assignments.md</code>"
+        inputs: "<code>goals/baseline-text-packages-goal.md</code>, <code>program.md</code>, <code>assignments.md</code>",
         outputs: "<code>runs/&lt;run_id&gt;/activity_packages</code>, manifests, initial review files",
         done: "Baseline commit exists before text and asset reviewers branch."
       },
       {
-        title: "Text review",
+        inputs: "<code>goals/text-reviewer-goal.md</code> with RUN_ID + ACTIVITY_ID",
         owner: "Text Reviewer",
-        inputs: "<code>goals/text-reviewer-goal.md</code> with RUN_ID + ACTIVITY_ID"
+        inputs: "<code>goals/text-reviewer-goal.md</code> with RUN_ID + ACTIVITY_ID",
         outputs: "Package repairs, text review status, concrete residual risks",
         done: "Playable steps, parameterization, branch behavior, and support gate pass."
       },
       {
-        title: "Asset review",
-        inputs: "<code>goals/asset-curator-goal.md</code> with RUN_ID + ACTIVITY_ID, <code>asset_manifest.yaml</code>"
-        inputs: "<code>asset_manifest.yaml</code>, asset brief, accepted package steps",
+        inputs: "<code>goals/asset-curator-goal.md</code> with RUN_ID + ACTIVITY_ID, <code>asset_manifest.yaml</code>",
+        owner: "Asset Curator",
+        inputs: "<code>goals/asset-curator-goal.md</code> with RUN_ID + ACTIVITY_ID, <code>asset_manifest.yaml</code>",
         outputs: "Package-local PNGs, source metadata, asset QA notes",
         done: "Assets exist, are correctly sourced, and match screen/style constraints."
       },
@@ -1702,7 +1700,7 @@ python3 scripts/validate_asset_build_outputs.py runs/&lt;run_id&gt;</code></pre>
       {
         title: "Runtime check",
         owner: "Integration Owner",
-        inputs: "<code>goals/integration-owner-goal.md</code> with RUN_ID + ACTIVITY_ID, validated run branch"
+        inputs: "<code>goals/integration-owner-goal.md</code> with RUN_ID + ACTIVITY_ID, validated run branch",
         outputs: "Fullstack-demo and WonderLens AI import/dialogue reports",
         done: "Runtime behavior matches package content or failures are classified."
       },
