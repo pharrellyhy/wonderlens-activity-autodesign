@@ -7,7 +7,7 @@ dashboard_fragment:
     angle: pattern
     mechanic: collect
     entity_role: exemplar
-    focal_attribute: target_pattern_property
+    focal_attribute: polka_dots
     entry_rung: "{runtime_entry_rung}"
     exit_rung:  "{runtime_exit_rung}"
     outcome:    "{runtime_outcome}"         # promote | hold | demote | soft_reframe

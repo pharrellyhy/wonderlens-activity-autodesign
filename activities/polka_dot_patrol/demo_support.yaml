@@ -3,64 +3,89 @@ version: 1
 entity_compatibility: agnostic
 parameterization:
   mode: property_target
-  decision_source: canonical_package_conversion
-  integrity_status: supported_catalog_property_target
+  decision_source: wonderlens_ai_runtime_authority_sync
+  integrity_status: runtime_supported_visual_property_target_legacy_demo_degraded
   confidence: high
   evidence:
-    - The package selects from approved catalog cards for a declared pattern property.
-    - The package no longer claims arbitrary real-camera pattern verification.
-    - Initial supported catalog sets are polka_dots and stripes, each with at least three correct cards.
+    - WonderLens AI Cat5 runtime supports real camera collection captures that return vision_result.
+    - Runtime matching checks vision_result detected_properties and attributes against the collection criterion and accepted_features.
+    - Dot, spot, polka-dot, circle, speckle, and dotted-pattern signals normalize into the same property-match family for polka-dot patrol.
+    - The legacy producer demo validator still requires cat5_judgment packages with runtime_judgment to be recorded as degraded until that contract is updated.
   validity:
     production_supported: true
     requires:
       - handoff.detected_pattern_property
-      - approved collection catalog for target property
+      - runtime Cat5 capture_photo round
+      - vision_result.detected_properties or vision_result.attributes
+      - accepted visual property match for dots/spots/polka dots
     allowed_entity_classes: []
     invalid_when:
       - target pattern property is missing
-      - target pattern property has no approved catalog set
-      - fewer than three correct cards exist for the target property
-      - runtime claims automated real-camera pattern judgment
+      - target pattern property is not dots, spots, polka_dots, circles, speckles, or dotted_pattern
+      - submitted photo has no vision_result
+      - vision_result has no matching dot, spot, polka-dot, circle, speckle, or dotted-pattern signal
   source_fields:
     target_pattern_property:
       - handoff.detected_pattern_property
       - assignment.property_target
+    visual_evidence:
+      - vision_result.detected_properties
+      - vision_result.attributes
+      - runtime.collection_catalog.accepted_features
     pattern_label:
-      - catalog.pattern_label
+      - runtime.collection_criterion
+      - handoff.detected_pattern_property
   derived_runtime_fields:
     target_property: handoff.detected_pattern_property
-    pattern_label: child-facing label for target property
-    collection_catalog_id: pattern_catalog_{target_property}
+    pattern_label: child-facing label for dots, spots, or polka dots
+    collection_criterion: Things with dots, spots, or circles
     collection_goal_count: 3
-    accepted_evidence_prompt: name the dots, spots, lines, stripes, spacing, size, or direction visible on the selected card
-  authored_constants:
-    approved_catalogs:
+    accepted_features:
       - polka_dots
-      - stripes
-    collection_loop: three catalog-card choices plus synthesis and patrol story
+      - spots
+      - circles
+      - speckles
+      - dotted_pattern
+    evidence_mode: visual_property_match
+    accepted_evidence_prompt: use real camera capture and vision_result property matching, then ask the child to name the dots, spots, circles, speckles, size, or arrangement visible in the found object
+  authored_constants:
+    visual_property_synonyms:
+      - dots
+      - dot
+      - spots
+      - spot
+      - polka_dots
+      - polka-dot
+      - circles
+      - speckles
+      - dotted_pattern
+    collection_loop: three real-camera photo captures plus detail prompts, synthesis, and patrol story
     reward_badge: pattern_patrol
-  fallback_behavior: Do not start this package when no approved target pattern catalog exists; offer a fixed polka-dot catalog only when explicitly selected as the target property.
-  stale_text_risk: low; child-facing text uses {pattern_label} and catalog-driven card labels.
+  fallback_behavior: If WonderLens AI runtime vision/property matching is unavailable, keep the producer demo marked degraded and do not present catalog-card selection as production-equivalent visual judgment.
+  stale_text_risk: low; child-facing text uses dot, spot, circle, and polka-dot wording that matches runtime visual-property synonyms.
   consumer_notes:
-    wonderlens_ai: Derive pattern_label and collection_catalog_id before planning prompts; do not claim camera verification.
-    fullstack_demo: Use Cat5 collection UI with selectable package-local item assets.
-  reviewer_action: accept_as_supported_property_target_catalog
+    wonderlens_ai: Use Cat5 real camera capture for each collection round, run vision recognition, pass vision_result into property matching, and accept normalized dot/spot/polka/circle/speckle signals.
+    fullstack_demo: Treat degraded status as legacy producer-contract compatibility only when WonderLens AI is driving the activity.
+    legacy_producer_contract: The current producer validator still requires cat5_judgment plus runtime_judgment packages to be marked degraded.
+  reviewer_action: accept_as_runtime_supported_visual_property_match_with_legacy_demo_degradation
 demo_support:
-  status: supported
-  ui_template: cat5_collection
-  support_level: full_catalog_collection
+  status: degraded
+  ui_template: cat5_judgment
+  support_level: runtime_visual_property_match_legacy_contract_degraded
   entity_bindings:
-    - entity_id: pattern_catalog
-      display_label: Pattern catalog
+    - entity_id: visual_property_target
+      display_label: Dots and spots visual property
       source_entity_exemplar: polka_dots
       default: true
   requires:
     generated_assets: true
-    real_camera: false
-    runtime_judgment: false
+    real_camera: true
+    runtime_judgment: true
     device_round_screen: true
   unsupported_reasons: []
-  degraded_reasons: []
+  degraded_reasons:
+    - Legacy producer demo contract requires cat5_judgment packages with runtime_judgment to be marked degraded until that contract is updated; WonderLens AI runtime supports real camera vision/property matching.
   consumer_notes:
-    fullstack_demo: Use approved catalog cards for polka_dots or stripes; do not expose arbitrary-photo judgment.
-    wonderlens_ai: Treat selected cards and child-stated evidence as the runtime proof.
+    wonderlens_ai: Use real camera capture, preserve the photo, run vision recognition, and accept vision_result matches for normalized dots, spots, polka_dots, circles, speckles, or dotted_pattern.
+    fullstack_demo: Use package assets for static screens only; do not replace WonderLens AI runtime visual judgment with catalog-card selection.
+    legacy_producer_contract: Degraded status reflects producer validator compatibility, not a WonderLens AI runtime limitation.

@@ -3,51 +3,63 @@ version: 1
 entity_compatibility: agnostic
 parameterization:
   mode: property_target
-  decision_source: canonical_package_conversion
-  integrity_status: supported_catalog_texture_target
+  decision_source: wonderlens_ai_runtime_authority
+  integrity_status: runtime_visual_verification_preferred_legacy_contract_degraded
   confidence: high
   evidence:
-    - The package selects from approved catalog cards for the declared fluffy_soft_texture property.
-    - The package no longer depends on arbitrary real-world photos, tactile sensing, or automated texture judgment.
-    - The default catalog contains at least three correct soft/fluffy cards.
+    - WonderLens AI can use real camera capture and vision_result property recognition for Cat5 collection judgment.
+    - Runtime property matching can accept visible fluffy, fuzzy, soft, woolly, or puffy texture cues from vision_result.detected_properties or attributes.
+    - The default catalog remains useful for legacy/fullstack demos, but runtime proof should come from camera-backed visual verification when available.
   validity:
     production_supported: true
     requires:
-      - handoff.detected_texture_property
-      - approved collection catalog for target texture property
+      - handoff.matched_property or handoff.detected_texture_property
+      - real camera capture for each collected find
+      - vision_result with detected texture properties or visual attributes
     allowed_entity_classes: []
     invalid_when:
       - target texture property is missing
-      - target texture property has no approved catalog set
-      - fewer than three correct cards exist for the target texture property
-      - runtime claims automated real-world softness, touch, or camera judgment
+      - runtime cannot capture a real photo or receive a vision_result
+      - vision_result lacks usable texture/property evidence
+      - runtime treats catalog-card selection as the authoritative proof
   source_fields:
     target_texture_property:
+      - handoff.matched_property
+      - vision_result.detected_properties
       - handoff.detected_texture_property
       - assignment.property_target
     texture_label:
-      - catalog.texture_label
+      - runtime.texture_label
+      - catalog.texture_label fallback
   derived_runtime_fields:
-    target_property: handoff.detected_texture_property
+    target_property: handoff.matched_property or first matching vision_result.detected_properties value
     texture_label: child-facing label for target texture property
-    collection_catalog_id: texture_catalog_{target_property}
+    collection_criterion: Things that are fluffy, fuzzy, or soft
+    accepted_features:
+      - fluffy
+      - fuzzy
+      - soft
+      - woolly
+      - puffy
+    visual_prompt_hint: Accept visible fluffy, fuzzy, soft, woolly, or puffy texture cues from the real camera photo.
+    collection_catalog_id: texture_catalog_{target_property}_fallback
     collection_goal_count: 3
-    accepted_evidence_prompt: name the fuzz, puff, wool, feather, or soft-looking texture clue visible on the selected card
+    accepted_evidence_prompt: name the fuzz, puff, wool, feather, or soft-looking texture clue visible in the captured photo
   authored_constants:
     approved_catalogs:
       - fluffy_soft_texture
-    collection_loop: three catalog-card choices plus naming, synthesis, and story
+    collection_loop: three real camera finds plus naming, synthesis, and story
     reward_badge: fluffy_expedition_explorer
-  fallback_behavior: Use the default fluffy_soft_texture catalog when explicitly selected; otherwise do not start this package without an approved target texture catalog.
-  stale_text_risk: low; child-facing text uses catalog-card choices and avoids real-world verification claims.
+  fallback_behavior: Use the default fluffy_soft_texture catalog only for legacy demo playback; do not treat catalog selections as runtime visual proof.
+  stale_text_risk: medium; runtime text should ask for real camera evidence and avoid catalog-only proof claims.
   consumer_notes:
-    wonderlens_ai: Derive texture_label and collection_catalog_id before planning prompts; do not claim touch, photo, or camera verification.
-    fullstack_demo: Use Cat5 collection UI with selectable package-local item assets.
-  reviewer_action: accept_as_supported_property_target_catalog
+    wonderlens_ai: Prefer real camera capture plus vision_result property recognition for Cat5 runtime judgment; match against fluffy/fuzzy/soft/woolly/puffy visual evidence.
+    fullstack_demo: May keep package-local catalog assets as a non-authoritative fallback until the demo surface supports real camera property judgment.
+  reviewer_action: accept_as_runtime_visual_verification_preferred
 demo_support:
-  status: supported
-  ui_template: cat5_collection
-  support_level: full_catalog_collection
+  status: degraded
+  ui_template: cat5_judgment
+  support_level: full_runtime_judgment
   entity_bindings:
     - entity_id: fluffy_soft_texture_catalog
       display_label: Fluffy texture catalog
@@ -55,11 +67,13 @@ demo_support:
       default: true
   requires:
     generated_assets: true
-    real_camera: false
-    runtime_judgment: false
+    real_camera: true
+    runtime_judgment: true
     device_round_screen: true
   unsupported_reasons: []
-  degraded_reasons: []
+  degraded_reasons:
+    - Legacy producer demo contract requires cat5_judgment packages to be recorded as degraded until that contract is updated.
+    - Legacy fullstack/demo catalog playback is not the authoritative runtime proof path for this package.
   consumer_notes:
-    fullstack_demo: Use approved catalog cards for fluffy_soft_texture; do not expose arbitrary-photo or touch judgment.
-    wonderlens_ai: Treat selected cards and child-stated texture evidence as the runtime proof.
+    fullstack_demo: Keep approved catalog cards only as a fallback/non-authoritative demo path; do not present catalog choice as camera-verified proof.
+    wonderlens_ai: Use real camera capture, preserve the resulting vision_result, and judge matches from recognized fluffy/fuzzy/soft/woolly/puffy texture properties or attributes.

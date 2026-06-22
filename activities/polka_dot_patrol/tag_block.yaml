@@ -7,7 +7,7 @@ pillar: Adventure
 game_style: quest_collector
 
 # ─── §1 · IB FRAME ────────────────────────────────────
-entity: "{target_pattern_property}"
+entity: polka_dots
 entity_class: []
 entity_binding: parameterized
 entity_compatibility: agnostic
@@ -48,14 +48,14 @@ activity_signature:
     secondary: [color, shape]
 
   # ── Layer 2: presentation (author templates; runtime renders) ──
-  focal_attribute: "target_pattern_property"
+  focal_attribute: "polka_dots"
   intro: "The child patrols a catalog looking for three cards that match the target pattern property, then turns them into a patrol parade."
   preview_label:  "Find three matching pattern cards!"
   preview_prompt: "Today's patrol clue is {pattern_label}. Let's find three cards that show that pattern."
   role_pivot_note: |
-    The handoff property becomes the patrol clue. The runtime must choose an
-    approved catalog for {target_pattern_property}; the demo must not claim
-    arbitrary real-camera pattern verification.
+    The default patrol clue is polka dots. Future handoff retargeting may choose
+    another approved pattern catalog, but the current runtime-verifiable package
+    uses the concrete polka_dots focal attribute.
 
 # ─── §3 · MATCHABILITY (from 2026-04-20 spec) ─────────
 matchability:

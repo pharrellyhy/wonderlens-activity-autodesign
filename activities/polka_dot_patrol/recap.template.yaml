@@ -2,7 +2,7 @@
 # At runtime, {placeholders} are filled with session-specific values.
 recap_payload:
   activity_id: polka_dot_patrol
-  entity: "{target_pattern_property}"            # e.g. polka_dots or stripes
+  entity: "polka_dots"
   tier: "{runtime_tier}"                # T0 | T1 | T2
   age_years: "{runtime_age}"
 
@@ -11,7 +11,7 @@ recap_payload:
   entity_role:     exemplar
 
   focal_attribute:
-    token: "target_pattern_property"
+    token: "polka_dots"
     child_label: "{pattern_label}"
     badge_emoji_none: true
 
