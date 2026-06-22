@@ -1,0 +1,238 @@
+activity_id: fluffy_expedition_dandelion
+entity_id: fluffy_soft_texture_catalog
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: "1:1"
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+  catalog_grid:
+    aspect_ratio: "1:1"
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+  - id: activity_icon
+    role: activity_preview
+    label: Fluffy Expedition activity icon
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Flat Nordic children's illustration of a soft dandelion seed puff badge with gentle fluffy texture cues, centered on clean white background, no readable text, no letters, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/activity_icon__round_512.png
+    fallback_behavior: Show the Fluffy Expedition title with a neutral Adventure badge.
+  - id: intro_scene
+    role: story_scene
+    label: Dandelion fluffy exemplar scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic nursery scene of a dandelion seed puff floating gently in a quiet meadow corner, soft fluffy texture clearly visible, generous negative space, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/intro_scene__round_512.png
+    fallback_behavior: Introduce the dandelion fluffy clue by voice with a neutral background.
+  - id: rules_scene
+    role: story_scene
+    label: Fluffy catalog collection rules scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a child looking at simple soft-texture cards on a low table, dandelion puff, moss, yarn, and feather motifs, no app slots, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/rules_scene__round_512.png
+    fallback_behavior: Explain the catalog-card rule by voice only.
+  - id: round_1_scene
+    role: story_scene
+    label: First fluffy card scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a child selecting a soft-looking texture card from a small card spread, fluffy and fuzzy clues visible, no app UI, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_1_scene__round_512.png
+    fallback_behavior: Keep item cards visible and guide the first choice by voice.
+  - id: round_2_scene
+    role: story_scene
+    label: Second fluffy comparison scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of two selected soft-texture cards side by side while a child compares fuzzy, puffy, woolly, and feathery clues, no app UI, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_2_scene__round_512.png
+    fallback_behavior: Keep selected item cards visible and guide comparison by voice.
+  - id: round_3_scene
+    role: story_scene
+    label: Third fluffy friend completion scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a child adding a third soft texture card to a gentle fluffy friend collection, complete expedition moment, no app UI, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_3_scene__round_512.png
+    fallback_behavior: Keep selected item cards visible and finish the collection by voice.
+  - id: synthesis_scene
+    role: story_scene
+    label: Fluffy friend story synthesis scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of three soft texture cards and a dandelion puff becoming tiny story friends along a gentle meadow path, no app UI, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/synthesis_scene__round_512.png
+    fallback_behavior: Synthesize selected cards by voice without claiming synthesis art is visible.
+  - id: celebrate_scene
+    role: badge
+    label: Fluffy Expedition Explorer celebration badge
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Flat Nordic badge-style illustration with dandelion seed puff, woolly swirl, and soft feather motifs, centered on white, no readable text, no letters, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/celebrate_scene__round_512.png
+    fallback_behavior: Use generic celebration treatment and spoken badge award.
+  - id: closing_scene
+    role: story_scene
+    label: Fluffy texture connection closing scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic closing scene of dandelion puff, fuzzy moss, woolly yarn, and soft feather grouped by shared fluffy texture on a quiet white table, no readable labels, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/closing_scene__round_512.png
+    fallback_behavior: Close with spoken recap and selected-card thumbnails only.
+  - id: fluffy_dandelion_puff
+    role: collection_correct
+    label: Dandelion seed puff
+    collection_catalog_id: fluffy_soft_texture
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of one dandelion seed puff with clear fluffy white seed texture, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/fluffy_dandelion_puff__catalog_512.png
+    fallback_behavior: Hide this card if unavailable; do not start fluffy_soft_texture catalog if fewer than three correct cards remain.
+  - id: fuzzy_moss_patch
+    role: collection_correct
+    label: Fuzzy moss patch
+    collection_catalog_id: fluffy_soft_texture
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of a small fuzzy moss patch with soft rounded texture, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/fuzzy_moss_patch__catalog_512.png
+    fallback_behavior: Hide this card if unavailable; do not start fluffy_soft_texture catalog if fewer than three correct cards remain.
+  - id: woolly_yarn_ball
+    role: collection_correct
+    label: Woolly yarn ball
+    collection_catalog_id: fluffy_soft_texture
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of one woolly yarn ball with clear soft fiber texture, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/woolly_yarn_ball__catalog_512.png
+    fallback_behavior: Hide this card if unavailable; do not start fluffy_soft_texture catalog if fewer than three correct cards remain.
+  - id: soft_feather
+    role: collection_correct
+    label: Soft feather
+    collection_catalog_id: fluffy_soft_texture
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of one gentle soft feather with visible airy barbs, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/soft_feather__catalog_512.png
+    fallback_behavior: Hide this card if unavailable; do not start fluffy_soft_texture catalog if fewer than three correct cards remain.
+  - id: smooth_pebble
+    role: collection_distractor
+    label: Smooth pebble
+    collection_catalog_id: texture_distractors
+    requiredness: optional
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of one smooth rounded pebble with no fuzz, no fluff, and no fibers, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/smooth_pebble__catalog_512.png
+    fallback_behavior: Hide this distractor if unavailable.
+  - id: plain_wood_block
+    role: collection_distractor
+    label: Plain wooden block
+    collection_catalog_id: texture_distractors
+    requiredness: optional
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of one plain smooth wooden block with no fuzz, no fluff, and no fibers, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/plain_wood_block__catalog_512.png
+    fallback_behavior: Hide this distractor if unavailable.

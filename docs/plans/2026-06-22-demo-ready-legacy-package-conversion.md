@@ -1,8 +1,8 @@
 # Demo-Ready Legacy Package Conversion Implementation Plan
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> Execution note: implement this plan task-by-task with verification after each file group.
 
-**Goal:** Convert `dream_whisperer_cat`, `mood_changer_dog`, `time_machine_dinosaur`, and `polka_dot_patrol` into demo-ready canonical packages with package-local visual assets.
+**Goal:** Convert `dream_whisperer_cat`, `mood_changer_dog`, `time_machine_dinosaur`, `polka_dot_patrol`, and `fluffy_expedition_dandelion` into demo-ready canonical packages with package-local visual assets.
 
 **Architecture:** Treat this as existing-package maintenance under `activities/`, not fresh assignment queue generation. Add paired `demo_support.yaml` and `asset_manifest.yaml` files, bind freshly generated 512x512 PNG assets under each package's `assets/` directory, and update only package prose/templates needed to make the runtime contract honest.
 
@@ -94,3 +94,26 @@
 **Validation:**
 - `git diff --check`
 - `python3 scripts/validate_demo_package_contract.py activities/dream_whisperer_cat activities/mood_changer_dog activities/time_machine_dinosaur activities/polka_dot_patrol`
+
+### Task 5: Convert Fluffy Expedition Dandelion To Catalog Collection
+
+**Files:**
+- Modify: `activities/fluffy_expedition_dandelion/spec.md`
+- Modify: `activities/fluffy_expedition_dandelion/prod.md`
+- Modify: `activities/fluffy_expedition_dandelion/tag_block.yaml`
+- Modify: `activities/fluffy_expedition_dandelion/recap.template.yaml`
+- Create: `activities/fluffy_expedition_dandelion/demo_support.yaml`
+- Create: `activities/fluffy_expedition_dandelion/asset_manifest.yaml`
+- Create PNGs under `activities/fluffy_expedition_dandelion/assets/` and `activities/fluffy_expedition_dandelion/assets/items/`
+
+**Steps:**
+1. Reframe the original tactile/photo collection as a supported Cat5 catalog collection for `fluffy_soft_texture`.
+2. Use `entity_binding: parameterized`, `entity_compatibility: agnostic`, `parameterization.mode: property_target`, `status: supported`, and `ui_template: cat5_collection`.
+3. Remove or neutralize claims that the runtime accepts arbitrary photos, verifies touch, or judges real-world softness.
+4. Declare the standard scene bundle plus individual soft-texture catalog cards and texture distractors.
+5. Generate fresh package-local PNGs only; do not reuse old image assets.
+
+**Validation:**
+- Run `python3 scripts/validate_demo_package_contract.py activities/fluffy_expedition_dandelion`.
+- Run the full tag-block schema validation under the repo-root `.venv`.
+- Run `find activities/fluffy_expedition_dandelion/assets -name '*.png' -print -exec identify -format '%w %h %m %b\n' {} \;`.
