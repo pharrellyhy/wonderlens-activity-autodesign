@@ -1,0 +1,268 @@
+activity_id: polka_dot_patrol
+entity_id: pattern_catalog
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: "1:1"
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+  catalog_grid:
+    aspect_ratio: "1:1"
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+  - id: activity_icon
+    role: activity_preview
+    label: Pattern Patrol activity icon
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Flat Nordic children's illustration of a friendly patrol badge shape with dot and stripe pattern clues as simple abstract marks, clean white background, no readable text, no letters, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/activity_icon__round_512.png
+    fallback_behavior: Show the Pattern Patrol title with a neutral pattern swatch.
+  - id: intro_scene
+    role: story_scene
+    label: Pattern clue introduction scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic nursery scene of a child noticing simple dot and stripe pattern clues on cards spread on a low table, no baked UI, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/intro_scene__round_512.png
+    fallback_behavior: Introduce the target pattern by voice with a neutral background.
+  - id: rules_scene
+    role: story_scene
+    label: Catalog collection rules scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a child comparing small pattern cards on a table and choosing matching examples, no app slots, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/rules_scene__round_512.png
+    fallback_behavior: Explain the catalog-card rule by voice only.
+  - id: round_1_scene
+    role: story_scene
+    label: First pattern card scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a child selecting one visible pattern card from a small card spread, focused evidence-finding moment, no app UI, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_1_scene__round_512.png
+    fallback_behavior: Keep item cards visible and guide the first choice by voice.
+  - id: round_2_scene
+    role: story_scene
+    label: Second pattern comparison scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of two selected pattern cards side by side while a child compares their marks, no app UI slots, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_2_scene__round_512.png
+    fallback_behavior: Keep selected item cards visible and guide comparison by voice.
+  - id: round_3_scene
+    role: story_scene
+    label: Third pattern card completion scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a child adding a third matching pattern card to a small patrol row, complete collection moment, no app UI slots, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_3_scene__round_512.png
+    fallback_behavior: Keep selected item cards visible and finish the collection by voice.
+  - id: synthesis_scene
+    role: story_scene
+    label: Pattern patrol parade synthesis scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of three pattern cards becoming a tiny parade path across a table, child comparing same and different visual marks, no app UI, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/synthesis_scene__round_512.png
+    fallback_behavior: Synthesize selected cards by voice without claiming synthesis art is visible.
+  - id: celebrate_scene
+    role: badge
+    label: Pattern Patrol celebration badge
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Flat Nordic badge-style illustration with simple dot and stripe pattern motifs and a gentle patrol path shape, centered on white, no readable text, no letters, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/celebrate_scene__round_512.png
+    fallback_behavior: Use generic celebration treatment and spoken badge award.
+  - id: closing_scene
+    role: story_scene
+    label: Pattern recap closing scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic closing scene of selected pattern cards grouped by shared visual clues on a quiet white table, Form and Connection implied without text, no readable labels, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/closing_scene__round_512.png
+    fallback_behavior: Close with spoken recap and selected-card thumbnails only.
+  - id: polka_ladybug
+    role: collection_correct
+    label: Ladybug dots
+    collection_catalog_id: polka_dots
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of a friendly ladybug shell with clear round polka dots, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/polka_ladybug__catalog_512.png
+    fallback_behavior: Hide this card if unavailable; do not start polka_dots catalog if fewer than three correct cards remain.
+  - id: polka_mushroom
+    role: collection_correct
+    label: Spotted mushroom
+    collection_catalog_id: polka_dots
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of a small mushroom cap with clear round spots, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/polka_mushroom__catalog_512.png
+    fallback_behavior: Hide this card if unavailable; do not start polka_dots catalog if fewer than three correct cards remain.
+  - id: polka_flower
+    role: collection_correct
+    label: Dotted flower
+    collection_catalog_id: polka_dots
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of a simple flower petal cluster with visible round dot markings, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/polka_flower__catalog_512.png
+    fallback_behavior: Hide this card if unavailable; do not start polka_dots catalog if fewer than three correct cards remain.
+  - id: stripe_sock
+    role: collection_correct
+    label: Striped sock
+    collection_catalog_id: stripes
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of one simple sock with clear horizontal stripes, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/stripe_sock__catalog_512.png
+    fallback_behavior: Hide this card if unavailable; do not start stripes catalog if fewer than three correct cards remain.
+  - id: stripe_scarf
+    role: collection_correct
+    label: Striped scarf
+    collection_catalog_id: stripes
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of one soft scarf with clear repeating stripes, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/stripe_scarf__catalog_512.png
+    fallback_behavior: Hide this card if unavailable; do not start stripes catalog if fewer than three correct cards remain.
+  - id: stripe_ball
+    role: collection_correct
+    label: Striped ball
+    collection_catalog_id: stripes
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of one round ball with clear curved stripes, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/stripe_ball__catalog_512.png
+    fallback_behavior: Hide this card if unavailable; do not start stripes catalog if fewer than three correct cards remain.
+  - id: plain_leaf
+    role: collection_distractor
+    label: Plain leaf
+    collection_catalog_id: pattern_distractors
+    requiredness: optional
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of one plain smooth leaf with no spots and no stripes, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/plain_leaf__catalog_512.png
+    fallback_behavior: Hide this distractor if unavailable.
+  - id: zigzag_block
+    role: collection_distractor
+    label: Zigzag block
+    collection_catalog_id: pattern_distractors
+    requiredness: optional
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Centered flat Nordic item card illustration of one simple toy block with a zigzag mark that is not dots or stripes, clean white background, one subject only, no text, no numbers, no watermark."
+    variants:
+      - id: catalog_512
+        target: catalog_grid
+        size: 512x512
+        path: assets/items/zigzag_block__catalog_512.png
+    fallback_behavior: Hide this distractor if unavailable.
