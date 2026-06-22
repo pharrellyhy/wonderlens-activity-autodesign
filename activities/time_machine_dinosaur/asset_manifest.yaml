@@ -1,0 +1,129 @@
+activity_id: time_machine_dinosaur
+entity_id: dinosaur
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: "1:1"
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+  - id: activity_icon
+    role: activity_preview
+    label: Time Machine Dinosaur activity icon
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Flat Nordic children's illustration of a friendly toy dinosaur beside a simple time swirl and tiny fern, clean white background, restrained boho pastels, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/activity_icon__round_512.png
+    fallback_behavior: Show the Time Traveler title and keep the photographed dinosaur as the visual anchor.
+  - id: intro_scene
+    role: story_scene
+    label: Dinosaur introduction scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic nursery scene of a friendly toy dinosaur on the floor while a child notices its strong legs and big shape, warm quiet setting, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/intro_scene__round_512.png
+    fallback_behavior: Keep the photographed dinosaur centered and introduce the time traveler role by voice.
+  - id: rules_scene
+    role: story_scene
+    label: Time machine rules scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a toy dinosaur and child looking toward three gentle time portals for jungle, volcano, and lake, no UI frame, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/rules_scene__round_512.png
+    fallback_behavior: Explain the three time jumps by voice without claiming rule art is visible.
+  - id: round_1_scene
+    role: story_scene
+    label: Prehistoric jungle time scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic prehistoric jungle scene with a friendly toy-like dinosaur among giant ferns and soft trees, adventurous but safe, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_1_scene__round_512.png
+    fallback_behavior: Describe the jungle time jump by voice and keep the dinosaur photo visible.
+  - id: round_2_scene
+    role: story_scene
+    label: Distant volcano time scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic prehistoric scene with a friendly dinosaur watching a distant gentle volcano glow from a safe valley, dramatic but not scary, no lava danger, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_2_scene__round_512.png
+    fallback_behavior: Describe the volcano time jump by voice and keep the dinosaur photo visible.
+  - id: round_3_scene
+    role: story_scene
+    label: Peaceful lake time scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic prehistoric lake scene with a friendly dinosaur resting beside calm water at sunset, soft ferns and warm reflection, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_3_scene__round_512.png
+    fallback_behavior: Describe the peaceful lake time jump by voice and keep the dinosaur photo visible.
+  - id: celebrate_scene
+    role: badge
+    label: Time Traveler celebration badge
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Flat Nordic badge-style illustration of a friendly dinosaur silhouette with a tiny clock swirl and fern sprig, centered on white, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/celebrate_scene__round_512.png
+    fallback_behavior: Use a generic celebration badge and recap the time jumps by voice.
+  - id: closing_scene
+    role: story_scene
+    label: Time jump closing scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic closing scene of a friendly dinosaur with three small memory vignettes for jungle, distant volcano, and lake arranged like a gentle timeline, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/closing_scene__round_512.png
+    fallback_behavior: Close with spoken recap and the photographed dinosaur visual only.

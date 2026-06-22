@@ -1,0 +1,59 @@
+activity_id: dream_whisperer_cat
+version: 1
+entity_compatibility: agnostic
+parameterization:
+  mode: entity_theme
+  decision_source: canonical_package_conversion
+  integrity_status: supported_thematic_handoff
+  confidence: high
+  evidence:
+    - The photographed cat or cat-like toy themes the hook, but the dream scenes and success criteria stay authored.
+    - The activity uses child speech and scene imagination, not automated visual judgment.
+  validity:
+    production_supported: true
+    requires:
+      - handoff.entity_label
+    allowed_entity_classes:
+      - cat
+      - pet
+      - toy
+    invalid_when:
+      - handoff entity is not a cat or cat-like toy
+  source_fields:
+    runtime_entity:
+      - handoff.entity_label
+      - demo_support.default_entity_binding.display_label
+  derived_runtime_fields:
+    hook_entity_label: handoff.entity_label
+  authored_constants:
+    dialogue_frame: sleepy cat dream journey
+    dream_scenes:
+      - cloud adventure
+      - milk ocean
+      - magic garden
+    reward_badge: dream_whisperer
+  fallback_behavior: Use the default Cat binding and authored dream scenes when no valid cat-like handoff is available.
+  stale_text_risk: low; authored dream-scene constants remain intentionally fixed.
+  consumer_notes:
+    wonderlens_ai: Retarget only the hook entity label; keep authored dream scenes and badge language.
+    fullstack_demo: Use Cat1 dialogue UI with package-local generated scene assets.
+  reviewer_action: accept_as_thematic_cat_dialogue
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: full
+  entity_bindings:
+    - entity_id: cat
+      display_label: Cat
+      source_entity_exemplar: cat
+      default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Use the Cat1 dialogue primitive and generated package-local scene assets; do not require camera validation.
+    wonderlens_ai: Preserve the authored three-dream sequence and use runtime entity wording only for the hook.

@@ -26,7 +26,7 @@
 1. For `dream_whisperer_cat`, use `status: supported`, `ui_template: cat1_dialogue`, `entity_compatibility: agnostic`, and `parameterization.mode: entity_theme`.
 2. For `mood_changer_dog`, use `status: supported`, `ui_template: cat1_dialogue`, `entity_compatibility: source_bound`, and `parameterization.mode: entity_theme`.
 3. For `time_machine_dinosaur`, use `status: supported`, `ui_template: cat1_dialogue`, `entity_compatibility: source_bound`, and `parameterization.mode: entity_theme`.
-4. In each manifest, declare a pragmatic runnable asset set: `activity_icon`, `rules_scene`, `round_1_scene`, `round_2_scene`, `round_3_scene`, and `celebrate_scene`.
+4. In each manifest, declare the standard runnable scene bundle: `activity_icon`, `intro_scene`, `rules_scene`, `round_1_scene`, `round_2_scene`, `round_3_scene`, `celebrate_scene`, and `closing_scene`.
 5. Use `style_id: wonderlens_device_mint_soft_3d`, `round_device_screen` 512x512/circle/safe-area target, generated illustrative prompts, and package-relative `assets/<asset_id>__round_512.png` paths.
 
 **Validation:**
@@ -65,7 +65,7 @@
   - `activities/time_machine_dinosaur/assets/`
   - `activities/polka_dot_patrol/assets/`
   - `activities/polka_dot_patrol/assets/items/`
-- Update: all four `asset_manifest.yaml` files with `byte_count` and `sha256`.
+- Keep all four `asset_manifest.yaml` files schema-compatible with package-relative `path` values only.
 
 **Steps:**
 1. Generate one fresh separate 512x512 PNG per manifest asset using the WonderLens flat Nordic style.
@@ -73,7 +73,7 @@
 3. Resize any larger generated source to 512x512 with ImageMagick.
 4. Place scene assets under package-local `assets/`; place catalog item assets under `assets/items/`.
 5. Use `identify` to confirm every asset is 512x512 PNG.
-6. Compute `byte_count` and `sha256` for every variant and write them into manifests.
+6. Compute `byte_count` and `sha256` for every variant as verification evidence only; do not write those fields into manifests because the canonical schema does not allow them.
 
 **Validation:**
 - Run `find activities/{dream_whisperer_cat,mood_changer_dog,time_machine_dinosaur,polka_dot_patrol}/assets -name '*.png' -print -exec identify -format '%w %h %m %b\n' {} \;`.

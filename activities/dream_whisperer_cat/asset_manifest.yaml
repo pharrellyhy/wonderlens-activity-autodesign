@@ -1,0 +1,129 @@
+activity_id: dream_whisperer_cat
+entity_id: cat
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: "1:1"
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+  - id: activity_icon
+    role: activity_preview
+    label: Dream Whisperer Cat activity icon
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Flat Nordic children's illustration of a peaceful sleepy cat curled beside a tiny crescent moon and soft dream bubbles, clean white background, restrained boho pastels, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/activity_icon__round_512.png
+    fallback_behavior: Show the Dream Whisperer title and keep the photographed cat as the visual anchor.
+  - id: intro_scene
+    role: story_scene
+    label: Sleepy cat introduction scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic nursery scene of a sleepy cat resting on a soft cushion while gentle dream bubbles begin above it, airy white room, warm quiet mood, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/intro_scene__round_512.png
+    fallback_behavior: Keep the photographed cat centered and introduce the dream journey by voice.
+  - id: rules_scene
+    role: story_scene
+    label: Dream journey rules scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic illustration of a child and sleepy cat looking at three simple dream bubbles that suggest sky, water, and garden scenes, no UI frames, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/rules_scene__round_512.png
+    fallback_behavior: Explain the three dream stops by voice without claiming that rule art is visible.
+  - id: round_1_scene
+    role: story_scene
+    label: Cloud adventure dream scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic dream scene of a small cat floating safely on a fluffy cloud among soft stars, calm sky palette, generous center composition, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_1_scene__round_512.png
+    fallback_behavior: Describe the cloud dream by voice and keep the cat photo visible.
+  - id: round_2_scene
+    role: story_scene
+    label: Milk ocean dream scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic dream scene of a cheerful cat paddling through a gentle creamy white fantasy ocean with soft blue ripples, cozy and safe, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_2_scene__round_512.png
+    fallback_behavior: Describe the milk ocean dream by voice and keep the cat photo visible.
+  - id: round_3_scene
+    role: story_scene
+    label: Magic garden dream scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic dream scene of a cat exploring a gentle garden with yarn-ball bushes, soft flowers, and tiny treat shapes, whimsical but uncluttered, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_3_scene__round_512.png
+    fallback_behavior: Describe the garden dream by voice and keep the cat photo visible.
+  - id: celebrate_scene
+    role: badge
+    label: Dream Whisperer celebration badge
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Flat Nordic badge-style illustration with a sleeping cat silhouette, crescent moon, and three tiny dream bubbles, centered on clean white, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/celebrate_scene__round_512.png
+    fallback_behavior: Use a generic celebration badge and recap the dream scenes by voice.
+  - id: closing_scene
+    role: story_scene
+    label: Dream map closing scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic closing scene of a sleepy cat surrounded by three small dream-memory vignettes for cloud, milk ocean, and garden, calm bedtime palette, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/closing_scene__round_512.png
+    fallback_behavior: Close with spoken recap and the photographed cat visual only.
