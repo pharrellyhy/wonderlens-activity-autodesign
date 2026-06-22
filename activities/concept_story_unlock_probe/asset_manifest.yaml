@@ -1,0 +1,195 @@
+activity_id: concept_story_unlock_probe
+entity_id: story_challenge_unlock
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Story Challenge Unlock Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Story Challenge Unlock: Story
+    Challenge Unlock Celebration badge. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 313385
+    sha256: 1799078834f3af1d560bffc313fce6db10514fbd094ccbc88f33fb947fa857ae
+  fallback_behavior: Continue Story Challenge Unlock with spoken guidance and do not
+    claim that Story Challenge Unlock Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Story Challenge Unlock Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Story Challenge Unlock: Story
+    Challenge Unlock Closing scene. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 197701
+    sha256: db0ae1e96ab19199ab6fdff77c25c3a0cd1a8d68b0538fa8ef6e0a899a349a1c
+  fallback_behavior: Continue Story Challenge Unlock with spoken guidance and do not
+    claim that Story Challenge Unlock Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Story Challenge Unlock Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Story Challenge Unlock: Story
+    Challenge Unlock Activity icon. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 212859
+    sha256: 1247ab8f0d33e5546a45fd1678a3d7fe3780d84a3e6f545034a537ecb3b91625
+  fallback_behavior: Continue Story Challenge Unlock with spoken guidance and do not
+    claim that Story Challenge Unlock Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Story Challenge Unlock Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Story Challenge Unlock: Story
+    Challenge Unlock Intro scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 227928
+    sha256: 3614d0514fb5d6ab9af553ea6d2f2b93dab19ca66ea7c5e5d5c859ecf3cc4361
+  fallback_behavior: Continue Story Challenge Unlock with spoken guidance and do not
+    claim that Story Challenge Unlock Intro scene is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Story Challenge Unlock Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Story Challenge Unlock: Story
+    Challenge Unlock Round 1 scene. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 225999
+    sha256: a50fb0e92172d8137419703e294fd4f137f816943b353e5aa91f6004434d3ba8
+  fallback_behavior: Continue Story Challenge Unlock with spoken guidance and do not
+    claim that Story Challenge Unlock Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Story Challenge Unlock Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Story Challenge Unlock: Story
+    Challenge Unlock Round 2 scene. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 252115
+    sha256: a0277f07eb7623246e79bd91ae0af72610b086be97bcc498d9b6e78b3f47ac1b
+  fallback_behavior: Continue Story Challenge Unlock with spoken guidance and do not
+    claim that Story Challenge Unlock Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Story Challenge Unlock Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Story Challenge Unlock: Story
+    Challenge Unlock Round 3 scene. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 217991
+    sha256: c72c29af5d1e18aa5d1d65e0a76d247c8b4032e20b013f4dcd1c63eb22e03ff2
+  fallback_behavior: Continue Story Challenge Unlock with spoken guidance and do not
+    claim that Story Challenge Unlock Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Story Challenge Unlock Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Story Challenge Unlock: Story
+    Challenge Unlock Rules scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 244797
+    sha256: d16a7862536c4edebdce3905ae8c33135b2f00894f8c71541b77fd79b896e4ae
+  fallback_behavior: Continue Story Challenge Unlock with spoken guidance and do not
+    claim that Story Challenge Unlock Rules scene is visible.

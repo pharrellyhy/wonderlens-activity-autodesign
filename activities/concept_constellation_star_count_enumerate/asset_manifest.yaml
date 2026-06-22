@@ -1,0 +1,195 @@
+activity_id: concept_constellation_star_count_enumerate
+entity_id: constellation_star_count
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Constellation Star Count Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Constellation Star Count: Constellation
+    Star Count Celebration badge. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 284443
+    sha256: 523c3c579c15234ad186abc5c57edebcf94152b0892179a62fae1288016e91c6
+  fallback_behavior: Continue Constellation Star Count with spoken guidance and do
+    not claim that Constellation Star Count Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Constellation Star Count Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Constellation Star Count: Constellation
+    Star Count Closing scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 296365
+    sha256: 5d56f626ada091058319b9e42b6ef0cbeb9300a9649a7615cc8323694d8e582d
+  fallback_behavior: Continue Constellation Star Count with spoken guidance and do
+    not claim that Constellation Star Count Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Constellation Star Count Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Constellation Star Count: Constellation
+    Star Count Activity icon. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 272174
+    sha256: 98085d805747e68182c246eb079fb18915726272d42f5ca4b54f321c27c2ad04
+  fallback_behavior: Continue Constellation Star Count with spoken guidance and do
+    not claim that Constellation Star Count Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Constellation Star Count Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Constellation Star Count: Constellation
+    Star Count Intro scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 243789
+    sha256: 4018d66e9aa717ce4a670c9ca270cb97a9195fe4470b2ac79c9b1c91edff764f
+  fallback_behavior: Continue Constellation Star Count with spoken guidance and do
+    not claim that Constellation Star Count Intro scene is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Constellation Star Count Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Constellation Star Count: Constellation
+    Star Count Round 1 scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 180565
+    sha256: 05f9a3294cf49a523c2f5077bce424399943e1476fc1d2050b886b347c64d9b1
+  fallback_behavior: Continue Constellation Star Count with spoken guidance and do
+    not claim that Constellation Star Count Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Constellation Star Count Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Constellation Star Count: Constellation
+    Star Count Round 2 scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 216249
+    sha256: 8e789d8620283d18fe0dcc886ea2b8925df69e96837d240207bb244dfb21e512
+  fallback_behavior: Continue Constellation Star Count with spoken guidance and do
+    not claim that Constellation Star Count Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Constellation Star Count Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Constellation Star Count: Constellation
+    Star Count Round 3 scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 244682
+    sha256: f332fd16215302a508e3fb95c6deeadc7a663ca1d3a9b0b9ee45db26c65b750a
+  fallback_behavior: Continue Constellation Star Count with spoken guidance and do
+    not claim that Constellation Star Count Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Constellation Star Count Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Constellation Star Count: Constellation
+    Star Count Rules scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 201477
+    sha256: e126da99054b85d58ca0abc8f5cc0cd19372bb83c4b6cf6e81f9b513df9b4374
+  fallback_behavior: Continue Constellation Star Count with spoken guidance and do
+    not claim that Constellation Star Count Rules scene is visible.

@@ -1,17 +1,17 @@
-## Echo Word Stage
+# Word Echo Practice
 
 ### A. Basic Info
 
 | Field | Value |
 |-------|-------|
-| Activity Name | Echo Word Stage |
+| Activity Name | Word Echo Practice |
 | Activity Category | cat1 |
-| Recommended Tier | T0 |
-| Core IB Key Concepts | Form and Connection |
-| Related Concepts | sound_pattern, word, echo, memory |
-| ATL Skills Focus | language_expression, focus, pattern_recognition |
-| Experience Pillar | Performance |
-| Game Style | voice_stage |
+| Recommended Tier | T1 |
+| Core IB Key Concepts | Form, Connection |
+| Related Concepts | evidence, choice, sequence, reflection |
+| ATL Skills Focus | focus, observation, language_expression |
+| Experience Pillar | Discovery |
+| Game Style | memory_trail |
 
 ### B. Activity Overview
 
@@ -21,128 +21,160 @@ The AI says a simple word or phrase and the child repeats it back in a playful e
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Children know that a word can be repeated as a single word or a doubled echo.
-- **U (Understand):** Children understand that keeping the word pattern connected helps the echo ladder grow.
-- **D (Do):** Children listen, repeat, and recall a short echo without pressure.
+- **K (Know):** The child knows the visible rule or clue that starts Word Echo Practice.
+- **U (Understand):** The child understands that each answer changes the next activity beat.
+- **D (Do):** The child completes three short `remember` turns and explains one piece of evidence.
 
-**3. Design Highlight**
+**3. Runtime Fidelity Notes**
 
-The activity keeps recall low-pressure: the child hears, repeats, and plays with one tiny phrase at a time. Optional cards support the word cue, but the runtime can stay voice-only.
+Runtime wording should adapt naturally, but it must preserve the activity-specific role, repeated action, ideal/unexpected/no-response branches, and honest visual fallback behavior.
 
 **4. Typical Scenario**
 
-A child asks what a cup is called. The AI turns cup and cup-cup into two playful echo rounds.
+The child plays Word Echo Practice with word_echo_practice as the bound activity entity and package-local visual assets on the round WonderLens screen.
 
 ### C. Interaction Flow
 
-> Recommended Tier: T0
+> Recommended Tier: T1
 
 #### Step 1: Transition Bridge
 
-**AI says:** [warm invitation] "That word can bounce back to me. Want to be the Echo Word Keeper?"
+**Runtime AI instruction:** Open by naming the activity and child role and name the child's role in this activity.
+
+**Example AI line:** "I have a small mission for us: Word Echo Practice. I will guide one step at a time."
 
 **Child responses:**
 
-1. (Ideal) "Yes" or nods.
-2. (Unexpected) "What mission?" or gives an unrelated idea.
-3. (No response) Child watches or stays quiet.
+1. (Ideal) The child accepts the echo player role, notices the starter cue, or names something connected to the first echo word.
+2. (Unexpected) Child asks for another game, starts the echo or recall before the Word Echo Practice mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Word Echo Practice title prompt without taking the echo player role yet.
 
 **AI follow-up:**
 
-1. [excited] "Great. I say a tiny word, then you bounce it back."
-2. [friendly] "It is an echo mission. I speak first, and you copy the sound."
-3. [wait 2s] [gentle] "Just listen first. Your echo can be one small word."
+1. Name the echo player role, connect it to the starter cue, and preview the first echo or recall.
+2. Acknowledge the request, return to the Word Echo Practice promise, and offer the smallest supported first action.
+3. [wait 2s] Name the Word Echo Practice role and the first echo, then model one tiny in-frame response.
 
-**Screen:** The activity badge "Echo Word Keeper" appears with two empty progress tokens. If `word_echo_cards_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
+**Screen:** Shows title, child role, source trigger, and empty progress tokens. Optional support asset: `intro_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 2: Rule Introduction
+#### Step 2: Role And Rules
 
-**AI says:** [clear guide tone] "Echo rule: hear it, say it, save it. Two echoes make a word ladder."
+**Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
+
+**Example AI line:** "Here is the rhythm: I say a little prompt, you echo it back, and we light up one step for each turn."
 
 **Child responses:**
 
-1. (Ideal) "Okay."
-2. (Unexpected) "Can I do it my way?"
-3. (No response) Child hesitates.
+1. (Ideal) The child agrees to the echo or recall loop for Word Echo Practice or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first echo word, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Word Echo Practice rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [encouraging] "Round one is ready."
-2. [validating] "Yes, you can add style. Keep the same word so the echo stays connected."
-3. [wait 2s] [modeling] "I will start, and you can copy my first answer if you want."
+1. Restate the Word Echo Practice loop as AI prompt, child echo or recall, lit step, and show the first response slot.
+2. Keep the rule tied to the first echo word, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Word Echo Practice rhythm in one sentence and ask for a yes or the first chance to echo or recall the prompt.
 
-**Screen:** A simple rule strip appears: Listen or look, answer, save a token. Token 1 pulses.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `word_echo_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 3: Core Loop
+#### Step 3: Multi-Round Core Loop
 
-**Round 1 -- Single Word Echo:**
+**Round 1 -- First Echo Word:**
 
-**AI says:** [focused playful tone] "Listen: cup. Now echo it like a tiny drum."
+**Runtime AI instruction:** Preserve the workbook promise: The AI says a simple word or phrase and the child repeats it back in a playful echo round. Ask the child to echo or recall in the first small turn.
+
+**Example AI line:** "Let us start: The AI says a simple word or phrase and the child repeats it back in a playful echo round. What will you try first?"
 
 **Child responses:**
 
-1. (Ideal) "cup."
-2. (Unexpected) "I say mug."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) The child repeats, remembers, or answers the first echo word prompt closely enough to keep the memory loop going.
+2. (Unexpected) Child changes the first echo word word/fact, guesses randomly, or turns the echo into unrelated talk.
+3. (No response) Child listens to the first echo word prompt without echoing, answering, or choosing a smaller repeat.
 
 **AI follow-up:**
 
-1. [specific praise] "I heard cup bounce back. Token 1 is saved."
-2. [warm redirect] "Mug is a smart nearby word. For this echo, bounce back my word: cup."
-3. [wait 2s] [gentle hint] "Try this short answer with me: cup."
+1. Repeat back the remembered part, light up the memory step, and cue the next echo or recall.
+2. Slow the first echo word into smaller pieces, accept a partial recall, and ask for just the next word or sound.
+3. [wait 2s] Say the first echo word prompt in two short beats, then invite the child to copy one beat.
 
-**Screen:** Echo 1 glows with the cup picture cue. Token 1 fills with a short label from the child's response.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `word_echo_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 2 -- Silly Voice Echo:**
+**Round 2 -- Echo Variation Prompt:**
 
-**AI says:** [focused playful tone] "Now echo cup-cup in a soft mouse voice."
+**Runtime AI instruction:** Keep the same source frame and ask for a second remember turn with a small variation.
+
+**Example AI line:** "Now try one more turn in the same game. What changes this time?"
 
 **Child responses:**
 
-1. (Ideal) "cup cup."
-2. (Unexpected) "I squeak anything else."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) The child repeats, remembers, or answers the echo variation prompt closely enough to keep the memory loop going.
+2. (Unexpected) Child changes the echo variation word/fact, guesses randomly, or turns the echo into unrelated talk.
+3. (No response) Child listens to the echo variation prompt without echoing, answering, or choosing a smaller repeat.
 
 **AI follow-up:**
 
-1. [specific praise] "Two cup echoes landed together. Token 2 is saved."
-2. [warm redirect] "That squeak was playful. Now keep the echo words together: cup cup."
-3. [wait 2s] [gentle hint] "Try this short answer with me: cup cup."
+1. Repeat back the remembered part, light up the memory step, and cue the next echo or recall.
+2. Slow the echo variation into smaller pieces, accept a partial recall, and ask for just the next word or sound.
+3. [wait 2s] Say the echo variation prompt in two short beats, then invite the child to copy one beat.
 
-**Screen:** Echo 2 adds two bouncing sound dots. Token 2 fills with a short label from the child's response.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `word_echo_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+
+**Round 3 -- Remembered Echo Pair:**
+
+**Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
+
+**Example AI line:** "What changed after your turns, find, choose, or learn from your turns?"
+
+**Child responses:**
+
+1. (Ideal) The child repeats, remembers, or answers the remembered echo pair prompt closely enough to keep the memory loop going.
+2. (Unexpected) Child changes the remembered echo pair word/fact, guesses randomly, or turns the echo into unrelated talk.
+3. (No response) Child listens to the remembered echo pair prompt without echoing, answering, or choosing a smaller repeat.
+
+**AI follow-up:**
+
+1. Repeat back the remembered part, light up the memory step, and cue the next echo or recall.
+2. Slow the remembered echo pair into smaller pieces, accept a partial recall, and ask for just the next word or sound.
+3. [wait 2s] Say the remembered echo pair prompt in two short beats, then invite the child to copy one beat.
+
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `word_echo_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Look at that. Your two tokens made something new: Your echoes made a word ladder, cup to cup-cup."
+**Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
+
+**Example AI line:** "Your choices filled the activity board: first we started, then we tried, then we finished the mission."
 
 **Child responses:**
 
-1. (Ideal) "I made it" or explains the result.
-2. (Unexpected) "Can we change one?"
-3. (No response) Child watches the reveal.
+1. (Ideal) The child notices how the remembered echo pair changed the Word Echo Practice board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Word Echo Practice payoff or ignores how the saved echo or recall turns connect.
+3. (No response) Child watches the Word Echo Practice reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [celebrating] "Yes. Your answers caused this reveal."
-2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
-3. [wait 2s] [soft recap] "I will read the two tokens back so you can see your path."
+1. Tie the reveal to the child's echo or recall turns, name one concrete saved echo, and invite a short reflection.
+2. Hold the Word Echo Practice reveal, name the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Word Echo Practice board, then offer two favorite-turn choices.
 
-**Screen:** The two tokens expand into a final board labeled "Echo Word Keeper". Each token stays visible so the payoff is earned by the child's earlier actions.
+**Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** [warm celebration] "You earned the Echo Word Keeper badge. You used Form by keeping the word shape, and Connection by linking cup to cup-cup."
+**Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
+
+**Example AI line:** "Today you practiced Form and Connection. You used your own answer to move the activity forward."
 
 **Child responses:**
 
-1. (Ideal) "Again" or names a favorite round.
-2. (Unexpected) Child asks for a different topic.
-3. (No response) Child watches the badge.
+1. (Ideal) The child names a favorite Word Echo Practice moment, asks to play again, or watches the word echo practice recap badge.
+2. (Unexpected) Child shifts topic before the recap names the echo or recall skill or Form and Connection.
+3. (No response) Child stays on the Word Echo Practice recap badge without responding.
 
 **AI follow-up:**
 
-1. [proud guide] "Next time we can make a new path with a new answer."
-2. [flexible] "That can be the next mission. This badge saves what you did today."
-3. [wait 2s] [gentle goodbye] "Your Echo Word Keeper badge is saved."
+1. Offer a next-time variation using the same remember mechanic and the word echo practice frame.
+2. Close Word Echo Practice first, name the practiced echo or recall, and then offer one next-round seed.
+3. [wait 2s] Read the Word Echo Practice badge in one sentence and end with one concrete next-time invitation.
 
-**Screen:** The badge, the two round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."
+**Screen:** Recap badge lists title, mechanic `remember`, focal attribute `word_echo_practice`, and next-step hint. Optional support asset: `closing_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.

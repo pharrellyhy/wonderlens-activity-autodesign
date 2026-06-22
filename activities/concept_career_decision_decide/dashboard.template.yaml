@@ -1,25 +1,28 @@
+activity_id: concept_career_decision_decide
+dashboard_template:
+  parent_headline: 'Career Decision Role Play: decide'
+  learning_focus:
+  - Form
+  - Responsibility
+  - logical_reasoning
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest
 dashboard_fragment:
   session:
+    activity_id: concept_career_decision_decide
     axis: responsibility
     angle: function
     mechanic: decide
     entity_role: catalyst
-    focal_attribute: helpful_action_choice
-    entry_rung: '{runtime_entry_rung}'
-    exit_rung: '{runtime_exit_rung}'
-    outcome: '{runtime_outcome}'
+    focal_attribute: career_decision
+    entry_rung: "{runtime_entry_rung}"
+    exit_rung: "{runtime_exit_rung}"
+    outcome: "{runtime_outcome}"
   contributes_to:
     curiosity_radial:
       axis: responsibility
       angle: function
     exploration_matrix:
-      cell: decide by function
-    key_concepts_exposure:
-      Responsibility:
-        angle: function
-      Function:
-        angle: function
-    atl_skills_trail:
-    - perspective_taking
-    - logical_reasoning
-    - language_expression
+      cell: "decide x function"

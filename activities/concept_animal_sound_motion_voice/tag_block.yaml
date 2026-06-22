@@ -1,64 +1,71 @@
 activity_id: concept_animal_sound_motion_voice
 version: 1
-source_entity_exemplar: cat
 template_type: cat1
 pillar: Performance
 game_style: voice_stage
-
-entity: familiar_animal
-entity_class: [animal]
+entity: workbook_source_concept
+entity_class:
+- activity_concept
 entity_binding: agnostic
-entity_compatibility: agnostic
 tier_range:
-  primary: T0
-  span: [T0, T1]
-  elasticity: "neighbor"
-
-category: animal_sound_play
-attributes: [animal_voice, familiar_sound, pretend_role]
-key_concepts: [Perspective, Form]
-related_concepts: [voice, imitation, animal, audience]
-atl_skills: [language_expression, perspective_taking, creative_thinking]
-transdisciplinary_theme: How_We_Express_Ourselves
-subject_tags: [language, social_emotional]
-
+  primary: T1
+  span:
+  - T0
+  - T1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat1
+attributes:
+- animal_sound_imitation
+- motion_voice
+key_concepts:
+- Form
+- Perspective
+related_concepts:
+- evidence
+- choice
+- sequence
+- reflection
+atl_skills:
+- language_expression
+- observation
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
 kud:
   know:
-    - "familiar animals can have sounds"
-    - "a sound can stand for an animal role"
-    - "a stage turn has a start and finish"
+  - The child knows the activity rule and one source-specific cue.
   understand:
-    - "Perspective means pretending to be another animal"
-    - "Form includes the sound or shape we notice"
+  - The child understands that their action affects the next beat.
   do:
-    - "copy two animal sounds"
-    - "take a short performance turn"
-    - "respond to a simple encore prompt"
-
+  - The child practices motion_voice through short guided turns.
 progression:
   topic_axis: perspective
-  difficulty_level: 1
-  next_step_hint: "Next time, add one feeling to the animal voice."
-  reward_hook: "Earned the Echo Star badge"
-
-caregiver_role: [scaffold]
-
+  difficulty_level: 2
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
+caregiver_role:
+- observer
 activity_signature:
   observation_angle: behavior
   mechanic: motion_voice
   entity_role: catalyst
+  focal_attribute: animal_sound_imitation
+  intro: The AI prompts a familiar animal, and the child imitates its sound or speaks
+    in the animal role.
   bridge_prerequisites:
-    primary: [behavior]
-    secondary: [emotion, sound]
-  focal_attribute: "animal_voice"
-  intro: "The child imitates two friendly animal voices on a tiny stage."
-  preview_label: "Echo animal sounds"
-  preview_prompt: "Let's make tiny animal sounds on the stage."
-  role_pivot_note: "The starting animal toy or mode launches a general animal-voice performance."
-
+    primary:
+    - behavior
+    secondary:
+    - function
+    - state
+  preview_label: Animal Sound Imitation
+  preview_prompt: Try Animal Sound Imitation with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
 matchability:
   entity_class_filter: []
   tier_support:
     T0: true
     T1: true
-    T2: false
+    T2: true
+source_workbook_row: 13
+source_concept: source_animal_sound_imitation

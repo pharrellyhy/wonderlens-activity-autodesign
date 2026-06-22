@@ -1,25 +1,28 @@
+activity_id: concept_vegetable_sort_sort
+dashboard_template:
+  parent_headline: 'Vegetable Sort: sort'
+  learning_focus:
+  - Form
+  - Form
+  - classification
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest
 dashboard_fragment:
   session:
-    axis: connection
-    angle: shape
+    activity_id: concept_vegetable_sort_sort
+    axis: form
+    angle: state
     mechanic: sort
-    entity_role: reference
-    focal_attribute: vegetable_sort_rule
-    entry_rung: '{runtime_entry_rung}'
-    exit_rung: '{runtime_exit_rung}'
-    outcome: '{runtime_outcome}'
+    entity_role: catalyst
+    focal_attribute: vegetable_sort
+    entry_rung: "{runtime_entry_rung}"
+    exit_rung: "{runtime_exit_rung}"
+    outcome: "{runtime_outcome}"
   contributes_to:
     curiosity_radial:
-      axis: connection
-      angle: shape
+      axis: form
+      angle: state
     exploration_matrix:
-      cell: sort by shape
-    key_concepts_exposure:
-      Connection:
-        angle: shape
-      Form:
-        angle: shape
-    atl_skills_trail:
-    - classification
-    - observation
-    - logical_reasoning
+      cell: "sort x state"

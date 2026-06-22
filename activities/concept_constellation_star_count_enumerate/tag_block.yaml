@@ -1,79 +1,70 @@
 activity_id: concept_constellation_star_count_enumerate
 version: 1
-source_entity_exemplar: approved_constellation_card
 template_type: cat1
 pillar: Discovery
 game_style: field_experiment
-entity: '{runtime_entity}'
-entity_class: []
-entity_binding: parameterized
-entity_compatibility: source_bound
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: agnostic
 tier_range:
   primary: T1
   span:
   - T0
   - T1
-  - T2
-  elasticity: neighbor
-category: category_1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat1
 attributes:
-- selected_star_count
-- constellation_name
-- quantity
+- constellation_star_count
+- enumerate
 key_concepts:
 - Form
-- Connection
 related_concepts:
-- count
-- constellation
-- pattern
 - evidence
+- choice
+- sequence
+- reflection
 atl_skills:
-- number choice
+- counting
 - observation
-- listening
-transdisciplinary_theme: How_The_World_Works
-subject_tags:
-- math
-- science
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
 kud:
   know:
-  - An approved constellation card can have a name and visible guide-star count
-  - selected_star_count is the focus of the activity
+  - The child knows the activity rule and one source-specific cue.
   understand:
-  - Form helps children notice the approved constellation card's star pattern
-  - Connection helps children link a chosen number, constellation name, and background clue
+  - The child understands that their action affects the next beat.
   do:
-  - choose between two star-count numbers
-  - reveal a matching approved constellation card
-  - repeat the selected number, constellation name, or one background clue
+  - The child practices enumerate through short guided turns.
 progression:
   topic_axis: form
   difficulty_level: 2
-  next_step_hint: Try a new star number and remember one constellation clue next time.
-  reward_hook: Earned the Constellation Number Scout badge
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
 caregiver_role:
-- scaffold
-- co-explorer
+- observer
 activity_signature:
   observation_angle: quantity
   mechanic: enumerate
-  entity_role: reference
+  entity_role: catalyst
+  focal_attribute: constellation_star_count
+  intro: The child counts visible stars in a constellation card or simplified star
+    pattern.
   bridge_prerequisites:
     primary:
     - quantity
     secondary:
-    - form
-    - enumerate
-  focal_attribute: selected_star_count
-  intro: The child practices enumerate through Constellation Number Reveal.
-  preview_label: Constellation Number Reveal
-  preview_prompt: Ready to pick a star number and reveal a constellation?
-  role_pivot_note: The runtime entity starts the activity but the package remains
-    concept-led and parameterized.
+    - function
+    - state
+  preview_label: Constellation Star Count
+  preview_prompt: Try Constellation Star Count with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
 matchability:
   entity_class_filter: []
   tier_support:
     T0: true
     T1: true
     T2: true
+source_workbook_row: 20
+source_concept: source_constellation_star_count

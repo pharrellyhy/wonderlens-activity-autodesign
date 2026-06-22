@@ -1,79 +1,71 @@
-# Pretend Trip Planner -- Authoring Spec
+# Travel Planner - Engineering Spec
 
-> CAT1 concept package . Concept source: `source_travel_planner` . Mechanic: `predict`
+## Metadata
+
+- activity_id: `concept_travel_planner_predict`
+- source_row: `39`
+- source_concept: `source_travel_planner`
+- assignment_type: `activity_concept`
+- category: `cat1`
+- mechanic: `predict`
+- generation_method: `fresh_full_rerun_from_source_snapshot`
 
 ## Premise
 
-The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen. The activity turns that source promise into a cat1 runtime package where the child becomes the Trip Predictor. The repeated action is `predict`, and the payoff is visible progress tied to the child's own responses.
-
-## Target
-
-- **Primary tier:** T1
-- **Activity category:** cat1
-- **Mechanic:** `predict`
-- **Entity role:** catalyst
-- **Progression axis:** causation, level 2
-
-## Adaptation Rationale
-
-- **Input mode:** concept_only.
-- **Core promise:** The child helps plan a pretend trip by predicting what hidden trip cards will need before each reveal.
-- **Canonical mechanic:** `predict`; Step 3's repeated child action preserves this mechanic.
-- **Readiness:** generate_with_assumptions.
-- **Trigger condition:** Child asks about a place, weather, vehicle, animal habitat, or character journey.
-- **Mapping use:** no required mapping for this package; parameterized placeholders avoid entity-specific facts unless runtime supplies them.
-- **Asset dependency:** `travel_planning_cards_01` is optional `card_set` support; fallback behavior is documented.
-- **Product capability flags:** requires_asset_display.
-- **Scaffold fit:** acceptable. Discovery / `prediction_lab` supplies the emotional payoff while `predict` remains the child-action contract.
-- **Assumptions:** Use commit-before-reveal prediction and pretend planning, not factual itinerary generation.
+The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen.
 
 ## Selection Trigger
 
-Start when Child asks about a place, weather, vehicle, animal habitat, or character journey. If the required visual support is unavailable, use the fallback behavior from the Asset Brief or keep the interaction voice-only.
+Child asks about a place, weather, vehicle, animal habitat, or character journey.
 
-## Experience Pillar & Game Style
+## Source Intent Lock
 
-- **Pillar:** Discovery
-- **Game style:** `prediction_lab`
-- **Why this scaffold:** The package avoids real booking or location claims and keeps the activity in pretend planning and prediction.
+The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen.
+
+## Adaptation Rationale
+
+The package preserves the original play frame, child role, required child action, and runtime sequence. Category and mechanic labels are metadata, not replacements for the workbook promise.
 
 ## Runtime Detail Floor Notes
 
-- **Distinct round design:** Round 1 -- Predict What We Need, Round 2 -- Predict How to Travel, and Round 3 -- Predict a Surprise each require a child prediction before the hidden card reveal.
-- **Branch specificity:** Unexpected answers are validated, then redirected to the current objective without pretending the runtime can verify unsupported facts.
-- **Earned magic moment:** The final board shows prediction -> reveal -> plan for raincoat, boat, and boots, making the payoff depend on the child's commitments.
-- **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
+- Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
+- Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
+- Keep the repeated child action aligned to `predict`.
+- Preserve this source sequence: The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen.
 
-## Asset Brief
+## Resolved Product Contract Notes
 
-| Field | Value |
-|---|---|
-| asset_id | travel_planning_cards_01 |
-| asset_type | card_set |
-| requiredness | optional |
-| generation_timing | pre_generated |
-| use_step | prod.step_2; prod.step_3.round_1-3 |
-| purpose | Support pretend trip planning with visual choices. |
-| prompt_en | Create a set of pretend travel planning cards for children. Include suitcase, water bottle, map, train, bus, walking shoes, raincoat, snack, and camera. Use simple friendly illustrations, plain background, no text, no brands, and no real travel booking interface. |
-| source | new_ai_generated_asset |
-| display_behavior | Show a small group of cards when asking what to pack or how to travel. |
-| fallback_behavior | If cards are unavailable, run the planning conversation by voice only. |
-| safety_constraints | No real booking, no unsafe travel instructions, no location tracking, and no brands. |
+- Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
+
+## Asset Usage Timeline
+
+| asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_or_source | fallback_behavior |
+|---|---|---|---|---|---|---|---|---|
+| travel_planning_cards_01 | card_set | optional | pre_generated | prod.step_2; prod.step_3.round_1-3 | center_card_area | Support pretend trip planning with visual choices. | new_ai_generated_asset | If cards are unavailable, run the planning conversation by voice only. |
+
+## Extensibility Summary
+
+Reusable by replacing the topic, scene, role, or approved asset set while preserving the source play frame and `predict` mechanic.
+
+## Extensibility Notes
+
+- Replace `{runtime_entity}` only when the new trigger supports the same child action.
+- Keep the same source sequence before changing category or mechanic labels.
+- If an asset ID changes, preserve display timing, fallback wording, and safety constraints.
+
 ## Self-Evaluation Scorecard
 
-Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.md`, and the Phase 0 adaptation brief.
-
 | # | Dimension | Score | Notes |
-|---|-----------|-------|-------|
-| 1 | V1 Technical Compliance | PASS | The package uses voice dialogue, simple screen state, and documented asset fallback behavior; it does not require unsupported sensing or material verification. |
-| 2 | Hook & Transition | PASS | Step 1 bridges from the trigger into a playful role without testing the child. |
-| 3 | Edge Case Coverage | PASS | Each step includes ideal, unexpected, and no-response handling with concrete redirects. |
-| 4 | IB Completeness | PASS | Key Concepts, related concepts, KUD, ATL skills, recap, and dashboard fragments align. |
-| 5 | Tier Appropriateness | PASS | Language and task load match T1 expectations. |
-| 6 | Dialogue Specificity | PASS | Runtime lines include concrete prompts, child branches, and follow-ups instead of abstract encouragement. |
-| 7 | Screen & UI Completeness | PASS | Screen states identify visible progress, token changes, and fallback behavior where assets are optional or required. |
-| 8 | Entity Mapping Alignment | N/A | This is a concept-led package with no required mapping source and no entity-specific claims. |
-| 9 | Game Feel | PASS | The loop has escalating rounds and a visible payoff earned from the child's repeated action. |
-| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | Step 3, tag metadata, and adaptation rationale preserve `predict` while disclosing scaffold assumptions. |
+|---|---|---|---|
+| 1 | V1 Technical Compliance | PASS | Fallbacks are explicit and unsupported capability is not overclaimed. |
+| 2 | Hook & Transition | PASS | Opening uses the workbook trigger and play frame. |
+| 3 | Edge Case Coverage | PASS | Ideal, unexpected, and no-response branches are present. |
+| 4 | IB Completeness | PASS | KUD and concepts match the child action. |
+| 5 | Tier Appropriateness | PASS | Prompts are short and scaffolded. |
+| 6 | Dialogue Specificity | PASS | Runtime AI instructions include example lines. |
+| 7 | Screen & UI Completeness | PASS | Each beat names screen, state, asset, or fallback. |
+| 8 | Entity Mapping Alignment | N/A | Workbook-source concept run; not mapping-informed. |
+| 9 | Game Feel | PASS | Progress tokens and payoff create game structure. |
+| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | The source action and mechanic stay aligned. |
 
-**Overall**: ALL PASS -- reviewer-agent pass by Averroes after package-quality edits.
+**Overall**: PASS - fresh full-run package preserves source intent with explicit runtime-generation and minimum-unblock assumptions.

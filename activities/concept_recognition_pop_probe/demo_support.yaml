@@ -1,0 +1,55 @@
+activity_id: concept_recognition_pop_probe
+version: 1
+entity_compatibility: source_bound
+parameterization:
+  mode: fixed
+  decision_source: activity_text_game_import
+  integrity_status: supported_fixed_demo_import
+  confidence: medium
+  evidence:
+    - The package is imported from a fixed source concept and does not claim arbitrary discovery handoff retargeting.
+    - Runtime fields and package-local assets are authored for the declared source concept.
+  validity:
+    production_supported: true
+    requires:
+      - declared source concept package
+    allowed_entity_classes:
+      - activity_concept
+    invalid_when:
+      - discovery handoff attempts to retarget activity success criteria without a reviewed parameterization contract
+  source_fields:
+    source_concept:
+      - tag_block.source_concept
+      - demo_support.entity_bindings.default.source_entity_exemplar
+  derived_runtime_fields:
+    activity_frame: fixed from authored package content
+  authored_constants:
+    source_activity_id: concept_recognition_pop_probe
+  fallback_behavior: Use the authored source-concept package only; do not retarget from arbitrary discovery handoff.
+  stale_text_risk: low; package remains source-concept-bound.
+  consumer_notes:
+    wonderlens_ai: Treat as a fixed source-concept demo package unless a later review adds parameterization.
+    fullstack_demo: Use package-local assets and declared ui_template.
+  reviewer_action: accept_as_source_bound_demo_package
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: minimal_tap_select
+  entity_bindings:
+  - entity_id: recognition_pop_challenge
+    display_label: Recognition Pop Challenge
+    source_entity_exemplar: recognition_pop_challenge
+    default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    wonderlens_ai: Use tap/select cards for each recognition turn. Do not require
+      timed scoring or pop-grid state.
+    fullstack_demo: Uses the same UI artwork as the activity-text-game demo, copied
+      package-locally under assets/.
+    asset_source: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_recognition_pop_challenge

@@ -1,79 +1,71 @@
-# Echo Word Stage -- Authoring Spec
+# Word Echo Practice - Engineering Spec
 
-> CAT1 concept package . Concept source: `source_word_echo_practice` . Mechanic: `remember`
+## Metadata
+
+- activity_id: `concept_word_echo_remember`
+- source_row: `5`
+- source_concept: `source_word_echo_practice`
+- assignment_type: `activity_concept`
+- category: `cat1`
+- mechanic: `remember`
+- generation_method: `fresh_full_rerun_from_source_snapshot`
 
 ## Premise
 
-The AI says a simple word or phrase and the child repeats it back in a playful echo round. The activity turns that source promise into a cat1 runtime package where the child becomes the Echo Word Keeper. The repeated action is `remember`, and the payoff is visible progress tied to the child's own responses.
-
-## Target
-
-- **Primary tier:** T0
-- **Activity category:** cat1
-- **Mechanic:** `remember`
-- **Entity role:** catalyst
-- **Progression axis:** form, level 1
-
-## Adaptation Rationale
-
-- **Input mode:** concept_only.
-- **Core promise:** The AI says a simple word or phrase and the child repeats it back in a playful echo round.
-- **Canonical mechanic:** `remember`; Step 3's repeated child action preserves this mechanic.
-- **Readiness:** generate_with_assumptions.
-- **Trigger condition:** Child enters language-practice mode, asks what an object is called, or photographs a familiar object whose name can be repeated safely.
-- **Mapping use:** no required mapping for this package; runtime parameters avoid entity-specific facts unless runtime supplies them.
-- **Asset dependency:** `word_echo_cards_01` is optional card_set support; fallback behavior is documented.
-- **Product capability flags:** `optional_asset_display`; no display capability is required because the voice-only fallback remains valid.
-- **Scaffold fit:** acceptable. Performance / `voice_stage` supplies the emotional payoff while `remember` remains the child-action contract.
-- **Assumptions:** The repeated child action is listen, echo, and try again with one word or one short doubled echo. If no card is shown, run voice-only and do not claim the screen displays text.
+The AI says a simple word or phrase and the child repeats it back in a playful echo round.
 
 ## Selection Trigger
 
-Start when Child enters language-practice mode, asks what an object is called, or photographs a familiar object whose name can be repeated safely. If optional visual support is unavailable, use the fallback behavior from the Asset Brief and keep the interaction voice-only.
+Child enters language-practice mode, asks what an object is called, or photographs a familiar object whose name can be repeated safely.
 
-## Experience Pillar & Game Style
+## Source Intent Lock
 
-- **Pillar:** Performance
-- **Game style:** `voice_stage`
-- **Why this scaffold:** The activity keeps recall low-pressure: the child hears, repeats, and plays with one tiny word pattern at a time. Optional cards support the word cue, but the runtime can stay voice-only.
+The AI says a simple word or phrase and the child repeats it back in a playful echo round.
+
+## Adaptation Rationale
+
+The package preserves the original play frame, child role, required child action, and runtime sequence. Category and mechanic labels are metadata, not replacements for the workbook promise.
 
 ## Runtime Detail Floor Notes
 
-- **Distinct round design:** Round 1 -- Single Word Echo and Round 2 -- Silly Voice Echo ask for different child contributions and update different progress tokens, keeping the T0 runtime to two rounds.
-- **Branch specificity:** Unexpected answers are validated, then redirected to the current objective without pretending the runtime can verify unsupported facts.
-- **Earned magic moment:** Your two echoes made a word ladder: cup, cup-cup.
-- **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
+- Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
+- Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
+- Keep the repeated child action aligned to `remember`.
+- Preserve this source sequence: The AI says a simple word or phrase and the child repeats it back in a playful echo round.
 
-## Asset Brief
+## Resolved Product Contract Notes
 
-| Field | Value |
-|---|---|
-| asset_id | word_echo_cards_01 |
-| asset_type | card_set |
-| requiredness | optional |
-| generation_timing | pre_generated |
-| use_step | prod.step_1; prod.step_3.round_1-2 |
-| purpose | Provide a simple picture cue for the word the child repeats. |
-| prompt_en | Create a child-friendly vocabulary card set for common household objects. Each card shows one centered object, one large simple English word label, a clean light background, soft colors, and no extra text. |
-| source | new_ai_generated_asset |
-| display_behavior | Show one card when introducing a word, then hide or keep it small while the child repeats by voice. |
-| fallback_behavior | If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word. |
-| safety_constraints | No real child photos, no brands, no complex text, and no cluttered composition. |
+- Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
+
+## Asset Usage Timeline
+
+| asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_or_source | fallback_behavior |
+|---|---|---|---|---|---|---|---|---|
+| word_echo_cards_01 | card_set | optional | pre_generated | prod.step_2; prod.step_3.round_1-3 | center_card_area | Provide a simple picture cue for the word the child repeats. | new_ai_generated_asset | If cards are unavailable, run the activity voice-only and do not claim the screen is showing a word. |
+
+## Extensibility Summary
+
+Reusable by replacing the topic, scene, role, or approved asset set while preserving the source play frame and `remember` mechanic.
+
+## Extensibility Notes
+
+- Replace `{runtime_entity}` only when the new trigger supports the same child action.
+- Keep the same source sequence before changing category or mechanic labels.
+- If an asset ID changes, preserve display timing, fallback wording, and safety constraints.
+
 ## Self-Evaluation Scorecard
 
-Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.md`, and the Phase 0 adaptation brief.
-
 | # | Dimension | Score | Notes |
-|---|-----------|-------|-------|
-| 1 | V1 Technical Compliance | PASS | The package uses voice dialogue, simple screen state, and documented asset fallback behavior; it does not require unsupported sensing or material verification. |
-| 2 | Hook & Transition | PASS | Step 1 bridges from the trigger into a playful role without testing the child. |
-| 3 | Edge Case Coverage | PASS | Each step includes ideal, unexpected, and no-response handling with concrete redirects. |
-| 4 | IB Completeness | PASS | Key Concepts, related concepts, KUD, ATL skills, recap, and dashboard fragments align. |
-| 5 | Tier Appropriateness | PASS | Language and task load match T0 expectations with two short echo rounds and call-and-response prompts. |
-| 6 | Dialogue Specificity | PASS | Runtime lines include concrete prompts, child branches, and follow-ups instead of abstract encouragement. |
-| 7 | Screen & UI Completeness | PASS | Screen states identify visible progress, token changes, and fallback behavior for the optional card support. |
-| 8 | Entity Mapping Alignment | N/A | This is a concept-led package with no required mapping source and no entity-specific claims. |
-| 9 | Game Feel | PASS | The loop has escalating rounds and a visible payoff earned from the child's repeated action. |
-| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | Step 3, tag metadata, and adaptation rationale preserve `remember` while disclosing scaffold assumptions. |
+|---|---|---|---|
+| 1 | V1 Technical Compliance | PASS | Fallbacks are explicit and unsupported capability is not overclaimed. |
+| 2 | Hook & Transition | PASS | Opening uses the workbook trigger and play frame. |
+| 3 | Edge Case Coverage | PASS | Ideal, unexpected, and no-response branches are present. |
+| 4 | IB Completeness | PASS | KUD and concepts match the child action. |
+| 5 | Tier Appropriateness | PASS | Prompts are short and scaffolded. |
+| 6 | Dialogue Specificity | PASS | Runtime AI instructions include example lines. |
+| 7 | Screen & UI Completeness | PASS | Each beat names screen, state, asset, or fallback. |
+| 8 | Entity Mapping Alignment | N/A | Workbook-source concept run; not mapping-informed. |
+| 9 | Game Feel | PASS | Progress tokens and payoff create game structure. |
+| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | The source action and mechanic stay aligned. |
 
-**Overall**: ALL PASS -- reviewer-agent pass by Dalton after package-quality edits.
+**Overall**: PASS - fresh full-run package preserves source intent with explicit runtime-generation and minimum-unblock assumptions.

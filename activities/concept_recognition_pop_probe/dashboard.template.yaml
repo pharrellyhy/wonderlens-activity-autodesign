@@ -1,0 +1,28 @@
+activity_id: concept_recognition_pop_probe
+dashboard_template:
+  parent_headline: 'Recognition Pop Challenge: compare'
+  learning_focus:
+  - Form
+  - Perspective
+  - observation
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest
+dashboard_fragment:
+  session:
+    activity_id: concept_recognition_pop_probe
+    axis: perspective
+    angle: state
+    mechanic: compare
+    entity_role: catalyst
+    focal_attribute: whack_a_mole_recognition
+    entry_rung: "{runtime_entry_rung}"
+    exit_rung: "{runtime_exit_rung}"
+    outcome: "{runtime_outcome}"
+  contributes_to:
+    curiosity_radial:
+      axis: perspective
+      angle: state
+    exploration_matrix:
+      cell: "compare x state"

@@ -1,0 +1,195 @@
+activity_id: concept_partial_reveal_deduce
+entity_id: partial_reveal_guess
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Partial Reveal Guess Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Partial Reveal Guess: Partial
+    Reveal Guess Celebration badge. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 277941
+    sha256: 1fb3353f37cb420f5da8147f48db9bd10906a23e4c6b075af699c74c292b59be
+  fallback_behavior: Continue Partial Reveal Guess with spoken guidance and do not
+    claim that Partial Reveal Guess Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Partial Reveal Guess Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Partial Reveal Guess: Partial
+    Reveal Guess Closing scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 268102
+    sha256: 74ecc6a2d870563f474d8dcf82c6b886d7d5e3123ed176330f425e8a3ca705fb
+  fallback_behavior: Continue Partial Reveal Guess with spoken guidance and do not
+    claim that Partial Reveal Guess Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Partial Reveal Guess Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Partial Reveal Guess: Partial
+    Reveal Guess Activity icon. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 233667
+    sha256: 37f63fb810e56f018ed16fee9f3bb49fa7ea6d712787c820327c6dafe26b7f9e
+  fallback_behavior: Continue Partial Reveal Guess with spoken guidance and do not
+    claim that Partial Reveal Guess Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Partial Reveal Guess Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Partial Reveal Guess: Partial
+    Reveal Guess Intro scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 244327
+    sha256: a77775c4be1b56cedc3acdf00d1dbe1bdfb079d7c2bdbae16882a7cebd012260
+  fallback_behavior: Continue Partial Reveal Guess with spoken guidance and do not
+    claim that Partial Reveal Guess Intro scene is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Partial Reveal Guess Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Partial Reveal Guess: Partial
+    Reveal Guess Round 1 scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 175628
+    sha256: 7441becf68ff46255946b5a2b2ef8c0a773ed6b9bcc8a8734ccf31c9cf9dd041
+  fallback_behavior: Continue Partial Reveal Guess with spoken guidance and do not
+    claim that Partial Reveal Guess Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Partial Reveal Guess Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Partial Reveal Guess: Partial
+    Reveal Guess Round 2 scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 178612
+    sha256: 20b382ce58ddf67453b3e69288339c2a30af62223ebdefe512829addf89986ca
+  fallback_behavior: Continue Partial Reveal Guess with spoken guidance and do not
+    claim that Partial Reveal Guess Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Partial Reveal Guess Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Partial Reveal Guess: Partial
+    Reveal Guess Round 3 scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 296048
+    sha256: 6a45cc83f178bc8368075809c4aeaecec2187d5e99b463e10265c6389703d8a8
+  fallback_behavior: Continue Partial Reveal Guess with spoken guidance and do not
+    claim that Partial Reveal Guess Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Partial Reveal Guess Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Partial Reveal Guess: Partial
+    Reveal Guess Rules scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 260917
+    sha256: 47c2aec7bef3ab2f471a5877613d8981a5a7f96381707df39130a7d2248643be
+  fallback_behavior: Continue Partial Reveal Guess with spoken guidance and do not
+    claim that Partial Reveal Guess Rules scene is visible.

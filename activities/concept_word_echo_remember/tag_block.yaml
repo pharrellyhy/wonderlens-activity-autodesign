@@ -1,76 +1,71 @@
 activity_id: concept_word_echo_remember
 version: 1
-source_entity_exemplar: spoken_word_or_familiar_object
 template_type: cat1
-pillar: Performance
-game_style: voice_stage
-entity: '{runtime_entity}'
-entity_class: []
-entity_binding: parameterized
-entity_compatibility: unsupported
+pillar: Discovery
+game_style: memory_trail
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: agnostic
 tier_range:
-  primary: T0
+  primary: T1
   span:
   - T0
   - T1
-  elasticity: neighbor
-category: category_1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat1
 attributes:
-- echo_word_pattern
-- pattern
+- word_echo_practice
+- remember
 key_concepts:
 - Form
 - Connection
 related_concepts:
-- sound_pattern
-- word
-- echo
-- memory
+- evidence
+- choice
+- sequence
+- reflection
 atl_skills:
-- language_expression
 - focus
-- pattern_recognition
-transdisciplinary_theme: How_We_Express_Ourselves
-subject_tags:
-- language
+- observation
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
 kud:
   know:
-  - A word can be repeated as a single word or doubled echo
-  - echo_word_pattern is the focus of the activity
+  - The child knows the activity rule and one source-specific cue.
   understand:
-  - Form helps children keep the word shape steady
-  - Connection helps children link cup and cup-cup into one echo ladder
+  - The child understands that their action affects the next beat.
   do:
-  - listen to a word or phrase
-  - repeat the echo from memory
-  - build a two-step word ladder
+  - The child practices remember through short guided turns.
 progression:
-  topic_axis: form
-  difficulty_level: 1
-  next_step_hint: Try one new answer or explain the reason in more detail next time.
-  reward_hook: Earned the Echo Word Keeper badge
+  topic_axis: connection
+  difficulty_level: 2
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
 caregiver_role:
-- scaffold
-- co-explorer
+- observer
 activity_signature:
-  observation_angle: pattern
+  observation_angle: function
   mechanic: remember
   entity_role: catalyst
+  focal_attribute: word_echo_practice
+  intro: The AI says a simple word or phrase and the child repeats it back in a playful
+    echo round.
   bridge_prerequisites:
     primary:
-    - pattern
+    - function
     secondary:
-    - form
-    - remember
-  focal_attribute: echo_word_pattern
-  intro: The child practices remember through Echo Word Stage.
-  preview_label: Echo Word Stage
-  preview_prompt: Ready to be the Echo Word Keeper?
-  role_pivot_note: The runtime entity starts the activity but the package remains
-    concept-led and parameterized.
+    - function
+    - state
+  preview_label: Word Echo Practice
+  preview_prompt: Try Word Echo Practice with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
 matchability:
   entity_class_filter: []
   tier_support:
     T0: true
     T1: true
-    T2: false
+    T2: true
+source_workbook_row: 5
+source_concept: source_word_echo_practice

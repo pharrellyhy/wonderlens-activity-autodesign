@@ -1,0 +1,28 @@
+activity_id: concept_story_unlock_probe
+dashboard_template:
+  parent_headline: 'Story Challenge Unlock: imagine'
+  learning_focus:
+  - Form
+  - Perspective
+  - imagination
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest
+dashboard_fragment:
+  session:
+    activity_id: concept_story_unlock_probe
+    axis: perspective
+    angle: behavior
+    mechanic: imagine
+    entity_role: catalyst
+    focal_attribute: story_challenge_unlock
+    entry_rung: "{runtime_entry_rung}"
+    exit_rung: "{runtime_exit_rung}"
+    outcome: "{runtime_outcome}"
+  contributes_to:
+    curiosity_radial:
+      axis: perspective
+      angle: behavior
+    exploration_matrix:
+      cell: "imagine x behavior"

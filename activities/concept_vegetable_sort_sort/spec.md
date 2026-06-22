@@ -1,79 +1,71 @@
-# Vegetable Sort Stand -- Authoring Spec
+# Vegetable Sort - Engineering Spec
 
-> CAT1 concept package . Concept source: `source_vegetable_sort` . Mechanic: `sort`
+## Metadata
+
+- activity_id: `concept_vegetable_sort_sort`
+- source_row: `27`
+- source_concept: `source_vegetable_sort`
+- assignment_type: `activity_concept`
+- category: `cat1`
+- mechanic: `sort`
+- generation_method: `fresh_full_rerun_from_source_snapshot`
 
 ## Premise
 
-The child sorts vegetable cards or photographed vegetables by a visible or meaningful rule. The activity turns that source promise into a cat1 runtime package where the child becomes the Veggie Sorter. The repeated action is `sort`, and the payoff is visible progress tied to the child's own responses.
-
-## Target
-
-- **Primary tier:** T1
-- **Activity category:** cat1
-- **Mechanic:** `sort`
-- **Entity role:** reference
-- **Progression axis:** connection, level 2
-
-## Adaptation Rationale
-
-- **Input mode:** concept_only.
-- **Core promise:** The child sorts vegetable cards or photographed vegetables by a visible or meaningful rule.
-- **Canonical mechanic:** `sort`; Step 3's repeated child action preserves this mechanic.
-- **Readiness:** generate_with_assumptions.
-- **Trigger condition:** Screen can show vegetable cards or a child photographs several vegetables.
-- **Mapping use:** no required mapping for this package; runtime parameters avoid entity-specific facts unless runtime supplies them.
-- **Asset dependency:** Asset dependency: `vegetable_sort_cards_01` is required card_set support; fallback behavior is documented.
-- **Product capability flags:** requires_asset_display.
-- **Scaffold fit:** acceptable. Adventure / `quest_collector` supplies the emotional payoff while `sort` remains the child-action contract.
-- **Assumptions:** Mapping can improve real-photo routing but is not mandatory.
+The child uses tap/select vegetable cards to sort by a visible or meaningful rule.
 
 ## Selection Trigger
 
-Start when Screen can show vegetable cards or a child photographs several vegetables. If the required visual support is unavailable, use the fallback behavior from the Asset Brief or keep the interaction voice-only.
+Screen can show vegetable cards that the child taps or names by group.
 
-## Experience Pillar & Game Style
+## Source Intent Lock
 
-- **Pillar:** Adventure
-- **Game style:** `quest_collector`
-- **Why this scaffold:** Sorting stays the repeated action. The AI can suggest rules, but the child names and applies the grouping evidence.
+The child uses tap/select vegetable cards to sort by a visible or meaningful rule.
+
+## Adaptation Rationale
+
+The package preserves the original play frame, child role, required child action, and runtime sequence. Category and mechanic labels are metadata, not replacements for the workbook promise.
 
 ## Runtime Detail Floor Notes
 
-- **Distinct round design:** Round 1 -- Pick a Rule, Round 2 -- Place Two Vegetables, and Round 3 -- Name the Group each ask for a different child contribution and update a different progress token.
-- **Branch specificity:** Unexpected answers are validated, then redirected to the current objective without pretending the runtime can verify unsupported facts.
-- **Earned magic moment:** The stand opens with labeled groups, showing that the child made an organizing rule.
-- **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
+- Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
+- Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
+- Keep the repeated child action aligned to `sort`.
+- Preserve this source sequence: The child uses tap/select vegetable cards to sort by a visible or meaningful rule.
 
-## Asset Brief
+## Resolved Product Contract Notes
 
-| Field | Value |
-|---|---|
-| asset_id | vegetable_sort_cards_01 |
-| asset_type | card_set |
-| requiredness | required |
-| generation_timing | pre_generated |
-| use_step | prod.step_2; prod.step_3.round_1-3 |
-| purpose | Provide vegetable cards that can be sorted by color, shape, edible part, or cooking use. |
-| prompt_en | Create a set of clear vegetable picture cards for children ages 4-7. Include carrot, broccoli, tomato, potato, corn, cucumber, pumpkin, and peas. Use one vegetable per card, plain light background, realistic but friendly illustration, no text, no brands, and clear color and shape. |
-| source | new_ai_generated_asset |
-| display_behavior | Show a small set of cards and ask the child to choose a grouping rule. |
-| fallback_behavior | If cards are unavailable, use photographed vegetables or a voice-only sorting prompt and do not claim cards are shown. |
-| safety_constraints | No choking imagery, no knives, no cooking hazards, and no brand packaging. |
+- Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
+
+## Asset Usage Timeline
+
+| asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_or_source | fallback_behavior |
+|---|---|---|---|---|---|---|---|---|
+| vegetable_sort_cards_01 | card_set | required | pre_generated | prod.step_2; prod.step_3.round_1-3 | round_device_screen | Provide vegetable cards that can be sorted by color, shape, edible part, or cooking use. | new_ai_generated_asset | If card art is unavailable, use text labels and ask the child to tap or say the matching group. |
+
+## Extensibility Summary
+
+Reusable by replacing the topic, scene, role, or approved asset set while preserving the source play frame and `sort` mechanic.
+
+## Extensibility Notes
+
+- Replace `{runtime_entity}` only when the new trigger supports the same child action.
+- Keep the same source sequence before changing category or mechanic labels.
+- If an asset ID changes, preserve display timing, fallback wording, and safety constraints.
+
 ## Self-Evaluation Scorecard
 
-Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.md`, and the Phase 0 adaptation brief.
-
 | # | Dimension | Score | Notes |
-|---|-----------|-------|-------|
-| 1 | V1 Technical Compliance | PASS | The package uses voice dialogue, simple screen state, and documented asset fallback behavior; it does not require unsupported sensing or material verification. |
-| 2 | Hook & Transition | PASS | Step 1 bridges from the trigger into a playful role without testing the child. |
-| 3 | Edge Case Coverage | PASS | Each step includes ideal, unexpected, and no-response handling with concrete redirects. |
-| 4 | IB Completeness | PASS | Key Concepts, related concepts, KUD, ATL skills, recap, and dashboard fragments align. |
-| 5 | Tier Appropriateness | PASS | Language and task load match T1 expectations. |
-| 6 | Dialogue Specificity | PASS | Runtime lines include concrete prompts, child branches, and follow-ups instead of abstract encouragement. |
-| 7 | Screen & UI Completeness | PASS | Screen states identify visible progress, token changes, and fallback behavior where assets are optional or required. |
-| 8 | Entity Mapping Alignment | N/A | This is a concept-led package with no required mapping source and no entity-specific claims. |
-| 9 | Game Feel | PASS | The loop has escalating rounds and a visible payoff earned from the child's repeated action. |
-| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | Step 3, tag metadata, and adaptation rationale preserve `sort` while disclosing scaffold assumptions. |
+|---|---|---|---|
+| 1 | V1 Technical Compliance | PASS | Fallbacks are explicit and unsupported capability is not overclaimed. |
+| 2 | Hook & Transition | PASS | Opening uses the workbook trigger and play frame. |
+| 3 | Edge Case Coverage | PASS | Ideal, unexpected, and no-response branches are present. |
+| 4 | IB Completeness | PASS | KUD and concepts match the child action. |
+| 5 | Tier Appropriateness | PASS | Prompts are short and scaffolded. |
+| 6 | Dialogue Specificity | PASS | Runtime AI instructions include example lines. |
+| 7 | Screen & UI Completeness | PASS | Each beat names screen, state, asset, or fallback. |
+| 8 | Entity Mapping Alignment | N/A | Workbook-source concept run; not mapping-informed. |
+| 9 | Game Feel | PASS | Progress tokens and payoff create game structure. |
+| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | The source action and mechanic stay aligned. |
 
-**Overall**: ALL PASS -- reviewer-agent pass by Dalton after package-quality edits.
+**Overall**: PASS - fresh full-run package preserves source intent with explicit runtime-generation and minimum-unblock assumptions.
