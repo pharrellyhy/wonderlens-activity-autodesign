@@ -1,0 +1,55 @@
+activity_id: mood_changer_dog
+version: 1
+entity_compatibility: source_bound
+parameterization:
+  mode: entity_theme
+  decision_source: canonical_package_conversion
+  integrity_status: supported_source_bound_theme
+  confidence: high
+  evidence:
+    - The authored beats assume a stuffed dog performer with floppy ears, sunshine, a small bump, and a treat.
+    - The activity does not require emotion recognition or audio-quality scoring; the child self-expresses the dog's feeling voice.
+  validity:
+    production_supported: true
+    requires:
+      - authored dog or stuffed-dog theme
+    allowed_entity_classes:
+      - dog
+      - pet
+      - toy
+    invalid_when:
+      - handoff expects arbitrary non-dog retargeting
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    dialogue_frame: stuffed dog emotion translator
+    feeling_scenes:
+      - warm sunshine
+      - harmless little bump
+      - favorite treat
+    reward_badge: emotion_translator
+  fallback_behavior: Keep the authored stuffed-dog theme; do not retarget to arbitrary entities.
+  stale_text_risk: low; dog-specific text is intentionally frozen.
+  consumer_notes:
+    wonderlens_ai: Treat handoff as source-bound to the dog theme and preserve the three feeling scenes.
+    fullstack_demo: Use Cat1 dialogue UI with package-local generated scene assets.
+  reviewer_action: accept_as_source_bound_thematic_dialogue
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: full
+  entity_bindings:
+    - entity_id: stuffed_dog
+      display_label: Stuffed dog
+      source_entity_exemplar: dog
+      default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Use the Cat1 dialogue primitive and generated package-local scene assets; do not require emotion recognition.
+    wonderlens_ai: Preserve dog-specific feeling scenes and self-report framing.

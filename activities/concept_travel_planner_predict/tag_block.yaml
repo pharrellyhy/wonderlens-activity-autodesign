@@ -1,78 +1,71 @@
 activity_id: concept_travel_planner_predict
 version: 1
-source_entity_exemplar: pretend_destination
 template_type: cat1
 pillar: Discovery
 game_style: prediction_lab
-entity: '{runtime_entity}'
-entity_class: []
-entity_binding: parameterized
-entity_compatibility: agnostic
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: agnostic
 tier_range:
   primary: T1
   span:
   - T0
   - T1
-  - T2
-  elasticity: neighbor
-category: category_1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat1
 attributes:
-- pretend_trip_prediction
-- function
+- travel_planner
+- predict
 key_concepts:
+- Form
 - Causation
-- Change
 related_concepts:
-- plan
-- prediction
-- journey
-- need
+- evidence
+- choice
+- sequence
+- reflection
 atl_skills:
 - prediction
-- logical_reasoning
-- creative_thinking
-transdisciplinary_theme: Where_We_Are_In_Place_And_Time
-subject_tags:
-- social_studies
-- language
+- observation
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
 kud:
   know:
-  - Pretend Trip Planner has a simple three-round structure
-  - pretend_trip_prediction is the focus of the activity
+  - The child knows the activity rule and one source-specific cue.
   understand:
-  - Causation helps children notice the important evidence
-  - Change helps children connect their response to the result
+  - The child understands that their action affects the next beat.
   do:
-  - commit to predictions in three short rounds before each reveal
-  - explain or repeat one prediction
-  - notice the final payoff
+  - The child practices predict through short guided turns.
 progression:
   topic_axis: causation
   difficulty_level: 2
-  next_step_hint: Try one new answer or explain the reason in more detail next time.
-  reward_hook: Earned the Trip Predictor badge
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
 caregiver_role:
-- scaffold
-- co-explorer
+- observer
 activity_signature:
-  observation_angle: function
+  observation_angle: quantity
   mechanic: predict
   entity_role: catalyst
+  focal_attribute: travel_planner
+  intro: The child helps plan a pretend trip by choosing what to pack, how to travel,
+    and what might happen.
   bridge_prerequisites:
     primary:
-    - function
+    - quantity
     secondary:
-    - causation
-    - predict
-  focal_attribute: pretend_trip_prediction
-  intro: The child practices predict through Pretend Trip Planner.
-  preview_label: Pretend Trip Planner
-  preview_prompt: Ready to be the Trip Predictor?
-  role_pivot_note: The runtime entity starts the activity but the package remains
-    concept-led and parameterized.
+    - function
+    - state
+  preview_label: Travel Planner
+  preview_prompt: Try Travel Planner with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
 matchability:
   entity_class_filter: []
   tier_support:
     T0: true
     T1: true
     T2: true
+source_workbook_row: 39
+source_concept: source_travel_planner

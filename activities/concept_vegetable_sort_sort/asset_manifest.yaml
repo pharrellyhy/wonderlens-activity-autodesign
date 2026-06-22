@@ -1,0 +1,327 @@
+activity_id: concept_vegetable_sort_sort
+entity_id: vegetable_sort
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Vegetable Sort Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Vegetable Sort
+    Celebration badge. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 250753
+    sha256: 4393944c8f15cc2e0c0b1adf541cf94a0d4340ac402418273fb11c477015dbd3
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Vegetable Sort Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Vegetable Sort Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Vegetable Sort
+    Closing scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 296799
+    sha256: 8605dbcde1af6a18585cbf1bf49cb75fb2b498aee2cbf1c95b5410d29212384d
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Vegetable Sort Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Vegetable Sort Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Vegetable Sort
+    Activity icon. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 244382
+    sha256: 3f4c226cd353e247e99f078bd1dc95a09c1ba46ba41800de48c60aebf2427d33
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Vegetable Sort Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Vegetable Sort Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Vegetable Sort
+    Intro scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 312576
+    sha256: ba4f06490023dfc3980816d2753c2b697fd8e2d1f1391583450ec055288bc605
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Vegetable Sort Intro scene is visible.
+- id: broccoli
+  role: ui_overlay
+  label: Broccoli
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Broccoli. Use
+    the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/broccoli.png
+    mime_type: image/png
+    byte_count: 226979
+    sha256: 25ecb8a468cd38768005f9077464f093de1adc7b43a1f3a7d35cd257bbf081e6
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Broccoli is visible.
+- id: carrot
+  role: ui_overlay
+  label: Carrot
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Carrot. Use
+    the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/carrot.png
+    mime_type: image/png
+    byte_count: 188261
+    sha256: a14f2282b6d44aedde0f0699c5c8c6896a1a84bad7f5cb66f90273a7c6afeae1
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Carrot is visible.
+- id: corn
+  role: ui_overlay
+  label: Corn
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Corn. Use the
+    WonderLens mint, porcelain, pale sage, and cool gray-green palette; center the
+    subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/corn.png
+    mime_type: image/png
+    byte_count: 243491
+    sha256: 6383643d998086b09baae976b1cd83c26ac70071503bdda7e4f3fe87934ff165
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Corn is visible.
+- id: cucumber
+  role: ui_overlay
+  label: Cucumber
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Cucumber. Use
+    the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/cucumber.png
+    mime_type: image/png
+    byte_count: 166357
+    sha256: 6e2514160522a11b80e1f93427fc8674c5c0dde9bead1671567a483d21f5f2a0
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Cucumber is visible.
+- id: potato
+  role: ui_overlay
+  label: Potato
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Potato. Use
+    the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/potato.png
+    mime_type: image/png
+    byte_count: 224671
+    sha256: 7de71596f779cb0d70ead16248fc4955454dfccec13d0f66921dad7b4c6cce52
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Potato is visible.
+- id: pumpkin
+  role: ui_overlay
+  label: Pumpkin
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Pumpkin. Use
+    the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/pumpkin.png
+    mime_type: image/png
+    byte_count: 260873
+    sha256: 254a4c40c218d586cff57e403c84037416b9cae575bd07d81427d14f7e98cd31
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Pumpkin is visible.
+- id: tomato
+  role: ui_overlay
+  label: Tomato
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Tomato. Use
+    the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/tomato.png
+    mime_type: image/png
+    byte_count: 210872
+    sha256: 5f8cc88feeb188935f4d66474c25f15f27ff4f70f2010b237d0e8272a321088e
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Tomato is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Vegetable Sort Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Vegetable Sort
+    Round 1 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 284824
+    sha256: 81eaf79d0739096358654ba368d5ba93133cae58d63ae5ca9555299464e4bac0
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Vegetable Sort Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Vegetable Sort Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Vegetable Sort
+    Round 2 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 294312
+    sha256: bf042a7a36d6308b66d29db35ad0fd9f913488bb819494b51a72ef9efb895771
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Vegetable Sort Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Vegetable Sort Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Vegetable Sort
+    Round 3 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 283076
+    sha256: 5c6610f21e6eba58985ad25a3ae471caf2edad2913a2921670dfad7828eebbd2
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Vegetable Sort Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Vegetable Sort Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Vegetable Sort: Vegetable Sort
+    Rules scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 261410
+    sha256: 12adde79b8fe36722de8d0c13e7833b3ef70429ffa41de305e0aacb2f793f147
+  fallback_behavior: Continue Vegetable Sort with spoken guidance and do not claim
+    that Vegetable Sort Rules scene is visible.

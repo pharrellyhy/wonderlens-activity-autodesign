@@ -1,0 +1,426 @@
+activity_id: concept_phoneme_hunt_collect
+entity_id: phoneme_treasure_hunt
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Phoneme Treasure Hunt Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Phoneme
+    Treasure Hunt Celebration badge. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 373883
+    sha256: ef506c2a70294eee9b33948f1cb06fa1eeffc789b36c2d44197e7a3a8ac4af41
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Phoneme Treasure Hunt Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Phoneme Treasure Hunt Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Phoneme
+    Treasure Hunt Closing scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 377462
+    sha256: d15df8cc3bdfa9e2e76bc2f8c011f77e5a5946e55aca8e41618fd4c259815e79
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Phoneme Treasure Hunt Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Phoneme Treasure Hunt Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Phoneme
+    Treasure Hunt Activity icon. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 234951
+    sha256: 6ecdb8d528b98ab8cc40b94a32b06c67e4bb1c431707dea7266af85c3be7677c
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Phoneme Treasure Hunt Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Phoneme Treasure Hunt Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Phoneme
+    Treasure Hunt Intro scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 360394
+    sha256: a2554ae29e1139ae1e14b38396bf116d7115cb163ea970b65528bcd2768af5da
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Phoneme Treasure Hunt Intro scene is visible.
+- id: ball
+  role: collection_correct
+  label: Ball
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Ball.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/ball.png
+    mime_type: image/png
+    byte_count: 284216
+    sha256: 0d15e0887f9693ddcd21a0717335babe5e42a32860e22dea1590dcc646daaa27
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Ball is visible.
+  collection_catalog_id: ball
+- id: banana
+  role: collection_correct
+  label: Banana
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Banana.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/banana.png
+    mime_type: image/png
+    byte_count: 237446
+    sha256: e20c90afa170a3e1b9784dea24cd3e37c285ac08c63224c4930441891bae4e18
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Banana is visible.
+  collection_catalog_id: banana
+- id: basket
+  role: collection_correct
+  label: Basket
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Basket.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/basket.png
+    mime_type: image/png
+    byte_count: 195859
+    sha256: 6ee23fb8688a761cd4852aa2598b6583cd46ff991592b7e4a02fe6e7ddaf8af5
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Basket is visible.
+  collection_catalog_id: basket
+- id: book
+  role: collection_correct
+  label: Book
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Book.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/book.png
+    mime_type: image/png
+    byte_count: 275224
+    sha256: 1243cf2e36328fe820190ff9771fc9206f9878ed529d2e743779593e7c2b9de4
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Book is visible.
+  collection_catalog_id: book
+- id: cup
+  role: collection_distractor
+  label: Cup
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Cup.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/cup.png
+    mime_type: image/png
+    byte_count: 210035
+    sha256: 606e5dd1a5273f92b77a5ca3e6da70ca35e60fd64a9c52715237ff45864891c6
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Cup is visible.
+  collection_catalog_id: cup
+- id: leaf
+  role: collection_distractor
+  label: Leaf
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Leaf.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/leaf.png
+    mime_type: image/png
+    byte_count: 220773
+    sha256: eca1b91440ea18e805888c5b4986fa2507c76396ba783406975e651c2e43b3ad
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Leaf is visible.
+  collection_catalog_id: leaf
+- id: pencil
+  role: collection_distractor
+  label: Pencil
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Pencil.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/pencil.png
+    mime_type: image/png
+    byte_count: 119235
+    sha256: 316e3379238b7cb508d75f7efb9c265919fb6e126f17592e66e79c43a3ac3fc5
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Pencil is visible.
+  collection_catalog_id: pencil
+- id: sock
+  role: collection_distractor
+  label: Sock
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Sock.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/sock.png
+    mime_type: image/png
+    byte_count: 190914
+    sha256: 5917ef661dc7d2dfbdfc9af90cb1600744bbdb789b8e536108fccffa878762fc
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Sock is visible.
+  collection_catalog_id: sock
+- id: spoon
+  role: collection_distractor
+  label: Spoon
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Spoon.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/spoon.png
+    mime_type: image/png
+    byte_count: 207851
+    sha256: c8ee75fc091a2c2d46e06563486e5c514b60660a1d2d57d9c8e89d58045950c5
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Spoon is visible.
+  collection_catalog_id: spoon
+- id: toy_car
+  role: collection_distractor
+  label: Toy Car
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Toy
+    Car. Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette;
+    center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/toy_car.png
+    mime_type: image/png
+    byte_count: 232770
+    sha256: 49ca0a612657adc0505fe530b5a58088f53b8f09a894e65774c6a7c1afdb74b0
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Toy Car is visible.
+  collection_catalog_id: toy_car
+- id: round_1_scene
+  role: story_scene
+  label: Phoneme Treasure Hunt Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Phoneme
+    Treasure Hunt Round 1 scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 303072
+    sha256: d0320acfa9a6a2f7e75e1bcea8405290ef5333da97389e12281d0337baf776ae
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Phoneme Treasure Hunt Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Phoneme Treasure Hunt Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Phoneme
+    Treasure Hunt Round 2 scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 295344
+    sha256: 6034e57dd1a14071863a772d6d1f5daf434af8eef4781567166a74a29358ef5a
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Phoneme Treasure Hunt Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Phoneme Treasure Hunt Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Phoneme
+    Treasure Hunt Round 3 scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 319814
+    sha256: 4e68fd5faed1ec88f370c071bff5b650405b0e383bea564d66b4d347400f07e8
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Phoneme Treasure Hunt Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Phoneme Treasure Hunt Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Phoneme
+    Treasure Hunt Rules scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 347828
+    sha256: ac707490cb672477ac014fd83442890fdf9f598c85e0c35679dcc62ab8fe0cbc
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Phoneme Treasure Hunt Rules scene is visible.
+- id: synthesis_scene
+  role: story_scene
+  label: Phoneme Treasure Hunt Synthesis scene
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Phoneme Treasure Hunt: Phoneme
+    Treasure Hunt Synthesis scene. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/synthesis.png
+    mime_type: image/png
+    byte_count: 351840
+    sha256: 0620cf2a60391eb80c24177dee75f91d09bbb624263dadf6358dcb4e5468a347
+  fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
+    claim that Phoneme Treasure Hunt Synthesis scene is visible.

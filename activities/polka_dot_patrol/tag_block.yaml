@@ -1,22 +1,23 @@
 # ─── §0 · IDENTITY ────────────────────────────────────
 activity_id: polka_dot_patrol
 version: 1
-source_entity_exemplar: ladybug
+source_entity_exemplar: polka_dots
 template_type: cat5
 pillar: Adventure
 game_style: quest_collector
 
 # ─── §1 · IB FRAME ────────────────────────────────────
-entity: "{parameterized_by_matched_property}"
+entity: "{target_pattern_property}"
 entity_class: []
 entity_binding: parameterized
+entity_compatibility: agnostic
 tier_range:
   primary: T1
   span: [T0, T1, T2]
   elasticity: "±1"
 
 category: objects
-attributes: [polka_dots, spots, circles]
+attributes: [polka_dots, stripes, spots, lines, circles, pattern]
 
 key_concepts: [Form, Connection]
 related_concepts: [pattern, observation, similarity, difference]
@@ -24,15 +25,15 @@ atl_skills: [observation, pattern_recognition, evidence_collection, classificati
 transdisciplinary_theme: How_We_Express_Ourselves
 
 kud:
-  know:       ["polka dots are a pattern where round shapes repeat", "dots come in many sizes"]
-  understand: ["the same pattern can look very different on different things"]
-  do:         ["find 3 things that share the polka-dot pattern", "turn the finds into a patrol story"]
+  know:       ["patterns can be made from repeated dots, spots, lines, or stripes", "the same pattern can appear on different objects"]
+  understand: ["the same pattern property can look different across examples"]
+  do:         ["choose 3 catalog cards that share the target pattern", "explain the visible pattern evidence", "turn the chosen cards into a patrol story"]
 
 progression:
   topic_axis: form
   difficulty_level: 2
-  next_step_hint: "Next time, compare dots to stripes or zigzags"
-  reward_hook: "Earned the Polka Dot Patrol badge"
+  next_step_hint: "Next time, compare another pattern set such as dots, stripes, or zigzags"
+  reward_hook: "Earned the Pattern Patrol badge"
 
 caregiver_role: [scaffold, co-explorer]
 
@@ -47,13 +48,14 @@ activity_signature:
     secondary: [color, shape]
 
   # ── Layer 2: presentation (author templates; runtime renders) ──
-  focal_attribute: "polka_dots"
-  intro: "The child patrols the neighborhood looking for three more spotted things, using the {entity} as the first clue, then turns them into a patrol parade."
-  preview_label:  "Find three polka-dotted things!"
-  preview_prompt: "You noticed the polka dots on the {entity}. Let's find more polka-dotted things!"
+  focal_attribute: "target_pattern_property"
+  intro: "The child patrols a catalog looking for three cards that match the target pattern property, then turns them into a patrol parade."
+  preview_label:  "Find three matching pattern cards!"
+  preview_prompt: "Today's patrol clue is {pattern_label}. Let's find three cards that show that pattern."
   role_pivot_note: |
-    The {entity} was our subject during the chat; now it becomes an
-    EXAMPLE of polka-dot pattern — we're going to find more polka-dotted things.
+    The handoff property becomes the patrol clue. The runtime must choose an
+    approved catalog for {target_pattern_property}; the demo must not claim
+    arbitrary real-camera pattern verification.
 
 # ─── §3 · MATCHABILITY (from 2026-04-20 spec) ─────────
 matchability:

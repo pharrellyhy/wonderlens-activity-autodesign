@@ -1,0 +1,195 @@
+activity_id: concept_word_echo_remember
+entity_id: word_echo_practice
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Word Echo Practice Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Word Echo Practice: Word Echo
+    Practice Celebration badge. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 257299
+    sha256: 0311994de6164cf35dadff6a96aded41686b83c6b13dd33e1f835b1ac627dd00
+  fallback_behavior: Continue Word Echo Practice with spoken guidance and do not claim
+    that Word Echo Practice Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Word Echo Practice Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Word Echo Practice: Word Echo
+    Practice Closing scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 298490
+    sha256: ed3721a8a12343041a33f466a54e252d0c6d93eab30d7865f642046592f9a3ad
+  fallback_behavior: Continue Word Echo Practice with spoken guidance and do not claim
+    that Word Echo Practice Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Word Echo Practice Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Word Echo Practice: Word Echo
+    Practice Activity icon. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 191365
+    sha256: 4437ad57233e9e0629619162ff3b1bb852a074d9a82f50daddc6bb038b82f6a7
+  fallback_behavior: Continue Word Echo Practice with spoken guidance and do not claim
+    that Word Echo Practice Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Word Echo Practice Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Word Echo Practice: Word Echo
+    Practice Intro scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 236630
+    sha256: 7a5fa8ff24f0d5bf35a53ecff35a6871ae58983d0492219e6c9e56006943bdb7
+  fallback_behavior: Continue Word Echo Practice with spoken guidance and do not claim
+    that Word Echo Practice Intro scene is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Word Echo Practice Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Word Echo Practice: Word Echo
+    Practice Round 1 scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 194048
+    sha256: 1148fb1749839f9abe4b8afe0f33a7350b023f41ea8bf931b113c80087c43994
+  fallback_behavior: Continue Word Echo Practice with spoken guidance and do not claim
+    that Word Echo Practice Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Word Echo Practice Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Word Echo Practice: Word Echo
+    Practice Round 2 scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 309059
+    sha256: 6e6a91e3f535d7cb18d5fe0b6d25023f4aafa7ed0d83eb12a44d010cb6c9e090
+  fallback_behavior: Continue Word Echo Practice with spoken guidance and do not claim
+    that Word Echo Practice Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Word Echo Practice Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Word Echo Practice: Word Echo
+    Practice Round 3 scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 348655
+    sha256: 378714b32e096e4963377d0df56841bf49534276cfc8a61d3410a840ecda87a2
+  fallback_behavior: Continue Word Echo Practice with spoken guidance and do not claim
+    that Word Echo Practice Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Word Echo Practice Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Word Echo Practice: Word Echo
+    Practice Rules scene. Use the WonderLens mint, porcelain, pale sage, and cool
+    gray-green palette; center the subject for a small round device screen; no text,
+    no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 221750
+    sha256: 92932947d90dc791ebf62cecf8c12f8dfef778959d0a850078a56080649a51aa
+  fallback_behavior: Continue Word Echo Practice with spoken guidance and do not claim
+    that Word Echo Practice Rules scene is visible.

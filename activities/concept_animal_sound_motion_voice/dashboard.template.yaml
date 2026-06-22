@@ -1,26 +1,28 @@
+activity_id: concept_animal_sound_motion_voice
+dashboard_template:
+  parent_headline: 'Animal Sound Imitation: motion_voice'
+  learning_focus:
+  - Form
+  - Perspective
+  - language_expression
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest
 dashboard_fragment:
   session:
+    activity_id: concept_animal_sound_motion_voice
     axis: perspective
     angle: behavior
     mechanic: motion_voice
     entity_role: catalyst
-    focal_attribute: "animal_voice"
+    focal_attribute: animal_sound_imitation
     entry_rung: "{runtime_entry_rung}"
     exit_rung: "{runtime_exit_rung}"
     outcome: "{runtime_outcome}"
-
   contributes_to:
     curiosity_radial:
       axis: perspective
       angle: behavior
     exploration_matrix:
-      cell: "motion_voice by animal behavior"
-    key_concepts_exposure:
-      Perspective:
-        angle: behavior
-      Form:
-        angle: behavior
-    atl_skills_trail:
-      - language_expression
-      - perspective_taking
-      - creative_thinking
+      cell: "motion_voice x behavior"

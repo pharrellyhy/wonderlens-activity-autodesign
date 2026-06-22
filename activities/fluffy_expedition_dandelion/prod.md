@@ -5,7 +5,7 @@
 | Field | Value |
 |-------|-------|
 | Activity Name | The Fluffy Expedition |
-| Activity Category | Collection/Tracking Exploration (Out-of-Device) |
+| Activity Category | Catalog Collection Exploration |
 | Recommended Tier | T0 (ages 2-4) |
 | Core IB Key Concepts | Connection, Form |
 | Related Concepts | Discovery, Sensory Awareness, Nature, Texture |
@@ -17,26 +17,28 @@
 
 **1. Brief Description**
 
-After the child photographs a dandelion, the AI gasps at all those tiny white parachutes and wonders where they might fly. The child becomes a "Fluffy Expedition Explorer"  -  venturing out to find 3 things nearby that feel fluffy, fuzzy, or soft. Each discovery invites touch: how does it feel? Is it silky? Puffy? Fuzzy like a cloud? After collecting all three, the child gives each find a character name (like "Cloud Puff" or "Fuzzy Friend") and tells a tiny story about the fluffy friends meeting each other. Softness connects everything!
+The AI introduces a dandelion seed puff as the first fluffy friend. The child becomes a "Fluffy Expedition Explorer" and chooses 3 illustrated catalog cards that show soft, fuzzy, puffy, or fluffy textures. For each choice, the child says the texture clue out loud, gives the fluffy friend a small name, and helps make a tiny story about the soft friends meeting.
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Learn that dandelion seeds are fluffy and float away like tiny parachutes. Learn that "soft" comes in many forms  -  fuzzy, silky, puffy, woolly. Learn that touching things tells you about their texture. Learn the names for different kinds of softness.
-- **U (Understand):** Understand that many different things share the quality of softness  -  a dandelion seed, moss, a petal, and a caterpillar can all feel fluffy even though they look nothing alike. That is Connection  -  finding how different things are linked together through something they share.
-- **D (Do):** Practice exploring textures through touch  -  feeling for softness in the environment. Practice comparing how different things feel (fuzzier vs. silkier vs. puffier). Practice giving creative names to found objects and building a simple story from them.
+- **K (Know):** Learn that dandelion seeds can look fluffy and light. Learn that "soft" comes in many forms: fuzzy, silky, puffy, woolly, and feathery.
+- **U (Understand):** Understand that different things can be connected by a shared texture clue. A dandelion puff, moss, yarn, and a feather can all belong in the same soft-texture group.
+- **D (Do):** Practice choosing examples from a catalog, describing visible texture evidence, comparing softness words, naming objects as characters, and building a simple story from selected cards.
 
 **3. Design Highlight**
 
-The quest_collector synthesis transforms a texture scavenger hunt into character creation and storytelling. Each fluffy find earns a texture-inspired name the child invents  -  "Cloud Puff," "Fuzzy Friend," "Silky Petal." The final story moment  -  "What do your fluffy friends do when they meet?"  -  lets even a 2-year-old become a storyteller, weaving their three named characters into a tiny narrative. The dandelion itself is the first fluffy friend, anchoring the expedition in something the child already touched and wondered about.
+The quest_collector synthesis turns a texture collection into character creation and storytelling. Each soft card earns a texture-inspired name the child invents, such as "Cloud Puff," "Fuzzy Friend," or "Woolly Star." The final story moment asks what the fluffy friends do when they meet, letting even a very young child turn texture observation into narrative.
 
 **4. Typical Scenario**
 
-Child photographs a dandelion -> AI marvels at the fluffy seeds -> child becomes a "Fluffy Expedition Explorer" -> finds and touches 3 fluffy/fuzzy/soft things -> names each one as a character -> tells a tiny story about the fluffy friends meeting -> celebrates with a Fluffy Expedition Explorer badge.
+Dandelion seed puff appears -> AI marvels at fluffy texture -> child becomes a Fluffy Expedition Explorer -> child chooses 3 soft/fluffy catalog cards -> child says texture clues and names the finds -> child tells a tiny meeting story -> AI awards the Fluffy Expedition Explorer badge.
 
 **5. Runtime Asset Notes**
 
-- Optional support asset: `fluffy_expedition_icon_set_01`. Use it only for empty slots, hint markers, and the story path; accepted finds are represented by child photos.
-- If unavailable, use generic rounded empty slots and text labels; the AI must not claim that a specific icon is visible.
+- Required scene assets: `activity_icon`, `intro_scene`, `rules_scene`, `round_1_scene`, `round_2_scene`, `round_3_scene`, `synthesis_scene`, `celebrate_scene`, and `closing_scene`.
+- Required catalog cards for `fluffy_soft_texture`: `fluffy_dandelion_puff`, `fuzzy_moss_patch`, `woolly_yarn_ball`, and `soft_feather`.
+- Optional distractor cards: `smooth_pebble` and `plain_wood_block`.
+- The demo must not claim to verify real-world touch, arbitrary photos, or whether a nearby object is truly soft. The proof is the approved catalog card plus the child's spoken texture evidence.
 
 ### C. Interaction Flow
 
@@ -44,145 +46,145 @@ Child photographs a dandelion -> AI marvels at the fluffy seeds -> child becomes
 
 #### Step 1: Transition Bridge
 
-**AI says:** [delighted gasp] "Ooh! Look at all those tiny fluffy parachutes! Where do you think they're going to fly to?"
+**AI says:** [delighted gasp] "Ooh! Look at this dandelion puff. It looks like tiny fluffy parachutes! What soft word would you use for it?"
 
 **Child responses:**
 
-1. (Ideal) "Up!" / "To the sky!" / "Far away!" / child blows on the dandelion
-2. (Unexpected) "It's a flower!" / "White!" / "I want to pick it!"
-3. (No response) Child looks at the dandelion photo quietly.
+1. (Ideal) "Fluffy!" / "Soft!" / "Like a cloud!"
+2. (Unexpected) "It's a flower!" / "White!" / "It can fly!"
+3. (No response) Child looks quietly.
 
 **AI follow-up:**
 
-1. [amazed] "Up to the sky! Tiny fluffy flyers! I wonder  -  is the dandelion the only soft thing here?"
-2. [warm, accepting] "It IS a flower! A fluffy one! All those soft little seeds. Would you like to find more fluffy things?"
-3. [wait 2s] [soft, playful] "So fluffy! Like tiny clouds. Touch the screen  -  can you feel how soft it looks?"
+1. [amazed] "Fluffy like a cloud! That is our first soft clue."
+2. [warm, accepting] "Yes, it is a flower friend. And those little seeds look so soft and fluffy."
+3. [wait 2s] [soft, playful] "I see tiny cloud fluff. I wonder if we can find more fluffy friends."
 
-**Screen:** Dandelion photo centered with seeds gently floating upward in a slow drift animation; warm sparkle highlights on the seed head and a soft wonder chime.
+**Screen:** `intro_scene` fills the round screen. The dandelion seed puff sits inside the central safe area with gentle floating seed motion. If unavailable, show a neutral pale background and keep the dandelion catalog card visible.
 
 #### Step 2: Rule Introduction + Demo
 
-**AI says:** [excited, playful] "You are a Fluffy Expedition Explorer! Would you like to find 3 soft, fluffy things? Touch them and tell me how they feel!"
+**AI says:** [excited, playful] "You are a Fluffy Expedition Explorer! Let's choose 3 cards that look soft, fuzzy, or fluffy. When you pick one, tell me the soft clue you see."
 
 **Child responses:**
 
-1. (Ideal) "Yeah!" / "I want to find fluffy!" / child starts looking around
-2. (Unexpected) "What's fluffy?" / "Like what?"
-3. (No response) Child looks around slowly.
+1. (Ideal) "Yeah!" / "I want the fluffy one!" / child taps a card
+2. (Unexpected) "What's fluffy?" / "Which one?"
+3. (No response) Child scans the cards slowly.
 
 **AI follow-up:**
 
-1. [cheering] "Go go, Explorer! I bet something soft and fluffy is hiding nearby  -  would you like to start looking?"
-2. [helpful, warm] "Fluffy means soft! Like clouds. Like the dandelion. Would you like to touch things and feel for softness?"
-3. [wait 2s] [encouraging] "I wonder if something soft is waiting right near you! Would you like to touch something and see if it feels fluffy?"
+1. [cheering] "Go go, Explorer! Look for puff, fuzz, wool, or feathery softness."
+2. [helpful, warm] "Fluffy means soft-looking, like clouds or dandelion seeds. Can you find a card that looks soft?"
+3. [wait 2s] [encouraging] "I see some soft-looking friends. Which one should join our expedition first?"
 
-**Screen:** Mission card with "Fluffy Expedition Explorer" badge (dandelion icon with floating seeds), 4 slots (first filled with dandelion photo, 3 empty with cloud-puff placeholders), and a "Find 3!" counter.
+**Screen:** `rules_scene` appears behind a simple catalog grid. The mission strip shows four collection slots: the dandelion exemplar slot is filled, and three empty fluffy-friend slots wait for choices. The progress indicator shows "0 of 3 friends chosen" as runtime UI text, not baked into art.
 
 #### Step 3: Multi-Round Interaction
 
-**Round 1  -  First Fluffy Find:**
+**Round 1 - First Fluffy Friend**
 
-*(Child touches/finds something soft nearby  -  e.g., moss, a fuzzy leaf, soft grass, a feather)*
+*(Runtime presents correct and distractor catalog cards. Child chooses one soft/fluffy card.)*
 
-**AI says:** [excited discovery] "Ooh! You found something! How does it feel?"
-
-**Child responses:**
-
-1. (Ideal) "Soft!" / "Fuzzy!" / "Like a cloud!" / child describes the texture
-2. (Unexpected) "It's green!" / "I found it!" / doesn't describe texture
-3. (No response) Child holds the soft thing quietly.
-
-**AI follow-up:**
-
-1. [delighted] "So soft! Like the dandelion! Your first fluffy treasure! 2 more to find!"
-2. [warm, scaffolding] "You found it! Now touch it gently. Is it fuzzy? Or silky? Or puffy like a cloud?"
-3. [wait 2s] [warm] "Touch it softly. How does it feel on your fingers? Fuzzy? Smooth? That's your first fluffy treasure!"
-
-**Screen:** Photo slides into slot 2 with a card-slide-in animation and a shutter click sound; progress tracker updates to "1 of 3 found."
-
-**Round 2  -  Second Fluffy Find:**
-
-*(Child finds another soft/fuzzy/fluffy thing  -  e.g., a soft petal, woolly caterpillar, plush toy left outside)*
-
-**AI says:** [curious] "Another one! Does this one feel the same as the first?"
+**AI says:** [excited discovery] "Ooh! You chose a soft-looking friend. What makes it look fluffy or soft?"
 
 **Child responses:**
 
-1. (Ideal) "Softer!" / "This one is fuzzier!" / "It's different!" / child compares
-2. (Unexpected) "It's pretty!" / "I like this one!" / doesn't compare
-3. (No response) Child touches the new find silently.
+1. (Ideal) "It has fuzz!" / "It looks puffy!" / "It has soft feathers!"
+2. (Unexpected) "It's green!" / "I like it!" / child names color or preference
+3. (No response) Child taps a card but says nothing.
 
 **AI follow-up:**
 
-1. [amazed] "Fuzzier! So soft comes in different ways! 1 more fluffy treasure to find!"
-2. [warm, guiding] "So pretty! Now feel both  -  is this one softer? Or fuzzier? Softness can feel different!"
-3. [wait 2s] [gentle] "Touch it and then touch your first find. Which one is fuzzier? Every soft thing feels a little different!"
+1. [delighted] "Yes, that soft clue belongs in our expedition. First fluffy friend found."
+2. [warm, scaffolding] "You like it. Now look closely: is it fuzzy, puffy, woolly, or feathery?"
+3. [wait 2s] [warm] "I see a soft clue on that card. Maybe fuzzy? You found your first fluffy friend."
 
-**Screen:** Photo slides into slot 3 with a celebration-burst animation and a shutter click; progress tracker updates to "2 of 3 found."
+**Screen:** `round_1_scene` appears. The selected card slides into the first empty collection slot. Progress updates to "1 of 3 friends chosen."
 
-**Round 3  -  Third Fluffy Find:**
+**Round 2 - Second Fluffy Friend**
 
-*(Child finds the last fluffy/soft thing  -  e.g., a fluffy seed head, soft moss, a downy feather)*
+*(Runtime keeps the first selected card visible and presents another small catalog spread.)*
 
-**AI says:** [thrilled] "The last fluffy treasure! Would you like to give this one a fun name?"
+**AI says:** [curious] "Another soft friend is hiding here. Which card has a soft clue too?"
 
 **Child responses:**
 
-1. (Ideal) "Cloud Puff!" / "Fuzzy!" / "Softie!" / child invents a name
-2. (Unexpected) "It's soft!" / "I found it!" / doesn't name it
-3. (No response) Child holds the find with a smile.
+1. (Ideal) "This one!" / "This one is fuzzier!" / child compares texture
+2. (Unexpected) "It's pretty!" / "This one is big!" / child names another feature
+3. (No response) Child points or taps silently.
 
 **AI follow-up:**
 
-1. [celebrating] "[Name]! I love that! All 3 fluffy treasures found! You did it!"
-2. [warm, scaffolding] "So soft! What would you call this fluffy friend? Maybe Puffy? Or Cloudy? What name do you like?"
-3. [wait 2s] [playful] "This fluffy friend needs a name! Something soft and fun. What about Cloud Puff? Or you pick!"
+1. [amazed] "Fuzzier! Soft can look different in different friends. Two fluffy friends are in your team."
+2. [warm, guiding] "Pretty, yes. Does it also look soft, fuzzy, puffy, woolly, or feathery?"
+3. [wait 2s] [gentle] "Let's compare it with your first card. Which one looks fuzzier?"
 
-**Screen:** Photo slides into slot 4 with a celebration-burst animation and a mission-complete fanfare; progress tracker shows "3 of 3 found!"
+**Screen:** `round_2_scene` appears. The second selected card slides into the next slot. Progress updates to "2 of 3 friends chosen."
 
-**STUCK BRANCH:** "Would you like to reach out and touch something nearby? I wonder if it feels soft or fuzzy!"
+**Round 3 - Third Fluffy Friend**
+
+*(Runtime presents the final selection spread.)*
+
+**AI says:** [thrilled] "One more fluffy friend for the expedition. Which card should join, and what should we call it?"
+
+**Child responses:**
+
+1. (Ideal) "Cloud Puff!" / "Fuzzy Moss!" / "Softie!" / child invents a name
+2. (Unexpected) "It's soft!" / "I found it!" / child does not name it
+3. (No response) Child taps a correct card and smiles.
+
+**AI follow-up:**
+
+1. [celebrating] "[Name]! I love that. All 3 fluffy friends are here."
+2. [warm, scaffolding] "So soft. What name fits this fluffy friend? Maybe Puffy, Cloudy, or Woolly?"
+3. [wait 2s] [playful] "This fluffy friend needs a tiny name. I can call it Cloud Puff unless you pick one."
+
+**Screen:** `round_3_scene` appears. The third selected card slides into the last slot with a gentle burst. Progress shows "3 of 3 friends chosen."
+
+**STUCK BRANCH:** "Try one of the cards that looks soft, fuzzy, puffy, woolly, or feathery. Which one has a fluffy clue?"
 
 #### Step 4: Celebration (Synthesis)
 
-**AI says:** [amazed, storytelling voice] "Look at all your fluffy treasures! Each one feels different  -  fuzzy, silky, puffy! Would you like to give each one a texture name?"
+**AI says:** [amazed, storytelling voice] "Look at your fluffy team. Each friend has a soft clue. Would you like to give them tiny texture names?"
 
 **Child responses:**
 
-1. (Ideal) "Cloud Puff!" / "Fuzzy Friend!" / child names the finds
-2. (Unexpected) "They're all soft!" / "I like them!" / doesn't name
+1. (Ideal) "Cloud Puff!" / "Fuzzy Friend!" / child names the cards
+2. (Unexpected) "They're all soft!" / "I like them!"
 3. (No response) Child looks at the collection quietly.
 
 **AI follow-up:**
 
-1. [delighted, narrating] "Cloud Puff, Fuzzy Friend, and [Name 3]! Three fluffy friends! What happens when they all meet?"
-2. [warm, scaffolding] "All soft! Maybe this fuzzy one is Fuzzy Friend? And this silky one is Silky Star? Would you like to pick names?"
-3. [wait 2s] [gentle, playful] "How about Cloud Puff for the puffy one? And Fuzzy Friend for the fuzzy one? Now  -  what do they do when they meet?"
+1. [delighted, narrating] "Cloud Puff, Fuzzy Friend, and [Name 3]. Three fluffy friends. What happens when they all meet?"
+2. [warm, scaffolding] "All soft. Maybe this fuzzy one is Fuzzy Friend, and this puffy one is Cloud Puff. What do they do together?"
+3. [wait 2s] [gentle, playful] "I think the fluffy friends might have a soft picnic. What do you think they do?"
 
 **Child tells a tiny story** (or AI scaffolds): "They play!" / "They have a soft party!" / "They cuddle!"
 
-**AI response to story:** [celebrating] "A fluffy party! Cloud Puff and Fuzzy Friend and [Name 3] all cuddle together. The softest story ever!"
+**AI response to story:** [celebrating] "A fluffy party! Your soft friends met because they all share a fluffy clue."
 
-**Screen:** All 4 photos displayed in a circle (dandelion in center) with soft wispy lines connecting them; character name tags beneath each find; a storybook frame with floating seed animations and a "Fluffy Friends" banner.
+**Screen:** `synthesis_scene` appears. The three selected cards and the dandelion exemplar form a small story path. `celebrate_scene` badge animates into the center after the child's story response.
 
-**AI says:** [proud, ceremonial] "You are officially a Fluffy Expedition Explorer! You found softness in so many places!"
+**AI says:** [proud, ceremonial] "You are officially a Fluffy Expedition Explorer. You found a soft connection between different friends."
 
 **Child responses:**
 
 1. (Ideal) "Yay!" / "I'm an explorer!" / "More fluffy!"
-2. (Unexpected) "Can we find rough things?" / "I like this soft one best."
+2. (Unexpected) "Can we find rough things?" / "I like this one best."
 3. (No response) Child smiles or claps while looking at the collection.
 
 **AI follow-up:**
 
-1. [celebration] "The best Fluffy Expedition Explorer! You found softness everywhere!"
-2. [warm, extending] "Rough things can be a new expedition. Today your soft treasures made a fluffy team."
-3. [wait 2s] [gentle] "What a wonderful expedition. You touched so many soft treasures."
+1. [celebration] "The best Fluffy Expedition Explorer. You found softness in your card team."
+2. [warm, extending] "Rough things can be a new expedition. Today your soft friends made a fluffy team."
+3. [wait 2s] [gentle] "What a wonderful expedition. You noticed so many soft clues."
 
-**Screen:** Badge spinning into center labeled "Fluffy Expedition Explorer" with dandelion and floating-seed motif; collection photos as small insets; "Connection" in soft pastel lettering; seed-puff confetti drifting down.
+**Screen:** Badge remains in the badge area. Selected cards stay visible as small insets. Use runtime UI text for the badge title if text is needed.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** [warm, proud] "Fluffy Expedition Explorer, you did something amazing! You found soft treasures all connected by fluffiness  -  a dandelion, and all your fluffy friends. That's Connection  -  finding how different things are linked together! Softness connects them all!"
+**AI says:** [warm, proud] "Fluffy Expedition Explorer, you did something amazing. You found different friends connected by one texture clue: fluffiness. That's Connection: noticing how different things can share something."
 
 **Child responses:**
 
@@ -192,8 +194,8 @@ Child photographs a dandelion -> AI marvels at the fluffy seeds -> child becomes
 
 **AI follow-up:**
 
-1. [warm] "Softness IS everywhere! Next time, feel for more. Bye bye, Fluffy Explorer!"
-2. [warm, clear] "Rough things can be next. Today you found the soft connection. Bye bye, Fluffy Explorer!"
-3. [wait 2s] [gentle] "You were a wonderful explorer today. Bye bye, Fluffy Explorer!"
+1. [warm] "Softness can be in many places. Bye bye, Fluffy Explorer."
+2. [warm, clear] "Rough things can be next. Today you found the soft connection. Bye bye, Fluffy Explorer."
+3. [wait 2s] [gentle] "You were a wonderful explorer today. Bye bye, Fluffy Explorer."
 
-**Screen:** Badge centered with "Fluffy Expedition Explorer" title and dandelion motif; collection photos as small insets around the badge; "Connection" in soft cloud-colored lettering; dandelion seeds float gently across the screen as a closing animation.
+**Screen:** `closing_scene` fills the round screen with the dandelion exemplar and selected fluffy cards arranged as a quiet collection. If unavailable, show selected card thumbnails and the spoken recap only.

@@ -1,0 +1,65 @@
+activity_id: fluffy_expedition_dandelion
+version: 1
+entity_compatibility: agnostic
+parameterization:
+  mode: property_target
+  decision_source: canonical_package_conversion
+  integrity_status: supported_catalog_texture_target
+  confidence: high
+  evidence:
+    - The package selects from approved catalog cards for the declared fluffy_soft_texture property.
+    - The package no longer depends on arbitrary real-world photos, tactile sensing, or automated texture judgment.
+    - The default catalog contains at least three correct soft/fluffy cards.
+  validity:
+    production_supported: true
+    requires:
+      - handoff.detected_texture_property
+      - approved collection catalog for target texture property
+    allowed_entity_classes: []
+    invalid_when:
+      - target texture property is missing
+      - target texture property has no approved catalog set
+      - fewer than three correct cards exist for the target texture property
+      - runtime claims automated real-world softness, touch, or camera judgment
+  source_fields:
+    target_texture_property:
+      - handoff.detected_texture_property
+      - assignment.property_target
+    texture_label:
+      - catalog.texture_label
+  derived_runtime_fields:
+    target_property: handoff.detected_texture_property
+    texture_label: child-facing label for target texture property
+    collection_catalog_id: texture_catalog_{target_property}
+    collection_goal_count: 3
+    accepted_evidence_prompt: name the fuzz, puff, wool, feather, or soft-looking texture clue visible on the selected card
+  authored_constants:
+    approved_catalogs:
+      - fluffy_soft_texture
+    collection_loop: three catalog-card choices plus naming, synthesis, and story
+    reward_badge: fluffy_expedition_explorer
+  fallback_behavior: Use the default fluffy_soft_texture catalog when explicitly selected; otherwise do not start this package without an approved target texture catalog.
+  stale_text_risk: low; child-facing text uses catalog-card choices and avoids real-world verification claims.
+  consumer_notes:
+    wonderlens_ai: Derive texture_label and collection_catalog_id before planning prompts; do not claim touch, photo, or camera verification.
+    fullstack_demo: Use Cat5 collection UI with selectable package-local item assets.
+  reviewer_action: accept_as_supported_property_target_catalog
+demo_support:
+  status: supported
+  ui_template: cat5_collection
+  support_level: full_catalog_collection
+  entity_bindings:
+    - entity_id: fluffy_soft_texture_catalog
+      display_label: Fluffy texture catalog
+      source_entity_exemplar: dandelion
+      default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Use approved catalog cards for fluffy_soft_texture; do not expose arbitrary-photo or touch judgment.
+    wonderlens_ai: Treat selected cards and child-stated texture evidence as the runtime proof.

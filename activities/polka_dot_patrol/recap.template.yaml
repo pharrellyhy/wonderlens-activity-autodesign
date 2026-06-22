@@ -1,36 +1,37 @@
 # Child recap payload shape for this game.
 # At runtime, {placeholders} are filled with session-specific values.
 recap_payload:
-  entity: "{runtime_entity}"            # e.g. ladybug
+  activity_id: polka_dot_patrol
+  entity: "{target_pattern_property}"            # e.g. polka_dots or stripes
   tier: "{runtime_tier}"                # T0 | T1 | T2
   age_years: "{runtime_age}"
 
   what_we_noticed: pattern
-  what_we_did:     collected
+  what_we_did:     collect
   entity_role:     exemplar
 
   focal_attribute:
-    token: "polka_dots"
-    child_label: "polka dots"
+    token: "target_pattern_property"
+    child_label: "{pattern_label}"
     badge_emoji_none: true
 
-  highlight_moment: "You led THREE spotted treasures on patrol!"
+  highlight_moment: "You led THREE matching pattern cards on patrol!"
 
-  finds:
-    - {label: "{find_1}", photo: "{photo_1}"}
-    - {label: "{find_2}", photo: "{photo_2}"}
-    - {label: "{find_3}", photo: "{photo_3}"}
+  selected_cards:
+    - {label: "{card_1}", evidence: "{evidence_1}"}
+    - {label: "{card_2}", evidence: "{evidence_2}"}
+    - {label: "{card_3}", evidence: "{evidence_3}"}
 
   difficulty_level: 2
-  next_step_hint:  "Next time, let's compare dots to stripes or zigzags"
+  next_step_hint:  "Next time, let's compare another pattern set such as dots, stripes, or zigzags"
 
   caregiver_observed: co-explorer
-  reward_badge:       polka_dot_patrol
+  reward_badge:       pattern_patrol
 
 rendered:
-  title:  "You were a Polka-Dot Patrol Officer today!"
-  line_1: "We noticed polka dots hiding everywhere."
-  line_2: "You collected and named 3 spotted treasures."
-  line_3: "Your patrol followed one dotted pattern into a tiny parade."
-  badge:  "Polka-Dot Patrol"
-  next:   "Next time, let's compare dots to stripes or zigzags."
+  title:  "You were a Pattern Patrol Officer today!"
+  line_1: "We noticed {pattern_label} across different cards."
+  line_2: "You collected and explained 3 matching pattern cards."
+  line_3: "Your patrol followed one pattern clue into a tiny parade."
+  badge:  "Pattern Patrol"
+  next:   "Next time, let's compare another pattern set such as dots, stripes, or zigzags."

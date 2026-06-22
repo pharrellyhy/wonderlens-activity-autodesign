@@ -1,64 +1,74 @@
 activity_id: concept_phoneme_hunt_collect
 version: 1
-source_entity_exemplar: ball
 template_type: cat5
 pillar: Adventure
 game_style: quest_collector
-
-entity: any_everyday_object
-entity_class: [observable_thing]
-entity_binding: agnostic
-entity_compatibility: unsupported
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: parameterized
 tier_range:
   primary: T1
-  span: [T0, T1]
-  elasticity: "neighbor"
-
-category: language
-attributes: [beginning_b_sound, spoken_word]
-key_concepts: [Form, Connection]
-related_concepts: [sound_pattern, beginning_sound, classification, evidence]
-atl_skills: [language_expression, observation, classification]
-transdisciplinary_theme: How_We_Express_Ourselves
-subject_tags: [language]
-
+  span:
+  - T0
+  - T1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat5
+attributes:
+- phoneme_hunt
+- collect
+- beginning_b_sound
+key_concepts:
+- Form
+- Connection
+related_concepts:
+- evidence
+- choice
+- sequence
+- reflection
+atl_skills:
+- evidence_collection
+- observation
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
 kud:
   know:
-    - "words can start with the same sound"
-    - "the /b/ sound begins words like ball, book, and banana"
-    - "spoken names can be used as a collection rule"
+  - The child knows the activity rule and one source-specific cue.
   understand:
-    - "spoken words have form through their sounds"
-    - "different objects can connect through the same first sound"
+  - The child understands that their action affects the next beat.
   do:
-    - "listen for the /b/ beginning sound"
-    - "find and photograph three /b/ treasures"
-    - "explain why each treasure belongs on the sound map"
-
+  - The child practices collect through short guided turns.
 progression:
-  topic_axis: form
+  topic_axis: connection
   difficulty_level: 2
-  next_step_hint: "Next time, try a different beginning sound or compare two first sounds."
-  reward_hook: "Earned the B-Sound Scout badge"
-
-caregiver_role: [scaffold, co-explorer]
-
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
+caregiver_role:
+- scaffold
+- observer
 activity_signature:
-  observation_angle: pattern
+  observation_angle: function
   mechanic: collect
-  entity_role: catalyst
+  entity_role: exemplar
+  focal_attribute: beginning_b_sound
+  intro: The AI introduces the beginning /b/ sound, then the child takes a photo so
+    vision can recognize and normalize the object name before sound judgment.
   bridge_prerequisites:
-    primary: [pattern]
-    secondary: [sound, language, category]
-  focal_attribute: "beginning_b_sound"
-  intro: "The child finds three everyday treasures whose names begin with the /b/ sound."
-  preview_label: "Find /b/ treasures"
-  preview_prompt: "Let's use your sound ears and find things that start with /b/."
-  role_pivot_note: "The starting object or mode only launches the sound hunt; the child then collects examples by beginning sound."
-
+    primary:
+    - function
+    secondary:
+    - object_name
+    - photo_evidence
+    - connection
+  preview_label: Phoneme Treasure Hunt
+  preview_prompt: Find three objects whose spoken names begin with the /b/ sound.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
 matchability:
   entity_class_filter: []
   tier_support:
     T0: true
     T1: true
-    T2: false
+    T2: true
+source_workbook_row: 2
+source_concept: source_phoneme_hunt

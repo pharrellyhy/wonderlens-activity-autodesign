@@ -1,0 +1,187 @@
+activity_id: concept_travel_planner_predict
+entity_id: travel_planner
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Travel Planner Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Travel Planner: Travel Planner
+    Celebration badge. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 328389
+    sha256: 2045cb881718c8fafc513d658a97ed59811d88a6f4c29f62e568a0fe634701be
+  fallback_behavior: Continue Travel Planner with spoken guidance and do not claim
+    that Travel Planner Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Travel Planner Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Travel Planner: Travel Planner
+    Closing scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 357751
+    sha256: e0ad760338ea130476298378a301da5b8859962a22a3dd954c33dc366d409e54
+  fallback_behavior: Continue Travel Planner with spoken guidance and do not claim
+    that Travel Planner Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Travel Planner Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Travel Planner: Travel Planner
+    Activity icon. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 211260
+    sha256: c6350604b61eaf37936ecabb22d5c62455fda68e71b6159a80eba470c93b05c7
+  fallback_behavior: Continue Travel Planner with spoken guidance and do not claim
+    that Travel Planner Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Travel Planner Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Travel Planner: Travel Planner
+    Intro scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 364472
+    sha256: baf427d975f847ccd05ab2c7948e6ba4f1e3736507ac5eba31339b492d0af253
+  fallback_behavior: Continue Travel Planner with spoken guidance and do not claim
+    that Travel Planner Intro scene is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Travel Planner Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Travel Planner: Travel Planner
+    Round 1 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 293545
+    sha256: 1822b8894e61d79aeffb8b149621b27c76a48585ba21ab3c4d04356a8b086c0e
+  fallback_behavior: Continue Travel Planner with spoken guidance and do not claim
+    that Travel Planner Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Travel Planner Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Travel Planner: Travel Planner
+    Round 2 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 278823
+    sha256: 261f9d1434a0bac784e1906313e4c18df1ec163f895f7bd21fca7e527ce73714
+  fallback_behavior: Continue Travel Planner with spoken guidance and do not claim
+    that Travel Planner Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Travel Planner Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Travel Planner: Travel Planner
+    Round 3 scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 290317
+    sha256: ee63ada22b075cb3b08643ea63c4e517841b908c963024f15d99c828d37fa4c7
+  fallback_behavior: Continue Travel Planner with spoken guidance and do not claim
+    that Travel Planner Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Travel Planner Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Travel Planner: Travel Planner
+    Rules scene. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 238347
+    sha256: 66c103b17ea5a0130ac3202f6f6a21048e674f86b2b63be01059b4c8c149e78e
+  fallback_behavior: Continue Travel Planner with spoken guidance and do not claim
+    that Travel Planner Rules scene is visible.

@@ -8,6 +8,7 @@ game_style: quest_collector
 entity: "{parameterized_by_matched_property}"
 entity_class: []
 entity_binding: parameterized
+entity_compatibility: agnostic
 tier_range:
   primary: T0
   span: [T0, T1]
@@ -25,14 +26,14 @@ kud:
   know:
     - "dandelion seeds can look fluffy and light"
     - "softness can feel fuzzy, silky, puffy, or woolly"
-    - "touch and description help compare textures"
+    - "visible texture clues and spoken descriptions help compare soft-looking things"
   understand:
     - "Connection helps us notice how different things share one texture clue"
     - "Form helps us describe what each soft thing is like"
   do:
-    - "find three nearby soft or fuzzy things"
-    - "describe how each texture feels"
-    - "give each find a character name and connect them in a tiny story"
+    - "choose three approved soft or fuzzy catalog cards"
+    - "describe the visible texture clue on each card"
+    - "give each selected card a character name and connect the friends in a tiny story"
 
 progression:
   topic_axis: connection
@@ -50,10 +51,10 @@ activity_signature:
     primary: [texture]
     secondary: [material, shape]
   focal_attribute: "fluffy_soft_texture"
-  intro: "The child uses a dandelion as the first fluffy example, then finds three more soft or fuzzy things and names them as characters."
+  intro: "The child uses a dandelion as the first fluffy example, then chooses three soft or fuzzy catalog cards and names them as characters."
   preview_label: "Find three fluffy friends"
-  preview_prompt: "This dandelion is fluffy. Let's find more soft or fuzzy things nearby."
-  role_pivot_note: "The dandelion starts as the photographed subject, then becomes the first example of the broader fluffy texture mission."
+  preview_prompt: "This dandelion is fluffy. Let's choose more soft or fuzzy friends from the catalog."
+  role_pivot_note: "The dandelion starts as the authored exemplar, then becomes the first example of the broader fluffy texture catalog mission."
 
 matchability:
   entity_class_filter: []

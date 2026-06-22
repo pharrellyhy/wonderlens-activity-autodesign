@@ -1,25 +1,28 @@
+activity_id: concept_constellation_star_count_enumerate
+dashboard_template:
+  parent_headline: 'Constellation Star Count: enumerate'
+  learning_focus:
+  - Form
+  - Form
+  - counting
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest
 dashboard_fragment:
   session:
+    activity_id: concept_constellation_star_count_enumerate
     axis: form
     angle: quantity
     mechanic: enumerate
-    entity_role: reference
-    focal_attribute: selected_star_count
-    entry_rung: '{runtime_entry_rung}'
-    exit_rung: '{runtime_exit_rung}'
-    outcome: '{runtime_outcome}'
+    entity_role: catalyst
+    focal_attribute: constellation_star_count
+    entry_rung: "{runtime_entry_rung}"
+    exit_rung: "{runtime_exit_rung}"
+    outcome: "{runtime_outcome}"
   contributes_to:
     curiosity_radial:
       axis: form
       angle: quantity
     exploration_matrix:
-      cell: enumerate by quantity
-    key_concepts_exposure:
-      Form:
-        angle: quantity
-      Connection:
-        angle: quantity
-    atl_skills_trail:
-    - counting
-    - observation
-    - focus
+      cell: "enumerate x quantity"

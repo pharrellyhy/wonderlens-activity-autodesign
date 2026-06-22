@@ -1,26 +1,28 @@
+activity_id: concept_partial_reveal_deduce
+dashboard_template:
+  parent_headline: 'Partial Reveal Guess: deduce'
+  learning_focus:
+  - Form
+  - Causation
+  - logical_reasoning
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest
 dashboard_fragment:
   session:
-    axis: form
-    angle: shape
+    activity_id: concept_partial_reveal_deduce
+    axis: causation
+    angle: function
     mechanic: deduce
-    entity_role: reference
-    focal_attribute: "partial_visual_clue"
+    entity_role: catalyst
+    focal_attribute: partial_reveal_guess
     entry_rung: "{runtime_entry_rung}"
     exit_rung: "{runtime_exit_rung}"
     outcome: "{runtime_outcome}"
-
   contributes_to:
     curiosity_radial:
-      axis: form
-      angle: shape
+      axis: causation
+      angle: function
     exploration_matrix:
-      cell: "deduce by partial visual clue"
-    key_concepts_exposure:
-      Form:
-        angle: shape
-      Connection:
-        angle: shape
-    atl_skills_trail:
-      - observation
-      - logical_reasoning
-      - language_expression
+      cell: "deduce x function"

@@ -222,7 +222,7 @@ python3 scripts/validate_demo_package_contract.py tests/fixtures/demo_package_co
 
 ## Current V1 coverage
 
-This repository currently contains 32 canonical/promoted five-file activity package directories under `activities/`. Fresh run-local packages live under `runs/<run_id>/activity_packages/`. Legacy single-file outputs remain under `designs/` for historical reference and migration work.
+Canonical/promoted activity packages live under `activities/` as five-file package directories. Demo-ready canonical packages add package-local `demo_support.yaml` and `asset_manifest.yaml` files. Fresh run-local packages live under `runs/<run_id>/activity_packages/`. Legacy single-file outputs remain under `designs/` for historical reference and migration work.
 
 ## Cross-repo notes
 

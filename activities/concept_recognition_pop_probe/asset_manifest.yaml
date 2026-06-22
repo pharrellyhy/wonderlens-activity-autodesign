@@ -1,0 +1,295 @@
+activity_id: concept_recognition_pop_probe
+entity_id: recognition_pop_challenge
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Recognition Pop Challenge Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Recognition Pop Challenge Celebration badge. Use the WonderLens mint, porcelain,
+    pale sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 264014
+    sha256: 1cdb6d35247620f3b00e0ea52ea9b08ac80fef20b313ac0cb17ba2823339fa0b
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Recognition Pop Challenge Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Recognition Pop Challenge Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Recognition Pop Challenge Closing scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 274368
+    sha256: 7ffd4677e8c329783df1d946e5f06d0e4333198eaf3e5fd9c83bbd07bc81439c
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Recognition Pop Challenge Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Recognition Pop Challenge Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Recognition Pop Challenge Activity icon. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 224223
+    sha256: 2c5a7ff21b61261172a11eb2e29520163db9b5ad857909b8169f556f785be4c8
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Recognition Pop Challenge Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Recognition Pop Challenge Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Recognition Pop Challenge Intro scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 305367
+    sha256: b64941b8ae8404f140f5482fd2da201d7daafd05ce0276d6e7cbd076e18eedb9
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Recognition Pop Challenge Intro scene is visible.
+- id: apple
+  role: ui_overlay
+  label: Apple
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Apple. Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette;
+    center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/apple.png
+    mime_type: image/png
+    byte_count: 216256
+    sha256: a9720304bd04baf607223df6bd79002e58bdbafbd1d3e435e7419db95d39439c
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Apple is visible.
+- id: basketball
+  role: ui_overlay
+  label: Basketball
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Basketball. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/basketball.png
+    mime_type: image/png
+    byte_count: 266660
+    sha256: 82171b772f64538fa31ea6eff2fe63f8ffcfe8f7066cdcd705cba53e0bc5666b
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Basketball is visible.
+- id: car
+  role: ui_overlay
+  label: Car
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Car. Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette;
+    center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/car.png
+    mime_type: image/png
+    byte_count: 195385
+    sha256: 1f84b6ddb3fc881e336e1178f3cb4c5834a80107241fd74a4b27fab586d7ac55
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Car is visible.
+- id: cherries
+  role: ui_overlay
+  label: Cherries
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Cherries. Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette;
+    center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/cherries.png
+    mime_type: image/png
+    byte_count: 174839
+    sha256: db36b3889ef50c1dec289e8525fdfc1fdfe81f83c620c41fe024520c004cba3c
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Cherries is visible.
+- id: strawberry
+  role: ui_overlay
+  label: Strawberry
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Strawberry. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/strawberry.png
+    mime_type: image/png
+    byte_count: 189979
+    sha256: de195257198a348c3fa561010db3f61b91b85e3f7d5e58aa56fedeb809f9f7ed
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Strawberry is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Recognition Pop Challenge Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Recognition Pop Challenge Round 1 scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 297476
+    sha256: 3180fc36c071bb0d1adf620a5b0aa0107684cd2c290f93a3b2b3e9d25e38218a
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Recognition Pop Challenge Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Recognition Pop Challenge Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Recognition Pop Challenge Round 2 scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 265839
+    sha256: 05ef481258facc102529cedee7018271285f5c66c89fec39222074d77c28242d
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Recognition Pop Challenge Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Recognition Pop Challenge Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Recognition Pop Challenge Round 3 scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 248592
+    sha256: 2631f78b6776c040dc61c0ca02917a04a39ebe102a175d05c4dfe5316f1dc2d5
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Recognition Pop Challenge Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Recognition Pop Challenge Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Recognition Pop Challenge:
+    Recognition Pop Challenge Rules scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 275216
+    sha256: 045f2d59816df8ff721f7f1e3939e165bbc34bafe554c2ad1f7cc6eaaf2dd29c
+  fallback_behavior: Continue Recognition Pop Challenge with spoken guidance and do
+    not claim that Recognition Pop Challenge Rules scene is visible.

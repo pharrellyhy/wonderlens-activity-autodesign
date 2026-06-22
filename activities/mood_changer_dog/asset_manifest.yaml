@@ -1,0 +1,129 @@
+activity_id: mood_changer_dog
+entity_id: stuffed_dog
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: "1:1"
+    crop_shape: circle
+    master_size: 512
+    safe_area: central 72 percent circle
+assets:
+  - id: activity_icon
+    role: activity_preview
+    label: Mood Changer Dog activity icon
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Flat Nordic children's illustration of a soft stuffed dog with floppy ears and three small feeling symbols around it, clean white background, restrained boho pastels, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/activity_icon__round_512.png
+    fallback_behavior: Show the Mood Changer title and keep the photographed dog as the visual anchor.
+  - id: intro_scene
+    role: story_scene
+    label: Stuffed dog introduction scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic nursery scene of a friendly stuffed dog sitting on a soft rug while a child notices its floppy ears, warm quiet palette, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/intro_scene__round_512.png
+    fallback_behavior: Keep the photographed dog centered and introduce the emotion translator role by voice.
+  - id: rules_scene
+    role: story_scene
+    label: Emotion translator rules scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a child gently pretending to speak for a stuffed dog with three simple feeling bubbles for cozy, surprised, and excited, no UI, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/rules_scene__round_512.png
+    fallback_behavior: Explain the three feeling scenes by voice without claiming rule art is visible.
+  - id: round_1_scene
+    role: story_scene
+    label: Warm sunshine feeling scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a soft stuffed dog resting happily in a warm sun patch on a rug, cozy calm emotion, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_1_scene__round_512.png
+    fallback_behavior: Describe the sunshine scene by voice and keep the dog photo visible.
+  - id: round_2_scene
+    role: story_scene
+    label: Harmless bump surprised scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a stuffed dog gently tipped beside a soft pillow with a surprised but safe expression, no injury, no fear, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_2_scene__round_512.png
+    fallback_behavior: Describe the surprised scene by voice and keep the dog photo visible.
+  - id: round_3_scene
+    role: story_scene
+    label: Favorite treat excited scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic scene of a stuffed dog looking excited beside a tiny treat bowl and soft celebration shapes, warm playful mood, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_3_scene__round_512.png
+    fallback_behavior: Describe the treat scene by voice and keep the dog photo visible.
+  - id: celebrate_scene
+    role: badge
+    label: Emotion Translator celebration badge
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Flat Nordic badge-style illustration of a stuffed dog face with three small feeling bubbles for cozy, surprise, and excitement, centered on white, no readable text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/celebrate_scene__round_512.png
+    fallback_behavior: Use a generic celebration badge and recap the feeling voices by voice.
+  - id: closing_scene
+    role: story_scene
+    label: Feeling voices closing scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: "Full-bleed flat Nordic closing scene of a stuffed dog surrounded by three gentle memory bubbles for sunshine, surprise, and treat excitement, soft white nursery setting, no text, no numbers, no watermark."
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/closing_scene__round_512.png
+    fallback_behavior: Close with spoken recap and the photographed dog visual only.
