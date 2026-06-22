@@ -1,0 +1,255 @@
+activity_id: concept_animal_sound_motion_voice
+entity_id: animal_sound_imitation
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Animal Sound Imitation Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Animal
+    Sound Imitation Celebration badge. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 244837
+    sha256: f5b59ba5ae92a914fcbcfa3517a2cdeaa32fae4efb9b22f632c73c6f7af88fb6
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Animal Sound Imitation Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Animal Sound Imitation Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Animal
+    Sound Imitation Closing scene. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 195860
+    sha256: 7e1962262df3a8fb0569d9352a1ca212b438e9aacc08c624ecd9a8fdc8600392
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Animal Sound Imitation Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Animal Sound Imitation Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Animal
+    Sound Imitation Activity icon. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 248410
+    sha256: 02c6153aa873b9753614b2c1c2330bea3c7bb03fb9c88b4c969915389a5ed712
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Animal Sound Imitation Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Animal Sound Imitation Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Animal
+    Sound Imitation Intro scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 279903
+    sha256: 1017cffd3c37b0eee2d42915b93680cc42eb31d10c0fcf4329e226c3bfb6464f
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Animal Sound Imitation Intro scene is visible.
+- id: cat
+  role: ui_overlay
+  label: Cat
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Cat.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/cat.png
+    mime_type: image/png
+    byte_count: 239810
+    sha256: 26f982e6f09ac12d0a56497148d827de5f4445c1b2782e76aeb8d2f07a49c870
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Cat is visible.
+- id: puppy
+  role: ui_overlay
+  label: Puppy
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Puppy.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/puppy.png
+    mime_type: image/png
+    byte_count: 218050
+    sha256: ac6e133e894be916bad9453052b042b83156c7893ac6a14d6d53aad0e9211a47
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Puppy is visible.
+- id: rabbit
+  role: ui_overlay
+  label: Rabbit
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Rabbit.
+    Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette; center
+    the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/rabbit.png
+    mime_type: image/png
+    byte_count: 240746
+    sha256: a80858f13ecfa357729f42c11c27901b31d0fa2351bf168f22fd651f6c79aafb
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Rabbit is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Animal Sound Imitation Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Animal
+    Sound Imitation Round 1 scene. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 230427
+    sha256: a3013027688e48ce64afcd5c62b5e96456fe8835138392b2c1539bf41b4bc58c
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Animal Sound Imitation Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Animal Sound Imitation Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Animal
+    Sound Imitation Round 2 scene. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 217559
+    sha256: 41384af1e5ccd0b6f740a2b8649b8889b38c42887b35419b03e9f771dfecad99
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Animal Sound Imitation Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Animal Sound Imitation Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Animal
+    Sound Imitation Round 3 scene. Use the WonderLens mint, porcelain, pale sage,
+    and cool gray-green palette; center the subject for a small round device screen;
+    no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 233869
+    sha256: 5ca25876139df6a0666ce6124a1f47bb540f66a75e47288cf70f10a7ef589a74
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Animal Sound Imitation Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Animal Sound Imitation Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Animal Sound Imitation: Animal
+    Sound Imitation Rules scene. Use the WonderLens mint, porcelain, pale sage, and
+    cool gray-green palette; center the subject for a small round device screen; no
+    text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 207517
+    sha256: 69c64732480092cbaa62fa5027e5826f27aaffc304ec67284efeb5747a5d5b91
+  fallback_behavior: Continue Animal Sound Imitation with spoken guidance and do not
+    claim that Animal Sound Imitation Rules scene is visible.

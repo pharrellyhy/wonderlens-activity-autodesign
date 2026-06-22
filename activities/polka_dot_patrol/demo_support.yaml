@@ -1,0 +1,66 @@
+activity_id: polka_dot_patrol
+version: 1
+entity_compatibility: agnostic
+parameterization:
+  mode: property_target
+  decision_source: canonical_package_conversion
+  integrity_status: supported_catalog_property_target
+  confidence: high
+  evidence:
+    - The package selects from approved catalog cards for a declared pattern property.
+    - The package no longer claims arbitrary real-camera pattern verification.
+    - Initial supported catalog sets are polka_dots and stripes, each with at least three correct cards.
+  validity:
+    production_supported: true
+    requires:
+      - handoff.detected_pattern_property
+      - approved collection catalog for target property
+    allowed_entity_classes: []
+    invalid_when:
+      - target pattern property is missing
+      - target pattern property has no approved catalog set
+      - fewer than three correct cards exist for the target property
+      - runtime claims automated real-camera pattern judgment
+  source_fields:
+    target_pattern_property:
+      - handoff.detected_pattern_property
+      - assignment.property_target
+    pattern_label:
+      - catalog.pattern_label
+  derived_runtime_fields:
+    target_property: handoff.detected_pattern_property
+    pattern_label: child-facing label for target property
+    collection_catalog_id: pattern_catalog_{target_property}
+    collection_goal_count: 3
+    accepted_evidence_prompt: name the dots, spots, lines, stripes, spacing, size, or direction visible on the selected card
+  authored_constants:
+    approved_catalogs:
+      - polka_dots
+      - stripes
+    collection_loop: three catalog-card choices plus synthesis and patrol story
+    reward_badge: pattern_patrol
+  fallback_behavior: Do not start this package when no approved target pattern catalog exists; offer a fixed polka-dot catalog only when explicitly selected as the target property.
+  stale_text_risk: low; child-facing text uses {pattern_label} and catalog-driven card labels.
+  consumer_notes:
+    wonderlens_ai: Derive pattern_label and collection_catalog_id before planning prompts; do not claim camera verification.
+    fullstack_demo: Use Cat5 collection UI with selectable package-local item assets.
+  reviewer_action: accept_as_supported_property_target_catalog
+demo_support:
+  status: supported
+  ui_template: cat5_collection
+  support_level: full_catalog_collection
+  entity_bindings:
+    - entity_id: pattern_catalog
+      display_label: Pattern catalog
+      source_entity_exemplar: polka_dots
+      default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Use approved catalog cards for polka_dots or stripes; do not expose arbitrary-photo judgment.
+    wonderlens_ai: Treat selected cards and child-stated evidence as the runtime proof.

@@ -530,10 +530,10 @@ See `docs/game_styles.md` for definitions, migration notes, and coverage.
 
 ## Current Coverage
 
-- Canonical/promoted activity packages: 32 five-required-file directories in `activities/`.
+- Canonical/promoted activity packages: five-file directories under `activities/`.
 - Fresh run-local activity packages: stored under `runs/<run_id>/activity_packages/`.
 - Legacy/reference designs: existing Cat1 and Cat5 prod/spec files under `designs/`.
-- Backend consumers may support both during migration, but fresh `/goal` generation should use run-local `activity_packages/` and promote selected packages to `activities/` only when explicitly requested. Demo-ready consumers should use `demo_support.yaml` and `asset_manifest.yaml` instead of inferring playability or visuals from prose.
+- Backend consumers may support both during migration, but fresh `/goal` generation should use run-local `activity_packages/` and promote selected packages to `activities/` only when explicitly requested. Demo-ready canonical packages should include package-local `demo_support.yaml` and `asset_manifest.yaml`; consumers should use those files instead of inferring playability or visuals from prose.
 
 ## Validation
 

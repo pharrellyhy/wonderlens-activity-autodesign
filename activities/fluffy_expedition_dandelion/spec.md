@@ -1,15 +1,15 @@
 # Fluffy Expedition Dandelion - Authoring Spec
 
-> Migrated from `wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md` into the current five-file activity package format.
+> Migrated from `wonderlens-activity-fullstack-demo/backend/games/fluffy_expedition_dandelion.md` into the current activity package format.
 
 ## Premise
 
-The dandelion becomes the first fluffy friend in a texture quest. The child searches for three more soft, fuzzy, or fluffy things, describes each texture, gives each find a character name, and tells a tiny story about the fluffy friends meeting.
+The dandelion becomes the first fluffy friend in a texture quest. In the demo-ready runtime, the child chooses three approved illustrated catalog cards that show soft, fuzzy, or fluffy textures, says the texture evidence out loud, gives each find a character name, and tells a tiny story about the fluffy friends meeting.
 
 ## Target
 
 - **Template type:** cat5
-- **Activity category:** Collection/Tracking Exploration (Out-of-Device)
+- **Activity category:** Catalog Collection Exploration
 - **Primary tier:** T0
 - **Experience pillar:** Adventure
 - **Game style:** `quest_collector`
@@ -19,35 +19,54 @@ The dandelion becomes the first fluffy friend in a texture quest. The child sear
 
 ## Pedagogical Rationale
 
-The original demo used naming_story. The latest package maps that lineage to Adventure / quest_collector: the criterion creates the mission, each find harvests texture details, and the final synthesis turns the collection into a shared story.
+The original demo used naming_story. This conversion keeps the Adventure / quest_collector lineage, but changes the runtime contract from open-world tactile collection to supported catalog collection. The child still practices texture language, comparison, naming, and Connection, while the demo stays honest: it displays approved soft-texture cards and relies on the child's spoken evidence instead of camera intake, tactile sensing, or automated visual judgment.
 
 ## Selection Trigger
 
-Use when the photographed entity visibly suggests fluffiness, softness, fuzziness, seeds, petals, fur, moss, wool, or another safe tactile texture clue.
+Use when the handoff or assignment targets `fluffy_soft_texture`, or when the authored dandelion exemplar is explicitly selected. Do not start this package for arbitrary texture properties unless an approved catalog with at least three correct cards exists.
 
-## Adaptation Rationale
+## Demo Conversion Notes
 
-The source demo remains the behavioral reference for tone, scenario order, role title, and reward language. This migration updates the package to the latest WonderLens contract: current pillar/style vocabulary, current `activity_signature` enums, machine-readable tag metadata, child recap payload, parent dashboard fragment, explicit asset tracking, and a single authoring scorecard in `spec.md`.
+This package is now a supported Cat5 catalog collection. The dandelion seed puff is the first exemplar, and the runtime catalog supplies additional soft-looking items such as fuzzy moss, woolly yarn, and a soft feather. The child chooses cards, explains the visible texture clue, and names each fluffy friend.
 
+The package must not claim to verify real-world touch, arbitrary camera photos, or whether a child actually found a soft object nearby. If production later supports real camera/tactile verification, that should be added as a separate path with its own capability record.
 
 ## Asset Brief
 
 | asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_en/source | display_behavior | fallback_behavior | safety_constraints |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `fluffy_expedition_icon_set_01` | icon | optional | pre_generated | prod.step_2; prod.step_3.round_1-3; prod.step_4 | collection_slot_icon_area | Provide small soft-texture icons for empty slots, hints, and the final fluffy-friend story path. | Create a small child-friendly icon set for a fluffy texture quest: dandelion seed puff, fuzzy moss, soft petal, woolly puff, and cloud placeholder. Use simple flat shapes, light background, no text, no brands, no realistic insects close-up. | Use icons as placeholders or hint markers only; accepted finds are represented by child photos. | If icons are unavailable, use generic rounded empty slots and text labels while preserving the child-photo collection. | No unsafe touching prompts, no sharp objects, no allergen claims, no brands, and no dense text. |
+| `activity_icon` | icon | required | pre_generated | prod.step_2 | activity_preview | Show the expedition identity with a dandelion/fluffy texture motif. | See `asset_manifest.yaml`. | Display as the package icon and mission badge seed. | Use neutral Adventure badge treatment and voice-only title. | No text, letters, numbers, brands, watermark, insects close-up, or unsafe touching cues. |
+| `intro_scene` | scene_background | required | pre_generated | prod.step_1 | round_device_screen | Establish the dandelion seed puff as the first fluffy exemplar. | See `asset_manifest.yaml`. | Display behind the opening wonder prompt. | Use voice-only intro with neutral background. | No readable text, no realistic allergens or medical claims. |
+| `rules_scene` | scene_background | required | pre_generated | prod.step_2 | round_device_screen | Explain that the child will choose soft-looking catalog cards. | See `asset_manifest.yaml`. | Display during rule introduction. | Use simple card grid UI without decorative scene art. | No baked app chrome or text inside the art. |
+| `round_1_scene` | scene_background | required | pre_generated | prod.step_3.round_1 | round_device_screen | Support the first soft-texture card choice. | See `asset_manifest.yaml`. | Display behind or beside the card spread. | Keep cards visible and guide by voice. | No unsafe touch instruction, no unsupported verification claim. |
+| `round_2_scene` | scene_background | required | pre_generated | prod.step_3.round_2 | round_device_screen | Support texture comparison between selected cards. | See `asset_manifest.yaml`. | Display during second selection. | Keep selected card thumbnails visible and guide by voice. | No camera/photo claim. |
+| `round_3_scene` | scene_background | required | pre_generated | prod.step_3.round_3 | round_device_screen | Support final fluffy friend naming. | See `asset_manifest.yaml`. | Display during third selection. | Use neutral completion screen and voice. | No unsupported tactile sensing. |
+| `synthesis_scene` | scene_background | required | pre_generated | prod.step_4 | round_device_screen | Turn selected cards into a tiny fluffy-friend story. | See `asset_manifest.yaml`. | Display after all three catalog choices. | Use selected-card thumbnails and spoken synthesis. | No text baked into the art. |
+| `celebrate_scene` | icon | required | pre_generated | prod.step_4 | badge_area | Award the Fluffy Expedition Explorer badge. | See `asset_manifest.yaml`. | Display as a badge after synthesis. | Use generic celebration treatment. | No readable text or logos. |
+| `closing_scene` | scene_background | required | pre_generated | prod.step_5 | round_device_screen | Recap Connection through shared fluffy texture. | See `asset_manifest.yaml`. | Display during closing recap. | Close with selected-card thumbnails only. | No text baked into the art. |
+| `fluffy_dandelion_puff`, `fuzzy_moss_patch`, `woolly_yarn_ball`, `soft_feather` | card_set | required | pre_generated | prod.step_3 | catalog_grid | Provide correct soft/fluffy catalog cards. | See `asset_manifest.yaml`. | Present as selectable card assets for the collection loop. | Do not start the catalog if fewer than three correct cards are available. | Gentle, clean item cards; no unsafe touching cues or realistic insect close-up. |
+| `smooth_pebble`, `plain_wood_block` | card_set | optional | pre_generated | prod.step_3 | catalog_grid | Provide non-target distractors for comparison. | See `asset_manifest.yaml`. | Present only when the UI wants simple contrast cards. | Hide unavailable distractors. | Do not imply rough or hard items are bad or unsafe. |
 
 ## Asset Usage Timeline
 
 | asset_id | timing | load/generate moment | first display | visible range | location | interaction/use | persistence/hide behavior | fallback |
 |---|---|---|---|---|---|---|---|---|
-| `fluffy_expedition_icon_set_01` | pre_generated | Load before Step 2 if available; otherwise activate fallback UI immediately. | prod.step_2 | prod.step_2; prod.step_3.round_1-3; prod.step_4 | collection_slot_icon_area | Use icons as placeholders or hint markers only; accepted finds are represented by child photos. | Hide or replace the support scene/icon when the next round card or collection slot appears; keep child photos and progress state stable. | If icons are unavailable, use generic rounded empty slots and text labels while preserving the child-photo collection. |
-
+| `activity_icon` | pre_generated | Load before package preview. | prod.step_2 | prod.step_2; prod.step_4 | activity_preview; badge_area | Identifies the mission and badge. | Hide when full scene or selected cards take focus. | Neutral Adventure badge. |
+| `intro_scene` | pre_generated | Load before Step 1. | prod.step_1 | prod.step_1 | round_device_screen | Establishes dandelion fluff. | Replace with rules scene in Step 2. | Voice-only intro. |
+| `rules_scene` | pre_generated | Load before Step 2. | prod.step_2 | prod.step_2 | round_device_screen | Introduces card collection rule. | Replace with round scene and catalog grid. | Plain card grid. |
+| `round_1_scene` | pre_generated | Load before Step 3. | prod.step_3.round_1 | prod.step_3.round_1 | round_device_screen | Frames first card choice. | Keep selected card in slot after round. | Voice-guided card choice. |
+| `round_2_scene` | pre_generated | Load before Step 3 round 2. | prod.step_3.round_2 | prod.step_3.round_2 | round_device_screen | Frames comparison. | Keep first two selected cards in slots. | Voice-guided comparison. |
+| `round_3_scene` | pre_generated | Load before Step 3 round 3. | prod.step_3.round_3 | prod.step_3.round_3 | round_device_screen | Frames final choice and name. | Replace with synthesis after selection. | Voice-guided final choice. |
+| `synthesis_scene` | pre_generated | Load after third correct selection. | prod.step_4 | prod.step_4 | round_device_screen | Turns selected cards into story characters. | Persist selected cards until closing. | Spoken synthesis over thumbnails. |
+| `celebrate_scene` | pre_generated | Load after synthesis response. | prod.step_4 | prod.step_4 | badge_area | Shows earned badge. | Hide or shrink during closing. | Generic badge. |
+| `closing_scene` | pre_generated | Load before Step 5. | prod.step_5 | prod.step_5 | round_device_screen | Recaps texture Connection. | End of activity. | Spoken recap only. |
+| catalog item cards | pre_generated | Load before Step 3. | prod.step_3.round_1 | prod.step_3.round_1-3; prod.step_4 | catalog_grid; selected_slots | Child selects correct soft/fluffy cards and gives evidence. | Move selected cards into collection slots; hide unused distractors at synthesis. | Do not start if fewer than three correct cards are available. |
 
 ## Extensibility Notes
 
-- Replace `{runtime_entity}` with a safe photographed entity that carries the same bridge prerequisite, such as `dandelion` or a visually similar toy/object.
-- Preserve the declared mechanic `collect` and retarget only the focal attribute `fluffy_soft_texture` or scene/card set when adapting the activity.
-- Swap `fluffy_expedition_icon_set_01` for another approved support asset set with the same display timing and fallback behavior.
+- Retarget only to texture properties that have approved catalog cards with at least three correct exemplars.
+- Preserve `fluffy_soft_texture` as the authored default for the dandelion exemplar.
+- Do not convert this package into open-ended real-world texture judging without a separate verified runtime capability.
 
 ## Self-Evaluation Scorecard
 
@@ -55,15 +74,15 @@ Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `activities
 
 | # | Dimension | Score | Notes |
 |---|-----------|-------|-------|
-| 1 | V1 Technical Compliance | PASS | Uses child speech, ordinary photos, and optional displayed support assets only. It does not require OCR, face/pose detection, IMU sensing, audio-quality scoring, or before/after state verification. |
-| 2 | Hook & Transition | PASS | Step 1 grows from the photographed entity and opens with feeling or wonder before introducing the activity frame. |
-| 3 | Edge Case Coverage | PASS | Every runtime dialogue step includes ideal, unexpected, and no-response paths with wait-time prompts; Cat5 packages include search/scaffold handling. |
-| 4 | IB Completeness | PASS | The package defines key concepts, related concepts, KUD, ATL skills, and a closing that names the concept through the child's experience. |
-| 5 | Tier Appropriateness | PASS | Rounds are short, concrete, and matched to the declared tier while preserving optional caregiver scaffolding. |
+| 1 | V1 Technical Compliance | PASS | Uses approved catalog cards and child-stated evidence. It does not require camera capture, tactile sensing, OCR, face/pose detection, IMU sensing, audio-quality scoring, or before/after state verification. |
+| 2 | Hook & Transition | PASS | Step 1 grows from the dandelion exemplar and opens with wonder before introducing the catalog mission. |
+| 3 | Edge Case Coverage | PASS | Every runtime dialogue step includes ideal, unexpected, and no-response paths with wait-time prompts and Cat5 scaffold handling. |
+| 4 | IB Completeness | PASS | The package defines key concepts, related concepts, KUD, ATL skills, and a closing that names Connection through the child's selected examples. |
+| 5 | Tier Appropriateness | PASS | Rounds are short, concrete, card-based, and matched to T0/T1 children. |
 | 6 | Dialogue Specificity | PASS | AI lines, child branches, and follow-ups are concrete enough to run without inventing missing beats. |
-| 7 | Screen & UI Completeness | PASS | Each step has a specific screen state, progress treatment, and asset fallback where visual support is optional. |
+| 7 | Screen & UI Completeness | PASS | Each step has a specific screen state, progress treatment, catalog-card behavior, and asset fallback. |
 | 8 | Entity Mapping Alignment | N/A | This is a demo-source migration, not a mapping-informed assignment requiring entity YAML grounding. |
-| 9 | Game Feel | PASS | The activity has a role title, visible progress, differentiated rounds, and an earned payoff connected to the child's answers. |
-| 10 | Pillar Fidelity | PASS | The migrated pillar/style follows docs/game_styles.md lineage and preserves the original child action without forcing a mismatched scaffold. |
+| 9 | Game Feel | PASS | The activity has a role title, visible progress, differentiated rounds, naming, synthesis, and an earned badge. |
+| 10 | Pillar Fidelity | PASS | The Adventure quest_collector structure remains intact while replacing unsupported open-world collection with a runnable catalog loop. |
 
-**Overall**: ALL PASS - direct demo migration is structurally valid and current-format complete.
+**Overall**: ALL PASS - direct demo migration is structurally valid, demo-runnable, and honest about current runtime capabilities.

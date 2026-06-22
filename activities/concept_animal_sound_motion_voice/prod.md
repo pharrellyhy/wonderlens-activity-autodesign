@@ -1,15 +1,15 @@
-## Animal Echo Stage
+# Animal Sound Imitation
 
 ### A. Basic Info
 
 | Field | Value |
 |-------|-------|
-| Activity Name | Animal Echo Stage |
-| Activity Category | 1 -- Sustained Verbal Interaction (In-Device) |
-| Recommended Tier | T0 (ages 2-4) |
-| Core IB Key Concepts | Perspective and Form |
-| Related Concepts | Voice, Imitation, Animal, Audience |
-| ATL Skills Focus | Communication Skills (sound play), Social Skills (turn-taking), Creative Thinking (pretend role) |
+| Activity Name | Animal Sound Imitation |
+| Activity Category | cat1 |
+| Recommended Tier | T1 |
+| Core IB Key Concepts | Form, Perspective |
+| Related Concepts | evidence, choice, sequence, reflection |
+| ATL Skills Focus | language_expression, observation, language_expression |
 | Experience Pillar | Performance |
 | Game Style | voice_stage |
 
@@ -17,132 +17,164 @@
 
 **1. Brief Description**
 
-The child copies two animal sounds or speaks as the animal. The AI cheers like a tiny audience.
+The AI uses a fixed rabbit, cat meow, and puppy card sequence, and the child imitates each sound or speaks in that animal role.
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Animals can have familiar sounds; sounds can stand for animal roles; a stage turn has a start and finish.
-- **U (Understand):** Perspective means pretending to be another animal. Form means noticing the animal's sound or shape.
-- **D (Do):** Copy a sound, take a short turn, and answer a simple encore prompt.
+- **K (Know):** The child knows the visible rule or clue that starts Animal Sound Imitation.
+- **U (Understand):** The child understands that each answer changes the next activity beat.
+- **D (Do):** The child completes three short `motion_voice` turns and explains one piece of evidence.
 
-**3. Design Highlight**
+**3. Runtime Fidelity Notes**
 
-The child gets a tiny stage, a friendly audience, and two easy echo reveals. Each sound attempt wakes a hidden animal, so the child sees a concrete cause: their voice makes the stage come alive. The final audience appears only after both animals wake, making the encore feel earned rather than automatic.
+Runtime wording should adapt naturally, but it must preserve the activity-specific role, repeated action, ideal/unexpected/no-response branches, and honest visual fallback behavior.
 
 **4. Typical Scenario**
 
-Child photographs an animal toy; the AI opens a tiny curtain, prompts a cat sound, then changes the stage to a duck sound. If the child only says the animal name or makes a different sound, the AI treats it as a performance attempt and gently models the target sound.
+The child plays Animal Sound Imitation with animal_sound_imitation as the bound activity entity and package-local visual assets on the round WonderLens screen.
 
 ### C. Interaction Flow
 
-> Recommended Tier: T0 (ages 2-4)
+> Recommended Tier: T1
 
 #### Step 1: Transition Bridge
 
-**AI says:** [happy stage whisper] "Ooh, animal stage time! Tiny lights are on. Can you make one sound?"
+**Runtime AI instruction:** Open by naming the activity and child role and name the child's role in this activity.
+
+**Example AI line:** "I have a small mission for us: Animal Sound Imitation. I will guide one step at a time."
 
 **Child responses:**
 
-1. (Ideal) "Meow!" / "Woof!"
-2. (Unexpected) "No." / "Car!"
-3. (No response) Child watches quietly.
+1. (Ideal) The child accepts the animal voice performer role, notices the starter cue, or names something connected to the first animal voice.
+2. (Unexpected) Child asks for another game, starts the safe sound or movement before the Animal Sound Imitation mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Animal Sound Imitation opening moment without taking the animal voice performer role yet.
 
 **AI follow-up:**
 
-1. [delighted audience tone] "Yes! The crowd heard you. Tiny clap, clap!"
-2. [warmly validating] "No is okay. We can whisper. Animal sounds are silly."
-3. [wait 2s] [soft invite] "Try one tiny sound. Meow?"
+1. Name the animal voice performer role, connect it to the starter cue, and preview the first safe sound or movement.
+2. Acknowledge the request, return to the Animal Sound Imitation promise, and offer the smallest supported first action.
+3. [wait 2s] Name the Animal Sound Imitation role and the first animal, then model one tiny in-frame response.
 
-**Screen:** A simple stage curtain opens. Two soft spotlights appear. No animal card is shown unless the optional card set is available.
+**Screen:** Shows title, child role, source trigger, and empty progress tokens. Optional support asset: `intro_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 2: Stage Rules -- Echo Star
+#### Step 2: Role And Rules
 
-**AI says:** [gentle host tone] "You are the Echo Star. I say an animal. You echo its sound."
+**Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
+
+**Example AI line:** "Here is how we play: I invite, you try a safe animal voice, and we save one little turn each time."
 
 **Child responses:**
 
-1. (Ideal) "Okay!" / "Echo!"
-2. (Unexpected) "I want duck." / "I want lion."
-3. (No response) Child looks at the stage.
+1. (Ideal) The child agrees to the safe sound or movement loop for Animal Sound Imitation or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first animal voice, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Animal Sound Imitation rule without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [cheering softly] "Ready, Echo Star. First animal hides."
-2. [warmly accepting] "Duck or lion can come. First, try cat."
-3. [wait 2s] [soft model] "Listen first. Then copy me."
+1. Restate the Animal Sound Imitation loop as AI invite, child safe sound or movement, saved turn, and show the first response slot.
+2. Keep the rule tied to the first animal voice, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Say the Animal Sound Imitation rule in one sentence and ask for a yes or the first chance to try a safe sound or movement.
 
-**Screen:** If `animal_sound_cards_01` is available, show the card back as a hidden stage guest. If unavailable, show a paw-print spotlight and say the animal by voice only.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 3: Multi-Round Animal Echo
+#### Step 3: Multi-Round Core Loop
 
-**Round 1 -- Cat Echo Reveal:**
+**Round 1 -- Rabbit Card Voice:**
 
-**AI says:** [tiny cat voice] "A hidden cat is sleeping. Say meow to wake it?"
+**Runtime AI instruction:** Preserve the asset promise: the highlighted first animal is rabbit. Invite a tiny rabbit sniff or quiet rabbit sound, and do not switch to a different animal.
+
+**Example AI line:** "First up is the rabbit. Would you like to try one tiny rabbit sniff at a safe volume?"
 
 **Child responses:**
 
-1. (Ideal) "Meow!"
-2. (Unexpected) "Woof." / "Cat."
-3. (No response) Child stays quiet.
+1. (Ideal) The child tries the first animal voice with safe volume, space, or body control.
+2. (Unexpected) Child makes the first animal voice too rough/loud, switches to an unrelated performance, or proposes an unsafe movement.
+3. (No response) Child watches the first animal voice cue without moving, sounding, or choosing a smaller version.
 
 **AI follow-up:**
 
-1. [audience cheer] "Meow! The cat wakes. It bows."
-2. [warmly playful] "Woof is funny. Cat peeks out. Try tiny meow?"
-3. [wait 2s] [gentle model] "I will help. Meow... your turn."
+1. Mirror the safe part of the first animal voice, save the performance turn, and cue the next variation.
+2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the first animal voice.
+3. [wait 2s] Demonstrate the smallest safe version of the first animal voice, then invite the child to copy just that part.
 
-**Screen:** The hidden spotlight opens. If `animal_sound_cards_01` is available, reveal the cat card and bounce it once. If unavailable, a paw-print icon wakes and bows.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 2 -- Duck Echo Reveal:**
+**Round 2 -- Cat Meow Voice Or Volume:**
 
-**AI says:** [bouncy duck voice] "A duck hides backstage. Say quack to wake it?"
+**Runtime AI instruction:** Keep the asset promise: the second animal is cat meow. Invite a meow with one soft/loud or sleepy/happy variation, and do not keep talking about the rabbit or puppy.
+
+**Example AI line:** "Now it is the cat meow. Could your meow sound sleepy or soft?"
 
 **Child responses:**
 
-1. (Ideal) "Quack!"
-2. (Unexpected) "Meow." / "Duck."
-3. (No response) Child smiles or watches.
+1. (Ideal) The child tries the changed animal voice or volume with safe volume, space, or body control.
+2. (Unexpected) Child makes the changed animal voice or volume too rough/loud, switches to an unrelated performance, or proposes an unsafe movement.
+3. (No response) Child watches the changed animal voice or volume cue without moving, sounding, or choosing a smaller version.
 
 **AI follow-up:**
 
-1. [audience cheer] "Quack! The duck wakes. It wiggles."
-2. [warmly validating] "Meow came back. Funny cat-duck. Try quack now?"
-3. [wait 2s] [gentle model] "Small quack is enough. Quack?"
+1. Mirror the safe part of the changed animal voice or volume, save the performance turn, and cue the next variation.
+2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the changed animal voice or volume.
+3. [wait 2s] Demonstrate the smallest safe version of the changed animal voice or volume, then invite the child to copy just that part.
 
-**Screen:** The second hidden spotlight opens. If `animal_sound_cards_01` is available, reveal the duck card and make it waddle. If unavailable, a duck-footprint icon wakes and wiggles.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 4: Magic Moment -- Encore Applause
+**Round 3 -- Puppy Role Line:**
 
-**AI says:** [big whisper celebration] "Encore surprise! Cat woke up. Duck woke up. Tiny crowd says hooray!"
+**Runtime AI instruction:** Keep the asset promise: the third animal is puppy. Invite one short friendly puppy line, and do not introduce another animal.
+
+**Example AI line:** "The puppy comes last. What is one friendly puppy line?"
 
 **Child responses:**
 
-1. (Ideal) "Hooray!" / "Again!"
-2. (Unexpected) "Lion!" / "I want more."
-3. (No response) Child watches the lights.
+1. (Ideal) The child tries the favorite animal-role line with safe volume, space, or body control.
+2. (Unexpected) Child makes the favorite animal-role line too rough/loud, switches to an unrelated performance, or proposes an unsafe movement.
+3. (No response) Child watches the favorite animal-role line cue without moving, sounding, or choosing a smaller version.
 
 **AI follow-up:**
 
-1. [happy audience tone] "Again soon! You are an Echo Star."
-2. [delighted] "Lion can visit next. Roar waits backstage."
-3. [wait 2s] [soft celebration] "Lights sparkle for you."
+1. Mirror the safe part of the favorite animal-role line, save the performance turn, and cue the next variation.
+2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the favorite animal-role line.
+3. [wait 2s] Demonstrate the smallest safe version of the favorite animal-role line, then invite the child to copy just that part.
 
-**Screen:** The cat and duck icons bow together. A tiny audience of star dots appears as the surprise crowd. A small "Encore!" sign appears.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+
+#### Step 4: Magic Moment
+
+**Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
+
+**Example AI line:** "Your choices filled the activity board: first we started, then we tried, then we finished the mission."
+
+**Child responses:**
+
+1. (Ideal) The child notices how the favorite animal-role line changed the Animal Sound Imitation board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Animal Sound Imitation payoff or ignores how the saved safe sound or movement turns connect.
+3. (No response) Child watches the Animal Sound Imitation reveal without commenting on the saved turns.
+
+**AI follow-up:**
+
+1. Tie the reveal to the child's safe sound or movement turns, name one concrete saved turn, and invite a short reflection.
+2. Hold the Animal Sound Imitation reveal, name the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Animal Sound Imitation board, then offer two favorite-turn choices.
+
+**Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** [warm celebration] "You were an Echo Star. You used Perspective. You tried animal voices. You used Form too. You heard sound shapes."
+**Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
+
+**Example AI line:** "Today you practiced Form and Perspective. You used your own answer to move the activity forward."
 
 **Child responses:**
 
-1. (Ideal) "Meow!" / "Quack!"
-2. (Unexpected) "Roar next!" / "Bye."
-3. (No response) Child watches the badge.
+1. (Ideal) The child names a favorite Animal Sound Imitation moment, asks to play again, or watches the animal sound imitation recap badge.
+2. (Unexpected) Child shifts topic before the recap names the safe sound or movement skill or Form and Perspective.
+3. (No response) Child stays on the Animal Sound Imitation recap badge without responding.
 
 **AI follow-up:**
 
-1. [proud host tone] "Meow and quack! Badge time."
-2. [warmly] "Roar next time. Bye, Echo Star."
-3. [wait 2s] [soft goodbye] "Your Echo Star badge shines."
+1. Offer a next-time variation using the same motion_voice mechanic and the animal sound imitation frame.
+2. Close Animal Sound Imitation first, name the practiced safe sound or movement, and then offer one next-round seed.
+3. [wait 2s] Read the Animal Sound Imitation badge in one sentence and end with one concrete next-time invitation.
 
-**Screen:** An "Echo Star" badge appears with cat and duck icons. The words "Perspective" and "Form" glow softly beside the stage.
+**Screen:** Recap badge lists title, mechanic `motion_voice`, focal attribute `animal_sound_imitation`, and next-step hint. Optional support asset: `closing_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.

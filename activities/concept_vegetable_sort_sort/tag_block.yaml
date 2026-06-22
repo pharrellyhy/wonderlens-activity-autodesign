@@ -1,79 +1,70 @@
 activity_id: concept_vegetable_sort_sort
 version: 1
-source_entity_exemplar: vegetable_card_set
 template_type: cat1
-pillar: Adventure
-game_style: quest_collector
-entity: '{runtime_entity}'
-entity_class: []
-entity_binding: parameterized
-entity_compatibility: source_bound
+pillar: Discovery
+game_style: field_experiment
+entity: workbook_source_concept
+entity_class:
+- activity_concept
+entity_binding: agnostic
 tier_range:
   primary: T1
   span:
   - T0
   - T1
-  - T2
-  elasticity: neighbor
-category: category_1
+  elasticity: Can simplify language and reduce rounds for younger children.
+category: cat1
 attributes:
-- vegetable_sort_rule
-- shape
+- vegetable_sort
+- sort
 key_concepts:
-- Connection
 - Form
 related_concepts:
-- classification
-- rule
-- food
 - evidence
+- choice
+- sequence
+- reflection
 atl_skills:
 - classification
 - observation
-- logical_reasoning
-transdisciplinary_theme: How_We_Organize_Ourselves
-subject_tags:
-- math
-- science
-- food
+- language_expression
+transdisciplinary_theme: How We Express Ourselves
 kud:
   know:
-  - Vegetables can be grouped by color, shape, edible part, or use
-  - vegetable_sort_rule is the focus of the activity
+  - The child knows the activity rule and one source-specific cue.
   understand:
-  - Connection helps children explain why items belong together
-  - Form helps children use visible color and shape clues
+  - The child understands that their action affects the next beat.
   do:
-  - choose a sorting rule
-  - place vegetable cards by the rule
-  - name a group using evidence
+  - The child practices sort through short guided turns.
 progression:
-  topic_axis: connection
+  topic_axis: form
   difficulty_level: 2
-  next_step_hint: Try one new answer or explain the reason in more detail next time.
-  reward_hook: Earned the Veggie Sorter badge
+  next_step_hint: Repeat with a new topic while preserving the same mechanic.
+  reward_hook: Saved turns reveal a source-specific payoff.
 caregiver_role:
-- scaffold
-- co-explorer
+- observer
 activity_signature:
-  observation_angle: shape
+  observation_angle: state
   mechanic: sort
-  entity_role: reference
+  entity_role: catalyst
+  focal_attribute: vegetable_sort
+  intro: The child sorts vegetable cards or photographed vegetables by a visible or
+    meaningful rule.
   bridge_prerequisites:
     primary:
-    - shape
+    - state
     secondary:
-    - connection
-    - sort
-  focal_attribute: vegetable_sort_rule
-  intro: The child practices sort through Vegetable Sort Stand.
-  preview_label: Vegetable Sort Stand
-  preview_prompt: Ready to be the Veggie Sorter?
-  role_pivot_note: The runtime entity starts the activity but the package remains
-    concept-led and parameterized.
+    - function
+    - state
+  preview_label: Vegetable Sort
+  preview_prompt: Try Vegetable Sort with one short guided round.
+  role_pivot_note: The workbook concept supplies the play frame; a photographed object
+    may only act as a catalyst.
 matchability:
   entity_class_filter: []
   tier_support:
     T0: true
     T1: true
     T2: true
+source_workbook_row: 27
+source_concept: source_vegetable_sort

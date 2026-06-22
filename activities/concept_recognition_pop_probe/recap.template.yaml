@@ -1,0 +1,8 @@
+activity_id: concept_recognition_pop_probe
+recap_template:
+  title: Recognition Pop Challenge recap
+  child_summary: '{child_name} practiced compare in Recognition Pop Challenge.'
+  evidence_prompts:
+  - favorite_turn
+  - child_choice
+  - next_time_variation

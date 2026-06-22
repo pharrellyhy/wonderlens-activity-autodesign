@@ -1,15 +1,15 @@
-## Pretend Trip Planner
+# Travel Planner
 
 ### A. Basic Info
 
 | Field | Value |
 |-------|-------|
-| Activity Name | Pretend Trip Planner |
+| Activity Name | Travel Planner |
 | Activity Category | cat1 |
 | Recommended Tier | T1 |
-| Core IB Key Concepts | Causation and Change |
-| Related Concepts | plan, prediction, journey, need |
-| ATL Skills Focus | prediction, logical_reasoning, creative_thinking |
+| Core IB Key Concepts | Form, Causation |
+| Related Concepts | evidence, choice, sequence, reflection |
+| ATL Skills Focus | prediction, observation, language_expression |
 | Experience Pillar | Discovery |
 | Game Style | prediction_lab |
 
@@ -17,21 +17,21 @@
 
 **1. Brief Description**
 
-The child helps plan a pretend trip by predicting what the hidden trip cards will need before each reveal.
+The child plans a pretend trip by choosing what to pack, how to travel, and what might happen.
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Children know that a pretend trip plan can include a need, a travel choice, and a surprise plan.
-- **U (Understand):** Children understand that predictions connect a situation to a likely consequence before the pretend reveal.
-- **D (Do):** Children commit to a prediction, see the pretend reveal, and adjust the trip plan with evidence.
+- **K (Know):** The child knows the visible rule or clue that starts Travel Planner.
+- **U (Understand):** The child understands that each answer changes the next activity beat.
+- **D (Do):** The child completes three short `predict` turns and explains one piece of evidence.
 
-**3. Design Highlight**
+**3. Runtime Fidelity Notes**
 
-The package avoids real booking or location claims and keeps the activity in pretend planning and prediction.
+Runtime wording should adapt naturally, but it must preserve the activity-specific role, repeated action, ideal/unexpected/no-response branches, and honest visual fallback behavior.
 
 **4. Typical Scenario**
 
-The child plans a pretend trip to a rainy forest. They predict the needed item, travel helper, and surprise plan before each hidden card flips.
+The child plays Travel Planner with travel_planner as the bound activity entity and package-local visual assets on the round WonderLens screen.
 
 ### C. Interaction Flow
 
@@ -39,128 +39,142 @@ The child plans a pretend trip to a rainy forest. They predict the needed item, 
 
 #### Step 1: Transition Bridge
 
-**AI says:** [warm invitation] "I found a perfect moment for Pretend Trip Planner. You can be the Trip Predictor today. Ready for a tiny mission?"
+**Runtime AI instruction:** Open by naming the activity and child role and name the child's role in this activity.
+
+**Example AI line:** "I have a small mission for us: Travel Planner. I will guide one step at a time."
 
 **Child responses:**
 
-1. (Ideal) "Yes" or nods.
-2. (Unexpected) "What mission?" or gives an unrelated idea.
-3. (No response) Child watches or stays quiet.
+1. (Ideal) The child accepts the pretend trip planner role, notices the starter cue, or names something connected to the pack choice.
+2. (Unexpected) Child asks for another game, starts the plan or prediction before the Travel Planner mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the opening Travel Planner moment without taking the pretend trip planner role yet.
 
 **AI follow-up:**
 
-1. [excited] "Great. I will keep it short and playful."
-2. [friendly] "Good question. I will show one tiny choice at a time."
-3. [wait 2s] [gentle] "You can answer with one word, a point, or a small idea."
+1. Name the pretend trip planner role, connect it to the starter cue, and preview the first plan or prediction.
+2. Acknowledge the request, return to the Travel Planner promise, and offer the smallest supported first action.
+3. [wait 2s] Name the Travel Planner role and the first small plan, then model one tiny in-frame response.
 
-**Screen:** The activity badge "Trip Predictor" appears with three empty progress tokens. If `travel_planning_cards_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
+**Screen:** Shows title, child role, source trigger, and empty progress tokens. Optional support asset: `intro_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 2: Rule Introduction
+#### Step 2: Role And Rules
 
-**AI says:** [clear guide tone] "Here is the rule: predict before I flip the card, then we save what the reveal shows."
+**Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
+
+**Example AI line:** "Rule: I share a prompt, you try the activity, and we save one turn each time."
 
 **Child responses:**
 
-1. (Ideal) "Okay."
-2. (Unexpected) "Can I do it my way?"
-3. (No response) Child hesitates.
+1. (Ideal) The child agrees to the plan or prediction loop for Travel Planner or asks for the easiest version.
+2. (Unexpected) Child tries to skip the pack choice, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Travel Planner rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [encouraging] "Round one is ready."
-2. [validating] "Yes, your idea can help. I will still keep each round easy to answer."
-3. [wait 2s] [modeling] "I will start, and you can copy my first answer if you want."
+1. Restate the Travel Planner loop as AI prompt, child plan or prediction, saved turn, and show the first response slot.
+2. Keep the rule tied to the pack choice, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Travel Planner rule in one sentence and ask for yes or the first chance to make a plan or prediction.
 
-**Screen:** A simple rule strip appears: Listen or look, answer, save a token. Token 1 pulses.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `travel_planning_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 3: Core Loop
+#### Step 3: Multi-Round Core Loop
 
-**Round 1 -- Predict What We Need:**
+**Round 1 -- Sunny Place Packing Choice:**
 
-**AI says:** [focused playful tone] "Before I flip the rainy route card, predict what we will need first: raincoat, snack, or sunglasses?"
+**Runtime AI instruction:** Preserve the workbook promise: The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen. Ask the child to predict or plan in the first small turn.
+
+**Example AI line:** "Let us start: The child helps plan a pretend trip by choosing what to pack, how to travel, and what might happen. What will you try first?"
 
 **Child responses:**
 
-1. (Ideal) "raincoat."
-2. (Unexpected) "swimsuit."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) The child makes a plan or prediction for the pack choice and accepts that it can be checked or imagined next.
+2. (Unexpected) Child treats the pack choice as a fixed answer, jumps past the check, or proposes a plan outside the pretend setup.
+3. (No response) Child looks at the pack choice choices without making a prediction or plan.
 
 **AI follow-up:**
 
-1. [reveal tone] "The card flips to raindrops. Raincoat matches the reveal, so token 1 becomes a dry-trip stamp."
-2. [warm redirect] "A swimsuit is fun for water play. The reveal is raindrops, so choose something that keeps us dry."
-3. [wait 2s] [gentle hint] "Think rain before the flip. Predict raincoat, boots, or umbrella."
+1. Record the prediction, say what would make it true, and show how the next step will check or play it out.
+2. Keep the pretend setup, narrow the pack choice to two possible outcomes, and ask which one might happen.
+3. [wait 2s] Model "I think this will happen because.." for the pack choice, then ask for one guess or choice.
 
-**Screen:** A hidden route card flips to a rainy path. A suitcase slot fills with the predicted item, and token 1 saves the match or correction.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `travel_planning_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 2 -- Predict How to Travel:**
+**Round 2 -- Weather Change Plan:**
 
-**AI says:** [focused playful tone] "Before I reveal the path, predict what travel helps cross a wide puddle: walking, bus, train, or boat?"
+**Runtime AI instruction:** Keep the same source frame and ask for a second predict turn with a small variation.
+
+**Example AI line:** "Now try one more turn in the same game. What changes this time?"
 
 **Child responses:**
 
-1. (Ideal) "boat."
-2. (Unexpected) "rocket."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) The child makes a plan or prediction for the transport or weather choice and accepts that it can be checked or imagined next.
+2. (Unexpected) Child treats the transport or weather choice as a fixed answer, jumps past the check, or proposes a plan outside the pretend setup.
+3. (No response) Child looks at the transport or weather choice choices without making a prediction or plan.
 
 **AI follow-up:**
 
-1. [route-building] "The path card flips to a wide puddle. Boat fits the reveal, so token 2 draws a little water route."
-2. [pretend boundary] "Rocket is a funny pretend extra. The reveal is a puddle path, so pick boat or walking carefully."
-3. [wait 2s] [gentle hint] "Predict one travel helper before the card flips. Boat is ready."
+1. Record the prediction, say what would make it true, and show how the next step will check or play it out.
+2. Keep the pretend setup, narrow the transport or weather choice to two possible outcomes, and ask which one might happen.
+3. [wait 2s] Model "I think this will happen because.." for the transport or weather choice, then ask for one guess or choice.
 
-**Screen:** The hidden path card flips from gray to blue puddle. The chosen travel icon moves onto the route, and token 2 records the prediction result.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `travel_planning_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 3 -- Predict a Surprise:**
+**Round 3 -- Next Travel Event Prediction:**
 
-**AI says:** [focused playful tone] "Before I reveal the surprise card, predict what might block us and what plan helps."
+**Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
+
+**Example AI line:** "What changed after your turns, find, choose, or learn from your turns?"
 
 **Child responses:**
 
-1. (Ideal) "mud, wear boots."
-2. (Unexpected) "a dragon eats us."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) The child makes a plan or prediction for the what might happen on the trip and accepts that it can be checked or imagined next.
+2. (Unexpected) Child treats the what might happen on the trip as a fixed answer, jumps past the check, or proposes a plan outside the pretend setup.
+3. (No response) Child looks at the what might happen on the trip choices without making a prediction or plan.
 
 **AI follow-up:**
 
-1. [cause-effect tone] "The surprise card flips to mud. Boots match your prediction-and-plan pair, so token 3 becomes the safe-step stamp."
-2. [safety redirect] "A dragon can stay in a storybook. The safe reveal is mud, so predict boots or a careful step."
-3. [wait 2s] [gentle hint] "Try a safe prediction: mud, wear boots."
+1. Record the prediction, say what would make it true, and show how the next step will check or play it out.
+2. Keep the pretend setup, narrow the what might happen on the trip to two possible outcomes, and ask which one might happen.
+3. [wait 2s] Model "I think this will happen because.." for the what might happen on the trip, then ask for one guess or choice.
 
-**Screen:** The surprise cloud flips open to a muddy path. A boot icon lands on it, and token 3 keeps the prediction visible.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `travel_planning_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, run the planning conversation by voice only. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Look at that. Your three predictions made something new: raincoat matched rain, boat crossed the puddle, and boots solved the mud."
+**Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
+
+**Example AI line:** "Your choices filled the activity board: first we started, then we tried, then we finished the mission."
 
 **Child responses:**
 
-1. (Ideal) "I made it" or explains the result.
-2. (Unexpected) "Can we change one?"
-3. (No response) Child watches the reveal.
+1. (Ideal) The child notices how the what might happen on the trip changed the Travel Planner board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Travel Planner payoff or ignores how the saved plan or prediction turns connect.
+3. (No response) Child watches the Travel Planner reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [celebrating] "Yes. Your answers caused this reveal."
-2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
-3. [wait 2s] [soft recap] "I will read the three tokens back so you can see your path."
+1. Tie the reveal to the child's plan or prediction turns, name one concrete saved turn, and invite a short reflection.
+2. Hold the Travel Planner reveal, name the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Travel Planner board, then offer two favorite-turn choices.
 
-**Screen:** The three tokens expand into a final board labeled "Trip Predictor". Each token shows prediction -> reveal -> plan, so the payoff is earned by the child's earlier commitments.
+**Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** [warm celebration] "You earned the Trip Predictor badge. You used Causation by predicting what each clue would need, and Change by updating the trip after each reveal."
+**Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
+
+**Example AI line:** "Today you practiced Form and Causation. You used your own answer to move the activity forward."
 
 **Child responses:**
 
-1. (Ideal) "Again" or names a favorite round.
-2. (Unexpected) Child asks for a different topic.
-3. (No response) Child watches the badge.
+1. (Ideal) The child names a favorite Travel Planner moment, asks to play again, or watches the travel planner recap badge.
+2. (Unexpected) Child shifts topic before the recap names the plan or prediction skill or Form and Causation.
+3. (No response) Child stays on the Travel Planner recap badge without responding.
 
 **AI follow-up:**
 
-1. [proud guide] "Next time we can make a new path with a new answer."
-2. [flexible] "That can be the next mission. This badge saves what you did today."
-3. [wait 2s] [gentle goodbye] "Your Trip Predictor badge is saved."
+1. Offer a next-time variation using the same predict mechanic and the travel planner frame.
+2. Close Travel Planner first, name the practiced plan or prediction, and then offer one next-round seed.
+3. [wait 2s] Read the Travel Planner badge in one sentence and end with one concrete next-time invitation.
 
-**Screen:** The badge, the three round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."
+**Screen:** Recap badge lists title, mechanic `predict`, focal attribute `travel_planner`, and next-step hint. Optional support asset: `closing_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.

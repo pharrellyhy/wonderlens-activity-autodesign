@@ -1,0 +1,28 @@
+activity_id: concept_guided_drawing_probe
+dashboard_template:
+  parent_headline: 'Guided Drawing: build'
+  learning_focus:
+  - Form
+  - Change
+  - creative_thinking
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest
+dashboard_fragment:
+  session:
+    activity_id: concept_guided_drawing_probe
+    axis: change
+    angle: shape
+    mechanic: build
+    entity_role: catalyst
+    focal_attribute: guided_drawing
+    entry_rung: "{runtime_entry_rung}"
+    exit_rung: "{runtime_exit_rung}"
+    outcome: "{runtime_outcome}"
+  contributes_to:
+    curiosity_radial:
+      axis: change
+      angle: shape
+    exploration_matrix:
+      cell: "build x shape"

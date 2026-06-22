@@ -1,0 +1,55 @@
+activity_id: time_machine_dinosaur
+version: 1
+entity_compatibility: source_bound
+parameterization:
+  mode: entity_theme
+  decision_source: canonical_package_conversion
+  integrity_status: supported_source_bound_theme
+  confidence: high
+  evidence:
+    - The authored beats assume a dinosaur or dinosaur toy traveling through prehistoric scenes.
+    - The activity uses pretend narration and child speech, not factual image recognition or runtime scientific verification.
+  validity:
+    production_supported: true
+    requires:
+      - authored dinosaur theme
+    allowed_entity_classes:
+      - dinosaur
+      - toy
+      - animal
+    invalid_when:
+      - handoff expects arbitrary non-dinosaur retargeting
+  source_fields: {}
+  derived_runtime_fields: {}
+  authored_constants:
+    dialogue_frame: dinosaur time machine
+    time_scenes:
+      - prehistoric jungle
+      - distant rumbling volcano
+      - peaceful lake
+    reward_badge: time_traveler
+  fallback_behavior: Keep the authored dinosaur time-machine theme; do not retarget to arbitrary entities.
+  stale_text_risk: low; dinosaur-specific text is intentionally frozen.
+  consumer_notes:
+    wonderlens_ai: Treat handoff as source-bound to the dinosaur theme and preserve the three time jumps.
+    fullstack_demo: Use Cat1 dialogue UI with package-local generated scene assets.
+  reviewer_action: accept_as_source_bound_thematic_dialogue
+demo_support:
+  status: supported
+  ui_template: cat1_dialogue
+  support_level: full
+  entity_bindings:
+    - entity_id: dinosaur
+      display_label: Dinosaur
+      source_entity_exemplar: dinosaur
+      default: true
+  requires:
+    generated_assets: true
+    real_camera: false
+    runtime_judgment: false
+    device_round_screen: true
+  unsupported_reasons: []
+  degraded_reasons: []
+  consumer_notes:
+    fullstack_demo: Use the Cat1 dialogue primitive and generated package-local scene assets; do not require factual visual recognition.
+    wonderlens_ai: Preserve dinosaur-specific time-jump scenes and self-report framing.

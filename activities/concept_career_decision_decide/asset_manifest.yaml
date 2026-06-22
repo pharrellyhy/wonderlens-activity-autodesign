@@ -1,0 +1,315 @@
+activity_id: concept_career_decision_decide
+entity_id: career_decision_role_play
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+  secondary_accent: pale sage
+  shadow: cool gray green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+  horizontal_debug_screen:
+    aspect_ratio: '16:9'
+    crop_shape: rounded_rectangle
+    master_size: 1280x720
+    safe_area: central 90 percent rectangle
+  catalog_grid:
+    aspect_ratio: '1:1'
+    crop_shape: rounded_rectangle
+    master_size: 512
+    safe_area: central 86 percent square
+assets:
+- id: celebrate_scene
+  role: badge
+  label: Career Decision Role Play Celebration badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Career Decision Role Play Celebration badge. Use the WonderLens mint, porcelain,
+    pale sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/celebrate.png
+    mime_type: image/png
+    byte_count: 311730
+    sha256: c0a797b1a4263d1daf6ccab2f0673da17ae3f692c62b5a49fe9657e75c227965
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Career Decision Role Play Celebration badge is visible.
+- id: closing_scene
+  role: story_scene
+  label: Career Decision Role Play Closing scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Career Decision Role Play Closing scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/closing.png
+    mime_type: image/png
+    byte_count: 343273
+    sha256: 65a3653a4788ea95477da67bdd88c7d44fab1514c3c330f85dd6ddfc47914dae
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Career Decision Role Play Closing scene is visible.
+- id: activity_icon
+  role: activity_preview
+  label: Career Decision Role Play Activity icon
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Career Decision Role Play Activity icon. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/icon.png
+    mime_type: image/png
+    byte_count: 200525
+    sha256: 94df581c4cb131281509318000aef35775c955613442e5d494efea8605fb0124
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Career Decision Role Play Activity icon is visible.
+- id: intro_scene
+  role: story_scene
+  label: Career Decision Role Play Intro scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Career Decision Role Play Intro scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/intro.png
+    mime_type: image/png
+    byte_count: 386485
+    sha256: 5f5812a97a1790cdccd2028e8d29da9d23211a7279354f26efeb39db617ea9ec
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Career Decision Role Play Intro scene is visible.
+- id: alarm
+  role: ui_overlay
+  label: Alarm
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Alarm. Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette;
+    center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/alarm.png
+    mime_type: image/png
+    byte_count: 225973
+    sha256: 942b4a58f6c46ea4e880fbbcf6329dc8c04112c83861e339b483ed3aae8ead4e
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Alarm is visible.
+- id: firefighter
+  role: ui_overlay
+  label: Firefighter
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Firefighter. Use the WonderLens mint, porcelain, pale sage, and cool gray-green
+    palette; center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/firefighter.png
+    mime_type: image/png
+    byte_count: 178430
+    sha256: c3d01b59730c0e331c736b937d13bcfbc2be5273dcbd01c14c1813d97ca7dcad
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Firefighter is visible.
+- id: hose
+  role: ui_overlay
+  label: Hose
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Hose. Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette;
+    center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/hose.png
+    mime_type: image/png
+    byte_count: 211201
+    sha256: ff44a99225414c87d50db223e233e4d46d5153612aaff7f072e762385edf39b8
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Hose is visible.
+- id: oil
+  role: ui_overlay
+  label: Oil
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Oil. Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette;
+    center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/oil.png
+    mime_type: image/png
+    byte_count: 158015
+    sha256: 793cfa4f086b6385b13583dc2a13192ce9416953c3590747e205e24b844aa069
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Oil is visible.
+- id: outside
+  role: ui_overlay
+  label: Outside
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Outside. Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette;
+    center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/outside.png
+    mime_type: image/png
+    byte_count: 214519
+    sha256: ea68d8ebf3b86c24e93c2de0690786612f604667a5ceb576bdc69d0830115606
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Outside is visible.
+- id: phone
+  role: ui_overlay
+  label: Phone
+  requiredness: optional
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Phone. Use the WonderLens mint, porcelain, pale sage, and cool gray-green palette;
+    center the subject for a small round device screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/items/phone.png
+    mime_type: image/png
+    byte_count: 164846
+    sha256: 0c4f030386ada0528092d02c18f191518fde9ef5d99fc15f0f060ecd70c78de5
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Phone is visible.
+- id: round_1_scene
+  role: story_scene
+  label: Career Decision Role Play Round 1 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Career Decision Role Play Round 1 scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_1.png
+    mime_type: image/png
+    byte_count: 397051
+    sha256: 8cf08ad6c1247a10067b5f5e3de3a7dc99b4212986333d00f651f26213fc221d
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Career Decision Role Play Round 1 scene is visible.
+- id: round_2_scene
+  role: story_scene
+  label: Career Decision Role Play Round 2 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Career Decision Role Play Round 2 scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_2.png
+    mime_type: image/png
+    byte_count: 395556
+    sha256: fd25859979e5928b630a6d621a468a2c52bbc3ec7f66c45d96f78fa229153c18
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Career Decision Role Play Round 2 scene is visible.
+- id: round_3_scene
+  role: story_scene
+  label: Career Decision Role Play Round 3 scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Career Decision Role Play Round 3 scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/round_3.png
+    mime_type: image/png
+    byte_count: 392695
+    sha256: bbdca1668730ac77a17179f6df338eef5b18f2cb951238eb5b3d5dbc2cc8d299
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Career Decision Role Play Round 3 scene is visible.
+- id: rules_scene
+  role: story_scene
+  label: Career Decision Role Play Rules scene
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: 'Soft 3D educational toy illustration for Career Decision Role Play:
+    Career Decision Role Play Rules scene. Use the WonderLens mint, porcelain, pale
+    sage, and cool gray-green palette; center the subject for a small round device
+    screen; no text, no watermark.'
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/rules.png
+    mime_type: image/png
+    byte_count: 271072
+    sha256: 239d4e0595862102f5e92b759260c939ed87695f6ad14d72c919c24c636e05c5
+  fallback_behavior: Continue Career Decision Role Play with spoken guidance and do
+    not claim that Career Decision Role Play Rules scene is visible.

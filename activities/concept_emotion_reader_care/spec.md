@@ -1,79 +1,71 @@
-# Feeling Helper Station -- Authoring Spec
+# Emotion Reader - Engineering Spec
 
-> CAT1 concept package . Concept source: `source_emotion_reader` . Mechanic: `care`
+## Metadata
+
+- activity_id: `concept_emotion_reader_care`
+- source_row: `12`
+- source_concept: `source_emotion_reader`
+- assignment_type: `activity_concept`
+- category: `cat1`
+- mechanic: `care`
+- generation_method: `fresh_full_rerun_from_source_snapshot`
 
 ## Premise
 
-The child notices an obvious expression or body cue, names a possible need with "might" language, and chooses gentle help. The activity turns that source promise into a cat1 runtime package where the child becomes the Feeling Helper. The repeated action is `care`, and the payoff is visible comfort tied to the child's own choices.
-
-## Target
-
-- **Primary tier:** T1
-- **Activity category:** cat1
-- **Mechanic:** `care`
-- **Entity role:** catalyst
-- **Progression axis:** responsibility, level 2
-
-## Adaptation Rationale
-
-- **Input mode:** concept_only.
-- **Core promise:** The child notices a visible cue, names a possible need without diagnosing, and chooses gentle care.
-- **Canonical mechanic:** `care`; Step 3's repeated child action preserves this mechanic.
-- **Readiness:** generate_with_assumptions.
-- **Trigger condition:** A character, animal, or story moment shows an obvious emotional expression.
-- **Mapping use:** no required mapping for this package; runtime parameters avoid entity-specific facts unless runtime supplies them.
-- **Asset dependency:** `emotion_expression_cards_01` is optional card_set support; fallback behavior is documented.
-- **Product capability flags:** `optional_asset_display`; no display capability is required because the voice-only story fallback remains valid.
-- **Scaffold fit:** acceptable. Nurture / `care_station` supplies the emotional payoff while `care` remains the child-action contract.
-- **Assumptions:** Avoid claiming to diagnose a real person's emotion. Use "might feel" language and ask the child for evidence.
+The child notices an obvious expression or body cue and thinks about what feeling or help might fit.
 
 ## Selection Trigger
 
-Start when a character, animal, or story moment shows an obvious emotional expression. If optional visual support is unavailable, use the fallback behavior from the Asset Brief and keep the interaction voice-only.
+A character, animal, or story moment shows an obvious emotional expression.
 
-## Experience Pillar & Game Style
+## Source Intent Lock
 
-- **Pillar:** Nurture
-- **Game style:** `care_station`
-- **Why this scaffold:** The copy uses might-feel language and asks for visible evidence, avoiding diagnosis while preserving the care mechanic.
+The child notices an obvious expression or body cue and thinks about what feeling or help might fit.
+
+## Adaptation Rationale
+
+The package preserves the original play frame, child role, required child action, and runtime sequence. Category and mechanic labels are metadata, not replacements for the workbook promise.
 
 ## Runtime Detail Floor Notes
 
-- **Distinct round design:** Round 1 -- Worried Hands Need, Round 2 -- Tired Body Need, and Round 3 -- Brave Try Need each follow the care adapter: visible cue, possible need, child care idea, visible comfort response.
-- **Branch specificity:** Unexpected answers are validated, then redirected to the current objective without pretending the runtime can verify unsupported facts.
-- **Earned magic moment:** The child's three care choices become a comfort path: ask first, quiet rest, safe try.
-- **Residual risk:** The package stays within the current Cat1/Cat5 and asset-display contract; any richer UI, material workflow, or stateful display beyond the documented fallback remains a product decision.
+- Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
+- Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
+- Keep the repeated child action aligned to `care`.
+- Preserve this source sequence: The child notices an obvious expression or body cue and thinks about what feeling or help might fit.
 
-## Asset Brief
+## Resolved Product Contract Notes
 
-| Field | Value |
-|---|---|
-| asset_id | emotion_expression_cards_01 |
-| asset_type | card_set |
-| requiredness | optional |
-| generation_timing | pre_generated |
-| use_step | prod.step_2; prod.step_3.round_1-3 |
-| purpose | Provide simple character expressions that children can interpret with evidence. |
-| prompt_en | Create a set of friendly illustrated character expression cards for children ages 4-7. Include happy, worried, proud, tired, surprised, and frustrated expressions. Use one character per card, clear face and body cue, plain background, no text, no stereotypes, and no real people. |
-| source | new_ai_generated_asset |
-| display_behavior | Show one expression card when asking what the character might feel. |
-| fallback_behavior | If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. |
-| safety_constraints | No real child faces, no intense distress, no medical or mental-health diagnosis framing. |
+- Prebuilt asset display: Approved minimum asset-display contract uses declared asset IDs, display timing, and no-display fallback.
+
+## Asset Usage Timeline
+
+| asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_or_source | fallback_behavior |
+|---|---|---|---|---|---|---|---|---|
+| emotion_expression_cards_01 | card_set | optional | pre_generated | prod.step_2; prod.step_3.round_1-3 | center_card_area | Provide simple character expressions that children can interpret with evidence. | new_ai_generated_asset | If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. |
+
+## Extensibility Summary
+
+Reusable by replacing the topic, scene, role, or approved asset set while preserving the source play frame and `care` mechanic.
+
+## Extensibility Notes
+
+- Replace `{runtime_entity}` only when the new trigger supports the same child action.
+- Keep the same source sequence before changing category or mechanic labels.
+- If an asset ID changes, preserve display timing, fallback wording, and safety constraints.
+
 ## Self-Evaluation Scorecard
 
-Evaluated against `prod.md`, `tag_block.yaml`, `program.md` Phase 3, `templates.md`, and the Phase 0 adaptation brief.
-
 | # | Dimension | Score | Notes |
-|---|-----------|-------|-------|
-| 1 | V1 Technical Compliance | PASS | The package uses voice dialogue, simple screen state, and documented asset fallback behavior; it does not require unsupported sensing or material verification. |
-| 2 | Hook & Transition | PASS | Step 1 bridges from the trigger into a playful role without testing the child. |
-| 3 | Edge Case Coverage | PASS | Each step includes ideal, unexpected, and no-response handling with concrete redirects. |
-| 4 | IB Completeness | PASS | Key Concepts, related concepts, KUD, ATL skills, recap, and dashboard fragments align. |
-| 5 | Tier Appropriateness | PASS | Language and task load match T1 expectations. |
-| 6 | Dialogue Specificity | PASS | Runtime lines include concrete prompts, child branches, and follow-ups instead of abstract encouragement. |
-| 7 | Screen & UI Completeness | PASS | Screen states identify visible progress, token changes, and fallback behavior where assets are optional or required. |
-| 8 | Entity Mapping Alignment | N/A | This is a concept-led package with no required mapping source and no entity-specific claims. |
-| 9 | Game Feel | PASS | The loop has escalating rounds and a visible payoff earned from the child's repeated action. |
-| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | Step 3, tag metadata, and adaptation rationale preserve `care` while disclosing scaffold assumptions. |
+|---|---|---|---|
+| 1 | V1 Technical Compliance | PASS | Fallbacks are explicit and unsupported capability is not overclaimed. |
+| 2 | Hook & Transition | PASS | Opening uses the workbook trigger and play frame. |
+| 3 | Edge Case Coverage | PASS | Ideal, unexpected, and no-response branches are present. |
+| 4 | IB Completeness | PASS | KUD and concepts match the child action. |
+| 5 | Tier Appropriateness | PASS | Prompts are short and scaffolded. |
+| 6 | Dialogue Specificity | PASS | Runtime AI instructions include example lines. |
+| 7 | Screen & UI Completeness | PASS | Each beat names screen, state, asset, or fallback. |
+| 8 | Entity Mapping Alignment | N/A | Workbook-source concept run; not mapping-informed. |
+| 9 | Game Feel | PASS | Progress tokens and payoff create game structure. |
+| 10 | Mechanic Fidelity + Scaffold Honesty | PASS | The source action and mechanic stay aligned. |
 
-**Overall**: ALL PASS -- reviewer-agent pass by Dalton after package-quality edits.
+**Overall**: PASS - fresh full-run package preserves source intent with explicit runtime-generation and minimum-unblock assumptions.

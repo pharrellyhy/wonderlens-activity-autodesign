@@ -1,37 +1,37 @@
-## Vegetable Sort Stand
+# Vegetable Sort
 
 ### A. Basic Info
 
 | Field | Value |
 |-------|-------|
-| Activity Name | Vegetable Sort Stand |
+| Activity Name | Vegetable Sort |
 | Activity Category | cat1 |
 | Recommended Tier | T1 |
-| Core IB Key Concepts | Connection and Form |
-| Related Concepts | classification, rule, food, evidence |
-| ATL Skills Focus | classification, observation, logical_reasoning |
-| Experience Pillar | Adventure |
-| Game Style | quest_collector |
+| Core IB Key Concepts | Form |
+| Related Concepts | evidence, choice, sequence, reflection |
+| ATL Skills Focus | classification, observation, language_expression |
+| Experience Pillar | Discovery |
+| Game Style | field_experiment |
 
 ### B. Activity Overview
 
 **1. Brief Description**
 
-The child sorts vegetable cards or photographed vegetables by a visible or meaningful rule.
+The child uses tap/select vegetable cards to sort by a visible or meaningful rule such as color, shape, edible part, or cooking use.
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Children know that vegetables can be grouped by visible rules such as color, shape, or edible part.
-- **U (Understand):** Children understand that one sorting rule explains why items belong together or apart.
-- **D (Do):** Children choose a rule, place vegetable cards, and name a group using evidence.
+- **K (Know):** The child knows the visible rule or clue that starts Vegetable Sort.
+- **U (Understand):** The child understands that each answer changes the next activity beat.
+- **D (Do):** The child completes three short `sort` turns and explains one piece of evidence.
 
-**3. Design Highlight**
+**3. Runtime Fidelity Notes**
 
-Sorting stays the repeated action. The AI can suggest rules, but the child names and applies the grouping evidence.
+Runtime wording should adapt naturally, but it must preserve the activity-specific role, repeated action, ideal/unexpected/no-response branches, and honest visual fallback behavior.
 
 **4. Typical Scenario**
 
-The screen shows carrot, broccoli, tomato, and potato cards. The child sorts by color first, then by plant part or cooking use.
+The child plays Vegetable Sort with vegetable_sort as the bound activity entity and package-local visual assets on the round WonderLens screen.
 
 ### C. Interaction Flow
 
@@ -39,128 +39,142 @@ The screen shows carrot, broccoli, tomato, and potato cards. The child sorts by 
 
 #### Step 1: Transition Bridge
 
-**AI says:** [warm invitation] "The vegetable stand is mixed up. Want to be the Veggie Sorter?"
+**Runtime AI instruction:** Open by naming the activity and child role and name the child's role in this activity.
+
+**Example AI line:** "I have a small mission for us: Vegetable Sort. I will guide one step at a time."
 
 **Child responses:**
 
-1. (Ideal) "Yes" or nods.
-2. (Unexpected) "What mission?" or gives an unrelated idea.
-3. (No response) Child watches or stays quiet.
+1. (Ideal) The child accepts the vegetable sorter role, notices the starter cue, or names something connected to the first vegetable group.
+2. (Unexpected) Child asks for another game, starts the sorting move before the Vegetable Sort mission is framed, or follows an unrelated topic.
+3. (No response) Child watches the Vegetable Sort opening moment without taking the vegetable sorter role yet.
 
 **AI follow-up:**
 
-1. [excited] "Great. We will pick a rule, place two vegetables, and name a group."
-2. [friendly] "It is a sorting mission. Your rule tells each vegetable where to go."
-3. [wait 2s] [gentle] "You can point to a basket or say one rule."
+1. Name the vegetable sorter role, connect it to the starter cue, and preview the first sorting move.
+2. Acknowledge the request, return to the Vegetable Sort promise, and offer the smallest supported first action.
+3. [wait 2s] Name the Vegetable Sort role and the first vegetable group, then model one tiny in-frame response.
 
-**Screen:** The activity badge "Veggie Sorter" appears with three empty progress tokens. If `vegetable_sort_cards_01` is available, show it as support; if not, use voice-only fallback and do not claim the asset is visible.
+**Screen:** Shows title, child role, source trigger, and empty progress tokens. Optional support asset: `intro_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 2: Rule Introduction
+#### Step 2: Role And Rules
 
-**AI says:** [clear guide tone] "Sorter rule: choose the grouping rule, use it on the cards, then name one group."
+**Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
+
+**Example AI line:** "Rule: I invite a turn, you try the activity action, and we save your idea for each turn."
 
 **Child responses:**
 
-1. (Ideal) "Okay."
-2. (Unexpected) "Can I do it my way?"
-3. (No response) Child hesitates.
+1. (Ideal) The child agrees to the sorting move loop for Vegetable Sort or asks for the easiest version.
+2. (Unexpected) Child tries to skip the first vegetable group, ignore the required rule/asset, or count a different kind of response.
+3. (No response) Child looks at the Vegetable Sort rule strip without confirming how to start the first turn.
 
 **AI follow-up:**
 
-1. [encouraging] "Round one is ready."
-2. [validating] "Yes, your way can help. We will still keep one clear sorting rule."
-3. [wait 2s] [modeling] "I will start, and you can copy my first answer if you want."
+1. Restate the Vegetable Sort loop as AI prompt, child sorting move, saved idea, and show the first response slot.
+2. Keep the rule tied to the first vegetable group, name the supported fallback, and offer one allowed first turn.
+3. [wait 2s] Read the Vegetable Sort rule in one sentence and ask for a yes or the first chance to place one item by the rule.
 
-**Screen:** A simple rule strip appears: Listen or look, answer, save a token. Token 1 pulses.
+**Screen:** Shows the rule strip, current round token, and tap/select vegetable cards. Use `round_1_scene` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If card art is unavailable, use text labels and ask the child to tap or say the matching group. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 3: Core Loop
+#### Step 3: Multi-Round Core Loop
 
-**Round 1 -- Pick a Rule:**
+**Round 1 -- Color Basket Sort:**
 
-**AI says:** [focused playful tone] "Should we sort by color, shape, or part we eat?"
+**Runtime AI instruction:** Preserve the workbook promise: the child sorts the vegetables by a visible or meaningful rule. Invite the child to group or organize the vegetables in the first small turn.
+
+**Example AI line:** "Let us start by sorting these vegetables by a rule we can see. Which ones would you like to group together first?"
 
 **Child responses:**
 
-1. (Ideal) "color."
-2. (Unexpected) "yummy."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) The child places or names an item according to the first vegetable group rule.
+2. (Unexpected) Child mixes rules for the first vegetable group, sorts by an invisible reason, or moves items without naming a grouping idea.
+3. (No response) Child looks at the items for the first vegetable group without placing or naming one group.
 
 **AI follow-up:**
 
-1. [specific praise] "Color is a clear sorting rule. Token 1 is saved."
-2. [warm redirect] "Yummy is a real opinion rule. This stand needs a visible rule first: color."
-3. [wait 2s] [gentle hint] "Try this short answer with me: color."
+1. Name the grouping rule the child used, keep that group visible, and ask for the next item or rule check.
+2. Hold the current groups still, compare two possible rules, and ask which one controls the first vegetable group.
+3. [wait 2s] Model placing one item by the first vegetable group rule, then ask the child to place or name one more.
 
-**Screen:** Rule sign appears above two baskets. Token 1 fills with a short label from the child's response.
+**Screen:** Shows the active round token, child response slot, and tap/select vegetable cards. Use `round_1_scene` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If card art is unavailable, use text labels and ask the child to tap or say the matching group. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 2 -- Place Two Vegetables:**
+**Round 2 -- Shape Or Edible Part Basket Sort:**
 
-**AI says:** [focused playful tone] "Where should carrot and tomato go under your rule?"
+**Runtime AI instruction:** Keep the same source frame and ask for a second sort turn with a small variation.
+
+**Example AI line:** "Now try one more turn in the same game. What changes this time?"
 
 **Child responses:**
 
-1. (Ideal) "orange and red groups."
-2. (Unexpected) "same basket because food."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) The child places or names an item according to the new sorting rule rule.
+2. (Unexpected) Child mixes rules for the new sorting rule, sorts by an invisible reason, or moves items without naming a grouping idea.
+3. (No response) Child looks at the items for the new sorting rule without placing or naming one group.
 
 **AI follow-up:**
 
-1. [specific praise] "Carrot goes orange, tomato goes red. Token 2 is saved."
-2. [warm redirect] "Same basket uses a food rule. Under color, carrot and tomato split into orange and red groups."
-3. [wait 2s] [gentle hint] "Try this short answer with me: orange and red groups."
+1. Name the grouping rule the child used, keep that group visible, and ask for the next item or rule check.
+2. Hold the current groups still, compare two possible rules, and ask which one controls the new sorting rule.
+3. [wait 2s] Model placing one item by the new sorting rule rule, then ask the child to place or name one more.
 
-**Screen:** Two vegetable cards slide into groups. Token 2 fills with a short label from the child's response.
+**Screen:** Shows the active round token, child response slot, and tap/select vegetable cards. Use `round_1_scene` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If card art is unavailable, use text labels and ask the child to tap or say the matching group. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 3 -- Name the Group:**
+**Round 3 -- Cooking Use Or Child-Chosen Basket Rule:**
 
-**AI says:** [focused playful tone] "What name should we give one group?"
+**Runtime AI instruction:** Ask the child to recap, show, choose, or explain the result so the source action has closure.
+
+**Example AI line:** "What changed after your turns, find, choose, or learn from your turns?"
 
 **Child responses:**
 
-1. (Ideal) "red foods."
-2. (Unexpected) "vegetable team."
-3. (No response) Child looks at the screen or waits.
+1. (Ideal) The child places or names an item according to the final sorting rule explanation rule.
+2. (Unexpected) Child mixes rules for the final sorting rule explanation, sorts by an invisible reason, or moves items without naming a grouping idea.
+3. (No response) Child looks at the items for the final sorting rule explanation without placing or naming one group.
 
 **AI follow-up:**
 
-1. [specific praise] "Red foods names the group by your rule. Token 3 is saved."
-2. [warm redirect] "Vegetable team is friendly. A rule label tells what connects them: red foods."
-3. [wait 2s] [gentle hint] "Try this short answer with me: red foods."
+1. Name the grouping rule the child used, keep that group visible, and ask for the next item or rule check.
+2. Hold the current groups still, compare two possible rules, and ask which one controls the final sorting rule explanation.
+3. [wait 2s] Model placing one item by the final sorting rule explanation rule, then ask the child to place or name one more.
 
-**Screen:** A label tag appears on the chosen group. Token 3 fills with a short label from the child's response.
+**Screen:** Shows the active round token, child response slot, and tap/select vegetable cards. Use `round_1_scene` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If card art is unavailable, use text labels and ask the child to tap or say the matching group. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 4: Magic Moment
 
-**AI says:** [delighted reveal] "Look at that. Your three tokens opened the stand: color rule, sorted cards, and a red foods label."
+**Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
+
+**Example AI line:** "Your choices filled the activity board: first we started, then we tried, then we finished the mission."
 
 **Child responses:**
 
-1. (Ideal) "I made it" or explains the result.
-2. (Unexpected) "Can we change one?"
-3. (No response) Child watches the reveal.
+1. (Ideal) The child notices how the final sorting rule explanation changed the Vegetable Sort board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Vegetable Sort payoff or ignores how the saved sorting move turns connect.
+3. (No response) Child watches the Vegetable Sort reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. [celebrating] "Yes. Your answers caused this reveal."
-2. [replay invitation] "That is a great next-round idea. This version shows the path you made first."
-3. [wait 2s] [soft recap] "I will read the three tokens back so you can see your path."
+1. Tie the reveal to the child's sorting move turns, name one concrete saved idea, and invite a short reflection.
+2. Hold the Vegetable Sort reveal, name the saved turn that matters, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Vegetable Sort board, then offer two favorite-turn choices.
 
-**Screen:** The three tokens expand into a final board labeled "Veggie Sorter". Each token stays visible so the payoff is earned by the child's earlier actions.
+**Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 5: Closing + IB Concepts
 
-**AI says:** [warm celebration] "You earned the Veggie Sorter badge. You used Connection by grouping foods by one rule, and Form by noticing color and shape clues."
+**Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
+
+**Example AI line:** "Today you practiced Form. You used your own answer to move the activity forward."
 
 **Child responses:**
 
-1. (Ideal) "Again" or names a favorite round.
-2. (Unexpected) Child asks for a different topic.
-3. (No response) Child watches the badge.
+1. (Ideal) The child names a favorite Vegetable Sort moment, asks to play again, or watches the vegetable sort recap badge.
+2. (Unexpected) Child shifts topic before the recap names the sorting move skill or Form.
+3. (No response) Child stays on the Vegetable Sort recap badge without responding.
 
 **AI follow-up:**
 
-1. [proud guide] "Next time we can make a new path with a new answer."
-2. [flexible] "That can be the next mission. This badge saves what you did today."
-3. [wait 2s] [gentle goodbye] "Your Veggie Sorter badge is saved."
+1. Offer a next-time variation using the same sort mechanic and the vegetable sort frame.
+2. Close Vegetable Sort first, name the practiced sorting move, and then offer one next-round seed.
+3. [wait 2s] Read the Vegetable Sort badge in one sentence and end with one concrete next-time invitation.
 
-**Screen:** The badge, the three round tokens, and a next-step card remain visible. Next-step card: "Try one new answer next time."
+**Screen:** Recap badge lists title, mechanic `sort`, focal attribute `vegetable_sort`, and next-step hint. Optional support asset: `closing_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.

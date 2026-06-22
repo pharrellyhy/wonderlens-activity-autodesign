@@ -1,25 +1,28 @@
+activity_id: concept_emotion_reader_care
+dashboard_template:
+  parent_headline: 'Emotion Reader: care'
+  learning_focus:
+  - Form
+  - Responsibility
+  - empathy
+  what_to_notice:
+  - source play frame preserved
+  - child action repeated
+  - fallbacks are honest
 dashboard_fragment:
   session:
+    activity_id: concept_emotion_reader_care
     axis: responsibility
     angle: emotion
     mechanic: care
     entity_role: catalyst
-    focal_attribute: visible_feeling_cue
-    entry_rung: '{runtime_entry_rung}'
-    exit_rung: '{runtime_exit_rung}'
-    outcome: '{runtime_outcome}'
+    focal_attribute: emotion_reader
+    entry_rung: "{runtime_entry_rung}"
+    exit_rung: "{runtime_exit_rung}"
+    outcome: "{runtime_outcome}"
   contributes_to:
     curiosity_radial:
       axis: responsibility
       angle: emotion
     exploration_matrix:
-      cell: care by emotion
-    key_concepts_exposure:
-      Perspective:
-        angle: emotion
-      Responsibility:
-        angle: emotion
-    atl_skills_trail:
-    - empathy
-    - perspective_taking
-    - observation
+      cell: "care x emotion"
