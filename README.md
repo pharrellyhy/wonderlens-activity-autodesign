@@ -59,6 +59,8 @@ review_dashboard.md                Static review dashboard contract and UI requi
 runs/README.md                     Run provenance directory contract
 docs/activity_asset_generation_workflow.md
                                    Runtime PNG generation, curation, style, and validation workflow
+docs/activity_display_contract.md
+                                   Runtime display layout, control-mode, and effects authoring rules
 docs/team_onboarding.md            Contributor setup, role ownership, status files, and handoff rules
 docs/role_agent_prompting_guide.md Role-scoped coding-agent prompts, file boundaries, and stop conditions
 docs/image_generation_provider_setup.md
@@ -100,6 +102,7 @@ results.tsv                        Assignment and rubric log
 - Do not use condensed runtime placeholders such as "same structure," "AI gives a riddle," or one-line later-round summaries in migrated `prod.md` files.
 - Every generated package must receive independent reviewer-agent PASS evidence before `results.tsv` logging or assignment checkoff; reviewer FAILs must be repaired and re-reviewed.
 - If an activity uses pre-generated, displayed, or runtime-generated images, `spec.md` owns `## Asset Brief` plus `## Asset Usage Timeline` with asset IDs, generation/display timing, exact use steps, screen location, display behavior, persistence or hide behavior, and fallback behavior. `prod.md` references asset IDs, display locations, and fallback behavior only.
+- Activity screen behavior should follow `docs/activity_display_contract.md`: choose one of the five approved `layout_type` values per frame, then choose `control_mode` and `effect_profile` from the child action, option count, asset availability, and product constraints.
 - Demo-targeted packages mirror visual asset requirements in `asset_manifest.yaml`; contact sheets are review artifacts and must not be treated as runtime assets.
 - Reference-bound assets such as constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, and famous structures must include approved source/provenance, `source_strategy`, `transformation_policy`, and verification requirements. Random generated approximations fail the contract.
 - `tag_block.yaml` must validate against `activities/_schema/tag_block.schema.json`.

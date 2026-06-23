@@ -1,5 +1,22 @@
 # HANDOFF
 
+## 2026-06-23 - Activity Display Contract Documented
+
+Problem: Activity packages lacked a written rule set for choosing the device
+display layout, wheel/button behavior, and sound/light/haptic profile. That
+left future package generation at risk of inferring display behavior from
+activity IDs or prose instead of from stable authoring criteria.
+
+Solution: Added `docs/activity_display_contract.md` with the five approved
+`layout_type` values, supported `control_mode` and `effect_profile` values,
+per-option explanations, decision order, mechanic defaults, asset rules,
+validation rules, YAML examples, and the current twelve package seed mapping.
+README now points package authors to the display contract from the core files
+and package rules sections.
+
+Verification: `git diff --check` passed. The new guide was reviewed for the
+required layout/control/effect sections and examples.
+
 ## 2026-06-08 - Team Readiness And Gemini Assets Completed
 
 Problem: The parallel full-pass workflow was not ready to share with
