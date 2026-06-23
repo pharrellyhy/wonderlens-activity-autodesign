@@ -1,5 +1,19 @@
 # HANDOFF
 
+## 2026-06-23 - Activity Display Contract V1 Planned
+
+Problem: The existing display-contract guidance did not yet define an
+implementation-ready package-local contract that downstream runtime can load
+for layout, controls, verification, and sound/light/haptic feedback.
+
+Solution: Added a plan-backed goal for `activity_display_contract_v1.yaml`.
+The plan locks app-facing layouts to the five design-doc values, binds
+verification to displayed assets/options, uses English-only effect fields, and
+sets the current twelve concept packages as the first migration set.
+
+Verification: `git diff --check` is the required doc-only validation for this
+planning update.
+
 ## 2026-06-23 - Activity Display Contract Documented
 
 Problem: Activity packages lacked a written rule set for choosing the device
