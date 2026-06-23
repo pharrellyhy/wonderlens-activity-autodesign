@@ -1,0 +1,104 @@
+activity_id: concept_partial_reveal_deduce
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: cat_ears_clue
+    kind: image
+    asset_manifest_id: round_1_scene
+    label: Cat ears clue
+    metadata:
+      accepted_aliases:
+        - cat
+        - kitten
+      clue: cat ears
+  - display_asset_id: cat_paws_clue
+    kind: image
+    asset_manifest_id: round_2_scene
+    label: Cat paws clue
+    metadata:
+      accepted_aliases:
+        - cat
+        - kitten
+      clue: cat paws
+  - display_asset_id: cat_face_reveal
+    kind: image
+    asset_manifest_id: round_3_scene
+    label: Cat face final reveal
+    metadata:
+      accepted_aliases:
+        - cat
+        - kitten
+      clue: cat face
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: single_image
+    display_asset_id: cat_ears_clue
+    control_mode: reveal_control
+    verification_policy:
+      type: alias_match
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: cat_ears_clue
+      evidence:
+        - transcript
+    effect_profile:
+      id: reveal_guess
+      sound_effects:
+        - reveal_tick
+        - clue_chime
+      lighting_effects:
+        - reveal_glow
+        - progress_spark
+      haptic_feedback:
+        - reveal_pulse
+        - confirm_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: single_image
+    display_asset_id: cat_paws_clue
+    control_mode: reveal_control
+    verification_policy:
+      type: alias_match
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: cat_paws_clue
+      evidence:
+        - transcript
+    effect_profile:
+      id: reveal_guess
+      sound_effects:
+        - reveal_tick
+        - clue_chime
+      lighting_effects:
+        - reveal_glow
+        - progress_spark
+      haptic_feedback:
+        - reveal_pulse
+        - confirm_pulse
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: single_image
+    display_asset_id: cat_face_reveal
+    control_mode: reveal_control
+    verification_policy:
+      type: alias_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: cat_face_reveal
+      evidence:
+        - transcript
+    effect_profile:
+      id: reveal_guess
+      sound_effects:
+        - reveal_tick
+        - correct_chime
+      lighting_effects:
+        - reveal_glow
+        - success_ring
+      haptic_feedback:
+        - reveal_pulse
+        - confirm_pulse

@@ -1,0 +1,26 @@
+activity_id: fixture_unknown_layout
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: scene
+    kind: image
+    asset_manifest_id: scene
+frames:
+  - frame_id: bad_layout
+    step_ref: prod.step_1
+    layout_id: two_image_choice
+    display_asset_id: scene
+    control_mode: voice_only
+    verification_policy:
+      type: accept_any_participation
+      required: false
+      evidence:
+        - transcript
+    effect_profile:
+      id: neutral_prompt
+      sound_effects:
+        - soft_open
+      lighting_effects:
+        - focus_glow
+      haptic_feedback:
+        - start_pulse

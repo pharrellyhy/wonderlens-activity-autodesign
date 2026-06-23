@@ -23,7 +23,7 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
-| [2026-06-23-activity-display-contract-v1.md](2026-06-23-activity-display-contract-v1.md) | Planned | Adds producer-side `activity_display_contract_v1.yaml` with the five approved app layouts, display-bound controls, verification policies, and English-only sound, lighting, and haptic effect fields for the current-twelve migration and future packages. |
+| [2026-06-23-activity-display-contract-v1.md](2026-06-23-activity-display-contract-v1.md) | Completed | Added producer-side `activity_display_contract_v1.yaml` schema/validator/tests, current-twelve and run-local backfill, docs updates, and English-only display effect fields. |
 | [2026-06-08-gemini-asset-quality-candidates.md](2026-06-08-gemini-asset-quality-candidates.md) | Planned | Adds multi-candidate Gemini generation, style-reference prompting, explicit candidate acceptance, and reviewable visual QA evidence for illustrative assets. |
 | [2026-06-08-team-readiness-and-gemini-assets.md](2026-06-08-team-readiness-and-gemini-assets.md) | Completed | Added collaborator onboarding, review-status template, Gemini source PNG provider, dependency setup, tests, docs links, and live smoke evidence. |
 | [2026-06-05-entity-compatibility-axis-parameterization-contract.md](2026-06-05-entity-compatibility-axis-parameterization-contract.md) | Completed | Added explicit entity compatibility metadata, validator/schema enforcement, review-dashboard handoff verdicts, current-twelve reclassification, docs, fixtures, and focused verification. |

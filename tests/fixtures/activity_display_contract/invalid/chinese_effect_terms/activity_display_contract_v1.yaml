@@ -1,0 +1,25 @@
+activity_id: fixture_chinese_effect_terms
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: scene
+    kind: image
+frames:
+  - frame_id: round_1
+    step_ref: prod.step_1
+    layout_id: single_image
+    display_asset_id: scene
+    control_mode: replay_only
+    verification_policy:
+      type: accept_any_participation
+      required: false
+      evidence:
+        - transcript
+    effect_profile:
+      id: neutral_prompt
+      sound_effects:
+        - 成功提示音
+      lighting_effects:
+        - focus_glow
+      haptic_feedback:
+        - start_pulse

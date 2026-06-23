@@ -1,0 +1,56 @@
+activity_id: fixture_display_valid
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: round_1_scene
+    kind: image
+    asset_manifest_id: round_1_scene
+    label: Round 1 scene
+  - display_asset_id: option_apple
+    kind: option
+    asset_manifest_id: apple
+    label: Apple
+    metadata:
+      accepted_aliases:
+        - apple
+  - display_asset_id: option_car
+    kind: option
+    asset_manifest_id: car
+    label: Car
+    metadata:
+      accepted_aliases:
+        - car
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: two_image_options
+    display_asset_id: round_1_scene
+    control_mode: binary_choice
+    options:
+      - option_id: apple
+        label: Apple
+        display_asset_id: option_apple
+        is_correct: true
+      - option_id: car
+        label: Car
+        display_asset_id: option_car
+        is_correct: false
+    verification_policy:
+      type: choice_match
+      required: true
+      target:
+        type: option
+        option_id: apple
+      evidence:
+        - selected_option_id
+    effect_profile:
+      id: choice_confirm
+      sound_effects:
+        - focus_tick
+        - confirm_chime
+      lighting_effects:
+        - focus_ring
+        - success_ring
+      haptic_feedback:
+        - wheel_tick
+        - confirm_pulse

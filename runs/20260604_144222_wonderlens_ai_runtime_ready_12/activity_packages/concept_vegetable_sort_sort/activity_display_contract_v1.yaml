@@ -1,0 +1,151 @@
+activity_id: concept_vegetable_sort_sort
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: color_sort_board
+    kind: image
+    asset_manifest_id: round_1_scene
+    label: Color basket sort board
+    metadata:
+      target_category_id: color_group
+  - display_asset_id: edible_part_sort_board
+    kind: image
+    asset_manifest_id: round_2_scene
+    label: Edible part sort board
+    metadata:
+      target_category_id: edible_part_group
+  - display_asset_id: cooking_use_sort_board
+    kind: image
+    asset_manifest_id: round_3_scene
+    label: Cooking use sort board
+    metadata:
+      target_category_id: cooking_use_group
+  - display_asset_id: vegetable_carrot
+    kind: item
+    asset_manifest_id: carrot
+    label: Carrot
+  - display_asset_id: vegetable_broccoli
+    kind: item
+    asset_manifest_id: broccoli
+    label: Broccoli
+  - display_asset_id: vegetable_corn
+    kind: item
+    asset_manifest_id: corn
+    label: Corn
+  - display_asset_id: vegetable_tomato
+    kind: item
+    asset_manifest_id: tomato
+    label: Tomato
+  - display_asset_id: vegetable_potato
+    kind: item
+    asset_manifest_id: potato
+    label: Potato
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: multi_option_carousel
+    display_asset_id: color_sort_board
+    control_mode: sort_pick_place
+    options:
+      - option_id: carrot
+        label: Carrot
+        display_asset_id: vegetable_carrot
+      - option_id: broccoli
+        label: Broccoli
+        display_asset_id: vegetable_broccoli
+      - option_id: corn
+        label: Corn
+        display_asset_id: vegetable_corn
+    verification_policy:
+      type: category_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: color_sort_board
+      evidence:
+        - selected_option_id
+        - sort_target_id
+        - transcript
+    effect_profile:
+      id: sort_place
+      sound_effects:
+        - carousel_tick
+        - place_chime
+      lighting_effects:
+        - category_focus
+        - success_ring
+      haptic_feedback:
+        - wheel_tick
+        - place_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: multi_option_carousel
+    display_asset_id: edible_part_sort_board
+    control_mode: sort_pick_place
+    options:
+      - option_id: carrot
+        label: Carrot
+        display_asset_id: vegetable_carrot
+      - option_id: tomato
+        label: Tomato
+        display_asset_id: vegetable_tomato
+      - option_id: potato
+        label: Potato
+        display_asset_id: vegetable_potato
+    verification_policy:
+      type: category_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: edible_part_sort_board
+      evidence:
+        - selected_option_id
+        - sort_target_id
+        - transcript
+    effect_profile:
+      id: sort_place
+      sound_effects:
+        - carousel_tick
+        - place_chime
+      lighting_effects:
+        - category_focus
+        - success_ring
+      haptic_feedback:
+        - wheel_tick
+        - place_pulse
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: multi_option_carousel
+    display_asset_id: cooking_use_sort_board
+    control_mode: sort_pick_place
+    options:
+      - option_id: corn
+        label: Corn
+        display_asset_id: vegetable_corn
+      - option_id: tomato
+        label: Tomato
+        display_asset_id: vegetable_tomato
+      - option_id: potato
+        label: Potato
+        display_asset_id: vegetable_potato
+    verification_policy:
+      type: accept_any_participation
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: cooking_use_sort_board
+      evidence:
+        - selected_option_id
+        - sort_target_id
+        - transcript
+    effect_profile:
+      id: sort_place
+      sound_effects:
+        - carousel_tick
+        - place_chime
+      lighting_effects:
+        - category_focus
+        - success_ring
+      haptic_feedback:
+        - wheel_tick
+        - place_pulse

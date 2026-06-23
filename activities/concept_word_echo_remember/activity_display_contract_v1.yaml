@@ -1,0 +1,100 @@
+activity_id: concept_word_echo_remember
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: first_echo_word
+    kind: word
+    label: First echo word
+    metadata:
+      target_phrase: hello
+      accepted_aliases:
+        - hello
+  - display_asset_id: echo_variation_prompt
+    kind: word
+    label: Echo variation prompt
+    metadata:
+      target_phrase: happy day
+      accepted_aliases:
+        - happy day
+        - happy
+  - display_asset_id: remembered_echo_pair
+    kind: word
+    label: Remembered echo pair
+    metadata:
+      target_phrase: hello happy day
+      accepted_aliases:
+        - hello happy day
+        - hello happy
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: single_image
+    display_asset_id: first_echo_word
+    control_mode: replay_only
+    verification_policy:
+      type: echo_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: first_echo_word
+      evidence:
+        - transcript
+    effect_profile:
+      id: echo_confirm
+      sound_effects:
+        - replay_prompt
+        - echo_chime
+      lighting_effects:
+        - word_focus
+        - success_ring
+      haptic_feedback:
+        - replay_pulse
+        - confirm_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: single_image
+    display_asset_id: echo_variation_prompt
+    control_mode: replay_only
+    verification_policy:
+      type: echo_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: echo_variation_prompt
+      evidence:
+        - transcript
+    effect_profile:
+      id: echo_confirm
+      sound_effects:
+        - replay_prompt
+        - echo_chime
+      lighting_effects:
+        - word_focus
+        - success_ring
+      haptic_feedback:
+        - replay_pulse
+        - confirm_pulse
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: single_image
+    display_asset_id: remembered_echo_pair
+    control_mode: replay_only
+    verification_policy:
+      type: echo_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: remembered_echo_pair
+      evidence:
+        - transcript
+    effect_profile:
+      id: echo_confirm
+      sound_effects:
+        - replay_prompt
+        - echo_chime
+      lighting_effects:
+        - word_focus
+        - success_ring
+      haptic_feedback:
+        - replay_pulse
+        - confirm_pulse

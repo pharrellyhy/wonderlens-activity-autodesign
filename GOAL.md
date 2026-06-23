@@ -24,7 +24,7 @@ adaptation is recorded.
 
 | Setting | Default | Notes |
 |---|---|---|
-| `demo_export` | `true` | Generated packages include `demo_support.yaml` and `asset_manifest.yaml` unless disabled. |
+| `demo_export` | `true` | Generated packages include `demo_support.yaml`, `asset_manifest.yaml`, and `activity_display_contract_v1.yaml` unless disabled. |
 | `asset_build` | `manifest_only` | Write asset requirements and nullable paths, but do not create binary image files. |
 | `full_pass_pipeline` | `false` | Full source, asset, consumer, dialogue, image, repair, and final-review gates are opt-in. |
 | `product_contract_override` | `none` | Use `minimum_unblock_allowed` only when explicitly requested. |
@@ -53,6 +53,7 @@ When `demo_export=true`, each generation-ready package also contains:
 ```text
 demo_support.yaml
 asset_manifest.yaml
+activity_display_contract_v1.yaml
 ```
 
 The package must satisfy these invariants:
@@ -60,6 +61,13 @@ The package must satisfy these invariants:
 - directory name equals `tag_block.yaml` `activity_id`;
 - `tag_block.yaml` validates against `activities/_schema/tag_block.schema.json`;
 - demo extension files validate with `scripts/validate_demo_package_contract.py`;
+- display contracts validate with `scripts/validate_activity_display_contract.py`;
+- every display-contract frame uses one of the five approved `layout_id` values:
+  `single_image`, `two_image_options`, `two_direction_options`,
+  `two_number_options`, or `multi_option_carousel`;
+- app layout, control mode, displayed option, verification policy, sound,
+  lighting, and haptic metadata live in `activity_display_contract_v1.yaml`,
+  not `tag_block.yaml`;
 - `spec.md` has exactly one `## Self-Evaluation Scorecard`;
 - `prod.md` has no scorecard and contains runnable Step 1-5 guidance;
 - every live beat has machine-convertible runtime AI instructions or equivalent

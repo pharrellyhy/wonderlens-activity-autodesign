@@ -1,5 +1,32 @@
 # HANDOFF
 
+## 2026-06-23 - Activity Display Contract V1 Completed
+
+Problem: Runtime-ready activity packages did not have a package-local,
+machine-readable contract for app layout, displayed assets/options, control
+mode, verification policy, and feedback effects.
+
+Solution: Added `activity_display_contract_v1.yaml` with schema and focused
+validator coverage. Backfilled the current twelve canonical packages and the
+run-local WonderLens AI seed under
+`runs/20260604_144222_wonderlens_ai_runtime_ready_12/activity_packages/`.
+Updated authoring docs so `demo_export=true` packages emit
+`demo_support.yaml`, `asset_manifest.yaml`, and
+`activity_display_contract_v1.yaml`, with display runtime metadata kept out of
+`tag_block.yaml`.
+
+Verification: `git diff --check`; `python3
+scripts/validate_demo_package_contract.py activities`; `python3 -m unittest
+tests.test_demo_package_contract_validator -v`; `python3 -m unittest
+tests.test_activity_display_contract_validator -v`; `python3
+scripts/validate_activity_display_contract.py activities`; `python3
+scripts/validate_activity_display_contract.py
+runs/20260604_144222_wonderlens_ai_runtime_ready_12/activity_packages`; and the
+AGENTS tag-block schema snippet passed with
+`/Users/pharrelly/.pyenv/shims/python3`. A targeted scan found no Chinese
+characters in authored display contracts; the only Chinese hit in the display
+plan is the historical local design-doc filename.
+
 ## 2026-06-23 - Activity Display Contract V1 Planned
 
 Problem: The existing display-contract guidance did not yet define an
@@ -21,8 +48,10 @@ display layout, wheel/button behavior, and sound/light/haptic profile. That
 left future package generation at risk of inferring display behavior from
 activity IDs or prose instead of from stable authoring criteria.
 
-Solution: Added `docs/activity_display_contract.md` with the five approved
-`layout_type` values, supported `control_mode` and `effect_profile` values,
+Solution: Added the original `docs/activity_display_contract.md` guidance. It
+has since been superseded by the V1 implementation entry above, which uses
+`layout_id` and `activity_display_contract_v1.yaml`.
+The original guide covered supported `control_mode` and `effect_profile` values,
 per-option explanations, decision order, mechanic defaults, asset rules,
 validation rules, YAML examples, and the current twelve package seed mapping.
 README now points package authors to the display contract from the core files

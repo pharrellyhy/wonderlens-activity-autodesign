@@ -1,0 +1,100 @@
+activity_id: concept_story_unlock_probe
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: moon_door_color_gate
+    kind: image
+    asset_manifest_id: round_1_scene
+    label: Moon door color gate
+    metadata:
+      accepted_aliases:
+        - silver
+        - white
+        - blue
+  - display_asset_id: owl_bridge_sound_gate
+    kind: image
+    asset_manifest_id: round_2_scene
+    label: Owl bridge sound gate
+    metadata:
+      participation_prompt: Make a quiet hoo-hoo or gentle owl greeting.
+  - display_asset_id: star_word_gate
+    kind: image
+    asset_manifest_id: round_3_scene
+    label: Star word gate
+    metadata:
+      target_phrase: bonjour
+      accepted_aliases:
+        - bonjour
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: single_image
+    display_asset_id: moon_door_color_gate
+    control_mode: voice_only
+    verification_policy:
+      type: alias_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: moon_door_color_gate
+      evidence:
+        - transcript
+    effect_profile:
+      id: gate_unlock
+      sound_effects:
+        - gate_prompt
+        - unlock_chime
+      lighting_effects:
+        - gate_glow
+        - success_ring
+      haptic_feedback:
+        - prompt_pulse
+        - unlock_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: single_image
+    display_asset_id: owl_bridge_sound_gate
+    control_mode: voice_only
+    verification_policy:
+      type: accept_any_participation
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: owl_bridge_sound_gate
+      evidence:
+        - transcript
+    effect_profile:
+      id: story_participation
+      sound_effects:
+        - story_prompt
+        - soft_chime
+      lighting_effects:
+        - story_glow
+        - progress_spark
+      haptic_feedback:
+        - prompt_pulse
+        - soft_confirm
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: single_image
+    display_asset_id: star_word_gate
+    control_mode: replay_only
+    verification_policy:
+      type: echo_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: star_word_gate
+      evidence:
+        - transcript
+    effect_profile:
+      id: echo_confirm
+      sound_effects:
+        - replay_prompt
+        - echo_chime
+      lighting_effects:
+        - word_focus
+        - success_ring
+      haptic_feedback:
+        - replay_pulse
+        - confirm_pulse

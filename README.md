@@ -26,10 +26,11 @@ Full `GOAL.md` generation defaults to `demo_export=true`, so generation-ready pa
 ```text
 runs/<run_id>/activity_packages/<activity_id>/
 ├── demo_support.yaml
-└── asset_manifest.yaml
+├── asset_manifest.yaml
+└── activity_display_contract_v1.yaml
 ```
 
-`demo_support.yaml` declares whether the current demo can play the activity as `supported`, `degraded`, or `unsupported`, which UI template to use, the explicit entity binding, the top-level `entity_compatibility` handoff-safety verdict, and the top-level `parameterization` runtime transform contract. `asset_manifest.yaml` declares separate runtime assets, device style, round-screen targets, source/provenance rules, nullable output paths, and fallbacks. These extension files do not replace the five required package files; they make a generated package direct-demo-import ready.
+`demo_support.yaml` declares whether the current demo can play the activity as `supported`, `degraded`, or `unsupported`, which UI template to use, the explicit entity binding, the top-level `entity_compatibility` handoff-safety verdict, and the top-level `parameterization` runtime transform contract. `asset_manifest.yaml` declares separate runtime assets, device style, round-screen targets, source/provenance rules, nullable output paths, and fallbacks. `activity_display_contract_v1.yaml` declares app layout, displayed assets/options, control mode, verification policy, and English-only sound, lighting, and haptic feedback fields. These extension files do not replace the five required package files; they make a generated package direct-demo-import ready.
 
 The same run writes provenance files separately:
 
@@ -60,7 +61,7 @@ runs/README.md                     Run provenance directory contract
 docs/activity_asset_generation_workflow.md
                                    Runtime PNG generation, curation, style, and validation workflow
 docs/activity_display_contract.md
-                                   Runtime display layout, control-mode, and effects authoring rules
+                                   Runtime display contract, control-mode, verification, and effects authoring rules
 docs/team_onboarding.md            Contributor setup, role ownership, status files, and handoff rules
 docs/role_agent_prompting_guide.md Role-scoped coding-agent prompts, file boundaries, and stop conditions
 docs/image_generation_provider_setup.md
@@ -71,6 +72,8 @@ skills/wonderlens-workbook-to-review-packet/
 scripts/generate_run_review.py     Static run review dashboard generator and validator
 scripts/validate_demo_package_contract.py
                                    Validator for demo_support.yaml and asset_manifest.yaml
+scripts/validate_activity_display_contract.py
+                                   Validator for activity_display_contract_v1.yaml
 scripts/generate_activity_asset_sources.py
                                    Provider-backed illustrative source PNG generator for asset manifests
 scripts/build_activity_assets.py   Asset-only runtime PNG builder for explicit asset_build modes
@@ -83,6 +86,8 @@ activities/_schema/demo_support.schema.json
                                    Schema for demo_support.yaml
 activities/_schema/asset_manifest.schema.json
                                    Schema for asset_manifest.yaml
+activities/_schema/activity_display_contract_v1.schema.json
+                                   Schema for activity_display_contract_v1.yaml
 docs/activity_vocabulary.md        Closed enums for activity_signature fields
 docs/game_styles.md                12 game styles under 6 experience pillars
 entity_guidance.md                 Mapping schema and selection rules
@@ -102,7 +107,8 @@ results.tsv                        Assignment and rubric log
 - Do not use condensed runtime placeholders such as "same structure," "AI gives a riddle," or one-line later-round summaries in migrated `prod.md` files.
 - Every generated package must receive independent reviewer-agent PASS evidence before `results.tsv` logging or assignment checkoff; reviewer FAILs must be repaired and re-reviewed.
 - If an activity uses pre-generated, displayed, or runtime-generated images, `spec.md` owns `## Asset Brief` plus `## Asset Usage Timeline` with asset IDs, generation/display timing, exact use steps, screen location, display behavior, persistence or hide behavior, and fallback behavior. `prod.md` references asset IDs, display locations, and fallback behavior only.
-- Activity screen behavior should follow `docs/activity_display_contract.md`: choose one of the five approved `layout_type` values per frame, then choose `control_mode` and `effect_profile` from the child action, option count, asset availability, and product constraints.
+- Runtime-ready activity screen behavior is declared in `activity_display_contract_v1.yaml`: choose one of the five approved `layout_id` values per frame, bind displayed assets/options to `control_mode` and `verification_policy`, and use English-only `sound_effects`, `lighting_effects`, and `haptic_feedback`.
+- Do not put app layout, control mode, displayed-option, verification-policy, or effect metadata into `tag_block.yaml`.
 - Demo-targeted packages mirror visual asset requirements in `asset_manifest.yaml`; contact sheets are review artifacts and must not be treated as runtime assets.
 - Reference-bound assets such as constellations, artworks, maps, scientific diagrams, cultural artifacts, species, historical objects, named places, and famous structures must include approved source/provenance, `source_strategy`, `transformation_policy`, and verification requirements. Random generated approximations fail the contract.
 - `tag_block.yaml` must validate against `activities/_schema/tag_block.schema.json`.
@@ -119,7 +125,7 @@ Use two separate switches:
 
 | Switch | Default | Purpose |
 |---|---|---|
-| `demo_export` | `true` for full `GOAL.md` runs | Emits and validates `demo_support.yaml` plus `asset_manifest.yaml`. |
+| `demo_export` | `true` for full `GOAL.md` runs | Emits and validates `demo_support.yaml`, `asset_manifest.yaml`, and `activity_display_contract_v1.yaml`. |
 | `asset_build` | `manifest_only` | Controls whether a post-package phase creates or curates image files. |
 
 `asset_build` modes:
@@ -480,7 +486,8 @@ package. To add new work, append a new unchecked line under `## Active Queue`.
 │       └── references/
 ├── scripts/
 │   ├── generate_run_review.py
-│   └── validate_demo_package_contract.py
+│   ├── validate_demo_package_contract.py
+│   └── validate_activity_display_contract.py
 ├── entity_guidance.md
 ├── conversation_bridge.md
 ├── examples/
@@ -494,7 +501,8 @@ package. To add new work, append a new unchecked line under `## Active Queue`.
 │   ├── _schema/
 │   │   ├── tag_block.schema.json
 │   │   ├── demo_support.schema.json
-│   │   └── asset_manifest.schema.json
+│   │   ├── asset_manifest.schema.json
+│   │   └── activity_display_contract_v1.schema.json
 │   └── <activity_id>/
 │       ├── spec.md
 │       ├── prod.md
@@ -502,7 +510,9 @@ package. To add new work, append a new unchecked line under `## Active Queue`.
 │       ├── recap.template.yaml
 │       ├── dashboard.template.yaml
 │       ├── demo_support.yaml
-│       └── asset_manifest.yaml      # optional demo/export extension files
+│       ├── asset_manifest.yaml
+│       └── activity_display_contract_v1.yaml
+│                                      # optional demo/export extension files
 ├── designs/
 │   ├── cat1/
 │   └── cat5/
@@ -536,7 +546,7 @@ See `docs/game_styles.md` for definitions, migration notes, and coverage.
 - Canonical/promoted activity packages: five-file directories under `activities/`.
 - Fresh run-local activity packages: stored under `runs/<run_id>/activity_packages/`.
 - Legacy/reference designs: existing Cat1 and Cat5 prod/spec files under `designs/`.
-- Backend consumers may support both during migration, but fresh `/goal` generation should use run-local `activity_packages/` and promote selected packages to `activities/` only when explicitly requested. Demo-ready canonical packages should include package-local `demo_support.yaml` and `asset_manifest.yaml`; consumers should use those files instead of inferring playability or visuals from prose.
+- Backend consumers may support both during migration, but fresh `/goal` generation should use run-local `activity_packages/` and promote selected packages to `activities/` only when explicitly requested. Demo-ready canonical packages should include package-local `demo_support.yaml`, `asset_manifest.yaml`, and `activity_display_contract_v1.yaml`; consumers should use those files instead of inferring playability, visuals, controls, or verification from prose.
 
 ## Validation
 
@@ -585,6 +595,14 @@ Validate demo extension files:
 python3 scripts/validate_demo_package_contract.py activities
 python3 scripts/validate_demo_package_contract.py runs/<run_id>/activity_packages
 python3 scripts/validate_demo_package_contract.py tests/fixtures/demo_package_contract/valid
+```
+
+Validate display contracts:
+
+```bash
+python3 scripts/validate_activity_display_contract.py activities
+python3 scripts/validate_activity_display_contract.py runs/<run_id>/activity_packages
+python3 -m unittest tests.test_activity_display_contract_validator -v
 ```
 
 ## Legacy Transform Workflow
