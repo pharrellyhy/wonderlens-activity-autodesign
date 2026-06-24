@@ -37,47 +37,27 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 > Recommended Tier: T1
 
-#### Step 1: Transition Bridge
+#### Step 1: Rules
 
-**Runtime AI instruction:** Open by naming the activity and child role and name the child's role in this activity.
+**Runtime AI instruction:** Explain only the Emotion Reader rule and name any required asset or honest fallback. Do not ask the child to choose the first kind response here; the first action prompt belongs to Round 1.
 
-**Example AI line:** "I have a small mission for us: Emotion Reader. I will guide one step at a time."
-
-**Child responses:**
-
-1. (Ideal) The child accepts the feeling helper role, notices the starter cue, or names something connected to the visible face or body cue.
-2. (Unexpected) Child asks for another game, starts the kind response before the Emotion Reader mission is framed, or follows an unrelated topic.
-3. (No response) Child watches the Emotion Reader opening moment without taking the feeling helper role yet.
-
-**AI follow-up:**
-
-1. Name the feeling helper role, connect it to the starter cue, and preview the first kind response.
-2. Acknowledge the request, return to the Emotion Reader promise, and offer the smallest supported first action.
-3. [wait 2s] Name the Emotion Reader feeling helper role and the first cue, then model one tiny gentle response.
-
-**Screen:** Shows title, child role, source trigger, and empty progress tokens. Optional support asset: `intro_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
-
-#### Step 2: Role And Rules
-
-**Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
-
-**Example AI line:** "Here is how it goes: I share a cue, you choose one kind response, and we save one for each turn."
+**Example AI line:** "Rule: I share one visible cue, each kind response must fit that cue, and one response is saved for each turn."
 
 **Child responses:**
 
-1. (Ideal) The child agrees to the kind response loop for Emotion Reader or asks for the easiest version.
+1. (Ideal) The child understands that each kind response must fit the visible cue.
 2. (Unexpected) Child tries to skip the visible face or body cue, ignore the required rule/asset, or count a different kind of response.
-3. (No response) Child looks at the Emotion Reader rule without confirming how to start the first turn.
+3. (No response) Child looks at the Emotion Reader rule without responding.
 
 **AI follow-up:**
 
-1. Restate the Emotion Reader loop as a shared cue, a child kind response, and a saved turn, then show the first response slot.
-2. Keep the rule tied to the visible face or body cue, name the supported fallback, and offer one allowed first turn.
-3. [wait 2s] Say the Emotion Reader rule in one sentence and ask for yes, or the first chance to choose a kind response.
+1. Restate the Emotion Reader loop as visible cue, matching kind response, and saved turn.
+2. Keep the rule tied to the visible face or body cue, name the supported fallback, and do not count any response yet.
+3. [wait 2s] Say the Emotion Reader rule in one sentence, then continue to Round 1.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 3: Multi-Round Core Loop
+#### Step 2: Multi-Round Core Loop
 
 **Round 1 -- Worried Hands Cue:**
 
@@ -97,7 +77,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 2. Reframe without judging, name the worried hands cue, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for worried hands, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 **Round 2 -- Sleepy Shoulders Cue:**
 
@@ -117,7 +97,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 2. Reframe without judging, name the sleepy shoulders cue, and offer two gentle help choices.
 3. [wait 2s] Model one caring sentence for sleepy shoulders, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 **Round 3 -- Brave Try Cue:**
 
@@ -137,9 +117,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 2. Reframe without judging, name the brave try cue, and offer two encouragement choices.
 3. [wait 2s] Model one caring sentence for brave trying, then ask the child to choose a feeling or help action.
 
-**Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 4: Magic Moment
+#### Step 3: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
@@ -159,7 +139,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 5: Closing + IB Concepts
+#### Step 4: Closing + IB Concepts
 
 **Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
 

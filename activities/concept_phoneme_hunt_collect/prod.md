@@ -37,47 +37,27 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 > Recommended Tier: T1
 
-#### Step 1: Transition Bridge
+#### Step 1: Rules
 
-**Runtime AI instruction:** Open Phoneme Treasure Hunt, name the child as a Letter Treasure Hunter, explain that the first photo will set the target starting character, and ask if they are ready to take the seed photo.
+**Runtime AI instruction:** Explain only the rule: each turn saves one `photo_id`, uses vision to recognize and normalize the object name, and judges whether later names start with the first saved character. Do not ask the child to take the first photo here; the first action prompt belongs to Round 1.
 
-**Example AI line:** "First, take one photo. I will name the object and use its first letter for our treasure hunt."
-
-**Child responses:**
-
-1. (Ideal) The child accepts the Letter Treasure Hunter role or agrees to take the seed photo.
-2. (Unexpected) The child wants to choose a fixed letter without a photo, wants a different game, or treats the picture alone as enough evidence.
-3. (No response) The child watches the seed-letter prompt without choosing yet.
-
-**AI follow-up:**
-
-1. Confirm the first-letter mission and preview the seed photo capture.
-2. Acknowledge briefly, restate that WonderLens needs one recognized object name first, and invite a clear photo.
-3. [wait 2s] Model "car starts with C after I recognize car," then ask for one seed photo.
-
-**Screen:** Shows the Phoneme Treasure Hunt title and three empty treasure markers. Optional support asset: `intro_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
-
-#### Step 2: Role And Rules
-
-**Runtime AI instruction:** Explain that each turn saves one `photo_id`, uses vision to recognize and normalize the object name, and judges whether later names start with the first saved character.
-
-**Example AI line:** "Rule: your first photo sets the letter, and the next photos need names that start the same way."
+**Example AI line:** "Rule: the first photo sets the starting letter. Later photo names need to start the same way."
 
 **Child responses:**
 
-1. (Ideal) The child agrees to take a photo for the first-letter check.
+1. (Ideal) The child understands the first-letter rule or repeats that the first recognized name sets the starting letter.
 2. (Unexpected) The child asks for credit without a photo, wants to skip recognition, or changes the rule away from same starting characters.
-3. (No response) The child looks at the first-letter rule without starting the first turn.
+3. (No response) The child looks at the first-letter rule without responding.
 
 **AI follow-up:**
 
-1. Restate the photo-recognize-check loop and invite the seed object.
-2. Explain that WonderLens needs a recognized object name before it can set the letter.
-3. [wait 2s] Model "cup starts with C after I recognize cup" and ask for one seed photo.
+1. Restate the photo-recognize-check loop as the rule for the upcoming rounds.
+2. Explain that WonderLens needs a recognized object name before it can set the letter, without counting any response yet.
+3. [wait 2s] Model "cup starts with C after I recognize cup" as a rule example, then continue to Round 1.
 
 **Screen:** Shows the first-letter rule and empty collection markers. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 3: Multi-Round Core Loop
+#### Step 2: Multi-Round Core Loop
 
 **Round 1 -- Seed Letter Treasure:**
 
@@ -139,7 +119,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 **Screen:** Shows the full three-marker collection and the same-letter recap area. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 4: Magic Moment
+#### Step 3: Magic Moment
 
 **Runtime AI instruction:** Recap the three saved object names, identify the shared starting character, and award Letter Treasure Hunter.
 
@@ -159,7 +139,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 **Screen:** Shows the Letter Treasure Hunter badge and saved same-letter words. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 5: Closing + IB Concepts
+#### Step 4: Closing + IB Concepts
 
 **Runtime AI instruction:** Close by naming Form and Connection: the form is the starting character, and the connection is that the collected names start with the same letter.
 

@@ -23,6 +23,7 @@ files remain under `goals/` and are not backfilled here.
 
 | Goal | Status | Notes |
 |---|---|---|
+| [2026-06-24-skip-intro-rules-only-packages-goal.md](2026-06-24-skip-intro-rules-only-packages-goal.md) | Active | Removes separate intro hooks from four runtime-verified packages while keeping the first action prompt in Round/Collect 1. |
 | [2026-06-24-four-package-runtime-verification-authoring-goal.md](2026-06-24-four-package-runtime-verification-authoring-goal.md) | Active | Plan-backed producer goal for four package verification updates without display-contract dependency. |
 | [2026-06-23-activity-display-contract-v1-goal.md](2026-06-23-activity-display-contract-v1-goal.md) | Planned | Plan-backed goal for the producer-side display contract, current-twelve backfill, schema/validator coverage, and English-only effect profile fields. |
 | [2026-06-08-gemini-asset-quality-candidates-goal.md](2026-06-08-gemini-asset-quality-candidates-goal.md) | Planned | Implements multi-candidate Gemini generation, style-reference prompting, explicit candidate acceptance, and live smoke validation. |

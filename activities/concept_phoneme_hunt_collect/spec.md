@@ -41,7 +41,7 @@ The package preserves the original play frame, child role, required child action
 
 | asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_or_source | fallback_behavior |
 |---|---|---|---|---|---|---|---|---|
-| phoneme_letter_card_01 | card_set | optional | pre_generated | prod.step_2; prod.step_3.round_1-3 | center_card_area | Give the child a visual reminder of the runtime-seeded starting letter. | new_ai_generated_asset | If the card is unavailable, the AI repeats the saved starting letter by voice only and must not claim the screen is showing a letter. |
+| phoneme_letter_card_01 | card_set | optional | pre_generated | prod.step_1; prod.step_2.round_1-3 | center_card_area | Give the child a visual reminder of the runtime-seeded starting letter. | new_ai_generated_asset | If the card is unavailable, the AI repeats the saved starting letter by voice only and must not claim the screen is showing a letter. |
 
 ## Extensibility Summary
 
@@ -58,7 +58,7 @@ Reusable by replacing the topic, scene, role, or approved asset set while preser
 | # | Dimension | Score | Notes |
 |---|---|---|---|
 | 1 | V1 Technical Compliance | PASS | Fallbacks are explicit and unsupported capability is not overclaimed. |
-| 2 | Hook & Transition | PASS | Opening uses the workbook trigger and play frame. |
+| 2 | Hook & Transition | PASS | Runtime start uses a rules-only setup; the first action prompt remains in Round 1. |
 | 3 | Edge Case Coverage | PASS | Ideal, unexpected, and no-response branches are present. |
 | 4 | IB Completeness | PASS | KUD and concepts match the child action. |
 | 5 | Tier Appropriateness | PASS | Prompts are short and scaffolded. |

@@ -1,5 +1,20 @@
 # HANDOFF
 
+## 2026-06-24 - Skip Intro Rules Only Packages
+
+Problem: Four runtime-verified packages still had a separate intro/transition
+step. The requested package source contract is rules first, rules text only,
+and the first child action invitation in Round/Collect 1.
+
+Solution: Added a plan-backed goal and updated the four package `prod.md`
+files to remove `Step 1: Transition Bridge`. Each package now starts with
+`Step 1: Rules`, later production steps are renumbered, and `spec.md` asset
+`use_step` references point at the new rules/round numbering.
+
+Verification: Targeted text scans confirmed no stale transition-bridge or
+rules-step first-action invitations remained, Round/Collect 1 prompts still
+exist, and `git diff --check` passed.
+
 ## 2026-06-24 - Four Runtime-Verified Packages Updated
 
 Problem: Four migrated activity packages needed response-verification behavior
