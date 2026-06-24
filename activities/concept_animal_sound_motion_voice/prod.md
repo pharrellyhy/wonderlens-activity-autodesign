@@ -37,47 +37,27 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 > Recommended Tier: T1
 
-#### Step 1: Transition Bridge
+#### Step 1: Rules
 
-**Runtime AI instruction:** Open by naming the activity and child role and name the child's role in this activity.
+**Runtime AI instruction:** Explain only the Animal Sound Imitation rule and name any required asset or honest fallback. Do not ask the child to try the first sound or movement here; the first action prompt belongs to Round 1.
 
-**Example AI line:** "I have a small mission for us: Animal Sound Imitation. I will guide one step at a time."
-
-**Child responses:**
-
-1. (Ideal) The child accepts the animal voice performer role, notices the starter cue, or names something connected to the first animal voice.
-2. (Unexpected) Child asks for another game, starts the safe sound or movement before the Animal Sound Imitation mission is framed, or follows an unrelated topic.
-3. (No response) Child watches the Animal Sound Imitation opening moment without taking the animal voice performer role yet.
-
-**AI follow-up:**
-
-1. Name the animal voice performer role, connect it to the starter cue, and preview the first safe sound or movement.
-2. Acknowledge the request, return to the Animal Sound Imitation promise, and offer the smallest supported first action.
-3. [wait 2s] Name the Animal Sound Imitation role and the first animal, then model one tiny in-frame response.
-
-**Screen:** Shows title, child role, source trigger, and empty progress tokens. Optional support asset: `intro_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
-
-#### Step 2: Role And Rules
-
-**Runtime AI instruction:** Explain the rule as an action loop and name any required asset or honest fallback.
-
-**Example AI line:** "Here is how we play: I invite, you try a safe animal voice, and we save one little turn each time."
+**Example AI line:** "Rule: each animal card has one small, safe voice or movement turn, and every turn stays gentle."
 
 **Child responses:**
 
-1. (Ideal) The child agrees to the safe sound or movement loop for Animal Sound Imitation or asks for the easiest version.
+1. (Ideal) The child understands that each animal turn must stay safe, small, and tied to the active animal.
 2. (Unexpected) Child tries to skip the first animal voice, ignore the required rule/asset, or count a different kind of response.
-3. (No response) Child looks at the Animal Sound Imitation rule without confirming how to start the first turn.
+3. (No response) Child looks at the Animal Sound Imitation rule without responding.
 
 **AI follow-up:**
 
-1. Restate the Animal Sound Imitation loop as AI invite, child safe sound or movement, saved turn, and show the first response slot.
-2. Keep the rule tied to the first animal voice, name the supported fallback, and offer one allowed first turn.
-3. [wait 2s] Say the Animal Sound Imitation rule in one sentence and ask for a yes or the first chance to try a safe sound or movement.
+1. Restate the Animal Sound Imitation loop as active animal, small safe voice or movement, and saved turn.
+2. Keep the rule tied to the first animal voice, name the supported fallback, and do not count any response yet.
+3. [wait 2s] Say the Animal Sound Imitation rule in one sentence, then continue to Round 1.
 
-**Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 3: Multi-Round Core Loop
+#### Step 2: Multi-Round Core Loop
 
 **Round 1 -- Rabbit Card Voice:**
 
@@ -97,7 +77,7 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the first animal voice.
 3. [wait 2s] Demonstrate the smallest safe version of the first animal voice, then invite the child to copy just that part.
 
-**Screen:** Shows the active round token, child response slot, and activity cue. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 **Round 2 -- Cat Meow Voice Or Volume:**
 
@@ -117,7 +97,7 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the changed animal voice or volume.
 3. [wait 2s] Demonstrate the smallest safe version of the changed animal voice or volume, then invite the child to copy just that part.
 
-**Screen:** Shows the active round token, child response slot, and activity cue. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 **Round 3 -- Puppy Role Line:**
 
@@ -137,9 +117,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 2. Name the safety boundary, shrink the action to a safer version, and invite one controlled try for the favorite animal-role line.
 3. [wait 2s] Demonstrate the smallest safe version of the favorite animal-role line, then invite the child to copy just that part.
 
-**Screen:** Shows the active round token, child response slot, and activity cue. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the active round token, child response slot, and activity cue. Use `animal_sound_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, the AI describes the animal by voice and must not claim the screen is showing a picture. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 4: Magic Moment
+#### Step 3: Magic Moment
 
 **Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
 
@@ -159,7 +139,7 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-#### Step 5: Closing + IB Concepts
+#### Step 4: Closing + IB Concepts
 
 **Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
 
