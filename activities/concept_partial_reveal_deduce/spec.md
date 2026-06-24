@@ -29,6 +29,7 @@ The package preserves the original play frame, child role, required child action
 ## Runtime Detail Floor Notes
 
 - Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
+- Do not expose the hidden answer in runtime dialogue before the final answer is verified.
 - Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
 - Keep the repeated child action aligned to `deduce`.
 - Preserve this source sequence: The screen shows one distinctive part of an animal or object, and the child guesses the whole thing from visible clues.

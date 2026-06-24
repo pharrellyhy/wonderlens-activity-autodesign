@@ -17,7 +17,7 @@ category: cat5
 attributes:
 - phoneme_hunt
 - collect
-- beginning_b_sound
+- recognized_name_first_letter
 key_concepts:
 - Form
 - Connection
@@ -50,9 +50,10 @@ activity_signature:
   observation_angle: function
   mechanic: collect
   entity_role: exemplar
-  focal_attribute: beginning_b_sound
-  intro: The AI introduces the beginning /b/ sound, then the child takes a photo so
-    vision can recognize and normalize the object name before sound judgment.
+  focal_attribute: recognized_name_first_letter
+  intro: The child takes one seed photo so vision can recognize and normalize the
+    object name, then runtime uses that first starting character for the rest of
+    the hunt.
   bridge_prerequisites:
     primary:
     - function
@@ -61,7 +62,8 @@ activity_signature:
     - photo_evidence
     - connection
   preview_label: Phoneme Treasure Hunt
-  preview_prompt: Find three objects whose spoken names begin with the /b/ sound.
+  preview_prompt: Find three objects whose recognized names start with the same first
+    letter.
   role_pivot_note: The workbook concept supplies the play frame; a photographed object
     may only act as a catalyst.
 matchability:

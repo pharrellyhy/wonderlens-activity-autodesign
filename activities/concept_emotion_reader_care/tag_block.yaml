@@ -69,3 +69,29 @@ matchability:
     T2: true
 source_workbook_row: 12
 source_concept: source_emotion_reader
+response_verification:
+  mode: cat1_transcript_active_cue
+  evidence_source: stt_transcript
+  advance_requires: active_round_target_match
+  rounds:
+    - round_number: 1
+      active_cue: worried hands
+      target_result: worried or nervous and needs comfort
+      accepted_feelings: [worried, nervous, scared, afraid, upset]
+      accepted_needs: [comfort, calm, safe, listen]
+      accepted_help_actions: [ask if they are okay, say kind words, help them breathe, stay close, get a grown-up]
+      retry_direction: Look at the worried hands again. Ask what the character might feel or need.
+    - round_number: 2
+      active_cue: sleepy shoulders
+      target_result: tired or sleepy and needs rest
+      accepted_feelings: [sleepy, tired, worn out]
+      accepted_needs: [rest, quiet, break, sleep]
+      accepted_help_actions: [offer a rest, make it quiet, bring water, slow down]
+      retry_direction: Stay with the sleepy shoulders cue. Ask what would help someone who looks tired.
+    - round_number: 3
+      active_cue: brave try
+      target_result: trying bravely and needs encouragement
+      accepted_feelings: [brave, nervous, unsure, proud]
+      accepted_needs: [encouragement, try again, cheering]
+      accepted_help_actions: [cheer them on, say you can try, offer help, stay with them]
+      retry_direction: Stay with the brave try cue. Ask what encouragement would help them keep trying.

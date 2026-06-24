@@ -41,7 +41,7 @@ The package preserves the original play frame, child role, required child action
 
 | asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_or_source | fallback_behavior |
 |---|---|---|---|---|---|---|---|---|
-| phoneme_letter_card_01 | card_set | optional | pre_generated | prod.step_2; prod.step_3.round_1-3 | center_card_area | Give the child a visual reminder of the target sound and letter. | new_ai_generated_asset | If the card is unavailable, the AI repeats the target sound by voice only and must not claim the screen is showing a letter. |
+| phoneme_letter_card_01 | card_set | optional | pre_generated | prod.step_2; prod.step_3.round_1-3 | center_card_area | Give the child a visual reminder of the runtime-seeded starting letter. | new_ai_generated_asset | If the card is unavailable, the AI repeats the saved starting letter by voice only and must not claim the screen is showing a letter. |
 
 ## Extensibility Summary
 

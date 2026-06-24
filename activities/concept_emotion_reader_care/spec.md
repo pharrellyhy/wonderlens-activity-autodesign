@@ -29,6 +29,7 @@ The package preserves the original play frame, child role, required child action
 ## Runtime Detail Floor Notes
 
 - Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
+- Active cue targets are fixed to the generated assets: worried hands, sleepy shoulders, and brave try.
 - Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
 - Keep the repeated child action aligned to `care`.
 - Preserve this source sequence: The child notices an obvious expression or body cue and thinks about what feeling or help might fit.
