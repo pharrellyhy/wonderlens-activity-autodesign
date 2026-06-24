@@ -27,7 +27,7 @@ The AI uses a fixed rabbit, cat meow, and puppy card sequence, and the child imi
 
 **3. Runtime Fidelity Notes**
 
-Runtime wording should adapt naturally, but it must preserve the activity-specific role, repeated action, ideal/unexpected/no-response branches, and honest visual fallback behavior.
+Runtime wording should adapt naturally, but it must preserve the fixed rabbit, cat, and puppy sequence, verify the transcript against the active animal target before advancing, and keep honest visual fallback behavior.
 
 **4. Typical Scenario**
 

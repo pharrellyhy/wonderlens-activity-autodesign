@@ -1,5 +1,30 @@
 # HANDOFF
 
+## 2026-06-24 - Four Runtime-Verified Packages Updated
+
+Problem: Four migrated activity packages needed response-verification behavior
+without adopting `activity_display_contract_v1`: phoneme hunt should seed the
+target from the first recognized photo name's starting character, emotion reader
+should align prompts with generated visual cues, partial reveal must not leak
+the hidden answer in child-facing runtime text, and animal imitation needs
+voice correctness before advancement.
+
+Solution: Added the implementation plan and goal files, then updated the four
+package authoring artifacts. `concept_phoneme_hunt_collect` now describes the
+first-photo starting-letter policy without a directory rename. The emotion
+package uses the concrete worried-hands, sleepy-shoulders, and brave-try cues.
+The partial-reveal package removes child-facing answer leaks. The animal-sound
+package declares transcript verification. Demo support metadata marks the
+runtime-judgment packages as degraded under the producer demo contract while
+remaining importable by WonderLens AI.
+
+Verification: `python3 scripts/validate_demo_package_contract.py activities`,
+`python3 -m unittest tests.test_demo_package_contract_validator -v`,
+tag-block schema validation using the existing WonderLens AI Python
+environment because this checkout lacks `PyYAML`/`jsonschema`,
+`rg` scans for `activity_display_contract_v1`, partial-reveal answer-leak
+scans, and `git diff --check` passed.
+
 ## 2026-06-23 - Activity Display Contract V1 Planned
 
 Problem: The existing display-contract guidance did not yet define an

@@ -17,21 +17,21 @@
 
 **1. Brief Description**
 
-The AI introduces the beginning /b/ sound. The child takes a photo, WonderLens recognizes and normalizes the object name, and WonderLens accepts the find only when the normalized name begins with /b/.
+The first photo sets the target starting character. WonderLens recognizes and normalizes that object name, then accepts later finds only when their recognized names start with the same first character.
 
 **2. Educational Purpose (KUD)**
 
-- **K (Know):** Words can share the same beginning sound.
-- **U (Understand):** The photo is evidence, and the normalized object name is what proves the beginning sound.
-- **D (Do):** The child collects three B-starting object names and explains the shared sound.
+- **K (Know):** Words can share the same starting character.
+- **U (Understand):** The photo is evidence, and the normalized object name is what proves the starting character.
+- **D (Do):** The child collects three object names that start with the same character and explains the shared form.
 
 **3. Runtime Fidelity Notes**
 
-WonderLens AI should preserve `photo_id`, run vision recognition, normalize the object label to a simple object name, then judge the beginning sound. If recognition returns a non-B name or cannot normalize the object, ask the child to try another photo.
+WonderLens AI should preserve `photo_id`, run vision recognition, normalize the object label to a simple object name, and use the first recognized in-activity photo to seed the target first character. Later photos advance only when their recognized names start with that saved character. If recognition cannot produce a usable name or the name starts with a different character, ask the child to try another photo.
 
 **4. Typical Scenario**
 
-A child photographs an object such as a ball, book, banana, or basket. WonderLens normalizes names such as "picture book" to "book" before judging the /b/ start.
+A child first photographs an object such as a car. WonderLens normalizes the name to "car," saves C as the target, and then asks for more objects whose recognized names start with C.
 
 ### C. Interaction Flow
 
@@ -39,142 +39,142 @@ A child photographs an object such as a ball, book, banana, or basket. WonderLen
 
 #### Step 1: Transition Bridge
 
-**Runtime AI instruction:** Open Phoneme Treasure Hunt, name the child as a Sound Treasure Hunter, introduce letter B as the target beginning sound, and ask if they are ready to take a photo of a B object.
+**Runtime AI instruction:** Open Phoneme Treasure Hunt, name the child as a Letter Treasure Hunter, explain that the first photo will set the target starting character, and ask if they are ready to take the seed photo.
 
-**Example AI line:** "Today our sound is B. Can you take a photo of something whose name starts with B?"
+**Example AI line:** "First, take one photo. I will name the object and use its first letter for our treasure hunt."
 
 **Child responses:**
 
-1. (Ideal) The child accepts the Sound Treasure Hunter role or names a possible B object.
-2. (Unexpected) The child names a non-B object, wants a different game, or treats the picture alone as enough evidence.
-3. (No response) The child watches the B treasure prompt without choosing yet.
+1. (Ideal) The child accepts the Letter Treasure Hunter role or agrees to take the seed photo.
+2. (Unexpected) The child wants to choose a fixed letter without a photo, wants a different game, or treats the picture alone as enough evidence.
+3. (No response) The child watches the seed-letter prompt without choosing yet.
 
 **AI follow-up:**
 
-1. Confirm the B sound mission and preview the first photo capture.
-2. Acknowledge briefly, restate that the object name must begin with B, and offer ball or book as examples.
-3. [wait 2s] Say "ball starts with B," then ask the child to take one B photo.
+1. Confirm the first-letter mission and preview the seed photo capture.
+2. Acknowledge briefly, restate that WonderLens needs one recognized object name first, and invite a clear photo.
+3. [wait 2s] Model "car starts with C after I recognize car," then ask for one seed photo.
 
 **Screen:** Shows the Phoneme Treasure Hunt title and three empty treasure markers. Optional support asset: `intro_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 2: Role And Rules
 
-**Runtime AI instruction:** Explain that each turn saves one `photo_id`, uses vision to recognize and normalize the object name, then judges whether the normalized name begins with /b/.
+**Runtime AI instruction:** Explain that each turn saves one `photo_id`, uses vision to recognize and normalize the object name, and judges whether later names start with the first saved character.
 
-**Example AI line:** "Rule: you take one photo, I name the object, and we save it when the name starts with B."
+**Example AI line:** "Rule: your first photo sets the letter, and the next photos need names that start the same way."
 
 **Child responses:**
 
-1. (Ideal) The child agrees to take a photo for the B sound check.
-2. (Unexpected) The child takes a non-B photo, asks for credit without a photo, or wants to skip recognition.
-3. (No response) The child looks at the B rule without starting the first turn.
+1. (Ideal) The child agrees to take a photo for the first-letter check.
+2. (Unexpected) The child asks for credit without a photo, wants to skip recognition, or changes the rule away from same starting characters.
+3. (No response) The child looks at the first-letter rule without starting the first turn.
 
 **AI follow-up:**
 
-1. Restate the photo-recognize-check loop and invite the first object.
-2. Contrast one non-B example with one B example, and invite a safer B photo.
-3. [wait 2s] Model "book begins with B" and ask for one photo of a B object.
+1. Restate the photo-recognize-check loop and invite the seed object.
+2. Explain that WonderLens needs a recognized object name before it can set the letter.
+3. [wait 2s] Model "cup starts with C after I recognize cup" and ask for one seed photo.
 
-**Screen:** Shows the B rule and empty collection markers. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the first-letter rule and empty collection markers. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 3: Multi-Round Core Loop
 
-**Round 1 -- First B Treasure:**
+**Round 1 -- Seed Letter Treasure:**
 
-**Runtime AI instruction:** Ask for the first real camera photo, preserve `photo_id`, normalize the recognized object name, and accept only a beginning /b/ sound.
+**Runtime AI instruction:** Ask for the first real camera photo, preserve `photo_id`, normalize the recognized object name, save its first starting character, and count it as the seed treasure.
 
-**Example AI line:** "Take one photo. I will name the object and check whether it starts with B."
+**Example AI line:** "Take one photo. I will name the object and save its first letter for our hunt."
 
 **Child responses:**
 
-1. (Ideal) The child takes a photo that vision normalizes to a B-starting object, such as ball or book.
-2. (Unexpected) Vision returns a non-B object, no recognizable object, or an over-specific name that needs normalization before judging.
+1. (Ideal) The child takes a photo that vision recognizes as a clear object and the runtime stores that object's first starting character.
+2. (Unexpected) Vision returns no recognizable object or an over-specific name that needs normalization before judging.
 3. (No response) The child scans the objects but does not take a photo yet.
 
 **AI follow-up:**
 
-1. Name the normalized B-starting object, save it with the `photo_id`, and light the first marker.
-2. Keep the B rule visible, explain the recognized name, and ask for another photo if it does not start with B.
-3. [wait 2s] Give one B example, then ask the child to take one B photo.
+1. Name the normalized object, save its first character with the `photo_id`, and light the first marker.
+2. Explain the recognized name and ask for another seed photo if the object cannot be recognized.
+3. [wait 2s] Give one clear object example, then ask the child to take one seed photo.
 
-**Screen:** Shows the first collection marker, B photo prompt, and simple B examples. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the first collection marker, seed photo prompt, and the saved first letter after recognition. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 2 -- Second B Treasure:**
+**Round 2 -- Same Letter Treasure:**
 
-**Runtime AI instruction:** Ask for a second real camera photo, compare the normalized object name to the first saved B word, and accept only a beginning /b/ sound.
+**Runtime AI instruction:** Ask for a second real camera photo, compare the normalized object name to the saved first character, and accept only a same-starting-character word.
 
-**Example AI line:** "We saved one B word. What is another thing whose name starts with B?"
+**Example AI line:** "We saved our first letter. What else can you photograph that starts the same way?"
 
 **Child responses:**
 
-1. (Ideal) The child takes a second photo that vision normalizes to a B-starting object.
-2. (Unexpected) Vision returns a non-B item, cannot recognize the object, or the child changes the rule away from beginning B.
+1. (Ideal) The child takes a second photo whose recognized object name starts with the saved first character.
+2. (Unexpected) Vision returns an item with a different first character, cannot recognize the object, or the child changes the same-letter rule.
 3. (No response) The child watches the second marker without taking another photo yet.
 
 **AI follow-up:**
 
-1. Confirm the matching beginning sound, save the second normalized object name with `photo_id`, and compare it to the first B word.
-2. Restate that the recognized name must start with B and ask for another photo, offering banana or basket as examples.
-3. [wait 2s] Say "banana begins with B," then ask for one second B photo.
+1. Confirm the matching first character, save the second normalized object name with `photo_id`, and compare it to the seed word.
+2. Restate that the recognized name must start with the saved character and ask for another photo.
+3. [wait 2s] Repeat the saved character and ask for one second same-letter photo.
 
-**Screen:** Shows two collection markers and the saved first B word when available. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows two collection markers and the saved seed word/letter when available. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 3 -- B Treasure Recap:**
+**Round 3 -- Same Letter Recap:**
 
-**Runtime AI instruction:** Ask for the final real camera photo, normalize the object name, then prepare to recap all saved beginning-B words.
+**Runtime AI instruction:** Ask for the final real camera photo, normalize the object name, accept only the saved starting character, then prepare to recap all saved same-letter words.
 
-**Example AI line:** "One last B treasure. Take one more photo, and I will check the object name."
+**Example AI line:** "One last same-letter treasure. Take one more photo, and I will check the object name."
 
 **Child responses:**
 
-1. (Ideal) The child takes a final photo that vision normalizes to a B-starting object.
-2. (Unexpected) Vision returns a non-B name, no recognizable object, or a name that cannot be normalized confidently.
+1. (Ideal) The child takes a final photo whose recognized object name starts with the saved first character.
+2. (Unexpected) Vision returns a name with a different first character, no recognizable object, or a name that cannot be normalized confidently.
 3. (No response) The child watches the final marker without taking the final photo yet.
 
 **AI follow-up:**
 
-1. Save the final normalized B word with `photo_id`, name the shared beginning sound, and prepare the recap.
-2. Explain the recognized name and guide one retry using a clear B example.
-3. [wait 2s] Offer ball, book, banana, or basket and ask the child to take one final B photo.
+1. Save the final normalized same-letter word with `photo_id`, name the shared starting character, and prepare the recap.
+2. Explain the recognized name and guide one retry using the saved first character.
+3. [wait 2s] Repeat the saved first character and ask the child to take one final same-letter photo.
 
-**Screen:** Shows the full three-marker collection and the B recap area. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the full three-marker collection and the same-letter recap area. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 4: Magic Moment
 
-**Runtime AI instruction:** Recap the three saved object names, identify the shared /b/ beginning sound, and award Sound Treasure Hunter.
+**Runtime AI instruction:** Recap the three saved object names, identify the shared starting character, and award Letter Treasure Hunter.
 
-**Example AI line:** "You collected three B treasures. They connect because each name starts with B."
+**Example AI line:** "You collected three letter treasures. They connect because each name starts the same way."
 
 **Child responses:**
 
-1. (Ideal) The child notices the shared B sound or names a favorite saved word.
-2. (Unexpected) The child focuses only on the pictures and misses that the object names share a sound.
-3. (No response) The child watches the B treasure reveal without commenting.
+1. (Ideal) The child notices the shared starting character or names a favorite saved word.
+2. (Unexpected) The child focuses only on the pictures and misses that the object names share the same first character.
+3. (No response) The child watches the same-letter treasure reveal without commenting.
 
 **AI follow-up:**
 
-1. Repeat the child words and emphasize the shared beginning sound.
-2. Point from picture to object name, then ask which saved name starts with B.
-3. [wait 2s] Read the saved B words aloud and offer two favorite choices.
+1. Repeat the child words and emphasize the shared starting character.
+2. Point from picture to object name, then ask which saved name starts the same way.
+3. [wait 2s] Read the saved words aloud and offer two favorite choices.
 
-**Screen:** Shows the Sound Treasure Hunter badge and saved B words. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the Letter Treasure Hunter badge and saved same-letter words. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 5: Closing + IB Concepts
 
-**Runtime AI instruction:** Close by naming Form and Connection: the form is the beginning sound, and the connection is that the collected names start with B.
+**Runtime AI instruction:** Close by naming Form and Connection: the form is the starting character, and the connection is that the collected names start with the same letter.
 
-**Example AI line:** "Today you practiced Form and Connection by finding words that begin with B."
+**Example AI line:** "Today you practiced Form and Connection by finding names that start the same way."
 
 **Child responses:**
 
-1. (Ideal) The child repeats a B word, asks to play again, or notices the shared sound.
-2. (Unexpected) The child shifts topic before the recap names the B sound pattern.
+1. (Ideal) The child repeats a saved word, asks to play again, or notices the shared starting character.
+2. (Unexpected) The child shifts topic before the recap names the same-letter pattern.
 3. (No response) The child stays on the recap badge without responding.
 
 **AI follow-up:**
 
-1. Offer a next-time sound hunt with a new beginning sound.
-2. Close Phoneme Treasure Hunt first, then offer one new letter for later.
+1. Offer a next-time hunt seeded by a different first photo.
+2. Close Phoneme Treasure Hunt first, then offer one new seed-letter round for later.
 3. [wait 2s] Read the badge in one sentence and end with one warm next-time invitation.
 
-**Screen:** Recap badge lists title, Form, Connection, and the saved B words. Optional support asset: `closing_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Recap badge lists title, Form, Connection, and the saved same-letter words. Optional support asset: `closing_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.

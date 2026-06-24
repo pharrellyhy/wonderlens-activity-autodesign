@@ -17,7 +17,7 @@
 
 **1. Brief Description**
 
-The screen reveals each distinctive part as fixed cat clues: cat ears first, cat paws next, and cat face at the reveal, while the child guesses the whole animal from visible clues.
+The screen reveals one distinctive part at a time while the child makes clue-based guesses. Runtime responses must not name or confirm the hidden answer before the final answer is verified.
 
 **2. Educational Purpose (KUD)**
 
@@ -79,11 +79,11 @@ The child plays Partial Reveal Guess with partial_reveal_guess as the bound acti
 
 #### Step 3: Multi-Round Core Loop
 
-**Round 1 -- Cat Ears Clue:**
+**Round 1 -- First Visible Clue:**
 
-**Runtime AI instruction:** Preserve the asset promise: the first visible clue is cat ears. Ask for a maybe-guess from the ears, and do not reveal or switch to another answer.
+**Runtime AI instruction:** Preserve the asset promise: show only the first visible clue. Ask for a maybe-guess from that clue, and do not name, confirm, or switch the hidden answer.
 
-**Example AI line:** "First clue: cat ears are peeking out. What could this hidden animal be?"
+**Example AI line:** "First clue: look at the visible part. What could this hidden animal be?"
 
 **Child responses:**
 
@@ -93,17 +93,17 @@ The child plays Partial Reveal Guess with partial_reveal_guess as the bound acti
 
 **AI follow-up:**
 
-1. Tie the guess to the visible clue, reveal whether that clue fits, and set up the next evidence step.
+1. Tie the guess to the visible clue, save the maybe-guess, and set up the next evidence step without confirming the answer.
 2. Name the clue in the first visible clue, separate it from one distracting detail, and ask for one maybe-guess.
 3. [wait 2s] Name one visible clue from the first visible clue, model a "maybe it is" guess, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `partial_reveal_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 2 -- Cat Paws Clue:**
+**Round 2 -- Second Visible Clue:**
 
-**Runtime AI instruction:** Keep the asset promise: the second visible clue is cat paws. Ask whether the cat guess changes or gets stronger.
+**Runtime AI instruction:** Keep the asset promise: show only the second visible clue. Ask whether the guess changes or gets stronger without naming or confirming the hidden answer.
 
-**Example AI line:** "Now we can see cat paws too. Does that change your guess, or make cat feel stronger?"
+**Example AI line:** "Now there is one more clue. Does that change your guess, or make it feel stronger?"
 
 **Child responses:**
 
@@ -113,17 +113,17 @@ The child plays Partial Reveal Guess with partial_reveal_guess as the bound acti
 
 **AI follow-up:**
 
-1. Tie the guess to the visible clue, reveal whether that clue fits, and set up the next evidence step.
+1. Tie the guess to the visible clue, save the maybe-guess, and set up the next evidence step without confirming the answer.
 2. Name the clue in the second revealed clue, separate it from one distracting detail, and ask for one maybe-guess.
 3. [wait 2s] Name one visible clue from the second revealed clue, model a "maybe it is" guess, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `partial_reveal_cards_01` in `round_device_screen` during prod.step_2; prod.step_3.round_1-3; fallback: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 3 -- Cat Face Final Guess:**
+**Round 3 -- Final Reveal Guess:**
 
-**Runtime AI instruction:** Keep the asset promise: the final reveal shows a cat face. Ask for the final cat answer and one clue reason.
+**Runtime AI instruction:** Keep the asset promise, show the final reveal card, and ask for the final answer plus one clue reason without saying the answer first.
 
-**Example AI line:** "The cat face is almost revealed. What is your final answer, and which clue helped most?"
+**Example AI line:** "The final reveal card is ready. What is your final answer, and which clue helped most?"
 
 **Child responses:**
 
@@ -133,7 +133,7 @@ The child plays Partial Reveal Guess with partial_reveal_guess as the bound acti
 
 **AI follow-up:**
 
-1. Tie the guess to the visible clue, reveal whether that clue fits, and set up the next evidence step.
+1. Verify the final answer from the child's response, tie it to the visible clue, and then advance to the reveal.
 2. Name the clue in the final whole-object guess, separate it from one distracting detail, and ask for one maybe-guess.
 3. [wait 2s] Name one visible clue from the final whole-object guess, model a "maybe it is" guess, and invite a copy or new guess.
 
