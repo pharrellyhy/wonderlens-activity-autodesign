@@ -39,9 +39,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Explain only the Emotion Reader rule and name any required asset or honest fallback. Do not ask the child to choose the first kind response here; the first action prompt belongs to Round 1.
+**Runtime AI instruction:** Say only that each picture shows a feeling clue and the child chooses one kind thing that fits. Do not ask a question here.
 
-**Example AI line:** "Rule: I share one visible cue, each kind response must fit that cue, and one response is saved for each turn."
+**Example AI line:** "Each picture shows a feeling clue. Choose one kind thing that fits."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 **Round 1 -- Worried Hands Cue:**
 
-**Runtime AI instruction:** Preserve the workbook promise: the displayed cue shows worried hands. Ask the child to name a fitting feeling, need, or kind help action for that cue.
+**Runtime AI instruction:** Ask what the worried hands might feel, need, or get help with.
 
 **Example AI line:** "Look at the worried hands. What might they feel or need?"
 
@@ -81,7 +81,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 **Round 2 -- Sleepy Shoulders Cue:**
 
-**Runtime AI instruction:** Keep the same source frame and ask for a second care turn about the sleepy shoulders cue.
+**Runtime AI instruction:** Ask what the sleepy shoulders might feel, need, or get help with.
 
 **Example AI line:** "Now look at the sleepy shoulders. What might help someone who looks tired?"
 
@@ -101,7 +101,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 **Round 3 -- Brave Try Cue:**
 
-**Runtime AI instruction:** Ask the child to choose encouragement or help for the brave try cue so the source action has closure.
+**Runtime AI instruction:** Ask what encouragement or help fits the brave try.
 
 **Example AI line:** "This friend is trying bravely. What could you say or do to help them keep trying?"
 
@@ -121,9 +121,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
+**Runtime AI instruction:** Recap only the three care choices: worried hands got care, sleepy shoulders got rest, and brave trying got encouragement.
 
-**Example AI line:** "Your choices filled the activity board: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Your kind choices helped each friend: worry, tiredness, and brave trying."
 
 **Child responses:**
 
@@ -141,9 +141,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
+**Runtime AI instruction:** Close by saying the child noticed feeling clues and chose caring help.
 
-**Example AI line:** "Today you practiced Form and Responsibility. You used your own answer to move the activity forward."
+**Example AI line:** "You noticed clues and chose caring help. We can read a new feeling next time."
 
 **Child responses:**
 

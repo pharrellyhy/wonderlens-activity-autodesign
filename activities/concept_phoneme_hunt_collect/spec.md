@@ -12,15 +12,15 @@
 
 ## Premise
 
-The AI introduces a target sound, then the child finds an object whose word starts with that sound.
+The first photo sets a target starting character, then the child finds objects whose names start with that same character.
 
 ## Selection Trigger
 
-Child enters language treasure-hunt mode or photographs an everyday object suitable for sound play.
+Child enters language treasure-hunt mode or photographs an everyday object suitable for first-letter play.
 
 ## Source Intent Lock
 
-The AI introduces a target sound, then the child finds an object whose word starts with that sound.
+The first photo sets a target starting character, then the child finds objects whose names start with that same character.
 
 ## Adaptation Rationale
 
@@ -31,7 +31,7 @@ The package preserves the original play frame, child role, required child action
 - Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
 - Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
 - Keep the repeated child action aligned to `collect`.
-- Preserve this source sequence: The AI introduces a target sound, then the child finds an object whose word starts with that sound.
+- Preserve this source sequence: the first photo sets a target starting character, then the child finds objects whose names start with that same character.
 
 ## Resolved Product Contract Notes
 

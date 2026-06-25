@@ -17,7 +17,7 @@
 
 **1. Brief Description**
 
-The screen reveals one distinctive part at a time while the child makes clue-based guesses. Runtime responses must not name or confirm the hidden answer before the final answer is verified.
+The screen reveals one distinctive part at a time while the child makes clue-based guesses. Runtime responses must not name or confirm the hidden answer before the final reveal.
 
 **2. Educational Purpose (KUD)**
 
@@ -39,9 +39,9 @@ The child plays Partial Reveal Guess with partial_reveal_guess as the bound acti
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Explain only the Partial Reveal Guess rule and name any required asset or honest fallback. Do not ask the child to make the first guess here; the first action prompt belongs to Round 1.
+**Runtime AI instruction:** Say only that each clue gets a maybe-guess and the answer waits for the final reveal. Do not ask a question here.
 
-**Example AI line:** "Rule: I share a clue, you make one guess, and we light up one step of the mystery for each turn."
+**Example AI line:** "We'll look at one mystery clue at a time. Make a maybe-guess for each clue."
 
 **Child responses:**
 
@@ -61,9 +61,9 @@ The child plays Partial Reveal Guess with partial_reveal_guess as the bound acti
 
 **Round 1 -- First Visible Clue:**
 
-**Runtime AI instruction:** Preserve the asset promise: show only the first visible clue. Ask for a maybe-guess from that clue, and do not name, confirm, or switch the hidden answer.
+**Runtime AI instruction:** Ask a maybe-guess from the pointy-ears clue only. Do not add clues, name the answer, or confirm the guess.
 
-**Example AI line:** "First clue: look at the visible part. What could this hidden animal be?"
+**Example AI line:** "First clue: pointy ears. What could it maybe be?"
 
 **Child responses:**
 
@@ -74,16 +74,16 @@ The child plays Partial Reveal Guess with partial_reveal_guess as the bound acti
 **AI follow-up:**
 
 1. Tie the guess to the visible clue, save the maybe-guess, and set up the next evidence step without confirming the answer.
-2. Name the clue in the first visible clue, separate it from one distracting detail, and ask for one maybe-guess.
-3. [wait 2s] Name one visible clue from the first visible clue, model a "maybe it is" guess, and invite a copy or new guess.
+2. Repeat the pointy-ears clue only, then ask for one maybe-guess without saying the answer.
+3. [wait 2s] Repeat "pointy ears" only, model a maybe-guess format, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `partial_reveal_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 **Round 2 -- Second Visible Clue:**
 
-**Runtime AI instruction:** Keep the asset promise: show only the second visible clue. Ask whether the guess changes or gets stronger without naming or confirming the hidden answer.
+**Runtime AI instruction:** Ask if the paws-or-feet clue changes the guess. Do not add clues, name the answer, or confirm the guess.
 
-**Example AI line:** "Now there is one more clue. Does that change your guess, or make it feel stronger?"
+**Example AI line:** "Second clue: paws or feet. Keep your guess, or change it?"
 
 **Child responses:**
 
@@ -94,16 +94,16 @@ The child plays Partial Reveal Guess with partial_reveal_guess as the bound acti
 **AI follow-up:**
 
 1. Tie the guess to the visible clue, save the maybe-guess, and set up the next evidence step without confirming the answer.
-2. Name the clue in the second revealed clue, separate it from one distracting detail, and ask for one maybe-guess.
-3. [wait 2s] Name one visible clue from the second revealed clue, model a "maybe it is" guess, and invite a copy or new guess.
+2. Repeat the paws-or-feet clue only, then ask for one maybe-guess without saying the answer.
+3. [wait 2s] Repeat "paws or feet" only, model a maybe-guess format, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `partial_reveal_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 **Round 3 -- Final Reveal Guess:**
 
-**Runtime AI instruction:** Keep the asset promise, show the final reveal card, and ask for the final answer plus one clue reason without saying the answer first.
+**Runtime AI instruction:** Ask for the final guess using the pointy-ears and paws-or-feet clues. Do not add clues or say the answer first.
 
-**Example AI line:** "The final reveal card is ready. What is your final answer, and which clue helped most?"
+**Example AI line:** "Final guess time. Use pointy ears and paws or feet. What could it be?"
 
 **Child responses:**
 
@@ -113,17 +113,17 @@ The child plays Partial Reveal Guess with partial_reveal_guess as the bound acti
 
 **AI follow-up:**
 
-1. Verify the final answer from the child's response, tie it to the visible clue, and then advance to the reveal.
-2. Name the clue in the final whole-object guess, separate it from one distracting detail, and ask for one maybe-guess.
-3. [wait 2s] Name one visible clue from the final whole-object guess, model a "maybe it is" guess, and invite a copy or new guess.
+1. Save the final guess, tie it to one visible clue, and then advance to the reveal.
+2. Repeat the pointy-ears and paws-or-feet clues only, then ask for one final guess without saying the answer.
+3. [wait 2s] Repeat both clues only, model a maybe-guess format, and invite a copy or new guess.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `partial_reveal_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
+**Runtime AI instruction:** Reveal the cat and name only the pointy ears and paws-or-feet clues.
 
-**Example AI line:** "Your choices filled the activity board: first we started, then we tried, then we finished the mission."
+**Example AI line:** "Reveal: it was a cat. The pointy ears and paws were the clues."
 
 **Child responses:**
 
@@ -141,9 +141,9 @@ The child plays Partial Reveal Guess with partial_reveal_guess as the bound acti
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
+**Runtime AI instruction:** Close by saying the child used parts to find the whole cat.
 
-**Example AI line:** "Today you practiced Form and Causation. You used your own answer to move the activity forward."
+**Example AI line:** "You looked at parts, made guesses, and found the whole cat."
 
 **Child responses:**
 
