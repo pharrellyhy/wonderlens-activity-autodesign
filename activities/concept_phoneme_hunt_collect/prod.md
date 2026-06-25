@@ -39,9 +39,9 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Explain only the rule: each turn saves one `photo_id`, uses vision to recognize and normalize the object name, and judges whether later names start with the first saved character. Do not ask the child to take the first photo here; the first action prompt belongs to Round 1.
+**Runtime AI instruction:** Say only that the first photo sets a starting letter and later names must match it. Do not ask for a photo here.
 
-**Example AI line:** "Rule: the first photo sets the starting letter. Later photo names need to start the same way."
+**Example AI line:** "The first photo sets our starting letter. Then we find two more names that start the same way."
 
 **Child responses:**
 
@@ -61,7 +61,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 **Round 1 -- Seed Letter Treasure:**
 
-**Runtime AI instruction:** Ask for the first real camera photo, preserve `photo_id`, normalize the recognized object name, save its first starting character, and count it as the seed treasure.
+**Runtime AI instruction:** Ask for one clear photo so WonderLens can name the object and save its first letter. Say letter, not sound.
 
 **Example AI line:** "Take one photo. I will name the object and save its first letter for our hunt."
 
@@ -81,7 +81,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 **Round 2 -- Same Letter Treasure:**
 
-**Runtime AI instruction:** Ask for a second real camera photo, compare the normalized object name to the saved first character, and accept only a same-starting-character word.
+**Runtime AI instruction:** Ask for another photo of an object whose name starts with the saved letter. Say letter, not sound.
 
 **Example AI line:** "We saved our first letter. What else can you photograph that starts the same way?"
 
@@ -101,7 +101,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 **Round 3 -- Same Letter Recap:**
 
-**Runtime AI instruction:** Ask for the final real camera photo, normalize the object name, accept only the saved starting character, then prepare to recap all saved same-letter words.
+**Runtime AI instruction:** Ask for one final photo of an object whose name starts with the saved letter. Say letter, not sound.
 
 **Example AI line:** "One last same-letter treasure. Take one more photo, and I will check the object name."
 
@@ -121,7 +121,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Recap the three saved object names, identify the shared starting character, and award Letter Treasure Hunter.
+**Runtime AI instruction:** Recap the three object names and their shared starting letter. Say letter, not sound.
 
 **Example AI line:** "You collected three letter treasures. They connect because each name starts the same way."
 
@@ -141,7 +141,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close by naming Form and Connection: the form is the starting character, and the connection is that the collected names start with the same letter.
+**Runtime AI instruction:** Close by naming the pattern: each collected object name starts with the same letter, not sound.
 
 **Example AI line:** "Today you practiced Form and Connection by finding names that start the same way."
 

@@ -1,5 +1,22 @@
 # HANDOFF
 
+## 2026-06-25 - Four Package Dialogue Bridges
+
+Problem: The four runtime-verified package source files still allowed
+chatbot-like rules and transition wording. Runtime live output showed first
+action invitations during rules, partial-reveal clue invention, and phoneme
+drift toward sound language.
+
+Solution: Updated the four package `prod.md` files to use concise child-facing
+bridge instructions. Rules steps now explain only the rule, partial reveal names
+only authored clues before the final reveal, animal voice asks for one clear
+verifiable response per round, and phoneme uses first-letter language. The
+phoneme `spec.md` remains aligned with the first starting-character policy.
+
+Verification: `git diff --check` passed. Tag-block schema validation was not
+rerun in this checkout because the active system Python lacks `PyYAML`; no
+autodesign tag-block files changed in this branch.
+
 ## 2026-06-24 - Skip Intro Rules Only Packages
 
 Problem: Four runtime-verified packages still had a separate intro/transition

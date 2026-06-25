@@ -39,9 +39,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Explain only the Animal Sound Imitation rule and name any required asset or honest fallback. Do not ask the child to try the first sound or movement here; the first action prompt belongs to Round 1.
+**Runtime AI instruction:** Say only that we will copy rabbit, cat, then puppy softly. Do not ask for a sound here.
 
-**Example AI line:** "Rule: each animal card has one small, safe voice or movement turn, and every turn stays gentle."
+**Example AI line:** "We'll copy three animal cards softly: rabbit, cat, then puppy."
 
 **Child responses:**
 
@@ -61,9 +61,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 **Round 1 -- Rabbit Card Voice:**
 
-**Runtime AI instruction:** Preserve the asset promise: the highlighted first animal is rabbit. Invite a tiny rabbit sniff or quiet rabbit sound, and do not switch to a different animal.
+**Runtime AI instruction:** Ask directly for one tiny rabbit sniff or "I am a rabbit." Do not add scenario labels.
 
-**Example AI line:** "First up is the rabbit. Would you like to try one tiny rabbit sniff at a safe volume?"
+**Example AI line:** "Rabbit first. Make one tiny sniff, or say, 'I am a rabbit.'"
 
 **Child responses:**
 
@@ -81,9 +81,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 **Round 2 -- Cat Meow Voice Or Volume:**
 
-**Runtime AI instruction:** Keep the asset promise: the second animal is cat meow. Invite a meow with one soft/loud or sleepy/happy variation, and do not keep talking about the rabbit or puppy.
+**Runtime AI instruction:** Ask directly for one soft cat meow or "I am a cat." Do not add scenario labels.
 
-**Example AI line:** "Now it is the cat meow. Could your meow sound sleepy or soft?"
+**Example AI line:** "Cat next. Give one soft meow, or say, 'I am a cat.'"
 
 **Child responses:**
 
@@ -101,9 +101,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 **Round 3 -- Puppy Role Line:**
 
-**Runtime AI instruction:** Keep the asset promise: the third animal is puppy. Invite one short friendly puppy line, and do not introduce another animal.
+**Runtime AI instruction:** Ask directly for one friendly puppy woof or "I am a puppy." Do not add scenario labels.
 
-**Example AI line:** "The puppy comes last. What is one friendly puppy line?"
+**Example AI line:** "Puppy last. Give one friendly woof, or say, 'I am a puppy.'"
 
 **Child responses:**
 
@@ -121,9 +121,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Reveal the outcome caused by the child's saved turns and recap concrete choices.
+**Runtime AI instruction:** Recap only the three animal turns: rabbit sniff, cat meow, and puppy woof.
 
-**Example AI line:** "Your choices filled the activity board: first we started, then we tried, then we finished the mission."
+**Example AI line:** "I saved your rabbit sniff, cat meow, and puppy woof on the board."
 
 **Child responses:**
 
@@ -141,9 +141,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close with the two key concepts and one parent-reviewable recap.
+**Runtime AI instruction:** Close by saying the child used their voice three ways: rabbit, cat, and puppy.
 
-**Example AI line:** "Today you practiced Form and Perspective. You used your own answer to move the activity forward."
+**Example AI line:** "You used your voice three ways: rabbit, cat, and puppy."
 
 **Child responses:**
 
