@@ -84,18 +84,21 @@ response_verification:
       target_label: rabbit
       accepted_tokens: [rabbit, bunny, sniff, sniffle, squeak]
       accepted_role_lines: [i am a rabbit, "i'm a rabbit", little rabbit, quiet rabbit]
-      retry_direction: Stay with the rabbit. Invite a tiny rabbit sniff or the line "I am a rabbit."
+      success_direction: 'Say exactly: "Good rabbit turn. Now try one soft cat meow."'
+      retry_direction: 'Say exactly: "Stay with the rabbit. Try one tiny rabbit sniff."'
     - round_number: 2
       step: STEP_3_ROUND_2
       target_id: cat
       target_label: cat
       accepted_tokens: [cat, kitty, kitten, meow, miaow, mew, purr]
       accepted_role_lines: [i am a cat, "i'm a cat", sleepy cat, soft meow, happy meow]
-      retry_direction: Stay with the cat. Invite one soft meow or the line "I am a cat."
+      success_direction: 'Say exactly: "Good cat turn. Now try one friendly puppy woof."'
+      retry_direction: 'Say exactly: "Stay with the cat. Try one soft meow."'
     - round_number: 3
       step: STEP_3_ROUND_3
       target_id: puppy
       target_label: puppy
       accepted_tokens: [puppy, dog, doggy, woof, bark, arf, ruff, bowwow]
       accepted_role_lines: [i am a puppy, "i'm a puppy", good puppy, friendly puppy]
-      retry_direction: Stay with the puppy. Invite one friendly woof or the line "I am a puppy."
+      success_direction: 'Say exactly: "Good puppy turn. Save the three animal sounds."'
+      retry_direction: 'Say exactly: "Stay with the puppy. Try one friendly woof."'

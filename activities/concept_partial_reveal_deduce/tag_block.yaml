@@ -57,8 +57,8 @@ activity_signature:
     secondary:
     - function
     - state
-  preview_label: Partial Reveal Guess
-  preview_prompt: Try Partial Reveal Guess with one short guided round.
+  preview_label: Mystery Clue Guess
+  preview_prompt: Try Mystery Clue Guess with one short guided round.
   role_pivot_note: The workbook concept supplies the play frame; a photographed object
     may only act as a catalyst.
 matchability:
@@ -69,3 +69,27 @@ matchability:
     T2: true
 source_workbook_row: 11
 source_concept: source_partial_reveal_guess
+response_verification:
+  mode: partial_reveal_final_answer
+  evidence_source: stt_transcript
+  final_round: 3
+  hide_answer_until: final_reveal
+  hidden_answer:
+    canonical: cat
+    accepted_terms: [cat, kitty, kitten]
+  visible_clues:
+    - pointy ears
+    - paws or feet
+  rounds:
+    - round_number: 1
+      accepted_tokens: [ears, pointy, animal, maybe]
+      success_direction: 'Say exactly: "Paws or feet. Keep your guess or change it?"'
+      retry_direction: 'Say exactly: "Pointy ears. What could it be?"'
+    - round_number: 2
+      accepted_tokens: [paws, feet, animal, maybe]
+      success_direction: 'Say exactly: "Pointy ears and paws or feet. What is your final guess?"'
+      retry_direction: 'Say exactly: "Paws or feet. Keep your guess or change it?"'
+  correct_final_response_direction: 'Say exactly: "The answer is cat. Here is the big reveal."'
+  wrong_final_response:
+    action: advance
+    response_direction: 'Say exactly: "The answer is cat. Here is the big reveal." Do not say the child guessed correctly.'

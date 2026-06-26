@@ -37,7 +37,7 @@ demo_support:
   support_level: degraded_runtime_judgment_required
   entity_bindings:
   - entity_id: phoneme_treasure_hunt
-    display_label: Phoneme Treasure Hunt
+    display_label: Letter Treasure Hunt
     source_entity_exemplar: phoneme_treasure_hunt
     default: true
   requires:

@@ -1,10 +1,10 @@
-# Phoneme Treasure Hunt
+# Letter Treasure Hunt
 
 ### A. Basic Info
 
 | Field | Value |
 |-------|-------|
-| Activity Name | Phoneme Treasure Hunt |
+| Activity Name | Letter Treasure Hunt |
 | Activity Category | cat5 |
 | Recommended Tier | T1 |
 | Core IB Key Concepts | Form, Connection |
@@ -39,7 +39,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Say only that the first photo sets a starting letter and later names must match it. Do not ask for a photo here.
+**Runtime AI instruction:** Say exactly: "The first photo sets our starting letter. Then we find two more names that start the same way." Do not ask for a photo here.
 
 **Example AI line:** "The first photo sets our starting letter. Then we find two more names that start the same way."
 
@@ -61,7 +61,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 **Round 1 -- Seed Letter Treasure:**
 
-**Runtime AI instruction:** Ask for one clear photo so WonderLens can name the object and save its first letter. Say letter, not sound.
+**Runtime AI instruction:** Say exactly: "Take one clear photo. I will save its first letter." Say letter, not sound.
 
 **Example AI line:** "Take one photo. I will name the object and save its first letter for our hunt."
 
@@ -121,7 +121,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Recap the three object names and their shared starting letter. Say letter, not sound.
+**Runtime AI instruction:** Recap the three object names and their shared starting letter. Say letter, not sound. Keep the line complete and do not ask another question.
 
 **Example AI line:** "You collected three letter treasures. They connect because each name starts the same way."
 
@@ -135,13 +135,13 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 1. Repeat the child words and emphasize the shared starting character.
 2. Point from picture to object name, then ask which saved name starts the same way.
-3. [wait 2s] Read the saved words aloud and offer two favorite choices.
+3. [wait 2s] Read the saved words aloud and ask which one starts the pattern.
 
 **Screen:** Shows the Letter Treasure Hunter badge and saved same-letter words. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close by naming the pattern: each collected object name starts with the same letter, not sound.
+**Runtime AI instruction:** Close by naming the pattern: each collected object name starts with the same letter, not sound. Keep the line complete and do not ask another question.
 
 **Example AI line:** "Today you practiced Form and Connection by finding names that start the same way."
 
@@ -154,7 +154,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 **AI follow-up:**
 
 1. Offer a next-time hunt seeded by a different first photo.
-2. Close Phoneme Treasure Hunt first, then offer one new seed-letter round for later.
+2. Close Letter Treasure Hunt first, then offer one new seed-letter round for later.
 3. [wait 2s] Read the badge in one sentence and end with one warm next-time invitation.
 
 **Screen:** Recap badge lists title, Form, Connection, and the saved same-letter words. Optional support asset: `closing_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.

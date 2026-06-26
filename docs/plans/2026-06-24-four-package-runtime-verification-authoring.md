@@ -33,6 +33,24 @@ package shape: `prod.md`, `spec.md`, `tag_block.yaml`, `demo_support.yaml`,
 
 ## Required Authoring Changes
 
+### Shared Dialogue Quality Rules
+
+For these runtime-verified packages, child-facing dialogue must be a short
+bridge to the next expected action, not a general chatbot response:
+
+1. The rules step explains only the rule; it does not invite the first action.
+2. Round asks use one direct instruction or question.
+3. Retry directions are direct and state the current expected action.
+4. Success directions briefly acknowledge the accepted response and ask the next
+   task directly.
+5. Internal labels such as `Cue`, `Card Voice`, package IDs, scenario IDs, and
+   runtime field names are never child-facing.
+6. Binary choices are used only when the activity intentionally accepts those
+   exact alternatives.
+7. Hidden-answer activities may acknowledge a `maybe-guess`, but must not say
+   `you guessed it`, `correct`, or equivalent before the final answer outcome is
+   known.
+
 ### First-Letter Hunt
 
 `concept_phoneme_hunt_collect` should become a first-letter seed-photo hunt:

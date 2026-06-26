@@ -39,7 +39,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Say only that each picture shows a feeling clue and the child chooses one kind thing that fits. Do not ask a question here.
+**Runtime AI instruction:** Say exactly: "Each picture shows a feeling clue. Choose one kind thing that fits." Do not ask a question here.
 
 **Example AI line:** "Each picture shows a feeling clue. Choose one kind thing that fits."
 
@@ -59,9 +59,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 2: Multi-Round Core Loop
 
-**Round 1 -- Worried Hands Cue:**
+**Round 1 -- Worried Hands:**
 
-**Runtime AI instruction:** Ask what the worried hands might feel, need, or get help with.
+**Runtime AI instruction:** Say exactly: "Look at worried hands. What might help?"
 
 **Example AI line:** "Look at the worried hands. What might they feel or need?"
 
@@ -74,14 +74,14 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 **AI follow-up:**
 
 1. Connect the cue to the caring choice, save the kindness for this turn, and show the calmer or helped state.
-2. Reframe without judging, name the worried hands cue, and offer two gentle help choices.
+2. Reframe without judging, name the worried hands, and ask for one feeling or help action.
 3. [wait 2s] Model one caring sentence for worried hands, then ask the child to choose a feeling or help action.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 2 -- Sleepy Shoulders Cue:**
+**Round 2 -- Sleepy Shoulders:**
 
-**Runtime AI instruction:** Ask what the sleepy shoulders might feel, need, or get help with.
+**Runtime AI instruction:** Say exactly: "Look at sleepy shoulders. What might help?"
 
 **Example AI line:** "Now look at the sleepy shoulders. What might help someone who looks tired?"
 
@@ -94,14 +94,14 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 **AI follow-up:**
 
 1. Connect the cue to the caring choice, save the kindness for this turn, and show the calmer or helped state.
-2. Reframe without judging, name the sleepy shoulders cue, and offer two gentle help choices.
+2. Reframe without judging, name the sleepy shoulders, and ask for one helpful action.
 3. [wait 2s] Model one caring sentence for sleepy shoulders, then ask the child to choose a feeling or help action.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 3 -- Brave Try Cue:**
+**Round 3 -- Brave Try:**
 
-**Runtime AI instruction:** Ask what encouragement or help fits the brave try.
+**Runtime AI instruction:** Say exactly: "Look at the brave try. What encouragement would help?"
 
 **Example AI line:** "This friend is trying bravely. What could you say or do to help them keep trying?"
 
@@ -114,14 +114,14 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 **AI follow-up:**
 
 1. Connect the cue to the caring choice, save the kindness for this turn, and show the calmer or helped state.
-2. Reframe without judging, name the brave try cue, and offer two encouragement choices.
+2. Reframe without judging, name the brave try, and ask for one encouraging sentence.
 3. [wait 2s] Model one caring sentence for brave trying, then ask the child to choose a feeling or help action.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Recap only the three care choices: worried hands got care, sleepy shoulders got rest, and brave trying got encouragement.
+**Runtime AI instruction:** Say exactly: "Worried hands got care. Sleepy shoulders got rest. Brave trying got encouragement."
 
 **Example AI line:** "Your kind choices helped each friend: worry, tiredness, and brave trying."
 
@@ -135,13 +135,13 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 1. Tie the reveal to the child's kind response turns, name one concrete saved turn, and invite a short reflection.
 2. Hold the Emotion Reader reveal, name the saved turn that matters, and ask what changed because of it.
-3. [wait 2s] Narrate one before/after change from the Emotion Reader board, then offer two favorite-turn choices.
+3. [wait 2s] Narrate one before/after change from the Emotion Reader board, then ask which caring help fit best.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close by saying the child noticed feeling clues and chose caring help.
+**Runtime AI instruction:** Say exactly: "You noticed feeling clues and chose caring help."
 
 **Example AI line:** "You noticed clues and chose caring help. We can read a new feeling next time."
 

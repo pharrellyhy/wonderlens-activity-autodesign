@@ -39,7 +39,7 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Say only that we will copy rabbit, cat, then puppy softly. Do not ask for a sound here.
+**Runtime AI instruction:** Say exactly: "We will copy rabbit, cat, then puppy softly." Do not ask for a sound here.
 
 **Example AI line:** "We'll copy three animal cards softly: rabbit, cat, then puppy."
 
@@ -59,9 +59,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 #### Step 2: Multi-Round Core Loop
 
-**Round 1 -- Rabbit Card Voice:**
+**Round 1 -- Rabbit:**
 
-**Runtime AI instruction:** Ask directly for one tiny rabbit sniff or "I am a rabbit." Do not add scenario labels.
+**Runtime AI instruction:** Say exactly: "Rabbit first. Try one tiny sniff." Do not add scenario labels.
 
 **Example AI line:** "Rabbit first. Make one tiny sniff, or say, 'I am a rabbit.'"
 
@@ -81,7 +81,7 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 **Round 2 -- Cat Meow Voice Or Volume:**
 
-**Runtime AI instruction:** Ask directly for one soft cat meow or "I am a cat." Do not add scenario labels.
+**Runtime AI instruction:** Say exactly: "Cat next. Try one soft meow." Do not add scenario labels.
 
 **Example AI line:** "Cat next. Give one soft meow, or say, 'I am a cat.'"
 
@@ -101,7 +101,7 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 **Round 3 -- Puppy Role Line:**
 
-**Runtime AI instruction:** Ask directly for one friendly puppy woof or "I am a puppy." Do not add scenario labels.
+**Runtime AI instruction:** Say exactly: "Puppy last. Try one friendly woof." Do not add scenario labels.
 
 **Example AI line:** "Puppy last. Give one friendly woof, or say, 'I am a puppy.'"
 
@@ -121,7 +121,7 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Recap only the three animal turns: rabbit sniff, cat meow, and puppy woof.
+**Runtime AI instruction:** Say exactly: "Rabbit sniff, cat meow, and puppy woof are saved."
 
 **Example AI line:** "I saved your rabbit sniff, cat meow, and puppy woof on the board."
 
@@ -135,13 +135,13 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 1. Tie the reveal to the child's safe sound or movement turns, name one concrete saved turn, and invite a short reflection.
 2. Hold the Animal Sound Imitation reveal, name the saved turn that matters, and ask what changed because of it.
-3. [wait 2s] Narrate one before/after change from the Animal Sound Imitation board, then offer two favorite-turn choices.
+3. [wait 2s] Narrate one before/after change from the Animal Sound Imitation board, then ask which animal sound was easiest.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close by saying the child used their voice three ways: rabbit, cat, and puppy.
+**Runtime AI instruction:** Say exactly: "You used your voice three ways: rabbit, cat, and puppy."
 
 **Example AI line:** "You used your voice three ways: rabbit, cat, and puppy."
 

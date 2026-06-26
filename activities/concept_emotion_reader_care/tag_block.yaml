@@ -80,18 +80,21 @@ response_verification:
       accepted_feelings: [worried, nervous, scared, afraid, upset]
       accepted_needs: [comfort, calm, safe, listen]
       accepted_help_actions: [ask if they are okay, say kind words, help them breathe, stay close, get a grown-up]
-      retry_direction: Look at the worried hands again. Ask what the character might feel or need.
+      success_direction: 'Say exactly: "Good noticing. Now look at sleepy shoulders. What would help?"'
+      retry_direction: 'Say exactly: "Look at the worried hands again. What might the character feel or need?"'
     - round_number: 2
       active_cue: sleepy shoulders
       target_result: tired or sleepy and needs rest
-      accepted_feelings: [sleepy, tired, worn out]
+      accepted_feelings: [sleepy, tired, worn out, sleeping]
       accepted_needs: [rest, quiet, break, sleep]
       accepted_help_actions: [offer a rest, make it quiet, bring water, slow down]
-      retry_direction: Stay with the sleepy shoulders cue. Ask what would help someone who looks tired.
+      success_direction: 'Say exactly: "Good noticing. Now look at the brave try. What encouragement would help?"'
+      retry_direction: 'Say exactly: "Stay with sleepy shoulders. What would help someone tired?"'
     - round_number: 3
       active_cue: brave try
       target_result: trying bravely and needs encouragement
       accepted_feelings: [brave, nervous, unsure, proud]
-      accepted_needs: [encouragement, try again, cheering]
-      accepted_help_actions: [cheer them on, say you can try, offer help, stay with them]
-      retry_direction: Stay with the brave try cue. Ask what encouragement would help them keep trying.
+      accepted_needs: [encouragement, try again, cheering, keep trying]
+      accepted_help_actions: [cheer them on, say you can try, offer help, stay with them, great try, good try, keep trying]
+      success_direction: 'Say exactly: "Good encouragement. Save that caring help."'
+      retry_direction: 'Say exactly: "Stay with the brave try. What encouragement would help?"'
