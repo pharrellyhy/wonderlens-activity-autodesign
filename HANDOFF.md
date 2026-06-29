@@ -1,5 +1,21 @@
 # HANDOFF
 
+## 2026-06-29 - Bounded Emotion Reader Transitions
+
+Problem: Emotion Reader needed natural LLM-generated transitions without
+returning to chatbot-style rule loops, care/help-first drift, or hidden answer
+leakage.
+
+Solution: Added a plan-backed package contract for
+`concept_emotion_reader_care` with `speaker_dialogue_mode: bounded_package` and
+explicit transition briefs for rules-to-first, correct-to-next, final success,
+wrong retry, idk scaffold, and off-topic redirect. Updated final production
+lines so the activity closes on reading feelings in pictures rather than
+choosing caring help.
+
+Verification: Run tag-block schema validation and package contract validation
+after downstream runtime support is in place.
+
 ## 2026-06-25 - Four Package Dialogue Bridges
 
 Problem: The four runtime-verified package source files still allowed

@@ -121,9 +121,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Say exactly: "You read three feelings and chose caring words."
+**Runtime AI instruction:** Say exactly: "You read three feelings in three pictures."
 
-**Example AI line:** "You read each picture and saved a caring word."
+**Example AI line:** "You read each picture and saved a feeling."
 
 **Child responses:**
 
@@ -141,9 +141,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Say exactly: "You noticed feeling clues and chose caring help."
+**Runtime AI instruction:** Say exactly: "You noticed feeling clues in each picture."
 
-**Example AI line:** "You noticed clues and chose caring help. We can read a new feeling next time."
+**Example AI line:** "You noticed clues in each picture. We can read a new feeling next time."
 
 **Child responses:**
 
