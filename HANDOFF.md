@@ -1,5 +1,62 @@
 # HANDOFF
 
+## 2026-06-25 - Four Package Dialogue Bridges
+
+Problem: The four runtime-verified package source files still allowed
+chatbot-like rules and transition wording. Runtime live output showed first
+action invitations during rules, partial-reveal clue invention, and phoneme
+drift toward sound language.
+
+Solution: Updated the four package `prod.md` files to use concise child-facing
+bridge instructions. Rules steps now explain only the rule, partial reveal names
+only authored clues before the final reveal, animal voice asks for one clear
+verifiable response per round, and phoneme uses first-letter language. The
+phoneme `spec.md` remains aligned with the first starting-character policy.
+
+Verification: `git diff --check` passed. Tag-block schema validation was not
+rerun in this checkout because the active system Python lacks `PyYAML`; no
+autodesign tag-block files changed in this branch.
+
+## 2026-06-24 - Skip Intro Rules Only Packages
+
+Problem: Four runtime-verified packages still had a separate intro/transition
+step. The requested package source contract is rules first, rules text only,
+and the first child action invitation in Round/Collect 1.
+
+Solution: Added a plan-backed goal and updated the four package `prod.md`
+files to remove `Step 1: Transition Bridge`. Each package now starts with
+`Step 1: Rules`, later production steps are renumbered, and `spec.md` asset
+`use_step` references point at the new rules/round numbering.
+
+Verification: Targeted text scans confirmed no stale transition-bridge or
+rules-step first-action invitations remained, Round/Collect 1 prompts still
+exist, and `git diff --check` passed.
+
+## 2026-06-24 - Four Runtime-Verified Packages Updated
+
+Problem: Four migrated activity packages needed response-verification behavior
+without adopting `activity_display_contract_v1`: phoneme hunt should seed the
+target from the first recognized photo name's starting character, emotion reader
+should align prompts with generated visual cues, partial reveal must not leak
+the hidden answer in child-facing runtime text, and animal imitation needs
+voice correctness before advancement.
+
+Solution: Added the implementation plan and goal files, then updated the four
+package authoring artifacts. `concept_phoneme_hunt_collect` now describes the
+first-photo starting-letter policy without a directory rename. The emotion
+package uses the concrete worried-hands, sleepy-shoulders, and brave-try cues.
+The partial-reveal package removes child-facing answer leaks. The animal-sound
+package declares transcript verification. Demo support metadata marks the
+runtime-judgment packages as degraded under the producer demo contract while
+remaining importable by WonderLens AI.
+
+Verification: `python3 scripts/validate_demo_package_contract.py activities`,
+`python3 -m unittest tests.test_demo_package_contract_validator -v`,
+tag-block schema validation using the existing WonderLens AI Python
+environment because this checkout lacks `PyYAML`/`jsonschema`,
+`rg` scans for `activity_display_contract_v1`, partial-reveal answer-leak
+scans, and `git diff --check` passed.
+
 ## 2026-06-23 - Activity Display Contract V1 Completed
 
 Problem: Runtime-ready activity packages did not have a package-local,

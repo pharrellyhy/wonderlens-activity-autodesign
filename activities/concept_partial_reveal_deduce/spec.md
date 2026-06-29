@@ -29,6 +29,7 @@ The package preserves the original play frame, child role, required child action
 ## Runtime Detail Floor Notes
 
 - Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
+- Do not expose the hidden answer in runtime dialogue before the final answer is verified.
 - Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
 - Keep the repeated child action aligned to `deduce`.
 - Preserve this source sequence: The screen shows one distinctive part of an animal or object, and the child guesses the whole thing from visible clues.
@@ -41,7 +42,7 @@ The package preserves the original play frame, child role, required child action
 
 | asset_id | asset_type | requiredness | generation_timing | use_step | display_location | purpose | prompt_or_source | fallback_behavior |
 |---|---|---|---|---|---|---|---|---|
-| partial_reveal_cards_01 | card_set | required | pre_generated | prod.step_2; prod.step_3.round_1-3 | center_card_area | Provide visible partial evidence so the child can infer the whole animal or object. | new_ai_generated_asset | If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture. |
+| partial_reveal_cards_01 | card_set | required | pre_generated | prod.step_1; prod.step_2.round_1-3 | center_card_area | Provide visible partial evidence so the child can infer the whole animal or object. | new_ai_generated_asset | If partial cards are unavailable, switch to a voice-only partial-clue riddle and do not claim the screen is showing a picture. |
 
 ## Extensibility Summary
 
@@ -58,7 +59,7 @@ Reusable by replacing the topic, scene, role, or approved asset set while preser
 | # | Dimension | Score | Notes |
 |---|---|---|---|
 | 1 | V1 Technical Compliance | PASS | Fallbacks are explicit and unsupported capability is not overclaimed. |
-| 2 | Hook & Transition | PASS | Opening uses the workbook trigger and play frame. |
+| 2 | Hook & Transition | PASS | Runtime start uses a rules-only setup; the first action prompt remains in Round 1. |
 | 3 | Edge Case Coverage | PASS | Ideal, unexpected, and no-response branches are present. |
 | 4 | IB Completeness | PASS | KUD and concepts match the child action. |
 | 5 | Tier Appropriateness | PASS | Prompts are short and scaffolded. |

@@ -1,6 +1,6 @@
 # Plan Status Index
 
-> **Last checked:** 2026-06-23
+> **Last checked:** 2026-06-24
 
 ## Status Definitions
 
@@ -23,6 +23,8 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
+| [2026-06-24-skip-intro-rules-only-packages.md](2026-06-24-skip-intro-rules-only-packages.md) | Active | Removes the separate intro step from four runtime-verified packages, keeps rules explanation-only, and preserves the first child action prompt in Round/Collect 1. |
+| [2026-06-24-four-package-runtime-verification-authoring.md](2026-06-24-four-package-runtime-verification-authoring.md) | Active | Updates four packages for runtime verification without `activity_display_contract_v1.yaml`: seed-photo first-letter hunt, emotion cue matching, partial reveal answer hiding, and animal transcript verification. |
 | [2026-06-23-activity-display-contract-v1.md](2026-06-23-activity-display-contract-v1.md) | Completed | Added producer-side `activity_display_contract_v1.yaml` schema/validator/tests, current-twelve and run-local backfill, docs updates, and English-only display effect fields. |
 | [2026-06-08-gemini-asset-quality-candidates.md](2026-06-08-gemini-asset-quality-candidates.md) | Planned | Adds multi-candidate Gemini generation, style-reference prompting, explicit candidate acceptance, and reviewable visual QA evidence for illustrative assets. |
 | [2026-06-08-team-readiness-and-gemini-assets.md](2026-06-08-team-readiness-and-gemini-assets.md) | Completed | Added collaborator onboarding, review-status template, Gemini source PNG provider, dependency setup, tests, docs links, and live smoke evidence. |

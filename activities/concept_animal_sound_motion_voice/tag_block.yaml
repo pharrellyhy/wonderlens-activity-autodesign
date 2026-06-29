@@ -69,3 +69,33 @@ matchability:
     T2: true
 source_workbook_row: 13
 source_concept: source_animal_sound_imitation
+response_verification:
+  type: transcript_token_match
+  evidence_source: stt_transcript
+  required: true
+  applies_to_steps:
+    - STEP_3_ROUND_1
+    - STEP_3_ROUND_2
+    - STEP_3_ROUND_3
+  rounds:
+    - round_number: 1
+      step: STEP_3_ROUND_1
+      target_id: rabbit
+      target_label: rabbit
+      accepted_tokens: [rabbit, bunny, sniff, sniffle, squeak]
+      accepted_role_lines: [i am a rabbit, "i'm a rabbit", little rabbit, quiet rabbit]
+      retry_direction: Stay with the rabbit. Invite a tiny rabbit sniff or the line "I am a rabbit."
+    - round_number: 2
+      step: STEP_3_ROUND_2
+      target_id: cat
+      target_label: cat
+      accepted_tokens: [cat, kitty, kitten, meow, miaow, mew, purr]
+      accepted_role_lines: [i am a cat, "i'm a cat", sleepy cat, soft meow, happy meow]
+      retry_direction: Stay with the cat. Invite one soft meow or the line "I am a cat."
+    - round_number: 3
+      step: STEP_3_ROUND_3
+      target_id: puppy
+      target_label: puppy
+      accepted_tokens: [puppy, dog, doggy, woof, bark, arf, ruff, bowwow]
+      accepted_role_lines: [i am a puppy, "i'm a puppy", good puppy, friendly puppy]
+      retry_direction: Stay with the puppy. Invite one friendly woof or the line "I am a puppy."

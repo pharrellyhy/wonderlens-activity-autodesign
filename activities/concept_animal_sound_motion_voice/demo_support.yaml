@@ -32,9 +32,9 @@ parameterization:
     fullstack_demo: Use package-local assets and declared ui_template.
   reviewer_action: accept_as_source_bound_demo_package
 demo_support:
-  status: supported
+  status: degraded
   ui_template: cat1_dialogue
-  support_level: full
+  support_level: degraded_runtime_judgment_required
   entity_bindings:
   - entity_id: animal_sound_imitation
     display_label: Animal Sound Imitation
@@ -43,10 +43,11 @@ demo_support:
   requires:
     generated_assets: true
     real_camera: false
-    runtime_judgment: false
+    runtime_judgment: true
     device_round_screen: true
   unsupported_reasons: []
-  degraded_reasons: []
+  degraded_reasons:
+    - Requires transcript verification before advancing animal imitation rounds.
   consumer_notes:
     wonderlens_ai: Importable after WonderLens AI generates runtime.yaml from this
       package.
