@@ -19,6 +19,7 @@ assets:
   - id: door_object
     role: collection_correct
     label: Door
+    entity_name: door
     collection_catalog_id: door
     requiredness: required
     accuracy_mode: illustrative
@@ -34,6 +35,7 @@ assets:
   - id: cup_object
     role: collection_distractor
     label: Cup
+    entity_name: cup
     collection_catalog_id: cup
     requiredness: optional
     accuracy_mode: illustrative

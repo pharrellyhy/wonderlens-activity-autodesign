@@ -1,0 +1,110 @@
+activity_id: concept_constellation_star_count_enumerate
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: first_star_group
+    kind: number
+    label: First star group
+    asset_manifest_id: round_1_scene
+    metadata:
+      expected_number: 4
+      counted_item: visible star card
+  - display_asset_id: second_star_pattern
+    kind: number
+    label: Second star pattern
+    asset_manifest_id: round_2_scene
+    metadata:
+      expected_number: 9
+      counted_item: visible star card
+  - display_asset_id: final_constellation_count
+    kind: number
+    label: Final constellation count
+    asset_manifest_id: round_3_scene
+    metadata:
+      expected_number: 14
+      counted_item: connected main-constellation star
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: single_image
+    display_asset_id: first_star_group
+    control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
+    verification_policy:
+      type: number_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: first_star_group
+      evidence:
+        - spoken_number
+        - transcript
+    effect_profile:
+      id: count_confirm
+      sound_effects:
+        - count_tick
+        - correct_chime
+      lighting_effects:
+        - star_focus
+        - success_ring
+      haptic_feedback:
+        - count_pulse
+        - confirm_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: single_image
+    display_asset_id: second_star_pattern
+    control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
+    verification_policy:
+      type: number_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: second_star_pattern
+      evidence:
+        - spoken_number
+        - transcript
+    effect_profile:
+      id: count_confirm
+      sound_effects:
+        - count_tick
+        - correct_chime
+      lighting_effects:
+        - star_focus
+        - success_ring
+      haptic_feedback:
+        - count_pulse
+        - confirm_pulse
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: single_image
+    display_asset_id: final_constellation_count
+    control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
+    verification_policy:
+      type: number_match
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: final_constellation_count
+      evidence:
+        - spoken_number
+        - transcript
+    effect_profile:
+      id: count_confirm
+      sound_effects:
+        - count_tick
+        - correct_chime
+      lighting_effects:
+        - star_focus
+        - success_ring
+      haptic_feedback:
+        - count_pulse
+        - confirm_pulse

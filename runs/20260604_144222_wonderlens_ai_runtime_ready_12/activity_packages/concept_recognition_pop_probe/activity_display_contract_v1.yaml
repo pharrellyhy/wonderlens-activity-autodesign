@@ -1,0 +1,144 @@
+activity_id: concept_recognition_pop_probe
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: red_apple_target
+    kind: option
+    asset_manifest_id: apple
+    label: Red apple
+    metadata:
+      accepted_aliases:
+        - apple
+        - red apple
+  - display_asset_id: blue_car_distractor
+    kind: option
+    asset_manifest_id: car
+    label: Blue car
+  - display_asset_id: strawberry_distractor
+    kind: option
+    asset_manifest_id: strawberry
+    label: Strawberry
+  - display_asset_id: cherries_distractor
+    kind: option
+    asset_manifest_id: cherries
+    label: Cherries
+  - display_asset_id: basketball_distractor
+    kind: option
+    asset_manifest_id: basketball
+    label: Basketball
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: two_image_options
+    display_asset_id: red_apple_target
+    control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
+    options:
+      - option_id: apple
+        label: Red apple
+        display_asset_id: red_apple_target
+        is_correct: true
+      - option_id: car
+        label: Blue car
+        display_asset_id: blue_car_distractor
+        is_correct: false
+    verification_policy:
+      type: choice_match
+      required: true
+      target:
+        type: option
+        option_id: apple
+      evidence:
+        - selected_option_id
+        - transcript
+    effect_profile:
+      id: choice_confirm
+      sound_effects:
+        - focus_tick
+        - confirm_chime
+      lighting_effects:
+        - focus_ring
+        - success_ring
+      haptic_feedback:
+        - wheel_tick
+        - confirm_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: multi_option_carousel
+    display_asset_id: red_apple_target
+    control_mode: carousel_choice
+    input_affordance:
+      select: wheel
+      confirm: press
+    options:
+      - option_id: apple
+        label: Red apple
+        display_asset_id: red_apple_target
+        is_correct: true
+      - option_id: strawberry
+        label: Strawberry
+        display_asset_id: strawberry_distractor
+        is_correct: false
+      - option_id: cherries
+        label: Cherries
+        display_asset_id: cherries_distractor
+        is_correct: false
+    verification_policy:
+      type: choice_match
+      required: true
+      target:
+        type: option
+        option_id: apple
+      evidence:
+        - selected_option_id
+        - transcript
+    effect_profile:
+      id: carousel_confirm
+      sound_effects:
+        - carousel_tick
+        - confirm_chime
+      lighting_effects:
+        - focus_ring
+        - success_ring
+      haptic_feedback:
+        - wheel_tick
+        - confirm_pulse
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: two_image_options
+    display_asset_id: red_apple_target
+    control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
+    options:
+      - option_id: apple
+        label: Red apple
+        display_asset_id: red_apple_target
+        is_correct: true
+      - option_id: basketball
+        label: Basketball
+        display_asset_id: basketball_distractor
+        is_correct: false
+    verification_policy:
+      type: choice_match
+      required: true
+      target:
+        type: option
+        option_id: apple
+      evidence:
+        - selected_option_id
+        - transcript
+    effect_profile:
+      id: choice_confirm
+      sound_effects:
+        - focus_tick
+        - confirm_chime
+      lighting_effects:
+        - focus_ring
+        - success_ring
+      haptic_feedback:
+        - wheel_tick
+        - confirm_pulse

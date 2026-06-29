@@ -1,0 +1,140 @@
+activity_id: concept_travel_planner_predict
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: sunny_pack_choice
+    kind: image
+    asset_manifest_id: round_1_scene
+    label: Sunny place packing choice
+  - display_asset_id: option_sunny_pack
+    kind: option
+    label: Pack for sun
+  - display_asset_id: option_rain_pack
+    kind: option
+    label: Pack for rain
+  - display_asset_id: weather_change_plan
+    kind: image
+    asset_manifest_id: round_2_scene
+    label: Weather change plan
+  - display_asset_id: option_keep_plan
+    kind: option
+    label: Keep the first plan
+  - display_asset_id: option_change_plan
+    kind: option
+    label: Change the plan
+  - display_asset_id: next_event_prediction
+    kind: image
+    asset_manifest_id: round_3_scene
+    label: Next travel event prediction
+  - display_asset_id: option_quiet_event
+    kind: option
+    label: Quiet event
+  - display_asset_id: option_busy_event
+    kind: option
+    label: Busy event
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: two_image_options
+    display_asset_id: sunny_pack_choice
+    control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
+    options:
+      - option_id: sunny_pack
+        label: Pack for sun
+        display_asset_id: option_sunny_pack
+      - option_id: rain_pack
+        label: Pack for rain
+        display_asset_id: option_rain_pack
+    verification_policy:
+      type: accept_any_participation
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: sunny_pack_choice
+      evidence:
+        - selected_option_id
+        - transcript
+    effect_profile:
+      id: prediction_record
+      sound_effects:
+        - focus_tick
+        - prediction_chime
+      lighting_effects:
+        - focus_ring
+        - progress_spark
+      haptic_feedback:
+        - wheel_tick
+        - save_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: two_image_options
+    display_asset_id: weather_change_plan
+    control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
+    options:
+      - option_id: keep_plan
+        label: Keep the first plan
+        display_asset_id: option_keep_plan
+      - option_id: change_plan
+        label: Change the plan
+        display_asset_id: option_change_plan
+    verification_policy:
+      type: accept_any_participation
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: weather_change_plan
+      evidence:
+        - selected_option_id
+        - transcript
+    effect_profile:
+      id: prediction_record
+      sound_effects:
+        - focus_tick
+        - prediction_chime
+      lighting_effects:
+        - focus_ring
+        - progress_spark
+      haptic_feedback:
+        - wheel_tick
+        - save_pulse
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: two_image_options
+    display_asset_id: next_event_prediction
+    control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
+    options:
+      - option_id: quiet_event
+        label: Quiet event
+        display_asset_id: option_quiet_event
+      - option_id: busy_event
+        label: Busy event
+        display_asset_id: option_busy_event
+    verification_policy:
+      type: accept_any_participation
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: next_event_prediction
+      evidence:
+        - selected_option_id
+        - transcript
+    effect_profile:
+      id: prediction_record
+      sound_effects:
+        - focus_tick
+        - prediction_chime
+      lighting_effects:
+        - focus_ring
+        - progress_spark
+      haptic_feedback:
+        - wheel_tick
+        - save_pulse

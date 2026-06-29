@@ -112,6 +112,7 @@ assets:
 - id: apple
   role: ui_overlay
   label: Apple
+  entity_name: apple
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -132,6 +133,7 @@ assets:
 - id: basketball
   role: ui_overlay
   label: Basketball
+  entity_name: basketball
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -152,6 +154,7 @@ assets:
 - id: car
   role: ui_overlay
   label: Car
+  entity_name: car
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -172,6 +175,7 @@ assets:
 - id: cherries
   role: ui_overlay
   label: Cherries
+  entity_name: cherries
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -192,6 +196,7 @@ assets:
 - id: strawberry
   role: ui_overlay
   label: Strawberry
+  entity_name: strawberry
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative

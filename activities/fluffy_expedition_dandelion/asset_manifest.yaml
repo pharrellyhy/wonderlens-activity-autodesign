@@ -149,6 +149,7 @@ assets:
   - id: fluffy_dandelion_puff
     role: collection_correct
     label: Dandelion seed puff
+    entity_name: dandelion
     collection_catalog_id: fluffy_soft_texture
     requiredness: required
     accuracy_mode: illustrative
@@ -164,6 +165,7 @@ assets:
   - id: fuzzy_moss_patch
     role: collection_correct
     label: Fuzzy moss patch
+    entity_name: moss
     collection_catalog_id: fluffy_soft_texture
     requiredness: required
     accuracy_mode: illustrative
@@ -179,6 +181,7 @@ assets:
   - id: woolly_yarn_ball
     role: collection_correct
     label: Woolly yarn ball
+    entity_name: yarn ball
     collection_catalog_id: fluffy_soft_texture
     requiredness: required
     accuracy_mode: illustrative
@@ -194,6 +197,7 @@ assets:
   - id: soft_feather
     role: collection_correct
     label: Soft feather
+    entity_name: feather
     collection_catalog_id: fluffy_soft_texture
     requiredness: required
     accuracy_mode: illustrative
@@ -209,6 +213,7 @@ assets:
   - id: smooth_pebble
     role: collection_distractor
     label: Smooth pebble
+    entity_name: pebble
     collection_catalog_id: texture_distractors
     requiredness: optional
     accuracy_mode: illustrative
@@ -224,6 +229,7 @@ assets:
   - id: plain_wood_block
     role: collection_distractor
     label: Plain wooden block
+    entity_name: wooden block
     collection_catalog_id: texture_distractors
     requiredness: optional
     accuracy_mode: illustrative

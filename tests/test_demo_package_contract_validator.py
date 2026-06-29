@@ -76,6 +76,16 @@ class DemoPackageContractValidatorTest(unittest.TestCase):
 
         self.assertIn("missing required field entity_id", "\n".join(issues))
 
+    def test_item_like_manifest_asset_requires_entity_name(self):
+        validator = load_validator()
+        manifest = validator.load_yaml(FIXTURE_ROOT / "valid" / "supported_cat5" / "asset_manifest.yaml")
+        asset = copy.deepcopy(manifest["assets"][1])
+        asset.pop("entity_name", None)
+
+        issues = validator.validate_asset(pathlib.Path("package"), asset, manifest["screen_targets"], 0)
+
+        self.assertIn("collection_correct asset must declare entity_name", "\n".join(issues))
+
     def test_required_asset_rejects_thumbnail_only_variants(self):
         validator = load_validator()
         manifest = validator.load_yaml(FIXTURE_ROOT / "valid" / "supported_cat5" / "asset_manifest.yaml")

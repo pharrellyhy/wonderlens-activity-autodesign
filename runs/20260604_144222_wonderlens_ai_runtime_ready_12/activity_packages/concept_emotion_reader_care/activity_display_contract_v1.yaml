@@ -1,0 +1,104 @@
+activity_id: concept_emotion_reader_care
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: visible_face_body_cue
+    kind: image
+    asset_manifest_id: round_1_scene
+    label: Visible face or body cue
+    metadata:
+      semantic_rubric: Accept a feeling, need, or kind help action that responds to the displayed expression or body cue without judging the person.
+  - display_asset_id: possible_feeling_cue
+    kind: image
+    asset_manifest_id: round_2_scene
+    label: Possible feeling cue
+    metadata:
+      semantic_rubric: Accept a plausible feeling or gentle support action tied to the displayed cue; reject unrelated or shaming responses.
+  - display_asset_id: kind_help_choice
+    kind: image
+    asset_manifest_id: round_3_scene
+    label: Kind help choice cue
+    metadata:
+      semantic_rubric: Accept a caring choice that explains what changed or how the child would help in the displayed situation.
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: single_image
+    display_asset_id: visible_face_body_cue
+    control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
+    verification_policy:
+      type: semantic_llm_judge
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: visible_face_body_cue
+      evidence:
+        - transcript
+    effect_profile:
+      id: care_response
+      sound_effects:
+        - gentle_prompt
+        - care_chime
+      lighting_effects:
+        - soft_focus
+        - warm_success
+      haptic_feedback:
+        - prompt_pulse
+        - soft_confirm
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: single_image
+    display_asset_id: possible_feeling_cue
+    control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
+    verification_policy:
+      type: semantic_llm_judge
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: possible_feeling_cue
+      evidence:
+        - transcript
+    effect_profile:
+      id: care_response
+      sound_effects:
+        - gentle_prompt
+        - care_chime
+      lighting_effects:
+        - soft_focus
+        - warm_success
+      haptic_feedback:
+        - prompt_pulse
+        - soft_confirm
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: single_image
+    display_asset_id: kind_help_choice
+    control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
+    verification_policy:
+      type: semantic_llm_judge
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: kind_help_choice
+      evidence:
+        - transcript
+    effect_profile:
+      id: care_response
+      sound_effects:
+        - gentle_prompt
+        - care_chime
+      lighting_effects:
+        - soft_focus
+        - warm_success
+      haptic_feedback:
+        - prompt_pulse
+        - soft_confirm

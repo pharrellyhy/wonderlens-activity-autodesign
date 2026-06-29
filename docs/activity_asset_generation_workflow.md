@@ -417,3 +417,8 @@ Autodesign package runs should still use the package-local
 That builder writes collection picker roles (`collection_correct` and
 `collection_distractor`) under package-local `assets/items/`; beat scenes,
 icons, overlays, and reference-bound sources stay under `assets/`.
+
+Every concrete object/card manifest asset with role `entity`, `ui_overlay`,
+`collection_correct`, or `collection_distractor` must declare `entity_name` so
+runtime consumers can expose the represented object without inferring it from
+the label, prompt, or file path.

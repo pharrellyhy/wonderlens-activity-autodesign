@@ -16,6 +16,8 @@ Read only the documents needed for the current row and run mode:
 - `docs/game_styles.md`: game-style taxonomy.
 - `docs/activity_asset_generation_workflow.md`: runtime PNG workflow and style
   contract when assets are declared or built.
+- `docs/activity_display_contract.md`: frame-level app layout, control,
+  verification, and effect contract when demo/runtime display is declared.
 - `activities/README.md`, `activities/_schema/*.schema.json`, and
   `docs/activity_vocabulary.md`: package and enum contracts.
 - `entity_guidance.md` and `conversation_bridge.md`: only for mapping-informed
@@ -217,6 +219,8 @@ When `demo_export=true`, also write:
 ```text
 demo_support.yaml
 asset_manifest.yaml
+activity_display_contract_v1.yaml
+```
 
 For every generated package, also create the per-activity review status file:
 
@@ -231,8 +235,6 @@ source of truth defined in
 `docs/full_pass_agentic_parallel_workflow.html` and
 `docs/role_agent_prompting_guide.md`.
 
-```
-
 Package-writing rules:
 
 - keep package writing text-only;
@@ -243,7 +245,13 @@ Package-writing rules:
 - fully expand every Step 3 round;
 - make unexpected/no-response branches beat-specific;
 - separate Cat5 collection, synthesis, celebration, and closing beats;
-- define all asset IDs in `spec.md` and `asset_manifest.yaml`;
+- define all asset IDs in `spec.md` and `asset_manifest.yaml`; concrete
+  object/card assets in `asset_manifest.yaml` must declare `entity_name`;
+- author `activity_display_contract_v1.yaml` after `prod.md` and asset metadata
+  are stable; bind each verifiable policy to the displayed asset or displayed
+  option, declare wheel/press/voice `input_affordance`, and use only the five
+  approved `layout_id` values; every `kind: item` display asset must include
+  `metadata.entity_name`;
 - keep raw image prompts out of `prod.md`;
 - include `## Extensibility Notes` for reusable or parameterized activities.
 
@@ -270,6 +278,13 @@ Before logging or checkoff, complete these gates for each generated package:
 
 ```bash
 python3 scripts/validate_demo_package_contract.py <package_dir>
+```
+
+6. Display contract validation when `activity_display_contract_v1.yaml` is
+   present:
+
+```bash
+python3 scripts/validate_activity_display_contract.py <package_dir>
 ```
 
 Record review evidence, commands, repairs, and residual risks in

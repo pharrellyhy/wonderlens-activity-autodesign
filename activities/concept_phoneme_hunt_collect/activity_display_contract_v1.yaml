@@ -1,0 +1,122 @@
+activity_id: concept_phoneme_hunt_collect
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: first_b_treasure_prompt
+    kind: cue
+    label: First B treasure photo prompt
+    metadata:
+      target_initial_sound: b
+      accepted_examples:
+        - ball
+        - book
+        - banana
+        - basket
+  - display_asset_id: second_b_treasure_prompt
+    kind: cue
+    label: Second B treasure photo prompt
+    metadata:
+      target_initial_sound: b
+      accepted_examples:
+        - ball
+        - book
+        - banana
+        - basket
+  - display_asset_id: final_b_treasure_prompt
+    kind: cue
+    label: Final B treasure photo prompt
+    metadata:
+      target_initial_sound: b
+      accepted_examples:
+        - ball
+        - book
+        - banana
+        - basket
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: single_image
+    display_asset_id: first_b_treasure_prompt
+    control_mode: camera_capture
+    input_affordance:
+      select: none
+      confirm: press
+    verification_policy:
+      type: photo_object_initial_sound
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: first_b_treasure_prompt
+      evidence:
+        - photo_id
+        - vision_object_name
+        - normalized_object_name
+    effect_profile:
+      id: photo_sound_check
+      sound_effects:
+        - camera_ready
+        - sound_match_chime
+      lighting_effects:
+        - capture_glow
+        - success_ring
+      haptic_feedback:
+        - capture_pulse
+        - confirm_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: single_image
+    display_asset_id: second_b_treasure_prompt
+    control_mode: camera_capture
+    input_affordance:
+      select: none
+      confirm: press
+    verification_policy:
+      type: photo_object_initial_sound
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: second_b_treasure_prompt
+      evidence:
+        - photo_id
+        - vision_object_name
+        - normalized_object_name
+    effect_profile:
+      id: photo_sound_check
+      sound_effects:
+        - camera_ready
+        - sound_match_chime
+      lighting_effects:
+        - capture_glow
+        - success_ring
+      haptic_feedback:
+        - capture_pulse
+        - confirm_pulse
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: single_image
+    display_asset_id: final_b_treasure_prompt
+    control_mode: camera_capture
+    input_affordance:
+      select: none
+      confirm: press
+    verification_policy:
+      type: photo_object_initial_sound
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: final_b_treasure_prompt
+      evidence:
+        - photo_id
+        - vision_object_name
+        - normalized_object_name
+    effect_profile:
+      id: photo_sound_check
+      sound_effects:
+        - camera_ready
+        - sound_match_chime
+      lighting_effects:
+        - capture_glow
+        - success_ring
+      haptic_feedback:
+        - capture_pulse
+        - confirm_pulse

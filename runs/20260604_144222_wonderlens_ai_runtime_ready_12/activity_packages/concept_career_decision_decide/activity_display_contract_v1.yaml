@@ -1,0 +1,175 @@
+activity_id: concept_career_decision_decide
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: smoke_alarm_scene
+    kind: image
+    asset_manifest_id: round_1_scene
+    label: Smoke alarm decision scene
+  - display_asset_id: option_send_help
+    kind: option
+    label: Send help now
+    metadata:
+      accepted_aliases:
+        - send help
+        - send help now
+        - help now
+  - display_asset_id: option_check_first
+    kind: option
+    label: Check first
+    metadata:
+      accepted_aliases:
+        - check first
+        - wait
+  - display_asset_id: tool_choice_scene
+    kind: image
+    asset_manifest_id: round_2_scene
+    label: Firefighter tool decision scene
+  - display_asset_id: option_hose
+    kind: option
+    asset_manifest_id: hose
+    label: Water hose
+    metadata:
+      accepted_aliases:
+        - water hose
+        - hose
+  - display_asset_id: option_oil
+    kind: option
+    asset_manifest_id: oil
+    label: Cooking oil
+    metadata:
+      accepted_aliases:
+        - cooking oil
+        - oil
+  - display_asset_id: safe_action_scene
+    kind: image
+    asset_manifest_id: round_3_scene
+    label: Firefighter safe action scene
+  - display_asset_id: option_outside
+    kind: option
+    asset_manifest_id: outside
+    label: Check people are outside
+    metadata:
+      accepted_aliases:
+        - check outside
+        - people outside
+        - safe outside
+  - display_asset_id: option_run_inside
+    kind: option
+    label: Run inside alone
+    metadata:
+      accepted_aliases:
+        - run inside
+        - inside alone
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: two_image_options
+    display_asset_id: smoke_alarm_scene
+    control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
+    options:
+      - option_id: send_help
+        label: Send help now
+        display_asset_id: option_send_help
+        is_correct: true
+      - option_id: check_first
+        label: Check first
+        display_asset_id: option_check_first
+        is_correct: false
+    verification_policy:
+      type: choice_match
+      required: true
+      target:
+        type: option
+        option_id: send_help
+      evidence:
+        - selected_option_id
+        - transcript
+    effect_profile:
+      id: choice_confirm
+      sound_effects:
+        - focus_tick
+        - confirm_chime
+      lighting_effects:
+        - focus_ring
+        - success_ring
+      haptic_feedback:
+        - wheel_tick
+        - confirm_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: two_image_options
+    display_asset_id: tool_choice_scene
+    control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
+    options:
+      - option_id: hose
+        label: Water hose
+        display_asset_id: option_hose
+        is_correct: true
+      - option_id: oil
+        label: Cooking oil
+        display_asset_id: option_oil
+        is_correct: false
+    verification_policy:
+      type: choice_match
+      required: true
+      target:
+        type: option
+        option_id: hose
+      evidence:
+        - selected_option_id
+        - transcript
+    effect_profile:
+      id: choice_confirm
+      sound_effects:
+        - focus_tick
+        - confirm_chime
+      lighting_effects:
+        - focus_ring
+        - success_ring
+      haptic_feedback:
+        - wheel_tick
+        - confirm_pulse
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: two_image_options
+    display_asset_id: safe_action_scene
+    control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
+    options:
+      - option_id: outside
+        label: Check people are outside
+        display_asset_id: option_outside
+        is_correct: true
+      - option_id: run_inside
+        label: Run inside alone
+        display_asset_id: option_run_inside
+        is_correct: false
+    verification_policy:
+      type: choice_match
+      required: true
+      target:
+        type: option
+        option_id: outside
+      evidence:
+        - selected_option_id
+        - transcript
+    effect_profile:
+      id: choice_confirm
+      sound_effects:
+        - focus_tick
+        - confirm_chime
+      lighting_effects:
+        - focus_ring
+        - success_ring
+      haptic_feedback:
+        - wheel_tick
+        - confirm_pulse

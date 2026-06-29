@@ -112,6 +112,7 @@ assets:
 - id: cat
   role: ui_overlay
   label: Cat
+  entity_name: cat
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -132,6 +133,7 @@ assets:
 - id: puppy
   role: ui_overlay
   label: Puppy
+  entity_name: puppy
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -152,6 +154,7 @@ assets:
 - id: rabbit
   role: ui_overlay
   label: Rabbit
+  entity_name: rabbit
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative

@@ -9,7 +9,9 @@ activities/
 ├── _schema/
 │   ├── tag_block.schema.json        # JSON Schema for tag_block.yaml
 │   ├── demo_support.schema.json     # JSON Schema for optional demo_support.yaml
-│   └── asset_manifest.schema.json   # JSON Schema for optional asset_manifest.yaml
+│   ├── asset_manifest.schema.json   # JSON Schema for optional asset_manifest.yaml
+│   └── activity_display_contract_v1.schema.json
+│                                      # JSON Schema for optional display contract
 ├── README.md                         # this file
 └── <activity_id>/
     ├── spec.md                       # authoring intent: premise, target, rationale, selection trigger, optional asset brief
@@ -18,7 +20,9 @@ activities/
     ├── recap.template.yaml           # child recap payload shape (runtime-rendered)
     ├── dashboard.template.yaml       # parent dashboard fragment shape (runtime-rendered)
     ├── demo_support.yaml             # optional: demo support gate and entity binding
-    └── asset_manifest.yaml           # optional: runtime asset roles, prompts, variants, paths
+    ├── asset_manifest.yaml           # optional: runtime asset roles, prompts, variants, paths
+    └── activity_display_contract_v1.yaml
+                                       # optional: app display, controls, verification, effects
 ```
 
 The directory name MUST equal the `activity_id` inside that dir's `tag_block.yaml`.
@@ -36,6 +40,7 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 | `dashboard.template.yaml` | parent dashboard roller | YAML with `{placeholders}` | per-session fragment merged into device rollup |
 | `demo_support.yaml` | demo importer, reviewers | YAML | optional extension declaring demo readiness, entity compatibility, explicit entity binding, top-level parameterization, and limitations |
 | `asset_manifest.yaml` | asset generator, demo importer | YAML | optional extension declaring separate runtime assets, style, screen targets, variants, file slots, fallback behavior, and reference provenance |
+| `activity_display_contract_v1.yaml` | app runtime, backend verifier | YAML | optional extension declaring per-frame `layout_id`, displayed assets/options, control mode, input affordance, verification policy, and English-only feedback effects |
 
 ## Runtime completeness invariants
 
@@ -53,11 +58,13 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 - Blocked activity concepts may have run-local constrained previews under `runs/<run_id>/blocked_designs/`, but those previews are not activity packages and must not be copied here until blockers are resolved and the standard five-file gates pass.
 - Product-contract override runs may convert formerly blocked minimum-to-unblock items into valid run-local packages only when the package records resolved blocker notes in `spec.md`, affected `prod.md` beats, and the run manifest.
 - `dashboard.template.yaml` `dashboard_fragment.session.focal_attribute` must exactly equal `tag_block.yaml` `activity_signature.focal_attribute`.
-- `demo_support.yaml` and `asset_manifest.yaml` are optional extension files. A package without them remains a valid five-file activity package, but it is not direct-demo-import ready.
+- `demo_support.yaml`, `asset_manifest.yaml`, and `activity_display_contract_v1.yaml` are optional extension files. A package without them remains a valid five-file activity package, but it is not direct-demo-import ready.
 - If `demo_support.yaml` declares `status: supported` or `status: degraded`, the package must include `asset_manifest.yaml`, at least one explicit entity binding, and a playable `ui_template`.
+- Runtime-ready or demo-ready packages must include `activity_display_contract_v1.yaml` and pass `scripts/validate_activity_display_contract.py`.
 - If `demo_support.yaml` is present, it must include top-level `parameterization` beside top-level `demo_support`. Do not nest `parameterization` under `demo_support`.
 - If `demo_support.yaml` is present, it must include top-level `entity_compatibility` beside top-level `parameterization` and `demo_support`. Do not infer handoff safety from `tag_block.yaml` `entity_binding`.
 - If `demo_support.yaml` declares `status: unsupported`, consumers must not expose the package as playable; the file must state `ui_template: none` and explain the missing mechanic, UI, asset, or runtime capability.
+- Do not put app layout, control mode, displayed-option, verification-policy, sound, lighting, or haptic metadata into `tag_block.yaml`. Those fields belong in `activity_display_contract_v1.yaml`.
 
 ## Asset brief invariant
 
@@ -134,6 +141,7 @@ Every accepted `parameterization` decision must record the mode, decision source
 | `palette` | Clean white or barely tinted white background with restrained boho pastels inside subjects: oatmeal beige, muted sage, dusty teal-blue, soft terracotta/salmon, warm brown, mustard/ochre, blush pink, pale leaf green, and muted sky accents. |
 | `screen_targets` | At minimum `round_device_screen` with `aspect_ratio: "1:1"`, `crop_shape: circle`, master size, and a central percent-circle safe area. |
 | `assets[].role` | `entity`, `activity_preview`, `collection_correct`, `collection_distractor`, `badge`, `story_scene`, or `ui_overlay`. |
+| `assets[].entity_name` | Required for concrete object/card roles: `entity`, `ui_overlay`, `collection_correct`, and `collection_distractor`. Use the object name the runtime should expose, not a decorative label. |
 | `assets[].accuracy_mode` | `illustrative` or `reference_bound`. |
 | `assets[].source_strategy` | `generated_illustrative`, `curated_original`, `redraw_from_verified_data`, `licensed_reference`, or `approved_internal_reference`. |
 | `assets[].transformation_policy` | `generate_new`, `crop_resize_only`, `simplified_redraw`, `style_preserving_redraw`, or `no_derivative_generation`. |
@@ -158,9 +166,23 @@ Reference-bound assets represent real-world facts or identities, such as constel
 
 For reference-bound assets, agents may propose candidate references, but accepted manifests must record only verified sources. Do not scrape or use arbitrary web-image results. Use approved source types only: public-domain museum/archive sources, official or verified source URLs, licensed/internal asset libraries, verified educational/scientific sources, or structured data that can be redrawn accurately. Famous public-domain artwork should normally use `source_strategy: curated_original` with `transformation_policy: crop_resize_only` or `no_derivative_generation`; constellations and diagrams should normally use `source_strategy: redraw_from_verified_data` with `transformation_policy: simplified_redraw`.
 
+`activity_display_contract_v1.yaml` describes each app-visible frame. Required
+top-level fields are `activity_id`, `version: 1`,
+`contract: activity_display_contract_v1`, `display_assets`, and `frames`.
+Each frame must choose one of the five approved `layout_id` values:
+`single_image`, `two_image_options`, `two_direction_options`,
+`two_number_options`, or `multi_option_carousel`. Each frame must declare
+`input_affordance` so consumers can distinguish wheel selection, button press
+confirmation, and voice-only confirmation. Verifiable frames must bind their
+`verification_policy` to a displayed asset or displayed option. Effect profiles
+must use the English-only fields `sound_effects`, `lighting_effects`, and
+`haptic_feedback`. Every `kind: item` display asset must declare
+`metadata.entity_name`; entity-targeted image assets such as animal cards with
+`metadata.target_animal` must also declare `metadata.entity_name`.
+
 ## Asset build modes
 
-`demo_export` controls whether packages emit `demo_support.yaml` and `asset_manifest.yaml`. `asset_build` controls whether a run attempts to create image files from those manifests.
+`demo_export` controls whether packages emit `demo_support.yaml`, `asset_manifest.yaml`, and `activity_display_contract_v1.yaml`. `asset_build` controls whether a run attempts to create image files from those manifests.
 
 | `asset_build` | Behavior |
 |---|---|
@@ -218,6 +240,13 @@ For fixtures:
 
 ```bash
 python3 scripts/validate_demo_package_contract.py tests/fixtures/demo_package_contract/valid
+```
+
+Validate display contracts:
+
+```bash
+python3 scripts/validate_activity_display_contract.py activities
+python3 scripts/validate_activity_display_contract.py runs/<run_id>/activity_packages
 ```
 
 ## Current V1 coverage

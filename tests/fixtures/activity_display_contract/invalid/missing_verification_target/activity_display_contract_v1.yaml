@@ -1,0 +1,35 @@
+activity_id: fixture_missing_verification_target
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: scene
+    kind: image
+frames:
+  - frame_id: missing_target
+    step_ref: prod.step_2
+    layout_id: two_image_options
+    display_asset_id: scene
+    control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
+    options:
+      - option_id: apple
+        label: Apple
+        is_correct: true
+      - option_id: car
+        label: Car
+        is_correct: false
+    verification_policy:
+      type: choice_match
+      required: true
+      evidence:
+        - selected_option_id
+    effect_profile:
+      id: choice_confirm
+      sound_effects:
+        - focus_tick
+      lighting_effects:
+        - focus_ring
+      haptic_feedback:
+        - wheel_tick

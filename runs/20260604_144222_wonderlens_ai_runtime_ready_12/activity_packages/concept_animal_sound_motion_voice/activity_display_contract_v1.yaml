@@ -1,0 +1,110 @@
+activity_id: concept_animal_sound_motion_voice
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: rabbit_voice_card
+    kind: image
+    asset_manifest_id: round_1_scene
+    label: Rabbit voice card
+    metadata:
+      target_animal: rabbit
+      entity_name: rabbit
+      participation_prompt: Try one tiny rabbit sniff or quiet rabbit sound.
+  - display_asset_id: cat_voice_card
+    kind: image
+    asset_manifest_id: round_2_scene
+    label: Cat meow card
+    metadata:
+      target_animal: cat
+      entity_name: cat
+      participation_prompt: Try one soft or sleepy cat meow.
+  - display_asset_id: puppy_voice_card
+    kind: image
+    asset_manifest_id: round_3_scene
+    label: Puppy role line card
+    metadata:
+      target_animal: puppy
+      entity_name: puppy
+      participation_prompt: Try one friendly puppy line.
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: single_image
+    display_asset_id: rabbit_voice_card
+    control_mode: replay_only
+    input_affordance:
+      select: none
+      confirm: voice
+    verification_policy:
+      type: accept_any_participation
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: rabbit_voice_card
+      evidence:
+        - transcript
+    effect_profile:
+      id: voice_try
+      sound_effects:
+        - animal_prompt
+        - participation_chime
+      lighting_effects:
+        - focus_glow
+        - progress_spark
+      haptic_feedback:
+        - prompt_pulse
+        - success_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: single_image
+    display_asset_id: cat_voice_card
+    control_mode: replay_only
+    input_affordance:
+      select: none
+      confirm: voice
+    verification_policy:
+      type: accept_any_participation
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: cat_voice_card
+      evidence:
+        - transcript
+    effect_profile:
+      id: voice_try
+      sound_effects:
+        - animal_prompt
+        - participation_chime
+      lighting_effects:
+        - focus_glow
+        - progress_spark
+      haptic_feedback:
+        - prompt_pulse
+        - success_pulse
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: single_image
+    display_asset_id: puppy_voice_card
+    control_mode: replay_only
+    input_affordance:
+      select: none
+      confirm: voice
+    verification_policy:
+      type: accept_any_participation
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: puppy_voice_card
+      evidence:
+        - transcript
+    effect_profile:
+      id: voice_try
+      sound_effects:
+        - animal_prompt
+        - participation_chime
+      lighting_effects:
+        - focus_glow
+        - progress_spark
+      haptic_feedback:
+        - prompt_pulse
+        - success_pulse

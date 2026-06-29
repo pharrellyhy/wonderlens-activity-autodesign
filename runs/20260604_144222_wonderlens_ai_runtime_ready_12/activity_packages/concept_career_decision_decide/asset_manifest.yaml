@@ -112,6 +112,7 @@ assets:
 - id: alarm
   role: ui_overlay
   label: Alarm
+  entity_name: alarm
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -132,6 +133,7 @@ assets:
 - id: firefighter
   role: ui_overlay
   label: Firefighter
+  entity_name: firefighter
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -152,6 +154,7 @@ assets:
 - id: hose
   role: ui_overlay
   label: Hose
+  entity_name: hose
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -172,6 +175,7 @@ assets:
 - id: oil
   role: ui_overlay
   label: Oil
+  entity_name: oil
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -192,6 +196,7 @@ assets:
 - id: outside
   role: ui_overlay
   label: Outside
+  entity_name: outside
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -212,6 +217,7 @@ assets:
 - id: phone
   role: ui_overlay
   label: Phone
+  entity_name: phone
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative

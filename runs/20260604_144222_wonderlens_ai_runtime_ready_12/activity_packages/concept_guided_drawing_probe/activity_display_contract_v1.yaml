@@ -1,0 +1,141 @@
+activity_id: concept_guided_drawing_probe
+version: 1
+contract: activity_display_contract_v1
+display_assets:
+  - display_asset_id: big_circle_step
+    kind: image
+    asset_manifest_id: round_1_scene
+    label: Big circle drawing step
+    metadata:
+      drawing_step: Draw one big circle.
+  - display_asset_id: ears_or_petals_step
+    kind: image
+    asset_manifest_id: round_2_scene
+    label: Ears or petals drawing step
+    metadata:
+      drawing_step: Add two small ears or petals to the circle.
+  - display_asset_id: face_detail_step
+    kind: image
+    asset_manifest_id: round_3_scene
+    label: Face or finishing detail step
+    metadata:
+      drawing_step: Add one face or tiny detail.
+  - display_asset_id: final_photo_prompt
+    kind: image
+    asset_manifest_id: celebrate_scene
+    label: Final photo prompt
+    metadata:
+      evidence_goal: Save a photo_id for review without grading drawing quality.
+frames:
+  - frame_id: step_3_round_1
+    step_ref: prod.step_3.round_1
+    layout_id: single_image
+    display_asset_id: big_circle_step
+    control_mode: step_confirm
+    input_affordance:
+      select: none
+      confirm: press
+    verification_policy:
+      type: self_report
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: big_circle_step
+      evidence:
+        - self_reported_done
+        - transcript
+    effect_profile:
+      id: step_done
+      sound_effects:
+        - step_prompt
+        - done_chime
+      lighting_effects:
+        - step_focus
+        - progress_spark
+      haptic_feedback:
+        - prompt_pulse
+        - done_pulse
+  - frame_id: step_3_round_2
+    step_ref: prod.step_3.round_2
+    layout_id: single_image
+    display_asset_id: ears_or_petals_step
+    control_mode: step_confirm
+    input_affordance:
+      select: none
+      confirm: press
+    verification_policy:
+      type: self_report
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: ears_or_petals_step
+      evidence:
+        - self_reported_done
+        - transcript
+    effect_profile:
+      id: step_done
+      sound_effects:
+        - step_prompt
+        - done_chime
+      lighting_effects:
+        - step_focus
+        - progress_spark
+      haptic_feedback:
+        - prompt_pulse
+        - done_pulse
+  - frame_id: step_3_round_3
+    step_ref: prod.step_3.round_3
+    layout_id: single_image
+    display_asset_id: face_detail_step
+    control_mode: step_confirm
+    input_affordance:
+      select: none
+      confirm: press
+    verification_policy:
+      type: self_report
+      required: true
+      target:
+        type: display_asset
+        display_asset_id: face_detail_step
+      evidence:
+        - self_reported_done
+        - transcript
+    effect_profile:
+      id: step_done
+      sound_effects:
+        - step_prompt
+        - done_chime
+      lighting_effects:
+        - step_focus
+        - progress_spark
+      haptic_feedback:
+        - prompt_pulse
+        - done_pulse
+  - frame_id: step_4_final_photo
+    step_ref: prod.step_4
+    layout_id: single_image
+    display_asset_id: final_photo_prompt
+    control_mode: camera_capture
+    input_affordance:
+      select: none
+      confirm: press
+    verification_policy:
+      type: self_report
+      required: false
+      target:
+        type: display_asset
+        display_asset_id: final_photo_prompt
+      evidence:
+        - self_reported_done
+        - photo_id
+    effect_profile:
+      id: capture_save
+      sound_effects:
+        - camera_ready
+        - save_chime
+      lighting_effects:
+        - capture_glow
+        - success_ring
+      haptic_feedback:
+        - capture_pulse
+        - confirm_pulse

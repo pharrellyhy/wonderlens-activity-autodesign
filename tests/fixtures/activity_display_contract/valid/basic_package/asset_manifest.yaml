@@ -1,0 +1,57 @@
+activity_id: fixture_display_valid
+entity_id: fixture_entity
+version: 1
+style_id: wonderlens_device_mint_soft_3d
+palette:
+  shell: warm porcelain off-white
+  screen: green-tinted near black
+  primary_accent: soft mint green
+screen_targets:
+  round_device_screen:
+    aspect_ratio: '1:1'
+    crop_shape: circle
+    master_size: 1024
+    safe_area: central 72 percent circle
+assets:
+  - id: round_1_scene
+    role: story_scene
+    label: Round 1 scene
+    requiredness: required
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: Soft 3D round scene.
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/round_1_scene.png
+    fallback_behavior: Continue with spoken guidance.
+  - id: apple
+    role: ui_overlay
+    label: Apple
+    requiredness: optional
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: Soft 3D apple.
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/apple.png
+    fallback_behavior: Continue with spoken guidance.
+  - id: car
+    role: ui_overlay
+    label: Car
+    requiredness: optional
+    accuracy_mode: illustrative
+    source_strategy: generated_illustrative
+    transformation_policy: generate_new
+    prompt_en: Soft 3D car.
+    variants:
+      - id: round_512
+        target: round_device_screen
+        size: 512x512
+        path: assets/car.png
+    fallback_behavior: Continue with spoken guidance.
