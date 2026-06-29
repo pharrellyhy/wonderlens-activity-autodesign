@@ -157,8 +157,10 @@ def validate_display_asset(
         issues.append(f"{label}: asset_manifest_id {asset_manifest_id!r} is not declared in asset_manifest.yaml")
 
     metadata = as_dict(display_asset.get("metadata"))
-    if kind in {"image", "item"} and norm(metadata.get("target_animal")) and not norm(metadata.get("entity_name")):
-        issues.append(f"{label}: animal item display asset must declare metadata.entity_name")
+    if kind == "item" and not norm(metadata.get("entity_name")):
+        issues.append(f"{label}: item display asset must declare metadata.entity_name")
+    if kind == "image" and norm(metadata.get("target_animal")) and not norm(metadata.get("entity_name")):
+        issues.append(f"{label}: entity-targeted image display asset must declare metadata.entity_name")
 
     return issues
 

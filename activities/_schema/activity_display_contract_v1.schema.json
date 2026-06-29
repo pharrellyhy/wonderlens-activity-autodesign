@@ -37,6 +37,32 @@
     "display_asset": {
       "type": "object",
       "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "item"
+              }
+            },
+            "required": ["kind"]
+          },
+          "then": {
+            "required": ["metadata"],
+            "properties": {
+              "metadata": {
+                "required": ["entity_name"],
+                "properties": {
+                  "entity_name": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
       "required": ["display_asset_id", "kind"],
       "properties": {
         "display_asset_id": {

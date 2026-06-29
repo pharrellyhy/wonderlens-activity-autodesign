@@ -238,7 +238,7 @@ class ActivityDisplayContractValidatorTest(unittest.TestCase):
             "\n".join(issues),
         )
 
-    def test_animal_item_display_asset_requires_entity_name(self):
+    def test_entity_targeted_image_display_asset_requires_entity_name(self):
         validator = load_validator()
 
         with tempfile.TemporaryDirectory() as tmp:
@@ -283,7 +283,63 @@ class ActivityDisplayContractValidatorTest(unittest.TestCase):
 
             issues = validator.validate_roots([package_dir])
 
-        self.assertIn("animal item display asset must declare metadata.entity_name", "\n".join(issues))
+        self.assertIn("entity-targeted image display asset must declare metadata.entity_name", "\n".join(issues))
+
+    def test_item_display_asset_requires_entity_name(self):
+        validator = load_validator()
+
+        with tempfile.TemporaryDirectory() as tmp:
+            package_dir = pathlib.Path(tmp) / "missing_item_entity_name"
+            package_dir.mkdir()
+            (package_dir / "activity_display_contract_v1.yaml").write_text(
+                textwrap.dedent(
+                    """
+                    activity_id: missing_item_entity_name
+                    version: 1
+                    contract: activity_display_contract_v1
+                    display_assets:
+                      - display_asset_id: vegetable_carrot
+                        kind: item
+                        label: Carrot
+                    frames:
+                      - frame_id: sort_round
+                        step_ref: prod.step_3.round_1
+                        layout_id: multi_option_carousel
+                        display_asset_id: vegetable_carrot
+                        control_mode: sort_pick_place
+                        input_affordance:
+                          select: wheel
+                          confirm: press
+                        options:
+                          - option_id: carrot
+                            label: Carrot
+                            display_asset_id: vegetable_carrot
+                          - option_id: broccoli
+                            label: Broccoli
+                            display_asset_id: vegetable_carrot
+                          - option_id: corn
+                            label: Corn
+                            display_asset_id: vegetable_carrot
+                        verification_policy:
+                          type: accept_any_participation
+                          required: false
+                          target:
+                            type: display_asset
+                            display_asset_id: vegetable_carrot
+                          evidence:
+                            - selected_option_id
+                        effect_profile:
+                          id: sort_place
+                          sound_effects: [carousel_tick]
+                          lighting_effects: [category_focus]
+                          haptic_feedback: [wheel_tick]
+                    """
+                )
+            )
+
+            issues = validator.validate_roots([package_dir])
+
+        self.assertIn("item display asset must declare metadata.entity_name", "\n".join(issues))
 
     def test_current_twelve_activity_packages_have_valid_contracts(self):
         validator = load_validator()

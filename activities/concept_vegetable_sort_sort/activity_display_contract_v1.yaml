@@ -24,22 +24,32 @@ display_assets:
     kind: item
     asset_manifest_id: carrot
     label: Carrot
+    metadata:
+      entity_name: carrot
   - display_asset_id: vegetable_broccoli
     kind: item
     asset_manifest_id: broccoli
     label: Broccoli
+    metadata:
+      entity_name: broccoli
   - display_asset_id: vegetable_corn
     kind: item
     asset_manifest_id: corn
     label: Corn
+    metadata:
+      entity_name: corn
   - display_asset_id: vegetable_tomato
     kind: item
     asset_manifest_id: tomato
     label: Tomato
+    metadata:
+      entity_name: tomato
   - display_asset_id: vegetable_potato
     kind: item
     asset_manifest_id: potato
     label: Potato
+    metadata:
+      entity_name: potato
 frames:
   - frame_id: step_3_round_1
     step_ref: prod.step_3.round_1

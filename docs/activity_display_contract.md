@@ -66,9 +66,11 @@ frames:
 Concrete bitmap assets use `asset_manifest_id` to reference
 `asset_manifest.yaml`. Abstract cues such as a phoneme target, number target,
 story gate, category board, or word cue are declared directly in
-`display_assets[].metadata`. Item-like display assets should declare
-`metadata.entity_name`; animal item cards that declare `metadata.target_animal`
-must also declare `metadata.entity_name`.
+`display_assets[].metadata`. Every `kind: item` display asset must declare
+`metadata.entity_name` so the runtime can expose the represented object without
+guessing from labels or asset IDs. Entity-targeted image assets, such as animal
+cards that declare `metadata.target_animal`, must also declare
+`metadata.entity_name`.
 
 ## Decision Order
 

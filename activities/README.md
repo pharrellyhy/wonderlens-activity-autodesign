@@ -175,9 +175,9 @@ Each frame must choose one of the five approved `layout_id` values:
 confirmation, and voice-only confirmation. Verifiable frames must bind their
 `verification_policy` to a displayed asset or displayed option. Effect profiles
 must use the English-only fields `sound_effects`, `lighting_effects`, and
-`haptic_feedback`. Item-like display assets should declare
-`metadata.entity_name`; animal cards with `metadata.target_animal` must also
-declare `metadata.entity_name`.
+`haptic_feedback`. Every `kind: item` display asset must declare
+`metadata.entity_name`; entity-targeted image assets such as animal cards with
+`metadata.target_animal` must also declare `metadata.entity_name`.
 
 ## Asset build modes
 
