@@ -1,5 +1,27 @@
 # HANDOFF
 
+## 2026-06-29 - Bounded Transition Expansion Completed
+
+Problem: After Emotion Reader moved to bounded package-owned dialogue, animal
+sound, partial reveal, and first-letter photo hunt still relied on either exact
+scripts or runtime hardcoded feedback. Live QA could still mix package intent,
+runtime fallback, and provider behavior.
+
+Solution: Added package-local transition contracts for
+`concept_animal_sound_motion_voice`, `concept_partial_reveal_deduce`, and
+`concept_phoneme_hunt_collect`. Partial reveal now declares forbidden pre-final
+answer terms and final reveal transitions; animal sound declares verified
+voice-response bridges; phoneme declares first-letter photo feedback fallbacks.
+
+Verification: Changed tag blocks validated against the activity schema using
+the WonderLens AI Python environment. WonderLens AI regenerated matching
+runtime YAML, passed the focused unit/generator checks, and ran the focused
+live Activity WS matrix for these three packages with the WonderLens AI
+repo-root `.env` sourced and repo-root Google credentials exported. The full
+18-session live matrix had zero Activity WS runtime errors, zero clipped turns,
+zero partial-reveal pre-final answer leaks, and the phoneme correct path
+returned `capture_photo` after each photo step.
+
 ## 2026-06-29 - Bounded Emotion Reader Transitions
 
 Problem: Emotion Reader needed natural LLM-generated transitions without
