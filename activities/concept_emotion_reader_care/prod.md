@@ -17,7 +17,7 @@
 
 **1. Brief Description**
 
-The child notices an obvious expression or body cue and thinks about what feeling or help might fit.
+The child reads the feeling shown in each picture, then reflects on a caring response after the feeling is named.
 
 **2. Educational Purpose (KUD)**
 
@@ -27,7 +27,7 @@ The child notices an obvious expression or body cue and thinks about what feelin
 
 **3. Runtime Fidelity Notes**
 
-Runtime wording should adapt naturally, but it must preserve the active cue sequence, repeated care action, ideal/unexpected/no-response branches, honest visual fallback behavior, and transcript verification before advancing.
+Runtime wording should adapt naturally, but it must preserve the picture sequence, hidden feeling targets, ideal/unexpected/no-response branches, honest visual fallback behavior, and transcript verification before advancing.
 
 **4. Typical Scenario**
 
@@ -39,103 +39,103 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Say exactly: "Each picture shows a feeling clue. Choose one kind thing that fits." Do not ask a question here.
+**Runtime AI instruction:** Say exactly: "Each picture shows a feeling. Read the feeling you see." Do not ask a question here.
 
-**Example AI line:** "Each picture shows a feeling clue. Choose one kind thing that fits."
+**Example AI line:** "Each picture shows a feeling. Read the feeling you see."
 
 **Child responses:**
 
-1. (Ideal) The child understands that each kind response must fit the visible cue.
-2. (Unexpected) Child tries to skip the visible face or body cue, ignore the required rule/asset, or count a different kind of response.
+1. (Ideal) The child understands that each answer should name the feeling shown in the picture.
+2. (Unexpected) Child tries to skip the visible face or body clue, ignore the required rule/asset, or answer with unrelated help.
 3. (No response) Child looks at the Emotion Reader rule without responding.
 
 **AI follow-up:**
 
-1. Restate the Emotion Reader loop as visible cue, matching kind response, and saved turn.
-2. Keep the rule tied to the visible face or body cue, name the supported fallback, and do not count any response yet.
+1. Restate the Emotion Reader loop as picture clue, feeling answer, and saved turn.
+2. Keep the rule tied to the visible face or body clue, name the supported fallback, and do not count any response yet.
 3. [wait 2s] Say the Emotion Reader rule in one sentence, then continue to Round 1.
 
 **Screen:** Shows the rule strip, current round token, and asset/fallback chip. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Optional support asset: `rules_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 2: Multi-Round Core Loop
 
-**Round 1 -- Worried Hands:**
+**Round 1 -- Picture 1:**
 
-**Runtime AI instruction:** Say exactly: "Look at worried hands. What might help?"
+**Runtime AI instruction:** Ask what feeling the child sees in this picture. Do not name the target feeling or body clue before the child answers.
 
-**Example AI line:** "Look at the worried hands. What might they feel or need?"
+**Example AI line:** "What feeling do you see in this picture?"
 
 **Child responses:**
 
-1. (Ideal) The child notices the worried hands cue and suggests a worried/nervous feeling, a need for comfort, or a fitting help action.
-2. (Unexpected) Child judges the character, gives generic kindness without tying it to worried hands, or names a different round cue.
-3. (No response) Child watches the worried hands cue without naming a feeling, need, or helpful action.
+1. (Ideal) The child names the target feeling or a close feeling and may add a caring response.
+2. (Unexpected) Child judges the character, gives generic kindness without reading the feeling, or names a different picture's feeling.
+3. (No response) Child watches the picture without naming a feeling.
 
 **AI follow-up:**
 
-1. Connect the cue to the caring choice, save the kindness for this turn, and show the calmer or helped state.
-2. Reframe without judging, name the worried hands, and ask for one feeling or help action.
-3. [wait 2s] Model one caring sentence for worried hands, then ask the child to choose a feeling or help action.
+1. Acknowledge the feeling the child named, save the turn, and ask the next picture without naming its answer.
+2. Reframe without judging and ask the child to look again at the face and body for a feeling.
+3. [wait 2s] Ask a short neutral feeling question again without naming the answer.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 2 -- Sleepy Shoulders:**
+**Round 2 -- Picture 2:**
 
-**Runtime AI instruction:** Say exactly: "Look at sleepy shoulders. What might help?"
+**Runtime AI instruction:** Ask what feeling the child sees in this picture. Do not name the target feeling or body clue before the child answers.
 
-**Example AI line:** "Now look at the sleepy shoulders. What might help someone who looks tired?"
+**Example AI line:** "What feeling fits this picture?"
 
 **Child responses:**
 
-1. (Ideal) The child notices the sleepy shoulders cue and suggests a tired/sleepy feeling, a need for rest, or a fitting help action.
-2. (Unexpected) Child judges the character, gives generic kindness without tying it to sleepy shoulders, or names a different round cue.
-3. (No response) Child watches the sleepy shoulders cue without naming a feeling, need, or helpful action.
+1. (Ideal) The child names the target feeling or a close feeling and may add a caring response.
+2. (Unexpected) Child judges the character, gives generic kindness without reading the feeling, or names a different picture's feeling.
+3. (No response) Child watches the picture without naming a feeling.
 
 **AI follow-up:**
 
-1. Connect the cue to the caring choice, save the kindness for this turn, and show the calmer or helped state.
-2. Reframe without judging, name the sleepy shoulders, and ask for one helpful action.
-3. [wait 2s] Model one caring sentence for sleepy shoulders, then ask the child to choose a feeling or help action.
+1. Acknowledge the feeling the child named, save the turn, and ask the next picture without naming its answer.
+2. Reframe without judging and ask the child to look again at the face and body for a feeling.
+3. [wait 2s] Ask a short neutral feeling question again without naming the answer.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
-**Round 3 -- Brave Try:**
+**Round 3 -- Picture 3:**
 
-**Runtime AI instruction:** Say exactly: "Look at the brave try. What encouragement would help?"
+**Runtime AI instruction:** Ask what feeling the child sees in this picture. Do not name the target feeling or body clue before the child answers.
 
-**Example AI line:** "This friend is trying bravely. What could you say or do to help them keep trying?"
+**Example AI line:** "What feeling do you read in this picture?"
 
 **Child responses:**
 
-1. (Ideal) The child notices the brave try cue and suggests encouragement, help, or a fitting feeling for someone trying.
-2. (Unexpected) Child judges the character, gives generic kindness without tying it to the brave try, or names a different round cue.
-3. (No response) Child watches the brave try cue without naming a feeling, need, or helpful action.
+1. (Ideal) The child names the target feeling or a close feeling and may add a caring response.
+2. (Unexpected) Child judges the character, gives generic kindness without reading the feeling, or names a different picture's feeling.
+3. (No response) Child watches the picture without naming a feeling.
 
 **AI follow-up:**
 
-1. Connect the cue to the caring choice, save the kindness for this turn, and show the calmer or helped state.
-2. Reframe without judging, name the brave try, and ask for one encouraging sentence.
-3. [wait 2s] Model one caring sentence for brave trying, then ask the child to choose a feeling or help action.
+1. Acknowledge the feeling the child named, save the turn, and move to the saved-feelings board.
+2. Reframe without judging and ask the child to look again at the face and body for a feeling.
+3. [wait 2s] Ask a short neutral feeling question again without naming the answer.
 
 **Screen:** Shows the active round token, child response slot, and activity cue. Use `emotion_expression_cards_01` in `round_device_screen` during prod.step_1; prod.step_2.round_1-3; fallback: If cards are unavailable, use a story description of a character's visible cues and avoid claiming the screen shows a face. Do not ask the child to point, tap, or touch the screen. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Say exactly: "Worried hands got care. Sleepy shoulders got rest. Brave trying got encouragement."
+**Runtime AI instruction:** Say exactly: "You read three feelings and chose caring words."
 
-**Example AI line:** "Your kind choices helped each friend: worry, tiredness, and brave trying."
+**Example AI line:** "You read each picture and saved a caring word."
 
 **Child responses:**
 
-1. (Ideal) The child notices how the kind help choice changed the Emotion Reader board or names a favorite saved turn.
-2. (Unexpected) Child asks to restart before seeing the Emotion Reader payoff or ignores how the saved kind response turns connect.
+1. (Ideal) The child notices how reading the feelings changed the Emotion Reader board or names a favorite saved turn.
+2. (Unexpected) Child asks to restart before seeing the Emotion Reader payoff or ignores how the saved feeling turns connect.
 3. (No response) Child watches the Emotion Reader reveal without commenting on the saved turns.
 
 **AI follow-up:**
 
-1. Tie the reveal to the child's kind response turns, name one concrete saved turn, and invite a short reflection.
-2. Hold the Emotion Reader reveal, name the saved turn that matters, and ask what changed because of it.
-3. [wait 2s] Narrate one before/after change from the Emotion Reader board, then ask which caring help fit best.
+1. Tie the reveal to the child's feeling-reading turns and invite a short reflection.
+2. Hold the Emotion Reader reveal, name the reading skill, and ask what changed because of it.
+3. [wait 2s] Narrate one before/after change from the Emotion Reader board, then ask which feeling was easiest to read.
 
 **Screen:** Shows a final board with saved turns, asset/fallback note when relevant, and source-specific payoff. Optional support asset: `celebrate_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
