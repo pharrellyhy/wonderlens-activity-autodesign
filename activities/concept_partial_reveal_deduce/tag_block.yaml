@@ -57,8 +57,8 @@ activity_signature:
     secondary:
     - function
     - state
-  preview_label: Partial Reveal Guess
-  preview_prompt: Try Partial Reveal Guess with one short guided round.
+  preview_label: Mystery Clue Guess
+  preview_prompt: Try Mystery Clue Guess with one short guided round.
   role_pivot_note: The workbook concept supplies the play frame; a photographed object
     may only act as a catalyst.
 matchability:
@@ -69,3 +69,80 @@ matchability:
     T2: true
 source_workbook_row: 11
 source_concept: source_partial_reveal_guess
+response_verification:
+  mode: partial_reveal_final_answer
+  evidence_source: stt_transcript
+  final_round: 3
+  hide_answer_until: final_reveal
+  speaker_dialogue_mode: bounded_package
+  dialogue_contract:
+    type: partial_reveal_guess
+    pre_answer_forbidden_terms: [cat, kitty, kitten, whiskers, tail]
+    transitions:
+      rules_to_first:
+        intent: Move from the rules into the first clue. Ask for one maybe-guess from the pointy ears only.
+        fallback: "First clue: pointy ears. What could it be?"
+        must_include: [first_visible_clue, maybe_guess_question]
+        must_not_include: [hidden_answer, answer_confirmation, extra_clues]
+        max_sentences: 2
+      pre_final_guess_to_next:
+        intent: Save the maybe-guess without confirming it, then ask the next visible-clue question using paws or feet.
+        fallback: Save that maybe-guess. Now look at the paws or feet and keep your guess or change it?
+        must_include: [neutral_maybe_guess_ack, next_visible_clue_question]
+        must_not_include: [hidden_answer, answer_confirmation, extra_clues]
+        max_sentences: 2
+      pre_final_to_final:
+        intent: Save the maybe-guess without confirming it, then ask for the final guess using only pointy ears and paws or feet.
+        fallback: Now use pointy ears and paws or feet. What is your final guess?
+        must_include: [neutral_maybe_guess_ack, final_guess_question]
+        must_not_include: [hidden_answer, answer_confirmation, extra_clues]
+        max_sentences: 2
+      final_reveal_correct:
+        intent: Confirm the answer is cat and move straight to the reveal.
+        fallback: The answer is cat. Here is the big reveal.
+        must_include: [final_answer, reveal]
+        must_not_include: [extra_explanation, new_guess_question]
+        max_sentences: 2
+      final_reveal_wrong:
+        intent: Reveal that the answer is cat neutrally, without saying the child guessed correctly.
+        fallback: The answer is cat. Here is the big reveal.
+        must_include: [final_answer, reveal]
+        must_not_include: [guessed_correctly_claim, extra_explanation]
+        max_sentences: 2
+      retry_wrong:
+        intent: Ask for one final guess using only pointy ears and paws or feet, without revealing the answer.
+        fallback: Use pointy ears and paws or feet. What is your final guess?
+        must_include: [visible_clues, final_guess_question]
+        must_not_include: [hidden_answer, answer_confirmation, extra_clues]
+        max_sentences: 2
+      idk_scaffold:
+        intent: Point to the visible clues and ask for one maybe-guess without revealing the answer.
+        fallback: Look at the visible clues. What could it be?
+        must_include: [visible_clue_scaffold, maybe_guess_question]
+        must_not_include: [hidden_answer, answer_confirmation, extra_clues]
+        max_sentences: 2
+      off_topic_redirect:
+        intent: Redirect back to the visible clues and ask for the guess again without revealing the answer.
+        fallback: Back to the visible clues. What could it be?
+        must_include: [visible_clue_redirect, guess_question]
+        must_not_include: [hidden_answer, answer_confirmation, extra_clues]
+        max_sentences: 2
+  hidden_answer:
+    canonical: cat
+    accepted_terms: [cat, kitty, kitten]
+  visible_clues:
+    - pointy ears
+    - paws or feet
+  rounds:
+    - round_number: 1
+      accepted_tokens: [ears, pointy, animal, maybe]
+      success_direction: 'Say exactly: "Paws or feet. Keep your guess or change it?"'
+      retry_direction: 'Say exactly: "Pointy ears. What could it be?"'
+    - round_number: 2
+      accepted_tokens: [paws, feet, animal, maybe]
+      success_direction: 'Say exactly: "Pointy ears and paws or feet. What is your final guess?"'
+      retry_direction: 'Say exactly: "Paws or feet. Keep your guess or change it?"'
+  correct_final_response_direction: 'Say exactly: "The answer is cat. Here is the big reveal."'
+  wrong_final_response:
+    action: advance
+    response_direction: 'Say exactly: "The answer is cat. Here is the big reveal." Do not say the child guessed correctly.'

@@ -12,7 +12,7 @@
 
 ## Premise
 
-The child notices an obvious expression or body cue and thinks about what feeling or help might fit.
+The child notices an obvious expression or body cue, reads the feeling in the picture, and may reflect on care after the feeling is named.
 
 ## Selection Trigger
 
@@ -20,7 +20,7 @@ A character, animal, or story moment shows an obvious emotional expression.
 
 ## Source Intent Lock
 
-The child notices an obvious expression or body cue and thinks about what feeling or help might fit.
+The child first guesses the feeling shown in each picture. Hidden target feelings and cue labels stay in package metadata until the child answers.
 
 ## Adaptation Rationale
 
@@ -29,10 +29,10 @@ The package preserves the original play frame, child role, required child action
 ## Runtime Detail Floor Notes
 
 - Use `Runtime AI instruction` plus `Example AI line` so runtime can adapt wording while preserving intent.
-- Active cue targets are fixed to the generated assets: worried hands, sleepy shoulders, and brave try.
+- Hidden target feelings are fixed to the generated assets, but pre-answer runtime dialogue must not name the target feeling or body cue.
 - Do not claim unsupported sensing, recoloring, pose detection, cleanup verification, OCR, or hidden state.
-- Keep the repeated child action aligned to `care`.
-- Preserve this source sequence: The child notices an obvious expression or body cue and thinks about what feeling or help might fit.
+- Keep the repeated child action aligned to reading the feeling first, with care as a follow-up reflection.
+- Preserve this source sequence: The child notices an obvious expression or body cue and names the feeling shown in the picture.
 
 ## Resolved Product Contract Notes
 

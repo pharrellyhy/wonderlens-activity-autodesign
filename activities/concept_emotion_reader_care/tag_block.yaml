@@ -49,8 +49,8 @@ activity_signature:
   mechanic: care
   entity_role: catalyst
   focal_attribute: emotion_reader
-  intro: The child notices an obvious expression or body cue and thinks about what
-    feeling or help might fit.
+  intro: The child reads the feeling shown in each picture, then reflects on a
+    caring response after the feeling is named.
   bridge_prerequisites:
     primary:
     - emotion
@@ -71,27 +71,83 @@ source_workbook_row: 12
 source_concept: source_emotion_reader
 response_verification:
   mode: cat1_transcript_active_cue
+  speaker_dialogue_mode: bounded_package
   evidence_source: stt_transcript
   advance_requires: active_round_target_match
+  dialogue_contract:
+    type: emotion_inference
+    prompt_fallback: What feeling do you see in this picture?
+    retry_fallback: Look at the face and body. What feeling do you see?
+    transitions:
+      rules_to_first:
+        intent: Move from the rule into the first picture with one natural feeling question.
+        fallback: What feeling do you see in this picture?
+        max_sentences: 2
+        must_include: [first_picture_question]
+        must_not_include: [target_answer, body_clue_label, internal_round_label]
+      correct_to_next:
+        intent: Acknowledge the child-named feeling briefly, save the turn, and ask for the next picture.
+        fallback: You read that feeling. What feeling do you see in this next picture?
+        max_sentences: 2
+        must_include: [child_named_feeling_or_neutral_ack, next_picture_question]
+        must_not_include: [hidden_next_answer, body_clue_label, internal_round_label]
+      correct_to_finish:
+        intent: Acknowledge the child-named feeling briefly and move to the saved-feelings board.
+        fallback: You read that feeling. You read all three pictures.
+        max_sentences: 2
+        must_include: [child_named_feeling_or_neutral_ack, saved_feelings_board]
+        must_not_include: [body_clue_label, internal_round_label]
+      retry_wrong:
+        intent: Keep the child on the same picture and ask them to look again for the feeling.
+        fallback: Look again at the face and body. What feeling do you see?
+        max_sentences: 2
+        must_include: [same_picture_retry, feeling_question]
+        must_not_include: [target_answer, body_clue_label, internal_round_label]
+      idk_scaffold:
+        intent: Give one light scaffold without revealing the answer, then ask for the feeling.
+        fallback: Look at the face and body. What feeling might this person have?
+        max_sentences: 2
+        must_include: [look_at_face_and_body, feeling_question]
+        must_not_include: [target_answer, body_clue_label, internal_round_label]
+      off_topic_redirect:
+        intent: Gently return to the current picture and ask for the feeling.
+        fallback: Let's stay with this picture. What feeling do you see?
+        max_sentences: 2
+        must_include: [current_picture, feeling_question]
+        must_not_include: [target_answer, body_clue_label, internal_round_label]
+    pre_answer_forbidden_terms:
+      - worried
+      - nervous
+      - scared
+      - afraid
+      - upset
+      - sleepy
+      - tired
+      - worn out
+      - sleeping
+      - brave
+      - proud
+      - worried hands
+      - sleepy shoulders
+      - brave try
+      - hands
+      - shoulders
   rounds:
     - round_number: 1
-      active_cue: worried hands
-      target_result: worried or nervous and needs comfort
+      active_cue: picture 1
+      target_result: worried or nervous
       accepted_feelings: [worried, nervous, scared, afraid, upset]
-      accepted_needs: [comfort, calm, safe, listen]
-      accepted_help_actions: [ask if they are okay, say kind words, help them breathe, stay close, get a grown-up]
-      retry_direction: Look at the worried hands again. Ask what the character might feel or need.
+      success_direction: Acknowledge the just-named feeling briefly, then ask what feeling the child sees in the next picture. Do not name the next feeling or body clue.
+      retry_direction: Ask the child to look again at the face and body and name the feeling. Do not name the target feeling or body clue.
     - round_number: 2
-      active_cue: sleepy shoulders
-      target_result: tired or sleepy and needs rest
-      accepted_feelings: [sleepy, tired, worn out]
-      accepted_needs: [rest, quiet, break, sleep]
-      accepted_help_actions: [offer a rest, make it quiet, bring water, slow down]
-      retry_direction: Stay with the sleepy shoulders cue. Ask what would help someone who looks tired.
+      active_cue: picture 2
+      target_result: tired or sleepy
+      accepted_feelings: [sleepy, tired, worn out, sleeping]
+      success_direction: Acknowledge the just-named feeling briefly, then ask what feeling the child sees in the next picture. Do not name the next feeling or body clue.
+      retry_direction: Ask the child to look again at the face and body and name the feeling. Do not name the target feeling or body clue.
     - round_number: 3
-      active_cue: brave try
-      target_result: trying bravely and needs encouragement
+      active_cue: picture 3
+      target_result: brave, nervous, unsure, or proud while trying
       accepted_feelings: [brave, nervous, unsure, proud]
-      accepted_needs: [encouragement, try again, cheering]
-      accepted_help_actions: [cheer them on, say you can try, offer help, stay with them]
-      retry_direction: Stay with the brave try cue. Ask what encouragement would help them keep trying.
+      success_direction: Acknowledge the just-named feeling briefly and move to the saved-feelings board.
+      retry_direction: Ask the child to look again at the face and body and name the feeling. Do not name the target feeling or body clue.

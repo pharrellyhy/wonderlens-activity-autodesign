@@ -37,7 +37,7 @@ demo_support:
   support_level: degraded_runtime_judgment_required
   entity_bindings:
   - entity_id: partial_reveal_guess
-    display_label: Partial Reveal Guess
+    display_label: Mystery Clue Guess
     source_entity_exemplar: partial_reveal_guess
     default: true
   requires:

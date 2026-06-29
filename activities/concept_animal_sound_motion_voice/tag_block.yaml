@@ -73,6 +73,46 @@ response_verification:
   type: transcript_token_match
   evidence_source: stt_transcript
   required: true
+  speaker_dialogue_mode: bounded_package
+  dialogue_contract:
+    type: animal_sound_sequence
+    transitions:
+      rules_to_first:
+        intent: Move from the rules into the first animal turn. Ask for one tiny rabbit sniff.
+        fallback: Rabbit first. Try one tiny sniff.
+        must_include: [first_animal_sound_question]
+        must_not_include: [readiness_question, extra_explanation]
+        max_sentences: 2
+      correct_to_next:
+        intent: Briefly accept the child animal sound, then ask for the next animal sound from the active next-round prompt.
+        fallback: Nice sound. Try the next animal sound.
+        must_include: [brief_acceptance, next_animal_sound_question]
+        must_not_include: [extra_explanation, readiness_question]
+        max_sentences: 2
+      correct_to_finish:
+        intent: Briefly accept the puppy sound and move to saving the three animal sounds.
+        fallback: Nice puppy sound. Save the three animal sounds.
+        must_include: [brief_acceptance, save_three_sounds]
+        must_not_include: [new_animal_prompt, readiness_question]
+        max_sentences: 2
+      retry_wrong:
+        intent: Stay with the current animal and ask for one small sound from that animal only.
+        fallback: Stay with this animal. Try one small animal sound.
+        must_include: [current_animal_retry]
+        must_not_include: [next_animal, extra_explanation]
+        max_sentences: 2
+      idk_scaffold:
+        intent: Give one tiny sound model for the current animal and invite the child to try it.
+        fallback: Try one tiny sound for this animal.
+        must_include: [tiny_sound_try]
+        must_not_include: [next_animal, extra_explanation]
+        max_sentences: 2
+      off_topic_redirect:
+        intent: Redirect back to the current animal and ask for one small sound.
+        fallback: Back to this animal. Try one small sound.
+        must_include: [current_animal_redirect]
+        must_not_include: [next_animal, unrelated_topic]
+        max_sentences: 2
   applies_to_steps:
     - STEP_3_ROUND_1
     - STEP_3_ROUND_2
@@ -84,18 +124,21 @@ response_verification:
       target_label: rabbit
       accepted_tokens: [rabbit, bunny, sniff, sniffle, squeak]
       accepted_role_lines: [i am a rabbit, "i'm a rabbit", little rabbit, quiet rabbit]
-      retry_direction: Stay with the rabbit. Invite a tiny rabbit sniff or the line "I am a rabbit."
+      success_direction: 'Say exactly: "Good rabbit turn. Now try one soft cat meow."'
+      retry_direction: 'Say exactly: "Stay with the rabbit. Try one tiny rabbit sniff."'
     - round_number: 2
       step: STEP_3_ROUND_2
       target_id: cat
       target_label: cat
       accepted_tokens: [cat, kitty, kitten, meow, miaow, mew, purr]
       accepted_role_lines: [i am a cat, "i'm a cat", sleepy cat, soft meow, happy meow]
-      retry_direction: Stay with the cat. Invite one soft meow or the line "I am a cat."
+      success_direction: 'Say exactly: "Good cat turn. Now try one friendly puppy woof."'
+      retry_direction: 'Say exactly: "Stay with the cat. Try one soft meow."'
     - round_number: 3
       step: STEP_3_ROUND_3
       target_id: puppy
       target_label: puppy
       accepted_tokens: [puppy, dog, doggy, woof, bark, arf, ruff, bowwow]
       accepted_role_lines: [i am a puppy, "i'm a puppy", good puppy, friendly puppy]
-      retry_direction: Stay with the puppy. Invite one friendly woof or the line "I am a puppy."
+      success_direction: 'Say exactly: "Good puppy turn. Save the three animal sounds."'
+      retry_direction: 'Say exactly: "Stay with the puppy. Try one friendly woof."'
