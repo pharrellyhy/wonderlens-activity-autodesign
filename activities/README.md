@@ -141,6 +141,7 @@ Every accepted `parameterization` decision must record the mode, decision source
 | `palette` | Clean white or barely tinted white background with restrained boho pastels inside subjects: oatmeal beige, muted sage, dusty teal-blue, soft terracotta/salmon, warm brown, mustard/ochre, blush pink, pale leaf green, and muted sky accents. |
 | `screen_targets` | At minimum `round_device_screen` with `aspect_ratio: "1:1"`, `crop_shape: circle`, master size, and a central percent-circle safe area. |
 | `assets[].role` | `entity`, `activity_preview`, `collection_correct`, `collection_distractor`, `badge`, `story_scene`, or `ui_overlay`. |
+| `assets[].entity_name` | Required for concrete object/card roles: `entity`, `ui_overlay`, `collection_correct`, and `collection_distractor`. Use the object name the runtime should expose, not a decorative label. |
 | `assets[].accuracy_mode` | `illustrative` or `reference_bound`. |
 | `assets[].source_strategy` | `generated_illustrative`, `curated_original`, `redraw_from_verified_data`, `licensed_reference`, or `approved_internal_reference`. |
 | `assets[].transformation_policy` | `generate_new`, `crop_resize_only`, `simplified_redraw`, `style_preserving_redraw`, or `no_derivative_generation`. |

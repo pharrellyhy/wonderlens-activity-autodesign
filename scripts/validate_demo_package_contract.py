@@ -50,6 +50,7 @@ ASSET_ROLES = {
     "story_scene",
     "ui_overlay",
 }
+ENTITY_NAME_ASSET_ROLES = {"entity", "collection_correct", "collection_distractor", "ui_overlay"}
 REQUIREDNESS = {"required", "optional", "fallback"}
 ACCURACY_MODES = {"illustrative", "reference_bound"}
 STYLE_IDS = {"wonderlens_device_mint_soft_3d"}
@@ -348,6 +349,8 @@ def validate_asset(package_dir: Path, asset: dict[str, Any], targets: dict[str, 
     transformation_policy = norm(asset.get("transformation_policy"))
     if role and role not in ASSET_ROLES:
         issues.append(f"{label}: role {role!r} is not allowed")
+    if role in ENTITY_NAME_ASSET_ROLES and not norm(asset.get("entity_name")):
+        issues.append(f"{label}: {role} asset must declare entity_name")
     if requiredness and requiredness not in REQUIREDNESS:
         issues.append(f"{label}: requiredness {requiredness!r} is not allowed")
     if accuracy_mode and accuracy_mode not in ACCURACY_MODES:

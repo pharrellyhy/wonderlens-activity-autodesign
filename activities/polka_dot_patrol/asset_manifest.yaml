@@ -149,6 +149,7 @@ assets:
   - id: polka_ladybug
     role: collection_correct
     label: Ladybug dots
+    entity_name: ladybug
     collection_catalog_id: polka_dots
     requiredness: required
     accuracy_mode: illustrative
@@ -164,6 +165,7 @@ assets:
   - id: polka_mushroom
     role: collection_correct
     label: Spotted mushroom
+    entity_name: mushroom
     collection_catalog_id: polka_dots
     requiredness: required
     accuracy_mode: illustrative
@@ -179,6 +181,7 @@ assets:
   - id: polka_flower
     role: collection_correct
     label: Dotted flower
+    entity_name: flower
     collection_catalog_id: polka_dots
     requiredness: required
     accuracy_mode: illustrative
@@ -194,6 +197,7 @@ assets:
   - id: stripe_sock
     role: collection_correct
     label: Striped sock
+    entity_name: sock
     collection_catalog_id: stripes
     requiredness: required
     accuracy_mode: illustrative
@@ -209,6 +213,7 @@ assets:
   - id: stripe_scarf
     role: collection_correct
     label: Striped scarf
+    entity_name: scarf
     collection_catalog_id: stripes
     requiredness: required
     accuracy_mode: illustrative
@@ -224,6 +229,7 @@ assets:
   - id: stripe_ball
     role: collection_correct
     label: Striped ball
+    entity_name: ball
     collection_catalog_id: stripes
     requiredness: required
     accuracy_mode: illustrative
@@ -239,6 +245,7 @@ assets:
   - id: plain_leaf
     role: collection_distractor
     label: Plain leaf
+    entity_name: leaf
     collection_catalog_id: pattern_distractors
     requiredness: optional
     accuracy_mode: illustrative
@@ -254,6 +261,7 @@ assets:
   - id: zigzag_block
     role: collection_distractor
     label: Zigzag block
+    entity_name: block
     collection_catalog_id: pattern_distractors
     requiredness: optional
     accuracy_mode: illustrative

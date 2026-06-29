@@ -108,6 +108,7 @@ assets:
 - id: broccoli
   role: ui_overlay
   label: Broccoli
+  entity_name: broccoli
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -128,6 +129,7 @@ assets:
 - id: carrot
   role: ui_overlay
   label: Carrot
+  entity_name: carrot
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -148,6 +150,7 @@ assets:
 - id: corn
   role: ui_overlay
   label: Corn
+  entity_name: corn
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -168,6 +171,7 @@ assets:
 - id: cucumber
   role: ui_overlay
   label: Cucumber
+  entity_name: cucumber
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -188,6 +192,7 @@ assets:
 - id: potato
   role: ui_overlay
   label: Potato
+  entity_name: potato
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -208,6 +213,7 @@ assets:
 - id: pumpkin
   role: ui_overlay
   label: Pumpkin
+  entity_name: pumpkin
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -228,6 +234,7 @@ assets:
 - id: tomato
   role: ui_overlay
   label: Tomato
+  entity_name: tomato
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative

@@ -21,6 +21,7 @@ assets:
   - id: ball_sound_card
     role: collection_correct
     label: Ball
+    entity_name: ball
     collection_catalog_id: ball
     requiredness: required
     accuracy_mode: illustrative

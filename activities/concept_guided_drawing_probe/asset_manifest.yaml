@@ -108,6 +108,7 @@ assets:
 - id: drawing
   role: ui_overlay
   label: Drawing
+  entity_name: drawing
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -128,6 +129,7 @@ assets:
 - id: paper
   role: ui_overlay
   label: Paper
+  entity_name: paper
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -148,6 +150,7 @@ assets:
 - id: pencil
   role: ui_overlay
   label: Pencil
+  entity_name: pencil
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative

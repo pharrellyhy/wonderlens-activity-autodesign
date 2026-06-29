@@ -144,6 +144,10 @@
           "type": "string",
           "minLength": 1
         },
+        "entity_name": {
+          "type": "string",
+          "minLength": 1
+        },
         "collection_catalog_id": {
           "type": "string",
           "minLength": 1
@@ -200,6 +204,19 @@
         }
       },
       "allOf": [
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": ["entity", "collection_correct", "collection_distractor", "ui_overlay"]
+              }
+            },
+            "required": ["role"]
+          },
+          "then": {
+            "required": ["entity_name"]
+          }
+        },
         {
           "if": {
             "properties": {
@@ -335,6 +352,17 @@
         },
         "path": {
           "type": ["string", "null"]
+        },
+        "mime_type": {
+          "type": ["string", "null"]
+        },
+        "byte_count": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[a-fA-F0-9]{64}$"
         }
       }
     }

@@ -112,6 +112,7 @@ assets:
 - id: ball
   role: collection_correct
   label: Ball
+  entity_name: ball
   requiredness: required
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -133,6 +134,7 @@ assets:
 - id: banana
   role: collection_correct
   label: Banana
+  entity_name: banana
   requiredness: required
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -154,6 +156,7 @@ assets:
 - id: basket
   role: collection_correct
   label: Basket
+  entity_name: basket
   requiredness: required
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -175,6 +178,7 @@ assets:
 - id: book
   role: collection_correct
   label: Book
+  entity_name: book
   requiredness: required
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -196,6 +200,7 @@ assets:
 - id: cup
   role: collection_distractor
   label: Cup
+  entity_name: cup
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -217,6 +222,7 @@ assets:
 - id: leaf
   role: collection_distractor
   label: Leaf
+  entity_name: leaf
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -238,6 +244,7 @@ assets:
 - id: pencil
   role: collection_distractor
   label: Pencil
+  entity_name: pencil
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -259,6 +266,7 @@ assets:
 - id: sock
   role: collection_distractor
   label: Sock
+  entity_name: sock
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -280,6 +288,7 @@ assets:
 - id: spoon
   role: collection_distractor
   label: Spoon
+  entity_name: spoon
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative
@@ -301,6 +310,7 @@ assets:
 - id: toy_car
   role: collection_distractor
   label: Toy Car
+  entity_name: toy car
   requiredness: optional
   accuracy_mode: illustrative
   source_strategy: generated_illustrative

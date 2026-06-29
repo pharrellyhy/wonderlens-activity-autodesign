@@ -245,7 +245,8 @@ Package-writing rules:
 - fully expand every Step 3 round;
 - make unexpected/no-response branches beat-specific;
 - separate Cat5 collection, synthesis, celebration, and closing beats;
-- define all asset IDs in `spec.md` and `asset_manifest.yaml`;
+- define all asset IDs in `spec.md` and `asset_manifest.yaml`; concrete
+  object/card assets in `asset_manifest.yaml` must declare `entity_name`;
 - author `activity_display_contract_v1.yaml` after `prod.md` and asset metadata
   are stable; bind each verifiable policy to the displayed asset or displayed
   option, declare wheel/press/voice `input_affordance`, and use only the five
