@@ -32,6 +32,9 @@ frames:
     layout_id: two_image_options
     display_asset_id: red_apple_target
     control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: apple
         label: Red apple
@@ -66,6 +69,9 @@ frames:
     layout_id: multi_option_carousel
     display_asset_id: red_apple_target
     control_mode: carousel_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: apple
         label: Red apple
@@ -104,6 +110,9 @@ frames:
     layout_id: two_image_options
     display_asset_id: red_apple_target
     control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: apple
         label: Red apple

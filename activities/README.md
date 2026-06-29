@@ -40,7 +40,7 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 | `dashboard.template.yaml` | parent dashboard roller | YAML with `{placeholders}` | per-session fragment merged into device rollup |
 | `demo_support.yaml` | demo importer, reviewers | YAML | optional extension declaring demo readiness, entity compatibility, explicit entity binding, top-level parameterization, and limitations |
 | `asset_manifest.yaml` | asset generator, demo importer | YAML | optional extension declaring separate runtime assets, style, screen targets, variants, file slots, fallback behavior, and reference provenance |
-| `activity_display_contract_v1.yaml` | app runtime, backend verifier | YAML | optional extension declaring per-frame `layout_id`, displayed assets/options, control mode, verification policy, and English-only feedback effects |
+| `activity_display_contract_v1.yaml` | app runtime, backend verifier | YAML | optional extension declaring per-frame `layout_id`, displayed assets/options, control mode, input affordance, verification policy, and English-only feedback effects |
 
 ## Runtime completeness invariants
 
@@ -170,10 +170,14 @@ top-level fields are `activity_id`, `version: 1`,
 `contract: activity_display_contract_v1`, `display_assets`, and `frames`.
 Each frame must choose one of the five approved `layout_id` values:
 `single_image`, `two_image_options`, `two_direction_options`,
-`two_number_options`, or `multi_option_carousel`. Verifiable frames must bind
-their `verification_policy` to a displayed asset or displayed option. Effect
-profiles must use the English-only fields `sound_effects`,
-`lighting_effects`, and `haptic_feedback`.
+`two_number_options`, or `multi_option_carousel`. Each frame must declare
+`input_affordance` so consumers can distinguish wheel selection, button press
+confirmation, and voice-only confirmation. Verifiable frames must bind their
+`verification_policy` to a displayed asset or displayed option. Effect profiles
+must use the English-only fields `sound_effects`, `lighting_effects`, and
+`haptic_feedback`. Item-like display assets should declare
+`metadata.entity_name`; animal cards with `metadata.target_animal` must also
+declare `metadata.entity_name`.
 
 ## Asset build modes
 

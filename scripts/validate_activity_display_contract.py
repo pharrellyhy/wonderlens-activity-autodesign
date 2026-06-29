@@ -51,6 +51,20 @@ POLICY_TYPES = {
 DISPLAY_ASSET_KINDS = {"image", "option", "cue", "number", "category", "word", "scene", "item", "group"}
 OPTION_LAYOUTS = {"two_image_options", "two_direction_options", "two_number_options", "multi_option_carousel"}
 VERIFIABLE_POLICIES = POLICY_TYPES - {"accept_any_participation"}
+INPUT_SELECT_VALUES = {"none", "wheel"}
+INPUT_CONFIRM_VALUES = {"voice", "press", "auto"}
+EXPECTED_INPUT_AFFORDANCE_BY_CONTROL_MODE = {
+    "voice_only": ("none", "voice"),
+    "binary_choice": ("wheel", "press"),
+    "carousel_choice": ("wheel", "press"),
+    "number_choice": ("wheel", "press"),
+    "step_confirm": ("none", "press"),
+    "camera_capture": ("none", "press"),
+    "replay_only": ("none", "voice"),
+    "reveal_control": ("none", "press"),
+    "sort_pick_place": ("wheel", "press"),
+    "self_report": ("none", "press"),
+}
 CJK_RE = re.compile(r"[\u3400-\u9fff]")
 
 
@@ -142,6 +156,10 @@ def validate_display_asset(
     if asset_manifest_id and asset_manifest_id not in manifest_asset_ids:
         issues.append(f"{label}: asset_manifest_id {asset_manifest_id!r} is not declared in asset_manifest.yaml")
 
+    metadata = as_dict(display_asset.get("metadata"))
+    if kind in {"image", "item"} and norm(metadata.get("target_animal")) and not norm(metadata.get("entity_name")):
+        issues.append(f"{label}: animal item display asset must declare metadata.entity_name")
+
     return issues
 
 
@@ -203,6 +221,26 @@ def validate_frame_options(
             issues.append(f"{option_label}: two_number_options option must declare value")
 
     return issues, option_map
+
+
+def validate_input_affordance(package_dir: Path, frame_id: str, control_mode: str, input_affordance: dict[str, Any]) -> list[str]:
+    label = f"{package_dir}: frame {frame_id}: input_affordance"
+    issues: list[str] = []
+    add_required(issues, label, input_affordance, ("select", "confirm"))
+
+    select = norm(input_affordance.get("select"))
+    confirm = norm(input_affordance.get("confirm"))
+    if select and select not in INPUT_SELECT_VALUES:
+        issues.append(f"{label}.select {select!r} is not allowed")
+    if confirm and confirm not in INPUT_CONFIRM_VALUES:
+        issues.append(f"{label}.confirm {confirm!r} is not allowed")
+
+    expected = EXPECTED_INPUT_AFFORDANCE_BY_CONTROL_MODE.get(control_mode)
+    if expected is not None and (select, confirm) != expected:
+        issues.append(
+            f"{label}: control_mode {control_mode!r} requires select={expected[0]!r} and confirm={expected[1]!r}"
+        )
+    return issues
 
 
 def target_display_asset(
@@ -354,7 +392,16 @@ def validate_frame(
         issues,
         label,
         frame,
-        ("frame_id", "step_ref", "layout_id", "display_asset_id", "control_mode", "verification_policy", "effect_profile"),
+        (
+            "frame_id",
+            "step_ref",
+            "layout_id",
+            "display_asset_id",
+            "control_mode",
+            "input_affordance",
+            "verification_policy",
+            "effect_profile",
+        ),
     )
 
     layout_id = norm(frame.get("layout_id"))
@@ -364,6 +411,7 @@ def validate_frame(
     control_mode = norm(frame.get("control_mode"))
     if control_mode and control_mode not in CONTROL_MODES:
         issues.append(f"{label}: control_mode {control_mode!r} is not allowed")
+    issues.extend(validate_input_affordance(package_dir, frame_id, control_mode, as_dict(frame.get("input_affordance"))))
 
     frame_display_asset_id = norm(frame.get("display_asset_id"))
     if frame_display_asset_id and frame_display_asset_id not in display_assets:

@@ -29,6 +29,9 @@ frames:
     layout_id: single_image
     display_asset_id: first_star_group
     control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
     verification_policy:
       type: number_match
       required: true
@@ -54,6 +57,9 @@ frames:
     layout_id: single_image
     display_asset_id: second_star_pattern
     control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
     verification_policy:
       type: number_match
       required: true
@@ -79,6 +85,9 @@ frames:
     layout_id: single_image
     display_asset_id: final_constellation_count
     control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
     verification_policy:
       type: number_match
       required: true

@@ -11,6 +11,9 @@ frames:
     layout_id: single_image
     display_asset_id: scene
     control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
     verification_policy:
       type: accept_any_participation
       required: false

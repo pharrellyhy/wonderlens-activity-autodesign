@@ -87,6 +87,9 @@ class ActivityDisplayContractValidatorTest(unittest.TestCase):
                         layout_id: single_image
                         display_asset_id: shown_count
                         control_mode: voice_only
+                        input_affordance:
+                          select: none
+                          confirm: voice
                         verification_policy:
                           type: number_match
                           required: true
@@ -165,6 +168,122 @@ class ActivityDisplayContractValidatorTest(unittest.TestCase):
         required = schema["$defs"]["verification_policy"]["required"]
 
         self.assertIn("target", required)
+
+    def test_schema_requires_input_affordance(self):
+        schema_path = REPO_ROOT / "activities" / "_schema" / "activity_display_contract_v1.schema.json"
+        schema = json.loads(schema_path.read_text())
+
+        required = schema["$defs"]["frame"]["required"]
+
+        self.assertIn("input_affordance", required)
+
+    def test_binary_choice_requires_wheel_select_press_confirm(self):
+        validator = load_validator()
+
+        with tempfile.TemporaryDirectory() as tmp:
+            package_dir = pathlib.Path(tmp) / "wrong_input_affordance"
+            package_dir.mkdir()
+            (package_dir / "activity_display_contract_v1.yaml").write_text(
+                textwrap.dedent(
+                    """
+                    activity_id: wrong_input_affordance
+                    version: 1
+                    contract: activity_display_contract_v1
+                    display_assets:
+                      - display_asset_id: round_1_scene
+                        kind: image
+                      - display_asset_id: option_a
+                        kind: option
+                      - display_asset_id: option_b
+                        kind: option
+                    frames:
+                      - frame_id: choice_round
+                        step_ref: prod.step_3.round_1
+                        layout_id: two_image_options
+                        display_asset_id: round_1_scene
+                        control_mode: binary_choice
+                        input_affordance:
+                          select: none
+                          confirm: voice
+                        options:
+                          - option_id: option_a
+                            label: A
+                            display_asset_id: option_a
+                            is_correct: true
+                          - option_id: option_b
+                            label: B
+                            display_asset_id: option_b
+                            is_correct: false
+                        verification_policy:
+                          type: choice_match
+                          required: true
+                          target:
+                            type: option
+                            option_id: option_a
+                          evidence:
+                            - selected_option_id
+                        effect_profile:
+                          id: choice_confirm
+                          sound_effects: [focus_tick]
+                          lighting_effects: [focus_ring]
+                          haptic_feedback: [wheel_tick]
+                    """
+                )
+            )
+
+            issues = validator.validate_roots([package_dir])
+
+        self.assertIn(
+            "control_mode 'binary_choice' requires select='wheel' and confirm='press'",
+            "\n".join(issues),
+        )
+
+    def test_animal_item_display_asset_requires_entity_name(self):
+        validator = load_validator()
+
+        with tempfile.TemporaryDirectory() as tmp:
+            package_dir = pathlib.Path(tmp) / "missing_entity_name"
+            package_dir.mkdir()
+            (package_dir / "activity_display_contract_v1.yaml").write_text(
+                textwrap.dedent(
+                    """
+                    activity_id: missing_entity_name
+                    version: 1
+                    contract: activity_display_contract_v1
+                    display_assets:
+                      - display_asset_id: rabbit_card
+                        kind: image
+                        metadata:
+                          target_animal: rabbit
+                    frames:
+                      - frame_id: voice_round
+                        step_ref: prod.step_3.round_1
+                        layout_id: single_image
+                        display_asset_id: rabbit_card
+                        control_mode: replay_only
+                        input_affordance:
+                          select: none
+                          confirm: voice
+                        verification_policy:
+                          type: accept_any_participation
+                          required: false
+                          target:
+                            type: display_asset
+                            display_asset_id: rabbit_card
+                          evidence:
+                            - transcript
+                        effect_profile:
+                          id: voice_try
+                          sound_effects: [animal_prompt]
+                          lighting_effects: [focus_glow]
+                          haptic_feedback: [prompt_pulse]
+                    """
+                )
+            )
+
+            issues = validator.validate_roots([package_dir])
+
+        self.assertIn("animal item display asset must declare metadata.entity_name", "\n".join(issues))
 
     def test_current_twelve_activity_packages_have_valid_contracts(self):
         validator = load_validator()

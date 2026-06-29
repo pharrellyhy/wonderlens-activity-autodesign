@@ -32,6 +32,9 @@ frames:
     layout_id: single_image
     display_asset_id: big_circle_step
     control_mode: step_confirm
+    input_affordance:
+      select: none
+      confirm: press
     verification_policy:
       type: self_report
       required: true
@@ -57,6 +60,9 @@ frames:
     layout_id: single_image
     display_asset_id: ears_or_petals_step
     control_mode: step_confirm
+    input_affordance:
+      select: none
+      confirm: press
     verification_policy:
       type: self_report
       required: true
@@ -82,6 +88,9 @@ frames:
     layout_id: single_image
     display_asset_id: face_detail_step
     control_mode: step_confirm
+    input_affordance:
+      select: none
+      confirm: press
     verification_policy:
       type: self_report
       required: true
@@ -107,6 +116,9 @@ frames:
     layout_id: single_image
     display_asset_id: final_photo_prompt
     control_mode: camera_capture
+    input_affordance:
+      select: none
+      confirm: press
     verification_policy:
       type: self_report
       required: false

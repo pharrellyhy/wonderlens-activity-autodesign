@@ -37,6 +37,9 @@ frames:
     layout_id: two_image_options
     display_asset_id: red_apple_target
     control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: apple
         label: Red apple
@@ -63,7 +66,9 @@ frames:
 Concrete bitmap assets use `asset_manifest_id` to reference
 `asset_manifest.yaml`. Abstract cues such as a phoneme target, number target,
 story gate, category board, or word cue are declared directly in
-`display_assets[].metadata`.
+`display_assets[].metadata`. Item-like display assets should declare
+`metadata.entity_name`; animal item cards that declare `metadata.target_animal`
+must also declare `metadata.entity_name`.
 
 ## Decision Order
 
@@ -75,8 +80,9 @@ Choose values in this order:
    display cues.
 4. Choose `layout_id`.
 5. Choose `control_mode`.
-6. Bind `verification_policy` to the displayed asset or displayed option.
-7. Declare English-only `effect_profile` fields.
+6. Declare `input_affordance` for hardware selection and confirmation.
+7. Bind `verification_policy` to the displayed asset or displayed option.
+8. Declare English-only `effect_profile` fields.
 
 If a frame does not fit the five layout IDs below, it is unsupported for this
 contract until a new app layout is approved.
@@ -113,6 +119,22 @@ Allowed `control_mode` values:
 | `reveal_control` | Child guesses or requests another clue/reveal stage. | `transcript`, `reveal_stage`, optional control event. |
 | `sort_pick_place` | Child places an item into a target group. | `selected_item_id` or `selected_option_id`, plus `sort_target_id`. |
 | `self_report` | Child reports completion, readiness, or preference. | `self_reported_done` or equivalent event. |
+
+## Input Affordance
+
+`input_affordance` is required on every frame. It records the physical input
+surface separately from the semantic `control_mode`:
+
+| Control mode | `select` | `confirm` |
+|---|---|---|
+| `binary_choice`, `carousel_choice`, `number_choice`, `sort_pick_place` | `wheel` | `press` |
+| `step_confirm`, `camera_capture`, `reveal_control`, `self_report` | `none` | `press` |
+| `voice_only`, `replay_only` | `none` | `voice` |
+
+Use `wheel` only when the child rotates/navigates among displayed options. Use
+`press` when the device button confirms a selected option, advances a reveal,
+confirms a step, or captures a photo. Use `voice` when the spoken response is
+the only confirmation evidence.
 
 ## Verification Policies
 

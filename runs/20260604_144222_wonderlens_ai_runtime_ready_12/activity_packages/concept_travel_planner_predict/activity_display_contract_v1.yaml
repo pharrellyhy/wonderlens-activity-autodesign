@@ -38,6 +38,9 @@ frames:
     layout_id: two_image_options
     display_asset_id: sunny_pack_choice
     control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: sunny_pack
         label: Pack for sun
@@ -70,6 +73,9 @@ frames:
     layout_id: two_image_options
     display_asset_id: weather_change_plan
     control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: keep_plan
         label: Keep the first plan
@@ -102,6 +108,9 @@ frames:
     layout_id: two_image_options
     display_asset_id: next_event_prediction
     control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: quiet_event
         label: Quiet event

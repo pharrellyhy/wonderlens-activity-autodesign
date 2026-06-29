@@ -65,9 +65,9 @@ The package must satisfy these invariants:
 - every display-contract frame uses one of the five approved `layout_id` values:
   `single_image`, `two_image_options`, `two_direction_options`,
   `two_number_options`, or `multi_option_carousel`;
-- app layout, control mode, displayed option, verification policy, sound,
-  lighting, and haptic metadata live in `activity_display_contract_v1.yaml`,
-  not `tag_block.yaml`;
+- app layout, control mode, input affordance, displayed option, verification
+  policy, sound, lighting, and haptic metadata live in
+  `activity_display_contract_v1.yaml`, not `tag_block.yaml`;
 - `spec.md` has exactly one `## Self-Evaluation Scorecard`;
 - `prod.md` has no scorecard and contains runnable Step 1-5 guidance;
 - every live beat has machine-convertible runtime AI instructions or equivalent

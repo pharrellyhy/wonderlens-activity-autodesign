@@ -11,6 +11,9 @@ frames:
     layout_id: single_image
     display_asset_id: prompt_card
     control_mode: camera_capture
+    input_affordance:
+      select: none
+      confirm: press
     verification_policy:
       type: photo_object_initial_sound
       required: true

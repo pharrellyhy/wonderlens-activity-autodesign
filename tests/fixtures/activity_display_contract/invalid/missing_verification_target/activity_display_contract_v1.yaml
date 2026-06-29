@@ -10,6 +10,9 @@ frames:
     layout_id: two_image_options
     display_asset_id: scene
     control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: apple
         label: Apple

@@ -31,6 +31,9 @@ frames:
     layout_id: single_image
     display_asset_id: first_echo_word
     control_mode: replay_only
+    input_affordance:
+      select: none
+      confirm: voice
     verification_policy:
       type: echo_match
       required: true
@@ -55,6 +58,9 @@ frames:
     layout_id: single_image
     display_asset_id: echo_variation_prompt
     control_mode: replay_only
+    input_affordance:
+      select: none
+      confirm: voice
     verification_policy:
       type: echo_match
       required: true
@@ -79,6 +85,9 @@ frames:
     layout_id: single_image
     display_asset_id: remembered_echo_pair
     control_mode: replay_only
+    input_affordance:
+      select: none
+      confirm: voice
     verification_policy:
       type: echo_match
       required: true

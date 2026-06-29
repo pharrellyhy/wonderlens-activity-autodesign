@@ -248,7 +248,8 @@ Package-writing rules:
 - define all asset IDs in `spec.md` and `asset_manifest.yaml`;
 - author `activity_display_contract_v1.yaml` after `prod.md` and asset metadata
   are stable; bind each verifiable policy to the displayed asset or displayed
-  option, and use only the five approved `layout_id` values;
+  option, declare wheel/press/voice `input_affordance`, and use only the five
+  approved `layout_id` values;
 - keep raw image prompts out of `prod.md`;
 - include `## Extensibility Notes` for reusable or parameterized activities.
 

@@ -69,6 +69,7 @@
         "layout_id",
         "display_asset_id",
         "control_mode",
+        "input_affordance",
         "verification_policy",
         "effect_profile"
       ],
@@ -110,6 +111,9 @@
             "self_report"
           ]
         },
+        "input_affordance": {
+          "$ref": "#/$defs/input_affordance"
+        },
         "options": {
           "type": "array",
           "items": {
@@ -121,6 +125,21 @@
         },
         "effect_profile": {
           "$ref": "#/$defs/effect_profile"
+        }
+      }
+    },
+    "input_affordance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["select", "confirm"],
+      "properties": {
+        "select": {
+          "type": "string",
+          "enum": ["none", "wheel"]
+        },
+        "confirm": {
+          "type": "string",
+          "enum": ["voice", "press", "auto"]
         }
       }
     },

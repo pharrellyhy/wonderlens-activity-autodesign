@@ -26,6 +26,9 @@ frames:
     layout_id: single_image
     display_asset_id: visible_face_body_cue
     control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
     verification_policy:
       type: semantic_llm_judge
       required: true
@@ -50,6 +53,9 @@ frames:
     layout_id: single_image
     display_asset_id: possible_feeling_cue
     control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
     verification_policy:
       type: semantic_llm_judge
       required: true
@@ -74,6 +80,9 @@ frames:
     layout_id: single_image
     display_asset_id: kind_help_choice
     control_mode: voice_only
+    input_affordance:
+      select: none
+      confirm: voice
     verification_policy:
       type: semantic_llm_judge
       required: true

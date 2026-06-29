@@ -46,6 +46,9 @@ frames:
     layout_id: multi_option_carousel
     display_asset_id: color_sort_board
     control_mode: sort_pick_place
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: carrot
         label: Carrot
@@ -82,6 +85,9 @@ frames:
     layout_id: multi_option_carousel
     display_asset_id: edible_part_sort_board
     control_mode: sort_pick_place
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: carrot
         label: Carrot
@@ -118,6 +124,9 @@ frames:
     layout_id: multi_option_carousel
     display_asset_id: cooking_use_sort_board
     control_mode: sort_pick_place
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: corn
         label: Corn

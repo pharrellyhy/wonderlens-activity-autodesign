@@ -38,6 +38,9 @@ frames:
     layout_id: single_image
     display_asset_id: first_b_treasure_prompt
     control_mode: camera_capture
+    input_affordance:
+      select: none
+      confirm: press
     verification_policy:
       type: photo_object_initial_sound
       required: true
@@ -64,6 +67,9 @@ frames:
     layout_id: single_image
     display_asset_id: second_b_treasure_prompt
     control_mode: camera_capture
+    input_affordance:
+      select: none
+      confirm: press
     verification_policy:
       type: photo_object_initial_sound
       required: true
@@ -90,6 +96,9 @@ frames:
     layout_id: single_image
     display_asset_id: final_b_treasure_prompt
     control_mode: camera_capture
+    input_affordance:
+      select: none
+      confirm: press
     verification_policy:
       type: photo_object_initial_sound
       required: true

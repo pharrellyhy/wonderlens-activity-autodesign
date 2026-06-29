@@ -67,6 +67,9 @@ frames:
     layout_id: two_image_options
     display_asset_id: smoke_alarm_scene
     control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: send_help
         label: Send help now
@@ -101,6 +104,9 @@ frames:
     layout_id: two_image_options
     display_asset_id: tool_choice_scene
     control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: hose
         label: Water hose
@@ -135,6 +141,9 @@ frames:
     layout_id: two_image_options
     display_asset_id: safe_action_scene
     control_mode: binary_choice
+    input_affordance:
+      select: wheel
+      confirm: press
     options:
       - option_id: outside
         label: Check people are outside
