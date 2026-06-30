@@ -71,67 +71,8 @@ source_workbook_row: 12
 source_concept: source_emotion_reader
 response_verification:
   mode: cat1_transcript_active_cue
-  speaker_dialogue_mode: bounded_package
   evidence_source: stt_transcript
   advance_requires: active_round_target_match
-  dialogue_contract:
-    type: emotion_inference
-    prompt_fallback: What feeling do you see in this picture?
-    retry_fallback: Look at the face and body. What feeling do you see?
-    transitions:
-      rules_to_first:
-        intent: Move from the rule into the first picture with one natural feeling question.
-        fallback: What feeling do you see in this picture?
-        max_sentences: 2
-        must_include: [first_picture_question]
-        must_not_include: [target_answer, body_clue_label, internal_round_label]
-      correct_to_next:
-        intent: Acknowledge the child-named feeling briefly, save the turn, and ask for the next picture.
-        fallback: You read that feeling. What feeling do you see in this next picture?
-        max_sentences: 2
-        must_include: [child_named_feeling_or_neutral_ack, next_picture_question]
-        must_not_include: [hidden_next_answer, body_clue_label, internal_round_label]
-      correct_to_finish:
-        intent: Acknowledge the child-named feeling briefly and move to the saved-feelings board.
-        fallback: You read that feeling. You read all three pictures.
-        max_sentences: 2
-        must_include: [child_named_feeling_or_neutral_ack, saved_feelings_board]
-        must_not_include: [body_clue_label, internal_round_label]
-      retry_wrong:
-        intent: Keep the child on the same picture and ask them to look again for the feeling.
-        fallback: Look again at the face and body. What feeling do you see?
-        max_sentences: 2
-        must_include: [same_picture_retry, feeling_question]
-        must_not_include: [target_answer, body_clue_label, internal_round_label]
-      idk_scaffold:
-        intent: Give one light scaffold without revealing the answer, then ask for the feeling.
-        fallback: Look at the face and body. What feeling might this person have?
-        max_sentences: 2
-        must_include: [look_at_face_and_body, feeling_question]
-        must_not_include: [target_answer, body_clue_label, internal_round_label]
-      off_topic_redirect:
-        intent: Gently return to the current picture and ask for the feeling.
-        fallback: Let's stay with this picture. What feeling do you see?
-        max_sentences: 2
-        must_include: [current_picture, feeling_question]
-        must_not_include: [target_answer, body_clue_label, internal_round_label]
-    pre_answer_forbidden_terms:
-      - worried
-      - nervous
-      - scared
-      - afraid
-      - upset
-      - sleepy
-      - tired
-      - worn out
-      - sleeping
-      - brave
-      - proud
-      - worried hands
-      - sleepy shoulders
-      - brave try
-      - hands
-      - shoulders
   rounds:
     - round_number: 1
       active_cue: picture 1

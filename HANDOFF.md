@@ -1,5 +1,22 @@
 # HANDOFF
 
+## 2026-06-30 - Dialogue Generation Rollback
+
+Problem: PM QA found the bounded transition-dialogue package metadata made the
+four runtime-verified activities feel worse. The source package rollback needed
+to remove bounded dialogue generation metadata without undoing verification or
+the Emotion Reader correction that asks the child to name the visible feeling.
+
+Solution: Removed bounded dialogue contracts and exact-script dialogue
+constraints from `concept_emotion_reader_care`,
+`concept_partial_reveal_deduce`, `concept_animal_sound_motion_voice`, and
+`concept_phoneme_hunt_collect`. Partial reveal wrong-final guidance now asks
+for a neutral reveal without the echo-prone "guessed correctly" phrase.
+
+Verification: `git diff --check HEAD~1..HEAD`, `git diff --check`, targeted
+marker scans for bounded/dialogue-contract/Say-exactly remnants, and tag-block
+schema validation using the WonderLens AI Python environment all passed.
+
 ## 2026-06-29 - Bounded Transition Expansion Completed
 
 Problem: After Emotion Reader moved to bounded package-owned dialogue, animal
