@@ -27,7 +27,7 @@ The first photo sets the target starting character. WonderLens recognizes and no
 
 **3. Runtime Fidelity Notes**
 
-WonderLens AI should preserve `photo_id`, run vision recognition, normalize the object label to a simple object name, and use the first recognized in-activity photo to seed the target first character. Later photos advance only when their recognized names start with that saved character. If recognition cannot produce a usable name or the name starts with a different character, ask the child to try another photo.
+WonderLens AI should preserve `photo_id`, run vision recognition, normalize the object label to a simple object name, and use the first recognized in-activity photo to seed the target first character. Later photos advance only when their recognized names start with that saved character. If recognition cannot produce a usable name, the name starts with a different character, the child says "I don't know," or the child goes off topic, return to the current photo task and ask for another clear photo rather than accepting unrelated content or reseeding the letter.
 
 **4. Typical Scenario**
 
@@ -39,9 +39,9 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** State that the first photo sets the starting letter and then the child finds two more names that start the same way. Do not ask for a photo here.
+**Runtime AI instruction:** Say exactly: "Here is the hunt: the first photo gives us a letter key, then we photograph two more objects whose names start the same way." Do not ask yet.
 
-**Example AI line:** "The first photo sets our starting letter. Then we find two more names that start the same way."
+**Example AI line:** "Here is the hunt: the first photo gives us a letter key, then we photograph two more objects whose names start the same way."
 
 **Child responses:**
 
@@ -61,9 +61,9 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 **Round 1 -- Seed Letter Treasure:**
 
-**Runtime AI instruction:** Ask for one clear photo so WonderLens can name the object and save its first letter. Say letter, not sound.
+**Runtime AI instruction:** Ask for one clear photo so WonderLens can name the object and use its first letter as the key. Say letter, not sound.
 
-**Example AI line:** "Take one photo. I will name the object and save its first letter for our hunt."
+**Example AI line:** "Take one clear photo. I will name the object and use its first letter as our key."
 
 **Child responses:**
 
@@ -121,7 +121,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Recap the three object names and their shared starting letter. Say letter, not sound.
+**Runtime AI instruction:** Recap the three object names and their shared starting letter. Say letter, not sound. Do not ask a follow-up question.
 
 **Example AI line:** "You collected three letter treasures. They connect because each name starts the same way."
 
@@ -141,7 +141,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close by naming the pattern: each collected object name starts with the same letter, not sound.
+**Runtime AI instruction:** Close Letter Treasure Hunt by naming the pattern: each collected object name starts with the same letter, not sound. Do not ask a follow-up question.
 
 **Example AI line:** "Today you practiced Form and Connection by finding names that start the same way."
 

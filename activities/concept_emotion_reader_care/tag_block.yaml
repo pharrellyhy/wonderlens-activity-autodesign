@@ -49,8 +49,8 @@ activity_signature:
   mechanic: care
   entity_role: catalyst
   focal_attribute: emotion_reader
-  intro: The child reads the feeling shown in each picture, then reflects on a
-    caring response after the feeling is named.
+  intro: The child reads the feeling in each picture from face and body clues, then
+    reflects on care after the feeling is named.
   bridge_prerequisites:
     primary:
     - emotion
@@ -73,22 +73,30 @@ response_verification:
   mode: cat1_transcript_active_cue
   evidence_source: stt_transcript
   advance_requires: active_round_target_match
+  source_guard:
+    source_intent: Guess or read the feeling in the active picture before discussing
+      care.
+    redirect_on: [idk, off_topic, generic_help_before_feeling, wrong_picture_feeling]
+    redirect_behavior: If the child is unsure or off-topic, do not praise or expand
+      unrelated content. Briefly return to naming the feeling in the current picture
+      using face or body clues.
+    disallow: [generic_advice_without_feeling, judging_the_character]
   rounds:
     - round_number: 1
       active_cue: picture 1
       target_result: worried or nervous
       accepted_feelings: [worried, nervous, scared, afraid, upset]
-      success_direction: Acknowledge the just-named feeling briefly, then ask what feeling the child sees in the next picture. Do not name the next feeling or body clue.
-      retry_direction: Ask the child to look again at the face and body and name the feeling. Do not name the target feeling or body clue.
+      success_direction: Echo the child's feeling word as a good read, then move to the next picture and ask what feeling they see. Do not name the next feeling or body clue.
+      retry_direction: Return to the current picture and ask the child to look at the face and body, then name the feeling. Do not name the target feeling or body clue.
     - round_number: 2
       active_cue: picture 2
       target_result: tired or sleepy
       accepted_feelings: [sleepy, tired, worn out, sleeping]
-      success_direction: Acknowledge the just-named feeling briefly, then ask what feeling the child sees in the next picture. Do not name the next feeling or body clue.
-      retry_direction: Ask the child to look again at the face and body and name the feeling. Do not name the target feeling or body clue.
+      success_direction: Echo the child's feeling word as a good read, then move to the next picture and ask what feeling they see. Do not name the next feeling or body clue.
+      retry_direction: Return to the current picture and ask the child to look at the face and body, then name the feeling. Do not name the target feeling or body clue.
     - round_number: 3
       active_cue: picture 3
       target_result: brave, nervous, unsure, or proud while trying
       accepted_feelings: [brave, nervous, unsure, proud]
-      success_direction: Acknowledge the just-named feeling briefly and move to the saved-feelings board.
-      retry_direction: Ask the child to look again at the face and body and name the feeling. Do not name the target feeling or body clue.
+      success_direction: Echo the child's feeling word as a good read, then move to the saved-feelings board.
+      retry_direction: Return to the current picture and ask the child to look at the face and body, then name the feeling. Do not name the target feeling or body clue.

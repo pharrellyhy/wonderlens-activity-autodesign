@@ -27,7 +27,7 @@ The AI uses a fixed rabbit, cat meow, and puppy card sequence, and the child imi
 
 **3. Runtime Fidelity Notes**
 
-Runtime wording should adapt naturally, but it must preserve the fixed rabbit, cat, and puppy sequence, verify the transcript against the active animal target before advancing, and keep honest visual fallback behavior.
+Runtime wording should adapt naturally, but it must preserve the fixed rabbit, cat, and puppy sequence, verify the transcript against the active animal target before advancing, and keep honest visual fallback behavior. If the child says "I don't know," goes off topic, names another animal, or proposes unsafe movement or volume, redirect to the current animal card; do not validate unrelated content as a completed turn.
 
 **4. Typical Scenario**
 
@@ -39,9 +39,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** State that the child will copy rabbit, cat, then puppy softly. Do not ask for a sound here.
+**Runtime AI instruction:** Say exactly: "Here is how Animal Sound Imitation works: I name rabbit, cat, then puppy, and you try one small safe voice or role line for each." Do not ask for a sound here.
 
-**Example AI line:** "We'll copy three animal cards softly: rabbit, cat, then puppy."
+**Example AI line:** "Here is how Animal Sound Imitation works: I name rabbit, cat, then puppy, and you try one small safe voice or role line for each."
 
 **Child responses:**
 
@@ -61,9 +61,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 **Round 1 -- Rabbit:**
 
-**Runtime AI instruction:** Ask directly for one tiny rabbit sniff or "I am a rabbit." Do not add scenario labels.
+**Runtime AI instruction:** Start with the rabbit card and ask for one tiny rabbit sniff at safe volume, or the line "I am a rabbit." Do not add scenario labels.
 
-**Example AI line:** "Rabbit first. Make one tiny sniff, or say, 'I am a rabbit.'"
+**Example AI line:** "First up is the rabbit. Try one tiny sniff at a safe volume, or say, 'I am a rabbit.'"
 
 **Child responses:**
 
@@ -81,9 +81,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 **Round 2 -- Cat Meow Voice Or Volume:**
 
-**Runtime AI instruction:** Ask directly for one soft cat meow or "I am a cat." Do not add scenario labels.
+**Runtime AI instruction:** Move to the cat card and ask for one soft or sleepy cat meow, or the line "I am a cat." Do not add scenario labels.
 
-**Example AI line:** "Cat next. Give one soft meow, or say, 'I am a cat.'"
+**Example AI line:** "Now it is the cat. Could your meow sound sleepy or soft, or could you say, 'I am a cat'?"
 
 **Child responses:**
 
@@ -101,9 +101,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 **Round 3 -- Puppy Role Line:**
 
-**Runtime AI instruction:** Ask directly for one friendly puppy woof or "I am a puppy." Do not add scenario labels.
+**Runtime AI instruction:** Move to the puppy card and ask for one friendly puppy woof, or the line "I am a puppy." Do not add scenario labels.
 
-**Example AI line:** "Puppy last. Give one friendly woof, or say, 'I am a puppy.'"
+**Example AI line:** "The puppy comes last. Give one friendly woof, or say, 'I am a puppy.'"
 
 **Child responses:**
 
@@ -121,7 +121,7 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Recap only the three animal turns: rabbit sniff, cat meow, and puppy woof.
+**Runtime AI instruction:** Recap only the three animal turns: rabbit sniff, cat meow, and puppy woof. Do not ask a follow-up question.
 
 **Example AI line:** "I saved your rabbit sniff, cat meow, and puppy woof on the board."
 
@@ -141,7 +141,7 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close by saying the child used their voice three ways: rabbit, cat, and puppy.
+**Runtime AI instruction:** Close Animal Sound Imitation by saying the child used their voice three ways: rabbit, cat, and puppy. Do not ask a follow-up question.
 
 **Example AI line:** "You used your voice three ways: rabbit, cat, and puppy."
 

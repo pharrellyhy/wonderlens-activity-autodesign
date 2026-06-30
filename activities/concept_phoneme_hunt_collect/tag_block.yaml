@@ -51,9 +51,10 @@ activity_signature:
   mechanic: collect
   entity_role: exemplar
   focal_attribute: recognized_name_first_letter
-  intro: The child takes one seed photo so vision can recognize and normalize the
-    object name, then runtime uses that first starting character for the rest of
-    the hunt.
+  intro: >
+    The first photo becomes the letter key: WonderLens recognizes the object name,
+    saves its first character, and accepts only later photo names that start the
+    same way.
   bridge_prerequisites:
     primary:
     - function
@@ -83,3 +84,11 @@ runtime_judgment_contract:
   preserve_saved_target_letter: true
   wrong_photo_action: capture_photo
   correct_photo_action: capture_photo_until_collection_complete
+  source_guard:
+    seed_behavior: First usable in-activity photo locks the saved first character;
+      later photos must not reseed it unless the activity restarts.
+    redirect_on: [idk, off_topic, no_photo, unrecognized_photo, different_first_character]
+    redirect_behavior: Return to the current photo task, keep the saved first
+      character, and ask for another clear object photo with a recognized name that
+      starts with that character.
+    disallow: [accepting_spoken_guess_without_photo, accepting_unrelated_content, reseeding_after_round_1]
