@@ -29,7 +29,10 @@ parameterization:
   stale_text_risk: low; target text is seeded from the first in-activity photo, not Discovery handoff.
   consumer_notes:
     wonderlens_ai: Seed the target first letter from the first in-activity photo; do not use Discovery handoff to choose the letter.
-    fullstack_demo: Use package-local assets and declared ui_template.
+      When the target first letter is known, select package asset `letter_badge_{letter_lower}`
+      and send it with the camera frame as the visible letter cue.
+    fullstack_demo: Use package-local assets and declared ui_template; choose the
+      `letter_badge_{letter_lower}` asset from the saved first letter.
   reviewer_action: accept_as_runtime_seeded_demo_package
 demo_support:
   status: degraded
@@ -52,7 +55,8 @@ demo_support:
     wonderlens_ai: Use real camera capture, preserve photo_id, run vision recognition,
       normalize the object name, seed the target first letter from the first in-activity
       photo, then accept later photos only when the recognized name starts with that
-      saved letter.
+      saved letter. Send package asset `letter_badge_{letter_lower}` with the camera
+      frame after the saved letter exists.
     fullstack_demo: Uses the same UI artwork as the activity-text-game demo, copied
       package-locally under assets/.
     asset_source: /Users/pharrelly/codebase/github/wonderlens-activity-fullstack-demo/.worktrees/feat/activity-text-game/frontend/public/activity-assets/activity_phoneme_treasure_hunt

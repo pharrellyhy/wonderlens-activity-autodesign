@@ -2,55 +2,59 @@ activity_id: concept_phoneme_hunt_collect
 version: 1
 contract: activity_display_contract_v1
 display_assets:
-  - display_asset_id: first_b_treasure_prompt
-    kind: cue
-    label: First B treasure photo prompt
+  - display_asset_id: runtime_first_letter_badge
+    kind: group
+    label: Runtime-selected first-letter badge
     metadata:
-      target_initial_sound: b
-      accepted_examples:
-        - ball
-        - book
-        - banana
-        - basket
-  - display_asset_id: second_b_treasure_prompt
-    kind: cue
-    label: Second B treasure photo prompt
-    metadata:
-      target_initial_sound: b
-      accepted_examples:
-        - ball
-        - book
-        - banana
-        - basket
-  - display_asset_id: final_b_treasure_prompt
-    kind: cue
-    label: Final B treasure photo prompt
-    metadata:
-      target_initial_sound: b
-      accepted_examples:
-        - ball
-        - book
-        - banana
-        - basket
+      selection_source: judgment_policy.accepted_first_letter
+      asset_manifest_id_template: letter_badge_{letter_lower}
+      available_asset_manifest_ids:
+        - letter_badge_a
+        - letter_badge_b
+        - letter_badge_c
+        - letter_badge_d
+        - letter_badge_e
+        - letter_badge_f
+        - letter_badge_g
+        - letter_badge_h
+        - letter_badge_i
+        - letter_badge_j
+        - letter_badge_k
+        - letter_badge_l
+        - letter_badge_m
+        - letter_badge_n
+        - letter_badge_o
+        - letter_badge_p
+        - letter_badge_q
+        - letter_badge_r
+        - letter_badge_s
+        - letter_badge_t
+        - letter_badge_u
+        - letter_badge_v
+        - letter_badge_w
+        - letter_badge_x
+        - letter_badge_y
+        - letter_badge_z
 frames:
   - frame_id: step_3_round_1
-    step_ref: prod.step_3.round_1
+    step_ref: prod.step_2.round_1
     layout_id: single_image
-    display_asset_id: first_b_treasure_prompt
+    display_asset_id: runtime_first_letter_badge
     control_mode: camera_capture
     input_affordance:
       select: none
       confirm: press
     verification_policy:
-      type: photo_object_initial_sound
+      type: photo_object_first_letter
       required: true
       target:
         type: display_asset
-        display_asset_id: first_b_treasure_prompt
+        display_asset_id: runtime_first_letter_badge
       evidence:
         - photo_id
         - vision_object_name
         - normalized_object_name
+        - saved_first_letter
     effect_profile:
       id: photo_sound_check
       sound_effects:
@@ -63,23 +67,24 @@ frames:
         - capture_pulse
         - confirm_pulse
   - frame_id: step_3_round_2
-    step_ref: prod.step_3.round_2
+    step_ref: prod.step_2.round_2
     layout_id: single_image
-    display_asset_id: second_b_treasure_prompt
+    display_asset_id: runtime_first_letter_badge
     control_mode: camera_capture
     input_affordance:
       select: none
       confirm: press
     verification_policy:
-      type: photo_object_initial_sound
+      type: photo_object_first_letter
       required: true
       target:
         type: display_asset
-        display_asset_id: second_b_treasure_prompt
+        display_asset_id: runtime_first_letter_badge
       evidence:
         - photo_id
         - vision_object_name
         - normalized_object_name
+        - saved_first_letter
     effect_profile:
       id: photo_sound_check
       sound_effects:
@@ -92,23 +97,24 @@ frames:
         - capture_pulse
         - confirm_pulse
   - frame_id: step_3_round_3
-    step_ref: prod.step_3.round_3
+    step_ref: prod.step_2.round_3
     layout_id: single_image
-    display_asset_id: final_b_treasure_prompt
+    display_asset_id: runtime_first_letter_badge
     control_mode: camera_capture
     input_affordance:
       select: none
       confirm: press
     verification_policy:
-      type: photo_object_initial_sound
+      type: photo_object_first_letter
       required: true
       target:
         type: display_asset
-        display_asset_id: final_b_treasure_prompt
+        display_asset_id: runtime_first_letter_badge
       evidence:
         - photo_id
         - vision_object_name
         - normalized_object_name
+        - saved_first_letter
     effect_profile:
       id: photo_sound_check
       sound_effects:
