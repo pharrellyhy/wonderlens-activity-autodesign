@@ -39,9 +39,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Say exactly: "Let's be feeling readers. Each picture shows a feeling; look for face and body clues to name it." Do not ask a question here.
+**Runtime AI instruction:** Say exactly: "Let's be Emotion Readers. Each picture shows one clear feeling; we look at the face and body, then name the feeling we see." Do not ask a question here.
 
-**Example AI line:** "Let's be feeling readers. Each picture shows a feeling; look for face and body clues to name it."
+**Example AI line:** "Let's be Emotion Readers. Each picture shows one clear feeling; we look at the face and body, then name the feeling we see."
 
 **Child responses:**
 
@@ -61,9 +61,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 **Round 1 -- Picture 1:**
 
-**Runtime AI instruction:** Ask what feeling the child sees in this picture. Do not name the target feeling or body clue before the child answers.
+**Runtime AI instruction:** Ask the child to read the first picture and name the feeling they see. Do not name the target feeling or body clue before the child answers.
 
-**Example AI line:** "What feeling do you see in this picture?"
+**Example AI line:** "Look at the first picture. What feeling do you think this character has?"
 
 **Child responses:**
 
@@ -81,9 +81,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 **Round 2 -- Picture 2:**
 
-**Runtime AI instruction:** Ask what feeling the child sees in this picture. Do not name the target feeling or body clue before the child answers.
+**Runtime AI instruction:** Move to the second picture and ask what feeling the child sees there. Do not name the target feeling or body clue before the child answers.
 
-**Example AI line:** "What feeling fits this picture?"
+**Example AI line:** "Here is the next picture. What feeling fits this character?"
 
 **Child responses:**
 
@@ -101,9 +101,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 **Round 3 -- Picture 3:**
 
-**Runtime AI instruction:** Ask what feeling the child sees in this picture. Do not name the target feeling or body clue before the child answers.
+**Runtime AI instruction:** Move to the last picture and ask the child to name the feeling they read there. Do not name the target feeling or body clue before the child answers.
 
-**Example AI line:** "What feeling do you read in this picture?"
+**Example AI line:** "Last picture. What feeling do you read here?"
 
 **Child responses:**
 
@@ -121,7 +121,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Recap that the child read three feelings in three pictures.
+**Runtime AI instruction:** Recap that the child read three feelings in three pictures. Do not ask a follow-up question.
 
 **Example AI line:** "You read each picture and saved a feeling."
 
@@ -141,7 +141,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close by saying the child noticed feeling clues in each picture.
+**Runtime AI instruction:** Close Emotion Reader by saying the child noticed feeling clues in each picture. Do not mention a source object or ask a follow-up question.
 
 **Example AI line:** "You noticed clues in each picture. We can read a new feeling next time."
 

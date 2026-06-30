@@ -93,12 +93,12 @@ response_verification:
   rounds:
     - round_number: 1
       accepted_tokens: [ears, pointy, animal, maybe]
-      success_direction: Save the maybe-guess without confirming it, then ask whether the paws-or-feet clue changes the guess. Do not reveal the answer.
-      retry_direction: Stay with the pointy-ears clue and ask for a maybe-guess without revealing the answer.
+      success_direction: Save the maybe-guess without confirming it, then say the paws-or-feet clue is next and ask whether the guess changes. Do not reveal the answer.
+      retry_direction: Stay with the pointy-ears clue and ask what the hidden picture could maybe be. Do not reveal the answer.
     - round_number: 2
       accepted_tokens: [paws, feet, animal, maybe]
       success_direction: Save the maybe-guess without confirming it, then ask for a final guess using only pointy ears and paws or feet.
-      retry_direction: Stay with the paws-or-feet clue and ask whether the child wants to keep or change the guess. Do not reveal the answer.
+      retry_direction: Stay with the paws-or-feet clue and ask whether the child wants to keep or change the maybe-guess. Do not reveal the answer.
   correct_final_response_direction: Reveal that the answer is cat and move to the big reveal.
   wrong_final_response:
     action: advance

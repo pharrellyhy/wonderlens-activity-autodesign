@@ -86,17 +86,17 @@ response_verification:
       active_cue: picture 1
       target_result: worried or nervous
       accepted_feelings: [worried, nervous, scared, afraid, upset]
-      success_direction: Acknowledge the just-named feeling briefly, then ask what feeling the child sees in the next picture. Do not name the next feeling or body clue.
-      retry_direction: Ask the child to look again at the face and body and name the feeling. Do not name the target feeling or body clue.
+      success_direction: Echo the child's feeling word as a good read, then move to the next picture and ask what feeling they see. Do not name the next feeling or body clue.
+      retry_direction: Return to the current picture and ask the child to look at the face and body, then name the feeling. Do not name the target feeling or body clue.
     - round_number: 2
       active_cue: picture 2
       target_result: tired or sleepy
       accepted_feelings: [sleepy, tired, worn out, sleeping]
-      success_direction: Acknowledge the just-named feeling briefly, then ask what feeling the child sees in the next picture. Do not name the next feeling or body clue.
-      retry_direction: Ask the child to look again at the face and body and name the feeling. Do not name the target feeling or body clue.
+      success_direction: Echo the child's feeling word as a good read, then move to the next picture and ask what feeling they see. Do not name the next feeling or body clue.
+      retry_direction: Return to the current picture and ask the child to look at the face and body, then name the feeling. Do not name the target feeling or body clue.
     - round_number: 3
       active_cue: picture 3
       target_result: brave, nervous, unsure, or proud while trying
       accepted_feelings: [brave, nervous, unsure, proud]
-      success_direction: Acknowledge the just-named feeling briefly and move to the saved-feelings board.
-      retry_direction: Ask the child to look again at the face and body and name the feeling. Do not name the target feeling or body clue.
+      success_direction: Echo the child's feeling word as a good read, then move to the saved-feelings board.
+      retry_direction: Return to the current picture and ask the child to look at the face and body, then name the feeling. Do not name the target feeling or body clue.

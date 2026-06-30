@@ -90,21 +90,21 @@ response_verification:
       target_label: rabbit
       accepted_tokens: [rabbit, bunny, sniff, sniffle, squeak]
       accepted_role_lines: [i am a rabbit, "i'm a rabbit", little rabbit, quiet rabbit]
-      success_direction: Briefly accept the rabbit turn, then ask for one soft cat meow or cat role line.
-      retry_direction: Stay with the rabbit and invite a tiny rabbit sniff or the line "I am a rabbit."
+      success_direction: Name the safe rabbit try in a few words, then move to the cat card and ask for one soft or sleepy meow or the line "I am a cat."
+      retry_direction: Keep the rabbit card in focus and ask for one tiny rabbit sniff or the line "I am a rabbit."
     - round_number: 2
       step: STEP_3_ROUND_2
       target_id: cat
       target_label: cat
       accepted_tokens: [cat, kitty, kitten, meow, miaow, mew, purr]
       accepted_role_lines: [i am a cat, "i'm a cat", sleepy cat, soft meow, happy meow]
-      success_direction: Briefly accept the cat turn, then ask for one friendly puppy woof or puppy role line.
-      retry_direction: Stay with the cat and invite one soft meow or the line "I am a cat."
+      success_direction: Name the safe cat try in a few words, then move to the puppy card and ask for one friendly woof or the line "I am a puppy."
+      retry_direction: Keep the cat card in focus and ask for one soft meow or the line "I am a cat."
     - round_number: 3
       step: STEP_3_ROUND_3
       target_id: puppy
       target_label: puppy
       accepted_tokens: [puppy, dog, doggy, woof, bark, arf, ruff, bowwow]
       accepted_role_lines: [i am a puppy, "i'm a puppy", good puppy, friendly puppy]
-      success_direction: Briefly accept the puppy turn, then move to saving the three animal sounds.
-      retry_direction: Stay with the puppy and invite one friendly woof or the line "I am a puppy."
+      success_direction: Name the safe puppy try in a few words, then move to saving the three animal sounds.
+      retry_direction: Keep the puppy card in focus and ask for one friendly woof or the line "I am a puppy."

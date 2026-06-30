@@ -39,9 +39,9 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Say exactly: "First photo sets our letter key; then we find two more names with that letter." Do not ask yet.
+**Runtime AI instruction:** Say exactly: "Here is the hunt: the first photo gives us a letter key, then we photograph two more objects whose names start the same way." Do not ask yet.
 
-**Example AI line:** "First photo sets our letter key; then we find two more names with that letter."
+**Example AI line:** "Here is the hunt: the first photo gives us a letter key, then we photograph two more objects whose names start the same way."
 
 **Child responses:**
 
@@ -61,9 +61,9 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 **Round 1 -- Seed Letter Treasure:**
 
-**Runtime AI instruction:** Ask for one clear photo so WonderLens can name the object and save its first letter. Say letter, not sound.
+**Runtime AI instruction:** Ask for one clear photo so WonderLens can name the object and use its first letter as the key. Say letter, not sound.
 
-**Example AI line:** "Take one photo. I will name the object and save its first letter for our hunt."
+**Example AI line:** "Take one clear photo. I will name the object and use its first letter as our key."
 
 **Child responses:**
 
@@ -121,7 +121,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Recap the three object names and their shared starting letter. Say letter, not sound.
+**Runtime AI instruction:** Recap the three object names and their shared starting letter. Say letter, not sound. Do not ask a follow-up question.
 
 **Example AI line:** "You collected three letter treasures. They connect because each name starts the same way."
 
@@ -141,7 +141,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close by naming the pattern: each collected object name starts with the same letter, not sound.
+**Runtime AI instruction:** Close Letter Treasure Hunt by naming the pattern: each collected object name starts with the same letter, not sound. Do not ask a follow-up question.
 
 **Example AI line:** "Today you practiced Form and Connection by finding names that start the same way."
 
