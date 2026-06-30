@@ -49,8 +49,8 @@ activity_signature:
   mechanic: care
   entity_role: catalyst
   focal_attribute: emotion_reader
-  intro: The child reads the feeling shown in each picture, then reflects on a
-    caring response after the feeling is named.
+  intro: The child reads the feeling in each picture from face and body clues, then
+    reflects on care after the feeling is named.
   bridge_prerequisites:
     primary:
     - emotion
@@ -73,6 +73,14 @@ response_verification:
   mode: cat1_transcript_active_cue
   evidence_source: stt_transcript
   advance_requires: active_round_target_match
+  source_guard:
+    source_intent: Guess or read the feeling in the active picture before discussing
+      care.
+    redirect_on: [idk, off_topic, generic_help_before_feeling, wrong_picture_feeling]
+    redirect_behavior: If the child is unsure or off-topic, do not praise or expand
+      unrelated content. Briefly return to naming the feeling in the current picture
+      using face or body clues.
+    disallow: [generic_advice_without_feeling, judging_the_character]
   rounds:
     - round_number: 1
       active_cue: picture 1

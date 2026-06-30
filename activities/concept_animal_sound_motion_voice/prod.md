@@ -27,7 +27,7 @@ The AI uses a fixed rabbit, cat meow, and puppy card sequence, and the child imi
 
 **3. Runtime Fidelity Notes**
 
-Runtime wording should adapt naturally, but it must preserve the fixed rabbit, cat, and puppy sequence, verify the transcript against the active animal target before advancing, and keep honest visual fallback behavior.
+Runtime wording should adapt naturally, but it must preserve the fixed rabbit, cat, and puppy sequence, verify the transcript against the active animal target before advancing, and keep honest visual fallback behavior. If the child says "I don't know," goes off topic, names another animal, or proposes unsafe movement or volume, redirect to the current animal card; do not validate unrelated content as a completed turn.
 
 **4. Typical Scenario**
 
@@ -39,9 +39,9 @@ The child plays Animal Sound Imitation with animal_sound_imitation as the bound 
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** State that the child will copy rabbit, cat, then puppy softly. Do not ask for a sound here.
+**Runtime AI instruction:** Say exactly: "Let's make a tiny animal show: rabbit, cat, then puppy, all with soft voices or small safe moves." Do not ask for a sound here.
 
-**Example AI line:** "We'll copy three animal cards softly: rabbit, cat, then puppy."
+**Example AI line:** "Let's make a tiny animal show: rabbit, cat, then puppy, all with soft voices or small safe moves."
 
 **Child responses:**
 

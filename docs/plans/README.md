@@ -23,6 +23,7 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
+| [2026-06-30-activity-dialogue-source-guards.md](2026-06-30-activity-dialogue-source-guards.md) | Active | Tightens four runtime-verified packages so rules/intro text clearly states the activity loop and redirects stay source-grounded. |
 | [2026-06-29-bounded-transition-expansion.md](2026-06-29-bounded-transition-expansion.md) | Completed | Expands bounded package-owned transitions to animal sound, partial reveal, and first-letter photo hunt before live matrix validation. |
 | [2026-06-29-bounded-transition-guidance.md](2026-06-29-bounded-transition-guidance.md) | Active | Adds package-owned transition briefs for verified activities while letting the runtime Speaker generate bounded child-facing lines. |
 | [2026-06-24-skip-intro-rules-only-packages.md](2026-06-24-skip-intro-rules-only-packages.md) | Active | Removes the separate intro step from four runtime-verified packages, keeps rules explanation-only, and preserves the first child action prompt in Round/Collect 1. |

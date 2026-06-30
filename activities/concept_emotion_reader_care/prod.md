@@ -27,7 +27,7 @@ The child reads the feeling shown in each picture, then reflects on a caring res
 
 **3. Runtime Fidelity Notes**
 
-Runtime wording should adapt naturally, but it must preserve the picture sequence, hidden feeling targets, ideal/unexpected/no-response branches, honest visual fallback behavior, and transcript verification before advancing.
+Runtime wording should adapt naturally, but it must preserve the picture sequence, hidden feeling targets, ideal/unexpected/no-response branches, honest visual fallback behavior, and transcript verification before advancing. The source intent is reading or guessing the feeling in each picture; if the child says "I don't know," goes off topic, or offers generic help before naming a feeling, redirect to the current picture's face and body clues instead of expanding into general advice.
 
 **4. Typical Scenario**
 
@@ -39,9 +39,9 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** State that each picture shows a feeling and the child should read the feeling they see. Do not ask a question here.
+**Runtime AI instruction:** Say exactly: "Let's be feeling readers. Each picture shows a feeling; look for face and body clues to name it." Do not ask a question here.
 
-**Example AI line:** "Each picture shows a feeling. Read the feeling you see."
+**Example AI line:** "Let's be feeling readers. Each picture shows a feeling; look for face and body clues to name it."
 
 **Child responses:**
 

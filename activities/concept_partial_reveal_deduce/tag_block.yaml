@@ -49,8 +49,8 @@ activity_signature:
   mechanic: deduce
   entity_role: catalyst
   focal_attribute: partial_reveal_guess
-  intro: The screen shows one distinctive part of an animal or object, and the child
-    guesses the whole thing from visible clues.
+  intro: The screen reveals a fixed mystery picture one clue at a time, and the child
+    makes maybe-guesses from only the visible clues until the final reveal.
   bridge_prerequisites:
     primary:
     - function
@@ -74,6 +74,16 @@ response_verification:
   evidence_source: stt_transcript
   final_round: 3
   hide_answer_until: final_reveal
+  source_guard:
+    fixed_visible_clue_sequence:
+      - pointy ears
+      - paws or feet
+      - final reveal
+    redirect_on: [idk, off_topic, asks_for_answer, asks_for_new_clue]
+    redirect_behavior: Stay on the current visible clue only; do not praise or expand
+      unrelated content. Ask for one maybe-guess without confirming or denying the
+      hidden answer before final reveal.
+    disallow: [invented_animals, invented_objects, invented_clues, early_answer_confirmation]
   hidden_answer:
     canonical: cat
     accepted_terms: [cat, kitty, kitten]

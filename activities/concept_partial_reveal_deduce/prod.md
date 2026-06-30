@@ -27,7 +27,7 @@ The screen reveals one distinctive part at a time while the child makes clue-bas
 
 **3. Runtime Fidelity Notes**
 
-Runtime wording should adapt naturally, but it must preserve the activity-specific role, repeated action, ideal/unexpected/no-response branches, and honest visual fallback behavior.
+Runtime wording should adapt naturally, but it must preserve the fixed pointy-ears clue, paws-or-feet clue, final cat reveal, ideal/unexpected/no-response branches, and honest visual fallback behavior. If the child says "I don't know," goes off topic, or asks for a different clue, redirect to the current visible clue only; do not invent animals, objects, clues, or confirmations before the final reveal.
 
 **4. Typical Scenario**
 
@@ -39,9 +39,9 @@ The child plays Mystery Clue Guess with mystery_clue_guess as the bound activity
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** State that each clue gets a maybe-guess and the answer waits for the final reveal. Do not ask a question here.
+**Runtime AI instruction:** Say exactly: "Let's solve a tiny mystery: one clue, one maybe-guess, and the answer waits for final reveal." Do not ask a question here.
 
-**Example AI line:** "We'll look at one mystery clue at a time. Make a maybe-guess for each clue."
+**Example AI line:** "Let's solve a tiny mystery: one clue, one maybe-guess, and the answer waits for final reveal."
 
 **Child responses:**
 

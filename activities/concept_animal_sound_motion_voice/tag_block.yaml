@@ -49,8 +49,8 @@ activity_signature:
   mechanic: motion_voice
   entity_role: catalyst
   focal_attribute: animal_sound_imitation
-  intro: The AI prompts a familiar animal, and the child imitates its sound or speaks
-    in the animal role.
+  intro: The AI invites a tiny animal show where the child copies rabbit, cat, and
+    puppy with soft voices or small safe motions.
   bridge_prerequisites:
     primary:
     - behavior
@@ -73,6 +73,12 @@ response_verification:
   type: transcript_token_match
   evidence_source: stt_transcript
   required: true
+  source_guard:
+    allowed_sequence: [rabbit, cat, puppy]
+    redirect_on: [idk, off_topic, unrelated_animal, unsafe_motion_voice]
+    redirect_behavior: Stay on the current active animal card; do not praise or expand
+      unrelated content. Ask for the smallest safe sound or role line for that animal.
+    disallow: [invented_animals, rough_or_loud_voice, unsafe_large_motion]
   applies_to_steps:
     - STEP_3_ROUND_1
     - STEP_3_ROUND_2

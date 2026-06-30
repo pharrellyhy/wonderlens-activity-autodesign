@@ -27,7 +27,7 @@ The first photo sets the target starting character. WonderLens recognizes and no
 
 **3. Runtime Fidelity Notes**
 
-WonderLens AI should preserve `photo_id`, run vision recognition, normalize the object label to a simple object name, and use the first recognized in-activity photo to seed the target first character. Later photos advance only when their recognized names start with that saved character. If recognition cannot produce a usable name or the name starts with a different character, ask the child to try another photo.
+WonderLens AI should preserve `photo_id`, run vision recognition, normalize the object label to a simple object name, and use the first recognized in-activity photo to seed the target first character. Later photos advance only when their recognized names start with that saved character. If recognition cannot produce a usable name, the name starts with a different character, the child says "I don't know," or the child goes off topic, return to the current photo task and ask for another clear photo rather than accepting unrelated content or reseeding the letter.
 
 **4. Typical Scenario**
 
@@ -39,9 +39,9 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** State that the first photo sets the starting letter and then the child finds two more names that start the same way. Do not ask for a photo here.
+**Runtime AI instruction:** Say exactly: "First photo sets our letter key; then we find two more names with that letter." Do not ask yet.
 
-**Example AI line:** "The first photo sets our starting letter. Then we find two more names that start the same way."
+**Example AI line:** "First photo sets our letter key; then we find two more names with that letter."
 
 **Child responses:**
 
