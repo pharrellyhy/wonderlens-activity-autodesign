@@ -83,30 +83,3 @@ runtime_judgment_contract:
   preserve_saved_target_letter: true
   wrong_photo_action: capture_photo
   correct_photo_action: capture_photo_until_collection_complete
-  dialogue_contract:
-    type: first_letter_photo_collection
-    transitions:
-      seed_retry:
-        intent: Ask for one clearer seed photo when no object name or target letter is available.
-        fallback: I need one clear object name. Take one clear photo.
-        max_sentences: 2
-      seed_to_next:
-        intent: Name the seed object and saved starting letter, then ask for another photo with the same starting letter.
-        fallback: "{object_name} starts with {target_letter}. Take another photo that starts with {target_letter}."
-        max_sentences: 2
-      correct_to_next:
-        intent: Name the matching object and ask for one more photo with the saved starting letter.
-        fallback: "{object_name} also starts with {target_letter}. Take one more photo that starts with {target_letter}."
-        max_sentences: 2
-      retry_wrong_photo:
-        intent: Explain the photographed object's starting letter mismatch and ask the child to take another photo with the saved starting letter.
-        fallback: "{object_name} starts with {object_letter}, not {target_letter}. Try another photo that starts with {target_letter}."
-        max_sentences: 2
-      retry_unclear_photo:
-        intent: Ask for a clearer photo that starts with the saved target letter.
-        fallback: I need one clear object name. Try another photo that starts with {target_letter}.
-        max_sentences: 2
-      correct_to_finish:
-        intent: Name the collected objects and say they all share the saved starting letter.
-        fallback: "{object_names} all start with {target_letter}. Same starting letter."
-        max_sentences: 2

@@ -39,7 +39,7 @@ The child plays Mystery Clue Guess with mystery_clue_guess as the bound activity
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Say exactly: "Each clue gets a maybe-guess. The answer waits for the final reveal." Do not ask a question here.
+**Runtime AI instruction:** State that each clue gets a maybe-guess and the answer waits for the final reveal. Do not ask a question here.
 
 **Example AI line:** "We'll look at one mystery clue at a time. Make a maybe-guess for each clue."
 
@@ -61,7 +61,7 @@ The child plays Mystery Clue Guess with mystery_clue_guess as the bound activity
 
 **Round 1 -- First Visible Clue:**
 
-**Runtime AI instruction:** Say exactly: "Pointy ears. What could it be?" Do not add clues, name the answer, or confirm the guess.
+**Runtime AI instruction:** Ask a maybe-guess from the pointy-ears clue only. Do not add clues, name the answer, or confirm the guess.
 
 **Example AI line:** "First clue: pointy ears. What could it maybe be?"
 
@@ -81,7 +81,7 @@ The child plays Mystery Clue Guess with mystery_clue_guess as the bound activity
 
 **Round 2 -- Second Visible Clue:**
 
-**Runtime AI instruction:** Say exactly: "Paws or feet. Keep your guess or change it?" Do not add clues, name the answer, or confirm the guess.
+**Runtime AI instruction:** Ask if the paws-or-feet clue changes the guess. Do not add clues, name the answer, or confirm the guess.
 
 **Example AI line:** "Second clue: paws or feet. What is your maybe-guess now?"
 
@@ -101,7 +101,7 @@ The child plays Mystery Clue Guess with mystery_clue_guess as the bound activity
 
 **Round 3 -- Final Reveal Guess:**
 
-**Runtime AI instruction:** Say exactly: "Pointy ears and paws or feet. What is your final guess?" Do not add clues or say the answer first.
+**Runtime AI instruction:** Ask for the final guess using the pointy-ears and paws-or-feet clues. Do not add clues or say the answer first.
 
 **Example AI line:** "Final guess time. Use pointy ears and paws or feet. What could it be?"
 
@@ -121,7 +121,7 @@ The child plays Mystery Clue Guess with mystery_clue_guess as the bound activity
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Say exactly: "The answer is cat. Here is the big reveal." Name only shown clues. Do not say the child found it.
+**Runtime AI instruction:** Reveal that the answer is cat and name only the shown clues. If the final guess was wrong, do not say the child found it.
 
 **Example AI line:** "Reveal: it was a cat. The pointy ears and paws were the clues."
 
@@ -141,7 +141,7 @@ The child plays Mystery Clue Guess with mystery_clue_guess as the bound activity
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Say exactly: "You looked at parts and made careful guesses about the whole cat."
+**Runtime AI instruction:** Close by saying the child looked at parts and made careful guesses about the whole cat.
 
 **Example AI line:** "You looked at parts and made careful guesses about the whole cat."
 

@@ -39,7 +39,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Say exactly: "Each picture shows a feeling. Read the feeling you see." Do not ask a question here.
+**Runtime AI instruction:** State that each picture shows a feeling and the child should read the feeling they see. Do not ask a question here.
 
 **Example AI line:** "Each picture shows a feeling. Read the feeling you see."
 
@@ -121,7 +121,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Say exactly: "You read three feelings in three pictures."
+**Runtime AI instruction:** Recap that the child read three feelings in three pictures.
 
 **Example AI line:** "You read each picture and saved a feeling."
 
@@ -141,7 +141,7 @@ The child plays Emotion Reader with emotion_reader as the bound activity entity 
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Say exactly: "You noticed feeling clues in each picture."
+**Runtime AI instruction:** Close by saying the child noticed feeling clues in each picture.
 
 **Example AI line:** "You noticed clues in each picture. We can read a new feeling next time."
 

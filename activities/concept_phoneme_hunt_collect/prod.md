@@ -39,7 +39,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 1: Rules
 
-**Runtime AI instruction:** Say exactly: "The first photo sets our starting letter. Then we find two more names that start the same way." Do not ask for a photo here.
+**Runtime AI instruction:** State that the first photo sets the starting letter and then the child finds two more names that start the same way. Do not ask for a photo here.
 
 **Example AI line:** "The first photo sets our starting letter. Then we find two more names that start the same way."
 
@@ -61,7 +61,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 **Round 1 -- Seed Letter Treasure:**
 
-**Runtime AI instruction:** Say exactly: "Take one clear photo. I will save its first letter." Say letter, not sound.
+**Runtime AI instruction:** Ask for one clear photo so WonderLens can name the object and save its first letter. Say letter, not sound.
 
 **Example AI line:** "Take one photo. I will name the object and save its first letter for our hunt."
 
@@ -121,7 +121,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 3: Magic Moment
 
-**Runtime AI instruction:** Recap the three object names and their shared starting letter. Say letter, not sound. Keep the line complete and do not ask another question.
+**Runtime AI instruction:** Recap the three object names and their shared starting letter. Say letter, not sound.
 
 **Example AI line:** "You collected three letter treasures. They connect because each name starts the same way."
 
@@ -141,7 +141,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 
 #### Step 4: Closing + IB Concepts
 
-**Runtime AI instruction:** Close by naming the pattern: each collected object name starts with the same letter, not sound. Keep the line complete and do not ask another question.
+**Runtime AI instruction:** Close by naming the pattern: each collected object name starts with the same letter, not sound.
 
 **Example AI line:** "Today you practiced Form and Connection by finding names that start the same way."
 
