@@ -186,7 +186,7 @@ single-string `effect_profile` values.
 | `concept_emotion_reader_care` | `single_image` / `voice_only` | `semantic_llm_judge` |
 | `concept_guided_drawing_probe` | `single_image` / `step_confirm`; final photo prompt | `self_report` |
 | `concept_partial_reveal_deduce` | `single_image` / `reveal_control` | non-gating `alias_match` until final answer |
-| `concept_phoneme_hunt_collect` | `single_image` / `camera_capture` | `photo_object_initial_sound` against displayed B target |
+| `concept_phoneme_hunt_collect` | `single_image` / `camera_capture` | `photo_object_first_letter` against runtime-selected letter badge |
 | `concept_recognition_pop_probe` | `two_image_options` or `multi_option_carousel` | `choice_match` |
 | `concept_story_unlock_probe` | `single_image` / `voice_only` or `replay_only` | `alias_match`, `accept_any_participation`, `echo_match` |
 | `concept_travel_planner_predict` | `two_image_options` / `binary_choice` only when abstract options are authored | `accept_any_participation` unless a factual correct option is authored |

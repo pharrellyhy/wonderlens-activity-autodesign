@@ -77,7 +77,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 2. Explain the recognized name and ask for another seed photo if the object cannot be recognized.
 3. [wait 2s] Give one clear object example, then ask the child to take one seed photo.
 
-**Screen:** Shows the first collection marker, seed photo prompt, and the saved first letter after recognition. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the first collection marker, seed photo prompt, and the saved first letter after recognition with the runtime-selected `letter_badge_{letter_lower}` asset. Optional support asset: `round_1_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 **Round 2 -- Same Letter Treasure:**
 
@@ -97,7 +97,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 2. Restate that the recognized name must start with the saved character and ask for another photo.
 3. [wait 2s] Repeat the saved character and ask for one second same-letter photo.
 
-**Screen:** Shows two collection markers and the saved seed word/letter when available. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows two collection markers and the saved seed word/letter with the runtime-selected `letter_badge_{letter_lower}` asset when available. Optional support asset: `round_2_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 **Round 3 -- Same Letter Recap:**
 
@@ -117,7 +117,7 @@ A child first photographs an object such as a car. WonderLens normalizes the nam
 2. Explain the recognized name and guide one retry using the saved first character.
 3. [wait 2s] Repeat the saved first character and ask the child to take one final same-letter photo.
 
-**Screen:** Shows the full three-marker collection and the same-letter recap area. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
+**Screen:** Shows the full three-marker collection, the same-letter recap area, and the runtime-selected `letter_badge_{letter_lower}` asset. Optional support asset: `round_3_scene`. If unavailable, continue with spoken guidance and do not claim the image is visible.
 
 #### Step 3: Magic Moment
 

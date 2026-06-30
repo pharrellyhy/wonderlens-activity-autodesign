@@ -44,6 +44,7 @@ POLICY_TYPES = {
     "alias_match",
     "echo_match",
     "photo_object_initial_sound",
+    "photo_object_first_letter",
     "semantic_llm_judge",
     "self_report",
     "accept_any_participation",
@@ -351,6 +352,19 @@ def validate_verification_policy(
             issues.append(f"{label}: photo_object_initial_sound policy must include photo_id evidence")
         if not norm(as_dict(display_asset.get("metadata")).get("target_initial_sound")):
             issues.append(f"{label}: target display asset must declare metadata.target_initial_sound")
+        return issues
+
+    if policy_type == "photo_object_first_letter":
+        _, display_asset = require_display_asset_target(
+            issues, package_dir, frame_id, policy_type, policy, frame_display_asset_id, display_assets
+        )
+        metadata = as_dict(display_asset.get("metadata"))
+        if "photo_id" not in evidence:
+            issues.append(f"{label}: photo_object_first_letter policy must include photo_id evidence")
+        if not norm(metadata.get("selection_source")):
+            issues.append(f"{label}: target display asset must declare metadata.selection_source")
+        if not norm(metadata.get("asset_manifest_id_template")):
+            issues.append(f"{label}: target display asset must declare metadata.asset_manifest_id_template")
         return issues
 
     if policy_type == "semantic_llm_judge":

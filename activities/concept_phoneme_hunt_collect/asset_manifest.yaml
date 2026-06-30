@@ -434,3 +434,549 @@ assets:
     sha256: 0620cf2a60391eb80c24177dee75f91d09bbb624263dadf6358dcb4e5468a347
   fallback_behavior: Continue Phoneme Treasure Hunt with spoken guidance and do not
     claim that Phoneme Treasure Hunt Synthesis scene is visible.
+- id: letter_badge_a
+  role: ui_overlay
+  label: Letter A badge
+  entity_name: letter A badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter A; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/a.png
+    mime_type: image/png
+    byte_count: 33116
+    sha256: a868d149ccae445d94900e9a61784dc87c0462a36f6417463ee8ac551959395b
+  fallback_behavior: Continue Letter Treasure Hunt with spoken A letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_b
+  role: ui_overlay
+  label: Letter B badge
+  entity_name: letter B badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter B; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/b.png
+    mime_type: image/png
+    byte_count: 32802
+    sha256: 4e23b5b912be1a68741cd348c3a92248c401dafcc31547a6ee73665323a5b72a
+  fallback_behavior: Continue Letter Treasure Hunt with spoken B letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_c
+  role: ui_overlay
+  label: Letter C badge
+  entity_name: letter C badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter C; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/c.png
+    mime_type: image/png
+    byte_count: 35626
+    sha256: 7b7f415d0a831abe4cdc3dde8719ff52722194c1f800f66394fe5fc5f1e023d3
+  fallback_behavior: Continue Letter Treasure Hunt with spoken C letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_d
+  role: ui_overlay
+  label: Letter D badge
+  entity_name: letter D badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter D; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/d.png
+    mime_type: image/png
+    byte_count: 32248
+    sha256: 65204844db3a4a3184660d8a114ac4227d00c06eabd6c283b5f743b6d4f357bd
+  fallback_behavior: Continue Letter Treasure Hunt with spoken D letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_e
+  role: ui_overlay
+  label: Letter E badge
+  entity_name: letter E badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter E; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/e.png
+    mime_type: image/png
+    byte_count: 28464
+    sha256: 0c77c75a22596f901302e07f6464bfe15cff75956bcb5c2138bac4460e5423e4
+  fallback_behavior: Continue Letter Treasure Hunt with spoken E letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_f
+  role: ui_overlay
+  label: Letter F badge
+  entity_name: letter F badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter F; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/f.png
+    mime_type: image/png
+    byte_count: 28279
+    sha256: 179f97eae1429e0f070a53621667cd00ac706944ce38ef5d26c9d84c4d83815f
+  fallback_behavior: Continue Letter Treasure Hunt with spoken F letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_g
+  role: ui_overlay
+  label: Letter G badge
+  entity_name: letter G badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter G; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/g.png
+    mime_type: image/png
+    byte_count: 36260
+    sha256: d9258129e0226241ecb0528d075f7ad823247546fcf8d3282abb8a2107335cc8
+  fallback_behavior: Continue Letter Treasure Hunt with spoken G letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_h
+  role: ui_overlay
+  label: Letter H badge
+  entity_name: letter H badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter H; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/h.png
+    mime_type: image/png
+    byte_count: 28114
+    sha256: 9e8f07f970660a3b782b37b499efe71cf0092025a39f2c2927b2fb835e4d980e
+  fallback_behavior: Continue Letter Treasure Hunt with spoken H letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_i
+  role: ui_overlay
+  label: Letter I badge
+  entity_name: letter I badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter I; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/i.png
+    mime_type: image/png
+    byte_count: 27401
+    sha256: f83c5caee795a90edf92042bff0073e6b0d06f0a2c36a7e39cd0cb2687cb102c
+  fallback_behavior: Continue Letter Treasure Hunt with spoken I letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_j
+  role: ui_overlay
+  label: Letter J badge
+  entity_name: letter J badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter J; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/j.png
+    mime_type: image/png
+    byte_count: 30184
+    sha256: 0786b534f9a1ef13370e304cef32e18f4fe514b4835253ece42ecad4fc5e8699
+  fallback_behavior: Continue Letter Treasure Hunt with spoken J letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_k
+  role: ui_overlay
+  label: Letter K badge
+  entity_name: letter K badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter K; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/k.png
+    mime_type: image/png
+    byte_count: 33399
+    sha256: 70ef26b3d1c7be472a60e67c0c5b0c59a65953adcb659475e5c871beb225515a
+  fallback_behavior: Continue Letter Treasure Hunt with spoken K letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_l
+  role: ui_overlay
+  label: Letter L badge
+  entity_name: letter L badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter L; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/l.png
+    mime_type: image/png
+    byte_count: 27610
+    sha256: d8808f37ad8158dff6059c1061a9bd439e7a7f5b062a18e02e63f4050fe851df
+  fallback_behavior: Continue Letter Treasure Hunt with spoken L letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_m
+  role: ui_overlay
+  label: Letter M badge
+  entity_name: letter M badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter M; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/m.png
+    mime_type: image/png
+    byte_count: 32953
+    sha256: 1519e6f604e092692055115cc6ec297bacb205aa29ef927e983b76f8acccd347
+  fallback_behavior: Continue Letter Treasure Hunt with spoken M letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_n
+  role: ui_overlay
+  label: Letter N badge
+  entity_name: letter N badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter N; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/n.png
+    mime_type: image/png
+    byte_count: 31031
+    sha256: 67d5373f94d951995dac79f7988d95315b3301dcc800b126dc8fed006a3798ff
+  fallback_behavior: Continue Letter Treasure Hunt with spoken N letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_o
+  role: ui_overlay
+  label: Letter O badge
+  entity_name: letter O badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter O; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/o.png
+    mime_type: image/png
+    byte_count: 36115
+    sha256: 84fe43af25e9b479974533b121a8297c92e447e51f4dbd0c56342725c1793fec
+  fallback_behavior: Continue Letter Treasure Hunt with spoken O letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_p
+  role: ui_overlay
+  label: Letter P badge
+  entity_name: letter P badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter P; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/p.png
+    mime_type: image/png
+    byte_count: 30573
+    sha256: 7ed4f8616508fbf7c797f4e7edd6e3073f5f91891e940d5ea6e2a95814fb4380
+  fallback_behavior: Continue Letter Treasure Hunt with spoken P letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_q
+  role: ui_overlay
+  label: Letter Q badge
+  entity_name: letter Q badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter Q; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/q.png
+    mime_type: image/png
+    byte_count: 37515
+    sha256: 6e1d4f163168a6689e7ef9fa9a245fa7acc21e3b4f78bddcc957c0aed922e9fd
+  fallback_behavior: Continue Letter Treasure Hunt with spoken Q letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_r
+  role: ui_overlay
+  label: Letter R badge
+  entity_name: letter R badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter R; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/r.png
+    mime_type: image/png
+    byte_count: 32137
+    sha256: 1a429f0f4ea30cb3d5da96c6d91e1401561d460f2ee8d5637e69040ed7f49ad2
+  fallback_behavior: Continue Letter Treasure Hunt with spoken R letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_s
+  role: ui_overlay
+  label: Letter S badge
+  entity_name: letter S badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter S; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/s.png
+    mime_type: image/png
+    byte_count: 37299
+    sha256: b9c8e14010017e806a071f56de7c61decef3e9a6d0ac6080999ebc8570dd1b77
+  fallback_behavior: Continue Letter Treasure Hunt with spoken S letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_t
+  role: ui_overlay
+  label: Letter T badge
+  entity_name: letter T badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter T; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/t.png
+    mime_type: image/png
+    byte_count: 27900
+    sha256: 3f138a66eaf518ecf42ec9ae04e82cda34e23bf0cc08fa7a1dff586e36b4b14d
+  fallback_behavior: Continue Letter Treasure Hunt with spoken T letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_u
+  role: ui_overlay
+  label: Letter U badge
+  entity_name: letter U badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter U; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/u.png
+    mime_type: image/png
+    byte_count: 31291
+    sha256: 7640c13130cd30d998538da4114a98da3ce8963140bd2009ddb10ae0e738b526
+  fallback_behavior: Continue Letter Treasure Hunt with spoken U letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_v
+  role: ui_overlay
+  label: Letter V badge
+  entity_name: letter V badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter V; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/v.png
+    mime_type: image/png
+    byte_count: 32353
+    sha256: 0fd006e672d01e533e92fc5ebf74f404b749cc9ab585abb0eb988285403d2012
+  fallback_behavior: Continue Letter Treasure Hunt with spoken V letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_w
+  role: ui_overlay
+  label: Letter W badge
+  entity_name: letter W badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter W; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/w.png
+    mime_type: image/png
+    byte_count: 36292
+    sha256: a9af34ece37e1eb3fdfa6b680d4b41f48b930394069d2c3da1e1b453e27b887d
+  fallback_behavior: Continue Letter Treasure Hunt with spoken W letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_x
+  role: ui_overlay
+  label: Letter X badge
+  entity_name: letter X badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter X; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/x.png
+    mime_type: image/png
+    byte_count: 35336
+    sha256: d1d743e7017a691dca2a654d8770bfba7ec6dc227b02c94d819c52a0bcaeadc0
+  fallback_behavior: Continue Letter Treasure Hunt with spoken X letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_y
+  role: ui_overlay
+  label: Letter Y badge
+  entity_name: letter Y badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter Y; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/y.png
+    mime_type: image/png
+    byte_count: 31644
+    sha256: b1502d9f4cadc098a413d1fb40447f3d6998d29d78a699b6bb300bd10dd7316c
+  fallback_behavior: Continue Letter Treasure Hunt with spoken Y letter guidance and
+    do not claim the letter badge is visible.
+- id: letter_badge_z
+  role: ui_overlay
+  label: Letter Z badge
+  entity_name: letter Z badge
+  requiredness: required
+  accuracy_mode: illustrative
+  source_strategy: generated_illustrative
+  transformation_policy: generate_new
+  prompt_en: WonderLens solid mint-green circular UI badge with one centered uppercase
+    letter Z; soft rounded toy style, transparent outside the circle, no inner highlight,
+    no extra text, no watermark.
+  variants:
+  - id: round_512
+    target: round_device_screen
+    size: 512x512
+    path: assets/letter_badges/z.png
+    mime_type: image/png
+    byte_count: 32272
+    sha256: cb05f1db634c47195b115681003a1389b44f1ca21f97b4b9e748fdfc3e287458
+  fallback_behavior: Continue Letter Treasure Hunt with spoken Z letter guidance and
+    do not claim the letter badge is visible.
