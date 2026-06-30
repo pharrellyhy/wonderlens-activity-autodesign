@@ -73,6 +73,61 @@ response_verification:
   type: transcript_token_match
   evidence_source: stt_transcript
   required: true
+  dialogue_acts:
+    rule_intro:
+      line: "Animal Sound Imitation is a tiny voice game: rabbit, cat, then puppy, with one safe sound or role line each."
+    round_prompt:
+      by_round:
+        1:
+          line: "First up is the rabbit. Try one tiny sniff, or say, 'I am a rabbit.'"
+        2:
+          line: "Now it is the cat. Try one soft meow, or say, 'I am a cat.'"
+        3:
+          line: "The puppy comes last. Try one friendly woof, or say, 'I am a puppy.'"
+    correct_advance:
+      by_round:
+        1:
+          line: "Rabbit is saved. Now try one soft cat meow, or say, 'I am a cat.'"
+        2:
+          line: "Cat is saved. Now try one friendly puppy woof, or say, 'I am a puppy.'"
+        3:
+          line: Puppy is saved. Your three animal sounds are on the board.
+    similar_advance:
+      by_round:
+        1:
+          line: "That rabbit try works. Now try one soft cat meow, or say, 'I am a cat.'"
+        2:
+          line: "That cat try works. Now try one friendly puppy woof, or say, 'I am a puppy.'"
+        3:
+          line: That puppy try works. Your three animal sounds are on the board.
+    wrong_retry:
+      by_round:
+        1:
+          line: "This card is rabbit. Try one tiny sniff, or say, 'I am a rabbit.'"
+        2:
+          line: "This card is cat. Try one soft meow, or say, 'I am a cat.'"
+        3:
+          line: "This card is puppy. Try one friendly woof, or say, 'I am a puppy.'"
+    off_topic_redirect:
+      by_round:
+        1:
+          line: "Back to the rabbit card: one tiny sniff."
+        2:
+          line: "Back to the cat card: one soft meow."
+        3:
+          line: "Back to the puppy card: one friendly woof."
+    idk_support:
+      by_round:
+        1:
+          line: "Make it tiny: one soft sniff."
+        2:
+          line: "Make it soft: one quiet meow."
+        3:
+          line: "Make it small: one friendly woof."
+    celebrate:
+      line: I saved your rabbit sniff, cat meow, and puppy woof on the board.
+    closing:
+      line: "You used your voice three ways: rabbit, cat, and puppy."
   source_guard:
     allowed_sequence: [rabbit, cat, puppy]
     redirect_on: [idk, off_topic, unrelated_animal, unsafe_motion_voice]

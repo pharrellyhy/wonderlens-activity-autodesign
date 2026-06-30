@@ -84,6 +84,39 @@ runtime_judgment_contract:
   preserve_saved_target_letter: true
   wrong_photo_action: capture_photo
   correct_photo_action: capture_photo_until_collection_complete
+  dialogue_acts:
+    rule_intro:
+      line: The hunt starts with one photo for a letter key. Then we photograph two more objects whose names start with that same letter.
+    round_prompt:
+      by_round:
+        1:
+          line: Take one clear object photo. Its name will set our letter key.
+        2:
+          line: Take a photo of something whose name starts with {target_letter}.
+        3:
+          line: One last {target_letter} treasure. Take a photo and I will check its name.
+    correct_advance:
+      by_round:
+        1:
+          line: I named it {recognized_name}, so {target_letter} is our key. Take another photo that starts with {target_letter}.
+        2:
+          line: "{recognized_name} starts with {target_letter} too. Take one last same-letter photo."
+        3:
+          line: "{saved_names} all start with {target_letter}. That is the letter connection you found."
+    mismatch_retry:
+      line: I named this {recognized_name}, and it starts with {actual_letter}; our key is {target_letter}. Take another photo for {target_letter}.
+    unrecognized_retry:
+      line: I need a clearer object name before I can count it. Take one clear object photo again.
+    no_photo_retry:
+      line: I need a photo for this hunt. Take one clear object photo.
+    idk_support:
+      line: That's okay. Choose one object and take a clear photo.
+    off_topic_redirect:
+      line: Let's stay with the letter hunt. Take one clear object photo for this turn.
+    celebrate:
+      line: You collected three photo treasures with names that start with {target_letter}.
+    closing:
+      line: Today you used Form and Connection by finding names with the same first letter.
   source_guard:
     seed_behavior: First usable in-activity photo locks the saved first character;
       later photos must not reseed it unless the activity restarts.

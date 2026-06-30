@@ -74,6 +74,63 @@ response_verification:
   evidence_source: stt_transcript
   final_round: 3
   hide_answer_until: final_reveal
+  dialogue_acts:
+    rule_intro:
+      line: Mystery Clue Guess shows one clue at a time. Make a maybe-guess; the answer waits for the final reveal.
+    round_prompt:
+      by_round:
+        1:
+          line: "First clue: pointy ears. What could this hidden picture maybe be?"
+        2:
+          line: Now we can see paws or feet. Does your guess change or stay?
+        3:
+          line: "Final guess: use pointy ears and paws or feet. What could it be?"
+    pre_final_advance:
+      by_round:
+        1:
+          line: "I saved that maybe-guess. Next clue: paws or feet. Does your guess change or stay?"
+        2:
+          line: "I saved that maybe-guess. Final guess: use pointy ears and paws or feet. What could it be?"
+    wrong_retry:
+      by_round:
+        1:
+          line: Stay with pointy ears for now. What could this hidden picture maybe be?
+        2:
+          line: Stay with paws or feet for now. Does your guess change or stay?
+        3:
+          line: Stay with pointy ears and paws or feet. What is your final guess?
+    off_topic_redirect:
+      by_round:
+        1:
+          line: Stay with pointy ears for now. What could this hidden picture maybe be?
+        2:
+          line: Stay with paws or feet for now. Does your guess change or stay?
+        3:
+          line: Stay with pointy ears and paws or feet. What is your final guess?
+    answer_request_redirect:
+      by_round:
+        1:
+          line: The answer waits. Use pointy ears for one maybe-guess.
+        2:
+          line: The answer waits. Use paws or feet for one maybe-guess.
+        3:
+          line: This is the final guess. Use pointy ears and paws or feet.
+    idk_support:
+      by_round:
+        1:
+          line: That's okay. Use pointy ears for one maybe-guess.
+        2:
+          line: That's okay. Use paws or feet for one maybe-guess.
+        3:
+          line: That's okay. Use pointy ears and paws or feet for your final guess.
+    final_reveal:
+      line: "Reveal: it was a cat. Pointy ears and paws were the clues."
+    wrong_final_reveal:
+      line: "Reveal: it was a cat. Pointy ears and paws were the clues."
+    celebrate:
+      line: You used the clues and saved your guesses.
+    closing:
+      line: You looked at parts and made careful guesses about the whole cat.
   source_guard:
     fixed_visible_clue_sequence:
       - pointy ears
