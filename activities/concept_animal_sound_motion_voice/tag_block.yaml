@@ -84,6 +84,7 @@ response_verification:
       - Acknowledge a safe animal voice or role line when the verifier accepts it.
       - Keep the active card sequence rabbit, cat, then puppy.
       - Ask for one small safe animal voice or role line.
+      - For closing, include a goodbye or farewell moment.
     avoid:
       - Adding new animals or new sounds.
       - Praising a wrong, unrelated, or unsafe response.
@@ -146,9 +147,11 @@ response_verification:
         3:
           line: "Make it small: one friendly woof."
     celebrate:
+      generation: llm_guided_with_exact_fallback
       line: Your tiny rabbit sniff, soft cat meow, and friendly puppy woof are saved on the board.
     closing:
-      line: You played three animal voices with gentle control today.
+      generation: llm_guided_with_exact_fallback
+      line: Farewell, little voice actor. You played three animal voices with gentle control today.
   source_guard:
     allowed_sequence: [rabbit, cat, puppy]
     redirect_on: [idk, off_topic, unrelated_animal, unsafe_motion_voice]

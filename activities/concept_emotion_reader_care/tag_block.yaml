@@ -84,6 +84,7 @@ response_verification:
       - Acknowledge the child's feeling word when the verifier accepts it.
       - Ask for one clear feeling read from the active picture.
       - Keep visible feeling clues in focus before any care idea.
+      - For closing, include a goodbye or farewell moment.
     avoid:
       - Naming the target feeling before the child answers.
       - Naming a future picture's answer or body clue.
@@ -147,9 +148,11 @@ response_verification:
         3:
           line: That's okay. Look at the last face and body, then say any feeling you notice.
     celebrate:
+      generation: llm_guided_with_exact_fallback
       line: You did it, feeling detective. Three feelings are saved on the board.
     closing:
-      line: You watched the faces and bodies closely; that is careful feeling-reading.
+      generation: llm_guided_with_exact_fallback
+      line: Goodbye, feeling detective. You watched the faces and bodies closely; that is careful feeling-reading.
   source_guard:
     source_intent: Guess or read the feeling in the active picture before discussing
       care.

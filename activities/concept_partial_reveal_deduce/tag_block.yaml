@@ -85,6 +85,7 @@ response_verification:
       - Treat early answers as maybe-guesses.
       - Use only the visible clue for the active round.
       - Keep the hidden answer hidden until the final reveal.
+      - For closing, include a goodbye or farewell moment.
     avoid:
       - Repeating or confirming hidden answer terms before the final reveal.
       - Adding extra clues, animals, objects, tails, whiskers, or claws.
@@ -149,9 +150,11 @@ response_verification:
     wrong_final_reveal:
       line: "Reveal: it was a cat. Pointy ears and paws were the clues."
     celebrate:
+      generation: llm_guided_with_exact_fallback
       line: You kept looking, clue finder. Your maybe-guesses are saved.
     closing:
-      line: Pointy ears and paws led us to the whole cat; careful looking worked.
+      generation: llm_guided_with_exact_fallback
+      line: Goodbye, clue finder. Pointy ears and paws led us to the whole cat; careful looking worked.
   source_guard:
     fixed_visible_clue_sequence:
       - pointy ears

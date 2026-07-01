@@ -1,5 +1,21 @@
 # HANDOFF
 
+## 2026-07-01 - Generated Celebrate And Closing Dialogue
+
+Problem: The four package-guided activity definitions could guide live round
+dialogue, but celebrate and closing turns still used fixed lines. Closing also
+needed a clear goodbye/farewell moment.
+
+Solution: Added `generation: llm_guided_with_exact_fallback` to each package's
+celebrate and closing dialogue act. Added package policy that closing must
+include a goodbye/farewell moment, and updated closing fallback lines to say
+Goodbye or Farewell while keeping each activity's original intent.
+
+Verification: Tag-block schema validation passed for all activity packages
+using the WonderLens AI Python environment. Cross-repo checks in WonderLens AI
+also passed for regenerated runtimes, focused package/runtime tests, ruff, ty,
+and `git diff --check`.
+
 ## 2026-07-01 - Package-Guided LLM Dialogue Policy
 
 Problem: The verified packages need more natural child-facing utterances

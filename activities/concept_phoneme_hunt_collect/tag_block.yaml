@@ -96,6 +96,7 @@ runtime_judgment_contract:
       - Use first letter language, never sound language.
       - Keep the saved target letter stable after the first accepted photo.
       - Ask for another photo whether the current photo passes or needs retry.
+      - For closing, include a goodbye or farewell moment.
     avoid:
       - Accepting a spoken guess without a photo.
       - Reseeding the letter after round 1.
@@ -138,9 +139,11 @@ runtime_judgment_contract:
     off_topic_redirect:
       line: Let's stay with the letter hunt. Take one clear object photo for this turn.
     celebrate:
+      generation: llm_guided_with_exact_fallback
       line: You did it, letter explorer. Three {target_letter} photo treasures are saved.
     closing:
-      line: You found a bright first-letter connection in the world around you.
+      generation: llm_guided_with_exact_fallback
+      line: Goodbye, letter explorer. You found a bright first-letter connection in the world around you.
   source_guard:
     seed_behavior: First usable in-activity photo locks the saved first character;
       later photos must not reseed it unless the activity restarts.
