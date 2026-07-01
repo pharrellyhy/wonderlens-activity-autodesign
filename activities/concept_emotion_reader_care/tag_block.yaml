@@ -97,7 +97,7 @@ response_verification:
       - incorrect
   dialogue_acts:
     rule_intro:
-      line: Let's be Emotion Readers. Each picture has a feeling to find.
+      line: Hi, feeling detective. Let's be Emotion Readers. Each picture has a feeling to find.
     round_prompt:
       by_round:
         1:

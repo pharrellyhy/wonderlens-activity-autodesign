@@ -97,7 +97,7 @@ response_verification:
       - that's wrong
   dialogue_acts:
     rule_intro:
-      line: Mystery Clue Guess shows one clue at a time. Make a maybe-guess; the answer waits for the final reveal.
+      line: Hi, clue finder. Mystery Clue Guess shows one clue at a time, and the answer waits for the final reveal.
     round_prompt:
       by_round:
         1:

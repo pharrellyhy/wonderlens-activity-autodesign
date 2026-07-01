@@ -96,7 +96,7 @@ response_verification:
       - incorrect
   dialogue_acts:
     rule_intro:
-      line: "Animal Sound Imitation is a tiny voice game: rabbit, cat, then puppy, with one safe sound or role line each."
+      line: "Hi, little voice actor. Animal Sound Imitation is a tiny voice game: rabbit, cat, then puppy."
     round_prompt:
       by_round:
         1:

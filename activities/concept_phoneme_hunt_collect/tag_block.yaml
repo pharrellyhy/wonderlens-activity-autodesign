@@ -110,7 +110,7 @@ runtime_judgment_contract:
       - that's wrong
   dialogue_acts:
     rule_intro:
-      line: The hunt starts with one photo for a letter key. Then we photograph two more objects whose names start with that same letter.
+      line: Hi, letter explorer. The hunt starts with one photo for a letter key; then we photograph two more objects that start the same way.
     round_prompt:
       by_round:
         1:
