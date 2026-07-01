@@ -23,6 +23,7 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
+| [2026-07-01-package-guided-llm-dialogue.md](2026-07-01-package-guided-llm-dialogue.md) | Active | Adds YAML-owned package dialogue policy for LLM-generated child-friendly utterances with deterministic verification preserved. |
 | [2026-07-01-verified-dialogue-acts.md](2026-07-01-verified-dialogue-acts.md) | Active | Extends package-owned dialogue acts from Emotion Reader to Partial Reveal, Animal Sound, and Letter Treasure Hunt. |
 | [2026-06-30-emotion-reader-dialogue-acts.md](2026-06-30-emotion-reader-dialogue-acts.md) | Active | Pilots package-owned dialogue acts for Emotion Reader before extending deterministic dialogue quality to the other runtime-verified packages. |
 | [2026-06-30-activity-dialogue-source-guards.md](2026-06-30-activity-dialogue-source-guards.md) | Active | Tightens four runtime-verified packages so rules/intro text clearly states the activity loop and redirects stay source-grounded. |
