@@ -73,6 +73,27 @@ response_verification:
   type: transcript_token_match
   evidence_source: stt_transcript
   required: true
+  speaker_dialogue_mode: package_guided_llm
+  dialogue_policy:
+    mode: llm_guided_with_exact_fallback
+    max_sentences: 2
+    style: playful, gentle, emotionally expressive, and child-facing
+    semantic_target: Use the selected dialogue act as the meaning to preserve, not
+      as mandatory wording.
+    must:
+      - Acknowledge a safe animal voice or role line when the verifier accepts it.
+      - Keep the active card sequence rabbit, cat, then puppy.
+      - Ask for one small safe animal voice or role line.
+    avoid:
+      - Adding new animals or new sounds.
+      - Praising a wrong, unrelated, or unsafe response.
+      - Asking for loud or rough movement.
+      - Explaining verifier rules or runtime behavior.
+    forbidden_phrases:
+      - here is the rule
+      - WonderLens will
+      - that's wrong
+      - incorrect
   dialogue_acts:
     rule_intro:
       line: "Animal Sound Imitation is a tiny voice game: rabbit, cat, then puppy, with one safe sound or role line each."

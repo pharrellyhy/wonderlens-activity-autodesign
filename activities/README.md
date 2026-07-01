@@ -65,6 +65,7 @@ Fresh `/goal` generation writes run-local packages under `runs/<run_id>/activity
 - If `demo_support.yaml` is present, it must include top-level `entity_compatibility` beside top-level `parameterization` and `demo_support`. Do not infer handoff safety from `tag_block.yaml` `entity_binding`.
 - If `demo_support.yaml` declares `status: unsupported`, consumers must not expose the package as playable; the file must state `ui_template: none` and explain the missing mechanic, UI, asset, or runtime capability.
 - Do not put app layout, control mode, displayed-option, verification-policy, sound, lighting, or haptic metadata into `tag_block.yaml`. Those fields belong in `activity_display_contract_v1.yaml`.
+- Package-owned response wording policy does belong in `tag_block.yaml` when it is tied to verifier or runtime judgment metadata: Cat1 packages use `response_verification.speaker_dialogue_mode`, `response_verification.dialogue_policy`, and `response_verification.dialogue_acts`; Cat5 judgment packages use the same fields under `runtime_judgment_contract`. `dialogue_policy` guides LLM wording, while `dialogue_acts` remain semantic targets and exact fallbacks.
 
 ## Asset brief invariant
 

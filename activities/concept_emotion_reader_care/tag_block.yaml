@@ -73,6 +73,83 @@ response_verification:
   mode: cat1_transcript_active_cue
   evidence_source: stt_transcript
   advance_requires: active_round_target_match
+  speaker_dialogue_mode: package_guided_llm
+  dialogue_policy:
+    mode: llm_guided_with_exact_fallback
+    max_sentences: 2
+    style: warm, curious, emotionally expressive, and child-facing
+    semantic_target: Use the selected dialogue act as the meaning to preserve, not
+      as mandatory wording.
+    must:
+      - Acknowledge the child's feeling word when the verifier accepts it.
+      - Ask for one clear feeling read from the active picture.
+      - Keep visible feeling clues in focus before any care idea.
+    avoid:
+      - Naming the target feeling before the child answers.
+      - Naming a future picture's answer or body clue.
+      - Naming specific body parts; use face and body clues only.
+      - Generic praise when the answer is wrong or off-topic.
+      - Explaining verifier rules or runtime behavior.
+    forbidden_phrases:
+      - here is the rule
+      - WonderLens will
+      - that's wrong
+      - incorrect
+  dialogue_acts:
+    rule_intro:
+      line: Let's be Emotion Readers. Each picture has a feeling to find.
+    round_prompt:
+      by_round:
+        1:
+          line: Look at the first picture. What feeling do you see?
+        2:
+          line: Now picture two. What feeling do you notice?
+        3:
+          line: Last picture. What feeling can you read here?
+    correct_advance:
+      by_round:
+        1:
+          line: "{matched_feeling} fits this picture. Let's try picture two; what feeling is there?"
+        2:
+          line: "{matched_feeling} fits this one. Let's look at the last picture; what feeling is there?"
+        3:
+          line: "{matched_feeling} fits. You read all three pictures."
+    similar_advance:
+      by_round:
+        1:
+          line: "{matched_feeling} is a good read. Let's try picture two; what feeling is there?"
+        2:
+          line: "{matched_feeling} is a good read. Let's look at the last picture; what feeling is there?"
+        3:
+          line: "{matched_feeling} is a good read. You read all three pictures."
+    wrong_retry:
+      by_round:
+        1:
+          line: Try this picture again. The face and body are clues; what feeling do you see?
+        2:
+          line: Try picture two again. The face and body are clues; what feeling do you notice?
+        3:
+          line: Try the last picture again. The face and body are clues; what feeling can you read?
+    off_topic_redirect:
+      by_round:
+        1:
+          line: Stay with this picture for a moment. What feeling do you see?
+        2:
+          line: Stay with picture two for a moment. What feeling do you notice?
+        3:
+          line: Stay with the last picture for a moment. What feeling can you read?
+    idk_support:
+      by_round:
+        1:
+          line: That's okay. Look at the face and body, then say any feeling you notice.
+        2:
+          line: That's okay. Look at this face and body, then say any feeling you notice.
+        3:
+          line: That's okay. Look at the last face and body, then say any feeling you notice.
+    celebrate:
+      line: You read each picture and saved three feelings.
+    closing:
+      line: You noticed face and body clues today. Next time we can read another feeling.
   source_guard:
     source_intent: Guess or read the feeling in the active picture before discussing
       care.

@@ -84,6 +84,30 @@ runtime_judgment_contract:
   preserve_saved_target_letter: true
   wrong_photo_action: capture_photo
   correct_photo_action: capture_photo_until_collection_complete
+  speaker_dialogue_mode: package_guided_llm
+  dialogue_policy:
+    mode: llm_guided_with_exact_fallback
+    max_sentences: 2
+    style: curious, upbeat, emotionally expressive, and child-facing
+    semantic_target: Use the selected dialogue act as the meaning to preserve, not
+      as mandatory wording.
+    must:
+      - Name the recognized object as a simple noun only.
+      - Use first letter language, never sound language.
+      - Keep the saved target letter stable after the first accepted photo.
+      - Ask for another photo whether the current photo passes or needs retry.
+    avoid:
+      - Accepting a spoken guess without a photo.
+      - Reseeding the letter after round 1.
+      - Adding adjectives to the recognized object name.
+      - Listing example objects to photograph.
+      - Explaining verifier rules or runtime behavior.
+    forbidden_phrases:
+      - sound-based wording
+      - WonderLens
+      - like a toy
+      - for example
+      - that's wrong
   dialogue_acts:
     rule_intro:
       line: The hunt starts with one photo for a letter key. Then we photograph two more objects whose names start with that same letter.

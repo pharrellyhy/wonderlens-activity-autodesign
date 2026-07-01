@@ -1,5 +1,27 @@
 # HANDOFF
 
+## 2026-07-01 - Package-Guided LLM Dialogue Policy
+
+Problem: The verified packages need more natural child-facing utterances
+without requiring runtime code changes for every tone/wording iteration.
+
+Solution: Added package-owned `speaker_dialogue_mode: package_guided_llm` and
+`dialogue_policy` metadata to Emotion Reader, Partial Reveal, Animal Sound,
+and Letter Treasure Hunt. Emotion Reader also now has the aligned
+`dialogue_acts` block in autodesign. Cat1 packages keep these fields under
+`response_verification`; the Cat5 first-letter package keeps them under
+`runtime_judgment_contract`. Updated `activities/README.md` to document this
+metadata ownership.
+
+Verification: Tag-block schema validation passed for all activity packages
+using the WonderLens AI Python environment because this checkout's system
+Python lacks `PyYAML`. Final cross-repo verification also passed after the
+WonderLens AI runtime changes: all autodesign activity tag blocks validate
+against `activities/_schema/tag_block.schema.json`, and the WonderLens AI live
+Activity WS matrix for these four package-guided activities completed 12
+sessions with 0 errors (`tmp/package_guided_llm_live_20260701_111719/` in the
+AI worktree).
+
 ## 2026-07-01 - Verified Package Dialogue Acts Extended
 
 Problem: Emotion Reader had package-owned dialogue acts, but Partial Reveal,

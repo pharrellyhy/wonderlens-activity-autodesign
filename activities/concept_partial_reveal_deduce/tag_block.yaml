@@ -74,6 +74,27 @@ response_verification:
   evidence_source: stt_transcript
   final_round: 3
   hide_answer_until: final_reveal
+  speaker_dialogue_mode: package_guided_llm
+  dialogue_policy:
+    mode: llm_guided_with_exact_fallback
+    max_sentences: 2
+    style: curious, gentle, suspenseful, and child-facing
+    semantic_target: Use the selected dialogue act as the meaning to preserve, not
+      as mandatory wording.
+    must:
+      - Treat early answers as maybe-guesses.
+      - Use only the visible clue for the active round.
+      - Keep the hidden answer hidden until the final reveal.
+    avoid:
+      - Repeating or confirming hidden answer terms before the final reveal.
+      - Adding extra clues, animals, objects, tails, whiskers, or claws.
+      - Saying the child guessed correctly before the reveal.
+      - Explaining verifier rules or runtime behavior.
+    forbidden_phrases:
+      - here is the rule
+      - WonderLens will
+      - you guessed it
+      - that's wrong
   dialogue_acts:
     rule_intro:
       line: Mystery Clue Guess shows one clue at a time. Make a maybe-guess; the answer waits for the final reveal.
