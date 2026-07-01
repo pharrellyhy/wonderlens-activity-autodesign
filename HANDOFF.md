@@ -1,5 +1,81 @@
 # HANDOFF
 
+## 2026-07-01 - Generated Celebrate And Closing Dialogue
+
+Problem: The four package-guided activity definitions could guide live round
+dialogue, but celebrate and closing turns still used fixed lines. Closing also
+needed a clear goodbye/farewell moment.
+
+Solution: Added `generation: llm_guided_with_exact_fallback` to each package's
+celebrate and closing dialogue act. Added package policy that closing must
+include a goodbye/farewell moment, and updated closing fallback lines to say
+Goodbye or Farewell while keeping each activity's original intent.
+
+Verification: Tag-block schema validation passed for all activity packages
+using the WonderLens AI Python environment. Cross-repo checks in WonderLens AI
+also passed for regenerated runtimes, focused package/runtime tests, ruff, ty,
+and `git diff --check`.
+
+## 2026-07-01 - Package-Guided LLM Dialogue Policy
+
+Problem: The verified packages need more natural child-facing utterances
+without requiring runtime code changes for every tone/wording iteration.
+
+Solution: Added package-owned `speaker_dialogue_mode: package_guided_llm` and
+`dialogue_policy` metadata to Emotion Reader, Partial Reveal, Animal Sound,
+and Letter Treasure Hunt. Emotion Reader also now has the aligned
+`dialogue_acts` block in autodesign. Cat1 packages keep these fields under
+`response_verification`; the Cat5 first-letter package keeps them under
+`runtime_judgment_contract`. Updated `activities/README.md` to document this
+metadata ownership.
+
+Verification: Tag-block schema validation passed for all activity packages
+using the WonderLens AI Python environment because this checkout's system
+Python lacks `PyYAML`. Final cross-repo verification also passed after the
+WonderLens AI runtime changes: all autodesign activity tag blocks validate
+against `activities/_schema/tag_block.schema.json`, and the WonderLens AI live
+Activity WS matrix for these four package-guided activities completed 12
+sessions with 0 errors (`tmp/package_guided_llm_live_20260701_111719/` in the
+AI worktree).
+
+## 2026-07-01 - Verified Package Dialogue Acts Extended
+
+Problem: Emotion Reader had package-owned dialogue acts, but Partial Reveal,
+Animal Sound, and Letter Treasure Hunt still lacked package metadata for the
+deterministic child-facing lines that WonderLens AI should use after response
+verification.
+
+Solution: Added `dialogue_acts` metadata to
+`concept_partial_reveal_deduce`, `concept_animal_sound_motion_voice`, and
+`concept_phoneme_hunt_collect`. Partial Reveal now owns answer-safe pre-final
+bridges and final reveal lines; Animal Sound owns active-animal success, retry,
+IDK, and off-topic lines; Letter Treasure Hunt owns first-letter photo seed,
+retry, next-photo, and final collection lines.
+
+Verification: `git diff --check` passed. The tag-block schema validation
+passed for the three changed packages using the WonderLens AI Python
+environment because this checkout's system Python lacks `PyYAML`.
+
+## 2026-06-30 - Emotion Reader Dialogue Acts
+
+Problem: Repeated prompt-only dialogue tuning still let Emotion Reader drift
+toward chatbot-like wording, care/help answers, or formula transitions. The
+package source needed a narrow pilot where the activity itself owns the
+child-facing bridge lines that runtime can select deterministically.
+
+Solution: Added `response_verification.dialogue_acts` to
+`concept_emotion_reader_care` for rules, round prompts, correct/similar
+advance, wrong retry, off-topic redirect, idk support, celebration, and
+closing. Updated `prod.md` to describe those package-owned lines and keep the
+activity intent focused on naming the feeling in each picture. Shortened the
+Phoneme Hunt, Partial Reveal, and Animal Sound bridge copy to remove
+formula phrases such as "here is the rule" and satisfy the child-facing bridge
+word cap without changing their activity behavior.
+
+Verification: `git diff --check` passed. Tag-block schema validation passed
+using the WonderLens AI Python environment because the local system Python
+lacks `PyYAML`.
+
 ## 2026-06-30 - Dialogue Generation Rollback
 
 Problem: PM QA found the bounded transition-dialogue package metadata made the

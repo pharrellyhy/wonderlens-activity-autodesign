@@ -84,6 +84,66 @@ runtime_judgment_contract:
   preserve_saved_target_letter: true
   wrong_photo_action: capture_photo
   correct_photo_action: capture_photo_until_collection_complete
+  speaker_dialogue_mode: package_guided_llm
+  dialogue_policy:
+    mode: llm_guided_with_exact_fallback
+    max_sentences: 2
+    style: curious, upbeat, emotionally expressive, and child-facing
+    semantic_target: Use the selected dialogue act as the meaning to preserve, not
+      as mandatory wording.
+    must:
+      - Name the recognized object as a simple noun only.
+      - Use first letter language, never sound language.
+      - Keep the saved target letter stable after the first accepted photo.
+      - Ask for another photo whether the current photo passes or needs retry.
+      - For closing, include a goodbye or farewell moment.
+    avoid:
+      - Accepting a spoken guess without a photo.
+      - Reseeding the letter after round 1.
+      - Adding adjectives to the recognized object name.
+      - Listing example objects to photograph.
+      - Explaining verifier rules or runtime behavior.
+    forbidden_phrases:
+      - sound-based wording
+      - WonderLens
+      - like a toy
+      - for example
+      - that's wrong
+  dialogue_acts:
+    rule_intro:
+      line: Hi, letter explorer. The hunt starts with one photo for a letter key; then we photograph two more objects that start the same way.
+    round_prompt:
+      by_round:
+        1:
+          line: Take one clear object photo. Its name will set our letter key.
+        2:
+          line: Take a photo of something whose name starts with {target_letter}.
+        3:
+          line: One last {target_letter} treasure. Take a photo and I will check its name.
+    correct_advance:
+      by_round:
+        1:
+          line: I named it {recognized_name}, so {target_letter} is our key. Take another photo that starts with {target_letter}.
+        2:
+          line: "{recognized_name} starts with {target_letter} too. Take one last same-letter photo."
+        3:
+          line: "{saved_names} all start with {target_letter}. That is the letter connection you found."
+    mismatch_retry:
+      line: I named this {recognized_name}, and it starts with {actual_letter}; our key is {target_letter}. Take another photo for {target_letter}.
+    unrecognized_retry:
+      line: I need a clearer object name before I can count it. Take one clear object photo again.
+    no_photo_retry:
+      line: I need a photo for this hunt. Take one clear object photo.
+    idk_support:
+      line: That's okay. Choose one object and take a clear photo.
+    off_topic_redirect:
+      line: Let's stay with the letter hunt. Take one clear object photo for this turn.
+    celebrate:
+      generation: llm_guided_with_exact_fallback
+      line: You did it, letter explorer. Three {target_letter} photo treasures are saved.
+    closing:
+      generation: llm_guided_with_exact_fallback
+      line: Goodbye, letter explorer. You found a bright first-letter connection in the world around you.
   source_guard:
     seed_behavior: First usable in-activity photo locks the saved first character;
       later photos must not reseed it unless the activity restarts.

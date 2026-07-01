@@ -73,6 +73,85 @@ response_verification:
   type: transcript_token_match
   evidence_source: stt_transcript
   required: true
+  speaker_dialogue_mode: package_guided_llm
+  dialogue_policy:
+    mode: llm_guided_with_exact_fallback
+    max_sentences: 2
+    style: playful, gentle, emotionally expressive, and child-facing
+    semantic_target: Use the selected dialogue act as the meaning to preserve, not
+      as mandatory wording.
+    must:
+      - Acknowledge a safe animal voice or role line when the verifier accepts it.
+      - Keep the active card sequence rabbit, cat, then puppy.
+      - Ask for one small safe animal voice or role line.
+      - For closing, include a goodbye or farewell moment.
+    avoid:
+      - Adding new animals or new sounds.
+      - Praising a wrong, unrelated, or unsafe response.
+      - Asking for loud or rough movement.
+      - Explaining verifier rules or runtime behavior.
+    forbidden_phrases:
+      - here is the rule
+      - WonderLens will
+      - that's wrong
+      - incorrect
+  dialogue_acts:
+    rule_intro:
+      line: "Hi, little voice actor. Animal Sound Imitation is a tiny voice game: rabbit, cat, then puppy."
+    round_prompt:
+      by_round:
+        1:
+          line: "First up is the rabbit. Try one tiny sniff, or say, 'I am a rabbit.'"
+        2:
+          line: "Now it is the cat. Try one soft meow, or say, 'I am a cat.'"
+        3:
+          line: "The puppy comes last. Try one friendly woof, or say, 'I am a puppy.'"
+    correct_advance:
+      by_round:
+        1:
+          line: "Rabbit is saved. Now try one soft cat meow, or say, 'I am a cat.'"
+        2:
+          line: "Cat is saved. Now try one friendly puppy woof, or say, 'I am a puppy.'"
+        3:
+          line: Puppy is saved. Your three animal sounds are on the board.
+    similar_advance:
+      by_round:
+        1:
+          line: "That rabbit try works. Now try one soft cat meow, or say, 'I am a cat.'"
+        2:
+          line: "That cat try works. Now try one friendly puppy woof, or say, 'I am a puppy.'"
+        3:
+          line: That puppy try works. Your three animal sounds are on the board.
+    wrong_retry:
+      by_round:
+        1:
+          line: "This card is rabbit. Try one tiny sniff, or say, 'I am a rabbit.'"
+        2:
+          line: "This card is cat. Try one soft meow, or say, 'I am a cat.'"
+        3:
+          line: "This card is puppy. Try one friendly woof, or say, 'I am a puppy.'"
+    off_topic_redirect:
+      by_round:
+        1:
+          line: "Back to the rabbit card: one tiny sniff."
+        2:
+          line: "Back to the cat card: one soft meow."
+        3:
+          line: "Back to the puppy card: one friendly woof."
+    idk_support:
+      by_round:
+        1:
+          line: "Make it tiny: one soft sniff."
+        2:
+          line: "Make it soft: one quiet meow."
+        3:
+          line: "Make it small: one friendly woof."
+    celebrate:
+      generation: llm_guided_with_exact_fallback
+      line: Your tiny rabbit sniff, soft cat meow, and friendly puppy woof are saved on the board.
+    closing:
+      generation: llm_guided_with_exact_fallback
+      line: Farewell, little voice actor. You played three animal voices with gentle control today.
   source_guard:
     allowed_sequence: [rabbit, cat, puppy]
     redirect_on: [idk, off_topic, unrelated_animal, unsafe_motion_voice]

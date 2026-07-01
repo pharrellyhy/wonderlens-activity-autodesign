@@ -74,6 +74,87 @@ response_verification:
   evidence_source: stt_transcript
   final_round: 3
   hide_answer_until: final_reveal
+  speaker_dialogue_mode: package_guided_llm
+  dialogue_policy:
+    mode: llm_guided_with_exact_fallback
+    max_sentences: 2
+    style: curious, gentle, suspenseful, and child-facing
+    semantic_target: Use the selected dialogue act as the meaning to preserve, not
+      as mandatory wording.
+    must:
+      - Treat early answers as maybe-guesses.
+      - Use only the visible clue for the active round.
+      - Keep the hidden answer hidden until the final reveal.
+      - For closing, include a goodbye or farewell moment.
+    avoid:
+      - Repeating or confirming hidden answer terms before the final reveal.
+      - Adding extra clues, animals, objects, tails, whiskers, or claws.
+      - Saying the child guessed correctly before the reveal.
+      - Explaining verifier rules or runtime behavior.
+    forbidden_phrases:
+      - here is the rule
+      - WonderLens will
+      - you guessed it
+      - that's wrong
+  dialogue_acts:
+    rule_intro:
+      line: Hi, clue finder. Mystery Clue Guess shows one clue at a time, and the answer waits for the final reveal.
+    round_prompt:
+      by_round:
+        1:
+          line: "First clue: pointy ears. What could this hidden picture maybe be?"
+        2:
+          line: Now we can see paws or feet. Does your guess change or stay?
+        3:
+          line: "Final guess: use pointy ears and paws or feet. What could it be?"
+    pre_final_advance:
+      by_round:
+        1:
+          line: "I saved that maybe-guess. Next clue: paws or feet. Does your guess change or stay?"
+        2:
+          line: "I saved that maybe-guess. Final guess: use pointy ears and paws or feet. What could it be?"
+    wrong_retry:
+      by_round:
+        1:
+          line: Stay with pointy ears for now. What could this hidden picture maybe be?
+        2:
+          line: Stay with paws or feet for now. Does your guess change or stay?
+        3:
+          line: Stay with pointy ears and paws or feet. What is your final guess?
+    off_topic_redirect:
+      by_round:
+        1:
+          line: Stay with pointy ears for now. What could this hidden picture maybe be?
+        2:
+          line: Stay with paws or feet for now. Does your guess change or stay?
+        3:
+          line: Stay with pointy ears and paws or feet. What is your final guess?
+    answer_request_redirect:
+      by_round:
+        1:
+          line: The answer waits. Use pointy ears for one maybe-guess.
+        2:
+          line: The answer waits. Use paws or feet for one maybe-guess.
+        3:
+          line: This is the final guess. Use pointy ears and paws or feet.
+    idk_support:
+      by_round:
+        1:
+          line: That's okay. Use pointy ears for one maybe-guess.
+        2:
+          line: That's okay. Use paws or feet for one maybe-guess.
+        3:
+          line: That's okay. Use pointy ears and paws or feet for your final guess.
+    final_reveal:
+      line: "Reveal: it was a cat. Pointy ears and paws were the clues."
+    wrong_final_reveal:
+      line: "Reveal: it was a cat. Pointy ears and paws were the clues."
+    celebrate:
+      generation: llm_guided_with_exact_fallback
+      line: You kept looking, clue finder. Your maybe-guesses are saved.
+    closing:
+      generation: llm_guided_with_exact_fallback
+      line: Goodbye, clue finder. Pointy ears and paws led us to the whole cat; careful looking worked.
   source_guard:
     fixed_visible_clue_sequence:
       - pointy ears

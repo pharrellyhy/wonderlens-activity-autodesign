@@ -23,6 +23,9 @@ standalone plans remain under `docs/plans/` and are not backfilled here.
 
 | Plan | Status | Notes |
 |---|---|---|
+| [2026-07-01-package-guided-llm-dialogue.md](2026-07-01-package-guided-llm-dialogue.md) | Active | Adds YAML-owned package dialogue policy for LLM-generated child-friendly utterances with deterministic verification preserved. |
+| [2026-07-01-verified-dialogue-acts.md](2026-07-01-verified-dialogue-acts.md) | Active | Extends package-owned dialogue acts from Emotion Reader to Partial Reveal, Animal Sound, and Letter Treasure Hunt. |
+| [2026-06-30-emotion-reader-dialogue-acts.md](2026-06-30-emotion-reader-dialogue-acts.md) | Active | Pilots package-owned dialogue acts for Emotion Reader before extending deterministic dialogue quality to the other runtime-verified packages. |
 | [2026-06-30-activity-dialogue-source-guards.md](2026-06-30-activity-dialogue-source-guards.md) | Active | Tightens four runtime-verified packages so rules/intro text clearly states the activity loop and redirects stay source-grounded. |
 | [2026-06-29-bounded-transition-expansion.md](2026-06-29-bounded-transition-expansion.md) | Completed | Expands bounded package-owned transitions to animal sound, partial reveal, and first-letter photo hunt before live matrix validation. |
 | [2026-06-29-bounded-transition-guidance.md](2026-06-29-bounded-transition-guidance.md) | Active | Adds package-owned transition briefs for verified activities while letting the runtime Speaker generate bounded child-facing lines. |
