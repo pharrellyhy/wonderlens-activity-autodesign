@@ -146,9 +146,9 @@ response_verification:
         3:
           line: "Make it small: one friendly woof."
     celebrate:
-      line: I saved your rabbit sniff, cat meow, and puppy woof on the board.
+      line: Your tiny rabbit sniff, soft cat meow, and friendly puppy woof are saved on the board.
     closing:
-      line: "You used your voice three ways: rabbit, cat, and puppy."
+      line: You played three animal voices with gentle control today.
   source_guard:
     allowed_sequence: [rabbit, cat, puppy]
     redirect_on: [idk, off_topic, unrelated_animal, unsafe_motion_voice]

@@ -138,9 +138,9 @@ runtime_judgment_contract:
     off_topic_redirect:
       line: Let's stay with the letter hunt. Take one clear object photo for this turn.
     celebrate:
-      line: You collected three photo treasures with names that start with {target_letter}.
+      line: You did it, letter explorer. Three {target_letter} photo treasures are saved.
     closing:
-      line: Today you used Form and Connection by finding names with the same first letter.
+      line: You found a bright first-letter connection in the world around you.
   source_guard:
     seed_behavior: First usable in-activity photo locks the saved first character;
       later photos must not reseed it unless the activity restarts.

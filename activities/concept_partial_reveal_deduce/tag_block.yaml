@@ -149,9 +149,9 @@ response_verification:
     wrong_final_reveal:
       line: "Reveal: it was a cat. Pointy ears and paws were the clues."
     celebrate:
-      line: You used the clues and saved your guesses.
+      line: You kept looking, clue finder. Your maybe-guesses are saved.
     closing:
-      line: You looked at parts and made careful guesses about the whole cat.
+      line: Pointy ears and paws led us to the whole cat; careful looking worked.
   source_guard:
     fixed_visible_clue_sequence:
       - pointy ears
